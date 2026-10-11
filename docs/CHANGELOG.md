@@ -22,6 +22,11 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+### Changed
+
+- CI and release workflows now install pnpm from its standalone binary, avoiding
+  dependence on runner npm install-script policy.
+
 ### Fixed
 
 - Transfer batch and duplicate-file lookups now use SQLite indexes. Soft-removed

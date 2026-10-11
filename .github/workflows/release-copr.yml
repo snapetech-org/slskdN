@@ -38,9 +38,10 @@ jobs:
           dotnet-version: '10.0.100'
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/setup@v3
         with:
           version: 12.4.1
+          install: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
