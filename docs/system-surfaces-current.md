@@ -1,6 +1,6 @@
 # Current API surface inventory
 
-Generated: 2026-10-05T23:11:14Z
+Generated: 2026-10-12T19:30:28Z
 
 This inventory is generated from controller attributes. It is intended for parity/security review, not as a replacement for Swagger or integration tests.
 
@@ -231,13 +231,13 @@ None found.
   - 153:        [HttpGet("{actorName}/inbox")]
   - 202:        [HttpPost("{actorName}/inbox")]
   - 203:        [AllowAnonymous]
-  - 294:        [HttpGet("{actorName}/outbox")]
-  - 295:        [AllowAnonymous]
-  - 354:        [HttpGet("{actorName}/followers")]
-  - 355:        [AllowAnonymous]
-  - 381:        [HttpGet("{actorName}/following")]
-  - 382:        [AllowAnonymous]
-  - 419:        [HttpPost("{actorName}/outbox")]
+  - 297:        [HttpGet("{actorName}/outbox")]
+  - 298:        [AllowAnonymous]
+  - 357:        [HttpGet("{actorName}/followers")]
+  - 358:        [AllowAnonymous]
+  - 384:        [HttpGet("{actorName}/following")]
+  - 385:        [AllowAnonymous]
+  - 422:        [HttpPost("{actorName}/outbox")]
 - src/slskd/SocialFederation/API/WebFingerController.cs
   - 62:        [HttpGet("webfinger")]
   - 63:        [AllowAnonymous]
