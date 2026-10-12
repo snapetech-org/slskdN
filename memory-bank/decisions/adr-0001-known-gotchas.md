@@ -4,6 +4,22 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1767. Build Validation Child Environments From An Allowlist (2026-10-12)
+
+**What went wrong:** A credential-name denylist still passed loader options,
+Python import paths, proxy settings, arbitrary custom variables, and operator
+home/configuration paths into validation children.
+
+**Why:** Environment variable names do not define a trust boundary. Many
+non-secret values change code loading, network routing, tool configuration, or
+which user caches and settings a child process reads.
+
+**Prevention:** Construct child environments from a small platform/toolchain
+allowlist, then add only declared task settings and deliberate task-specific
+pass-through values. Force CI mode and run-owned home, temporary, config, and
+cache paths. Regressions should prove synthetic secrets and injection settings
+are absent while required executable and toolchain paths remain available.
+
 ### 0z1766. Anchor Changelog Section Searches To Whole Heading Lines (2026-10-12)
 
 **What went wrong:** An automated changelog edit matched an inline mention of
