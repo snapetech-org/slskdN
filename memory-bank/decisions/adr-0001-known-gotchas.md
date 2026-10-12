@@ -41121,3 +41121,18 @@ readiness signal.
 **Prevention:** Give service unit tests explicit ephemeral DHT and overlay
 ports. Keep production port-sharing defaults unchanged and do not increase a
 test timeout to hide listener contention.
+
+### 0z1769. Bind Playwright Installation To The Isolated Browser Cache (2026-10-12)
+
+**What went wrong:** The E2E workflow installed Chromium in the runner's
+default Playwright cache. The validation engine gave the browser task a private
+`XDG_CACHE_HOME`, so Playwright looked for Chromium in a different directory
+and the suite failed before its tests could launch.
+
+**Why:** Browser installation and browser execution did not share an explicit
+job-scoped cache path after the engine stopped inheriting the runner's cache
+environment.
+
+**Prevention:** Bind browser installation and execution to the same
+job-scoped `PLAYWRIGHT_BROWSERS_PATH`. Keep the task's home and other caches
+isolated, and assert the browser cache binding in the engine tests.
