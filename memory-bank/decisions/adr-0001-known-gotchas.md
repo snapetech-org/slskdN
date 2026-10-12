@@ -20,6 +20,19 @@ pass-through values. Force CI mode and run-owned home, temporary, config, and
 cache paths. Regressions should prove synthetic secrets and injection settings
 are absent while required executable and toolchain paths remain available.
 
+### 0z1768. Keep Runtime-Probe Call Sites When Replacing Environment Builders (2026-10-12)
+
+**What went wrong:** Refactoring validation task environments removed the old
+sanitizer while runtime inspection still called it, so creating a plan could
+throw before any task ran.
+
+**Why:** Runtime probes are child processes started during planning and are a
+separate call path from scheduled task execution.
+
+**Prevention:** Search all references when replacing environment helpers. Keep
+a shared allowlisted base for runtime probes and task environments, and run a
+plan-creation regression whenever the probe environment changes.
+
 ### 0z1766. Anchor Changelog Section Searches To Whole Heading Lines (2026-10-12)
 
 **What went wrong:** An automated changelog edit matched an inline mention of

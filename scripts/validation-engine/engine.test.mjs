@@ -19,6 +19,7 @@ import {
   discoverInventory,
   executePlan,
   globRegex,
+  isolatedTaskEnvironment,
   summarizeResult,
 } from './engine.mjs';
 
@@ -252,28 +253,72 @@ test('execution records timeouts and does not accept failed native commands', as
 
 test('child environments hide sensitive values unless a task explicitly needs them', async () => {
   const key = 'VALIDATION_ENGINE_TEST_SECRET';
-  const previous = process.env[key];
-  process.env[key] = 'do-not-log-me';
+  const operatorTemp = mkdtempSync(path.join(os.tmpdir(), 'slskdn-validation-operator-tmp-'));
+  const injected = {
+    [key]: 'do-not-log-me',
+    GITHUB_TOKEN: 'synthetic-github-token',
+    NODE_OPTIONS: '--require=/nonexistent-slskdn-validation-module.cjs',
+    HOME: '/operator/home',
+    TMPDIR: operatorTemp,
+    XDG_CONFIG_HOME: '/operator/config',
+    NUGET_PACKAGES: '/operator/nuget',
+    HTTPS_PROXY: 'http://proxy.invalid',
+    RANDOM_PRIVATE_VALUE: 'synthetic-private-value',
+    LOCAL_IDENTITY_DENYLIST: 'synthetic-local-identity-list',
+    CI: 'false',
+  };
+  const previous = new Map(Object.keys(injected).map((name) => [name, process.env[name]]));
+  Object.assign(process.env, injected);
   try {
+    assert.throws(
+      () => isolatedTaskEnvironment({ id: '../outside' }, operatorTemp),
+      /safe lowercase identifier/,
+    );
     const { root, config } = fixture();
+    config.runtimes = [{
+      command: process.execPath,
+      args: ['-e', `process.stdout.write(process.env[${JSON.stringify(key)}] ?? 'not-inherited')`],
+    }];
+    const plan = createPlan(root, config);
+    assert.equal(plan.runtimes[0].version, 'not-inherited');
+
     config.tasks[0].kind = 'check';
     config.tasks[0].command = [
       process.execPath,
       '-e',
-      `process.stdout.write(process.env.${key} ?? '')`,
+      `const keys = ${JSON.stringify(Object.keys(injected))}; process.stdout.write(JSON.stringify(Object.fromEntries(keys.map((name) => [name, process.env[name] ?? null]))))`,
     ];
     let result = await executePlan(root, config, fixturePlan(root, config));
     let log = path.join(result.runRoot, result.receipt.tasks[0].logFile);
-    assert.equal(readFileSync(log, 'utf8'), '');
+    const childEnvironment = JSON.parse(readFileSync(log, 'utf8'));
+    const environmentRoot = path.join(result.runRoot, `${config.tasks[0].id}-environment`);
+    assert.equal(childEnvironment[key], null);
+    assert.equal(childEnvironment.GITHUB_TOKEN, null);
+    assert.equal(childEnvironment.NODE_OPTIONS, null);
+    assert.equal(childEnvironment.HTTPS_PROXY, null);
+    assert.equal(childEnvironment.RANDOM_PRIVATE_VALUE, null);
+    assert.equal(childEnvironment.LOCAL_IDENTITY_DENYLIST, null);
+    assert.equal(childEnvironment.HOME, path.join(environmentRoot, 'home'));
+    assert.equal(childEnvironment.TMPDIR, path.join(environmentRoot, 'tmp'));
+    assert.equal(childEnvironment.XDG_CONFIG_HOME, path.join(environmentRoot, 'xdg-config'));
+    assert.equal(childEnvironment.NUGET_PACKAGES, path.join(environmentRoot, 'nuget-packages'));
+    assert.equal(childEnvironment.CI, 'true');
 
     config.tasks[0].passEnv = [key];
+    assert.throws(() => fixturePlan(root, config), /unapproved inherited environment variable/);
+    config.tasks[0].id = 'remediation-baseline';
+    config.tasks[0].passEnv = ['LOCAL_IDENTITY_DENYLIST'];
+    config.tasks[0].command = [process.execPath, '-e', "process.stdout.write(process.env.LOCAL_IDENTITY_DENYLIST ?? '')"];
     result = await executePlan(root, config, fixturePlan(root, config));
     log = path.join(result.runRoot, result.receipt.tasks[0].logFile);
-    assert.equal(readFileSync(log, 'utf8'), 'do-not-log-me');
-    assert.deepEqual(result.receipt.tasks[0].envKeys, [key]);
+    assert.equal(readFileSync(log, 'utf8'), 'synthetic-local-identity-list');
+    assert.deepEqual(result.receipt.tasks[0].envKeys, ['LOCAL_IDENTITY_DENYLIST']);
   } finally {
-    if (previous === undefined) delete process.env[key];
-    else process.env[key] = previous;
+    for (const [name, value] of previous) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+    rmSync(operatorTemp, { recursive: true, force: true });
   }
 });
 

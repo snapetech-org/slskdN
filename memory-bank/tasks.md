@@ -7288,3 +7288,18 @@ resource completion.
   operations, other actors, missing identities, case changes, and altered bodies.
 - [x] Pass 123 focused regressions, all 6,128 .NET tests, repository lint,
   release-note validation, and the local identity scan.
+
+### Validation child-process environment isolation — 2026-10-12
+
+- [x] Restrict runtime probes and task processes to the platform/toolchain
+  environment allowlist, with private task home, temporary, XDG, and NuGet
+  settings. Force deterministic CI and test-mode values.
+- [x] Reject arbitrary passEnv names. Retain only the four identity-denylist
+  settings approved for the remediation-baseline task.
+- [x] Pass the focused validation-engine contract suite (13 tests) and plan the
+  local candidate (910 inventoried test files, 17 tasks, 8/8 command
+  prerequisites available).
+- [x] Pass the complete default local engine gate: 14/14 selected tasks and
+  7,303 active cases, with the three browser E2E suites separately excluded by
+  policy. This covers all tests-only tasks and adds the repository checks and
+  web build/output checks.

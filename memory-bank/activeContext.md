@@ -19206,3 +19206,27 @@ lint, release-note validation, identity scan, and diff checks pass.
 No active implementation or validation work remains for these corrections.
 Unrelated validation-tool branch commits remain separate. Release tagging
 requires a separate explicit instruction.
+
+## Current state — Validation child-process environment isolation — 2026-10-12
+
+The local validation engine now filters runtime probes and task children
+through an explicit platform/toolchain allowlist, creates private task user,
+temporary, XDG, and NuGet paths, and limits passEnv to declared task settings.
+The remediation-baseline task retains only its four approved identity-denylist
+inputs. The focused engine suite passes 13/13.
+
+The complete default local engine gate passed on the current worktree: 14/14
+selected tasks, 7,303 active test cases, zero failures or blocked tasks, and
+three documented browser E2E tasks excluded. The plan discovered 910 test
+files, found all 8 command prerequisites, and matched Node 24.21.0, pnpm
+12.4.1, .NET 10.0.401, and Python 3.14.8. The first attempt hit a full `/tmp`
+tmpfs; the successful run used disk-backed temporary storage. The code, policy
+docs, task record, and release-note fragment remain on the
+codex/validation-environment-isolation-20261012 branch and have not been
+pushed.
+
+### Next Steps
+
+Run repository lint, validate and preview the release note after committing,
+then integrate this branch carefully with the existing validation-progress PR.
+No publication has been performed.

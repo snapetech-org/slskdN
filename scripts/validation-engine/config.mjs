@@ -13,10 +13,12 @@ export const validation = {
     '.github/workflows/ci.yml',
     '.github/workflows/e2e-tests.yml',
     'packaging/scripts/run-release-gate.sh',
+    'docs/dev/testing-policy.md',
     'scripts/validation-engine/engine.mjs',
     'scripts/validation-engine/config.mjs',
     'scripts/validation-engine/engine.test.mjs',
     'scripts/validate-development.mjs',
+    'release-notes/20261012-validation-environment-isolation.md',
   ],
   requiredCommands: ['git', 'bash', 'rg', 'jq', 'python3'],
   runtimes: [

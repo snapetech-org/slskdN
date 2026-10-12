@@ -72,8 +72,13 @@ digests, runtime versions, and (on GitHub Actions) the workflow run and attempt.
 Test tasks pass only when their native command succeeds and reports at least
 one active case. No previous result is reused. A task that changes the planned
 source blocks remaining work and fails the run. Sensitive environment values
-are removed from child commands by default; a task must explicitly name any
-private value it needs.
+are excluded by constructing runtime-probe and child environments from a
+narrow platform and toolchain allowlist. Each task receives private home,
+temporary, XDG, and .NET package directories, plus declared settings. `passEnv`
+allows only variables approved for that task by the engine. The engine forces
+`CI=true`; test tasks use `NODE_ENV=test`. Loader options, proxy settings,
+workflow context, arbitrary variables, and operator configuration paths do not
+reach child commands.
 
 GitHub CI uploads the receipt and logs as a seven-day artifact. A passing local
 or hosted engine run does not include the separate Nix packaging job, release

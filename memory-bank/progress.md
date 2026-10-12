@@ -18936,3 +18936,20 @@ The 123 focused regressions pass. Full .NET tests pass 6,128 (5,765 unit,
 74 application, 289 integration); repository lint, structured release-note
 validation, the identity scan, and diff whitespace checks pass. Gotchas
 0z1761–0z1765 precede the implementation commit. No release tag is requested.
+
+## Update 2026-10-12 — Validation environment isolation
+
+Runtime version probes and validation task processes now start from a strict
+platform/toolchain allowlist. Tasks receive run-owned user, temporary, XDG, and
+.NET package settings; CI and test mode are forced. passEnv is rejected unless
+the exact name is approved for that task; only slskdn's remediation-baseline
+task retains its four existing identity-denylist inputs.
+
+The focused validation-engine suite passes 13 tests. The real slskdn plan
+discovers 910 test files across 17 tasks and reports all 8 command prerequisites
+available. The complete default local engine gate passes all 14 selected tasks
+with 7,303 active cases, zero failures, and zero blocked tasks. Three browser
+E2E tasks remain separately excluded by policy. Node 24.21.0, pnpm 12.4.1,
+.NET 10.0.401, and Python 3.14.8 match the declared runtime matrix. The first
+attempt hit a full `/tmp` tmpfs; the successful run used disk-backed temporary
+storage.
