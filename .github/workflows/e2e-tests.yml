@@ -69,6 +69,8 @@ jobs:
         continue-on-error: true  # Don't fail if network is down, static files are enough for basic tests
 
       - name: Install E2E Dependencies
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/slskdn-playwright-browsers
         run: |
           pnpm --filter @slskdn/e2e exec playwright install --with-deps chromium
 

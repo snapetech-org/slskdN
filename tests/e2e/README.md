@@ -20,11 +20,12 @@ Without this, the node may serve a stale wwwroot and UI-dependent tests (e.g. So
 # From the repository root, install workspace dependencies
 pnpm install --frozen-lockfile
 
-# Install Playwright browsers
+# Install Playwright browsers in the job-scoped cache used by the validation engine
+export PLAYWRIGHT_BROWSERS_PATH="$(node -e 'process.stdout.write(require("node:os").tmpdir())')/slskdn-playwright-browsers"
 pnpm --filter @slskdn/e2e exec playwright install chromium
 
-# Run all tests
-pnpm --filter @slskdn/e2e test
+# Run the suite with the isolated validation environment
+node scripts/validate-development.mjs --task browser-e2e
 
 # Run specific test
 pnpm --filter @slskdn/e2e exec playwright test specs/smoke.spec.ts

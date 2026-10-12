@@ -144,6 +144,7 @@ test('plan binds the candidate and closes test selection over its dependencies',
     name: 'Optional browser suite',
     stage: 'browser',
     kind: 'test',
+    browserCache: 'playwright',
     command: [process.execPath, '-e', 'process.exit(0)'],
     casePattern: 'passed (\\d+)',
     minimumCases: 1,
@@ -154,6 +155,9 @@ test('plan binds the candidate and closes test selection over its dependencies',
     'prepare',
     'unit-tests',
   ]);
+  const browserTask = plan.tasks.find((task) => task.id === 'optional-browser');
+  assert.equal(browserTask.browserCache, 'playwright');
+  assert.ok(browserTask.envKeys.includes('PLAYWRIGHT_BROWSERS_PATH'));
   assert.equal(plan.inventoryCounts.unit, 1);
   assert.equal(plan.candidate.commit.length, 40);
   assert.match(plan.candidate.sourceSha256, /^[a-f0-9]{64}$/);
@@ -320,6 +324,44 @@ test('child environments hide sensitive values unless a task explicitly needs th
     }
     rmSync(operatorTemp, { recursive: true, force: true });
   }
+});
+
+test('Playwright tasks use the job-scoped browser cache selected by the workflow', () => {
+  const runRoot = makeRoot({ 'package.json': '{}\n' });
+  const runnerTemp = path.join(os.tmpdir(), 'slskdn-validation-runner-temp');
+  const task = {
+    id: 'browser-e2e',
+    kind: 'test',
+    browserCache: 'playwright',
+  };
+  const env = isolatedTaskEnvironment(task, runRoot, {
+    RUNNER_TEMP: runnerTemp,
+    TMPDIR: '/operator/temp',
+    HOME: '/operator/home',
+    XDG_CACHE_HOME: '/operator/cache',
+    PLAYWRIGHT_BROWSERS_PATH: '/operator/cache/untrusted-browsers',
+  });
+  const environmentRoot = path.join(runRoot, 'browser-e2e-environment');
+  const workflow = readFileSync(
+    new URL('../../.github/workflows/e2e-tests.yml', import.meta.url),
+    'utf8',
+  );
+
+  assert.equal(
+    env.PLAYWRIGHT_BROWSERS_PATH,
+    path.join(runnerTemp, 'slskdn-playwright-browsers'),
+  );
+  assert.equal(env.HOME, path.join(environmentRoot, 'home'));
+  assert.equal(env.XDG_CACHE_HOME, path.join(environmentRoot, 'xdg-cache'));
+  assert.notEqual(env.PLAYWRIGHT_BROWSERS_PATH, '/operator/cache/untrusted-browsers');
+  assert.match(
+    workflow,
+    /PLAYWRIGHT_BROWSERS_PATH:\s*\$\{\{\s*runner\.temp\s*\}\}\/slskdn-playwright-browsers/,
+  );
+  assert.throws(
+    () => isolatedTaskEnvironment({ ...task, browserCache: '/operator/cache' }, runRoot, {}),
+    /unsupported browser cache/,
+  );
 });
 
 test('plan and executor reject dependency cycles and report missing tools', async () => {

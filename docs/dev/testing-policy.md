@@ -80,6 +80,12 @@ allows only variables approved for that task by the engine. The engine forces
 workflow context, arbitrary variables, and operator configuration paths do not
 reach child commands.
 
+Playwright tasks keep those private home and XDG directories and use the
+job-scoped `slskdn-playwright-browsers` cache under the runner temporary root.
+The E2E workflow installs Chromium into that same cache before the engine runs.
+For local browser validation, set `PLAYWRIGHT_BROWSERS_PATH` to the equivalent
+temporary-root path before installing browsers; see `tests/e2e/README.md`.
+
 GitHub CI uploads the receipt and logs as a seven-day artifact. A passing local
 or hosted engine run does not include the separate Nix packaging job, release
 publishing, or all platform installer smokes.
