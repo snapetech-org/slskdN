@@ -59,7 +59,8 @@ This is **highest priority** - do it before moving on to other work.
 2. **`memory-bank/decisions/adr-0001-known-gotchas.md`** - Critical bugs to avoid
 3. **`memory-bank/decisions/adr-0002-code-patterns.md`** - Exact patterns to follow
 4. **`memory-bank/decisions/adr-0003-anti-slop-rules.md`** - What NOT to do
-5. **`memory-bank/activeContext.md`** - Current session state
+5. **`docs/dev/testing-policy.md`** - Test selection, safe local execution, and release-gate scope
+6. **`memory-bank/activeContext.md`** - Current session state
 
 ### Before Writing Code
 
@@ -173,12 +174,17 @@ When the work comes from a plan that has a **Deferred and Follow-up Work** table
 | **`memory-bank/progress.md`** | Append a short, timestamped summary of what was done; note surprises or decisions. |
 | **`memory-bank/activeContext.md`** | Clear the current task if finished; set “Next Steps”. |
 
-### 3. Run tests and lint
+### 3. Validation and lint
 
-- **Run tests:** `dotnet test`
-- **Run lint:** `./bin/lint`
-
----
+- Read `docs/dev/testing-policy.md` before selecting a validation path.
+- The repository validation engine owns test discovery, task selection, isolation, receipts, and result accounting. Use the entry points documented there; `--plan` is discovery only.
+- Local planning and test tasks for an unreviewed branch must run through the trusted Linux bubblewrap launcher described by the testing policy. Use a launcher copied from a reviewed revision outside the checkout.
+- For code that is release-ready or is gating CI, use the documented release gate. Run focused tests for changed behavior inside the trusted disposable environment when available.
+- Do not run tests against live configuration, credentials, accounts, queues, libraries, or databases. Use the disposable fixtures created by the test suite.
+- A plan does not prove tests ran. Report actual task execution, native case totals, skips, exclusions, blocked tasks, and missing prerequisites separately.
+- Run `./bin/lint` for code changes. For documentation-only changes, run `git diff --check` and applicable documentation checks; do not report code tests that were not run.
+- If the trusted launcher or pinned toolchain is unavailable, report the specific unavailable prerequisite and rely on the pull-request hosted validation. Do not claim a complete local gate.
+- Record visual inspection separately from automated results. A build or source check does not prove the rendered interface works.
 
 ## Decision Records
 
@@ -213,46 +219,13 @@ See `memory-bank/decisions/adr-0003-anti-slop-rules.md` for the full list.
 
 ---
 
-## 🚨 CRITICAL: Build Process - Tag-Only Builds
+## Release and package build boundaries
 
-**DO NOT trigger builds by pushing code. Builds ONLY happen on tags.**
-
-### Build System Rules
-
-1. **NO automatic builds on code pushes** - The CI workflow does NOT run on pushes to master
-2. **Builds ONLY trigger on tags** - You must create a tag to trigger a build
-3. **DO NOT modify workflows** to add automatic builds - this is intentional
-4. **DO NOT create tags** unless explicitly asked by the user
-
-### How Builds Work
-
-**CI Workflow (`ci.yml`):**
-- Triggers: **Tags only** (version tags, `build-dev-*`, `build-main-*`)
-- Also runs on: Pull requests (for testing) and manual `workflow_dispatch`
-- Does: Build, test, publish binaries, Docker (only on tags)
-
-**Build on Tag (`build-on-tag.yml`):**
-- Triggers: `build-dev-*` or `build-main-*` tags
-- Does: Full release build with packages (AUR, COPR, PPA, etc.)
-
-**Dev Release (`dev-release.yml`):**
-- Triggers: `dev-*` tags
-- Does: Dev package builds (AUR, COPR)
-
-### To Trigger a Build (Only if User Requests)
-
-```bash
-# Main/stable release
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
-
-# Dev release
-VERSION="0.24.1.dev.$(date -u +%Y%m%d.%H%M%S)"
-scripts/create-release-tag.sh "build-dev-${VERSION}"
-```
-
-**Never create tags automatically** - always wait for explicit user instruction.
-
----
+- `ci.yml` runs for pull requests targeting `main`, version-tag pushes, and manual dispatch. It does not run for ordinary branch pushes.
+- `build-on-tag.yml` runs for `build-main-*` and `build-dev-*` tags and manual dispatch. Separate package and release workflows run on published GitHub releases or their own manual dispatch; inspect each workflow's current triggers before relying on it.
+- Read `docs/dev/release-checklist.md`, `memory-bank/decisions/adr-0005-tagging-system.md`, and the current workflow definitions for release formats and required steps. Use `scripts/create-release-tag.sh` when explicitly authorized to create a tag.
+- Do not create tags, publish packages or artifacts, release, or announce without explicit maintainer authorization. A request to commit, push, or open a PR does not authorize those actions.
+- Do not change workflow triggers solely to make validation run. Use `docs/dev/testing-policy.md` and the repository validation engine for PR and release checks.
 
 ## Quick Reference
 
@@ -260,49 +233,11 @@ scripts/create-release-tag.sh "build-dev-${VERSION}"
 |--------|---------|
 | Run backend | `./bin/watch` |
 | Run frontend | `pnpm --filter @slskdn/web start` |
-| Run tests | `dotnet test` |
+| Run tests | Validation engine through the trusted launcher; see docs/dev/testing-policy.md |
 | Lint | `./bin/lint` |
 | Build release | `./bin/build` |
 
-## 🏗️ Build and Release Process
-
-### ⚠️ CRITICAL: Builds Only Happen on Tags
-
-**DO NOT trigger builds by pushing code. Builds ONLY happen when you create a tag.**
-
-The CI workflow (`ci.yml`) is configured to:
-- ✅ **Run on tags only**: `build-main-*`, `build-dev-*`, or version tags
-- ✅ **Run on pull requests**: For testing/validation
-- ✅ **Run on manual dispatch**: Via GitHub UI
-- ❌ **DOES NOT run on pushes to master**: Code updates do NOT trigger builds
-
-### How to Trigger a Build
-
-**For stable releases (main channel):**
-```bash
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
-```
-
-**For dev releases:**
-```bash
-VERSION="0.24.1.dev.$(date -u +%Y%m%d.%H%M%S)"
-scripts/create-release-tag.sh "build-dev-${VERSION}"
-```
-
-### Build Workflows
-
-1. **CI Workflow** (`ci.yml`): Builds, tests, publishes binaries, Docker (only on tags)
-2. **Build on Tag** (`build-on-tag.yml`): Full release with packages (AUR, COPR, PPA, etc.)
-3. **Dev Release** (`dev-release.yml`): Dev package builds (AUR, COPR)
-
-### What NOT to Do
-
-- ❌ **DO NOT** push code expecting a build to happen automatically
-- ❌ **DO NOT** modify workflows to trigger on branch pushes
-- ❌ **DO NOT** create tags unless you actually want a build/release
-- ✅ **DO** create tags explicitly when you want to build/release
-
-See `memory-bank/decisions/adr-0005-tagging-system.md` for detailed tag format and channel information.
+## Key repository files
 
 | File | Purpose |
 |------|---------|

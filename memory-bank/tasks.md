@@ -7351,3 +7351,12 @@ resource completion.
   and startup smoke, and version-change Docker cache check.
 - [ ] Push the validated tree to `snapetech/slskdN/main`, create the authorized
   stable tag, and verify hosted publishers and release artifacts.
+
+### Agent guidance and validation policy refresh — 2026-10-13
+
+- [x] Update `AGENTS.md` with the repository's trusted validation-engine policy and release-note contract.
+- [x] Correct the CI and release-trigger summary against the current workflow files; preserve the separate stable `.350` follow-up above.
+- [x] Pass documentation checks: `git diff --check`, balanced fenced blocks, and referenced-path checks.
+- [x] Commit and push `2f44b0c16`; open PR #359 with `release-note: none`.
+- [x] Merge current `main` at `252e92fb7` and synchronize PR #359 at `f48021a48`; `git diff --check` and the local release-note opt-out check pass against the synchronized base.
+- [ ] Review hosted checks for the current PR head before any merge; the synchronized run was queued at 00:45 UTC.

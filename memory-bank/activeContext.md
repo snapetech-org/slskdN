@@ -19300,3 +19300,13 @@ verification pass.
 Fetch and verify current `origin/main`, push the validated tree to
 `snapetech/slskdN/main`, create the authorized stable `.350` tag, verify hosted
 release publishers and artifacts, then remove task-scoped scratch data.
+
+## Current state — Agent guidance and validation policy refresh — 2026-10-13 00:45 UTC
+
+The first hosted release-note check flagged two fragments on the old base side of the comparison; the PR diff contained only `AGENTS.md` and the three task memory records. After that sync, `main` advanced again. Merged current `main` at `252e92fb7` without conflicts and pushed merge commit `f48021a48`. The PR still changes only those four files. `git diff --check` and the local release-note opt-out check pass against current `main`.
+
+PR #359 remains open with `release-note: none`. Hosted checks for the synchronized head were queued at the latest poll. No application tests were run; this remains documentation-only. No merge or release tag was created. The separate stable `.350` follow-up remains outstanding and unchanged.
+
+### Next Steps
+
+Review hosted checks for PR #359 when they finish. Do not merge or create a release tag as part of this task. Continue the separate `.350` work only under its existing explicit authorization.

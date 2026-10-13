@@ -4,6 +4,20 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1779. Preserve Paths Required By Packaging Documentation Checks (2026-10-13)
+
+**What went wrong:** A documentation cleanup removed the literal release-helper
+path from `AGENTS.md`. The hosted packaging metadata contract requires that
+path in the agent instructions, so the docs-only PR failed its release gate.
+
+**Why:** The summary was simplified without checking the exact documentation
+references validated by the packaging script.
+
+**Prevention:** Before restructuring release guidance, inspect the packaging
+metadata assertions and keep required paths in the new wording. Run
+`bash packaging/scripts/validate-packaging-metadata.sh` after the documentation
+edit; do not weaken the contract to fit the new text.
+
 ### 0z1778. Keep Untrusted Workflow Refs Off Persistent Runners (2026-10-12)
 
 **What went wrong:** Public pull requests and manual runs from refs outside
