@@ -1,34 +1,29 @@
 ## Current state — CI security and validation integrity — 2026-10-13
 
 QuestarrNG PR #49 is merged as `e7ff5522cb1beaa685992219977f571aa2506f06`.
-slskdN PR #357 has a local remediation candidate covering runner and snapshot
-isolation, immutable recovery source selection, required publisher credentials,
-restricted tag syntax, test cleanup ordering, and the benchmark gate. Focused
-SQLite tests pass 43/43; the bounded HashDb benchmark records 10 workload
-measurements; the verifier contract covers valid measurements, missing reports,
-malformed roots, and absent selected benchmarks; workflow policy, YAML,
-shellcheck, identity-leak, diff, and repository lint checks pass. The old PR
-head's Windows run had one failure in the share-scan
-harness: its database file could not be deleted. Disposable share-scan
-repositories now disable pooling, dispose explicitly, and retry transient
-Windows sharing violations. The local rerun hit its 30-second limit under high
-server load; the local scan is not counted as passing. Current PR head
-`c0669159e639e3f3a369986baaf58c908450df11` still fails that deletion after
-bounded lock retries, and its CI build/test job remains in progress. The local
-candidate disables pooling, explicitly disposes the repositories, and retains
-transient Windows lock retries; its exact-head Windows result remains pending.
-A separate PR #365 Windows run passed all 5,813 unit tests with
-explicit SQLite cleanup and sharing-lock retries, but its job failed during
-post-run cache cleanup. That is not exact-head evidence for PR #357. Its 21
-review threads remain open until the corrected head is pushed and each response
-is verified.
+slskdN PR #357 is open at exact head
+`0b3cff54b671801af56792faf6d9c2e9521da10c`. Thirteen hosted checks succeeded;
+Windows `dotnet` failed 25 catalogue-test database deletions and the synthetic
+share scan timed out after indexing 290/480 files in 30 seconds. The Windows
+integration project passed 289/289, while Linux Build and Test remained in
+progress. Earlier shared-pool cleanup did not prevent the catalogue lock, and
+disabling pooling on the high-volume scanner slowed it past the test bound.
+
+The repair worktree adds gotcha `0z1838` before code changes. The disposable
+catalogue fixture now uses nonpooled connections; the scanner keeps pooling and
+clears its exact database pools after disposal. The focused Linux filter passes
+26/26, `./bin/lint` passes, and `git diff --check` passes. This repair is not
+pushed, so its exact-head Windows and Linux results are unknown. The release
+note, benchmark-path fix, workflow-policy contract, and prior review replies
+remain on the PR branch. The 21 existing review threads were resolved; refresh
+the review queue after the next push.
 
 ### Next steps
 
-- Commit and push the complete candidate after reviewing its final diff.
-- Reconcile every required check against the exact pushed SHA and address all
-  review threads.
-- Merge PR #357 and delete only its task branches after the worktrees are clear.
+- Review and commit the repair, then push it to PR #357.
+- Reconcile every required check against the exact pushed SHA; fix new failures.
+- Refresh reviews and merge only after the exact-head gate passes.
+- Delete task branches only after all associated worktrees are clear.
 
 ## Current state — Credential snapshot hardening — 2026-10-13
 

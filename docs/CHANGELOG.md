@@ -26,6 +26,10 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 - Browse-cache refresh now replaces open cache files safely on Windows,
   preventing refresh errors while clients read cached results.
+- Disposable catalogue tests use nonpooled SQLite connections, while the
+  high-volume share-scan fixture retains pooling and clears its exact database
+  pools after repository disposal. This avoids Windows file locks without
+  slowing the scan past its existing bound.
 
 ### Security
 

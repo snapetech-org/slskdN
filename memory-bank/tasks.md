@@ -38,30 +38,29 @@
   CI reject incomplete measurements from its bounded HashDb sample.
 - [x] Restrict pushed and manually selected build tag names before parsed
   versions reach downstream workflow shell scripts.
-- [x] Disable SQLite pooling in disposable share-scan repositories to close
-  Windows file handles; explicitly dispose repositories and retry transient
-  sharing violations before fixture cleanup.
+- [x] Use nonpooled connections for disposable catalogue stores and retain
+  pooling in the high-volume share-scan fixture; clear its exact database pools
+  after repository disposal before fixture cleanup.
 - [x] Repair SQLite test-database cleanup ordering; add release notes and
   workflow-policy coverage.
 - [ ] Push this candidate, verify all required exact-head checks, resolve the
   review queue, and merge PR #357.
 
-Status: the selected SQLite fixtures pass 43/43. The bounded BenchmarkDotNet
-run passes with 10 workload measurements (mean 135.956 us); its result
-verifier contract covers valid measurements, missing reports, malformed roots,
-and reports without the selected benchmark. Workflow policy, YAML, shellcheck,
-diff, identity-leak, unit-project build, and repository lint pass. The targeted
-Linux share-scan rerun hit its 30-second scan limit on a busy server (load
-average above 125), so it is not counted as passing. The original PR head's
-Windows run failed when the share-scan harness deleted its database. Its
-repositories now disable pooling, dispose explicitly, and retry transient
-Windows sharing-lock errors. PR #357 head
-`c0669159e639e3f3a369986baaf58c908450df11` still failed Windows database
-deletion after bounded retries, while its CI build/test job remains in
-progress. PR #365's separate Windows run completed all 5,813 unit tests with
-the cleanup pattern, but its job failed in post-run cache cleanup; that is
-supporting evidence, not an exact-head PR #357 pass. Updated candidate checks
-remain unknown until push.
+Status: the bounded BenchmarkDotNet run passes with 10 workload measurements
+(mean 135.956 us); its verifier contract covers valid measurements, missing
+reports, malformed roots, and reports without the selected benchmark. Workflow
+policy, YAML, shellcheck, diff, identity-leak, unit-project build, and repository
+lint pass. At exact PR head `0b3cff54b671801af56792faf6d9c2e9521da10c`, Windows
+`dotnet` failed 25 catalogue-fixture database deletions and the synthetic scan
+timed out after indexing 290/480 files in 30 seconds. The Windows integration
+suite passed 289/289, and 13 other hosted checks succeeded; Linux Build and
+Test was still running. Gotcha `0z1838` records the failure before its repair.
+The follow-up uses nonpooled connections in the disposable catalogue store and
+restores pooling for the high-volume scan, clearing the exact pools after
+disposal. Its focused Linux filter passes 26/26 and `./bin/lint` passes. The
+repair is not pushed; exact-head Windows and Linux results remain pending.
+PR #365's separate Windows run passed 5,813 unit tests but failed in post-run
+cache cleanup, so it remains supporting evidence only.
 
 ### SLSKDN runner-temp reliability — 2026-10-13
 

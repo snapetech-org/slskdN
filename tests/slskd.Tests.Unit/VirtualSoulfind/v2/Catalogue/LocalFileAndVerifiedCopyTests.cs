@@ -7,7 +7,6 @@ namespace slskd.Tests.Unit.VirtualSoulfind.v2.Catalogue
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using slskd.Tests.Unit;
     using slskd.VirtualSoulfind.v2.Catalogue;
     using Xunit;
 
@@ -22,13 +21,12 @@ namespace slskd.Tests.Unit.VirtualSoulfind.v2.Catalogue
         public LocalFileAndVerifiedCopyTests()
         {
             _tempDbPath = Path.Combine(Path.GetTempPath(), $"test_catalogue_{Guid.NewGuid()}.db");
-            _store = new SqliteCatalogueStore(_tempDbPath);
+            _store = new SqliteCatalogueStore(_tempDbPath, pooling: false);
         }
 
         public void Dispose()
         {
             _store.Dispose();
-            SqliteTestDatabaseCleanup.ClearPool(_tempDbPath);
 
             if (File.Exists(_tempDbPath))
             {

@@ -47,7 +47,7 @@ public class ShareScannerHarnessTests
                 fileService: CreateNoHashFileService(),
                 moderationProvider: new slskd.Common.Moderation.NoopModerationProvider());
 
-            repository = new SqliteShareRepository($"Data Source={databasePath};Pooling=False");
+            repository = new SqliteShareRepository($"Data Source={databasePath}");
             repository.Create(discardExisting: true);
 
             var snapshots = new ConcurrentQueue<slskd.SharedFileCacheState>();
@@ -72,7 +72,7 @@ public class ShareScannerHarnessTests
                 Assert.Equal(expectedFiles, Convert.ToInt32(command.ExecuteScalar()));
             }
 
-            backupRepository = new SqliteShareRepository($"Data Source={backupDatabasePath};Pooling=False");
+            backupRepository = new SqliteShareRepository($"Data Source={backupDatabasePath}");
             repository.BackupTo(backupRepository);
             File.Copy(backupDatabasePath, backupCopyPath);
             using (var copiedBackup = new SqliteConnection($"Data Source={backupCopyPath};Pooling=False"))
@@ -101,6 +101,16 @@ public class ShareScannerHarnessTests
             registration?.Dispose();
             backupRepository?.Dispose();
             repository?.Dispose();
+
+            if (File.Exists(databasePath))
+            {
+                SqliteTestDatabaseCleanup.ClearPool(databasePath);
+            }
+
+            if (File.Exists(backupDatabasePath))
+            {
+                SqliteTestDatabaseCleanup.ClearPool(backupDatabasePath);
+            }
 
             if (Directory.Exists(shareRoot))
             {

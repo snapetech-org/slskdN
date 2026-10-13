@@ -32,9 +32,9 @@ namespace slskd.VirtualSoulfind.v2.Catalogue
             SqlMapper.AddTypeHandler(new DateTimeOffsetHandler());
         }
 
-        public SqliteCatalogueStore(string databasePath)
+        public SqliteCatalogueStore(string databasePath, bool pooling = true)
         {
-            _connectionString = $"Data Source={databasePath};";
+            _connectionString = $"Data Source={databasePath};Pooling={pooling};";
             InitializeDatabase();
         }
 
