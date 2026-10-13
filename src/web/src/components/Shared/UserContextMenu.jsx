@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { activeChatKey } from '../../config';
 import { setSessionStorageItem } from '../../lib/storage';
 import UserNoteModal from '../Users/UserNoteModal';
@@ -6,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
 
 const UserContextMenu = ({ children, trigger, username }) => {
+  useInterfaceLanguage();
   const navigate = useNavigate();
 
   const handleBrowse = () => {
@@ -35,19 +37,19 @@ const UserContextMenu = ({ children, trigger, username }) => {
         <Dropdown.Item
           icon="folder open"
           onClick={handleBrowse}
-          text="Browse Files"
-        />
+          text={interfaceText("Browse Files")}
+         {...interfaceTextProps("Browse Files")}/>
         <Dropdown.Item
           icon="comments"
           onClick={handleChat}
-          text="Private Chat"
-        />
+          text={interfaceText("Private Chat")}
+         {...interfaceTextProps("Private Chat")}/>
         <UserNoteModal
           trigger={
             <Dropdown.Item
               icon="sticky note"
-              text="User Notes"
-            />
+              text={interfaceText("User Notes")}
+             {...interfaceTextProps("User Notes")}/>
           }
           username={username}
         />

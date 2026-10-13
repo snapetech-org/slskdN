@@ -1,4 +1,10 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+
+
 import * as slskdnAPI from '../../../lib/slskdn';
+import { formatRegionalCompactNumber, useRegionalLocale } from '../../../lib/regionalFormat';
+import { formatBytes as formatLocalizedBytes } from '../../../lib/util';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
 import {
@@ -31,22 +37,7 @@ const NETWORK_POLL_INTERVAL_MS = 10_000;
 
 const asArray = (value) => (Array.isArray(value) ? value : []);
 
-const formatBytes = (bytes) => {
-  if (bytes === 0 || bytes === undefined || bytes === null) return '0 B';
-  const k = 1_024;
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-  const index = Math.floor(Math.log(bytes) / Math.log(k));
-  return (
-    Number.parseFloat((bytes / k ** index).toFixed(1)) + ' ' + sizes[index]
-  );
-};
-
-const formatNumber = (value) => {
-  if (value === undefined || value === null) return '0';
-  if (value >= 1_000_000) return (value / 1_000_000).toFixed(1) + 'M';
-  if (value >= 1_000) return (value / 1_000).toFixed(1) + 'K';
-  return value.toString();
-};
+const formatBytes = (bytes) => formatLocalizedBytes(bytes, 1);
 
 const formatTimeAgo = (dateString) => {
   if (!dateString) return 'never';
@@ -85,7 +76,21 @@ const StatCard = ({ color, icon, inverted = false, label, subLabel, value }) => 
 );
 
 // eslint-disable-next-line complexity
+const LocalizedNetworkFindingSummary = ({ source }) => {
+  const securityMatch = source.match(/^(\d+) mesh security signal(s?) visible$/);
+  if (securityMatch) return <LocalizedText source={securityMatch[2] ? "{count} mesh security signals visible" : "{count} mesh security signal visible"} values={{ count: securityMatch[1] }} />;
+  const backfillMatch = source.match(/^(\d+) pending backfill candidates$/);
+  if (backfillMatch) return <LocalizedText source="{count} pending backfill candidates" values={{ count: backfillMatch[1] }} />;
+  return <LocalizedText source={source} />;
+};
+
 const Network = ({ theme }) => {
+  useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
+  const formatNumber = (value) => {
+    if (value === undefined || value === null) return '0';
+    return formatRegionalCompactNumber(value, { maximumFractionDigits: 1 }, regionalLocale);
+  };
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const meshEnabled = featureGatesReady && isFeatureEnabled(featureGates, 'mesh');
   const multiSourceEnabled =
@@ -190,9 +195,9 @@ const Network = ({ theme }) => {
         return;
       }
 
-      toast.success(`Sync initiated with ${username}`);
+      toast.success(interfaceText("Sync initiated with {username}", { "username": (username) }));
     } catch {
-      toast.error(`Failed to sync with ${username}`);
+      toast.error(interfaceText("Failed to sync with {username}", { "username": (username) }));
     } finally {
       setSyncing((previous) => ({ ...previous, [username]: false }));
     }
@@ -207,7 +212,7 @@ const Network = ({ theme }) => {
       });
 
       if (result.error) {
-        toast.error(`Backfill failed: ${result.error}`);
+        toast.error(interfaceText("Backfill failed: {error}", { "error": (result.error) }));
         setBackfillProgress(null);
       } else {
         setBackfillProgress(result);
@@ -223,7 +228,7 @@ const Network = ({ theme }) => {
         fetchData(); // Refresh stats
       }
     } catch {
-      toast.error('Failed to trigger backfill from search history');
+      toast.error(interfaceText("Failed to trigger backfill from search history"));
       setBackfillProgress(null);
     } finally {
       setBackfilling(false);
@@ -276,14 +281,14 @@ const Network = ({ theme }) => {
     if (navigator.clipboard?.writeText) {
       try {
         await navigator.clipboard.writeText(report);
-        toast.success('Network health report copied');
+        toast.success(interfaceText("Network health report copied"));
       } catch {
-        toast.error('Unable to copy network health report');
+        toast.error(interfaceText("Unable to copy network health report"));
       }
       return;
     }
 
-    toast.info('Clipboard unavailable; select the report text manually');
+    toast.info(interfaceText("Clipboard unavailable; select the report text manually"));
   };
 
   return (
@@ -309,27 +314,18 @@ const Network = ({ theme }) => {
             loading
             name="spinner"
           />
-          Loading network status
-        </Message>
+          <LocalizedText source={"Loading network status"} /></Message>
       )}
       {shouldExplainLanOnlyDht && (
         <Message
           className="network-diagnostic-message"
           info
         >
-          <Message.Header>LAN-only DHT is isolated</Message.Header>
+          <Message.Header><LocalizedText source={"LAN-only DHT is isolated"} /></Message.Header>
           <p>
-            LAN-only mesh uses <code>dhtRendezvous.lanOnly: true</code>,
-            so slskdN intentionally disables the public BitTorrent DHT engine. Seeing <code>0</code> DHT nodes and <code>0</code> discovered
-            peers can be expected in this privacy mode even when the overlay and
-            DHT ports are open.
-          </p>
+            <LocalizedText source={"LAN-only mesh uses"} />{" "}<code>dhtRendezvous.lanOnly: true</code><LocalizedText source={", so slskdN intentionally disables the public BitTorrent DHT engine. Seeing"} />{" "}<code>0</code> <LocalizedText source={"DHT nodes and"} />{" "}<code>0</code> <LocalizedText source={"discovered peers can be expected in this privacy mode even when the overlay and DHT ports are open."} /></p>
           <p>
-            To discover public slskdN peers through DHT rendezvous, set
-            <code> dhtRendezvous.lanOnly: false</code> and restart. Keep LAN-only
-            enabled if you want discovery limited to local or already-known
-            private peers.
-          </p>
+            <LocalizedText source={"To discover public slskdN peers through DHT rendezvous, set"} /><code> dhtRendezvous.lanOnly: false</code> <LocalizedText source={"and restart. Keep LAN-only enabled if you want discovery limited to local or already-known private peers."} /></p>
         </Message>
       )}
       {shouldWarnAboutConnectivity && (
@@ -337,18 +333,12 @@ const Network = ({ theme }) => {
           className="network-diagnostic-message"
           warning
         >
-          <Message.Header>Connectivity diagnostics</Message.Header>
+          <Message.Header><LocalizedText source={"Connectivity diagnostics"} /></Message.Header>
           <p>
-            slskdN is not seeing reachable peers yet. If you can log into the
-            Soulseek server but uploads, downloads, and peer counts stay at
-            zero, verify that your configured Soulseek listen port is reachable
-            from other peers. The default is <code>50300/tcp</code>.
+            <LocalizedText source={"slskdN is not seeing reachable peers yet. If you can log into the Soulseek server but uploads, downloads, and peer counts stay at zero, verify that your configured Soulseek listen port is reachable from other peers. The default is"} />{" "}<code>50300/tcp</code>.
           </p>
           <p>
-            Check local firewall rules, router/NAT forwarding, container port
-            publishing, and any reverse-proxy setup that might expose the Web UI
-            but not the Soulseek listen port.
-          </p>
+            <LocalizedText source={"Check local firewall rules, router/NAT forwarding, container port publishing, and any reverse-proxy setup that might expose the Web UI but not the Soulseek listen port."} /></p>
         </Message>
       )}
       {shouldShowDhtExposureNotice && (
@@ -357,35 +347,28 @@ const Network = ({ theme }) => {
           info
         >
           <div className="network-dht-exposure-header">
-            <Message.Header>Public DHT exposure notice</Message.Header>
+            <Message.Header><LocalizedText source={"Public DHT exposure notice"} /></Message.Header>
             <Popup
-              content="Dismiss this public DHT exposure notice on this browser after reviewing it."
+              content={interfaceText("Dismiss this public DHT exposure notice on this browser after reviewing it.")}
               position="top right"
               trigger={(
                 <Button
-                  aria-label="Dismiss public DHT exposure notice"
+                  aria-label={interfaceText("Dismiss public DHT exposure notice")}
                   basic
                   className="network-dht-dismiss-button"
                   icon
                   onClick={dismissDhtExposureConsent}
-                  title="Dismiss public DHT exposure notice"
-                >
+                  title={interfaceText("Dismiss public DHT exposure notice")}
+                 {...interfaceTextProps("Dismiss public DHT exposure notice")}>
                   <Icon name="close" />
                 </Button>
               )}
-            />
+             {...interfaceTextProps("Dismiss this public DHT exposure notice on this browser after reviewing it.")}/>
           </div>
           <p>
-            DHT rendezvous is enabled and this node can publish its public
-            endpoint into the public BitTorrent DHT. This is expected when public
-            rendezvous is enabled; this notice is only here so operators are aware
-            that other slskdN peers can discover the node for mesh sync.
-          </p>
+            <LocalizedText source={"DHT rendezvous is enabled and this node can publish its public endpoint into the public BitTorrent DHT. This is expected when public rendezvous is enabled; this notice is only here so operators are aware that other slskdN peers can discover the node for mesh sync."} /></p>
           <p>
-            If you want to keep mesh discovery confined to trusted local peers,
-            set <code>dht.lan_only=true</code> in configuration before long-term
-            operation.
-          </p>
+            <LocalizedText source={"If you want to keep mesh discovery confined to trusted local peers, set"} />{" "}<code>dht.lan_only=true</code> <LocalizedText source={"in configuration before long-term operation."} /></p>
         </Message>
       )}
 
@@ -398,38 +381,38 @@ const Network = ({ theme }) => {
           color="blue"
           icon="sitemap"
           inverted={darkTheme}
-          label="Mesh Peers"
+          label={interfaceText("Mesh Peers")}
           subLabel="slskdN clients connected"
           value={mesh?.connectedPeerCount ?? meshPeers.length ?? 0}
-        />
+         {...interfaceTextProps("Mesh Peers")}/>
         <StatCard
           color="green"
           icon="database"
           inverted={darkTheme}
-          label="Hash Entries"
+          label={interfaceText("Hash Entries")}
           subLabel={
             hashDb?.dbSizeBytes
               ? `${formatBytes(hashDb.dbSizeBytes)} on disk`
               : 'Local database'
           }
           value={formatNumber(hashDb?.totalEntries ?? 0)}
-        />
+         {...interfaceTextProps("Hash Entries")}/>
         <StatCard
           color="purple"
           icon="sync"
           inverted={darkTheme}
-          label="Sequence ID"
+          label={interfaceText("Sequence ID")}
           subLabel="Mesh sync position"
           value={hashDb?.currentSeqId ?? mesh?.localSeqId ?? 0}
-        />
+         {...interfaceTextProps("Sequence ID")}/>
         <StatCard
           color="orange"
           icon="bolt"
           inverted={darkTheme}
-          label="Active Swarms"
+          label={interfaceText("Active Swarms")}
           subLabel="Multi-source downloads"
           value={multiSourceEnabled ? swarmJobs?.length ?? 0 : 'Disabled'}
-        />
+         {...interfaceTextProps("Active Swarms")}/>
       </Card.Group>
 
       <Divider />
@@ -439,26 +422,23 @@ const Network = ({ theme }) => {
           <Header as="h4">
             <Icon name="heartbeat" />
             <Header.Content>
-              Network Health
-              <Header.Subheader>
-                Local readiness score from already-loaded mesh, DHT, HashDb, and security counters
-              </Header.Subheader>
+              <LocalizedText source={"Network Health"} /><Header.Subheader>
+                <LocalizedText source={"Local readiness score from already-loaded mesh, DHT, HashDb, and security counters"} /></Header.Subheader>
             </Header.Content>
           </Header>
           <Popup
-            content="Copy a local network-health report for diagnostics. This does not query peers or change network state."
+            content={interfaceText("Copy a local network-health report for diagnostics. This does not query peers or change network state.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Copy network health report"
+                aria-label={interfaceText("Copy network health report")}
                 onClick={copyNetworkHealthReport}
                 size="small"
-              >
+               {...interfaceTextProps("Copy network health report")}>
                 <Icon name="copy" />
-                Copy Report
-              </Button>
+                <LocalizedText source={"Copy Report"} /></Button>
             }
-          />
+           {...interfaceTextProps("Copy a local network-health report for diagnostics. This does not query peers or change network state.")}/>
         </div>
         <div className="network-health-score-row">
           <Progress
@@ -472,17 +452,15 @@ const Network = ({ theme }) => {
             percent={networkHealth.score}
             progress
           >
-            {networkHealth.label}
+            <LocalizedText source={networkHealth.label} />
           </Progress>
           {/* These four are inputs to the score above, not states of their
               own — one neutral pill style, not four unrelated hues. */}
           <Label basic>
-            Mesh
-            <Label.Detail>{networkHealth.inputs.meshCount}</Label.Detail>
+            <LocalizedText source={"Mesh"} /><Label.Detail>{networkHealth.inputs.meshCount}</Label.Detail>
           </Label>
           <Label basic>
-            Discovered
-            <Label.Detail>{networkHealth.inputs.discoveredCount}</Label.Detail>
+            <LocalizedText source={"Discovered"} /><Label.Detail>{networkHealth.inputs.discoveredCount}</Label.Detail>
           </Label>
           <Label basic>
             DHT
@@ -492,8 +470,7 @@ const Network = ({ theme }) => {
             basic={networkHealth.inputs.securityWarningCount === 0}
             color={networkHealth.inputs.securityWarningCount > 0 ? 'orange' : undefined}
           >
-            Security
-            <Label.Detail>{networkHealth.inputs.securityWarningCount}</Label.Detail>
+            <LocalizedText source={"Security"} /><Label.Detail>{networkHealth.inputs.securityWarningCount}</Label.Detail>
           </Label>
         </div>
         {networkHealth.findings.length > 0 ? (
@@ -522,9 +499,9 @@ const Network = ({ theme }) => {
                 />
                 <List.Content>
                   <List.Header>
-                    {finding.area}: {finding.summary}
+                    <LocalizedText source={finding.area} />: <LocalizedNetworkFindingSummary source={finding.summary} />
                   </List.Header>
-                  <List.Description>{finding.action}</List.Description>
+                  <List.Description><LocalizedText source={finding.action} /></List.Description>
                 </List.Content>
               </List.Item>
             ))}
@@ -534,11 +511,9 @@ const Network = ({ theme }) => {
             className="network-diagnostic-message"
             positive
           >
-            <Message.Header>No local network-health findings</Message.Header>
+            <Message.Header><LocalizedText source={"No local network-health findings"} /></Message.Header>
             <p>
-              Mesh, DHT, HashDb, and security counters look healthy from the
-              already-loaded dashboard data.
-            </p>
+              <LocalizedText source={"Mesh, DHT, HashDb, and security counters look healthy from the already-loaded dashboard data."} /></p>
           </Message>
         )}
       </Segment>
@@ -548,10 +523,8 @@ const Network = ({ theme }) => {
         <Header as="h4">
           <Icon name="id card" />
           <Header.Content>
-            Our Capabilities
-            <Header.Subheader>
-              What we advertise to other slskdN peers
-            </Header.Subheader>
+            <LocalizedText source={"Our Capabilities"} /><Header.Subheader>
+              <LocalizedText source={"What we advertise to other slskdN peers"} /></Header.Subheader>
           </Header.Content>
         </Header>
 
@@ -591,26 +564,26 @@ const Network = ({ theme }) => {
             warning={obfuscation.enabled && !obfuscation.runtimeSupported}
             positive={obfuscation.enabled && obfuscation.runtimeSupported}
           >
-            <Message.Header>Soulseek Type-1 Obfuscation</Message.Header>
+            <Message.Header><LocalizedText source={"Soulseek Type-1 Obfuscation"} /></Message.Header>
             <p>{obfuscation.summary}</p>
             <Label.Group>
               <Label color={obfuscation.enabled ? 'teal' : 'grey'}>
-                {obfuscation.enabled ? 'enabled' : 'disabled'}
+                {obfuscation.enabled ? <LocalizedText source={"enabled"} /> : <LocalizedText source={"disabled"} />}
               </Label>
-              <Label color="blue">mode: {obfuscation.mode}</Label>
-              <Label color="blue">type: {obfuscation.type}</Label>
+              <Label color="blue"><LocalizedText source={"mode:"} />{" "}{obfuscation.mode}</Label>
+              <Label color="blue"><LocalizedText source={"type:"} />{" "}{obfuscation.type}</Label>
               <Label color="blue">
-                streams: {(obfuscation.supportedConnectionTypes ?? []).join(', ') || 'unset'}
+                <LocalizedText source={"streams:"} />{" "}{(obfuscation.supportedConnectionTypes ?? []).join(', ') || interfaceText('unset')}
               </Label>
               <Label color="blue">
-                obfuscated port: {obfuscation.effectiveListenPort ?? 'unset'}
+                <LocalizedText source={"obfuscated port:"} />{" "}{obfuscation.effectiveListenPort ?? interfaceText('unset')}
               </Label>
               <Label color={obfuscation.advertiseRegularPort ? 'green' : 'grey'}>
-                regular fallback:{' '}
-                {obfuscation.advertiseRegularPort ? 'advertised' : 'off'}
+                <LocalizedText source={"regular fallback:"} />{' '}
+                {obfuscation.advertiseRegularPort ? <LocalizedText source={"advertised"} /> : <LocalizedText source={"off"} />}
               </Label>
               <Label color={obfuscation.runtimeSupported ? 'green' : 'orange'}>
-                runtime: {obfuscation.runtimeState}
+                <LocalizedText source={"runtime:"} />{" "}{obfuscation.runtimeState}
               </Label>
             </Label.Group>
           </Message>
@@ -627,10 +600,8 @@ const Network = ({ theme }) => {
             <Header as="h4">
               <Icon name="sitemap" />
               <Header.Content>
-                Mesh Peers
-                <Header.Subheader>
-                  Connected slskdN clients for hash sync
-                </Header.Subheader>
+                <LocalizedText source={"Mesh Peers"} /><Header.Subheader>
+                  <LocalizedText source={"Connected slskdN clients for hash sync"} /></Header.Subheader>
               </Header.Content>
             </Header>
 
@@ -642,9 +613,8 @@ const Network = ({ theme }) => {
               >
                 <Header icon>
                   <Icon name="users" />
-                  No mesh peers connected
-                </Header>
-                <p>Other slskdN clients will appear here when discovered</p>
+                  <LocalizedText source={"No mesh peers connected"} /></Header>
+                <p><LocalizedText source={"Other slskdN clients will appear here when discovered"} /></p>
               </Segment>
             ) : (
               <Table
@@ -653,10 +623,10 @@ const Network = ({ theme }) => {
               >
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>Peer</Table.HeaderCell>
-                    <Table.HeaderCell>Seq ID</Table.HeaderCell>
-                    <Table.HeaderCell>Last Sync</Table.HeaderCell>
-                    <Table.HeaderCell>Actions</Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Peer"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Seq ID"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Last Sync"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -684,8 +654,7 @@ const Network = ({ theme }) => {
                           size="mini"
                           tooltip={`Sync hash data with ${peer.username}. Use this when its sequence is behind yours.`}
                         >
-                          Sync
-                        </ShrinkableButton>
+                          <LocalizedText source={"Sync"} /></ShrinkableButton>
                       </Table.Cell>
                     </Table.Row>
                   ))}
@@ -701,10 +670,8 @@ const Network = ({ theme }) => {
             <Header as="h4">
               <Icon name="search" />
               <Header.Content>
-                Discovered slskdN Peers
-                <Header.Subheader>
-                  Peers with slskdN capabilities detected
-                </Header.Subheader>
+                <LocalizedText source={"Discovered slskdN Peers"} /><Header.Subheader>
+                  <LocalizedText source={"Peers with slskdN capabilities detected"} /></Header.Subheader>
               </Header.Content>
             </Header>
 
@@ -716,9 +683,8 @@ const Network = ({ theme }) => {
               >
                 <Header icon>
                   <Icon name="radar" />
-                  No slskdN peers discovered yet
-                </Header>
-                <p>Peers are discovered through searches and downloads</p>
+                  <LocalizedText source={"No slskdN peers discovered yet"} /></Header>
+                <p><LocalizedText source={"Peers are discovered through searches and downloads"} /></p>
               </Segment>
             ) : (
               <List
@@ -735,7 +701,7 @@ const Network = ({ theme }) => {
                     <List.Content>
                       <List.Header>{peer.username}</List.Header>
                       <List.Description>
-                        {peer.version ?? 'slskdN'} • Last seen:{' '}
+                        {peer.version ?? 'slskdN'} <LocalizedText source={"• Last seen:"} />{' '}
                         {formatTimeAgo(peer.lastSeenAt)}
                       </List.Description>
                     </List.Content>
@@ -744,7 +710,7 @@ const Network = ({ theme }) => {
                 {discoveredPeers.length > 10 && (
                   <List.Item>
                     <List.Content>
-                      <em>...and {discoveredPeers.length - 10} more</em>
+                      <em>...and {discoveredPeers.length - 10} <LocalizedText source={"more"} /></em>
                     </List.Content>
                   </List.Item>
                 )}
@@ -761,10 +727,8 @@ const Network = ({ theme }) => {
         <Header as="h4">
           <Icon name="shield alternate" />
           <Header.Content>
-            Mesh Sync Security
-            <Header.Subheader>
-              Counters for signatures, reputation, rate limits, and quarantine
-            </Header.Subheader>
+            <LocalizedText source={"Mesh Sync Security"} /><Header.Subheader>
+              <LocalizedText source={"Counters for signatures, reputation, rate limits, and quarantine"} /></Header.Subheader>
           </Header.Content>
         </Header>
         {asArray(mesh?.warnings).length > 0 && (
@@ -775,8 +739,7 @@ const Network = ({ theme }) => {
           >
             <Message.Header>
               <Icon name="exclamation triangle" />
-              Security threshold alerts
-            </Message.Header>
+              <LocalizedText source={"Security threshold alerts"} /></Message.Header>
             <List
               bulleted
               size="small"
@@ -796,43 +759,43 @@ const Network = ({ theme }) => {
             <Statistic.Value>
               {formatNumber(mesh?.signatureVerificationFailures ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Sig. failures</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Sig. failures"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatNumber(mesh?.reputationBasedRejections ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Rep. rejections</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Rep. rejections"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatNumber(mesh?.rateLimitViolations ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Rate limits</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Rate limits"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatNumber(mesh?.quarantinedPeers ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Quarantined</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Quarantined"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatNumber(mesh?.quarantineEvents ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Quarantine events</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Quarantine events"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatNumber(mesh?.rejectedMessages ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Rejected msgs</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Rejected msgs"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatNumber(mesh?.skippedEntries ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Skipped entries</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Skipped entries"} /></Statistic.Label>
           </Statistic>
         </Statistic.Group>
       </Segment>
@@ -844,10 +807,8 @@ const Network = ({ theme }) => {
         <Header as="h4">
           <Icon name="database" />
           <Header.Content>
-            Hash Database
-            <Header.Subheader>
-              Content-addressed FLAC fingerprints
-            </Header.Subheader>
+            <LocalizedText source={"Hash Database"} /><Header.Subheader>
+              <LocalizedText source={"Content-addressed FLAC fingerprints"} /></Header.Subheader>
           </Header.Content>
           <span style={{ float: 'right', marginTop: '-0.5em' }}>
             {backfillProgress && !backfillProgress.complete && (
@@ -855,8 +816,7 @@ const Network = ({ theme }) => {
                 size="tiny"
                 style={{ marginRight: '0.5em' }}
               >
-                {backfillProgress.remainingSearches} searches left
-              </Label>
+                {backfillProgress.remainingSearches} <LocalizedText source={"searches left"} /></Label>
             )}
             <Popup
               content={
@@ -881,14 +841,14 @@ const Network = ({ theme }) => {
                   size="mini"
                 >
                   {backfillProgress && !backfillProgress.complete
-                    ? 'Continue'
-                    : 'Backfill from History'}
+                    ? <LocalizedText source={"Continue"} />
+                    : <LocalizedText source={"Backfill from History"} />}
                 </ShrinkableButton>
               }
             />
             {backfillProgress && (
               <Popup
-                content="Reset progress and start backfill from the beginning"
+                content={interfaceText("Reset progress and start backfill from the beginning")}
                 position="top right"
                 trigger={
                   <ShrinkableButton
@@ -900,10 +860,9 @@ const Network = ({ theme }) => {
                     size="mini"
                     style={{ marginLeft: '0.3em' }}
                   >
-                    Reset
-                  </ShrinkableButton>
+                    <LocalizedText source={"Reset"} /></ShrinkableButton>
                 }
-              />
+               {...interfaceTextProps("Reset progress and start backfill from the beginning")}/>
             )}
           </span>
         </Header>
@@ -917,23 +876,23 @@ const Network = ({ theme }) => {
             <Statistic.Value>
               {formatNumber(hashDb?.totalEntries ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Total Entries</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Total Entries"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatNumber(hashDb?.uniqueFiles ?? hashDb?.totalEntries ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Unique Files</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Unique Files"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>
               {formatBytes(hashDb?.dbSizeBytes ?? 0)}
             </Statistic.Value>
-            <Statistic.Label>Database Size</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Database Size"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>{hashDb?.currentSeqId ?? 0}</Statistic.Value>
-            <Statistic.Label>Sequence ID</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Sequence ID"} /></Statistic.Label>
           </Statistic>
         </Statistic.Group>
 
@@ -946,8 +905,7 @@ const Network = ({ theme }) => {
               progress
               size="small"
             >
-              Coverage of shared FLACs
-            </Progress>
+              <LocalizedText source={"Coverage of shared FLACs"} /></Progress>
           </>
         )}
       </Segment>
@@ -957,10 +915,8 @@ const Network = ({ theme }) => {
         <Header as="h4">
           <Icon name="clock" />
           <Header.Content>
-            Backfill Scheduler
-            <Header.Subheader>
-              Conservative discovery of hashes from non-slskdN peers
-            </Header.Subheader>
+            <LocalizedText source={"Backfill Scheduler"} /><Header.Subheader>
+              <LocalizedText source={"Conservative discovery of hashes from non-slskdN peers"} /></Header.Subheader>
           </Header.Content>
         </Header>
 
@@ -978,9 +934,9 @@ const Network = ({ theme }) => {
                   color={backfill?.isActive ? 'green' : 'grey'}
                   name="circle"
                 />{' '}
-                {backfill?.isActive ? 'Active' : 'Idle'}
+                {backfill?.isActive ? <LocalizedText source={"Active"} /> : <LocalizedText source={"Idle"} />}
               </Statistic.Value>
-              <Statistic.Label>Status</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Status"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
           <Grid.Column>
@@ -989,7 +945,7 @@ const Network = ({ theme }) => {
               size="mini"
             >
               <Statistic.Value>{backfill?.pendingCount ?? 0}</Statistic.Value>
-              <Statistic.Label>Pending Files</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Pending Files"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
           <Grid.Column>
@@ -998,7 +954,7 @@ const Network = ({ theme }) => {
               size="mini"
             >
               <Statistic.Value>{backfill?.completedToday ?? 0}</Statistic.Value>
-              <Statistic.Label>Completed Today</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Completed Today"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
           <Grid.Column>
@@ -1009,7 +965,7 @@ const Network = ({ theme }) => {
               <Statistic.Value>
                 {backfill?.discoveryRate ?? 0}/hr
               </Statistic.Value>
-              <Statistic.Label>Discovery Rate</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Discovery Rate"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
         </Grid>
@@ -1021,10 +977,8 @@ const Network = ({ theme }) => {
           <Header as="h4">
             <Icon name="bolt" />
             <Header.Content>
-              Active Swarm Downloads
-              <Header.Subheader>
-                Multi-source downloads in progress
-              </Header.Subheader>
+              <LocalizedText source={"Active Swarm Downloads"} /><Header.Subheader>
+                <LocalizedText source={"Multi-source downloads in progress"} /></Header.Subheader>
             </Header.Content>
           </Header>
 
@@ -1042,7 +996,7 @@ const Network = ({ theme }) => {
                   {job.filename?.split('/').pop() ?? 'Unknown file'}
                 </Card.Header>
                 <Card.Meta>
-                  {job.activeSources ?? 0} sources •{' '}
+                  {job.activeSources ?? 0} <LocalizedText source={"sources •"} />{' '}
                   {formatBytes(job.downloadedBytes ?? 0)} /{' '}
                   {formatBytes(job.totalBytes ?? 0)}
                 </Card.Meta>
@@ -1072,8 +1026,7 @@ const Network = ({ theme }) => {
                     {job.workers.length > 5 && (
                       <List.Item>
                         <Label size="tiny">
-                          +{job.workers.length - 5} more
-                        </Label>
+                          +{job.workers.length - 5} <LocalizedText source={"more"} /></Label>
                       </List.Item>
                     )}
                   </List>

@@ -1,3 +1,5 @@
+import LocalizedText from "./Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
 import Footer from './Shared/Footer';
 import TooltipButton from './Shared/TooltipButton';
 import brandLogo from '../assets/brand/slskdn-logo-lockup.png';
@@ -34,6 +36,7 @@ export const getHttpsHintUrl = (location) => {
 };
 
 const LoginForm = ({ error, loading, onLoginAttempt }) => {
+  useInterfaceLanguage();
   const usernameInput = useRef();
   const [state, setState] = useState(initialState);
   const [ready, setReady] = useState(false);
@@ -80,10 +83,10 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
             textAlign="center"
           >
             <img
-              alt="slskdN"
+              alt={interfaceText("slskdN")}
               className="login-brand-logo"
               src={brandLogo}
-            />
+             {...interfaceTextProps("slskdN")}/>
           </Header>
           <Form size="large">
             <Segment raised>
@@ -96,9 +99,9 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
                 onChange={(event) =>
                   handleChange('username', event.target.value)
                 }
-                placeholder="Username"
+                placeholder={interfaceText("Username")}
                 ref={usernameInput}
-              />
+               {...interfaceTextProps("Username")}/>
               <Form.Input
                 data-testid="login-password"
                 disabled={loading}
@@ -108,15 +111,15 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
                 onChange={(event) =>
                   handleChange('password', event.target.value)
                 }
-                placeholder="Password"
+                placeholder={interfaceText("Password")}
                 type="password"
-              />
+               {...interfaceTextProps("Password")}/>
               <Checkbox
                 checked={rememberMe}
                 disabled={loading}
-                label="Remember Me"
+                label={interfaceText("Remember Me")}
                 onChange={() => handleChange('rememberMe', !rememberMe)}
-              />
+               {...interfaceTextProps("Remember Me")}/>
             </Segment>
             <TooltipButton
               className="login-button"
@@ -131,8 +134,7 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
               type="button"
             >
               <Icon name="sign in" />
-              Login
-            </TooltipButton>
+              <LocalizedText source={"Login"} /></TooltipButton>
             {error && (
               <Message
                 className="login-failure"
@@ -151,8 +153,8 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
               >
                 <Icon name="shield alternate" />
                 <Message.Content>
-                  <Message.Header>HTTPS Option</Message.Header>
-                  If your instance exposes TLS, sign in securely at{' '}
+                  <Message.Header><LocalizedText source={"HTTPS Option"} /></Message.Header>
+                  <LocalizedText source={"If your instance exposes TLS, sign in securely at"} />{' '}
                   <a href={httpsUrl}>{httpsUrl}</a>.
                 </Message.Content>
               </Message>

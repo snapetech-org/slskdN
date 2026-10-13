@@ -1,7 +1,12 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+
+
 import React, { useEffect } from 'react';
 import { Popup } from 'semantic-ui-react';
 
 const CommandHelp = ({ commands, onClose, open }) => {
+  useInterfaceLanguage();
   useEffect(() => {
     if (!open) return;
     const handleKeyDown = (event) => {
@@ -28,20 +33,20 @@ const CommandHelp = ({ commands, onClose, open }) => {
         onClick={(event) => event.stopPropagation()}
       >
         <header className="msgv2-help-header">
-          <span className="msgv2-help-title">Commands</span>
+          <span className="msgv2-help-title"><LocalizedText source={"Commands"} /></span>
           <Popup
-            content="Close the command reference and return to the message workspace."
+            content={interfaceText("Close the command reference and return to the message workspace.")}
             trigger={(
               <button
-                aria-label="Close"
+                aria-label={interfaceText("Close")}
                 className="msgv2-help-close"
                 onClick={onClose}
                 type="button"
-              >
+               {...interfaceTextProps("Close")}>
                 ×
               </button>
             )}
-          />
+           {...interfaceTextProps("Close the command reference and return to the message workspace.")}/>
         </header>
         <ul className="msgv2-help-list">
           {commands.map((command) => (
@@ -55,7 +60,7 @@ const CommandHelp = ({ commands, onClose, open }) => {
               <span className="msgv2-help-desc">{command.description}</span>
               {command.aliases && command.aliases.length > 0 && (
                 <span className="msgv2-help-aliases">
-                  aliases: {command.aliases.map((alias) => `/${alias}`).join(', ')}
+                  <LocalizedText source={"aliases:"} />{" "}{command.aliases.map((alias) => `/${alias}`).join(', ')}
                 </span>
               )}
             </li>
@@ -63,12 +68,10 @@ const CommandHelp = ({ commands, onClose, open }) => {
         </ul>
         <footer className="msgv2-help-footer">
           <span>
-            <kbd>Tab</kbd> autocompletes <kbd>↑</kbd>
-            <kbd>↓</kbd> navigates suggestions
-          </span>
+            <kbd><LocalizedText source={"Tab"} /></kbd> <LocalizedText source={"autocompletes"} />{" "}<kbd>↑</kbd>
+            <kbd>↓</kbd> <LocalizedText source={"navigates suggestions"} /></span>
           <span>
-            <kbd>Esc</kbd> closes
-          </span>
+            <kbd><LocalizedText source={"Esc"} /></kbd> <LocalizedText source={"closes"} /></span>
         </footer>
       </div>
     </div>

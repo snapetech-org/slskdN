@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './MessageStream.css';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Button, Popup } from 'semantic-ui-react';
@@ -183,6 +185,7 @@ const renderBody = (text, searchQuery) =>
   );
 
 const ListenAlongCard = ({ message }) => {
+  useInterfaceLanguage();
   const meta = message.meta || {};
   const action = (meta.action || '').toLowerCase();
   const glyph = action === 'stop' ? '■' : '▶';
@@ -195,7 +198,7 @@ const ListenAlongCard = ({ message }) => {
       <span className="msg-stream-listenalong-glyph">{glyph}</span>
       <span className="msg-stream-listenalong-host">{message.sender}</span>
       <span className="msg-stream-listenalong-action">
-        {action === 'stop' ? 'stopped listenalong' : 'is playing'}
+        {action === 'stop' ? <LocalizedText source={"stopped listenalong"} /> : <LocalizedText source={"is playing"} />}
       </span>
       <span className="msg-stream-listenalong-title">{title}</span>
       {artist && (
@@ -209,44 +212,45 @@ const ListenAlongCard = ({ message }) => {
 };
 
 const MessageActions = ({ message, onCopy, onQuote }) => {
+  useInterfaceLanguage();
   if (!onCopy && !onQuote) return null;
   return (
     <div
-      aria-label="Message actions"
+      aria-label={interfaceText("Message actions")}
       className="msg-stream-actions"
       role="toolbar"
-    >
+     {...interfaceTextProps("Message actions")}>
       {onQuote && (
         <Popup
-          content="Insert this message into the composer so you can reply in context."
+          content={interfaceText("Insert this message into the composer so you can reply in context.")}
           trigger={(
             <button
-              aria-label="Quote message"
+              aria-label={interfaceText("Quote message")}
               className="msg-stream-action"
               onClick={() => onQuote(message)}
-              title="Quote in composer"
+              title={interfaceText("Quote in composer")}
               type="button"
-            >
+             {...interfaceTextProps("Quote message")}>
               ❝
             </button>
           )}
-        />
+         {...interfaceTextProps("Insert this message into the composer so you can reply in context.")}/>
       )}
       {onCopy && (
         <Popup
-          content="Copy this message's text to the clipboard."
+          content={interfaceText("Copy this message's text to the clipboard.")}
           trigger={(
             <button
-              aria-label="Copy message"
+              aria-label={interfaceText("Copy message")}
               className="msg-stream-action"
               onClick={() => onCopy(message)}
-              title="Copy text"
+              title={interfaceText("Copy text")}
               type="button"
-            >
+             {...interfaceTextProps("Copy message")}>
               ⎘
             </button>
           )}
-        />
+         {...interfaceTextProps("Copy this message's text to the clipboard.")}/>
       )}
     </div>
   );
@@ -269,6 +273,7 @@ const MessageRow = ({
   onSenderClick,
   searchQuery,
 }) => {
+  useInterfaceLanguage();
   const { message, showSender } = item;
   const color = useMemo(() => nickColor(message.sender), [message.sender]);
   const rowRef = useRef(null);
@@ -307,7 +312,7 @@ const MessageRow = ({
         <span className="msg-stream-time">{formatTime(message.ts)}</span>
         <span className="msg-stream-me-glyph">*</span>
         <Popup
-          content={`Open the available actions for ${message.sender}.`}
+          content={interfaceText("Open the available actions for {sender}.", { "sender": (message.sender) })}
           trigger={(
             <button
               className="msg-stream-me-sender"
@@ -318,7 +323,7 @@ const MessageRow = ({
               {message.sender}
             </button>
           )}
-        />
+         {...interfaceTextProps("Open the available actions for {sender}.")}/>
         <span className="msg-stream-me-body">{renderBody(message.body, searchQuery)}</span>
         <MessageActions message={message} onCopy={onCopy} onQuote={onQuote} />
       </div>
@@ -339,7 +344,7 @@ const MessageRow = ({
       </span>
       {showSender ? (
         <Popup
-          content={`Open the available actions for ${message.sender}.`}
+          content={interfaceText("Open the available actions for {sender}.", { "sender": (message.sender) })}
           trigger={(
             <button
               className="msg-stream-sender"
@@ -351,7 +356,7 @@ const MessageRow = ({
               {message.sender}
             </button>
           )}
-        />
+         {...interfaceTextProps("Open the available actions for {sender}.")}/>
       ) : (
         <span className="msg-stream-sender-spacer" aria-hidden="true" />
       )}
@@ -370,6 +375,7 @@ const DaySeparator = ({ ts }) => (
 );
 
 const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) => {
+  useInterfaceLanguage();
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -563,7 +569,7 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
     <div className="msg-stream-wrap">
       <div className="msg-stream-search">
         <input
-          aria-label="Search active conversation"
+          aria-label={interfaceText("Search active conversation")}
           className="msg-stream-search-input"
           onChange={(event) => {
             setSearchDraft(event.target.value);
@@ -578,55 +584,55 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
               setSearchCursor(0);
             }
           }}
-          placeholder="Search in conversation"
+          placeholder={interfaceText("Search in conversation")}
           type="search"
           value={searchDraft}
-        />
+         {...interfaceTextProps("Search active conversation")}/>
         <span className="msg-stream-search-count">
           {searchQuery
             ? `${matchingIndexes.length ? searchCursor + 1 : 0}/${matchingIndexes.length}`
             : ''}
         </span>
         <Popup
-          content="Move to the previous matching message."
+          content={interfaceText("Move to the previous matching message.")}
           trigger={(
             <span className="msg-stream-search-control">
               <button
-                aria-label="Previous search match"
+                aria-label={interfaceText("Previous search match")}
                 className="msg-stream-search-button"
                 disabled={matchingIndexes.length === 0}
                 onClick={() => moveSearch(-1)}
-                title="Previous search match"
+                title={interfaceText("Previous search match")}
                 type="button"
-              >
+               {...interfaceTextProps("Previous search match")}>
                 ↑
               </button>
             </span>
           )}
-        />
+         {...interfaceTextProps("Move to the previous matching message.")}/>
         <Popup
-          content="Move to the next matching message."
+          content={interfaceText("Move to the next matching message.")}
           trigger={(
             <span className="msg-stream-search-control">
               <button
-                aria-label="Next search match"
+                aria-label={interfaceText("Next search match")}
                 className="msg-stream-search-button"
                 disabled={matchingIndexes.length === 0}
                 onClick={() => moveSearch(1)}
-                title="Next search match"
+                title={interfaceText("Next search match")}
                 type="button"
-              >
+               {...interfaceTextProps("Next search match")}>
                 ↓
               </button>
             </span>
           )}
-        />
+         {...interfaceTextProps("Move to the next matching message.")}/>
       </div>
       {error && (
         <div className="msg-stream-error" role="alert">
           <span>{error}</span>
           <Popup
-            content="Retry loading this conversation's messages."
+            content={interfaceText("Retry loading this conversation's messages.")}
             trigger={(
               <Button
                 basic
@@ -634,10 +640,9 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
                 onClick={refresh}
                 size="mini"
               >
-                Retry
-              </Button>
+                <LocalizedText source={"Retry"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Retry loading this conversation's messages.")}/>
         </div>
       )}
       <div
@@ -646,7 +651,7 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
         ref={scrollRef}
       >
         {isInitialLoad ? (
-          <div className="msg-stream-loading">Loading…</div>
+          <div className="msg-stream-loading"><LocalizedText source={"Loading…"} /></div>
         ) : items.length === 0 && error ? null : items.length === 0 ? (
           <div className="msg-stream-empty">
             {emptyHint || 'No messages yet.'}
@@ -655,8 +660,7 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
           <>
             {hiddenMessageCount > 0 && (
               <div className="msg-stream-truncated">
-                Showing latest {MAX_RENDERED_MESSAGES} of {messages.length} messages. Use search to scan full history.
-              </div>
+                <LocalizedText source={"Showing latest"} />{" "}{MAX_RENDERED_MESSAGES} <LocalizedText source={"of"} />{" "}{messages.length} <LocalizedText source={"messages. Use search to scan full history."} /></div>
             )}
             {items.map((item, index) => {
               if (item.kind === 'day') {
@@ -683,20 +687,20 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
       </div>
       {!stuck && (
         <Popup
-          content="Scroll to the newest messages in this conversation."
+          content={interfaceText("Scroll to the newest messages in this conversation.")}
           trigger={(
             <button
-              aria-label="Jump to latest"
+              aria-label={interfaceText("Jump to latest")}
               className="msg-stream-jump"
               onClick={jumpToLatest}
               type="button"
-            >
+             {...interfaceTextProps("Jump to latest")}>
               {newCount > 0
                 ? `↓ ${newCount} new ${newCount === 1 ? 'message' : 'messages'}`
-                : '↓ Jump to latest'}
+                : <LocalizedText source={"↓ Jump to latest"} />}
             </button>
           )}
-        />
+         {...interfaceTextProps("Scroll to the newest messages in this conversation.")}/>
       )}
     </div>
   );
@@ -704,12 +708,12 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
 
 const NewMessagesMarker = () => (
   <div
-    aria-label="New messages below"
+    aria-label={interfaceText("New messages below")}
     className="msg-stream-newmarker"
     role="separator"
-  >
+   {...interfaceTextProps("New messages below")}>
     <span className="msg-stream-newmarker-line" aria-hidden="true" />
-    <span className="msg-stream-newmarker-label">new</span>
+    <span className="msg-stream-newmarker-label"><LocalizedText source={"new"} /></span>
     <span className="msg-stream-newmarker-line" aria-hidden="true" />
   </div>
 );

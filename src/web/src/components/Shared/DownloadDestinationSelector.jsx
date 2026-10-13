@@ -1,3 +1,5 @@
+import LocalizedText from "./LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 // <copyright file="DownloadDestinationSelector.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -24,6 +26,7 @@ export const chooseDownloadDestination = (configured, storedPath) => {
 };
 
 const DownloadDestinationSelector = ({ onChange }) => {
+  useInterfaceLanguage();
   const [configured, setConfigured] = useState([]);
   const [error, setError] = useState(false);
   const [selected, setSelected] = useState(undefined);
@@ -77,14 +80,13 @@ const DownloadDestinationSelector = ({ onChange }) => {
     >
       <span>
         <Icon name="folder open" />
-        Download to
-      </span>
+        <LocalizedText source={"Download to"} /></span>
       <Popup
-        content="Choose where new downloads from this browser are saved. The configured default is used until you select another destination."
+        content={interfaceText("Choose where new downloads from this browser are saved. The configured default is used until you select another destination.")}
         position="top center"
         trigger={
           <Dropdown
-            aria-label="Download destination"
+            aria-label={interfaceText("Download destination")}
             disabled={error || options.length === 0}
             error={error}
             loading={!error && options.length === 0}
@@ -93,9 +95,9 @@ const DownloadDestinationSelector = ({ onChange }) => {
             placeholder={error ? 'Configured default' : 'Loading destinations'}
             selection
             value={selected}
-          />
+           {...interfaceTextProps("Download destination")}/>
         }
-      />
+       {...interfaceTextProps("Choose where new downloads from this browser are saved. The configured default is used until you select another destination.")}/>
     </div>
   );
 };

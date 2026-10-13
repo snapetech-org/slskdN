@@ -19008,3 +19008,31 @@ release verification remain.
 ## 2026-10-13 localization first slice
 
 Added a per-browser regional format control to System > Experience Preferences and applied it to existing Web UI date/time/number formatting. Full interface catalogs and RTL review are not part of this first slice. Validation and release-note preview are pending.
+# Update 2026-10-13 — Restore locale metadata helpers and regionalize metrics
+
+The locale hook now exposes the per-label language and direction helpers used
+by transfer rows, fixing the missing-helper crash path. Primary-navigation
+labels keep their own language metadata without reversing the navigation
+container. Zero-byte values, system metrics, and network byte/count displays
+now use the regional number preference, including compact counts.
+
+The release fragment and task/roadmap state describe this follow-up. No tests
+or Web build were run for this continuation, and the work remains local on the
+PR #360 branch.
+
+# Update 2026-10-13 — Complete visible Web UI locale coverage
+
+Expanded the catalog and localized app-owned labels, statuses, messages, and
+accessibility text throughout the Web UI. Raw API/protocol values and user data
+remain unchanged. All 4,334 source strings have twelve non-empty locale values;
+placeholder parity and source-identical cells were audited. The production Web
+build and ESLint pass. Fluent-speaker and full Arabic RTL browser review remain.
+## Full visible UI localization follow-up — 2026-10-13
+
+Expanded the browser catalog and wrapped finite app-owned action, playback,
+scan, integration, and connection messages in the interface-language helper.
+The final candidate set contains 4,450 Web UI source strings across twelve
+locales (53,400 locale cells); catalog coverage and placeholder checks pass.
+The Web build and ESLint pass. Machine translations still need fluent review,
+and full Arabic RTL visual review remains open. No full test suite or release
+was run for this localization follow-up.

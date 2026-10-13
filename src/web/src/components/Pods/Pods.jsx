@@ -1,3 +1,7 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+
+
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Pods.css';
 import { urlBase } from '../../config';
@@ -76,6 +80,7 @@ const podListSignature = (podList) => JSON.stringify(podList);
 
 const withRouter = (WrappedComponent) => {
   const RoutedComponent = (props) => {
+    useInterfaceLanguage();
     const location = useLocation();
     const navigate = useNavigate();
     const params = useParams();
@@ -460,7 +465,7 @@ export class Pods extends Component {
       // Messages will be refreshed by interval
     } catch (error) {
       console.error('Failed to send message:', error);
-      toast.error(`Failed to send message: ${error.message}`);
+      toast.error(interfaceText("Failed to send message: {message}", { "message": (error.message) }));
     }
   };
 
@@ -512,7 +517,7 @@ export class Pods extends Component {
       );
     } catch (error) {
       console.error('Failed to create pod:', error);
-      toast.error(`Failed to create pod: ${error.message}`);
+      toast.error(interfaceText("Failed to create pod: {message}", { "message": (error.message) }));
     }
   };
 
@@ -527,7 +532,7 @@ export class Pods extends Component {
       this.setState({ discoveryResults: asArray(discovered).filter(isObject) });
     } catch (error) {
       console.error('Failed to discover pods:', error);
-      toast.error(`Failed to discover pods: ${error.message}`);
+      toast.error(interfaceText("Failed to discover pods: {message}", { "message": (error.message) }));
     } finally {
       this.setState({ discoveryLoading: false });
     }
@@ -559,7 +564,7 @@ export class Pods extends Component {
         visibility,
       }, this.getLocalPeerId());
 
-      toast.success(`Saved pod ${name}`);
+      toast.success(interfaceText("Saved pod {name}", { "name": (name) }));
       const podList = await this.fetchPods();
       await this.selectPod(
         savedPod.podId,
@@ -568,7 +573,7 @@ export class Pods extends Component {
       );
     } catch (error) {
       console.error('Failed to save discovered pod:', error);
-      toast.error(`Failed to save pod: ${error.message}`);
+      toast.error(interfaceText("Failed to save pod: {message}", { "message": (error.message) }));
     }
   };
 
@@ -590,11 +595,11 @@ export class Pods extends Component {
 
     try {
       await pods.leave(activePodId, peerId);
-      toast.success(`Left ${podName}`);
+      toast.success(interfaceText("Left {podName}", { "podName": (podName) }));
       await this.fetchPodDetail(activePodId);
     } catch (error) {
       console.error('Failed to leave pod:', error);
-      toast.error(`Failed to leave pod: ${error.message}`);
+      toast.error(interfaceText("Failed to leave pod: {message}", { "message": (error.message) }));
     }
   };
 
@@ -634,32 +639,32 @@ export class Pods extends Component {
         {/* Pod List Sidebar */}
         <Segment className="pods-sidebar">
           <div className="pods-sidebar-header">
-            <h3>Pods</h3>
+            <h3><LocalizedText source={"Pods"} /></h3>
             <Popup
-              content="Create a durable pod with a default channel. It is saved by the daemon and restored after restart."
+              content={interfaceText("Create a durable pod with a default channel. It is saved by the daemon and restored after restart.")}
               trigger={
                 <Button
-                  aria-label="Create a pod"
+                  aria-label={interfaceText("Create a pod")}
                   icon="plus"
                   onClick={this.handleOpenCreatePod}
                   size="small"
-                />
+                 {...interfaceTextProps("Create a pod")}/>
               }
-            />
+             {...interfaceTextProps("Create a durable pod with a default channel. It is saved by the daemon and restored after restart.")}/>
           </div>
           <Input
             action={
               <Popup
-              content="Search the pod discovery index for listed pods. This sends your search term to the discovery service so you can find pods to save locally."
+              content={interfaceText("Search the pod discovery index for listed pods. This sends your search term to the discovery service so you can find pods to save locally.")}
               trigger={
                 <Button
-                  aria-label="Search the pod discovery index"
+                  aria-label={interfaceText("Search the pod discovery index")}
                   icon="search"
                     loading={discoveryLoading}
                     onClick={this.handleDiscoverPods}
-                  />
+                   {...interfaceTextProps("Search the pod discovery index")}/>
                 }
-              />
+               {...interfaceTextProps("Search the pod discovery index for listed pods. This sends your search term to the discovery service so you can find pods to save locally.")}/>
             }
             fluid
             onChange={(e) =>
@@ -670,18 +675,17 @@ export class Pods extends Component {
                 this.handleDiscoverPods();
               }
             }}
-            placeholder="Find pods..."
+            placeholder={interfaceText("Find pods...")}
             size="small"
             value={discoveryQuery}
-          />
+           {...interfaceTextProps("Find pods...")}/>
           {discoveryResults.length > 0 && (
             <Segment className="pod-discovery-results">
               <Header
                 as="h5"
                 dividing
               >
-                Discovered
-              </Header>
+                <LocalizedText source={"Discovered"} /></Header>
               <List selection>
                 {discoveryResults.slice(0, 6).map((pod) => {
                   const podId = pod.podId || pod.PodId;
@@ -702,8 +706,7 @@ export class Pods extends Component {
                               color="green"
                               size="mini"
                             >
-                              saved
-                            </Label>
+                              <LocalizedText source={"saved"} /></Label>
                           )}
                         </List.Header>
                         <List.Description>
@@ -713,10 +716,10 @@ export class Pods extends Component {
                       {!local && (
                         <List.Content floated="right">
                           <Popup
-                            content="Save this pod's details in your local pod list so it is available after restarts. This does not join the pod."
+                            content={interfaceText("Save this pod's details in your local pod list so it is available after restarts. This does not join the pod.")}
                             trigger={
                               <Button
-                                aria-label={`Save discovered pod ${name} locally`}
+                                aria-label={interfaceText("Save discovered pod {name} locally", { "name": (name) })}
                                 basic
                                 icon="save"
                                 onClick={(event) => {
@@ -724,9 +727,9 @@ export class Pods extends Component {
                                   this.handleSaveDiscoveredPod(pod);
                                 }}
                                 size="mini"
-                              />
+                               {...interfaceTextProps("Save discovered pod {name} locally")}/>
                             }
-                          />
+                           {...interfaceTextProps("Save this pod's details in your local pod list so it is available after restarts. This does not join the pod.")}/>
                         </List.Content>
                       )}
                     </List.Item>
@@ -777,21 +780,20 @@ export class Pods extends Component {
                 <h2>{podDetail.name || podDetail.podId}</h2>
                 <div className="pod-detail-meta">
                   <span>
-                    <strong>Members:</strong> {members.length}
+                    <strong><LocalizedText source={"Members:"} /></strong> {members.length}
                   </span>
                   <span>
-                    <strong>Channels:</strong> {podDetail.channels?.length || 0}
+                    <strong><LocalizedText source={"Channels:"} /></strong> {podDetail.channels?.length || 0}
                   </span>
                   <span>
-                    <strong>Visibility:</strong> {podDetail.visibility}
+                    <strong><LocalizedText source={"Visibility:"} /></strong> {podDetail.visibility}
                   </span>
                 </div>
                 {podDetail.description && <p>{podDetail.description}</p>}
                 {isGoldStarClub && (
                   <Message warning>
                     <Icon name="star" />
-                    Gold Star Club membership is limited to the first 250 nodes. Leaving this pod permanently revokes local Gold Star status. There are no rejoins.
-                  </Message>
+                    <LocalizedText source={"Gold Star Club membership is limited to the first 250 nodes. Leaving this pod permanently revokes local Gold Star status. There are no rejoins."} /></Message>
                 )}
                 {podDetail.tags?.length > 0 && (
                   <div className="pod-tag-list">
@@ -822,7 +824,7 @@ export class Pods extends Component {
                         size="small"
                       >
                         <Icon name="sign-out" />
-                        {isGoldStarClub ? 'Revoke Gold Star' : 'Leave Pod'}
+                        {isGoldStarClub ? <LocalizedText source={"Revoke Gold Star"} /> : <LocalizedText source={"Leave Pod"} />}
                       </Button>
                     }
                   />
@@ -866,13 +868,13 @@ export class Pods extends Component {
                         />
                         <span className="pod-channel-subtitle">
                           {activeChannel?.kind === 'Direct'
-                            ? 'Direct pod channel'
+                            ? <LocalizedText source={"Direct pod channel"} />
                             : `${activeChannel?.kind || 'Pod'} channel`}
                         </span>
                       </div>
                       <Label basic>
                         {currentMessages.length}{' '}
-                        {currentMessages.length === 1 ? 'message' : 'messages'}
+                        {currentMessages.length === 1 ? <LocalizedText source={"message"} /> : <LocalizedText source={"messages"} />}
                       </Label>
                     </div>
                     <Segment className="pod-message-history">
@@ -911,16 +913,16 @@ export class Pods extends Component {
                       <Input
                         action={
                           <Popup
-                            content="Send this text to the active pod channel's participants. Use this when you want to share an update with them."
+                            content={interfaceText("Send this text to the active pod channel's participants. Use this when you want to share an update with them.")}
                             trigger={
                               <Button
-                                aria-label="Send a message to the active pod channel"
+                                aria-label={interfaceText("Send a message to the active pod channel")}
                                 icon="send"
                                 onClick={this.handleSendMessage}
                                 primary
-                              />
+                               {...interfaceTextProps("Send a message to the active pod channel")}/>
                             }
-                          />
+                           {...interfaceTextProps("Send this text to the active pod channel's participants. Use this when you want to share an update with them.")}/>
                         }
                         fluid
                         onChange={(e) =>
@@ -931,9 +933,9 @@ export class Pods extends Component {
                             this.handleSendMessage();
                           }
                         }}
-                        placeholder="Type a message..."
+                        placeholder={interfaceText("Type a message...")}
                         value={messageInput}
-                      />
+                       {...interfaceTextProps("Type a message...")}/>
                     </Segment>
                   </Segment>
                   <Tab
@@ -941,7 +943,7 @@ export class Pods extends Component {
                     panes={[
                       {
                         menuItem: {
-                          content: 'VPN Gateway',
+                          content: interfaceText("VPN Gateway"),
                           icon: 'shield',
                           key: 'vpn-gateway',
                         },
@@ -956,7 +958,7 @@ export class Pods extends Component {
                       },
                       {
                         menuItem: {
-                          content: 'Port Forwarding',
+                          content: interfaceText("Port Forwarding"),
                           icon: 'exchange',
                           key: 'port-forwarding',
                         },
@@ -983,49 +985,49 @@ export class Pods extends Component {
           open={createModalOpen}
           size="small"
         >
-          <Modal.Header>Create Pod</Modal.Header>
+          <Modal.Header><LocalizedText source={"Create Pod"} /></Modal.Header>
           <Modal.Content>
             <Form>
               <Form.Field>
-                <label>Name</label>
+                <label><LocalizedText source={"Name"} /></label>
                 <Input
                   autoFocus
                   onChange={(e) =>
                     this.setState({ createName: e.target.value })
                   }
-                  placeholder="listening circle, label crate, private crew"
+                  placeholder={interfaceText("listening circle, label crate, private crew")}
                   value={createName}
-                />
+                 {...interfaceTextProps("listening circle, label crate, private crew")}/>
               </Form.Field>
               <Form.TextArea
-                label="Description"
+                label={interfaceText("Description")}
                 onChange={(e, { value }) =>
                   this.setState({ createDescription: value })
                 }
-                placeholder="What this pod is for"
+                placeholder={interfaceText("What this pod is for")}
                 value={createDescription}
-              />
+               {...interfaceTextProps("Description")}/>
               <Form.Field>
-                <label>Tags</label>
+                <label><LocalizedText source={"Tags"} /></label>
                 <Input
                   onChange={(e) =>
                     this.setState({ createTags: e.target.value })
                   }
-                  placeholder="ambient, friends, vinyl"
+                  placeholder={interfaceText("ambient, friends, vinyl")}
                   value={createTags}
-                />
+                 {...interfaceTextProps("ambient, friends, vinyl")}/>
               </Form.Field>
               <Form.Field>
-                <label>Visibility</label>
+                <label><LocalizedText source={"Visibility"} /></label>
                 <Dropdown
                   fluid
                   onChange={(e, { value }) =>
                     this.setState({ createVisibility: value })
                   }
                   options={[
-                    { key: 'unlisted', text: 'Unlisted', value: 'Unlisted' },
-                    { key: 'listed', text: 'Listed', value: 'Listed' },
-                    { key: 'private', text: 'Private', value: 'Private' },
+                    { key: 'unlisted', text: interfaceText("Unlisted"), value: 'Unlisted' },
+                    { key: 'listed', text: interfaceText("Listed"), value: 'Listed' },
+                    { key: 'private', text: interfaceText("Private"), value: 'Private' },
                   ]}
                   selection
                   value={createVisibility}
@@ -1033,8 +1035,7 @@ export class Pods extends Component {
               </Form.Field>
               <Message info>
                 <Icon name="save" />
-                Pods are stored by the server, so the list and messages survive browser reloads and daemon restarts.
-              </Message>
+                <LocalizedText source={"Pods are stored by the server, so the list and messages survive browser reloads and daemon restarts."} /></Message>
             </Form>
           </Modal.Content>
           <Modal.Actions>
@@ -1042,16 +1043,14 @@ export class Pods extends Component {
               onClick={() => this.setState({ createModalOpen: false })}
               tooltip="Close this form without creating a pod; the entered details are discarded."
             >
-              Cancel
-            </TooltipButton>
+              <LocalizedText source={"Cancel"} /></TooltipButton>
             <TooltipButton
               disabled={!createName.trim()}
               onClick={this.handleCreatePod}
               primary
               tooltip="Create a pod with a General channel and save it on the server so it remains available after restarts."
             >
-              Create
-            </TooltipButton>
+              <LocalizedText source={"Create"} /></TooltipButton>
           </Modal.Actions>
         </Modal>
       </div>

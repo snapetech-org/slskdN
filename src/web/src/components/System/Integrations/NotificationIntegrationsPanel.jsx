@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 // <copyright file="NotificationIntegrationsPanel.js" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -119,6 +121,7 @@ const buildNotificationForm = (options = {}) => {
 };
 
 const NotificationIntegrationsPanel = ({ options }) => {
+  useInterfaceLanguage();
   const remoteConfiguration = Boolean(
     getOption(options, 'remoteConfiguration', 'RemoteConfiguration'),
   );
@@ -241,7 +244,7 @@ const NotificationIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: 'Notification integration settings applied for this running daemon.',
+        text: interfaceText("Notification integration settings applied for this running daemon."),
       });
     } catch (error) {
       setMessage({
@@ -341,7 +344,7 @@ const NotificationIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: 'Notification integration settings saved to YAML.',
+        text: interfaceText("Notification integration settings saved to YAML."),
       });
     } catch (error) {
       setMessage({
@@ -362,11 +365,9 @@ const NotificationIntegrationsPanel = ({ options }) => {
       <Card.Content>
         <Card.Header>
           <Icon name="bell" />
-          Notifications
-        </Card.Header>
+          <LocalizedText source={"Notifications"} /></Card.Header>
         <Card.Meta>
-          Push notifications for private messages and room mentions.
-        </Card.Meta>
+          <LocalizedText source={"Push notifications for private messages and room mentions."} /></Card.Meta>
       </Card.Content>
       <Card.Content>
         <div className="integration-status-row">
@@ -375,13 +376,13 @@ const NotificationIntegrationsPanel = ({ options }) => {
             <Icon
               name={form.pushbulletAccessTokenConfigured ? 'key' : 'warning sign'}
             />
-            Pushbullet Token{' '}
-            {form.pushbulletAccessTokenConfigured ? 'Configured' : 'Missing'}
+            <LocalizedText source={"Pushbullet Token"} />{' '}
+            {form.pushbulletAccessTokenConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
           {boolLabel(form.ntfyEnabled, 'Ntfy On', 'Ntfy Off')}
           <Label>
             <Icon name={form.ntfyUrl ? 'linkify' : 'warning sign'} />
-            Ntfy URL {form.ntfyUrl ? 'Configured' : 'Missing'}
+            <LocalizedText source={"Ntfy URL"} />{" "}{form.ntfyUrl ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
           {boolLabel(form.pushoverEnabled, 'Pushover On', 'Pushover Off')}
           <Label>
@@ -392,10 +393,10 @@ const NotificationIntegrationsPanel = ({ options }) => {
                   : 'warning sign'
               }
             />
-            Pushover Secrets{' '}
+            <LocalizedText source={"Pushover Secrets"} />{' '}
             {form.pushoverUserKeyConfigured && form.pushoverTokenConfigured
-              ? 'Configured'
-              : 'Missing'}
+              ? <LocalizedText source={"Configured"} />
+              : <LocalizedText source={"Missing"} />}
           </Label>
         </div>
 
@@ -404,10 +405,7 @@ const NotificationIntegrationsPanel = ({ options }) => {
             info
             size="small"
           >
-            Runtime configuration changes are disabled. Enable remote
-            configuration or edit YAML in the Options tab to change notification
-            settings.
-          </Message>
+            <LocalizedText source={"Runtime configuration changes are disabled. Enable remote configuration or edit YAML in the Options tab to change notification settings."} /></Message>
         )}
 
         {message && (
@@ -432,28 +430,27 @@ const NotificationIntegrationsPanel = ({ options }) => {
           <Segment>
             <Header as="h4">
               <Icon name="paper plane" />
-              Pushbullet
-            </Header>
+              <LocalizedText source={"Pushbullet"} /></Header>
             <Popup
-              content="Turn on Pushbullet delivery for enabled notification triggers."
+              content={interfaceText("Turn on Pushbullet delivery for enabled notification triggers.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable Pushbullet notifications"
+                  aria-label={interfaceText("Enable Pushbullet notifications")}
                   checked={form.pushbulletEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable Pushbullet"
+                  label={interfaceText("Enable Pushbullet")}
                   onChange={(_, { checked }) =>
                     update('pushbulletEnabled', checked)
                   }
                   toggle
-                />
+                 {...interfaceTextProps("Enable Pushbullet notifications")}/>
               }
-            />
+             {...interfaceTextProps("Turn on Pushbullet delivery for enabled notification triggers.")}/>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Pushbullet access token"
+                aria-label={interfaceText("Pushbullet access token")}
                 disabled={!remoteConfiguration || saving}
-                label="Access Token"
+                label={interfaceText("Access Token")}
                 onChange={(_, { value }) => update('pushbulletAccessToken', value)}
                 placeholder={
                   form.pushbulletAccessTokenConfigured
@@ -462,20 +459,20 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 }
                 type="password"
                 value={form.pushbulletAccessToken}
-              />
+               {...interfaceTextProps("Pushbullet access token")}/>
               <Form.Input
-                aria-label="Pushbullet notification prefix"
+                aria-label={interfaceText("Pushbullet notification prefix")}
                 disabled={!remoteConfiguration || saving}
-                label="Title Prefix"
+                label={interfaceText("Title Prefix")}
                 onChange={(_, { value }) => update('pushbulletPrefix', value)}
                 value={form.pushbulletPrefix}
-              />
+               {...interfaceTextProps("Pushbullet notification prefix")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Pushbullet retry attempts"
+                aria-label={interfaceText("Pushbullet retry attempts")}
                 disabled={!remoteConfiguration || saving}
-                label="Retry Attempts"
+                label={interfaceText("Retry Attempts")}
                 max={5}
                 min={0}
                 onChange={(_, { value }) =>
@@ -483,82 +480,81 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 }
                 type="number"
                 value={form.pushbulletRetryAttempts}
-              />
+               {...interfaceTextProps("Pushbullet retry attempts")}/>
               <Form.Input
-                aria-label="Pushbullet cooldown milliseconds"
+                aria-label={interfaceText("Pushbullet cooldown milliseconds")}
                 disabled={!remoteConfiguration || saving}
-                label="Cooldown Milliseconds"
+                label={interfaceText("Cooldown Milliseconds")}
                 min={0}
                 onChange={(_, { value }) =>
                   update('pushbulletCooldownTime', value)
                 }
                 type="number"
                 value={form.pushbulletCooldownTime}
-              />
+               {...interfaceTextProps("Pushbullet cooldown milliseconds")}/>
             </Form.Group>
             <Form.Group grouped>
               <Popup
-                content="Send Pushbullet notifications when a private message arrives."
+                content={interfaceText("Send Pushbullet notifications when a private message arrives.")}
                 trigger={
                   <Checkbox
-                    aria-label="Pushbullet private message notifications"
+                    aria-label={interfaceText("Pushbullet private message notifications")}
                     checked={form.pushbulletNotifyOnPrivateMessage}
                     disabled={!remoteConfiguration || saving}
-                    label="Private messages"
+                    label={interfaceText("Private messages")}
                     onChange={(_, { checked }) =>
                       update('pushbulletNotifyOnPrivateMessage', checked)
                     }
-                  />
+                   {...interfaceTextProps("Pushbullet private message notifications")}/>
                 }
-              />
+               {...interfaceTextProps("Send Pushbullet notifications when a private message arrives.")}/>
               <Popup
-                content="Send Pushbullet notifications when your username is mentioned in a joined room."
+                content={interfaceText("Send Pushbullet notifications when your username is mentioned in a joined room.")}
                 trigger={
                   <Checkbox
-                    aria-label="Pushbullet room mention notifications"
+                    aria-label={interfaceText("Pushbullet room mention notifications")}
                     checked={form.pushbulletNotifyOnRoomMention}
                     disabled={!remoteConfiguration || saving}
-                    label="Room mentions"
+                    label={interfaceText("Room mentions")}
                     onChange={(_, { checked }) =>
                       update('pushbulletNotifyOnRoomMention', checked)
                     }
-                  />
+                   {...interfaceTextProps("Pushbullet room mention notifications")}/>
                 }
-              />
+               {...interfaceTextProps("Send Pushbullet notifications when your username is mentioned in a joined room.")}/>
             </Form.Group>
           </Segment>
 
           <Segment>
             <Header as="h4">
               <Icon name="rss" />
-              Ntfy
-            </Header>
+              <LocalizedText source={"Ntfy"} /></Header>
             <Popup
-              content="Turn on Ntfy delivery for enabled notification triggers."
+              content={interfaceText("Turn on Ntfy delivery for enabled notification triggers.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable Ntfy notifications"
+                  aria-label={interfaceText("Enable Ntfy notifications")}
                   checked={form.ntfyEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable Ntfy"
+                  label={interfaceText("Enable Ntfy")}
                   onChange={(_, { checked }) => update('ntfyEnabled', checked)}
                   toggle
-                />
+                 {...interfaceTextProps("Enable Ntfy notifications")}/>
               }
-            />
+             {...interfaceTextProps("Turn on Ntfy delivery for enabled notification triggers.")}/>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Ntfy topic URL"
+                aria-label={interfaceText("Ntfy topic URL")}
                 disabled={!remoteConfiguration || saving}
-                label="Topic URL"
+                label={interfaceText("Topic URL")}
                 onChange={(_, { value }) => update('ntfyUrl', value)}
                 placeholder="https://ntfy.sh/mytopic"
                 value={form.ntfyUrl}
-              />
+               {...interfaceTextProps("Ntfy topic URL")}/>
               <Form.Input
-                aria-label="Ntfy access token"
+                aria-label={interfaceText("Ntfy access token")}
                 disabled={!remoteConfiguration || saving}
-                label="Access Token"
+                label={interfaceText("Access Token")}
                 onChange={(_, { value }) => update('ntfyAccessToken', value)}
                 placeholder={
                   form.ntfyAccessTokenConfigured
@@ -567,70 +563,69 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 }
                 type="password"
                 value={form.ntfyAccessToken}
-              />
+               {...interfaceTextProps("Ntfy access token")}/>
             </Form.Group>
             <Form.Input
-              aria-label="Ntfy notification prefix"
+              aria-label={interfaceText("Ntfy notification prefix")}
               disabled={!remoteConfiguration || saving}
-              label="Title Prefix"
+              label={interfaceText("Title Prefix")}
               onChange={(_, { value }) => update('ntfyPrefix', value)}
               value={form.ntfyPrefix}
-            />
+             {...interfaceTextProps("Ntfy notification prefix")}/>
             <Form.Group grouped>
               <Popup
-                content="Send Ntfy notifications when a private message arrives."
+                content={interfaceText("Send Ntfy notifications when a private message arrives.")}
                 trigger={
                   <Checkbox
-                    aria-label="Ntfy private message notifications"
+                    aria-label={interfaceText("Ntfy private message notifications")}
                     checked={form.ntfyNotifyOnPrivateMessage}
                     disabled={!remoteConfiguration || saving}
-                    label="Private messages"
+                    label={interfaceText("Private messages")}
                     onChange={(_, { checked }) =>
                       update('ntfyNotifyOnPrivateMessage', checked)
                     }
-                  />
+                   {...interfaceTextProps("Ntfy private message notifications")}/>
                 }
-              />
+               {...interfaceTextProps("Send Ntfy notifications when a private message arrives.")}/>
               <Popup
-                content="Send Ntfy notifications when your username is mentioned in a joined room."
+                content={interfaceText("Send Ntfy notifications when your username is mentioned in a joined room.")}
                 trigger={
                   <Checkbox
-                    aria-label="Ntfy room mention notifications"
+                    aria-label={interfaceText("Ntfy room mention notifications")}
                     checked={form.ntfyNotifyOnRoomMention}
                     disabled={!remoteConfiguration || saving}
-                    label="Room mentions"
+                    label={interfaceText("Room mentions")}
                     onChange={(_, { checked }) =>
                       update('ntfyNotifyOnRoomMention', checked)
                     }
-                  />
+                   {...interfaceTextProps("Ntfy room mention notifications")}/>
                 }
-              />
+               {...interfaceTextProps("Send Ntfy notifications when your username is mentioned in a joined room.")}/>
             </Form.Group>
           </Segment>
 
           <Segment>
             <Header as="h4">
               <Icon name="mobile alternate" />
-              Pushover
-            </Header>
+              <LocalizedText source={"Pushover"} /></Header>
             <Popup
-              content="Turn on Pushover delivery for enabled notification triggers."
+              content={interfaceText("Turn on Pushover delivery for enabled notification triggers.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable Pushover notifications"
+                  aria-label={interfaceText("Enable Pushover notifications")}
                   checked={form.pushoverEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable Pushover"
+                  label={interfaceText("Enable Pushover")}
                   onChange={(_, { checked }) => update('pushoverEnabled', checked)}
                   toggle
-                />
+                 {...interfaceTextProps("Enable Pushover notifications")}/>
               }
-            />
+             {...interfaceTextProps("Turn on Pushover delivery for enabled notification triggers.")}/>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Pushover user key"
+                aria-label={interfaceText("Pushover user key")}
                 disabled={!remoteConfiguration || saving}
-                label="User Key"
+                label={interfaceText("User Key")}
                 onChange={(_, { value }) => update('pushoverUserKey', value)}
                 placeholder={
                   form.pushoverUserKeyConfigured
@@ -639,11 +634,11 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 }
                 type="password"
                 value={form.pushoverUserKey}
-              />
+               {...interfaceTextProps("Pushover user key")}/>
               <Form.Input
-                aria-label="Pushover API token"
+                aria-label={interfaceText("Pushover API token")}
                 disabled={!remoteConfiguration || saving}
-                label="API Token"
+                label={interfaceText("API Token")}
                 onChange={(_, { value }) => update('pushoverToken', value)}
                 placeholder={
                   form.pushoverTokenConfigured
@@ -652,51 +647,51 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 }
                 type="password"
                 value={form.pushoverToken}
-              />
+               {...interfaceTextProps("Pushover API token")}/>
             </Form.Group>
             <Form.Input
-              aria-label="Pushover notification prefix"
+              aria-label={interfaceText("Pushover notification prefix")}
               disabled={!remoteConfiguration || saving}
-              label="Title Prefix"
+              label={interfaceText("Title Prefix")}
               onChange={(_, { value }) => update('pushoverPrefix', value)}
               value={form.pushoverPrefix}
-            />
+             {...interfaceTextProps("Pushover notification prefix")}/>
             <Form.Group grouped>
               <Popup
-                content="Send Pushover notifications when a private message arrives."
+                content={interfaceText("Send Pushover notifications when a private message arrives.")}
                 trigger={
                   <Checkbox
-                    aria-label="Pushover private message notifications"
+                    aria-label={interfaceText("Pushover private message notifications")}
                     checked={form.pushoverNotifyOnPrivateMessage}
                     disabled={!remoteConfiguration || saving}
-                    label="Private messages"
+                    label={interfaceText("Private messages")}
                     onChange={(_, { checked }) =>
                       update('pushoverNotifyOnPrivateMessage', checked)
                     }
-                  />
+                   {...interfaceTextProps("Pushover private message notifications")}/>
                 }
-              />
+               {...interfaceTextProps("Send Pushover notifications when a private message arrives.")}/>
               <Popup
-                content="Send Pushover notifications when your username is mentioned in a joined room."
+                content={interfaceText("Send Pushover notifications when your username is mentioned in a joined room.")}
                 trigger={
                   <Checkbox
-                    aria-label="Pushover room mention notifications"
+                    aria-label={interfaceText("Pushover room mention notifications")}
                     checked={form.pushoverNotifyOnRoomMention}
                     disabled={!remoteConfiguration || saving}
-                    label="Room mentions"
+                    label={interfaceText("Room mentions")}
                     onChange={(_, { checked }) =>
                       update('pushoverNotifyOnRoomMention', checked)
                     }
-                  />
+                   {...interfaceTextProps("Pushover room mention notifications")}/>
                 }
-              />
+               {...interfaceTextProps("Send Pushover notifications when your username is mentioned in a joined room.")}/>
             </Form.Group>
           </Segment>
         </Form>
 
         <div className="integration-actions">
           <Popup
-            content="Apply these notification settings through the runtime configuration overlay."
+            content={interfaceText("Apply these notification settings through the runtime configuration overlay.")}
             trigger={
               <Button
                 disabled={!remoteConfiguration || missingRequiredSettings.length > 0}
@@ -707,12 +702,11 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 primary
               >
                 <Icon name="save" />
-                Apply Runtime
-              </Button>
+                <LocalizedText source={"Apply Runtime"} /></Button>
             }
-          />
+           {...interfaceTextProps("Apply these notification settings through the runtime configuration overlay.")}/>
           <Popup
-            content="Persist these notification settings to the YAML configuration file."
+            content={interfaceText("Persist these notification settings to the YAML configuration file.")}
             trigger={
               <Button
                 disabled={!remoteConfiguration || missingRequiredSettings.length > 0}
@@ -722,12 +716,11 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 onClick={saveYaml}
               >
                 <Icon name="file alternate" />
-                Save YAML
-              </Button>
+                <LocalizedText source={"Save YAML"} /></Button>
             }
-          />
+           {...interfaceTextProps("Persist these notification settings to the YAML configuration file.")}/>
           <Popup
-            content="Discard unsaved notification edits and restore the values currently reported by the daemon."
+            content={interfaceText("Discard unsaved notification edits and restore the values currently reported by the daemon.")}
             trigger={
               <Button
                 disabled={saving}
@@ -736,10 +729,9 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 onClick={reset}
               >
                 <Icon name="undo" />
-                Reset
-              </Button>
+                <LocalizedText source={"Reset"} /></Button>
             }
-          />
+           {...interfaceTextProps("Discard unsaved notification edits and restore the values currently reported by the daemon.")}/>
         </div>
       </Card.Content>
     </Card>

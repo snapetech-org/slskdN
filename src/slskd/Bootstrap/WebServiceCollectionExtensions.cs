@@ -83,7 +83,7 @@ public static class WebServiceCollectionExtensions
                         }
                     }
 
-                    b.WithExposedHeaders("X-URL-Base", "X-Total-Count")
+                    b.WithExposedHeaders("X-URL-Base", "X-Total-Count", "X-Slskd-Error-Code")
                         .SetPreflightMaxAge(TimeSpan.FromHours(1));
                     if (c.AllowedHeaders != null && c.AllowedHeaders.Length > 0)
                     {

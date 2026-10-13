@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Popup } from 'semantic-ui-react';
 
@@ -38,6 +40,7 @@ const Composer = ({
   placeholder,
   value,
 }) => {
+  useInterfaceLanguage();
   const [busy, setBusy] = useState(false);
   const [cursor, setCursor] = useState(0);
   const [sendError, setSendError] = useState('');
@@ -138,10 +141,10 @@ const Composer = ({
     <div className="msgv2-composer-wrap">
       {suggestions.length > 0 && (
         <div
-          aria-label="Command suggestions"
+          aria-label={interfaceText("Command suggestions")}
           className="msgv2-composer-suggestions"
           role="listbox"
-        >
+         {...interfaceTextProps("Command suggestions")}>
           {suggestions.map((command, index) => (
             <Popup
               content={`${command.description} Select to insert ${command.syntax || `/${command.name}`} in the composer.`}
@@ -194,13 +197,13 @@ const Composer = ({
           trigger={(
             <span>
               <button
-                aria-label="Send"
+                aria-label={interfaceText("Send")}
                 className="msgv2-composer-send"
                 disabled={isDisabled || draft.trim().length === 0 || busy}
                 onClick={submit}
-                title="Send (Enter)"
+                title={interfaceText("Send (Enter)")}
                 type="button"
-              >
+               {...interfaceTextProps("Send")}>
                 {busy ? '…' : '▶'}
               </button>
             </span>
@@ -214,8 +217,7 @@ const Composer = ({
           data-testid="message-send-error"
           role="alert"
         >
-          {sendError} Your draft is still here; try Send again.
-        </div>
+          {sendError} <LocalizedText source={"Your draft is still here; try Send again."} /></div>
       )}
     </div>
   );

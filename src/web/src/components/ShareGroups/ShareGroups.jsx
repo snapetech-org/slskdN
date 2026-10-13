@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
@@ -328,10 +330,8 @@ export default class ShareGroups extends Component {
         <Header as="h1">
           <Icon name="users" />
           <Header.Content>
-            Share Groups
-            <Header.Subheader>
-              Manage groups for sharing collections
-            </Header.Subheader>
+            <LocalizedText source={"Share Groups"} /><Header.Subheader>
+              <LocalizedText source={"Manage groups for sharing collections"} /></Header.Subheader>
           </Header.Content>
         </Header>
 
@@ -345,32 +345,30 @@ export default class ShareGroups extends Component {
             tooltip="Create a named group that can be granted access to shared collections."
           >
             <Icon name="plus" />
-            Create Group
-          </Button>
+            <LocalizedText source={"Create Group"} /></Button>
         </div>
 
         {shareGroups.length === 0 ? (
           <Segment placeholder>
             <Header icon>
               <Icon name="users" />
-              {loading ? 'Loading share groups' : 'No share groups yet'}
+              {loading ? <LocalizedText source={"Loading share groups"} /> : <LocalizedText source={"No share groups yet"} />}
             </Header>
             <Button
               onClick={() => this.setState({ createModalOpen: true })}
               primary
               tooltip="Create the first share group for collection permissions."
             >
-              Create Your First Group
-            </Button>
+              <LocalizedText source={"Create Your First Group"} /></Button>
           </Segment>
         ) : (
           <Table>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Members</Table.HeaderCell>
-                <Table.HeaderCell>Created</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Name"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Members"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Created"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -387,8 +385,7 @@ export default class ShareGroups extends Component {
                       size="small"
                       tooltip="Show the contacts or users currently assigned to this group."
                     >
-                      View Members
-                    </Button>
+                      <LocalizedText source={"View Members"} /></Button>
                   </Table.Cell>
                   <Table.Cell>
                     {new Date(group.createdAt).toLocaleDateString(getRegionalLocale())}
@@ -406,16 +403,14 @@ export default class ShareGroups extends Component {
                       size="small"
                       tooltip="Add a contact or Soulseek username to this share group."
                     >
-                      Add Member
-                    </Button>
+                      <LocalizedText source={"Add Member"} /></Button>
                     <Button
                       negative
                       onClick={() => this.handleDeleteGroup(group.id)}
                       size="small"
                       tooltip="Delete this share group and remove its collection access."
                     >
-                      Delete
-                    </Button>
+                      <LocalizedText source={"Delete"} /></Button>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -430,18 +425,18 @@ export default class ShareGroups extends Component {
           }
           open={createModalOpen}
         >
-          <Modal.Header>Create Share Group</Modal.Header>
+          <Modal.Header><LocalizedText source={"Create Share Group"} /></Modal.Header>
           <Modal.Content>
             <Form>
               <Form.Input
                 data-testid="groups-name-input"
-                label="Group Name"
+                label={interfaceText("Group Name")}
                 onChange={(e) =>
                   this.setState({ newGroupName: e.target.value })
                 }
-                placeholder="Enter group name"
+                placeholder={interfaceText("Enter group name")}
                 value={newGroupName}
-              />
+               {...interfaceTextProps("Group Name")}/>
             </Form>
           </Modal.Content>
           <Modal.Actions>
@@ -451,8 +446,7 @@ export default class ShareGroups extends Component {
               }
               tooltip="Close this dialog without creating a share group."
             >
-              Cancel
-            </Button>
+              <LocalizedText source={"Cancel"} /></Button>
             <Button
               data-testid="groups-create-submit"
               disabled={!newGroupName.trim()}
@@ -460,8 +454,7 @@ export default class ShareGroups extends Component {
               primary
               tooltip="Create this share group."
             >
-              Create
-            </Button>
+              <LocalizedText source={"Create"} /></Button>
           </Modal.Actions>
         </Modal>
 
@@ -477,12 +470,12 @@ export default class ShareGroups extends Component {
           }
           open={addMemberModalOpen}
         >
-          <Modal.Header>Add Member to {selectedGroup?.name}</Modal.Header>
+          <Modal.Header><LocalizedText source={"Add Member to"} />{" "}{selectedGroup?.name}</Modal.Header>
           <Modal.Content>
             {contacts.length > 0 ? (
               <Form>
                 <Form.Field>
-                  <label>Add from Contacts</label>
+                  <label><LocalizedText source={"Add from Contacts"} /></label>
                   <Dropdown
                     data-testid="group-member-picker"
                     fluid
@@ -493,14 +486,14 @@ export default class ShareGroups extends Component {
                       })
                     }
                     options={contactOptions}
-                    placeholder="Select a contact"
+                    placeholder={interfaceText("Select a contact")}
                     search
                     selection
                     value={selectedContactId}
-                  />
+                   {...interfaceTextProps("Select a contact")}/>
                 </Form.Field>
                 <Message info>
-                  <p>Or enter a Soulseek username (legacy):</p>
+                  <p><LocalizedText source={"Or enter a Soulseek username (legacy):"} /></p>
                   <Form.Input
                     onChange={(e) =>
                       this.setState({
@@ -508,27 +501,25 @@ export default class ShareGroups extends Component {
                         usePeerId: false,
                       })
                     }
-                    placeholder="Soulseek username"
+                    placeholder={interfaceText("Soulseek username")}
                     value={selectedUserId}
-                  />
+                   {...interfaceTextProps("Soulseek username")}/>
                 </Message>
               </Form>
             ) : (
               <Form>
                 <Form.Field>
-                  <label>Soulseek Username (legacy)</label>
+                  <label><LocalizedText source={"Soulseek Username (legacy)"} /></label>
                   <Form.Input
                     onChange={(e) =>
                       this.setState({ selectedUserId: e.target.value })
                     }
-                    placeholder="Enter username"
+                    placeholder={interfaceText("Enter username")}
                     value={selectedUserId}
-                  />
+                   {...interfaceTextProps("Enter username")}/>
                 </Form.Field>
                 <Message warning>
-                  No contacts available. Add contacts from the Contacts page to
-                  use friend-based sharing.
-                </Message>
+                  <LocalizedText source={"No contacts available. Add contacts from the Contacts page to use friend-based sharing."} /></Message>
               </Form>
             )}
           </Modal.Content>
@@ -544,8 +535,7 @@ export default class ShareGroups extends Component {
               }
               tooltip="Close this dialog without adding a member."
             >
-              Cancel
-            </Button>
+              <LocalizedText source={"Cancel"} /></Button>
             <Button
               data-testid="group-member-add-submit"
               disabled={!selectedContactId && !selectedUserId}
@@ -553,8 +543,7 @@ export default class ShareGroups extends Component {
               primary
               tooltip="Add the selected contact or username to this share group."
             >
-              Add Member
-            </Button>
+              <LocalizedText source={"Add Member"} /></Button>
           </Modal.Actions>
         </Modal>
 
@@ -563,7 +552,7 @@ export default class ShareGroups extends Component {
           onClose={this.closeMemberDetails}
           open={memberDetailsModalOpen}
         >
-          <Modal.Header>Members of {memberDetailsGroup?.name || 'Share Group'}</Modal.Header>
+          <Modal.Header><LocalizedText source={"Members of"} />{" "}{memberDetailsGroup?.name || 'Share Group'}</Modal.Header>
           <Modal.Content>
             {memberDetailsLoading ? (
               <LoaderSegment />
@@ -577,8 +566,7 @@ export default class ShareGroups extends Component {
                   primary
                   tooltip="Retry loading members for this share group."
                 >
-                  Retry Members
-                </Button>
+                  <LocalizedText source={"Retry Members"} /></Button>
               </Message>
             ) : memberDetails.length > 0 ? (
               <List divided relaxed>
@@ -589,7 +577,7 @@ export default class ShareGroups extends Component {
                 ))}
               </List>
             ) : (
-              <Segment placeholder>No members are assigned to this group.</Segment>
+              <Segment placeholder><LocalizedText source={"No members are assigned to this group."} /></Segment>
             )}
           </Modal.Content>
           <Modal.Actions>
@@ -597,8 +585,7 @@ export default class ShareGroups extends Component {
               onClick={this.closeMemberDetails}
               tooltip="Close the member list and return to share groups."
             >
-              Close
-            </Button>
+              <LocalizedText source={"Close"} /></Button>
           </Modal.Actions>
         </Modal>
       </Container>

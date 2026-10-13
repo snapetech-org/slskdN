@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { deleteDirectory, deleteFile, list } from '../../../lib/files';
 import { formatBytes, formatDate } from '../../../lib/util';
 import React, { useEffect, useRef, useState } from 'react';
@@ -16,6 +18,7 @@ const getErrorMessage = (error, fallback) => {
 };
 
 const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
+  useInterfaceLanguage();
   const [open, setOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState(null);
@@ -42,12 +45,12 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
   return (
     <>
       <Popup
-        content={`Open confirmation to permanently delete ${itemType} '${fullName}'.`}
+        content={interfaceText("Open confirmation to permanently delete {itemType} '{fullName}'.", { "itemType": (itemType), "fullName": (fullName) })}
         on={['hover', 'focus']}
         position="top center"
         trigger={(
           <Button
-            aria-label={`Delete ${itemType} ${fullName}`}
+            aria-label={interfaceText("Delete {itemType} {fullName}", { "itemType": (itemType), "fullName": (fullName) })}
             basic
             icon="trash alternate"
             onClick={() => {
@@ -55,9 +58,9 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
               setOpen(true);
             }}
             size="small"
-          />
+           {...interfaceTextProps("Delete {itemType} {fullName}")}/>
         )}
-      />
+       {...interfaceTextProps("Open confirmation to permanently delete {itemType} '{fullName}'.")}/>
       <Modal
         onClose={() => !deleting && setOpen(false)}
         open={open}
@@ -65,10 +68,10 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
       >
         <Modal.Header>
           <Icon name="trash alternate" />
-          {`Delete ${itemType}`}
+          {interfaceText("Delete {itemType}", { "itemType": (itemType) })}
         </Modal.Header>
         <Modal.Content>
-          <p>{`Are you sure you want to permanently delete '${fullName}'?`}</p>
+          <p>{interfaceText("Are you sure you want to permanently delete '{fullName}'?", { "fullName": (fullName) })}</p>
           {error ? (
             <Message
               content={error}
@@ -79,19 +82,18 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
         </Modal.Content>
         <Modal.Actions>
           <Popup
-            content="Close this confirmation without deleting the item."
+            content={interfaceText("Close this confirmation without deleting the item.")}
             on={['hover', 'focus']}
             trigger={(
               <Button
                 disabled={deleting}
                 onClick={() => setOpen(false)}
               >
-                Cancel
-              </Button>
+                <LocalizedText source={"Cancel"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Close this confirmation without deleting the item.")}/>
           <Popup
-            content={`Permanently delete this ${itemType}. This action cannot be undone.`}
+            content={interfaceText("Permanently delete this {itemType}. This action cannot be undone.", { "itemType": (itemType) })}
             on={['hover', 'focus']}
             trigger={(
               <Button
@@ -100,10 +102,9 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
                 negative
                 onClick={remove}
               >
-                Delete
-              </Button>
+                <LocalizedText source={"Delete"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Permanently delete this {itemType}. This action cannot be undone.")}/>
         </Modal.Actions>
       </Modal>
     </>
@@ -156,6 +157,7 @@ const DirectoryRow = ({
   root,
   subdirectory,
 }) => {
+  useInterfaceLanguage();
   const isParent = name === '..';
   const description = isParent
     ? 'Go up one directory.'
@@ -201,6 +203,7 @@ const DirectoryRow = ({
 };
 
 const Explorer = ({ active = true, remoteFileManagement, root }) => {
+  useInterfaceLanguage();
   const [directory, setDirectory] = useState(emptyDirectory);
   const [subdirectory, setSubdirectory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -287,12 +290,12 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
       {error ? (
         <Message
           error
-          header="Could not load this directory"
+          header={interfaceText("Could not load this directory")}
           role="alert"
-        >
+         {...interfaceTextProps("Could not load this directory")}>
           <p>{error}</p>
           <Popup
-            content="Retry loading the current directory after the request error."
+            content={interfaceText("Retry loading the current directory after the request error.")}
             on={['hover', 'focus']}
             position="top center"
             trigger={(
@@ -301,10 +304,9 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
                 primary
               >
                 <Icon name="refresh" />
-                Try Again
-              </Button>
+                <LocalizedText source={"Try Again"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Retry loading the current directory after the request error.")}/>
         </Message>
       ) : null}
 
@@ -315,24 +317,20 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
         tabIndex={0}
       >
         <Table
-          aria-label="Files and directories"
+          aria-label={interfaceText("Files and directories")}
           className="unstackable explorer-table"
           size="large"
-        >
+         {...interfaceTextProps("Files and directories")}>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell className="explorer-list-name">
-                Name
-              </Table.HeaderCell>
+                <LocalizedText source={"Name"} /></Table.HeaderCell>
               <Table.HeaderCell className="explorer-list-date">
-                Date Modified
-              </Table.HeaderCell>
+                <LocalizedText source={"Date Modified"} /></Table.HeaderCell>
               <Table.HeaderCell className="explorer-list-size">
-                Size
-              </Table.HeaderCell>
+                <LocalizedText source={"Size"} /></Table.HeaderCell>
               <Table.HeaderCell className="explorer-list-action">
-                Actions
-              </Table.HeaderCell>
+                <LocalizedText source={"Actions"} /></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -352,7 +350,7 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
                 <Table.Row>
                   <Table.Cell colSpan={4}>
                     {loading
-                      ? 'Loading files'
+                      ? <LocalizedText source={"Loading files"} />
                       : error
                         ? 'Directory contents are unavailable'
                         : 'No files or directories'}

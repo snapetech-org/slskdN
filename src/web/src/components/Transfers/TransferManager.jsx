@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Transfers.css';
 import * as autoReplaceLibrary from '../../lib/autoReplace';
 import { createTransfersHubConnection } from '../../lib/hubFactory';
@@ -14,7 +16,7 @@ import { PlaceholderSegment } from '../Shared';
 import TransferTable from './TransferTable';
 import TransfersHeader from './TransfersHeader';
 import RequestDetailModal from './RequestDetailModal';
-import { useInterfaceLanguage } from '../../lib/interfaceLocale';
+
 import React, {
   useCallback,
   useEffect,
@@ -27,25 +29,25 @@ import { Button, Input, Menu, Popup } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
 
 const STATUS_FILTERS = [
-  { key: 'all', label: 'All', match: () => true },
+  { key: 'all', get label() { return interfaceText("All"); }, match: () => true },
   {
     key: 'active',
-    label: 'Active',
+    get label() { return interfaceText("Active"); },
     match: (t) => t.state === 'InProgress' || t.state === 'Initializing',
   },
   {
     key: 'queued',
-    label: 'Queued',
+    get label() { return interfaceText("Queued"); },
     match: (t) => String(t.state ?? '').includes('Queued'),
   },
   {
     key: 'completed',
-    label: 'Completed',
+    get label() { return interfaceText("Completed"); },
     match: (t) => t.state === 'Completed, Succeeded',
   },
   {
     key: 'failed',
-    label: 'Failed',
+    get label() { return interfaceText("Failed"); },
     match: (t) =>
       String(t.state ?? '').includes('Completed') &&
       t.state !== 'Completed, Succeeded',
@@ -585,18 +587,18 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
         await autoReplaceLibrary.enableAutoReplace();
         setAutoReplaceEnabled(true);
         toast.info(
-          'Auto-replace enabled. Backend will check for stuck downloads periodically.',
+          interfaceText("Auto-replace enabled. Backend will check for stuck downloads periodically."),
         );
       } else {
         await autoReplaceLibrary.disableAutoReplace();
         setAutoReplaceEnabled(false);
         toast.info(
-          'Auto-replace disabled. Automatic retry is separate; disable transfers.download.auto_retry.enabled to stop retries of failed downloads.',
+          interfaceText("Auto-replace disabled. Automatic retry is separate; disable transfers.download.auto_retry.enabled to stop retries of failed downloads."),
         );
       }
     } catch (error) {
       console.error('Failed to toggle auto-replace:', error);
-      toast.error('Failed to toggle auto-replace');
+      toast.error(interfaceText("Failed to toggle auto-replace"));
     }
   };
 
@@ -611,7 +613,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       );
     } catch (error) {
       console.error('Failed to toggle accelerated mode:', error);
-      toast.error('Failed to toggle accelerated mode');
+      toast.error(interfaceText("Failed to toggle accelerated mode"));
     }
   };
 
@@ -747,14 +749,14 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
           onClick={() => setActiveTab('download')}
           style={{ fontSize: '0.85em', padding: '0.4em 0.8em' }}
         >
-          {`Downloads (${counts.download})`}
+          {interfaceText("Downloads ({download})", { "download": (counts.download) })}
         </Menu.Item>
         <Menu.Item
           active={activeTab === 'upload'}
           onClick={() => setActiveTab('upload')}
           style={{ fontSize: '0.85em', padding: '0.4em 0.8em' }}
         >
-          {`Uploads (${counts.upload})`}
+          {interfaceText("Uploads ({upload})", { "upload": (counts.upload) })}
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item
@@ -768,7 +770,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
             <span
               className={`transfer-feed-dot ${connected ? 'is-live' : 'is-offline'}`}
             />
-            {connected ? 'Live' : 'Reconnecting'}
+            {connected ? <LocalizedText source={"Live"} /> : <LocalizedText source={"Reconnecting"} />}
           </Menu.Item>
         </Menu.Menu>
       </Menu>
@@ -829,7 +831,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
           />
           {!hideCompleted && historyStatus.hasMore && (
             <Popup
-              content="Load the next 250 successful transfers from the server without loading the entire history."
+              content={interfaceText("Load the next 250 successful transfers from the server without loading the entire history.")}
               trigger={
                 <Button
                   content={t('Load older completed')}
@@ -842,7 +844,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
                   size="small"
                 />
               }
-            />
+             {...interfaceTextProps("Load the next 250 successful transfers from the server without loading the entire history.")}/>
           )}
         </div>
       )}

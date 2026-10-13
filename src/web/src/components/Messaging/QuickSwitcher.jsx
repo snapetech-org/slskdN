@@ -1,6 +1,9 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const QuickSwitcher = ({ items, onClose, onPick, open }) => {
+  useInterfaceLanguage();
   const [query, setQuery] = useState('');
   const [cursor, setCursor] = useState(0);
   const inputRef = useRef(null);
@@ -67,24 +70,24 @@ const QuickSwitcher = ({ items, onClose, onPick, open }) => {
         onClick={(event) => event.stopPropagation()}
       >
         <input
-          aria-label="Quick switcher search"
+          aria-label={interfaceText("Quick switcher search")}
           className="msgv2-qs-input"
           onChange={(event) => {
             setQuery(event.target.value);
             setCursor(0);
           }}
           onKeyDown={handleKeyDown}
-          placeholder="Jump to a conversation…"
+          placeholder={interfaceText("Jump to a conversation…")}
           ref={inputRef}
           type="text"
           value={query}
-        />
+         {...interfaceTextProps("Quick switcher search")}/>
         <ul
           className="msgv2-qs-list"
           ref={listRef}
         >
           {filtered.length === 0 ? (
-            <li className="msgv2-qs-empty">No matches</li>
+            <li className="msgv2-qs-empty"><LocalizedText source={"No matches"} /></li>
           ) : (
             filtered.map((item, index) => (
               <li
@@ -108,12 +111,9 @@ const QuickSwitcher = ({ items, onClose, onPick, open }) => {
         <div className="msgv2-qs-hint">
           <kbd>↑</kbd>
           <kbd>↓</kbd>
-          to navigate
-          <kbd>Enter</kbd>
-          to open
-          <kbd>Esc</kbd>
-          to close
-        </div>
+          <LocalizedText source={"to navigate"} /><kbd><LocalizedText source={"Enter"} /></kbd>
+          <LocalizedText source={"to open"} /><kbd><LocalizedText source={"Esc"} /></kbd>
+          <LocalizedText source={"to close"} /></div>
       </div>
     </div>
   );

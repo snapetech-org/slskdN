@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './MessagingV2.css';
 import * as chat from '../../lib/chat';
@@ -57,43 +59,43 @@ const POD_HYDRATION_INTERVAL_MS = 60_000;
 
 const COMPOSER_COMMANDS = [
   {
-    description: 'Send an italic action (e.g. /me waves).',
+    get description() { return interfaceText("Send an italic action (e.g. /me waves)."); },
     name: 'me',
     syntax: '/me <action>',
   },
   {
-    description: 'Open a direct-message tab with the given user.',
+    get description() { return interfaceText("Open a direct-message tab with the given user."); },
     name: 'msg',
     syntax: '/msg <user>',
   },
   {
-    description: 'Join (or create) a Soulseek room.',
+    get description() { return interfaceText("Join (or create) a Soulseek room."); },
     name: 'join',
     syntax: '/join <room>',
   },
   {
     aliases: ['part', 'leave'],
-    description: 'Leave the current room or pod, or close the current DM tab.',
+    get description() { return interfaceText("Leave the current room or pod, or close the current DM tab."); },
     name: 'close',
     syntax: '/close',
   },
   {
-    description: 'Set message density.',
+    get description() { return interfaceText("Set message density."); },
     name: 'zoom',
     syntax: '/zoom <s|m|l|xl>',
   },
   {
-    description: 'Refetch messages for the current tab.',
+    get description() { return interfaceText("Refetch messages for the current tab."); },
     name: 'reload',
     syntax: '/reload',
   },
   {
-    description: 'Open the channel switcher.',
+    get description() { return interfaceText("Open the channel switcher."); },
     name: 'switch',
     syntax: '/switch',
   },
   {
-    description: 'Show this command list.',
+    get description() { return interfaceText("Show this command list."); },
     name: 'help',
     syntax: '/help',
   },
@@ -160,8 +162,7 @@ const InlineLoadError = ({ message, onRetry, retryLabel, testId }) => (
           title={retryLabel}
           type="button"
         >
-          Retry
-        </button>
+          <LocalizedText source={"Retry"} /></button>
       )}
     />
   </div>
@@ -195,6 +196,7 @@ const discoveredPodListSignature = (podsToCompare) =>
 const zoomIndex = (zoom) => Math.max(0, ZOOM_LEVELS.indexOf(zoom));
 
 const MessagingV2 = ({ initialKind = 'mixed', state }) => {
+  useInterfaceLanguage();
   const navigate = useNavigate();
   const params = useParams();
   const appContext = useContext(AppContext) || {};
@@ -278,7 +280,10 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
   const podsFeatureEnabled = featureGates?.pods?.enabled !== false;
 
   const reportActionFailure = useCallback((action, error) => {
-    setActionError(`${action}: ${getActionErrorDetail(error)}`);
+    setActionError(interfaceText('{action}: {message}', {
+      action: interfaceText(action),
+      message: getActionErrorDetail(error),
+    }));
   }, []);
 
   const hydrateMessaging = useCallback(() => {
@@ -317,7 +322,9 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       } catch (error) {
         if (mountedRef.current) {
           setMessagingLoadError(
-            `Could not load saved conversations and joined rooms: ${getActionErrorDetail(error)}`,
+            interfaceText('Could not load saved conversations and joined rooms: {message}', {
+              message: getActionErrorDetail(error),
+            }),
           );
         }
       }
@@ -344,7 +351,9 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
         } catch (error) {
           if (mountedRef.current) {
             setPodLoadError(
-              `Could not load saved pod channels: ${getActionErrorDetail(error)}`,
+              interfaceText('Could not load saved pod channels: {message}', {
+                message: getActionErrorDetail(error),
+              }),
             );
           }
           return;
@@ -360,7 +369,9 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
         } catch (error) {
           if (mountedRef.current) {
             setPodDiscoveryError(
-              `Could not refresh discovered pods: ${getActionErrorDetail(error)}`,
+              interfaceText('Could not refresh discovered pods: {message}', {
+                message: getActionErrorDetail(error),
+              }),
             );
           }
         }
@@ -405,7 +416,9 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       } catch (error) {
         if (mountedRef.current) {
           setPodLoadError(
-            `Could not load pod channels: ${getActionErrorDetail(error)}`,
+            interfaceText('Could not load pod channels: {message}', {
+              message: getActionErrorDetail(error),
+            }),
           );
         }
       }
@@ -1252,85 +1265,82 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
     >
       <aside className="msgv2-rail">
         <Popup
-          content="Show direct messages and rooms from all messaging networks."
+          content={interfaceText("Show direct messages and rooms from all messaging networks.")}
           trigger={(
             <button
-              aria-label="All networks"
+              aria-label={interfaceText("All networks")}
               className={`msgv2-rail-pill ${networkFilter === 'all' ? 'is-active' : ''}`}
               onClick={() => setNetworkFilter('all')}
-              title="All networks"
+              title={interfaceText("All networks")}
               type="button"
-            >
+             {...interfaceTextProps("All networks")}>
               ⌂
             </button>
           )}
-        />
+         {...interfaceTextProps("Show direct messages and rooms from all messaging networks.")}/>
         <Popup
-          content="Show only Soulseek direct messages and rooms."
+          content={interfaceText("Show only Soulseek direct messages and rooms.")}
           trigger={(
             <button
-              aria-label="Soulseek only"
+              aria-label={interfaceText("Soulseek only")}
               className={`msgv2-rail-pill msgv2-rail-slsk ${networkFilter === 'soulseek' ? 'is-active' : ''}`}
               data-accent="slsk"
               onClick={() => setNetworkFilter('soulseek')}
-              title="Soulseek only"
+              title={interfaceText("Soulseek only")}
               type="button"
-            >
-              S
-              {totalUnread > 0 && <span className="msgv2-rail-badge">{formatUnread(totalUnread)}</span>}
+             {...interfaceTextProps("Soulseek only")}>
+              <LocalizedText source={"S"} />{totalUnread > 0 && <span className="msgv2-rail-badge">{formatUnread(totalUnread)}</span>}
             </button>
           )}
-        />
+         {...interfaceTextProps("Show only Soulseek direct messages and rooms.")}/>
         {podsFeatureEnabled && (
           <Popup
-            content="Show only mesh pod conversations."
+            content={interfaceText("Show only mesh pod conversations.")}
             trigger={(
               <button
-                aria-label="Mesh only"
+                aria-label={interfaceText("Mesh only")}
                 className={`msgv2-rail-pill msgv2-rail-mesh ${networkFilter === 'mesh' ? 'is-active' : ''}`}
                 data-accent="mesh"
                 onClick={() => setNetworkFilter('mesh')}
-                title="Mesh only"
+                title={interfaceText("Mesh only")}
                 type="button"
-              >
-                M
-              </button>
+               {...interfaceTextProps("Mesh only")}>
+                <LocalizedText source={"M"} /></button>
             )}
-          />
+           {...interfaceTextProps("Show only mesh pod conversations.")}/>
         )}
         <div className="msgv2-rail-spacer" />
         <Popup
-          content="Refresh conversations and, while the room picker is open, reload the available room list."
+          content={interfaceText("Refresh conversations and, while the room picker is open, reload the available room list.")}
           trigger={(
             <button
-              aria-label="Refresh"
+              aria-label={interfaceText("Refresh")}
               className="msgv2-rail-pill msgv2-rail-icon"
               onClick={() => {
                 void hydrate();
                 if (roomAddOpen) loadAvailableRooms();
               }}
-              title="Refresh"
+              title={interfaceText("Refresh")}
               type="button"
-            >
+             {...interfaceTextProps("Refresh")}>
               ↻
             </button>
           )}
-        />
+         {...interfaceTextProps("Refresh conversations and, while the room picker is open, reload the available room list.")}/>
       </aside>
 
       <nav
-        aria-label="Conversations"
+        aria-label={interfaceText("Conversations")}
         className="msgv2-tree"
-      >
+       {...interfaceTextProps("Conversations")}>
         <div className="msgv2-tree-header">
-          <span className="msgv2-tree-title">Channels</span>
+          <span className="msgv2-tree-title"><LocalizedText source={"Channels"} /></span>
           <span className="msgv2-tree-meta">{NETWORKS.includes(networkFilter) && networkFilter !== 'all' ? networkFilter : ''}</span>
         </div>
 
         {!podsFeatureEnabled && (
           <div className="msgv2-feature-notice" role="status">
-            Mesh Pods are disabled by server configuration.
-          </div>
+            <LocalizedText source={"Mesh Pods are disabled by server configuration."} /></div>
         )}
 
         {showSoulseek && (
@@ -1346,17 +1356,17 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                 }}
                 onChange={setDmDraft}
                 onSubmit={startDirectMessage}
-                placeholder="username"
+                placeholder={interfaceText("username")}
                 value={dmDraft}
-              />
+               {...interfaceTextProps("username")}/>
             }
             collapsed={workspace.collapsedSections.soulseekDirect}
             count={conversations.length}
             onAddToggle={() => setDmAddOpen((open) => !open)}
             onToggle={() => toggleSection('soulseekDirect')}
             showAdd={dmAddOpen}
-            title="Soulseek · DMs"
-          >
+            title={interfaceText("Soulseek · DMs")}
+           {...interfaceTextProps("Soulseek · DMs")}>
             {messagingLoadError && (
               <InlineLoadError
                 message={messagingLoadError}
@@ -1368,7 +1378,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
             {conversations.length === 0 ? (
               messagingLoadError
                 ? null
-                : <EmptyHint>No saved direct messages.</EmptyHint>
+                : <EmptyHint><LocalizedText source={"No saved direct messages."} /></EmptyHint>
             ) : (
               conversations.map((c) => {
                 const unread = c.hasUnAcknowledgedMessages
@@ -1423,8 +1433,8 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
             onAddToggle={() => setRoomAddOpen((open) => !open)}
             onToggle={() => toggleSection('soulseekRooms')}
             showAdd={roomAddOpen}
-            title="Soulseek · Rooms"
-          >
+            title={interfaceText("Soulseek · Rooms")}
+           {...interfaceTextProps("Soulseek · Rooms")}>
             {messagingLoadError && (
               <InlineLoadError
                 message={messagingLoadError}
@@ -1435,11 +1445,11 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
             {joinedRooms.length === 0 && joinableRooms.length === 0 ? (
               messagingLoadError
                 ? null
-                : <EmptyHint>No rooms reported by the Soulseek server.</EmptyHint>
+                : <EmptyHint><LocalizedText source={"No rooms reported by the Soulseek server."} /></EmptyHint>
             ) : (
               <>
               {joinedRooms.length === 0 ? (
-                <EmptyHint>Search above to join or create a room.</EmptyHint>
+                <EmptyHint><LocalizedText source={"Search above to join or create a room."} /></EmptyHint>
               ) : joinedRooms.map((roomName) => {
                 const isActive =
                   activeTab?.type === 'room' && activeTab.target === roomName;
@@ -1474,17 +1484,17 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                 }}
                 onChange={setPodDraft}
                 onSubmit={createPodFromInput}
-                placeholder="pod room name"
+                placeholder={interfaceText("pod room name")}
                 value={podDraft}
-              />
+               {...interfaceTextProps("pod room name")}/>
             }
             collapsed={workspace.collapsedSections.meshPods}
             count={visiblePodChannels.length + joinableDiscoveredPods.length}
             onAddToggle={() => setPodAddOpen((open) => !open)}
             onToggle={() => toggleSection('meshPods')}
             showAdd={podAddOpen}
-            title="Mesh · Pod channels"
-          >
+            title={interfaceText("Mesh · Pod channels")}
+           {...interfaceTextProps("Mesh · Pod channels")}>
             {podLoadError && (
               <InlineLoadError
                 message={podLoadError}
@@ -1504,11 +1514,11 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
             {visiblePodChannels.length === 0 && joinableDiscoveredPods.length === 0 ? (
               podLoadError || podDiscoveryError
                 ? null
-                : <EmptyHint>No pod rooms or discovered pods yet.</EmptyHint>
+                : <EmptyHint><LocalizedText source={"No pod rooms or discovered pods yet."} /></EmptyHint>
             ) : (
               <>
               {visiblePodChannels.length === 0 ? (
-                <EmptyHint>No joined pod channels.</EmptyHint>
+                <EmptyHint><LocalizedText source={"No joined pod channels."} /></EmptyHint>
               ) : visiblePodChannels.map((channel) => {
                 const label = channelLabel(channel);
                 const isActive =
@@ -1527,7 +1537,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                 );
               })}
               {joinableDiscoveredPods.length > 0 && (
-                <TreeSubhead>Discovered pods</TreeSubhead>
+                <TreeSubhead><LocalizedText source={"Discovered pods"} /></TreeSubhead>
               )}
               {joinableDiscoveredPods.slice(0, 50).map((pod) => {
                 const podId = pod.podId || pod.PodId;
@@ -1549,14 +1559,14 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       </nav>
 
       <div
-        aria-label="Resize channel tree"
+        aria-label={interfaceText("Resize channel tree")}
         aria-orientation="vertical"
         className={`msgv2-handle msgv2-handle-tree ${treeResize.dragging ? 'is-dragging' : ''}`}
         onKeyDown={treeResize.onKeyDown}
         onPointerDown={treeResize.onPointerDown}
         role="separator"
         tabIndex={0}
-      />
+       {...interfaceTextProps("Resize channel tree")}/>
 
       <main className={`msgv2-view${showRoomPlayback ? ' msgv2-view-with-playback' : ''}${actionError ? ' msgv2-view-has-action-error' : ''}`}>
         {actionError && (
@@ -1572,7 +1582,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
         <header className="msgv2-tabs">
           <div className="msgv2-tabs-strip">
             {visibleWorkspaceTabs.length === 0 ? (
-              <span className="msgv2-tabs-empty">No tabs open</span>
+              <span className="msgv2-tabs-empty"><LocalizedText source={"No tabs open"} /></span>
             ) : (
               visibleWorkspaceTabs.map((tab) => {
                 const isActive = tab.id === workspace.activeTabId;
@@ -1630,7 +1640,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
               trigger={(
                 <span className="msgv2-icon-button-trigger">
                   <button
-                    aria-label="Private-message auto response"
+                    aria-label={interfaceText("Private-message auto response")}
                     aria-pressed={humanCheckAutoResponseEnabled}
                     className={`msgv2-icon-button ${humanCheckAutoResponseEnabled ? 'is-on' : ''} ${humanCheckError ? 'is-warning' : ''}`}
                     disabled={humanCheckSaving}
@@ -1641,9 +1651,8 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                       ? 'Automatically answer private messages that look like human-check or share-gate prompts.'
                       : 'Saved locally. Enable remote configuration to apply this to daemon-side replies.'}
                     type="button"
-                  >
-                    H
-                  </button>
+                   {...interfaceTextProps("Private-message auto response")}>
+                    <LocalizedText source={"H"} /></button>
                 </span>
               )}
             />
@@ -1690,10 +1699,9 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
           {initialKind === 'pod' && !podsFeatureEnabled ? (
             <div className="msgv2-empty" role="status">
               <div className="msgv2-empty-glyph">⌬</div>
-              <div className="msgv2-empty-title">Mesh Pods are disabled</div>
+              <div className="msgv2-empty-title"><LocalizedText source={"Mesh Pods are disabled"} /></div>
               <div className="msgv2-empty-hint">
-                Enable <code>feature.Pods</code> in the server configuration to use pod rooms and discovery.
-              </div>
+                <LocalizedText source={"Enable"} />{" "}<code>feature.Pods</code> <LocalizedText source={"in the server configuration to use pod rooms and discovery."} /></div>
             </div>
           ) : activeTab ? (
             <MessageStream
@@ -1707,9 +1715,9 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
           ) : (
             <div className="msgv2-empty">
               <div className="msgv2-empty-glyph">⌬</div>
-              <div className="msgv2-empty-title">No conversation open</div>
+              <div className="msgv2-empty-title"><LocalizedText source={"No conversation open"} /></div>
               <div className="msgv2-empty-hint">
-                Pick something from the channel list, or press <kbd>Ctrl</kbd>+<kbd>K</kbd>.
+                <LocalizedText source={"Pick something from the channel list, or press"} />{" "}<kbd><LocalizedText source={"Ctrl"} /></kbd>+<kbd><LocalizedText source={"K"} /></kbd>.
               </div>
             </div>
           )}
@@ -1733,14 +1741,14 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
 
       {showMembers && (
         <div
-          aria-label="Resize member rail"
+          aria-label={interfaceText("Resize member rail")}
           aria-orientation="vertical"
           className={`msgv2-handle msgv2-handle-member ${memberResize.dragging ? 'is-dragging' : ''}`}
           onKeyDown={memberResize.onKeyDown}
           onPointerDown={memberResize.onPointerDown}
           role="separator"
           tabIndex={0}
-        />
+         {...interfaceTextProps("Resize member rail")}/>
       )}
 
       {showMembers && (
@@ -1796,14 +1804,14 @@ const memberListSignature = (members) =>
 
 const MemberRail = React.memo(({ members, onSelect }) => (
   <aside
-    aria-label="Members"
+    aria-label={interfaceText("Members")}
     className="msgv2-members"
-  >
+   {...interfaceTextProps("Members")}>
     <div className="msgv2-members-header">
-      Members <span className="msgv2-members-count">{members.length}</span>
+      <LocalizedText source={"Members"} />{" "}<span className="msgv2-members-count">{members.length}</span>
     </div>
     {members.length === 0 ? (
-      <div className="msgv2-members-hint">No members reported yet.</div>
+      <div className="msgv2-members-hint"><LocalizedText source={"No members reported yet."} /></div>
     ) : (
       <ul className="msgv2-members-list">
         {members.map((member) => {
@@ -1815,7 +1823,7 @@ const MemberRail = React.memo(({ members, onSelect }) => (
               key={memberKey(member) || display}
             >
               <Popup
-                content={`Open the available messaging actions for ${display}.`}
+                content={interfaceText("Open the available messaging actions for {display}.", { "display": (display) })}
                 trigger={(
                   <button
                     className="msgv2-members-name"
@@ -1826,7 +1834,7 @@ const MemberRail = React.memo(({ members, onSelect }) => (
                     {display}
                   </button>
                 )}
-              />
+               {...interfaceTextProps("Open the available messaging actions for {display}.")}/>
               {role && <span className="msgv2-members-role">{role}</span>}
             </li>
           );
@@ -1910,15 +1918,15 @@ const TreeRow = ({
     data-accent={accent}
   >
     <Popup
-      content={`Open ${prefix}${target} in the message workspace.`}
+      content={interfaceText("Open {prefix}{target} in the message workspace.", { "prefix": (prefix), "target": (target) })}
       trigger={(
         <button
           className={`msgv2-tree-row ${isActive ? 'is-active' : ''}`}
           data-accent={accent}
           onClick={onActivate}
-          title={`${prefix}${target}`}
+          title={interfaceText("{prefix}{target}", { "prefix": (prefix), "target": (target) })}
           type="button"
-        >
+         {...interfaceTextProps("{prefix}{target}")}>
           <span className="msgv2-tree-row-prefix">{prefix}</span>
           <span className="msgv2-tree-row-name">{target}</span>
           {unread > 0 && (
@@ -1926,7 +1934,7 @@ const TreeRow = ({
           )}
         </button>
       )}
-    />
+     {...interfaceTextProps("Open {prefix}{target} in the message workspace.")}/>
     {onAction && (
       <Popup
         content={actionLabel}
@@ -1969,6 +1977,7 @@ const RoomJoinSearch = ({
   requested,
   value,
 }) => {
+  useInterfaceLanguage();
   const inputRef = useRef(null);
   const query = value.trim();
   const normalizedQuery = query.toLocaleLowerCase();
@@ -2017,7 +2026,7 @@ const RoomJoinSearch = ({
     <div className="msgv2-room-search">
       <div className="msgv2-tree-add">
         <input
-          aria-label="Search or create Soulseek room"
+          aria-label={interfaceText("Search or create Soulseek room")}
           className="msgv2-tree-add-input"
           onChange={(event) => onChange(event.target.value)}
           onKeyDown={(event) => {
@@ -2029,11 +2038,11 @@ const RoomJoinSearch = ({
               onCancel();
             }
           }}
-          placeholder="search or create room"
+          placeholder={interfaceText("search or create room")}
           ref={inputRef}
           type="text"
           value={value}
-        />
+         {...interfaceTextProps("Search or create Soulseek room")}/>
         <Popup
           content={canSubmit
             ? `Join the matching Soulseek room, or create ${query} if it does not exist.`
@@ -2041,13 +2050,13 @@ const RoomJoinSearch = ({
           trigger={(
             <span>
               <button
-                aria-label="Join/Create room"
+                aria-label={interfaceText("Join/Create room")}
                 className="msgv2-tree-add-go"
                 disabled={!canSubmit}
                 onClick={submit}
-                title="Join a matching Soulseek room, or create it if it does not exist"
+                title={interfaceText("Join a matching Soulseek room, or create it if it does not exist")}
                 type="button"
-              >
+               {...interfaceTextProps("Join/Create room")}>
                 {submitLabel}
               </button>
             </span>
@@ -2057,7 +2066,7 @@ const RoomJoinSearch = ({
       {!query ? (
         <div className="msgv2-room-search-hint">
           {isLoading
-            ? 'Loading room directory... type a room name any time.'
+            ? <LocalizedText source={"Loading room directory... type a room name any time."} />
             : availableRooms.length > 0
               ? `${availableRooms.length.toLocaleString(getRegionalLocale())} available rooms. Type to filter or enter a new room name.`
               : requested
@@ -2067,13 +2076,13 @@ const RoomJoinSearch = ({
       ) : (
         <>
           {isLoading && matches.length === 0 && (
-            <div className="msgv2-room-search-hint">Loading matching rooms... press Enter to join or create #{query} now.</div>
+            <div className="msgv2-room-search-hint"><LocalizedText source={"Loading matching rooms... press Enter to join or create #{query} now."} values={{ query }} /></div>
           )}
           {matches.length > 0 && (
             <div
-              aria-label="Matching Soulseek rooms"
+              aria-label={interfaceText("Matching Soulseek rooms")}
               className="msgv2-room-search-results"
-            >
+             {...interfaceTextProps("Matching Soulseek rooms")}>
               {matches.map(({ roomName, status }) => (
                 <Popup
                   content={status === 'joined'
@@ -2091,7 +2100,7 @@ const RoomJoinSearch = ({
                       <span className="msgv2-tree-row-prefix">#</span>
                       <span className="msgv2-tree-row-name">{roomName}</span>
                       <span className="msgv2-room-search-result-meta">
-                        {status === 'joined' ? 'Open' : 'Join'}
+                        {status === 'joined' ? <LocalizedText source={"Open"} /> : <LocalizedText source={"Join"} />}
                       </span>
                     </button>
                   )}
@@ -2101,21 +2110,21 @@ const RoomJoinSearch = ({
           )}
           {!exactAvailable && !exactJoined && (
             <Popup
-              content={`Join the Soulseek room ${query}, or create it if it does not exist.`}
+              content={interfaceText("Join the Soulseek room {query}, or create it if it does not exist.", { "query": (query) })}
               trigger={(
                 <button
                   className="msgv2-room-search-create"
                   onClick={submit}
-                  title={`Join or create ${query}`}
+                  title={interfaceText("Join or create {query}", { "query": (query) })}
                   type="button"
-                >
-                  Join/Create #{query}
+                 {...interfaceTextProps("Join or create {query}")}>
+                  <LocalizedText source={"Join/Create #"} />{query}
                 </button>
               )}
-            />
+             {...interfaceTextProps("Join the Soulseek room {query}, or create it if it does not exist.")}/>
           )}
           {exactJoined && (
-            <div className="msgv2-room-search-hint">Already joined. Press Enter to open.</div>
+            <div className="msgv2-room-search-hint"><LocalizedText source={"Already joined. Press Enter to open."} /></div>
           )}
         </>
       )}
@@ -2132,6 +2141,7 @@ const InlineAddForm = ({
   placeholder,
   value,
 }) => {
+  useInterfaceLanguage();
   const inputRef = useRef(null);
   const actionDescription = buttonLabel === 'DM'
     ? 'Start a direct-message conversation with the entered username.'
@@ -2181,9 +2191,9 @@ const InlineAddForm = ({
 
 const DensityToggle = ({ onAdjust, onChange, value }) => (
   <div
-    aria-label="Messages UI size"
+    aria-label={interfaceText("Messages UI size")}
     className="msgv2-density"
-  >
+   {...interfaceTextProps("Messages UI size")}>
     <Popup
       content={zoomIndex(value) === 0
         ? 'Messages UI is already at its smallest size.'
@@ -2191,23 +2201,23 @@ const DensityToggle = ({ onAdjust, onChange, value }) => (
       trigger={(
         <span className="msgv2-density-step-trigger">
           <button
-            aria-label="Make Messages UI smaller"
+            aria-label={interfaceText("Make Messages UI smaller")}
             className="msgv2-density-step"
             disabled={zoomIndex(value) === 0}
             onClick={() => onAdjust(-1)}
-            title="Make the entire Messages UI smaller"
+            title={interfaceText("Make the entire Messages UI smaller")}
             type="button"
-          >
+           {...interfaceTextProps("Make Messages UI smaller")}>
             −
           </button>
         </span>
       )}
     />
     <div
-      aria-label="Messages UI size presets"
+      aria-label={interfaceText("Messages UI size presets")}
       className="msgv2-density-presets"
       role="radiogroup"
-    >
+     {...interfaceTextProps("Messages UI size presets")}>
       {ZOOM_LEVELS.map((level) => (
         <Popup
           content={`Set the Messages UI size to ${level.toUpperCase()} to match your screen and reading preference.`}
@@ -2234,13 +2244,13 @@ const DensityToggle = ({ onAdjust, onChange, value }) => (
       trigger={(
         <span className="msgv2-density-step-trigger">
           <button
-            aria-label="Make Messages UI larger"
+            aria-label={interfaceText("Make Messages UI larger")}
             className="msgv2-density-step"
             disabled={zoomIndex(value) === ZOOM_LEVELS.length - 1}
             onClick={() => onAdjust(1)}
-            title="Make the entire Messages UI larger"
+            title={interfaceText("Make the entire Messages UI larger")}
             type="button"
-          >
+           {...interfaceTextProps("Make Messages UI larger")}>
             +
           </button>
         </span>

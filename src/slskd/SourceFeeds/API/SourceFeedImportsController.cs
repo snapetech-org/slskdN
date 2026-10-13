@@ -24,6 +24,12 @@ public sealed class SourceFeedImportsController : ControllerBase
 
     private ISourceFeedImportService SourceFeedImportService { get; }
 
+    private BadRequestObjectResult BadRequestWithCode(string code, string message)
+    {
+        Response.Headers["X-Slskd-Error-Code"] = code;
+        return BadRequest(message);
+    }
+
     [HttpPost("preview")]
     [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
     [ProducesResponseType(typeof(SourceFeedImportResult), 200)]
@@ -34,12 +40,12 @@ public sealed class SourceFeedImportsController : ControllerBase
     {
         if (request == null || string.IsNullOrWhiteSpace(request.SourceText))
         {
-            return BadRequest("SourceText is required");
+            return BadRequestWithCode("source-feed-import.source-text-required", "SourceText is required");
         }
 
         if (request.Limit <= 0)
         {
-            return BadRequest("Limit must be greater than 0");
+            return BadRequestWithCode("source-feed-import.limit-must-be-positive", "Limit must be greater than 0");
         }
 
         var result = await SourceFeedImportService.PreviewAsync(request, cancellationToken).ConfigureAwait(false);

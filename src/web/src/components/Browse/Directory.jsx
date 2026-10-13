@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import * as transfers from '../../lib/transfers';
 import { formatBytes } from '../../lib/util';
 import FileList from '../Shared/FileList';
@@ -112,7 +113,7 @@ class Directory extends Component {
               <Button
                 aria-label={`Download ${selectedFiles.length} selected file${selectedFiles.length === 1 ? '' : 's'}`}
                 color="green"
-                content="Download"
+                content={interfaceText("Download")}
                 disabled={downloadRequest === 'inProgress'}
                 icon="download"
                 label={{
@@ -123,7 +124,7 @@ class Directory extends Component {
                 labelPosition="right"
                 onClick={() => this.download(username, selectedFiles)}
                 tooltip={`Queue ${selectedFiles.length} selected file${selectedFiles.length === 1 ? '' : 's'} from ${name} for download.`}
-              />
+               {...interfaceTextProps("Download")}/>
               {downloadRequest === 'inProgress' && (
                 <Icon
                   loading

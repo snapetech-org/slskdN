@@ -1,28 +1,29 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { Switch } from '../../Shared';
 import React from 'react';
 import { Button, Icon, Popup, Table } from 'semantic-ui-react';
 
 const ShareTable = ({ onClick, shares }) => {
+  useInterfaceLanguage();
   return (
     <div
-      aria-label="Configured shares"
+      aria-label={interfaceText("Configured shares")}
       className="system-shares-table-scroll"
       role="region"
       tabIndex={0}
-    >
+     {...interfaceTextProps("Configured shares")}>
       <Table>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Host</Table.HeaderCell>
-            <Table.HeaderCell>Local Path</Table.HeaderCell>
+            <Table.HeaderCell><LocalizedText source={"Host"} /></Table.HeaderCell>
+            <Table.HeaderCell><LocalizedText source={"Local Path"} /></Table.HeaderCell>
             <Table.HeaderCell className="share-count-column">
-              Directories
-            </Table.HeaderCell>
+              <LocalizedText source={"Directories"} /></Table.HeaderCell>
             <Table.HeaderCell className="share-count-column">
-              Files
-            </Table.HeaderCell>
-            <Table.HeaderCell>Alias</Table.HeaderCell>
-            <Table.HeaderCell>Remote Path</Table.HeaderCell>
+              <LocalizedText source={"Files"} /></Table.HeaderCell>
+            <Table.HeaderCell><LocalizedText source={"Alias"} /></Table.HeaderCell>
+            <Table.HeaderCell><LocalizedText source={"Remote Path"} /></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -38,8 +39,7 @@ const ShareTable = ({ onClick, shares }) => {
                       textAlign: 'center',
                     }}
                   >
-                    No shares configured
-                  </Table.Cell>
+                    <LocalizedText source={"No shares configured"} /></Table.Cell>
                 </Table.Row>
               )
             }

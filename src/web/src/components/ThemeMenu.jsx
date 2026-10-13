@@ -1,11 +1,13 @@
+import LocalizedText from "./Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../lib/interfaceLocale";
 import { THEME_PALETTES } from '../lib/themes';
 import React from 'react';
 import { Icon, Menu, Popup } from 'semantic-ui-react';
 
 const THEME_OPTIONS = [
-  { key: 'slskdn', text: 'slskdN', value: 'slskdn' },
-  { key: 'classic-dark', text: 'Classic Dark', value: 'classic-dark' },
-  { key: 'light', text: 'Light', value: 'light' },
+  { key: 'slskdn', get text() { return interfaceText("slskdN"); }, value: 'slskdn' },
+  { key: 'classic-dark', get text() { return interfaceText("Classic Dark"); }, value: 'classic-dark' },
+  { key: 'light', get text() { return interfaceText("Light"); }, value: 'light' },
 ];
 
 const ThemeMenu = ({
@@ -31,13 +33,13 @@ const ThemeMenu = ({
       <Menu.Item
         aria-expanded={open}
         aria-haspopup="menu"
-        aria-label="Choose the web UI color theme"
+        aria-label={interfaceText("Choose the web UI color theme")}
         className={`theme-menu ${open ? 'visible' : ''}`}
         data-testid="theme-menu"
-        title="Choose the web UI color theme"
-      >
+        title={interfaceText("Choose the web UI color theme")}
+       {...interfaceTextProps("Choose the web UI color theme")}>
         <Icon name="paint brush" />
-        <span className="theme-menu-label">Theme</span>
+        <span className="theme-menu-label"><LocalizedText source={"Theme"} /></span>
       </Menu.Item>
     )}
   >
@@ -46,7 +48,7 @@ const ThemeMenu = ({
       vertical
     >
       {THEME_OPTIONS.map((option) => {
-        const description = `Use the ${option.text} theme for the web UI.`;
+        const description = interfaceText("Use the {theme} theme for the web UI.", { theme: interfaceText(option.text) });
 
         return (
           <Popup
@@ -61,7 +63,7 @@ const ThemeMenu = ({
                 title={description}
               >
                 <Icon name="theme" />
-                {option.text}
+                {interfaceText(option.text)}
               </Menu.Item>
             )}
           />
@@ -79,12 +81,10 @@ const ThemeMenu = ({
               textTransform: 'uppercase',
             }}
           >
-            Palette
-          </Menu.Item>
+            <LocalizedText source={"Palette"} /></Menu.Item>
           <div className="theme-palette-grid">
             {THEME_PALETTES.map((paletteOption) => {
-              const description =
-                `Apply the ${paletteOption.name} palette to the dark theme.`;
+              const description = interfaceText("Apply the {palette} palette to the dark theme.", { palette: interfaceText(paletteOption.name) });
 
               return (
                 <Popup
@@ -110,7 +110,7 @@ const ThemeMenu = ({
                         ))}
                       </span>
                       <span className="theme-palette-swatch-name">
-                        {paletteOption.name}
+                        {interfaceText(paletteOption.name)}
                       </span>
                     </button>
                   )}
@@ -120,19 +120,18 @@ const ThemeMenu = ({
           </div>
           {palette && (
             <Popup
-              content="Restore the default colors for the dark theme."
+              content={interfaceText("Restore the default colors for the dark theme.")}
               trigger={(
                 <Menu.Item
-                  aria-label="Restore the default colors for the dark theme."
+                  aria-label={interfaceText("Restore the default colors for the dark theme.")}
                   onClick={() => onSetPalette(null)}
-                  title="Restore the default colors for the dark theme."
+                  title={interfaceText("Restore the default colors for the dark theme.")}
                   style={{ fontSize: '0.8rem', opacity: 0.65 }}
-                >
+                 {...interfaceTextProps("Restore the default colors for the dark theme.")}>
                   <Icon name="undo" />
-                  Reset palette
-                </Menu.Item>
+                  <LocalizedText source={"Reset palette"} /></Menu.Item>
               )}
-            />
+             {...interfaceTextProps("Restore the default colors for the dark theme.")}/>
           )}
         </>
       )}

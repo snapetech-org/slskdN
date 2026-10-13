@@ -1,3 +1,7 @@
+import LocalizedText from "./LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+
+
 import './Footer.css';
 import footerLogo from '../../assets/brand/slskdn-icon-wire.png';
 import * as application from '../../lib/application';
@@ -318,19 +322,17 @@ class Footer extends Component {
               href={GITHUB_BASE}
               rel="noopener noreferrer"
               target="_blank"
-              title="slskdN project"
-            >
-              slskdN
-            </a>
-            <span className="slskdn-footer-note">unofficial fork of</span>
+              title={interfaceText("slskdN project")}
+             {...interfaceTextProps("slskdN project")}>
+              <LocalizedText source={"slskdN"} /></a>
+            <span className="slskdn-footer-note"><LocalizedText source={"unofficial fork of"} /></span>
             <a
               href={SLSKD_GITHUB}
               rel="noopener noreferrer"
               target="_blank"
-              title="slskd upstream project"
-            >
-              slskd
-            </a>
+              title={interfaceText("slskd upstream project")}
+             {...interfaceTextProps("slskd upstream project")}>
+              <LocalizedText source={"slskd"} /></a>
           </span>
         </footer>
       );
@@ -349,12 +351,12 @@ class Footer extends Component {
                 href={GITHUB_BASE}
                 rel="noopener noreferrer"
                 target="_blank"
-                title="Open the slskdN GitHub project"
-              >
+                title={interfaceText("Open the slskdN GitHub project")}
+               {...interfaceTextProps("Open the slskdN GitHub project")}>
                 <img
-                  alt="slskdN"
+                  alt={interfaceText("slskdN")}
                   src={footerLogo}
-                />
+                 {...interfaceTextProps("slskdN")}/>
               </a>
 
 
@@ -365,19 +367,17 @@ class Footer extends Component {
                   href={GITHUB_BASE}
                   rel="noopener noreferrer"
                   target="_blank"
-                  title="slskdN project"
-                >
-                  slskdN
-                </a>
-                <span className="slskdn-footer-note">unofficial fork of</span>
+                  title={interfaceText("slskdN project")}
+                 {...interfaceTextProps("slskdN project")}>
+                  <LocalizedText source={"slskdN"} /></a>
+                <span className="slskdn-footer-note"><LocalizedText source={"unofficial fork of"} /></span>
                 <a
                   href={SLSKD_GITHUB}
                   rel="noopener noreferrer"
                   target="_blank"
-                  title="slskd upstream project"
-                >
-                  slskd
-                </a>
+                  title={interfaceText("slskd upstream project")}
+                 {...interfaceTextProps("slskd upstream project")}>
+                  <LocalizedText source={"slskd"} /></a>
               </span>
               <a
                 className={`slskdn-footer-build ${isUpdateAvailable ? 'update-available' : ''}`}
@@ -391,11 +391,11 @@ class Footer extends Component {
                 }
               >
                 <Icon name={isUpdateAvailable ? 'bullhorn' : 'code branch'} />
-                <span className="slskdn-footer-build-label">Build</span>
+                <span className="slskdn-footer-build-label"><LocalizedText source={"Build"} /></span>
                 <code>{currentBuild}</code>
                 {isUpdateAvailable && (
                   <span className="slskdn-footer-update-label">
-                    update {latestBuild}
+                    <LocalizedText source={"update"} />{" "}{latestBuild}
                   </span>
                 )}
               </a>
@@ -405,9 +405,9 @@ class Footer extends Component {
           <div className="slskdn-footer-center">
             <div
               className={`slskdn-footer-speeds ${isLoggedIn && speeds ? 'active' : ''}`}
-              aria-label="Transfer speeds"
-            >
-              <span className="slskdn-footer-group-label">Speed</span>
+              aria-label={interfaceText("Transfer speeds")}
+             {...interfaceTextProps("Transfer speeds")}>
+              <span className="slskdn-footer-group-label"><LocalizedText source={"Speed"} /></span>
               <span
                 className="slskdn-footer-speed-item"
                 title={
@@ -420,7 +420,7 @@ class Footer extends Component {
                 <span className="speed-value">
                   {totalSpeed ? totalSpeed.value : '0'}
                 </span>
-                <span className="speed-unit">{totalSpeed ? totalSpeed.unit : 'B'}</span>
+                <span className="speed-unit">{totalSpeed ? totalSpeed.unit : <LocalizedText source={"B"} />}</span>
               </span>
               <span
                 className="slskdn-footer-speed-item"
@@ -435,7 +435,7 @@ class Footer extends Component {
                   {soulseekSpeed ? soulseekSpeed.value : '0'}
                 </span>
                 <span className="speed-unit">
-                  {soulseekSpeed ? soulseekSpeed.unit : 'B'}
+                  {soulseekSpeed ? soulseekSpeed.unit : <LocalizedText source={"B"} />}
                 </span>
               </span>
               <span
@@ -450,7 +450,7 @@ class Footer extends Component {
                 <span className="speed-value">
                   {meshSpeed ? meshSpeed.value : '0'}
                 </span>
-                <span className="speed-unit">{meshSpeed ? meshSpeed.unit : 'B'}</span>
+                <span className="speed-unit">{meshSpeed ? meshSpeed.unit : <LocalizedText source={"B"} />}</span>
               </span>
               {sessionTotal && (
                 <span
@@ -459,7 +459,7 @@ class Footer extends Component {
                 >
                   <span className="speed-value">{sessionTotal.value}</span>
                   <span className="speed-unit">{sessionTotal.unit}</span>
-                  <span className="slskdn-footer-session-label">session</span>
+                  <span className="slskdn-footer-session-label"><LocalizedText source={"session"} /></span>
                 </span>
               )}
             </div>
@@ -471,28 +471,25 @@ class Footer extends Component {
               href={`${urlBase}/system/network`}
               title={networkTooltip}
             >
-              <span className="slskdn-footer-group-label">Network</span>
+              <span className="slskdn-footer-group-label"><LocalizedText source={"Network"} /></span>
               <span className="slskdn-footer-network-item">
                 <Icon
                   color={displayedDhtPeers > 0 ? 'green' : 'grey'}
                   name="rss"
                 />
-                {formatCount(displayedDhtPeers)} dht
-              </span>
+                {formatCount(displayedDhtPeers)} <LocalizedText source={"dht"} /></span>
               <span className="slskdn-footer-network-item">
                 <Icon
                   color={meshPeers > 0 ? 'green' : 'grey'}
                   name="sitemap"
                 />
-                {formatCount(meshPeers)} mesh
-              </span>
+                {formatCount(meshPeers)} <LocalizedText source={"mesh"} /></span>
               <span className="slskdn-footer-network-item">
                 <Icon
                   color={hashCount > 0 ? 'blue' : 'grey'}
                   name="database"
                 />
-                {formatCount(hashCount)} hashes
-              </span>
+                {formatCount(hashCount)} <LocalizedText source={"hashes"} /></span>
               <span
                 className={`slskdn-footer-network-item ${isSyncing ? 'syncing' : ''}`}
               >
@@ -501,12 +498,12 @@ class Footer extends Component {
                   loading={isSyncing}
                   name="sync"
                 />
-                seq:{seqId}
+                <LocalizedText source={"seq:"} />{seqId}
               </span>
               {activeSwarms > 0 && (
                 <span className="slskdn-footer-network-item active">
                   <Icon name="bolt" />
-                  {activeSwarms} swarm{activeSwarms === 1 ? '' : 's'}
+                  {activeSwarms} <LocalizedText source={"swarm"} />{activeSwarms === 1 ? '' : <LocalizedText source={"s"} />}
                 </span>
               )}
               {backfillActive && (
@@ -515,8 +512,7 @@ class Footer extends Component {
                     loading
                     name="clock"
                   />
-                  backfill
-                </span>
+                  <LocalizedText source={"backfill"} /></span>
               )}
               <span className="slskdn-footer-network-item">
                 <Icon name="trophy" />
@@ -527,8 +523,8 @@ class Footer extends Component {
 
             <div
               className="slskdn-footer-stats"
-              aria-label="Transport health"
-            >
+              aria-label={interfaceText("Transport health")}
+             {...interfaceTextProps("Transport health")}>
               <Icon
                 className={
                   isDhtConnected

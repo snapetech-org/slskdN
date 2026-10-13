@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './System.css';
 import { Switch } from '../Shared';
 import React, { Suspense, lazy, useEffect, useRef } from 'react';
@@ -30,12 +32,12 @@ const SwarmAnalytics = lazy(() => import('./SwarmAnalytics'));
 // Six named groups instead of one 22-item flat tab strip. Order here is the
 // order sections appear in; a pane's `section` field below assigns it to one.
 const SECTIONS = [
-  { icon: 'home', key: 'overview', title: 'Overview' },
-  { icon: 'share alternate', key: 'network', title: 'Network & Mesh' },
-  { icon: 'shield alternate', key: 'security', title: 'Security & Trust' },
-  { icon: 'magic', key: 'automation', title: 'Automation & Jobs' },
-  { icon: 'heartbeat', key: 'diagnostics', title: 'Diagnostics' },
-  { icon: 'options', key: 'advanced', title: 'Advanced' },
+  { icon: 'home', key: 'overview', get title() { return interfaceText("Overview"); } },
+  { icon: 'share alternate', key: 'network', get title() { return interfaceText("Network & Mesh"); } },
+  { icon: 'shield alternate', key: 'security', get title() { return interfaceText("Security & Trust"); } },
+  { icon: 'magic', key: 'automation', get title() { return interfaceText("Automation & Jobs"); } },
+  { icon: 'heartbeat', key: 'diagnostics', get title() { return interfaceText("Diagnostics"); } },
+  { icon: 'options', key: 'advanced', get title() { return interfaceText("Advanced"); } },
 ];
 
 const renderPane = (Component, props = {}, className) => (
@@ -47,8 +49,7 @@ const renderPane = (Component, props = {}, className) => (
             loading
             name="spinner"
           />
-          Loading
-        </Message>
+          <LocalizedText source={"Loading"} /></Message>
       }
     >
       <Component {...props} />
@@ -73,6 +74,7 @@ const labeledMenuItem = ({ icon, key, label, labelColor = 'grey', text }) => (
 );
 
 const System = ({ options = {}, state = {}, theme }) => {
+  useInterfaceLanguage();
   const navigate = useNavigate();
   const { tab } = useParams();
   const systemRef = useRef(null);
@@ -94,8 +96,7 @@ const System = ({ options = {}, state = {}, theme }) => {
           >
             <Icon name="info circle" />
           </Switch>
-          Info
-        </Menu.Item>
+          <LocalizedText source={"Info"} /></Menu.Item>
       ),
       render: () => renderPane(Info, { options, state, theme }),
       route: 'info',
@@ -108,8 +109,7 @@ const System = ({ options = {}, state = {}, theme }) => {
             color="blue"
             name="sitemap"
           />
-          Network
-        </Menu.Item>
+          <LocalizedText source={"Network"} /></Menu.Item>
       ),
       render: () => renderPane(Network, { theme }),
       route: 'network',
@@ -130,8 +130,7 @@ const System = ({ options = {}, state = {}, theme }) => {
           >
             <Icon name="share external" />
           </Switch>
-          Shares
-        </Menu.Item>
+          <LocalizedText source={"Shares"} /></Menu.Item>
       ),
       render: () => renderPane(Shares, { state: state.shares, theme }),
       route: 'shares',
@@ -141,9 +140,9 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'share alternate',
         key: 'mesh',
-        label: 'Experimental',
+        label: interfaceText("Experimental"),
         labelColor: 'violet',
-        text: 'Mesh',
+        text: interfaceText("Mesh"),
       }),
       render: () => renderPane(Mesh),
       route: 'mesh',
@@ -153,9 +152,9 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'exchange',
         key: 'bridge',
-        label: 'Experimental',
+        label: interfaceText("Experimental"),
         labelColor: 'violet',
-        text: 'Bridge',
+        text: interfaceText("Bridge"),
       }),
       render: () => renderPane(Bridge),
       route: 'bridge',
@@ -165,9 +164,9 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'music',
         key: 'mediacore',
-        label: 'Experimental',
+        label: interfaceText("Experimental"),
         labelColor: 'violet',
-        text: 'MediaCore',
+        text: interfaceText("MediaCore"),
       }),
       render: () => renderPane(MediaCore),
       route: 'mediacore',
@@ -177,9 +176,9 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'random',
         key: 'source-providers',
-        label: 'Experimental',
+        label: interfaceText("Experimental"),
         labelColor: 'violet',
-        text: 'Source Providers',
+        text: interfaceText("Source Providers"),
       }),
       render: () => renderPane(SourceProviders, {}, 'full-height'),
       route: 'source-providers',
@@ -189,9 +188,9 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'chart line',
         key: 'swarm-analytics',
-        label: 'Experimental',
+        label: interfaceText("Experimental"),
         labelColor: 'violet',
-        text: 'Swarm Analytics',
+        text: interfaceText("Swarm Analytics"),
       }),
       render: () => renderPane(SwarmAnalytics, {}, 'full-height'),
       route: 'swarm-analytics',
@@ -199,7 +198,7 @@ const System = ({ options = {}, state = {}, theme }) => {
     },
     {
       menuItem: {
-        content: 'Security',
+        content: interfaceText("Security"),
         icon: 'shield alternate',
         key: 'security',
       },
@@ -211,8 +210,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'sliders horizontal',
         key: 'policies',
-        label: 'Admin',
-        text: 'Policies',
+        label: interfaceText("Admin"),
+        text: interfaceText("Policies"),
       }),
       render: () => renderPane(AdminPolicies, { options }, 'full-height'),
       route: 'policies',
@@ -222,8 +221,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'shield',
         key: 'quarantine-jury',
-        label: 'Admin',
-        text: 'Quarantine Jury',
+        label: interfaceText("Admin"),
+        text: interfaceText("Quarantine Jury"),
       }),
       render: () => renderPane(QuarantineJury, {}, 'full-height'),
       route: 'quarantine-jury',
@@ -231,7 +230,7 @@ const System = ({ options = {}, state = {}, theme }) => {
     },
     {
       menuItem: {
-        content: 'Jobs',
+        content: interfaceText("Jobs"),
         icon: 'tasks',
         key: 'jobs',
       },
@@ -243,8 +242,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'magic',
         key: 'automations',
-        label: 'Admin',
-        text: 'Automations',
+        label: interfaceText("Admin"),
+        text: interfaceText("Automations"),
       }),
       render: () => renderPane(AutomationCenter, {}, 'full-height'),
       route: 'automations',
@@ -252,7 +251,7 @@ const System = ({ options = {}, state = {}, theme }) => {
     },
     {
       menuItem: {
-        content: 'Events',
+        content: interfaceText("Events"),
         icon: 'calendar check',
         key: 'events',
       },
@@ -262,7 +261,7 @@ const System = ({ options = {}, state = {}, theme }) => {
     },
     {
       menuItem: {
-        content: 'Library Health',
+        content: interfaceText("Library Health"),
         icon: 'heartbeat',
         key: 'library-health',
       },
@@ -272,7 +271,7 @@ const System = ({ options = {}, state = {}, theme }) => {
     },
     {
       menuItem: {
-        content: 'Files',
+        content: interfaceText("Files"),
         icon: 'folder open',
         key: 'files',
       },
@@ -284,8 +283,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'database',
         key: 'data',
-        label: 'Admin',
-        text: 'Data',
+        label: interfaceText("Admin"),
+        text: interfaceText("Data"),
       }),
       render: () => renderPane(Data, { theme }, 'full-height'),
       route: 'data',
@@ -295,8 +294,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'file outline',
         key: 'logs',
-        label: 'Admin',
-        text: 'Logs',
+        label: interfaceText("Admin"),
+        text: interfaceText("Logs"),
       }),
       render: () => renderPane(Logs),
       route: 'logs',
@@ -306,8 +305,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'chart bar',
         key: 'metrics',
-        label: 'Admin',
-        text: 'Metrics',
+        label: interfaceText("Admin"),
+        text: interfaceText("Metrics"),
       }),
       render: () => renderPane(Metrics, {}, 'full-height'),
       route: 'metrics',
@@ -315,7 +314,7 @@ const System = ({ options = {}, state = {}, theme }) => {
     },
     {
       menuItem: {
-        content: 'Experience',
+        content: interfaceText("Experience"),
         icon: 'compass',
         key: 'experience',
       },
@@ -327,8 +326,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'plug',
         key: 'integrations',
-        label: 'Admin',
-        text: 'Integrations',
+        label: interfaceText("Admin"),
+        text: interfaceText("Integrations"),
       }),
       render: () => renderPane(Integrations, { options, state }, 'full-height'),
       route: 'integrations',
@@ -338,8 +337,8 @@ const System = ({ options = {}, state = {}, theme }) => {
       menuItem: labeledMenuItem({
         icon: 'options',
         key: 'options',
-        label: 'Admin',
-        text: 'Options',
+        label: interfaceText("Admin"),
+        text: interfaceText("Options"),
       }),
       render: () => renderPane(Options, { options, theme }, 'full-height'),
       route: 'options',

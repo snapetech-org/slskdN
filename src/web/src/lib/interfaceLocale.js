@@ -1,4 +1,4 @@
-import React, { useSyncExternalStore } from 'react';
+import React, { useCallback, useSyncExternalStore } from 'react';
 import UI_LABELS from './ui-labels.json';
 
 export const INTERFACE_LANGUAGE_OPTIONS = [
@@ -49,6 +49,42 @@ const applyDocumentLanguage = (_language) => {
   document.documentElement.dir = 'ltr';
 };
 
+export const getInterfaceTextLanguage = (source, language) =>
+  language !== 'en' && UI_LABELS[source]?.[language] ? language : 'en';
+
+export const getInterfaceTextDirection = (source, language) =>
+  getInterfaceTextLanguage(source, language) === 'ar' ? 'rtl' : 'ltr';
+
+const formatInterfaceText = (source, parameters = {}) => {
+  if (typeof source !== 'string') return source;
+  const translated = activeLanguage === 'en' ? source : UI_LABELS[source]?.[activeLanguage] || source;
+  return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
+    const value = parameters?.[name];
+    return typeof value === 'string' || typeof value === 'number'
+      ? String(value)
+      : placeholder;
+  });
+};
+
+export const interfaceText = (source, parameters = {}) =>
+  formatInterfaceText(source, parameters);
+
+export const interfaceTextProps = (source, parameters = {}) => {
+  const translated = activeLanguage !== 'en' ? UI_LABELS[source]?.[activeLanguage] : undefined;
+  const text = formatInterfaceText(source, parameters);
+  const unresolved = typeof text === 'string' && /\{[a-zA-Z][a-zA-Z0-9_]*\}/.test(text);
+  const props = {
+    dir: translated && activeLanguage === 'ar' ? 'rtl' : 'ltr',
+    lang: translated ? activeLanguage : 'en',
+  };
+  if (!unresolved) {
+    props['aria-label'] = text;
+    props.title = text;
+  }
+  if (parameters && Object.keys(parameters).length > 0) props.parameters = parameters;
+  return props;
+};
+
 let activeLanguage = readLanguage();
 const notify = () => listeners.forEach((listener) => listener());
 
@@ -87,6 +123,17 @@ export const useInterfaceLanguage = () => {
     () => activeLanguage,
     () => 'en',
   );
-  const t = (source) => language === 'en' ? source : UI_LABELS[source]?.[language] || source;
-  return { language, setLanguage: setInterfaceLanguage, t };
+  const t = useCallback((source, parameters) => {
+    const translated = language === 'en' ? source : UI_LABELS[source]?.[language] || source;
+    if (!parameters || typeof translated !== 'string') return translated;
+    return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
+      const value = parameters[name];
+      return typeof value === 'string' || typeof value === 'number'
+        ? String(value)
+        : placeholder;
+    });
+  }, [language]);
+  const languageFor = useCallback((source) => getInterfaceTextLanguage(source, language), [language]);
+  const directionFor = useCallback((source) => getInterfaceTextDirection(source, language), [language]);
+  return { language, setLanguage: setInterfaceLanguage, t, languageFor, directionFor };
 };

@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { Icon, Item } from 'semantic-ui-react';
 
 const ImagePlaceholder = () => (
@@ -57,9 +59,8 @@ const User = ({
         {username}
       </Item.Header>
       <Item.Meta>
-        Free Upload Slot: <FreeUploadSlot hasFreeUploadSlot />, Total Upload
-        Slots: {uploadSlots}, Queue Length: {queueLength}, IP Address: {address}
-        , Port: {port}
+        <LocalizedText source={"Free Upload Slot:"} />{" "}<FreeUploadSlot hasFreeUploadSlot /><LocalizedText source={", Total Upload Slots:"} />{" "}{uploadSlots}<LocalizedText source={", Queue Length:"} />{" "}{queueLength}<LocalizedText source={", IP Address:"} />{" "}{address}
+        <LocalizedText source={", Port:"} />{" "}{port}
       </Item.Meta>
       <Item.Description>{description || 'No user info.'}</Item.Description>
     </Item.Content>

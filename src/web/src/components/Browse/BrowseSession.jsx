@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 /* eslint-disable promise/prefer-await-to-then */
 import './Browse.css';
 import * as transfers from '../../lib/transfers';
@@ -556,7 +558,7 @@ class BrowseSession extends Component {
     const filesToDownload = collectFiles(directory);
 
     if (filesToDownload.length === 0) {
-      toast.info(`No files found in directory: ${directory.name}`);
+      toast.info(interfaceText("No files found in directory: {name}", { "name": (directory.name) }));
       return;
     }
 
@@ -573,7 +575,7 @@ class BrowseSession extends Component {
           username,
         })
         .then(() => {
-          toast.success(`Queued ${filesToDownload.length} files for download`);
+          toast.success(interfaceText("Queued {length} files for download", { "length": (filesToDownload.length) }));
         })
         .catch((error) => {
           console.error(error);
@@ -653,16 +655,16 @@ class BrowseSession extends Component {
             input={
               <input
                 data-lpignore="true"
-                placeholder="Username"
+                placeholder={interfaceText("Username")}
                 type="search"
-              />
+               {...interfaceTextProps("Username")}/>
             }
             loading={pending}
             onKeyUp={(event) => (event.key === 'Enter' ? this.browse() : '')}
-            placeholder="Username"
+            placeholder={interfaceText("Username")}
             ref={(input) => (this.inputtext = input)}
             size="big"
-          />
+           {...interfaceTextProps("Username")}/>
         </Segment>
         {pending ? (
           <Loader
@@ -671,14 +673,12 @@ class BrowseSession extends Component {
             inline="centered"
             size="big"
           >
-            Downloaded {Math.round(browseStatus.percentComplete || 0)}% of
-            Response
-          </Loader>
+            <LocalizedText source={"Downloaded"} />{" "}{Math.round(browseStatus.percentComplete || 0)}<LocalizedText source={"% of Response"} /></Loader>
         ) : (
           <div>
             {browseError ? (
               <span className="browse-error">
-                Failed to browse {username}: {browseError}
+                <LocalizedText source={"Failed to browse"} />{" "}{username}: {browseError}
               </span>
             ) : (
               <div className="browse-container">
@@ -718,14 +718,14 @@ class BrowseSession extends Component {
                             onClose={() => this.fetchUserNote(username)}
                             trigger={
                               <TooltipButton
-                                aria-label={`Edit user note for ${username}`}
+                                aria-label={interfaceText("Edit user note for {username}", { "username": (username) })}
                                 basic
                                 compact
                                 icon
                                 size="small"
                                 style={{ marginLeft: '4px', opacity: 0.5 }}
                                 tooltip={`Open your local note and color rating for ${username}.`}
-                              >
+                               {...interfaceTextProps("Edit user note for {username}")}>
                                 <Icon color="grey" name="pencil alternate" />
                               </TooltipButton>
                             }
@@ -733,20 +733,20 @@ class BrowseSession extends Component {
                           />
                         </span>
                         <TooltipButton
-                          aria-label={`Refresh ${username}'s shared files`}
+                          aria-label={interfaceText("Refresh {username}'s shared files", { "username": (username) })}
                           basic
                           compact
                           icon
                           onClick={this.handleRefresh}
                           tooltip={`Request ${username}'s current shared file list from Soulseek and refresh this browse view.`}
-                        >
+                         {...interfaceTextProps("Refresh {username}'s shared files")}>
                           <Icon name="refresh" />
                         </TooltipButton>
                       </Card.Header>
                       <Card.Meta className="browse-meta">
-                        {`${info.directories} directories, ${info.files} files`}
+                        {interfaceText("{directories} directories, {files} files", { "directories": (info.directories), "files": (info.files) })}
                         {info.lockedDirectories
-                          ? ` (${info.lockedDirectories} locked directories, ${info.lockedFiles} locked files)`
+                          ? <LocalizedText source={"({lockedDirectories} locked directories, {lockedFiles} locked files)"} values={{ "lockedDirectories": (info.lockedDirectories), "lockedFiles": (info.lockedFiles) }} />
                           : ''}
                       </Card.Meta>
                     </Card.Content>

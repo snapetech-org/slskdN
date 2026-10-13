@@ -1,3 +1,5 @@
+import LocalizedText from "./Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../lib/interfaceLocale";
 import * as relayAPI from '../lib/relay';
 import { connect, disconnect } from '../lib/server';
 import React from 'react';
@@ -12,6 +14,9 @@ const ConnectionStatusMenuItem = ({
   user,
 }) => {
   if (mode === 'Agent') {
+    const controllerState = ['Connected', 'Connecting', 'Reconnecting', 'Disconnected'].includes(controller?.state)
+      ? interfaceText(controller.state)
+      : controller?.state;
     const isConnected = controller?.state === 'Connected';
     const isTransitioning = ['Connecting', 'Reconnecting'].includes(
       controller?.state,
@@ -51,7 +56,7 @@ const ConnectionStatusMenuItem = ({
                 />
               )}
             </Icon.Group>
-            Controller {controller?.state}
+            <LocalizedText source={"Controller"} />{" "}{controllerState}
           </Menu.Item>
         )}
       />
@@ -84,8 +89,7 @@ const ConnectionStatusMenuItem = ({
                 />
               )}
             </Icon.Group>
-            Connected
-          </Menu.Item>
+            <LocalizedText source={"Connected"} /></Menu.Item>
         )}
       />
     );
@@ -129,8 +133,7 @@ const ConnectionStatusMenuItem = ({
               name={icon}
             />
           </Icon.Group>
-          Disconnected
-        </Menu.Item>
+          <LocalizedText source={"Disconnected"} /></Menu.Item>
       )}
     />
   );

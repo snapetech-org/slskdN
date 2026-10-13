@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
 import { Switch } from '../../Shared';
 import React from 'react';
 import { Icon, Table } from 'semantic-ui-react';
@@ -7,7 +9,7 @@ const ExclusionTable = ({ exclusions = [] } = {}) => {
     <Table>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>Excluded Paths</Table.HeaderCell>
+          <Table.HeaderCell><LocalizedText source={"Excluded Paths"} /></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -22,8 +24,7 @@ const ExclusionTable = ({ exclusions = [] } = {}) => {
                     textAlign: 'center',
                   }}
                 >
-                  No exclusions configured
-                </Table.Cell>
+                  <LocalizedText source={"No exclusions configured"} /></Table.Cell>
               </Table.Row>
             )
           }

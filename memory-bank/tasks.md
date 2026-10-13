@@ -41,8 +41,12 @@
 - [x] Preserve the newer regional-format commits already on PR #360, then
   pass the Web production build, ESLint, release-note preview, and diff checks.
   No test suite was run for this continuation.
-- [ ] Expand catalog coverage across core screens and review full Arabic RTL
-  layout before describing the interface as fully localized.
+- [x] Restore per-label language/direction helpers used by the transfer
+  manager and regionalize zero-byte, system-metric, and network-count output.
+- [x] Expand catalog coverage across visible Web UI screens and finite
+  app-owned statuses/messages, while preserving raw API/protocol and user data.
+- [ ] Obtain fluent-speaker review and review the full Arabic RTL layout in a
+  browser before describing Arabic support as fully reviewed.
 
 
 ### Public pull-request runner isolation — 2026-10-12

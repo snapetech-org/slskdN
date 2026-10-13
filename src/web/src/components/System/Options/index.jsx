@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
 import {
   CodeEditor,
   LoaderSegment,
@@ -26,8 +28,7 @@ const DebugButton = ({
       tooltip="Inspect resolved options to troubleshoot configuration."
       {...props}
     >
-      Debug View
-    </ShrinkableButton>
+      <LocalizedText source={"Debug View"} /></ShrinkableButton>
   );
 };
 
@@ -40,8 +41,7 @@ const EditButton = ({ remoteConfiguration, setEditModal, ...props }) => {
         mediaQuery="(max-width: 516px)"
         tooltip="Remote YAML editing is disabled in server configuration."
       >
-        Remote Configuration Disabled
-      </ShrinkableButton>
+        <LocalizedText source={"Remote Configuration Disabled"} /></ShrinkableButton>
     );
   }
 
@@ -54,8 +54,7 @@ const EditButton = ({ remoteConfiguration, setEditModal, ...props }) => {
       tooltip="Edit and validate the remote YAML options before saving."
       {...props}
     >
-      Edit
-    </ShrinkableButton>
+      <LocalizedText source={"Edit"} /></ShrinkableButton>
   );
 };
 

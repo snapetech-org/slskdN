@@ -1,3 +1,4 @@
+import LocalizedText from '../Shared/LocalizedText';
 import React from 'react';
 import { Icon, Popup } from 'semantic-ui-react';
 
@@ -65,9 +66,22 @@ const getIcon = ({ state, ...props }) => {
   }
 };
 
+const getSearchStatusLabel = (state) => ({
+  None: 'Queued',
+  Queued: 'Queued',
+  Requested: 'Queued',
+  InProgress: 'In Progress',
+  Completed: 'Completed',
+  'Completed, TimedOut': 'Completed',
+  'Completed, ResponseLimitReached': 'Completed',
+  'Completed, FileLimitReached': 'Completed',
+  'Completed, Cancelled': 'Cancelled',
+  'Completed, Errored': 'Failed',
+}[state] || state || 'Unknown');
+
 const SearchStatusIcon = ({ state, ...props }) => (
   <Popup
-    content={state}
+    content={<LocalizedText source={getSearchStatusLabel(state)} />}
     trigger={getIcon({ state, ...props })}
   />
 );

@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import {
   isStateCancellable,
   isStateRetryable,
@@ -16,7 +17,7 @@ import { Div, Nbsp, TooltipButton } from '../Shared';
 import DownloadExclusionsModal from './DownloadExclusionsModal';
 import ShrinkableDropdownButton from '../Shared/ShrinkableDropdownButton';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { useInterfaceLanguage } from '../../lib/interfaceLocale';
+
 import { Checkbox, Icon, Popup, Segment } from 'semantic-ui-react';
 
 const getRetryableFiles = ({ files, retryOption }) => {
@@ -186,14 +187,14 @@ const TransfersHeader = ({
         <div className="transfers-header-actions">
           {direction === 'download' && (
             <TooltipButton
-              aria-label="Open download filters"
+              aria-label={interfaceText("Open download filters")}
               className="download-filter-button"
               icon="filter"
               onClick={() => setDownloadFilterOpen(true)}
               size="small"
-              title="Download filters"
+              title={interfaceText("Download filters")}
               tooltip="Block unwanted downloads by matching literal terms anywhere in remote filenames or folder paths."
-            >
+             {...interfaceTextProps("Open download filters")}>
               {localizedText(downloadFilterCount > 0
                 ? `${t('Download filters')} (${downloadFilterCount})`
                 : t('Download filters'))}
@@ -270,7 +271,7 @@ const TransfersHeader = ({
         </ShrinkableDropdownButton>
         <Nbsp />
         <Popup
-          content="Allow slow or stalled downloads to use verified alternate sources. Soulseek peers use sequential failover; true multipart chunking is reserved for trusted slskdN mesh peers."
+          content={interfaceText("Allow slow or stalled downloads to use verified alternate sources. Soulseek peers use sequential failover; true multipart chunking is reserved for trusted slskdN mesh peers.")}
           position="bottom right"
           trigger={
             <Checkbox
@@ -283,10 +284,10 @@ const TransfersHeader = ({
               toggle
             />
           }
-        />
+         {...interfaceTextProps("Allow slow or stalled downloads to use verified alternate sources. Soulseek peers use sequential failover; true multipart chunking is reserved for trusted slskdN mesh peers.")}/>
         <Nbsp />
         <Popup
-          content={`Automatically find and replace stuck downloads with alternative sources. Replacements must be within ${autoReplaceThreshold}% file size. This is separate from automatic retry of failed downloads; disable transfers.download.auto_retry.enabled to stop those retries.`}
+          content={interfaceText("Automatically find and replace stuck downloads with alternative sources. Replacements must be within {autoReplaceThreshold}% file size. This is separate from automatic retry of failed downloads; disable transfers.download.auto_retry.enabled to stop those retries.", { "autoReplaceThreshold": (autoReplaceThreshold) })}
           position="bottom right"
           trigger={
             <Checkbox
@@ -299,7 +300,7 @@ const TransfersHeader = ({
               toggle
             />
           }
-        />
+         {...interfaceTextProps("Automatically find and replace stuck downloads with alternative sources. Replacements must be within {autoReplaceThreshold}% file size. This is separate from automatic retry of failed downloads; disable transfers.download.auto_retry.enabled to stop those retries.")}/>
         <Nbsp />
         <Popup
           content={
@@ -322,18 +323,18 @@ const TransfersHeader = ({
         />
         <Nbsp />
         <Popup
-          content="Hide successful 100% transfers from the list. Failed, aborted, timed-out, and rejected downloads stay visible for retry or review."
+          content={interfaceText("Hide successful 100% transfers from the list. Failed, aborted, timed-out, and rejected downloads stay visible for retry or review.")}
           position="bottom right"
           trigger={
             <Checkbox
               checked={hideCompleted}
               className="hide-completed-toggle"
-              label="Hide Complete"
+              label={interfaceText("Hide Complete")}
               onChange={(_, data) => onHideCompletedChange?.(data.checked)}
               toggle
-            />
+             {...interfaceTextProps("Hide Complete")}/>
           }
-        />
+         {...interfaceTextProps("Hide successful 100% transfers from the list. Failed, aborted, timed-out, and rejected downloads stay visible for retry or review.")}/>
           </Div>
         </div>
       </Segment>

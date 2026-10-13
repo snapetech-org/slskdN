@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { List as WindowedList } from 'react-window';
 import { Button, Icon, List, Popup } from 'semantic-ui-react';
@@ -32,6 +34,7 @@ const DirectoryRow = memo(
     selectedDirectoryName,
     style,
   }) => {
+    useInterfaceLanguage();
     const { directory, level } = rows[index];
     const isExpanded = expandedPaths.has(directory.name);
     const isActive = directory.name === selectedDirectoryName;
@@ -91,7 +94,7 @@ const DirectoryRow = memo(
             />
 
             <Popup
-              content={`Select folder ${folderName} to view its contents in the share browser.`}
+              content={interfaceText("Select folder {folderName} to view its contents in the share browser.", { "folderName": (folderName) })}
               trigger={(
                 <button
                   onClick={() => onSelect(directory)}
@@ -112,23 +115,23 @@ const DirectoryRow = memo(
                   {folderName}
                 </button>
               )}
-            />
+             {...interfaceTextProps("Select folder {folderName} to view its contents in the share browser.")}/>
 
             {level > 0 && (
               <Popup
-                content={`Download every file in ${folderName} and its subdirectories to queue the whole folder tree at once.`}
+                content={interfaceText("Download every file in {folderName} and its subdirectories to queue the whole folder tree at once.", { "folderName": (folderName) })}
                 position="top center"
                 trigger={(
                   <Button
-                    aria-label={`Download ${folderName}`}
+                    aria-label={interfaceText("Download {folderName}", { "folderName": (folderName) })}
                     basic
                     compact
                     icon="download"
                     onClick={() => onDownload(directory)}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Download {folderName}")}/>
                 )}
-              />
+               {...interfaceTextProps("Download every file in {folderName} and its subdirectories to queue the whole folder tree at once.")}/>
             )}
 
             {directory.fileCount > 0 && (
@@ -155,6 +158,7 @@ const DirectoryRow = memo(
 DirectoryRow.displayName = 'DirectoryRow';
 
 const DirectoryTree = ({ onDownload, onSelect, selectedDirectoryName, tree }) => {
+  useInterfaceLanguage();
   const [expandedPaths, setExpandedPaths] = useState(new Set());
 
   const visibleDirectories = useMemo(
@@ -216,14 +220,13 @@ const DirectoryTree = ({ onDownload, onSelect, selectedDirectoryName, tree }) =>
         }}
       >
         <Popup
-          content="Collapse every open folder to make the directory tree easier to scan."
+          content={interfaceText("Collapse every open folder to make the directory tree easier to scan.")}
           position="top center"
           trigger={(
             <Button compact onClick={collapseAll} size="tiny">
-              <Icon name="compress" /> Collapse All
-            </Button>
+              <Icon name="compress" /> <LocalizedText source={"Collapse All"} /></Button>
           )}
-        />
+         {...interfaceTextProps("Collapse every open folder to make the directory tree easier to scan.")}/>
       </div>
 
       <WindowedList

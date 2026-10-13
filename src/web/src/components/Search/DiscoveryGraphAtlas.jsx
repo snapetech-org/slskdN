@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import React from 'react';
 import { Header, Label, Segment } from 'semantic-ui-react';
 import DiscoveryGraphCanvas from './DiscoveryGraphCanvas';
@@ -37,26 +39,20 @@ const DiscoveryGraphAtlas = ({
       secondary
     >
       <Header as="h5" style={{ marginTop: 0 }}>
-        Atlas
-      </Header>
+        <LocalizedText source={"Atlas"} /></Header>
       <p style={{ marginTop: 0 }}>
-        Wider neighborhood view with semantic filtering. Raise the threshold to
-        suppress weak nodes and lower depth to stay at artist or album scale.
-      </p>
+        <LocalizedText source={"Wider neighborhood view with semantic filtering. Raise the threshold to suppress weak nodes and lower depth to stay at artist or album scale."} /></p>
       <div style={{ marginBottom: '0.75em' }}>
         {Object.entries(typeCounts).map(([type, count]) => (
           <Label key={type} size="tiny">
             {type} {count}
           </Label>
         ))}
-        <Label size="tiny">Edges {visibleEdges.length}</Label>
+        <Label size="tiny"><LocalizedText source={"Edges"} />{" "}{visibleEdges.length}</Label>
       </div>
       {sparse ? (
         <p className="discovery-graph-sparse-note">
-          This seed has no visible neighbors at the current depth and weight.
-          Lower the weight threshold, broaden the seed, or open a SongID run with
-          candidate tracks to expand the atlas.
-        </p>
+          <LocalizedText source={"This seed has no visible neighbors at the current depth and weight. Lower the weight threshold, broaden the seed, or open a SongID run with candidate tracks to expand the atlas."} /></p>
       ) : null}
       <div
         className={`discovery-graph-canvas-shell ${sparse ? 'sparse' : ''}`}

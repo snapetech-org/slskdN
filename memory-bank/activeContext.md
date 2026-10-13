@@ -1,17 +1,16 @@
-## Current state — Browser-local interface language in PR #360 — 2026-10-13
+## Current state — Full UI localization in PR #360 — 2026-10-13
 
-The browser-local language selector and first-pass primary-navigation
-translations are committed on PR #360. The existing regional-format choice is
-preserved as a separate setting. The branch passes the Web production build,
-ESLint, release-note preview, and diff checks; no test suite was run for this
-continuation.
+The PR #360 branch now covers 4,450 Web UI source strings across twelve locales,
+including finite app-owned statuses and messages. API/protocol data and
+user-provided content remain unchanged. The catalog audit found no missing
+locale cells or placeholder mismatches. Web build and ESLint pass; no full test
+suite or release was run for this continuation. Translations are machine-
+generated and need fluent-speaker review; full Arabic RTL visual review remains.
 
 ### Next Steps
 
-- Extend translated labels and messages across core screens.
-- Review Arabic RTL behavior at narrow and desktop widths before calling the
-  interface fully localized.
-- Keep this work on PR #360; do not create a release tag for it.
+- Obtain fluent-speaker review of the translated catalog and review Arabic
+  layout in an interactive browser at narrow and desktop widths.
 
 ## Current state — Public PR runner isolation and CI capacity review — 2026-10-12
 

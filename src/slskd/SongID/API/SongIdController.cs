@@ -30,6 +30,12 @@ public sealed class SongIdController : ControllerBase
         _capabilityReporter = capabilityReporter;
     }
 
+    private BadRequestObjectResult BadRequestWithCode(string code, string message)
+    {
+        Response.Headers["X-Slskd-Error-Code"] = code;
+        return BadRequest(message);
+    }
+
     [HttpGet("capabilities")]
     [ProducesResponseType(typeof(IReadOnlyList<SongIdCapability>), 200)]
     public async Task<IActionResult> GetCapabilities(CancellationToken cancellationToken)
@@ -54,13 +60,13 @@ public sealed class SongIdController : ControllerBase
 
         if (request == null)
         {
-            return BadRequest("SongID source is required.");
+            return BadRequestWithCode("songid.source-required", "SongID source is required.");
         }
 
         request.Source = request.Source?.Trim() ?? string.Empty;
         if (string.IsNullOrWhiteSpace(request.Source))
         {
-            return BadRequest("SongID source is required.");
+            return BadRequestWithCode("songid.source-required", "SongID source is required.");
         }
 
         try
@@ -70,11 +76,11 @@ public sealed class SongIdController : ControllerBase
         }
         catch (ArgumentException)
         {
-            return BadRequest("SongID request is invalid.");
+            return BadRequestWithCode("songid.request-invalid", "SongID request is invalid.");
         }
         catch (InvalidOperationException)
         {
-            return BadRequest("SongID analysis could not be queued.");
+            return BadRequestWithCode("songid.analysis-queue-failed", "SongID analysis could not be queued.");
         }
     }
 

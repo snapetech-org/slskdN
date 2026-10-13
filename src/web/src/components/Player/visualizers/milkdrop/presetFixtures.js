@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps } from "../../../../lib/interfaceLocale";
 const createDensePrimitiveFixtureSource = () => {
   const lines = [
     'name=Fixture Dense Primitive Pack',
@@ -31,7 +32,7 @@ const createDensePrimitiveFixtureSource = () => {
 
 export const nativeMilkdropFixturePack = [
   {
-    description: 'Classic feedback, warp grid, vectors, textured shape, and spectrum dots.',
+    get description() { return interfaceText("Classic feedback, warp grid, vectors, textured shape, and spectrum dots."); },
     id: 'classic-primitives',
     supported: true,
     source: `
@@ -80,7 +81,7 @@ export const nativeMilkdropFixturePack = [
     `,
   },
   {
-    description: 'First shader subset with supported warp and comp ret assignments.',
+    get description() { return interfaceText("First shader subset with supported warp and comp ret assignments."); },
     id: 'shader-subset',
     supported: true,
     source: `
@@ -104,7 +105,7 @@ export const nativeMilkdropFixturePack = [
     `,
   },
   {
-    description: 'Simple MilkDrop3-style double preset parse fixture.',
+    get description() { return interfaceText("Simple MilkDrop3-style double preset parse fixture."); },
     id: 'milk2-double',
     supported: true,
     source: `
@@ -120,7 +121,7 @@ export const nativeMilkdropFixturePack = [
     `,
   },
   {
-    description: 'MilkDrop3-style q-register coverage across equations, primitives, and shaders.',
+    get description() { return interfaceText("MilkDrop3-style q-register coverage across equations, primitives, and shaders."); },
     id: 'milkdrop3-q-registers',
     supported: true,
     source: `
@@ -149,13 +150,13 @@ export const nativeMilkdropFixturePack = [
     `,
   },
   {
-    description: 'MilkDrop3-style dense primitive count probe with many shapes and waves.',
+    get description() { return interfaceText("MilkDrop3-style dense primitive count probe with many shapes and waves."); },
     id: 'milkdrop3-dense-primitives',
     supported: true,
     source: createDensePrimitiveFixtureSource(),
   },
   {
-    description: 'Unsupported shader control flow should be rejected cleanly.',
+    get description() { return interfaceText("Unsupported shader control flow should be rejected cleanly."); },
     id: 'unsupported-control-flow-shader',
     supported: false,
     expectedError: 'shader translation pending: comp_shader',

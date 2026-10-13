@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { buildDiagnosticBundle } from '../../../lib/diagnosticBundle';
 import React, { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -21,6 +23,7 @@ const copyToClipboard = async (value) => {
 };
 
 const DiagnosticBundleModal = ({ options = {}, state = {} }) => {
+  useInterfaceLanguage();
   const [open, setOpen] = useState(false);
   const bundle = useMemo(
     () =>
@@ -35,30 +38,29 @@ const DiagnosticBundleModal = ({ options = {}, state = {} }) => {
     const copied = await copyToClipboard(bundle);
 
     if (copied) {
-      toast.success('Diagnostic bundle copied');
+      toast.success(interfaceText("Diagnostic bundle copied"));
       return;
     }
 
-    toast.info('Select the diagnostic bundle text to copy it manually');
+    toast.info(interfaceText("Select the diagnostic bundle text to copy it manually"));
   };
 
   return (
     <>
       <Popup
-        content="Open a redacted diagnostic bundle you can copy for support. Secrets, tokens, passwords, cookies, and API keys are removed."
+        content={interfaceText("Open a redacted diagnostic bundle you can copy for support. Secrets, tokens, passwords, cookies, and API keys are removed.")}
         position="top center"
         trigger={
           <Button
-            aria-label="Open diagnostic bundle"
+            aria-label={interfaceText("Open diagnostic bundle")}
             disabled={!state}
             icon
             onClick={() => setOpen(true)}
-          >
+           {...interfaceTextProps("Open diagnostic bundle")}>
             <Icon name="clipboard list" />
-            Diagnostic Bundle
-          </Button>
+            <LocalizedText source={"Diagnostic Bundle"} /></Button>
         }
-      />
+       {...interfaceTextProps("Open a redacted diagnostic bundle you can copy for support. Secrets, tokens, passwords, cookies, and API keys are removed.")}/>
       <Modal
         centered={false}
         closeIcon
@@ -68,52 +70,46 @@ const DiagnosticBundleModal = ({ options = {}, state = {} }) => {
       >
         <Modal.Header>
           <Icon name="clipboard list" />
-          Diagnostic Bundle
-        </Modal.Header>
+          <LocalizedText source={"Diagnostic Bundle"} /></Modal.Header>
         <Modal.Content>
           <Message info>
-            <Message.Header>Redacted support snapshot</Message.Header>
+            <Message.Header><LocalizedText source={"Redacted support snapshot"} /></Message.Header>
             <p>
-              This bundle includes browser, route, setup-health summary, state,
-              and option shape. It redacts secrets before display and does not
-              contact the server.
-            </p>
+              <LocalizedText source={"This bundle includes browser, route, setup-health summary, state, and option shape. It redacts secrets before display and does not contact the server."} /></p>
           </Message>
-          <Header as="h4">Bundle</Header>
+          <Header as="h4"><LocalizedText source={"Bundle"} /></Header>
           <TextArea
-            aria-label="Redacted diagnostic bundle"
+            aria-label={interfaceText("Redacted diagnostic bundle")}
             className="diagnostic-bundle-text"
             readOnly
             value={bundle}
-          />
+           {...interfaceTextProps("Redacted diagnostic bundle")}/>
         </Modal.Content>
         <Modal.Actions>
           <Popup
-            content="Copy the redacted diagnostic bundle to the clipboard."
+            content={interfaceText("Copy the redacted diagnostic bundle to the clipboard.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Copy diagnostic bundle"
+                aria-label={interfaceText("Copy diagnostic bundle")}
                 onClick={copyBundle}
                 primary
-              >
+               {...interfaceTextProps("Copy diagnostic bundle")}>
                 <Icon name="copy" />
-                Copy
-              </Button>
+                <LocalizedText source={"Copy"} /></Button>
             }
-          />
+           {...interfaceTextProps("Copy the redacted diagnostic bundle to the clipboard.")}/>
           <Popup
-            content="Close the diagnostic bundle window without copying."
+            content={interfaceText("Close the diagnostic bundle window without copying.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Close diagnostic bundle"
+                aria-label={interfaceText("Close diagnostic bundle")}
                 onClick={() => setOpen(false)}
-              >
-                Close
-              </Button>
+               {...interfaceTextProps("Close diagnostic bundle")}>
+                <LocalizedText source={"Close"} /></Button>
             }
-          />
+           {...interfaceTextProps("Close the diagnostic bundle window without copying.")}/>
         </Modal.Actions>
       </Modal>
     </>

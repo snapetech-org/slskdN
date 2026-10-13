@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import * as searches from '../../lib/searches';
 import { getLocalStorageItem } from '../../lib/storage';
@@ -19,13 +21,14 @@ import {
 } from 'semantic-ui-react';
 
 const scopeOptions = [
-  { key: 'songid_run', text: 'Song / Unknown Seed', value: 'songid_run' },
-  { key: 'track', text: 'Track', value: 'track' },
-  { key: 'album', text: 'Album', value: 'album' },
-  { key: 'artist', text: 'Artist', value: 'artist' },
+  { key: 'songid_run', get text() { return interfaceText("Song / Unknown Seed"); }, value: 'songid_run' },
+  { key: 'track', get text() { return interfaceText("Track"); }, value: 'track' },
+  { key: 'album', get text() { return interfaceText("Album"); }, value: 'album' },
+  { key: 'artist', get text() { return interfaceText("Artist"); }, value: 'artist' },
 ];
 
 const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
+  useInterfaceLanguage();
   const location = useLocation();
   const navigate = useNavigate();
   const [scope, setScope] = useState('songid_run');
@@ -166,13 +169,13 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
     }).searchQueries;
 
     if (queries.length === 0) {
-      toast.error('No nearby track nodes were available to queue');
+      toast.error(interfaceText("No nearby track nodes were available to queue"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries });
-      toast.success(`Started ${count} nearby atlas searches`);
+      toast.success(interfaceText("Started {count} nearby atlas searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
       toast.error(
@@ -193,10 +196,10 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
 
     try {
       await navigator.clipboard.writeText(report);
-      toast.success('Discovery Graph branch report copied');
+      toast.success(interfaceText("Discovery Graph branch report copied"));
     } catch (error) {
       console.error(error);
-      toast.error('Unable to copy Discovery Graph branch report');
+      toast.error(interfaceText("Unable to copy Discovery Graph branch report"));
     }
   };
 
@@ -229,15 +232,12 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
       className="discovery-graph-atlas-panel"
       raised
     >
-      <Header as="h4">Discovery Graph Atlas</Header>
+      <Header as="h4"><LocalizedText source={"Discovery Graph Atlas"} /></Header>
       <p style={{ marginTop: 0 }}>
-        Persistent graph surface for wandering the neighborhood around a seed
-        without opening a modal. Use manual seeds, canonical ids, or saved
-        branches to keep exploration in the page flow.
-      </p>
+        <LocalizedText source={"Persistent graph surface for wandering the neighborhood around a seed without opening a modal. Use manual seeds, canonical ids, or saved branches to keep exploration in the page flow."} /></p>
       <Form className="discovery-graph-seed-form">
         <Form.Field>
-          <label>Seed Scope</label>
+          <label><LocalizedText source={"Seed Scope"} /></label>
           <Dropdown
             disabled={disabled || loading}
             fluid
@@ -251,62 +251,62 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
           <Form.Field>
             <Input
               disabled={disabled || loading}
-              label="Artist"
+              label={interfaceText("Artist")}
               onChange={(event) => setArtist(event.target.value)}
-              placeholder="Artist name"
+              placeholder={interfaceText("Artist name")}
               value={artist}
-            />
+             {...interfaceTextProps("Artist")}/>
           </Form.Field>
           <Form.Field>
             <Input
               disabled={disabled || loading}
-              label="Album"
+              label={interfaceText("Album")}
               onChange={(event) => setAlbum(event.target.value)}
-              placeholder="Album title"
+              placeholder={interfaceText("Album title")}
               value={album}
-            />
+             {...interfaceTextProps("Album")}/>
           </Form.Field>
           <Form.Field>
             <Input
               disabled={disabled || loading}
-              label="Title"
+              label={interfaceText("Title")}
               onChange={(event) => setTitle(event.target.value)}
-              placeholder="Track title or seed label"
+              placeholder={interfaceText("Track title or seed label")}
               value={title}
-            />
+             {...interfaceTextProps("Title")}/>
           </Form.Field>
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field>
             <Input
               disabled={disabled || loading}
-              label="Artist MBID"
+              label={interfaceText("Artist MBID")}
               onChange={(event) => setArtistId(event.target.value)}
-              placeholder="Optional artist id"
+              placeholder={interfaceText("Optional artist id")}
               value={artistId}
-            />
+             {...interfaceTextProps("Artist MBID")}/>
           </Form.Field>
           <Form.Field>
             <Input
               disabled={disabled || loading}
-              label="Release ID"
+              label={interfaceText("Release ID")}
               onChange={(event) => setReleaseId(event.target.value)}
-              placeholder="Optional release id"
+              placeholder={interfaceText("Optional release id")}
               value={releaseId}
-            />
+             {...interfaceTextProps("Release ID")}/>
           </Form.Field>
           <Form.Field>
             <Input
               disabled={disabled || loading}
-              label="Recording ID"
+              label={interfaceText("Recording ID")}
               onChange={(event) => setRecordingId(event.target.value)}
-              placeholder="Optional recording id"
+              placeholder={interfaceText("Optional recording id")}
               value={recordingId}
-            />
+             {...interfaceTextProps("Recording ID")}/>
           </Form.Field>
         </Form.Group>
         <Popup
-          content="Build a persistent atlas in-page from the current seed fields instead of opening a temporary modal."
+          content={interfaceText("Build a persistent atlas in-page from the current seed fields instead of opening a temporary modal.")}
           position="top center"
           trigger={
             <Button
@@ -315,12 +315,11 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
               onClick={handleBuild}
               primary
             >
-              Build Atlas
-            </Button>
+              <LocalizedText source={"Build Atlas"} /></Button>
           }
-        />
+         {...interfaceTextProps("Build a persistent atlas in-page from the current seed fields instead of opening a temporary modal.")}/>
         <Popup
-          content="Queue nearby track nodes from the current atlas into regular searches so exploration turns into acquisition work."
+          content={interfaceText("Queue nearby track nodes from the current atlas into regular searches so exploration turns into acquisition work.")}
           position="top center"
           trigger={
             <Button
@@ -328,27 +327,26 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
               onClick={handleQueueNearby}
               style={{ marginLeft: '0.5em' }}
             >
-              Queue Nearby
-            </Button>
+              <LocalizedText source={"Queue Nearby"} /></Button>
           }
-        />
+         {...interfaceTextProps("Queue nearby track nodes from the current atlas into regular searches so exploration turns into acquisition work.")}/>
         <Popup
-          content="Copy a branch review report with visible node families, edge families, suggested routes, and nearby search seeds."
+          content={interfaceText("Copy a branch review report with visible node families, edge families, suggested routes, and nearby search seeds.")}
           position="top center"
           trigger={
             <Button
-              aria-label="Copy Discovery Graph branch report"
+              aria-label={interfaceText("Copy Discovery Graph branch report")}
               disabled={!graph}
               icon="copy"
               onClick={copyBranchReport}
               style={{ marginLeft: '0.5em' }}
-            />
+             {...interfaceTextProps("Copy Discovery Graph branch report")}/>
           }
-        />
+         {...interfaceTextProps("Copy a branch review report with visible node families, edge families, suggested routes, and nearby search seeds.")}/>
       </Form>
       <div className="discovery-graph-controls">
         <label className="discovery-graph-range">
-          <span>Depth {maxDepth}</span>
+          <span><LocalizedText source={"Depth"} />{" "}{maxDepth}</span>
           <Input
             max={4}
             min={0}
@@ -361,7 +359,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
           />
         </label>
         <label className="discovery-graph-range">
-          <span>Weight {Math.round((minNodeWeight || 0) * 100)}</span>
+          <span><LocalizedText source={"Weight"} />{" "}{Math.round((minNodeWeight || 0) * 100)}</span>
           <Input
             max={1}
             min={0}
@@ -392,12 +390,12 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
       ) : null}
       {savedBranches.length > 0 ? (
         <div style={{ marginTop: '1em' }}>
-          <Header as="h5">Saved Branches</Header>
+          <Header as="h5"><LocalizedText source={"Saved Branches"} /></Header>
           <List horizontal relaxed>
             {savedBranches.slice(0, 6).map((branch) => (
               <List.Item key={branch.id}>
                 <Popup
-                  content="Restore this saved branch into the atlas panel."
+                  content={interfaceText("Restore this saved branch into the atlas panel.")}
                   position="top center"
                   trigger={
                     <Button
@@ -407,7 +405,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                       {branch.title}
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Restore this saved branch into the atlas panel.")}/>
               </List.Item>
             ))}
           </List>
@@ -422,7 +420,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
           {pinnedNode ? (
             <div style={{ marginBottom: '0.75em' }}>
               <Label color="pink" size="tiny">
-                Pinned {pinnedNode.label}
+                <LocalizedText source={"Pinned"} />{" "}{pinnedNode.label}
               </Label>
             </div>
           ) : null}
@@ -443,8 +441,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
           {branchPlan.routeSuggestions.length > 0 ? (
             <>
               <Header as="h5" style={{ marginBottom: '0.35em', marginTop: '1em' }}>
-                Suggested Branch Routes
-              </Header>
+                <LocalizedText source={"Suggested Branch Routes"} /></Header>
               <List divided relaxed>
                 {branchPlan.routeSuggestions.slice(0, 5).map((route) => (
                   <List.Item
@@ -452,7 +449,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                   >
                     <List.Content floated="right">
                       <Popup
-                        content="Pin this route target as the comparison point for the current atlas branch."
+                        content={interfaceText("Pin this route target as the comparison point for the current atlas branch.")}
                         position="top center"
                         trigger={
                           <Button
@@ -464,12 +461,11 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                             }
                             size="mini"
                           >
-                            Pin
-                          </Button>
+                            <LocalizedText source={"Pin"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Pin this route target as the comparison point for the current atlas branch.")}/>
                       <Popup
-                        content="Recenter the atlas on this suggested branch route."
+                        content={interfaceText("Recenter the atlas on this suggested branch route.")}
                         position="top center"
                         trigger={
                           <Button
@@ -477,17 +473,16 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                             size="mini"
                             style={{ marginLeft: '0.5em' }}
                           >
-                            Recenter
-                          </Button>
+                            <LocalizedText source={"Recenter"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Recenter the atlas on this suggested branch route.")}/>
                     </List.Content>
                     <List.Content>
                       <List.Header>
                         {route.source.label} → {route.target.label}
                       </List.Header>
                       <List.Description>
-                        {route.edge.edgeType} · score {Math.round(route.score * 100)} ·{' '}
+                        {route.edge.edgeType} <LocalizedText source={"· score"} />{" "}{Math.round(route.score * 100)} ·{' '}
                         {route.edge.reason}
                       </List.Description>
                     </List.Content>
@@ -497,8 +492,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
             </>
           ) : null}
           <Header as="h5" style={{ marginBottom: '0.35em', marginTop: '1em' }}>
-            Why These Nodes Are Near
-          </Header>
+            <LocalizedText source={"Why These Nodes Are Near"} /></Header>
           <List divided relaxed>
             {visibleEdges.slice(0, 12).map((edge) => (
               <List.Item
@@ -506,17 +500,16 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
               >
                 <List.Content floated="right">
                   <Popup
-                    content="Recenter the atlas on this destination node so you can keep walking the graph from there."
+                    content={interfaceText("Recenter the atlas on this destination node so you can keep walking the graph from there.")}
                     position="top center"
                     trigger={
                       <Button
                         onClick={() => handleRecenter(edge.targetNodeId)}
                         size="mini"
                       >
-                        Recenter
-                      </Button>
+                        <LocalizedText source={"Recenter"} /></Button>
                     }
-                  />
+                   {...interfaceTextProps("Recenter the atlas on this destination node so you can keep walking the graph from there.")}/>
                 </List.Content>
                 <List.Content>
                   <List.Header>
@@ -525,7 +518,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                   </List.Header>
                   <List.Description>
                     {edge.edgeType} · {edge.reason}
-                    {edge.provenance ? ` · ${edge.provenance}` : ''}
+                    {edge.provenance ? <LocalizedText source={"· {provenance}"} values={{ "provenance": (edge.provenance) }} /> : ''}
                   </List.Description>
                   {edge.scoreComponents &&
                   Object.keys(edge.scoreComponents).length > 0 ? (
@@ -555,8 +548,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
           secondary
           style={{ marginTop: '1em' }}
         >
-          Build an atlas from a seed above or restore a saved branch.
-        </Segment>
+          <LocalizedText source={"Build an atlas from a seed above or restore a saved branch."} /></Segment>
       )}
     </Segment>
   );

@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
 import * as sharesLibrary from '../../../lib/shares';
 import { LoaderSegment, ShrinkableButton, Switch } from '../../Shared';
 import ContentsModal from './ContentsModal';
@@ -23,8 +25,7 @@ const ScanButton = ({ rescan, scanPending, working }) => (
     primary={!scanPending}
     tooltip="Recount files in configured shares after changing files or exclusions."
   >
-    Rescan Shares
-  </ShrinkableButton>
+    <LocalizedText source={"Rescan Shares"} /></ShrinkableButton>
 );
 
 const CancelButton = ({ cancel, working }) => (
@@ -36,8 +37,7 @@ const CancelButton = ({ cancel, working }) => (
     onClick={() => cancel()}
     tooltip="Stop the active share scan; counts may stay incomplete until the next scan."
   >
-    Cancel Scan
-  </ShrinkableButton>
+    <LocalizedText source={"Cancel Scan"} /></ShrinkableButton>
 );
 
 const Shares = ({ state = {}, theme } = {}) => {
@@ -160,8 +160,7 @@ const Shares = ({ state = {}, theme } = {}) => {
               <div>
                 <div>{Math.round(scanProgress * 100)}%</div>
                 <div className="share-scan-detail">
-                  Found {files} files in {directories} directories
-                </div>
+                  <LocalizedText source={"Found"} />{" "}{files} <LocalizedText source={"files in"} />{" "}{directories} <LocalizedText source={"directories"} /></div>
               </div>
             </LoaderSegment>
           )

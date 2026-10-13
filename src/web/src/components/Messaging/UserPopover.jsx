@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Popup } from 'semantic-ui-react';
 
@@ -5,6 +7,7 @@ const POPOVER_OFFSET = 6;
 const POPOVER_MARGIN = 8;
 
 const UserPopover = ({ anchor, onBrowse, onClose, onMessage, onProfile, open, username }) => {
+  useInterfaceLanguage();
   const ref = useRef(null);
   const [position, setPosition] = useState({ left: 0, top: 0, ready: false });
 
@@ -53,7 +56,7 @@ const UserPopover = ({ anchor, onBrowse, onClose, onMessage, onProfile, open, us
 
   return (
     <div
-      aria-label={`Actions for ${username}`}
+      aria-label={interfaceText("Actions for {username}", { "username": (username) })}
       className="msgv2-userpop"
       ref={ref}
       role="menu"
@@ -62,12 +65,12 @@ const UserPopover = ({ anchor, onBrowse, onClose, onMessage, onProfile, open, us
         top: position.top,
         visibility: position.ready ? 'visible' : 'hidden',
       }}
-    >
+     {...interfaceTextProps("Actions for {username}")}>
       <header className="msgv2-userpop-header">
         <span className="msgv2-userpop-name">{username}</span>
       </header>
       <Popup
-        content={`Open ${username}'s profile to view available user details.`}
+        content={interfaceText("Open {username}'s profile to view available user details.", { "username": (username) })}
         trigger={(
           <button
             className="msgv2-userpop-action"
@@ -75,13 +78,12 @@ const UserPopover = ({ anchor, onBrowse, onClose, onMessage, onProfile, open, us
             role="menuitem"
             type="button"
           >
-            <span className="msgv2-userpop-glyph">i</span>
-            Open profile
-          </button>
+            <span className="msgv2-userpop-glyph"><LocalizedText source={"i"} /></span>
+            <LocalizedText source={"Open profile"} /></button>
         )}
-      />
+       {...interfaceTextProps("Open {username}'s profile to view available user details.")}/>
       <Popup
-        content={`Request ${username}'s shared file list from Soulseek so you can browse their files.`}
+        content={interfaceText("Request {username}'s shared file list from Soulseek so you can browse their files.", { "username": (username) })}
         trigger={(
           <button
             className="msgv2-userpop-action"
@@ -90,12 +92,11 @@ const UserPopover = ({ anchor, onBrowse, onClose, onMessage, onProfile, open, us
             type="button"
           >
             <span className="msgv2-userpop-glyph">⤓</span>
-            Browse shares
-          </button>
+            <LocalizedText source={"Browse shares"} /></button>
         )}
-      />
+       {...interfaceTextProps("Request {username}'s shared file list from Soulseek so you can browse their files.")}/>
       <Popup
-        content={`Open a direct-message tab with ${username} to send a private message.`}
+        content={interfaceText("Open a direct-message tab with {username} to send a private message.", { "username": (username) })}
         trigger={(
           <button
             className="msgv2-userpop-action"
@@ -104,10 +105,9 @@ const UserPopover = ({ anchor, onBrowse, onClose, onMessage, onProfile, open, us
             type="button"
           >
             <span className="msgv2-userpop-glyph">@</span>
-            Send DM
-          </button>
+            <LocalizedText source={"Send DM"} /></button>
         )}
-      />
+       {...interfaceTextProps("Open a direct-message tab with {username} to send a private message.")}/>
     </div>
   );
 };

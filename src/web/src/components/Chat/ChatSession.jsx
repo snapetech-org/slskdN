@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import './Chat.css';
 import * as chat from '../../lib/chat';
 import PlaceholderSegment from '../Shared/PlaceholderSegment';
@@ -314,14 +315,14 @@ class ChatSession extends Component {
               />
               {username}
               <TooltipButton
-                aria-label={`Delete saved conversation with ${username}`}
+                aria-label={interfaceText("Delete saved conversation with {username}", { "username": (username) })}
                 basic
                 className="close-button"
                 compact
                 icon
                 onClick={this.deleteConversation}
                 tooltip={`Delete the saved direct-message conversation with ${username} and remove it from your chat list.`}
-              >
+               {...interfaceTextProps("Delete saved conversation with {username}")}>
                 <Icon color="red" name="close" />
               </TooltipButton>
             </Card.Header>
@@ -343,14 +344,14 @@ class ChatSession extends Component {
             />
             <UserCard username={username}>{username}</UserCard>
               <TooltipButton
-                aria-label={`Delete saved conversation with ${username}`}
+                aria-label={interfaceText("Delete saved conversation with {username}", { "username": (username) })}
                 basic
                 className="close-button"
                 compact
                 icon
                 onClick={this.deleteConversation}
                 tooltip={`Delete the saved direct-message conversation with ${username} and remove it from your chat list.`}
-              >
+               {...interfaceTextProps("Delete saved conversation with {username}")}>
                 <Icon color="red" name="close" />
               </TooltipButton>
           </Card.Header>
@@ -391,7 +392,7 @@ class ChatSession extends Component {
                 <Segment className="chat-input">
                   <Input
                     action={{
-                      'aria-label': 'Send chat message',
+                      'aria-label': interfaceText("Send chat message"),
                       className: 'chat-message-button',
                       disabled: !this.validInput(),
                       icon: (
@@ -401,7 +402,7 @@ class ChatSession extends Component {
                         />
                       ),
                       onClick: this.sendReply,
-                      title: 'Send chat message to this user',
+                      title: interfaceText("Send chat message to this user"),
                     }}
                     fluid
                     input={

@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import {
   getYaml,
   getYamlLocation,
@@ -28,6 +30,7 @@ const getErrorText = (error, fallback = 'Options update failed') => {
 };
 
 const EditModal = ({ onClose, open, theme }) => {
+  useInterfaceLanguage();
   // eslint-disable-next-line react/hook-use-state
   const [{ error, loading }, setLoading] = useState({
     error: false,
@@ -119,14 +122,13 @@ const EditModal = ({ onClose, open, theme }) => {
     >
       <Modal.Header>
         <Icon name="edit" />
-        Edit Options
-        <Div hidden={loading}>
+        <LocalizedText source={"Edit Options"} /><Div hidden={loading}>
           <Message
             className="no-grow edit-code-header"
             warning
           >
             <Icon name="warning sign" />
-            Editing {location}
+            <LocalizedText source={"Editing"} />{" "}{location}
           </Message>
         </Div>
       </Modal.Header>
@@ -139,13 +141,12 @@ const EditModal = ({ onClose, open, theme }) => {
             <Message negative>
               <Message.Content>{error}</Message.Content>
               <Popup
-                content="Retry loading the remote YAML and its source location."
+                content={interfaceText("Retry loading the remote YAML and its source location.")}
                 trigger={(
                   <Button onClick={get} primary>
-                    Retry Options
-                  </Button>
+                    <LocalizedText source={"Retry Options"} /></Button>
                 )}
-              />
+               {...interfaceTextProps("Retry loading the remote YAML and its source location.")}/>
             </Message>
           )}
           loading={loading && <PlaceholderSegment loading />}
@@ -179,7 +180,7 @@ const EditModal = ({ onClose, open, theme }) => {
           </Message>
         )}
         <Popup
-          content="Validate the current YAML and save it to the remote configuration file."
+          content={interfaceText("Validate the current YAML and save it to the remote configuration file.")}
           trigger={(
             <span>
               <Button
@@ -189,23 +190,21 @@ const EditModal = ({ onClose, open, theme }) => {
                 primary
               >
                 <Icon name="save" />
-                Save
-              </Button>
+                <LocalizedText source={"Save"} /></Button>
             </span>
           )}
-        />
+         {...interfaceTextProps("Validate the current YAML and save it to the remote configuration file.")}/>
         <Popup
-          content="Close the editor without applying unsaved YAML changes."
+          content={interfaceText("Close the editor without applying unsaved YAML changes.")}
           trigger={(
             <Button
               negative
               onClick={onClose}
             >
               <Icon name="close" />
-              Cancel
-            </Button>
+              <LocalizedText source={"Cancel"} /></Button>
           )}
-        >
+         {...interfaceTextProps("Close the editor without applying unsaved YAML changes.")}>
         </Popup>
       </Modal.Actions>
     </Modal>

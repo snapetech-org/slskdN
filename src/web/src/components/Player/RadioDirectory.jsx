@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 // <copyright file="RadioDirectory.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -8,6 +10,7 @@ import * as listeningParty from '../../lib/listeningParty';
 import usePlayerDialog from './usePlayerDialog';
 
 const RadioDirectory = ({ onClose, onPlay }) => {
+  useInterfaceLanguage();
   const dialog = usePlayerDialog(true);
   const [parties, setParties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +24,7 @@ const RadioDirectory = ({ onClose, onPlay }) => {
     listeningParty.getPartyDirectory({ refresh: refresh > 0 }).then((entries) => {
       if (!cancelled) setParties(entries);
     }).catch(() => {
-      if (!cancelled) setError('Listed radio could not load. Refresh to try again.');
+      if (!cancelled) setError(interfaceText("Listed radio could not load. Refresh to try again."));
     }).finally(() => {
       if (!cancelled) setLoading(false);
     });
@@ -37,18 +40,17 @@ const RadioDirectory = ({ onClose, onPlay }) => {
       open
       size="small"
     >
-      <Modal.Header {...dialog.titleProps}>Listed radio</Modal.Header>
+      <Modal.Header {...dialog.titleProps}><LocalizedText source={"Listed radio"} /></Modal.Header>
       <Modal.Content scrolling>
-        <p>Play a host's current track snapshot. Rejoin for later track changes. Refresh checks the directory only when you request it.</p>
-        <Popup content="Refresh the listed snapshots to see current host streaming permissions. Playback starts only when you choose a track." trigger={
-          <Button aria-label="Refresh listed radio" disabled={loading} icon loading={loading} onClick={() => setRefresh((value) => value + 1)} size="small">
+        <p><LocalizedText source={"Play a host's current track snapshot. Rejoin for later track changes. Refresh checks the directory only when you request it."} /></p>
+        <Popup content={interfaceText("Refresh the listed snapshots to see current host streaming permissions. Playback starts only when you choose a track.")} trigger={
+          <Button aria-label={interfaceText("Refresh listed radio")} disabled={loading} icon loading={loading} onClick={() => setRefresh((value) => value + 1)} size="small" {...interfaceTextProps("Refresh listed radio")}>
             <Icon name="refresh" />
-            Refresh
-          </Button>
-        } />
+            <LocalizedText source={"Refresh"} /></Button>
+        }  {...interfaceTextProps("Refresh the listed snapshots to see current host streaming permissions. Playback starts only when you choose a track.")}/>
         {error ? <Message negative role="alert">{error}</Message> : null}
-        {loading ? <Message role="status">Loading listed radio…</Message> : null}
-        {!loading && !error && parties.length === 0 ? <Message role="status">No radio broadcasts are listed right now.</Message> : null}
+        {loading ? <Message role="status"><LocalizedText source={"Loading listed radio…"} /></Message> : null}
+        {!loading && !error && parties.length === 0 ? <Message role="status"><LocalizedText source={"No radio broadcasts are listed right now."} /></Message> : null}
         <List divided relaxed>
           {parties.map((party) => {
             const playable = party.allowMeshStreaming && Boolean(party.transportUsername && party.streamTicket);
@@ -61,7 +63,7 @@ const RadioDirectory = ({ onClose, onPlay }) => {
                 </List.Content>
                 <List.Content>
                   <List.Header>{party.title || party.contentId}</List.Header>
-                  <List.Description>{party.artist || party.hostPeerId} · {playable ? 'Host enables streaming' : party.allowMeshStreaming ? 'Host update required' : 'Metadata only'}</List.Description>
+                  <List.Description>{party.artist || party.hostPeerId} · {playable ? <LocalizedText source={"Host enables streaming"} /> : party.allowMeshStreaming ? 'Host update required' : 'Metadata only'}</List.Description>
                 </List.Content>
               </List.Item>
             );
@@ -69,7 +71,7 @@ const RadioDirectory = ({ onClose, onPlay }) => {
         </List>
       </Modal.Content>
       <Modal.Actions>
-        <Popup content="Close the directory and return to the player." trigger={<Button onClick={onClose}>Done</Button>} />
+        <Popup content={interfaceText("Close the directory and return to the player.")} trigger={<Button onClick={onClose}><LocalizedText source={"Done"} /></Button>}  {...interfaceTextProps("Close the directory and return to the player.")}/>
       </Modal.Actions>
     </Modal>
   );

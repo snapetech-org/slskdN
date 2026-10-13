@@ -1,3 +1,7 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+
+
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="MediaCorePods.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
@@ -27,6 +31,7 @@ const asObject = (value) =>
   value && typeof value === 'object' && !Array.isArray(value) ? value : {};
 
 const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
+  useInterfaceLanguage();
   // PodCore DHT states
   const [podToPublish, setPodToPublish] = useState('');
   const [publishingPod, setPublishingPod] = useState(false);
@@ -220,7 +225,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // PodCore handlers
   const handlePublishPod = async () => {
     if (!podToPublish.trim()) {
-      toast.warning('Please enter pod JSON data');
+      toast.warning(interfaceText("Please enter pod JSON data"));
       return;
     }
 
@@ -240,7 +245,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRetrievePodMetadata = async () => {
     if (!podMetadataToRetrieve.trim()) {
-      toast.warning('Please enter a pod ID');
+      toast.warning(interfaceText("Please enter a pod ID"));
       return;
     }
 
@@ -260,7 +265,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUnpublishPod = async () => {
     if (!podToUnpublish.trim()) {
-      toast.warning('Please enter a pod ID');
+      toast.warning(interfaceText("Please enter a pod ID"));
       return;
     }
 
@@ -299,7 +304,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Membership handlers
   const handlePublishMembership = async () => {
     if (!membershipRecord.trim()) {
-      toast.warning('Please enter membership record JSON data');
+      toast.warning(interfaceText("Please enter membership record JSON data"));
       return;
     }
 
@@ -319,7 +324,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetMembership = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning('Please enter both Pod ID and Peer ID');
+      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -340,7 +345,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleVerifyMembership = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning('Please enter both Pod ID and Peer ID');
+      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -361,7 +366,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleBanMember = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning('Please enter both Pod ID and Peer ID');
+      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -392,7 +397,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleChangeRole = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning('Please enter both Pod ID and Peer ID');
+      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -435,19 +440,19 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       const result = await mediacore.cleanupExpiredMemberships();
       toast.success(
-        `Cleanup completed: ${result.recordsCleaned} records cleaned, ${result.errorsEncountered} errors`,
+        interfaceText("Cleanup completed: {recordsCleaned} records cleaned, {errorsEncountered} errors", { "recordsCleaned": (result.recordsCleaned), "errorsEncountered": (result.errorsEncountered) }),
       );
       // Reload stats to reflect changes
       await handleLoadMembershipStats();
     } catch (error_) {
-      toast.error(`Failed to cleanup: ${error_.message}`);
+      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (error_.message) }));
     }
   };
 
   // Pod Membership Verification handlers
   const handleVerifyPodMembership = async () => {
     if (!verifyPodId.trim() || !verifyPeerId.trim()) {
-      toast.warning('Please enter both Pod ID and Peer ID');
+      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -468,7 +473,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleVerifyMessage = async () => {
     if (!membershipMessageToVerify.trim()) {
-      toast.warning('Please enter a message JSON');
+      toast.warning(interfaceText("Please enter a message JSON"));
       return;
     }
 
@@ -487,7 +492,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCheckRole = async () => {
     if (!roleCheckPodId.trim() || !roleCheckPeerId.trim()) {
-      toast.warning('Please enter both Pod ID and Peer ID');
+      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -523,7 +528,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Discovery handlers
   const handleRegisterPodForDiscovery = async () => {
     if (!podToRegister.trim()) {
-      toast.warning('Please enter pod JSON data');
+      toast.warning(interfaceText("Please enter pod JSON data"));
       return;
     }
 
@@ -543,7 +548,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUnregisterPodFromDiscovery = async () => {
     if (!podToUnregister.trim()) {
-      toast.warning('Please enter a pod ID');
+      toast.warning(interfaceText("Please enter a pod ID"));
       return;
     }
 
@@ -563,7 +568,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByName = async () => {
     if (!discoverByName.trim()) {
-      toast.warning('Please enter a pod name');
+      toast.warning(interfaceText("Please enter a pod name"));
       return;
     }
 
@@ -581,7 +586,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByTag = async () => {
     if (!discoverByTag.trim()) {
-      toast.warning('Please enter a tag');
+      toast.warning(interfaceText("Please enter a tag"));
       return;
     }
 
@@ -599,7 +604,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByTags = async () => {
     if (!discoverTags.trim()) {
-      toast.warning('Please enter tags (comma-separated)');
+      toast.warning(interfaceText("Please enter tags (comma-separated)"));
       return;
     }
 
@@ -634,7 +639,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByContent = async () => {
     if (!discoverByContent.trim()) {
-      toast.warning('Please enter a content ID');
+      toast.warning(interfaceText("Please enter a content ID"));
       return;
     }
 
@@ -667,19 +672,19 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       const result = await mediacore.refreshPodDiscovery();
       toast.success(
-        `Discovery refresh completed: ${result.entriesRefreshed} refreshed, ${result.entriesExpired} expired`,
+        interfaceText("Discovery refresh completed: {entriesRefreshed} refreshed, {entriesExpired} expired", { "entriesRefreshed": (result.entriesRefreshed), "entriesExpired": (result.entriesExpired) }),
       );
       // Reload stats to reflect changes
       await handleLoadDiscoveryStats();
     } catch (error_) {
-      toast.error(`Failed to refresh discovery: ${error_.message}`);
+      toast.error(interfaceText("Failed to refresh discovery: {message}", { "message": (error_.message) }));
     }
   };
 
   // Pod Join/Leave handlers
   const handleRequestJoin = async () => {
     if (!joinRequestData.trim()) {
-      toast.warning('Please enter join request JSON data');
+      toast.warning(interfaceText("Please enter join request JSON data"));
       return;
     }
 
@@ -699,7 +704,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleAcceptJoin = async () => {
     if (!acceptanceData.trim()) {
-      toast.warning('Please enter acceptance JSON data');
+      toast.warning(interfaceText("Please enter acceptance JSON data"));
       return;
     }
 
@@ -719,7 +724,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRequestLeave = async () => {
     if (!leaveRequestData.trim()) {
-      toast.warning('Please enter leave request JSON data');
+      toast.warning(interfaceText("Please enter leave request JSON data"));
       return;
     }
 
@@ -739,7 +744,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleAcceptLeave = async () => {
     if (!acceptanceData.trim()) {
-      toast.warning('Please enter leave acceptance JSON data');
+      toast.warning(interfaceText("Please enter leave acceptance JSON data"));
       return;
     }
 
@@ -759,7 +764,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleLoadPendingRequests = async () => {
     if (!pendingPodId.trim()) {
-      toast.warning('Please enter a pod ID');
+      toast.warning(interfaceText("Please enter a pod ID"));
       return;
     }
 
@@ -786,7 +791,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Message Routing handlers
   const handleRouteMessage = async () => {
     if (!routeMessageData.trim()) {
-      toast.warning('Please enter message JSON data');
+      toast.warning(interfaceText("Please enter message JSON data"));
       return;
     }
 
@@ -806,7 +811,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRouteMessageToPeers = async () => {
     if (!routeToPeersMessage.trim() || !routeToPeersIds.trim()) {
-      toast.warning('Please enter message JSON and target peer IDs');
+      toast.warning(interfaceText("Please enter message JSON and target peer IDs"));
       return;
     }
 
@@ -847,7 +852,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCheckMessageSeen = async () => {
     if (!checkMessageId.trim() || !checkPodId.trim()) {
-      toast.warning('Please enter both message ID and pod ID');
+      toast.warning(interfaceText("Please enter both message ID and pod ID"));
       return;
     }
 
@@ -868,7 +873,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRegisterMessageSeen = async () => {
     if (!checkMessageId.trim() || !checkPodId.trim()) {
-      toast.warning('Please enter both message ID and pod ID');
+      toast.warning(interfaceText("Please enter both message ID and pod ID"));
       return;
     }
 
@@ -881,7 +886,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         `Message registered as seen: ${result.wasNewlyRegistered ? 'New' : 'Already known'}`,
       );
     } catch (error_) {
-      toast.error(`Failed to register message: ${error_.message}`);
+      toast.error(interfaceText("Failed to register message: {message}", { "message": (error_.message) }));
     }
   };
 
@@ -889,19 +894,19 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       const result = await mediacore.cleanupSeenMessages();
       toast.success(
-        `Cleanup completed: ${result.messagesCleaned} messages cleaned, ${result.messagesRetained} retained`,
+        interfaceText("Cleanup completed: {messagesCleaned} messages cleaned, {messagesRetained} retained", { "messagesCleaned": (result.messagesCleaned), "messagesRetained": (result.messagesRetained) }),
       );
       // Reload stats to reflect changes
       await handleLoadRoutingStats();
     } catch (error_) {
-      toast.error(`Failed to cleanup: ${error_.message}`);
+      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (error_.message) }));
     }
   };
 
   // Pod Message Signing handlers
   const handleSignMessage = async () => {
     if (!messageToSign.trim() || !privateKeyForSigning.trim()) {
-      toast.warning('Please enter message JSON and private key');
+      toast.warning(interfaceText("Please enter message JSON and private key"));
       return;
     }
 
@@ -924,7 +929,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleVerifySignature = async () => {
     if (!messageToVerify.trim()) {
-      toast.warning('Please enter message JSON to verify');
+      toast.warning(interfaceText("Please enter message JSON to verify"));
       return;
     }
 
@@ -976,7 +981,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setStorageStats(result);
     } catch (error_) {
       setStorageStats({ error: error_.message });
-      toast.error(`Failed to get storage stats: ${error_.message}`);
+      toast.error(interfaceText("Failed to get storage stats: {message}", { "message": (error_.message) }));
     } finally {
       setStorageStatsLoading(false);
     }
@@ -987,11 +992,11 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setCleanupLoading(true);
       const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1_000;
       const result = await mediacore.cleanupMessages(thirtyDaysAgo);
-      toast.success(`Cleaned up ${result} old messages`);
+      toast.success(interfaceText("Cleaned up {result} old messages", { "result": (result) }));
       // Refresh stats after cleanup
       await handleGetStorageStats();
     } catch (error_) {
-      toast.error(`Failed to cleanup messages: ${error_.message}`);
+      toast.error(interfaceText("Failed to cleanup messages: {message}", { "message": (error_.message) }));
     } finally {
       setCleanupLoading(false);
     }
@@ -1007,7 +1012,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
           : 'Search index rebuild failed',
       );
     } catch (error_) {
-      toast.error(`Failed to rebuild search index: ${error_.message}`);
+      toast.error(interfaceText("Failed to rebuild search index: {message}", { "message": (error_.message) }));
     } finally {
       setRebuildIndexLoading(false);
     }
@@ -1023,7 +1028,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
           : 'Database vacuum failed',
       );
     } catch (error_) {
-      toast.error(`Failed to vacuum database: ${error_.message}`);
+      toast.error(interfaceText("Failed to vacuum database: {message}", { "message": (error_.message) }));
     } finally {
       setVacuumLoading(false);
     }
@@ -1044,7 +1049,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setSearchResults(result);
     } catch (error_) {
       setSearchResults([]);
-      toast.error(`Failed to search messages: ${error_.message}`);
+      toast.error(interfaceText("Failed to search messages: {message}", { "message": (error_.message) }));
     } finally {
       setSearchLoading(false);
     }
@@ -1059,7 +1064,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setBackfillStats(result);
     } catch (error_) {
       setBackfillStats({ error: error_.message });
-      toast.error(`Failed to get backfill stats: ${error_.message}`);
+      toast.error(interfaceText("Failed to get backfill stats: {message}", { "message": (error_.message) }));
     } finally {
       setBackfillStatsLoading(false);
     }
@@ -1067,7 +1072,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleSyncPodBackfill = async () => {
     if (!backfillPodId.trim()) {
-      toast.error('Pod ID is required for backfill sync');
+      toast.error(interfaceText("Pod ID is required for backfill sync"));
       return;
     }
 
@@ -1077,12 +1082,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const timestamps = await mediacore.getLastSeenTimestamps(backfillPodId);
       const result = await mediacore.syncPodBackfill(backfillPodId, timestamps);
       toast.success(
-        `Backfill sync completed: ${result.totalMessagesReceived} messages received`,
+        interfaceText("Backfill sync completed: {totalMessagesReceived} messages received", { "totalMessagesReceived": (result.totalMessagesReceived) }),
       );
       // Refresh stats
       await handleGetBackfillStats();
     } catch (error_) {
-      toast.error(`Failed to sync pod backfill: ${error_.message}`);
+      toast.error(interfaceText("Failed to sync pod backfill: {message}", { "message": (error_.message) }));
     } finally {
       setSyncBackfillLoading(false);
     }
@@ -1090,7 +1095,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetLastSeenTimestamps = async () => {
     if (!backfillPodId.trim()) {
-      toast.error('Pod ID is required');
+      toast.error(interfaceText("Pod ID is required"));
       return;
     }
 
@@ -1098,7 +1103,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const timestamps = await mediacore.getLastSeenTimestamps(backfillPodId);
       setLastSeenTimestamps(timestamps);
     } catch (error_) {
-      toast.error(`Failed to get last seen timestamps: ${error_.message}`);
+      toast.error(interfaceText("Failed to get last seen timestamps: {message}", { "message": (error_.message) }));
       setLastSeenTimestamps(null);
     }
   };
@@ -1106,7 +1111,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Channel Management handlers
   const handleGetChannels = async () => {
     if (!channelPodId.trim()) {
-      toast.error('Pod ID is required');
+      toast.error(interfaceText("Pod ID is required"));
       return;
     }
 
@@ -1115,7 +1120,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getChannels(channelPodId);
       setChannels(asArray(result));
     } catch (error_) {
-      toast.error(`Failed to get channels: ${error_.message}`);
+      toast.error(interfaceText("Failed to get channels: {message}", { "message": (error_.message) }));
       setChannels([]);
     } finally {
       setChannelsLoading(false);
@@ -1124,12 +1129,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCreateChannel = async () => {
     if (!channelPodId.trim()) {
-      toast.error('Pod ID is required');
+      toast.error(interfaceText("Pod ID is required"));
       return;
     }
 
     if (!newChannelName.trim()) {
-      toast.error('Channel name is required');
+      toast.error(interfaceText("Channel name is required"));
       return;
     }
 
@@ -1140,12 +1145,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         name: newChannelName,
       };
       await mediacore.createChannel(channelPodId, channel);
-      toast.success(`Channel "${newChannelName}" created successfully`);
+      toast.success(interfaceText("Channel \"{newChannelName}\" created successfully", { "newChannelName": (newChannelName) }));
       setNewChannelName('');
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(`Failed to create channel: ${error_.message}`);
+      toast.error(interfaceText("Failed to create channel: {message}", { "message": (error_.message) }));
     } finally {
       setCreateChannelLoading(false);
     }
@@ -1153,7 +1158,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUpdateChannel = async (channelId) => {
     if (!editChannelName.trim()) {
-      toast.error('Channel name is required');
+      toast.error(interfaceText("Channel name is required"));
       return;
     }
 
@@ -1165,13 +1170,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         name: editChannelName,
       };
       await mediacore.updateChannel(channelPodId, channelId, updatedChannel);
-      toast.success(`Channel updated successfully`);
+      toast.success(interfaceText("Channel updated successfully"));
       setEditingChannel(null);
       setEditChannelName('');
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(`Failed to update channel: ${error_.message}`);
+      toast.error(interfaceText("Failed to update channel: {message}", { "message": (error_.message) }));
     } finally {
       setUpdateChannelLoading(false);
     }
@@ -1189,11 +1194,11 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       setDeleteChannelLoading(true);
       await mediacore.deleteChannel(channelPodId, channelId);
-      toast.success(`Channel "${channelName}" deleted successfully`);
+      toast.success(interfaceText("Channel \"{channelName}\" deleted successfully", { "channelName": (channelName) }));
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(`Failed to delete channel: ${error_.message}`);
+      toast.error(interfaceText("Failed to delete channel: {message}", { "message": (error_.message) }));
     } finally {
       setDeleteChannelLoading(false);
     }
@@ -1212,7 +1217,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Content Linking handlers
   const handleValidateContentId = async () => {
     if (!contentId.trim()) {
-      toast.error('Content ID is required');
+      toast.error(interfaceText("Content ID is required"));
       return;
     }
 
@@ -1229,7 +1234,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       }
     } catch (error_) {
       setContentValidation({ error: error_.message, isValid: false });
-      toast.error(`Failed to validate content ID: ${error_.message}`);
+      toast.error(interfaceText("Failed to validate content ID: {message}", { "message": (error_.message) }));
     } finally {
       setContentValidationLoading(false);
     }
@@ -1248,7 +1253,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         setNewPodName(`${metadata.artist} - ${metadata.title}`);
       }
     } catch (error_) {
-      toast.error(`Failed to get content metadata: ${error_.message}`);
+      toast.error(interfaceText("Failed to get content metadata: {message}", { "message": (error_.message) }));
       setContentMetadata(null);
     } finally {
       setContentMetadataLoading(false);
@@ -1268,7 +1273,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setContentSearchResults(results);
     } catch (error_) {
-      toast.error(`Failed to search content: ${error_.message}`);
+      toast.error(interfaceText("Failed to search content: {message}", { "message": (error_.message) }));
       setContentSearchResults([]);
     } finally {
       setContentSearchLoading(false);
@@ -1277,17 +1282,17 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCreateContentLinkedPod = async () => {
     if (!contentId.trim()) {
-      toast.error('Content ID is required');
+      toast.error(interfaceText("Content ID is required"));
       return;
     }
 
     if (!newPodName.trim()) {
-      toast.error('Pod name is required');
+      toast.error(interfaceText("Pod name is required"));
       return;
     }
 
     if (!contentValidation?.isValid) {
-      toast.error('Please validate the content ID first');
+      toast.error(interfaceText("Please validate the content ID first"));
       return;
     }
 
@@ -1313,7 +1318,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       };
 
       const createdPod = await mediacore.createContentLinkedPod(podRequest);
-      toast.success(`Pod "${createdPod.name}" created successfully!`);
+      toast.success(interfaceText("Pod \"{name}\" created successfully!", { "name": (createdPod.name) }));
 
       // Reset form
       setContentId('');
@@ -1323,7 +1328,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setContentSearchQuery('');
       setContentSearchResults([]);
     } catch (error_) {
-      toast.error(`Failed to create pod: ${error_.message}`);
+      toast.error(interfaceText("Failed to create pod: {message}", { "message": (error_.message) }));
     } finally {
       setCreatePodLoading(false);
     }
@@ -1342,12 +1347,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       !opinionContentId.trim() ||
       !opinionVariantHash.trim()
     ) {
-      toast.error('Pod ID, Content ID, and Variant Hash are required');
+      toast.error(interfaceText("Pod ID, Content ID, and Variant Hash are required"));
       return;
     }
 
     if (opinionScore < 0 || opinionScore > 10) {
-      toast.error('Score must be between 0 and 10');
+      toast.error(interfaceText("Score must be between 0 and 10"));
       return;
     }
 
@@ -1362,7 +1367,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       };
 
       await mediacore.publishOpinion(opinionPodId.trim(), opinion);
-      toast.success('Opinion published successfully');
+      toast.success(interfaceText("Opinion published successfully"));
 
       // Reset form
       setOpinionContentId('');
@@ -1375,7 +1380,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         await handleGetOpinions();
       }
     } catch (error_) {
-      toast.error(`Failed to publish opinion: ${error_.message}`);
+      toast.error(interfaceText("Failed to publish opinion: {message}", { "message": (error_.message) }));
     } finally {
       setPublishOpinionLoading(false);
     }
@@ -1383,7 +1388,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetOpinions = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error('Pod ID and Content ID are required');
+      toast.error(interfaceText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1395,7 +1400,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setOpinions(result);
     } catch (error_) {
-      toast.error(`Failed to get opinions: ${error_.message}`);
+      toast.error(interfaceText("Failed to get opinions: {message}", { "message": (error_.message) }));
       setOpinions([]);
     } finally {
       setGetOpinionsLoading(false);
@@ -1404,7 +1409,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetOpinionStatistics = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error('Pod ID and Content ID are required');
+      toast.error(interfaceText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1416,7 +1421,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setOpinionStatistics(stats);
     } catch (error_) {
-      toast.error(`Failed to get opinion statistics: ${error_.message}`);
+      toast.error(interfaceText("Failed to get opinion statistics: {message}", { "message": (error_.message) }));
       setOpinionStatistics(null);
     } finally {
       setGetStatsLoading(false);
@@ -1425,21 +1430,21 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRefreshOpinions = async () => {
     if (!opinionPodId.trim()) {
-      toast.error('Pod ID is required');
+      toast.error(interfaceText("Pod ID is required"));
       return;
     }
 
     try {
       setRefreshOpinionsLoading(true);
       const result = await mediacore.refreshPodOpinions(opinionPodId.trim());
-      toast.success(`Refreshed ${result.opinionsRefreshed} opinions`);
+      toast.success(interfaceText("Refreshed {opinionsRefreshed} opinions", { "opinionsRefreshed": (result.opinionsRefreshed) }));
 
       // Refresh current view
       if (opinionContentId) {
         await Promise.all([handleGetOpinions(), handleGetOpinionStatistics()]);
       }
     } catch (error_) {
-      toast.error(`Failed to refresh opinions: ${error_.message}`);
+      toast.error(interfaceText("Failed to refresh opinions: {message}", { "message": (error_.message) }));
     } finally {
       setRefreshOpinionsLoading(false);
     }
@@ -1448,7 +1453,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Opinion Aggregation handlers
   const handleGetAggregatedOpinions = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error('Pod ID and Content ID are required');
+      toast.error(interfaceText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1460,7 +1465,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setAggregatedOpinions(aggregated);
     } catch (error_) {
-      toast.error(`Failed to get aggregated opinions: ${error_.message}`);
+      toast.error(interfaceText("Failed to get aggregated opinions: {message}", { "message": (error_.message) }));
       setAggregatedOpinions(null);
     } finally {
       setGetAggregatedLoading(false);
@@ -1469,7 +1474,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetMemberAffinities = async () => {
     if (!opinionPodId.trim()) {
-      toast.error('Pod ID is required');
+      toast.error(interfaceText("Pod ID is required"));
       return;
     }
 
@@ -1480,7 +1485,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMemberAffinities(affinities);
     } catch (error_) {
-      toast.error(`Failed to get member affinities: ${error_.message}`);
+      toast.error(interfaceText("Failed to get member affinities: {message}", { "message": (error_.message) }));
       setMemberAffinities({});
     } finally {
       setGetAffinitiesLoading(false);
@@ -1489,7 +1494,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetConsensusRecommendations = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error('Pod ID and Content ID are required');
+      toast.error(interfaceText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1501,7 +1506,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setConsensusRecommendations(recommendations);
     } catch (error_) {
-      toast.error(`Failed to get consensus recommendations: ${error_.message}`);
+      toast.error(interfaceText("Failed to get consensus recommendations: {message}", { "message": (error_.message) }));
       setConsensusRecommendations([]);
     } finally {
       setGetRecommendationsLoading(false);
@@ -1510,7 +1515,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUpdateMemberAffinities = async () => {
     if (!opinionPodId.trim()) {
-      toast.error('Pod ID is required');
+      toast.error(interfaceText("Pod ID is required"));
       return;
     }
 
@@ -1519,12 +1524,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.updateMemberAffinities(
         opinionPodId.trim(),
       );
-      toast.success(`Updated affinities for ${result.membersUpdated} members`);
+      toast.success(interfaceText("Updated affinities for {membersUpdated} members", { "membersUpdated": (result.membersUpdated) }));
 
       // Refresh affinities display
       await handleGetMemberAffinities();
     } catch (error_) {
-      toast.error(`Failed to update member affinities: ${error_.message}`);
+      toast.error(interfaceText("Failed to update member affinities: {message}", { "message": (error_.message) }));
     } finally {
       setUpdateAffinitiesLoading(false);
     }
@@ -1538,37 +1543,28 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="podcast" />
-                PodCore DHT Publishing
-              </Card.Header>
+                <LocalizedText source={"PodCore DHT Publishing"} /></Card.Header>
               <Card.Description>
-                Publish and manage pod metadata on the decentralized DHT for
-                discovery
-              </Card.Description>
-              <PodWorkflowNotice title="Publishes pod metadata">
-                Publishing or updating a listed pod can make pod identifiers,
-                tags, focus content IDs, and descriptive metadata discoverable
-                by other mesh participants.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Publish and manage pod metadata on the decentralized DHT for discovery"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Publishes pod metadata")} {...interfaceTextProps("Publishes pod metadata")}>
+                <LocalizedText source={"Publishing or updating a listed pod can make pod identifiers, tags, focus content IDs, and descriptive metadata discoverable by other mesh participants."} /></PodWorkflowNotice>
             </Card.Content>
 
             <Card.Content>
               <Message info>
-                <Message.Header>Retrieve DHT metadata first</Message.Header>
+                <Message.Header><LocalizedText source={"Retrieve DHT metadata first"} /></Message.Header>
                 <p>
-                  Metadata retrieval and publishing statistics are read-only.
-                  Publishing and unpublishing pod metadata are grouped below as
-                  advanced DHT mutation controls.
-                </p>
+                  <LocalizedText source={"Metadata retrieval and publishing statistics are read-only. Publishing and unpublishing pod metadata are grouped below as advanced DHT mutation controls."} /></p>
               </Message>
               {/* Retrieve Pod Metadata */}
-              <Header size="small">Retrieve Pod Metadata</Header>
+              <Header size="small"><LocalizedText source={"Retrieve Pod Metadata"} /></Header>
               <Form>
                 <Form.Input
-                  label="Pod ID"
+                  label={interfaceText("Pod ID")}
                   onChange={(e) => setPodMetadataToRetrieve(e.target.value)}
                   placeholder="pod:artist:mb:daft-punk-hash"
                   value={podMetadataToRetrieve}
-                />
+                 {...interfaceTextProps("Pod ID")}/>
                 <Button
                   tooltip="Query the DHT for this pod’s signed metadata so you can inspect the record participants may discover. This is a manual lookup."
                   disabled={
@@ -1577,8 +1573,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   loading={retrievingPodMetadata}
                   onClick={handleRetrievePodMetadata}
                 >
-                  Retrieve Metadata
-                </Button>
+                  <LocalizedText source={"Retrieve Metadata"} /></Button>
               </Form>
 
               {podMetadataResult && (
@@ -1586,41 +1581,40 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   {podMetadataResult.error ? (
                     <Message error>
                       <p>
-                        Failed to retrieve metadata: {podMetadataResult.error}
+                        <LocalizedText source={"Failed to retrieve metadata:"} />{" "}{podMetadataResult.error}
                       </p>
                     </Message>
                   ) : podMetadataResult.found ? (
                     <Message success>
                       <Message.Header>
-                        Pod Metadata Retrieved
-                      </Message.Header>
+                        <LocalizedText source={"Pod Metadata Retrieved"} /></Message.Header>
                       <p>
-                        <strong>Pod ID:</strong>{' '}
+                        <strong><LocalizedText source={"Pod ID:"} /></strong>{' '}
                         {podMetadataResult.podId?.value ||
                           podMetadataResult.podId}
                         <br />
-                        <strong>Signature Valid:</strong>{' '}
-                        {podMetadataResult.isValidSignature ? 'Yes' : 'No'}
+                        <strong><LocalizedText source={"Signature Valid:"} /></strong>{' '}
+                        {podMetadataResult.isValidSignature ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                         <br />
-                        <strong>Retrieved:</strong>{' '}
+                        <strong><LocalizedText source={"Retrieved:"} /></strong>{' '}
                         {new Date(
                           podMetadataResult.retrievedAt,
                         ).toLocaleString(getRegionalLocale())}
                         <br />
-                        <strong>Expires:</strong>{' '}
+                        <strong><LocalizedText source={"Expires:"} /></strong>{' '}
                         {new Date(podMetadataResult.expiresAt).toLocaleString(getRegionalLocale())}
                         <br />
-                        <strong>Display Name:</strong>{' '}
+                        <strong><LocalizedText source={"Display Name:"} /></strong>{' '}
                         {podMetadataResult.publishedPod?.displayName}
                         <br />
-                        <strong>Members:</strong>{' '}
+                        <strong><LocalizedText source={"Members:"} /></strong>{' '}
                         {podMetadataResult.publishedPod?.metadata?.memberCount ||
                           'Unknown'}
                       </p>
                     </Message>
                   ) : (
                     <Message warning>
-                      <p>Pod not found in DHT</p>
+                      <p><LocalizedText source={"Pod not found in DHT"} /></p>
                     </Message>
                   )}
                 </div>
@@ -1629,23 +1623,20 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
             <Card.Content>
               <details>
-                <summary>Advanced DHT publishing controls</summary>
+                <summary><LocalizedText source={"Advanced DHT publishing controls"} /></summary>
                 <Message warning>
-                  Publishing or unpublishing pod metadata changes DHT-visible
-                  records. Confirm visibility, tags, focus content, and target
-                  pod ID before applying changes.
-                </Message>
+                  <LocalizedText source={"Publishing or unpublishing pod metadata changes DHT-visible records. Confirm visibility, tags, focus content, and target pod ID before applying changes."} /></Message>
                 <Grid>
                   <Grid.Column width={8}>
-                  <Header size="small">Publish Pod to DHT</Header>
+                  <Header size="small"><LocalizedText source={"Publish Pod to DHT"} /></Header>
                   <Form>
                     <Form.TextArea
-                      label="Pod JSON"
+                      label={interfaceText("Pod JSON")}
                       onChange={(e) => setPodToPublish(e.target.value)}
-                      placeholder='{"id": {"value": "pod:artist:mb:daft-punk-hash"}, "displayName": "Daft Punk Fans", "visibility": "Listed", "focusType": "ContentId", "focusContentId": {"domain": "audio", "type": "artist", "id": "daft-punk-hash"}, "tags": ["electronic", "french-house"], "createdAt": "2024-01-01T00:00:00Z", "createdBy": "alice", "metadata": {"description": "A community for Daft Punk fans", "memberCount": 150}}'
+                      placeholder={"{\"id\": {\"value\": \"pod:artist:mb:daft-punk-hash\"}, \"displayName\": \"Daft Punk Fans\", \"visibility\": \"Listed\", \"focusType\": \"ContentId\", \"focusContentId\": {\"domain\": \"audio\", \"type\": \"artist\", \"id\": \"daft-punk-hash\"}, \"tags\": [\"electronic\", \"french-house\"], \"createdAt\": \"2024-01-01T00:00:00Z\", \"createdBy\": \"alice\", \"metadata\": {\"description\": \"A community for Daft Punk fans\", \"memberCount\": 150}}"}
                       rows={6}
                       value={podToPublish}
-                    />
+                     {...interfaceTextProps("Pod JSON")} dir="ltr"/>
                     <Button
                       tooltip="Publish this pod metadata to the DHT so mesh participants can discover it. Review its visibility, tags, and focus content before publishing."
                       disabled={publishingPod || !podToPublish.trim()}
@@ -1653,8 +1644,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       onClick={handlePublishPod}
                       primary
                     >
-                      Publish Pod
-                    </Button>
+                      <LocalizedText source={"Publish Pod"} /></Button>
                   </Form>
 
                   {podPublishingResult && (
@@ -1662,28 +1652,27 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {podPublishingResult.error ? (
                         <Message error>
                           <p>
-                            Failed to publish pod: {podPublishingResult.error}
+                            <LocalizedText source={"Failed to publish pod:"} />{" "}{podPublishingResult.error}
                           </p>
                         </Message>
                       ) : (
                         <Message success>
                           <Message.Header>
-                            Pod Published Successfully
-                          </Message.Header>
+                            <LocalizedText source={"Pod Published Successfully"} /></Message.Header>
                           <p>
-                            <strong>Pod ID:</strong>{' '}
+                            <strong><LocalizedText source={"Pod ID:"} /></strong>{' '}
                             {podPublishingResult.podId?.value ||
                               podPublishingResult.podId}
                             <br />
-                            <strong>DHT Key:</strong>{' '}
+                            <strong><LocalizedText source={"DHT Key:"} /></strong>{' '}
                             {podPublishingResult.dhtKey}
                             <br />
-                            <strong>Published:</strong>{' '}
+                            <strong><LocalizedText source={"Published:"} /></strong>{' '}
                             {new Date(
                               podPublishingResult.publishedAt,
                             ).toLocaleString(getRegionalLocale())}
                             <br />
-                            <strong>Expires:</strong>{' '}
+                            <strong><LocalizedText source={"Expires:"} /></strong>{' '}
                             {new Date(
                               podPublishingResult.expiresAt,
                             ).toLocaleString(getRegionalLocale())}
@@ -1696,14 +1685,14 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Grid.Column width={8}>
                   {/* Unpublish Pod */}
-                  <Header size="small">Unpublish Pod from DHT</Header>
+                  <Header size="small"><LocalizedText source={"Unpublish Pod from DHT"} /></Header>
                   <Form>
                     <Form.Input
-                      label="Pod ID"
+                      label={interfaceText("Pod ID")}
                       onChange={(e) => setPodToUnpublish(e.target.value)}
                       placeholder="pod:artist:mb:daft-punk-hash"
                       value={podToUnpublish}
-                    />
+                     {...interfaceTextProps("Pod ID")}/>
                     <Button
                       tooltip="Remove this pod’s metadata from the DHT so discovery no longer advertises it. Use this when you want to withdraw a listing."
                       color="red"
@@ -1712,8 +1701,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={unpublishingPod}
                       onClick={handleUnpublishPod}
                     >
-                      Unpublish Pod
-                    </Button>
+                      <LocalizedText source={"Unpublish Pod"} /></Button>
                   </Form>
 
                   {podUnpublishResult && (
@@ -1721,12 +1709,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {podUnpublishResult.error ? (
                         <Message error>
                           <p>
-                            Failed to unpublish pod: {podUnpublishResult.error}
+                            <LocalizedText source={"Failed to unpublish pod:"} />{" "}{podUnpublishResult.error}
                           </p>
                         </Message>
                       ) : (
                         <Message success>
-                          <p>Pod unpublished successfully from DHT</p>
+                          <p><LocalizedText source={"Pod unpublished successfully from DHT"} /></p>
                         </Message>
                       )}
                     </div>
@@ -1746,44 +1734,43 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={handleLoadPodPublishingStats}
                   primary
                 >
-                  Load Pod Publishing Stats
-                </Button>
+                  <LocalizedText source={"Load Pod Publishing Stats"} /></Button>
               </Button.Group>
 
               {podPublishingStats && !podPublishingStats.error && (
                 <div style={{ marginTop: '1em' }}>
                   <Message>
-                    <Message.Header>Pod Publishing Statistics</Message.Header>
+                    <Message.Header><LocalizedText source={"Pod Publishing Statistics"} /></Message.Header>
                     <p>
-                      <strong>Total Published:</strong>{' '}
+                      <strong><LocalizedText source={"Total Published:"} /></strong>{' '}
                       {podPublishingStats.totalPublished}
                       <br />
-                      <strong>Active Publications:</strong>{' '}
+                      <strong><LocalizedText source={"Active Publications:"} /></strong>{' '}
                       {podPublishingStats.activePublications}
                       <br />
-                      <strong>Expired Publications:</strong>{' '}
+                      <strong><LocalizedText source={"Expired Publications:"} /></strong>{' '}
                       {podPublishingStats.expiredPublications}
                       <br />
-                      <strong>Failed Publications:</strong>{' '}
+                      <strong><LocalizedText source={"Failed Publications:"} /></strong>{' '}
                       {podPublishingStats.failedPublications}
                       <br />
-                      <strong>Avg Publish Time:</strong>{' '}
+                      <strong><LocalizedText source={"Avg Publish Time:"} /></strong>{' '}
                       {podPublishingStats.averagePublishTime
                         ? `${podPublishingStats.averagePublishTime.totalMilliseconds.toFixed(0)}ms`
-                        : 'N/A'}
+                        : interfaceText('N/A')}
                       <br />
-                      <strong>Last Operation:</strong>{' '}
+                      <strong><LocalizedText source={"Last Operation:"} /></strong>{' '}
                       {podPublishingStats.lastPublishOperation
                         ? new Date(
                             podPublishingStats.lastPublishOperation,
                           ).toLocaleString(getRegionalLocale())
-                        : 'Never'}
+                        : <LocalizedText source={"Never"} />}
                     </p>
                     {podPublishingStats.publicationsByVisibility &&
                       Object.keys(podPublishingStats.publicationsByVisibility)
                         .length > 0 && (
                         <div style={{ marginTop: '0.5em' }}>
-                          <strong>Publications by Visibility:</strong>
+                          <strong><LocalizedText source={"Publications by Visibility:"} /></strong>
                           {Object.entries(
                             podPublishingStats.publicationsByVisibility,
                           ).map(([visibility, count]) => (
@@ -1807,7 +1794,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   style={{ marginTop: '1em' }}
                 >
                   <p>
-                    Failed to load pod publishing stats:{' '}
+                    <LocalizedText source={"Failed to load pod publishing stats:"} />{' '}
                     {podPublishingStats.error}
                   </p>
                 </Message>
@@ -1822,45 +1809,36 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="users" />
-                Pod Membership Management
-              </Card.Header>
+                <LocalizedText source={"Pod Membership Management"} /></Card.Header>
               <Card.Description>
-                Manage signed membership records in DHT with role-based access
-                control
-              </Card.Description>
-              <PodWorkflowNotice title="Publishes membership state">
-                Membership records can reveal peer IDs, roles, bans, public
-                keys, and pod participation history. Verify the record before
-                publishing it.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Manage signed membership records in DHT with role-based access control"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Publishes membership state")} {...interfaceTextProps("Publishes membership state")}>
+                <LocalizedText source={"Membership records can reveal peer IDs, roles, bans, public keys, and pod participation history. Verify the record before publishing it."} /></PodWorkflowNotice>
             </Card.Content>
 
             <Card.Content>
               <Message info>
-                <Message.Header>Verify membership before changing it</Message.Header>
+                <Message.Header><LocalizedText source={"Verify membership before changing it"} /></Message.Header>
                 <p>
-                  Getting, verifying, and loading membership stats are read-only.
-                  Publishing membership records, role changes, bans, and cleanup
-                  are grouped below as advanced membership mutation controls.
-                </p>
+                  <LocalizedText source={"Getting, verifying, and loading membership stats are read-only. Publishing membership records, role changes, bans, and cleanup are grouped below as advanced membership mutation controls."} /></p>
               </Message>
               <Grid>
                 <Grid.Column width={8}>
                   {/* Get Membership */}
-                  <Header size="small">Get Membership Record</Header>
+                  <Header size="small"><LocalizedText source={"Get Membership Record"} /></Header>
                   <Form>
                     <Form.Input
-                      label="Pod ID"
+                      label={interfaceText("Pod ID")}
                       onChange={(e) => setMembershipPodId(e.target.value)}
                       placeholder="pod:artist:mb:daft-punk-hash"
                       value={membershipPodId}
-                    />
+                     {...interfaceTextProps("Pod ID")}/>
                     <Form.Input
-                      label="Peer ID"
+                      label={interfaceText("Peer ID")}
                       onChange={(e) => setMembershipPeerId(e.target.value)}
-                      placeholder="alice"
+                      placeholder={interfaceText("alice")}
                       value={membershipPeerId}
-                    />
+                     {...interfaceTextProps("Peer ID")}/>
                     <Button.Group fluid>
                       <Button
                         tooltip="Look up the selected peer’s membership record for this pod so you can review its role and status."
@@ -1872,8 +1850,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         loading={gettingMembership}
                         onClick={handleGetMembership}
                       >
-                        Get Membership
-                      </Button>
+                        <LocalizedText source={"Get Membership"} /></Button>
                       <Button
                         tooltip="Verify the selected peer’s signed membership record before relying on its role or ban status."
                         disabled={
@@ -1884,8 +1861,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         loading={verifyingMembership}
                         onClick={handleVerifyMembership}
                       >
-                        Verify Membership
-                      </Button>
+                        <LocalizedText source={"Verify Membership"} /></Button>
                     </Button.Group>
                   </Form>
 
@@ -1895,39 +1871,39 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {membershipResult.error ? (
                         <Message error>
                           <p>
-                            Failed to get membership: {membershipResult.error}
+                            <LocalizedText source={"Failed to get membership:"} />{" "}{membershipResult.error}
                           </p>
                         </Message>
                       ) : membershipResult.found ? (
                         <Message success>
-                          <Message.Header>Membership Found</Message.Header>
+                          <Message.Header><LocalizedText source={"Membership Found"} /></Message.Header>
                           <p>
-                            <strong>Pod ID:</strong> {membershipResult.podId}
+                            <strong><LocalizedText source={"Pod ID:"} /></strong> {membershipResult.podId}
                             <br />
-                            <strong>Peer ID:</strong> {membershipResult.peerId}
+                            <strong><LocalizedText source={"Peer ID:"} /></strong> {membershipResult.peerId}
                             <br />
-                            <strong>Role:</strong>{' '}
+                            <strong><LocalizedText source={"Role:"} /></strong>{' '}
                             {membershipResult.signedRecord?.membership?.role}
                             <br />
-                            <strong>Banned:</strong>{' '}
+                            <strong><LocalizedText source={"Banned:"} /></strong>{' '}
                             {membershipResult.signedRecord?.membership?.isBanned
-                              ? 'Yes'
-                              : 'No'}
+                              ? <LocalizedText source={"Yes"} />
+                              : <LocalizedText source={"No"} />}
                             <br />
-                            <strong>Signature Valid:</strong>{' '}
-                            {membershipResult.isValidSignature ? 'Yes' : 'No'}
+                            <strong><LocalizedText source={"Signature Valid:"} /></strong>{' '}
+                            {membershipResult.isValidSignature ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                             <br />
-                            <strong>Joined:</strong>{' '}
+                            <strong><LocalizedText source={"Joined:"} /></strong>{' '}
                             {membershipResult.signedRecord?.membership?.joinedAt
                               ? new Date(
                                   membershipResult.signedRecord.membership.joinedAt,
                                 ).toLocaleString(getRegionalLocale())
-                              : 'Unknown'}
+                              : <LocalizedText source={"Unknown"} />}
                           </p>
                         </Message>
                       ) : (
                         <Message warning>
-                          <p>Membership not found in DHT</p>
+                          <p><LocalizedText source={"Membership not found in DHT"} /></p>
                         </Message>
                       )}
                     </div>
@@ -1939,26 +1915,25 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {membershipVerification.error ? (
                         <Message error>
                           <p>
-                            Failed to verify membership:{' '}
+                            <LocalizedText source={"Failed to verify membership:"} />{' '}
                             {membershipVerification.error}
                           </p>
                         </Message>
                       ) : (
                         <Message info>
                           <Message.Header>
-                            Membership Verification
-                          </Message.Header>
+                            <LocalizedText source={"Membership Verification"} /></Message.Header>
                           <p>
-                            <strong>Valid Member:</strong>{' '}
+                            <strong><LocalizedText source={"Valid Member:"} /></strong>{' '}
                             {membershipVerification.isValidMember
-                              ? 'Yes'
-                              : 'No'}
+                              ? <LocalizedText source={"Yes"} />
+                              : <LocalizedText source={"No"} />}
                             <br />
-                            <strong>Role:</strong>{' '}
+                            <strong><LocalizedText source={"Role:"} /></strong>{' '}
                             {membershipVerification.role || 'None'}
                             <br />
-                            <strong>Banned:</strong>{' '}
-                            {membershipVerification.isBanned ? 'Yes' : 'No'}
+                            <strong><LocalizedText source={"Banned:"} /></strong>{' '}
+                            {membershipVerification.isBanned ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                           </p>
                         </Message>
                       )}
@@ -1968,23 +1943,20 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Grid.Column width={8}>
                   <details>
-                    <summary>Advanced member mutation controls</summary>
+                    <summary><LocalizedText source={"Advanced member mutation controls"} /></summary>
                     <Message warning>
-                      Banning members and changing roles publish membership
-                      state for the selected pod and peer. Verify the current
-                      membership record before applying changes.
-                    </Message>
+                      <LocalizedText source={"Banning members and changing roles publish membership state for the selected pod and peer. Verify the current membership record before applying changes."} /></Message>
                   {/* Member Management */}
-                  <Header size="small">Member Management</Header>
+                  <Header size="small"><LocalizedText source={"Member Management"} /></Header>
 
                   {/* Ban Member */}
                   <Form style={{ marginBottom: '1em' }}>
                     <Form.Input
-                      label="Ban Reason (optional)"
+                      label={interfaceText("Ban Reason (optional)")}
                       onChange={(e) => setBanReason(e.target.value)}
-                      placeholder="Violation of community rules"
+                      placeholder={interfaceText("Violation of community rules")}
                       value={banReason}
-                    />
+                     {...interfaceTextProps("Ban Reason (optional)")}/>
                     <Button
                       tooltip="Ban the selected peer from this pod after reviewing the membership record and reason. This publishes a membership change."
                       color="red"
@@ -1997,22 +1969,21 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={banningMember}
                       onClick={handleBanMember}
                     >
-                      Ban Member
-                    </Button>
+                      <LocalizedText source={"Ban Member"} /></Button>
                   </Form>
 
                   {/* Change Role */}
                   <Form>
                     <Form.Select
-                      label="New Role"
+                      label={interfaceText("New Role")}
                       onChange={(e, { value }) => setNewRole(value)}
                       options={[
-                        { key: 'member', text: 'Member', value: 'member' },
-                        { key: 'mod', text: 'Moderator', value: 'mod' },
-                        { key: 'owner', text: 'Owner', value: 'owner' },
+                        { key: 'member', text: interfaceText("Member"), value: 'member' },
+                        { key: 'mod', text: interfaceText("Moderator"), value: 'mod' },
+                        { key: 'owner', text: interfaceText("Owner"), value: 'owner' },
                       ]}
                       value={newRole}
-                    />
+                     {...interfaceTextProps("New Role")}/>
                     <Button
                       tooltip="Change the selected peer’s pod role. Use this to grant or remove moderator or owner duties after verifying the peer."
                       color="blue"
@@ -2025,8 +1996,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={changingRole}
                       onClick={handleChangeRole}
                     >
-                      Change Role
-                    </Button>
+                      <LocalizedText source={"Change Role"} /></Button>
                   </Form>
 
                   {/* Management Results */}
@@ -2035,7 +2005,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       style={{ marginTop: '1em' }}
                       success
                     >
-                      <p>Member banned successfully</p>
+                      <p><LocalizedText source={"Member banned successfully"} /></p>
                     </Message>
                   )}
 
@@ -2044,7 +2014,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       style={{ marginTop: '1em' }}
                       success
                     >
-                      <p>Member role changed successfully</p>
+                      <p><LocalizedText source={"Member role changed successfully"} /></p>
                     </Message>
                   )}
                   </details>
@@ -2055,20 +2025,18 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             {/* Publish Membership */}
             <Card.Content>
               <details>
-                <summary>Advanced membership publishing controls</summary>
+                <summary><LocalizedText source={"Advanced membership publishing controls"} /></summary>
                 <Message warning>
-                  Publishing membership records can expose peer IDs, roles,
-                  public keys, ban state, and pod participation history.
-                </Message>
-                <Header size="small">Publish Membership Record</Header>
+                  <LocalizedText source={"Publishing membership records can expose peer IDs, roles, public keys, ban state, and pod participation history."} /></Message>
+                <Header size="small"><LocalizedText source={"Publish Membership Record"} /></Header>
                 <Form>
                   <Form.TextArea
-                    label="Membership Record JSON"
+                    label={interfaceText("Membership Record JSON")}
                     onChange={(e) => setMembershipRecord(e.target.value)}
                     placeholder='{"podId": "pod:artist:mb:daft-punk-hash", "peerId": "alice", "role": "member", "isBanned": false, "publicKey": "base64-ed25519-key", "joinedAt": "2024-01-01T00:00:00Z"}'
                     rows={4}
                     value={membershipRecord}
-                  />
+                   {...interfaceTextProps("Membership Record JSON")}/>
                   <Button
                     tooltip="Publish this signed membership record to the DHT so peers can verify participation and roles. Check peer IDs and key material first."
                     disabled={publishingMembership || !membershipRecord.trim()}
@@ -2076,8 +2044,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     onClick={handlePublishMembership}
                     primary
                   >
-                    Publish Membership
-                  </Button>
+                    <LocalizedText source={"Publish Membership"} /></Button>
                 </Form>
 
                 {membershipPublishResult && (
@@ -2085,31 +2052,30 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     {membershipPublishResult.error ? (
                       <Message error>
                         <p>
-                          Failed to publish membership:{' '}
+                          <LocalizedText source={"Failed to publish membership:"} />{' '}
                           {membershipPublishResult.error}
                         </p>
                       </Message>
                     ) : (
                       <Message success>
                         <Message.Header>
-                          Membership Published Successfully
-                        </Message.Header>
+                          <LocalizedText source={"Membership Published Successfully"} /></Message.Header>
                         <p>
-                          <strong>Pod ID:</strong>{' '}
+                          <strong><LocalizedText source={"Pod ID:"} /></strong>{' '}
                           {membershipPublishResult.podId}
                           <br />
-                          <strong>Peer ID:</strong>{' '}
+                          <strong><LocalizedText source={"Peer ID:"} /></strong>{' '}
                           {membershipPublishResult.peerId}
                           <br />
-                          <strong>DHT Key:</strong>{' '}
+                          <strong><LocalizedText source={"DHT Key:"} /></strong>{' '}
                           {membershipPublishResult.dhtKey}
                           <br />
-                          <strong>Published:</strong>{' '}
+                          <strong><LocalizedText source={"Published:"} /></strong>{' '}
                           {new Date(
                             membershipPublishResult.publishedAt,
                           ).toLocaleString(getRegionalLocale())}
                           <br />
-                          <strong>Expires:</strong>{' '}
+                          <strong><LocalizedText source={"Expires:"} /></strong>{' '}
                           {new Date(
                             membershipPublishResult.expiresAt,
                           ).toLocaleString(getRegionalLocale())}
@@ -2131,54 +2097,50 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={handleLoadMembershipStats}
                   primary
                 >
-                  Load Membership Stats
-                </Button>
+                  <LocalizedText source={"Load Membership Stats"} /></Button>
               </Button.Group>
 
               <details style={{ marginTop: '1em' }}>
-                <summary>Advanced membership cleanup controls</summary>
+                <summary><LocalizedText source={"Advanced membership cleanup controls"} /></summary>
                 <Message warning>
-                  Cleanup removes expired membership records from local
-                  membership state. Load stats before running cleanup.
-                </Message>
+                  <LocalizedText source={"Cleanup removes expired membership records from local membership state. Load stats before running cleanup."} /></Message>
                 <Button
                   tooltip="Remove expired membership records from local state to clear stale entries. Review membership stats first."
                   color="orange"
                   onClick={handleCleanupMemberships}
                 >
-                  Cleanup Expired
-                </Button>
+                  <LocalizedText source={"Cleanup Expired"} /></Button>
               </details>
 
               {membershipStats && !membershipStats.error && (
                 <div style={{ marginTop: '1em' }}>
                   <Message>
-                    <Message.Header>Membership Statistics</Message.Header>
+                    <Message.Header><LocalizedText source={"Membership Statistics"} /></Message.Header>
                     <p>
-                      <strong>Total Memberships:</strong>{' '}
+                      <strong><LocalizedText source={"Total Memberships:"} /></strong>{' '}
                       {membershipStats.totalMemberships}
                       <br />
-                      <strong>Active Memberships:</strong>{' '}
+                      <strong><LocalizedText source={"Active Memberships:"} /></strong>{' '}
                       {membershipStats.activeMemberships}
                       <br />
-                      <strong>Banned Memberships:</strong>{' '}
+                      <strong><LocalizedText source={"Banned Memberships:"} /></strong>{' '}
                       {membershipStats.bannedMemberships}
                       <br />
-                      <strong>Expired Memberships:</strong>{' '}
+                      <strong><LocalizedText source={"Expired Memberships:"} /></strong>{' '}
                       {membershipStats.expiredMemberships}
                       <br />
-                      <strong>Last Operation:</strong>{' '}
+                      <strong><LocalizedText source={"Last Operation:"} /></strong>{' '}
                       {membershipStats.lastOperation
                         ? new Date(
                             membershipStats.lastOperation,
                           ).toLocaleString(getRegionalLocale())
-                        : 'Never'}
+                        : <LocalizedText source={"Never"} />}
                     </p>
                     {membershipStats.membershipsByRole &&
                       Object.keys(membershipStats.membershipsByRole).length >
                         0 && (
                         <div style={{ marginTop: '0.5em' }}>
-                          <strong>Memberships by Role:</strong>
+                          <strong><LocalizedText source={"Memberships by Role:"} /></strong>
                           {Object.entries(
                             membershipStats.membershipsByRole,
                           ).map(([role, count]) => (
@@ -2202,7 +2164,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   style={{ marginTop: '1em' }}
                 >
                   <p>
-                    Failed to load membership stats: {membershipStats.error}
+                    <LocalizedText source={"Failed to load membership stats:"} />{" "}{membershipStats.error}
                   </p>
                 </Message>
               )}
@@ -2216,40 +2178,34 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="shield" />
-                Pod Membership Verification
-              </Card.Header>
+                <LocalizedText source={"Pod Membership Verification"} /></Card.Header>
               <Card.Description>
-                Verify membership status, message authenticity, and role
-                permissions for pod security
-              </Card.Description>
+                <LocalizedText source={"Verify membership status, message authenticity, and role permissions for pod security"} /></Card.Description>
               <PodWorkflowNotice
                 color="blue"
                 icon="check circle"
-                title="Read-only verification"
-              >
-                Verification checks should not mutate pod state, but pasted
-                messages and membership records can still contain sensitive
-                peer or signature data.
-              </PodWorkflowNotice>
+                title={interfaceText("Read-only verification")}
+               {...interfaceTextProps("Read-only verification")}>
+                <LocalizedText source={"Verification checks should not mutate pod state, but pasted messages and membership records can still contain sensitive peer or signature data."} /></PodWorkflowNotice>
             </Card.Content>
 
             {/* Membership Verification */}
             <Card.Content>
-              <Header size="small">Verify Membership Status</Header>
+              <Header size="small"><LocalizedText source={"Verify Membership Status"} /></Header>
               <Form>
                 <Form.Group widths="equal">
                   <Form.Input
-                    label="Pod ID"
+                    label={interfaceText("Pod ID")}
                     onChange={(e) => setVerifyPodId(e.target.value)}
                     placeholder="pod:artist:mb:daft-punk-hash"
                     value={verifyPodId}
-                  />
+                   {...interfaceTextProps("Pod ID")}/>
                   <Form.Input
-                    label="Peer ID"
+                    label={interfaceText("Peer ID")}
                     onChange={(e) => setVerifyPeerId(e.target.value)}
-                    placeholder="alice"
+                    placeholder={interfaceText("alice")}
                     value={verifyPeerId}
-                  />
+                   {...interfaceTextProps("Peer ID")}/>
                 </Form.Group>
                 <Button
                   tooltip="Check the selected peer’s membership proof and signature for this pod before relying on the claimed membership."
@@ -2262,8 +2218,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   loading={verifyingMembership}
                   onClick={handleVerifyPodMembership}
                 >
-                  Verify Membership
-                </Button>
+                  <LocalizedText source={"Verify Membership"} /></Button>
               </Form>
 
               {membershipVerificationResult && (
@@ -2271,26 +2226,25 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   {membershipVerificationResult.error ? (
                     <Message error>
                       <p>
-                        Failed to verify membership:{' '}
+                        <LocalizedText source={"Failed to verify membership:"} />{' '}
                         {membershipVerificationResult.error}
                       </p>
                     </Message>
                   ) : (
                     <Message success>
                       <Message.Header>
-                        Membership Verification Result
-                      </Message.Header>
+                        <LocalizedText source={"Membership Verification Result"} /></Message.Header>
                       <p>
-                        <strong>Valid Member:</strong>{' '}
+                        <strong><LocalizedText source={"Valid Member:"} /></strong>{' '}
                         {membershipVerificationResult.isValidMember
-                          ? 'Yes'
-                          : 'No'}
+                          ? <LocalizedText source={"Yes"} />
+                          : <LocalizedText source={"No"} />}
                         <br />
-                        <strong>Role:</strong>{' '}
+                        <strong><LocalizedText source={"Role:"} /></strong>{' '}
                         {membershipVerificationResult.role || 'None'}
                         <br />
-                        <strong>Banned:</strong>{' '}
-                        {membershipVerificationResult.isBanned ? 'Yes' : 'No'}
+                        <strong><LocalizedText source={"Banned:"} /></strong>{' '}
+                        {membershipVerificationResult.isBanned ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                       </p>
                     </Message>
                   )}
@@ -2302,15 +2256,15 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               <Grid>
                 <Grid.Column width={8}>
                   {/* Message Verification */}
-                  <Header size="small">Verify Message Authenticity</Header>
+                  <Header size="small"><LocalizedText source={"Verify Message Authenticity"} /></Header>
                   <Form>
                     <Form.TextArea
-                      label="Pod Message JSON"
+                      label={interfaceText("Pod Message JSON")}
                       onChange={(e) => setMessageToVerify(e.target.value)}
                       placeholder='{"messageId": "msg123", "channelId": "pod:artist:mb:daft-punk-hash:general", "senderPeerId": "alice", "body": "Hello everyone!", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature"}'
                       rows={4}
                       value={messageToVerify}
-                    />
+                     {...interfaceTextProps("Pod Message JSON")}/>
                     <Button
                       tooltip="Validate the supplied message signature so you can detect altered or untrusted pod messages."
                       disabled={verifyingMessage || !messageToVerify.trim()}
@@ -2318,8 +2272,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={verifyingMessage}
                       onClick={handleVerifyMessage}
                     >
-                      Verify Message
-                    </Button>
+                      <LocalizedText source={"Verify Message"} /></Button>
                   </Form>
 
                   {messageVerificationResult && (
@@ -2327,33 +2280,32 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {messageVerificationResult.error ? (
                         <Message error>
                           <p>
-                            Failed to verify message:{' '}
+                            <LocalizedText source={"Failed to verify message:"} />{' '}
                             {messageVerificationResult.error}
                           </p>
                         </Message>
                       ) : (
                         <Message info>
                           <Message.Header>
-                            Message Verification Result
-                          </Message.Header>
+                            <LocalizedText source={"Message Verification Result"} /></Message.Header>
                           <p>
-                            <strong>Valid:</strong>{' '}
-                            {messageVerificationResult.isValid ? 'Yes' : 'No'}
+                            <strong><LocalizedText source={"Valid:"} /></strong>{' '}
+                            {messageVerificationResult.isValid ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                             <br />
-                            <strong>From Valid Member:</strong>{' '}
+                            <strong><LocalizedText source={"From Valid Member:"} /></strong>{' '}
                             {messageVerificationResult.isFromValidMember
-                              ? 'Yes'
-                              : 'No'}
+                              ? <LocalizedText source={"Yes"} />
+                              : <LocalizedText source={"No"} />}
                             <br />
-                            <strong>Not Banned:</strong>{' '}
+                            <strong><LocalizedText source={"Not Banned:"} /></strong>{' '}
                             {messageVerificationResult.isNotBanned
-                              ? 'Yes'
-                              : 'No'}
+                              ? <LocalizedText source={"Yes"} />
+                              : <LocalizedText source={"No"} />}
                             <br />
-                            <strong>Valid Signature:</strong>{' '}
+                            <strong><LocalizedText source={"Valid Signature:"} /></strong>{' '}
                             {messageVerificationResult.hasValidSignature
-                              ? 'Yes'
-                              : 'No'}
+                              ? <LocalizedText source={"Yes"} />
+                              : <LocalizedText source={"No"} />}
                           </p>
                         </Message>
                       )}
@@ -2363,32 +2315,32 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Grid.Column width={8}>
                   {/* Role Checking */}
-                  <Header size="small">Check Role Permissions</Header>
+                  <Header size="small"><LocalizedText source={"Check Role Permissions"} /></Header>
                   <Form>
                     <Form.Group widths="equal">
                       <Form.Input
-                        label="Pod ID"
+                        label={interfaceText("Pod ID")}
                         onChange={(e) => setRoleCheckPodId(e.target.value)}
                         placeholder="pod:artist:mb:daft-punk-hash"
                         value={roleCheckPodId}
-                      />
+                       {...interfaceTextProps("Pod ID")}/>
                       <Form.Input
-                        label="Peer ID"
+                        label={interfaceText("Peer ID")}
                         onChange={(e) => setRoleCheckPeerId(e.target.value)}
-                        placeholder="alice"
+                        placeholder={interfaceText("alice")}
                         value={roleCheckPeerId}
-                      />
+                       {...interfaceTextProps("Peer ID")}/>
                     </Form.Group>
                     <Form.Select
-                      label="Required Role"
+                      label={interfaceText("Required Role")}
                       onChange={(e, { value }) => setRequiredRole(value)}
                       options={[
-                        { key: 'member', text: 'Member', value: 'member' },
-                        { key: 'mod', text: 'Moderator', value: 'mod' },
-                        { key: 'owner', text: 'Owner', value: 'owner' },
+                        { key: 'member', text: interfaceText("Member"), value: 'member' },
+                        { key: 'mod', text: interfaceText("Moderator"), value: 'mod' },
+                        { key: 'owner', text: interfaceText("Owner"), value: 'owner' },
                       ]}
                       value={requiredRole}
-                    />
+                     {...interfaceTextProps("Required Role")}/>
                     <Button
                       tooltip="Check whether this peer has the required role in the selected pod before authorizing an operation."
                       disabled={
@@ -2400,22 +2352,21 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={checkingRole}
                       onClick={handleCheckRole}
                     >
-                      Check Role
-                    </Button>
+                      <LocalizedText source={"Check Role"} /></Button>
                   </Form>
 
                   {roleCheckResult && (
                     <div style={{ marginTop: '1em' }}>
                       {roleCheckResult.error ? (
                         <Message error>
-                          <p>Failed to check role: {roleCheckResult.error}</p>
+                          <p><LocalizedText source={"Failed to check role:"} />{" "}{roleCheckResult.error}</p>
                         </Message>
                       ) : (
                         <Message>
-                          <Message.Header>Role Check Result</Message.Header>
+                          <Message.Header><LocalizedText source={"Role Check Result"} /></Message.Header>
                           <p>
-                            <strong>Has Required Role ({requiredRole}):</strong>{' '}
-                            {roleCheckResult.hasRole ? 'Yes' : 'No'}
+                            <strong><LocalizedText source={"Has Required Role ("} />{requiredRole}):</strong>{' '}
+                            {roleCheckResult.hasRole ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                           </p>
                         </Message>
                       )}
@@ -2435,39 +2386,37 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={handleLoadVerificationStats}
                   primary
                 >
-                  Load Verification Stats
-                </Button>
+                  <LocalizedText source={"Load Verification Stats"} /></Button>
               </Button.Group>
 
               {verificationStats && !verificationStats.error && (
                 <div style={{ marginTop: '1em' }}>
                   <Message>
-                    <Message.Header>Verification Statistics</Message.Header>
+                    <Message.Header><LocalizedText source={"Verification Statistics"} /></Message.Header>
                     <p>
-                      <strong>Total Verifications:</strong>{' '}
+                      <strong><LocalizedText source={"Total Verifications:"} /></strong>{' '}
                       {verificationStats.totalVerifications}
                       <br />
-                      <strong>Successful:</strong>{' '}
+                      <strong><LocalizedText source={"Successful:"} /></strong>{' '}
                       {verificationStats.successfulVerifications}
                       <br />
-                      <strong>Failed Membership:</strong>{' '}
+                      <strong><LocalizedText source={"Failed Membership:"} /></strong>{' '}
                       {verificationStats.failedMembershipChecks}
                       <br />
-                      <strong>Failed Signatures:</strong>{' '}
+                      <strong><LocalizedText source={"Failed Signatures:"} /></strong>{' '}
                       {verificationStats.failedSignatureChecks}
                       <br />
-                      <strong>Banned Rejections:</strong>{' '}
+                      <strong><LocalizedText source={"Banned Rejections:"} /></strong>{' '}
                       {verificationStats.bannedMemberRejections}
                       <br />
-                      <strong>Avg Time:</strong>{' '}
-                      {verificationStats.averageVerificationTimeMs.toFixed(2)}ms
-                      <br />
-                      <strong>Last Verification:</strong>{' '}
+                      <strong><LocalizedText source={"Avg Time:"} /></strong>{' '}
+                      {verificationStats.averageVerificationTimeMs.toFixed(2)}<LocalizedText source={"ms"} /><br />
+                      <strong><LocalizedText source={"Last Verification:"} /></strong>{' '}
                       {verificationStats.lastVerification
                         ? new Date(
                             verificationStats.lastVerification,
                           ).toLocaleString(getRegionalLocale())
-                        : 'Never'}
+                        : <LocalizedText source={"Never"} />}
                     </p>
                   </Message>
                 </div>
@@ -2479,7 +2428,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   style={{ marginTop: '1em' }}
                 >
                   <p>
-                    Failed to load verification stats: {verificationStats.error}
+                    <LocalizedText source={"Failed to load verification stats:"} />{" "}{verificationStats.error}
                   </p>
                 </Message>
               )}
@@ -2493,21 +2442,15 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="search" />
-                Pod Discovery
-              </Card.Header>
+                <LocalizedText source={"Pod Discovery"} /></Card.Header>
               <Card.Description>
-                Discover pods via DHT using name slugs, tags, and content
-                associations
-              </Card.Description>
+                <LocalizedText source={"Discover pods via DHT using name slugs, tags, and content associations"} /></Card.Description>
               <PodWorkflowNotice
                 color="blue"
                 icon="info circle"
-                title="Mostly read-only discovery"
-              >
-                Search operations are read-only, but registering, updating,
-                unregistering, or refreshing discovery data changes public pod
-                discovery state.
-              </PodWorkflowNotice>
+                title={interfaceText("Mostly read-only discovery")}
+               {...interfaceTextProps("Mostly read-only discovery")}>
+                <LocalizedText source={"Search operations are read-only, but registering, updating, unregistering, or refreshing discovery data changes public pod discovery state."} /></PodWorkflowNotice>
             </Card.Content>
 
             <Card.Content>
@@ -2515,18 +2458,15 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 info
                 size="small"
               >
-                <Message.Header>Find pods first</Message.Header>
-                Name, tag, content, and limited registry searches are the
-                normal discovery path. Registry mutation controls are grouped
-                below because they publish or remove public discovery records.
-              </Message>
+                <Message.Header><LocalizedText source={"Find pods first"} /></Message.Header>
+                <LocalizedText source={"Name, tag, content, and limited registry searches are the normal discovery path. Registry mutation controls are grouped below because they publish or remove public discovery records."} /></Message>
             </Card.Content>
 
             <Card.Content>
               <Grid>
                 <Grid.Column width={4}>
                   {/* Discover by Name */}
-                  <Header size="small">By Name</Header>
+                  <Header size="small"><LocalizedText source={"By Name"} /></Header>
                   <Form>
                     <Form.Input
                       onChange={(e) => setDiscoverByName(e.target.value)}
@@ -2540,8 +2480,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={discoveringByName}
                       onClick={handleDiscoverByName}
                     >
-                      Discover
-                    </Button>
+                      <LocalizedText source={"Discover"} /></Button>
                   </Form>
 
                   {nameDiscoveryResult && (
@@ -2558,7 +2497,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p>Found {nameDiscoveryResult.totalFound} pods</p>
+                          <p><LocalizedText source={"Found"} />{" "}{nameDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
                         </Message>
                       )}
                     </div>
@@ -2567,13 +2506,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Grid.Column width={4}>
                   {/* Discover by Tag */}
-                  <Header size="small">By Tag</Header>
+                  <Header size="small"><LocalizedText source={"By Tag"} /></Header>
                   <Form>
                     <Form.Input
                       onChange={(e) => setDiscoverByTag(e.target.value)}
-                      placeholder="electronic"
+                      placeholder={interfaceText("electronic")}
                       value={discoverByTag}
-                    />
+                     {...interfaceTextProps("electronic")}/>
                     <Button
                       tooltip="Run a manual discovery lookup for pods with this tag. Use it to browse a topic; the query contacts the pod discovery service."
                       disabled={discoveringByTag || !discoverByTag.trim()}
@@ -2581,8 +2520,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={discoveringByTag}
                       onClick={handleDiscoverByTag}
                     >
-                      Discover
-                    </Button>
+                      <LocalizedText source={"Discover"} /></Button>
                   </Form>
 
                   {tagDiscoveryResult && (
@@ -2599,7 +2537,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p>Found {tagDiscoveryResult.totalFound} pods</p>
+                          <p><LocalizedText source={"Found"} />{" "}{tagDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
                         </Message>
                       )}
                     </div>
@@ -2608,13 +2546,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Grid.Column width={4}>
                   {/* Discover by Tags */}
-                  <Header size="small">By Tags (AND)</Header>
+                  <Header size="small"><LocalizedText source={"By Tags (AND)"} /></Header>
                   <Form>
                     <Form.Input
                       onChange={(e) => setDiscoverTags(e.target.value)}
-                      placeholder="electronic,french-house"
+                      placeholder={interfaceText("electronic,french-house")}
                       value={discoverTags}
-                    />
+                     {...interfaceTextProps("electronic,french-house")}/>
                     <Button
                       tooltip="Run a manual lookup for pods matching the entered tags. Use it to narrow discovery to a combination of topics."
                       disabled={discoveringByTags || !discoverTags.trim()}
@@ -2622,8 +2560,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={discoveringByTags}
                       onClick={handleDiscoverByTags}
                     >
-                      Discover
-                    </Button>
+                      <LocalizedText source={"Discover"} /></Button>
                   </Form>
 
                   {tagsDiscoveryResult && (
@@ -2640,7 +2577,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p>Found {tagsDiscoveryResult.totalFound} pods</p>
+                          <p><LocalizedText source={"Found"} />{" "}{tagsDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
                         </Message>
                       )}
                     </div>
@@ -2649,10 +2586,10 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Grid.Column width={4}>
                   {/* Discover All */}
-                  <Header size="small">All Pods</Header>
+                  <Header size="small"><LocalizedText source={"All Pods"} /></Header>
                   <Form>
                     <Form.Input
-                      label="Limit"
+                      label={interfaceText("Limit")}
                       max="1000"
                       min="1"
                       onChange={(e) =>
@@ -2660,7 +2597,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       }
                       type="number"
                       value={discoverLimit}
-                    />
+                     {...interfaceTextProps("Limit")}/>
                     <Button
                       tooltip="Browse a bounded sample of discoverable pods. This performs a manual discovery request using the selected result limit."
                       disabled={discoveringAll}
@@ -2668,8 +2605,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={discoveringAll}
                       onClick={handleDiscoverAll}
                     >
-                      Discover
-                    </Button>
+                      <LocalizedText source={"Discover"} /></Button>
                   </Form>
 
                   {allDiscoveryResult && (
@@ -2686,7 +2622,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p>Found {allDiscoveryResult.totalFound} pods</p>
+                          <p><LocalizedText source={"Found"} />{" "}{allDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
                         </Message>
                       )}
                     </div>
@@ -2699,7 +2635,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               <Grid>
                 <Grid.Column width={8}>
                   {/* Discover by Content */}
-                  <Header size="small">By Content ID</Header>
+                  <Header size="small"><LocalizedText source={"By Content ID"} /></Header>
                   <Form>
                     <Form.Input
                       onChange={(e) => setDiscoverByContent(e.target.value)}
@@ -2715,8 +2651,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={discoveringByContent}
                       onClick={handleDiscoverByContent}
                     >
-                      Discover
-                    </Button>
+                      <LocalizedText source={"Discover"} /></Button>
                   </Form>
 
                   {contentDiscoveryResult && (
@@ -2733,7 +2668,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p>Found {contentDiscoveryResult.totalFound} pods</p>
+                          <p><LocalizedText source={"Found"} />{" "}{contentDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
                         </Message>
                       )}
                     </div>
@@ -2742,7 +2677,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Grid.Column width={8}>
                   {/* Discovery Stats */}
-                  <Header size="small">Discovery Statistics</Header>
+                  <Header size="small"><LocalizedText source={"Discovery Statistics"} /></Header>
                   <Button.Group fluid>
                     <Button
                       tooltip="Load discovery index counts and freshness so you can review the current local index state."
@@ -2750,36 +2685,33 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={loadingDiscoveryStats}
                       onClick={handleLoadDiscoveryStats}
                     >
-                      Load Stats
-                    </Button>
+                      <LocalizedText source={"Load Stats"} /></Button>
                     <Button
                       tooltip="Refresh the pod discovery index and expire stale entries. Use this when discovery results appear out of date."
                       color="blue"
                       onClick={handleRefreshDiscovery}
                     >
-                      Refresh
-                    </Button>
+                      <LocalizedText source={"Refresh"} /></Button>
                   </Button.Group>
 
                   {discoveryStats && !discoveryStats.error && (
                     <div style={{ marginTop: '0.5em' }}>
                       <Message size="tiny">
                         <p>
-                          <strong>Registered Pods:</strong>{' '}
+                          <strong><LocalizedText source={"Registered Pods:"} /></strong>{' '}
                           {discoveryStats.totalRegisteredPods}
                           <br />
-                          <strong>Active Entries:</strong>{' '}
+                          <strong><LocalizedText source={"Active Entries:"} /></strong>{' '}
                           {discoveryStats.activeDiscoveryEntries}
                           <br />
-                          <strong>Expired Entries:</strong>{' '}
+                          <strong><LocalizedText source={"Expired Entries:"} /></strong>{' '}
                           {discoveryStats.expiredEntries}
                           <br />
-                          <strong>Avg Search Time:</strong>{' '}
+                          <strong><LocalizedText source={"Avg Search Time:"} /></strong>{' '}
                           {discoveryStats.averageDiscoveryTime?.totalMilliseconds.toFixed(
                             0,
                           )}
-                          ms
-                        </p>
+                          <LocalizedText source={"ms"} /></p>
                       </Message>
                     </div>
                   )}
@@ -2800,26 +2732,23 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <details>
                 <summary>
-                  Advanced registry publishing controls
-                </summary>
+                  <LocalizedText source={"Advanced registry publishing controls"} /></summary>
                 <Message
                   size="small"
                   warning
                 >
-                  Registering, unregistering, updating, or refreshing pod
-                  discovery entries changes public DHT-visible pod metadata.
-                </Message>
+                  <LocalizedText source={"Registering, unregistering, updating, or refreshing pod discovery entries changes public DHT-visible pod metadata."} /></Message>
                 <Grid stackable>
                   <Grid.Column width={8}>
-                    <Header size="small">Register Pod for Discovery</Header>
+                    <Header size="small"><LocalizedText source={"Register Pod for Discovery"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Pod JSON (must have Visibility: Listed)"
+                        label={interfaceText("Pod JSON (must have Visibility: Listed)")}
                         onChange={(e) => setPodToRegister(e.target.value)}
                         placeholder='{"podId": "pod:artist:mb:daft-punk-hash", "name": "Daft Punk Fans", "visibility": "Listed", "focusContentId": "content:audio:artist:daft-punk", "tags": ["electronic", "french-house"]}'
                         rows={3}
                         value={podToRegister}
-                      />
+                       {...interfaceTextProps("Pod JSON (must have Visibility: Listed)")} dir="ltr"/>
                       <Button
                         tooltip="Publish this pod to the discovery index so others can find it. Check its public metadata and visibility before registering."
                         disabled={registeringPod || !podToRegister.trim()}
@@ -2827,8 +2756,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         onClick={handleRegisterPodForDiscovery}
                         primary
                       >
-                        Register Pod
-                      </Button>
+                        <LocalizedText source={"Register Pod"} /></Button>
                     </Form>
 
                     {podRegistrationResult && (
@@ -2836,28 +2764,27 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         {podRegistrationResult.error ? (
                           <Message error>
                             <p>
-                              Failed to register pod:{' '}
+                              <LocalizedText source={"Failed to register pod:"} />{' '}
                               {podRegistrationResult.error}
                             </p>
                           </Message>
                         ) : (
                           <Message success>
                             <Message.Header>
-                              Pod Registered for Discovery
-                            </Message.Header>
+                              <LocalizedText source={"Pod Registered for Discovery"} /></Message.Header>
                             <p>
-                              <strong>Pod ID:</strong>{' '}
+                              <strong><LocalizedText source={"Pod ID:"} /></strong>{' '}
                               {podRegistrationResult.podId}
                               <br />
-                              <strong>Discovery Keys:</strong>{' '}
+                              <strong><LocalizedText source={"Discovery Keys:"} /></strong>{' '}
                               {podRegistrationResult.discoveryKeys?.join(', ')}
                               <br />
-                              <strong>Registered:</strong>{' '}
+                              <strong><LocalizedText source={"Registered:"} /></strong>{' '}
                               {new Date(
                                 podRegistrationResult.registeredAt,
                               ).toLocaleString(getRegionalLocale())}
                               <br />
-                              <strong>Expires:</strong>{' '}
+                              <strong><LocalizedText source={"Expires:"} /></strong>{' '}
                               {new Date(
                                 podRegistrationResult.expiresAt,
                               ).toLocaleString(getRegionalLocale())}
@@ -2869,14 +2796,14 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </Grid.Column>
 
                   <Grid.Column width={8}>
-                    <Header size="small">Unregister Pod from Discovery</Header>
+                    <Header size="small"><LocalizedText source={"Unregister Pod from Discovery"} /></Header>
                     <Form>
                       <Form.Input
-                        label="Pod ID"
+                        label={interfaceText("Pod ID")}
                         onChange={(e) => setPodToUnregister(e.target.value)}
                         placeholder="pod:artist:mb:daft-punk-hash"
                         value={podToUnregister}
-                      />
+                       {...interfaceTextProps("Pod ID")}/>
                       <Button
                         tooltip="Remove this pod from the discovery index so future lookups stop returning it."
                         color="red"
@@ -2884,8 +2811,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         loading={unregisteringPod}
                         onClick={handleUnregisterPodFromDiscovery}
                       >
-                        Unregister Pod
-                      </Button>
+                        <LocalizedText source={"Unregister Pod"} /></Button>
                     </Form>
 
                     {podUnregistrationResult && (
@@ -2893,13 +2819,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         {podUnregistrationResult.error ? (
                           <Message error>
                             <p>
-                              Failed to unregister pod:{' '}
+                              <LocalizedText source={"Failed to unregister pod:"} />{' '}
                               {podUnregistrationResult.error}
                             </p>
                           </Message>
                         ) : (
                           <Message success>
-                            <p>Pod unregistered from discovery successfully</p>
+                            <p><LocalizedText source={"Pod unregistered from discovery successfully"} /></p>
                           </Message>
                         )}
                       </div>
@@ -2917,54 +2843,42 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="user plus" />
-                Pod Join/Leave Operations
-              </Card.Header>
+                <LocalizedText source={"Pod Join/Leave Operations"} /></Card.Header>
               <Card.Description>
-                Manage signed pod membership operations with cryptographic
-                Ed25519 verification and role-based approvals
-              </Card.Description>
-              <PodWorkflowNotice title="Publishes join and leave events">
-                Join and leave requests can expose peer IDs, requested roles,
-                public keys, signatures, and operator-provided messages.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Manage signed pod membership operations with cryptographic Ed25519 verification and role-based approvals"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Publishes join and leave events")} {...interfaceTextProps("Publishes join and leave events")}>
+                <LocalizedText source={"Join and leave requests can expose peer IDs, requested roles, public keys, signatures, and operator-provided messages."} /></PodWorkflowNotice>
             </Card.Content>
 
             {/* Pending Requests */}
             <Card.Content>
               <Message info>
-                <Message.Header>Review pending requests first</Message.Header>
+                <Message.Header><LocalizedText source={"Review pending requests first"} /></Message.Header>
                 <p>
-                  Loading pending join and leave requests only reads local pod
-                  state. The signed request and approval actions below publish
-                  membership events.
-                </p>
+                  <LocalizedText source={"Loading pending join and leave requests only reads local pod state. The signed request and approval actions below publish membership events."} /></p>
                 <p>
-                  In Enforce mode, signatures must use the
-                  <code>ed25519:&lt;base64 signature&gt;</code> format over
-                  the canonical join/leave payload and the supplied public key.
-                </p>
+                  <LocalizedText source={"In Enforce mode, signatures must use the"} /><code>ed25519:&lt;base64 signature&gt;</code> <LocalizedText source={"format over the canonical join/leave payload and the supplied public key."} /></p>
               </Message>
               <Form>
                 <Form.Input
-                  label="Pod ID"
+                  label={interfaceText("Pod ID")}
                   onChange={(e) => setPendingPodId(e.target.value)}
                   placeholder="pod:artist:mb:daft-punk-hash"
                   value={pendingPodId}
-                />
+                 {...interfaceTextProps("Pod ID")}/>
                 <Button
                   tooltip="Load pending join and leave requests for this pod so you can review them before accepting a membership change."
                   disabled={loadingPendingRequests || !pendingPodId.trim()}
                   loading={loadingPendingRequests}
                   onClick={handleLoadPendingRequests}
                 >
-                  Load Pending Requests
-                </Button>
+                  <LocalizedText source={"Load Pending Requests"} /></Button>
               </Form>
 
               {pendingJoinRequests && !pendingJoinRequests.error && (
                 <div style={{ marginTop: '0.5em' }}>
                   <Message size="tiny">
-                    <strong>Join Requests:</strong>{' '}
+                    <strong><LocalizedText source={"Join Requests:"} /></strong>{' '}
                     {pendingJoinRequests.pendingJoinRequests?.length || 0}
                   </Message>
                 </div>
@@ -2973,7 +2887,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               {pendingLeaveRequests && !pendingLeaveRequests.error && (
                 <div style={{ marginTop: '0.5em' }}>
                   <Message size="tiny">
-                    <strong>Leave Requests:</strong>{' '}
+                    <strong><LocalizedText source={"Leave Requests:"} /></strong>{' '}
                     {pendingLeaveRequests.pendingLeaveRequests?.length || 0}
                   </Message>
                 </div>
@@ -2986,30 +2900,27 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   size="tiny"
                   style={{ marginTop: '0.5em' }}
                 >
-                  <p>Failed to load pending requests</p>
+                  <p><LocalizedText source={"Failed to load pending requests"} /></p>
                 </Message>
               )}
             </Card.Content>
 
             <Card.Content>
               <details>
-                <summary>Advanced signed membership event controls</summary>
+                <summary><LocalizedText source={"Advanced signed membership event controls"} /></summary>
                 <Message warning>
-                  These controls submit signed JSON payloads and can publish
-                  pod membership changes. Use them after checking the pending
-                  request list for the target pod.
-                </Message>
+                  <LocalizedText source={"These controls submit signed JSON payloads and can publish pod membership changes. Use them after checking the pending request list for the target pod."} /></Message>
                 <Grid>
                   <Grid.Column width={8}>
-                    <Header size="small">Request to Join Pod</Header>
+                    <Header size="small"><LocalizedText source={"Request to Join Pod"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Join Request JSON (signed by requester)"
+                        label={interfaceText("Join Request JSON (signed by requester)")}
                         onChange={(e) => setJoinRequestData(e.target.value)}
                         placeholder='{"podId": "pod:artist:mb:daft-punk-hash", "peerId": "alice", "requestedRole": "member", "publicKey": "base64-ed25519-public-key", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature", "nonce": "unique-request-nonce", "message": "Please let me join!"}'
                         rows={4}
                         value={joinRequestData}
-                      />
+                       {...interfaceTextProps("Join Request JSON (signed by requester)")}/>
                       <Button
                         tooltip="Submit a signed request to join the pod. Use this to ask its owner or moderators for membership; the request includes the supplied identity details."
                         disabled={requestingJoin || !joinRequestData.trim()}
@@ -3017,8 +2928,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         onClick={handleRequestJoin}
                         primary
                       >
-                        Submit Join Request
-                      </Button>
+                        <LocalizedText source={"Submit Join Request"} /></Button>
                     </Form>
 
                     {joinRequestResult && (
@@ -3026,25 +2936,24 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         {joinRequestResult.error ? (
                           <Message error>
                             <p>
-                              Failed to submit join request:{' '}
+                              <LocalizedText source={"Failed to submit join request:"} />{' '}
                               {joinRequestResult.error}
                             </p>
                           </Message>
                         ) : (
                           <Message success>
                             <Message.Header>
-                              Join Request Submitted
-                            </Message.Header>
+                              <LocalizedText source={"Join Request Submitted"} /></Message.Header>
                             <p>
-                              <strong>Pod ID:</strong> {joinRequestResult.podId}
+                              <strong><LocalizedText source={"Pod ID:"} /></strong> {joinRequestResult.podId}
                               <br />
-                              <strong>Peer ID:</strong>{' '}
+                              <strong><LocalizedText source={"Peer ID:"} /></strong>{' '}
                               {joinRequestResult.peerId}
                               <br />
-                              <strong>Status:</strong>{' '}
+                              <strong><LocalizedText source={"Status:"} /></strong>{' '}
                               {joinRequestResult.success
-                                ? 'Pending approval'
-                                : 'Failed'}
+                                ? <LocalizedText source={"Pending approval"} />
+                                : <LocalizedText source={"Failed"} />}
                             </p>
                           </Message>
                         )}
@@ -3053,15 +2962,15 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </Grid.Column>
 
                   <Grid.Column width={8}>
-                    <Header size="small">Accept Join Request</Header>
+                    <Header size="small"><LocalizedText source={"Accept Join Request"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Acceptance JSON (signed by owner/mod)"
+                        label={interfaceText("Acceptance JSON (signed by owner/mod)")}
                         onChange={(e) => setAcceptanceData(e.target.value)}
                         placeholder='{"podId": "pod:artist:mb:daft-punk-hash", "peerId": "alice", "acceptedRole": "member", "acceptorPeerId": "bob", "acceptorPublicKey": "base64-ed25519-public-key", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature", "message": "Welcome!"}'
                         rows={4}
                         value={acceptanceData}
-                      />
+                       {...interfaceTextProps("Acceptance JSON (signed by owner/mod)")}/>
                       <Button
                         tooltip="Accept the signed join request and publish the membership change so the peer can participate. Verify the peer and requested role first."
                         disabled={acceptingJoin || !acceptanceData.trim()}
@@ -3069,8 +2978,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         onClick={handleAcceptJoin}
                         positive
                       >
-                        Accept Join
-                      </Button>
+                        <LocalizedText source={"Accept Join"} /></Button>
                     </Form>
 
                     {acceptanceResult && (
@@ -3087,7 +2995,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             size="tiny"
                             success
                           >
-                            <p>Join accepted successfully</p>
+                            <p><LocalizedText source={"Join accepted successfully"} /></p>
                           </Message>
                         )}
                       </div>
@@ -3095,23 +3003,22 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </Grid.Column>
 
                   <Grid.Column width={8}>
-                    <Header size="small">Request to Leave Pod</Header>
+                    <Header size="small"><LocalizedText source={"Request to Leave Pod"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Leave Request JSON (signed by member)"
+                        label={interfaceText("Leave Request JSON (signed by member)")}
                         onChange={(e) => setLeaveRequestData(e.target.value)}
                         placeholder='{"podId": "pod:artist:mb:daft-punk-hash", "peerId": "alice", "publicKey": "base64-ed25519-public-key", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature", "message": "Goodbye!"}'
                         rows={4}
                         value={leaveRequestData}
-                      />
+                       {...interfaceTextProps("Leave Request JSON (signed by member)")}/>
                       <Button
                         tooltip="Submit a signed request to leave the pod so its owner or moderators can review the membership change."
                         disabled={requestingLeave || !leaveRequestData.trim()}
                         loading={requestingLeave}
                         onClick={handleRequestLeave}
                       >
-                        Submit Leave Request
-                      </Button>
+                        <LocalizedText source={"Submit Leave Request"} /></Button>
                     </Form>
 
                     {leaveRequestResult && (
@@ -3128,7 +3035,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             size="tiny"
                             success
                           >
-                            <p>Leave request submitted</p>
+                            <p><LocalizedText source={"Leave request submitted"} /></p>
                           </Message>
                         )}
                       </div>
@@ -3137,16 +3044,15 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                   <Grid.Column width={8}>
                     <Header size="small">
-                      Accept Leave Request (Owner/Mod Only)
-                    </Header>
+                      <LocalizedText source={"Accept Leave Request (Owner/Mod Only)"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Leave Acceptance JSON (signed by owner/mod)"
+                        label={interfaceText("Leave Acceptance JSON (signed by owner/mod)")}
                         onChange={(e) => setAcceptanceData(e.target.value)}
                         placeholder='{"podId": "pod:artist:mb:daft-punk-hash", "peerId": "alice", "acceptorPeerId": "bob", "acceptorPublicKey": "base64-ed25519-public-key", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature", "message": "Farewell!"}'
                         rows={4}
                         value={acceptanceData}
-                      />
+                       {...interfaceTextProps("Leave Acceptance JSON (signed by owner/mod)")}/>
                       <Button
                         tooltip="Accept the signed leave request and publish the membership removal. Verify the peer and request before accepting."
                         disabled={acceptingLeave || !acceptanceData.trim()}
@@ -3154,8 +3060,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         negative
                         onClick={handleAcceptLeave}
                       >
-                        Accept Leave
-                      </Button>
+                        <LocalizedText source={"Accept Leave"} /></Button>
                     </Form>
 
                     {leaveAcceptanceResult && (
@@ -3172,7 +3077,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             size="tiny"
                             success
                           >
-                            <p>Leave accepted successfully</p>
+                            <p><LocalizedText source={"Leave accepted successfully"} /></p>
                           </Message>
                         )}
                       </div>
@@ -3190,45 +3095,36 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="send" />
-                Pod Message Routing
-              </Card.Header>
+                <LocalizedText source={"Pod Message Routing"} /></Card.Header>
               <Card.Description>
-                Decentralized message routing via overlay network with fanout
-                and deduplication for reliable pod communication
-              </Card.Description>
-              <PodWorkflowNotice title="Sends pod messages">
-                Routing actions can transmit message bodies and sender
-                identifiers to selected peers or overlay routes. Use
-                deduplication checks before resending.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Decentralized message routing via overlay network with fanout and deduplication for reliable pod communication"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Sends pod messages")} {...interfaceTextProps("Sends pod messages")}>
+                <LocalizedText source={"Routing actions can transmit message bodies and sender identifiers to selected peers or overlay routes. Use deduplication checks before resending."} /></PodWorkflowNotice>
             </Card.Content>
 
             <Card.Content>
               <Message info>
-                <Message.Header>Check routing state before sending</Message.Header>
+                <Message.Header><LocalizedText source={"Check routing state before sending"} /></Message.Header>
                 <p>
-                  Deduplication checks and routing statistics are read-only.
-                  Sending messages, marking messages as seen, and cleanup are
-                  grouped below as advanced routing controls.
-                </p>
+                  <LocalizedText source={"Deduplication checks and routing statistics are read-only. Sending messages, marking messages as seen, and cleanup are grouped below as advanced routing controls."} /></p>
               </Message>
               <Grid>
                 <Grid.Column width={8}>
-                  <Header size="small">Message Deduplication</Header>
+                  <Header size="small"><LocalizedText source={"Message Deduplication"} /></Header>
                   <Form>
                     <Form.Group widths="equal">
                       <Form.Input
-                        label="Message ID"
+                        label={interfaceText("Message ID")}
                         onChange={(e) => setCheckMessageId(e.target.value)}
-                        placeholder="msg123"
+                        placeholder={interfaceText("msg123")}
                         value={checkMessageId}
-                      />
+                       {...interfaceTextProps("Message ID")}/>
                       <Form.Input
-                        label="Pod ID"
+                        label={interfaceText("Pod ID")}
                         onChange={(e) => setCheckPodId(e.target.value)}
                         placeholder="pod:artist:mb:daft-punk-hash"
                         value={checkPodId}
-                      />
+                       {...interfaceTextProps("Pod ID")}/>
                     </Form.Group>
                     <Button
                       tooltip="Check whether a seen receipt exists for this message and pod before registering another one."
@@ -3241,8 +3137,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={checkingMessageSeen}
                       onClick={handleCheckMessageSeen}
                     >
-                      Check Seen
-                    </Button>
+                      <LocalizedText source={"Check Seen"} /></Button>
                   </Form>
 
                   {messageSeenResult && (
@@ -3257,11 +3152,11 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       ) : (
                         <Message size="tiny">
                           <p>
-                            Message{' '}
+                            <LocalizedText source={"Message"} />{' '}
                             {messageSeenResult.isSeen
-                              ? 'has been'
-                              : 'has not been'}{' '}
-                            seen in pod {messageSeenResult.podId}
+                              ? <LocalizedText source={"has been"} />
+                              : <LocalizedText source={"has not been"} />}{' '}
+                            <LocalizedText source={"seen in pod"} />{" "}{messageSeenResult.podId}
                           </p>
                         </Message>
                       )}
@@ -3270,7 +3165,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 </Grid.Column>
 
                 <Grid.Column width={8}>
-                  <Header size="small">Routing Statistics</Header>
+                  <Header size="small"><LocalizedText source={"Routing Statistics"} /></Header>
                   <Button
                     tooltip="Load message-routing counts and outcomes so you can review recent Pod delivery activity."
                     disabled={loadingRoutingStats}
@@ -3279,44 +3174,42 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     onClick={handleLoadRoutingStats}
                     primary
                   >
-                    Load Routing Stats
-                  </Button>
+                    <LocalizedText source={"Load Routing Stats"} /></Button>
 
                   {routingStats && !routingStats.error && (
                     <div style={{ marginTop: '1em' }}>
                       <Message>
-                        <Message.Header>Message Routing Statistics</Message.Header>
+                        <Message.Header><LocalizedText source={"Message Routing Statistics"} /></Message.Header>
                         <p>
-                          <strong>Total Messages Routed:</strong>{' '}
+                          <strong><LocalizedText source={"Total Messages Routed:"} /></strong>{' '}
                           {routingStats.totalMessagesRouted}
                           <br />
-                          <strong>Total Routing Attempts:</strong>{' '}
+                          <strong><LocalizedText source={"Total Routing Attempts:"} /></strong>{' '}
                           {routingStats.totalRoutingAttempts}
                           <br />
-                          <strong>Successful Routes:</strong>{' '}
+                          <strong><LocalizedText source={"Successful Routes:"} /></strong>{' '}
                           {routingStats.successfulRoutingCount}
                           <br />
-                          <strong>Failed Routes:</strong>{' '}
+                          <strong><LocalizedText source={"Failed Routes:"} /></strong>{' '}
                           {routingStats.failedRoutingCount}
                           <br />
-                          <strong>Avg Routing Time:</strong>{' '}
-                          {routingStats.averageRoutingTimeMs.toFixed(2)}ms
-                          <br />
-                          <strong>Deduplication Items:</strong>{' '}
+                          <strong><LocalizedText source={"Avg Routing Time:"} /></strong>{' '}
+                          {routingStats.averageRoutingTimeMs.toFixed(2)}<LocalizedText source={"ms"} /><br />
+                          <strong><LocalizedText source={"Deduplication Items:"} /></strong>{' '}
                           {routingStats.activeDeduplicationItems}
                           <br />
-                          <strong>Bloom Filter Fill:</strong>{' '}
+                          <strong><LocalizedText source={"Bloom Filter Fill:"} /></strong>{' '}
                           {(routingStats.bloomFilterFillRatio * 100).toFixed(1)}%
                           <br />
-                          <strong>Est. False Positive:</strong>{' '}
+                          <strong><LocalizedText source={"Est. False Positive:"} /></strong>{' '}
                           {(routingStats.estimatedFalsePositiveRate * 100).toFixed(4)}%
                           <br />
-                          <strong>Last Operation:</strong>{' '}
+                          <strong><LocalizedText source={"Last Operation:"} /></strong>{' '}
                           {routingStats.lastRoutingOperation
                             ? new Date(
                                 routingStats.lastRoutingOperation,
                               ).toLocaleString(getRegionalLocale())
-                            : 'Never'}
+                            : <LocalizedText source={"Never"} />}
                         </p>
                       </Message>
                     </div>
@@ -3327,7 +3220,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       error
                       style={{ marginTop: '1em' }}
                     >
-                      <p>Failed to load routing stats: {routingStats.error}</p>
+                      <p><LocalizedText source={"Failed to load routing stats:"} />{" "}{routingStats.error}</p>
                     </Message>
                   )}
                 </Grid.Column>
@@ -3336,23 +3229,20 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
             <Card.Content>
               <details>
-                <summary>Advanced message routing controls</summary>
+                <summary><LocalizedText source={"Advanced message routing controls"} /></summary>
                 <Message warning>
-                  Routing sends message bodies and sender identifiers to pod
-                  peers or overlay routes. Confirm deduplication state before
-                  resending messages.
-                </Message>
+                  <LocalizedText source={"Routing sends message bodies and sender identifiers to pod peers or overlay routes. Confirm deduplication state before resending messages."} /></Message>
                 <Grid>
                   <Grid.Column width={8}>
-                    <Header size="small">Manual Message Routing</Header>
+                    <Header size="small"><LocalizedText source={"Manual Message Routing"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Pod Message JSON"
+                        label={interfaceText("Pod Message JSON")}
                         onChange={(e) => setRouteMessageData(e.target.value)}
                         placeholder='{"messageId": "msg123", "channelId": "pod:artist:mb:daft-punk-hash:general", "senderPeerId": "alice", "body": "Hello pod!", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature"}'
                         rows={4}
                         value={routeMessageData}
-                      />
+                       {...interfaceTextProps("Pod Message JSON")}/>
                       <Button
                         tooltip="Route this message through the pod messaging service to its eligible recipients. Use this to deliver a message to the pod."
                         disabled={routingMessage || !routeMessageData.trim()}
@@ -3360,42 +3250,39 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         onClick={handleRouteMessage}
                         primary
                       >
-                        Route Message
-                      </Button>
+                        <LocalizedText source={"Route Message"} /></Button>
                     </Form>
 
                     {routingResult && (
                       <div style={{ marginTop: '1em' }}>
                         {routingResult.error ? (
                           <Message error>
-                            <p>Failed to route message: {routingResult.error}</p>
+                            <p><LocalizedText source={"Failed to route message:"} />{" "}{routingResult.error}</p>
                           </Message>
                         ) : (
                           <Message success>
                             <Message.Header>
-                              Message Routed Successfully
-                            </Message.Header>
+                              <LocalizedText source={"Message Routed Successfully"} /></Message.Header>
                             <p>
-                              <strong>Message ID:</strong>{' '}
+                              <strong><LocalizedText source={"Message ID:"} /></strong>{' '}
                               {routingResult.messageId}
                               <br />
-                              <strong>Pod ID:</strong> {routingResult.podId}
+                              <strong><LocalizedText source={"Pod ID:"} /></strong> {routingResult.podId}
                               <br />
-                              <strong>Target Peers:</strong>{' '}
+                              <strong><LocalizedText source={"Target Peers:"} /></strong>{' '}
                               {routingResult.targetPeerCount}
                               <br />
-                              <strong>Successfully Routed:</strong>{' '}
+                              <strong><LocalizedText source={"Successfully Routed:"} /></strong>{' '}
                               {routingResult.successfullyRoutedCount}
                               <br />
-                              <strong>Failed:</strong>{' '}
+                              <strong><LocalizedText source={"Failed:"} /></strong>{' '}
                               {routingResult.failedRoutingCount}
                               <br />
-                              <strong>Duration:</strong>{' '}
+                              <strong><LocalizedText source={"Duration:"} /></strong>{' '}
                               {routingResult.routingDuration?.totalMilliseconds?.toFixed(
                                 0,
                               )}
-                              ms
-                            </p>
+                              <LocalizedText source={"ms"} /></p>
                           </Message>
                         )}
                       </div>
@@ -3403,21 +3290,21 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </Grid.Column>
 
                   <Grid.Column width={8}>
-                    <Header size="small">Route to Specific Peers</Header>
+                    <Header size="small"><LocalizedText source={"Route to Specific Peers"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Pod Message JSON"
+                        label={interfaceText("Pod Message JSON")}
                         onChange={(e) => setRouteToPeersMessage(e.target.value)}
                         placeholder='{"messageId": "msg123", "channelId": "pod:artist:mb:daft-punk-hash:general", "senderPeerId": "alice", "body": "Direct message", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature"}'
                         rows={3}
                         value={routeToPeersMessage}
-                      />
+                       {...interfaceTextProps("Pod Message JSON")}/>
                       <Form.Input
-                        label="Target Peer IDs (comma-separated)"
+                        label={interfaceText("Target Peer IDs (comma-separated)")}
                         onChange={(e) => setRouteToPeersIds(e.target.value)}
-                        placeholder="bob,charlie,diana"
+                        placeholder={interfaceText("bob,charlie,diana")}
                         value={routeToPeersIds}
-                      />
+                       {...interfaceTextProps("Target Peer IDs (comma-separated)")}/>
                       <Button
                         tooltip="Route this message only to the listed peer IDs. Confirm the recipients because each selected peer receives the payload."
                         disabled={
@@ -3429,8 +3316,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         loading={routingToPeers}
                         onClick={handleRouteMessageToPeers}
                       >
-                        Route to Peers
-                      </Button>
+                        <LocalizedText source={"Route to Peers"} /></Button>
                     </Form>
 
                     {routingToPeersResult && (
@@ -3448,10 +3334,9 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             size="tiny"
                           >
                             <p>
-                              Routed to{' '}
+                              <LocalizedText source={"Routed to"} />{' '}
                               {routingToPeersResult.successfullyRoutedCount}/
-                              {routingToPeersResult.targetPeerCount} peers
-                            </p>
+                              {routingToPeersResult.targetPeerCount} <LocalizedText source={"peers"} /></p>
                           </Message>
                         )}
                       </div>
@@ -3463,27 +3348,22 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
             <Card.Content>
               <details>
-                <summary>Advanced seen-state cleanup controls</summary>
+                <summary><LocalizedText source={"Advanced seen-state cleanup controls"} /></summary>
                 <Message warning>
-                  Marking messages as seen and cleanup mutate local routing
-                  deduplication state. Use them only after checking the target
-                  message and pod IDs.
-                </Message>
+                  <LocalizedText source={"Marking messages as seen and cleanup mutate local routing deduplication state. Use them only after checking the target message and pod IDs."} /></Message>
                 <Button
                   tooltip="Record a seen receipt for this message and pod so the message state reflects that it was observed."
                   color="blue"
                   disabled={!checkMessageId.trim() || !checkPodId.trim()}
                   onClick={handleRegisterMessageSeen}
                 >
-                  Mark Seen
-                </Button>
+                  <LocalizedText source={"Mark Seen"} /></Button>
                 <Button
                   tooltip="Remove expired seen-message receipts from local state to clear stale routing records."
                   color="red"
                   onClick={handleCleanupSeenMessages}
                 >
-                  Cleanup Seen Messages
-                </Button>
+                  <LocalizedText source={"Cleanup Seen Messages"} /></Button>
               </details>
             </Card.Content>
           </Card>
@@ -3495,28 +3375,20 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="database" />
-                Pod Message Storage
-              </Card.Header>
+                <LocalizedText source={"Pod Message Storage"} /></Card.Header>
               <Card.Description>
-                SQLite-backed message storage with full-text search and
-                retention policies
-              </Card.Description>
-              <PodWorkflowNotice title="Mutates local message storage">
-                Cleanup, rebuild, and vacuum actions affect local pod message
-                storage. Search and count actions are read-only.
-              </PodWorkflowNotice>
+                <LocalizedText source={"SQLite-backed message storage with full-text search and retention policies"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Mutates local message storage")} {...interfaceTextProps("Mutates local message storage")}>
+                <LocalizedText source={"Cleanup, rebuild, and vacuum actions affect local pod message storage. Search and count actions are read-only."} /></PodWorkflowNotice>
             </Card.Content>
 
             {/* Message Storage */}
             <Card.Content>
-              <Header size="small">Storage Review</Header>
+              <Header size="small"><LocalizedText source={"Storage Review"} /></Header>
               <Message info>
-                <Message.Header>Review storage before maintenance</Message.Header>
+                <Message.Header><LocalizedText source={"Review storage before maintenance"} /></Message.Header>
                 <p>
-                  Storage statistics and message search are read-only.
-                  Cleanup, index rebuild, and vacuum operations are grouped
-                  below as advanced local maintenance actions.
-                </p>
+                  <LocalizedText source={"Storage statistics and message search are read-only. Cleanup, index rebuild, and vacuum operations are grouped below as advanced local maintenance actions."} /></p>
               </Message>
 
               <div style={{ marginBottom: '1em' }}>
@@ -3527,17 +3399,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleGetStorageStats()}
                   size="small"
                 >
-                  Get Storage Stats
-                </Button>
+                  <LocalizedText source={"Get Storage Stats"} /></Button>
               </div>
 
               <details style={{ marginBottom: '1em' }}>
-                <summary>Advanced storage maintenance controls</summary>
+                <summary><LocalizedText source={"Advanced storage maintenance controls"} /></summary>
                 <Message warning>
-                  Cleanup, search-index rebuild, and vacuum operations mutate
-                  local pod message storage. Review storage stats before
-                  running maintenance.
-                </Message>
+                  <LocalizedText source={"Cleanup, search-index rebuild, and vacuum operations mutate local pod message storage. Review storage stats before running maintenance."} /></Message>
                 <Button
                   tooltip="Permanently remove local pod messages older than 30 days. Use this to reclaim storage after reviewing the retention period."
                   color="purple"
@@ -3545,8 +3413,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleCleanupMessages()}
                   size="small"
                 >
-                  Cleanup Old Messages (30 days)
-                </Button>
+                  <LocalizedText source={"Cleanup Old Messages (30 days)"} /></Button>
 
                 <Button
                   tooltip="Rebuild the local message search index from stored messages if search results are stale or incomplete."
@@ -3555,8 +3422,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleRebuildSearchIndex()}
                   size="small"
                 >
-                  Rebuild Search Index
-                </Button>
+                  <LocalizedText source={"Rebuild Search Index"} /></Button>
 
                 <Button
                   tooltip="Run SQLite vacuum to compact the local message database and reclaim unused file space. This may take time."
@@ -3565,8 +3431,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleVacuumDatabase()}
                   size="small"
                 >
-                  Vacuum Database
-                </Button>
+                  <LocalizedText source={"Vacuum Database"} /></Button>
               </details>
 
               {storageStats && (
@@ -3574,35 +3439,35 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   size="small"
                   style={{ marginBottom: '1em' }}
                 >
-                  <Message.Header>Message Storage Statistics</Message.Header>
+                  <Message.Header><LocalizedText source={"Message Storage Statistics"} /></Message.Header>
                   <p>
-                    <strong>Total Messages:</strong>{' '}
+                    <strong><LocalizedText source={"Total Messages:"} /></strong>{' '}
                     {storageStats.totalMessages?.toLocaleString(getRegionalLocale()) || 0}
                     <br />
-                    <strong>Estimated Size:</strong>{' '}
+                    <strong><LocalizedText source={"Estimated Size:"} /></strong>{' '}
                     {(storageStats.totalSizeBytes / (1_024 * 1_024)).toFixed(2)}{' '}
                     MB
                     <br />
-                    <strong>Oldest Message:</strong>{' '}
+                    <strong><LocalizedText source={"Oldest Message:"} /></strong>{' '}
                     {storageStats.oldestMessage
                       ? new Date(storageStats.oldestMessage).toLocaleString(getRegionalLocale())
-                      : 'None'}
+                      : <LocalizedText source={"None"} />}
                     <br />
-                    <strong>Newest Message:</strong>{' '}
+                    <strong><LocalizedText source={"Newest Message:"} /></strong>{' '}
                     {storageStats.newestMessage
                       ? new Date(storageStats.newestMessage).toLocaleString(getRegionalLocale())
-                      : 'None'}
+                      : <LocalizedText source={"None"} />}
                     <br />
-                    <strong>Pods with Messages:</strong>{' '}
+                    <strong><LocalizedText source={"Pods with Messages:"} /></strong>{' '}
                     {Object.keys(storageStats.messagesPerPod || {}).length}
                     <br />
-                    <strong>Active Channels:</strong>{' '}
+                    <strong><LocalizedText source={"Active Channels:"} /></strong>{' '}
                     {Object.keys(storageStats.messagesPerChannel || {}).length}
                   </p>
                 </Message>
               )}
 
-              <Header size="small">Message Search</Header>
+              <Header size="small"><LocalizedText source={"Message Search"} /></Header>
               <Input
                 action={
                   <Button
@@ -3612,19 +3477,18 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     loading={searchLoading}
                     onClick={() => handleSearchMessages()}
                   >
-                    Search
-                  </Button>
+                    <LocalizedText source={"Search"} /></Button>
                 }
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search messages..."
+                placeholder={interfaceText("Search messages...")}
                 style={{ marginBottom: '1em', width: '100%' }}
                 value={searchQuery}
-              />
+               {...interfaceTextProps("Search messages...")}/>
 
               {searchResults && searchResults.length > 0 && (
                 <Message size="small">
                   <Message.Header>
-                    Search Results ({searchResults.length})
+                    <LocalizedText source={"Search Results ("} />{searchResults.length})
                   </Message.Header>
                   <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
                     {searchResults.map((message, index) => (
@@ -3655,7 +3519,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   size="small"
                   warning
                 >
-                  No messages found matching "{searchQuery}"
+                  <LocalizedText source={"No messages found matching \""} />{searchQuery}"
                 </Message>
               )}
             </Card.Content>
@@ -3668,20 +3532,16 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="sync" />
-                Pod Message Backfill
-              </Card.Header>
+                <LocalizedText source={"Pod Message Backfill"} /></Card.Header>
               <Card.Description>
-                Synchronize missed messages when peers rejoin pods
-              </Card.Description>
-              <PodWorkflowNotice title="Syncs local pod state">
-                Backfill sync uses last-seen timestamps to request missed
-                messages. Confirm the target pod before syncing all channels.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Synchronize missed messages when peers rejoin pods"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Syncs local pod state")} {...interfaceTextProps("Syncs local pod state")}>
+                <LocalizedText source={"Backfill sync uses last-seen timestamps to request missed messages. Confirm the target pod before syncing all channels."} /></PodWorkflowNotice>
             </Card.Content>
 
             {/* Message Backfill */}
             <Card.Content>
-              <Header size="small">Backfill Management</Header>
+              <Header size="small"><LocalizedText source={"Backfill Management"} /></Header>
 
               <div style={{ marginBottom: '1em' }}>
                 <Button
@@ -3691,8 +3551,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleGetBackfillStats()}
                   size="small"
                 >
-                  Get Backfill Stats
-                </Button>
+                  <LocalizedText source={"Get Backfill Stats"} /></Button>
               </div>
 
               {backfillStats && (
@@ -3700,41 +3559,40 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   size="small"
                   style={{ marginBottom: '1em' }}
                 >
-                  <Message.Header>Backfill Statistics</Message.Header>
+                  <Message.Header><LocalizedText source={"Backfill Statistics"} /></Message.Header>
                   <p>
-                    <strong>Requests Sent:</strong>{' '}
+                    <strong><LocalizedText source={"Requests Sent:"} /></strong>{' '}
                     {backfillStats.totalBackfillRequestsSent?.toLocaleString(getRegionalLocale()) ||
                       0}
                     <br />
-                    <strong>Requests Received:</strong>{' '}
+                    <strong><LocalizedText source={"Requests Received:"} /></strong>{' '}
                     {backfillStats.totalBackfillRequestsReceived?.toLocaleString(getRegionalLocale()) ||
                       0}
                     <br />
-                    <strong>Messages Backfilled:</strong>{' '}
+                    <strong><LocalizedText source={"Messages Backfilled:"} /></strong>{' '}
                     {backfillStats.totalMessagesBackfilled?.toLocaleString(getRegionalLocale()) ||
                       0}
                     <br />
-                    <strong>Data Transferred:</strong>{' '}
+                    <strong><LocalizedText source={"Data Transferred:"} /></strong>{' '}
                     {(
                       backfillStats.totalBackfillBytesTransferred /
                       (1_024 * 1_024)
                     ).toFixed(2)}{' '}
                     MB
                     <br />
-                    <strong>Avg Duration:</strong>{' '}
-                    {backfillStats.averageBackfillDurationMs?.toFixed(2) || 0}ms
-                    <br />
-                    <strong>Last Operation:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Duration:"} /></strong>{' '}
+                    {backfillStats.averageBackfillDurationMs?.toFixed(2) || 0}<LocalizedText source={"ms"} /><br />
+                    <strong><LocalizedText source={"Last Operation:"} /></strong>{' '}
                     {backfillStats.lastBackfillOperation
                       ? new Date(
                           backfillStats.lastBackfillOperation,
                         ).toLocaleString(getRegionalLocale())
-                      : 'Never'}
+                      : <LocalizedText source={"Never"} />}
                   </p>
                 </Message>
               )}
 
-              <Header size="small">Pod Backfill Review</Header>
+              <Header size="small"><LocalizedText source={"Pod Backfill Review"} /></Header>
               <Input
                 action={
                   <Button
@@ -3743,21 +3601,18 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     disabled={!backfillPodId.trim()}
                     onClick={() => handleGetLastSeenTimestamps()}
                   >
-                    Get Timestamps
-                  </Button>
+                    <LocalizedText source={"Get Timestamps"} /></Button>
                 }
                 onChange={(e) => setBackfillPodId(e.target.value)}
-                placeholder="Pod ID for backfill sync"
+                placeholder={interfaceText("Pod ID for backfill sync")}
                 style={{ marginBottom: '1em', width: '100%' }}
                 value={backfillPodId}
-              />
+               {...interfaceTextProps("Pod ID for backfill sync")}/>
 
               <details style={{ marginBottom: '1em' }}>
-                <summary>Advanced backfill sync controls</summary>
+                <summary><LocalizedText source={"Advanced backfill sync controls"} /></summary>
                 <Message warning>
-                  Backfill sync can request missed messages for the selected
-                  pod. Confirm timestamps and pod ID before starting sync.
-                </Message>
+                  <LocalizedText source={"Backfill sync can request missed messages for the selected pod. Confirm timestamps and pod ID before starting sync."} /></Message>
                 <Button
                   tooltip="Request missing message history for this pod from its backfill sources. Run it manually when history is missing; it can transfer data over the network."
                   color="green"
@@ -3765,14 +3620,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   loading={syncBackfillLoading}
                   onClick={() => handleSyncPodBackfill()}
                 >
-                  Sync Backfill
-                </Button>
+                  <LocalizedText source={"Sync Backfill"} /></Button>
               </details>
 
               {Object.keys(asObject(lastSeenTimestamps)).length > 0 && (
                   <Message size="small">
                     <Message.Header>
-                      Last Seen Timestamps for Pod {backfillPodId}
+                      <LocalizedText source={"Last Seen Timestamps for Pod"} />{" "}{backfillPodId}
                     </Message.Header>
                     <div style={{ maxHeight: '150px', overflowY: 'auto' }}>
                       {Object.entries(asObject(lastSeenTimestamps)).map(
@@ -3796,7 +3650,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     info
                     size="small"
                   >
-                    No last seen timestamps recorded for pod {backfillPodId}
+                    <LocalizedText source={"No last seen timestamps recorded for pod"} />{" "}{backfillPodId}
                   </Message>
                 )}
             </Card.Content>
@@ -3809,29 +3663,20 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="hashtag" />
-                Pod Channel Management
-              </Card.Header>
+                <LocalizedText source={"Pod Channel Management"} /></Card.Header>
               <Card.Description>
-                Create, update, and manage channels within pods for organized
-                messaging
-              </Card.Description>
-              <PodWorkflowNotice title="Mutates pod structure">
-                Channel create, update, and delete actions change how pod
-                messages are organized. Deleting channels can disrupt routing
-                and history workflows.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Create, update, and manage channels within pods for organized messaging"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Mutates pod structure")} {...interfaceTextProps("Mutates pod structure")}>
+                <LocalizedText source={"Channel create, update, and delete actions change how pod messages are organized. Deleting channels can disrupt routing and history workflows."} /></PodWorkflowNotice>
             </Card.Content>
 
             {/* Channel Management */}
             <Card.Content>
-              <Header size="small">Load Pod Channels</Header>
+              <Header size="small"><LocalizedText source={"Load Pod Channels"} /></Header>
               <Message info>
-                <Message.Header>Review channels before changing them</Message.Header>
+                <Message.Header><LocalizedText source={"Review channels before changing them"} /></Message.Header>
                 <p>
-                  Loading channels only reads local pod structure. Create,
-                  edit, and delete controls are grouped below as advanced
-                  operations because they change pod routing and history shape.
-                </p>
+                  <LocalizedText source={"Loading channels only reads local pod structure. Create, edit, and delete controls are grouped below as advanced operations because they change pod routing and history shape."} /></p>
               </Message>
 
               <Input
@@ -3843,25 +3688,21 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     loading={channelsLoading}
                     onClick={() => handleGetChannels()}
                   >
-                    Load Channels
-                  </Button>
+                    <LocalizedText source={"Load Channels"} /></Button>
                 }
                 onChange={(e) => setChannelPodId(e.target.value)}
-                placeholder="Pod ID for channel management"
+                placeholder={interfaceText("Pod ID for channel management")}
                 style={{ marginBottom: '1em', width: '100%' }}
                 value={channelPodId}
-              />
+               {...interfaceTextProps("Pod ID for channel management")}/>
 
               <details style={{ marginBottom: '1em' }}>
-                <summary>Advanced channel mutation controls</summary>
+                <summary><LocalizedText source={"Advanced channel mutation controls"} /></summary>
                 <Message warning>
-                  Creating, renaming, or deleting channels changes how pod
-                  messages are organized for members. Confirm the target pod ID
-                  before applying changes.
-                </Message>
+                  <LocalizedText source={"Creating, renaming, or deleting channels changes how pod messages are organized for members. Confirm the target pod ID before applying changes."} /></Message>
 
                 {/* Create New Channel */}
-                <Header size="tiny">Create New Channel</Header>
+                <Header size="tiny"><LocalizedText source={"Create New Channel"} /></Header>
                 <Input
                   action={
                     <>
@@ -3874,9 +3715,9 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         }}
                         value={newChannelKind}
                       >
-                        <option value="General">General</option>
-                        <option value="Custom">Custom</option>
-                        <option value="Bound">Bound</option>
+                        <option value="General"><LocalizedText source={"General"} /></option>
+                        <option value="Custom"><LocalizedText source={"Custom"} /></option>
+                        <option value="Bound"><LocalizedText source={"Bound"} /></option>
                       </select>
                       <Button
                         tooltip="Create a channel in this pod so members can use a new discussion space."
@@ -3885,21 +3726,20 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         loading={createChannelLoading}
                         onClick={() => handleCreateChannel()}
                       >
-                        Create
-                      </Button>
+                        <LocalizedText source={"Create"} /></Button>
                     </>
                   }
                   onChange={(e) => setNewChannelName(e.target.value)}
-                  placeholder="Channel name"
+                  placeholder={interfaceText("Channel name")}
                   style={{ marginBottom: '1em', width: '100%' }}
                   value={newChannelName}
-                />
+                 {...interfaceTextProps("Channel name")}/>
               </details>
 
               {/* Channels List */}
               {channels.length > 0 && (
                 <div>
-                  <Header size="tiny">Existing Channels</Header>
+                  <Header size="tiny"><LocalizedText source={"Existing Channels"} /></Header>
                   <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     {channels.map((channel) => (
                       <Card
@@ -3923,24 +3763,22 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                                       }
                                       size="small"
                                     >
-                                      Save
-                                    </Button>
+                                      <LocalizedText source={"Save"} /></Button>
                                     <Button
                                       tooltip="Discard the unsaved channel edits and return to the channel list."
                                       onClick={() => cancelEditingChannel()}
                                       size="small"
                                     >
-                                      Cancel
-                                    </Button>
+                                      <LocalizedText source={"Cancel"} /></Button>
                                   </>
                                 }
                                 onChange={(e) =>
                                   setEditChannelName(e.target.value)
                                 }
-                                placeholder="Channel name"
+                                placeholder={interfaceText("Channel name")}
                                 style={{ width: '100%' }}
                                 value={editChannelName}
-                              />
+                               {...interfaceTextProps("Channel name")}/>
                             </div>
                           ) : (
                             <div
@@ -3959,13 +3797,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                                     marginTop: '0.25em',
                                   }}
                                 >
-                                  ID: {channel.channelId} • Type: {channel.kind}
+                                  ID: {channel.channelId} <LocalizedText source={"• Type:"} />{" "}{channel.kind}
                                   {channel.bindingInfo &&
                                     ` • Binding: ${channel.bindingInfo}`}
                                 </div>
                               </div>
                               <details>
-                                <summary>Actions</summary>
+                                <summary><LocalizedText source={"Actions"} /></summary>
                                 <Button
                                   tooltip="Open this channel’s details for editing; changes are not saved until you choose Save."
                                   disabled={
@@ -3975,8 +3813,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                                   onClick={() => startEditingChannel(channel)}
                                   size="tiny"
                                 >
-                                  Edit
-                                </Button>
+                                  <LocalizedText source={"Edit"} /></Button>
                                 <Button
                                   tooltip="Permanently delete this channel from the pod after confirmation. Use this only when the discussion space is no longer needed."
                                   color="red"
@@ -3993,8 +3830,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                                   }
                                   size="tiny"
                                 >
-                                  Delete
-                                </Button>
+                                  <LocalizedText source={"Delete"} /></Button>
                               </details>
                             </div>
                           )}
@@ -4010,9 +3846,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   info
                   size="small"
                 >
-                  No channels found in pod {channelPodId}. Use advanced channel
-                  mutation controls to create the first channel.
-                </Message>
+                  <LocalizedText source={"No channels found in pod"} />{" "}{channelPodId}<LocalizedText source={". Use advanced channel mutation controls to create the first channel."} /></Message>
               )}
             </Card.Content>
           </Card>
@@ -4024,22 +3858,16 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="linkify" />
-                Pod Content Linking
-              </Card.Header>
+                <LocalizedText source={"Pod Content Linking"} /></Card.Header>
               <Card.Description>
-                Create pods linked to specific content (music, videos, etc.) for
-                focused discussions
-              </Card.Description>
-              <PodWorkflowNotice title="Can create content-linked pods">
-                Content search and validation are read-only. Creating a
-                content-linked pod can publish content identifiers and pod
-                metadata depending on visibility settings.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Create pods linked to specific content (music, videos, etc.) for focused discussions"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Can create content-linked pods")} {...interfaceTextProps("Can create content-linked pods")}>
+                <LocalizedText source={"Content search and validation are read-only. Creating a content-linked pod can publish content identifiers and pod metadata depending on visibility settings."} /></PodWorkflowNotice>
             </Card.Content>
 
             {/* Content Linking */}
             <Card.Content>
-              <Header size="small">Content Search & Validation</Header>
+              <Header size="small"><LocalizedText source={"Content Search & Validation"} /></Header>
 
               {/* Content Search */}
               <Input
@@ -4051,19 +3879,18 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     loading={contentSearchLoading}
                     onClick={() => handleSearchContent()}
                   >
-                    Search
-                  </Button>
+                    <LocalizedText source={"Search"} /></Button>
                 }
                 onChange={(e) => setContentSearchQuery(e.target.value)}
-                placeholder="Search for content (artist, album, movie, etc.)"
+                placeholder={interfaceText("Search for content (artist, album, movie, etc.)")}
                 style={{ marginBottom: '1em', width: '100%' }}
                 value={contentSearchQuery}
-              />
+               {...interfaceTextProps("Search for content (artist, album, movie, etc.)")}/>
 
               {/* Search Results */}
               {contentSearchResults.length > 0 && (
                 <div style={{ marginBottom: '1em' }}>
-                  <Header size="tiny">Search Results</Header>
+                  <Header size="tiny"><LocalizedText source={"Search Results"} /></Header>
                   {contentSearchResults.map((item, index) => (
                     <Card
                       key={index}
@@ -4092,14 +3919,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     loading={contentValidationLoading}
                     onClick={() => handleValidateContentId()}
                   >
-                    Validate
-                  </Button>
+                    <LocalizedText source={"Validate"} /></Button>
                 }
                 onChange={(e) => setContentId(e.target.value)}
-                placeholder="Content ID (e.g., content:audio:album:mb-release-id)"
+                placeholder={interfaceText("Content ID (e.g., content:audio:album:mb-release-id)")}
                 style={{ marginBottom: '1em', width: '100%' }}
                 value={contentId}
-              />
+               {...interfaceTextProps("Content ID (e.g., content:audio:album:mb-release-id)")}/>
 
               {/* Validation Result */}
               {contentValidation && (
@@ -4111,8 +3937,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 >
                   <Message.Header>
                     {contentValidation.isValid
-                      ? '✓ Valid Content ID'
-                      : '✗ Invalid Content ID'}
+                      ? <LocalizedText source={"✓ Valid Content ID"} />
+                      : <LocalizedText source={"✗ Invalid Content ID"} />}
                   </Message.Header>
                   {!contentValidation.isValid &&
                     contentValidation.errorMessage && (
@@ -4128,13 +3954,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   size="small"
                   style={{ marginBottom: '1em' }}
                 >
-                  <Message.Header>Content Metadata</Message.Header>
+                  <Message.Header><LocalizedText source={"Content Metadata"} /></Message.Header>
                   <p>
-                    <strong>Title:</strong> {contentMetadata.title}
+                    <strong><LocalizedText source={"Title:"} /></strong> {contentMetadata.title}
                     <br />
-                    <strong>Artist:</strong> {contentMetadata.artist}
+                    <strong><LocalizedText source={"Artist:"} /></strong> {contentMetadata.artist}
                     <br />
-                    <strong>Type:</strong> {contentMetadata.type} (
+                    <strong><LocalizedText source={"Type:"} /></strong> {contentMetadata.type} (
                     {contentMetadata.domain})
                   </p>
                 </Message>
@@ -4143,31 +3969,27 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               {/* Pod Creation */}
               {contentValidation?.isValid && (
                 <details>
-                  <summary>Advanced content-linked pod creation controls</summary>
+                  <summary><LocalizedText source={"Advanced content-linked pod creation controls"} /></summary>
                   <Message warning>
-                    Creating a content-linked pod can publish the selected
-                    content identifier, pod name, and visibility setting. Keep
-                    private or draft discussions unlisted unless public
-                    discovery is intended.
-                  </Message>
-                  <Header size="small">Create Content-Linked Pod</Header>
+                    <LocalizedText source={"Creating a content-linked pod can publish the selected content identifier, pod name, and visibility setting. Keep private or draft discussions unlisted unless public discovery is intended."} /></Message>
+                  <Header size="small"><LocalizedText source={"Create Content-Linked Pod"} /></Header>
 
                   <Input
                     onChange={(e) => setNewPodName(e.target.value)}
-                    placeholder="Pod name (auto-filled from content)"
+                    placeholder={interfaceText("Pod name (auto-filled from content)")}
                     style={{ marginBottom: '1em', width: '100%' }}
                     value={newPodName}
-                  />
+                   {...interfaceTextProps("Pod name (auto-filled from content)")}/>
 
                   <div style={{ marginBottom: '1em' }}>
-                    <label style={{ marginRight: '1em' }}>Visibility:</label>
+                    <label style={{ marginRight: '1em' }}><LocalizedText source={"Visibility:"} /></label>
                     <select
                       onChange={(e) => setNewPodVisibility(e.target.value)}
                       value={newPodVisibility}
                     >
-                      <option value="Unlisted">Unlisted</option>
-                      <option value="Listed">Listed</option>
-                      <option value="Private">Private</option>
+                      <option value="Unlisted"><LocalizedText source={"Unlisted"} /></option>
+                      <option value="Listed"><LocalizedText source={"Listed"} /></option>
+                      <option value="Private"><LocalizedText source={"Private"} /></option>
                     </select>
                   </div>
 
@@ -4178,8 +4000,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     loading={createPodLoading}
                     onClick={() => handleCreateContentLinkedPod()}
                   >
-                    Create Content-Linked Pod
-                  </Button>
+                    <LocalizedText source={"Create Content-Linked Pod"} /></Button>
                 </details>
               )}
             </Card.Content>
@@ -4192,38 +4013,29 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="star" />
-                Pod Opinion Management
-              </Card.Header>
+                <LocalizedText source={"Pod Opinion Management"} /></Card.Header>
               <Card.Description>
-                Publish and view opinions on content variants within pods for
-                quality assessment and community feedback
-              </Card.Description>
-              <PodWorkflowNotice title="Publishes opinion data">
-                Opinion publishing can expose peer preferences, ratings,
-                confidence values, and content identifiers to other pod
-                participants.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Publish and view opinions on content variants within pods for quality assessment and community feedback"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Publishes opinion data")} {...interfaceTextProps("Publishes opinion data")}>
+                <LocalizedText source={"Opinion publishing can expose peer preferences, ratings, confidence values, and content identifiers to other pod participants."} /></PodWorkflowNotice>
             </Card.Content>
 
             {/* Opinion Management */}
             <Card.Content>
-              <Header size="small">Review Opinions</Header>
+              <Header size="small"><LocalizedText source={"Review Opinions"} /></Header>
               <Message info>
-                <Message.Header>Read pod opinions first</Message.Header>
+                <Message.Header><LocalizedText source={"Read pod opinions first"} /></Message.Header>
                 <p>
-                  Refreshing, listing, and aggregating opinions reads pod
-                  opinion state. Publishing opinions and recalculating affinity
-                  data are grouped below as advanced operations.
-                </p>
+                  <LocalizedText source={"Refreshing, listing, and aggregating opinions reads pod opinion state. Publishing opinions and recalculating affinity data are grouped below as advanced operations."} /></p>
               </Message>
 
               {/* Pod Selection */}
               <Input
                 onChange={(e) => setOpinionPodId(e.target.value)}
-                placeholder="Pod ID"
+                placeholder={interfaceText("Pod ID")}
                 style={{ marginBottom: '1em', width: '100%' }}
                 value={opinionPodId}
-              />
+               {...interfaceTextProps("Pod ID")}/>
 
               <Button
                 tooltip="Refresh opinion records for this pod and update the current view. Use this when displayed community ratings may be stale."
@@ -4233,17 +4045,16 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 onClick={() => handleRefreshOpinions()}
                 style={{ marginBottom: '1em' }}
               >
-                Refresh Pod Opinions
-              </Button>
+                <LocalizedText source={"Refresh Pod Opinions"} /></Button>
 
               {/* Content Opinions */}
-              <Header size="tiny">Content Opinions</Header>
+              <Header size="tiny"><LocalizedText source={"Content Opinions"} /></Header>
               <Input
                 onChange={(e) => setOpinionContentId(e.target.value)}
-                placeholder="Content ID (e.g., content:audio:album:mb-id)"
+                placeholder={interfaceText("Content ID (e.g., content:audio:album:mb-id)")}
                 style={{ marginBottom: '1em', width: '100%' }}
                 value={opinionContentId}
-              />
+               {...interfaceTextProps("Content ID (e.g., content:audio:album:mb-id)")}/>
 
               <div style={{ marginBottom: '1em' }}>
                 <Button
@@ -4254,8 +4065,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleGetOpinions()}
                   style={{ marginRight: '0.5em' }}
                 >
-                  Get Opinions
-                </Button>
+                  <LocalizedText source={"Get Opinions"} /></Button>
 
                 <Button
                   tooltip="Load rating counts and distribution for this pod and content item so you can review the data before publishing."
@@ -4264,8 +4074,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   loading={getStatsLoading}
                   onClick={() => handleGetOpinionStatistics()}
                 >
-                  Get Statistics
-                </Button>
+                  <LocalizedText source={"Get Statistics"} /></Button>
               </div>
 
               {/* Opinion Statistics */}
@@ -4274,21 +4083,21 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   info
                   style={{ marginBottom: '1em' }}
                 >
-                  <Message.Header>Opinion Statistics</Message.Header>
+                  <Message.Header><LocalizedText source={"Opinion Statistics"} /></Message.Header>
                   <p>
-                    <strong>Total Opinions:</strong>{' '}
+                    <strong><LocalizedText source={"Total Opinions:"} /></strong>{' '}
                     {opinionStatistics.totalOpinions}
                     <br />
-                    <strong>Unique Variants:</strong>{' '}
+                    <strong><LocalizedText source={"Unique Variants:"} /></strong>{' '}
                     {opinionStatistics.uniqueVariants}
                     <br />
-                    <strong>Average Score:</strong>{' '}
+                    <strong><LocalizedText source={"Average Score:"} /></strong>{' '}
                     {opinionStatistics.averageScore.toFixed(1)}
                     <br />
-                    <strong>Score Range:</strong> {opinionStatistics.minScore} -{' '}
+                    <strong><LocalizedText source={"Score Range:"} /></strong> {opinionStatistics.minScore} -{' '}
                     {opinionStatistics.maxScore}
                     <br />
-                    <strong>Last Updated:</strong>{' '}
+                    <strong><LocalizedText source={"Last Updated:"} /></strong>{' '}
                     {new Date(opinionStatistics.lastUpdated).toLocaleString(getRegionalLocale())}
                   </p>
                 </Message>
@@ -4297,7 +4106,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               {/* Opinions List */}
               {opinions.length > 0 && (
                 <div style={{ marginBottom: '1em' }}>
-                  <Header size="tiny">Opinions ({opinions.length})</Header>
+                  <Header size="tiny"><LocalizedText source={"Opinions ("} />{opinions.length})</Header>
                   {opinions.map((opinion, index) => (
                     <Card
                       key={index}
@@ -4311,14 +4120,14 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           }}
                         >
                           <div>
-                            <strong>Variant:</strong>{' '}
+                            <strong><LocalizedText source={"Variant:"} /></strong>{' '}
                             {opinion.variantHash.slice(0, 8)}...
                             <br />
-                            <strong>Score:</strong> {opinion.score}/10
+                            <strong><LocalizedText source={"Score:"} /></strong> {opinion.score}/10
                             {opinion.note && (
                               <>
                                 <br />
-                                <strong>Note:</strong> {opinion.note}
+                                <strong><LocalizedText source={"Note:"} /></strong> {opinion.note}
                               </>
                             )}
                           </div>
@@ -4331,25 +4140,22 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               )}
 
               <details>
-                <summary>Advanced opinion publishing controls</summary>
+                <summary><LocalizedText source={"Advanced opinion publishing controls"} /></summary>
                 <Message warning>
-                  Publishing an opinion can expose the selected content ID,
-                  variant hash, score, note, and peer preference signal to pod
-                  participants.
-                </Message>
+                  <LocalizedText source={"Publishing an opinion can expose the selected content ID, variant hash, score, note, and peer preference signal to pod participants."} /></Message>
 
                 {/* Publish Opinion */}
-                <Header size="small">Publish New Opinion</Header>
+                <Header size="small"><LocalizedText source={"Publish New Opinion"} /></Header>
 
                 <Input
                   onChange={(e) => setOpinionVariantHash(e.target.value)}
-                  placeholder="Variant Hash"
+                  placeholder={interfaceText("Variant Hash")}
                   style={{ marginBottom: '1em', width: '100%' }}
                   value={opinionVariantHash}
-                />
+                 {...interfaceTextProps("Variant Hash")}/>
 
                 <div style={{ marginBottom: '1em' }}>
-                  <label style={{ marginRight: '1em' }}>Score (0-10):</label>
+                  <label style={{ marginRight: '1em' }}><LocalizedText source={"Score (0-10):"} /></label>
                   <input
                     max="10"
                     min="0"
@@ -4366,10 +4172,10 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
                 <Input
                   onChange={(e) => setOpinionNote(e.target.value)}
-                  placeholder="Optional note about this variant"
+                  placeholder={interfaceText("Optional note about this variant")}
                   style={{ marginBottom: '1em', width: '100%' }}
                   value={opinionNote}
-                />
+                 {...interfaceTextProps("Optional note about this variant")}/>
 
                 <Button
                   tooltip="Publish your score and note for this content to the pod. Review the content ID and variant hash because other participants may see this opinion."
@@ -4382,14 +4188,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   loading={publishOpinionLoading}
                   onClick={() => handlePublishOpinion()}
                 >
-                  Publish Opinion
-                </Button>
+                  <LocalizedText source={"Publish Opinion"} /></Button>
               </details>
             </Card.Content>
 
             {/* Opinion Aggregation */}
             <Card.Content>
-              <Header size="small">Opinion Aggregation & Consensus</Header>
+              <Header size="small"><LocalizedText source={"Opinion Aggregation & Consensus"} /></Header>
 
               <div style={{ marginBottom: '1em' }}>
                 <Button
@@ -4400,8 +4205,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleGetAggregatedOpinions()}
                   style={{ marginRight: '0.5em' }}
                 >
-                  Get Aggregated Opinions
-                </Button>
+                  <LocalizedText source={"Get Aggregated Opinions"} /></Button>
 
                 <Button
                   tooltip="Load member affinity scores for this pod so you can understand how current recommendations are ranked."
@@ -4411,8 +4215,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleGetMemberAffinities()}
                   style={{ marginRight: '0.5em' }}
                 >
-                  Get Member Affinities
-                </Button>
+                  <LocalizedText source={"Get Member Affinities"} /></Button>
 
                 <Button
                   tooltip="Load recommendations derived from pod consensus so you can review what members collectively favor."
@@ -4422,18 +4225,14 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   onClick={() => handleGetConsensusRecommendations()}
                   style={{ marginRight: '0.5em' }}
                 >
-                  Get Recommendations
-                </Button>
+                  <LocalizedText source={"Get Recommendations"} /></Button>
 
               </div>
 
               <details style={{ marginBottom: '1em' }}>
-                <summary>Advanced affinity recalculation controls</summary>
+                <summary><LocalizedText source={"Advanced affinity recalculation controls"} /></summary>
                 <Message warning>
-                  Updating member affinities recalculates stored relationship
-                  weights from pod opinion history. Review current opinions and
-                  affinities before running it.
-                </Message>
+                  <LocalizedText source={"Updating member affinities recalculates stored relationship weights from pod opinion history. Review current opinions and affinities before running it."} /></Message>
                 <Button
                   tooltip="Recompute stored member affinity values from available pod opinion data after ratings change."
                   color="orange"
@@ -4441,38 +4240,37 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   loading={updateAffinitiesLoading}
                   onClick={() => handleUpdateMemberAffinities()}
                 >
-                  Update Affinities
-                </Button>
+                  <LocalizedText source={"Update Affinities"} /></Button>
               </details>
 
               {/* Aggregated Opinions */}
               {aggregatedOpinions && (
                 <div style={{ marginBottom: '1em' }}>
-                  <Header size="tiny">Aggregated Opinion Results</Header>
+                  <Header size="tiny"><LocalizedText source={"Aggregated Opinion Results"} /></Header>
                   <Message info>
-                    <strong>Weighted Average:</strong>{' '}
+                    <strong><LocalizedText source={"Weighted Average:"} /></strong>{' '}
                     {aggregatedOpinions.weightedAverageScore.toFixed(2)}/10
                     <br />
-                    <strong>Unweighted Average:</strong>{' '}
+                    <strong><LocalizedText source={"Unweighted Average:"} /></strong>{' '}
                     {aggregatedOpinions.unweightedAverageScore.toFixed(2)}/10
                     <br />
-                    <strong>Consensus Strength:</strong>{' '}
+                    <strong><LocalizedText source={"Consensus Strength:"} /></strong>{' '}
                     {(aggregatedOpinions.consensusStrength * 100).toFixed(1)}%
                     <br />
-                    <strong>Total Opinions:</strong>{' '}
+                    <strong><LocalizedText source={"Total Opinions:"} /></strong>{' '}
                     {aggregatedOpinions.totalOpinions}
                     <br />
-                    <strong>Unique Variants:</strong>{' '}
+                    <strong><LocalizedText source={"Unique Variants:"} /></strong>{' '}
                     {aggregatedOpinions.uniqueVariants}
                     <br />
-                    <strong>Contributing Members:</strong>{' '}
+                    <strong><LocalizedText source={"Contributing Members:"} /></strong>{' '}
                     {aggregatedOpinions.contributingMembers}
                   </Message>
 
                   {/* Variant Breakdown */}
                   {aggregatedOpinions.variantAggregates.length > 0 && (
                     <div style={{ marginTop: '1em' }}>
-                      <Header size="tiny">Variant Analysis</Header>
+                      <Header size="tiny"><LocalizedText source={"Variant Analysis"} /></Header>
                       {asArray(aggregatedOpinions.variantAggregates).map(
                         (variant, index) => (
                           <Card
@@ -4481,25 +4279,24 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           >
                             <Card.Content style={{ padding: '0.5em' }}>
                               <div>
-                                <strong>Variant:</strong>{' '}
+                                <strong><LocalizedText source={"Variant:"} /></strong>{' '}
                                 {variant.variantHash.slice(0, 8)}...
                                 <br />
-                                <strong>Weighted Score:</strong>{' '}
+                                <strong><LocalizedText source={"Weighted Score:"} /></strong>{' '}
                                 {variant.weightedAverageScore.toFixed(2)}/10
                                 <br />
-                                <strong>Unweighted Score:</strong>{' '}
+                                <strong><LocalizedText source={"Unweighted Score:"} /></strong>{' '}
                                 {variant.unweightedAverageScore.toFixed(2)}/10
                                 <br />
-                                <strong>Opinions:</strong>{' '}
+                                <strong><LocalizedText source={"Opinions:"} /></strong>{' '}
                                 {variant.opinionCount}
                                 <br />
-                                <strong>Agreement:</strong>{' '}
+                                <strong><LocalizedText source={"Agreement:"} /></strong>{' '}
                                 {(
                                   1 -
                                   variant.scoreStandardDeviation / 5
                                 ).toFixed(2)}{' '}
-                                (lower std dev = higher agreement)
-                              </div>
+                                <LocalizedText source={"(lower std dev = higher agreement)"} /></div>
                             </Card.Content>
                           </Card>
                         ),
@@ -4512,7 +4309,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               {/* Consensus Recommendations */}
               {consensusRecommendations.length > 0 && (
                 <div style={{ marginBottom: '1em' }}>
-                  <Header size="tiny">Consensus Recommendations</Header>
+                  <Header size="tiny"><LocalizedText source={"Consensus Recommendations"} /></Header>
                   {consensusRecommendations.map((rec, index) => (
                     <Card
                       key={index}
@@ -4532,20 +4329,20 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     >
                       <Card.Content style={{ padding: '0.5em' }}>
                         <div>
-                          <strong>Variant:</strong>{' '}
+                          <strong><LocalizedText source={"Variant:"} /></strong>{' '}
                           {rec.variantHash.slice(0, 8)}...
                           <br />
-                          <strong>Recommendation:</strong>{' '}
+                          <strong><LocalizedText source={"Recommendation:"} /></strong>{' '}
                           {rec.recommendation
                             .replaceAll(/([A-Z])/g, ' $1')
                             .trim()}
                           <br />
-                          <strong>Consensus Score:</strong>{' '}
+                          <strong><LocalizedText source={"Consensus Score:"} /></strong>{' '}
                           {(rec.consensusScore * 100).toFixed(1)}%<br />
-                          <strong>Reasoning:</strong> {rec.reasoning}
+                          <strong><LocalizedText source={"Reasoning:"} /></strong> {rec.reasoning}
                           <br />
                           <small>
-                            <strong>Factors:</strong>{' '}
+                            <strong><LocalizedText source={"Factors:"} /></strong>{' '}
                             {asArray(rec.supportingFactors).join(', ')}
                           </small>
                         </div>
@@ -4559,7 +4356,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               {Object.keys(asObject(memberAffinities)).length > 0 && (
                 <div style={{ marginBottom: '1em' }}>
                   <Header size="tiny">
-                    Member Affinities ({Object.keys(asObject(memberAffinities)).length})
+                    <LocalizedText source={"Member Affinities ("} />{Object.keys(asObject(memberAffinities)).length})
                   </Header>
                   {Object.entries(asObject(memberAffinities)).map(
                     ([peerId, affinity], index) => (
@@ -4569,18 +4366,18 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       >
                         <Card.Content style={{ padding: '0.5em' }}>
                           <div>
-                            <strong>Peer:</strong> {peerId.slice(0, 8)}...
+                            <strong><LocalizedText source={"Peer:"} /></strong> {peerId.slice(0, 8)}...
                             <br />
-                            <strong>Affinity Score:</strong>{' '}
+                            <strong><LocalizedText source={"Affinity Score:"} /></strong>{' '}
                             {(affinity.affinityScore * 100).toFixed(1)}%<br />
-                            <strong>Trust Score:</strong>{' '}
+                            <strong><LocalizedText source={"Trust Score:"} /></strong>{' '}
                             {(affinity.trustScore * 100).toFixed(1)}%<br />
-                            <strong>Messages:</strong> {affinity.messageCount}
+                            <strong><LocalizedText source={"Messages:"} /></strong> {affinity.messageCount}
                             <br />
-                            <strong>Opinions:</strong> {affinity.opinionCount}
+                            <strong><LocalizedText source={"Opinions:"} /></strong> {affinity.opinionCount}
                             <br />
                             <small>
-                              Last Activity:{' '}
+                              <LocalizedText source={"Last Activity:"} />{' '}
                               {new Date(
                                 affinity.lastActivity,
                               ).toLocaleDateString(getRegionalLocale())}
@@ -4602,40 +4399,31 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Card.Header>
                 <Icon name="key" />
-                Pod Message Signing
-              </Card.Header>
+                <LocalizedText source={"Pod Message Signing"} /></Card.Header>
               <Card.Description>
-                Cryptographic signing and verification of pod messages for
-                authenticity and integrity
-              </Card.Description>
-              <PodWorkflowNotice title="Handles key material">
-                Signing and key generation workflows may expose private keys or
-                signed payloads in the browser. Treat pasted keys and generated
-                output as sensitive.
-              </PodWorkflowNotice>
+                <LocalizedText source={"Cryptographic signing and verification of pod messages for authenticity and integrity"} /></Card.Description>
+              <PodWorkflowNotice title={interfaceText("Handles key material")} {...interfaceTextProps("Handles key material")}>
+                <LocalizedText source={"Signing and key generation workflows may expose private keys or signed payloads in the browser. Treat pasted keys and generated output as sensitive."} /></PodWorkflowNotice>
             </Card.Content>
 
             <Card.Content>
               <Message info>
-                <Message.Header>Verify before generating signatures</Message.Header>
+                <Message.Header><LocalizedText source={"Verify before generating signatures"} /></Message.Header>
                 <p>
-                  Signature verification and signing statistics do not expose
-                  private key material. Signing and key generation controls are
-                  grouped below as advanced operations.
-                </p>
+                  <LocalizedText source={"Signature verification and signing statistics do not expose private key material. Signing and key generation controls are grouped below as advanced operations."} /></p>
               </Message>
               <Grid>
                 <Grid.Column width={8}>
                   {/* Signature Verification */}
-                  <Header size="small">Verify Message Signature</Header>
+                  <Header size="small"><LocalizedText source={"Verify Message Signature"} /></Header>
                   <Form>
                     <Form.TextArea
-                      label="Pod Message JSON (with signature)"
+                      label={interfaceText("Pod Message JSON (with signature)")}
                       onChange={(e) => setMessageToVerify(e.target.value)}
                       placeholder='{"messageId": "msg123", "channelId": "pod:artist:mb:daft-punk-hash:general", "senderPeerId": "alice", "body": "Hello pod!", "timestampUnixMs": 1703123456789, "signature": "ed25519:base64-signature"}'
                       rows={4}
                       value={messageToVerify}
-                    />
+                     {...interfaceTextProps("Pod Message JSON (with signature)")}/>
                     <Button
                       tooltip="Verify the supplied message signature locally so you can check authenticity without routing the message."
                       disabled={verifyingSignature || !messageToVerify.trim()}
@@ -4643,8 +4431,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={verifyingSignature}
                       onClick={handleVerifySignature}
                     >
-                      Verify Signature
-                    </Button>
+                      <LocalizedText source={"Verify Signature"} /></Button>
                   </Form>
 
                   {verificationResult && (
@@ -4659,7 +4446,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       ) : (
                         <Message size="tiny">
                           <p>
-                            Message {verificationResult.messageId}: Signature is{' '}
+                            <LocalizedText source={"Message"} />{" "}{verificationResult.messageId}<LocalizedText source={": Signature is"} />{' '}
                             {verificationResult.isValid ? 'VALID' : 'INVALID'}
                           </p>
                         </Message>
@@ -4669,7 +4456,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 </Grid.Column>
                 <Grid.Column width={8}>
                   {/* Signing Statistics */}
-                  <Header size="small">Signing Statistics</Header>
+                  <Header size="small"><LocalizedText source={"Signing Statistics"} /></Header>
                   <Button.Group fluid>
                     <Button
                       tooltip="Load local signing and verification counts so you can review recent signature operations."
@@ -4677,32 +4464,29 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       loading={loadingSigningStats}
                       onClick={handleLoadSigningStats}
                     >
-                      Load Stats
-                    </Button>
+                      <LocalizedText source={"Load Stats"} /></Button>
                   </Button.Group>
 
                   {signingStats && !signingStats.error && (
                     <div style={{ marginTop: '0.5em' }}>
                       <Message size="tiny">
                         <p>
-                          <strong>Signatures Created:</strong>{' '}
+                          <strong><LocalizedText source={"Signatures Created:"} /></strong>{' '}
                           {signingStats.totalSignaturesCreated}
                           <br />
-                          <strong>Signatures Verified:</strong>{' '}
+                          <strong><LocalizedText source={"Signatures Verified:"} /></strong>{' '}
                           {signingStats.totalSignaturesVerified}
                           <br />
-                          <strong>Successful:</strong>{' '}
+                          <strong><LocalizedText source={"Successful:"} /></strong>{' '}
                           {signingStats.successfulVerifications}
                           <br />
-                          <strong>Failed:</strong>{' '}
+                          <strong><LocalizedText source={"Failed:"} /></strong>{' '}
                           {signingStats.failedVerifications}
                           <br />
-                          <strong>Avg Sign Time:</strong>{' '}
-                          {signingStats.averageSigningTimeMs.toFixed(2)}ms
-                          <br />
-                          <strong>Avg Verify Time:</strong>{' '}
-                          {signingStats.averageVerificationTimeMs.toFixed(2)}ms
-                        </p>
+                          <strong><LocalizedText source={"Avg Sign Time:"} /></strong>{' '}
+                          {signingStats.averageSigningTimeMs.toFixed(2)}<LocalizedText source={"ms"} /><br />
+                          <strong><LocalizedText source={"Avg Verify Time:"} /></strong>{' '}
+                          {signingStats.averageVerificationTimeMs.toFixed(2)}<LocalizedText source={"ms"} /></p>
                       </Message>
                     </div>
                   )}
@@ -4722,30 +4506,27 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
             <Card.Content>
               <details>
-                <summary>Advanced key material and signing controls</summary>
+                <summary><LocalizedText source={"Advanced key material and signing controls"} /></summary>
                 <Message warning>
-                  These controls handle private keys or create signed payloads
-                  that may be routed to other pod members. Keep generated
-                  private keys out of logs and screenshots.
-                </Message>
+                  <LocalizedText source={"These controls handle private keys or create signed payloads that may be routed to other pod members. Keep generated private keys out of logs and screenshots."} /></Message>
                 <Grid>
                   <Grid.Column width={8}>
-                    <Header size="small">Sign Pod Message</Header>
+                    <Header size="small"><LocalizedText source={"Sign Pod Message"} /></Header>
                     <Form>
                       <Form.TextArea
-                        label="Pod Message JSON"
+                        label={interfaceText("Pod Message JSON")}
                         onChange={(e) => setMessageToSign(e.target.value)}
                         placeholder='{"messageId": "msg123", "channelId": "pod:artist:mb:daft-punk-hash:general", "senderPeerId": "alice", "body": "Hello pod!", "timestampUnixMs": 1703123456789}'
                         rows={3}
                         value={messageToSign}
-                      />
+                       {...interfaceTextProps("Pod Message JSON")}/>
                       <Form.Input
-                        label="Private Key"
+                        label={interfaceText("Private Key")}
                         onChange={(e) => setPrivateKeyForSigning(e.target.value)}
-                        placeholder="base64-encoded private key"
+                        placeholder={interfaceText("base64-encoded private key")}
                         type="password"
                         value={privateKeyForSigning}
-                      />
+                       {...interfaceTextProps("Private Key")}/>
                       <Button
                         tooltip="Sign this message with the supplied private key so it can be authenticated before routing. Signing does not send it to pod members."
                         disabled={
@@ -4757,8 +4538,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         onClick={handleSignMessage}
                         primary
                       >
-                        Sign Message
-                      </Button>
+                        <LocalizedText source={"Sign Message"} /></Button>
                     </Form>
 
                     {signedMessageResult && (
@@ -4766,23 +4546,22 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         {signedMessageResult.error ? (
                           <Message error>
                             <p>
-                              Failed to sign message:{' '}
+                              <LocalizedText source={"Failed to sign message:"} />{' '}
                               {signedMessageResult.error}
                             </p>
                           </Message>
                         ) : (
                           <Message success>
                             <Message.Header>
-                              Message Signed Successfully
-                            </Message.Header>
+                              <LocalizedText source={"Message Signed Successfully"} /></Message.Header>
                             <p>
-                              <strong>Message ID:</strong>{' '}
+                              <strong><LocalizedText source={"Message ID:"} /></strong>{' '}
                               {signedMessageResult.messageId}
                               <br />
-                              <strong>Channel:</strong>{' '}
+                              <strong><LocalizedText source={"Channel:"} /></strong>{' '}
                               {signedMessageResult.channelId}
                               <br />
-                              <strong>Signature:</strong>{' '}
+                              <strong><LocalizedText source={"Signature:"} /></strong>{' '}
                               {signedMessageResult.signature?.slice(0, 50)}...
                             </p>
                           </Message>
@@ -4792,7 +4571,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </Grid.Column>
 
                   <Grid.Column width={8}>
-                    <Header size="small">Generate Key Pair</Header>
+                    <Header size="small"><LocalizedText source={"Generate Key Pair"} /></Header>
                     <Form>
                       <Button
                         tooltip="Generate a new key pair for pod message signing. Keep the private key secret and store it securely before clearing this result."
@@ -4801,8 +4580,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         loading={generatingKeyPair}
                         onClick={handleGenerateKeyPair}
                       >
-                        Generate New Key Pair
-                      </Button>
+                        <LocalizedText source={"Generate New Key Pair"} /></Button>
                     </Form>
 
                     {generatedKeyPair && (
@@ -4819,15 +4597,15 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             size="tiny"
                             success
                           >
-                            <Message.Header>Key Pair Generated</Message.Header>
+                            <Message.Header><LocalizedText source={"Key Pair Generated"} /></Message.Header>
                             <p>
-                              <strong>Public Key:</strong>{' '}
+                              <strong><LocalizedText source={"Public Key:"} /></strong>{' '}
                               {generatedKeyPair.publicKey?.slice(0, 30)}...
                               <br />
-                              <strong>Private Key:</strong>{' '}
+                              <strong><LocalizedText source={"Private Key:"} /></strong>{' '}
                               {generatedKeyPair.privateKey?.slice(0, 30)}...
                               <br />
-                              <em>Keep private key secure.</em>
+                              <em><LocalizedText source={"Keep private key secure."} /></em>
                             </p>
                           </Message>
                         )}
@@ -4846,8 +4624,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Segment>
               <Header as="h3">
                 <Icon name="cogs" />
-                Supported Hash Algorithms
-              </Header>
+                <LocalizedText source={"Supported Hash Algorithms"} /></Header>
               <List
                 divided
                 relaxed

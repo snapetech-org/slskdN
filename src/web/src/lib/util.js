@@ -3,11 +3,14 @@ export const formatSeconds = (seconds) => {
   if (seconds === undefined) return '';
   const date = new Date(1_970, 0, 1);
   date.setSeconds(seconds);
+  const localizeDigits = (value) => value.replace(/\d/gu, (digit) =>
+    formatRegionalNumber(Number(digit), { useGrouping: false }),
+  );
   if (seconds >= 3_600) {
-    return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/u, '$1');
+    return localizeDigits(date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/u, '$1'));
   }
 
-  return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/u, '$1');
+  return localizeDigits(date.toTimeString().replace(/.*(\d{2}:\d{2}).*/u, '$1'));
 };
 
 export const formatBytesAsUnit = (bytes, unit, decimals = 2) => {
@@ -21,10 +24,10 @@ export const formatBytesAsUnit = (bytes, unit, decimals = 2) => {
 };
 
 export const formatBytes = (bytes, decimals = 2) => {
-  if (bytes === 0) return '0 B';
+  const dm = decimals < 0 ? 0 : decimals;
+  if (bytes === 0) return formatRegionalNumber(0, { maximumFractionDigits: dm }) + ' B';
 
   const k = 1_024;
-  const dm = decimals < 0 ? 0 : decimals;
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
   const index = Math.floor(Math.log(bytes) / Math.log(k));
