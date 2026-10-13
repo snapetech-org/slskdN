@@ -1,4 +1,4 @@
-import { getRegionalLocale } from './regionalFormat';
+import { formatRegionalNumber, getRegionalLocale } from './regionalFormat';
 export const formatSeconds = (seconds) => {
   if (seconds === undefined) return '';
   const date = new Date(1_970, 0, 1);
@@ -30,7 +30,7 @@ export const formatBytes = (bytes, decimals = 2) => {
   const index = Math.floor(Math.log(bytes) / Math.log(k));
 
   return (
-    Number.parseFloat((bytes / k ** index).toFixed(dm)) + ' ' + sizes[index]
+    formatRegionalNumber(Number.parseFloat((bytes / k ** index).toFixed(dm))) + ' ' + sizes[index]
   );
 };
 
@@ -73,14 +73,14 @@ export const formatAttributes = ({
   const isLossless = Boolean(sampleRate) && Boolean(bitDepth);
 
   if (isLossless) {
-    return `${bitDepth}/${sampleRate / 1_000}kHz`;
+    return formatRegionalNumber(bitDepth) + '/' + formatRegionalNumber(sampleRate / 1_000) + 'kHz';
   }
 
   if (isVariableBitRate) {
-    return `${bitRate} Kbps, VBR`;
+    return formatRegionalNumber(bitRate) + ' Kbps, VBR';
   }
 
-  return bitRate ? `${bitRate} Kbps` : '';
+  return bitRate ? formatRegionalNumber(bitRate) + ' Kbps' : '';
 };
 
 export const sleep = (milliseconds) => {

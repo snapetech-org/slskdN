@@ -1,4 +1,4 @@
-import { getRegionalLocale } from '../../lib/regionalFormat';
+import { formatRegionalNumber } from '../../lib/regionalFormat';
 import './Rooms.css';
 import * as rooms from '../../lib/rooms';
 import TooltipButton from '../Shared/TooltipButton';
@@ -161,7 +161,7 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
                     <Icon name="search" />
                     Type to search rooms
                   </Header>
-                  <p>{available.length.toLocaleString(getRegionalLocale())} rooms available. Enter a name above to filter.</p>
+                  <p>{formatRegionalNumber(available.length)} rooms available. Enter a name above to filter.</p>
                 </Segment>
               ) : sortedAvailable.length === 0 ? (
                 <Segment

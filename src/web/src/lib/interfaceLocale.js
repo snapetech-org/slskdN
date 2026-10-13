@@ -43,10 +43,10 @@ const readLanguage = () => {
   }
 };
 
-const applyDocumentLanguage = (language) => {
+const applyDocumentLanguage = (_language) => {
   if (typeof document === 'undefined') return;
-  document.documentElement.lang = language;
-  document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = 'en';
+  document.documentElement.dir = 'ltr';
 };
 
 let activeLanguage = readLanguage();
@@ -71,6 +71,13 @@ export const setInterfaceLanguage = (language) => {
   activeLanguage = language;
   try { localStorage.setItem(STORAGE_KEY, language); } catch { /* Keep this tab usable without browser storage. */ }
   applyDocumentLanguage(language);
+  notify();
+};
+
+export const resetInterfaceLanguage = () => {
+  try { localStorage.removeItem(STORAGE_KEY); } catch { /* Use the browser language for this tab. */ }
+  activeLanguage = browserLanguage();
+  applyDocumentLanguage(activeLanguage);
   notify();
 };
 

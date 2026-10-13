@@ -104,9 +104,9 @@ const NavigationDropdown = ({ group }) => {
 };
 
 const PrimaryNavigation = ({ isAgent, navActivity, version }) => {
-  const { t } = useInterfaceLanguage();
+  const { language, t } = useInterfaceLanguage();
   return (
-  <div className="navigation-primary">
+  <div className="navigation-primary" lang={language} dir={language === 'ar' ? 'rtl' : 'ltr'}>
     {version.isCanary && (
       <Menu.Item>
         <Icon color="yellow" name="flask" />

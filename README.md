@@ -42,6 +42,8 @@ The installer configures the system service. See the [setup guide](docs/getting-
 for configuration and first-login steps.
 
 ## Use the main workflows
+See the [UI localization roadmap](docs/localization-roadmap.md) for supported languages, existing translated areas, and the next high-use screens to cover.
+
 
 - [Search and discovery](docs/soulseek-native-discovery.md) — search peers and
   review optional discovery tools.

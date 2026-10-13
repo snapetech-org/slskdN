@@ -1,5 +1,5 @@
 import { REGIONAL_FORMAT_OPTIONS } from '../../../lib/regionalFormat';
-import { INTERFACE_LANGUAGE_OPTIONS, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { INTERFACE_LANGUAGE_OPTIONS, resetInterfaceLanguage, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import React, { useEffect, useState } from 'react';
 import {
   Button,
@@ -15,6 +15,7 @@ import {
 import {
   EXPERIENCE_PREFERENCES_STORAGE_KEY,
   notifyExperiencePreferencesChanged,
+  setExperiencePreferencesSnapshot,
 } from '../../../lib/experiencePreferences';
 
 const storageKey = EXPERIENCE_PREFERENCES_STORAGE_KEY;
@@ -91,6 +92,7 @@ const ExperienceSettings = () => {
   };
 
   const save = () => {
+    setExperiencePreferencesSnapshot(form);
     try {
       localStorage.setItem(
         storageKey,
@@ -102,6 +104,7 @@ const ExperienceSettings = () => {
         type: 'success',
       });
     } catch (error) {
+      notifyExperiencePreferencesChanged();
       setFeedback({
         message: getPreferenceActionError(error, 'Could not save browser preferences.'),
         type: 'error',
@@ -110,6 +113,8 @@ const ExperienceSettings = () => {
   };
 
   const reset = () => {
+    setExperiencePreferencesSnapshot(defaults);
+    resetInterfaceLanguage();
     try {
       localStorage.removeItem(storageKey);
       setForm(defaults);
@@ -119,6 +124,8 @@ const ExperienceSettings = () => {
         type: 'success',
       });
     } catch (error) {
+      setForm(defaults);
+      notifyExperiencePreferencesChanged();
       setFeedback({
         message: getPreferenceActionError(error, 'Could not reset browser preferences.'),
         type: 'error',

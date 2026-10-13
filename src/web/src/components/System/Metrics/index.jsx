@@ -1,4 +1,4 @@
-import { getRegionalLocale } from '../../../lib/regionalFormat';
+import { formatRegionalNumber, getRegionalLocale } from '../../../lib/regionalFormat';
 import { getKpiMetrics } from '../../../lib/telemetry';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -19,14 +19,21 @@ const formatBytes = (bytes) => {
   const k = 1_024;
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return `${(bytes / k ** i).toFixed(1)} ${sizes[i]}`;
+  return formatRegionalNumber(bytes / k ** i, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }) + ' ' + sizes[i];
 };
 
 const formatNumber = (value) => {
   if (value === undefined || value === null) return '—';
-  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
-  if (value >= 1_000) return `${(value / 1_000).toFixed(1)}K`;
-  return Number.parseFloat(value.toFixed(2)).toString();
+  if (value >= 1_000_000) {
+    return formatRegionalNumber(value / 1_000_000, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'M';
+  }
+  if (value >= 1_000) {
+    return formatRegionalNumber(value / 1_000, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'K';
+  }
+  return formatRegionalNumber(value, { maximumFractionDigits: 2 });
 };
 
 // Extract the first sample value from a metric, or null

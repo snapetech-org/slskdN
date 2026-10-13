@@ -7,6 +7,7 @@ import * as rooms from '../lib/rooms';
 import * as session from '../lib/session';
 import { getLocalStorageItem, setLocalStorageItem } from '../lib/storage';
 import { isPassthroughEnabled } from '../lib/token';
+import { useExperiencePreference } from '../lib/experiencePreferences';
 import AppContext from './AppContext';
 import AppRoutes from './AppRoutes';
 import ApplicationActions from './ApplicationActions';
@@ -739,10 +740,12 @@ class App extends Component {
 
 const AppWithLocation = (props) => {
   const location = useLocation();
+  const regionalFormat = useExperiencePreference('regionalFormat', 'system');
   return (
     <App
       {...props}
       location={location}
+      regionalFormat={regionalFormat}
     />
   );
 };
