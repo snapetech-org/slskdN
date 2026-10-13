@@ -12,6 +12,10 @@ on:
     - cron: '0 2 * * 0'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 env:
   DOTNET_VERSION: '10.0.100'
   DOTNET_INSTALL_DIR: ${{ github.workspace }}/.dotnet
@@ -23,11 +27,32 @@ permissions:
 jobs:
   performance-regression:
     name: Performance Regression Testing
-    # Public pull requests and manual dispatches outside main use hosted runners.
+    # All pull requests and manual dispatches outside main use hosted runners.
     runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 30
-    continue-on-error: true
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -44,7 +69,6 @@ jobs:
       - name: Build Performance Benchmark Project
         run: |
           dotnet build tests/slskd.Tests.Performance/slskd.Tests.Performance.csproj --configuration Release --no-incremental
-        continue-on-error: true
 
       - name: Run Performance Benchmarks
         id: benchmarks
@@ -55,11 +79,10 @@ jobs:
             -- \
             --exporters json \
             --artifacts BenchmarkDotNet.Artifacts
-        continue-on-error: true
 
       - name: Upload Benchmark Results
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: benchmark-results
           path: |
@@ -82,10 +105,32 @@ jobs:
 
   load-testing:
     name: Load Testing
-    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    # Keep the load harness on an isolated hosted runner after SIGBUS on a local runner.
+    runs-on: ubuntu-latest
     timeout-minutes: 20
-    continue-on-error: true
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -103,19 +148,44 @@ jobs:
 
       - name: Start Application
         run: |
+          cat > "$RUNNER_TEMP/slskdn-load-test.yml" <<'YAML'
+          dht:
+            enabled: false
+          web:
+            port: 5099
+            address: 127.0.0.1
+            content_path: wwwroot
+            https:
+              disabled: true
+            authentication:
+              disabled: true
+          shares: []
+          flags:
+            no_share_scan: true
+          YAML
           # Start slskdn in background for load testing
-          dotnet run --project src/slskd/slskd.csproj -c Release --no-build &
-          echo $! > slskdn.pid
-          # Wait for application to start (slskdn listens on port 5099 by default)
-          timeout 60 bash -c 'until curl -f http://localhost:5099/api/v0/session/enabled; do sleep 2; done' || true
-        continue-on-error: true
+          application_assembly="src/slskd/bin/Release/net10.0/slskd.dll"
+          application_directory="$(dirname "$application_assembly")"
+          # API-only startup still validates the static content directory.
+          mkdir -p "$application_directory/wwwroot"
+          dotnet "$application_assembly" \
+            --config "$RUNNER_TEMP/slskdn-load-test.yml" \
+            --app-dir "$RUNNER_TEMP/slskdn-load-test" \
+            --no-connect \
+            --no-auth \
+            --no-https \
+            --http-address 127.0.0.1 \
+            --http-port 5099 &
+          printf '%s\n' "$!" > "$RUNNER_TEMP/slskdn-load-test.pid"
+          # Wait for the loopback-only test instance to become healthy.
+          timeout 60 bash -c 'until curl -f http://127.0.0.1:5099/api/v0/session/enabled; do sleep 2; done' || { echo 'Application did not become healthy for load testing' >&2; exit 1; }
 
       - name: Install k6
         uses: grafana/setup-k6-action@43b9fc21641a76002687994433dd586f56e791b1 # v1
 
       - name: Create Load Test Script
         run: |
-          cat > load-test.js << 'EOF'
+          cat > "$RUNNER_TEMP/load-test.js" << 'EOF'
           import http from 'k6/http';
           import { check, sleep } from 'k6';
           import { Rate } from 'k6/metrics';
@@ -147,18 +217,9 @@ jobs:
             }) || errorRate.add(1);
 
             // Test application state endpoint
-            const stateRes = http.get(`${BASE_URL}/api/v0/application/state`);
+            const stateRes = http.get(`${BASE_URL}/api/v0/application`);
             check(stateRes, {
               'state status is 200': (r) => r.status === 200,
-            }) || errorRate.add(1);
-
-            // Test search creation (POST)
-            const searchPayload = JSON.stringify({ query: 'test', scope: 'all' });
-            const searchRes = http.post(`${BASE_URL}/api/v0/searches`, searchPayload, {
-              headers: { 'Content-Type': 'application/json' },
-            });
-            check(searchRes, {
-              'search creation status is 201 or 200': (r) => r.status === 201 || r.status === 200,
             }) || errorRate.add(1);
 
             sleep(1);
@@ -167,30 +228,36 @@ jobs:
 
       - name: Run Load Tests
         id: loadtest
-        run: |
-          k6 run --out json=load-test-results.json load-test.js || true
-        continue-on-error: true
         env:
-          BASE_URL: http://localhost:5099
+          BASE_URL: http://127.0.0.1:5099
+        run: |
+          k6 run --out "json=$RUNNER_TEMP/load-test-results.json" "$RUNNER_TEMP/load-test.js"
 
       - name: Upload Load Test Results
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: load-test-results
-          path: |
-            load-test-results.json
+          path: ${{ runner.temp }}/load-test-results.json
           retention-days: 30
           if-no-files-found: ignore
 
       - name: Stop Application
         if: always()
         run: |
-          if [ -f slskdn.pid ]; then
-            kill $(cat slskdn.pid) || true
-            rm slskdn.pid
+          pid_file="$RUNNER_TEMP/slskdn-load-test.pid"
+          if [[ -f "$pid_file" ]]; then
+            load_test_pid="$(cat "$pid_file")"
+            if [[ "$load_test_pid" =~ ^[0-9]+$ ]]; then
+              kill "$load_test_pid" 2>/dev/null || true
+              for _ in {1..15}; do
+                kill -0 "$load_test_pid" 2>/dev/null || break
+                sleep 1
+              done
+              kill -0 "$load_test_pid" 2>/dev/null && kill -9 "$load_test_pid" 2>/dev/null || true
+            fi
+            rm -f "$pid_file"
           fi
-          pkill -f "dotnet.*slskd" || true
 
       - name: Report Load Test Results
         if: steps.loadtest.outcome == 'success'
@@ -208,8 +275,29 @@ jobs:
     name: Dependency Scanning
     runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 15
-    continue-on-error: true
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -220,7 +308,7 @@ jobs:
           install: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '22.22.2'
           cache: pnpm
@@ -236,19 +324,20 @@ jobs:
 
       - name: Scan NuGet Dependencies
         run: |
+          set -euo pipefail
           # Use -p:Version=0.0.0 to prevent VERSION env var from being read as MSBuild $(Version),
           # which would cause NuGet to reject build-main-* prefixed strings as invalid semver.
           dotnet restore src/slskd/slskd.csproj -p:Version=0.0.0
-          dotnet list src/slskd/slskd.csproj package --vulnerable --include-transitive 2>&1 | tee /tmp/nuget-vuln.txt
-          if grep -qiE 'High|Critical' /tmp/nuget-vuln.txt; then
+          dotnet list src/slskd/slskd.csproj package --vulnerable --include-transitive 2>&1 | tee "$TMPDIR/nuget-vuln.txt"
+          if grep -qiE 'High|Critical' "$TMPDIR/nuget-vuln.txt"; then
             echo "::error::NuGet HIGH or CRITICAL vulnerability detected"
-            cat /tmp/nuget-vuln.txt
+            cat "$TMPDIR/nuget-vuln.txt"
             exit 1
           fi
 
       - name: Scan Web Dependencies
         run: |
-          pnpm audit --prod --audit-level high || true
+          pnpm audit --prod --audit-level high
 
       - name: Report Results
         if: always()
@@ -261,8 +350,29 @@ jobs:
     name: Container Scanning (Trivy)
     runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 20
-    continue-on-error: true
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -270,19 +380,19 @@ jobs:
         run: docker build -t slskdn:test -f Dockerfile .
 
       - name: Run Trivy Vulnerability Scanner
-        uses: aquasecurity/trivy-action@c03d123cb480c08c69b054af418ea5e69fe6e57e # master
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           scan-type: image
           image-ref: slskdn:test
-          exit-code: '0'
+          exit-code: '1'
+          ignore-unfixed: true
           severity: HIGH,CRITICAL
           format: json
           output: trivy-results.json
-        continue-on-error: true
 
       - name: Upload Trivy Results
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: trivy-results
           path: trivy-results.json

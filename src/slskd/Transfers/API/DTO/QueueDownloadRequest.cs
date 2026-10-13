@@ -41,6 +41,17 @@ namespace slskd.Transfers.API
         /// </summary>
         public Guid? BatchId { get; set; }
 
+        /// <summary>
+        ///     Gets or sets an optional caller-provided batch label for destination templates.
+        /// </summary>
+        public string? BatchExternalId { get; set; }
+
+        /// <summary>Optional originating search ID for destination templates.</summary>
+        public Guid? SearchId { get; set; }
+
+        /// <summary>Optional originating search text for destination templates.</summary>
+        public string? SearchText { get; set; }
+
         /// <summary>Optional audio bitrate in kbps from the originating search result.</summary>
         public int? BitRate { get; set; }
 

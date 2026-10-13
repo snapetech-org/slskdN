@@ -37,6 +37,29 @@ describe('transfer view preferences', () => {
     });
   });
 
+  it('defaults new views to newest requests first', () => {
+    expect(loadTransferViewState('download').sort).toEqual({
+      direction: 'descending',
+      key: 'requested',
+    });
+  });
+
+  it('keeps an existing saved sort choice', () => {
+    localStorage.setItem(
+      'slskdn-transfer-view-preferences',
+      JSON.stringify({
+        download: {
+          sort: { direction: 'ascending', key: 'name' },
+        },
+      }),
+    );
+
+    expect(loadTransferViewState('download').sort).toEqual({
+      direction: 'ascending',
+      key: 'name',
+    });
+  });
+
   it('repairs malformed values instead of poisoning the next render', () => {
     localStorage.setItem(
       'slskdn-transfer-view-preferences',

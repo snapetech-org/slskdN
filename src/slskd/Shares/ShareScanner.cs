@@ -448,6 +448,8 @@ namespace slskd.Shares
                     // important! don't try to delete stale files in this case; unscanned records will have a stale timestamp
                     Log.Warning("Shared file scan cancelled successfully");
 
+                    repository.FlagScanAsSuspect(timestamp);
+
                     State.SetValue(state => state with { Cancelled = true });
                 }
 

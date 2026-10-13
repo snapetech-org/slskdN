@@ -84,10 +84,17 @@
 #  download:
 #    slots: 500
 #    speed_limit: 1000
-#    completed_layout: remote_folder # default; preserves source folder/file names. Other values: uploader_folder (<uploader>/<remote folder>/<files>), batch_id, or flat
-#    completed_path_template: '' # optional override; e.g. '{uploader}/{remote_folder}'. Tokens: {uploader}, {remote_folder}, {remote_parent}, {remote_filename}, {batch_id}, {request_name}, {date}, {date:yyyy-MM}
+#    destination:
+#      subdirectory: '${SOURCE_DIRECTORY}' # relative to the selected downloads root; use '' to save at the root
+#      exists: rename # rename or overwrite when a completed filename already exists
+#      permissions:
+#        # mode: '0644' # chmod-style mode for new completed files; new directories receive matching execute bits (non-Windows only)
+#    # Legacy layout/template settings apply only when destination.subdirectory is omitted:
+#    # completed_layout: remote_folder # uploader_folder, batch_id, or flat
+#    # completed_path_template: '{uploader}/{remote_folder}' # legacy tokens: {uploader}, {remote_folder}, {remote_parent}, {remote_filename}, {batch_id}, {request_name}, {date}, {date:yyyy-MM}
 #    retry:
-#      incomplete: resume # resume or overwrite
+#      partial: resume # resume or overwrite; canonical retry strategy key
+#      # incomplete: resume # legacy alias; partial takes precedence when both are set
 #      attempts: 1
 #      delay: 5000
 #      max_delay: 60000
@@ -278,9 +285,10 @@
 #    mesh_gateway_window_seconds: 60
 #retention:
 #  search: 10080 # 7 days, in minutes
+#  events: 30 # event age limit, in days
 #  events_max_count: 10000 # retain at most this many recent events (0 = no count limit)
 #  transfers:
-#    removed: 10080 # permanently remove hidden completed transfer rows after 7 days (null = keep indefinitely)
+#    removed: 10080 # remove hidden completed rows and unreferenced terminal download requests after 7 days (null = keep indefinitely)
 #    upload:
 #      succeeded: 1440 # 1 day, in minutes
 #      errored: 30

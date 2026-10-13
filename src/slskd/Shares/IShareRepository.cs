@@ -95,6 +95,12 @@ namespace slskd.Shares
         void FlagLatestScanAsSuspect();
 
         /// <summary>
+        ///     Flags the scan with the specified <paramref name="timestamp"/> as suspect.
+        /// </summary>
+        /// <param name="timestamp">The start timestamp identifying the scan.</param>
+        void FlagScanAsSuspect(long timestamp);
+
+        /// <summary>
         ///     Inserts a directory.
         /// </summary>
         /// <param name="name">The fully qualified local name of the directory.</param>
@@ -137,12 +143,27 @@ namespace slskd.Shares
         IEnumerable<string> ListDirectories(string? parentDirectory = null);
 
         /// <summary>
+        ///     Streams directory names in database order without materializing the result set.
+        /// </summary>
+        /// <param name="parentDirectory">The optional directory prefix used for listing subdirectories.</param>
+        /// <returns>An ordered sequence of directory names.</returns>
+        IEnumerable<string> EnumerateDirectories(string? parentDirectory = null);
+
+        /// <summary>
         ///     Lists all files.
         /// </summary>
         /// <param name="parentDirectory">The optional parent directory.</param>
         /// <param name="includeFullPath">A value indicating whether the fully qualified path should be returned.</param>
         /// <returns>The list of files.</returns>
         IEnumerable<File> ListFiles(string? parentDirectory = null, bool includeFullPath = false);
+
+        /// <summary>
+        ///     Streams files in database order without materializing the result set.
+        /// </summary>
+        /// <param name="parentDirectory">The optional parent directory.</param>
+        /// <param name="includeFullPath">Whether to return fully qualified remote paths.</param>
+        /// <returns>An ordered sequence of files.</returns>
+        IEnumerable<File> EnumerateFiles(string? parentDirectory = null, bool includeFullPath = false);
 
         /// <summary>
         ///     Lists local (original) file paths and sizes for all shared files.

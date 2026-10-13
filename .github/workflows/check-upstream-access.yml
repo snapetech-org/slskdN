@@ -4,7 +4,6 @@ on:
   schedule:
     # Run daily at 9am UTC (polite, not aggressive)
     - cron: '0 9 * * *'
-  workflow_dispatch:  # Manual trigger
   push:
     # Only here to prevent GitHub from showing "failed" on workflow file changes
     # This path will never match, so push events never actually run
@@ -18,11 +17,11 @@ permissions:
 jobs:
   check-access:
     runs-on: ubuntu-latest
-    # Only run on schedule or manual trigger, skip if somehow triggered by push
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    # This workflow has write access and must run only from the scheduled default-branch ref.
+    if: github.event_name == 'schedule'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Check if upstream accepts contributions
         id: check

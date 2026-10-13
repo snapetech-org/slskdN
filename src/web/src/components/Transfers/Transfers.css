@@ -325,6 +325,13 @@
   padding: 4px 8px;
 }
 
+.transfer-loaded-note {
+  color: var(--slskd-color-subtle, rgba(0, 0, 0, 0.6));
+  flex-basis: 100%;
+  font-size: 0.78em;
+  line-height: 1.35;
+}
+
 .transfer-filter-chips {
   display: flex;
   flex-wrap: wrap;

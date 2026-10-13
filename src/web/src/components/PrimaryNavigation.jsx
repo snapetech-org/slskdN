@@ -133,6 +133,12 @@ const PrimaryNavigation = ({ isAgent, navActivity, version }) => {
       </Menu.Item>
     ) : (
       <>
+        <NavLink to="/dashboard">
+          <Menu.Item data-testid="nav-dashboard">
+            <Icon name="exchange" />
+            Overview
+          </Menu.Item>
+        </NavLink>
         <NavLink to="/searches">
           <Menu.Item data-testid="nav-search" dir={directionFor('Search')} lang={languageFor('Search')}>
             <Icon name="search" />

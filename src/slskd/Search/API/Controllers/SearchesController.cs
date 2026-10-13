@@ -219,23 +219,36 @@ namespace slskd.Search.API
         /// <param name="limit">Maximum number of searches to return (0 uses the default list cap).</param>
         /// <param name="offset">Number of searches to skip (for pagination).</param>
         /// <param name="source">Optional source filter (e.g. "manual", "wishlist", "auto-replace").</param>
+        /// <param name="afterStartedAt">Optional start time for a stable descending continuation.</param>
+        /// <param name="afterId">ID tie-breaker returned with the previous page's last row.</param>
         /// <returns>The list of searches.</returns>
         [HttpGet("")]
         [Authorize(Policy = AuthPolicy.Any)]
-        public async Task<IActionResult> GetAll([FromQuery] int limit = 0, [FromQuery] int offset = 0, [FromQuery] string? source = null)
+        public async Task<IActionResult> GetAll(
+            [FromQuery] int limit = 0,
+            [FromQuery] int offset = 0,
+            [FromQuery] string? source = null,
+            [FromQuery] DateTimeOffset? afterStartedAt = null,
+            [FromQuery] Guid? afterId = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            if (limit < 0 || offset < 0)
+            if (limit < 0 || offset < 0 || afterStartedAt.HasValue != afterId.HasValue ||
+                ((afterStartedAt.HasValue || afterId.HasValue) && offset != 0))
             {
                 return BadRequest();
             }
 
             var effectiveLimit = limit == 0 ? DefaultListLimit : limit;
-            var searches = await Searches.ListAsync(limit: effectiveLimit, offset: offset, source: source);
+            var searches = await Searches.ListAsync(
+                limit: effectiveLimit,
+                offset: offset,
+                source: source,
+                afterStartedAt: afterStartedAt?.UtcDateTime,
+                afterId: afterId);
             return Ok(searches);
         }
 

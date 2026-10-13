@@ -9,7 +9,7 @@ using Xunit;
 
 public class PathGuardTests
 {
-    private const string TestRoot = "/home/user/downloads";
+    private static readonly string TestRoot = Path.Combine(Path.GetTempPath(), "slskdn-path-guard-downloads");
 
     [Theory]
     [InlineData("music/album/track.flac", true)]
@@ -216,7 +216,7 @@ public class PathGuardTests
     [Fact]
     public void NormalizeAbsolutePathWithinRoots_RejectsPathOutsideConfiguredRoots()
     {
-        var target = "/home/user/other/track.flac";
+        var target = Path.Combine(Path.GetTempPath(), "slskdn-path-guard-other", "track.flac");
 
         var result = PathGuard.NormalizeAbsolutePathWithinRoots(target, new[] { TestRoot });
 

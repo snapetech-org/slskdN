@@ -56,10 +56,11 @@ published.
 
 The template also exposes the documented optional `SLSKD_*` environment
 overrides as advanced fields with blank values. Leave them blank to use the
-image and YAML defaults. This includes less-common settings for downloads,
-shares, search, Soulseek behavior, obfuscation, proxies, authentication,
-metrics, notifications, logging, and integrations. The complete variable
-reference is in [`docs/config.md`](../../docs/config.md). Runtime-only
+image and YAML defaults. This includes less-common settings for completed
+download destinations, collision handling, retries, retention, shares, search,
+Soulseek behavior, obfuscation, proxies, authentication, metrics, notifications,
+logging, and integrations. The complete variable reference is in
+[`docs/config.md`](../../docs/config.md). Runtime-only
 `SLSKD_SCRIPT_DATA` and image metadata variables such as `SLSKD_DOCKER_TAG` are
 not user configuration fields.
 

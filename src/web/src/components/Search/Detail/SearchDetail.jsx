@@ -1262,6 +1262,7 @@ const SearchDetail = ({
               response={r}
               responseIndex={index}
               searchId={id}
+              searchText={search.searchText}
               candidateRank={r.candidateRank}
               userGroup={userGroups[r.username]}
               userGroupLoading={userGroupsLoading}

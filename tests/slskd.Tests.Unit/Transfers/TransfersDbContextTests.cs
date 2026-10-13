@@ -19,6 +19,57 @@ using SlskdTransfer = slskd.Transfers.Transfer;
 public sealed class TransfersDbContextTests
 {
     [Fact]
+    public async Task Persisted_Transfer_Timestamps_RoundTrip_AsUtc_AndSerializeWithUtcSuffix()
+    {
+        await using var connection = new SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+        var options = new DbContextOptionsBuilder<TransfersDbContext>()
+            .UseSqlite(connection)
+            .Options;
+        var id = Guid.NewGuid();
+        var requestedAt = new DateTime(2026, 10, 13, 18, 15, 0, DateTimeKind.Utc);
+        var enqueuedAt = requestedAt.AddSeconds(1);
+        var startedAt = requestedAt.AddSeconds(2);
+        var endedAt = requestedAt.AddSeconds(3);
+        var nextAttemptAt = requestedAt.AddSeconds(4);
+
+        await using (var writeContext = new TransfersDbContext(options))
+        {
+            await writeContext.Database.EnsureCreatedAsync();
+            writeContext.Transfers.Add(new SlskdTransfer
+            {
+                Id = id,
+                Direction = TransferDirection.Download,
+                Filename = "Music/song.flac",
+                RequestedAt = requestedAt,
+                EnqueuedAt = enqueuedAt,
+                StartedAt = startedAt,
+                EndedAt = endedAt,
+                NextAttemptAt = nextAttemptAt,
+                Username = "listener",
+            });
+            await writeContext.SaveChangesAsync();
+        }
+
+        await using var readContext = new TransfersDbContext(options);
+        var persisted = await readContext.Transfers.AsNoTracking().SingleAsync(transfer => transfer.Id == id);
+
+        Assert.Equal(DateTimeKind.Utc, persisted.RequestedAt.Kind);
+        Assert.Equal(DateTimeKind.Utc, persisted.EnqueuedAt!.Value.Kind);
+        Assert.Equal(DateTimeKind.Utc, persisted.StartedAt!.Value.Kind);
+        Assert.Equal(DateTimeKind.Utc, persisted.EndedAt!.Value.Kind);
+        Assert.Equal(DateTimeKind.Utc, persisted.NextAttemptAt!.Value.Kind);
+        Assert.Equal(DateTimeKind.Utc, persisted.UpdatedAt.Kind);
+
+        Assert.EndsWith("Z\"", JsonSerializer.Serialize(persisted.RequestedAt), StringComparison.Ordinal);
+        Assert.EndsWith("Z\"", JsonSerializer.Serialize(persisted.EnqueuedAt), StringComparison.Ordinal);
+        Assert.EndsWith("Z\"", JsonSerializer.Serialize(persisted.StartedAt), StringComparison.Ordinal);
+        Assert.EndsWith("Z\"", JsonSerializer.Serialize(persisted.EndedAt), StringComparison.Ordinal);
+        Assert.EndsWith("Z\"", JsonSerializer.Serialize(persisted.NextAttemptAt), StringComparison.Ordinal);
+        Assert.EndsWith("Z\"", JsonSerializer.Serialize(persisted.UpdatedAt), StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task SaveChanges_Stamps_Transfer_Updates_For_Sync_And_Async_Writes()
     {
         await using var connection = new SqliteConnection("Data Source=:memory:");
@@ -249,6 +300,34 @@ public sealed class TransfersDbContextTests
     }
 
     [Fact]
+    public async Task TransferBrowseSnapshot_UsesModelIndexForOrderedPages()
+    {
+        await using var connection = new SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+        var options = new DbContextOptionsBuilder<TransfersDbContext>()
+            .UseSqlite(connection)
+            .Options;
+        await using var context = new TransfersDbContext(options);
+        await context.Database.EnsureCreatedAsync();
+
+        var plan = await ReadQueryPlanAsync(
+            connection,
+            """
+            SELECT Id FROM Transfers
+            WHERE Direction = 'Download' AND Removed = 0 AND UpdatedAt <= '2026-10-13T12:00:00Z'
+              AND (RequestedAt < '2026-10-13T11:00:00Z'
+                OR (RequestedAt = '2026-10-13T11:00:00Z' AND Id < 'ffffffff-ffff-ffff-ffff-ffffffffffff'))
+            ORDER BY RequestedAt DESC, Id DESC
+            LIMIT 101
+            """);
+
+        Assert.Contains(plan, detail =>
+            detail.Contains("IDX_Transfers_Direction_RequestedAt_Id", StringComparison.Ordinal));
+        Assert.DoesNotContain(plan, detail =>
+            detail.Contains("TEMP B-TREE", StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void TransferHistoryIndexesMigration_CreatesExactIdempotentIndexes()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-transfer-history-{Guid.NewGuid():N}.db");
@@ -324,6 +403,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -387,6 +467,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -457,6 +538,75 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
+            System.IO.File.Delete(databasePath);
+        }
+    }
+
+    [Fact]
+    public async Task TransferBrowseIndexMigration_CreatesOrderedPartialIndexAndUsesItForPages()
+    {
+        var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-transfer-browse-{Guid.NewGuid():N}.db");
+        var connectionString = $"Data Source={databasePath}";
+
+        try
+        {
+            await using (var connection = new SqliteConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                await using var command = connection.CreateCommand();
+                command.CommandText =
+                    "CREATE TABLE Transfers (Id TEXT PRIMARY KEY, Direction TEXT NOT NULL, RequestedAt TEXT NOT NULL, Removed INTEGER NOT NULL, UpdatedAt TEXT NOT NULL);";
+                await command.ExecuteNonQueryAsync();
+            }
+
+            var migration = new Z10132026_TransferBrowseIndexMigration(
+                new ConnectionStringDictionary(new()
+                {
+                    [Database.Transfers] = connectionString,
+                }));
+
+            Assert.True(migration.NeedsToBeApplied());
+            migration.Apply();
+            Assert.False(migration.NeedsToBeApplied());
+
+            await using (var connection = new SqliteConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                Assert.Equal(
+                    ["Direction", "RequestedAt", "Id"],
+                    ReadIndexColumns(connection, "IDX_Transfers_Direction_RequestedAt_Id"));
+
+                await using var definitionCommand = connection.CreateCommand();
+                definitionCommand.CommandText =
+                    "SELECT sql FROM sqlite_master WHERE type = 'index' AND name = 'IDX_Transfers_Direction_RequestedAt_Id'";
+                var definition = Assert.IsType<string>(await definitionCommand.ExecuteScalarAsync());
+                Assert.Contains("RequestedAt DESC", definition, StringComparison.OrdinalIgnoreCase);
+                Assert.Contains("Id DESC", definition, StringComparison.OrdinalIgnoreCase);
+                Assert.Contains("WHERE Removed = 0", definition, StringComparison.OrdinalIgnoreCase);
+
+                var plan = await ReadQueryPlanAsync(
+                    connection,
+                    """
+                    SELECT Id FROM Transfers
+                    WHERE Direction = 'Download' AND Removed = 0 AND UpdatedAt <= '2026-10-13T12:00:00Z'
+                      AND (RequestedAt < '2026-10-13T11:00:00Z'
+                        OR (RequestedAt = '2026-10-13T11:00:00Z' AND Id < 'ffffffff-ffff-ffff-ffff-ffffffffffff'))
+                    ORDER BY RequestedAt DESC, Id DESC
+                    LIMIT 101
+                    """);
+                Assert.Contains(plan, detail =>
+                    detail.Contains("IDX_Transfers_Direction_RequestedAt_Id", StringComparison.OrdinalIgnoreCase));
+                Assert.DoesNotContain(plan, detail =>
+                    detail.Contains("TEMP B-TREE", StringComparison.OrdinalIgnoreCase));
+            }
+
+            migration.Apply();
+            Assert.False(migration.NeedsToBeApplied());
+        }
+        finally
+        {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             System.IO.File.Delete(databasePath);
         }
     }
@@ -485,6 +635,62 @@ public sealed class TransfersDbContextTests
             migrations[nameof(Z08032026_AutoReplaceAttemptsMigration)]);
         Assert.IsType<Z10112026_TransferLookupIndexesMigration>(
             migrations[nameof(Z10112026_TransferLookupIndexesMigration)]);
+        Assert.IsType<Z10132026_DownloadRequestOriginMetadataMigration>(
+            migrations[nameof(Z10132026_DownloadRequestOriginMetadataMigration)]);
+        Assert.IsType<Z10132026_SearchBrowseIndexMigration>(
+            migrations[nameof(Z10132026_SearchBrowseIndexMigration)]);
+        Assert.IsType<Z10132026_TransferBrowseIndexMigration>(
+            migrations[nameof(Z10132026_TransferBrowseIndexMigration)]);
+    }
+
+    [Fact]
+    public void DownloadRequestOriginMetadataMigration_AddsNullableColumnsIdempotently()
+    {
+        var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-download-origin-{Guid.NewGuid():N}.db");
+        var connectionString = $"Data Source={databasePath}";
+
+        try
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                using var command = connection.CreateCommand();
+                command.CommandText = "CREATE TABLE DownloadRequests (Id TEXT PRIMARY KEY NOT NULL)";
+                command.ExecuteNonQuery();
+            }
+
+            var migration = new Z10132026_DownloadRequestOriginMetadataMigration(
+                new ConnectionStringDictionary(new()
+                {
+                    [Database.Transfers] = connectionString,
+                }));
+
+            Assert.True(migration.NeedsToBeApplied());
+            migration.Apply();
+            Assert.False(migration.NeedsToBeApplied());
+            migration.Apply();
+
+            using var verificationConnection = new SqliteConnection(connectionString);
+            verificationConnection.Open();
+            using var verificationCommand = verificationConnection.CreateCommand();
+            verificationCommand.CommandText = "PRAGMA table_info(DownloadRequests)";
+            using var reader = verificationCommand.ExecuteReader();
+            var columns = new List<string>();
+            while (reader.Read())
+            {
+                columns.Add(reader.GetString(reader.GetOrdinal("name")));
+            }
+
+            Assert.Contains("BatchExternalId", columns);
+            Assert.Contains("SearchId", columns);
+            Assert.Contains("SearchText", columns);
+            Assert.False(migration.NeedsToBeApplied());
+        }
+        finally
+        {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
+            System.IO.File.Delete(databasePath);
+        }
     }
 
     [Fact]
@@ -529,6 +735,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -611,6 +818,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -676,6 +884,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }

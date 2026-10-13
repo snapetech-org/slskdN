@@ -467,7 +467,7 @@ class RoomSession extends Component {
           className="room-active-card"
           raised
         >
-          <Card.Content onClick={() => this.focusInput()}>
+          <Card.Content>
             <Card.Header>
               <Icon
                 color="green"

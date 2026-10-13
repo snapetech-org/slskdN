@@ -96,28 +96,146 @@ Current stable validation codes:
 - `POST /api/v0/session` - Create session (login)
 - `DELETE /api/v0/session` - End session (logout)
 
+#### Rooms
+
+Room operations accept ordinary names in the existing `/rooms/joined/{roomName}` routes. For room names that contain `/`, use the query-addressed routes below so routing does not depend on encoded slashes in a path segment:
+
+- `GET /api/v0/rooms/by-name?roomName=%2Fmu%2F` - Get a joined room
+- `GET /api/v0/rooms/by-name/messages?roomName=%2Fmu%2F&since=0` - Read room messages
+- `GET /api/v0/rooms/by-name/users?roomName=%2Fmu%2F` - List room users
+- `POST /api/v0/rooms/by-name/messages?roomName=%2Fmu%2F` - Send a room message
+- `POST /api/v0/rooms/by-name/ticker?roomName=%2Fmu%2F` - Set a room ticker
+- `POST /api/v0/rooms/by-name/members?roomName=%2Fmu%2F` - Add a room member
+- `DELETE /api/v0/rooms/by-name?roomName=%2Fmu%2F` - Leave a room
+
+Pass the full room name as the `roomName` query value; URL-encode it as normal for a query string. The existing routes remain available for compatibility. If a request supplies both a route name and a different `roomName` query value, the API returns `400 Bad Request`.
+
 ### Search APIs
 
 #### Searches
 - `POST /api/v0/searches` - Start a new search
-- `GET /api/v0/searches` - List all searches
+- `GET /api/v0/searches?limit=250&afterStartedAt=2026-08-20T12%3A00%3A00Z&afterId=00000000-0000-0000-0000-000000000001&source=wishlist` - List a page of searches
 - `GET /api/v0/searches/{id}` - Get search details
 - `GET /api/v0/searches/{id}/responses` - Get search responses
 - `PUT /api/v0/searches/{id}` - Update search
 - `DELETE /api/v0/searches/{id}` - Cancel/delete search
 - `DELETE /api/v0/searches` - Clear all searches
 
+Search listing remains a plain JSON array. `limit` controls the maximum number
+of rows, `offset` skips previously requested rows, and `source` optionally
+filters to `manual`, `wishlist`, or `auto-replace`. To continue a changing
+search list without shifting its page boundary, pass the last row's
+`startedAt` as `afterStartedAt` and its `id` as `afterId`; supply both values
+together and do not combine them with a nonzero offset. The default limit is
+500. The Web UI starts with the live hub's capped 500-row snapshot, then uses
+REST continuation pages of 250; if the hub is unavailable, its REST fallback
+starts at 250. It merges page rows into the live list.
+
 #### Search Actions
 - `POST /api/v0/searches/{searchId}/items/{itemId}/download` - Download search result
 - `POST /api/v0/searches/{searchId}/items/{itemId}/stream` - Stream search result (Pod/Mesh only)
 
+The search-result download action retains the originating search ID and query
+with the queued request. Both values are available to completed-destination
+templates.
+
+#### Metrics
+
+- `GET /api/v0/telemetry/prometheus` - Get Prometheus metrics as text or JSON
+- `GET /api/v0/telemetry/metrics` - Get Prometheus metrics as text or JSON
+- `GET /api/v0/telemetry/prometheus/kpis` - Get the selected metrics as JSON
+- `GET /api/v0/telemetry/metrics/kpi` - Get the selected metrics as JSON
+
+The two metrics endpoints accept repeatable `include` and `exclude` query
+parameters. Each value is a regular expression matched against a metric-family
+name; multiple includes are combined with OR, and any matching exclude removes
+that family. For example, `?include=^slskd_&exclude=secret` keeps application
+metrics except names containing `secret`. Text and JSON responses use the same
+filter rules. With no filter parameters, the existing complete output is
+preserved.
+
+Each parameter accepts at most 8 patterns, each no longer than 128 characters.
+Patterns have a 100 ms match timeout. Empty or invalid patterns, excessive
+counts or lengths, and filters that exceed the timeout return `400 Bad Request`.
+The scrape endpoint configured by `metrics.url` accepts the same query
+parameters and continues to use its configured Basic authentication.
+
+#### Reports
+
+- `GET /api/v0/telemetry/reports/transfers/summary` - Summarize completed transfers
+
+The summary defaults to the seven days ending at the request time. Supply
+`start` and `end` to choose another interval. Each direction is grouped by
+final transfer state; successful rows report the count and `totalBytes` based
+on bytes actually transferred.
+
 ### Transfer APIs
 
 #### Downloads
+- `POST /api/v0/transfers/downloads/{username}` - Queue one or more downloads
 - `GET /api/v0/transfers/downloads` - List downloads
 - `GET /api/v0/transfers/downloads/{username}/{id}` - Get download details
 - `GET /api/v0/transfers/downloads/{username}/{id}/position` - Get queue position
 - `DELETE /api/v0/transfers/downloads/{username}/{id}` - Cancel download
+- `GET /api/v0/transfers/changes` - Read a transfer snapshot or incremental changes
+- `GET /api/v0/transfers/history` - Read a stable page of successful history
+
+Each queued file may include `batchId`, `batchExternalId`, `searchId`, and
+`searchText`. These optional values are retained with the download request and
+can be used by the global completed-destination template. Existing clients can
+continue to omit them. A request-level `destination` query value chooses its
+root and keeps its existing precedence over the global subdirectory template.
+
+```json
+[
+  {
+    "filename": "Music/Album/Track.flac",
+    "size": 24823104,
+    "batchId": "c681ca67-a187-4d7f-8e6d-13699f468ad7",
+    "batchExternalId": "lidarr-album-481",
+    "searchId": "7b82c49b-39d7-4ac4-a61d-97144f7336bc",
+    "searchText": "Artist Album"
+  }
+]
+```
+
+See [Transfer Operations](transfer-operations.md) for supported destination
+tokens, collision policy, filesystem-safety rules, and CLI/YAML configuration.
+
+Transfer timestamp fields are serialized as UTC ISO 8601 values with a `Z`
+suffix. Convert them to local time only for display; retain the UTC value for
+sorting and comparisons.
+
+The transfer changes response keeps its existing shape for unpaged requests.
+For a bounded initial snapshot, add `limit` (1 through 500); `direction` may be
+`download` or `upload`. The response includes `hasMore` and, when another page
+exists, `nextAfterRequestedAt` and `nextAfterId`. Continue the same snapshot by
+passing its `cursor` as `asOf` and both continuation values as
+`afterRequestedAt` and `afterId`. Pages are ordered by request time, newest
+first, with transfer ID as a stable tie-breaker. Both continuation values must
+be supplied together and require the original `asOf` watermark. A continuation
+keeps that snapshot boundary, so rows changed afterward arrive through the
+incremental `since` query instead. The `since` and page parameters cannot be
+combined.
+
+Successful history has a separate stable page route. It accepts `direction`,
+an optional `asOf` watermark, `offset`, and `limit` (1 through 500; default
+250). The Web UI loads active and unsuccessful rows in bounded pages and loads
+successful history separately. Its retry and cancel-all actions apply to loaded
+rows; the completed-row clear action applies to the server list.
+
+#### Download requests
+
+- `GET /api/v0/downloads/requests?state=active|completed|failed|cancelled` - List request-level records, optionally filtered by state
+- `GET /api/v0/downloads/requests/{id}` - Get a request and its transfer attempts
+- `PATCH /api/v0/downloads/requests/{id}/name` - Rename its display label with `{"name":"New label"}`
+- `POST /api/v0/downloads/requests/{id}/cancel` - Cancel the current attempt and mark the request cancelled
+
+These endpoints operate on the stable user-facing request. The existing
+`/api/v0/transfers/downloads` endpoints expose individual transfer attempts.
+Terminal requests are removed by `retention.transfers.removed` only after their
+download attempts have expired and been deleted. See [Transfer Operations](transfer-operations.md)
+for retention behavior and timestamp details.
 
 #### Uploads
 - `GET /api/v0/transfers/uploads` - List uploads

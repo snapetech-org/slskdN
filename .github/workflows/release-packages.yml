@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get Version
         id: version
@@ -99,7 +99,7 @@ jobs:
           mv *.deb slskdn_${{ steps.version.outputs.version }}_amd64.deb
 
       - name: Upload .deb to Release
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           files: slskdn_${{ steps.version.outputs.version }}_amd64.deb
@@ -111,7 +111,7 @@ jobs:
     container: fedora:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get Version
         id: version
@@ -196,7 +196,7 @@ jobs:
 
       - name: Upload .rpm to Release
         if: steps.find_rpm.outputs.rpm_path != ''
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           files: ${{ steps.find_rpm.outputs.rpm_path }}

@@ -4,38 +4,867 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
-### 0z1779. Keep Interface-Language Metadata Helpers In The Hook Contract (2026-10-13)
+### 0z1847. Include New Environment Options In Every Maintained Installer Template (2026-10-13)
 
-**What went wrong:** `TransferManager` destructured `languageFor` and
-`directionFor` from `useInterfaceLanguage()`, but the hook returned neither
-function. Opening Downloads or Uploads therefore called `undefined` while
-rendering and crashed the screen.
+**What went wrong:** Several options documented as environment variables were
+absent from the Unraid template. The mismatches included completed-download
+path, collision, and permissions settings, retry controls, and retention
+settings; the packaging metadata validator exposed them incrementally.
 
-**Why:** The hook and its consumers were changed independently, and this plain
-JavaScript module has no type contract to catch a missing returned property.
+**Why:** Updating the application configuration and the central configuration
+reference did not update the separately maintained Unraid environment list.
 
-**Prevention:** When a UI consumer needs translated-text language or direction,
-keep both helpers in the hook's return contract and make fallback strings report
-English, left-to-right metadata. Review every consumer of a changed hook before
-finishing the edit. For regional metrics, route zero values and compact counts
-through `Intl.NumberFormat` too; ASCII zero and hard-coded `K`/`M` suffixes
-bypass the selected locale.
+**Prevention:** When adding a documented `SLSKD_*` environment option, update
+each supported installer template that promises environment overrides and run
+the packaging metadata validator before release.
 
-### 0z1780. Invalidate Memoized Rows When Regional Formatting Changes (2026-10-13)
+### 0z1846. Preserve Trusted Playwright Cache Mounts (2026-10-13)
 
-**What went wrong:** A mounted virtualized transfer table kept rendering its
-memoized rows after the browser-local regional-format preference changed. The
-table read formatting directly from browser preferences, while neither the
-table nor its row data subscribed to preference changes.
+**What went wrong:** The trusted launcher mounted the preinstalled Playwright
+browser cache read-only and exported its guest path, but the validation engine
+replaced that path with a private temporary-directory path. Browser tests could
+not see the mounted binaries.
 
-**Why:** Re-rendering the surrounding application does not invalidate a
-`React.memo` row when the virtualizer receives the same row props. A formatter
-that reads current browser state is not reactive by itself.
+**Why:** The task environment always derived the browser path from
+`RUNNER_TEMP`, `TMPDIR`, or the OS default, without recognizing the launcher's
+explicit guest mount.
 
-**Prevention:** Subscribe the owning component to regional-preference changes
-and include the active regional setting in virtualized row props so memoized
-rows are invalidated. Review other mounted, memoized views when locale-sensitive
-formatters are changed.
+**Prevention:** Preserve a Playwright cache path only when it matches the
+trusted launcher's `/mnt/run-data/dependencies/<index>` mount form. Continue
+ignoring arbitrary operator paths, and test both the accepted guest path and a
+rejected host path.
+
+### 0z1839. Keep Paged Snapshot Watermarks At API Precision (2026-10-13)
+
+**What went wrong:** The first transfer page filtered with a timestamp that had
+sub-millisecond precision, while its continuation cursor exposed only Unix
+milliseconds. Later pages could therefore use a slightly earlier snapshot
+boundary and omit rows near that boundary.
+
+**Why:** The query watermark and serialized cursor were derived at different
+precisions.
+
+**Prevention:** Quantize the initial watermark to the cursor's serialized
+precision before querying the first page. Use that exact value for every page
+and cover the precision boundary in controller tests.
+
+### 0z1840. Update App Shell Tests When The Default Page Changes (2026-10-13)
+
+**What went wrong:** App tests that relied on the root route rendering Searches
+failed after the root route moved to Dashboard. Some tests also loaded the real
+Dashboard API dependencies despite mocking the rest of the shell.
+
+**Why:** The tests coupled shell behavior to the previous default page and its
+module mock list.
+
+**Prevention:** When changing the default route, update assertions that exercise
+the root or unknown-route fallback and mock the new page when testing only the
+app shell. Keep dedicated route tests for the actual page destination.
+
+### 0z1841. Update Exact Tooltip Assertions With Action Scope (2026-10-13)
+
+**What went wrong:** A transfer action tooltip was expanded to explain that
+bulk actions affect loaded rows, but its exact-text test still asserted the
+previous wording.
+
+**Why:** The test treated copy as fixed while the action's scope explanation
+changed with paged browsing.
+
+**Prevention:** Update tooltip assertions alongside scope changes and verify
+the same explanation appears on both halves of a split control.
+
+### 0z1842. Use Keyset Pages For A Live Search List (2026-10-13)
+
+**What went wrong:** Offset-based search pages could shift when live searches
+were created or deleted, causing a later page to repeat rows or skip rows at
+the boundary.
+
+**Why:** Offset positions describe a mutable ordered list, even when live
+updates are merged into the UI.
+
+**Prevention:** Use a stable descending `(StartedAt, Id)` continuation for the
+Web UI and retain offsets only for API compatibility. Keep the sort tie-breaker
+and cursor predicate aligned, and test continuation while new rows are inserted.
+
+### 0z1843. Update Interface Fakes For Added Optional Parameters (2026-10-13)
+
+**What went wrong:** Extending `ISearchService.ListAsync` with optional cursor
+parameters left a test fake implementing the old method signature, so the unit
+test project did not compile.
+
+**Why:** Optional values keep call sites source-compatible, but interface
+implementations must still declare the complete updated signature.
+
+**Prevention:** Search for direct interface implementations and mocks whenever
+an interface method changes. Update fake signatures as well as production
+implementations, then compile the affected test project before running tests.
+
+### 0z1844. Keep Search Source Predicates Provider-Translatable (2026-10-13)
+
+**What went wrong:** The search source filter called `ToLowerInvariant()` inside
+an EF predicate. SQLite could not translate that method, so a source-filtered
+list query failed at runtime.
+
+**Why:** A .NET string method was assumed to have the same query translation as
+its database-level lowercase operation.
+
+**Prevention:** Normalize the input outside the query and use a method the
+configured EF provider translates for the stored value. Exercise source-filtered
+list queries against SQLite, not only mocked service calls.
+
+### 0z1845. Continue From The Search Snapshot Already On Screen (2026-10-13)
+
+**What went wrong:** The Web UI loaded a capped live search snapshot, then
+requested a smaller REST page from the beginning. Its first “load more” request
+could therefore return rows that were already visible.
+
+**Why:** The initial snapshot and the REST continuation maintained separate
+page boundaries.
+
+**Prevention:** Derive the first continuation from the last row in the initial
+snapshot shown to the user. Keep fallback REST paging separate and test a live
+insert between initial load and continuation.
+
+### 0z1838. Match Mock Arguments To The Service Interface (2026-10-13)
+
+**What went wrong:** A search-list controller test placed the source filter in
+the first `ListAsync` mock argument, but the interface expects a search
+predicate there, so the test project did not compile.
+
+**Why:** The HTTP action's parameter order was mistaken for the service
+interface's argument order.
+
+**Prevention:** Read the service interface before setting up a controller mock.
+Assert the complete forwarded predicate, limit, offset, and source arguments in
+their declared order.
+
+### 0z1837. Pass One Collection To List.AddRange (2026-10-13)
+
+**What went wrong:** A transfer-page test fixture passed multiple collections to
+`List<T>.AddRange`, which accepts one collection and stopped the test project
+from compiling.
+
+**Why:** The fixture grouped several independent sequences into one call rather
+than concatenating them or making separate calls.
+
+**Prevention:** Check collection method signatures when assembling fixtures;
+use `Concat` for combined sequences or call `AddRange` once per collection.
+Build the affected test project before running broader suites.
+
+### 0z1836. Route Filtered Metrics Through The Filter-Aware Overload (2026-10-13)
+
+**What went wrong:** A metrics request with an include filter and no exclude
+filter could dispatch to the legacy virtual overload, allowing an override to
+return unfiltered values.
+
+**Why:** API compatibility kept the original one-argument virtual method while
+a separate overload was added for both include and exclude filters.
+
+**Prevention:** Preserve the existing overload only when callers supply no
+filters. Route any filtered request through the include-and-exclude overload,
+and test include-only requests against a service that overrides the legacy
+method.
+
+### 0z1835. Supply Optional Parameters To Reflection Invocations (2026-10-13)
+
+**What went wrong:** Tests invoking a private method through `MethodInfo.Invoke`
+omitted its optional search-metadata parameters and failed with
+`TargetParameterCountException`.
+
+**Why:** C# applies optional defaults at a compiled call site; reflection still
+requires an argument for every method parameter.
+
+**Prevention:** Pass all parameters to reflection-based invocations, including
+optional ones. Where relevant, assert that optional metadata reaches the
+downstream request.
+
+### 0z1834. Accept Nullable Elements From Query String Collections (2026-10-13)
+
+**What went wrong:** Passing repeated query values to a shared filter parser
+compiled with nullable-reference warnings because `StringValues.ToArray()`
+returns `string?[]`.
+
+**Why:** Query collections allow nullable elements at their API boundary even
+when each accepted value is validated before use.
+
+**Prevention:** Type parser inputs as `string?[]?`, reject empty or whitespace
+elements explicitly, and only construct regular expressions after the null and
+blank checks have narrowed each element.
+
+### 0z1833. Restore UTC Kind For Every Persisted Transfer Timestamp (2026-10-13)
+
+**What went wrong:** SQLite materialized `RequestedAt` and `EnqueuedAt` with
+`DateTimeKind.Unspecified`, while other transfer timestamps were restored as
+UTC.
+
+**Why:** SQLite does not persist `DateTime.Kind`, and the EF value converters
+covered only part of the transfer timestamp properties.
+
+**Prevention:** Add UTC-kind materialization converters for every persisted
+transfer `DateTime` and nullable `DateTime` property. Include round-trip tests
+that cover both a required timestamp and nullable timestamps when populated.
+
+### 0z1832. Backdate Transfer Rows After SaveChanges In Retention Tests (2026-10-13)
+
+**What went wrong:** A retention test set `Transfer.UpdatedAt` to an old value
+before saving, but the database row was current when pruning ran.
+
+**Why:** `TransfersDbContext.SaveChanges` refreshes `UpdatedAt` for every
+added or modified transfer, including test fixtures.
+
+**Prevention:** Persist the transfer fixture first, then set `UpdatedAt` to the
+test timestamp with a targeted SQL update. Do not rely on the entity's initial
+value for retention-age tests.
+
+### 0z1823. Bound Windows Test-Database Delete Retries (2026-10-13)
+
+**What went wrong:** Windows CI still reported a share-scan database in use
+after the scan task, repository instances, and query readers had been disposed.
+The test failed while deleting its temporary database.
+
+**Why:** Windows refuses to delete files while any process holds a conflicting
+handle. The exception does not identify that process, so it must not be treated
+as proof that SQLite resources are still live.
+
+**Prevention:** Dispose all test-owned operations and connections first. Retry
+only Windows sharing or lock violations (error codes 32 and 33), with a strict
+time bound; let persistent locks and every other deletion error fail normally.
+Do not use blanket sleeps, forced garbage collection, or global pool clearing.
+
+### 0z1822. Drain Timed-Out Test Operations Before Cleanup (2026-10-13)
+
+**What went wrong:** A Windows share-scan test cancelled a scan after its
+timeout but started deleting the database before the scan task had stopped.
+The resulting file-lock error hid the original timeout.
+
+**Why:** Cancelling an operation only requests that it stop. Its task may still
+own database connections or other resources until it observes cancellation and
+finishes.
+
+**Prevention:** After requesting cancellation on timeout, await the operation
+task and handle its expected cancellation before disposing fixtures or deleting
+their files. Keep test timeouts long enough for the workload on hosted runners.
+
+### 0z1824. Keep Message Text Selection Independent From Composer Focus (2026-10-13)
+
+**What went wrong:** Clicking anywhere inside a room card focused the message
+composer. That moved keyboard focus while a user was selecting or copying a
+message.
+
+**Why:** A card-wide click handler treated all content clicks as an intent to
+type, including clicks on selectable conversation text.
+
+**Prevention:** Let the input receive focus through its own native interaction.
+Use explicit controls when an action needs to focus it; do not attach composer
+focus to the containing card. Cover both text interaction and focus behavior in
+the room UI.
+
+### 0z1825. Keep Known-Gotcha Identifiers Unique (2026-10-13)
+
+**What went wrong:** Two separate entries used identifier `0z1823`, making
+references to the message-selection note ambiguous.
+
+**Why:** A new entry reused the latest identifier without checking the full
+living document for collisions.
+
+**Prevention:** Search the complete gotcha log before assigning an identifier.
+Correct a duplicate in the same change and keep each entry's identifier unique.
+
+### 0z1826. Apply Configured Download Directory Modes After Creation (2026-10-13)
+
+**What went wrong:** Download directory creation passed the configured Unix
+mode to `Directory.CreateDirectory`, but the resulting mode could be narrower
+when the process umask masked permission bits.
+
+**Why:** The create-mode overload still respects the process umask. Setting the
+mode only at creation does not guarantee the configured mode on the new
+directory.
+
+**Prevention:** After creating a download destination directory, apply the
+configured mode explicitly to directories created for that download with
+`File.SetUnixFileMode`. Do not change permissions on pre-existing parent
+directories, and skip Unix mode operations on Windows. Cover both restrictive
+umasks and nested paths.
+
+### 0z1827. Use File APIs For Unix Modes On Directory Paths (2026-10-13)
+
+**What went wrong:** The directory-mode implementation called
+`Directory.SetUnixFileMode`, which is not part of the .NET API and stopped the
+application build.
+
+**Why:** The Unix mode methods are exposed on `File`; their path argument may
+refer to a directory even though the type name suggests otherwise.
+
+**Prevention:** Check the target framework's API surface instead of inferring a
+method from the path type. Use `File.SetUnixFileMode` and `File.GetUnixFileMode`
+for directory paths, and compile the application and tests before proceeding.
+
+### 0z1828. Qualify File APIs When Soulseek Types Are Imported (2026-10-13)
+
+**What went wrong:** A filesystem test used `File.Delete` in a file that also
+imports `Soulseek.File`, so the test project failed to compile with an
+ambiguous type reference.
+
+**Why:** Both namespaces expose a type named `File`; implicit global usings do
+not resolve a collision when the protocol namespace is imported explicitly.
+
+**Prevention:** Use `System.IO.File` for filesystem operations in files that
+also import `Soulseek`, or define a clear type alias for the intended API.
+
+### 0z1829. Preserve Optional Metadata Across API Normalization (2026-10-13)
+
+**What went wrong:** The download API accepted new optional destination-token
+metadata, but its normalization step copied only the older request fields and
+discarded the batch label before enqueue.
+
+**Why:** API handlers create normalized request objects instead of forwarding
+the input DTO, so adding a field to the DTO and final enqueue mapping does not
+carry it through every intermediate copy.
+
+**Prevention:** Trace new request properties across validation, normalization,
+and enqueue construction. Add a controller test that captures the final
+enqueue request and checks every optional field.
+
+### 0z1830. Sanitize Encoded Traversal In Destination Token Values (2026-10-13)
+
+**What went wrong:** A peer name or search query containing a URL-encoded dot
+sequence could survive filename sanitization, then be rejected by the final
+path guard after decoding.
+
+**Why:** The path guard deliberately checks URL-decoded paths for traversal,
+while token values are external text that should be made safe as components.
+
+**Prevention:** Sanitize percent-encoded values at the token boundary, and
+validate literal path templates against decoded traversal as well as raw `..`
+components. Keep the final root-containment check as the independent boundary.
+
+### 0z1831. Prune Terminal Requests Only After Their Transfers (2026-10-13)
+
+**What went wrong:** Transfer retention could permanently delete a removed
+download row while leaving its terminal DownloadRequest record behind.
+
+**Why:** The request and transfer have separate persistence lifecycles; pruning
+the transfer table alone does not clean the owning request.
+
+**Prevention:** After removing expired transfer rows, delete only terminal
+download requests with no remaining download rows. Preserve active requests and
+requests that still have any transfer history.
+
+### 0z1821. Dispose SQLite Readers Before Their Connections (2026-10-13)
+
+**What went wrong:** A Windows test could not delete its temporary share
+database after repository disposal because a scalar/count query had returned
+without disposing its `SqliteDataReader`.
+
+**Why:** Disposing a command or connection does not make reader ownership
+implicit; a live reader can retain the underlying SQLite handle and file lock.
+POSIX unlink semantics can hide this resource leak.
+
+**Prevention:** Prefer `ExecuteScalar` for single-value queries. For row reads,
+scope both reader and command before the connection leaves scope. Review every
+`ExecuteReader` call when changing SQLite repositories, and verify file-backed
+database cleanup on Windows.
+
+### 0z1820. Complete Enqueue Waits When Background Downloads End (2026-10-13)
+
+**What went wrong:** A download could reach a terminal failure in its background
+task while the locally queued task continued waiting for a separate remote
+enqueue acknowledgement. Shutdown then waited indefinitely for that orphaned
+enqueue task, and tests could not safely release file-backed SQLite databases.
+
+**Why:** Download execution and the enqueue acknowledgement waiter are separate
+tasks. Expected remote failures complete the observed download task without
+raising the state callback that normally releases the waiter.
+
+**Prevention:** Make the acknowledgement wait race against the observed
+download task's completion, and release it with the latest persisted transfer
+state when the download ends first. Cover both successful and failed terminal
+paths with a shutdown-drain regression test.
+
+### 0z1819. Match Fixture Copy Paths To Solution Build Configuration (2026-10-13)
+
+**What went wrong:** A unit-test build copied a helper executable from the
+Release output directory even though the solution built that referenced helper
+project under Debug. A stale Release output hid the mismatch locally, while a
+clean Windows runner failed the post-build check.
+
+**Why:** The helper project is referenced by a solution project but is not
+itself listed in the solution. Solution builds can therefore select a
+different configuration for that project reference than a direct project
+build.
+
+**Prevention:** Keep referenced fixture projects aligned with the consuming
+project's configuration, and test the copy target after cleaning both Debug
+and Release outputs. Do not let an old output directory stand in for a
+reproducible build dependency.
+
+### 0z1818. Import Temporary Probe Cleanup Helpers (2026-10-13)
+
+**What went wrong:** Runtime-probe cleanup called `rmSync` without importing
+it, so the engine contract test failed in the cleanup path.
+
+**Why:** The probe refactor introduced a new filesystem operation without
+checking the module's existing named imports.
+
+**Prevention:** Keep cleanup imports adjacent to the other filesystem imports
+and run the engine contract suite after changing temporary-resource lifecycles.
+
+### 0z1817. Probe Runtimes With Private Tool Homes (2026-10-13)
+
+**What went wrong:** The validation plan reported the installed .NET SDK as
+unavailable inside the trusted sandbox because the runtime version probe
+discarded `DOTNET_CLI_HOME` and inherited no usable home directory.
+
+**Why:** Runtime probing used the restricted toolchain environment without
+creating the private home directories that task execution already provides.
+
+**Prevention:** Give every runtime probe a fresh private home, temporary,
+XDG, and .NET CLI directory. Remove that directory after probing, and test the
+probe with a fake runtime that verifies operator paths and unrelated variables
+are not inherited.
+
+### 0z1807. Budget E2E Timeouts For Sequential Capability Lifetimes (2026-10-13)
+
+**What went wrong:** A browser test waited for a two-minute stream ticket to
+expire, then required more than two minutes of playback after reselection, but
+its three-minute test deadline could not cover both waits plus setup.
+
+**Why:** The timeout was chosen without adding the sequential wall-clock waits
+in the full user journey.
+
+**Prevention:** Sum explicit expiry and playback waits, then leave margin for
+startup and browser setup. Run the full journey headlessly after changing its
+timeout budget.
+
+### 0z1808. Locate Shrinkable Buttons By Their Accessible Label (2026-10-13)
+
+**What went wrong:** A Playwright test looked up a compact `ShrinkableButton` by
+its tooltip text and waited for the full test timeout because the button's
+accessible name remained its visible label.
+
+**Why:** Tooltips explain an action but do not replace the control's accessible
+name. Responsive buttons may hide their text while retaining a concise label
+such as `Sync`.
+
+**Prevention:** Locate the control by its accessible label, scope repeated
+labels to the containing row or section, and assert the tooltip text separately
+after hovering. Do not treat popup content as the button's name.
+
+### 0z1809. Wait For Durable Request State After Transfer Completion (2026-10-13)
+
+**What went wrong:** A download test waited for the in-memory transfer to become
+Completed, then immediately asserted that its separate durable request record
+had also reached a terminal state.
+
+**Why:** Transfer completion is published before post-download processing
+persists the associated request result, so the two states can be briefly out of
+sync.
+
+**Prevention:** Poll for the durable request state the test needs in addition
+to the transfer state. Keep the final assertions against a fresh database
+query so asynchronous persistence is not mistaken for a product failure.
+
+### 0z1810. Model Native Paths And Executables In Cross-Platform Tests (2026-10-13)
+
+**What went wrong:** Windows smoke tests inherited Unix-rooted paths, compared
+case-sensitive executable suffixes, and searched only for the Unix apphost
+name. Some option validators also correctly rejected fixture paths that did
+not exist on the host.
+
+**Why:** The tests asserted Unix representation details instead of the
+filesystem and executable behavior of the current platform.
+
+**Prevention:** Build absolute fixture paths from `Path.GetTempPath()` and
+`Path.Combine`, create directories that validation requires to exist, compare
+resolved executable names using the platform's path semantics, and search for
+the `.exe` apphost on Windows. Assert normalized paths rather than literal
+separator or drive forms.
+
+### 0z1811. Make Subprocess Test Output Explicit On Every Platform (2026-10-13)
+
+**What went wrong:** A process-draining test used the current process host as
+its fake media tool. On Windows that resolved to `cmd.exe`, whose output did
+not match the test's expected stderr failure.
+
+**Why:** A platform executable was assumed to emulate the same stdout, stderr,
+and exit behavior as the Unix process used by the test.
+
+**Prevention:** Launch a test-owned executable or platform script that writes
+known diagnostics to stderr, emits no PCM to stdout, and exits with the
+intended status. Keep the fake process behavior explicit and clean up its
+temporary files in `finally`.
+
+### 0z1812. Consume The Complete SOCKS5 Request In Test Servers (2026-10-13)
+
+**What went wrong:** The SOCKS test server read a fixed ten-byte connect
+request even when the client used a domain-name address. It then closed the
+socket with request bytes unread, which caused Windows to reset the connection
+before the test response was consumed.
+
+**Why:** The mock assumed the IPv4 request length instead of following the
+address-type and address-length fields in the SOCKS5 frame.
+
+**Prevention:** Read the request header, consume the address payload according
+to its address type, and then consume the port before responding or closing
+the test connection.
+
+### 0z1813. Replace An Open Browse Cache File Atomically On Windows (2026-10-13)
+
+**What went wrong:** Replacing a browse cache with `File.Move(...,
+overwrite: true)` failed on Windows while an existing reader held the target
+open with delete sharing enabled.
+
+**Why:** The overwrite move path does not have the same open-handle replacement
+behavior on Windows as unlink-and-rename on POSIX.
+
+**Prevention:** When the same-volume destination already exists, use
+`File.Replace` so active readers retain the old file while new readers see the
+replacement. Use `File.Move` only for a destination that does not yet exist;
+do not implement replacement as delete followed by move because that loses
+atomic visibility.
+
+### 0z1814. Classify Socket Failures By Their Error Code (2026-10-13)
+
+**What went wrong:** Expected reset and timeout socket failures were rejected
+on Windows because the classifier recognized English exception text that
+differs across operating systems.
+
+**Why:** Socket error messages are platform-specific and may be localized,
+while the socket error code is stable.
+
+**Prevention:** Match expected socket conditions using `SocketException`'s
+`SocketErrorCode`. Keep message checks only for non-socket wrappers that do
+not expose a structured network error.
+
+### 0z1815. Qualify Filesystem Calls When Domain Types Share Their Names (2026-10-13)
+
+**What went wrong:** A filesystem replacement helper in `Application` used
+unqualified `File` calls and failed to compile because the file also imports
+domain types named `File`.
+
+**Why:** The compiler resolves imported names from multiple namespaces, so
+`File` was ambiguous between the filesystem API and application models.
+
+**Prevention:** Use `System.IO.File` explicitly in files that import another
+`File` type, and compile the owning project after adding filesystem code.
+
+### 0z1816. Read All SOCKS5 Greeting Methods In Test Servers (2026-10-13)
+
+**What went wrong:** The SOCKS mock read a fixed three-byte greeting. Clients
+that offered multiple authentication methods sent additional method bytes;
+the mock then mistook the leftover byte for the next request and closed before
+the connect response was sent.
+
+**Why:** The greeting contains a method-count field, so its total length varies
+with the client's authentication options.
+
+**Prevention:** Read the two-byte greeting header, then exactly the advertised
+number of authentication methods. Select only a method the client offered and
+keep mock negotiation aligned with the protocol frame boundaries.
+
+### 0z1806. Keep Moq Expression Closings Formatter-Safe (2026-10-13)
+
+**What went wrong:** A new Moq setup added whitespace between the
+`It.IsAny<...>()` expression and its enclosing call. `./bin/lint` failed with a
+`WHITESPACE` formatting error even though the test compiled and passed.
+
+**Why:** The focused test run does not enforce the solution's formatter rules,
+so a syntactically valid expression can still fail the repository lint gate.
+
+**Prevention:** Run `./bin/lint` after adding or editing complex Moq expressions,
+and keep nested call-closing parentheses adjacent as the formatter requires.
+
+### 0z1796. Pass The Sender When Raising `EventHandler<T>` In Moq (2026-10-13)
+
+**What went wrong:** A unit test raised an `EventHandler<T>` mock event with only
+the payload. Moq invoked the two-parameter delegate with one argument and failed
+with `TargetParameterCountException` before the handler ran.
+
+**Why:** `EventHandler<T>` has both a sender and an event payload. Moq's
+`Raise` helper needs both arguments in delegate order; it does not synthesize an
+omitted sender for this overload.
+
+**Prevention:** When raising an `EventHandler<T>` with Moq, pass the sender
+(usually `null`) followed by the payload. Keep the regression assertion on the
+observable handler effect so a malformed event invocation cannot look like a
+product failure.
+
+### 0z1797. Publish Watched-User State After The Watch Is Committed (2026-10-13)
+
+**What went wrong:** Application state was refreshed on status events, but the
+initial status response arrives before `UserService` adds the user to its watched
+set. The application filters that event out, leaving newly watched users absent
+from the shared state until another status update.
+
+**Why:** The test seeded the watched-user list before raising a status event, so
+it did not exercise the real ordering between fetching user data and committing
+the watch registration.
+
+**Prevention:** Publish a service event when a watch registration succeeds and
+when the watch cache resets. Test the complete watch lifecycle with the status
+response occurring before the watched-set update.
+
+### 0z1793. Bound Validation Output And Reap Task Descendants (2026-10-12)
+
+**What went wrong:** Validation output could accumulate in an unbounded pump
+queue or log, and a task that left a descendant holding stdout open could keep
+the runner waiting after the main command exited.
+
+**Why:** Bounding only the parser's retained tail does not bound data queued
+between the reader and consumer, persisted diagnostics, or the lifetime of
+inherited pipes.
+
+**Prevention:** Bound the pump queue, retain a fixed diagnostic tail, cap the
+private task log with a visible truncation marker, hash the bytes actually
+persisted, and terminate a task's process group when descendants outlive its
+main process.
+
+### 0z1794. Exclude Non-Source Files Under Credential Directories (2026-10-12)
+
+**What went wrong:** Credential-like files without a recognized extension,
+such as `credentials/private-key`, and environment-style credential files such
+as `tokens.env` were still copied into the local test sandbox.
+
+**Why:** The filter checked credential names at the file boundary but did not
+treat a credential-named parent directory as sensitive, while a broad directory
+rule would also hide legitimate source files such as `tokens/index.ts`.
+
+**Prevention:** Exclude files inside credential-named directories unless their
+file extension is on the explicit source-code allowlist. Recognize environment
+credential suffixes as well as extensionless credential names. Keep tests for
+both credential data and source files beneath token/authentication directories.
+
+### 0z1795. Refresh Abuse-Lens Counts After Validation Tooling Changes (2026-10-13)
+
+**What went wrong:** CI hardening scripts, tests, workflow policy, and release
+notes added 54 matches to the broad red-team candidate scan. The checked-in
+backlog still recorded 12,757 matches, so the release gate failed at 14 of 15
+tasks even though the new matches were expected review candidates.
+
+**Why:** The abuse-lens scanner includes tracked files under `scripts/` and
+`docs/` as well as application source and tests. Security and validation work
+often uses words such as `token`, `secret`, and `path`, which changes this
+discovery count without indicating a product defect.
+
+**Prevention:** After changing scanned source, tests, tooling, workflows, or
+documentation, run `scripts/run-council-active-bughunt.sh`, inspect and classify
+the count delta, refresh `docs/dev/bug-council-active-backlog.md`, and run
+`scripts/check-council-active-backlog.sh` before pushing. Do not weaken the
+scanner or treat candidate matches as confirmed defects.
+
+### 0z1792. Pin Sandbox Mount Sources Before Applying Host Masks (2026-10-12)
+
+**What went wrong:** The launcher resolved bind sources by host path after
+Bubblewrap had masked their parent directories, so a source under a masked
+tree could become unavailable or resolve against a different mount.
+
+**Why:** Bubblewrap applies mount operations sequentially inside its new
+namespace. A path lookup performed after a parent is covered sees the sandbox's
+current filesystem rather than the original host path.
+
+**Prevention:** Open every workspace, run-data, dependency, cache, and marker
+source before starting Bubblewrap; pass those descriptors as inherited child
+stdio and bind `/proc/self/fd/N` only after the host masks are installed.
+Keep contract coverage for mount ordering and a live sandbox canary.
+
+### 0z1791. Preserve Extensionless Credential Files In Sandbox Filtering (2026-10-13)
+
+**What went wrong:** Narrowing the sandbox's sensitive-path filter to known
+credential extensions also stopped excluding extensionless files named
+`auth`, `tokens`, `credentials`, or `secrets`.
+
+**Why:** The filter needed to stop misclassifying source files such as
+`token.js` and `tokens.rs`, but the extension-based rule did not distinguish
+those files from extensionless credential data.
+
+**Prevention:** Exclude exact extensionless credential names and recognized
+credential/config extensions, while allowing source files with unrelated
+extensions. Keep contract tests for both credential files and token-named
+source code.
+
+### 0z1787. Pin Actions Before Enabling SHA-Only Repository Policy (2026-10-13)
+
+**What went wrong:** Release publisher jobs attached to an immutable tag failed
+before their first action ran because the workflow at that tag still referenced
+actions by version tags. The repository now requires every action to use a full
+commit SHA, so updating only the default branch does not make an older tag's
+workflow rerunnable.
+
+**Why:** GitHub loads the workflow definition from the exact tagged commit. A
+retry therefore evaluates the same mutable action references that failed
+setup, even after a corrected workflow has been pushed to another ref.
+
+**Prevention:** Pin actions across release workflows before enabling the
+repository's SHA-only policy or cutting a release. For an already-published
+immutable release, use an explicit manual recovery path on a SHA-pinned workflow
+ref, select the existing tag, and skip rebuilds and publishers that already
+succeeded.
+
+### 0z1788. Create The Web Content Directory For API-Only Startup (2026-10-13)
+
+**What went wrong:** The loopback API load harness built the app without
+publishing web assets, then startup validation rejected the default
+`Web.ContentPath` because `wwwroot` did not exist beside the application
+assembly.
+
+**Why:** `--app-dir` selects writable application data; it does not change
+`AppContext.BaseDirectory`, which is where the relative web content path is
+validated and served from.
+
+**Prevention:** API-only test instances still need an existing web content
+directory. Create an empty `wwwroot` beside the built assembly before startup,
+and keep the service loopback-only with DHT and Soulseek connections disabled.
+
+### 0z1789. Keep Release Fragment Bodies Within Their Validator Limit (2026-10-13)
+
+**What went wrong:** Adding the publisher-recovery behavior to an existing CI
+release fragment made its body longer than the 400-character limit, so the
+release-note preview rejected the change.
+
+**Why:** The fragment's earlier text was valid, but the validator measures the
+whole body after edits and also requires a concise user-impact description.
+
+**Prevention:** Rerun release-note preview after editing a fragment. Keep its
+body between 30 and 400 characters while retaining the affected audience and
+the practical impact.
+
+### 0z1790. Check Pinned Actions Without Requiring Mutable Version Tags (2026-10-13)
+
+**What went wrong:** Packaging metadata validation required the literal
+`pnpm/setup@v3`, so it rejected the release workflow after the action was
+converted to an immutable commit pin.
+
+**Why:** The validator checked the old version-tag spelling instead of the
+action identity and the repository's SHA-pin requirement.
+
+**Prevention:** Match the action name, a full 40-character commit SHA, and its
+version comment. Do not require mutable tag syntax in workflow contracts.
+
+### 0z1786. Do Not Trust Pull Request Authors For Persistent Runners (2026-10-13)
+
+**What went wrong:** CI routed pull requests authored by `snapetech` to a
+persistent self-hosted runner. A pull-request workflow runs from the PR merge
+commit, so application and test code supplied by that PR executes on the local
+host. Checking the author name does not establish that the PR contents are
+safe, and a PR can also change the workflow guard itself.
+
+**Why:** The policy treated the PR author's identity as proof that the PR
+contents and workflow were trusted.
+
+**Prevention:** Route every `pull_request` job to a GitHub-hosted runner. Limit
+persistent runners to trusted pushes and manual runs on `main`. A workflow
+check inside the PR cannot enforce its own integrity; use repository or
+organization runner restrictions and protect workflow changes for any stronger
+boundary.
+
+### 0z1785. Keep API Load Tests Authenticated and Offline (2026-10-13)
+
+**What went wrong:** The load-test runner started the application with default
+authentication but sent requests to authenticated endpoints without a token.
+Those requests received authorization failures, which became job failures when
+the previous error suppression was removed. Its search request also sent
+`query`, while the API request model requires `searchText`, and used a
+nonexistent `/application/state` route instead of the controller's
+`/application` route. The default app configuration also enables public DHT,
+which an API-only load test does not need to contact.
+
+**Why:** The harness had no isolated test configuration or authentication
+header even though its application-state and search endpoints require
+authorization, and it guessed the POST body instead of following the API
+request model.
+
+**Prevention:** Configure loopback-only test authentication explicitly, or
+issue a disposable test token and send it with every authenticated request.
+Use a dedicated test config with loopback-only HTTP, authentication disabled,
+public DHT disabled, and `no-connect` enabled. Use controller route attributes
+and API request-model field names, then verify endpoint status codes before
+making a load job required. Avoid network searches unless the test has an
+isolated Soulseek fixture. Do not use live Soulseek credentials for API-only
+load tests.
+
+### 0z1784. Default GitHub Actions Tokens to Read Only (2026-10-13)
+
+**What went wrong:** The repository default granted write access to
+`GITHUB_TOKEN`, so workflows that did not declare their own permissions
+inherited a credential broader than the checks required.
+
+**Why:** The repository setting had not been reduced as the workflow set grew.
+Explicit permissions in some workflows obscured the broader inherited default
+for the rest.
+
+**Prevention:** Set the repository default to read-only. Workflows that publish
+or otherwise write must declare their required scopes explicitly, and a policy
+check should cover every workflow plus the live repository setting.
+
+### 0z1783. Distinguish Action SHA Pins From Version Tags (2026-10-13)
+
+**What went wrong:** The action-pin check treated valid forty-character commit
+SHAs beginning with a digit as version tags because it matched only the first
+character after `@`.
+
+**Why:** The regular expression did not require the version reference to end
+at a token boundary.
+
+**Prevention:** Parse the full action reference and require exactly forty
+hexadecimal characters for a commit pin. Add a test case for a valid SHA that
+begins with a digit as well as mutable and version-tag references.
+
+### 0z1782. Quote Paths Inside Bash Prefix Removal (2026-10-13)
+
+**What went wrong:** ShellCheck flagged prefix removal that expanded a root
+directory variable as part of a shell pattern without quoting it.
+
+**Why:** Quoting the full parameter expansion does not quote expansions inside
+the removal pattern, so glob characters in a path could be treated as pattern
+syntax.
+
+**Prevention:** Quote variables inside bash parameter-removal patterns, for
+example `${path#"$root"/}`, and run ShellCheck on changed shell scripts.
+
+### 0z1781. Keep Workflow Policy Checks Aligned With Runner Rules (2026-10-13; superseded by 0z1786)
+
+**What went wrong:** A repository check required every pull request to use a
+hosted runner even after trusted same-repository authors were explicitly
+allowed to use the local pool.
+
+**Why:** The runner policy changed without updating the static workflow
+contract, so valid workflow expressions failed validation.
+
+**Historical prevention (superseded):** The earlier recommendation to allow
+same-repository authors to select a persistent runner was incomplete. Keep
+policy checks aligned with the corrected rule in 0z1786: all pull requests use
+hosted runners, regardless of author.
+
+### 0z1780. Keep GitHub Actions Step Environment Outside Script Blocks (2026-10-13)
+
+**What went wrong:** The load-test step's `env` mapping was indented inside its
+multiline `run` script, so the intended `BASE_URL` variable was not supplied to
+the test process.
+
+**Why:** A workflow edit moved step keys without preserving their YAML level.
+The workflow remained parseable, but the shell received `env:` and
+`BASE_URL:` as script text instead of step configuration.
+
+**Prevention:** Keep step-level `env`, `run`, and action keys at the same YAML
+indentation. Validate the complete workflow after edits and inspect script
+blocks when moving keys between steps.
+
+### 0z1779. Make Security Scans Fail When Findings Are Detected (2026-10-13)
+
+**What went wrong:** CI benchmark and load jobs used blanket
+`continue-on-error`, dependency auditing ended with `|| true`, and Trivy used a
+mutable `master` ref with exit code zero. A green workflow could therefore hide
+failed tests or high-severity findings.
+
+**Why:** The workflow was written to preserve results from experimental jobs,
+but the same failure suppression covered required test and security steps. The
+summary steps still reported that scans had run, which made those results look
+more authoritative than they were.
+
+**Prevention:** Do not suppress failures for required tests or scans. Pin
+third-party actions to verified commit SHAs, use `set -euo pipefail` for
+pipelines, and set scanners to fail at the documented severity threshold. If a
+check is advisory, label it advisory and keep it out of required-gate claims.
 
 ### 0z1778. Keep Untrusted Workflow Refs Off Persistent Runners (2026-10-12)
 
@@ -49,10 +878,13 @@ for both the triggering event and the selected ref. The same expression was
 copied into the normal CI, performance, load, dependency, and container
 workflows.
 
-**Prevention:** Route all `pull_request` events and workflow dispatches from
-refs outside `main` to GitHub-hosted runners. Keep release dispatches hosted,
-scope token write permissions to publishing jobs, and audit every workflow for
-self-hosted runner selection.
+**Prevention:** Route only `snapetech`-authored pull requests and trusted
+`main` runs to the local pool; other contributors' pull requests use
+GitHub-hosted runners and require approval before any workflow runs. A personal
+repository cannot enforce runner-group access by workflow ref, and workflow
+YAML can be changed by a pull request. Review workflow changes before approving
+an external run. Move to organization runner groups restricted to selected
+repositories and exact main-branch workflow refs for an enforced boundary.
 
 ### 0z1777. Dispose SQLite Test Owners Before File Cleanup (2026-10-12)
 
@@ -31334,6 +32166,105 @@ repo.UpsertContentItem(contentId, "GenericFile", null, maskedFilename, true, str
 
 ## ⚠️ HIGH: Common Mistakes
 
+### 0z1796. Mark Interrupted Share Scans Suspect (2026-10-13)
+
+**What went wrong:** A cancelled share scan still wrote an end timestamp, which
+made the partial scan look complete. Startup therefore accepted a cache that
+could be missing files or directories.
+
+**Why:** Cancellation was recorded in process state, but the persistent scan
+record was finalized without setting its existing `suspect` flag.
+
+**Prevention:** When a scan is interrupted, mark that specific scan record
+suspect before finalizing it. Keep a regression that cancels an in-progress scan
+and verifies the persisted record is ended and suspect; startup must reject it
+and rebuild the cache.
+
+### 0z1797. Keep Relative Web Content Paths Inside The App Directory (2026-10-13)
+
+**What went wrong:** Web content configuration rejected rooted paths but accepted
+relative paths containing `..`, allowing the resolved content directory to
+escape the application directory.
+
+**Why:** Checking whether an input is relative does not prove that its
+canonicalized destination remains beneath the intended root.
+
+**Prevention:** Resolve the configured path against the application directory
+and use `PathGuard.NormalizeAbsolutePathWithinRoots` before checking existence.
+That resolves existing symlink components as well as `..` traversal. Keep tests
+for direct and nested traversal, the root directory, and symlinks that target
+outside the application directory.
+
+### 0z1798. Test Configuration Bindings Against CLR Option Names (2026-10-13)
+
+**What went wrong:** A configuration-binding regression test initially used a
+property name from the YAML alias (`transfers`) as though it were a CLR member
+on `Options`; the model exposes that section as `Global`.
+
+**Why:** YAML aliases and the custom CLI/environment providers' reflection paths
+are separate naming layers, so matching the serialized key does not establish
+the in-memory property name.
+
+**Prevention:** Check the option model and provider path construction before
+writing binding assertions. Bind through the actual CLR property (`Global` for
+the aliased `transfers` section) and keep tests for both YAML and attributed
+CLI/environment input paths.
+
+### 0z1799. Bound Remote Path Components By Filesystem Bytes (2026-10-13)
+
+**What went wrong:** Remote filenames were sanitized for invalid characters
+but not bounded by the filesystem's per-component limit. UTF-8 names could
+therefore fail during file creation even when their character count looked
+reasonable.
+
+**Why:** Filesystems commonly measure component limits in encoded bytes, while
+application validation often counts UTF-16 characters.
+
+**Prevention:** Keep short names unchanged; shorten only overlong components on
+Unicode text-element boundaries, reserve room for a deterministic digest, and
+retain a short file extension where possible. Test both directory and filename
+components by creating the mapped path on disk.
+
+### 0z1800. Aggregate Actual Transfer Progress, Not Advertised Size (2026-10-13)
+
+**What went wrong:** Transfer summaries added each record's requested file size,
+so a failed or cancelled transfer was reported as though the full file had
+crossed the network.
+
+**Why:** The transfer row stores both the expected file `Size` and the observed
+`BytesTransferred`; they are equal only after a successful full transfer.
+
+**Prevention:** Use `BytesTransferred` for aggregate byte totals in summaries,
+histograms, and leaderboards. Keep regression data with a partially transferred
+errored record and a completed record so reporting semantics remain explicit.
+
+### 0z1801. Reuse JSON Serializer Metadata For Large Collections (2026-10-13)
+
+**What went wrong:** Deserialization created a new `JsonSerializerOptions`
+instance for each row, so a large share listing repeatedly allocated converter
+and type-metadata caches.
+
+**Why:** `System.Text.Json` keeps metadata caches on each options instance. A
+high-volume query can therefore grow memory with the number of rows even when
+the payload uses the same few types.
+
+**Prevention:** Keep the configured options instance static and read-only after
+first use. Add a regression that exercises repeated deserialization and
+confirms the shared instance is reused.
+
+### 0z1802. Use The Product Environment Prefix In Option Docs (2026-10-13)
+
+**What went wrong:** A new configuration reference used the fork branding in
+environment-variable names, but the application binder still requires the
+established `SLSKD_` prefix.
+
+**Why:** Option attributes specify only the setting suffix; the configuration
+provider supplies the environment prefix independently.
+
+**Prevention:** Verify each documented name against the provider prefix and a
+binding test. Keep the established prefix unless the application explicitly
+changes and tests that contract.
+
 ### 4. Copyright Headers - Wrong Company Attribution
 
 **The Rule**: New slskdN files use `company="slskdN Team"`, existing upstream files keep `company="slskd Team"`.
@@ -41365,3 +42296,310 @@ mapping contract.
 **Prevention:** When adding configuration, search every packaging example and
 environment mapping, including the Unraid template, and run packaging metadata
 validation before preparing release notes or tagging.
+
+### 0z1779. Keep .NET SDK Bootstrap Temporary Files On Runner Storage (2026-10-12)
+
+**What went wrong:** `actions/setup-dotnet` could not install the pinned SDK or
+runtime on the persistent Linux runner. The runner's default `/tmp` was nearly
+full even though its job-scoped runner temp directory had ample space.
+
+**Why:** The setup step inherited the operating system's shared temporary
+directory. The later validation step already used `runner.temp`, but that did
+not help the earlier SDK bootstrap.
+
+**Prevention:** In each eligible Linux self-hosted job, validate
+`RUNNER_TEMP` and export `TMPDIR` through `GITHUB_ENV` in the first step so SDK
+setup and later build/test steps use runner storage. Step-scoped `TMPDIR` covers
+only the setup action; see `0z1780` for the job-wide workflow contract.
+
+### 0z1780. Export Runner Temporary Storage For The Whole Self-Hosted Job (2026-10-12)
+
+**What went wrong:** A .NET build on the persistent Linux runner still failed
+after the `setup-dotnet` action was pointed at runner storage. The build ran in
+a later step without `TMPDIR` and fell back to the full shared `/tmp`.
+
+**Why:** A step-level `env` applies only to that action step; it does not change
+the environment for later build, test, or compiler processes.
+
+**Prevention:** In the first step of every Linux self-hosted job, verify
+`RUNNER_TEMP` exists and is writable, then export `TMPDIR` through
+`GITHUB_ENV`. Keep a workflow regression that checks every eligible job starts
+with this fail-closed setup.
+
+### 0z1781. Keep Packaging Guards Aligned With Job-Wide Runner Temp (2026-10-12)
+
+**What went wrong:** The workflow switched from step-scoped `TMPDIR` values to
+first-step validation and job-wide export through `GITHUB_ENV`, but packaging
+metadata validation still required the old literal. The hosted release gate
+therefore failed even though the new runner-temp setup was present.
+
+**Why:** The static packaging guard duplicated a workflow contract instead of
+using the shared check that validates every Linux self-hosted job and its
+first-step ordering.
+
+**Prevention:** When the workflow temp contract changes, update every dependent
+guard in the same change. Reuse the shared workflow-matrix check rather than
+asserting a stale step-scoped environment literal.
+
+### 0z1782. Keep Runner-Temp Fixes Within Existing CI Triggers (2026-10-13)
+
+**What went wrong:** A runner-temp reliability change also added CI builds to
+every branch push, expanding the workflow's trigger policy beyond its existing
+tag, pull-request, and manual events.
+
+**Why:** The storage fix was bundled with a separate runner-routing change even
+though this repository intentionally keeps builds off ordinary branch pushes.
+
+**Prevention:** Keep runner-temp validation scoped to existing workflow events.
+Run pull-request checks on hosted runners and use an explicitly dispatched
+main-branch validation when a trusted self-hosted run is needed. Keep the
+resource-heavy load harness hosted after a local SIGBUS.
+
+### 0z1783. Keep Local Validation Snapshots Inside The Trust Boundary (2026-10-13)
+
+**What went wrong:** The local runner copied untracked and ignored checkout
+files into its candidate snapshot and hid host paths based on a guessed
+workspace root. Nested local configuration could enter the snapshot, and
+candidate code could read the original checkout around its filtered copy.
+
+**Why:** The runner inferred trusted inputs from filename shape and common
+workspace layouts instead of taking an explicit snapshot and masking the
+canonical source location.
+
+**Prevention:** Copy only Git-index paths, omit credential names even when they
+are indexed, hide common host configuration and data roots plus the canonical
+checkout parent, and stage new candidate files before local validation. Keep
+contract coverage for nested configuration, credential names, checkout aliases,
+and host-root visibility.
+
+### 0z1784. Keep Search Deletion Safe During In-flight Completion (2026-10-13)
+
+**What went wrong:** A search can be deleted while its asynchronous lifecycle
+callback still holds a detached entity. A later state update then tries to
+persist a row that no longer exists and can fault the completion path.
+
+**Why:** Individual search deletion removed the database row without first
+coordinating with the active search, while the callback continued to persist
+state changes independently.
+
+**Prevention:** Coordinate deletion with active cancellation, make persistence
+detect a row removed during completion, and avoid broadcasting a stale update
+after deletion. Cover the delete-versus-finalize ordering with a deterministic
+regression test.
+
+### 0z1785. Record Both Sync And Async Database Commands In Tests (2026-10-13)
+
+**What went wrong:** A lifecycle test stopped counting set-based deletes after
+the implementation moved the guarded database operation to a synchronous EF
+command.
+
+**Why:** The test interceptor recorded only asynchronous non-query commands,
+so the assertion silently missed the new execution path.
+
+**Prevention:** When changing EF execution mode, make SQL command interceptors
+observe both synchronous and asynchronous calls before relying on command-count
+assertions.
+
+### 0z1786. Bound Repeated Queue-Limit Rejections (2026-10-13)
+
+**What went wrong:** A peer that keeps retrying after reaching its upload queue
+limit caused the server to repeat the same transfer-history query and rejection
+logs for every request.
+
+**Why:** Per-user serialization and a global concurrency limit control overlap,
+but they do not reduce repeated work when a peer retries the same denied
+request.
+
+**Prevention:** Reuse a very short-lived queue snapshot only for queue-limit
+decisions, invalidate it when uploads change, suppress per-request logs for
+cached denials, and expose an aggregate metric without peer labels.
+
+### 0z1787. Include Required Transfer Offsets In Event Fixtures (2026-10-13)
+
+**What went wrong:** A lifecycle regression fixture did not compile because the
+transfer constructor requires a start offset even when the test transfer has
+not started.
+
+**Why:** The fixture supplied only the fields relevant to the assertion and
+missed a required constructor argument in the vendored transfer contract.
+
+**Prevention:** When constructing transfer event arguments, include the
+required offset explicitly and use the shared constructor patterns already
+present in lifecycle tests.
+
+### 0z1788. Keep Peer Accept Loops Alive After Transient Socket Errors (2026-10-13)
+
+**What went wrong:** An unexpected socket error from an accept operation faulted
+the background listener loop while its listening state stayed true.
+
+**Why:** The loop handled exceptions only when shutdown was already in progress,
+and its fire-and-forget task swallowed later faults.
+
+**Prevention:** Retry transient accept failures with capped backoff and emit a
+diagnostic for each retry; preserve shutdown as a terminal condition and test
+that a later connection is still accepted.
+
+### 0z1789. Bound Incomplete-Directory Cleanup To Its Configured Root (2026-10-13)
+
+**What went wrong:** Moving a completed download removed its immediate empty
+source directory but left empty peer and nested-folder directories behind.
+
+**Why:** Cleanup checked only the source file's parent and did not walk the
+directory tree back toward the configured incomplete-download root.
+
+**Prevention:** After a successful move, prune empty ancestors one at a time,
+stop at the configured incomplete root, and verify containment before deleting.
+Treat a non-empty directory or a filesystem race as a normal stop condition.
+
+### 0z1803. Parse Share Aliases Before Bracketed Paths (2026-10-13)
+
+**What went wrong:** Share parsing used a greedy alias match, so a closing
+bracket later in the local path could be mistaken for the alias delimiter.
+
+**Why:** The share grammar uses the first `]` to end an optional alias, while
+filesystem paths may contain additional `]` characters.
+
+**Prevention:** Locate the alias delimiter once at the grammar boundary and
+pass the remaining path through unchanged. Keep regression coverage for
+bracketed paths, aliases, excluded shares, and unaliased paths.
+
+### 0z1804. Stream Large Browse Caches From Ordered Share Rows (2026-10-13)
+
+**What went wrong:** Building a peer browse cache materialized every shared
+directory and file, then copied the full directory collection into a response
+object before writing the cache.
+
+**Why:** The cache path reused collection-oriented APIs designed for ordinary
+browsing, so a large library required several full-size object graphs at once.
+
+**Prevention:** Stream ordered SQLite rows into one directory group at a time,
+merge sorted repository results without retaining the full tree, and serialize
+the counted protocol response directly to the temporary cache file. Keep
+wire-compatibility, lazy-enumeration, and cancellation/failure cleanup tests.
+
+### 0z1805. Match Vendored Test Syntax To Its CSharp Language Version (2026-10-13)
+
+**What went wrong:** New tests in the vendored runtime test project used C# 8
+using declarations, but that project compiles with C# 7.3.
+
+**Why:** The application and vendored test projects use different language
+versions even though they are built from the same checkout.
+
+**Prevention:** Check the target project's language version before choosing
+syntax. Use scoped `using (...)` blocks in the vendored tests unless the
+project configuration is deliberately upgraded.
+
+### 0z1806. Keep Vendored Runtime Patch In Sync With The Mirror (2026-10-13)
+
+**What went wrong:** Runtime source and test files changed in the vendored
+mirror, but the declared local patch did not include those edits. The runtime
+sync check therefore rejected the otherwise passing product changes.
+
+**Why:** Builds consume the runtime source revision plus the checked-in local
+patch. Editing the mirror alone leaves the reproducible source definition
+behind the files being built.
+
+**Prevention:** Regenerate the declared runtime patch from the pinned source
+revision whenever vendored runtime files change, commit the patch with the
+mirror, and run `scripts/check-slsknet-runtime-sync.sh` before pushing.
+
+### 0z1807. Keep Versioned Changelog Sections Out Of Unmerged Pull Requests (2026-10-13)
+
+**What went wrong:** A release version section was prepared on a feature branch,
+but the pull request changelog check requires the branch to update
+`## [Unreleased]`.
+
+**Why:** Pull request validation checks the normal development changelog
+contract, while the tag helper requires versioned notes only after the change
+is on the validated default branch.
+
+**Prevention:** Keep shipped bullets under `## [Unreleased]` in the pull
+request. After merge, move the exact shipped bullets into the dated version
+section on the default branch and run the exact-head release gate before
+tagging.
+
+### 0z1808. Drain SQLite Test Services Before Deleting File-Backed Databases (2026-10-13)
+
+**What went wrong:** Windows tests failed while deleting temporary SQLite
+databases because repository/service connections, pooled connections, or
+background service work were still active during cleanup. A concurrent
+remediation test also assumed that background download callbacks would arrive
+in recording order.
+
+**Why:** A `using` declaration inside a `try` block may remain alive while its
+associated `finally` block runs, disposing a service does not necessarily wait
+for its asynchronous workers, disposed Microsoft.Data.Sqlite connections can
+remain open in the default pool, and parallel tasks do not guarantee callback
+order. Linux permits unlinking an open file, so these mistakes can stay hidden
+outside Windows.
+
+**Prevention:** Await service shutdown to drain workers, explicitly scope
+database contexts so they close before cleanup runs, disable pooling for
+temporary file-backed database tests or clear pools after closing connections,
+and assert the complete set of asynchronous results instead of relying on
+scheduling order. Keep the Windows test job enabled.
+
+### 0z1809. Quantize Transfer History Watermarks Before Querying (2026-10-13)
+
+**What went wrong:** The first completed-history page filtered rows using a
+full-precision UTC timestamp, then returned that timestamp as Unix milliseconds.
+The next page reconstructed the smaller, millisecond-precision value and could
+skip a row near the page boundary when applying its offset.
+
+**Why:** The response cursor lost sub-millisecond precision that had already
+affected the first page's query.
+
+**Prevention:** Convert the initial history watermark to Unix milliseconds and
+back before filtering any rows. Query, respond, and continue with the same
+precision, and cover the boundary so offset pages cannot lose a transfer.
+
+### 0z1810. Keep Multi-Area Release Notes On One Valid Slug (2026-10-13)
+
+**What went wrong:** A user-facing release fragment listed several feature
+areas separated by commas, but the release-note schema accepts one lowercase
+slug.
+
+**Why:** The fragment described the broad scope in metadata instead of choosing
+one concise area that represents the primary change.
+
+**Prevention:** Use one lowercase 2–32 character slug in `area`. Put additional
+feature areas in the fragment body, and run release-note preview before
+committing the fragment.
+
+### 0z1811. Use Only Supported Release-Note Audiences (2026-10-13)
+
+**What went wrong:** A new release fragment named API clients as an audience,
+but the release-note schema accepts only users, operators, or both.
+
+**Why:** Audience values come from a fixed schema vocabulary; descriptive
+product roles cannot be added to the metadata.
+
+**Prevention:** Use only the supported audience values. Describe API and other
+client impacts in the fragment body, then run the release-note preview.
+
+### 0z1812. Declare Offline Mode In Trusted Browser Tasks (2026-10-13)
+
+**What went wrong:** Browser E2E tasks do not inherit arbitrary shell variables
+under the trusted validation runner, so they lost the workflow's
+`SLSKDN_TEST_NO_CONNECT` setting and could try the public Soulseek service.
+
+**Why:** The runner creates a narrow task environment; undeclared variables are
+intentionally removed before candidate code starts.
+
+**Prevention:** Set offline mode as explicit task configuration for standard
+browser suites. Keep loopback peer journeys as separately selected tests with
+their own documented network boundary.
+
+### 0z1813. Specify Every Transfer Column In Visibility Fixtures (2026-10-13)
+
+**What went wrong:** A browser regression fixture selected three transfer
+columns but omitted the `requested` visibility setting. The table merged the
+missing setting with its default (`true`), so the fixture rendered a fourth
+column and failed its exact-count assertion.
+
+**Why:** Saved column state is intentionally forward-compatible: missing
+visibility keys inherit the current defaults for newly introduced columns.
+
+**Prevention:** When a test asserts an exact transfer-column set, specify an
+explicit visibility value for every column key, including `false` for hidden
+columns. This keeps the fixture stable when product defaults evolve.

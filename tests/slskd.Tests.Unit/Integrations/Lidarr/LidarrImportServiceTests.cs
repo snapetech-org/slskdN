@@ -408,6 +408,7 @@ public class LidarrImportServiceTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             File.Delete(databasePath);
             File.Delete(databasePath + "-shm");
             File.Delete(databasePath + "-wal");

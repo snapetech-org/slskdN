@@ -7,7 +7,9 @@
 // </copyright>
 namespace slskd.Tests.Unit.Users
 {
+    using System;
     using System.Collections.Generic;
+    using System.Threading;
     using AutoFixture.Xunit2;
     using Microsoft.Extensions.Caching.Memory;
     using Moq;
@@ -17,6 +19,34 @@ namespace slskd.Tests.Unit.Users
 
     public class UserServiceTests
     {
+        [Fact]
+        public async Task WatchAsync_RaisesWatchedUsersChangedAfterRegistrationIsCommitted()
+        {
+            const string username = "peer";
+            var (service, mocks) = GetFixture();
+            mocks.SoulseekClient
+                .Setup(client => client.WatchUserAsync(username, It.IsAny<CancellationToken?>()))
+                .ReturnsAsync(new UserData(username, UserPresence.Online, 0, 0, 0, 0, string.Empty));
+            mocks.SoulseekClient
+                .Setup(client => client.GetUserStatusAsync(username, It.IsAny<CancellationToken?>()))
+                .ReturnsAsync(new UserStatus(username, UserPresence.Online, isPrivileged: false));
+            mocks.SoulseekClient
+                .Setup(client => client.GetUserStatisticsAsync(username, It.IsAny<CancellationToken?>()))
+                .ReturnsAsync(new UserStatistics(username, 0, 0, 0, 0));
+
+            var wasWatchedWhenPublished = false;
+            service.WatchedUsersChanged += (_, _) => wasWatchedWhenPublished = service.IsWatched(username);
+
+            await service.WatchAsync(username);
+
+            Assert.True(wasWatchedWhenPublished);
+            Assert.Equal(username, Assert.Single(service.WatchedUsernames));
+
+            mocks.SoulseekClient.Raise(client => client.Connected += null, null, EventArgs.Empty);
+
+            Assert.Empty(service.WatchedUsernames);
+        }
+
         [Fact]
         public void Dispose_UnsubscribesOptionsMonitor_AndSoulseekEvents()
         {

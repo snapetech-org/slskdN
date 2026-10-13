@@ -465,6 +465,9 @@ namespace slskd.Transfers.API
                     Filename = r!.Filename?.Trim() ?? string.Empty,
                     Size = r.Size,
                     BatchId = r.BatchId,
+                    BatchExternalId = r.BatchExternalId,
+                    SearchId = r.SearchId,
+                    SearchText = r.SearchText,
                     BitRate = r.BitRate,
                     SampleRate = r.SampleRate,
                     BitDepth = r.BitDepth,
@@ -529,7 +532,10 @@ namespace slskd.Transfers.API
                         Filename = r.Filename,
                         Size = r.Size,
                         BatchId = r.BatchId ?? batchId,
+                        BatchExternalId = r.BatchExternalId,
                         DestinationDirectory = destinationDirectory,
+                        SearchId = r.SearchId,
+                        SearchText = r.SearchText,
                         BitRate = r.BitRate,
                         SampleRate = r.SampleRate,
                         BitDepth = r.BitDepth,
@@ -553,8 +559,13 @@ namespace slskd.Transfers.API
         /// <summary>
         ///     Gets an initial transfer snapshot or only records changed after a cursor.
         /// </summary>
-        /// <param name="since">Optional Unix timestamp in milliseconds returned by the prior response.</param>
+        /// <param name="since">Optional Unix timestamp in milliseconds returned by the prior response for incremental changes.</param>
         /// <param name="includeCompleted">Whether an initial snapshot should include successful terminal transfers.</param>
+        /// <param name="limit">Optional page size for a bounded initial snapshot, from 1 through 500.</param>
+        /// <param name="direction">Optional direction to page: download or upload.</param>
+        /// <param name="asOf">Snapshot watermark returned by the first page, in Unix milliseconds.</param>
+        /// <param name="afterRequestedAt">Request time of the last transfer from the previous page.</param>
+        /// <param name="afterId">ID of the last transfer from the previous page.</param>
         /// <returns>A server-watermarked transfer change set.</returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="400">The cursor was invalid.</response>
@@ -562,11 +573,57 @@ namespace slskd.Transfers.API
         [Authorize(Policy = AuthPolicy.Any)]
         [ProducesResponseType(typeof(TransferChangesResponse), 200)]
         [ProducesResponseType(typeof(string), 400)]
-        public IActionResult GetTransferChanges([FromQuery] long? since = null, [FromQuery] bool includeCompleted = true)
+        public IActionResult GetTransferChanges(
+            [FromQuery] long? since = null,
+            [FromQuery] bool includeCompleted = true,
+            [FromQuery] int? limit = null,
+            [FromQuery] string? direction = null,
+            [FromQuery] long? asOf = null,
+            [FromQuery] DateTimeOffset? afterRequestedAt = null,
+            [FromQuery] Guid? afterId = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
+            }
+
+            if (limit.HasValue && (limit.Value < 1 || limit.Value > 500))
+            {
+                return BadRequest("limit must be between 1 and 500");
+            }
+
+            if (!limit.HasValue &&
+                (!string.IsNullOrWhiteSpace(direction) || asOf.HasValue || afterRequestedAt.HasValue || afterId.HasValue))
+            {
+                return BadRequest("direction, asOf, and continuation values require limit");
+            }
+
+            if (afterRequestedAt.HasValue != afterId.HasValue)
+            {
+                return BadRequest("afterRequestedAt and afterId must be supplied together");
+            }
+
+            if ((afterRequestedAt.HasValue || afterId.HasValue) && !asOf.HasValue)
+            {
+                return BadRequest("continuation values require asOf");
+            }
+
+            if (since.HasValue &&
+                (limit.HasValue || asOf.HasValue || afterRequestedAt.HasValue || afterId.HasValue || !string.IsNullOrWhiteSpace(direction)))
+            {
+                return BadRequest("since cannot be combined with initial snapshot paging");
+            }
+
+            Soulseek.TransferDirection? pageDirection = null;
+            if (!string.IsNullOrWhiteSpace(direction))
+            {
+                if (!Enum.TryParse<Soulseek.TransferDirection>(direction.Trim(), ignoreCase: true, out var parsedDirection) ||
+                    parsedDirection is not (Soulseek.TransferDirection.Download or Soulseek.TransferDirection.Upload))
+                {
+                    return BadRequest("direction must be 'download' or 'upload'");
+                }
+
+                pageDirection = parsedDirection;
             }
 
             DateTime? changedSince = null;
@@ -587,7 +644,29 @@ namespace slskd.Transfers.API
                 }
             }
 
-            var snapshotAt = DateTime.UtcNow;
+            DateTime snapshotAt;
+            if (asOf.HasValue)
+            {
+                if (asOf.Value < 0)
+                {
+                    return BadRequest("asOf must be a non-negative Unix timestamp in milliseconds");
+                }
+
+                try
+                {
+                    snapshotAt = DateTimeOffset.FromUnixTimeMilliseconds(asOf.Value).UtcDateTime;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return BadRequest("asOf is outside the supported Unix timestamp range");
+                }
+            }
+            else
+            {
+                var watermark = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                snapshotAt = DateTimeOffset.FromUnixTimeMilliseconds(watermark).UtcDateTime;
+            }
+
             Expression<Func<global::slskd.Transfers.Transfer, bool>> filter;
             if (changedSince.HasValue)
             {
@@ -606,9 +685,58 @@ namespace slskd.Transfers.API
             }
 
             var includeRemoved = changedSince.HasValue;
-            var transfers = new List<global::slskd.Transfers.Transfer>();
-            transfers.AddRange(Transfers.Downloads.List(filter, includeRemoved));
-            transfers.AddRange(Transfers.Uploads.List(filter, includeRemoved));
+            List<global::slskd.Transfers.Transfer> transfers;
+            var hasMore = false;
+            DateTimeOffset? nextAfterRequestedAt = null;
+            Guid? nextAfterId = null;
+
+            if (limit.HasValue)
+            {
+                var afterTime = afterRequestedAt?.UtcDateTime;
+                var fetchLimit = limit.Value + 1;
+                var candidates = new List<global::slskd.Transfers.Transfer>();
+
+                if (!pageDirection.HasValue || pageDirection == Soulseek.TransferDirection.Download)
+                {
+                    candidates.AddRange(Transfers.Downloads.ListPage(
+                        filter,
+                        includeRemoved: false,
+                        afterRequestedAt: afterTime,
+                        afterId,
+                        limit: fetchLimit));
+                }
+
+                if (!pageDirection.HasValue || pageDirection == Soulseek.TransferDirection.Upload)
+                {
+                    candidates.AddRange(Transfers.Uploads.ListPage(
+                        filter,
+                        includeRemoved: false,
+                        afterRequestedAt: afterTime,
+                        afterId,
+                        limit: fetchLimit));
+                }
+
+                transfers = candidates
+                    .OrderByDescending(transfer => transfer.RequestedAt)
+                    .ThenByDescending(transfer => transfer.Id)
+                    .Take(fetchLimit)
+                    .ToList();
+
+                hasMore = transfers.Count > limit.Value;
+                if (hasMore)
+                {
+                    transfers.RemoveAt(transfers.Count - 1);
+                    var last = transfers[^1];
+                    nextAfterRequestedAt = new DateTimeOffset(DateTime.SpecifyKind(last.RequestedAt, DateTimeKind.Utc));
+                    nextAfterId = last.Id;
+                }
+            }
+            else
+            {
+                transfers = new List<global::slskd.Transfers.Transfer>();
+                transfers.AddRange(Transfers.Downloads.List(filter, includeRemoved));
+                transfers.AddRange(Transfers.Uploads.List(filter, includeRemoved));
+            }
 
             return Ok(new TransferChangesResponse
             {
@@ -618,6 +746,9 @@ namespace slskd.Transfers.API
                     Upload = Transfers.Uploads.Count(),
                 },
                 Cursor = new DateTimeOffset(snapshotAt).ToUnixTimeMilliseconds(),
+                HasMore = hasMore,
+                NextAfterRequestedAt = nextAfterRequestedAt,
+                NextAfterId = nextAfterId,
                 Transfers = transfers,
             });
         }
@@ -683,7 +814,8 @@ namespace slskd.Transfers.API
             }
             else
             {
-                historyAsOf = DateTime.UtcNow;
+                var watermark = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                historyAsOf = DateTimeOffset.FromUnixTimeMilliseconds(watermark).UtcDateTime;
             }
 
             var page = direction.Equals("download", StringComparison.OrdinalIgnoreCase)

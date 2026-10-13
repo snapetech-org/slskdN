@@ -19,6 +19,10 @@ on:
           - configured
           - github-hosted
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 env:
   DOTNET_VERSION: '10.0.100'
   DOTNET_INSTALL_DIR: ${{ github.workspace }}/.dotnet
@@ -29,14 +33,36 @@ permissions:
 jobs:
   build:
     name: Build and Test
-    # Public pull requests and manual dispatches outside main always use hosted
-    # runners. Main dispatches may opt into hosted; trusted tag pushes and main
-    # dispatches otherwise follow repository runner policy.
+    # All pull requests and non-main manual runs use hosted runners. Main
+    # dispatches may opt into hosted; trusted tag pushes and main dispatches
+    # otherwise follow repository runner policy.
     runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && (github.ref != 'refs/heads/main' || inputs.runner == 'github-hosted'))) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 120
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -58,7 +84,7 @@ jobs:
           install: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '22.22.2'
           cache: 'pnpm'
@@ -103,16 +129,17 @@ jobs:
 
       - name: NuGet Vulnerability Scan
         run: |
+          set -euo pipefail
           # Use -p:Version=0.0.0 to prevent the VERSION env var from being read as an MSBuild property,
           # which would cause NuGet to reject build-main-* prefixed strings as invalid semver.
           dotnet restore src/slskd/slskd.csproj -p:Version=0.0.0
           # List vulnerable packages (--vulnerable flag requires .NET 8+ SDK)
-          dotnet list src/slskd/slskd.csproj package --vulnerable --include-transitive 2>&1 | tee /tmp/nuget-vuln.txt
+          dotnet list src/slskd/slskd.csproj package --vulnerable --include-transitive 2>&1 | tee "$TMPDIR/nuget-vuln.txt"
           # Fail if any HIGH or CRITICAL severity found
-          if grep -qiE 'High|Critical' /tmp/nuget-vuln.txt; then
+          if grep -qiE 'High|Critical' "$TMPDIR/nuget-vuln.txt"; then
             echo ""
             echo "::error::NuGet vulnerability scan found HIGH or CRITICAL severity packages."
-            cat /tmp/nuget-vuln.txt
+            cat "$TMPDIR/nuget-vuln.txt"
             exit 1
           fi
 
@@ -133,21 +160,20 @@ jobs:
       - name: Release Gate
         env:
           LOCAL_IDENTITY_DENYLIST: ${{ secrets.LOCAL_IDENTITY_DENYLIST }}
-          TMPDIR: ${{ runner.temp }}
         run: bash packaging/scripts/run-release-gate.sh
 
       - name: Upload validation engine evidence
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: validation-engine-release-gate
+          name: validation-engine-release-gate-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/slskdn-validation-*/
           retention-days: 7
           if-no-files-found: ignore
 
       - name: Upload Static Web Content
         if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: web-content
           path: src/web/build
@@ -188,13 +214,35 @@ jobs:
           - "osx-x64"
           - "osx-arm64"
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
       - name: Set up .NET
-        uses: actions/setup-dotnet@v6
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
@@ -203,7 +251,7 @@ jobs:
           echo "BUILD_VERSION=${{ needs.build.outputs.version }}" >> $GITHUB_ENV
 
       - name: Download Static Web Content
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: web-content
           path: src/slskd/wwwroot
@@ -212,7 +260,7 @@ jobs:
         run: bin/publish --no-prebuild --runtime ${{ matrix.runtime }} --version ${{ env.BUILD_VERSION }}
 
       - name: Upload Binaries
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: slskdn-${{ env.BUILD_VERSION }}-${{ matrix.runtime }}
           path: dist/${{ matrix.runtime }}
@@ -229,8 +277,30 @@ jobs:
       contents: read
       packages: write
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
@@ -255,13 +325,13 @@ jobs:
           echo "BUILD_DATE=$(date --iso-8601=s)" >> $GITHUB_ENV
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v4
+        uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v4
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -269,7 +339,7 @@ jobs:
 
       - name: Login to Docker Hub
         if: env.HAS_DOCKERHUB == 'true'
-        uses: docker/login-action@v4
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -304,7 +374,7 @@ jobs:
 
       - name: Build and push Canary
         if: "!startsWith(github.ref, 'refs/tags/')"
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
@@ -319,7 +389,7 @@ jobs:
 
       - name: Build and push Release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
@@ -338,8 +408,30 @@ jobs:
       actions: write
       contents: write
     steps:
+      - name: Configure runner temporary storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
+            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
+            exit 1
+          fi
+          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
+          case "$runner_temp_resolved" in
+            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
+              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
+              exit 1
+              ;;
+          esac
+          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
+            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
+            exit 1
+          fi
+          : "${GITHUB_ENV:?GITHUB_ENV is required}"
+          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
+
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
@@ -349,7 +441,7 @@ jobs:
           echo "BUILD_VERSION=${{ needs.build.outputs.version }}" >> $GITHUB_ENV
 
       - name: Download All Artifacts
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           path: artifacts
           pattern: slskdn-*
@@ -370,7 +462,7 @@ jobs:
           ls -la release/
 
       - name: Create Release
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
           files: release/*.zip
         env:

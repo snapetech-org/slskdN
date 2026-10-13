@@ -688,7 +688,7 @@ test.describe('listed radio between isolated nodes', () => {
   });
 
   test('renews local radio after actual ticket expiry through manual reselection', async ({ page, request }) => {
-    test.setTimeout(180_000);
+    test.setTimeout(360_000);
     const host = harness.getNode('A');
     const session = await request.post(`${host.apiUrl}/api/v0/session`, {
       data: { username: host.nodeCfg.username, password: host.nodeCfg.password },

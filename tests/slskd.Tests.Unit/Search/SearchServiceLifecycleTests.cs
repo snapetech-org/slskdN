@@ -301,6 +301,60 @@ public class SearchServiceLifecycleTests
     }
 
     [Fact]
+    public async Task ListAsync_ContinuesByStartedAtAndIdAfterANewSearchArrives()
+    {
+        await using var connection = new SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+        var options = new DbContextOptionsBuilder<SearchDbContext>()
+            .UseSqlite(connection)
+            .Options;
+        var startedAt = new DateTime(2026, 10, 13, 12, 0, 0, DateTimeKind.Utc);
+        var firstId = Guid.Parse("ffffffff-ffff-ffff-ffff-ffffffffffff");
+        var cursorId = Guid.Parse("eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee");
+        var nextId = Guid.Parse("dddddddd-dddd-dddd-dddd-dddddddddddd");
+        var olderId = Guid.Parse("cccccccc-cccc-cccc-cccc-cccccccccccc");
+        await using (var context = new SearchDbContext(options))
+        {
+            await context.Database.EnsureCreatedAsync();
+            context.Searches.AddRange(
+                new slskd.Search.Search { Id = firstId, StartedAt = startedAt, Source = "Wishlist" },
+                new slskd.Search.Search { Id = cursorId, StartedAt = startedAt, Source = "wishlist" },
+                new slskd.Search.Search { Id = nextId, StartedAt = startedAt, Source = "wishlist" },
+                new slskd.Search.Search { Id = olderId, StartedAt = startedAt.AddHours(-1), Source = "wishlist" });
+            await context.SaveChangesAsync();
+        }
+
+        using var service = new SearchService(
+            CreateSearchHub().Object,
+            new TestOptionsMonitor<slskd.Options>(new slskd.Options()),
+            Mock.Of<ISoulseekClient>(),
+            new SearchDbContextFactory(options),
+            Mock.Of<ISoulseekSafetyLimiter>());
+
+        var firstPage = await service.ListAsync(limit: 2, source: "wishlist");
+        Assert.Equal([firstId, cursorId], firstPage.Select(search => search.Id));
+
+        await using (var context = new SearchDbContext(options))
+        {
+            context.Searches.Add(new slskd.Search.Search
+            {
+                Id = Guid.NewGuid(),
+                StartedAt = startedAt.AddHours(1),
+                Source = "wishlist",
+            });
+            await context.SaveChangesAsync();
+        }
+
+        var continuation = await service.ListAsync(
+            limit: 2,
+            source: "wishlist",
+            afterStartedAt: firstPage[^1].StartedAt,
+            afterId: firstPage[^1].Id);
+
+        Assert.Equal([nextId, olderId], continuation.Select(search => search.Id));
+    }
+
+    [Fact]
     public async Task NotifyTrafficObserverAsync_WhenOneResponseFails_Continues()
     {
         var observer = new Mock<ITrafficObserver>();
@@ -632,6 +686,107 @@ public class SearchServiceLifecycleTests
         Assert.Equal(wishlistItemId, persisted.WishlistItemId);
         Assert.Equal(2, persisted.ResponseCount);
         Assert.Equal(2, persisted.Responses.Count());
+    }
+
+    [Fact]
+    public async Task DeleteAsync_DuringSearch_CancelsWorkAndDoesNotPublishCompletionAfterDelete()
+    {
+        await using var connection = new SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+        var options = new DbContextOptionsBuilder<SearchDbContext>()
+            .UseSqlite(connection)
+            .Options;
+        await using (var context = new SearchDbContext(options))
+        {
+            await context.Database.EnsureCreatedAsync();
+        }
+
+        var updates = new ConcurrentQueue<slskd.Search.Search>();
+        var deletes = new ConcurrentQueue<slskd.Search.Search>();
+        var completion = new TaskCompletionSource<Soulseek.Search>(TaskCreationOptions.RunContinuationsAsynchronously);
+        SearchOptions? capturedSearchOptions = null;
+        CancellationToken? capturedCancellationToken = null;
+        var client = new Mock<ISoulseekClient>();
+        client.Setup(candidate => candidate.GetNextToken()).Returns(42);
+        client
+            .Setup(candidate => candidate.SearchAsync(
+                It.IsAny<SearchQuery>(),
+                It.IsAny<Action<SearchResponse>>(),
+                It.IsAny<SearchScope>(),
+                It.IsAny<int?>(),
+                It.IsAny<SearchOptions>(),
+                It.IsAny<CancellationToken?>()))
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>(
+                (_, _, _, _, searchOptions, cancellationToken) =>
+                {
+                    capturedSearchOptions = searchOptions;
+                    capturedCancellationToken = cancellationToken;
+                })
+            .Returns(completion.Task);
+        var safetyLimiter = new Mock<ISoulseekSafetyLimiter>();
+        safetyLimiter.Setup(limiter => limiter.TryConsumeSearch("user")).Returns(true);
+        using var service = new SearchService(
+            CreateSearchHub(updates, deletes).Object,
+            new TestOptionsMonitor<slskd.Options>(new slskd.Options()),
+            client.Object,
+            new SearchDbContextFactory(options),
+            safetyLimiter.Object);
+
+        var searchId = Guid.NewGuid();
+        await service.StartAsync(
+            searchId,
+            SearchQuery.FromText("artist title"),
+            SearchScope.Network);
+
+        Assert.NotNull(capturedSearchOptions);
+        capturedSearchOptions.StateChanged?.Invoke((
+            SearchStates.InProgress,
+            new Soulseek.Search(
+                SearchQuery.FromText("artist title"),
+                SearchScope.Network,
+                42,
+                SearchStates.InProgress,
+                responseCount: 0,
+                fileCount: 0,
+                lockedFileCount: 0)));
+        capturedSearchOptions.StateChanged?.Invoke((
+            SearchStates.InProgress,
+            new Soulseek.Search(
+                SearchQuery.FromText("artist title"),
+                SearchScope.Network,
+                42,
+                SearchStates.Completed,
+                responseCount: 0,
+                fileCount: 0,
+                lockedFileCount: 0)));
+
+        var search = await service.FindAsync(candidate => candidate.Id == searchId);
+        Assert.NotNull(search);
+        var updatesBeforeDelete = updates.Count;
+
+        await service.DeleteAsync(search);
+
+        Assert.True(capturedCancellationToken.HasValue);
+        Assert.True(capturedCancellationToken.Value.IsCancellationRequested);
+        Assert.Equal(searchId, Assert.Single(deletes).Id);
+
+        completion.SetResult(new Soulseek.Search(
+            SearchQuery.FromText("artist title"),
+            SearchScope.Network,
+            42,
+            SearchStates.Completed,
+            responseCount: 0,
+            fileCount: 0,
+            lockedFileCount: 0));
+
+        Assert.True(await WaitUntilAsync(
+            () => GetCancellationTokens(service).IsEmpty,
+            attempts: 120,
+            delayMs: 25));
+        Assert.Equal(updatesBeforeDelete, updates.Count);
+
+        await using var verifyContext = new SearchDbContext(options);
+        Assert.False(await verifyContext.Searches.AnyAsync(candidate => candidate.Id == searchId));
     }
 
     [Fact]
@@ -1057,6 +1212,15 @@ public class SearchServiceLifecycleTests
     private sealed class RecordingCommandInterceptor : DbCommandInterceptor
     {
         public List<string> Commands { get; } = new();
+
+        public override InterceptionResult<int> NonQueryExecuting(
+            DbCommand command,
+            CommandEventData eventData,
+            InterceptionResult<int> result)
+        {
+            Commands.Add(command.CommandText);
+            return base.NonQueryExecuting(command, eventData, result);
+        }
 
         public override ValueTask<InterceptionResult<int>> NonQueryExecutingAsync(
             DbCommand command,

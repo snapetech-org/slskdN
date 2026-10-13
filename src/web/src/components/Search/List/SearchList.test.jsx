@@ -46,6 +46,44 @@ describe('SearchList', () => {
     ).toBeInTheDocument();
   });
 
+  it('loads another server page without clearing the current selection', async () => {
+    const onLoadMore = vi.fn();
+    const first = {
+      id: 'first',
+      startedAt: '2026-08-20T12:00:00Z',
+      state: 'Completed',
+    };
+    const view = render(
+      <SearchList
+        hasMoreFromServer
+        onLoadMore={onLoadMore}
+        searches={{ first }}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Select search first' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Load more searches' }));
+
+    expect(onLoadMore).toHaveBeenCalledTimes(1);
+    view.rerender(
+      <SearchList
+        hasMoreFromServer={false}
+        onLoadMore={onLoadMore}
+        searches={{
+          first,
+          second: {
+            id: 'second',
+            startedAt: '2026-08-20T11:00:00Z',
+            state: 'Completed',
+          },
+        }}
+      />,
+    );
+
+    expect(screen.getByText('1 selected')).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: 'Select search first' })).toBeChecked();
+  });
+
   it('selects the filtered list and routes actions to the eligible searches', async () => {
     const completed = {
       id: 'completed',

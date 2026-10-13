@@ -1,5 +1,26 @@
 import api from './api';
 
+const roomEndpoint = (roomName, operation, query = {}) => {
+  const hasPathSeparator = roomName.includes('/');
+  const path = hasPathSeparator
+    ? `/rooms/by-name${operation}`
+    : `/rooms/joined/${encodeURIComponent(roomName)}${operation}`;
+  const parameters = new URLSearchParams();
+
+  if (hasPathSeparator) {
+    parameters.set('roomName', roomName);
+  }
+
+  Object.entries(query).forEach(([key, value]) => {
+    if (value != null) {
+      parameters.set(key, String(value));
+    }
+  });
+
+  const queryString = parameters.toString();
+  return queryString ? `${path}?${queryString}` : path;
+};
+
 export const getAvailable = async () => {
   const response = (await api.get('/rooms/available')).data;
 
@@ -41,12 +62,8 @@ export const getActivity = async () => {
 };
 
 export const getMessages = async ({ roomName, since = null }) => {
-  const query =
-    since == null ? '' : `?since=${encodeURIComponent(String(since))}`;
   const response = (
-    await api.get(
-      `/rooms/joined/${encodeURIComponent(roomName)}/messages${query}`,
-    )
+    await api.get(roomEndpoint(roomName, '/messages', { since }))
   ).data;
 
   if (!Array.isArray(response)) {
@@ -58,9 +75,7 @@ export const getMessages = async ({ roomName, since = null }) => {
 };
 
 export const getUsers = async ({ roomName }) => {
-  const response = (
-    await api.get(`/rooms/joined/${encodeURIComponent(roomName)}/users`)
-  ).data;
+  const response = (await api.get(roomEndpoint(roomName, '/users'))).data;
 
   if (!Array.isArray(response)) {
     console.warn('got non-array response from rooms API', response);
@@ -75,26 +90,26 @@ export const join = async ({ roomName }) => {
 };
 
 export const leave = async ({ roomName }) => {
-  return api.delete(`/rooms/joined/${encodeURIComponent(roomName)}`);
+  return api.delete(roomEndpoint(roomName, ''));
 };
 
 export const sendMessage = async ({ roomName, message }) => {
   return api.post(
-    `/rooms/joined/${encodeURIComponent(roomName)}/messages`,
+    roomEndpoint(roomName, '/messages'),
     JSON.stringify(message),
   );
 };
 
 export const setTicker = async ({ roomName, message }) => {
   return api.post(
-    `/rooms/joined/${encodeURIComponent(roomName)}/ticker`,
+    roomEndpoint(roomName, '/ticker'),
     JSON.stringify(message),
   );
 };
 
 export const addRoomMember = async ({ roomName, username }) => {
   return api.post(
-    `/rooms/joined/${encodeURIComponent(roomName)}/members`,
+    roomEndpoint(roomName, '/members'),
     JSON.stringify(username),
   );
 };

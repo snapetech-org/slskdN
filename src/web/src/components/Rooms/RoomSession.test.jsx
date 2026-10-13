@@ -1,6 +1,6 @@
 import * as rooms from '../../lib/rooms';
 import RoomSession from './RoomSession';
-import { act, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -47,6 +47,38 @@ describe('RoomSession', () => {
     expect(screen.getByText('slskdn')).toBeInTheDocument();
     expect(rooms.getMessages).not.toHaveBeenCalled();
     expect(rooms.getUsers).not.toHaveBeenCalled();
+  });
+
+  it('does not focus the composer when room message text is clicked', async () => {
+    const roomSessionRef = React.createRef();
+    rooms.getMessages.mockResolvedValue([
+      {
+        id: 'selectable-room-message',
+        message: 'A message worth copying',
+        timestamp: '2026-10-13T12:00:00.000Z',
+        username: 'peer',
+      },
+    ]);
+    render(
+      <RoomSession
+        active
+        ref={roomSessionRef}
+        roomName="slskdn"
+      />,
+    );
+
+    await act(async () => {
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    const composer = screen.getByRole('textbox');
+    expect(composer).not.toHaveFocus();
+    const focusInput = vi.spyOn(roomSessionRef.current, 'focusInput');
+
+    fireEvent.click(screen.getByText('A message worth copying'));
+
+    expect(focusInput).not.toHaveBeenCalled();
   });
 
   it('explains the server leave action before sending it', async () => {

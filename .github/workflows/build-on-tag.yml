@@ -12,6 +12,36 @@ on:
       - 'build-main-*'
       - 'build-dev-*'
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing build-main tag whose GitHub release assets are already published.
+        required: true
+        type: string
+      retry_aur:
+        description: Retry the AUR publisher
+        required: false
+        default: false
+        type: boolean
+      retry_copr:
+        description: Retry the COPR publisher
+        required: false
+        default: false
+        type: boolean
+      retry_ppa:
+        description: Retry the PPA publisher
+        required: false
+        default: false
+        type: boolean
+      retry_docker:
+        description: Retry the main Docker publisher
+        required: false
+        default: false
+        type: boolean
+      retry_nix:
+        description: Retry the Nix metadata publisher
+        required: false
+        default: false
+        type: boolean
 
 env:
   DOTNET_VERSION: '10.0.100'
@@ -22,15 +52,36 @@ jobs:
   parse:
     name: Parse Tag
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       channel: ${{ steps.parse.outputs.channel }}
       version: ${{ steps.parse.outputs.version }}
     steps:
       - name: Parse Tag
         id: parse
+        env:
+          REQUESTED_TAG: ${{ inputs.tag }}
+          RETRY_AUR: ${{ inputs.retry_aur }}
+          RETRY_COPR: ${{ inputs.retry_copr }}
+          RETRY_PPA: ${{ inputs.retry_ppa }}
+          RETRY_DOCKER: ${{ inputs.retry_docker }}
+          RETRY_NIX: ${{ inputs.retry_nix }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG="${{ github.ref_name }}"
+          TAG="${REQUESTED_TAG:-$GITHUB_REF_NAME}"
           echo "Tag: $TAG"
+
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
+              echo "::error::Manual publisher recovery requires an existing build-main-* tag"
+              exit 1
+            fi
+            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_NIX" != true ]]; then
+              echo "::error::Select at least one publisher to retry"
+              exit 1
+            fi
+          fi
           
           # Extract channel and version from tag
           # Format: build-main-<version> or build-dev-<version>
@@ -44,18 +95,24 @@ jobs:
           
           echo "Channel: $CHANNEL"
           echo "Version: $VERSION"
+
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && ! gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null; then
+            echo "::error::Manual publisher recovery requires an existing published release for $TAG"
+            exit 1
+          fi
           
-          echo "channel=$CHANNEL" >> $GITHUB_OUTPUT
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
   build:
     name: Build
     needs: parse
+    if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
@@ -63,18 +120,18 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y jq ripgrep
 
       - name: Set up .NET
-        uses: actions/setup-dotnet@v6
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Setup pnpm
-        uses: pnpm/setup@v3
+        uses: pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4 # v3
         with:
           version: 12.4.1
           install: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '22.22.2'
           cache: 'pnpm'
@@ -88,15 +145,15 @@ jobs:
 
       - name: Upload validation engine evidence
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: validation-engine-release-gate
+          name: validation-engine-release-gate-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/slskdn-validation-*/
           retention-days: 7
           if-no-files-found: ignore
 
       - name: Upload Web Content
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: web-content
           path: src/web/build
@@ -105,6 +162,7 @@ jobs:
   publish:
     name: Publish ${{ matrix.runtime }}
     needs: [parse, build]
+    if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -117,17 +175,17 @@ jobs:
           - win-x64
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
       - name: Set up .NET
-        uses: actions/setup-dotnet@v6
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Download Web Content
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: web-content
           path: src/slskd/wwwroot
@@ -198,7 +256,7 @@ jobs:
           zip -r "../${CHANNEL_ARCHIVE}" .
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: slskdn-${{ needs.parse.outputs.channel }}-${{ matrix.runtime }}
           path: slskdn*.zip
@@ -207,7 +265,7 @@ jobs:
   release-main:
     name: Create Main Release
     needs: [parse, publish]
-    if: needs.parse.outputs.channel == 'main'
+    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -215,12 +273,12 @@ jobs:
       release_body: ${{ steps.release-body.outputs.release_body }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
       - name: Download All Artifacts
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           path: artifacts
           pattern: slskdn-main-*
@@ -255,7 +313,7 @@ jobs:
       # Creates release under VERSION tag (e.g., 0.24.1-slskdn.35) for backward compatibility
       # Build was triggered by build-main-VERSION tag, but release uses traditional format
       - name: Create Main Release
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
           tag_name: ${{ needs.parse.outputs.version }}
           name: "🔋 slskdN ${{ needs.parse.outputs.version }} - The Batteries-Included Fork"
@@ -286,7 +344,7 @@ jobs:
   announce-main:
     name: Announce Main Release to Discord
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Post Discord announcement
@@ -441,15 +499,15 @@ jobs:
   aur-main:
     name: Publish to AUR (Main - Source & Binary)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
     outputs:
       short_sha: ${{ steps.info.outputs.short_sha }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ inputs.tag || github.ref }}
 
       - name: Get commit info
         id: info
@@ -621,14 +679,14 @@ jobs:
   copr-main:
     name: Publish to COPR (Main)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ inputs.tag || github.ref }}
 
       - name: Download from Release
         env:
@@ -809,7 +867,7 @@ jobs:
   ppa-main:
     name: Publish to PPA (Main)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     continue-on-error: true
     runs-on: ubuntu-latest
     concurrency:
@@ -817,9 +875,9 @@ jobs:
       cancel-in-progress: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ inputs.tag || github.ref }}
 
       - name: Download from Release
         env:
@@ -1062,7 +1120,7 @@ jobs:
   docker-main:
     name: Build and Push Docker (Main)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
@@ -1072,7 +1130,9 @@ jobs:
       packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.tag || github.ref }}
 
       - name: Download from Release
         env:
@@ -1083,13 +1143,13 @@ jobs:
             --pattern "slskdn-main-linux-glibc-x64.zip"
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v4
+        uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v4
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -1097,7 +1157,7 @@ jobs:
 
       - name: Login to Docker Hub
         if: env.HAS_DOCKERHUB == 'true'
-        uses: docker/login-action@v4
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -1119,7 +1179,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Build and push Main Image
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           platforms: linux/amd64,linux/arm64
           push: true
@@ -1144,27 +1204,27 @@ jobs:
   docker-omnibus:
     name: Build and Push Docker (Omnibus Testers)
     needs: [parse, release-main, docker-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v4
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Omnibus Testers Image
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           file: packaging/docker/Dockerfile.all-tools
@@ -1189,12 +1249,12 @@ jobs:
   chocolatey-main:
     name: Publish to Chocolatey (Stable)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
     continue-on-error: true
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Download from Release
         env:
@@ -1312,19 +1372,19 @@ jobs:
   nix-main:
     name: Update Nix/Main Release Metadata
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ inputs.tag || github.ref }}
           fetch-depth: 0
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
+        uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -1436,7 +1496,7 @@ jobs:
   homebrew-main:
     name: Update Homebrew Tap (Main)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main'
+    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write

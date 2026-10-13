@@ -55,6 +55,37 @@ describe('TransferTable', () => {
     ).toBeInTheDocument();
   });
 
+  it('sorts by newest request by default and exposes the date column', () => {
+    renderTable([
+      {
+        direction: 'Download',
+        filename: 'older.flac',
+        id: 'older',
+        requestedAt: '2026-10-12T10:00:00Z',
+        size: 10,
+        state: 'Queued',
+        username: 'peer',
+      },
+      {
+        direction: 'Download',
+        filename: 'newer.flac',
+        id: 'newer',
+        requestedAt: '2026-10-13T10:00:00Z',
+        size: 10,
+        state: 'Queued',
+        username: 'peer',
+      },
+    ]);
+
+    expect(document.querySelector('[data-colkey="requested"]'))
+      .toHaveAttribute('aria-sort', 'descending');
+    const transferRows = screen.getAllByRole('row').filter((row) =>
+      row.querySelector('[role="gridcell"]'),
+    );
+    expect(transferRows[0]).toHaveTextContent('newer.flac');
+    expect(transferRows[1]).toHaveTextContent('older.flac');
+  });
+
   it('explains the scope of each selected-transfer action', async () => {
     renderTable([], [{ id: 'transfer-1' }, { id: 'transfer-2' }]);
 

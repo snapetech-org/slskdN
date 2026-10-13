@@ -5,14 +5,19 @@ import { spawn, spawnSync } from 'node:child_process';
 import {
   accessSync,
   chmodSync,
+  closeSync,
   constants,
+  fsyncSync,
   lstatSync,
   mkdtempSync,
   mkdirSync,
+  openSync,
   readFileSync,
   readlinkSync,
   readdirSync,
+  rmSync,
   writeFileSync,
+  writeSync,
 } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -23,6 +28,8 @@ export const ENGINE_VERSION = 1;
 const ENGINE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.resolve(ENGINE_DIR, '..', '..');
 const MAX_BUFFER = 8 * 1024 * 1024;
+const MAX_LOG_BYTES = 16 * 1024 * 1024;
+const LOG_TRUNCATION_MARKER = Buffer.from('\n[validation log truncated after 16 MiB]\n');
 const PROGRESS_INTERVAL_MS = 60_000;
 const IGNORED_DIRS = new Set([
   '.git',
@@ -264,26 +271,35 @@ function inheritedToolchainEnvironment(inherited = process.env) {
 function inspectRuntime(root, runtime) {
   const available = commandAvailable(runtime.command);
   if (!available) return { ...runtime, available, version: null, exitCode: null };
-  const result = spawnSync(runtime.command, runtime.args ?? ['--version'], {
-    cwd: root,
-    encoding: 'utf8',
-    timeout: 10_000,
-    maxBuffer: 1024 * 1024,
-    env: inheritedToolchainEnvironment(),
-  });
-  const version = (result.stdout ?? '') + (result.stderr ?? '');
-  const versionLine = version.trim().split(/\r?\n/, 1)[0] ?? '';
-  const versionCompatible = !runtime.versionPattern ||
-    new RegExp(runtime.versionPattern).test(versionLine);
-  return {
-    ...runtime,
-    available: !result.error && result.status === 0,
-    version: versionLine,
-    versionCompatible,
-    required: runtime.required !== false,
-    exitCode: result.status,
-    error: result.error?.message,
-  };
+  const probeRoot = mkdtempSync(path.join(os.tmpdir(), 'slskdn-validation-runtime-probe-'));
+  try {
+    const env = isolatedTaskEnvironment(
+      { id: 'runtime-probe', kind: 'check' },
+      probeRoot
+    );
+    const result = spawnSync(runtime.command, runtime.args ?? ['--version'], {
+      cwd: root,
+      encoding: 'utf8',
+      timeout: 10_000,
+      maxBuffer: 1024 * 1024,
+      env,
+    });
+    const version = (result.stdout ?? '') + (result.stderr ?? '');
+    const versionLine = version.trim().split(/\r?\n/, 1)[0] ?? '';
+    const versionCompatible = !runtime.versionPattern ||
+      new RegExp(runtime.versionPattern).test(versionLine);
+    return {
+      ...runtime,
+      available: !result.error && result.status === 0,
+      version: versionLine,
+      versionCompatible,
+      required: runtime.required !== false,
+      exitCode: result.status,
+      error: result.error?.message,
+    };
+  } finally {
+    rmSync(probeRoot, { recursive: true, force: true });
+  }
 }
 
 function validateConfig(config) {
@@ -500,7 +516,12 @@ export function isolatedTaskEnvironment(task, runRoot, inherited = process.env) 
   });
   if (task.browserCache === 'playwright') {
     const cacheRoot = inherited.RUNNER_TEMP || inherited.TMPDIR || inherited.TEMP || os.tmpdir();
-    env.PLAYWRIGHT_BROWSERS_PATH = path.join(path.resolve(cacheRoot), 'slskdn-playwright-browsers');
+    const mountedCache = inherited.PLAYWRIGHT_BROWSERS_PATH;
+    env.PLAYWRIGHT_BROWSERS_PATH =
+      typeof mountedCache === 'string' &&
+      /^\/mnt\/run-data\/dependencies\/\d+$/u.test(mountedCache)
+        ? mountedCache
+        : path.join(path.resolve(cacheRoot), 'slskdn-playwright-browsers');
   }
   if (task.kind === 'test') env.NODE_ENV = 'test';
   return env;
@@ -530,46 +551,79 @@ export async function runCommand(task, root, logPath, options = {}) {
   let stderr = '';
   let outputBytes = 0;
   let timedOut = false;
-  const child = spawn(command, args, {
-    cwd,
-    env: isolatedTaskEnvironment(task, path.dirname(logPath)),
-    stdio: ['ignore', 'pipe', 'pipe'],
-    detached: process.platform !== 'win32',
-    windowsHide: true,
-  });
+  const logDescriptor = openSync(logPath, 'wx', 0o600);
+  const logContentLimit = MAX_LOG_BYTES - LOG_TRUNCATION_MARKER.length;
+  let logBytesWritten = 0;
+  let logTruncated = false;
+  let logError = null;
+  const persist = (chunk) => {
+    if (logError) return;
+    const length = Math.min(chunk.length, logContentLimit - logBytesWritten);
+    let offset = 0;
+    try {
+      while (offset < length)
+        offset += writeSync(logDescriptor, chunk, offset, length - offset);
+    } catch (error) {
+      logError = error.message;
+      return;
+    }
+    logBytesWritten += length;
+    if (length < chunk.length) logTruncated = true;
+  };
   const append = (chunk, target) => {
     outputBytes += chunk.length;
+    persist(chunk);
     target.value += chunk.toString('utf8');
     if (target.value.length > MAX_BUFFER) target.value = target.value.slice(-MAX_BUFFER);
   };
   const out = { value: stdout };
   const err = { value: stderr };
-  child.stdout.on('data', (chunk) => append(chunk, out));
-  child.stderr.on('data', (chunk) => append(chunk, err));
-  const timer = setTimeout(() => {
-    timedOut = true;
-    terminate(child);
-    setTimeout(() => {
-      if (child.exitCode === null && child.signalCode === null) {
-        if (child.pid && process.platform !== 'win32') {
-          try {
-            process.kill(-child.pid, 'SIGKILL');
-          } catch {}
-        } else {
-          child.kill('SIGKILL');
+  let child;
+  let exit;
+  try {
+    child = spawn(command, args, {
+      cwd,
+      env: isolatedTaskEnvironment(task, path.dirname(logPath)),
+      stdio: ['ignore', 'pipe', 'pipe'],
+      detached: process.platform !== 'win32',
+      windowsHide: true,
+    });
+    child.stdout.on('data', (chunk) => append(chunk, out));
+    child.stderr.on('data', (chunk) => append(chunk, err));
+    const timer = setTimeout(() => {
+      timedOut = true;
+      terminate(child);
+      setTimeout(() => {
+        if (child.exitCode === null && child.signalCode === null) {
+          if (child.pid && process.platform !== 'win32') {
+            try {
+              process.kill(-child.pid, 'SIGKILL');
+            } catch {}
+          } else {
+            child.kill('SIGKILL');
+          }
         }
-      }
-    }, 2000).unref();
-  }, timeout * 1000);
-  const exit = await new Promise((resolve) => {
-    child.once('error', (error) => resolve({ code: null, signal: null, error }));
-    child.once('close', (code, signal) => resolve({ code, signal, error: null }));
-  }).finally(() => clearTimeout(timer));
+      }, 2000).unref();
+    }, timeout * 1000);
+    exit = await new Promise((resolve) => {
+      child.once('error', (error) => resolve({ code: null, signal: null, error }));
+      child.once('close', (code, signal) => resolve({ code, signal, error: null }));
+    }).finally(() => clearTimeout(timer));
+  } finally {
+    try {
+      if (logTruncated && !logError)
+        writeSync(logDescriptor, LOG_TRUNCATION_MARKER);
+      fsyncSync(logDescriptor);
+    } catch (error) {
+      logError ??= error.message;
+    } finally {
+      closeSync(logDescriptor);
+    }
+  }
   stdout = out.value;
   stderr = err.value;
   const combined = stdout + (stdout && stderr ? '\n' : '') + stderr;
-  const logBuffer = Buffer.from(combined);
-  writeFileSync(logPath, logBuffer, { mode: 0o600 });
+  const logBuffer = readFileSync(logPath);
   const casePattern = task.casePattern ? new RegExp(task.casePattern, 'g') : null;
   let activeCases = null;
   if (casePattern) {
@@ -579,7 +633,7 @@ export async function runCommand(task, root, logPath, options = {}) {
       if (Number.isFinite(parsed)) activeCases += parsed;
     }
   }
-  const status = timedOut || exit.error || exit.code !== 0
+  const status = timedOut || exit.error || exit.code !== 0 || logError
     ? 'failed'
     : task.kind === 'test' && activeCases < task.minimumCases
       ? 'incomplete'
@@ -591,7 +645,7 @@ export async function runCommand(task, root, logPath, options = {}) {
     durationMs: Date.now() - started,
     exitCode: exit.code,
     signal: exit.signal,
-    error: exit.error?.message,
+    error: exit.error?.message ?? logError,
     timedOut,
     outputBytes,
     logSha256: hash(logBuffer),

@@ -231,6 +231,7 @@ public class ShareGrantAnnouncementServiceTests
 
         public void Dispose()
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={_dbPath}");
             if (System.IO.File.Exists(_dbPath))
             {
                 System.IO.File.Delete(_dbPath);

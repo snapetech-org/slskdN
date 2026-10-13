@@ -20,7 +20,7 @@ const SORTABLE_KEYS = new Set(
 export const DEFAULT_TRANSFER_VIEW_STATE = {
   hideCompleted: true,
   statusFilter: 'all',
-  sort: { direction: 'ascending', key: 'name' },
+  sort: { direction: 'descending', key: 'requested' },
 };
 
 const getStoredPreferences = () => {
@@ -36,7 +36,9 @@ const getStoredPreferences = () => {
 };
 
 const normalizeSort = (sort) => ({
-  direction: sort?.direction === 'descending' ? 'descending' : 'ascending',
+  direction: ['ascending', 'descending'].includes(sort?.direction)
+    ? sort.direction
+    : DEFAULT_TRANSFER_VIEW_STATE.sort.direction,
   key: SORTABLE_KEYS.has(sort?.key) ? sort.key : DEFAULT_TRANSFER_VIEW_STATE.sort.key,
 });
 

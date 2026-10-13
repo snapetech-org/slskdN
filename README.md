@@ -45,10 +45,14 @@ for configuration and first-login steps.
 See the [UI localization roadmap](docs/localization-roadmap.md) for supported languages, existing translated areas, and the next high-use screens to cover.
 
 
+- [Dashboard](docs/dashboard.md) — review successful transfers from the last
+  seven days and open the corresponding download or upload list.
 - [Search and discovery](docs/soulseek-native-discovery.md) — search peers and
   review optional discovery tools.
 - [Browse and download](docs/advanced-features.md) — select files and folders,
-  choose a destination, and follow transfer progress.
+  choose a destination, and follow transfer progress. [Transfer Operations](docs/transfer-operations.md)
+  explains path templates, file-name collisions, permissions, request history
+  retention, API timestamp format, and paging through long transfer lists.
 - [Wishlist and Lidarr](docs/lidarr-integration.md) — configure background
   acquisition workflows and their safeguards.
 - [Messages, rooms, and pods](docs/pods-and-rooms.md) — review the distinct
@@ -56,7 +60,7 @@ See the [UI localization roadmap](docs/localization-roadmap.md) for supported la
 - [Player and listening parties](docs/listening-party.md) — configure local
   playback and optional shared listening.
 - [System settings](docs/system-surfaces.md) — manage policies, integrations,
-  diagnostics, and local experience preferences.
+  metrics, diagnostics, and local experience preferences.
 
 ## Feature maturity
 

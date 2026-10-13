@@ -105,7 +105,6 @@ expect_literal bin/watch 'pnpm --filter @slskdn/web start'
 reject_literal bin/build 'npm ci --legacy-peer-deps'
 reject_literal packaging/aur/PKGBUILD 'npm ci --legacy-peer-deps'
 expect_literal packaging/aur/PKGBUILD "'nodejs' 'pnpm'"
-PNPM_SETUP_ACTION='pnpm/setup@v3'
 for workflow in \
     .github/workflows/build-on-tag.yml \
     .github/workflows/ci-enhancements.yml \
@@ -115,7 +114,7 @@ for workflow in \
     .github/workflows/release-linux.yml \
     .github/workflows/release-ppa.yml \
     .github/workflows/windows-smoke.yml; do
-    expect_literal "$workflow" "$PNPM_SETUP_ACTION"
+    expect_line "$workflow" 'uses: pnpm/setup@[0-9a-f]{40}[[:space:]]+# v3'
     expect_literal "$workflow" 'install: false'
 done
 for workflow in \
@@ -144,9 +143,9 @@ for task_id in \
     expect_literal scripts/validation-engine/config.mjs "id: '$task_id'"
 done
 reject_literal packaging/scripts/run-release-gate.sh 'timeout --preserve-status'
-expect_literal .github/workflows/ci.yml 'TMPDIR: ${{ runner.temp }}'
-expect_literal .github/workflows/e2e-tests.yml 'TMPDIR: ${{ runner.temp }}'
-expect_literal .github/workflows/build-on-tag.yml 'TMPDIR: ${{ runner.temp }}'
+# Validate the job-wide, fail-closed runner-temp setup instead of requiring a
+# step-scoped TMPDIR value that cannot reach later build and test steps.
+bash scripts/check-dotnet-runtime-matrix.sh
 expect_literal .github/workflows/ci.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
 expect_literal .github/workflows/e2e-tests.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
 expect_literal .github/workflows/build-on-tag.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'

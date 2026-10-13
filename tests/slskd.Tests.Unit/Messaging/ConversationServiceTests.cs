@@ -69,6 +69,7 @@ public class ConversationServiceTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             System.IO.File.Delete(databasePath);
         }
     }
@@ -129,6 +130,7 @@ public class ConversationServiceTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             System.IO.File.Delete(databasePath);
         }
     }

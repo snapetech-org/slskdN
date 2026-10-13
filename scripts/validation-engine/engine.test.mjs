@@ -1,6 +1,7 @@
 // Copyright (c) slskdN Team. All rights reserved.
 import assert from 'node:assert/strict';
 import {
+  existsSync,
   mkdtempSync,
   mkdirSync,
   readFileSync,
@@ -13,6 +14,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { after, test } from 'node:test';
+import { validation } from './config.mjs';
 import {
   captureCandidate,
   createPlan,
@@ -261,15 +263,39 @@ test('execution blocks later tasks when a command changes the planned source', a
   assert.equal(result.receipt.totals.blocked, 1);
 });
 
-test('execution records timeouts and does not accept failed native commands', async () => {
+test('execution streams logs before timeout and does not accept failed commands', async () => {
   const { root, config } = fixture();
-  config.tasks[0].command = [process.execPath, '-e', 'setInterval(() => {}, 1000)'];
+  config.tasks[0].command = [
+    process.execPath,
+    '-e',
+    "process.stdout.write('persisted-before-timeout');setInterval(() => {}, 1000)",
+  ];
   config.tasks[0].timeoutSeconds = 0.1;
   const plan = fixturePlan(root, config);
   const result = await executePlan(root, config, plan);
   assert.equal(result.receipt.tasks[0].status, 'failed');
   assert.equal(result.receipt.tasks[0].timedOut, true);
   assert.equal(result.receipt.status, 'failed');
+  const logPath = path.join(result.runRoot, result.receipt.tasks[0].logFile);
+  assert.match(readFileSync(logPath, 'utf8'), /persisted-before-timeout/u);
+});
+
+test('execution caps task logs and marks truncated output', async () => {
+  const { root, config } = fixture();
+  config.tasks[0].kind = 'check';
+  const outputBytes = 16 * 1024 * 1024 + 1;
+  config.tasks[0].command = [
+    process.execPath,
+    '-e',
+    'process.stdout.write(Buffer.alloc(' + outputBytes + ', 120));process.stdout.write("VALIDATION_TEST_CASES_PASSED=1")',
+  ];
+  const result = await executePlan(root, config, fixturePlan(root, config));
+  const logPath = path.join(result.runRoot, result.receipt.tasks[0].logFile);
+  const log = readFileSync(logPath);
+  assert.equal(result.receipt.tasks[0].status, 'passed');
+  assert.equal(result.receipt.tasks[0].outputBytes, outputBytes + Buffer.byteLength('VALIDATION_TEST_CASES_PASSED=1'));
+  assert.equal(log.length, 16 * 1024 * 1024);
+  assert.match(log.toString('utf8'), /\[validation log truncated after 16 MiB\]\n$/u);
 });
 
 test('child environments hide sensitive values unless a task explicitly needs them', async () => {
@@ -299,9 +325,19 @@ test('child environments hide sensitive values unless a task explicitly needs th
     config.runtimes = [{
       command: process.execPath,
       args: ['-e', `process.stdout.write(process.env[${JSON.stringify(key)}] ?? 'not-inherited')`],
+    }, {
+      command: process.execPath,
+      args: ['-e', `process.stdout.write(JSON.stringify({ home: process.env.HOME, dotnetHome: process.env.DOTNET_CLI_HOME, nugetPackages: process.env.NUGET_PACKAGES, secret: process.env[${JSON.stringify(key)}] ?? null }))`],
     }];
     const plan = createPlan(root, config);
     assert.equal(plan.runtimes[0].version, 'not-inherited');
+    const probeEnvironment = JSON.parse(plan.runtimes[1].version);
+    assert.notEqual(probeEnvironment.home, injected.HOME);
+    assert.notEqual(probeEnvironment.dotnetHome, injected.DOTNET_CLI_HOME);
+    assert.notEqual(probeEnvironment.nugetPackages, injected.NUGET_PACKAGES);
+    assert.equal(probeEnvironment.secret, null);
+    assert.match(probeEnvironment.home, /slskdn-validation-runtime-probe-/u);
+    assert.equal(existsSync(probeEnvironment.home), false);
 
     config.tasks[0].kind = 'check';
     config.tasks[0].command = [
@@ -343,7 +379,7 @@ test('child environments hide sensitive values unless a task explicitly needs th
   }
 });
 
-test('Playwright tasks use the job-scoped browser cache selected by the workflow', () => {
+test('Playwright tasks use the job cache and keep standard runs offline', () => {
   const runRoot = makeRoot({ 'package.json': '{}\n' });
   const runnerTemp = path.join(os.tmpdir(), 'slskdn-validation-runner-temp');
   const task = {
@@ -371,6 +407,29 @@ test('Playwright tasks use the job-scoped browser cache selected by the workflow
   assert.equal(env.HOME, path.join(environmentRoot, 'home'));
   assert.equal(env.XDG_CACHE_HOME, path.join(environmentRoot, 'xdg-cache'));
   assert.notEqual(env.PLAYWRIGHT_BROWSERS_PATH, '/operator/cache/untrusted-browsers');
+  const mountedCacheEnv = isolatedTaskEnvironment(task, runRoot, {
+    PLAYWRIGHT_BROWSERS_PATH: '/mnt/run-data/dependencies/0',
+  });
+  assert.equal(
+    mountedCacheEnv.PLAYWRIGHT_BROWSERS_PATH,
+    '/mnt/run-data/dependencies/0',
+  );
+  const nestedHostPathEnv = isolatedTaskEnvironment(task, runRoot, {
+    PLAYWRIGHT_BROWSERS_PATH: '/mnt/run-data/dependencies/0/../../home/operator',
+  });
+  assert.equal(
+    nestedHostPathEnv.PLAYWRIGHT_BROWSERS_PATH,
+    path.join(os.tmpdir(), 'slskdn-playwright-browsers'),
+  );
+  for (const id of ['browser-e2e', 'web-browser-e2e']) {
+    const definition = validation.tasks.find((candidate) => candidate.id === id);
+    assert.equal(definition?.env?.SLSKDN_TEST_NO_CONNECT, 'true');
+    const taskEnvironment = isolatedTaskEnvironment(definition, runRoot, {
+      RUNNER_TEMP: runnerTemp,
+      SLSKDN_TEST_NO_CONNECT: 'false',
+    });
+    assert.equal(taskEnvironment.SLSKDN_TEST_NO_CONNECT, 'true');
+  }
   assert.match(
     workflow,
     /PLAYWRIGHT_BROWSERS_PATH:\s*\$\{\{\s*runner\.temp\s*\}\}\/slskdn-playwright-browsers/,

@@ -108,6 +108,39 @@ namespace slskd.Tests.Unit.Files
         }
 
         [Fact]
+        public async Task ListContentsAsync_IncludesNestedDirectorySizesOnlyWhenRequested()
+        {
+            var downloads = Path.Combine(Temp, "downloads");
+            var album = Path.Combine(downloads, "album");
+            var nested = Path.Combine(album, "disc 1");
+            var empty = Path.Combine(downloads, "empty");
+            Directory.CreateDirectory(nested);
+            Directory.CreateDirectory(empty);
+            File.WriteAllBytes(Path.Combine(album, "cover.jpg"), new byte[3]);
+            File.WriteAllBytes(Path.Combine(nested, "track.flac"), new byte[7]);
+
+            OptionsMonitorMock.Setup(o => o.CurrentValue).Returns(new Options
+            {
+                Directories = new Options.DirectoriesOptions
+                {
+                    Downloads = downloads,
+                    Incomplete = Path.Combine(Temp, "incomplete"),
+                }
+            });
+
+            var regularListing = await FileService.ListContentsAsync(downloads);
+            Assert.Null(Assert.Single(regularListing.Directories, directory => directory.Name == "album").Length);
+
+            var sizedListing = await FileService.ListContentsAsync(
+                downloads,
+                enumerationOptions: null,
+                includeDirectorySizes: true);
+
+            Assert.Equal(10, Assert.Single(sizedListing.Directories, directory => directory.Name == "album").Length);
+            Assert.Equal(0, Assert.Single(sizedListing.Directories, directory => directory.Name == "empty").Length);
+        }
+
+        [Fact]
         public async Task DeleteDirectoriesAsync_Throws_ArgumentException_Given_Relative_Path()
         {
             var ex = await Record.ExceptionAsync(() => FileService.DeleteDirectoriesAsync("../foo"));
@@ -198,6 +231,73 @@ namespace slskd.Tests.Unit.Files
         }
 
         [Fact]
+        public void EnsureDirectory_AppliesModeToNewNestedDirectoriesAndPreservesExistingParentMode()
+        {
+            if (OperatingSystem.IsWindows())
+            {
+                return;
+            }
+
+            var existingParent = Path.Combine(Temp, "existing-parent");
+            var destination = Path.Combine(existingParent, "new", "nested");
+            Directory.CreateDirectory(existingParent);
+            File.SetUnixFileMode(existingParent, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute);
+            var mode = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute |
+                UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute |
+                UnixFileMode.OtherRead | UnixFileMode.OtherWrite | UnixFileMode.OtherExecute;
+
+            FileService.EnsureDirectory(destination, mode);
+
+            Assert.Equal(mode, File.GetUnixFileMode(Path.Combine(existingParent, "new")));
+            Assert.Equal(mode, File.GetUnixFileMode(destination));
+            Assert.Equal(
+                UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute,
+                File.GetUnixFileMode(existingParent));
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void MoveFile_AppliesRequestedExistingFilePolicy(bool overwrite)
+        {
+            var downloads = Path.Combine(Temp, "downloads");
+            var incomplete = Path.Combine(Temp, "incomplete");
+            Directory.CreateDirectory(downloads);
+            Directory.CreateDirectory(incomplete);
+            OptionsMonitorMock.Setup(o => o.CurrentValue).Returns(new Options
+            {
+                Directories = new Options.DirectoriesOptions
+                {
+                    Downloads = downloads,
+                    Incomplete = incomplete,
+                },
+                Permissions = new Options.PermissionsOptions
+                {
+                    File = new Options.PermissionsOptions.FileOptions { Mode = string.Empty },
+                },
+            });
+
+            var existingFilename = Path.Combine(downloads, "track.flac");
+            var sourceFilename = Path.Combine(incomplete, "track.flac");
+            File.WriteAllText(existingFilename, "previous");
+            File.WriteAllText(sourceFilename, "incoming");
+
+            var movedFilename = FileService.MoveFile(sourceFilename, downloads, overwrite: overwrite);
+
+            Assert.Equal("incoming", File.ReadAllText(movedFilename));
+            Assert.False(File.Exists(sourceFilename));
+            if (overwrite)
+            {
+                Assert.Equal(existingFilename, movedFilename);
+            }
+            else
+            {
+                Assert.NotEqual(existingFilename, movedFilename);
+                Assert.Equal("previous", File.ReadAllText(existingFilename));
+            }
+        }
+
+        [Fact]
         public void MoveFile_Does_Not_Fail_When_Source_Directory_Cleanup_Races_With_Other_Files()
         {
             var downloads = Path.Combine(Temp, "downloads");
@@ -235,6 +335,83 @@ namespace slskd.Tests.Unit.Files
             Assert.Equal(Path.Combine(downloads, "move-me.bin"), movedFilename);
             Assert.True(File.Exists(movedFilename));
             Assert.True(File.Exists(siblingFilename));
+        }
+
+        [Fact]
+        public void MoveFile_Cleans_Empty_Incomplete_Ancestors_Without_Removing_Configured_Root()
+        {
+            var downloads = Path.Combine(Temp, "downloads");
+            var incomplete = Path.Combine(Temp, "incomplete");
+            var peerDirectory = Path.Combine(incomplete, "peer", "music", "album");
+
+            Directory.CreateDirectory(downloads);
+            Directory.CreateDirectory(peerDirectory);
+
+            OptionsMonitorMock.Setup(o => o.CurrentValue).Returns(new Options
+            {
+                Directories = new Options.DirectoriesOptions
+                {
+                    Downloads = downloads,
+                    Incomplete = incomplete,
+                },
+                Permissions = new Options.PermissionsOptions
+                {
+                    File = new Options.PermissionsOptions.FileOptions
+                    {
+                        Mode = string.Empty,
+                    },
+                },
+            });
+
+            var sourceFilename = Path.Combine(peerDirectory, "track.flac");
+            File.WriteAllText(sourceFilename, "audio");
+
+            var movedFilename = FileService.MoveFile(
+                sourceFilename,
+                downloads,
+                deleteSourceDirectoryIfEmptyAfterMove: true);
+
+            Assert.Equal(Path.Combine(downloads, "track.flac"), movedFilename);
+            Assert.True(File.Exists(movedFilename));
+            Assert.True(Directory.Exists(incomplete));
+            Assert.False(Directory.Exists(Path.Combine(incomplete, "peer")));
+        }
+
+        [Fact]
+        public void MoveFile_Does_Not_Clean_Source_Directories_Outside_Incomplete_Root()
+        {
+            var downloads = Path.Combine(Temp, "downloads");
+            var incomplete = Path.Combine(Temp, "incomplete");
+            var outsideDirectory = Path.Combine(Temp, "outside", "nested");
+
+            Directory.CreateDirectory(downloads);
+            Directory.CreateDirectory(outsideDirectory);
+
+            OptionsMonitorMock.Setup(o => o.CurrentValue).Returns(new Options
+            {
+                Directories = new Options.DirectoriesOptions
+                {
+                    Downloads = downloads,
+                    Incomplete = incomplete,
+                },
+                Permissions = new Options.PermissionsOptions
+                {
+                    File = new Options.PermissionsOptions.FileOptions
+                    {
+                        Mode = string.Empty,
+                    },
+                },
+            });
+
+            var sourceFilename = Path.Combine(outsideDirectory, "track.flac");
+            File.WriteAllText(sourceFilename, "audio");
+
+            FileService.MoveFile(
+                sourceFilename,
+                downloads,
+                deleteSourceDirectoryIfEmptyAfterMove: true);
+
+            Assert.True(Directory.Exists(outsideDirectory));
         }
 
         [Fact]

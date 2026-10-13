@@ -8,6 +8,9 @@
 namespace slskd.Tests.Unit.Common.Extensions
 {
     using System;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
     using Xunit;
 
     public class ToLocalRelativeFilenameTests
@@ -85,6 +88,43 @@ namespace slskd.Tests.Unit.Common.Extensions
 
             Assert.NotNull(ex);
             Assert.IsType<ArgumentException>(ex);
+        }
+
+        [Fact]
+        public void ShortensLongUtf8ComponentsDeterministicallyAndPreservesFileExtension()
+        {
+            var remoteDirectory = string.Concat(Enumerable.Repeat("界", 100));
+            var remoteFilename = new string('a', 300) + ".flac";
+            var remotePath = $"{remoteDirectory}/{remoteFilename}";
+            var localRelativePath = remotePath.ToLocalRelativeFilename();
+            var mappedDirectory = Path.GetDirectoryName(localRelativePath)!;
+            var mappedFilename = Path.GetFileName(localRelativePath);
+
+            Assert.Equal(localRelativePath, remotePath.ToLocalRelativeFilename());
+            Assert.True(Encoding.UTF8.GetByteCount(mappedDirectory) <= 240);
+            Assert.True(Encoding.UTF8.GetByteCount(mappedFilename) <= 240);
+            Assert.EndsWith(".flac", mappedFilename, StringComparison.Ordinal);
+
+            var differentRemotePath = $"{remoteDirectory}/{new string('a', 299)}b.flac";
+            Assert.NotEqual(localRelativePath, differentRemotePath.ToLocalRelativeFilename());
+
+            var root = Path.Combine(Path.GetTempPath(), $"remote-path-length-{Guid.NewGuid():N}");
+            var localPath = Path.Combine(root, localRelativePath);
+
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(localPath)!);
+                File.WriteAllText(localPath, "mapped");
+
+                Assert.True(File.Exists(localPath));
+            }
+            finally
+            {
+                if (Directory.Exists(root))
+                {
+                    Directory.Delete(root, recursive: true);
+                }
+            }
         }
     }
 }

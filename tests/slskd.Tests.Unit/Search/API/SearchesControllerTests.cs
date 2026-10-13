@@ -206,6 +206,23 @@ public class SearchesControllerTests
     }
 
     [Fact]
+    public async Task GetAll_WithIncompleteOrMixedContinuation_ReturnsBadRequest()
+    {
+        var controller = CreateController();
+        var cursorId = Guid.NewGuid();
+        var cursorTime = DateTimeOffset.UtcNow;
+
+        Assert.IsType<BadRequestResult>(await controller.GetAll(
+            limit: 250,
+            afterStartedAt: cursorTime));
+        Assert.IsType<BadRequestResult>(await controller.GetAll(
+            limit: 250,
+            offset: 1,
+            afterStartedAt: cursorTime,
+            afterId: cursorId));
+    }
+
+    [Fact]
     public async Task GetAll_WithDefaultLimit_AppliesConservativeServerCap()
     {
         var searchService = new Mock<ISearchService>();
@@ -219,6 +236,49 @@ public class SearchesControllerTests
 
         Assert.IsType<OkObjectResult>(result);
         searchService.Verify(service => service.ListAsync(null, 500, 0), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetAll_ForwardsSourceAndOffsetForPageRequests()
+    {
+        var page = new List<slskd.Search.Search>
+        {
+            new() { Id = Guid.NewGuid(), SearchText = "older search" },
+        };
+        var searchService = new Mock<ISearchService>();
+        searchService
+            .Setup(service => service.ListAsync(null, 250, 500, "wishlist"))
+            .ReturnsAsync(page);
+        var controller = CreateController(searchService);
+
+        var result = await controller.GetAll(limit: 250, offset: 500, source: "wishlist");
+
+        Assert.Same(page, Assert.IsType<OkObjectResult>(result).Value);
+        searchService.Verify(service => service.ListAsync(null, 250, 500, "wishlist"), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetAll_ForwardsTimestampAndIdForStableContinuation()
+    {
+        var cursorTime = new DateTime(2026, 8, 20, 12, 0, 0, DateTimeKind.Utc);
+        var cursorId = Guid.NewGuid();
+        var page = new List<slskd.Search.Search>();
+        var searchService = new Mock<ISearchService>();
+        searchService
+            .Setup(service => service.ListAsync(null, 250, 0, "wishlist", cursorTime, cursorId))
+            .ReturnsAsync(page);
+        var controller = CreateController(searchService);
+
+        var result = await controller.GetAll(
+            limit: 250,
+            source: "wishlist",
+            afterStartedAt: new DateTimeOffset(cursorTime),
+            afterId: cursorId);
+
+        Assert.Same(page, Assert.IsType<OkObjectResult>(result).Value);
+        searchService.Verify(
+            service => service.ListAsync(null, 250, 0, "wishlist", cursorTime, cursorId),
+            Times.Once);
     }
 
     [Fact]

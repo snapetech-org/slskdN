@@ -1,17 +1,51 @@
-## Update 2026-10-13 03:03 UTC — Add browser-local interface language to PR #360
+# Update 2026-10-13 — Keep CI triggers unchanged for runner-temp hardening
 
-The Web UI now has a browser-local interface-language selector under System >
-Experience Preferences. It offers twelve first-wave locales with native and
-English option names, browser-language selection on first use, local
-persistence, English fallback, translated primary navigation, document
-language metadata, and Arabic direction metadata. Existing regional date,
-time, and number formatting remains a separate preference. The release note
-and localization roadmap describe the current coverage and the remaining
-screen-catalog and full RTL work.
+Repository policy keeps builds on tags, pull requests, and explicit manual
+dispatches. The runner-temp fix validates each Linux job's `RUNNER_TEMP`,
+rejects `/tmp` and `/var/tmp` (including symlink targets), then exports TMPDIR,
+TMP, and TEMP for later steps. The standalone load harness remains on hosted
+Linux after its previous local SIGBUS. Workflow checks preserve tag-only push
+builds and tag-gated publication.
 
-The PR branch retains the newer regional-format commits and passes the Web
-production build, ESLint, release-note preview, and diff checks. No test suite
-was run for this continuation. No tag or release was created.
+The stale `68b36d3` main run executed 15/15 tasks; its release-branch-sync and
+remediation-baseline failures both came from `main` advancing to `252e92f`
+during execution. A fresh full run for `252e92f` and exact-head PR checks are
+pending. Earlier Web unit-test failures and the load-test SIGBUS still need
+exact-head hosted verification.
+
+# Update 2026-10-13 — Initial trusted branch CI proposal (superseded)
+
+The CI workflow now runs on all branch pushes. Its complete .NET branch gate
+uses a dedicated server-role runner label; pull requests remain on
+GitHub-hosted runners, and publish, Docker, and release jobs remain guarded by
+tag refs. The standalone load harness now uses hosted Linux after its previous
+local SIGBUS. The workflow policy regression checks branch triggers, runner
+selection, hosted load testing, and tag-only release jobs. The runner label was
+added to the existing server runner after verifying the repository target.
+
+Focused checks pass: scripts/check-workflow-trigger-policy.sh,
+scripts/check-dotnet-runtime-matrix.sh, scripts/check-workflow-yaml-syntax.sh,
+and git diff --check.
+Exact-head hosted PR and trusted branch CI are pending; the earlier Web unit
+test failures and SIGBUS are not counted as resolved yet.
+
+# Update 2026-10-12 21:47 UTC — Persist runner temp for self-hosted CI
+
+The earlier runner-temp workaround covered only `actions/setup-dotnet`; later
+build and scan steps still inherited the full shared `/tmp`. All seven Linux
+self-hosted jobs in `ci.yml` and `ci-enhancements.yml` now validate the runner
+temporary directory, reject root, `/tmp`, and `/var/tmp` (including symlinks),
+and persist `TMPDIR`, `TMP`, and `TEMP` through `GITHUB_ENV`. The NuGet
+vulnerability scan output now uses the validated job temp directory. The
+workflow guard checks all Linux self-hosted jobs and rejects fixed `/tmp` or
+`/var/tmp` use in later steps. Gotcha `0z1771` records the step-scope failure.
+
+`bash scripts/check-dotnet-runtime-matrix.sh`, workflow YAML parsing, shell
+syntax, runner-temp behavior checks, `./bin/lint`, and the complete remediation
+baseline pass. The active review queue is 12,726 pattern-hit lines; four new
+matches are from the workflow guard and are not confirmed bugs. The baseline
+skips PPA upload because its optional signing secret is absent. Local
+verification is complete; hosted PR #357 checks and merge remain pending.
 
 # Update 2026-10-05 21:46 UTC — Preserve content-link cancellation and sanitize provider logs
 
@@ -19004,35 +19038,71 @@ build/startup, version-change cache check, release-note preview, identity scan,
 route inventory, and GitHub target verification pass. Push and hosted stable
 release verification remain.
 
+## Update 2026-10-13 — Stable `.350` publisher and exact-head validation follow-up
 
-## 2026-10-13 localization first slice
+The stable `.350` tag and 13 release assets are published; all six platform
+archives and checksums verify. Recovery publication succeeded for the AUR
+source and binary packages, COPR, container registries, and Nix metadata/smoke.
+The exact Jammy source package is `Published`, and its build log completed, but
+Launchpad's build API still reports `Uploading build`. The exact binary is absent
+from the published-binary API and the current Jammy amd64 package index. The
+release wait job timed out after repeated Launchpad API SSL timeouts; no source
+resubmission was made.
 
-Added a per-browser regional format control to System > Experience Preferences and applied it to existing Web UI date/time/number formatting. Full interface catalogs and RTL review are not part of this first slice. Validation and release-note preview are pending.
-# Update 2026-10-13 — Restore locale metadata helpers and regionalize metrics
+Hosted `workflow_dispatch` run `38365844172` validated branch head
+`62f2f95f67bb11e8fc62571d5e137b3b74af5a38`: the release gate passed all 15
+selected tasks and 7,344 active cases with zero failures or blockers, three
+browser E2E tasks were excluded by the checked-in plan, and the Nix package
+smoke passed. The previous run's branch-sync failure came from `main` advancing
+after checkout. The local remediation baseline also passes after refreshing the
+candidate inventory to 12,811 matches; these are review candidates, not
+confirmed defects.
 
-The locale hook now exposes the per-label language and direction helpers used
-by transfer rows, fixing the missing-helper crash path. Primary-navigation
-labels keep their own language metadata without reversing the navigation
-container. Zero-byte values, system metrics, and network byte/count displays
-now use the regional number preference, including compact counts.
+## Update 2026-10-13 — System file management and responsive workflows
 
-The release fragment and task/roadmap state describe this follow-up. No tests
-or Web build were run for this continuation, and the work remains local on the
-PR #360 branch.
+System file browsing now supports on-demand subtree sizes and validated
+multi-item deletion with per-item outcomes. The narrow-screen workflow covers
+keyboard navigation, retry after a failed delete, selected-item confirmation,
+and partial-success reporting. Room queries preserve slash-containing names,
+and watched-user state is published after registration.
 
-# Update 2026-10-13 — Complete visible Web UI locale coverage
+The full .NET suite passes 6,180 tests, the web suite passes 1,300 tests, and
+the selected headless browser suite passes 97 tests with seven opt-in network
+and soak scenarios skipped. Repository lint and the Release build pass with
+zero compiler warnings and errors. The stable build tag and hosted artifact
+verification remain.
 
-Expanded the catalog and localized app-owned labels, statuses, messages, and
-accessibility text throughout the Web UI. Raw API/protocol values and user data
-remain unchanged. All 4,334 source strings have twelve non-empty locale values;
-placeholder parity and source-identical cells were audited. The production Web
-build and ESLint pass. Fluent-speaker and full Arabic RTL browser review remain.
-## Full visible UI localization follow-up — 2026-10-13
+## Update 2026-10-13 — Trusted browser cache and full E2E follow-up
 
-Expanded the browser catalog and wrapped finite app-owned action, playback,
-scan, integration, and connection messages in the interface-language helper.
-The final candidate set contains 4,450 Web UI source strings across twelve
-locales (53,400 locale cells); catalog coverage and placeholder checks pass.
-The Web build and ESLint pass. Machine translations still need fluent review,
-and full Arabic RTL visual review remains open. No full test suite or release
-was run for this localization follow-up.
+The trusted validation engine now preserves the Playwright browser cache when
+it comes from the launcher's read-only dependency mount, while continuing to
+isolate untrusted cache paths. Local testing instructions and a validation
+release-note fragment are updated. The transfer-column E2E fixture now marks
+the default-visible `requested` column hidden when asserting an exact set.
+
+The validation-engine suite passes 16 tests. The full headless Web suite passes
+89 tests with 16 skipped by opt-in/offline policy; the dedicated 15-minute
+loopback radio-renewal soak passes. Release build and repository formatting
+lint pass. The trusted local backend unit task did not reach test execution
+because restore/build stalled before launching a test host; no backend result
+is claimed from that attempt.
+
+## Update 2026-10-13 21:29 UTC — Unraid environment coverage
+
+Packaging metadata validation found documented download destination,
+permissions, retry, and retention environment settings missing from the
+Unraid template. Recorded gotcha `0z1847`, exposed every documented optional
+`SLSKD_*` setting in the advanced template fields, and updated the Unraid guide,
+support post, Unreleased changelog, validation inputs, and release-note
+fragment. The full packaging metadata validator passes; XML parsing and a
+documentation-to-template coverage scan also pass. Exact-head release
+validation remains pending because the currently running hosted job was
+dispatched before this follow-up.
+
+## Update 2026-10-13 21:38 UTC — Main release candidate
+
+Pushed the complete 154-commit candidate to the verified fork's `main` with a
+normal fast-forward. The Unreleased notes are now under the dated
+`2026101321-slskdn.351` section. The earlier branch workflow runs were
+superseded while queued and were cancelled; no result from those runs is
+counted. The exact-`main` hosted gate and stable tag remain pending.

@@ -95,9 +95,22 @@ public class MetricsController : ControllerBase
     [Produces("text/plain", "application/json")]
     [ProducesResponseType(typeof(string), 200, "text/plain")]
     [ProducesResponseType(typeof(Dictionary<string, PrometheusMetric>), 200, "application/json")]
+    [ProducesResponseType(typeof(string), 400)]
     [ProducesResponseType(typeof(string), 500)]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get([FromQuery] string[]? include, [FromQuery] string[]? exclude)
     {
+        List<Regex>? includeFilters;
+        List<Regex>? excludeFilters;
+        try
+        {
+            includeFilters = PrometheusMetricFilter.Compile(include, "include");
+            excludeFilters = PrometheusMetricFilter.Compile(exclude, "exclude");
+        }
+        catch (MetricsFilterValidationException exception)
+        {
+            return BadRequest(exception.Message);
+        }
+
         try
         {
             var acceptsJson = Request.GetTypedHeaders().Accept?.Any(header =>
@@ -105,12 +118,18 @@ public class MetricsController : ControllerBase
 
             if (acceptsJson)
             {
-                Dictionary<string, PrometheusMetric> dict = await Telemetry.Prometheus.GetMetricsAsObject();
+                Dictionary<string, PrometheusMetric> dict = includeFilters == null && excludeFilters == null
+                    ? await Telemetry.Prometheus.GetMetricsAsObject()
+                    : await Telemetry.Prometheus.GetMetricsAsObject(includeFilters, excludeFilters);
                 return Ok(dict);
             }
 
-            var response = await Telemetry.Prometheus.GetMetricsAsString();
+            var response = await Telemetry.Prometheus.GetMetricsAsString(includeFilters, excludeFilters);
             return Content(response, "text/plain");
+        }
+        catch (RegexMatchTimeoutException)
+        {
+            return BadRequest("A metrics filter exceeded its evaluation time limit. Simplify the pattern and try again.");
         }
         catch (Exception ex)
         {

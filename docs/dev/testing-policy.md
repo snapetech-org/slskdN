@@ -59,8 +59,16 @@ node scripts/validate-development.mjs --task web-browser-e2e
 ```
 
 Local execution of test tasks requires the trusted Linux bubblewrap launcher.
-When evaluating an unreviewed branch, copy `trusted-test-launcher.mjs` from a
-reviewed revision to a location outside the checkout and run:
+When evaluating an unreviewed branch, copy `trusted-test-launcher.mjs` and
+`trusted-test-sandbox-policy.mjs` from the same reviewed revision to a location
+outside the checkout, keeping them together. The launcher snapshots only paths
+in the Git index, hides the original checkout and common host configuration and
+data roots, and runs candidate code offline. Credential files are excluded
+even when extensionless or stored in credential-named folders, while token-like
+source files remain in the snapshot. Stage new candidate files first.
+The launcher opens each workspace, run-data, dependency, cache, and marker
+source before masking host paths, then binds those pinned sources through
+inherited file descriptors.
 
 ```bash
 node /path/to/trusted-test-launcher.mjs "$PWD" -- node scripts/validate-development.mjs --tests-only
@@ -85,7 +93,8 @@ GitHub Actions shows these live updates in the step log because rendered job
 summaries are published after the step completes.
 
 Each execution creates a fresh receipt and per-task logs in a private directory
-under the operating system's temporary directory. Receipts bind the Git commit,
+under the operating system's temporary directory. Each log is capped at 16 MiB
+and carries a marker when output was truncated. Receipts bind the Git commit,
 tree, dirty diff, untracked files, lock/workflow inputs, discovered test-file
 digests, runtime versions, and (on GitHub Actions) the workflow run and attempt.
 Test tasks pass only when their native command succeeds and reports at least
@@ -102,8 +111,21 @@ reach child commands.
 Playwright tasks keep those private home and XDG directories and use the
 job-scoped `slskdn-playwright-browsers` cache under the runner temporary root.
 The E2E workflow installs Chromium into that same cache before the engine runs.
-For local browser validation, set `PLAYWRIGHT_BROWSERS_PATH` to the equivalent
-temporary-root path before installing browsers; see `tests/e2e/README.md`.
+The registered browser tasks set `SLSKDN_TEST_NO_CONNECT=true` explicitly, so
+the isolated suite does not attempt public Soulseek connections. Use the
+separate loopback journey command when exercising peer protocol behavior.
+For local browser validation, install Chromium into a task-scoped cache and
+pass that directory to the trusted launcher with `--playwright-cache`. The
+launcher mounts it read-only and the engine accepts only the launcher's guest
+mount path, so arbitrary operator cache paths remain isolated. For example:
+
+```bash
+node scripts/validation-engine/trusted-test-launcher.mjs "$PWD" \
+  --playwright-cache "$PLAYWRIGHT_BROWSERS_PATH" -- \
+  node scripts/validate-development.mjs --task web-browser-e2e
+```
+
+See `tests/e2e/README.md` for browser installation details.
 
 GitHub CI uploads the receipt and logs as a seven-day artifact. A passing local
 or hosted engine run does not include the separate Nix packaging job, release

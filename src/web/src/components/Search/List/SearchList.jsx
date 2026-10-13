@@ -14,6 +14,9 @@ const isSearchComplete = (search) =>
 const SearchList = ({
   connecting = false,
   error = undefined,
+  hasMoreFromServer = false,
+  loadingMore = false,
+  onLoadMore = () => {},
   onCleanup = () => {},
   onRemove = () => {},
   onRemoveAll = () => {},
@@ -166,7 +169,7 @@ const SearchList = ({
             />
           </div>
           <div className="search-list-count">
-            {localized('{filtered} / {total} searches', {
+            {localized('Showing {filtered} of {total} loaded searches', {
               filtered: formatRegionalNumber(filteredCount, undefined, regionalLocale),
               total: formatRegionalNumber(searchCount, undefined, regionalLocale),
             })}
@@ -338,10 +341,10 @@ const SearchList = ({
                 ))}
               </Table.Body>
             </Table>
-            {filteredCount > SEARCH_LIST_PAGE_SIZE && (
+            {(filteredCount > SEARCH_LIST_PAGE_SIZE || hasMoreFromServer) && (
               <div className="search-list-pagination">
                 <span>
-                  {localized('{start}–{end} of {count}', {
+                  {localized('Showing {start}–{end} of {count} loaded searches', {
                     start: formatRegionalNumber(pageStart, undefined, regionalLocale),
                     end: formatRegionalNumber(pageEnd, undefined, regionalLocale),
                     count: formatRegionalNumber(filteredCount, undefined, regionalLocale),
@@ -381,6 +384,21 @@ const SearchList = ({
                     </span>
                   }
                 />
+                {hasMoreFromServer && (
+                  <Popup
+                    content="Fetch the next bounded page from the server. Existing loaded rows and selections stay in place."
+                    position="top center"
+                    trigger={(
+                      <Button
+                        content="Load more searches"
+                        disabled={loadingMore}
+                        loading={loadingMore}
+                        onClick={onLoadMore}
+                        size="small"
+                      />
+                    )}
+                  />
+                )}
               </div>
             )}
           </div>

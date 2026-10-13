@@ -26,28 +26,41 @@
 
 ## Active Development
 
-### Browser-local interface language shell — 2026-10-13
+### Files API and responsive system workflows — 2026-10-13
 
-- [x] Audit the current UI and preserve the existing browser-local regional
-  date, time, and number preference as a separate setting.
-- [x] Add a browser-local interface-language selector under System >
-  Experience Preferences with bilingual native/English names for Spanish,
-  Simplified Chinese, Hindi, German, Japanese, French, Brazilian Portuguese,
-  Arabic, Korean, Traditional Chinese, Vietnamese, and Indonesian.
-- [x] Translate primary navigation and language/format controls with per-key
-  English fallback, first-use browser-language selection, local persistence,
-  document language metadata, and Arabic direction metadata.
-- [x] Add the roadmap and user-facing release-note fragment.
-- [x] Preserve the newer regional-format commits already on PR #360, then
-  pass the Web production build, ESLint, release-note preview, and diff checks.
-  No test suite was run for this continuation.
-- [x] Restore per-label language/direction helpers used by the transfer
-  manager and regionalize zero-byte, system-metric, and network-count output.
-- [x] Expand catalog coverage across visible Web UI screens and finite
-  app-owned statuses/messages, while preserving raw API/protocol and user data.
-- [ ] Obtain fluent-speaker review and review the full Arabic RTL layout in a
-  browser before describing Arabic support as fully reviewed.
+- [x] Add on-demand subtree sizes and guarded multi-item file/directory deletion
+  with per-item outcomes.
+- [x] Complete keyboard-accessible selection, confirmation, recovery, and
+  partial-result handling in the System Files view.
+- [x] Preserve room-query routing for slash-containing identifiers and publish
+  watched-user state after successful registration.
+- [x] Verify API/filesystem boundaries and user workflows with integration,
+  unit, component, and headless browser coverage.
+- [x] Pass the full .NET suite (6,180 tests), web suite (1,300 tests), the
+  selected headless browser suite (97 passed, 7 opt-in skips), repository lint,
+  and the Release build.
 
+Status: implementation and validation are complete. A stable build tag and
+hosted artifact verification remain for the release step.
+
+### SLSKDN runner-temp reliability — 2026-10-13
+
+- [x] Validate runner-owned temporary storage and export TMPDIR, TMP,
+  and TEMP for every Linux self-hosted job.
+- [x] Preserve hosted routing for public pull requests and non-main manual runs.
+- [x] Preserve the existing tag, pull-request, and manual CI triggers.
+- [x] Keep the standalone load harness on hosted Linux after the local SIGBUS.
+- [x] Pass focused workflow policy, runtime matrix, YAML, and diff checks.
+- [x] Run a hosted `workflow_dispatch` at exact branch head
+  `62f2f95f67bb11e8fc62571d5e137b3b74af5a38`; the release gate passes all 15
+  selected tasks and 7,344 active cases, three browser E2E tasks remain excluded,
+  and Nix package smoke passes. The earlier failed run was stale because `main`
+  advanced after its checkout.
+- [ ] Verify PR-specific runner routing and main manual-dispatch paths separately.
+
+Status: runner-temp implementation and exact branch-head hosted validation are
+complete. PR-specific routing and main manual-dispatch validation remain open.
+Ordinary branch-push builds are intentionally not added.
 
 ### Public pull-request runner isolation — 2026-10-12
 
@@ -7372,13 +7385,50 @@ resource completion.
 - [x] Pass the full .NET suite (6,145 tests), full Web suite (1,295 tests),
   `./bin/lint`, Release build, retained-log Playwright regression, Docker build
   and startup smoke, and version-change Docker cache check.
-- [ ] Push the validated tree to `snapetech/slskdN/main`, create the authorized
-  stable tag, and verify hosted publishers and release artifacts.
+- [x] Push the validated tree to `snapetech/slskdN/main`, create the authorized
+  stable tag, and verify the hosted release assets; all six platform archives
+  and checksums are valid.
+- [x] Recover the AUR source and binary pushes, COPR, container registries, and
+  Nix metadata and smoke publication.
+- [ ] Verify the exact Jammy binary
+  `2026101222.slskdn.350-1ppa202610130538~jammy` reaches `Published` and appears
+  in the apt index. The source is published and the build log succeeded, but
+  Launchpad still reports `Uploading build`; the exact binary is absent from
+  the published-binary API and current Jammy amd64 index. The release waiter
+  timed out after repeated API SSL timeouts. Do not upload the accepted source
+  again while this publication remains in progress.
 
+## Trusted Playwright cache and browser verification — 2026-10-13
 
-## T-LOCALIZATION-REGIONAL-FORMAT-20261013
+- [x] Preserve the browser cache only when it is supplied through the trusted
+  sandbox dependency mount; keep arbitrary host cache paths isolated.
+- [x] Document the local launcher invocation and add the validation release-note
+  fragment.
+- [x] Fix the transfer-view regression fixture to explicitly hide the
+  default-visible `requested` column; record gotcha `0z1813`.
+- [x] Pass validation-engine tests (16), the complete headless Web suite
+  (89 passed, 16 skipped), the 15-minute loopback radio-renewal soak (1),
+  Release build, and repository formatting lint.
+- [ ] Complete the backend unit suite and exact-head hosted release gate. The
+  local trusted backend task stalled during restore/build before starting a
+  test host, so that task did not produce a result.
 
-- Add a browser-local regional format preference to System > Experience Preferences.
-- Scope this first implementation to date, time, and number formatting across the shipped Web UI.
-- Keep interface copy, server culture, and machine configuration unchanged; full UI catalogs and RTL layout remain follow-up work.
-- Branch: codex/localization-audit-20261013; PR #360.
+## Unraid configuration coverage and release follow-up — 2026-10-13
+
+- [x] Expose each documented optional `SLSKD_*` setting in the Unraid advanced
+  template fields with blank defaults.
+- [x] Update the Unraid guide and support post, add the Unreleased changelog
+  bullet, and add a validated release-note fragment.
+- [x] Pass packaging metadata validation, Unraid XML parsing, and the direct
+  environment-variable coverage scan.
+- [ ] Pass the backend test suite and exact-head hosted release gate on `main`.
+- [ ] Prepare the `.351` versioned notes on validated `main`, create the
+  authorized stable tag, and verify the published assets.
+
+## Main release candidate — 2026-10-13
+
+- [x] Fast-forward the 154-commit candidate to the verified fork's `main`.
+- [x] Prepare dated `.351` changelog notes after the candidate reached `main`.
+- [ ] Pass the hosted CI release gate for the final exact `main` commit.
+- [ ] Create the authorized stable tag only after the gate passes; verify
+  published assets and downstream publication status.

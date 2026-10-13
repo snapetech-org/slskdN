@@ -5,6 +5,7 @@ namespace slskd.Tests.Unit;
 
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using slskd.Shares;
 using Xunit;
 
 public class SoulseekOptionsValidationTests
@@ -292,13 +293,52 @@ public class SoulseekOptionsValidationTests
     [Fact]
     public void SharesOptions_AllowsClosingBracketInAliasedLocalPath()
     {
-        var options = new Options.SharesOptions
+        var localDirectory = Path.Combine(Path.GetTempPath(), $"music]archive-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(localDirectory);
+
+        try
         {
-            Directories = new[] { "[music]/tmp/music]archive" },
-        };
+            var options = new Options.SharesOptions
+            {
+                Directories = new[] { $"[music]{localDirectory}" },
+            };
 
-        var results = options.Validate(new ValidationContext(options)).ToList();
+            var results = options.Validate(new ValidationContext(options)).ToList();
 
-        Assert.Empty(results);
+            Assert.Empty(results);
+        }
+        finally
+        {
+            Directory.Delete(localDirectory, recursive: true);
+        }
+    }
+
+    [Theory]
+    [InlineData("[music]/tmp/music]archive", "music", "/tmp/music]archive", false)]
+    [InlineData("-[music]/tmp/music]archive", "music", "/tmp/music]archive", true)]
+    [InlineData("![music]/tmp/music]archive", "music", "/tmp/music]archive", true)]
+    public void Share_UsesFirstClosingBracketAsAliasDelimiter(
+        string raw,
+        string expectedAlias,
+        string expectedPath,
+        bool expectedExcluded)
+    {
+        var share = new Share(raw);
+
+        Assert.Equal(raw, share.Raw);
+        Assert.Equal(expectedAlias, share.Alias);
+        Assert.Equal(expectedPath, share.LocalPath);
+        Assert.Equal(expectedAlias, share.RemotePath);
+        Assert.Equal(expectedExcluded, share.IsExcluded);
+    }
+
+    [Fact]
+    public void Share_DerivesUnaliasedDirectoryNameIncludingClosingBracket()
+    {
+        var share = new Share("/tmp/music]archive");
+
+        Assert.Equal("music]archive", share.Alias);
+        Assert.Equal("/tmp/music]archive", share.LocalPath);
+        Assert.Equal("music]archive", share.RemotePath);
     }
 }
