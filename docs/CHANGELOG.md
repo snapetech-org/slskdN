@@ -22,12 +22,18 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
-_Add release notes here while developing; move only shipped bullets into a dated version section when a release is cut._
+### Security
+
+- Manual workflow runs on refs outside `main` use GitHub-hosted runners. The
+  main CI workflow now uses read-only token permissions by default and grants
+  release write access only to its release job.
 
 - Manual CI runs can select a GitHub-hosted runner while tag builds retain the
   configured runner policy.
 - The README includes a Ko-fi link for users who want to support maintenance.
 - The Unraid template exposes the optional Soulseek server MTU setting.
+- System requirements explain storage growth and how to place application data,
+  downloads, and shared files on storage.
 
 ## [2026101222-slskdn.350] — 2026-10-12
 
@@ -47,6 +53,8 @@ _Add release notes here while developing; move only shipped bullets into a dated
   configured runner policy.
 - The README includes a Ko-fi link for users who want to support maintenance.
 - The Unraid template exposes the optional Soulseek server MTU setting.
+- System requirements explain storage growth and how to place application data,
+  downloads, and shared files on storage.
 - Repeated audio codec profile comparisons now avoid transient string allocations.
 - Container builds now reuse web assets and system-package layers when release
   metadata changes, and no longer need a `.git` directory in the build context.
@@ -64,8 +72,9 @@ _Add release notes here while developing; move only shipped bullets into a dated
 
 ### Security
 
-- Public pull request workflows run on GitHub-hosted runners, keeping untrusted
-  contributions away from private self-hosted environments.
+- Public pull requests and manual runs from refs outside `main` use GitHub-hosted
+  runners. CI defaults to read-only permissions and limits publishing access to
+  the release job.
 - Narrowly scoped integration credentials are restricted from general-purpose
   real-time hubs, while password and wildcard sessions retain existing access.
 - Federation relationship removal is bound to the verified sender and exact

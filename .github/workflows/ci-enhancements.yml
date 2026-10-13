@@ -23,8 +23,8 @@ permissions:
 jobs:
   performance-regression:
     name: Performance Regression Testing
-    # Public pull requests always use GitHub-hosted runners.
-    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    # Public pull requests and manual dispatches outside main use hosted runners.
+    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 30
     continue-on-error: true
     steps:
@@ -82,7 +82,7 @@ jobs:
 
   load-testing:
     name: Load Testing
-    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 20
     continue-on-error: true
     steps:
@@ -206,7 +206,7 @@ jobs:
 
   dependency-scanning:
     name: Dependency Scanning
-    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 15
     continue-on-error: true
     steps:
@@ -259,7 +259,7 @@ jobs:
 
   container-scanning:
     name: Container Scanning (Trivy)
-    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 20
     continue-on-error: true
     steps:

@@ -55,6 +55,13 @@ while IFS= read -r workflow; do
   fi
 done < <(find "$repo_root/.github/workflows" -maxdepth 1 -type f \( -name '*.yml' -o -name '*.yaml' \) | sort)
 
+ci_workflow="$repo_root/.github/workflows/ci.yml"
+if ! rg -Fq "github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && (github.ref != 'refs/heads/main' || inputs.runner == 'github-hosted'))" "$ci_workflow" ||
+  ! rg -Fq "&& 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON" "$ci_workflow"; then
+  printf '.github/workflows/ci.yml must force pull requests and non-main manual runs onto hosted runners\n' >&2
+  failed=1
+fi
+
 if [ "$failed" -ne 0 ]; then
   exit 1
 fi

@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Security
+
+- Public pull-request workflows now run on GitHub-hosted runners. Persistent
+  self-hosted runners are reserved for trusted workflows. Manual runs from
+  refs outside `main` also use hosted runners, and release jobs receive only
+  the token permissions they need.
+
 ### Changed
 
 - Automatic LAN mDNS advertising is now opt-in through

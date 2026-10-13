@@ -26,6 +26,29 @@
 
 ## Active Development
 
+### Public pull-request runner isolation — 2026-10-12
+
+- [x] Route public pull-request jobs in CI and enhancement workflows to
+  GitHub-hosted runners.
+- [x] Route manual dispatches from non-main refs to GitHub-hosted runners.
+- [x] Run the Windows smoke workflow on `windows-latest`; the repository has
+  no matching self-hosted Windows runner registered.
+- [x] Limit CI token permissions globally and grant release-only write scopes
+  to the release job.
+- [ ] Complete the cross-repository runner pool design after choosing an
+  organization strategy that preserves the current GitHub account limits and
+  after local host capacity is suitable for more concurrency.
+
+### Allocation regression and current-source inventory refresh — 2026-10-12
+
+- [x] Warm expired-entry cleanup on the same `DescriptorRetriever` instance
+  used by the allocation assertion; keep the `<4 KiB` threshold unchanged.
+- [x] Refresh active-bughunt counts against current `main`; callback/event is
+  217, remote/user diagnostics 434, red-team 12,732, and mutable ownership 836.
+  The one candidate-only red-team line is expected CI-permission changelog text.
+- [ ] Run the focused allocation test in hosted CI on the exact branch head;
+  retain the result before merging PR #358.
+
 ### Reported database issue #352 and stable `.349` release — 2026-10-11
 
 - [x] Reproduce issue #352's transfer-table scan root cause with SQLite query

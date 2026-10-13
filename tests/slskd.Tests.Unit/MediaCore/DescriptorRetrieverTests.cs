@@ -237,6 +237,13 @@ public class DescriptorRetrieverTests
             Codec = "flac",
         };
 
+        cache["content:audio:track:warmup"] = new CachedDescriptor(
+            descriptor,
+            now,
+            now.AddMinutes(-5));
+        _ = await retriever.GetStatsAsync();
+        Assert.Empty(cache);
+
         for (var index = 0; index < entryCount; index++)
         {
             cache[$"content:audio:track:{index}"] = new CachedDescriptor(
@@ -245,7 +252,6 @@ public class DescriptorRetrieverTests
                 index % 2 == 0 ? now.AddMinutes(5) : now.AddMinutes(-5));
         }
 
-        _ = await CreateRetriever().GetStatsAsync();
         var allocatedBefore = GC.GetAllocatedBytesForCurrentThread();
         var stats = await retriever.GetStatsAsync();
         var allocatedBytes = GC.GetAllocatedBytesForCurrentThread() - allocatedBefore;

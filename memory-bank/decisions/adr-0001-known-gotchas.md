@@ -4,6 +4,53 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1778. Keep Untrusted Workflow Refs Off Persistent Runners (2026-10-12)
+
+**What went wrong:** Public pull requests and manual runs from refs outside
+`main` could select persistent self-hosted runners through a repository
+preference variable. Contributor-controlled code could then run on a
+long-lived host with access to its local environment and Docker service.
+
+**Why:** Runner selection checked the preference variable but did not account
+for both the triggering event and the selected ref. The same expression was
+copied into the normal CI, performance, load, dependency, and container
+workflows.
+
+**Prevention:** Route all `pull_request` events and workflow dispatches from
+refs outside `main` to GitHub-hosted runners. Keep release dispatches hosted,
+scope token write permissions to publishing jobs, and audit every workflow for
+self-hosted runner selection.
+
+### 0z1777. Dispose SQLite Test Owners Before File Cleanup (2026-10-12)
+
+**What went wrong:** File-backed SQLite tests could pass on POSIX while cleanup
+failed on Windows because a disposed connection remained in the provider pool
+and still held the database file open.
+
+**Why:** POSIX allows unlinking an open file; Windows rejects deletion while a
+pooled native SQLite handle still owns it. A test that deletes its database
+before disposing its service has the same problem even without pooling.
+
+**Prevention:** Dispose every service and connection that owns a test database
+before cleanup. For test-owned file databases, prefer `Pooling=False`; if a
+pooled connection is required, clear that database's specific pool only after
+its connections are closed. Keep cleanup verification on Windows as well as
+POSIX.
+
+### 0z1776. Warm Allocation Tests Through The Measured Instance (2026-10-12)
+
+**What went wrong:** A cache-statistics allocation test warmed the method on a
+different instance with an empty cache. The measured call therefore included
+the first nonempty expired-entry cleanup pass in its allocation measurement.
+
+**Why:** Calling the same method is not enough when its allocation-sensitive
+work depends on cache state. The warm-up must exercise cleanup on the instance
+whose allocation is measured.
+
+**Prevention:** Seed and remove one expired entry on the measured instance
+before populating the large mixed cache. Keep the allocation measurement around
+the real cleanup and statistics pass, and retain the existing allocation cap.
+
 ### 0z1775. Reserve Distinct Ports For Full-Instance Tests (2026-10-12)
 
 **What went wrong:** The full-instance test runner selected each TCP port by

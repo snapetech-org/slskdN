@@ -25,15 +25,14 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 permissions:
-  contents: write
-  packages: write
-  actions: write
+  contents: read
 jobs:
   build:
     name: Build and Test
-    # Public pull requests always use GitHub-hosted runners. Manual runs may
-    # select that runner explicitly; trusted runs otherwise follow repo policy.
-    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || inputs.runner == 'github-hosted' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    # Public pull requests and manual dispatches outside main always use hosted
+    # runners. Main dispatches may opt into hosted; trusted tag pushes and main
+    # dispatches otherwise follow repository runner policy.
+    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && (github.ref != 'refs/heads/main' || inputs.runner == 'github-hosted'))) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 120
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -172,7 +171,7 @@ jobs:
   
   publish:
     name: Publish
-    runs-on: ${{ vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ github.event_name == 'workflow_dispatch' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     needs: build
     if: startsWith(github.ref, 'refs/tags/')
     strategy:
@@ -220,7 +219,7 @@ jobs:
   
   docker:
     name: Build Docker Image
-    runs-on: ${{ vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ github.event_name == 'workflow_dispatch' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     needs: build
     if: startsWith(github.ref, 'refs/tags/')
     env:
@@ -332,9 +331,12 @@ jobs:
 
   release:
     name: Create Release
-    runs-on: ${{ vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ github.event_name == 'workflow_dispatch' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     needs: [build, publish, docker]
     if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      actions: write
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v7
