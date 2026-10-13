@@ -27,14 +27,14 @@ delete the fixture files. Keep the scan's pooling and performance assertions.
 **What went wrong:** The Windows smoke job passed its full `Test` step but
 failed in `setup-node` post-job cleanup with a cache-path validation error.
 
-**Why:** The job installed pnpm with `install: false`, did not run a package
-installation, and configured `setup-node` to save the pnpm store anyway. No
-store path existed for the post-job cache save.
+**Why:** The job installed pnpm with `install: false` and did not run a package
+installation. It explicitly enabled the pnpm cache, and the repository's
+top-level `packageManager` metadata can also enable automatic caching in
+`setup-node` v7. No store path existed for the post-job cache save.
 
-**Prevention:** Enable package-manager caching only in jobs that create the
-cache path. Remove the unused pnpm cache settings from the .NET-only Windows
-smoke job while preserving its restore, build, and test steps. Confirm the
-post-job phase on Windows.
+**Prevention:** In jobs that do not install JavaScript packages, remove explicit
+cache settings and set `package-manager-cache: false`. Keep the .NET restore,
+build, and test steps, and confirm the post-job phase on Windows.
 
 ### 0z1838. Keep Windows SQLite Test Cleanup Reliable Without Disabling Scan Pooling (2026-10-13)
 
