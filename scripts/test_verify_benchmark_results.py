@@ -22,11 +22,13 @@ class BenchmarkResultVerifierTests(unittest.TestCase):
         workflow = (repository / ".github/workflows/ci-enhancements.yml").read_text(
             encoding="utf-8"
         )
-        artifacts = "tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts"
-        results = f"{artifacts}/results"
+        artifacts = "${{ github.workspace }}/tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts"
 
-        self.assertIn(f"--artifacts {artifacts}", workflow)
-        self.assertGreaterEqual(workflow.count(results), 3)
+        self.assertIn(f"BENCHMARK_ARTIFACTS: {artifacts}", workflow)
+        self.assertIn('--artifacts "$BENCHMARK_ARTIFACTS"', workflow)
+        self.assertIn('"$BENCHMARK_ARTIFACTS/results"', workflow)
+        self.assertIn("${{ env.BENCHMARK_ARTIFACTS }}/results/*.json", workflow)
+        self.assertIn("${{ env.BENCHMARK_ARTIFACTS }}/results/*.md", workflow)
 
     def run_verifier(self, report: object | None) -> subprocess.CompletedProcess[str]:
         with tempfile.TemporaryDirectory(prefix="slskdn-benchmark-verifier-") as temp:

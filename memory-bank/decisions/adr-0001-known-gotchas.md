@@ -43049,3 +43049,17 @@ did not exist in this single-report verifier.
 **Prevention:** Use the verifier's explicit failure function for every invalid
 report shape, and keep a malformed-root regression alongside the empty-report
 and valid-measurement checks.
+
+### 0z1900. Keep BenchmarkDotNet Artifact Paths Aligned Across CI Steps (2026-10-13)
+
+**What went wrong:** BenchmarkDotNet completed the selected HashDb benchmark and
+emitted eight workload measurements, but the required verifier found no report
+because its expected project artifact directory did not match the benchmark's
+relative artifact path.
+
+**Why:** The benchmark command, verifier, and artifact upload each assumed the
+same relative path had the same base directory.
+
+**Prevention:** Define one absolute workspace artifact directory and use it for
+BenchmarkDotNet output, report verification, and upload. Keep a workflow-policy
+regression that asserts all three steps use that shared path.
