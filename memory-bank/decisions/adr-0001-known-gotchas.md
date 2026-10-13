@@ -4,6 +4,20 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1796. Use StringComparer With xUnit String Equality (2026-10-13)
+
+**What went wrong:** A platform-sensitive path assertion passed a
+`StringComparison` value to `Assert.Equal`, and the unit-test project failed to
+compile on Windows because the selected xUnit overload expects an
+`IEqualityComparer<string>`.
+
+**Why:** .NET string comparison APIs accept `StringComparison`, but xUnit's
+generic equality assertion uses an equality comparer instead.
+
+**Prevention:** Pass `StringComparer.Ordinal` or
+`StringComparer.OrdinalIgnoreCase` to the assertion, and compile the owning test
+project on every supported platform after changing test code.
+
 ### 0z1794. Disable SQLite Pooling For File-Backed Tests On Windows (2026-10-13)
 
 **What went wrong:** Windows test cleanup could not delete SQLite files after
