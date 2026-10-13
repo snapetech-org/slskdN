@@ -1,29 +1,30 @@
-## Current state — PR #357 latest-main integration — 2026-10-13 23:19 UTC
+## Current state — PR #357 latest-main integration — 2026-10-13 23:22 UTC
 
-PR #357's pushed head is `4b3abdf120ced4b7352ff35f50e1b326968815d7`, based on
-`338faef6c71d16380a5784ff21a1ae3e7524c9f4`. Main advanced again to
-`0b91a1f288050b87e1c45ff89944a340b1045863`, leaving the PR conflicting. A
-checkpoint exists at `backup/pr357-before-0b91-main-merge-20261013`. The local
-merge is in progress; its only conflict is the gotcha ledger. Main's new
-artifact-contract entries collided with the PR's existing `0z1852` and
-`0z1853`, so the incoming entries are renumbered `0z1908` and `0z1909`; all
-existing records remain preserved.
+The pushed PR head remains `4b3abdf120ced4b7352ff35f50e1b326968815d7`; remote
+`main` advanced to `6bad0696008970f1df54aea8f03b805475f50363`. A checkpoint
+exists at `backup/pr357-before-6bad-main-merge-20261013`. The latest-main merge
+is staged but not committed or pushed. Its conflicts were in the gotcha ledger
+and active-council count table. The two new main gotchas collided with the PR's
+existing `0z1852` and `0z1853`, so the incoming entries are `0z1908` and
+`0z1909`. The candidate report now records 12,993 red-team matches versus
+12,917 on current main, a 76-line delta; the backlog check confirms all six
+section counts.
 
-Windows Smoke run `38480392646` passed on the prior head `0b4b2e750`: restore,
-build, unit 5,863/5,863, integration 293/293, and regression/API 74/74.
-`./bin/lint`, the release-note preview, and validation-engine plan also passed
-or reported successfully. The plan found 921 test files, 18 tasks, and 7/8
-prerequisites; local `pnpm` is unavailable. The focused sandbox test produced
-no result and remains unknown.
+Main's packaging metadata assertion was also aligned with the narrowed
+validation-artifact globs. Focused checks passed for packaging metadata and the
+active-council backlog; the workflow-YAML check passed during the prior main
+merge. Windows Smoke run `38480392646` passed on the older head `0b4b2e750`:
+unit 5,863/5,863, integration 293/293, and regression/API 74/74. The focused
+local sandbox test produced no result and remains unknown.
 
-The checks on `4b3abdf12` were still queued when main moved again. They do not
-validate the new merge candidate. The workflow-YAML syntax check passed during
-the prior latest-main integration.
+Checks for `4b3abdf12` remained queued when main moved again and do not validate
+this merge candidate. After pushing the new merge, refresh the validation plan
+and release-note preview and reconcile all required exact-head checks.
 
 ### Next Steps
 
 - Record the focused sandbox test as unknown; it stopped without reporting cases.
-- Finish and commit the current main merge, then verify the GitHub target and push.
+- Commit the current main merge, then verify the GitHub target and push.
 - Refresh the plan and release-note preview, then reconcile every required
   check on the resulting exact head.
 - Recheck base/head SHAs, all review threads, and Dependabot alert 120; merge

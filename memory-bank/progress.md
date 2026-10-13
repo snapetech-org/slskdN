@@ -1,3 +1,9 @@
+# Update 2026-10-13 23:22 UTC — Integrate latest main into PR #357
+
+Main advanced from `0b91a1f28` to `6bad06960` before the previous merge could be pushed. The new main delta aligns packaging metadata assertions with artifact paths and refreshes the active-council counts. A checkpoint is saved at `backup/pr357-before-6bad-main-merge-20261013`. The merge conflicts in the gotcha ledger and active-council backlog are resolved. New main gotchas that collided with candidate IDs `0z1852` and `0z1853` are renumbered `0z1908` and `0z1909`. The candidate backlog count is refreshed to 12,993 against latest main's 12,917 (76 candidate lines). `scripts/check-council-active-backlog.sh` and `packaging/scripts/validate-packaging-metadata.sh` both pass.
+
+Windows Smoke run `38480392646` passed on old head `0b4b2e750`: unit 5,863, integration 293, regression/API 74. The checks for `4b3abdf12` were still queued when main moved, so the latest merge needs a new exact-head gate.
+
 # Update 2026-10-13 23:19 UTC — Integrate latest main into PR #357
 
 After pushing merge commit `4b3abdf12` with main at `338faef6c`, main advanced to `0b91a1f28`. The PR became conflicting again. A checkpoint was saved at `backup/pr357-before-0b91-main-merge-20261013`. The new main commit added two artifact-contract gotchas to the ledger; their IDs collided with PR records `0z1852` and `0z1853`, so the new main records are renumbered `0z1908` and `0z1909`. The prior records are retained. The merge is staged, but not committed or pushed yet.
