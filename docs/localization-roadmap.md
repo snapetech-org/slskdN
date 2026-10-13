@@ -4,7 +4,7 @@
 
 The React UI in `src/web/` has a browser-local interface-language selector and catalogs for twelve locales. Catalog values use English source strings as keys, fall back to English when a value is unavailable, and preserve user-provided content such as filenames, paths, usernames, room names, and protocol values. This change maps the covered app-owned error flows to stable source keys or localized fallback messages instead of displaying raw server prose; other API error paths still need review.
 
-The current catalog has 4,863 source keys, of which 4,505 are used by the UI; the active UI coverage is 54,060 locale cells across twelve target languages. The catalog also retains 358 entries that are not referenced by current UI source. Arabic UI strings carry local language and direction metadata; this does not establish app-wide right-to-left layout support.
+The current catalog has 4,865 source keys, of which 4,507 are used by the UI; the active UI coverage is 54,084 locale cells across twelve target languages. The catalog also retains 358 entries that are not referenced by current UI source. Arabic UI strings carry local language and direction metadata; this does not establish app-wide right-to-left layout support.
 
 ## First-pass locale order
 
@@ -31,7 +31,7 @@ Translate interface labels, help, empty states, validation, notifications, and e
 
 ## Implemented in this PR
 
-System > Experience Preferences offers a browser-local interface-language selector for twelve locales. The shipped Web UI localizes 4,505 source strings across browsing, search, chat, rooms, collections, player, wishlist, transfers, dashboard, and system screens, including app-owned statuses, messages, and accessibility labels. The catalog audit covered 54,060 active locale cells with no missing translations or placeholder mismatches. Media and user-provided content, paths, and raw API/protocol values remain unchanged. Arabic strings carry local language and direction metadata.
+System > Experience Preferences offers a browser-local interface-language selector for twelve locales. The shipped Web UI localizes 4,507 source strings across browsing, search, chat, rooms, collections, player, wishlist, transfers, dashboard, and system screens, including app-owned statuses, messages, and accessibility labels. The catalog audit covered 54,084 active locale cells with no missing translations or placeholder mismatches. Media and user-provided content, paths, and raw API/protocol values remain unchanged. Arabic strings carry local language and direction metadata.
 
 Selected regional formatting now applies to dates, numbers, byte sizes, and operational metrics. System metrics and network views use localized compact counts and decimal byte sizes; zero-byte values retain locale digits. Per-label language and direction helpers are shared with UI strings. Saving or resetting preferences refreshes open screens immediately; the current tab remains usable if browser storage is blocked, and another tab's changes are observed. Reset also clears the separately stored interface-language choice.
 

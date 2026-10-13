@@ -3823,11 +3823,11 @@ const PlayerBar = () => {
           <Icon name="music" />
           <div>
             <div className="player-title">
-              {current?.title || 'Player'}
+              {current?.title || <LocalizedText source="Player" />}
             </div>
             <div className="player-subtitle" role={broadcastStatus?.error ? 'alert' : undefined}
               aria-label={broadcastStatus?.error || undefined} title={broadcastStatus?.error || undefined}>
-              {broadcastStatus?.error ? <LocalizedText source={"Broadcast updates failed"} /> : broadcastStatus?.active ? 'Broadcasting' : current?.artist || 'Ready'}
+              {broadcastStatus?.error ? <LocalizedText source="Broadcast updates failed" /> : broadcastStatus?.active ? <LocalizedText source="Broadcasting" /> : current?.artist || <LocalizedText source="Ready" />}
             </div>
           </div>
         </div>

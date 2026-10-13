@@ -12235,6 +12235,20 @@
     "vi": "Cập nhật phát sóng không thành công",
     "id": "Pembaruan siaran gagal"
   },
+  "Broadcasting": {
+    "es": "Transmitiendo",
+    "zh-Hans": "正在广播",
+    "hi": "प्रसारण जारी है",
+    "de": "Wird übertragen",
+    "ja": "配信中",
+    "fr": "En cours de diffusion",
+    "pt-BR": "Transmitindo",
+    "ar": "جارٍ البث",
+    "ko": "방송 중",
+    "zh-Hant": "正在廣播",
+    "vi": "Đang phát",
+    "id": "Sedang menyiarkan"
+  },
   "Broken Links:": {
     "es": "Enlaces rotos:",
     "zh-Hans": "损坏的链接：",
@@ -66274,6 +66288,20 @@
     "zh-Hant": "已載入 {fileName} 供審核。",
     "vi": "Đã tải {fileName} để xem xét.",
     "id": "Memuat {fileName} untuk ditinjau."
+  },
+  "Loaded {loadedCount} of {totalCount} transfers. Filters and queue actions apply to loaded rows; completed-transfer removal applies server-wide.": {
+    "es": "Se cargaron {loadedCount} de {totalCount} transferencias. Los filtros y las acciones de cola se aplican a las filas cargadas; la eliminación de transferencias completadas se aplica a todo el servidor.",
+    "zh-Hans": "已加载 {loadedCount}/{totalCount} 个传输任务。筛选和队列操作仅作用于已加载项；删除已完成的传输会作用于整个服务器。",
+    "hi": "{totalCount} में से {loadedCount} ट्रांसफ़र लोड हुए। फ़िल्टर और कतार की कार्रवाइयाँ लोड की गई प्रविष्टियों पर लागू होती हैं; पूर्ण ट्रांसफ़र हटाना पूरे सर्वर पर लागू होता है।",
+    "de": "{loadedCount} von {totalCount} Übertragungen geladen. Filter und Warteschlangenaktionen gelten für die geladenen Einträge; das Entfernen abgeschlossener Übertragungen gilt serverweit.",
+    "ja": "{totalCount} 件中 {loadedCount} 件の転送を読み込みました。フィルターとキュー操作は読み込み済みの項目に適用されます。完了した転送の削除はサーバー全体に適用されます。",
+    "fr": "{loadedCount} transfert(s) chargé(s) sur {totalCount}. Les filtres et les actions de file d’attente s’appliquent aux lignes chargées ; la suppression des transferts terminés s’applique à l’ensemble du serveur.",
+    "pt-BR": "{loadedCount} de {totalCount} transferências carregadas. Os filtros e as ações da fila se aplicam às linhas carregadas; a remoção de transferências concluídas vale para todo o servidor.",
+    "ar": "تم تحميل {loadedCount} من أصل {totalCount} عملية نقل. تنطبق عوامل التصفية وإجراءات قائمة الانتظار على العناصر المحمّلة؛ أما إزالة عمليات النقل المكتملة فتسري على الخادم بأكمله.",
+    "ko": "전체 {totalCount}개 중 전송 {loadedCount}개를 불러왔습니다. 필터와 대기열 작업은 불러온 항목에 적용되며, 완료된 전송 삭제는 서버 전체에 적용됩니다.",
+    "zh-Hant": "已載入 {loadedCount}/{totalCount} 個傳輸項目。篩選和佇列操作僅套用於已載入項目；刪除已完成的傳輸會套用至整個伺服器。",
+    "vi": "Đã tải {loadedCount}/{totalCount} lượt truyền. Bộ lọc và thao tác hàng đợi áp dụng cho các mục đã tải; xóa lượt truyền hoàn tất áp dụng trên toàn máy chủ.",
+    "id": "{loadedCount} dari {totalCount} transfer telah dimuat. Filter dan tindakan antrean berlaku pada baris yang dimuat; penghapusan transfer yang selesai berlaku di seluruh server."
   },
   "Loading lyrics": {
     "es": "Cargando letras",

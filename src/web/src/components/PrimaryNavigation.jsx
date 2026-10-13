@@ -1,4 +1,4 @@
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
+import { useInterfaceLanguage } from "../lib/interfaceLocale";
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon, Menu, Popup } from 'semantic-ui-react';
@@ -8,33 +8,33 @@ const NAVIGATION_GROUPS = [
   {
     icon: 'compass outline',
     key: 'discover',
-    get label() { return interfaceText("Discover"); },
+    label: "Discover",
     items: [
-      { icon: 'crosshairs', get label() { return interfaceText("Discovery Graph"); }, testId: 'nav-discovery-graph', to: '/discovery-graph' },
-      { icon: 'list alternate outline', get label() { return interfaceText("Playlist Intake"); }, testId: 'nav-playlist-intake', to: '/playlist-intake' },
-      { icon: 'star', get label() { return interfaceText("Wishlist"); }, testId: 'nav-wishlist', to: '/wishlist' },
-      { icon: 'music', get label() { return interfaceText("Lidarr"); }, testId: 'nav-lidarr', to: '/lidarr' },
+      { icon: 'crosshairs', label: "Discovery Graph", testId: 'nav-discovery-graph', to: '/discovery-graph' },
+      { icon: 'list alternate outline', label: "Playlist Intake", testId: 'nav-playlist-intake', to: '/playlist-intake' },
+      { icon: 'star', label: "Wishlist", testId: 'nav-wishlist', to: '/wishlist' },
+      { icon: 'music', label: "Lidarr", testId: 'nav-lidarr', to: '/lidarr' },
     ],
   },
   {
     icon: 'user circle outline',
     key: 'network',
-    get label() { return interfaceText("Network"); },
+    label: "Network",
     items: [
-      { icon: 'users', get label() { return interfaceText("Users"); }, testId: 'nav-users', to: '/users' },
-      { icon: 'address book', get label() { return interfaceText("Contacts"); }, testId: 'nav-contacts', to: '/contacts' },
-      { icon: 'key', get label() { return interfaceText("Solid"); }, testId: 'nav-solid', to: '/solid' },
+      { icon: 'users', label: "Users", testId: 'nav-users', to: '/users' },
+      { icon: 'address book', label: "Contacts", testId: 'nav-contacts', to: '/contacts' },
+      { icon: 'key', label: "Solid", testId: 'nav-solid', to: '/solid' },
     ],
   },
   {
     icon: 'share alternate',
     key: 'sharing',
-    get label() { return interfaceText("Sharing"); },
+    label: "Sharing",
     items: [
-      { icon: 'list', get label() { return interfaceText("Collections"); }, testId: 'nav-collections', to: '/collections' },
-      { icon: 'users', get label() { return interfaceText("Share Groups"); }, testId: 'nav-groups', to: '/sharegroups' },
-      { icon: 'share', get label() { return interfaceText("Shared with Me"); }, testId: 'nav-shared-with-me', to: '/shared' },
-      { icon: 'folder open', get label() { return interfaceText("Browse"); }, testId: 'nav-browse', to: '/browse' },
+      { icon: 'list', label: "Collections", testId: 'nav-collections', to: '/collections' },
+      { icon: 'users', label: "Share Groups", testId: 'nav-groups', to: '/sharegroups' },
+      { icon: 'share', label: "Shared with Me", testId: 'nav-shared-with-me', to: '/shared' },
+      { icon: 'folder open', label: "Browse", testId: 'nav-browse', to: '/browse' },
     ],
   },
 ];

@@ -883,7 +883,10 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       {!isEmpty && (
         <div className="transfer-filter-bar">
           <div className="transfer-loaded-note" role="status">
-            {`Loaded ${tabTransfers.length} of ${counts[activeTab]} transfer rows. Status filters and queue actions use loaded rows; removing completed rows applies server-wide.`}
+            <LocalizedText
+              source="Loaded {loadedCount} of {totalCount} transfers. Filters and queue actions apply to loaded rows; completed-transfer removal applies server-wide."
+              values={{ loadedCount: tabTransfers.length, totalCount: counts[activeTab] }}
+            />
           </div>
           <div className="transfer-filter-chips">
             {STATUS_FILTERS.map((filter) => (
