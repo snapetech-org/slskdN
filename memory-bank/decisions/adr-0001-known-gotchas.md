@@ -4,7 +4,7 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
-### 0z1852. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
+### 0z1853. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
 
 **What went wrong:** Version-tag pushes and scheduled scans could fall through
 to the persistent local runner because the job selector treated events outside
@@ -20,6 +20,21 @@ scheduled validation on the local pool, route pull requests and version tags
 to GitHub-hosted runners, and pin tag-only publisher jobs to hosted runners.
 Keep exact per-job runner assertions in
 `scripts/check-workflow-trigger-policy.sh`.
+
+### 0z1852. Keep Packaging Checks Aligned With Narrow Artifact Globs (2026-10-13)
+
+**What went wrong:** CI artifact uploads were narrowed to validation receipts
+and logs, but the packaging metadata check still expected the previous broad
+validation-directory path. The hosted release gate failed its packaging check.
+
+**Why:** The workflow path contract was repeated in separate validators. The
+workflow syntax check was updated, while the packaging metadata assertion kept
+the stale literal.
+
+**Prevention:** Keep the permitted artifact paths explicit and identical across
+all workflow validators. When changing upload paths, search for every assertion
+of the old path and run the packaging metadata check together with the workflow
+contract tests.
 
 ### 0z1848. Scan Every Project For Transitive Package Advisories (2026-10-13)
 
