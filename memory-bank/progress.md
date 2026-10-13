@@ -18994,3 +18994,8 @@ release verification remain.
 Updated `AGENTS.md` to route local checks through `docs/dev/testing-policy.md` and the trusted bubblewrap validation launcher. Clarified that pull requests to `main` run validation while release artifacts and package publishing use their configured tag or release workflows. The old reference to a nonexistent `dev-release.yml` and stale `master` trigger wording are removed. The stable `.350` follow-up remains unchanged.
 
 `git diff --check`, Markdown fence balance, and all referenced repository paths pass. No application tests were run; this change is documentation-only, and the available Node and .NET versions do not match the pinned runtime required for a local engine run. Commit `2f44b0c16` is pushed on `codex/agent-guidance-20261012`; PR #359 is open with `release-note: none`. Hosted checks were still pending with no failures at the latest poll. No merge or release tag was created.
+
+
+## Update 2026-10-13 00:35 UTC — Synchronize agent-guidance PR with current main
+
+The first hosted release-note check flagged two existing fragments because its base snapshot had advanced beyond the guidance branch's common ancestor. The PR diff itself contained only `AGENTS.md` and the three required memory records. Merged current `main` at `2896c6e4d` without conflicts and pushed merge commit `301303bca`. The PR still changes only those four intended files. `git diff --check` and the local release-note opt-out check against current `main` pass. Hosted checks for the synchronized head were queued at the latest poll. No application tests were run; this remains documentation-only. No PR merge or release tag was created, and the separate stable `.350` follow-up remains unchanged.

@@ -19268,12 +19268,12 @@ Fetch and verify current `origin/main`, push the validated tree to
 `snapetech/slskdN/main`, create the authorized stable `.350` tag, verify hosted
 release publishers and artifacts, then remove task-scoped scratch data.
 
-## Current state — Agent guidance and validation policy refresh — 2026-10-13 00:11 UTC
+## Current state — Agent guidance and validation policy refresh — 2026-10-13 00:35 UTC
 
-`AGENTS.md` now points to the required testing policy and trusted local launcher, distinguishes PR validation from tag/release publishing, and no longer describes the removed `dev-release.yml` or refers to pushes to `master`. Documentation path and whitespace checks pass. No application tests were run for this docs-only change.
+The initial PR release-note workflow flagged two fragments present only on the old base side of the comparison. The GitHub PR diff contained only `AGENTS.md` and the three task memory records. Merged current `main` at `2896c6e4d` into the guidance branch with no conflicts and pushed merge commit `301303bca`. The resulting PR still changes only those four files, and the local release-note validator passes against the synchronized base with `release-note: none`.
 
-Commit `2f44b0c16` is on `codex/agent-guidance-20261012`; PR #359 is open and marked `release-note: none`. Hosted checks were pending with no failures at the latest poll. The existing stable `.350` release follow-up recorded above is still outstanding and was not changed by this task.
+PR #359 remains open. Hosted checks for head `301303bca` were queued at the latest poll. The separate stable `.350` follow-up remains outstanding and unchanged. No merge or release tag was created.
 
 ### Next Steps
 
-Review PR #359 hosted checks when they finish. Do not merge or create a release tag as part of this task. Continue the separate `.350` work only under its existing explicit authorization.
+Review hosted checks for PR #359 when they finish. Do not merge or create a release tag as part of this task. Continue the separate `.350` work only under its existing explicit authorization.
