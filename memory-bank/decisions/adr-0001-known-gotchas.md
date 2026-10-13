@@ -41949,3 +41949,16 @@ manual dispatch inputs alone did not constrain push-triggered tags.
 restricted version alphabet before exposing parsed values to downstream jobs.
 Keep workflow policy coverage for that validation and avoid interpolating
 unvalidated event data into `run:` scripts.
+
+### 0z1819. Disable SQLite Pooling For Windows Fixtures That Delete Databases (2026-10-13)
+
+**What went wrong:** The Windows unit suite failed deleting a disposable share
+database because a pooled SQLite connection still held the file open after the
+fixture's cleanup path ran.
+
+**Why:** A repository can hold pooled file connections for its lifetime, and
+clearing an idle pool does not release a connection that remains checked out.
+
+**Prevention:** Create disposable fixture repositories with `Pooling=False` so
+disposing the repository closes its file handles before the fixture deletes
+the database. Keep cleanup ordering explicit and retain Windows verification.
