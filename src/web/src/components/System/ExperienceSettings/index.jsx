@@ -1,4 +1,5 @@
 import { REGIONAL_FORMAT_OPTIONS } from '../../../lib/regionalFormat';
+import { INTERFACE_LANGUAGE_OPTIONS, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import React, { useEffect, useState } from 'react';
 import {
   Button,
@@ -78,6 +79,7 @@ const getPreferenceActionError = (error, fallback) => {
 const ExperienceSettings = () => {
   const [form, setForm] = useState(defaults);
   const [feedback, setFeedback] = useState(null);
+  const { language, setLanguage, t } = useInterfaceLanguage();
 
   useEffect(() => {
     setForm(readStoredPreferences());
@@ -173,17 +175,34 @@ const ExperienceSettings = () => {
       >
         <Card fluid>
           <Card.Content>
-            <Card.Header>
-              <Icon name="globe" />
-              Regional Format
-            </Card.Header>
-            <Card.Meta>Choose how dates, times, and numbers are shown in this browser. Interface text remains English.</Card.Meta>
+            <Card.Header><Icon name="language" /> {t('Interface language')}</Card.Header>
+            <Card.Meta>{t('Choose the language used for the interface.')} {t('Translations currently cover navigation and language settings; most other screens are still in English.')}</Card.Meta>
           </Card.Content>
           <Card.Content>
             <Form>
               <Form.Select
-                aria-label="Regional format preference"
-                label="Date, time, and number format"
+                aria-label={t('Interface language')}
+                label={t('Interface language')}
+                onChange={(_, { value }) => setLanguage(value)}
+                options={INTERFACE_LANGUAGE_OPTIONS}
+                value={language}
+              />
+            </Form>
+          </Card.Content>
+        </Card>
+        <Card fluid>
+          <Card.Content>
+            <Card.Header>
+              <Icon name="globe" />
+              {t('Regional format')}
+            </Card.Header>
+            <Card.Meta>{t('Choose how dates, times, and numbers are displayed. This setting is separate from interface language.')}</Card.Meta>
+          </Card.Content>
+          <Card.Content>
+            <Form>
+              <Form.Select
+                aria-label={t('Regional format')}
+                label={t('Date, time, and number format')}
                 onChange={(_, { value }) => update('regionalFormat', value)}
                 options={REGIONAL_FORMAT_OPTIONS}
                 value={form.regionalFormat}

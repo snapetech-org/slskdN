@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon, Menu, Popup } from 'semantic-ui-react';
+import { useInterfaceLanguage } from '../lib/interfaceLocale';
 
 const NAVIGATION_GROUPS = [
   {
@@ -37,22 +38,26 @@ const NAVIGATION_GROUPS = [
   },
 ];
 
-const NavigationIcon = ({ alert, alertTestId, name }) => (
-  <span className="navigation-alert-icon">
-    <Icon name={name} />
-    {alert && (
-      <span
-        aria-label="New activity"
-        className="navigation-alert-dot"
-        data-testid={alertTestId}
-        role="status"
-      />
-    )}
-  </span>
-);
+const NavigationIcon = ({ alert, alertTestId, name }) => {
+  const { t } = useInterfaceLanguage();
+  return (
+    <span className="navigation-alert-icon">
+      <Icon name={name} />
+      {alert && (
+        <span
+          aria-label={t('New activity')}
+          className="navigation-alert-dot"
+          data-testid={alertTestId}
+          role="status"
+        />
+      )}
+    </span>
+  );
+};
 
 const NavigationDropdown = ({ group }) => {
   const [open, setOpen] = React.useState(false);
+  const { t } = useInterfaceLanguage();
 
   return (
     <Popup
@@ -79,7 +84,7 @@ const NavigationDropdown = ({ group }) => {
           tabIndex={0}
         >
           <Icon name={group.icon} />
-          {group.label}
+          {t(group.label)}
           <Icon name="dropdown" />
         </Menu.Item>
       )}
@@ -89,7 +94,7 @@ const NavigationDropdown = ({ group }) => {
           <NavLink key={item.to} onClick={() => setOpen(false)} to={item.to}>
             <Menu.Item data-testid={item.testId}>
               <Icon name={item.icon} />
-              {item.label}
+              {t(item.label)}
             </Menu.Item>
           </NavLink>
         ))}
@@ -98,37 +103,39 @@ const NavigationDropdown = ({ group }) => {
   );
 };
 
-const PrimaryNavigation = ({ isAgent, navActivity, version }) => (
+const PrimaryNavigation = ({ isAgent, navActivity, version }) => {
+  const { t } = useInterfaceLanguage();
+  return (
   <div className="navigation-primary">
     {version.isCanary && (
       <Menu.Item>
         <Icon color="yellow" name="flask" />
-        Canary
+        {t('Canary')}
       </Menu.Item>
     )}
     {isAgent ? (
       <Menu.Item>
         <Icon name="detective" />
-        Agent Mode
+        {t('Agent Mode')}
       </Menu.Item>
     ) : (
       <>
         <NavLink to="/searches">
           <Menu.Item data-testid="nav-search">
             <Icon name="search" />
-            Search
+            {t('Search')}
           </Menu.Item>
         </NavLink>
         <NavLink to="/downloads">
           <Menu.Item data-testid="nav-downloads">
             <Icon name="download" />
-            Downloads
+            {t('Downloads')}
           </Menu.Item>
         </NavLink>
         <NavLink to="/uploads">
           <Menu.Item data-testid="nav-uploads">
             <Icon name="upload" />
-            Uploads
+            {t('Uploads')}
           </Menu.Item>
         </NavLink>
         <NavLink to="/messages">
@@ -138,7 +145,7 @@ const PrimaryNavigation = ({ isAgent, navActivity, version }) => (
               alertTestId={navActivity.chat ? 'nav-chat-alert' : 'nav-rooms-alert'}
               name="comments"
             />
-            Messages
+            {t('Messages')}
           </Menu.Item>
         </NavLink>
         {NAVIGATION_GROUPS.map((group) => (
@@ -147,6 +154,7 @@ const PrimaryNavigation = ({ isAgent, navActivity, version }) => (
       </>
     )}
   </div>
-);
+  );
+};
 
 export default PrimaryNavigation;
