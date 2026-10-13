@@ -1,4 +1,40 @@
-## Current state — PR #357 latest-main integration and final checks — 2026-10-13 22:20 UTC
+## Current state — PR #357 Windows gate remediation — 2026-10-13 22:46 UTC
+
+The pushed PR head is `a2bb9fdff2d27c09fc67ba83c6a1c177c70e1089`, based on
+`b46ceb3a7997ae83ff14b756772e24f7ee172e4f`. GitHub reports it mergeable, and
+all 21 review threads are resolved. Windows Smoke run `38477538036` passed
+restore and build, then failed 26 of 5,863 unit tests: 25 failures in
+`LocalFileAndVerifiedCopyTests` could not delete pooled SQLite files, and one
+fingerprint test expected PCM overflow although its fake FFmpeg emits only
+stderr. The integration suite passed 293/293 and regression/API tests passed
+74/74. The Nix Package Smoke and Local Identity checks also passed on this head.
+
+The local fixes set `pooling: false` for the disposable catalogue store and
+restore the fingerprint assertion to the fake process's actual no-PCM result.
+The new ADR entries are `0z1906` and `0z1907`. The focused trusted-sandbox
+.NET test process stopped after more than seven minutes without output; it
+produced no result, and no test process remains. Treat the local focused run as
+unknown. The candidate fixes are not pushed yet. The prior `./bin/lint` and
+release-note preview passed on `a2bb9fd`; all exact-head workflows must be
+reconciled again after the fix push.
+
+The remaining `a2bb9fd` workflows are stale once the fixes are pushed. At this
+update, CI, CodeQL, and E2E are in progress; CI Enhancements, Release-note
+contract, and dependency submission are queued. Dependabot alert 120 remains
+open for `Microsoft.AspNetCore.SignalR.Common`; its first patched version is
+10.0.13, now present in the updated dependency graph.
+
+### Next Steps
+
+- Record the focused sandbox test as unknown; it stopped without reporting cases.
+- Commit and push the SQLite fixture and FFmpeg assertion fixes.
+- Refresh the plan and release-note preview for the new commit, then reconcile
+  full Mode 2, Windows Smoke, CI Enhancements, E2E, CodeQL, and other applicable
+  exact-head checks.
+- Recheck the PR base and review threads; merge only after every required
+  exact-head result passes.
+
+## Previous state — PR #357 latest-main integration before push — 2026-10-13 22:20 UTC
 
 PR #357 points to `f4b53641d`, but `origin/main` advanced from `37d197d7c` to
 `b46ceb3a7`. GitHub reports the PR dirty, and the local candidate is merging

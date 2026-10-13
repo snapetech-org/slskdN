@@ -43125,3 +43125,34 @@ same relative path had the same base directory.
 **Prevention:** Define one absolute workspace artifact directory and use it for
 BenchmarkDotNet output, report verification, and upload. Keep a workflow-policy
 regression that asserts all three steps use that shared path.
+
+### 0z1906. Disable Pooling For Disposable Catalogue Test Databases (2026-10-13)
+
+**What went wrong:** The Windows Smoke suite failed deleting the temporary
+catalogue database in 25 `LocalFileAndVerifiedCopyTests` cases after the store
+had been disposed.
+
+**Why:** The fixture used the catalogue store's default pooled connections.
+Disposal closed each logical connection, but SQLite pooling could retain native
+file handles that prevent Windows from deleting the database. Its cleanup also
+cleared a separate, unopened connection rather than relying on a nonpooled test
+store.
+
+**Prevention:** Construct disposable catalogue test stores with
+`pooling: false`, await operations and dispose the store before deleting the
+database. Keep the full Windows test suite as the verification for file-handle
+cleanup.
+
+### 0z1907. Match Fake FFmpeg Assertions To Its Actual Output (2026-10-13)
+
+**What went wrong:** Windows Smoke failed the fingerprint extraction test
+because it expected an oversized PCM error, while the fake FFmpeg executable
+only wrote diagnostic text to stderr and emitted no PCM bytes.
+
+**Why:** An OS-specific assertion assumed a stdout overflow that the fake
+process never generated. The service correctly reported that it received no
+PCM output.
+
+**Prevention:** Assert the error that follows from the fake process's actual
+stdout and stderr. Keep overflow coverage in the deterministic bounded-stream
+unit test, and keep the stderr-draining process test platform-independent.

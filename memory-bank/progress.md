@@ -1,3 +1,9 @@
+# Update 2026-10-13 22:46 UTC — Fix Windows Smoke failures on PR #357
+
+Windows Smoke run `38477538036` on exact head `a2bb9fdff2d27c09fc67ba83c6a1c177c70e1089` passed restore and build. The test command failed 26 of 5,863 unit tests: 25 `LocalFileAndVerifiedCopyTests` cases could not delete pooled SQLite files, and `ExtractFingerprintAsync_StartsProcessBeforeReadingStandardError` expected an overflow that the fake FFmpeg did not emit. Integration tests passed 293/293 and regression/API tests passed 74/74. Nix Package Smoke and Local Identity checks passed on this head.
+
+The catalogue fixture now requests `pooling: false` for its temporary database and no longer clears an unopened mismatched pool. The fingerprint test now asserts the fake executable's no-PCM output; a separate bounded-stream test retains deterministic overflow coverage. ADR gotchas `0z1906` and `0z1907` record the two causes. The focused sandbox test process stopped after more than seven minutes without output, with no reported cases; no process remains, so its result is unknown. These fixes are not yet pushed. All `a2bb9fd` results will be stale after the next push, and the new head needs a complete exact-head gate.
+
 # Update 2026-10-13 22:20 UTC — Integrate latest main into PR #357
 
 After the `f4b53641d` push, main advanced from `37d197d7c` to
