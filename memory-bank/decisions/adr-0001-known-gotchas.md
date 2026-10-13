@@ -21,6 +21,22 @@ finishing the edit. For regional metrics, route zero values and compact counts
 through `Intl.NumberFormat` too; ASCII zero and hard-coded `K`/`M` suffixes
 bypass the selected locale.
 
+### 0z1780. Invalidate Memoized Rows When Regional Formatting Changes (2026-10-13)
+
+**What went wrong:** A mounted virtualized transfer table kept rendering its
+memoized rows after the browser-local regional-format preference changed. The
+table read formatting directly from browser preferences, while neither the
+table nor its row data subscribed to preference changes.
+
+**Why:** Re-rendering the surrounding application does not invalidate a
+`React.memo` row when the virtualizer receives the same row props. A formatter
+that reads current browser state is not reactive by itself.
+
+**Prevention:** Subscribe the owning component to regional-preference changes
+and include the active regional setting in virtualized row props so memoized
+rows are invalidated. Review other mounted, memoized views when locale-sensitive
+formatters are changed.
+
 ### 0z1778. Keep Untrusted Workflow Refs Off Persistent Runners (2026-10-12)
 
 **What went wrong:** Public pull requests and manual runs from refs outside
