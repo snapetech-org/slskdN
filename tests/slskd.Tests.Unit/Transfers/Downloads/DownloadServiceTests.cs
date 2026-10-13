@@ -526,6 +526,7 @@ public class DownloadServiceTests
         }
         finally
         {
+            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
