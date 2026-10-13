@@ -4,6 +4,23 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1791. Dispatch Publisher Recovery From Trusted Main (2026-10-13)
+
+**What went wrong:** Selective stable-publisher recovery accepted a tag input
+without requiring the workflow dispatch itself to target `main`. GitHub lets a
+manual workflow run against a selected branch, so the workflow source and the
+validated release tag are separate trust decisions.
+
+**Why:** The recovery path treated an existing stable release as proof that the
+workflow definition was trusted, even though a caller can select a different
+branch ref.
+
+**Prevention:** Reject manual publisher recovery unless `GITHUB_REF` is
+`refs/heads/main`. Keep the selected release tag constrained to an existing
+stable release and test both conditions. This workflow check is not protection
+from modified workflow code on a writable branch; protect workflow changes and
+the default branch in repository settings.
+
 ### 0z1787. Pin Actions Before Enabling SHA-Only Repository Policy (2026-10-13)
 
 **What went wrong:** Release publisher jobs attached to an immutable tag failed
