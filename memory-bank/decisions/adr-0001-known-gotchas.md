@@ -4,6 +4,23 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1779. Keep Interface-Language Metadata Helpers In The Hook Contract (2026-10-13)
+
+**What went wrong:** `TransferManager` destructured `languageFor` and
+`directionFor` from `useInterfaceLanguage()`, but the hook returned neither
+function. Opening Downloads or Uploads therefore called `undefined` while
+rendering and crashed the screen.
+
+**Why:** The hook and its consumers were changed independently, and this plain
+JavaScript module has no type contract to catch a missing returned property.
+
+**Prevention:** When a UI consumer needs translated-text language or direction,
+keep both helpers in the hook's return contract and make fallback strings report
+English, left-to-right metadata. Review every consumer of a changed hook before
+finishing the edit. For regional metrics, route zero values and compact counts
+through `Intl.NumberFormat` too; ASCII zero and hard-coded `K`/`M` suffixes
+bypass the selected locale.
+
 ### 0z1778. Keep Untrusted Workflow Refs Off Persistent Runners (2026-10-12)
 
 **What went wrong:** Public pull requests and manual runs from refs outside
