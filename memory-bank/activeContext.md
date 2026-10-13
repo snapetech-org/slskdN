@@ -19267,3 +19267,13 @@ verification pass.
 Fetch and verify current `origin/main`, push the validated tree to
 `snapetech/slskdN/main`, create the authorized stable `.350` tag, verify hosted
 release publishers and artifacts, then remove task-scoped scratch data.
+
+## Current state — Agent guidance and validation policy refresh — 2026-10-13 00:11 UTC
+
+`AGENTS.md` now points to the required testing policy and trusted local launcher, distinguishes PR validation from tag/release publishing, and no longer describes the removed `dev-release.yml` or refers to pushes to `master`. Documentation path and whitespace checks pass. No application tests were run for this docs-only change.
+
+Commit `2f44b0c16` is on `codex/agent-guidance-20261012`; PR #359 is open and marked `release-note: none`. Hosted checks were pending with no failures at the latest poll. The existing stable `.350` release follow-up recorded above is still outstanding and was not changed by this task.
+
+### Next Steps
+
+Review PR #359 hosted checks when they finish. Do not merge or create a release tag as part of this task. Continue the separate `.350` work only under its existing explicit authorization.
