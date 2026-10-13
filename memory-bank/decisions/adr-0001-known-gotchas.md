@@ -43156,3 +43156,11 @@ PCM output.
 **Prevention:** Assert the error that follows from the fake process's actual
 stdout and stderr. Keep overflow coverage in the deterministic bounded-stream
 unit test, and keep the stderr-draining process test platform-independent.
+
+### 0z1815. Upload Only Validation Receipts And Logs (2026-10-13)
+
+**What went wrong:** CI uploaded whole validation run directories, including private task environments and package caches, producing a 1.58 GB artifact.
+
+**Why:** The artifact glob included both evidence files and sibling environment/cache directories created under the same temporary root.
+
+**Prevention:** Upload only top-level `receipt.json` and task `*.log` files. Add a workflow contract check that rejects recursive globs over validation run directories.

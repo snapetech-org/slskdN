@@ -1,35 +1,33 @@
-## Current state — PR #357 exact-head validation — 2026-10-13 22:49 UTC
+## Current state — PR #357 latest-main integration — 2026-10-13 23:05 UTC
 
-The pushed PR head is `a2bb9fdff2d27c09fc67ba83c6a1c177c70e1089`, based on
-`b46ceb3a7997ae83ff14b756772e24f7ee172e4f`. GitHub reports it mergeable, and
-all 21 review threads are resolved. Windows Smoke run `38477538036` passed
-restore and build, then failed 26 of 5,863 unit tests: 25 failures in
-`LocalFileAndVerifiedCopyTests` could not delete pooled SQLite files, and one
-fingerprint test expected PCM overflow although its fake FFmpeg emits only
-stderr. The integration suite passed 293/293 and regression/API tests passed
-74/74. The Nix Package Smoke and Local Identity checks also passed on this head.
+PR #357's pushed head was `0b4b2e75093622213b5b079a731ed03bc5d21fd5`. After
+the push, `origin/main` advanced to `338faef6c71d16380a5784ff21a1ae3e7524c9f4`.
+GitHub reports the PR dirty/conflicting against its current `main`. A local
+checkpoint exists at `backup/pr357-before-338fa-main-merge-20261013`. The merge
+is in progress; its only conflict was the append-only gotcha ledger, now
+resolved with both main's `0z1815` and the PR's `0z1906`–`0z1907`. The main
+changes to artifact scopes, release notes, and workflow-policy coverage are
+staged with the merge.
 
-The catalogue fixture now uses `pooling: false`, and its cleanup no longer
-clears an unopened mismatched pool. The fingerprint assertion matches the fake
-process's no-PCM output. ADR entries `0z1906` and `0z1907` record both causes.
-The focused trusted-sandbox .NET test process stopped after more than seven
-minutes without output; it produced no result, and no test process remains.
-Treat the local focused run as unknown.
+On the prior head `0b4b2e750`, Windows Smoke run `38480392646` passed restore,
+build, and tests: unit 5,863/5,863, integration 293/293, and regression/API
+74/74. `./bin/lint`, the release-note preview, and validation-engine plan also
+passed/reported successfully. The plan found 921 test files, 18 tasks, and 7/8
+prerequisites; local `pnpm` is unavailable. The focused sandbox test produced
+no result and remains unknown.
 
-The fixes were committed as `d87578e8a` and pushed to PR #357. The release-note
-preview passed and the validation-engine plan reported 921 test files, 18
-planned tasks, and 7/8 command prerequisites available; local `pnpm` is absent.
-`./bin/lint` is still consuming CPU in Roslyn and has not reported an outcome.
-The new GitHub runs for `d87578e8a` were queued or pending when this update was
-written. This status update itself changes the candidate, so those results
-must not count for the next head.
+The other exact-head checks on `0b4b2e750` were queued. They will not validate
+the integrated candidate. The workflow-YAML syntax check passed against the
+staged latest-main merge.
 
 ### Next Steps
 
 - Record the focused sandbox test as unknown; it stopped without reporting cases.
-- Push this status update, then track the fresh exact-head CI, Windows Smoke,
-  CI Enhancements, E2E, CodeQL, identity, release-note, and dependency results.
-- Finish local lint if it completes; keep the focused test run recorded as unknown.
+- Commit the resolved latest-main merge, then verify the GitHub target and push.
+- Refresh the plan and release-note preview, then reconcile every required
+  check on the resulting exact head.
+- Recheck base/head SHAs, all review threads, and Dependabot alert 120; merge
+  only after the new exact-head gate passes.
 - Recheck the PR base and review threads; merge only after every required
   exact-head result passes.
 

@@ -1,3 +1,9 @@
+# Update 2026-10-13 23:05 UTC — Integrate latest main into PR #357
+
+After commit `0b4b2e750`, `main` advanced to `338faef6c`. GitHub marked PR #357 dirty. A checkpoint branch was created at the pushed candidate, and the latest-main merge is staged. The sole conflict in `adr-0001-known-gotchas.md` was resolved by retaining both main's `0z1815` and the PR's `0z1906`–`0z1907`; the workflow artifact scope, release note, and workflow-YAML regression changes from main were also retained. `bash scripts/check-workflow-yaml-syntax.sh` passed.
+
+Windows Smoke run `38480392646` passed on the previous exact head `0b4b2e750`: unit 5,863/5,863, integration 293/293, and regression/API 74/74. The remaining checks for that SHA were still queued and cannot validate the integrated candidate. The focused local test run remains unknown. A fresh complete exact-head gate is required after the merge push.
+
 # Update 2026-10-13 22:49 UTC — Push Windows Smoke fixes for PR #357
 
 Windows Smoke run `38477538036` on exact head `a2bb9fdff2d27c09fc67ba83c6a1c177c70e1089` passed restore and build. The test command failed 26 of 5,863 unit tests: 25 `LocalFileAndVerifiedCopyTests` cases could not delete pooled SQLite files, and `ExtractFingerprintAsync_StartsProcessBeforeReadingStandardError` expected an overflow that the fake FFmpeg did not emit. Integration tests passed 293/293 and regression/API tests passed 74/74. Nix Package Smoke and Local Identity checks passed on this head.
