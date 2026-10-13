@@ -1,4 +1,4 @@
-## Current state — Validation pool branch refreshed from org main — 2026-10-13 22:56 UTC
+## Current state — Validation pool branch refreshed from org main — 2026-10-13 23:00 UTC
 
 SLSKDN now belongs to `snapetech-org`; the sibling repositories are being
 transferred there as work proceeds. This ownership change does not alter
@@ -6,10 +6,12 @@ Actions runner registrations or routing. Public pull requests remain on
 GitHub-hosted runners.
 
 SLSKDN PR #366 adds bounded execution for independent validation tasks. Its
-branch now includes organization `main` at `b46ceb3a7997ae83ff14b756772e24f7ee172e4f`
-through merge commit `19ea7baea`; exact-head checks must be rerun before the
+branch includes organization `main` at `338faef6c71d16380a5784ff21a1ae3e7524c9f4`
+through merge commit `b207e32`; exact-head checks must be rerun before the
 branch is pushed. The local target guard verifies the organization repository
-explicitly and no longer depends on a global `gh` default.
+explicitly and no longer depends on a global `gh` default. Local Mode 1 stops
+at preflight because `pnpm` is unavailable inside the trusted sandbox; hosted
+Mode 2 must supply the complete gate result.
 
 ### Next Steps
 
