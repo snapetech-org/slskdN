@@ -94,6 +94,9 @@ public class ShareScannerHarnessTests
 
             var repositoryConnectionString = $"Data Source={databasePath}";
             repository = new SqliteShareRepository(repositoryConnectionString);
+            // ClearPool uses the connection-string identity. The repository normalizes its
+            // string, so cleanup must use that exact value rather than the shorter input.
+            repositoryConnectionString = repository.ConnectionString;
             repository.Create(discardExisting: true);
 
             var snapshots = new ConcurrentQueue<slskd.SharedFileCacheState>();
