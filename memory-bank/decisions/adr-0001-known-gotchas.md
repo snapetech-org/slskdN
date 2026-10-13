@@ -4,6 +4,23 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1852. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
+
+**What went wrong:** Version-tag pushes and scheduled scans could fall through
+to the persistent local runner because the job selector treated events outside
+the pull-request and non-main-dispatch denylist as trusted. Tag-only publish,
+Docker, and release jobs also selected the local runner independently.
+
+**Why:** The workflow expressions defaulted to local capacity instead of
+allowlisting the trusted event and ref combinations. Publisher jobs had
+separate selectors from the validation job.
+
+**Prevention:** Fail closed: allow only documented main-branch manual and
+scheduled validation on the local pool, route pull requests and version tags
+to GitHub-hosted runners, and pin tag-only publisher jobs to hosted runners.
+Keep exact per-job runner assertions in
+`scripts/check-workflow-trigger-policy.sh`.
+
 ### 0z1848. Scan Every Project For Transitive Package Advisories (2026-10-13)
 
 **What went wrong:** Scanning only the application project reported no
