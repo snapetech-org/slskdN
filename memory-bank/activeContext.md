@@ -1,4 +1,31 @@
-## Current state — PR #357 merged candidate awaiting exact-head validation — 2026-10-13 22:05 UTC
+## Current state — PR #357 latest-main integration and final checks — 2026-10-13 22:20 UTC
+
+PR #357 points to `f4b53641d`, but `origin/main` advanced from `37d197d7c` to
+`b46ceb3a7`. GitHub reports the PR dirty, and the local candidate is merging
+that current main commit before the next push. The merge includes main's
+.NET 10.0.13 servicing update and retains the PR's runner, Windows SQLite, and
+benchmark-gate fixes. Conflict resolution preserves both changelog entries,
+appends both progress histories, and gives the main-side gotchas new unique IDs
+`0z1901` through `0z1905` because their original IDs already exist on the
+candidate branch.
+
+Five manually dispatched workflows are queued on `f4b53641d`: CI with
+`runner=github-hosted`, CI Enhancements, Windows Smoke, E2E, and Local Identity
+Leak Check. They are stale once the merged candidate is pushed. No check on
+`f4b53641d` will count as a final result for the updated candidate. The normal
+PR synchronize workflows did not enqueue after the last push; inspect the new
+head's Actions state and use the authorized workflow dispatches if needed.
+
+### Next Steps
+
+- Finish and commit the merge with `origin/main` at `b46ceb3a7`.
+- Refresh the validation plan and release-note preview on that exact commit.
+- Push the candidate, then reconcile full Mode 2, Windows Smoke, and all other
+  applicable exact-head checks. Do not merge while any required result is
+  pending, stale, skipped without policy coverage, or failed.
+- Recheck review threads and merge only after the exact-head gate is green.
+
+## Previous state — PR #357 pre-push candidate — 2026-10-13 22:05 UTC
 
 The local candidate is `c1f123faa` on `codex/pr357-windows-gate-repair-20261013`.
 It merges current `origin/main` at `37d197d7c` and carries the two later
@@ -30,6 +57,30 @@ confirmed defects. All six active-backlog counts match the current scan.
 - Reconcile the full required hosted gate and Windows Smoke against the exact
   pushed hash; do not count canceled or stale jobs.
 - Recheck review threads and merge only after the exact-head gate is green.
+
+## Current state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
+
+The SignalR denial-of-service advisory is fixed by updating the complete
+first-party .NET dependency graph and bundled Flatpak runtime to .NET 10.0.13.
+Workflow SDK pins use 10.0.402; the supported global SDK floor remains
+10.0.100. The new scanner inspects every `.csproj` under `src`, `tests`, and
+`tools` and was proven to fail on a vulnerable transitive dependency.
+
+The full local Release build and 6,227 tests pass; performance and VPN-agent
+builds, formatting lint, packaging metadata, release-note validation, and local
+identity checks also pass. The candidate is locally six commits ahead of
+`origin/main`. Next: push to `snapetech/slskdN`, run exact-head hosted CI and
+Playwright E2E, then use the guarded `.351` release-tag flow and verify assets.
+No public DHT/VPN test credentials are configured; any live network test must
+remain out of scope unless suitable credentials/profile are available.
+
+### Next Steps
+
+- Push the validated `.351` candidate after verifying the GitHub target.
+- Require successful hosted CI and browser E2E for the exact pushed SHA.
+- Create the authorized stable tag and verify all published assets.
+- Update the Flatpak application asset reference once the `.351` asset is
+  published and its checksum is available.
 
 ## Current state — Stable `.350` publication follow-through — 2026-10-13 08:51 UTC
 

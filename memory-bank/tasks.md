@@ -7445,6 +7445,12 @@ resource completion.
 
 - [x] Fast-forward the 154-commit candidate to the verified fork's `main`.
 - [x] Prepare dated `.351` changelog notes after the candidate reached `main`.
+- [x] Update SignalR and .NET servicing dependencies to 10.0.13, SDK pins to
+  10.0.402, Flatpak runtime metadata and the all-project vulnerability scan.
+- [x] Pass the full Release build, unit/integration/regression suites
+  (6,227 tests), performance and VPN-agent builds, repository lint, package
+  validators, and release-note/identity checks.
 - [ ] Pass the hosted CI release gate for the final exact `main` commit.
+- [ ] Pass hosted browser E2E on the same final `main` commit.
 - [ ] Create the authorized stable tag only after the gate passes; verify
   published assets and downstream publication status.

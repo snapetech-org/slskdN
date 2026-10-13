@@ -747,6 +747,35 @@ internal sealed class StubDownloadService : IDownloadService
         return list;
     }
 
+    public List<Transfer> ListPage(
+        Expression<Func<Transfer, bool>> expression,
+        bool includeRemoved,
+        DateTime? afterRequestedAt,
+        Guid? afterId,
+        int limit)
+    {
+        var compiled = expression.Compile();
+        var query = _storage.Values
+            .Where(transfer => transfer.Direction == Soulseek.TransferDirection.Download)
+            .Where(transfer => !transfer.Removed || includeRemoved)
+            .Where(compiled);
+
+        if (afterRequestedAt.HasValue && afterId.HasValue)
+        {
+            var requestedAt = afterRequestedAt.Value;
+            var id = afterId.Value;
+            query = query.Where(transfer =>
+                transfer.RequestedAt < requestedAt ||
+                (transfer.RequestedAt == requestedAt && transfer.Id.CompareTo(id) < 0));
+        }
+
+        return query
+            .OrderByDescending(transfer => transfer.RequestedAt)
+            .ThenByDescending(transfer => transfer.Id)
+            .Take(limit)
+            .ToList();
+    }
+
     public async IAsyncEnumerable<Transfer> StreamAutoRetryCandidatesAsync(
         DateTime endedBefore,
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -1132,7 +1161,13 @@ internal class StubSearchService : ISearchService
         return Task.FromResult(search);
     }
 
-    public Task<List<global::slskd.Search.Search>> ListAsync(System.Linq.Expressions.Expression<Func<global::slskd.Search.Search, bool>> expression = null, int limit = 0, int offset = 0, string? source = null)
+    public Task<List<global::slskd.Search.Search>> ListAsync(
+        System.Linq.Expressions.Expression<Func<global::slskd.Search.Search, bool>> expression = null,
+        int limit = 0,
+        int offset = 0,
+        string? source = null,
+        DateTime? afterStartedAt = null,
+        Guid? afterId = null)
     {
         var searches = expression != null
             ? _searches.Values.Where(expression.Compile()).ToList()
@@ -1143,6 +1178,22 @@ internal class StubSearchService : ISearchService
             var sourceFilter = source!.Trim().ToLowerInvariant();
             searches = searches.Where(s => s.Source.ToLowerInvariant() == sourceFilter).ToList();
         }
+
+        if (afterStartedAt.HasValue && afterId.HasValue)
+        {
+            var startedAt = afterStartedAt.Value;
+            var id = afterId.Value;
+            searches = searches
+                .Where(search =>
+                    search.StartedAt < startedAt ||
+                    (search.StartedAt == startedAt && search.Id.CompareTo(id) < 0))
+                .ToList();
+        }
+
+        searches = searches
+            .OrderByDescending(search => search.StartedAt)
+            .ThenByDescending(search => search.Id)
+            .ToList();
 
         if (offset > 0)
             searches = searches.Skip(offset).ToList();

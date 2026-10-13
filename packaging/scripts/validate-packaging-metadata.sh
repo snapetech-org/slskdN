@@ -470,17 +470,21 @@ test -x packaging/docker/slskdn-container-start || fail 'packaging/docker/slskdn
 test -x packaging/scripts/run-docker-apparmor-smoke.sh || fail 'packaging/scripts/run-docker-apparmor-smoke.sh must be executable'
 test -f packaging/docker/apparmor/slskdn-docker || fail 'packaging/docker/apparmor/slskdn-docker is missing'
 
-sdk_version=$(awk -F '"' '/"version"/ { print $4; exit }' global.json)
-fail_if_empty "$sdk_version" 'global.json SDK version'
-git ls-files --error-unmatch global.json >/dev/null 2>&1 || fail 'global.json must be tracked so tag release gates use the same SDK pin as local checks'
-expect_literal .github/workflows/build-on-tag.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/ci.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/ci-enhancements.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/e2e-tests.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/codeql.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/release-linux.yml "dotnet-version: '${sdk_version}'"
-expect_literal .github/workflows/release-copr.yml "dotnet-version: '${sdk_version}'"
-expect_literal .github/workflows/release-ppa.yml "dotnet-version: '${sdk_version}'"
+sdk_minimum_version=$(awk -F '"' '/"version"/ { print $4; exit }' global.json)
+fail_if_empty "$sdk_minimum_version" 'global.json SDK minimum version'
+git ls-files --error-unmatch global.json >/dev/null 2>&1 || fail 'global.json must be tracked so source builds and release checks share the declared .NET SDK floor'
+sdk_major="${sdk_minimum_version%%.*}"
+ci_sdk_version=$(awk -F "'" '/DOTNET_VERSION:/ { print $2; exit }' .github/workflows/ci.yml)
+if [[ ! "$ci_sdk_version" =~ ^${sdk_major}\.0\.[0-9]+$ ]]; then
+  fail "CI SDK pin must be a stable .NET ${sdk_major}.0 SDK version"
+fi
+expect_literal .github/workflows/build-on-tag.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/ci-enhancements.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/e2e-tests.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/codeql.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/release-linux.yml "dotnet-version: '${ci_sdk_version}'"
+expect_literal .github/workflows/release-copr.yml "dotnet-version: '${ci_sdk_version}'"
+expect_literal .github/workflows/release-ppa.yml "dotnet-version: '${ci_sdk_version}'"
 reject_literal .github/workflows/build-on-tag.yml "DOTNET_VERSION: '10'"
 reject_literal .github/workflows/build-on-tag.yml 'dotnet-version: 10.0.x'
 reject_literal .github/workflows/release-linux.yml 'dotnet-version: 10.0.x'

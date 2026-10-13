@@ -1,3 +1,36 @@
+# Update 2026-10-13 22:20 UTC — Integrate latest main into PR #357
+
+After the `f4b53641d` push, main advanced from `37d197d7c` to
+`b46ceb3a7`, which adds .NET 10.0.13 servicing and related test fixes. GitHub
+reported PR #357 as dirty, so the candidate is being updated before final
+validation. The merge keeps both changelog entries and progress histories,
+uses main's performance benchmark logger and 10.0.13 package versions, and
+renumbers five main-side ADR additions to `0z1901`–`0z1905` to avoid IDs already
+used by the candidate.
+
+The five manually dispatched workflows on `f4b53641d` are queued, not passing,
+and will be stale after this update. The new source commit still needs a current
+validation plan, release-note preview, push, full hosted gate, Windows Smoke,
+and exact-head review/check reconciliation.
+
+# Update 2026-10-13 22:13 UTC — Patch SignalR servicing advisory for `.351`
+
+Updated all first-party .NET dependencies and the Flatpak runtime to 10.0.13,
+advanced exact workflow SDK pins to 10.0.402 while retaining the documented
+10.0.100 source-build floor, and replaced the app-only vulnerability scan
+with a machine-readable all-project scan. A regression fixture proves the
+scanner detects a vulnerable transitive SignalR.Common dependency. Full local
+validation passes: Release build with zero warnings, 5,860 unit tests, 293
+integration tests, 74 regression/API tests, performance and VPN-agent builds,
+repository lint, packaging checks, and release-note/identity gates.
+
+Commits `eea117ef7` and `678793abc` contain the servicing update and full-suite
+test-double/fixture corrections; the four immediately preceding documentation
+commits record gotchas found during validation. The `.351` release candidate
+is six commits ahead of `origin/main`; local release notes are prepared. Exact
+head hosted CI, hosted browser E2E, the authorized release tag, and published
+asset verification remain pending.
+
 # Update 2026-10-13 22:05 UTC — Reconcile PR #357 with current main
 
 Candidate `c1f123faa` now merges exact `origin/main` `37d197d7c` while retaining

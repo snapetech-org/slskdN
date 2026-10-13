@@ -10,8 +10,9 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using slskd.Common.Security;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace slskd.Tests.Performance.Security;
 
@@ -24,14 +25,8 @@ namespace slskd.Tests.Performance.Security;
 // [ThreadingDiagnoser] // Requires BenchmarkDotNet.Diagnostics.Windows package
 public class TransportPerformanceBenchmarks
 {
-    private readonly ILogger<DirectTransport> _directTransportLogger = NullLogger<DirectTransport>.Instance;
-    private readonly ILogger<Mesh.Transport.TransportPolicyManager> _transportPolicyLogger =
-        NullLogger<Mesh.Transport.TransportPolicyManager>.Instance;
-    private readonly ILogger<AnonymityTransportSelector> _selectorLogger =
-        NullLogger<AnonymityTransportSelector>.Instance;
-    private readonly ILogger<WebSocketTransport> _webSocketTransportLogger =
-        NullLogger<WebSocketTransport>.Instance;
-    private readonly ILogger<PrivacyLayer> _privacyLayerLogger = NullLogger<PrivacyLayer>.Instance;
+    private readonly ITestOutputHelper _output;
+    private readonly ILogger _logger;
 
     // Benchmark payloads
     private readonly byte[] _smallPayload = Encoding.UTF8.GetBytes("Hello World!");
@@ -44,13 +39,17 @@ public class TransportPerformanceBenchmarks
     // private WebSocketTransport? _webSocketTransport;
     // private HttpTunnelTransport? _httpTunnelTransport;
 
-    public TransportPerformanceBenchmarks() { }
+    public TransportPerformanceBenchmarks(ITestOutputHelper output)
+    {
+        _output = output;
+        _logger = new XunitLogger(_output);
+    }
 
 [GlobalSetup]
     public void Setup()
     {
         // Initialize mock transports
-        _directTransport = new DirectTransport(_directTransportLogger);
+        _directTransport = new DirectTransport((ILogger<DirectTransport>)_logger);
 
         // Note: Transport classes may not be available - using mock/placeholder
         // _webSocketTransport = new WebSocketTransport(...);
@@ -74,7 +73,7 @@ public class TransportPerformanceBenchmarks
         }
         sw.Stop();
 
-        Console.WriteLine($"Direct connection attempt: {sw.Elapsed.TotalMilliseconds}ms");
+        _output.WriteLine($"Direct connection attempt: {sw.Elapsed.TotalMilliseconds}ms");
     }
 
     // Note: WebSocket and HttpTunnel transport benchmarks disabled - classes may not be available
@@ -96,11 +95,11 @@ public class TransportPerformanceBenchmarks
             Anonymity = new AnonymityLayerOptions { Enabled = false }
         };
 
-        var loggerFactory = NullLoggerFactory.Instance;
+        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
         var selector = new AnonymityTransportSelector(
             adversarialOptions,
-            new Mesh.Transport.TransportPolicyManager(_transportPolicyLogger),
-            _selectorLogger,
+            new Mesh.Transport.TransportPolicyManager((ILogger<Mesh.Transport.TransportPolicyManager>)_logger),
+            (ILogger<AnonymityTransportSelector>)_logger,
             loggerFactory,
             null);
 
@@ -119,7 +118,7 @@ public class TransportPerformanceBenchmarks
         sw.Stop();
 
         var throughput = iterations / sw.Elapsed.TotalSeconds;
-        Console.WriteLine($"Transport selection throughput: {throughput:F2} selections/sec");
+        _output.WriteLine($"Transport selection throughput: {throughput:F2} selections/sec");
     }
 
 [Benchmark]
@@ -133,13 +132,13 @@ public class TransportPerformanceBenchmarks
         for (int i = 0; i < 100; i++)
         {
             var options = new WebSocketTransportOptions { ServerUrl = $"ws://test{i}.example.com", Enabled = false };
-            transports.Add(new WebSocketTransport(options, _webSocketTransportLogger));
+            transports.Add(new WebSocketTransport(options, (ILogger<WebSocketTransport>)_logger));
         }
 
         var after = GC.GetTotalMemory(false);
         var memoryUsed = after - before;
 
-        Console.WriteLine($"Memory usage for 100 WebSocket transports: {memoryUsed / 1024.0:F2} KB");
+        _output.WriteLine($"Memory usage for 100 WebSocket transports: {memoryUsed / 1024.0:F2} KB");
 
         // Cleanup
         foreach (var transport in transports)
@@ -161,11 +160,11 @@ public class TransportPerformanceBenchmarks
             Anonymity = new AnonymityLayerOptions { Enabled = false }
         };
 
-        var loggerFactory = NullLoggerFactory.Instance;
+        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
         var selector = new AnonymityTransportSelector(
             adversarialOptions,
-            new Mesh.Transport.TransportPolicyManager(_transportPolicyLogger),
-            _selectorLogger,
+            new Mesh.Transport.TransportPolicyManager((ILogger<Mesh.Transport.TransportPolicyManager>)_logger),
+            (ILogger<AnonymityTransportSelector>)_logger,
             loggerFactory,
             null);
 
@@ -190,7 +189,7 @@ public class TransportPerformanceBenchmarks
         await Task.WhenAll(tasks);
         sw.Stop();
 
-        Console.WriteLine($"Concurrent operations ({concurrencyLevel}): {sw.Elapsed.TotalMilliseconds}ms total");
+        _output.WriteLine($"Concurrent operations ({concurrencyLevel}): {sw.Elapsed.TotalMilliseconds}ms total");
     }
 
 [Benchmark]
@@ -211,10 +210,10 @@ public class TransportPerformanceBenchmarks
             CoverTraffic = coverTrafficOptions
         };
         
-        var loggerFactory = NullLoggerFactory.Instance;
+        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
         var privacyLayer = new PrivacyLayer(
             privacyOptions,
-            _privacyLayerLogger,
+            (ILogger<PrivacyLayer>)_logger,
             loggerFactory);
 
         var iterations = 1000;
@@ -228,7 +227,7 @@ public class TransportPerformanceBenchmarks
         sw.Stop();
 
         var throughput = iterations / sw.Elapsed.TotalSeconds;
-        Console.WriteLine($"Privacy layer processing: {throughput:F2} payloads/sec");
+        _output.WriteLine($"Privacy layer processing: {throughput:F2} payloads/sec");
     }
 
 [Benchmark]
@@ -241,11 +240,11 @@ public class TransportPerformanceBenchmarks
             Anonymity = new AnonymityLayerOptions { Enabled = false }
         };
 
-        var loggerFactory = NullLoggerFactory.Instance;
+        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
         var selector = new AnonymityTransportSelector(
             adversarialOptions,
-            new Mesh.Transport.TransportPolicyManager(_transportPolicyLogger),
-            _selectorLogger,
+            new Mesh.Transport.TransportPolicyManager((ILogger<Mesh.Transport.TransportPolicyManager>)_logger),
+            (ILogger<AnonymityTransportSelector>)_logger,
             loggerFactory,
             null);
 
@@ -266,7 +265,7 @@ public class TransportPerformanceBenchmarks
 
         sw.Stop();
 
-        Console.WriteLine($"Error recovery: {errorsEncountered} errors in {sw.Elapsed.TotalMilliseconds}ms");
+        _output.WriteLine($"Error recovery: {errorsEncountered} errors in {sw.Elapsed.TotalMilliseconds}ms");
     }
 
     /// <summary>
@@ -333,6 +332,38 @@ public class TransportPerformanceBenchmarks
         }
     }
 
+    /// <summary>
+    /// Xunit logger implementation for benchmarks.
+    /// </summary>
+    private class XunitLogger : ILogger
+    {
+        private readonly ITestOutputHelper _output;
+
+        public XunitLogger(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+
+        public IDisposable BeginScope<TState>(TState state)
+            where TState : notnull => NullScope.Instance;
+
+        public bool IsEnabled(LogLevel logLevel) => true;
+
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+        {
+            _output.WriteLine($"[{logLevel}] {formatter(state, exception)}");
+            if (exception != null)
+            {
+                _output.WriteLine($"Exception: {exception}");
+            }
+        }
+
+        private class NullScope : IDisposable
+        {
+            public static NullScope Instance { get; } = new();
+            public void Dispose() { }
+        }
+    }
 }
 
 // Additional benchmark classes for specific transport comparisons

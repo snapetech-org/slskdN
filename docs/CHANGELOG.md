@@ -22,6 +22,12 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+### Security
+
+- .NET dependency graphs and bundled runtimes now use the 10.0.13 servicing
+  release for the SignalR denial-of-service fix. Hosted .NET build workflows
+  use SDK 10.0.402, and vulnerability checks inspect every first-party project.
+
 ### Fixed
 
 - Browse-cache refresh safely replaces an open cache file on Windows.
@@ -85,6 +91,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ### Security
 
+- .NET dependency graphs and bundled runtimes now use the 10.0.13 servicing
+  release for the SignalR denial-of-service fix. Hosted .NET build workflows
+  use SDK 10.0.402, and vulnerability checks inspect every first-party project.
 - Local validation snapshots filter extensionless credentials and non-source
   files beneath credential-named folders while preserving token-related source
   code. The trusted validation launcher pins sandbox mounts before masking host

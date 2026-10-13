@@ -4,6 +4,59 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1901. Scan Every Project For Transitive Package Advisories (2026-10-13)
+
+**What went wrong:** Scanning only the application project reported no
+vulnerable packages, while the unit-test and performance-test project graphs
+resolved an affected transitive SignalR package.
+
+**Why:** A package audit is scoped to the project graph passed to the command.
+Test and tooling projects can resolve dependency paths that a product-only
+scan does not examine.
+
+**Prevention:** Enumerate the first-party projects under `src`, `tests`, and
+`tools` when checking NuGet advisories. After a dependency update, scan each
+restored project graph and confirm the affected package is no longer resolved.
+
+### 0z1902. Update Every Test Double When Paged Service Contracts Change (2026-10-13)
+
+**What went wrong:** Search and download service interfaces gained continuation
+parameters, but test doubles in the regression and integration projects kept
+their old method signatures and prevented the full solution from compiling.
+
+**Why:** The implementation and focused tests were updated without auditing
+every class that implements the service interfaces across the solution.
+
+**Prevention:** After changing a service contract, search all implementations
+and test doubles in `src/` and `tests/`, then build and test the full solution
+instead of relying only on focused test projects.
+
+### 0z1903. Keep Snapshot Fixtures Away From Millisecond Watermark Edges (2026-10-13)
+
+**What went wrong:** A transfer snapshot test relied on the default
+`DateTime.UtcNow` timestamps. The API quantizes its snapshot watermark to Unix
+milliseconds, so rows created immediately before the request could still be
+newer than the rounded-down watermark and disappear from the initial page.
+
+**Why:** The fixture and the API cursor used different timestamp precision,
+and the test data was created inside the precision interval being truncated.
+
+**Prevention:** Assign transfer fixture timestamps explicitly, comfortably
+before the request watermark. For cursor-boundary tests, set timestamps to
+specific values on both sides of the serialized millisecond boundary.
+
+### 0z1904. Match ILogger Scope Nullability Constraints (2026-10-13)
+
+**What went wrong:** Updating the .NET logging abstractions package exposed a
+nullability warning on a benchmark `ILogger.BeginScope<TState>` implementation.
+
+**Why:** Its generic constraint no longer matched the interface contract after
+the package annotations were updated.
+
+**Prevention:** Keep custom logger implementations aligned with the current
+`ILogger.BeginScope<TState>` signature, including its `notnull` constraint,
+and compile the benchmark project after logging package updates.
+
 ### 0z1847. Include New Environment Options In Every Maintained Installer Template (2026-10-13)
 
 **What went wrong:** Several options documented as environment variables were
@@ -42603,6 +42656,15 @@ visibility keys inherit the current defaults for newly introduced columns.
 **Prevention:** When a test asserts an exact transfer-column set, specify an
 explicit visibility value for every column key, including `false` for hidden
 columns. This keeps the fixture stable when product defaults evolve.
+
+### 0z1905. Start Release-Note Bodies With A Capitalized Sentence (2026-10-13)
+
+**What went wrong:** A release-note fragment body began with a lowercase word and failed the release-note validator.
+
+**Why:** The fragment was reviewed for metadata and content but the capitalization rule was only exercised later by the full release-note validation gate.
+
+**Prevention:** Start each release-note body with a capitalized sentence, then run the validator before committing the fragment.
+
 ### 0z1870. Clear The Exact Normalized SQLite Pool (2026-10-13)
 
 **What went wrong:** The Windows share-scan fixture disposed its repositories

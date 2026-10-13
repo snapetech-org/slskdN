@@ -24,7 +24,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  DOTNET_VERSION: '10.0.100'
+  DOTNET_VERSION: '10.0.402'
   DOTNET_INSTALL_DIR: ${{ github.workspace }}/.dotnet
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
@@ -130,18 +130,7 @@ jobs:
       - name: NuGet Vulnerability Scan
         run: |
           set -euo pipefail
-          # Use -p:Version=0.0.0 to prevent the VERSION env var from being read as an MSBuild property,
-          # which would cause NuGet to reject build-main-* prefixed strings as invalid semver.
-          dotnet restore src/slskd/slskd.csproj -p:Version=0.0.0
-          # List vulnerable packages (--vulnerable flag requires .NET 8+ SDK)
-          dotnet list src/slskd/slskd.csproj package --vulnerable --include-transitive 2>&1 | tee "$TMPDIR/nuget-vuln.txt"
-          # Fail if any HIGH or CRITICAL severity found
-          if grep -qiE 'High|Critical' "$TMPDIR/nuget-vuln.txt"; then
-            echo ""
-            echo "::error::NuGet vulnerability scan found HIGH or CRITICAL severity packages."
-            cat "$TMPDIR/nuget-vuln.txt"
-            exit 1
-          fi
+          python3 scripts/check-nuget-vulnerabilities.py
 
       - name: AUR sha256sum Consistency Check
         run: |

@@ -39,7 +39,7 @@ on:
         type: boolean
 
 env:
-  DOTNET_VERSION: '10.0.100'
+  DOTNET_VERSION: '10.0.402'
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 permissions: {}

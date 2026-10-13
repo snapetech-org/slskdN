@@ -130,7 +130,9 @@ public class WishlistServiceTests
             Expression<Func<SlskdSearch, bool>>? expression = null,
             int limit = 0,
             int offset = 0,
-            string? source = null)
+            string? source = null,
+            DateTime? afterStartedAt = null,
+            Guid? afterId = null)
         {
             return Task.FromResult(new List<SlskdSearch>());
         }
