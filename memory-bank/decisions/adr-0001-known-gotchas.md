@@ -41962,3 +41962,16 @@ clearing an idle pool does not release a connection that remains checked out.
 **Prevention:** Create disposable fixture repositories with `Pooling=False` so
 disposing the repository closes its file handles before the fixture deletes
 the database. Keep cleanup ordering explicit and retain Windows verification.
+
+### 0z1820. Fail Explicitly On Malformed Benchmark Reports (2026-10-13)
+
+**What went wrong:** The benchmark-result verifier referenced an undefined
+failure list when the report root was not a JSON object. The gate still exited
+nonzero, but emitted a Python `NameError` instead of its validation error.
+
+**Why:** The malformed-report branch was copied from an aggregation path that
+did not exist in this single-report verifier.
+
+**Prevention:** Use the verifier's explicit failure function for every invalid
+report shape, and keep a malformed-root regression alongside the empty-report
+and valid-measurement checks.
