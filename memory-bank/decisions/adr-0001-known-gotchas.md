@@ -4,6 +4,22 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1792. Exclude Dotted And Explicit Credential Material Names (2026-10-13)
+
+**What went wrong:** The trusted test snapshot excluded common extensionless
+credentials and config files, but dotted basenames such as \`.token\` and explicit
+key/token names such as \`api-key.json\` or \`private-key.ts\` could still be
+copied into the candidate workspace.
+
+**Why:** Filtering covered established credential directories and extensions
+but did not independently recognize dotted credential basenames or key/token
+material whose filename used a source-like extension.
+
+**Prevention:** Match dotted credential basenames and explicit private/API,
+access-token, refresh-token, and client-secret filenames before applying the
+source-extension retention rule. Test both secret canaries and ordinary source
+modules under credential-named directories.
+
 ### 0z1791. Dispatch Publisher Recovery From Trusted Main (2026-10-13)
 
 **What went wrong:** Selective stable-publisher recovery accepted a tag input
