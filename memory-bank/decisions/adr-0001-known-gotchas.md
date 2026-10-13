@@ -41746,7 +41746,7 @@ mapping contract.
 environment mapping, including the Unraid template, and run packaging metadata
 validation before preparing release notes or tagging.
 
-### 0z1779. Keep .NET SDK Bootstrap Temporary Files On Runner Storage (2026-10-12)
+### 0z1821. Keep .NET SDK Bootstrap Temporary Files On Runner Storage (2026-10-12)
 
 **What went wrong:** `actions/setup-dotnet` could not install the pinned SDK or
 runtime on the persistent Linux runner. The runner's default `/tmp` was nearly
