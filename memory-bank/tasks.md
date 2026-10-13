@@ -34,14 +34,16 @@
 - [x] Preserve the existing tag, pull-request, and manual CI triggers.
 - [x] Keep the standalone load harness on hosted Linux after the local SIGBUS.
 - [x] Bound validation task logs and pin sandbox mounts through inherited
-  descriptors; exclude extensionless credential names while retaining
-  token-named source files.
-- [x] Pass focused workflow policy, runtime matrix, YAML, and diff checks.
+  descriptors; exclude dotted and extensionless credentials, explicit
+  private/API/access/refresh/client-secret material, and credential files with
+  source-like extensions while retaining ordinary source modules.
+- [x] Pass workflow policy, runtime matrix, YAML, diff, and 21 focused engine
+  contract tests.
 - [ ] Verify exact-head hosted PR and main manual validation; classify the
   previous Web unit-test and SIGBUS failures from run logs.
 
-Status: runner-temp and sandbox hardening are implemented. The trusted launcher
-and engine focused suite pass 20/20; exact-head CI is pending. Ordinary
+Status: runner-temp and sandbox hardening are implemented. The focused
+validation-engine suite passes 21/21; exact-head hosted CI is pending. Ordinary
 branch-push builds are intentionally not added.
 
 ### Public pull-request runner isolation — 2026-10-12

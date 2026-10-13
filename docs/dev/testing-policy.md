@@ -63,10 +63,12 @@ When evaluating an unreviewed branch, copy `trusted-test-launcher.mjs` and
 `trusted-test-sandbox-policy.mjs` from the same reviewed revision to a location
 outside the checkout, keeping them together. The launcher snapshots only paths
 in the Git index, hides the original checkout and common host configuration and
-data roots, and runs candidate code offline. Credential files are excluded
-even when extensionless or stored in credential-named folders, while token-like
-source files remain in the snapshot. Stage new candidate files first. The
-launcher opens each workspace, run-data, dependency, cache, and marker source
+data roots, and runs candidate code offline. Dotted and extensionless credential
+names, private/API keys, access/refresh-token names, client-secret names, and
+credential material with source-like extensions are excluded. Source modules
+under credential folders remain available unless their own names identify
+credential material. Stage new candidate files first. The launcher opens each
+workspace, run-data, dependency, cache, and marker source
 before masking host paths, then binds those pinned sources through inherited
 file descriptors.
 

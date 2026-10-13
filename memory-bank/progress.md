@@ -1,3 +1,15 @@
+# Update 2026-10-13 — Exclude dotted and explicit credential material
+
+The trusted snapshot matcher now rejects dotted credential basenames and
+private/API key, access-token, refresh-token, and client-secret names even when
+they use source-like extensions. Ordinary source modules remain available
+inside credential-named folders, including TokenStore.ts. Sandbox canaries
+cover each sensitive family and the retained source module.
+
+The focused validation-engine contract suite passes 21/21 with no skips.
+Exact-head hosted PR checks are pending on the updated branch. No full native
+release gate or main-branch manual validation was run for this matcher update.
+
 # Update 2026-10-13 06:03 UTC — Pin sandbox inputs and bound validation logs
 
 The trusted launcher now binds workspace, run, dependency, cache, and marker

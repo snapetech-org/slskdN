@@ -1,4 +1,23 @@
-## Current state — Runner trust and scan gates — 2026-10-13
+## Current state — Credential snapshot hardening — 2026-10-13
+
+PR #357 now also excludes dotted credential basenames and explicit private/API
+key, access-token, refresh-token, and client-secret names, including source-like
+extensions. Source modules such as TokenStore.ts remain in credential-named
+folders unless their own filenames identify credential material. The launcher
+contract includes sandbox canaries for each case.
+
+The focused validation-engine contract suite passes 21/21 with no skips on the
+current local candidate. Hosted PR checks have not finished on the updated
+head. The full repository gate and main-branch manual validation remain
+separate.
+
+### Next Steps
+
+- Push the reconciled matcher, docs, release note, and memory updates to PR #357.
+- Verify the exact pushed head's hosted test, scan, and release-note checks.
+- Keep runner routing and the existing tag-only build policy unchanged.
+
+## Prior current state — Runner trust and scan gates — 2026-10-13
 
 The temporary local pool is enabled for `snapetech`-authored pull requests and
 trusted `main` validation. Pull requests from other contributors stay on
