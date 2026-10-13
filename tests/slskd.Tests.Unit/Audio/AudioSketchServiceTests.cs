@@ -29,7 +29,10 @@ namespace slskd.Tests.Unit.Audio
 
                 var resolved = AudioSketchService.ResolveExecutablePath("ffmpeg");
 
-                Assert.Equal(executablePath, resolved);
+                Assert.Equal(
+                    executablePath,
+                    resolved,
+                    OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
             }
             finally
             {

@@ -2,6 +2,7 @@ import api from './api';
 import {
   deleteDirectory,
   deleteFile,
+  deleteItems,
   encodePathSegment,
   list,
 } from './files';
@@ -40,5 +41,30 @@ describe('files', () => {
     expect(api.delete).toHaveBeenCalledWith(
       `/files/downloads/files/${encodePathSegment('Björk/Live/ Jóga.flac')}`,
     );
+  });
+
+  it('requests recursive folder sizes only when the caller asks for them', async () => {
+    await list({
+      root: 'downloads',
+      subdirectory: 'Björk/Live',
+      includeDirectorySizes: true,
+    });
+
+    expect(api.get).toHaveBeenCalledWith(
+      `/files/downloads/directories/${encodePathSegment('Björk/Live')}?includeDirectorySizes=true`,
+    );
+  });
+
+  it('sends one typed multi-item delete request and returns per-item results', async () => {
+    const items = [
+      { path: 'Album', type: 'directory' },
+      { path: 'single.flac', type: 'file' },
+    ];
+
+    await deleteItems({ root: 'downloads', items });
+
+    expect(api.delete).toHaveBeenCalledWith('/files/downloads/items', {
+      data: { items },
+    });
   });
 });

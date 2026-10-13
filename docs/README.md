@@ -21,8 +21,10 @@ completed workstream notes, and incident reports live under
 
 ## 📘 User Guides
 
+- [Dashboard](dashboard.md) - Seven-day totals for successful downloads and uploads
 - [SongID and Discovery](songid-discovery.md) - Native identification and Discovery Graph workflows
 - [System Admin Surfaces](system-surfaces.md) - Guided System UI for policies, integrations, diagnostics, source providers, and local preferences
+- [Transfer Operations](transfer-operations.md) - Completed-download paths, template tokens, collision policy, permissions, request-history retention, and UTC API timestamps
 - [Federation Diagnostics](federation-diagnostics.md) - Read-only ActivityPub and pod-signing diagnostics in System -> Integrations
 - [Pods, Rooms, and Messages](pods-and-rooms.md) - Gold Star strict opt-in, pod rooms, unified messages, and listen-along boundaries
 - [Soulseek Type-1 Obfuscation](soulseek-type1-obfuscation.md) - Default-on compatibility posture, mode semantics, runtime status, and safety caveats

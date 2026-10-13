@@ -79,6 +79,16 @@ namespace slskd.Transfers
         {
             modelBuilder
                 .Entity<Transfer>()
+                .Property(e => e.RequestedAt)
+                .HasConversion(v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
+
+            modelBuilder
+                .Entity<Transfer>()
+                .Property(e => e.EnqueuedAt)
+                .HasConversion(v => v, v => v.HasValue ? DateTime.SpecifyKind(v.Value, DateTimeKind.Utc) : null);
+
+            modelBuilder
+                .Entity<Transfer>()
                 .Property(e => e.StartedAt)
                 .HasConversion(v => v, v => v.HasValue ? DateTime.SpecifyKind(v.Value, DateTimeKind.Utc) : null);
 
@@ -127,6 +137,13 @@ namespace slskd.Transfers
                 .Entity<Transfer>()
                 .HasIndex(t => new { t.Removed, t.Direction })
                 .HasDatabaseName("IDX_Transfers_Removed_Direction");
+
+            modelBuilder
+                .Entity<Transfer>()
+                .HasIndex(t => new { t.Direction, t.RequestedAt, t.Id })
+                .IsDescending(false, true, true)
+                .HasDatabaseName("IDX_Transfers_Direction_RequestedAt_Id")
+                .HasFilter("Removed = 0");
 
             modelBuilder
                 .Entity<Transfer>()

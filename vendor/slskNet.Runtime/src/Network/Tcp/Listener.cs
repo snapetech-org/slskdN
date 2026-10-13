@@ -28,25 +28,24 @@
 namespace Soulseek.Network.Tcp
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Net.Sockets;
     using System.Threading;
     using System.Threading.Tasks;
+    using Soulseek.Diagnostics;
 
     /// <summary>
     ///     Listens for client connections for TCP network services.
     /// </summary>
-    /// <remarks>
-    ///     Excluded from code coverage due to the inability to test the accepted code block; You can't instantiate TcpClient with
-    ///     an ip and port without it connecting immediately, so the test either must create a new connection to *something*, or a
-    ///     bunch of hoops need to be jumped through to handle TcpClients coming from the listener not connected/without an
-    ///     endpoint, both of which will and SHOULD throw exceptions and die.
-    /// </remarks>
-    [ExcludeFromCodeCoverage]
     internal sealed class Listener : IListener
     {
+        private const int InitialAcceptRetryDelayMilliseconds = 100;
+        private const int MaximumAcceptRetryDelayMilliseconds = 5000;
+
         private readonly IPAddress ipAddress;
+        private readonly IDiagnosticFactory diagnosticFactory;
+        private volatile bool listening;
+        private CancellationTokenSource listenCancellation;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Listener"/> class.
@@ -61,7 +60,15 @@ namespace Soulseek.Network.Tcp
         ///     inspecting the first bytes read from the socket, rather than assuming the static <paramref name="obfuscated"/>
         ///     value. Used when plain and obfuscated peer connections share this listener's single bound port.
         /// </param>
-        public Listener(IPAddress ipAddress, int port, ConnectionOptions connectionOptions, ITcpListener tcpListener = null, bool obfuscated = false, bool obfuscationSniffingEnabled = false)
+        /// <param name="diagnosticFactory">The optional diagnostic factory used to report listener recovery.</param>
+        public Listener(
+            IPAddress ipAddress,
+            int port,
+            ConnectionOptions connectionOptions,
+            ITcpListener tcpListener = null,
+            bool obfuscated = false,
+            bool obfuscationSniffingEnabled = false,
+            IDiagnosticFactory diagnosticFactory = null)
         {
             var address = ipAddress.Snapshot();
 
@@ -71,6 +78,7 @@ namespace Soulseek.Network.Tcp
             TcpListener = tcpListener ?? new TcpListenerAdapter(new TcpListener(address, port));
             Obfuscated = obfuscated;
             ObfuscationSniffingEnabled = obfuscationSniffingEnabled;
+            this.diagnosticFactory = diagnosticFactory;
         }
 
         /// <summary>
@@ -91,7 +99,7 @@ namespace Soulseek.Network.Tcp
         /// <summary>
         ///     Gets a value indicating whether the listener is listening for connections.
         /// </summary>
-        public bool Listening { get; private set; } = false;
+        public bool Listening => listening;
 
         /// <summary>
         ///     Gets a value indicating whether accepted init frames are type-1 obfuscated.
@@ -117,8 +125,10 @@ namespace Soulseek.Network.Tcp
         public void Start()
         {
             TcpListener.Start();
-            Listening = true;
-            Task.Run(() => ListenContinuouslyAsync()).Forget();
+            var cancellation = new CancellationTokenSource();
+            listenCancellation = cancellation;
+            listening = true;
+            Task.Run(() => ListenContinuouslyAsync(cancellation.Token)).Forget();
         }
 
         /// <summary>
@@ -126,18 +136,47 @@ namespace Soulseek.Network.Tcp
         /// </summary>
         public void Stop()
         {
-            TcpListener.Stop();
-            Listening = false;
+            listening = false;
+            var cancellation = listenCancellation;
+            listenCancellation = null;
+            cancellation?.Cancel();
+
+            try
+            {
+                TcpListener.Stop();
+            }
+            finally
+            {
+                cancellation?.Dispose();
+            }
         }
 
-        private async Task ListenContinuouslyAsync()
+        private async Task ListenContinuouslyAsync(CancellationToken cancellationToken)
         {
-            while (Listening)
+            var retryDelayMilliseconds = InitialAcceptRetryDelayMilliseconds;
+
+            while (Listening && !cancellationToken.IsCancellationRequested)
             {
                 TcpClient client;
                 try
                 {
                     client = await TcpListener.AcceptTcpClientAsync().ConfigureAwait(false);
+                }
+                catch (SocketException ex) when (Listening && !cancellationToken.IsCancellationRequested)
+                {
+                    diagnosticFactory?.Warning("A TCP listener accept failed; retrying with bounded backoff.", ex);
+
+                    try
+                    {
+                        await Task.Delay(retryDelayMilliseconds, cancellationToken).ConfigureAwait(false);
+                    }
+                    catch (OperationCanceledException) when (!Listening || cancellationToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
+                    retryDelayMilliseconds = Math.Min(retryDelayMilliseconds * 2, MaximumAcceptRetryDelayMilliseconds);
+                    continue;
                 }
                 catch (InvalidOperationException) when (!Listening)
                 {
@@ -156,13 +195,15 @@ namespace Soulseek.Network.Tcp
                     break;
                 }
 
+                retryDelayMilliseconds = InitialAcceptRetryDelayMilliseconds;
+
                 Task.Run(() =>
                 {
                     var endPoint = (IPEndPoint)client.Client.RemoteEndPoint;
                     var eventArgs = new Connection(endPoint, ConnectionOptions, new TcpClientAdapter(client), Obfuscated);
 
                     Accepted?.Invoke(this, eventArgs);
-                }).Forget();
+                }, CancellationToken.None).Forget();
             }
         }
     }

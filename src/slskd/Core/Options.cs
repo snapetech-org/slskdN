@@ -1291,22 +1291,118 @@ namespace slskd
                 public DownloadRetryOptions Retry { get; init; } = new DownloadRetryOptions();
 
                 /// <summary>
-                ///     Gets the completed download folder layout.
+                ///     Gets the destination path and collision policy for completed downloads.
+                /// </summary>
+                [Validate]
+                public DownloadDestinationOptions Destination { get; init; } = new();
+
+                /// <summary>
+                ///     Gets the legacy completed download folder layout. Used only when
+                ///     <see cref="DownloadDestinationOptions.Subdirectory"/> is not set.
                 /// </summary>
                 [Argument(default, "download-completed-layout")]
                 [EnvironmentVariable("DOWNLOAD_COMPLETED_LAYOUT")]
-                [Description("completed download folder layout: remote_folder, uploader_folder, batch_id, or flat")]
-                public string CompletedLayout { get; init; } = "remote_folder";
+                [Description("legacy completed download folder layout: remote_folder, uploader_folder, batch_id, or flat")]
+                public string? CompletedLayout { get; init; }
 
                 /// <summary>
-                ///     Gets the completed download path template. When set, takes precedence over CompletedLayout.
+                ///     Gets the legacy completed download path template. Used only when
+                ///     <see cref="DownloadDestinationOptions.Subdirectory"/> is not set.
                 ///     Supported tokens: {uploader}, {remote_folder}, {remote_parent}, {remote_filename}, {batch_id},
                 ///     {request_name}, {date}, {date:format}. Path separator is /.
                 /// </summary>
                 [Argument(default, "download-completed-path-template")]
                 [EnvironmentVariable("DOWNLOAD_COMPLETED_PATH_TEMPLATE")]
-                [Description("completed download path template, e.g. {uploader}/{remote_folder}")]
+                [Description("legacy completed download path template, e.g. {uploader}/{remote_folder}")]
                 public string CompletedPathTemplate { get; init; } = string.Empty;
+
+                /// <summary>
+                ///     Destination behavior for completed downloads.
+                /// </summary>
+                public sealed class DownloadDestinationOptions : IValidatableObject
+                {
+                    /// <summary>
+                    ///     Gets an optional relative subdirectory template. When omitted and no legacy layout is configured,
+                    ///     the source directory name is used.
+                    /// </summary>
+                    [Argument(default, "download-destination-subdirectory")]
+                    [EnvironmentVariable("DOWNLOAD_DESTINATION_SUBDIRECTORY")]
+                    [Description("relative completed-download subdirectory; supports SOURCE_USERNAME, SOURCE_PATH, SOURCE_DIRECTORY, BATCH_ID, BATCH_EXTERNAL_ID, SEARCH_ID, and SEARCH_TEXT tokens")]
+                    public string? Subdirectory { get; init; }
+
+                    /// <summary>
+                    ///     Gets the behavior when the completed filename already exists: rename or overwrite.
+                    /// </summary>
+                    [Argument(default, "download-destination-exists")]
+                    [EnvironmentVariable("DOWNLOAD_DESTINATION_EXISTS")]
+                    [Description("completed download collision behavior: rename or overwrite")]
+                    public string Exists { get; init; } = "rename";
+
+                    /// <summary>
+                    ///     Gets permissions applied to newly created download files and directories.
+                    /// </summary>
+                    [Validate]
+                    public DownloadDestinationPermissionsOptions Permissions { get; init; } = new();
+
+                    /// <summary>
+                    ///     Validates the destination settings.
+                    /// </summary>
+                    /// <param name="validationContext">The validation context.</param>
+                    /// <returns>Validation errors, if any.</returns>
+                    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+                    {
+                        if (!string.Equals(Exists, "rename", StringComparison.OrdinalIgnoreCase) &&
+                            !string.Equals(Exists, "overwrite", StringComparison.OrdinalIgnoreCase))
+                        {
+                            yield return new ValidationResult("Field Exists must be either 'rename' or 'overwrite'");
+                        }
+
+                        if (Subdirectory is not null)
+                        {
+                            string? validationError = null;
+                            try
+                            {
+                                slskd.Transfers.Downloads.DownloadDestinationTemplate.Validate(Subdirectory);
+                            }
+                            catch (ArgumentException ex)
+                            {
+                                validationError = ex.Message;
+                            }
+
+                            if (validationError is not null)
+                            {
+                                yield return new ValidationResult($"Field Subdirectory is invalid: {validationError}");
+                            }
+                        }
+                    }
+                }
+
+                /// <summary>
+                ///     Permissions for newly created completed-download paths.
+                /// </summary>
+                public sealed class DownloadDestinationPermissionsOptions : IValidatableObject
+                {
+                    /// <summary>
+                    ///     Gets the chmod-style mode applied to newly created completed-download files and directories.
+                    /// </summary>
+                    [Argument(default, "download-destination-permissions-mode")]
+                    [EnvironmentVariable("DOWNLOAD_DESTINATION_PERMISSIONS_MODE")]
+                    [Description("chmod mode for newly created completed-download files and directories (non-Windows only)")]
+                    public string? Mode { get; init; }
+
+                    /// <summary>
+                    ///     Validates the configured mode.
+                    /// </summary>
+                    /// <param name="validationContext">The validation context.</param>
+                    /// <returns>Validation errors, if any.</returns>
+                    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+                    {
+                        if (!string.IsNullOrEmpty(Mode) && !Regex.IsMatch(Mode, "^[0-7]{3,4}$", RegexOptions.CultureInvariant))
+                        {
+                            yield return new ValidationResult("Field Mode is invalid. Specify a three- or four-character chmod mode containing only digits 0-7");
+                        }
+                    }
+                }
 
                 /// <summary>
                 ///     Gets a value indicating whether auto-replace for stuck downloads is enabled.
@@ -1355,27 +1451,47 @@ namespace slskd
                 public class DownloadRetryOptions
                 {
                     /// <summary>
-                    ///     Gets a value indicating how partial files are handled before a retry.
+                    ///     Gets the canonical retry strategy for partial files, when supplied.
                     /// </summary>
-                    [Description("how to handle partial files when retrying a direct Soulseek download: overwrite or resume")]
+                    [Argument(default, "download-retry-partial")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_PARTIAL")]
+                    [Description("how to handle partial files when retrying a direct Soulseek download: resume or overwrite")]
+                    [Enum(typeof(slskd.Transfers.RetryIncompleteStrategy))]
+                    public string? Partial { get; init; }
+
+                    /// <summary>
+                    ///     Gets the legacy retry strategy key for partial files.
+                    /// </summary>
+                    [Argument(default, "download-retry-incomplete")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_INCOMPLETE")]
+                    [Description("legacy alias for download-retry-partial")]
                     [Enum(typeof(slskd.Transfers.RetryIncompleteStrategy))]
                     public string Incomplete { get; init; } = slskd.Transfers.RetryIncompleteStrategy.Resume.ToString().ToLowerInvariant();
 
                     /// <summary>
                     ///     Gets the maximum number of direct Soulseek transfer attempts.
                     /// </summary>
+                    [Argument(default, "download-retry-attempts")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_ATTEMPTS")]
+                    [Description("maximum number of direct Soulseek download attempts")]
                     [Range(1, 20)]
                     public int Attempts { get; init; } = 1;
 
                     /// <summary>
                     ///     Gets the initial retry delay in milliseconds.
                     /// </summary>
+                    [Argument(default, "download-retry-delay")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_DELAY")]
+                    [Description("initial delay between direct Soulseek download attempts in milliseconds")]
                     [Range(0, 3600000)]
                     public int Delay { get; init; } = 5000;
 
                     /// <summary>
                     ///     Gets the maximum retry delay in milliseconds.
                     /// </summary>
+                    [Argument(default, "download-retry-max-delay")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_MAX_DELAY")]
+                    [Description("maximum delay between direct Soulseek download attempts in milliseconds")]
                     [Range(1000, 86400000)]
                     public int MaxDelay { get; init; } = 60000;
                 }
@@ -2423,18 +2539,27 @@ namespace slskd
             /// <summary>
             ///     Gets the time to retain searches, in minutes.
             /// </summary>
+            [Argument(default, "retention-search")]
+            [EnvironmentVariable("RETENTION_SEARCH")]
+            [Description("time to retain completed search records, in minutes")]
             [Range(5, maximum: int.MaxValue)]
             public int? Search { get; init; } = null;
 
             /// <summary>
             ///     Gets the time to retain events, in days. Defaults to 30 days.
             /// </summary>
+            [Argument(default, "retention-events")]
+            [EnvironmentVariable("RETENTION_EVENTS")]
+            [Description("time to retain event records, in days")]
             [Range(1, maximum: int.MaxValue)]
             public int Events { get; init; } = 30;
 
             /// <summary>
             ///     Gets the maximum number of event records to retain. Defaults to 10,000; zero disables the count limit.
             /// </summary>
+            [Argument(default, "retention-events-max-count")]
+            [EnvironmentVariable("RETENTION_EVENTS_MAX_COUNT")]
+            [Description("maximum number of event records to retain (0 = no count limit)")]
             [Range(0, maximum: int.MaxValue)]
             public int EventsMaxCount { get; init; } = 10_000;
 
@@ -2453,6 +2578,9 @@ namespace slskd
             /// <summary>
             ///     Gets the time to retain logs, in days.
             /// </summary>
+            [Argument(default, "retention-logs")]
+            [EnvironmentVariable("RETENTION_LOGS")]
+            [Description("time to retain application logs, in days (minimum 2)")]
             [Range(2, maximum: int.MaxValue)]
             public int Logs { get; init; } = 14;
 
@@ -2464,6 +2592,9 @@ namespace slskd
                 /// <summary>
                 ///     Gets the time to retain soft-removed, completed transfers, in minutes. Defaults to seven days.
                 /// </summary>
+                [Argument(default, "retention-transfers-removed")]
+                [EnvironmentVariable("RETENTION_TRANSFERS_REMOVED")]
+                [Description("time to retain soft-removed transfers, in minutes")]
                 [Range(5, maximum: int.MaxValue)]
                 public int? Removed { get; init; } = 10_080;
 
@@ -2471,34 +2602,76 @@ namespace slskd
                 ///     Gets upload retention options.
                 /// </summary>
                 [Validate]
-                public TransferTypeRetentionOptions Upload { get; init; } = new TransferTypeRetentionOptions();
+                public UploadTransferRetentionOptions Upload { get; init; } = new UploadTransferRetentionOptions();
 
                 /// <summary>
                 ///     Gets download retention options.
                 /// </summary>
                 [Validate]
-                public TransferTypeRetentionOptions Download { get; init; } = new TransferTypeRetentionOptions();
+                public DownloadTransferRetentionOptions Download { get; init; } = new DownloadTransferRetentionOptions();
 
                 /// <summary>
-                ///     Transfer retention options.
+                ///     Upload retention options.
                 /// </summary>
-                public class TransferTypeRetentionOptions
+                public class UploadTransferRetentionOptions
                 {
                     /// <summary>
                     ///     Gets the time to retain successful transfers, in minutes.
                     /// </summary>
+                    [Argument(default, "retention-transfers-upload-succeeded")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_UPLOAD_SUCCEEDED")]
+                    [Description("time to retain succeeded uploads, in minutes")]
                     [Range(5, maximum: int.MaxValue)]
                     public int? Succeeded { get; init; } = null;
 
                     /// <summary>
                     ///     Gets the time to retain errored transfers, in minutes.
                     /// </summary>
+                    [Argument(default, "retention-transfers-upload-errored")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_UPLOAD_ERRORED")]
+                    [Description("time to retain errored uploads, in minutes")]
                     [Range(5, maximum: int.MaxValue)]
                     public int? Errored { get; init; } = null;
 
                     /// <summary>
                     ///     Gets the time to retain cancelled transfers, in minutes.
                     /// </summary>
+                    [Argument(default, "retention-transfers-upload-cancelled")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_UPLOAD_CANCELLED")]
+                    [Description("time to retain cancelled uploads, in minutes")]
+                    [Range(5, maximum: int.MaxValue)]
+                    public int? Cancelled { get; init; } = null;
+                }
+
+                /// <summary>
+                ///     Download retention options.
+                /// </summary>
+                public class DownloadTransferRetentionOptions
+                {
+                    /// <summary>
+                    ///     Gets the time to retain successful transfers, in minutes.
+                    /// </summary>
+                    [Argument(default, "retention-transfers-download-succeeded")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_DOWNLOAD_SUCCEEDED")]
+                    [Description("time to retain succeeded downloads, in minutes")]
+                    [Range(5, maximum: int.MaxValue)]
+                    public int? Succeeded { get; init; } = null;
+
+                    /// <summary>
+                    ///     Gets the time to retain errored transfers, in minutes.
+                    /// </summary>
+                    [Argument(default, "retention-transfers-download-errored")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_DOWNLOAD_ERRORED")]
+                    [Description("time to retain errored downloads, in minutes")]
+                    [Range(5, maximum: int.MaxValue)]
+                    public int? Errored { get; init; } = null;
+
+                    /// <summary>
+                    ///     Gets the time to retain cancelled transfers, in minutes.
+                    /// </summary>
+                    [Argument(default, "retention-transfers-download-cancelled")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_DOWNLOAD_CANCELLED")]
+                    [Description("time to retain cancelled downloads, in minutes")]
                     [Range(5, maximum: int.MaxValue)]
                     public int? Cancelled { get; init; } = null;
                 }
@@ -2512,12 +2685,18 @@ namespace slskd
                 /// <summary>
                 ///     Gets the time to retain completed files, in minutes.
                 /// </summary>
+                [Argument(default, "retention-files-complete")]
+                [EnvironmentVariable("RETENTION_FILES_COMPLETE")]
+                [Description("time to retain completed files, in minutes")]
                 [Range(30, maximum: int.MaxValue)]
                 public int? Complete { get; init; } = null;
 
                 /// <summary>
                 ///     Gets the time to retain incomplete files, in minutes.
                 /// </summary>
+                [Argument(default, "retention-files-incomplete")]
+                [EnvironmentVariable("RETENTION_FILES_INCOMPLETE")]
+                [Description("time to retain incomplete files, in minutes")]
                 [Range(30, maximum: int.MaxValue)]
                 public int? Incomplete { get; init; } = null;
             }

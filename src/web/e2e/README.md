@@ -5,7 +5,7 @@ This directory contains end-to-end tests for slskdn using Playwright.
 ## Test Structure
 
 - `smoke-auth.spec.ts` - Authentication and basic health checks
-- `core-pages.spec.ts` - Core UI pages (system, downloads, uploads, rooms, chat, users)
+- `core-pages.spec.ts` - Core UI pages (dashboard, system, downloads, uploads, rooms, chat, users)
 - `ui-regressions.spec.ts` - Responsive layouts, keyboard actions, and control guidance across populated UI surfaces
 - `library.spec.ts` - Library indexing and browsing
 - `search.spec.ts` - Search functionality

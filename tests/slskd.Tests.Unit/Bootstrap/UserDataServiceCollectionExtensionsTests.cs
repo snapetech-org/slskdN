@@ -21,6 +21,9 @@ public sealed class UserDataServiceCollectionExtensionsTests : IDisposable
 
     public void Dispose()
     {
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(_tempDirectory, "user_notes.db")}");
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(_tempDirectory, "collections.db")}");
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(_tempDirectory, "identity.db")}");
         if (System.IO.Directory.Exists(_tempDirectory))
         {
             System.IO.Directory.Delete(_tempDirectory, recursive: true);

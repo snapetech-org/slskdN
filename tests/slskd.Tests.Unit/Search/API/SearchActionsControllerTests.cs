@@ -646,7 +646,9 @@ public class SearchActionsControllerTests
                 new SceneContentRef { Username = "alice", Filename = "Music/song.flac", Size = 1234 },
                 new slskd.Search.File { Filename = "song.flac", Size = 1234 },
                 null!,
-                CancellationToken.None
+                CancellationToken.None,
+                null,
+                null
             })!;
 
         var result = await task;
@@ -678,7 +680,9 @@ public class SearchActionsControllerTests
                 new SceneContentRef { Username = "alice", Filename = "Music/song.flac", Size = 1234 },
                 new slskd.Search.File { Filename = "song.flac", Size = 1234 },
                 null!,
-                CancellationToken.None
+                CancellationToken.None,
+                null,
+                null
             })!;
 
         var result = await task;
@@ -693,6 +697,8 @@ public class SearchActionsControllerTests
     public async Task HandleSceneDownloadAsync_PreservesExplicitDestination()
     {
         var captured = Array.Empty<DownloadEnqueueRequest>();
+        var searchId = Guid.NewGuid();
+        const string searchText = "Artist Album";
         var downloadService = new Mock<IDownloadService>();
         downloadService
             .Setup(service => service.EnqueueAsync(
@@ -719,12 +725,16 @@ public class SearchActionsControllerTests
                 new SceneContentRef { Username = "alice", Filename = "Music/song.flac", Size = 1234 },
                 new slskd.Search.File { Filename = "song.flac", Size = 1234 },
                 "/tmp/music",
-                CancellationToken.None
+                CancellationToken.None,
+                searchId,
+                searchText
             })!;
 
         Assert.IsType<OkObjectResult>(await task);
         Assert.Single(captured);
         Assert.Equal("/tmp/music", captured[0].DestinationDirectory);
+        Assert.Equal(searchId, captured[0].SearchId);
+        Assert.Equal(searchText, captured[0].SearchText);
     }
 
     private static SearchActionsController CreateController(

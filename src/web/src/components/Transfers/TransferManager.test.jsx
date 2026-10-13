@@ -55,8 +55,23 @@ vi.mock('../Shared', () => ({
 }));
 
 vi.mock('./TransferTable', () => ({
-  default: ({ transfers = [] }) => (
-    <div data-testid="transfer-table">{transfers.length}</div>
+  default: ({
+    onSelectionChange,
+    selectedKeys = new Set(),
+    transfers = [],
+  }) => (
+    <div>
+      <div data-testid="transfer-table">{transfers.length}</div>
+      <div data-testid="selected-transfer-count">{selectedKeys.size}</div>
+      {transfers[0] && (
+        <button
+          onClick={() => onSelectionChange(transfers[0], true)}
+          type="button"
+        >
+          Select first transfer
+        </button>
+      )}
+    </div>
   ),
 }));
 
@@ -101,7 +116,14 @@ describe('TransferManager reconciliation', () => {
     Object.keys(mocks.callbacks).forEach((key) => delete mocks.callbacks[key]);
     mocks.getAcceleratedMode.mockResolvedValue({ enabled: false });
     mocks.getAutoReplaceStatus.mockResolvedValue({ enabled: false });
-    mocks.getChanges.mockResolvedValue({ cursor: 100, transfers: [] });
+    mocks.getChanges.mockResolvedValue({
+      counts: { download: 0, upload: 0 },
+      cursor: 100,
+      hasMore: false,
+      nextAfterId: null,
+      nextAfterRequestedAt: null,
+      transfers: [],
+    });
     mocks.getHistory.mockResolvedValue({
       asOf: 100,
       hasMore: false,
@@ -118,19 +140,27 @@ describe('TransferManager reconciliation', () => {
     localStorage.clear();
   });
 
-  it('advances from an initial snapshot to overlapping cursor deltas', async () => {
+  it('seeds bounded direction pages before advancing to overlapping cursor deltas', async () => {
     render(<TransferManager direction="download" />);
     await flush();
 
-    expect(mocks.getChanges).toHaveBeenCalledTimes(1);
-    expect(mocks.getChanges).toHaveBeenNthCalledWith(1, { since: null });
+    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
+    expect(mocks.getChanges).toHaveBeenNthCalledWith(1, {
+      direction: 'download',
+      limit: 100,
+    });
+    expect(mocks.getChanges).toHaveBeenNthCalledWith(2, {
+      direction: 'upload',
+      limit: 100,
+      snapshot: 100,
+    });
 
     await act(async () => {
       await vi.advanceTimersByTimeAsync(15_000);
     });
 
-    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
-    expect(mocks.getChanges).toHaveBeenNthCalledWith(2, { since: 99 });
+    expect(mocks.getChanges).toHaveBeenCalledTimes(3);
+    expect(mocks.getChanges).toHaveBeenNthCalledWith(3, { since: 99 });
   });
 
   it('does not overlap a slow reconciliation request', async () => {
@@ -148,13 +178,13 @@ describe('TransferManager reconciliation', () => {
 
     expect(mocks.getChanges).toHaveBeenCalledTimes(1);
 
-    resolveInitial({ cursor: 100, transfers: [] });
+    resolveInitial({ counts: { download: 0, upload: 0 }, cursor: 100, transfers: [] });
     await flush();
     await act(async () => {
       await vi.advanceTimersByTimeAsync(15_000);
     });
 
-    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
+    expect(mocks.getChanges).toHaveBeenCalledTimes(3);
   });
 
   it('replays realtime events that arrive before the initial snapshot', async () => {
@@ -200,12 +230,12 @@ describe('TransferManager reconciliation', () => {
 
     render(<TransferManager direction="download" />);
     await flush();
-    expect(mocks.getChanges).toHaveBeenCalledTimes(1);
+    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
     const filter = screen.getByRole('button', { name: 'Queued (1)' });
     await user.hover(filter);
 
     expect(await screen.findByText(/Show only queued transfers/)).toBeInTheDocument();
-    expect(mocks.getChanges).toHaveBeenCalledTimes(1);
+    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
     expect(screen.getByTestId('transfer-table')).toHaveTextContent('1');
   });
 
@@ -243,22 +273,81 @@ describe('TransferManager reconciliation', () => {
       document.dispatchEvent(new Event('visibilitychange'));
       await Promise.resolve();
     });
-    expect(mocks.getChanges).toHaveBeenCalledTimes(1);
+    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
 
     setHidden(true);
     await act(async () => {
       document.dispatchEvent(new Event('visibilitychange'));
       await vi.advanceTimersByTimeAsync(45_000);
     });
-    expect(mocks.getChanges).toHaveBeenCalledTimes(1);
+    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
 
     setHidden(false);
     await act(async () => {
       document.dispatchEvent(new Event('visibilitychange'));
       await Promise.resolve();
     });
-    expect(mocks.getChanges).toHaveBeenCalledTimes(2);
+    expect(mocks.getChanges).toHaveBeenCalledTimes(3);
     expect(mocks.getChanges).toHaveBeenLastCalledWith({ since: 99 });
+  });
+
+  it('loads another active page by snapshot cursor and preserves selected rows', async () => {
+    const first = {
+      direction: 'Download',
+      filename: 'Music\\first.flac',
+      id: 'first',
+      requestedAt: '2026-10-13T12:00:00Z',
+      state: 'InProgress',
+      username: 'listener',
+    };
+    const next = {
+      direction: 'Download',
+      filename: 'Music\\next.flac',
+      id: 'next',
+      requestedAt: '2026-10-13T11:00:00Z',
+      state: 'Queued',
+      username: 'listener',
+    };
+    mocks.getChanges
+      .mockResolvedValueOnce({
+        counts: { download: 101, upload: 0 },
+        cursor: 100,
+        hasMore: true,
+        nextAfterId: 'first',
+        nextAfterRequestedAt: first.requestedAt,
+        transfers: [first],
+      })
+      .mockResolvedValueOnce({
+        counts: { download: 101, upload: 0 },
+        cursor: 100,
+        hasMore: false,
+        transfers: [],
+      })
+      .mockResolvedValueOnce({
+        counts: { download: 101, upload: 0 },
+        cursor: 100,
+        hasMore: false,
+        transfers: [next],
+      });
+
+    render(<TransferManager direction="download" />);
+    await flush();
+    fireEvent.click(screen.getByRole('button', { name: 'Select first transfer' }));
+    expect(screen.getByTestId('selected-transfer-count')).toHaveTextContent('1');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Load more transfers' }));
+    await flush();
+
+    expect(mocks.getChanges).toHaveBeenNthCalledWith(3, {
+      afterId: 'first',
+      afterRequestedAt: first.requestedAt,
+      direction: 'download',
+      limit: 100,
+      snapshot: 100,
+    });
+    expect(screen.getByTestId('transfer-table')).toHaveTextContent('2');
+    expect(screen.getByTestId('selected-transfer-count')).toHaveTextContent('1');
+    expect(screen.queryByRole('button', { name: 'Load more transfers' })).not.toBeInTheDocument();
   });
 
   it('loads successful history only on request and advances the stable page', async () => {
@@ -312,6 +401,7 @@ describe('TransferManager reconciliation', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Show completed' }));
     await flush();
 
+    expect(mocks.getHistory).toHaveBeenCalledTimes(1);
     expect(mocks.getHistory).toHaveBeenNthCalledWith(1, {
       asOf: null,
       direction: 'download',

@@ -106,6 +106,10 @@ function cellContent(transfer, key) {
       return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{formatElapsed(transfer.elapsedTime)}</span>;
     case 'remaining':
       return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.bytesRemaining != null ? formatBytes(transfer.bytesRemaining) : '-'}</span>;
+    case 'requested': {
+      const requestedAt = transfer.requestedAt || transfer.enqueuedAt || transfer.startTime || transfer.endTime;
+      return <span>{requestedAt ? new Date(requestedAt).toLocaleString() : '-'}</span>;
+    }
     case 'started':
       return <span style={{ fontSize: '0.85em' }}>{transfer.startTime ? new Date(transfer.startTime).toLocaleString() : '-'}</span>;
     case 'completed':
@@ -307,7 +311,7 @@ const TransferTable = ({
   onSortChange,
 }) => {
   const [colState, setColState] = useState(() => loadColumnState(direction));
-  const [localSort, setLocalSort] = useState({ direction: 'ascending', key: 'name' });
+  const [localSort, setLocalSort] = useState({ direction: 'descending', key: 'requested' });
 
   useEffect(() => {
     setColState(loadColumnState(direction));
@@ -412,6 +416,7 @@ const TransferTable = ({
       case 'state':      return (transfer.state ?? '').toLowerCase();
       case 'elapsed':    return transfer.elapsedTime ?? 0;
       case 'remaining':  return transfer.bytesRemaining ?? 0;
+      case 'requested':  return new Date(transfer.requestedAt || transfer.enqueuedAt || transfer.startTime || transfer.endTime || 0).getTime();
       case 'started':    return transfer.startTime ? new Date(transfer.startTime).getTime() : 0;
       case 'completed':  return transfer.endTime ? new Date(transfer.endTime).getTime() : 0;
       case 'bitrate':    return transfer.bitRate ?? 0;

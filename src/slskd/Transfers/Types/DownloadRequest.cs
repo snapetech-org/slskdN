@@ -27,6 +27,7 @@ namespace slskd.Transfers.Downloads
         public long? Size { get; set; }
 
         public Guid? BatchId { get; init; }
+        public string? BatchExternalId { get; init; }
         public string? DestinationDirectory { get; init; }
 
         /// <summary>Aggregate state across all attempts.</summary>
@@ -43,6 +44,12 @@ namespace slskd.Transfers.Downloads
 
         /// <summary>Originating search response, if available.</summary>
         public Guid? SearchResponseId { get; init; }
+
+        /// <summary>Originating search, if available.</summary>
+        public Guid? SearchId { get; init; }
+
+        /// <summary>Search text captured when the request was created, if available.</summary>
+        public string? SearchText { get; init; }
 
         // Cached metadata that survives across attempts.
         public int? BitRate { get; set; }

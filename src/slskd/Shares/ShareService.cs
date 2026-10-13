@@ -28,6 +28,7 @@ namespace slskd.Shares
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using Serilog;
@@ -170,8 +171,6 @@ namespace slskd.Shares
         /// <returns>The entire contents of the share.</returns>
         public Task<IEnumerable<Directory>> BrowseAsync(Share? share = null)
         {
-            var directories = new ConcurrentDictionary<string, Directory>();
-
             string? prefix = null;
 
             if (share != null)
@@ -179,43 +178,172 @@ namespace slskd.Shares
                 prefix = share.RemotePath + (share.RemotePath.EndsWith('\\') ? string.Empty : '\\');
             }
 
-            // snapshot the current list of repositories
-            var repositories = AllRepositories.ToList();
+            // Keep this snapshot small: directory and file rows stay in ordered database cursors until consumed.
+            var repositories = AllRepositories.ToArray();
+            return Task.FromResult(EnumerateBrowseDirectories(repositories, prefix));
+        }
 
-            // Soulseek requires that each directory in the tree have an entry in the list returned in a browse response. if
-            // missing, files that are nested within directories which contain only directories (no files) are displayed as being
-            // in the root. to get around this, prime a dictionary with all known directories, and an empty Soulseek.Directory. if
-            // there are any files in the directory, this entry will be overwritten with a new Soulseek.Directory containing the
-            // files. if not they'll be left as is.
-            foreach (var directory in repositories.SelectMany(r => r.ListDirectories(prefix)))
+        private static IEnumerable<Directory> EnumerateBrowseDirectories(IReadOnlyList<IShareRepository> repositories, string? prefix)
+        {
+            var enumerators = new IEnumerator<Directory>[repositories.Count];
+            var queue = new PriorityQueue<int, BrowsePriority>(BrowsePriorityComparer.Instance);
+
+            try
             {
-                directories.TryAdd(directory, new Directory(directory));
-            }
-
-            var files = repositories.SelectMany(r => r.ListFiles(prefix, includeFullPath: true));
-
-            var groups = files
-                .GroupBy(file => file.Filename.GetNormalizedDirectoryName())
-                .Select(group => new Directory(group.Key, group.Select(f =>
+                for (var index = 0; index < repositories.Count; index++)
                 {
-                    return new File(
-                        f.Code,
-                        f.Filename.GetNormalizedFileName(), // we can send the full path, or just the filename.  save bandwidth and omit the path.
-                        f.Size,
-                        f.Extension,
-                        f.Attributes);
-                }).OrderBy(f => f.Filename)));
+                    enumerators[index] = EnumerateRepositoryBrowse(repositories[index], prefix).GetEnumerator();
+                    if (enumerators[index].MoveNext())
+                    {
+                        var directory = enumerators[index].Current;
+                        queue.Enqueue(index, new BrowsePriority(directory.Name, index));
+                    }
+                }
 
-            // merge the dictionary containing all directories with the Soulseek.Directory instances containing their files.
-            // entries with no files will remain untouched.
-            foreach (var group in groups)
+                while (queue.TryDequeue(out var index, out var priority))
+                {
+                    var first = enumerators[index].Current;
+                    var selected = first;
+                    var firstEmpty = first.Files.Count == 0 ? first : null;
+                    var selectedFileRepository = first.Files.Count > 0 ? index : -1;
+
+                    Advance(index);
+
+                    while (queue.TryPeek(out _, out var nextPriority) &&
+                           CompareSqliteText(priority.Name, nextPriority.Name) == 0)
+                    {
+                        queue.TryDequeue(out var duplicateIndex, out _);
+                        var duplicate = enumerators[duplicateIndex].Current;
+
+                        if (duplicate.Files.Count > 0 && duplicateIndex > selectedFileRepository)
+                        {
+                            selected = duplicate;
+                            selectedFileRepository = duplicateIndex;
+                        }
+                        else if (duplicate.Files.Count == 0 && firstEmpty is null)
+                        {
+                            firstEmpty = duplicate;
+                        }
+
+                        Advance(duplicateIndex);
+                    }
+
+                    yield return selectedFileRepository >= 0 ? selected : firstEmpty ?? selected;
+                }
+            }
+            finally
             {
-                directories.AddOrUpdate(group.Name, group, (_, _) => group);
+                foreach (var enumerator in enumerators)
+                {
+                    enumerator?.Dispose();
+                }
             }
 
-            var results = directories.Values.AsEnumerable();
+            void Advance(int repositoryIndex)
+            {
+                if (enumerators[repositoryIndex].MoveNext())
+                {
+                    var directory = enumerators[repositoryIndex].Current;
+                    queue.Enqueue(repositoryIndex, new BrowsePriority(directory.Name, repositoryIndex));
+                }
+            }
+        }
 
-            return Task.FromResult(results);
+        private static IEnumerable<Directory> EnumerateRepositoryBrowse(IShareRepository repository, string? prefix)
+        {
+            using var directoryNames = repository.EnumerateDirectories(prefix).GetEnumerator();
+            using var fileDirectories = EnumerateFileDirectories(repository, prefix).GetEnumerator();
+
+            var hasDirectory = directoryNames.MoveNext();
+            var hasFileDirectory = fileDirectories.MoveNext();
+
+            while (hasDirectory || hasFileDirectory)
+            {
+                if (!hasFileDirectory ||
+                    (hasDirectory && CompareSqliteText(directoryNames.Current, fileDirectories.Current.Name) < 0))
+                {
+                    yield return new Directory(directoryNames.Current);
+                    hasDirectory = directoryNames.MoveNext();
+                }
+                else if (!hasDirectory || CompareSqliteText(fileDirectories.Current.Name, directoryNames.Current) < 0)
+                {
+                    yield return fileDirectories.Current;
+                    hasFileDirectory = fileDirectories.MoveNext();
+                }
+                else
+                {
+                    // The stored directory and its files share one wire entry.
+                    yield return fileDirectories.Current;
+                    hasDirectory = directoryNames.MoveNext();
+                    hasFileDirectory = fileDirectories.MoveNext();
+                }
+            }
+        }
+
+        private static IEnumerable<Directory> EnumerateFileDirectories(IShareRepository repository, string? prefix)
+        {
+            using var files = repository.EnumerateFiles(prefix, includeFullPath: true).GetEnumerator();
+            var hasFile = files.MoveNext();
+
+            while (hasFile)
+            {
+                var directoryName = files.Current.Filename.GetNormalizedDirectoryName();
+                var directoryFiles = new List<File>();
+
+                do
+                {
+                    var file = files.Current;
+                    directoryFiles.Add(new File(
+                        file.Code,
+                        file.Filename.GetNormalizedFileName(),
+                        file.Size,
+                        file.Extension,
+                        file.Attributes));
+                    hasFile = files.MoveNext();
+                }
+                while (hasFile && string.Equals(
+                    directoryName,
+                    files.Current.Filename.GetNormalizedDirectoryName(),
+                    StringComparison.Ordinal));
+
+                yield return new Directory(directoryName, directoryFiles);
+            }
+        }
+
+        private static int CompareSqliteText(string left, string right)
+        {
+            var leftRunes = left.EnumerateRunes().GetEnumerator();
+            var rightRunes = right.EnumerateRunes().GetEnumerator();
+
+            while (true)
+            {
+                var hasLeft = leftRunes.MoveNext();
+                var hasRight = rightRunes.MoveNext();
+
+                if (!hasLeft || !hasRight)
+                {
+                    return hasLeft.CompareTo(hasRight);
+                }
+
+                var comparison = leftRunes.Current.Value.CompareTo(rightRunes.Current.Value);
+                if (comparison != 0)
+                {
+                    return comparison;
+                }
+            }
+        }
+
+        private readonly record struct BrowsePriority(string Name, int RepositoryIndex);
+
+        private sealed class BrowsePriorityComparer : IComparer<BrowsePriority>
+        {
+            public static BrowsePriorityComparer Instance { get; } = new();
+
+            public int Compare(BrowsePriority left, BrowsePriority right)
+            {
+                var comparison = CompareSqliteText(left.Name, right.Name);
+                return comparison != 0 ? comparison : left.RepositoryIndex.CompareTo(right.RepositoryIndex);
+            }
         }
 
         /// <summary>

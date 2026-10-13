@@ -51,6 +51,19 @@ const MusicBrainzLookup = lazy(() => import('./MusicBrainzLookup'));
 const SongIDPanel = lazy(() => import('./SongIDPanel'));
 const SoulseekDiscoveryPanel = lazy(() => import('./SoulseekDiscoveryPanel'));
 
+const SEARCH_API_PAGE_SIZE = 250;
+const SEARCH_HUB_INITIAL_LIMIT = 500;
+
+const getSearchContinuation = (records) => {
+  const lastRecord = records.at(-1);
+  const afterId = typeof lastRecord?.id === 'string' ? lastRecord.id : null;
+  const afterStartedAt = typeof lastRecord?.startedAt === 'string'
+    ? lastRecord.startedAt
+    : null;
+
+  return afterId && afterStartedAt ? { afterId, afterStartedAt } : null;
+};
+
 const isObject = (value) =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
@@ -165,6 +178,7 @@ const Searches = ({ server } = {}) => {
   const [error, setError] = useState(undefined);
   const [searches, setSearches] = useState({});
   const [initialSearchesLoaded, setInitialSearchesLoaded] = useState(false);
+  const [searchPageState, setSearchPageState] = useState({});
 
   const [removing, setRemoving] = useState(false);
   const [removingAll, setRemovingAll] = useState(false);
@@ -185,6 +199,89 @@ const Searches = ({ server } = {}) => {
 
   const inputRef = useRef();
   const processedUrlSearchRef = useRef(new Set());
+  const searchPageStateRef = useRef({});
+  const loadSearchPageRef = useRef();
+
+  const updateSearchPageState = (source, patch) => {
+    const key = source || 'all';
+    const next = {
+      ...searchPageStateRef.current,
+      [key]: {
+        ...(searchPageStateRef.current[key] ?? {
+          afterId: null,
+          afterStartedAt: null,
+          hasMore: false,
+          initialized: false,
+          loading: false,
+          offset: 0,
+        }),
+        ...patch,
+      },
+    };
+    searchPageStateRef.current = next;
+    setSearchPageState(next);
+  };
+
+  loadSearchPageRef.current = async (source = 'all', reset = false) => {
+    const key = source || 'all';
+    const current = searchPageStateRef.current[key] ?? {
+      afterId: null,
+      afterStartedAt: null,
+      hasMore: false,
+      initialized: false,
+      loading: false,
+      offset: 0,
+    };
+    if (current.loading || (!reset && current.initialized && !current.hasMore)) {
+      return;
+    }
+
+    const offset = reset ? 0 : current.offset;
+    updateSearchPageState(key, {
+      hasMore: reset ? true : current.hasMore,
+      initialized: reset ? false : current.initialized,
+      loading: true,
+      afterId: reset ? null : current.afterId,
+      afterStartedAt: reset ? null : current.afterStartedAt,
+      offset,
+    });
+
+    try {
+      const page = await library.getAll(
+        SEARCH_API_PAGE_SIZE,
+        key === 'all' ? null : key,
+        0,
+        reset ? null : current.afterStartedAt,
+        reset ? null : current.afterId,
+      );
+      const records = Array.isArray(page) ? page : [];
+      const continuation = getSearchContinuation(records);
+      setSearches((currentSearches) => ({
+        ...currentSearches,
+        ...toSearchMap(records),
+      }));
+      updateSearchPageState(key, {
+        afterId: continuation?.afterId ?? null,
+        afterStartedAt: continuation?.afterStartedAt ?? null,
+        hasMore: records.length === SEARCH_API_PAGE_SIZE && Boolean(continuation),
+        initialized: true,
+        loading: false,
+        offset: offset + records.length,
+      });
+      return true;
+    } catch (loadError) {
+      updateSearchPageState(key, { loading: false });
+      console.error('Failed to load another search page', loadError);
+      if (key === 'all' && !current.initialized && Object.keys(searches).length === 0) {
+        setError(
+          loadError?.response?.data ?? loadError?.message ?? 'Could not load searches',
+        );
+      } else {
+        toast.error('Could not load more searches');
+      }
+      return false;
+    }
+  };
 
   const location = useLocation();
   const routerNavigate = useNavigate();
@@ -268,9 +365,19 @@ const Searches = ({ server } = {}) => {
     const searchHub = createSearchHubConnection();
 
     searchHub.on('list', (searchesEvent) => {
-      onUpdate(toSearchMap(searchesEvent));
+      const records = Array.isArray(searchesEvent) ? searchesEvent : [];
+      const continuation = getSearchContinuation(records);
+      onUpdate((current) => ({ ...current, ...toSearchMap(records) }));
       setInitialSearchesLoaded(true);
       onConnected();
+      updateSearchPageState('all', {
+        afterId: continuation?.afterId ?? null,
+        afterStartedAt: continuation?.afterStartedAt ?? null,
+        hasMore: records.length === SEARCH_HUB_INITIAL_LIMIT && Boolean(continuation),
+        initialized: true,
+        loading: false,
+        offset: records.length,
+      });
     });
 
     searchHub.on('update', (search) => {
@@ -304,8 +411,9 @@ const Searches = ({ server } = {}) => {
 
     const loadInitialSearches = async () => {
       try {
-        const searchList = await library.getAll();
-        onUpdate(toSearchMap(searchList));
+        if (await loadSearchPageRef.current('all', true)) {
+          onConnected();
+        }
       } catch (loadError) {
         console.error(loadError);
         setError(loadError?.response?.data ?? loadError?.message ?? loadError);
@@ -905,7 +1013,27 @@ const Searches = ({ server } = {}) => {
                   <Dropdown
                     aria-label="Search source filter"
                     compact
-                    onChange={(_, { value }) => setSourceFilter(value)}
+                    onChange={(_, { value }) => {
+                      setSourceFilter(value);
+                      if (!searchPageStateRef.current[value]?.initialized) {
+                        const initialPage = searchPageStateRef.current.all;
+                        if (initialPage?.initialized) {
+                          updateSearchPageState(value, {
+                            afterId: initialPage.afterId,
+                            afterStartedAt: initialPage.afterStartedAt,
+                            hasMore: initialPage.hasMore,
+                            initialized: true,
+                            loading: false,
+                            offset: initialPage.offset,
+                          });
+                          if (initialPage.hasMore) {
+                            loadSearchPageRef.current(value);
+                          }
+                        } else {
+                          loadSearchPageRef.current(value, true);
+                        }
+                      }
+                    }}
                     options={[
                       { key: 'all', text: 'All Sources', value: 'all' },
                       { key: 'manual', text: 'Manual', value: 'manual', icon: 'search' },
@@ -923,6 +1051,12 @@ const Searches = ({ server } = {}) => {
               cleaningUp={cleaningUp}
               connecting={connecting}
               error={error}
+              hasMoreFromServer={Boolean(
+                searchPageState[sourceFilter]?.hasMore ||
+                  !searchPageState[sourceFilter]?.initialized,
+              )}
+              loadingMore={searchPageState[sourceFilter]?.loading ?? false}
+              onLoadMore={() => loadSearchPageRef.current(sourceFilter)}
               onCleanup={cleanup}
               onRemove={remove}
               onRemoveAll={removeAll}

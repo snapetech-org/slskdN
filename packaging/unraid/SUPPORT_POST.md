@@ -55,7 +55,7 @@ Web UI password: slskd
 Soulseek username: set in the web UI or the template field
 Soulseek password: set in the web UI or the template field
 
-The template includes advanced fields for the documented optional SLSKD_* Docker environment overrides covering downloads, shares, search, Soulseek behavior, obfuscation, proxies, authentication, metrics, notifications, logging, and integrations. Optional fields are blank by default.
+The template includes advanced fields for the documented optional SLSKD_* Docker environment overrides covering completed-download destinations, retries, retention, shares, search, Soulseek behavior, obfuscation, proxies, authentication, metrics, notifications, logging, and integrations. Optional fields are blank by default.
 
 Runtime-only SLSKD_SCRIPT_DATA and image metadata variables such as SLSKD_DOCKER_TAG are not user configuration fields. The complete environment-variable reference is here:
 

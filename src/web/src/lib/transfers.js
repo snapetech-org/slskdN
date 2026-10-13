@@ -45,15 +45,30 @@ export const getFlat = async ({
 /**
  * Server-watermarked transfer snapshot/delta used by TransferManager.
  * The first call omits `since`; later calls pass the prior cursor.
- * @param {{ since?: number|null }} [opts]
+ * @param {{ afterId?: string|null, afterRequestedAt?: string|null, direction?: 'download'|'upload'|null, includeCompleted?: boolean, limit?: number|null, since?: number|null, snapshot?: number|null }} [opts]
  * @returns {Promise<{cursor: number|null, transfers: Array}>}
  */
-export const getChanges = async ({ since = null } = {}) => {
+export const getChanges = async ({
+  afterId = null,
+  afterRequestedAt = null,
+  direction = null,
+  includeCompleted = false,
+  limit = null,
+  since = null,
+  snapshot = null,
+} = {}) => {
   const params = new URLSearchParams();
-  if (since == null) {
-    params.set('includeCompleted', 'false');
-  } else {
+  if (since != null) {
     params.set('since', since);
+  } else {
+    params.set('includeCompleted', String(includeCompleted));
+    if (direction) params.set('direction', direction);
+    if (limit != null) params.set('limit', String(limit));
+    if (snapshot != null) params.set('asOf', String(snapshot));
+    if (afterRequestedAt != null) {
+      params.set('afterRequestedAt', String(afterRequestedAt));
+    }
+    if (afterId != null) params.set('afterId', String(afterId));
   }
   const response = (await api.get(`/transfers/changes?${params}`)).data;
   const cursor = Number(response?.cursor);
@@ -66,6 +81,14 @@ export const getChanges = async ({ since = null } = {}) => {
       upload: Number.isFinite(uploadCount) ? uploadCount : 0,
     },
     cursor: Number.isFinite(cursor) ? cursor : null,
+    hasMore: response?.hasMore === true,
+    nextAfterId: typeof response?.nextAfterId === 'string'
+      ? response.nextAfterId
+      : null,
+    nextAfterRequestedAt:
+      typeof response?.nextAfterRequestedAt === 'string'
+        ? response.nextAfterRequestedAt
+        : null,
     transfers: Array.isArray(response?.transfers) ? response.transfers : [],
   };
 };

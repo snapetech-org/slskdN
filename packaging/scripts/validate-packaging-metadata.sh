@@ -105,7 +105,6 @@ expect_literal bin/watch 'pnpm --filter @slskdn/web start'
 reject_literal bin/build 'npm ci --legacy-peer-deps'
 reject_literal packaging/aur/PKGBUILD 'npm ci --legacy-peer-deps'
 expect_literal packaging/aur/PKGBUILD "'nodejs' 'pnpm'"
-PNPM_SETUP_ACTION='pnpm/setup@v3'
 for workflow in \
     .github/workflows/build-on-tag.yml \
     .github/workflows/ci-enhancements.yml \
@@ -115,7 +114,7 @@ for workflow in \
     .github/workflows/release-linux.yml \
     .github/workflows/release-ppa.yml \
     .github/workflows/windows-smoke.yml; do
-    expect_literal "$workflow" "$PNPM_SETUP_ACTION"
+    expect_line "$workflow" 'uses: pnpm/setup@[0-9a-f]{40}[[:space:]]+# v3'
     expect_literal "$workflow" 'install: false'
 done
 for workflow in \
@@ -144,9 +143,9 @@ for task_id in \
     expect_literal scripts/validation-engine/config.mjs "id: '$task_id'"
 done
 reject_literal packaging/scripts/run-release-gate.sh 'timeout --preserve-status'
-expect_literal .github/workflows/ci.yml 'TMPDIR: ${{ runner.temp }}'
-expect_literal .github/workflows/e2e-tests.yml 'TMPDIR: ${{ runner.temp }}'
-expect_literal .github/workflows/build-on-tag.yml 'TMPDIR: ${{ runner.temp }}'
+# Validate the job-wide, fail-closed runner-temp setup instead of requiring a
+# step-scoped TMPDIR value that cannot reach later build and test steps.
+bash scripts/check-dotnet-runtime-matrix.sh
 expect_literal .github/workflows/ci.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
 expect_literal .github/workflows/e2e-tests.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
 expect_literal .github/workflows/build-on-tag.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
@@ -471,17 +470,21 @@ test -x packaging/docker/slskdn-container-start || fail 'packaging/docker/slskdn
 test -x packaging/scripts/run-docker-apparmor-smoke.sh || fail 'packaging/scripts/run-docker-apparmor-smoke.sh must be executable'
 test -f packaging/docker/apparmor/slskdn-docker || fail 'packaging/docker/apparmor/slskdn-docker is missing'
 
-sdk_version=$(awk -F '"' '/"version"/ { print $4; exit }' global.json)
-fail_if_empty "$sdk_version" 'global.json SDK version'
-git ls-files --error-unmatch global.json >/dev/null 2>&1 || fail 'global.json must be tracked so tag release gates use the same SDK pin as local checks'
-expect_literal .github/workflows/build-on-tag.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/ci.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/ci-enhancements.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/e2e-tests.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/codeql.yml "DOTNET_VERSION: '${sdk_version}'"
-expect_literal .github/workflows/release-linux.yml "dotnet-version: '${sdk_version}'"
-expect_literal .github/workflows/release-copr.yml "dotnet-version: '${sdk_version}'"
-expect_literal .github/workflows/release-ppa.yml "dotnet-version: '${sdk_version}'"
+sdk_minimum_version=$(awk -F '"' '/"version"/ { print $4; exit }' global.json)
+fail_if_empty "$sdk_minimum_version" 'global.json SDK minimum version'
+git ls-files --error-unmatch global.json >/dev/null 2>&1 || fail 'global.json must be tracked so source builds and release checks share the declared .NET SDK floor'
+sdk_major="${sdk_minimum_version%%.*}"
+ci_sdk_version=$(awk -F "'" '/DOTNET_VERSION:/ { print $2; exit }' .github/workflows/ci.yml)
+if [[ ! "$ci_sdk_version" =~ ^${sdk_major}\.0\.[0-9]+$ ]]; then
+  fail "CI SDK pin must be a stable .NET ${sdk_major}.0 SDK version"
+fi
+expect_literal .github/workflows/build-on-tag.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/ci-enhancements.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/e2e-tests.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/codeql.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal .github/workflows/release-linux.yml "dotnet-version: '${ci_sdk_version}'"
+expect_literal .github/workflows/release-copr.yml "dotnet-version: '${ci_sdk_version}'"
+expect_literal .github/workflows/release-ppa.yml "dotnet-version: '${ci_sdk_version}'"
 reject_literal .github/workflows/build-on-tag.yml "DOTNET_VERSION: '10'"
 reject_literal .github/workflows/build-on-tag.yml 'dotnet-version: 10.0.x'
 reject_literal .github/workflows/release-linux.yml 'dotnet-version: 10.0.x'

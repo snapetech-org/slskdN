@@ -15,12 +15,16 @@ on:
   schedule:
     - cron: '0 6 * * 1'  # Weekly on Monday
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
   security-events: write
 
 env:
-  DOTNET_VERSION: '10.0.100'
+  DOTNET_VERSION: '10.0.402'
 
 jobs:
   analyze:
@@ -29,15 +33,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v6
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d # v4
         with:
           languages: csharp
           # Keep main-branch scanning focused on security findings; the broader suite
@@ -55,6 +59,6 @@ jobs:
         run: dotnet build src/slskd/slskd.csproj --no-restore --configuration Release
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d # v4
         with:
           category: /language:csharp

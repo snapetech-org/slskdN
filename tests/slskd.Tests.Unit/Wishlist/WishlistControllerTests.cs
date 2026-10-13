@@ -458,6 +458,7 @@ public class WishlistControllerTests : IDisposable
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             if (System.IO.File.Exists(dbPath))
             {
                 System.IO.File.Delete(dbPath);

@@ -38,6 +38,7 @@ public sealed class LidarrImportHistoryMigrationTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             File.Delete(databasePath);
             File.Delete(databasePath + "-shm");
             File.Delete(databasePath + "-wal");

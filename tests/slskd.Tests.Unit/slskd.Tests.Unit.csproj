@@ -8,10 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFixture.Xunit2" Version="4.18.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.12" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.12" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.12" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.13" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
     <PackageReference Include="Moq" Version="4.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.2.3" />
@@ -31,7 +31,28 @@
     <ProjectReference Include="..\..\src\slskd\slskd.csproj" />
     <ProjectReference Include="..\..\tools\slskd.BuildTasks\slskd.BuildTasks.csproj" Aliases="BuildTasks" />
     <ProjectReference Include="..\..\vendor\slskNet.Runtime\src\Soulseek.csproj" />
+    <ProjectReference Include="..\slskd.Tests.FakeFfmpeg\slskd.Tests.FakeFfmpeg.csproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
+
+  <Target Name="CopyFakeFfmpegFixture" AfterTargets="Build">
+    <MSBuild Projects="$(MSBuildThisFileDirectory)..\slskd.Tests.FakeFfmpeg\slskd.Tests.FakeFfmpeg.csproj"
+             Targets="GetTargetPath"
+             Properties="Configuration=$(Configuration)">
+      <Output TaskParameter="TargetOutputs" ItemName="FakeFfmpegTargetPath" />
+    </MSBuild>
+    <PropertyGroup>
+      <FakeFfmpegOutputDirectory>@(FakeFfmpegTargetPath->'%(RootDir)%(Directory)')</FakeFfmpegOutputDirectory>
+    </PropertyGroup>
+    <MakeDir Directories="$(OutDir)fake-ffmpeg" />
+    <ItemGroup>
+      <FakeFfmpegOutputFiles Include="$(FakeFfmpegOutputDirectory)*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(FakeFfmpegOutputFiles)" DestinationFolder="$(OutDir)fake-ffmpeg" />
+    <Error Condition="'$(OS)' == 'Windows_NT' and !Exists('$(OutDir)fake-ffmpeg/slskd.Tests.FakeFfmpeg.exe')"
+           Text="The fake FFmpeg apphost was not copied to $(OutDir)fake-ffmpeg." />
+    <Error Condition="'$(OS)' != 'Windows_NT' and !Exists('$(OutDir)fake-ffmpeg/slskd.Tests.FakeFfmpeg')"
+           Text="The fake FFmpeg apphost was not copied to $(OutDir)fake-ffmpeg." />
+  </Target>
 
   <!-- Excluded: depend on slskd.Common.CodeQuality (excluded from slskd build), missing/renamed types, or need non-trivial fixes. See docs/dev/40-fixes-plan.md Deferred table. -->
   <ItemGroup>

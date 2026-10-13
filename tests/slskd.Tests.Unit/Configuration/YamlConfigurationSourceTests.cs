@@ -107,6 +107,24 @@ public class YamlConfigurationSourceTests
     }
 
     [Fact]
+    public void AddYamlFile_BindsDownloadDestinationPolicyAndTemplate()
+    {
+        var options = ReadOptions("""
+            global:
+              download:
+                destination:
+                  subdirectory: '${SOURCE_USERNAME}/${SOURCE_PATH}'
+                  exists: overwrite
+                  permissions:
+                    mode: '0750'
+            """);
+
+        Assert.Equal("${SOURCE_USERNAME}/${SOURCE_PATH}", options.Global.Download.Destination.Subdirectory);
+        Assert.Equal("overwrite", options.Global.Download.Destination.Exists);
+        Assert.Equal("0750", options.Global.Download.Destination.Permissions.Mode);
+    }
+
+    [Fact]
     public void AddYamlFile_BindsUpstreamStyleTransferUploadLimitsToGlobalLimits()
     {
         var options = ReadOptions("""

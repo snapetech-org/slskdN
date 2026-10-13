@@ -131,25 +131,28 @@ namespace slskd.Messaging.API
         /// <summary>
         ///     Gets the specified room.
         /// </summary>
-        /// <param name="roomName"></param>
+        /// <param name="routeRoomName">Room name supplied by the existing route, when used.</param>
+        /// <param name="queryRoomName">Room name supplied by the query-addressed route, when used.</param>
         /// <returns></returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="404">The specified roomName could not be found.</response>
         [HttpGet("joined/{roomName}")]
+        [HttpGet("by-name")]
         [Authorize(Policy = AuthPolicy.Any)]
         [ProducesResponseType(typeof(Room), 200)]
         [ProducesResponseType(404)]
-        public IActionResult GetByRoomName([FromRoute] string roomName)
+        public IActionResult GetByRoomName(
+            [FromRoute(Name = "roomName")] string? routeRoomName,
+            [FromQuery(Name = "roomName")] string? queryRoomName = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            roomName = NormalizeRequiredValue(roomName);
-            if (string.IsNullOrWhiteSpace(roomName))
+            if (ResolveRoomName(routeRoomName, queryRoomName, out var roomName) is { } error)
             {
-                return BadRequest("roomName is required");
+                return error;
             }
 
             if (Tracker.TryGet(roomName, out var room) && room is not null)
@@ -163,29 +166,33 @@ namespace slskd.Messaging.API
         /// <summary>
         ///     Sends a message to the specified room.
         /// </summary>
-        /// <param name="roomName"></param>
+        /// <param name="routeRoomName">Room name supplied by the existing route, when used.</param>
         /// <param name="message"></param>
+        /// <param name="queryRoomName">Room name supplied by the query-addressed route, when used.</param>
         /// <returns></returns>
         /// <response code="201">The request completed successfully.</response>
         /// <response code="404">The specified roomName could not be found.</response>
         [HttpPost("joined/{roomName}/messages")]
+        [HttpPost("by-name/messages")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(201)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> SendMessage([FromRoute] string roomName, [FromBody] string message)
+        public async Task<IActionResult> SendMessage(
+            [FromRoute(Name = "roomName")] string? routeRoomName,
+            [FromBody] string message,
+            [FromQuery(Name = "roomName")] string? queryRoomName = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            roomName = NormalizeRequiredValue(roomName);
-            message = NormalizeRequiredValue(message);
-
-            if (string.IsNullOrWhiteSpace(roomName))
+            if (ResolveRoomName(routeRoomName, queryRoomName, out var roomName) is { } error)
             {
-                return BadRequest("roomName is required");
+                return error;
             }
+
+            message = NormalizeRequiredValue(message);
 
             if (string.IsNullOrWhiteSpace(message))
             {
@@ -204,29 +211,33 @@ namespace slskd.Messaging.API
         /// <summary>
         ///     Sets a ticker for the specified room.
         /// </summary>
-        /// <param name="roomName"></param>
+        /// <param name="routeRoomName">Room name supplied by the existing route, when used.</param>
         /// <param name="message"></param>
+        /// <param name="queryRoomName">Room name supplied by the query-addressed route, when used.</param>
         /// <returns></returns>
         /// <response code="201">The request completed successfully.</response>
         /// <response code="404">The specified roomName could not be found.</response>
         [HttpPost("joined/{roomName}/ticker")]
+        [HttpPost("by-name/ticker")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(201)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> SetTicker([FromRoute] string roomName, [FromBody] string message)
+        public async Task<IActionResult> SetTicker(
+            [FromRoute(Name = "roomName")] string? routeRoomName,
+            [FromBody] string message,
+            [FromQuery(Name = "roomName")] string? queryRoomName = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            roomName = NormalizeRequiredValue(roomName);
-            message = NormalizeRequiredValue(message);
-
-            if (string.IsNullOrWhiteSpace(roomName))
+            if (ResolveRoomName(routeRoomName, queryRoomName, out var roomName) is { } error)
             {
-                return BadRequest("roomName is required");
+                return error;
             }
+
+            message = NormalizeRequiredValue(message);
 
             if (string.IsNullOrWhiteSpace(message))
             {
@@ -245,29 +256,33 @@ namespace slskd.Messaging.API
         /// <summary>
         ///     Adds a member to a private room.
         /// </summary>
-        /// <param name="roomName"></param>
+        /// <param name="routeRoomName">Room name supplied by the existing route, when used.</param>
         /// <param name="username"></param>
+        /// <param name="queryRoomName">Room name supplied by the query-addressed route, when used.</param>
         /// <returns></returns>
         /// <response code="201">The request completed successfully.</response>
         /// <response code="404">The specified roomName could not be found.</response>
         [HttpPost("joined/{roomName}/members")]
+        [HttpPost("by-name/members")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(201)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> AddRoomMember([FromRoute] string roomName, [FromBody] string username)
+        public async Task<IActionResult> AddRoomMember(
+            [FromRoute(Name = "roomName")] string? routeRoomName,
+            [FromBody] string username,
+            [FromQuery(Name = "roomName")] string? queryRoomName = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            roomName = NormalizeRequiredValue(roomName);
-            username = NormalizeRequiredValue(username);
-
-            if (string.IsNullOrWhiteSpace(roomName))
+            if (ResolveRoomName(routeRoomName, queryRoomName, out var roomName) is { } error)
             {
-                return BadRequest("roomName is required");
+                return error;
             }
+
+            username = NormalizeRequiredValue(username);
 
             if (string.IsNullOrWhiteSpace(username))
             {
@@ -286,25 +301,28 @@ namespace slskd.Messaging.API
         /// <summary>
         ///     Gets the current list of users for the specified room.
         /// </summary>
-        /// <param name="roomName"></param>
+        /// <param name="routeRoomName">Room name supplied by the existing route, when used.</param>
+        /// <param name="queryRoomName">Room name supplied by the query-addressed route, when used.</param>
         /// <returns></returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="404">The specified roomName could not be found.</response>
         [HttpGet("joined/{roomName}/users")]
+        [HttpGet("by-name/users")]
         [Authorize(Policy = AuthPolicy.Any)]
         [ProducesResponseType(typeof(IList<UserData>), 200)]
         [ProducesResponseType(404)]
-        public IActionResult GetUsersByRoomName([FromRoute] string roomName)
+        public IActionResult GetUsersByRoomName(
+            [FromRoute(Name = "roomName")] string? routeRoomName,
+            [FromQuery(Name = "roomName")] string? queryRoomName = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            roomName = NormalizeRequiredValue(roomName);
-            if (string.IsNullOrWhiteSpace(roomName))
+            if (ResolveRoomName(routeRoomName, queryRoomName, out var roomName) is { } error)
             {
-                return BadRequest("roomName is required");
+                return error;
             }
 
             if (Tracker.TryGet(roomName, out var room) && room is not null)
@@ -326,26 +344,30 @@ namespace slskd.Messaging.API
         /// <summary>
         ///     Gets the current list of messages for the specified room.
         /// </summary>
-        /// <param name="roomName"></param>
+        /// <param name="routeRoomName">Room name supplied by the existing route, when used.</param>
         /// <param name="since">Optional Unix timestamp in milliseconds; only newer messages are returned.</param>
+        /// <param name="queryRoomName">Room name supplied by the query-addressed route, when used.</param>
         /// <returns></returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="404">The specified roomName could not be found.</response>
         [HttpGet("joined/{roomName}/messages")]
+        [HttpGet("by-name/messages")]
         [Authorize(Policy = AuthPolicy.Any)]
         [ProducesResponseType(typeof(IList<RoomMessageResponse>), 200)]
         [ProducesResponseType(404)]
-        public IActionResult GetMessagesByRoomName([FromRoute] string roomName, [FromQuery] long? since = null)
+        public IActionResult GetMessagesByRoomName(
+            [FromRoute(Name = "roomName")] string? routeRoomName,
+            [FromQuery] long? since = null,
+            [FromQuery(Name = "roomName")] string? queryRoomName = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            roomName = NormalizeRequiredValue(roomName);
-            if (string.IsNullOrWhiteSpace(roomName))
+            if (ResolveRoomName(routeRoomName, queryRoomName, out var roomName) is { } error)
             {
-                return BadRequest("roomName is required");
+                return error;
             }
 
             DateTime? messagesSince = null;
@@ -490,25 +512,28 @@ namespace slskd.Messaging.API
         /// <summary>
         ///     Leaves a room.
         /// </summary>
-        /// <param name="roomName"></param>
+        /// <param name="routeRoomName">Room name supplied by the existing route, when used.</param>
+        /// <param name="queryRoomName">Room name supplied by the query-addressed route, when used.</param>
         /// <returns></returns>
         /// <response code="204">The request completed successfully.</response>
         /// <response code="404">The room has not been joined.</response>
         [HttpDelete("joined/{roomName}")]
+        [HttpDelete("by-name")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> LeaveRoom([FromRoute] string roomName)
+        public async Task<IActionResult> LeaveRoom(
+            [FromRoute(Name = "roomName")] string? routeRoomName,
+            [FromQuery(Name = "roomName")] string? queryRoomName = null)
         {
             if (Program.IsRelayAgent)
             {
                 return Forbid();
             }
 
-            roomName = NormalizeRequiredValue(roomName);
-            if (string.IsNullOrWhiteSpace(roomName))
+            if (ResolveRoomName(routeRoomName, queryRoomName, out var roomName) is { } error)
             {
-                return BadRequest("roomName is required");
+                return error;
             }
 
             if (!Tracker.Rooms.ContainsKey(roomName))
@@ -546,6 +571,23 @@ namespace slskd.Messaging.API
         private static string NormalizeRequiredValue(string? value)
         {
             return value?.Trim() ?? string.Empty;
+        }
+
+        private IActionResult? ResolveRoomName(string? routeRoomName, string? queryRoomName, out string roomName)
+        {
+            var normalizedRouteName = NormalizeRequiredValue(routeRoomName);
+            var normalizedQueryName = NormalizeRequiredValue(queryRoomName);
+
+            if (routeRoomName is not null &&
+                queryRoomName is not null &&
+                !string.Equals(normalizedRouteName, normalizedQueryName, StringComparison.Ordinal))
+            {
+                roomName = string.Empty;
+                return BadRequest("roomName cannot have conflicting route and query values");
+            }
+
+            roomName = routeRoomName is null ? normalizedQueryName : normalizedRouteName;
+            return string.IsNullOrWhiteSpace(roomName) ? BadRequest("roomName is required") : null;
         }
 
         private static List<RoomInfoResponse> MapRoomList(RoomList list)

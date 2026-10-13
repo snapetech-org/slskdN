@@ -15,6 +15,7 @@ public sealed class ActivityPubInboxStoreTests : IDisposable
 
     public void Dispose()
     {
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={_dbPath}");
         File.Delete(_dbPath);
     }
 

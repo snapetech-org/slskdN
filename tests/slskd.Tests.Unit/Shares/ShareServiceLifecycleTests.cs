@@ -46,6 +46,79 @@ public class ShareServiceLifecycleTests
     }
 
     [Fact]
+    public async Task BrowseAsync_StreamsOrderedRowsAndPreservesDirectoryMergeBehavior()
+    {
+        var factory = new TestShareRepositoryFactory();
+        var service = CreateService(factory, out _, out _);
+        var local = factory.Repositories["local"];
+        local.DirectoryNames = ["music\\Album", "music\\Empty", "music\\Only\\Sub"];
+        local.BrowseFiles =
+        [
+            new Soulseek.File(1, "music\\Album\\01.mp3", 10, "mp3"),
+            new Soulseek.File(2, "music\\Album\\02.mp3", 20, "mp3"),
+            new Soulseek.File(3, "music\\Standalone\\track.mp3", 30, "mp3"),
+        ];
+
+        service.AddOrUpdateHost(new Host("remote"));
+        var remote = factory.Repositories["remote"];
+        remote.DirectoryNames = ["music\\Empty", "music\\Other"];
+        remote.BrowseFiles =
+        [
+            new Soulseek.File(4, "music\\Album\\remote.mp3", 40, "mp3"),
+            new Soulseek.File(5, "music\\Other\\01.mp3", 50, "mp3"),
+        ];
+
+        try
+        {
+            var browse = await service.BrowseAsync(new Share("[music]/tmp/music"));
+            Assert.Equal(0, local.EnumerateDirectoriesCalls);
+            Assert.Equal(0, local.EnumerateFilesCalls);
+
+            var entries = browse.ToArray();
+
+            Assert.Equal(
+                ["music\\Album", "music\\Empty", "music\\Only\\Sub", "music\\Other", "music\\Standalone"],
+                entries.Select(entry => entry.Name));
+            Assert.Equal(["remote.mp3"], entries[0].Files.Select(file => file.Filename));
+            Assert.Empty(entries[1].Files);
+            Assert.Equal(["01.mp3"], entries[3].Files.Select(file => file.Filename));
+            Assert.Equal(["track.mp3"], entries[4].Files.Select(file => file.Filename));
+        }
+        finally
+        {
+            service.Dispose();
+        }
+    }
+
+    [Fact]
+    public async Task BrowseAsync_ConsumesOnlyRowsNeededForTheRequestedPrefix()
+    {
+        var factory = new TestShareRepositoryFactory();
+        var service = CreateService(factory, out _, out _);
+        var repository = factory.Repositories["local"];
+        repository.DirectoryNames = Enumerable.Range(0, 1000)
+            .Select(index => $"music\\Album {index:D4}")
+            .ToArray();
+        repository.BrowseFiles = Enumerable.Range(0, 1000)
+            .Select(index => new Soulseek.File(index, $"music\\Album {index:D4}\\track.mp3", 10, "mp3"))
+            .ToArray();
+
+        try
+        {
+            var browse = await service.BrowseAsync(new Share("[music]/tmp/music"));
+            using var enumerator = browse.GetEnumerator();
+
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal("music\\Album 0000", enumerator.Current.Name);
+            Assert.True(repository.EnumeratedFileRows < repository.BrowseFiles.Count);
+        }
+        finally
+        {
+            service.Dispose();
+        }
+    }
+
+    [Fact]
     public void TryRemoveHost_DisposesRemovedRepository()
     {
         var factory = new TestShareRepositoryFactory();
@@ -231,6 +304,11 @@ public class ShareServiceLifecycleTests
         public int ListAdvertisableContentIdsCalls { get; private set; }
         public int ListContentItemsForFileCalls { get; private set; }
         public int ListFilesCalls { get; private set; }
+        public int EnumerateDirectoriesCalls { get; private set; }
+        public int EnumerateFilesCalls { get; private set; }
+        public int EnumeratedFileRows { get; private set; }
+        public IReadOnlyList<string> DirectoryNames { get; set; } = Array.Empty<string>();
+        public IReadOnlyList<Soulseek.File> BrowseFiles { get; set; } = Array.Empty<Soulseek.File>();
         public (string Filename, long Size) FileInfo { get; set; }
 
         public void BackupTo(IShareRepository repository) { }
@@ -245,10 +323,27 @@ public class ShareServiceLifecycleTests
         public Scan? FindLatestScan() => null;
         public (string Domain, string WorkId, string MaskedFilename, bool IsAdvertisable, string ModerationReason, long CheckedAt)? FindContentItem(string contentId) => null;
         public void FlagLatestScanAsSuspect() { }
+        public void FlagScanAsSuspect(long timestamp) { }
         public void InsertDirectory(string name, long timestamp) { }
         public void InsertFile(string maskedFilename, string originalFilename, DateTime touchedAt, Soulseek.File file, long timestamp, bool isBlocked = false, bool isQuarantined = false, string? moderationReason = null) { }
         public void InsertScan(long timestamp, Options.SharesOptions options) { }
         public IEnumerable<string> ListDirectories(string? parentDirectory = null) => Array.Empty<string>();
+        public IEnumerable<string> EnumerateDirectories(string? parentDirectory = null)
+        {
+            EnumerateDirectoriesCalls++;
+            return EnumerateDirectoryRows(parentDirectory);
+        }
+
+        private IEnumerable<string> EnumerateDirectoryRows(string? parentDirectory)
+        {
+            foreach (var name in DirectoryNames)
+            {
+                if (parentDirectory is null || name.StartsWith(parentDirectory, StringComparison.Ordinal))
+                {
+                    yield return name;
+                }
+            }
+        }
         public IEnumerable<(string ContentId, string Domain, string WorkId, bool IsAdvertisable, string ModerationReason)> ListContentItemsForFile(string maskedFilename)
         {
             ListContentItemsForFileCalls++;
@@ -263,6 +358,27 @@ public class ShareServiceLifecycleTests
         {
             ListFilesCalls++;
             return Array.Empty<Soulseek.File>();
+        }
+        public IEnumerable<Soulseek.File> EnumerateFiles(string? parentDirectory = null, bool includeFullPath = false)
+        {
+            EnumerateFilesCalls++;
+            return EnumerateFileRows(parentDirectory, includeFullPath);
+        }
+
+        private IEnumerable<Soulseek.File> EnumerateFileRows(string? parentDirectory, bool includeFullPath)
+        {
+            foreach (var file in BrowseFiles)
+            {
+                if (parentDirectory is not null && !file.Filename.StartsWith(parentDirectory, StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                EnumeratedFileRows++;
+                yield return includeFullPath
+                    ? file
+                    : new Soulseek.File(file.Code, file.Filename.GetNormalizedFileName(), file.Size, file.Extension, file.Attributes);
+            }
         }
         public IEnumerable<(string LocalPath, long Size)> ListLocalPathsAndSizes(string? parentDirectory = null) => Array.Empty<(string LocalPath, long Size)>();
         public IEnumerable<Scan> ListScans(long startedAtOrAfter = 0) => Array.Empty<Scan>();

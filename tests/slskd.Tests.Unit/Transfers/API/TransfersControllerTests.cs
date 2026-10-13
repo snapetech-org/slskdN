@@ -121,6 +121,45 @@ public class TransfersControllerTests
     }
 
     [Fact]
+    public async Task EnqueueAsync_PreservesOptionalBatchAndSearchMetadata()
+    {
+        var batchId = Guid.NewGuid();
+        var searchId = Guid.NewGuid();
+        List<DownloadEnqueueRequest> queued = new();
+        var downloads = new Mock<IDownloadService>();
+        downloads
+            .Setup(service => service.EnqueueAsync(
+                It.IsAny<string>(),
+                It.IsAny<IEnumerable<DownloadEnqueueRequest>>(),
+                It.IsAny<CancellationToken>()))
+            .Callback<string, IEnumerable<DownloadEnqueueRequest>, CancellationToken>((_, files, _) => queued = files.ToList())
+            .ReturnsAsync((new List<SlskdTransfer>(), new List<string>()));
+
+        var controller = CreateController(downloads);
+        var result = await controller.EnqueueAsync(
+            "alice",
+            new[]
+            {
+                new QueueDownloadRequest
+                {
+                    Filename = "Music/track.flac",
+                    Size = 10,
+                    BatchId = batchId,
+                    BatchExternalId = "batch-42",
+                    SearchId = searchId,
+                    SearchText = "artist album",
+                },
+            });
+
+        Assert.Equal(201, Assert.IsType<ObjectResult>(result).StatusCode);
+        var request = Assert.Single(queued);
+        Assert.Equal(batchId, request.BatchId);
+        Assert.Equal("batch-42", request.BatchExternalId);
+        Assert.Equal(searchId, request.SearchId);
+        Assert.Equal("artist album", request.SearchText);
+    }
+
+    [Fact]
     public async Task EnqueueAsync_WithConfiguredDestination_PassesNormalizedDestination()
     {
         var destination = System.IO.Directory.CreateTempSubdirectory("slskdn-transfer-destination-");
@@ -778,16 +817,19 @@ public class TransfersControllerTests
         {
             Id = Guid.NewGuid(),
             State = TransferStates.Completed | TransferStates.Succeeded,
+            UpdatedAt = DateTime.UnixEpoch,
         };
         var failed = new SlskdTransfer
         {
             Id = Guid.NewGuid(),
             State = TransferStates.Completed | TransferStates.Errored,
+            UpdatedAt = DateTime.UnixEpoch,
         };
         var active = new SlskdTransfer
         {
             Id = Guid.NewGuid(),
             State = TransferStates.InProgress,
+            UpdatedAt = DateTime.UnixEpoch,
         };
         Expression<Func<SlskdTransfer, bool>>? capturedExpression = null;
         var downloads = new Mock<IDownloadService>();
@@ -812,6 +854,126 @@ public class TransfersControllerTests
         Assert.Equal(4, response.Counts.Upload);
         Assert.NotNull(capturedExpression);
         Assert.False(ContainsMethodCall(capturedExpression!.Body));
+    }
+
+    [Fact]
+    public void GetTransferChanges_ReturnsBoundedContinuationPageForRequestedDirection()
+    {
+        var requestedAt = new DateTime(2026, 10, 13, 12, 0, 0, DateTimeKind.Utc);
+        var first = new SlskdTransfer
+        {
+            Id = Guid.Parse("ffffffff-ffff-ffff-ffff-ffffffffffff"),
+            Direction = TransferDirection.Download,
+            RequestedAt = requestedAt,
+        };
+        var last = new SlskdTransfer
+        {
+            Id = Guid.Parse("eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee"),
+            Direction = TransferDirection.Download,
+            RequestedAt = requestedAt.AddMinutes(-1),
+        };
+        var extra = new SlskdTransfer
+        {
+            Id = Guid.Parse("dddddddd-dddd-dddd-dddd-dddddddddddd"),
+            Direction = TransferDirection.Download,
+            RequestedAt = requestedAt.AddMinutes(-2),
+        };
+        var downloads = new Mock<IDownloadService>();
+        downloads
+            .Setup(service => service.ListPage(
+                It.IsAny<Expression<Func<SlskdTransfer, bool>>>(),
+                false,
+                null,
+                null,
+                3))
+            .Returns(new List<SlskdTransfer> { first, last, extra });
+        downloads.Setup(service => service.Count(false)).Returns(12);
+        var uploads = new Mock<IUploadService>();
+        uploads.Setup(service => service.Count(false)).Returns(9);
+        var controller = CreateController(downloads: downloads, uploads: uploads);
+
+        var result = controller.GetTransferChanges(
+            includeCompleted: false,
+            limit: 2,
+            direction: " DOWNLOAD ");
+
+        var response = Assert.IsType<TransferChangesResponse>(Assert.IsType<OkObjectResult>(result).Value);
+        Assert.Equal(new[] { first, last }, response.Transfers);
+        Assert.Equal(12, response.Counts.Download);
+        Assert.Equal(9, response.Counts.Upload);
+        Assert.True(response.HasMore);
+        Assert.Equal(new DateTimeOffset(last.RequestedAt), response.NextAfterRequestedAt);
+        Assert.Equal(last.Id, response.NextAfterId);
+        downloads.Verify(service => service.ListPage(
+            It.IsAny<Expression<Func<SlskdTransfer, bool>>>(), false, null, null, 3), Times.Once);
+        uploads.Verify(service => service.ListPage(
+            It.IsAny<Expression<Func<SlskdTransfer, bool>>>(),
+            It.IsAny<bool>(),
+            It.IsAny<DateTime?>(),
+            It.IsAny<Guid?>(),
+            It.IsAny<int>()), Times.Never);
+    }
+
+    [Fact]
+    public void GetTransferChanges_RejectsInvalidOrMixedPagingArguments()
+    {
+        var downloads = new Mock<IDownloadService>();
+        var uploads = new Mock<IUploadService>();
+        var controller = CreateController(downloads: downloads, uploads: uploads);
+
+        Assert.IsType<BadRequestObjectResult>(controller.GetTransferChanges(limit: 501));
+        Assert.IsType<BadRequestObjectResult>(controller.GetTransferChanges(direction: "download"));
+        Assert.IsType<BadRequestObjectResult>(controller.GetTransferChanges(limit: 10, afterId: Guid.NewGuid()));
+        Assert.IsType<BadRequestObjectResult>(controller.GetTransferChanges(
+            limit: 10,
+            afterRequestedAt: DateTimeOffset.UtcNow,
+            afterId: Guid.NewGuid()));
+        Assert.IsType<BadRequestObjectResult>(controller.GetTransferChanges(
+            since: 1,
+            limit: 10));
+
+        downloads.Verify(service => service.ListPage(
+            It.IsAny<Expression<Func<SlskdTransfer, bool>>>(),
+            It.IsAny<bool>(),
+            It.IsAny<DateTime?>(),
+            It.IsAny<Guid?>(),
+            It.IsAny<int>()), Times.Never);
+        uploads.Verify(service => service.ListPage(
+            It.IsAny<Expression<Func<SlskdTransfer, bool>>>(),
+            It.IsAny<bool>(),
+            It.IsAny<DateTime?>(),
+            It.IsAny<Guid?>(),
+            It.IsAny<int>()), Times.Never);
+    }
+
+    [Fact]
+    public void GetTransferChanges_UsesSerializedMillisecondWatermarkForInitialPageFilter()
+    {
+        Expression<Func<SlskdTransfer, bool>>? capturedFilter = null;
+        var downloads = new Mock<IDownloadService>();
+        downloads
+            .Setup(service => service.ListPage(
+                It.IsAny<Expression<Func<SlskdTransfer, bool>>>(),
+                false,
+                null,
+                null,
+                2))
+            .Returns<Expression<Func<SlskdTransfer, bool>>, bool, DateTime?, Guid?, int>(
+                (expression, _, _, _, _) =>
+                {
+                    capturedFilter = expression;
+                    return new List<SlskdTransfer>();
+                });
+        var uploads = new Mock<IUploadService>();
+        var controller = CreateController(downloads: downloads, uploads: uploads);
+
+        var result = controller.GetTransferChanges(limit: 1, direction: "download");
+
+        var response = Assert.IsType<TransferChangesResponse>(Assert.IsType<OkObjectResult>(result).Value);
+        var serializedWatermark = DateTimeOffset.FromUnixTimeMilliseconds(response.Cursor).UtcDateTime;
+        var rowAfterWatermark = new SlskdTransfer { UpdatedAt = serializedWatermark.AddTicks(1) };
+        Assert.NotNull(capturedFilter);
+        Assert.False(capturedFilter!.Compile()(rowAfterWatermark));
     }
 
     [Fact]
@@ -842,6 +1004,72 @@ public class TransfersControllerTests
         uploads.Verify(
             service => service.ListCompleted(It.IsAny<DateTime>(), It.IsAny<int>(), It.IsAny<int>()),
             Times.Never);
+    }
+
+    [Fact]
+    public void GetTransferHistory_UsesReturnedMillisecondWatermarkForInitialQuery()
+    {
+        DateTime? queriedAsOf = null;
+        var downloads = new Mock<IDownloadService>();
+        downloads
+            .Setup(service => service.ListCompleted(It.IsAny<DateTime>(), 0, 2))
+            .Callback<DateTime, int, int>((asOf, _, _) => queriedAsOf = asOf)
+            .Returns([]);
+        var controller = CreateController(downloads: downloads);
+
+        var result = controller.GetTransferHistory("download", limit: 1);
+
+        var response = Assert.IsType<TransferHistoryResponse>(Assert.IsType<OkObjectResult>(result).Value);
+        var returnedAsOf = DateTimeOffset.FromUnixTimeMilliseconds(response.AsOf).UtcDateTime;
+        Assert.Equal(returnedAsOf, queriedAsOf);
+        Assert.Equal(0, queriedAsOf!.Value.Ticks % TimeSpan.TicksPerMillisecond);
+    }
+
+    [Fact]
+    public void GetTransferChanges_MergesDirectionPagesByRequestTime()
+    {
+        var download = new SlskdTransfer
+        {
+            Id = Guid.NewGuid(),
+            Direction = TransferDirection.Download,
+            RequestedAt = new DateTime(2026, 10, 13, 11, 0, 0, DateTimeKind.Utc),
+        };
+        var upload = new SlskdTransfer
+        {
+            Id = Guid.NewGuid(),
+            Direction = TransferDirection.Upload,
+            RequestedAt = new DateTime(2026, 10, 13, 12, 0, 0, DateTimeKind.Utc),
+        };
+        var downloads = new Mock<IDownloadService>();
+        downloads
+            .Setup(service => service.ListPage(
+                It.IsAny<Expression<Func<SlskdTransfer, bool>>>(),
+                false,
+                null,
+                null,
+                2))
+            .Returns(new List<SlskdTransfer> { download });
+        var uploads = new Mock<IUploadService>();
+        uploads
+            .Setup(service => service.ListPage(
+                It.IsAny<Expression<Func<SlskdTransfer, bool>>>(),
+                false,
+                null,
+                null,
+                2))
+            .Returns(new List<SlskdTransfer> { upload });
+        var controller = CreateController(downloads: downloads, uploads: uploads);
+
+        var result = controller.GetTransferChanges(includeCompleted: false, limit: 1);
+
+        var response = Assert.IsType<TransferChangesResponse>(Assert.IsType<OkObjectResult>(result).Value);
+        Assert.Equal(new[] { upload }, response.Transfers);
+        Assert.True(response.HasMore);
+        Assert.Equal(upload.Id, response.NextAfterId);
+        downloads.Verify(service => service.ListPage(
+            It.IsAny<Expression<Func<SlskdTransfer, bool>>>(), false, null, null, 2), Times.Once);
+        uploads.Verify(service => service.ListPage(
+            It.IsAny<Expression<Func<SlskdTransfer, bool>>>(), false, null, null, 2), Times.Once);
     }
 
     [Theory]

@@ -28,7 +28,6 @@ public class ApiPerformanceBenchmarks : IDisposable
     private readonly ITestOutputHelper _output;
     private HttpClient? _httpClient;
     private string? _baseUrl;
-    private string? _authToken;
 
     public ApiPerformanceBenchmarks(ITestOutputHelper output)
     {
@@ -57,7 +56,6 @@ public class ApiPerformanceBenchmarks : IDisposable
             var loginResponse = _httpClient.PostAsync("/api/v0/session", loginContent).Result;
             if (loginResponse.IsSuccessStatusCode)
             {
-                _authToken = "authenticated"; // Simplified for benchmarks
                 _output.WriteLine("[BENCH] API authentication successful");
             }
         }

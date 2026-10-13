@@ -23,6 +23,7 @@ namespace slskd.Telemetry;
 public record TransferSummary
 {
     public string Username { get; init; } = string.Empty;
+    /// <summary>Gets the sum of bytes actually transferred.</summary>
     public long TotalBytes { get; init; }
     public long Count { get; init; }
     public long DistinctUsers { get; init; }

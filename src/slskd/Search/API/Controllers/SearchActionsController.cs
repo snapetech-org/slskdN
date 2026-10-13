@@ -185,7 +185,7 @@ public class SearchActionsController : ControllerBase
         else if (primarySource == "scene" && response.SceneContentRef != null)
         {
             // Scene download - use existing Soulseek download pipeline
-            return await HandleSceneDownloadAsync(response.SceneContentRef, file, normalizedDestination, cancellationToken);
+            return await HandleSceneDownloadAsync(response.SceneContentRef, file, normalizedDestination, cancellationToken, search.Id, search.SearchText);
         }
         else if (primarySource == "mesh")
         {
@@ -200,7 +200,7 @@ public class SearchActionsController : ControllerBase
                 Filename = file.Filename,
                 Size = file.Size,
             };
-            return await HandleSceneDownloadAsync(sceneRef, file, normalizedDestination, cancellationToken);
+            return await HandleSceneDownloadAsync(sceneRef, file, normalizedDestination, cancellationToken, search.Id, search.SearchText);
         }
         else
         {
@@ -567,7 +567,9 @@ public class SearchActionsController : ControllerBase
         SceneContentRef sceneRef,
         Search.File file,
         string? destination,
-        CancellationToken ct)
+        CancellationToken ct,
+        Guid? searchId = null,
+        string? searchText = null)
     {
         var policyExclusion = DownloadFilter.GetMatchingExclusion(
             sceneRef.Filename,
@@ -590,6 +592,8 @@ public class SearchActionsController : ControllerBase
                     Filename = sceneRef.Filename,
                     Size = file.Size,
                     DestinationDirectory = destination,
+                    SearchId = searchId,
+                    SearchText = searchText,
                 },
             };
             var (enqueued, failed) = await _downloadService.EnqueueAsync(sceneRef.Username, files, ct);

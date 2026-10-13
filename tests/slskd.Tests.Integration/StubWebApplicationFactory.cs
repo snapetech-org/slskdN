@@ -75,6 +75,23 @@ public class StubWebApplicationFactory : WebApplicationFactory<ProgramStub>
         var testTempRoot = Path.Combine(Path.GetTempPath(), "slskdn-test");
         var testDownloadsRoot = Path.Combine(testTempRoot, "downloads");
         var testIncompleteRoot = Path.Combine(testTempRoot, "incomplete");
+        var testOptions = new OptionsModel
+        {
+            RemoteFileManagement = true,
+            WarmCache = new global::slskd.WarmCacheOptions
+            {
+                Enabled = true,
+            },
+            VirtualSoulfind = new VirtualSoulfindOptions
+            {
+                Bridge = new BridgeOptions { Enabled = true, Port = 2242 },
+            },
+            Directories = new OptionsModel.DirectoriesOptions
+            {
+                Downloads = testDownloadsRoot,
+                Incomplete = testIncompleteRoot,
+            },
+        };
         System.IO.Directory.CreateDirectory(testContentRoot);
         System.IO.Directory.CreateDirectory(testDownloadsRoot);
         System.IO.Directory.CreateDirectory(testIncompleteRoot);
@@ -157,6 +174,7 @@ public class StubWebApplicationFactory : WebApplicationFactory<ProgramStub>
                             options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
                         })
                         .AddApplicationPart(typeof(CapabilitiesController).Assembly)
+                        .AddApplicationPart(typeof(global::slskd.Files.API.FilesController).Assembly)
                         .AddApplicationPart(typeof(DownloadsCompatibilityController).Assembly)
                         .AddApplicationPart(typeof(LibraryHealthController).Assembly)
                         .AddApplicationPart(typeof(global::slskd.API.Compatibility.LibraryCompatibilityController).Assembly)
@@ -194,22 +212,15 @@ public class StubWebApplicationFactory : WebApplicationFactory<ProgramStub>
                     services.AddSingleton<global::slskd.Users.Notes.IUserNoteService>(_ => Mock.Of<global::slskd.Users.Notes.IUserNoteService>(service =>
                         service.GetAllNotesAsync(It.IsAny<CancellationToken>()) ==
                             Task.FromResult<IEnumerable<global::slskd.Users.Notes.UserNote>>(Array.Empty<global::slskd.Users.Notes.UserNote>())));
-                    services.AddSingleton<IOptionsMonitor<OptionsModel>>(_ => new StaticOptionsMonitor<OptionsModel>(new OptionsModel
-                    {
-                        WarmCache = new global::slskd.WarmCacheOptions
+
+                    services.AddSingleton<IOptionsMonitor<OptionsModel>>(_ => new StaticOptionsMonitor<OptionsModel>(testOptions))
+                        .AddSingleton<IOptionsSnapshot<OptionsModel>>(_ =>
                         {
-                            Enabled = true
-                        },
-                        VirtualSoulfind = new VirtualSoulfindOptions
-                        {
-                            Bridge = new BridgeOptions { Enabled = true, Port = 2242 }
-                        },
-                        Directories = new OptionsModel.DirectoriesOptions
-                        {
-                            Downloads = testDownloadsRoot,
-                            Incomplete = testIncompleteRoot
-                        }
-                    }))
+                            var snapshot = new Mock<IOptionsSnapshot<OptionsModel>>();
+                            snapshot.SetupGet(x => x.Value).Returns(testOptions);
+                            return snapshot.Object;
+                        })
+                        .AddSingleton<global::slskd.Files.FileService>()
                         .AddSingleton<IDiscographyJobService>(discographyService)
                         .AddSingleton<ILabelCrateJobService>(labelCrateService)
                         .AddSingleton<IMusicBrainzClient>(_ => Mock.Of<IMusicBrainzClient>(client =>
@@ -233,7 +244,18 @@ public class StubWebApplicationFactory : WebApplicationFactory<ProgramStub>
                         .AddSingleton<global::slskd.VirtualSoulfind.ShadowIndex.IShadowIndexQuery, StubShadowIndexQueryForFactory>()
                         // ISoulseekClient for CompatibilityController (GET /api/info) — Soulbeet
                         .AddSingleton<ISoulseekClient>(_ => Mock.Of<ISoulseekClient>(x =>
-                            x.State == SoulseekClientStates.LoggedIn && x.Username == "test-user"));
+                            x.State == SoulseekClientStates.LoggedIn && x.Username == "test-user"))
+                        .AddSingleton<slskd.Messaging.IRoomTracker, slskd.Messaging.RoomTracker>()
+                        .AddSingleton<slskd.Messaging.IRoomService>(_ => Mock.Of<slskd.Messaging.IRoomService>())
+                        .AddSingleton<slskd.IStateMonitor<slskd.State>>(_ =>
+                        {
+                            var monitor = new Mock<slskd.IStateMonitor<slskd.State>>();
+                            monitor.SetupGet(x => x.CurrentValue).Returns(new slskd.State
+                            {
+                                User = new slskd.UserState { Username = "test-user" },
+                            });
+                            return monitor.Object;
+                        });
 
                     // VirtualSoulfind / Moderation / MediaCore for ModerationIntegrationTests
                     services.AddSingleton<IIntentQueue, InMemoryIntentQueue>();
@@ -725,6 +747,35 @@ internal sealed class StubDownloadService : IDownloadService
         return list;
     }
 
+    public List<Transfer> ListPage(
+        Expression<Func<Transfer, bool>> expression,
+        bool includeRemoved,
+        DateTime? afterRequestedAt,
+        Guid? afterId,
+        int limit)
+    {
+        var compiled = expression.Compile();
+        var query = _storage.Values
+            .Where(transfer => transfer.Direction == Soulseek.TransferDirection.Download)
+            .Where(transfer => !transfer.Removed || includeRemoved)
+            .Where(compiled);
+
+        if (afterRequestedAt.HasValue && afterId.HasValue)
+        {
+            var requestedAt = afterRequestedAt.Value;
+            var id = afterId.Value;
+            query = query.Where(transfer =>
+                transfer.RequestedAt < requestedAt ||
+                (transfer.RequestedAt == requestedAt && transfer.Id.CompareTo(id) < 0));
+        }
+
+        return query
+            .OrderByDescending(transfer => transfer.RequestedAt)
+            .ThenByDescending(transfer => transfer.Id)
+            .Take(limit)
+            .ToList();
+    }
+
     public async IAsyncEnumerable<Transfer> StreamAutoRetryCandidatesAsync(
         DateTime endedBefore,
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -1110,7 +1161,13 @@ internal class StubSearchService : ISearchService
         return Task.FromResult(search);
     }
 
-    public Task<List<global::slskd.Search.Search>> ListAsync(System.Linq.Expressions.Expression<Func<global::slskd.Search.Search, bool>> expression = null, int limit = 0, int offset = 0, string? source = null)
+    public Task<List<global::slskd.Search.Search>> ListAsync(
+        System.Linq.Expressions.Expression<Func<global::slskd.Search.Search, bool>> expression = null,
+        int limit = 0,
+        int offset = 0,
+        string? source = null,
+        DateTime? afterStartedAt = null,
+        Guid? afterId = null)
     {
         var searches = expression != null
             ? _searches.Values.Where(expression.Compile()).ToList()
@@ -1121,6 +1178,22 @@ internal class StubSearchService : ISearchService
             var sourceFilter = source!.Trim().ToLowerInvariant();
             searches = searches.Where(s => s.Source.ToLowerInvariant() == sourceFilter).ToList();
         }
+
+        if (afterStartedAt.HasValue && afterId.HasValue)
+        {
+            var startedAt = afterStartedAt.Value;
+            var id = afterId.Value;
+            searches = searches
+                .Where(search =>
+                    search.StartedAt < startedAt ||
+                    (search.StartedAt == startedAt && search.Id.CompareTo(id) < 0))
+                .ToList();
+        }
+
+        searches = searches
+            .OrderByDescending(search => search.StartedAt)
+            .ThenByDescending(search => search.Id)
+            .ToList();
 
         if (offset > 0)
             searches = searches.Skip(offset).ToList();

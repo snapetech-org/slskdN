@@ -678,7 +678,13 @@ public class AutoReplaceServiceTests
             return Task.FromResult<SearchModel>(null);
         }
 
-        public Task<List<SearchModel>> ListAsync(Expression<Func<SearchModel, bool>> expression = null, int limit = 0, int offset = 0, string? source = null)
+        public Task<List<SearchModel>> ListAsync(
+            Expression<Func<SearchModel, bool>> expression = null,
+            int limit = 0,
+            int offset = 0,
+            string? source = null,
+            DateTime? afterStartedAt = null,
+            Guid? afterId = null)
         {
             return Task.FromResult(new List<SearchModel>());
         }

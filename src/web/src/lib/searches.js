@@ -7,10 +7,23 @@ let userDownloadStatsCache = null;
 let userDownloadStatsCacheExpiresAt = 0;
 let userDownloadStatsInflight = null;
 
-export const getAll = async (limit = 500, source = null) => {
-  const params = new URLSearchParams({ limit: String(limit) });
+export const getAll = async (
+  limit = 500,
+  source = null,
+  offset = 0,
+  afterStartedAt = null,
+  afterId = null,
+) => {
+  const params = new URLSearchParams({
+    limit: String(limit),
+    offset: String(offset),
+  });
   if (source && source !== 'all') {
     params.set('source', source);
+  }
+  if (afterStartedAt != null && afterId != null) {
+    params.set('afterStartedAt', afterStartedAt);
+    params.set('afterId', afterId);
   }
   return (await api.get(`/searches?${params.toString()}`)).data;
 };

@@ -40,6 +40,7 @@ public sealed class SqlitePodMessageStorageTests : IDisposable
     {
         storage.Dispose();
         dbContext.Dispose();
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
         File.Delete(databasePath);
     }
 

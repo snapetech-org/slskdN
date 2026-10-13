@@ -26,6 +26,42 @@
 
 ## Active Development
 
+### Files API and responsive system workflows — 2026-10-13
+
+- [x] Add on-demand subtree sizes and guarded multi-item file/directory deletion
+  with per-item outcomes.
+- [x] Complete keyboard-accessible selection, confirmation, recovery, and
+  partial-result handling in the System Files view.
+- [x] Preserve room-query routing for slash-containing identifiers and publish
+  watched-user state after successful registration.
+- [x] Verify API/filesystem boundaries and user workflows with integration,
+  unit, component, and headless browser coverage.
+- [x] Pass the full .NET suite (6,180 tests), web suite (1,300 tests), the
+  selected headless browser suite (97 passed, 7 opt-in skips), repository lint,
+  and the Release build.
+
+Status: implementation and validation are complete. A stable build tag and
+hosted artifact verification remain for the release step.
+
+### SLSKDN runner-temp reliability — 2026-10-13
+
+- [x] Validate runner-owned temporary storage and export TMPDIR, TMP,
+  and TEMP for every Linux self-hosted job.
+- [x] Preserve hosted routing for public pull requests and non-main manual runs.
+- [x] Preserve the existing tag, pull-request, and manual CI triggers.
+- [x] Keep the standalone load harness on hosted Linux after the local SIGBUS.
+- [x] Pass focused workflow policy, runtime matrix, YAML, and diff checks.
+- [x] Run a hosted `workflow_dispatch` at exact branch head
+  `62f2f95f67bb11e8fc62571d5e137b3b74af5a38`; the release gate passes all 15
+  selected tasks and 7,344 active cases, three browser E2E tasks remain excluded,
+  and Nix package smoke passes. The earlier failed run was stale because `main`
+  advanced after its checkout.
+- [ ] Verify PR-specific runner routing and main manual-dispatch paths separately.
+
+Status: runner-temp implementation and exact branch-head hosted validation are
+complete. PR-specific routing and main manual-dispatch validation remain open.
+Ordinary branch-push builds are intentionally not added.
+
 ### Public pull-request runner isolation — 2026-10-12
 
 - [x] Route public pull-request jobs in CI and enhancement workflows to
@@ -7349,5 +7385,56 @@ resource completion.
 - [x] Pass the full .NET suite (6,145 tests), full Web suite (1,295 tests),
   `./bin/lint`, Release build, retained-log Playwright regression, Docker build
   and startup smoke, and version-change Docker cache check.
-- [ ] Push the validated tree to `snapetech/slskdN/main`, create the authorized
-  stable tag, and verify hosted publishers and release artifacts.
+- [x] Push the validated tree to `snapetech/slskdN/main`, create the authorized
+  stable tag, and verify the hosted release assets; all six platform archives
+  and checksums are valid.
+- [x] Recover the AUR source and binary pushes, COPR, container registries, and
+  Nix metadata and smoke publication.
+- [ ] Verify the exact Jammy binary
+  `2026101222.slskdn.350-1ppa202610130538~jammy` reaches `Published` and appears
+  in the apt index. The source is published and the build log succeeded, but
+  Launchpad still reports `Uploading build`; the exact binary is absent from
+  the published-binary API and current Jammy amd64 index. The release waiter
+  timed out after repeated API SSL timeouts. Do not upload the accepted source
+  again while this publication remains in progress.
+
+## Trusted Playwright cache and browser verification — 2026-10-13
+
+- [x] Preserve the browser cache only when it is supplied through the trusted
+  sandbox dependency mount; keep arbitrary host cache paths isolated.
+- [x] Document the local launcher invocation and add the validation release-note
+  fragment.
+- [x] Fix the transfer-view regression fixture to explicitly hide the
+  default-visible `requested` column; record gotcha `0z1813`.
+- [x] Pass validation-engine tests (16), the complete headless Web suite
+  (89 passed, 16 skipped), the 15-minute loopback radio-renewal soak (1),
+  Release build, and repository formatting lint.
+- [ ] Complete the backend unit suite and exact-head hosted release gate. The
+  local trusted backend task stalled during restore/build before starting a
+  test host, so that task did not produce a result.
+
+## Unraid configuration coverage and release follow-up — 2026-10-13
+
+- [x] Expose each documented optional `SLSKD_*` setting in the Unraid advanced
+  template fields with blank defaults.
+- [x] Update the Unraid guide and support post, add the Unreleased changelog
+  bullet, and add a validated release-note fragment.
+- [x] Pass packaging metadata validation, Unraid XML parsing, and the direct
+  environment-variable coverage scan.
+- [ ] Pass the backend test suite and exact-head hosted release gate on `main`.
+- [ ] Prepare the `.351` versioned notes on validated `main`, create the
+  authorized stable tag, and verify the published assets.
+
+## Main release candidate — 2026-10-13
+
+- [x] Fast-forward the 154-commit candidate to the verified fork's `main`.
+- [x] Prepare dated `.351` changelog notes after the candidate reached `main`.
+- [x] Update SignalR and .NET servicing dependencies to 10.0.13, SDK pins to
+  10.0.402, Flatpak runtime metadata and the all-project vulnerability scan.
+- [x] Pass the full Release build, unit/integration/regression suites
+  (6,227 tests), performance and VPN-agent builds, repository lint, package
+  validators, and release-note/identity checks.
+- [ ] Pass the hosted CI release gate for the final exact `main` commit.
+- [ ] Pass hosted browser E2E on the same final `main` commit.
+- [ ] Create the authorized stable tag only after the gate passes; verify
+  published assets and downstream publication status.

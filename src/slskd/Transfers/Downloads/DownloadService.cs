@@ -142,6 +142,22 @@ namespace slskd.Transfers.Downloads
         List<Transfer> List(Expression<Func<Transfer, bool>>? expression = null, bool includeRemoved = false);
 
         /// <summary>
+        ///     Returns a stable page of downloads ordered by request time, newest first.
+        /// </summary>
+        /// <param name="expression">The transfer predicate.</param>
+        /// <param name="includeRemoved">Whether to include soft-removed records.</param>
+        /// <param name="afterRequestedAt">The request time of the previous page's last record.</param>
+        /// <param name="afterId">The ID of the previous page's last record.</param>
+        /// <param name="limit">The maximum number of records to return.</param>
+        /// <returns>The requested page.</returns>
+        List<Transfer> ListPage(
+            Expression<Func<Transfer, bool>> expression,
+            bool includeRemoved,
+            DateTime? afterRequestedAt,
+            Guid? afterId,
+            int limit);
+
+        /// <summary>
         ///     Streams retryable failed downloads in stable oldest-first order.
         /// </summary>
         /// <param name="endedBefore">The exclusive completion-time cutoff.</param>
@@ -683,10 +699,13 @@ namespace slskd.Transfers.Downloads
                                         OriginalFilename = file.Filename,
                                         Size = file.Size,
                                         BatchId = file.BatchId,
+                                        BatchExternalId = file.BatchExternalId,
                                         DestinationDirectory = file.DestinationDirectory,
                                         State = DownloadRequestState.Active,
                                         CreatedAt = DateTime.UtcNow,
                                         WishlistItemId = file.WishlistItemId,
+                                        SearchId = file.SearchId,
+                                        SearchText = file.SearchText,
                                         BitRate = file.BitRate,
                                         SampleRate = file.SampleRate,
                                         BitDepth = file.BitDepth,
@@ -859,7 +878,17 @@ namespace slskd.Transfers.Downloads
                                         3. the linked CancellationTokenSource we add to CancellationTokens is cancelled
                                         4. the 'max wait time' CancellationTokenSource is cancelled
                                     */
-                                    await enqueuedTcs.Task;
+                                    var enqueueAcknowledgementTask = enqueuedTcs.Task;
+                                    var completedTask = await Task.WhenAny(enqueueAcknowledgementTask, downloadTask);
+                                    if (completedTask == downloadTask && !enqueueAcknowledgementTask.IsCompleted)
+                                    {
+                                        // A download may terminate before Soulseek reports a remote enqueue
+                                        // transition (for example, an expected remote failure). Release the
+                                        // enqueue semaphore using the state persisted by the download observer.
+                                        enqueuedTcs.TrySetResult(Find(t => t.Id == transfer.Id) ?? transfer);
+                                    }
+
+                                    await enqueueAcknowledgementTask;
 
                                     Log.Debug("Download of {Filename} from {Username} successfully entered state {State}",
                                         LoggingSanitizer.SanitizeFilePath(transfer.Filename), LoggingSanitizer.SanitizeExternalIdentifier(transfer.Username), state);
@@ -1046,6 +1075,46 @@ namespace slskd.Transfers.Downloads
             }
         }
 
+        public List<Transfer> ListPage(
+            Expression<Func<Transfer, bool>> expression,
+            bool includeRemoved,
+            DateTime? afterRequestedAt,
+            Guid? afterId,
+            int limit)
+        {
+            expression ??= t => true;
+
+            try
+            {
+                using var context = ContextFactory.CreateDbContext();
+                var query = context.Transfers
+                    .AsNoTracking()
+                    .Where(t => t.Direction == TransferDirection.Download)
+                    .Where(t => !t.Removed || includeRemoved)
+                    .Where(expression);
+
+                if (afterRequestedAt.HasValue && afterId.HasValue)
+                {
+                    var requestedAt = afterRequestedAt.Value;
+                    var id = afterId.Value;
+                    query = query.Where(t =>
+                        t.RequestedAt < requestedAt ||
+                        (t.RequestedAt == requestedAt && t.Id.CompareTo(id) < 0));
+                }
+
+                return query
+                    .OrderByDescending(t => t.RequestedAt)
+                    .ThenByDescending(t => t.Id)
+                    .Take(limit)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Failed to page downloads: {Exception}", LoggingSanitizer.SanitizeExternalIdentifier(ex.ToString()));
+                throw;
+            }
+        }
+
         public async IAsyncEnumerable<Transfer> StreamAutoRetryCandidatesAsync(
             DateTime endedBefore,
             [EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -1189,6 +1258,7 @@ namespace slskd.Transfers.Downloads
             try
             {
                 using var context = ContextFactory.CreateDbContext();
+                using var transaction = context.Database.BeginTransaction();
                 var cutoffDateTime = DateTime.UtcNow.AddMinutes(-age);
                 var pruned = context.Transfers
                     .Where(t => t.Direction == TransferDirection.Download)
@@ -1197,9 +1267,24 @@ namespace slskd.Transfers.Downloads
                     .Where(t => t.UpdatedAt < cutoffDateTime)
                     .ExecuteDelete();
 
+                var prunedRequests = context.DownloadRequests
+                    .Where(request => request.State != DownloadRequestState.Active)
+                    .Where(request => (request.CompletedAt ?? request.CreatedAt) < cutoffDateTime)
+                    .Where(request => !context.Transfers.Any(transfer =>
+                        transfer.Direction == TransferDirection.Download &&
+                        transfer.RequestId == request.Id))
+                    .ExecuteDelete();
+
+                transaction.Commit();
+
                 if (pruned > 0)
                 {
                     Log.Debug("Permanently deleted {Count} removed downloads older than {Age} minutes", pruned, age);
+                }
+
+                if (prunedRequests > 0)
+                {
+                    Log.Debug("Permanently deleted {Count} expired terminal download requests with no remaining transfers", prunedRequests);
                 }
 
                 return pruned;
@@ -1662,9 +1747,14 @@ namespace slskd.Transfers.Downloads
                     ? OptionsMonitor.CurrentValue.Permissions.File.Mode.ToUnixFileMode()
                     : null;
 
+                var destinationPermissionsMode = OptionsMonitor.CurrentValue.Global.Download.Destination.Permissions.Mode;
+                System.IO.UnixFileMode? completedUnixFileMode = !string.IsNullOrWhiteSpace(destinationPermissionsMode)
+                    ? destinationPermissionsMode.ToUnixFileMode()
+                    : unixFileMode;
+
                 var retryOptions = OptionsMonitor.CurrentValue.Global.Download.Retry;
                 var maxRetryDelay = Math.Max(30_000, retryOptions.MaxDelay);
-                var incompleteStrategy = retryOptions.Incomplete.ToEnum<RetryIncompleteStrategy>();
+                var incompleteStrategy = (retryOptions.Partial ?? retryOptions.Incomplete).ToEnum<RetryIncompleteStrategy>();
                 var incompleteFilename = GetIncompleteRetryFilename(transfer);
 
                 Log.Debug("Invoking Soulseek DownloadAsync() for {Filename} from {Username}",
@@ -1776,14 +1866,7 @@ namespace slskd.Transfers.Downloads
 
                     if (!System.IO.Directory.Exists(directory))
                     {
-                        if (!OperatingSystem.IsWindows() && createMode.HasValue)
-                        {
-                            System.IO.Directory.CreateDirectory(directory, createMode.Value.WithExecuteFlagsForEachReadFlag());
-                        }
-                        else
-                        {
-                            System.IO.Directory.CreateDirectory(directory);
-                        }
+                        Files.EnsureDirectory(directory, createMode);
                     }
 
                     var probeFilename = System.IO.Path.Combine(directory, $".slskdn-write-probe-{Guid.NewGuid():N}.tmp");
@@ -1932,7 +2015,7 @@ namespace slskd.Transfers.Downloads
 
                 EnsureDirectoryReady(
                     destinationDirectory,
-                    unixFileMode,
+                    completedUnixFileMode,
                     transfer.Filename,
                     "Destination");
 
@@ -1940,9 +2023,13 @@ namespace slskd.Transfers.Downloads
                 var finalFilename = Files.MoveFile(
                     sourceFilename: incompleteFilename,
                     destinationDirectory: destinationDirectory,
-                    unixFileMode: unixFileMode,
-                    overwrite: false,
-                    deleteSourceDirectoryIfEmptyAfterMove: true);
+                    unixFileMode: completedUnixFileMode,
+                    overwrite: string.Equals(
+                        OptionsMonitor.CurrentValue.Global.Download.Destination.Exists,
+                        "overwrite",
+                        StringComparison.OrdinalIgnoreCase),
+                    deleteSourceDirectoryIfEmptyAfterMove: true,
+                    unixDirectoryMode: completedUnixFileMode);
 
                 Log.Debug("Moved file {Filename} to {Destination}",
                     LoggingSanitizer.SanitizeFilePath(transfer.Filename), LoggingSanitizer.SanitizeFilePath(finalFilename));
@@ -2585,10 +2672,29 @@ namespace slskd.Transfers.Downloads
                 return NormalizeCompletedDestination(explicitDestination, options);
             }
 
+            var destinationOptions = options.Global.Download.Destination;
+            if (destinationOptions.Subdirectory is not null)
+            {
+                var subdirectory = DownloadDestinationTemplate.Render(destinationOptions.Subdirectory, transfer, request);
+                var configuredDestination = string.IsNullOrEmpty(subdirectory)
+                    ? completedRoot
+                    : System.IO.Path.Combine(completedRoot, subdirectory);
+                return NormalizeCompletedDestination(configuredDestination, options);
+            }
+
             var template = options.Global.Download.CompletedPathTemplate;
             if (!string.IsNullOrWhiteSpace(template))
             {
                 return NormalizeCompletedDestination(RenderCompletedPathTemplate(transfer, completedRoot, template, request), options);
+            }
+
+            if (string.IsNullOrWhiteSpace(options.Global.Download.CompletedLayout))
+            {
+                var defaultSubdirectory = DownloadDestinationTemplate.Render("${SOURCE_DIRECTORY}", transfer, request);
+                var defaultDestination = string.IsNullOrEmpty(defaultSubdirectory)
+                    ? completedRoot
+                    : System.IO.Path.Combine(completedRoot, defaultSubdirectory);
+                return NormalizeCompletedDestination(defaultDestination, options);
             }
 
             var layout = ParseCompletedDownloadLayout(options.Global.Download.CompletedLayout);

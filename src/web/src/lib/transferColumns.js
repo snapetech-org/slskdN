@@ -25,6 +25,7 @@ export const ALL_COLUMNS = [
   { key: 'elapsed',    label: 'Elapsed',    sortable: true,  defaultWidth: 70,  defaultVisible: false, fixed: false },
   { key: 'remaining',  label: 'Remaining',  sortable: true,  defaultWidth: 90,  defaultVisible: false, fixed: false },
   { key: 'started',    label: 'Added',      sortable: true,  defaultWidth: 110, defaultVisible: false, fixed: false },
+  { key: 'requested',  label: 'Requested',  sortable: true,  defaultWidth: 150, defaultVisible: true,  fixed: false },
   { key: 'completed',  label: 'Done',       sortable: true,  defaultWidth: 110, defaultVisible: false, fixed: false },
   { key: 'actions',    label: '',           sortable: false, defaultWidth: 90,  defaultVisible: true,  fixed: true },
 ];

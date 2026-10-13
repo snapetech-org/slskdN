@@ -370,8 +370,16 @@ A change to slot limits requires an application restart to take effect, while sp
 | `--upload-speed-limit`   | `SLSKD_UPLOAD_SPEED_LIMIT`   | The total upload speed limit, in kibibytes       |
 | `--download-slots`       | `SLSKD_DOWNLOAD_SLOTS`       | The limit for the total number of download slots |
 | `--download-speed-limit` | `SLSKD_DOWNLOAD_SPEED_LIMIT` | The total download speed limit, in kibibytes     |
-| `--download-completed-layout` | `SLSKD_DOWNLOAD_COMPLETED_LAYOUT` | Completed download folder layout. Default: `remote_folder` to preserve source folder/file names. Other values: `uploader_folder`, `batch_id`, or `flat` |
-| `--download-completed-path-template` | `SLSKD_DOWNLOAD_COMPLETED_PATH_TEMPLATE` | Optional path template that overrides `--download-completed-layout`. Tokens: `{uploader}`, `{remote_folder}`, `{remote_parent}`, `{remote_filename}`, `{batch_id}`, `{request_name}`, `{date}` / `{date:yyyy-MM}`. Example: `{uploader}/{remote_folder}` |
+| `--download-destination-subdirectory` | `SLSKD_DOWNLOAD_DESTINATION_SUBDIRECTORY` | Relative completed-download path template. When omitted, explicit legacy layout/template settings remain active; otherwise the source directory is used. See [Transfer Operations](transfer-operations.md) for supported tokens and safety rules. |
+| `--download-destination-exists` | `SLSKD_DOWNLOAD_DESTINATION_EXISTS` | Behavior when a completed filename already exists: `rename` (default) or `overwrite` |
+| `--download-destination-permissions-mode` | `SLSKD_DOWNLOAD_DESTINATION_PERMISSIONS_MODE` | Optional chmod-style mode applied to new completed files and directories on non-Windows systems |
+| `--download-completed-layout` | `SLSKD_DOWNLOAD_COMPLETED_LAYOUT` | Legacy completed-download layout: `remote_folder`, `uploader_folder`, `batch_id`, or `flat`. Used only when `destination.subdirectory` is omitted. |
+| `--download-completed-path-template` | `SLSKD_DOWNLOAD_COMPLETED_PATH_TEMPLATE` | Legacy path template used only when `destination.subdirectory` is omitted. Tokens: `{uploader}`, `{remote_folder}`, `{remote_parent}`, `{remote_filename}`, `{batch_id}`, `{request_name}`, `{date}` / `{date:yyyy-MM}`. |
+| `--download-retry-partial` | `SLSKD_DOWNLOAD_RETRY_PARTIAL` | How to handle partial files between direct download attempts: `resume` or `overwrite` |
+| `--download-retry-incomplete` | `SLSKD_DOWNLOAD_RETRY_INCOMPLETE` | Legacy alias for the retry strategy; `partial` takes precedence when both are set |
+| `--download-retry-attempts` | `SLSKD_DOWNLOAD_RETRY_ATTEMPTS` | Maximum direct download attempts (1–20) |
+| `--download-retry-delay` | `SLSKD_DOWNLOAD_RETRY_DELAY` | Initial delay between direct download attempts, in milliseconds |
+| `--download-retry-max-delay` | `SLSKD_DOWNLOAD_RETRY_MAX_DELAY` | Maximum delay between direct download attempts, in milliseconds |
 
 #### **YAML**
 ```yaml
@@ -382,9 +390,20 @@ transfers:
   download:
     slots: 500
     speed_limit: 1000
-    completed_layout: remote_folder
-    # When set, completed_path_template overrides completed_layout.
+    destination:
+      subdirectory: '${SOURCE_DIRECTORY}'
+      exists: rename # rename or overwrite
+      permissions:
+        # mode: '0644' # chmod-style mode; new directories get corresponding execute bits (non-Windows only)
+    # Legacy layout and template keys are read only when destination.subdirectory is omitted.
+    # completed_layout: remote_folder
     # completed_path_template: '{uploader}/{remote_folder}'
+    retry:
+      partial: resume # resume or overwrite
+      # incomplete: resume # legacy alias; partial takes precedence when both are set
+      attempts: 1
+      delay: 5000 # milliseconds
+      max_delay: 60000 # milliseconds
     auto_retry:
       enabled: true
       retry_delay_seconds: 1800
@@ -399,6 +418,13 @@ transfers:
 ```
 
 The older `global` key is still accepted so existing deployments can upgrade without an immediate edit. New configuration should use `transfers`.
+
+An explicit per-request destination continues to take precedence over the
+global subdirectory template. Generated destinations are normalized under the
+configured download roots before any file is moved. Existing legacy layout and
+template settings remain effective when `destination.subdirectory` is absent.
+See [Transfer Operations](transfer-operations.md) for token behavior, API
+metadata, collision handling, and directory permissions.
 
 Download auto-retry is enabled by default, and `max_attempts: 5` bounds retry
 churn per persisted download request across process restarts. Existing legacy
@@ -811,6 +837,12 @@ private Tailscale or WireGuard control URL and requires
 diagnostics without probing optional relay endpoints on ordinary Gluetun
 installations.
 
+When Gluetun's control server uses an API key or Basic authentication, allow
+the configured credentials to access `GET /v1/publicip/ip`. If
+`integrations.vpn.port_forwarding` is enabled, also allow `GET /v1/portforward`.
+Keep the control server on a private container or host network; do not expose it
+to the public internet.
+
 | Command-Line                | Environment Variable           | Description                                                      |
 | --------------------------- | ------------------------------ | ---------------------------------------------------------------- |
 | `--slsk-listen-ip-address`  | `SLSKD_SLSK_LISTEN_IP_ADDRESS` | The local IP address on which to listen for incoming connections |
@@ -1200,19 +1232,25 @@ By default, most things created by the application are retained indefinitely; th
 
 Completed searches can be configured to be removed from the UI and 'hard' deleted from the database.  It's a good idea to set this to something relatively short, as old searches have diminishing value as they age and the records contain a lot of data.
 
-Transfers can be configured to be removed from the UI after they are complete by specifying retention periods for uploads and downloads separately, and by transfer state; succeeded, errored, and cancelled.
+Transfers can be configured to be removed from the UI after they are complete by specifying retention periods for uploads and downloads separately, and by transfer state; succeeded, errored, and cancelled. Soft-removed transfer rows are permanently deleted after `retention.transfers.removed`. Once all attempts for a terminal download request have been removed, its request record is also deleted when its completion time (or creation time if it has no completion time) exceeds this retention period. Active requests and requests with any remaining download attempt are retained.
 
 Files (on disk) can be configured to be deleted after the age of their last access time exceeds the configured time.  Completed and incomplete files can be configured separately.
 
 Application logs are removed after 14 days by default. Configure at least 2 days of retention; Serilog's daily rollover needs more than one day to keep the active file safely.
 
-All retention periods are specified in minutes, with the exception of `logs`, which is in days.
+Search retention may be left unset (`null`) to keep completed searches regardless
+of age. Event retention is in days. Transfer, removed-transfer, and file
+retention periods are in minutes; log retention is in days. The event count
+limit is separate from age retention, and `0` disables that count limit.
 
 #### **YAML**
 ```yaml
 retention:
   search: 1440 # 1 day
+  events: 30 # days
+  events_max_count: 10000 # 0 disables the count limit
   transfers:
+    removed: 10080 # 7 days; null keeps removed rows indefinitely
     upload:
       succeeded: 1440 # 1 day
       errored: 30
@@ -1226,6 +1264,22 @@ retention:
     incomplete: 43200 # 30 days
   logs: 14 # days (minimum 2)
 ```
+
+| Command-Line | Environment Variable | Description |
+| ------------ | -------------------- | ----------- |
+| `--retention-search` | `SLSKD_RETENTION_SEARCH` | Age limit for completed searches, in minutes; unset or `null` keeps them regardless of age |
+| `--retention-events` | `SLSKD_RETENTION_EVENTS` | Age limit for event records, in days |
+| `--retention-events-max-count` | `SLSKD_RETENTION_EVENTS_MAX_COUNT` | Maximum retained event records; `0` disables the count limit |
+| `--retention-transfers-removed` | `SLSKD_RETENTION_TRANSFERS_REMOVED` | Age limit for soft-removed completed transfers and unreferenced terminal download requests, in minutes; `null` keeps their history indefinitely |
+| `--retention-transfers-upload-succeeded` | `SLSKD_RETENTION_TRANSFERS_UPLOAD_SUCCEEDED` | Age limit for successful uploads, in minutes |
+| `--retention-transfers-upload-errored` | `SLSKD_RETENTION_TRANSFERS_UPLOAD_ERRORED` | Age limit for errored uploads, in minutes |
+| `--retention-transfers-upload-cancelled` | `SLSKD_RETENTION_TRANSFERS_UPLOAD_CANCELLED` | Age limit for cancelled uploads, in minutes |
+| `--retention-transfers-download-succeeded` | `SLSKD_RETENTION_TRANSFERS_DOWNLOAD_SUCCEEDED` | Age limit for successful downloads, in minutes |
+| `--retention-transfers-download-errored` | `SLSKD_RETENTION_TRANSFERS_DOWNLOAD_ERRORED` | Age limit for errored downloads, in minutes |
+| `--retention-transfers-download-cancelled` | `SLSKD_RETENTION_TRANSFERS_DOWNLOAD_CANCELLED` | Age limit for cancelled downloads, in minutes |
+| `--retention-files-complete` | `SLSKD_RETENTION_FILES_COMPLETE` | Age limit for completed files on disk, in minutes |
+| `--retention-files-incomplete` | `SLSKD_RETENTION_FILES_INCOMPLETE` | Age limit for incomplete files on disk, in minutes |
+| `--retention-logs` | `SLSKD_RETENTION_LOGS` | Age limit for application logs, in days (minimum 2) |
 
 # Integrations
 
@@ -1625,6 +1679,16 @@ The application captures metrics internally and can optionally expose these metr
 Metrics are disabled by default, and enabling them will make them available at `/metrics`. Authentication is enabled by default, but the password must be set explicitly before the endpoint will start serving authenticated requests.
 
 If the application will be exposed to the internet, it's a good idea to leave this disabled or to set credentials other than the defaults.  Elements of the system configuration, like operating system, architecture, and drive configuration are included and can this can make it easier for an attacker to exploit a vulnerability in your system.
+
+The configured scrape path and the authenticated metrics API routes accept
+repeatable `include` and `exclude` query parameters for filtering metric-family
+names. Multiple includes match any listed pattern; an exclude match removes
+the family. Each parameter accepts up to 8 regular expressions of up to 128
+characters, with a 100 ms match timeout. No filter parameters preserve the
+existing complete output. These are per-request HTTP filters; CLI and
+environment options continue to control endpoint enablement and authentication.
+
+`slskd_enqueue_queue_limit_snapshot_rejections` counts requests rejected from a recent per-user queue snapshot. It helps distinguish repeated queue-limit denials from requests that needed a fresh transfer-history query; it carries no peer labels.
 
 
 | Command Line         | Environment Variable       | Description                                               |
