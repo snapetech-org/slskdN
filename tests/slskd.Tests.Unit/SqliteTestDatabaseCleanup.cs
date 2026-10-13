@@ -11,6 +11,7 @@ internal static class SqliteTestDatabaseCleanup
     public static void ClearPool(string databasePath)
     {
         using var connection = new SqliteConnection($"Data Source={databasePath}");
+        connection.Open();
         SqliteConnection.ClearPool(connection);
     }
 
