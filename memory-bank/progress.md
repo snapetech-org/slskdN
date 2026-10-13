@@ -1,3 +1,13 @@
+# Update 2026-10-13 06:03 UTC — Pin sandbox inputs and bound validation logs
+
+The trusted launcher now binds workspace, run, dependency, cache, and marker
+sources through inherited file descriptors before host paths are masked. Task
+logs stream to private files with a 16 MiB cap and a visible truncation marker.
+Snapshot filtering excludes extensionless credential names and known credential
+configuration files while preserving source files such as `token.js` and
+`tokens.rs`. Focused tests pass 20/20 through the reviewed trusted launcher;
+exact-head PR #357 checks for `ce9968d5` are pending.
+
 # Update 2026-10-13 — Keep CI triggers unchanged for runner-temp hardening
 
 Repository policy keeps builds on tags, pull requests, and explicit manual

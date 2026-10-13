@@ -16,6 +16,12 @@ findings fail their scan jobs. The repository's default workflow token is now
 read-only. The standalone load harness remains on hosted Linux after the prior
 local SIGBUS.
 
+PR #357 also pins trusted sandbox mount sources through inherited file
+descriptors, caps task logs at 16 MiB with a truncation marker, and excludes
+extensionless credential names while preserving token-named source files. The
+focused trusted launcher and engine suite passes 20/20; exact-head hosted checks
+for `ce9968d5` are pending.
+
 The merged `68b36d3` validation run executed 15/15 tasks and failed two checks
 because `main` advanced during the run; the release-branch-sync check and the
 remediation baseline's nested copy both saw the checkout behind origin/main.
