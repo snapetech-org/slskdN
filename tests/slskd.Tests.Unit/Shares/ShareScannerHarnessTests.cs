@@ -43,7 +43,7 @@ public class ShareScannerHarnessTests
                 fileService: CreateNoHashFileService(),
                 moderationProvider: new slskd.Common.Moderation.NoopModerationProvider());
 
-            using var repository = new SqliteShareRepository($"Data Source={databasePath};Pooling=False");
+            using var repository = new SqliteShareRepository($"Data Source={databasePath}");
             repository.Create(discardExisting: true);
 
             var snapshots = new ConcurrentQueue<slskd.SharedFileCacheState>();
@@ -60,7 +60,7 @@ public class ShareScannerHarnessTests
 
             // A raw copy intentionally excludes the WAL sidecar. Its file rows must still reflect the completed scan.
             File.Copy(databasePath, databaseCopyPath);
-            using (var copiedDatabase = new SqliteConnection($"Data Source={databaseCopyPath};Pooling=False"))
+            using (var copiedDatabase = new SqliteConnection($"Data Source={databaseCopyPath}"))
             {
                 copiedDatabase.Open();
                 using var command = copiedDatabase.CreateCommand();
@@ -68,10 +68,10 @@ public class ShareScannerHarnessTests
                 Assert.Equal(expectedFiles, Convert.ToInt32(command.ExecuteScalar()));
             }
 
-            using var backupRepository = new SqliteShareRepository($"Data Source={backupDatabasePath};Pooling=False");
+            using var backupRepository = new SqliteShareRepository($"Data Source={backupDatabasePath}");
             repository.BackupTo(backupRepository);
             File.Copy(backupDatabasePath, backupCopyPath);
-            using (var copiedBackup = new SqliteConnection($"Data Source={backupCopyPath};Pooling=False"))
+            using (var copiedBackup = new SqliteConnection($"Data Source={backupCopyPath}"))
             {
                 copiedBackup.Open();
                 using var command = copiedBackup.CreateCommand();
@@ -94,6 +94,11 @@ public class ShareScannerHarnessTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabaseCleanup.ClearPool(databasePath);
+            slskd.Tests.Unit.SqliteTestDatabaseCleanup.ClearPool(databaseCopyPath);
+            slskd.Tests.Unit.SqliteTestDatabaseCleanup.ClearPool(backupDatabasePath);
+            slskd.Tests.Unit.SqliteTestDatabaseCleanup.ClearPool(backupCopyPath);
+
             if (Directory.Exists(shareRoot))
             {
                 Directory.Delete(shareRoot, recursive: true);

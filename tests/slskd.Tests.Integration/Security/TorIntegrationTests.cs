@@ -496,23 +496,47 @@ public class TorIntegrationTests
                 {
                     var stream = client.GetStream();
 
-                    // Read SOCKS5 handshake
-                    var handshake = new byte[3];
-                    await stream.ReadExactlyAsync(handshake, ct);
+                    // Read the SOCKS5 version and method count, then consume every advertised method.
+                    var handshakeHeader = new byte[2];
+                    await stream.ReadExactlyAsync(handshakeHeader, ct);
+                    if (handshakeHeader[0] != 0x05)
+                    {
+                        throw new InvalidDataException("Expected a SOCKS5 handshake.");
+                    }
+
+                    var authenticationMethods = new byte[handshakeHeader[1]];
+                    await stream.ReadExactlyAsync(authenticationMethods, ct);
 
                     if (RequireAuth)
                     {
+                        if (Array.IndexOf(authenticationMethods, (byte)0x02) < 0)
+                        {
+                            await stream.WriteAsync(new byte[] { 0x05, 0xFF }, ct);
+                            return;
+                        }
+
                         // Respond with authentication required
                         var authResponse = new byte[] { 0x05, 0x02 }; // SOCKS5, username/password auth
-                        await stream.WriteAsync(authResponse, 0, 2, ct);
+                        await stream.WriteAsync(authResponse, ct);
 
                         // Read auth request
-                        var authRequest = new byte[1];
-                        await stream.ReadExactlyAsync(authRequest, ct);
+                        var authHeader = new byte[2];
+                        await stream.ReadExactlyAsync(authHeader, ct);
+                        if (authHeader[0] != 0x01)
+                        {
+                            throw new InvalidDataException("Expected a SOCKS5 username/password request.");
+                        }
+
+                        var username = new byte[authHeader[1]];
+                        await stream.ReadExactlyAsync(username, ct);
+                        var passwordLength = new byte[1];
+                        await stream.ReadExactlyAsync(passwordLength, ct);
+                        var password = new byte[passwordLength[0]];
+                        await stream.ReadExactlyAsync(password, ct);
 
                         // Send auth result
                         var authResult = AuthSuccess ? (byte)0x00 : (byte)0x01;
-                        await stream.WriteAsync(new byte[] { 0x01, authResult }, 0, 2, ct);
+                        await stream.WriteAsync(new byte[] { 0x01, authResult }, ct);
 
                         if (!AuthSuccess)
                         {
@@ -521,9 +545,17 @@ public class TorIntegrationTests
                     }
                     else
                     {
-                        // Respond to handshake
-                        var handshakeResponse = new byte[] { ResponseVersion, 0x00 }; // Version, no auth
+                        // Select no-auth only when the client offered it.
+                        var selectedMethod = Array.IndexOf(authenticationMethods, (byte)0x00) >= 0
+                            ? (byte)0x00
+                            : (byte)0xFF;
+                        var handshakeResponse = new byte[] { ResponseVersion, selectedMethod };
                         await WriteFragmentedAsync(stream, handshakeResponse, FragmentHandshakeResponse, ct);
+
+                        if (selectedMethod == 0xFF)
+                        {
+                            return;
+                        }
                     }
 
                     await ReadConnectRequestAsync(stream, ct);
@@ -537,6 +569,10 @@ public class TorIntegrationTests
                     {
                         var payload = Encoding.UTF8.GetBytes(PostConnectPayload);
                         await WriteFragmentedAsync(stream, payload, false, ct);
+
+                        // Keep the socket open until the client has consumed the response and payload.
+                        // Closing with unread data can reset the connection on Windows.
+                        await stream.CopyToAsync(Stream.Null, ct);
                     }
                 }
             }
