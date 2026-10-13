@@ -81,6 +81,7 @@ public class ShareScannerHarnessTests
         var databaseCopyPath = $"{databasePath}.copy";
         var backupDatabasePath = $"{databasePath}.backup";
         var backupCopyPath = $"{backupDatabasePath}.copy";
+        var repositoryConnectionString = $"Data Source={databasePath}";
         SqliteShareRepository? repository = null;
         SqliteShareRepository? backupRepository = null;
 
@@ -92,7 +93,6 @@ public class ShareScannerHarnessTests
                 fileService: CreateNoHashFileService(),
                 moderationProvider: new slskd.Common.Moderation.NoopModerationProvider());
 
-            var repositoryConnectionString = $"Data Source={databasePath}";
             repository = new SqliteShareRepository(repositoryConnectionString);
             // ClearPool uses the connection-string identity. The repository normalizes its
             // string, so cleanup must use that exact value rather than the shorter input.
@@ -164,10 +164,10 @@ public class ShareScannerHarnessTests
 
             if (File.Exists(databasePath))
             {
-                using (var poolConnection = new SqliteConnection($"Data Source={databasePath}"))
+                using (var poolConnection = new SqliteConnection(repositoryConnectionString))
                 {
-                    // CountFiles runs after the earlier pool clear and can rent a new connection.
-                    // Open before clearing so SQLite resolves the exact per-database pool.
+                    // CountFiles runs after the earlier clear and can rent a new connection.
+                    // Use the same normalized pool identity as the repository before deleting the file.
                     poolConnection.Open();
                     SqliteConnection.ClearPool(poolConnection);
                 }
