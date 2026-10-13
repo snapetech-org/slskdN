@@ -21,6 +21,39 @@ that database's pool after all test connections are closed and before deleting
 the file. Do not clear global pools while tests can be using them. Keep cleanup
 verification on Windows.
 
+### 0z1795. Keep Filesystem Test Paths Native To The Host (2026-10-13)
+
+**What went wrong:** Several path-validation tests used Unix paths as both
+configured roots and expected canonical results. On Windows, a path beginning
+with `/` is rooted on the current drive and canonicalizes to a drive-qualified
+backslash path, so valid-path tests failed even though the guard preserved the
+root.
+
+**Prevention:** Build test roots with `Path.GetTempPath`, `Path.Combine`, and
+`Path.GetFullPath`. Derive expected values from the same canonical root, and
+use host path APIs for other absolute-path fixtures.
+
+### 0z1796. Discover The Windows Executable In Full-Instance Tests (2026-10-13)
+
+**What went wrong:** Windows integration tests could not start full application
+instances because the test harness searched only extensionless build outputs;
+the Windows build produces `slskd.exe`.
+
+**Prevention:** Resolve platform build artifacts using their real executable
+names, including `.exe`, before reporting that the application was not built.
+Keep the full-instance Windows integration tests in the hosted gate.
+
+### 0z1797. Parse Complete SOCKS Requests In TCP Test Servers (2026-10-13)
+
+**What went wrong:** A SOCKS test server consumed a fixed ten bytes for every
+connect request. Domain-name requests are variable length, leaving client bytes
+unread; Windows reset the connection when the fixture closed it, hiding the
+response-boundary behavior the test was meant to verify.
+
+**Prevention:** Read the SOCKS request header, then consume the address and port
+using the address type and domain length before sending the response or closing
+the client connection.
+
 ### 0z1792. Exclude Dotted And Explicit Credential Material Names (2026-10-13)
 
 **What went wrong:** The trusted test snapshot excluded common extensionless
