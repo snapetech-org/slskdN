@@ -19301,11 +19301,11 @@ Fetch and verify current `origin/main`, push the validated tree to
 `snapetech/slskdN/main`, create the authorized stable `.350` tag, verify hosted
 release publishers and artifacts, then remove task-scoped scratch data.
 
-## Current state — Agent guidance and validation policy refresh — 2026-10-13 00:35 UTC
+## Current state — Agent guidance and validation policy refresh — 2026-10-13 00:45 UTC
 
-The initial PR release-note workflow flagged two fragments present only on the old base side of the comparison. The GitHub PR diff contained only `AGENTS.md` and the three task memory records. Merged current `main` at `2896c6e4d` into the guidance branch with no conflicts and pushed merge commit `301303bca`. The resulting PR still changes only those four files, and the local release-note validator passes against the synchronized base with `release-note: none`.
+The first hosted release-note check flagged two fragments on the old base side of the comparison; the PR diff contained only `AGENTS.md` and the three task memory records. After that sync, `main` advanced again. Merged current `main` at `252e92fb7` without conflicts and pushed merge commit `f48021a48`. The PR still changes only those four files. `git diff --check` and the local release-note opt-out check pass against current `main`.
 
-PR #359 remains open. Hosted checks for head `301303bca` were queued at the latest poll. The separate stable `.350` follow-up remains outstanding and unchanged. No merge or release tag was created.
+PR #359 remains open with `release-note: none`. Hosted checks for the synchronized head were queued at the latest poll. No application tests were run; this remains documentation-only. No merge or release tag was created. The separate stable `.350` follow-up remains outstanding and unchanged.
 
 ### Next Steps
 

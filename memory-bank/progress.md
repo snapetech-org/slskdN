@@ -18999,3 +18999,8 @@ Updated `AGENTS.md` to route local checks through `docs/dev/testing-policy.md` a
 ## Update 2026-10-13 00:35 UTC — Synchronize agent-guidance PR with current main
 
 The first hosted release-note check flagged two existing fragments because its base snapshot had advanced beyond the guidance branch's common ancestor. The PR diff itself contained only `AGENTS.md` and the three required memory records. Merged current `main` at `2896c6e4d` without conflicts and pushed merge commit `301303bca`. The PR still changes only those four intended files. `git diff --check` and the local release-note opt-out check against current `main` pass. Hosted checks for the synchronized head were queued at the latest poll. No application tests were run; this remains documentation-only. No PR merge or release tag was created, and the separate stable `.350` follow-up remains unchanged.
+
+
+## Update 2026-10-13 00:45 UTC — Synchronize agent-guidance PR with latest main
+
+The target branch advanced after the prior sync. Merged current `main` at `252e92fb7` without conflicts and pushed `f48021a48`. The PR diff remains limited to `AGENTS.md` and the three task memory records. `git diff --check` and the local release-note opt-out check pass against current `main`. Hosted checks were queued at the latest poll; no application tests were run for this docs-only change. No PR merge or release tag was created, and the separate stable `.350` follow-up remains unchanged.
