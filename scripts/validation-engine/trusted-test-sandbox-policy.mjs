@@ -85,7 +85,7 @@ const sensitiveName =
 const sensitiveCredentialName =
   /^[.]?(?:auth(?:entication)?|tokens?|credentials?|secrets?|private[-_]?keys?|api[-_]?keys?|access[-_]?tokens?|refresh[-_]?tokens?|client[-_]?secrets?)$/iu;
 const sensitiveCredentialConfigFile =
-  /^[.]?(?:auth(?:entication)?|tokens?|credentials?|secrets?|private[-_]?keys?|api[-_]?keys?|access[-_]?tokens?|refresh[-_]?tokens?|client[-_]?secrets?)[.](?:json|ya?ml|toml|ini|cfg|conf|env|properties|xml|txt)$/iu;
+  /^[.]?(?:auth(?:entication)?|tokens?|credentials?|secrets?|private[-_]?keys?|api[-_]?keys?|access[-_]?tokens?|refresh[-_]?tokens?|client[-_]?secrets?)[.](?:json|ya?ml|toml|ini|cfg|conf|env(?:[.](?!example$)[^/]+)?|properties|xml|txt)$/iu;
 const sensitiveCredentialMaterialFile =
   /^[.]?(?:private[-_]?keys?|api[-_]?keys?|access[-_]?tokens?|refresh[-_]?tokens?|client[-_]?secrets?)[.][^/]+$/iu;
 const sourceCodeFile =
