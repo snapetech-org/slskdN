@@ -41903,3 +41903,20 @@ list syntax that contains it.
 
 **Prevention:** Parse the optional list marker before `uses:` and test both
 list-form and property-form action references against the SHA requirement.
+
+### 0z1816. Use A Logger For The Exact Benchmark Consumer (2026-10-13)
+
+**What went wrong:** Transport benchmarks stored a logger for
+`DirectTransport`, then cast it to unrelated `ILogger<T>` interfaces for the
+transport selector, policy manager, WebSocket transport, and privacy layer.
+Generic logger implementations do not become compatible with another closed
+generic logger type through a cast, so those benchmark methods failed at
+runtime.
+
+**Why:** Replacing test-output logging with a null logger kept one generic
+logger instance and reused it across consumers with different category types.
+
+**Prevention:** Pass each consumer a matching `NullLogger<T>.Instance` and use
+`NullLoggerFactory.Instance` when no provider is needed. Compile and execute
+the benchmark methods that construct these services before treating the
+benchmark host as usable.
