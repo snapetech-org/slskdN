@@ -4,6 +4,14 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1779. Bound Independent Validation Tasks Without Breaking Shared Outputs (2026-10-13)
+
+**What went wrong:** The validation engine awaited every selected task in declaration order, so independent checks and tests could not use available runner capacity.
+
+**Why:** The plan recorded task dependencies, but execution treated the topological order as a required serial schedule. Some tasks also share generated outputs, so removing the sequential loop without explicit resource ownership would introduce collisions.
+
+**Prevention:** Schedule only dependency-ready tasks in a bounded pool. Keep shared-output tasks in an explicit concurrency group, check the candidate identity while tasks run, and contract-test worker limits, dependency release, resource-group exclusion, failure blocking, and receipt accounting.
+
 ### 0z1778. Keep Untrusted Workflow Refs Off Persistent Runners (2026-10-12)
 
 **What went wrong:** Public pull requests and manual runs from refs outside
