@@ -14,6 +14,7 @@ import { PlaceholderSegment } from '../Shared';
 import TransferTable from './TransferTable';
 import TransfersHeader from './TransfersHeader';
 import RequestDetailModal from './RequestDetailModal';
+import { useInterfaceLanguage } from '../../lib/interfaceLocale';
 import React, {
   useCallback,
   useEffect,
@@ -76,6 +77,10 @@ const matchesDirection = (transfer, direction) =>
 const isSucceeded = (state) => state === 'Completed, Succeeded';
 
 const TransferManager = ({ direction, server = { isConnected: true } }) => {
+  const { language, t, languageFor, directionFor } = useInterfaceLanguage();
+  const localizedText = (source) => (
+    <span lang={languageFor(source)} dir={directionFor(source)}>{t(source)}</span>
+  );
   const testId = direction === 'download' ? 'downloads-root' : 'uploads-root';
 
   const storeRef = useRef();
@@ -803,8 +808,10 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
                     }`}
                     onClick={() => updateViewState({ statusFilter: filter.key })}
                     type="button"
+                    lang={languageFor(filter.label)}
+                    dir={directionFor(filter.label)}
                   >
-                    {`${filter.label} (${statusCounts[filter.key] ?? 0})`}
+                    {`${t(filter.label)} (${statusCounts[filter.key] ?? 0})`}
                   </button>
                 )}
               />
@@ -814,7 +821,9 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
             className="transfer-filter-search"
             icon="search"
             onChange={(_, data) => setSearchText(data.value)}
-            placeholder="Filter by name or peer…"
+            placeholder={t('Filter by name or peer…')}
+            lang={language}
+            dir={language === 'ar' ? 'rtl' : 'ltr'}
             size="small"
             value={searchText}
           />
@@ -823,7 +832,9 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
               content="Load the next 250 successful transfers from the server without loading the entire history."
               trigger={
                 <Button
-                  content="Load older completed"
+                  content={t('Load older completed')}
+                  lang={languageFor('Load older completed')}
+                  dir={directionFor('Load older completed')}
                   disabled={historyStatus.loading}
                   icon="history"
                   loading={historyStatus.loading}
@@ -840,8 +851,8 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
         <PlaceholderSegment
           caption={
             connecting
-              ? `Loading ${activeTab}s`
-              : `No ${activeTab}s to display`
+              ? localizedText(activeTab === 'download' ? 'Loading downloads' : 'Loading uploads')
+              : localizedText(activeTab === 'download' ? 'No downloads to display' : 'No uploads to display')
           }
           icon={activeTab}
         />
@@ -849,12 +860,12 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
         <PlaceholderSegment
           caption={
             searchText.trim() || statusFilter !== 'all'
-              ? `No ${activeTab}s match the current filter`
+              ? localizedText('No transfers match the current filter')
               : hideCompleted
-                ? `Successful completed ${activeTab}s are hidden`
+                ? localizedText('Completed transfers are hidden')
               : historyStatus.loading
-                ? `Loading completed ${activeTab} history`
-                : `All loaded ${activeTab}s are completed`
+                ? localizedText('Loading completed history')
+                : localizedText('All loaded transfers are complete')
           }
           icon={searchText.trim() || statusFilter !== 'all' ? 'filter' : 'check'}
         />

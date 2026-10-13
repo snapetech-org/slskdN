@@ -39,10 +39,10 @@ Translate interface labels, help, empty states, validation, notifications, and e
 
 ## Implemented in this PR
 
-System > Experience Preferences offers a browser-local interface-language selector for twelve locales. Primary navigation and its accessibility labels use translated strings with per-key English fallback. Arabic navigation labels receive local language and direction metadata; untranslated pages and the document remain English and left-to-right. Full screen-level translation and app-wide RTL layout review remain outstanding.
+System > Experience Preferences offers a browser-local interface-language selector for twelve locales. Primary navigation and its accessibility labels use translated strings with per-key English fallback. The transfer view also translates status filters, peer/name search, history loading, empty and filtered states, and bulk retry/cancel/remove controls. Transfer records and protocol values remain unchanged. Arabic translated labels receive local language and direction metadata; untranslated pages and the document remain English and left-to-right. Full screen-level translation and app-wide RTL layout review remain outstanding.
 
 Selected regional formatting now applies to dates, numbers, byte sizes, and operational metrics. Saving or resetting preferences refreshes open screens immediately; the current tab remains usable if browser storage is blocked, and another tab's changes are observed. Reset also clears the separately stored interface-language choice.
 
 ## Remaining work
 
-Translate the highest-use search, transfer, room, settings, and error workflows in screen-sized catalog batches. Keep API errors structured until they have stable client-side message keys, then translate them without changing service-wide culture. Verify complete Arabic layout in real workflows before claiming app-wide RTL support.
+Translate remaining search, room, settings, transfer help, and error workflows in screen-sized catalog batches. Keep API errors structured until they have stable client-side message keys, then translate them without changing service-wide culture. Verify complete Arabic layout in real workflows before claiming app-wide RTL support.
