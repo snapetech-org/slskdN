@@ -28,6 +28,14 @@ For dev or build tags, use the same logical version string embedded in the tag.
   main CI workflow now uses read-only token permissions by default and grants
   release write access only to its release job.
 
+- The trusted validation sandbox pins mount sources before masking host paths.
+  Task logs stop at 16 MiB with a truncation marker, and workflow artifacts use
+  names unique to each run attempt.
+
+- Local validation snapshots filter extensionless credentials and non-source
+  files beneath credential-named folders while preserving token-related source
+  code.
+
 - All pull request validation uses GitHub-hosted runners regardless of author.
   Persistent local runners are reserved for trusted `main` validation. The
   repository Actions token defaults to read-only, workflow tokens cannot

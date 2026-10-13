@@ -86,13 +86,25 @@ const sensitiveCredentialName =
   /^(?:auth(?:entication)?|tokens?|credentials?|secrets?)$/iu;
 const sensitiveCredentialConfigFile =
   /^(?:auth(?:entication)?|tokens?|credentials?|secrets?)[.](?:json|ya?ml|toml|ini|cfg|conf|env|properties|xml|txt)$/iu;
+const sourceCodeFile =
+  /[.](?:c|cc|cpp|cs|css|go|h|hpp|java|js|jsx|mjs|php|py|rb|rs|sql|swift|ts|tsx|vue)$/iu;
 
 export function isSensitiveCandidatePath(relativePath) {
   const segments = relativePath.replaceAll(String.fromCharCode(92), '/').split('/');
   if (segments.includes('.git') || segments.includes('node_modules'))
     return true;
+  if (segments.some((segment) => sensitiveName.test(segment)))
+    return true;
+
   const filename = segments.at(-1) ?? '';
-  return segments.some((segment) => sensitiveName.test(segment)) ||
+  if (
     sensitiveCredentialName.test(filename) ||
-    sensitiveCredentialConfigFile.test(filename);
+    sensitiveCredentialConfigFile.test(filename)
+  )
+    return true;
+
+  const insideCredentialDirectory = segments
+    .slice(0, -1)
+    .some((segment) => sensitiveCredentialName.test(segment));
+  return insideCredentialDirectory && !sourceCodeFile.test(filename);
 }
