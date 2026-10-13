@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import { getKpiMetrics } from '../../../lib/telemetry';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -222,7 +223,7 @@ const Metrics = () => {
         </Header>
         <div className="system-metrics-refresh">
           {lastUpdated && (
-            <span>Updated {lastUpdated.toLocaleTimeString()}</span>
+            <span>Updated {lastUpdated.toLocaleTimeString(getRegionalLocale())}</span>
           )}
           <Popup
             content="Fetch the latest Prometheus metrics now to review current application activity."

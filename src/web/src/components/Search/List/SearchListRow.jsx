@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import SearchStatusIcon from '../SearchStatusIcon';
 import { buildDiscoveryGraph } from '../../../lib/discoveryGraph';
 import DiscoveryGraphModal from '../DiscoveryGraphModal';
@@ -218,7 +219,7 @@ const SearchListRow = ({
         </Table.Cell>
         <Table.Cell>{search.responseCount}</Table.Cell>
         <Table.Cell>
-          {search.endedAt ? new Date(search.endedAt).toLocaleTimeString() : '-'}
+          {search.endedAt ? new Date(search.endedAt).toLocaleTimeString(getRegionalLocale()) : '-'}
         </Table.Cell>
         <Table.Cell>
           <SearchActionIcon

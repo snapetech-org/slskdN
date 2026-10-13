@@ -18988,3 +18988,8 @@ The full .NET suite passes 6,145 tests; the full Web suite passes 1,295 tests.
 build/startup, version-change cache check, release-note preview, identity scan,
 route inventory, and GitHub target verification pass. Push and hosted stable
 release verification remain.
+
+
+## 2026-10-13 localization first slice
+
+Added a per-browser regional format control to System > Experience Preferences and applied it to existing Web UI date/time/number formatting. Full interface catalogs and RTL review are not part of this first slice. Validation and release-note preview are pending.

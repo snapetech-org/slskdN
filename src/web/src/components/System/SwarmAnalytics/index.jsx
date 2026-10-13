@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -270,7 +271,7 @@ const SwarmAnalytics = () => {
                   <Grid.Column>
                     <Statistic>
                       <Statistic.Value>
-                        {performanceMetrics.totalDownloads?.toLocaleString() ??
+                        {performanceMetrics.totalDownloads?.toLocaleString(getRegionalLocale()) ??
                           0}
                       </Statistic.Value>
                       <Statistic.Label>Total Downloads</Statistic.Label>
@@ -322,7 +323,7 @@ const SwarmAnalytics = () => {
                   <Grid.Column>
                     <Statistic size="small">
                       <Statistic.Value>
-                        {performanceMetrics.totalChunksCompleted?.toLocaleString() ??
+                        {performanceMetrics.totalChunksCompleted?.toLocaleString(getRegionalLocale()) ??
                           0}
                       </Statistic.Value>
                       <Statistic.Label>Chunks Completed</Statistic.Label>
@@ -448,7 +449,7 @@ const SwarmAnalytics = () => {
                           {formatBytes(peer.averageThroughputBytesPerSecond)}/s
                         </Table.Cell>
                         <Table.Cell>
-                          {peer.chunksCompleted?.toLocaleString() ?? 0}
+                          {peer.chunksCompleted?.toLocaleString(getRegionalLocale()) ?? 0}
                         </Table.Cell>
                         <Table.Cell>
                           {(peer.chunkSuccessRate * 100).toFixed(1)}%

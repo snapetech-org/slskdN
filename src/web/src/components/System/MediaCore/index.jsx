@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
@@ -2768,7 +2769,7 @@ const MediaCore = () => {
                         {retrievalResult.fromCache ? 'Yes' : 'No'}
                         <br />
                         <strong>Retrieved:</strong>{' '}
-                        {new Date(retrievalResult.retrievedAt).toLocaleString()}
+                        {new Date(retrievalResult.retrievedAt).toLocaleString(getRegionalLocale())}
                         <br />
                         <strong>Duration:</strong>{' '}
                         {retrievalResult.retrievalDuration?.totalMilliseconds.toFixed(

@@ -19300,3 +19300,8 @@ verification pass.
 Fetch and verify current `origin/main`, push the validated tree to
 `snapetech/slskdN/main`, create the authorized stable `.350` tag, verify hosted
 release publishers and artifacts, then remove task-scoped scratch data.
+
+
+## Localization rollout
+
+PR #360 now includes a browser-local regional format preference in Experience Preferences. It affects Web UI date, time, and number rendering only; it does not set service-wide culture or translate interface copy. Broader locale catalogs and RTL layout remain planned work.

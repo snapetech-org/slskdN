@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Wishlist.css';
 import { urlBase } from '../../config';
 import {
@@ -35,7 +36,7 @@ const formatDate = (dateString) => {
   if (!dateString) return 'Never';
   const date = new Date(dateString);
   if (Number.isNaN(date.getTime())) return 'Never';
-  return date.toLocaleString();
+  return date.toLocaleString(getRegionalLocale());
 };
 
 const getVisibleHitCount = (item) => item.lastVisibleHitCount ?? item.lastMatchCount ?? 0;

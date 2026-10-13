@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="MediaCorePods.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -1604,10 +1605,10 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <strong>Retrieved:</strong>{' '}
                         {new Date(
                           podMetadataResult.retrievedAt,
-                        ).toLocaleString()}
+                        ).toLocaleString(getRegionalLocale())}
                         <br />
                         <strong>Expires:</strong>{' '}
-                        {new Date(podMetadataResult.expiresAt).toLocaleString()}
+                        {new Date(podMetadataResult.expiresAt).toLocaleString(getRegionalLocale())}
                         <br />
                         <strong>Display Name:</strong>{' '}
                         {podMetadataResult.publishedPod?.displayName}
@@ -1680,12 +1681,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             <strong>Published:</strong>{' '}
                             {new Date(
                               podPublishingResult.publishedAt,
-                            ).toLocaleString()}
+                            ).toLocaleString(getRegionalLocale())}
                             <br />
                             <strong>Expires:</strong>{' '}
                             {new Date(
                               podPublishingResult.expiresAt,
-                            ).toLocaleString()}
+                            ).toLocaleString(getRegionalLocale())}
                           </p>
                         </Message>
                       )}
@@ -1775,7 +1776,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {podPublishingStats.lastPublishOperation
                         ? new Date(
                             podPublishingStats.lastPublishOperation,
-                          ).toLocaleString()
+                          ).toLocaleString(getRegionalLocale())
                         : 'Never'}
                     </p>
                     {podPublishingStats.publicationsByVisibility &&
@@ -1920,7 +1921,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             {membershipResult.signedRecord?.membership?.joinedAt
                               ? new Date(
                                   membershipResult.signedRecord.membership.joinedAt,
-                                ).toLocaleString()
+                                ).toLocaleString(getRegionalLocale())
                               : 'Unknown'}
                           </p>
                         </Message>
@@ -2106,12 +2107,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <strong>Published:</strong>{' '}
                           {new Date(
                             membershipPublishResult.publishedAt,
-                          ).toLocaleString()}
+                          ).toLocaleString(getRegionalLocale())}
                           <br />
                           <strong>Expires:</strong>{' '}
                           {new Date(
                             membershipPublishResult.expiresAt,
-                          ).toLocaleString()}
+                          ).toLocaleString(getRegionalLocale())}
                         </p>
                       </Message>
                     )}
@@ -2170,7 +2171,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {membershipStats.lastOperation
                         ? new Date(
                             membershipStats.lastOperation,
-                          ).toLocaleString()
+                          ).toLocaleString(getRegionalLocale())
                         : 'Never'}
                     </p>
                     {membershipStats.membershipsByRole &&
@@ -2465,7 +2466,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {verificationStats.lastVerification
                         ? new Date(
                             verificationStats.lastVerification,
-                          ).toLocaleString()
+                          ).toLocaleString(getRegionalLocale())
                         : 'Never'}
                     </p>
                   </Message>
@@ -2854,12 +2855,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                               <strong>Registered:</strong>{' '}
                               {new Date(
                                 podRegistrationResult.registeredAt,
-                              ).toLocaleString()}
+                              ).toLocaleString(getRegionalLocale())}
                               <br />
                               <strong>Expires:</strong>{' '}
                               {new Date(
                                 podRegistrationResult.expiresAt,
-                              ).toLocaleString()}
+                              ).toLocaleString(getRegionalLocale())}
                             </p>
                           </Message>
                         )}
@@ -3314,7 +3315,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           {routingStats.lastRoutingOperation
                             ? new Date(
                                 routingStats.lastRoutingOperation,
-                              ).toLocaleString()
+                              ).toLocaleString(getRegionalLocale())
                             : 'Never'}
                         </p>
                       </Message>
@@ -3576,7 +3577,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <Message.Header>Message Storage Statistics</Message.Header>
                   <p>
                     <strong>Total Messages:</strong>{' '}
-                    {storageStats.totalMessages?.toLocaleString() || 0}
+                    {storageStats.totalMessages?.toLocaleString(getRegionalLocale()) || 0}
                     <br />
                     <strong>Estimated Size:</strong>{' '}
                     {(storageStats.totalSizeBytes / (1_024 * 1_024)).toFixed(2)}{' '}
@@ -3584,12 +3585,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     <br />
                     <strong>Oldest Message:</strong>{' '}
                     {storageStats.oldestMessage
-                      ? new Date(storageStats.oldestMessage).toLocaleString()
+                      ? new Date(storageStats.oldestMessage).toLocaleString(getRegionalLocale())
                       : 'None'}
                     <br />
                     <strong>Newest Message:</strong>{' '}
                     {storageStats.newestMessage
-                      ? new Date(storageStats.newestMessage).toLocaleString()
+                      ? new Date(storageStats.newestMessage).toLocaleString(getRegionalLocale())
                       : 'None'}
                     <br />
                     <strong>Pods with Messages:</strong>{' '}
@@ -3637,7 +3638,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         }}
                       >
                         <small style={{ color: '#666' }}>
-                          {new Date(message.timestampUnixMs).toLocaleString()} •{' '}
+                          {new Date(message.timestampUnixMs).toLocaleString(getRegionalLocale())} •{' '}
                           {message.senderPeerId} • {message.channelId}
                         </small>
                         <div style={{ marginTop: '0.25em' }}>
@@ -3702,15 +3703,15 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <Message.Header>Backfill Statistics</Message.Header>
                   <p>
                     <strong>Requests Sent:</strong>{' '}
-                    {backfillStats.totalBackfillRequestsSent?.toLocaleString() ||
+                    {backfillStats.totalBackfillRequestsSent?.toLocaleString(getRegionalLocale()) ||
                       0}
                     <br />
                     <strong>Requests Received:</strong>{' '}
-                    {backfillStats.totalBackfillRequestsReceived?.toLocaleString() ||
+                    {backfillStats.totalBackfillRequestsReceived?.toLocaleString(getRegionalLocale()) ||
                       0}
                     <br />
                     <strong>Messages Backfilled:</strong>{' '}
-                    {backfillStats.totalMessagesBackfilled?.toLocaleString() ||
+                    {backfillStats.totalMessagesBackfilled?.toLocaleString(getRegionalLocale()) ||
                       0}
                     <br />
                     <strong>Data Transferred:</strong>{' '}
@@ -3727,7 +3728,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     {backfillStats.lastBackfillOperation
                       ? new Date(
                           backfillStats.lastBackfillOperation,
-                        ).toLocaleString()
+                        ).toLocaleString(getRegionalLocale())
                       : 'Never'}
                   </p>
                 </Message>
@@ -3781,7 +3782,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             style={{ marginBottom: '0.25em' }}
                           >
                             <strong>{channelId}:</strong>{' '}
-                            {new Date(timestamp).toLocaleString()}
+                            {new Date(timestamp).toLocaleString(getRegionalLocale())}
                           </div>
                         ),
                       )}
@@ -4288,7 +4289,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     {opinionStatistics.maxScore}
                     <br />
                     <strong>Last Updated:</strong>{' '}
-                    {new Date(opinionStatistics.lastUpdated).toLocaleString()}
+                    {new Date(opinionStatistics.lastUpdated).toLocaleString(getRegionalLocale())}
                   </p>
                 </Message>
               )}
@@ -4582,7 +4583,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                               Last Activity:{' '}
                               {new Date(
                                 affinity.lastActivity,
-                              ).toLocaleDateString()}
+                              ).toLocaleDateString(getRegionalLocale())}
                             </small>
                           </div>
                         </Card.Content>

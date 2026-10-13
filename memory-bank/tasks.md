@@ -7351,3 +7351,11 @@ resource completion.
   and startup smoke, and version-change Docker cache check.
 - [ ] Push the validated tree to `snapetech/slskdN/main`, create the authorized
   stable tag, and verify hosted publishers and release artifacts.
+
+
+## T-LOCALIZATION-REGIONAL-FORMAT-20261013
+
+- Add a browser-local regional format preference to System > Experience Preferences.
+- Scope this first implementation to date, time, and number formatting across the shipped Web UI.
+- Keep interface copy, server culture, and machine configuration unchanged; full UI catalogs and RTL layout remain follow-up work.
+- Branch: codex/localization-audit-20261013; PR #360.

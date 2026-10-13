@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Header, Icon, Input, Label, Modal, Table } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
@@ -7,7 +8,7 @@ import TooltipButton from '../Shared/TooltipButton';
 const formatTime = (value) => {
   if (!value) return '—';
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString();
+  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString(getRegionalLocale());
 };
 
 const formatState = (state) => state ?? '—';

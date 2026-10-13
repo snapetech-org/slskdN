@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="MetadataProcessingPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -60,7 +61,7 @@ const MetadataProcessingPanel = () => {
                   <Table.Cell>
                     <Label color={labelColor(item.status)}>{item.status}</Label>
                   </Table.Cell>
-                  <Table.Cell>{new Date(item.startedAt).toLocaleString()}</Table.Cell>
+                  <Table.Cell>{new Date(item.startedAt).toLocaleString(getRegionalLocale())}</Table.Cell>
                   <Table.Cell>{item.detail || 'In progress'}</Table.Cell>
                 </Table.Row>
               ))}

@@ -1,3 +1,4 @@
+import { REGIONAL_FORMAT_OPTIONS } from '../../../lib/regionalFormat';
 import React, { useEffect, useState } from 'react';
 import {
   Button,
@@ -18,6 +19,7 @@ import {
 const storageKey = EXPERIENCE_PREFERENCES_STORAGE_KEY;
 
 const defaults = {
+  regionalFormat: 'system',
   playerVisible: true,
   searchAlbumCandidatesVisible: true,
 };
@@ -40,6 +42,9 @@ const normalizeStoredPreferences = (stored) => {
   }
 
   return {
+    regionalFormat: typeof stored.regionalFormat === 'string' && REGIONAL_FORMAT_OPTIONS.some((option) => option.value === stored.regionalFormat)
+      ? stored.regionalFormat
+      : defaults.regionalFormat,
     playerVisible: typeof stored.playerVisible === 'boolean'
       ? stored.playerVisible
       : defaults.playerVisible,
@@ -55,6 +60,7 @@ const readStoredPreferences = () =>
 const buildReport = (form) =>
   [
     'slskdN browser experience preferences',
+    `Regional format: ${form.regionalFormat}`,
     `Search: album_candidates=${form.searchAlbumCandidatesVisible}`,
     `Player: visible=${form.playerVisible}`,
   ].join('\n');
@@ -165,6 +171,26 @@ const ExperienceSettings = () => {
         itemsPerRow={1}
         stackable
       >
+        <Card fluid>
+          <Card.Content>
+            <Card.Header>
+              <Icon name="globe" />
+              Regional Format
+            </Card.Header>
+            <Card.Meta>Choose how dates, times, and numbers are shown in this browser. Interface text remains English.</Card.Meta>
+          </Card.Content>
+          <Card.Content>
+            <Form>
+              <Form.Select
+                aria-label="Regional format preference"
+                label="Date, time, and number format"
+                onChange={(_, { value }) => update('regionalFormat', value)}
+                options={REGIONAL_FORMAT_OPTIONS}
+                value={form.regionalFormat}
+              />
+            </Form>
+          </Card.Content>
+        </Card>
         <Card fluid>
           <Card.Content>
             <Card.Header>

@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Pods.css';
 import { urlBase } from '../../config';
 import * as pods from '../../lib/pods';
@@ -896,7 +897,7 @@ export class Pods extends Component {
                                   >
                                     {new Date(
                                       message.timestampUnixMs,
-                                    ).toLocaleTimeString()}
+                                    ).toLocaleTimeString(getRegionalLocale())}
                                   </span>
                                 </List.Header>
                                 <List.Description>{message.body}</List.Description>

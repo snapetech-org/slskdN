@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import './TrafficTicker.css';
 import { createTransfersHubConnection } from '../../lib/hubFactory';
 import React, { useEffect, useState } from 'react';
@@ -147,7 +148,7 @@ const TrafficTicker = () => {
                       size="small"
                     />
                     <Popup
-                      content={`${new Date(activity.timestamp).toLocaleTimeString()} - ${activity.direction} ${activity.state}`}
+                      content={`${new Date(activity.timestamp).toLocaleTimeString(getRegionalLocale())} - ${activity.direction} ${activity.state}`}
                       position="top left"
                       trigger={
                         <span className="traffic-activity-text">

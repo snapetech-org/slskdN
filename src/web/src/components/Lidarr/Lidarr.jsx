@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Lidarr.css';
 import * as lidarrAPI from '../../lib/lidarr';
 import * as wishlistAPI from '../../lib/wishlist';
@@ -19,7 +20,7 @@ import {
 
 const formatDate = (iso) => {
   if (!iso) return '—';
-  return new Date(iso).toLocaleString();
+  return new Date(iso).toLocaleString(getRegionalLocale());
 };
 
 const formatRelative = (iso) => {
@@ -175,7 +176,7 @@ const WantedSection = ({ connected }) => {
           <Header.Content>
             Wanted / Missing
             {total > 0 && (
-              <Header.Subheader>{total.toLocaleString()} albums</Header.Subheader>
+              <Header.Subheader>{total.toLocaleString(getRegionalLocale())} albums</Header.Subheader>
             )}
           </Header.Content>
         </Header>
@@ -206,7 +207,7 @@ const WantedSection = ({ connected }) => {
                   <Table.Cell>{album.albumType ?? '—'}</Table.Cell>
                   <Table.Cell>
                     {album.releaseDate
-                      ? new Date(album.releaseDate).toLocaleDateString()
+                      ? new Date(album.releaseDate).toLocaleDateString(getRegionalLocale())
                       : '—'}
                   </Table.Cell>
                 </Table.Row>
@@ -216,7 +217,7 @@ const WantedSection = ({ connected }) => {
 
           <div className="lidarr-pagination">
             <span className="lidarr-pagination-info">
-              {start}–{end} of {total.toLocaleString()}
+              {start}–{end} of {total.toLocaleString(getRegionalLocale())}
             </span>
             <Popup
               content="Load the previous page of Lidarr albums."
@@ -362,7 +363,7 @@ const WishlistSection = () => {
 
           <div className="lidarr-pagination">
             <span className="lidarr-pagination-info">
-              {pageStart}–{pageEnd} of {items.length.toLocaleString()}
+              {pageStart}–{pageEnd} of {items.length.toLocaleString(getRegionalLocale())}
             </span>
             <Popup
               content="Go to the previous page of Lidarr-seeded wishlist items."

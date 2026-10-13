@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import * as identityAPI from '../../lib/identity';
 import ErrorSegment from '../Shared/ErrorSegment';
 import LoaderSegment from '../Shared/LoaderSegment';
@@ -394,7 +395,7 @@ class Contacts extends Component {
                       </Table.Cell>
                       <Table.Cell>
                         {contact.lastSeen
-                          ? new Date(contact.lastSeen).toLocaleString()
+                          ? new Date(contact.lastSeen).toLocaleString(getRegionalLocale())
                           : 'Never'}
                       </Table.Cell>
                       <Table.Cell>

@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import './MessagingV2.css';
 import * as chat from '../../lib/chat';
 import {
@@ -2058,7 +2059,7 @@ const RoomJoinSearch = ({
           {isLoading
             ? 'Loading room directory... type a room name any time.'
             : availableRooms.length > 0
-              ? `${availableRooms.length.toLocaleString()} available rooms. Type to filter or enter a new room name.`
+              ? `${availableRooms.length.toLocaleString(getRegionalLocale())} available rooms. Type to filter or enter a new room name.`
               : requested
                 ? 'Still waiting for the room directory. Type a room name to join or create it.'
                 : 'Type a room name to join or create it.'}

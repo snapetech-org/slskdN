@@ -1,3 +1,4 @@
+import { getRegionalLocale } from './regionalFormat';
 export const formatSeconds = (seconds) => {
   if (seconds === undefined) return '';
   const date = new Date(1_970, 0, 1);
@@ -34,7 +35,7 @@ export const formatBytes = (bytes, decimals = 2) => {
 };
 
 export const formatDate = (date) => {
-  return new Date(date).toLocaleString();
+  return new Date(date).toLocaleString(getRegionalLocale());
 };
 
 export const getFileName = (fullPath) => {

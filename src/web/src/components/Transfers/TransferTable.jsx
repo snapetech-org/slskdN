@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import {
   formatTransferState,
   getFailureReason,
@@ -58,7 +59,7 @@ const formatEta = (transfer) => {
 const formatClock = (value) => {
   if (!value) return '-';
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? '-' : date.toLocaleTimeString();
+  return Number.isNaN(date.getTime()) ? '-' : date.toLocaleTimeString(getRegionalLocale());
 };
 
 const formatElapsed = (ms) => {
@@ -107,9 +108,9 @@ function cellContent(transfer, key) {
     case 'remaining':
       return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.bytesRemaining != null ? formatBytes(transfer.bytesRemaining) : '-'}</span>;
     case 'started':
-      return <span style={{ fontSize: '0.85em' }}>{transfer.startTime ? new Date(transfer.startTime).toLocaleString() : '-'}</span>;
+      return <span style={{ fontSize: '0.85em' }}>{transfer.startTime ? new Date(transfer.startTime).toLocaleString(getRegionalLocale()) : '-'}</span>;
     case 'completed':
-      return <span style={{ fontSize: '0.85em' }}>{transfer.endTime ? new Date(transfer.endTime).toLocaleString() : '-'}</span>;
+      return <span style={{ fontSize: '0.85em' }}>{transfer.endTime ? new Date(transfer.endTime).toLocaleString(getRegionalLocale()) : '-'}</span>;
     case 'bitrate':
       return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.bitRate ? `${transfer.bitRate} kbps` : '-'}</span>;
     case 'samplerate':

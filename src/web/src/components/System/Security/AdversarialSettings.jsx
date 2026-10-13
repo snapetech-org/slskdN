@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import './Security.css';
 import * as securityApi from '../../../lib/security';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -549,7 +550,7 @@ const AdversarialSettings = () => {
                         <strong>Last Connected:</strong>{' '}
                         {new Date(
                           torStatus.LastSuccessfulConnection,
-                        ).toLocaleString()}
+                        ).toLocaleString(getRegionalLocale())}
                       </p>
                     )}
                     <p>

@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -326,7 +327,7 @@ const MediaCoreStats = () => {
                     {mediaCoreDashboard.timestamp
                       ? new Date(
                           mediaCoreDashboard.timestamp,
-                        ).toLocaleString()
+                        ).toLocaleString(getRegionalLocale())
                       : 'N/A'}
                   </p>
                 </Message>

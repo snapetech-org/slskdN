@@ -1,3 +1,4 @@
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -118,7 +119,7 @@ const normalizeReview = (review = {}) => ({
 
 const formatDate = (value) => {
   if (!value) return '-';
-  return new Date(value).toLocaleString();
+  return new Date(value).toLocaleString(getRegionalLocale());
 };
 
 const getVerdictCount = (counts = {}, key, numericKey) =>
