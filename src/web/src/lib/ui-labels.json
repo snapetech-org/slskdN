@@ -1610,18 +1610,18 @@
     "id": "Muat item selesai yang lebih lama"
   },
   "Download": {
-    "es": "Descarga",
+    "es": "Descargar",
     "zh-Hans": "下载",
     "hi": "डाउनलोड",
     "de": "Herunterladen",
     "ja": "ダウンロード",
-    "fr": "Téléchargement",
-    "pt-BR": "Download",
+    "fr": "Télécharger",
+    "pt-BR": "Baixar",
     "ar": "تنزيل",
     "ko": "다운로드",
     "zh-Hant": "下載",
     "vi": "Tải xuống",
-    "id": "Unduhan"
+    "id": "Unduh"
   },
   "Upload": {
     "es": "Subida",
@@ -44856,7 +44856,7 @@
     "id": "Perjalanan darat, sampler label, teman recs"
   },
   "Role": {
-    "es": "Role",
+    "es": "Rol",
     "zh-Hans": "角色",
     "hi": "भूमिका",
     "de": "Rolle",
