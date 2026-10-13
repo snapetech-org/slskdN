@@ -1,18 +1,10 @@
 # UI localization roadmap
 
-## Existing support and verified gap
+## Current support and verified scope
 
-The shipped UI is React under `src/web/`; the app has no UI catalog or language preference. Historical uses of “localize” refer to filesystem paths, and the MilkDrop translator converts shader code. The ASP.NET localization assemblies under `publish/` are framework dependencies, not app translations.
+The React UI in `src/web/` has a browser-local interface-language selector and catalogs for twelve locales. Catalog values use English source strings as keys, fall back to English when a value is unavailable, and preserve user-provided content such as filenames, paths, usernames, room names, and protocol values. This change maps the covered app-owned error flows to stable source keys or localized fallback messages instead of displaying raw server prose; other API error paths still need review.
 
-There is a prior design task, T-1297, to localize the privacy UI (P3, medium), with proposed privacy keys in an archived design. A progress note also calls one older UI “internationalization ready,” but no runtime locale catalog or selector was added. Treat T-1297 as the first focused extraction slice, not as existing localization support.
-
-## Implementation plan
-
-1. Start with the privacy and security UI strings from T-1297, then extract the rest of `src/web/` in coherent screen-sized batches.
-2. Extend the compact shell catalog with screen-sized batches and English per-key fallback. Add a full message framework when dynamic errors or plural rules make it useful, with key/placeholder checks; migrate app-owned API validation prose to stable error codes and map those codes to browser catalog keys instead of rendering raw server text.
-3. Add Display Language under the existing System > Experience preferences and persist it in this browser. Apply it immediately without changing service-wide culture or machine settings.
-4. Format dates, counts, and durations from the selected locale. Keep filenames, paths, usernames, room names, protocol values, and API identifiers unchanged.
-5. Add locales in the ranked order below. Arabic requires document `lang`/ `dir`, CSS logical properties, and RTL checks for privacy controls, transfers, chat, search, and dialogs.
+The current catalog has 4,863 source keys, of which 4,505 are used by the UI; the active UI coverage is 54,060 locale cells across twelve target languages. The catalog also retains 358 entries that are not referenced by current UI source. Arabic UI strings carry local language and direction metadata; this does not establish app-wide right-to-left layout support.
 
 ## First-pass locale order
 
@@ -39,7 +31,7 @@ Translate interface labels, help, empty states, validation, notifications, and e
 
 ## Implemented in this PR
 
-System > Experience Preferences offers a browser-local interface-language selector for twelve locales. The shipped Web UI now localizes 4,450 source strings across browsing, search, chat, rooms, collections, player, wishlist, transfers, and system screens, including app-owned statuses, messages, and accessibility labels. The catalog audit covered 53,400 locale cells with no missing translations or placeholder mismatches. Media and user-provided content, paths, and raw API/protocol values remain unchanged. Arabic strings carry local language and direction metadata.
+System > Experience Preferences offers a browser-local interface-language selector for twelve locales. The shipped Web UI localizes 4,505 source strings across browsing, search, chat, rooms, collections, player, wishlist, transfers, dashboard, and system screens, including app-owned statuses, messages, and accessibility labels. The catalog audit covered 54,060 active locale cells with no missing translations or placeholder mismatches. Media and user-provided content, paths, and raw API/protocol values remain unchanged. Arabic strings carry local language and direction metadata.
 
 Selected regional formatting now applies to dates, numbers, byte sizes, and operational metrics. System metrics and network views use localized compact counts and decimal byte sizes; zero-byte values retain locale digits. Per-label language and direction helpers are shared with UI strings. Saving or resetting preferences refreshes open screens immediately; the current tab remains usable if browser storage is blocked, and another tab's changes are observed. Reset also clears the separately stored interface-language choice.
 
@@ -47,4 +39,4 @@ SongID and source-feed import validation responses use stable error codes, with 
 
 ## Remaining work
 
-The catalog translations were machine-generated and still need fluent-speaker review. Continue migrating any remaining app-owned API failures returned as prose, and route remaining error displays through stable codes or localized fallbacks. Review the full Arabic layout interactively at narrow and desktop widths before claiming app-wide RTL support.
+The catalog translations were machine-generated and still need fluent-speaker review. Continue migrating any remaining app-owned API failures returned as prose, and route remaining error displays through stable codes or localized fallbacks. Review additional Arabic workflows at narrow and desktop widths before claiming app-wide right-to-left support. The VM review for this change covered Arabic at desktop and mobile widths on `/system/metrics` and `/downloads`; it does not cover every screen or establish full RTL support.

@@ -38,6 +38,12 @@ const getWorkArtist = (notification = {}) =>
   notification.workRef?.Creator ||
   '';
 
+const getSubscriptionScopeSource = (scope) => ({
+  trusted: 'Trusted',
+  realm: 'Realm',
+  local: 'Local',
+}[String(scope || '').toLowerCase()]);
+
 const parseList = (value = '') =>
   value
     .split(',')
@@ -57,7 +63,7 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
   const [notifications, setNotifications] = useState([]);
   const [routeTargets, setRouteTargets] = useState('');
   const [scope, setScope] = useState('trusted');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState(null);
   const [subscriptions, setSubscriptions] = useState([]);
   const [unreadOnly, setUnreadOnly] = useState(false);
 
@@ -72,12 +78,8 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
       ]);
       setSubscriptions(asArray(subscriptionsResponse.data).filter(isObject));
       setNotifications(asArray(notificationsResponse.data).filter(isObject));
-    } catch (loadError) {
-      setError(
-        loadError?.response?.data ||
-          loadError?.message ||
-          'Unable to load release radar.',
-      );
+    } catch {
+      setError('Unable to load release radar.');
     }
   };
 
@@ -100,16 +102,15 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
         mutedReleaseGroupIds: parseList(mutedReleaseGroups),
         scope,
       });
-      setStatus(interfaceText('Watching {artist}.', { artist: artistName.trim() || artistId.trim() }));
+      setStatus({
+        source: 'Watching {artist}.',
+        values: { artist: artistName.trim() || artistId.trim() },
+      });
       setArtistId('');
       setArtistName('');
       await loadRadar();
-    } catch (subscribeError) {
-      setError(
-        subscribeError?.response?.data ||
-          subscribeError?.message ||
-          interfaceText('Unable to save release radar subscription.'),
-      );
+    } catch {
+      setError('Unable to save release radar subscription.');
     }
   };
 
@@ -120,17 +121,12 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
         notificationId: notification.id,
         targetPeerIds: parseList(routeTargets),
       });
-      setStatus(interfaceText(
-        response.data?.success ? 'Route sent for {title}.' : 'Route recorded for {title}.',
-        { title: getWorkTitle(notification) },
-      ));
-    } catch (routeError) {
-      setError(
-        routeError?.response?.data?.errorMessage ||
-          routeError?.response?.data ||
-          routeError?.message ||
-          interfaceText('Unable to route release radar notification.'),
-      );
+      setStatus({
+        source: response.data?.success ? 'Route sent for {title}.' : 'Route recorded for {title}.',
+        values: { title: getWorkTitle(notification) },
+      });
+    } catch {
+      setError('Unable to route release radar notification.');
     }
   };
 
@@ -226,8 +222,21 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
           }
          {...interfaceTextProps("Reload release radar subscriptions and notifications from the local backend.")}/>
       </Form>
-      {status && <Message compact size="mini">{status}</Message>}
-      {error && <Message compact error size="mini">{String(error)}</Message>}
+      {status && (
+        <Message compact size="mini">
+          <LocalizedText
+            source={status.source}
+            values={status.values?.title === 'Unresolved radar hit'
+              ? { ...status.values, title: interfaceText('Unresolved radar hit') }
+              : status.values}
+          />
+        </Message>
+      )}
+      {error && (
+        <Message compact error size="mini">
+          <LocalizedText source={error} />
+        </Message>
+      )}
       <div className="search-acquisition-profile-strip">
         <Label basic>
           <LocalizedText source={"Subscriptions"} /><Label.Detail>{subscriptions.length}</Label.Detail>
@@ -237,17 +246,23 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
         </Label>
       </div>
       <List divided relaxed>
-        {subscriptions.map((subscription) => (
-          <List.Item key={subscription.id || subscription.artistId}>
-            <List.Icon name={subscription.enabled ? 'rss' : 'pause circle'} />
-            <List.Content>
-              <List.Header>{subscription.artistName || subscription.artistId}</List.Header>
-              <List.Description>
-                {subscription.scope} <LocalizedText source={"scope · muted"} />{" "}{asArray(subscription.mutedReleaseGroupIds).length}
-              </List.Description>
-            </List.Content>
-          </List.Item>
-        ))}
+        {subscriptions.map((subscription) => {
+          const scopeSource = getSubscriptionScopeSource(subscription.scope);
+
+          return (
+            <List.Item key={subscription.id || subscription.artistId}>
+              <List.Icon name={subscription.enabled ? 'rss' : 'pause circle'} />
+              <List.Content>
+                <List.Header>{subscription.artistName || subscription.artistId}</List.Header>
+                <List.Description>
+                  {scopeSource ? <LocalizedText source={scopeSource} /> : subscription.scope}{' '}
+                  <LocalizedText source="scope · muted" />{' '}
+                  {asArray(subscription.mutedReleaseGroupIds).length}
+                </List.Description>
+              </List.Content>
+            </List.Item>
+          );
+        })}
       </List>
       <Form>
         <Form.Input
@@ -261,26 +276,33 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
       <List divided relaxed>
         {notifications.map((notification) => {
           const title = getWorkTitle(notification);
+          const hasResolvedTitle = title !== 'Unresolved radar hit';
+          const localizedTitle = hasResolvedTitle ? title : interfaceText('Unresolved radar hit');
           const artist = getWorkArtist(notification);
 
           return (
             <List.Item key={notification.id}>
               <List.Icon name={notification.read ? 'check circle' : 'bell'} />
               <List.Content>
-                <List.Header>{[artist, title].filter(Boolean).join(' - ') || title}</List.Header>
+                <List.Header>
+                  {[artist, hasResolvedTitle ? title : null].filter(Boolean).join(' - ') || (
+                    <LocalizedText source="Unresolved radar hit" />
+                  )}
+                </List.Header>
                 <List.Description>
-                  {notification.sourceRealm || 'unknown realm'} · {Math.round((notification.confidence || 0) * 100)}%
+                  {notification.sourceRealm || <LocalizedText source="Unknown realm" />}
+                  {' · '}{Math.round((notification.confidence || 0) * 100)}%
                 </List.Description>
                 <Popup
                   content={interfaceText("Route this radar notification to explicitly listed trusted peers through the backend route service.")}
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Route {title} radar hit", { "title": (title) })}
+                      aria-label={interfaceText('Route {title} radar hit', { title: localizedTitle })}
                       onClick={() => routeNotification(notification)}
                       size="mini"
                       type="button"
-                     {...interfaceTextProps("Route {title} radar hit")}>
+                     {...interfaceTextProps('Route {title} radar hit', { title: localizedTitle })}>
                       <Icon name="send" />
                       <LocalizedText source={"Route"} /></Button>
                   }

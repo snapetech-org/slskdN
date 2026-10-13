@@ -305,11 +305,9 @@ const TransfersHeader = ({
          {...interfaceTextProps("Automatically find and replace stuck downloads with alternative sources. Replacements must be within {autoReplaceThreshold}% file size. This is separate from automatic retry of failed downloads; disable transfers.download.auto_retry.enabled to stop those retries.")}/>
         <Nbsp />
         <Popup
-          content={
-            canApplyHumanCheck
-              ? 'Automatically answer private messages that look like human-check or share-gate prompts. This helps with peer gates before or during downloads.'
-              : 'Remember this preference in the browser. Enable remote configuration to apply it to the daemon so replies are sent even when you are not on this pane.'
-          }
+          content={localizedText(t(canApplyHumanCheck
+            ? 'Automatically answer private messages that look like human-check or share-gate prompts. This helps with peer gates before or during downloads.'
+            : 'Remember this preference in the browser. Enable remote configuration to apply it to the daemon so replies are sent even when you are not on this pane.'))}
           position="bottom right"
           trigger={
             <Checkbox
@@ -317,7 +315,7 @@ const TransfersHeader = ({
               className="human-check-auto-response-toggle"
               disabled={humanCheckSaving}
               hidden={direction === 'upload'}
-              label={humanCheckError ? 'Auto Reply (local)' : 'Auto Reply'}
+              label={localizedText(t(humanCheckError ? 'Auto Reply (local)' : 'Auto Reply'))}
               onChange={(_, data) => setHumanCheckAutoResponse(data.checked)}
               toggle
             />

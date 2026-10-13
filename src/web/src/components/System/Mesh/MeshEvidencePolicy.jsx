@@ -186,16 +186,22 @@ const MeshEvidencePolicy = () => {
           >
             {outboundEvidenceTypes.map((evidenceType) => {
               const enabled = policy.outbound[evidenceType.id] === true;
+              const label = interfaceText(evidenceType.label);
+              const actionSource = enabled ? 'Disable {label} publication' : 'Enable {label} publication';
+              const detailSource = enabled
+                ? 'Disable publication of {label}. This remains local policy state until backend federation is wired.'
+                : 'Enable publication of {label}. This remains local policy state until backend federation is wired.';
 
               return (
                 <List.Item key={evidenceType.id}>
                   <List.Content floated="right">
                     <Popup
-                      content={interfaceText(enabled ? "Disable publication of {label}. This remains local policy state until backend federation is wired." : "Enable publication of {label}. This remains local policy state until backend federation is wired.", { label: interfaceText(evidenceType.label) })}
+                      content={<LocalizedText source={detailSource} values={{ label }} />}
                       position="top center"
                       trigger={
                         <Checkbox
-                          aria-label={interfaceText(enabled ? "Disable {label} publication" : "Enable {label} publication", { label: interfaceText(evidenceType.label) })}
+                          aria-label={interfaceText(actionSource, { label })}
+                          {...interfaceTextProps(actionSource, { label })}
                           checked={enabled}
                           onChange={(_event, { checked }) =>
                             toggleOutbound(evidenceType, checked)

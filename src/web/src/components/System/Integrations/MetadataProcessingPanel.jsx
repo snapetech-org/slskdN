@@ -42,7 +42,7 @@ const localizedMetadataStatus = (value) => {
 };
 
 const LocalizedMetadataDetail = ({ source }) => {
-  if (!source) return <LocalizedText source="In progress" />;
+  if (!source || source.toLowerCase() === 'in progress') return <LocalizedText source="In Progress" />;
   const templates = [
     [/^Fingerprint extraction failed: ([^:]+): (.*)$/, 'Fingerprint extraction failed: {exceptionType}: {message}', (m) => ({ exceptionType: m[1], message: m[2] })],
     [/^Hash processing failed \((.*)\)$/, 'Hash processing failed ({exceptionType})', (m) => ({ exceptionType: m[1] })],
@@ -55,7 +55,7 @@ const LocalizedMetadataDetail = ({ source }) => {
     if (match) return <LocalizedText source={template} values={values(match)} />;
   }
   const known = new Set([
-    'In progress', 'Not a supported audio file', 'File is too small for hashing',
+    'Not a supported audio file', 'File is too small for hashing',
     'Existing hash reused', 'Hash computation failed', 'Hash stored',
     'Fingerprint stored', 'No fingerprint produced', 'Chromaprint is not configured',
     'AcoustID or MusicBrainz is not configured', 'Fingerprint data is unavailable',
@@ -113,7 +113,7 @@ const MetadataProcessingPanel = () => {
                     <Label color={labelColor(item.status)}>{localizedMetadataStatus(item.status)}</Label>
                   </Table.Cell>
                   <Table.Cell>{new Date(item.startedAt).toLocaleString(getRegionalLocale())}</Table.Cell>
-                  <Table.Cell><LocalizedMetadataDetail source={item.detail || 'In progress'} /></Table.Cell>
+                  <Table.Cell><LocalizedMetadataDetail source={item.detail || 'In Progress'} /></Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>
