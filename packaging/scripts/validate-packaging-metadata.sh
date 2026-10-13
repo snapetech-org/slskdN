@@ -146,9 +146,11 @@ reject_literal packaging/scripts/run-release-gate.sh 'timeout --preserve-status'
 # Validate the job-wide, fail-closed runner-temp setup instead of requiring a
 # step-scoped TMPDIR value that cannot reach later build and test steps.
 bash scripts/check-dotnet-runtime-matrix.sh
-expect_literal .github/workflows/ci.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
-expect_literal .github/workflows/e2e-tests.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
-expect_literal .github/workflows/build-on-tag.yml 'path: ${{ runner.temp }}/slskdn-validation-*/'
+# Keep the evidence uploads limited to the same paths enforced by the YAML contract.
+for workflow in .github/workflows/ci.yml .github/workflows/e2e-tests.yml .github/workflows/build-on-tag.yml; do
+    expect_literal "$workflow" '${{ runner.temp }}/slskdn-validation-*/receipt.json'
+    expect_literal "$workflow" '${{ runner.temp }}/slskdn-validation-*/*.log'
+done
 reject_literal .github/workflows/ci.yml 'path: /tmp/slskdn-validation-*/'
 reject_literal .github/workflows/e2e-tests.yml 'path: /tmp/slskdn-validation-*/'
 expect_literal scripts/verify-release-artifacts.sh 'SHA256SUMS.txt'
