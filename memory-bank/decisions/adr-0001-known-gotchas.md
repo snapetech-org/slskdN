@@ -4,6 +4,21 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1837. Keep BenchmarkDotNet Output Aligned With Its Verifier (2026-10-13)
+
+**What went wrong:** The HashDb benchmark completed and returned success, but
+the required verification step found no report. BenchmarkDotNet wrote its
+artifacts relative to the repository root while the verifier and uploader
+searched under the performance-test project directory.
+
+**Why:** BenchmarkDotNet resolves `--artifacts` relative to the workflow's
+working directory. The output, verifier, and upload paths used different
+directories.
+
+**Prevention:** Use the same explicit project-relative results directory for
+benchmark output, verification, and upload. Keep a workflow contract test that
+checks the producer and consumers stay aligned, and require a measured report.
+
 ### 0z1803. Open The SQLite Cleanup Connection Before Clearing Its Pool (2026-10-13)
 
 **What went wrong:** The test cleanup helper called `SqliteConnection.ClearPool`

@@ -77,7 +77,7 @@ jobs:
             --buildTimeout 600 \
             --stopOnFirstError \
             --exporters json \
-            --artifacts BenchmarkDotNet.Artifacts
+            --artifacts tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts
 
       - name: Test benchmark result verifier
         run: python3 scripts/test_verify_benchmark_results.py

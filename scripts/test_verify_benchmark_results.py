@@ -17,6 +17,17 @@ BENCHMARK = (
 
 
 class BenchmarkResultVerifierTests(unittest.TestCase):
+    def test_workflow_output_matches_verifier_and_upload_path(self) -> None:
+        repository = SCRIPT.parents[1]
+        workflow = (repository / ".github/workflows/ci-enhancements.yml").read_text(
+            encoding="utf-8"
+        )
+        artifacts = "tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts"
+        results = f"{artifacts}/results"
+
+        self.assertIn(f"--artifacts {artifacts}", workflow)
+        self.assertGreaterEqual(workflow.count(results), 3)
+
     def run_verifier(self, report: object | None) -> subprocess.CompletedProcess[str]:
         with tempfile.TemporaryDirectory(prefix="slskdn-benchmark-verifier-") as temp:
             results = Path(temp)
