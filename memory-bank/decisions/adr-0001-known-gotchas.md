@@ -4,6 +4,35 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1802. Clear The Pool For The Database The Test Actually Opens (2026-10-13)
+
+**What went wrong:** A Windows test cleared the pool for `pods.db`, but its
+service graph opened `wishlist.db`; deleting the temporary app directory then
+failed because the wishlist database was still held open.
+
+**Why:** SQLite pools are keyed by connection string. Clearing a different
+database's pool does not release the handle that owns the file being deleted.
+
+**Prevention:** Trace test startup to the exact database paths it creates, then
+clear each corresponding pool after its owners are closed and before deleting
+the temporary directory. Keep the database filename tied to the tested
+service graph rather than copying a nearby pool-clear example.
+
+### 0z1801. Await Canceled Work Before Deleting Test Databases (2026-10-13)
+
+**What went wrong:** A timed share scan requested cancellation and immediately
+failed its timeout assertion. Cleanup then disposed and deleted the SQLite
+database while the canceled scan task could still be using it, so the cleanup
+error hid the original timeout.
+
+**Why:** Requesting cancellation is asynchronous; it does not prove background
+work has stopped.
+
+**Prevention:** Await the scan task after requesting cancellation, then report
+the original timeout only after the worker has drained. Dispose all task-owned
+resources before deleting test data, and preserve the primary failure if
+cleanup also fails.
+
 ### 0z1796. Use StringComparer With xUnit String Equality (2026-10-13)
 
 **What went wrong:** A platform-sensitive path assertion passed a
