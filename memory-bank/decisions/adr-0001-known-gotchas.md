@@ -4,6 +4,34 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1824. Keep Share-Scan Harness Pooling Representative (2026-10-13)
+
+**What went wrong:** The large synthetic share-scan test disabled SQLite
+pooling so it could copy the database while the repository was still in use.
+On Windows CI, the scan then indexed only 280 of 480 files before its 30-second
+deadline.
+
+**Why:** The scanner opens a database connection for each write. Disabling
+pooling makes this performance test repeatedly create physical connections,
+which does not represent the production write path.
+
+**Prevention:** Keep pooling enabled during the scan and clear only the idle
+pool for that test's unique database before making a raw file copy. Do not use
+global pool clearing or weaken the complete-file-count assertion.
+
+### 0z1825. Keep Unraid Environment Options In Sync (2026-10-13)
+
+**What went wrong:** The config reference documented direct-download retry and
+retention environment variables, but the Unraid Community Apps template omitted
+them. The packaging metadata gate rejected the mismatch.
+
+**Why:** Documented options and container environment variables are separate
+configuration surfaces; adding one does not update the other automatically.
+
+**Prevention:** When adding or documenting an `SLSKD_` environment variable,
+add its target to the Unraid template and run the packaging metadata validator.
+Keep related settings together in the template.
+
 ### 0z1823. Bound Windows Test-Database Delete Retries (2026-10-13)
 
 **What went wrong:** Windows CI still reported a share-scan database in use

@@ -92,7 +92,8 @@ public class ShareScannerHarnessTests
                 fileService: CreateNoHashFileService(),
                 moderationProvider: new slskd.Common.Moderation.NoopModerationProvider());
 
-            repository = new SqliteShareRepository($"Data Source={databasePath};Pooling=False");
+            var repositoryConnectionString = $"Data Source={databasePath}";
+            repository = new SqliteShareRepository(repositoryConnectionString);
             repository.Create(discardExisting: true);
 
             var snapshots = new ConcurrentQueue<slskd.SharedFileCacheState>();
@@ -106,6 +107,13 @@ public class ShareScannerHarnessTests
                 TimeSpan.FromSeconds(30),
                 "Synthetic share-scan harness").ConfigureAwait(false);
             stopwatch.Stop();
+
+            // The raw database copy below must not include a pooled connection handle. Keep pooling
+            // enabled during the scan so this test exercises the same write path as production.
+            using (var poolConnection = new SqliteConnection(repositoryConnectionString))
+            {
+                SqliteConnection.ClearPool(poolConnection);
+            }
 
             // A raw copy intentionally excludes the WAL sidecar. Its file rows must still reflect the completed scan.
             File.Copy(databasePath, databaseCopyPath);
