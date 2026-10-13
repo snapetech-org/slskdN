@@ -42300,3 +42300,20 @@ outer task timed out.
 **Prevention:** Keep Unix socket fixture paths short even when `TMPDIR` is
 nested, and register cleanup hooks before opening test servers so setup errors
 cannot strand handles.
+
+### 0z1839. Clear the Exact Normalized SQLite Connection Pool (2026-10-13)
+
+**What went wrong:** A Windows share-scan test cleared a pool using its short
+input connection string, but `SqliteShareRepository` normalizes that string
+before opening connections. The test therefore cleared a different pool and
+left the repository's pooled database handle alive until cleanup exhausted its
+sharing-lock retries.
+
+**Why:** `Microsoft.Data.Sqlite` associates a pool group with the connection
+string identity. Equivalent SQLite options in differently formatted strings
+do not guarantee the same pool group. Linux can unlink an open database file,
+so this mismatch may appear only in Windows cleanup.
+
+**Prevention:** Clear a repository-owned pool with that repository's exact
+`ConnectionString`, after the repository's final use. Do not assume the
+original input string identifies the normalized pool.
