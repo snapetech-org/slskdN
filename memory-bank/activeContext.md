@@ -1,4 +1,4 @@
-## Current state — PR #357 Windows gate remediation — 2026-10-13 22:46 UTC
+## Current state — PR #357 exact-head validation — 2026-10-13 22:49 UTC
 
 The pushed PR head is `a2bb9fdff2d27c09fc67ba83c6a1c177c70e1089`, based on
 `b46ceb3a7997ae83ff14b756772e24f7ee172e4f`. GitHub reports it mergeable, and
@@ -9,28 +9,27 @@ fingerprint test expected PCM overflow although its fake FFmpeg emits only
 stderr. The integration suite passed 293/293 and regression/API tests passed
 74/74. The Nix Package Smoke and Local Identity checks also passed on this head.
 
-The local fixes set `pooling: false` for the disposable catalogue store and
-restore the fingerprint assertion to the fake process's actual no-PCM result.
-The new ADR entries are `0z1906` and `0z1907`. The focused trusted-sandbox
-.NET test process stopped after more than seven minutes without output; it
-produced no result, and no test process remains. Treat the local focused run as
-unknown. The candidate fixes are not pushed yet. The prior `./bin/lint` and
-release-note preview passed on `a2bb9fd`; all exact-head workflows must be
-reconciled again after the fix push.
+The catalogue fixture now uses `pooling: false`, and its cleanup no longer
+clears an unopened mismatched pool. The fingerprint assertion matches the fake
+process's no-PCM output. ADR entries `0z1906` and `0z1907` record both causes.
+The focused trusted-sandbox .NET test process stopped after more than seven
+minutes without output; it produced no result, and no test process remains.
+Treat the local focused run as unknown.
 
-The remaining `a2bb9fd` workflows are stale once the fixes are pushed. At this
-update, CI, CodeQL, and E2E are in progress; CI Enhancements, Release-note
-contract, and dependency submission are queued. Dependabot alert 120 remains
-open for `Microsoft.AspNetCore.SignalR.Common`; its first patched version is
-10.0.13, now present in the updated dependency graph.
+The fixes were committed as `d87578e8a` and pushed to PR #357. The release-note
+preview passed and the validation-engine plan reported 921 test files, 18
+planned tasks, and 7/8 command prerequisites available; local `pnpm` is absent.
+`./bin/lint` is still consuming CPU in Roslyn and has not reported an outcome.
+The new GitHub runs for `d87578e8a` were queued or pending when this update was
+written. This status update itself changes the candidate, so those results
+must not count for the next head.
 
 ### Next Steps
 
 - Record the focused sandbox test as unknown; it stopped without reporting cases.
-- Commit and push the SQLite fixture and FFmpeg assertion fixes.
-- Refresh the plan and release-note preview for the new commit, then reconcile
-  full Mode 2, Windows Smoke, CI Enhancements, E2E, CodeQL, and other applicable
-  exact-head checks.
+- Push this status update, then track the fresh exact-head CI, Windows Smoke,
+  CI Enhancements, E2E, CodeQL, identity, release-note, and dependency results.
+- Finish local lint if it completes; keep the focused test run recorded as unknown.
 - Recheck the PR base and review threads; merge only after every required
   exact-head result passes.
 
