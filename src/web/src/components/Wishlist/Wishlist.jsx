@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
 import { getRegionalLocale } from '../../lib/regionalFormat';
@@ -1049,7 +1050,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
       toast.info(interfaceText("Restored {directory} from {username}", { "directory": (rule.directory), "username": (rule.username) }));
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data ?? error?.message ?? error);
+      toast.error(getApiErrorMessage(error, { t: interfaceText }));
     }
   };
 

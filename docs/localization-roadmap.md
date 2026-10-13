@@ -9,7 +9,7 @@ There is a prior design task, T-1297, to localize the privacy UI (P3, medium), w
 ## Implementation plan
 
 1. Start with the privacy and security UI strings from T-1297, then extract the rest of `src/web/` in coherent screen-sized batches.
-2. Extend the compact shell catalog with screen-sized batches and English per-key fallback. Add a full message framework when dynamic errors or plural rules make it useful, with key/placeholder checks; keep .NET API errors structured so each browser can render them in its selected language.
+2. Extend the compact shell catalog with screen-sized batches and English per-key fallback. Add a full message framework when dynamic errors or plural rules make it useful, with key/placeholder checks; migrate app-owned API validation prose to stable error codes and map those codes to browser catalog keys instead of rendering raw server text.
 3. Add Display Language under the existing System > Experience preferences and persist it in this browser. Apply it immediately without changing service-wide culture or machine settings.
 4. Format dates, counts, and durations from the selected locale. Keep filenames, paths, usernames, room names, protocol values, and API identifiers unchanged.
 5. Add locales in the ranked order below. Arabic requires document `lang`/ `dir`, CSS logical properties, and RTL checks for privacy controls, transfers, chat, search, and dialogs.
@@ -43,6 +43,8 @@ System > Experience Preferences offers a browser-local interface-language select
 
 Selected regional formatting now applies to dates, numbers, byte sizes, and operational metrics. System metrics and network views use localized compact counts and decimal byte sizes; zero-byte values retain locale digits. Per-label language and direction helpers are shared with UI strings. Saving or resetting preferences refreshes open screens immediately; the current tab remains usable if browser storage is blocked, and another tab's changes are observed. Reset also clears the separately stored interface-language choice.
 
+SongID and source-feed import validation responses use stable error codes, with recognized codes mapped to localized catalog messages. The client uses a localized generic message for unrecognized errors in mapped flows rather than displaying backend prose.
+
 ## Remaining work
 
-The catalog translations were machine-generated and still need fluent-speaker review. Review the full Arabic layout interactively at narrow and desktop widths before claiming app-wide RTL support.
+The catalog translations were machine-generated and still need fluent-speaker review. Continue migrating any remaining app-owned API failures returned as prose, and route remaining error displays through stable codes or localized fallbacks. Review the full Arabic layout interactively at narrow and desktop widths before claiming app-wide RTL support.
