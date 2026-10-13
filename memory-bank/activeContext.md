@@ -1,3 +1,18 @@
+## Current state — Browser-local interface language in PR #360 — 2026-10-13
+
+The browser-local language selector and first-pass primary-navigation
+translations are committed on PR #360. The existing regional-format choice is
+preserved as a separate setting. The branch passes the Web production build,
+ESLint, release-note preview, and diff checks; no test suite was run for this
+continuation.
+
+### Next Steps
+
+- Extend translated labels and messages across core screens.
+- Review Arabic RTL behavior at narrow and desktop widths before calling the
+  interface fully localized.
+- Keep this work on PR #360; do not create a release tag for it.
+
 ## Current state — Public PR runner isolation and CI capacity review — 2026-10-12
 
 Public pull-request workflows in the SLSKDN CI, enhancement, and Windows smoke

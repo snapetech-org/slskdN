@@ -26,6 +26,25 @@
 
 ## Active Development
 
+### Browser-local interface language shell — 2026-10-13
+
+- [x] Audit the current UI and preserve the existing browser-local regional
+  date, time, and number preference as a separate setting.
+- [x] Add a browser-local interface-language selector under System >
+  Experience Preferences with bilingual native/English names for Spanish,
+  Simplified Chinese, Hindi, German, Japanese, French, Brazilian Portuguese,
+  Arabic, Korean, Traditional Chinese, Vietnamese, and Indonesian.
+- [x] Translate primary navigation and language/format controls with per-key
+  English fallback, first-use browser-language selection, local persistence,
+  document language metadata, and Arabic direction metadata.
+- [x] Add the roadmap and user-facing release-note fragment.
+- [x] Preserve the newer regional-format commits already on PR #360, then
+  pass the Web production build, ESLint, release-note preview, and diff checks.
+  No test suite was run for this continuation.
+- [ ] Expand catalog coverage across core screens and review full Arabic RTL
+  layout before describing the interface as fully localized.
+
+
 ### Public pull-request runner isolation — 2026-10-12
 
 - [x] Route public pull-request jobs in CI and enhancement workflows to

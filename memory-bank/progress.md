@@ -1,3 +1,18 @@
+## Update 2026-10-13 03:03 UTC — Add browser-local interface language to PR #360
+
+The Web UI now has a browser-local interface-language selector under System >
+Experience Preferences. It offers twelve first-wave locales with native and
+English option names, browser-language selection on first use, local
+persistence, English fallback, translated primary navigation, document
+language metadata, and Arabic direction metadata. Existing regional date,
+time, and number formatting remains a separate preference. The release note
+and localization roadmap describe the current coverage and the remaining
+screen-catalog and full RTL work.
+
+The PR branch retains the newer regional-format commits and passes the Web
+production build, ESLint, release-note preview, and diff checks. No test suite
+was run for this continuation. No tag or release was created.
+
 # Update 2026-10-05 21:46 UTC — Preserve content-link cancellation and sanitize provider logs
 
 Pod content-ID validation, metadata lookup, and recording search now propagate
