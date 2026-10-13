@@ -4,6 +4,19 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1836. Clear Per-Database SQLite Pools After Final Test Use (2026-10-13)
+
+**What went wrong:** A Windows test cleared its SQLite pool before a raw-copy
+assertion, then a later repository query returned a connection to that pool and
+the test could not delete its database during cleanup.
+
+**Why:** `ClearPool` removes the currently idle connections, but later repository
+operations can repopulate the same pool before the repository is disposed.
+
+**Prevention:** Dispose the test-owned repository, clear only that database's
+pool after its final operation, then delete the file. Keep any lock retry bounded
+to Windows sharing or lock violations; do not clear unrelated pools globally.
+
 ### 0z1824. Keep Share-Scan Harness Pooling Representative (2026-10-13)
 
 **What went wrong:** The large synthetic share-scan test disabled SQLite

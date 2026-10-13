@@ -161,6 +161,13 @@ public class ShareScannerHarnessTests
 
             if (File.Exists(databasePath))
             {
+                using (var poolConnection = new SqliteConnection($"Data Source={databasePath}"))
+                {
+                    // CountFiles runs after the earlier pool clear and can rent a new connection.
+                    // Clear this per-database pool again after the repository is disposed.
+                    SqliteConnection.ClearPool(poolConnection);
+                }
+
                 DeleteTestFileWithWindowsLockRetry(databasePath);
             }
 
