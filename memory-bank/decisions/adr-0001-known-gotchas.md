@@ -42672,3 +42672,11 @@ columns. This keeps the fixture stable when product defaults evolve.
 **Why:** The fragment was reviewed for metadata and content but the capitalization rule was only exercised later by the full release-note validation gate.
 
 **Prevention:** Start each release-note body with a capitalized sentence, then run the validator before committing the fragment.
+
+### 0z1815. Upload Only Validation Receipts And Logs (2026-10-13)
+
+**What went wrong:** CI uploaded whole validation run directories, including private task environments and package caches, producing a 1.58 GB artifact.
+
+**Why:** The artifact glob included both evidence files and sibling environment/cache directories created under the same temporary root.
+
+**Prevention:** Upload only top-level `receipt.json` and task `*.log` files. Add a workflow contract check that rejects recursive globs over validation run directories.
