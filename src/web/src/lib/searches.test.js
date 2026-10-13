@@ -37,6 +37,29 @@ describe('user download stats', () => {
   });
 });
 
+describe('search history pages', () => {
+  it('requests a bounded page with source and offset while preserving array responses', async () => {
+    api.get.mockResolvedValue({ data: [{ id: 'older-search' }] });
+
+    await expect(search.getAll(250, 'wishlist', 500)).resolves.toEqual([
+      { id: 'older-search' },
+    ]);
+    expect(api.get).toHaveBeenCalledWith(
+      '/searches?limit=250&offset=500&source=wishlist',
+    );
+  });
+
+  it('requests a stable continuation using the final row timestamp and ID', async () => {
+    api.get.mockResolvedValue({ data: [] });
+
+    await search.getAll(250, 'wishlist', 0, '2026-08-20T12:00:00Z', 'search-id');
+
+    expect(api.get).toHaveBeenCalledWith(
+      '/searches?limit=250&offset=0&source=wishlist&afterStartedAt=2026-08-20T12%3A00%3A00Z&afterId=search-id',
+    );
+  });
+});
+
 describe('createBatch', () => {
   beforeEach(() => {
     jest.clearAllMocks();

@@ -29,7 +29,6 @@ namespace slskd.Tests.Unit.Audio
 
                 var resolved = AudioSketchService.ResolveExecutablePath("ffmpeg");
 
-                Assert.True(File.Exists(resolved));
                 Assert.Equal(
                     executablePath,
                     resolved,

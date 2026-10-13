@@ -68,13 +68,42 @@ public class PrometheusService
     }
 
     /// <summary>
+    ///     Gets Prometheus exposition text filtered by metric-family name.
+    /// </summary>
+    public virtual async Task<string> GetMetricsAsString(IEnumerable<Regex>? include, IEnumerable<Regex>? exclude)
+    {
+        var prometheusText = await GetMetricsAsString();
+        if (include == null && exclude == null)
+        {
+            return prometheusText;
+        }
+
+        return PrometheusMetricFilter.FilterText(
+            prometheusText,
+            include?.ToArray(),
+            exclude?.ToArray());
+    }
+
+    /// <summary>
     ///     Get the current list of Prometheus metrics in object format.
     /// </summary>
     /// <param name="include">An optional list of filters. If omitted, all metrics are included.</param>
     /// <returns></returns>
     public virtual async Task<Dictionary<string, PrometheusMetric>> GetMetricsAsObject(IEnumerable<Regex>? include = null)
     {
-        var prometheusText = await GetMetricsAsString();
+        return await GetMetricsAsObject(include, null);
+    }
+
+    /// <summary>
+    ///     Gets the current Prometheus metrics in object format after applying metric-name filters.
+    /// </summary>
+    public virtual async Task<Dictionary<string, PrometheusMetric>> GetMetricsAsObject(
+        IEnumerable<Regex>? include,
+        IEnumerable<Regex>? exclude)
+    {
+        var includePatterns = include?.ToArray();
+        var excludePatterns = exclude?.ToArray();
+        var prometheusText = await GetMetricsAsString(includePatterns, excludePatterns);
 
         var metrics = new Dictionary<string, PrometheusMetric>();
 
@@ -116,7 +145,12 @@ public class PrometheusService
             var name = header[0];
             var help = header[1];
 
-            if (include is not null && !include.Any(regex => regex.IsMatch(name)))
+            if (includePatterns is not null && !includePatterns.Any(regex => regex.IsMatch(name)))
+            {
+                continue;
+            }
+
+            if (excludePatterns is not null && excludePatterns.Any(regex => regex.IsMatch(name)))
             {
                 continue;
             }

@@ -75,7 +75,41 @@ describe('rooms api', () => {
     await rooms.getMessages({ roomName: 'ambient/lounge', since: 1_234 });
 
     expect(api.get).toHaveBeenCalledWith(
-      '/rooms/joined/ambient%2Flounge/messages?since=1234',
+      '/rooms/by-name/messages?roomName=ambient%2Flounge&since=1234',
+    );
+  });
+
+  it('uses query-addressed routes for every operation on slash-named rooms', async () => {
+    api.get.mockResolvedValue({ data: [] });
+    api.post.mockResolvedValue({ data: {} });
+    api.delete.mockResolvedValue({ data: {} });
+
+    await rooms.getUsers({ roomName: '/mu/lounge' });
+    await rooms.sendMessage({ roomName: '/mu/lounge', message: 'hello' });
+    await rooms.setTicker({ roomName: '/mu/lounge', message: 'now playing' });
+    await rooms.addRoomMember({ roomName: '/mu/lounge', username: 'alice' });
+    await rooms.leave({ roomName: '/mu/lounge' });
+
+    expect(api.get).toHaveBeenCalledWith(
+      '/rooms/by-name/users?roomName=%2Fmu%2Flounge',
+    );
+    expect(api.post).toHaveBeenNthCalledWith(
+      1,
+      '/rooms/by-name/messages?roomName=%2Fmu%2Flounge',
+      '"hello"',
+    );
+    expect(api.post).toHaveBeenNthCalledWith(
+      2,
+      '/rooms/by-name/ticker?roomName=%2Fmu%2Flounge',
+      '"now playing"',
+    );
+    expect(api.post).toHaveBeenNthCalledWith(
+      3,
+      '/rooms/by-name/members?roomName=%2Fmu%2Flounge',
+      '"alice"',
+    );
+    expect(api.delete).toHaveBeenCalledWith(
+      '/rooms/by-name?roomName=%2Fmu%2Flounge',
     );
   });
 

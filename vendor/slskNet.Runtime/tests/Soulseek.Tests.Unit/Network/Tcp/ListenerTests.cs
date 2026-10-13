@@ -18,7 +18,13 @@
 
 namespace Soulseek.Tests.Unit.Network.Tcp
 {
+    using System;
     using System.Net;
+    using System.Net.Sockets;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Moq;
+    using Soulseek.Diagnostics;
     using Soulseek.Network.Tcp;
     using Xunit;
 
@@ -96,6 +102,85 @@ namespace Soulseek.Tests.Unit.Network.Tcp
 
             Assert.True(first);
             Assert.False(l.Listening);
+        }
+
+        [Trait("Category", "Accept")]
+        [Fact(DisplayName = "Transient accept failure retries and accepts the next connection")]
+        public async Task Start_RetriesTransientAcceptFailure()
+        {
+            var socketListener = new System.Net.Sockets.TcpListener(IPAddress.Loopback, 0);
+            socketListener.Start();
+
+            var remoteClient = new TcpClient();
+            TcpClient acceptedClient = null;
+            Listener listener = null;
+            IConnection acceptedConnection = null;
+
+            try
+            {
+                var endpoint = (IPEndPoint)socketListener.LocalEndpoint;
+                var connectTask = remoteClient.ConnectAsync(endpoint.Address, endpoint.Port);
+                acceptedClient = await socketListener.AcceptTcpClientAsync();
+                await connectTask;
+
+                var pendingAccept = new TaskCompletionSource<TcpClient>(TaskCreationOptions.RunContinuationsAsynchronously);
+                var retrying = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+                var accepted = new TaskCompletionSource<IConnection>(TaskCreationOptions.RunContinuationsAsynchronously);
+                var warning = new TaskCompletionSource<string>(TaskCreationOptions.RunContinuationsAsynchronously);
+                var acceptCount = 0;
+
+                var tcpListener = new Mock<ITcpListener>();
+                tcpListener.Setup(m => m.AcceptTcpClientAsync()).Returns(() =>
+                {
+                    var current = Interlocked.Increment(ref acceptCount);
+
+                    if (current == 1)
+                    {
+                        return Task.FromException<TcpClient>(new SocketException((int)SocketError.Interrupted));
+                    }
+
+                    if (current == 2)
+                    {
+                        return Task.FromResult(acceptedClient);
+                    }
+
+                    retrying.TrySetResult(true);
+                    return pendingAccept.Task;
+                });
+                tcpListener.Setup(m => m.Stop()).Callback(() => pendingAccept.TrySetException(new SocketException((int)SocketError.OperationAborted)));
+
+                var diagnosticFactory = new Mock<IDiagnosticFactory>();
+                diagnosticFactory
+                    .Setup(m => m.Warning(It.IsAny<string>(), It.IsAny<Exception>()))
+                    .Callback<string, Exception>((message, _) => warning.TrySetResult(message));
+
+                listener = new Listener(
+                    IPAddress.Loopback,
+                    0,
+                    new ConnectionOptions(),
+                    tcpListener.Object,
+                    diagnosticFactory: diagnosticFactory.Object);
+                listener.Accepted += (_, connection) => accepted.TrySetResult(connection);
+                listener.Start();
+
+                acceptedConnection = await accepted.Task.WaitAsync(TimeSpan.FromSeconds(5));
+                var warningMessage = await warning.Task.WaitAsync(TimeSpan.FromSeconds(5));
+                await retrying.Task.WaitAsync(TimeSpan.FromSeconds(5));
+
+                Assert.True(listener.Listening);
+                Assert.Equal("A TCP listener accept failed; retrying with bounded backoff.", warningMessage);
+                Assert.Equal(3, Volatile.Read(ref acceptCount));
+                Assert.NotNull(acceptedConnection.IPEndPoint);
+                diagnosticFactory.Verify(m => m.Warning(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
+            }
+            finally
+            {
+                listener?.Stop();
+                acceptedConnection?.Dispose();
+                acceptedClient?.Dispose();
+                remoteClient.Dispose();
+                socketListener.Stop();
+            }
         }
     }
 }

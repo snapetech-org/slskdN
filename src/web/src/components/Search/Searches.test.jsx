@@ -41,6 +41,8 @@ vi.mock('./List/SearchList', () => ({
     onRemoveSelected = async () => [],
     onResearchSelected = async () => [],
     onStopSelected = async () => [],
+    hasMoreFromServer = false,
+    onLoadMore = () => {},
     searches = {},
   }) => {
     const selectedSearch = Object.values(searches)[0];
@@ -48,6 +50,9 @@ vi.mock('./List/SearchList', () => ({
     return (
       <div data-testid="search-list">
         {Object.keys(searches).join(',')}
+        {hasMoreFromServer && (
+          <button data-testid="search-list-load-more" onClick={onLoadMore} />
+        )}
         {selectedSearch && (
           <>
             <button
@@ -141,10 +146,44 @@ describe('Searches', () => {
     );
   });
 
-  it('uses the hub snapshot without a duplicate REST list request', async () => {
-    await renderSearches();
+  it('loads a bounded REST page if the live search hub cannot start', async () => {
+    await renderSearches({
+      hubStart: async () => {
+        throw new Error('hub unavailable');
+      },
+    });
 
-    expect(library.getAll).not.toHaveBeenCalled();
+    await waitFor(() => expect(library.getAll).toHaveBeenCalledTimes(1));
+    expect(library.getAll).toHaveBeenCalledWith(250, null, 0, null, null);
+  });
+
+  it('continues after the last row even when a new search arrives between pages', async () => {
+    const firstPage = Array.from({ length: 500 }, (_, index) => ({
+      id: `search-${index}`,
+      startedAt: new Date(2026, 0, 1, 0, index).toISOString(),
+    }));
+    library.getAll.mockResolvedValueOnce([
+      { id: 'older-search', startedAt: '2025-12-31T00:00:00Z' },
+    ]);
+
+    await renderSearches({
+      hubStart: async () => callbacks.list?.(firstPage),
+    });
+    callbacks.create({ id: 'live-newest', startedAt: '2026-01-02T00:00:00Z' });
+    fireEvent.click(await screen.findByTestId('search-list-load-more'));
+
+    await waitFor(() => expect(library.getAll).toHaveBeenCalledTimes(1));
+    expect(library.getAll).toHaveBeenNthCalledWith(
+      1,
+      250,
+      null,
+      0,
+      firstPage.at(-1).startedAt,
+      firstPage.at(-1).id,
+    );
+    expect(screen.getByTestId('search-list')).toHaveTextContent('search-0');
+    expect(screen.getByTestId('search-list')).toHaveTextContent('live-newest');
+    expect(screen.getByTestId('search-list')).toHaveTextContent('older-search');
   });
 
   it('explains the disconnected search state and opens Soulseek settings', async () => {

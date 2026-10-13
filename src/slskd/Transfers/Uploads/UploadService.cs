@@ -111,6 +111,22 @@ namespace slskd.Transfers.Uploads
         List<Transfer> List(Expression<Func<Transfer, bool>> expression, bool includeRemoved);
 
         /// <summary>
+        ///     Returns a stable page of uploads ordered by request time, newest first.
+        /// </summary>
+        /// <param name="expression">The transfer predicate.</param>
+        /// <param name="includeRemoved">Whether to include soft-removed records.</param>
+        /// <param name="afterRequestedAt">The request time of the previous page's last record.</param>
+        /// <param name="afterId">The ID of the previous page's last record.</param>
+        /// <param name="limit">The maximum number of records to return.</param>
+        /// <returns>The requested page.</returns>
+        List<Transfer> ListPage(
+            Expression<Func<Transfer, bool>> expression,
+            bool includeRemoved,
+            DateTime? afterRequestedAt,
+            Guid? afterId,
+            int limit);
+
+        /// <summary>
         ///     Counts uploads, optionally including soft-removed records.
         /// </summary>
         /// <param name="includeRemoved">Whether soft-removed records should be counted.</param>
@@ -949,6 +965,46 @@ namespace slskd.Transfers.Uploads
             catch (Exception ex)
             {
                 Log.Error("Failed to list uploads: {Exception}", LoggingSanitizer.SanitizeExternalIdentifier(ex.ToString()));
+                throw;
+            }
+        }
+
+        public List<Transfer> ListPage(
+            Expression<Func<Transfer, bool>> expression,
+            bool includeRemoved,
+            DateTime? afterRequestedAt,
+            Guid? afterId,
+            int limit)
+        {
+            expression ??= t => true;
+
+            try
+            {
+                using var context = ContextFactory.CreateDbContext();
+                var query = context.Transfers
+                    .AsNoTracking()
+                    .Where(t => t.Direction == TransferDirection.Upload)
+                    .Where(t => !t.Removed || includeRemoved)
+                    .Where(expression);
+
+                if (afterRequestedAt.HasValue && afterId.HasValue)
+                {
+                    var requestedAt = afterRequestedAt.Value;
+                    var id = afterId.Value;
+                    query = query.Where(t =>
+                        t.RequestedAt < requestedAt ||
+                        (t.RequestedAt == requestedAt && t.Id.CompareTo(id) < 0));
+                }
+
+                return query
+                    .OrderByDescending(t => t.RequestedAt)
+                    .ThenByDescending(t => t.Id)
+                    .Take(limit)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Failed to page uploads: {Exception}", LoggingSanitizer.SanitizeExternalIdentifier(ex.ToString()));
                 throw;
             }
         }

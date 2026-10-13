@@ -83,6 +83,7 @@ public sealed class SourceRankingServiceTests
         {
             if (File.Exists(databasePath))
             {
+                slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
                 File.Delete(databasePath);
             }
         }
@@ -135,6 +136,7 @@ public sealed class SourceRankingServiceTests
         {
             if (File.Exists(databasePath))
             {
+                slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
                 File.Delete(databasePath);
             }
         }
@@ -179,6 +181,7 @@ public sealed class SourceRankingServiceTests
         {
             if (File.Exists(databasePath))
             {
+                slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
                 File.Delete(databasePath);
             }
         }
@@ -218,6 +221,7 @@ public sealed class SourceRankingServiceTests
         {
             if (File.Exists(databasePath))
             {
+                slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
                 File.Delete(databasePath);
             }
         }
@@ -256,6 +260,7 @@ public sealed class SourceRankingServiceTests
         {
             if (File.Exists(databasePath))
             {
+                slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
                 File.Delete(databasePath);
             }
         }

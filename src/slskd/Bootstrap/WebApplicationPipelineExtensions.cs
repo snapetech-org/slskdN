@@ -14,6 +14,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -475,8 +476,42 @@ public static class WebApplicationPipelineExtensions
                         }
                     }
 
+                    List<Regex>? includeFilters;
+                    List<Regex>? excludeFilters;
+                    try
+                    {
+                        includeFilters = PrometheusMetricFilter.Compile(context.Request.Query["include"].ToArray(), "include");
+                        excludeFilters = PrometheusMetricFilter.Compile(context.Request.Query["exclude"].ToArray(), "exclude");
+                    }
+                    catch (MetricsFilterValidationException exception)
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        await context.Response.WriteAsJsonAsync(new ProblemDetails
+                        {
+                            Status = (int)HttpStatusCode.BadRequest,
+                            Title = "Invalid metrics filter",
+                            Detail = exception.Message,
+                        });
+                        return;
+                    }
+
                     var telemetryService = context.RequestServices.GetRequiredService<TelemetryService>();
-                    var metricsAsText = await telemetryService.Prometheus.GetMetricsAsString();
+                    string metricsAsText;
+                    try
+                    {
+                        metricsAsText = await telemetryService.Prometheus.GetMetricsAsString(includeFilters, excludeFilters);
+                    }
+                    catch (RegexMatchTimeoutException)
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        await context.Response.WriteAsJsonAsync(new ProblemDetails
+                        {
+                            Status = (int)HttpStatusCode.BadRequest,
+                            Title = "Metrics filter exceeded its evaluation time limit",
+                            Detail = "Simplify the regular expression and try again.",
+                        });
+                        return;
+                    }
 
                     context.Response.Headers.Append("Content-Type", "text/plain; version=0.0.4; charset=utf-8");
                     await context.Response.WriteAsync(metricsAsText);

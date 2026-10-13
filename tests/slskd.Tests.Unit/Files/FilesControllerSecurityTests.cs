@@ -7,7 +7,6 @@ namespace slskd.Tests.Unit.Files
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Text;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
@@ -29,7 +28,6 @@ namespace slskd.Tests.Unit.Files
         private readonly Mock<FileService> mockFileService;
         private readonly Mock<IOptionsSnapshot<slskd.Options>> mockOptionsSnapshot;
         private readonly FilesController controller;
-        private readonly string downloadsDirectory;
 
         public FilesControllerSecurityTests()
         {
@@ -41,11 +39,10 @@ namespace slskd.Tests.Unit.Files
                 RemoteFileManagement = true,
                 Directories = new slskd.Options.DirectoriesOptions
                 {
-                    Downloads = Path.Combine(Path.GetTempPath(), "slskdn-files-tests", "downloads"),
-                    Incomplete = Path.Combine(Path.GetTempPath(), "slskdn-files-tests", "incomplete")
+                    Downloads = "/test/downloads",
+                    Incomplete = "/test/incomplete"
                 }
             };
-            downloadsDirectory = options.Directories.Downloads;
 
             mockOptionsSnapshot.Setup(o => o.Value).Returns(options);
 
@@ -92,7 +89,7 @@ namespace slskd.Tests.Unit.Files
             var validPath = "test-file.txt";
             var base64Path = Convert.ToBase64String(Encoding.UTF8.GetBytes(validPath));
 
-            var fullPath = Path.GetFullPath(Path.Combine(downloadsDirectory, "test-file.txt"));
+            var fullPath = Path.GetFullPath(Path.Combine("/test/downloads", validPath));
             mockFileService.Setup(s => s.DeleteFilesAsync(It.IsAny<string>()))
                 .ReturnsAsync(new Dictionary<string, OneOf<bool, Exception>>
                 {
@@ -111,11 +108,12 @@ namespace slskd.Tests.Unit.Files
         public async Task GetDownloadSubdirectoryContentsAsync_ShouldTrimDecodedBase64Path()
         {
             var encodedPath = Convert.ToBase64String(Encoding.UTF8.GetBytes(" subdir "));
-            var expectedPath = Path.GetFullPath(Path.Combine(downloadsDirectory, "subdir"));
+            var expectedPath = Path.GetFullPath(Path.Combine("/test/downloads", "subdir"));
 
             mockFileService.Setup(s => s.ListContentsAsync(
                     It.Is<string>(path => path == expectedPath),
-                    It.IsAny<EnumerationOptions>()))
+                    It.IsAny<EnumerationOptions>(),
+                    It.IsAny<bool>()))
                 .ReturnsAsync(new FilesystemDirectory())
                 .Verifiable();
 
@@ -129,14 +127,15 @@ namespace slskd.Tests.Unit.Files
         public async Task GetDownloadSubdirectoryContentsAsync_RecursiveListingSkipsReparsePoints()
         {
             var encodedPath = Convert.ToBase64String(Encoding.UTF8.GetBytes("subdir"));
-            var expectedPath = Path.GetFullPath(Path.Combine(downloadsDirectory, "subdir"));
+            var expectedPath = Path.GetFullPath(Path.Combine("/test/downloads", "subdir"));
 
             mockFileService.Setup(s => s.ListContentsAsync(
                     It.Is<string>(path => path == expectedPath),
                     It.Is<EnumerationOptions>(options =>
                         options.RecurseSubdirectories &&
                         options.AttributesToSkip.HasFlag(FileAttributes.System) &&
-                        options.AttributesToSkip.HasFlag(FileAttributes.ReparsePoint))))
+                        options.AttributesToSkip.HasFlag(FileAttributes.ReparsePoint)),
+                    It.IsAny<bool>()))
                 .ReturnsAsync(new FilesystemDirectory())
                 .Verifiable();
 
@@ -157,7 +156,7 @@ namespace slskd.Tests.Unit.Files
             Assert.Equal("Invalid directory path", Assert.IsType<BadRequestObjectResult>(listing).Value);
             Assert.Equal("Invalid directory path", Assert.IsType<BadRequestObjectResult>(deletion).Value);
             mockFileService.Verify(service => service.ListContentsAsync(
-                It.IsAny<string>(), It.IsAny<EnumerationOptions>()), Times.Never);
+                It.IsAny<string>(), It.IsAny<EnumerationOptions>(), It.IsAny<bool>()), Times.Never);
             mockFileService.Verify(service => service.DeleteDirectoriesAsync(It.IsAny<string>()), Times.Never);
         }
 
@@ -170,6 +169,59 @@ namespace slskd.Tests.Unit.Files
 
             Assert.Equal("Invalid file path", Assert.IsType<BadRequestObjectResult>(result).Value);
             mockFileService.Verify(service => service.DeleteFilesAsync(It.IsAny<string>()), Times.Never);
+        }
+
+        [Fact]
+        public async Task DeleteDownloadItemsAsync_ValidatesAllPathsAndReturnsPerItemOutcomes()
+        {
+            var directory = Path.GetFullPath(Path.Combine("/test/downloads", "album"));
+            var file = Path.GetFullPath(Path.Combine("/test/downloads", "single.flac"));
+            mockFileService.Setup(service => service.DeleteDirectoriesAsync(directory))
+                .ReturnsAsync(new Dictionary<string, OneOf<bool, Exception>>
+                {
+                    [directory] = OneOf<bool, Exception>.FromT0(true),
+                });
+            mockFileService.Setup(service => service.DeleteFilesAsync(file))
+                .ReturnsAsync(new Dictionary<string, OneOf<bool, Exception>>
+                {
+                    [file] = OneOf<bool, Exception>.FromT1(new IOException()),
+                });
+
+            var result = await controller.DeleteDownloadItemsAsync(new DeleteItemsRequest
+            {
+                Items = new[]
+                {
+                    new DeleteItemRequest { Path = "album", Type = "directory" },
+                    new DeleteItemRequest { Path = "single.flac", Type = "file" },
+                },
+            });
+
+            var partial = Assert.IsType<ObjectResult>(result);
+            Assert.Equal(207, partial.StatusCode);
+            var response = Assert.IsType<DeleteItemsResponse>(partial.Value);
+            Assert.Equal(2, response.Results.Count);
+            Assert.True(response.Results.First().Succeeded);
+            Assert.False(response.Results.Last().Succeeded);
+            Assert.Equal("delete-failed", response.Results.Last().Error);
+            Assert.DoesNotContain("/test/downloads", response.Results.Last().Path);
+        }
+
+        [Theory]
+        [InlineData("../outside.txt", "file")]
+        [InlineData("album/song.flac", "file")]
+        public async Task DeleteDownloadItemsAsync_RejectsUnsafeOrOverlappingPaths(string path, string type)
+        {
+            var items = new List<DeleteItemRequest>
+            {
+                new() { Path = "album", Type = "directory" },
+                new() { Path = path, Type = type },
+            };
+
+            var result = await controller.DeleteDownloadItemsAsync(new DeleteItemsRequest { Items = items });
+
+            Assert.IsType<BadRequestObjectResult>(result);
+            mockFileService.Verify(service => service.DeleteDirectoriesAsync(It.IsAny<string[]>()), Times.Never);
+            mockFileService.Verify(service => service.DeleteFilesAsync(It.IsAny<string[]>()), Times.Never);
         }
     }
 }

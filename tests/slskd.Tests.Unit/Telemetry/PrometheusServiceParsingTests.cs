@@ -3,6 +3,9 @@
 // </copyright>
 namespace slskd.Tests.Unit.Telemetry;
 
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using slskd.Telemetry;
 using Xunit;
@@ -29,6 +32,82 @@ public class PrometheusServiceParsingTests
         Assert.True(metrics.ContainsKey("my_metric"));
         Assert.Equal("gauge", metrics["my_metric"].Type);
         Assert.Equal("Some help text", metrics["my_metric"].Help);
+    }
+
+    [Fact]
+    public async Task GetMetricsAsObject_AppliesIncludeAndExcludeToMetricFamilies()
+    {
+        const string text = "# HELP slskd_active Active work\n" +
+            "# TYPE slskd_active gauge\n" +
+            "slskd_active 2\n" +
+            "# HELP slskd_secret Secret work\n" +
+            "# TYPE slskd_secret counter\n" +
+            "slskd_secret 9\n" +
+            "# HELP node_available Node availability\n" +
+            "# TYPE node_available gauge\n" +
+            "node_available 1\n";
+        var service = new StubPrometheusService(text);
+
+        var metrics = await service.GetMetricsAsObject(
+            new[] { new Regex("^slskd_", RegexOptions.CultureInvariant) },
+            new[] { new Regex("secret$", RegexOptions.CultureInvariant) });
+
+        Assert.Equal("slskd_active", Assert.Single(metrics).Key);
+    }
+
+    [Fact]
+    public async Task GetMetricsAsString_FiltersWholeMetricFamiliesAndPreservesUnfilteredOutput()
+    {
+        const string text = "# HELP slskd_active Active work\n" +
+            "# TYPE slskd_active gauge\n" +
+            "slskd_active 2\n" +
+            "# HELP slskd_secret Secret work\n" +
+            "# TYPE slskd_secret counter\n" +
+            "slskd_secret 9\n";
+        var service = new StubPrometheusService(text);
+
+        var unfiltered = await service.GetMetricsAsString();
+        var filtered = await service.GetMetricsAsString(
+            new[] { new Regex("^slskd_", RegexOptions.CultureInvariant) },
+            new[] { new Regex("secret$", RegexOptions.CultureInvariant) });
+
+        Assert.Equal(text, unfiltered);
+        Assert.Contains("# HELP slskd_active", filtered, StringComparison.Ordinal);
+        Assert.Contains("slskd_active 2", filtered, StringComparison.Ordinal);
+        Assert.DoesNotContain("slskd_secret", filtered, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void MetricNameFilter_RejectsInvalidOrOversizedPatterns()
+    {
+        Assert.Contains(
+            "not a valid regular expression",
+            Assert.Throws<MetricsFilterValidationException>(
+                () => PrometheusMetricFilter.Compile(new[] { "[" }, "include")).Message,
+            StringComparison.Ordinal);
+        Assert.Contains(
+            "at most",
+            Assert.Throws<MetricsFilterValidationException>(
+                () => PrometheusMetricFilter.Compile(Enumerable.Repeat("x", PrometheusMetricFilter.MaximumPatternCount + 1).ToArray(), "exclude")).Message,
+            StringComparison.Ordinal);
+        Assert.Contains(
+            "characters or fewer",
+            Assert.Throws<MetricsFilterValidationException>(
+                () => PrometheusMetricFilter.Compile(new[] { new string('x', PrometheusMetricFilter.MaximumPatternLength + 1) }, "include")).Message,
+            StringComparison.Ordinal);
+        Assert.Contains(
+            "empty pattern",
+            Assert.Throws<MetricsFilterValidationException>(
+                () => PrometheusMetricFilter.Compile(new[] { string.Empty }, "exclude")).Message,
+            StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void MetricNameFilter_CompilesPatternsWithTheConfiguredTimeout()
+    {
+        var pattern = Assert.Single(PrometheusMetricFilter.Compile(new[] { "^slskd_" }, "include"));
+
+        Assert.Equal(PrometheusMetricFilter.PatternTimeout, pattern.MatchTimeout);
     }
 
     [Fact]

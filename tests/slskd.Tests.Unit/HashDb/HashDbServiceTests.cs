@@ -35,8 +35,7 @@ public class HashDbServiceTests : IDisposable
 
     public void Dispose()
     {
-        SqliteTestDatabaseCleanup.ClearPools(testDir);
-
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(testDir, "hashdb.db")}");
         if (Directory.Exists(testDir))
         {
             Directory.Delete(testDir, recursive: true);
@@ -1646,7 +1645,7 @@ public class HashDbServiceTests : IDisposable
     public async Task IncrementPopularitiesAsync_EmptyInputDoesNotOpenDatabase()
     {
         var dbPath = Path.Combine(testDir, "hashdb.db");
-        SqliteTestDatabaseCleanup.ClearPool(dbPath);
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={dbPath}");
         File.Delete(dbPath);
 
         await service.IncrementPopularitiesAsync(new[] { " ", string.Empty });

@@ -462,6 +462,60 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
             }
         }
 
+        [Trait("Category", "WriteTo")]
+        [Fact(DisplayName = "WriteToStream serializes a single pass of directory entries")]
+        public void WriteToStream_Serializes_A_Single_Pass_Of_Directory_Entries()
+        {
+            var directories = new[]
+            {
+                new Directory("dir1", new[] { new File(1, "one.mp3", 10, "mp3") }),
+                new Directory("dir2", Array.Empty<File>()),
+            };
+            var enumerations = 0;
+
+            IEnumerable<Directory> EnumerateDirectories()
+            {
+                enumerations++;
+                foreach (var directory in directories)
+                {
+                    yield return directory;
+                }
+            }
+
+            using (var stream = new System.IO.MemoryStream())
+            {
+                BrowseResponseFactory.WriteToStream(
+                    directories.Length,
+                    EnumerateDirectories(),
+                    0,
+                    Array.Empty<Directory>(),
+                    stream);
+
+                var parsed = BrowseResponseFactory.FromByteArray(stream.ToArray());
+
+                Assert.Equal(1, enumerations);
+                Assert.Equal(directories.Select(directory => directory.Name), parsed.Directories.Select(directory => directory.Name));
+                Assert.Equal(directories.Sum(directory => directory.FileCount), parsed.Directories.Sum(directory => directory.FileCount));
+            }
+        }
+
+        [Trait("Category", "WriteTo")]
+        [Fact(DisplayName = "WriteToStream rejects a directory count that changed during streaming")]
+        public void WriteToStream_Rejects_A_Directory_Count_Mismatch()
+        {
+            using (var stream = new System.IO.MemoryStream())
+            {
+                var exception = Assert.Throws<MessageException>(() => BrowseResponseFactory.WriteToStream(
+                    2,
+                    new[] { new Directory("dir1") },
+                    0,
+                    Array.Empty<Directory>(),
+                    stream));
+
+                Assert.Contains("directory count", exception.Message, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
         [Trait("Category", "ToByteArray")]
         [Fact(DisplayName = "ToByteArray returns the expected data when only locked files given")]
         public void ToByteArray_Returns_Expected_Data_When_Only_Locked_Files_Given()

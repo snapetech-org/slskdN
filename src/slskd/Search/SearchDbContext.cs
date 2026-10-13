@@ -37,6 +37,12 @@ namespace slskd.Search
 
             modelBuilder
                 .Entity<Search>()
+                .HasIndex(e => new { e.StartedAt, e.Id })
+                .IsDescending(true, true)
+                .HasDatabaseName("IDX_Searches_StartedAt_Id");
+
+            modelBuilder
+                .Entity<Search>()
                 .Property(e => e.StartedAt)
                 .HasConversion(v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
 

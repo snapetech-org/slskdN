@@ -5,6 +5,7 @@
 namespace slskd.Transfers.API;
 
 using System.Collections.Generic;
+using System;
 
 /// <summary>
 ///     A server-watermarked transfer snapshot or incremental change set.
@@ -20,6 +21,21 @@ public class TransferChangesResponse
     ///     Gets total non-removed transfer counts by direction.
     /// </summary>
     public TransferCounts Counts { get; set; } = new();
+
+    /// <summary>
+    ///     Gets whether another page exists for a paged initial snapshot.
+    /// </summary>
+    public bool HasMore { get; set; }
+
+    /// <summary>
+    ///     Gets the request-time component of the continuation cursor.
+    /// </summary>
+    public DateTimeOffset? NextAfterRequestedAt { get; set; }
+
+    /// <summary>
+    ///     Gets the transfer-ID component of the continuation cursor.
+    /// </summary>
+    public Guid? NextAfterId { get; set; }
 
     /// <summary>
     ///     Gets non-removed transfers for an initial request, or all changed records for a cursor request.

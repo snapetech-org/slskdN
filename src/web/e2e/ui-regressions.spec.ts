@@ -361,9 +361,10 @@ test.describe('UI regression coverage', () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth))
       .toBe(false);
 
-    const syncAction = page.getByRole('button', {
-      name: `Sync hash data with ${peerName}. Use this when its sequence is behind yours.`,
+    const peerRow = page.getByRole('row').filter({
+      has: page.getByText(peerName, { exact: true }),
     });
+    const syncAction = peerRow.getByRole('button', { name: 'Sync', exact: true });
     await syncAction.hover();
     await expect(
       page.getByText(
@@ -1602,12 +1603,18 @@ test.describe('UI regression coverage', () => {
     let fileDeleted = false;
     let deleteAttempts = 0;
     let listRequests = 0;
+    let sizeListRequests = 0;
+    let batchDeleteRequests = 0;
+    let batchDeleteBody: { items: Array<{ path: string; type: string }> } | null = null;
     await page.route('**/api/v0/files/downloads/directories/**', async (route) => {
       listRequests += 1;
-      const pathSegment = new URL(route.request().url()).pathname.split('/').pop() || '';
+      const requestUrl = new URL(route.request().url());
+      const pathSegment = requestUrl.pathname.split('/').pop() || '';
       const subdirectory = pathSegment
         ? Buffer.from(pathSegment, 'base64').toString('utf8')
         : '';
+      const includeDirectorySizes = requestUrl.searchParams.get('includeDirectorySizes') === 'true';
+      if (includeDirectorySizes) sizeListRequests += 1;
 
       if (subdirectory === 'Albums') {
         await route.fulfill({
@@ -1623,7 +1630,10 @@ test.describe('UI regression coverage', () => {
       await route.fulfill({
         contentType: 'application/json',
         json: {
-          directories: [{ fullName: 'Albums', name: 'Albums' }],
+          directories: [
+            { fullName: 'Albums', length: includeDirectorySizes ? 2048 : null, name: 'Albums' },
+            { fullName: 'Singles', length: includeDirectorySizes ? 1024 : null, name: 'Singles' },
+          ],
           files: fileDeleted
             ? []
             : [{
@@ -1633,6 +1643,20 @@ test.describe('UI regression coverage', () => {
               name: longName,
             }],
         },
+      });
+    });
+    await page.route('**/api/v0/files/downloads/items', async (route) => {
+      batchDeleteRequests += 1;
+      batchDeleteBody = route.request().postDataJSON();
+      await route.fulfill({
+        contentType: 'application/json',
+        json: {
+          results: [
+            { path: 'Albums', type: 'directory', succeeded: false, error: 'access-denied' },
+            { path: 'Singles', type: 'directory', succeeded: true, error: null },
+          ],
+        },
+        status: 207,
       });
     });
     await page.route('**/api/v0/files/downloads/files/**', async (route) => {
@@ -1672,6 +1696,21 @@ test.describe('UI regression coverage', () => {
     await parentButton.focus();
     await page.keyboard.press('Enter');
 
+    const calculateSizes = page.getByRole('button', { name: 'Calculate folder sizes' });
+    await calculateSizes.hover();
+    await expect(page.getByText(
+      'Calculate the size of every listed directory by totaling its files recursively. This reads directory contents but does not open or modify file data.',
+      { exact: true },
+    )).toBeVisible();
+    await calculateSizes.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('button', { name: 'Refresh folder sizes' })).toBeVisible();
+    await expect.poll(() => sizeListRequests).toBe(1);
+    const albumsRow = page.getByRole('row').filter({
+      has: page.getByRole('button', { name: 'Open the Albums directory.' }),
+    });
+    await expect(albumsRow).toContainText('2 KB');
+
     const deleteTrigger = page.getByRole('button', {
       name: `Delete file ${longName}`,
     });
@@ -1702,6 +1741,44 @@ test.describe('UI regression coverage', () => {
     await expect.poll(() => deleteAttempts).toBe(2);
     await expect(page.getByText(longName, { exact: true })).toHaveCount(0);
     await expect.poll(() => listRequests).toBeGreaterThan(2);
+
+    const selectAlbums = page.getByRole('checkbox', { name: 'Select directory Albums' });
+    const selectSingles = page.getByRole('checkbox', { name: 'Select directory Singles' });
+    await selectAlbums.focus();
+    await page.keyboard.press('Space');
+    await expect(selectAlbums).toBeChecked();
+    await selectSingles.focus();
+    await page.keyboard.press('Space');
+    await expect(selectSingles).toBeChecked();
+    await expect(page.getByText('2 selected', { exact: true })).toBeVisible();
+
+    const bulkDelete = page.getByRole('button', { name: 'Delete selected (2)' });
+    await bulkDelete.hover();
+    await expect(page.getByText(
+      'Permanently delete the selected files and directories. Selected directories are removed with their contents.',
+      { exact: true },
+    )).toBeVisible();
+    await bulkDelete.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByText(
+      'Permanently delete 2 selected items? Directories will be deleted recursively.',
+      { exact: true },
+    )).toBeVisible();
+    const confirmBulkDelete = page.getByRole('button', { name: 'Delete 2 items' });
+    await confirmBulkDelete.focus();
+    await page.keyboard.press('Enter');
+    await expect.poll(() => batchDeleteRequests).toBe(1);
+    expect(batchDeleteBody).toEqual({
+      items: [
+        { path: 'Albums', type: 'directory' },
+        { path: 'Singles', type: 'directory' },
+      ],
+    });
+    await expect(page.locator('.system-files-explorer [role="status"]'))
+      .toContainText('Deleted 1 item.');
+    await expect(page.getByRole('alert')).toContainText('Albums: Access was denied');
+    await expect(selectAlbums).toBeChecked();
+    await expect(selectSingles).not.toBeChecked();
 
     const scrollRegion = page.getByRole('region', {
       name: 'Downloads files and directories',
@@ -2027,6 +2104,7 @@ test.describe('UI regression coverage', () => {
           name: true,
           peer: true,
           progress: false,
+          requested: false,
           remaining: false,
           samplerate: false,
           size: true,

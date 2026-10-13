@@ -24,6 +24,7 @@ namespace slskd.Validation
     using System.ComponentModel.DataAnnotations;
     using System.IO;
     using System.Linq;
+    using slskd.Common.Security;
 
     /// <summary>
     ///     Validates that the directory at the specified path exists.
@@ -52,6 +53,7 @@ namespace slskd.Validation
             }
 
             var stringValue = (string)value;
+            string? applicationDirectory = null;
 
             if (RelativeToApplicationDirectory)
             {
@@ -60,10 +62,18 @@ namespace slskd.Validation
                     return new ValidationResult($"The {validationContext.DisplayName} field specifies a non-relative directory path.");
                 }
 
-                stringValue = Path.Combine(AppContext.BaseDirectory, stringValue);
+                applicationDirectory = Path.GetFullPath(AppContext.BaseDirectory);
+                stringValue = Path.GetFullPath(Path.Combine(applicationDirectory, stringValue));
+                var containedPath = PathGuard.NormalizeAbsolutePathWithinRoots(stringValue, new[] { applicationDirectory });
+                if (containedPath is null)
+                {
+                    return new ValidationResult($"The {validationContext.DisplayName} field specifies a directory outside the application directory.");
+                }
+
+                stringValue = containedPath;
             }
 
-            var dir = Path.GetFullPath(stringValue);
+            var dir = applicationDirectory is null ? Path.GetFullPath(stringValue) : stringValue;
 
             // default directories are exempt from validation, as there's an additional check (and creation)
             // at startup for these directories.

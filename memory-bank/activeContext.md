@@ -1,60 +1,37 @@
-## Current state — CI security and validation integrity — 2026-10-13
+## Current state — Stable `.350` publication follow-through — 2026-10-13 08:51 UTC
 
-QuestarrNG PR #49 is merged as `e7ff5522cb1beaa685992219977f571aa2506f06`.
-slskdN PR #357 is open at exact head
-`fe5fb4699206b1fa3b7d31734fbdf13a2bda895f`. Windows passed all 5,785 unit
-tests, 289 integration tests, and 74 backend tests with zero skips; the job
-failed afterward because `setup-node` could not save a pnpm cache path that the
-workflow never created. E2E, both CodeQL checks, both identity-leak checks, the
-release-note contract, vendored-runtime sync, Nix smoke, load testing, dependency
-scanning, and NuGet submission passed. Linux Build and Test, Performance
-Regression Testing, and Container Scanning remained queued.
+Stable release `2026101222-slskdn.350` is published with 13 assets; all six
+platform archives and checksums verify. Publisher recovery succeeded for AUR
+source and binary packages, COPR, container registries, and Nix metadata/smoke.
 
-Gotchas `0z1839` and `0z1840` record the exact SQLite pool-key mismatch and the
-unused Windows pnpm cache failure before their respective fixes. The scanner
-fixture now clears each repository's normalized connection string while
-retaining pooling; its focused test passes 1/1. The Windows workflow change
-disables package-manager caching for its .NET-only job while retaining Node
-setup, restore, build, and tests. `./bin/lint` and `git diff --check` pass. The
-cache fix is not pushed yet, so exact-head checks for it are unknown. The
-existing 21 review threads were resolved; refresh the review queue after the
-next push.
+Hosted `workflow_dispatch` run `38365844172` passed on branch head
+`62f2f95f67bb11e8fc62571d5e137b3b74af5a38`: 15/15 selected release-gate tasks,
+7,344 active cases, zero failures or blockers, three browser E2E exclusions,
+and successful Nix package smoke. The prior branch-sync failure was caused by
+`main` advancing after checkout. The refreshed local remediation baseline
+passes with 12,811 review candidates.
 
-### Next steps
-
-- Commit and push the Windows cache-cleanup repair to PR #357.
-- Reconcile every required check against the exact pushed SHA; fix new failures.
-- Refresh reviews and merge only after the exact-head gate passes.
-- Delete task branches only after all associated worktrees are clear.
-
-## Current state — Credential snapshot hardening — 2026-10-13
-
-PR #357 now also excludes dotted credential basenames and explicit private/API
-key, access-token, refresh-token, and client-secret names, including source-like
-extensions. Source modules such as TokenStore.ts remain in credential-named
-folders unless their own filenames identify credential material. The launcher
-contract includes sandbox canaries for each case.
-
-The focused validation-engine contract suite passes 21/21 with no skips on the
-current local candidate. Hosted PR checks have not finished on the updated
-head. The full repository gate and main-branch manual validation remain
-separate.
+The exact `.350` Jammy source is `Published` and its build log completed, but
+Launchpad's build API still says `Uploading build`; the exact binary is absent
+from all 331 published-binary records and the current Jammy amd64 apt index.
+The release waiter timed out after repeated API SSL timeouts. Do not resubmit
+the accepted source while publication is unresolved.
 
 ### Next Steps
 
-- Push the reconciled matcher, docs, release note, and memory updates to PR #357.
-- Verify the exact pushed head's hosted test, scan, and release-note checks.
-- Keep runner routing and the existing tag-only build policy unchanged.
+- Recheck Launchpad's exact binary publication state and apt index read-only.
+- Keep PR-specific runner routing and main manual-dispatch validation as a
+  separate follow-up.
 
-## Superseded runner-trust and scan-gate state — 2026-10-13
+## Prior state — Runner trust and scan gates — 2026-10-13
 
-An earlier record said the temporary local pool was enabled for
-`snapetech`-authored pull requests. That routing is superseded by the current
-PR #357 candidate: every pull request and every manual dispatch outside `main`
-uses GitHub-hosted runners; trusted `main` validation may use the local pool.
-Workflow YAML remains a routing policy rather than a server-enforced boundary
-on a personal-account repository. Organization runner groups restricted to
-trusted workflow refs remain the planned hard boundary.
+The temporary local pool is enabled for `snapetech`-authored pull requests and
+trusted `main` validation. Pull requests from other contributors stay on
+GitHub-hosted runners, and all external contributors require workflow approval.
+These YAML rules are best-effort on personal-account repositories: a reviewed
+outside workflow can still request self-hosted after approval. Organization
+runner groups restricted to selected workflow refs remain the planned hard
+boundary.
 
 PR #357 already isolates runner-owned temporary storage in Linux self-hosted
 jobs and scopes release write permissions to the publisher. This follow-up
@@ -63,12 +40,6 @@ external actions across workflows, and makes high/critical dependency and image
 findings fail their scan jobs. The repository's default workflow token is now
 read-only. The standalone load harness remains on hosted Linux after the prior
 local SIGBUS.
-
-PR #357 also pins trusted sandbox mount sources through inherited file
-descriptors, caps task logs at 16 MiB with a truncation marker, and excludes
-extensionless credential names while preserving token-named source files. The
-focused trusted launcher and engine suite passes 20/20; exact-head hosted checks
-for `ce9968d5` are pending.
 
 The merged `68b36d3` validation run executed 15/15 tasks and failed two checks
 because `main` advanced during the run; the release-branch-sync check and the
@@ -19357,3 +19328,88 @@ verification pass.
 Fetch and verify current `origin/main`, push the validated tree to
 `snapetech/slskdN/main`, create the authorized stable `.350` tag, verify hosted
 release publishers and artifacts, then remove task-scoped scratch data.
+
+## Current state — System file management release validation — 2026-10-13 12:50 UTC
+
+System file browsing supports on-demand subtree sizes and validated mixed-item
+deletion with per-item results. Responsive browser coverage exercises folder
+sizes, keyboard navigation, deletion recovery, selection, and partial success.
+Room queries retain slash-containing names, and watched-user state is
+published after registration.
+
+The full .NET suite passes 6,180 tests; the web suite passes 1,300 tests; and
+the selected headless browser suite passes 97 tests with seven opt-in network
+and soak scenarios skipped. Repository lint and the Release build pass with
+zero compiler warnings and errors. Local Soulseek/DHT and VPN validation was
+not run because no credentials or VPN profile were available.
+
+### Next Steps
+
+- Commit and push the validated branch to `snapetech/slskdN`.
+- Create the authorized stable build tag and verify the hosted release gate and
+  artifacts.
+
+## Current state — Trusted browser cache and E2E follow-up — 2026-10-13
+
+The validation engine keeps the browser cache from its trusted read-only mount
+and falls back to an isolated task cache for all other values. Local test
+guidance and a validation release-note fragment are updated. The transfer
+column fixture explicitly hides `requested`, whose product default is visible.
+
+The validation-engine suite passes 16 tests; the full headless Web suite passes
+89 with 16 expected skips; the dedicated 15-minute loopback radio-renewal soak
+passes. The Release build and repository lint pass. The trusted local backend
+unit task stalled before test execution and is not counted as passing. Public
+DHT/VPN behavior was not exercised in the network-isolated runner.
+
+### Next Steps
+
+- Commit the browser-cache implementation, release fragment, and documentation.
+- Complete the backend unit suite and exact-head hosted release gate before
+  publication.
+
+## Current state — Unraid configuration coverage and release follow-up — 2026-10-13
+
+The packaging validator exposed missing advanced Unraid fields for documented
+download destination, retry, and retention environment options. The template
+now exposes all documented `SLSKD_*` settings with blank values, and its README
+and support text explain that these fields retain image and YAML defaults. A
+release-note fragment and Unreleased changelog bullet document the operator
+impact. The shared omission pattern is recorded in gotcha `0z1847`.
+
+Packaging metadata validation passes, the Unraid XML parses, and a direct
+coverage scan finds no documented environment settings missing from the
+template. Hosted CI run `38470254893` was dispatched on commit
+`f2b9256d48eca1eaddac3cdd85b9fa4f8bca7f2e`; subsequent release, gotcha, and
+Unraid-template changes still require validation on the final default-branch
+commit. The stable versioned changelog section and tag remain pending.
+
+### Next Steps
+
+- Commit and push the complete Unraid template and release-note follow-up.
+- Complete the backend test suite and exact-head hosted release gate on `main`.
+- Prepare versioned `.351` notes after the validated changes reach `main`, then
+  cut the explicitly requested stable release and verify published artifacts.
+
+## Current state — Main release candidate — 2026-10-13
+
+The 154-commit candidate was fast-forwarded to the fork's `main` at
+`043111a66abd92913f3f8cf539486d5ec1a424db`; the feature branch remains pushed
+and tracks its corresponding remote branch. The exact dated `.351` changelog
+section is now prepared for this candidate. Local Release build, formatting
+lint, the recorded 6,180-test backend suite, 89 passing headless browser tests,
+the 15-minute loopback player-renewal soak, validation-engine tests, and
+packaging metadata checks are green. Live public-network DHT/VPN behavior was
+not exercised because the isolated runner has no live profile or credentials.
+
+Two feature-branch manual CI runs were superseded while the fork's workflow
+queue was backed up. Neither is release evidence. The next step is to dispatch
+the hosted CI release gate against the final `main` commit after the versioned
+changelog/memory update, then tag only if the exact-head gate passes.
+
+### Next Steps
+
+- Commit and push the `.351` versioned changelog plus final progress records.
+- Run `ci.yml` manually on `main` with the GitHub-hosted runner and verify the
+  run against the exact commit.
+- Run the guarded stable-tag helper, watch publication, and verify all assets.

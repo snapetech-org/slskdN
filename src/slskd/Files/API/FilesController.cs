@@ -22,13 +22,17 @@ using Microsoft.Extensions.Options;
 
 namespace slskd.Files.API
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.IO;
+    using System.Linq;
     using System.Security;
     using System.Threading.Tasks;
     using Asp.Versioning;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using OneOf;
     using Serilog;
     using slskd.Common.Security;
     using slskd.Core.Security;
@@ -60,6 +64,7 @@ namespace slskd.Files.API
         ///     Lists the contents of the downloads directory.
         /// </summary>
         /// <param name="recursive">An optional value indicating whether to recursively list subdirectories and files.</param>
+        /// <param name="includeDirectorySizes">An optional value indicating whether to total file sizes below each listed directory.</param>
         /// <returns></returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="401">Authentication failed.</response>
@@ -67,14 +72,17 @@ namespace slskd.Files.API
         [Authorize(Policy = AuthPolicy.Any)]
         [ProducesResponseType(typeof(FilesystemDirectory), 200)]
         [ProducesResponseType(401)]
-        public Task<IActionResult> GetDownloadContentsAsync([FromQuery] bool recursive = false)
-                    => ListDirectoryAsync(rootDirectory: OptionsSnapshot.Value.Directories.Downloads, base64SubdirectoryName: null, recursive);
+        public Task<IActionResult> GetDownloadContentsAsync(
+            [FromQuery] bool recursive = false,
+            [FromQuery] bool includeDirectorySizes = false)
+                    => ListDirectoryAsync(OptionsSnapshot.Value.Directories.Downloads, null, recursive, includeDirectorySizes);
 
         /// <summary>
         ///     Lists the contents of the specified subdirectory within the downloads directory.
         /// </summary>
         /// <param name="base64SubdirectoryName">The relative, base 64 encoded, name of the subdirectory to list.</param>
         /// <param name="recursive">An optional value indicating whether to recursively list subdirectories and files.</param>
+        /// <param name="includeDirectorySizes">An optional value indicating whether to total file sizes below each listed directory.</param>
         /// <returns></returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="401">Authentication failed.</response>
@@ -86,8 +94,11 @@ namespace slskd.Files.API
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public Task<IActionResult> GetDownloadSubdirectoryContentsAsync([FromRoute] string base64SubdirectoryName, [FromQuery] bool recursive = false)
-                    => ListDirectoryAsync(rootDirectory: OptionsSnapshot.Value.Directories.Downloads, base64SubdirectoryName, recursive);
+        public Task<IActionResult> GetDownloadSubdirectoryContentsAsync(
+            [FromRoute] string base64SubdirectoryName,
+            [FromQuery] bool recursive = false,
+            [FromQuery] bool includeDirectorySizes = false)
+                    => ListDirectoryAsync(OptionsSnapshot.Value.Directories.Downloads, base64SubdirectoryName, recursive, includeDirectorySizes);
 
         /// <summary>
         ///     Deletes the specified subdirectory within the downloads directory.
@@ -120,23 +131,43 @@ namespace slskd.Files.API
                     => DeleteFileAsync(rootDirectory: OptionsSnapshot.Value.Directories.Downloads, base64FileName);
 
         /// <summary>
+        ///     Deletes a set of files and directories below the downloads directory.
+        /// </summary>
+        /// <param name="request">The relative paths and item types to delete.</param>
+        /// <returns>One result for each requested item.</returns>
+        /// <response code="200">Every requested item was deleted.</response>
+        /// <response code="207">Some requested items could not be deleted.</response>
+        /// <response code="400">The request contains an invalid or overlapping path.</response>
+        /// <response code="403">Remote file management is disabled or a path is forbidden.</response>
+        [HttpDelete("downloads/items")]
+        [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
+        [ProducesResponseType(typeof(DeleteItemsResponse), 200)]
+        [ProducesResponseType(typeof(DeleteItemsResponse), 207)]
+        public Task<IActionResult> DeleteDownloadItemsAsync([FromBody] DeleteItemsRequest request)
+            => DeleteItemsAsync(OptionsSnapshot.Value.Directories.Downloads, request);
+
+        /// <summary>
         ///     Lists the contents of the downloads directory.
         /// </summary>
         /// <param name="recursive">An optional value indicating whether to recursively list subdirectories and files.</param>
+        /// <param name="includeDirectorySizes">An optional value indicating whether to total file sizes below each listed directory.</param>
         /// <returns></returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="401">Authentication failed.</response>
         [HttpGet("incomplete/directories")]
         [Authorize(Policy = AuthPolicy.Any)]
         [ProducesResponseType(typeof(FilesystemDirectory), 200)]
-        public Task<IActionResult> GetIncompleteContentsAsync([FromQuery] bool recursive = false)
-                    => ListDirectoryAsync(rootDirectory: OptionsSnapshot.Value.Directories.Incomplete, base64SubdirectoryName: null, recursive);
+        public Task<IActionResult> GetIncompleteContentsAsync(
+            [FromQuery] bool recursive = false,
+            [FromQuery] bool includeDirectorySizes = false)
+                    => ListDirectoryAsync(OptionsSnapshot.Value.Directories.Incomplete, null, recursive, includeDirectorySizes);
 
         /// <summary>
         ///     Lists the contents of the specified subdirectory within the incomplete directory.
         /// </summary>
         /// <param name="base64SubdirectoryName">The relative, base 64 encoded, name of the subdirectory to list.</param>
         /// <param name="recursive">An optional value indicating whether to recursively list subdirectories and files.</param>
+        /// <param name="includeDirectorySizes">An optional value indicating whether to total file sizes below each listed directory.</param>
         /// <returns></returns>
         /// <response code="200">The request completed successfully.</response>
         /// <response code="401">Authentication failed.</response>
@@ -145,8 +176,11 @@ namespace slskd.Files.API
         [HttpGet("incomplete/directories/{base64SubdirectoryName}")]
         [Authorize(Policy = AuthPolicy.Any)]
         [ProducesResponseType(typeof(FilesystemDirectory), 200)]
-        public Task<IActionResult> GetIncompleteSubdirectoryContentsAsync([FromRoute, Required] string base64SubdirectoryName, [FromQuery] bool recursive = false)
-                    => ListDirectoryAsync(rootDirectory: OptionsSnapshot.Value.Directories.Incomplete, base64SubdirectoryName, recursive);
+        public Task<IActionResult> GetIncompleteSubdirectoryContentsAsync(
+            [FromRoute, Required] string base64SubdirectoryName,
+            [FromQuery] bool recursive = false,
+            [FromQuery] bool includeDirectorySizes = false)
+                    => ListDirectoryAsync(OptionsSnapshot.Value.Directories.Incomplete, base64SubdirectoryName, recursive, includeDirectorySizes);
 
         /// <summary>
         ///     Deletes the specified subdirectory within the downloads directory.
@@ -178,7 +212,27 @@ namespace slskd.Files.API
         public Task<IActionResult> DeleteIncompleteFileAsync([FromRoute] string base64FileName)
                     => DeleteFileAsync(rootDirectory: OptionsSnapshot.Value.Directories.Incomplete, base64FileName);
 
-        private async Task<IActionResult> ListDirectoryAsync(string rootDirectory, string? base64SubdirectoryName = null, bool recursive = false)
+        /// <summary>
+        ///     Deletes a set of files and directories below the incomplete directory.
+        /// </summary>
+        /// <param name="request">The relative paths and item types to delete.</param>
+        /// <returns>One result for each requested item.</returns>
+        /// <response code="200">Every requested item was deleted.</response>
+        /// <response code="207">Some requested items could not be deleted.</response>
+        /// <response code="400">The request contains an invalid or overlapping path.</response>
+        /// <response code="403">Remote file management is disabled or a path is forbidden.</response>
+        [HttpDelete("incomplete/items")]
+        [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
+        [ProducesResponseType(typeof(DeleteItemsResponse), 200)]
+        [ProducesResponseType(typeof(DeleteItemsResponse), 207)]
+        public Task<IActionResult> DeleteIncompleteItemsAsync([FromBody] DeleteItemsRequest request)
+            => DeleteItemsAsync(OptionsSnapshot.Value.Directories.Incomplete, request);
+
+        private async Task<IActionResult> ListDirectoryAsync(
+            string rootDirectory,
+            string? base64SubdirectoryName = null,
+            bool recursive = false,
+            bool includeDirectorySizes = false)
         {
             if (!TryDecodeRelativePath(base64SubdirectoryName, out var relativeDirectory))
             {
@@ -203,7 +257,8 @@ namespace slskd.Files.API
                     {
                         AttributesToSkip = FileAttributes.System | FileAttributes.ReparsePoint,
                         RecurseSubdirectories = recursive,
-                    });
+                    },
+                    includeDirectorySizes: includeDirectorySizes);
 
                 return Ok(response);
             }
@@ -217,6 +272,130 @@ namespace slskd.Files.API
                 Log.Debug("Directory '{Directory}' not found", requestedDir);
                 return NotFound();
             }
+        }
+
+        private async Task<IActionResult> DeleteItemsAsync(string rootDirectory, DeleteItemsRequest request)
+        {
+            if (!OptionsSnapshot.Value.RemoteFileManagement)
+            {
+                return Forbid();
+            }
+
+            var items = request?.Items?.ToArray() ?? Array.Empty<DeleteItemRequest>();
+            if (items.Length == 0 || items.Length > 10_000)
+            {
+                return BadRequest("The request must contain between 1 and 10000 items");
+            }
+
+            var normalizedRoot = PathGuard.NormalizeAndValidate(".", rootDirectory);
+            if (normalizedRoot is null)
+            {
+                return BadRequest("Invalid files root");
+            }
+
+            var fullRoot = Path.TrimEndingDirectorySeparator(normalizedRoot);
+            var pathComparer = OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
+            var seen = new HashSet<string>(pathComparer);
+            var normalizedItems = new List<(DeleteItemRequest Item, string FullPath, string Kind)>(items.Length);
+
+            foreach (var item in items)
+            {
+                if (item is null)
+                {
+                    return BadRequest("Every item must have a relative path and a type of file or directory");
+                }
+
+                var kind = item.Type?.Trim();
+                var path = item.Path?.Trim();
+                if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(kind) ||
+                    (!kind.Equals("file", StringComparison.OrdinalIgnoreCase) &&
+                        !kind.Equals("directory", StringComparison.OrdinalIgnoreCase)))
+                {
+                    return BadRequest("Every item must have a relative path and a type of file or directory");
+                }
+
+                var fullPath = PathGuard.NormalizeAndValidate(path, rootDirectory);
+                if (fullPath is null || pathComparer.Equals(fullPath, fullRoot))
+                {
+                    return BadRequest("Invalid item path");
+                }
+
+                if (!seen.Add(fullPath))
+                {
+                    return BadRequest("The request contains duplicate item paths");
+                }
+
+                normalizedItems.Add((item, fullPath, kind!));
+            }
+
+            foreach (var parent in normalizedItems.Where(item => item.Kind.Equals("directory", StringComparison.OrdinalIgnoreCase)))
+            {
+                if (normalizedItems.Any(child =>
+                    !pathComparer.Equals(parent.FullPath, child.FullPath) &&
+                    IsDescendantPath(parent.FullPath, child.FullPath)))
+                {
+                    return BadRequest("A selected directory cannot overlap another selected item");
+                }
+            }
+
+            var directoryItems = normalizedItems
+                .Where(item => item.Kind.Equals("directory", StringComparison.OrdinalIgnoreCase))
+                .ToArray();
+            var fileItems = normalizedItems
+                .Where(item => item.Kind.Equals("file", StringComparison.OrdinalIgnoreCase))
+                .ToArray();
+
+            var directoryResults = directoryItems.Length == 0
+                ? new Dictionary<string, OneOf<bool, Exception>>()
+                : await Files.DeleteDirectoriesAsync(directoryItems.Select(item => item.FullPath).ToArray());
+            var fileResults = fileItems.Length == 0
+                ? new Dictionary<string, OneOf<bool, Exception>>()
+                : await Files.DeleteFilesAsync(fileItems.Select(item => item.FullPath).ToArray());
+
+            var results = normalizedItems.Select(item =>
+            {
+                var operationResults = item.Kind.Equals("directory", StringComparison.OrdinalIgnoreCase)
+                    ? directoryResults
+                    : fileResults;
+                var result = operationResults[item.FullPath];
+                return result.Match(
+                    _ => new DeleteItemResult(item.Item.Path, item.Kind.ToLowerInvariant(), true, null),
+                    exception => new DeleteItemResult(
+                        item.Item.Path,
+                        item.Kind.ToLowerInvariant(),
+                        false,
+                        GetSafeDeleteError(exception)));
+            }).ToArray();
+
+            var response = new DeleteItemsResponse { Results = results };
+            return results.All(result => result.Succeeded)
+                ? Ok(response)
+                : StatusCode(207, response);
+        }
+
+        private static bool IsDescendantPath(string parent, string path)
+        {
+            var relative = Path.GetRelativePath(parent, path);
+            return relative != "." &&
+                relative != ".." &&
+                !relative.StartsWith($"..{Path.DirectorySeparatorChar}", StringComparison.Ordinal) &&
+                !relative.StartsWith($"..{Path.AltDirectorySeparatorChar}", StringComparison.Ordinal) &&
+                !Path.IsPathRooted(relative);
+        }
+
+        private static string GetSafeDeleteError(Exception exception)
+        {
+            if (exception is NotFoundException || exception is FileNotFoundException || exception is DirectoryNotFoundException)
+            {
+                return "not-found";
+            }
+
+            if (exception is UnauthorizedException || exception is UnauthorizedAccessException || exception is SecurityException)
+            {
+                return "access-denied";
+            }
+
+            return "delete-failed";
         }
 
         private async Task<IActionResult> DeleteSubdirectoryAsync(string rootDirectory, string base64SubdirectoryName)

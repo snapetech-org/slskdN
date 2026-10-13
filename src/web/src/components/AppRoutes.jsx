@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 const Browse = lazy(() => import('./Browse/Browse'));
+const Dashboard = lazy(() => import('./Dashboard/Dashboard'));
 const Collections = lazy(() => import('./Collections/Collections'));
 const Contacts = lazy(() => import('./Contacts/Contacts'));
 const DiscoveryGraphAtlasPage = lazy(() =>
@@ -18,7 +19,7 @@ const Users = lazy(() => import('./Users/Users'));
 const Wishlist = lazy(() => import('./Wishlist/Wishlist'));
 const LidarrPage = lazy(() => import('./Lidarr/Lidarr'));
 
-const RouteMissRedirect = () => <Navigate replace to="/searches" />;
+const RouteMissRedirect = () => <Navigate replace to="/dashboard" />;
 
 const AppRoutes = ({ applicationOptions, applicationState, isAgent, theme }) => {
   if (isAgent) {
@@ -53,8 +54,12 @@ const AppRoutes = ({ applicationOptions, applicationState, isAgent, theme }) => 
   return (
     <Routes>
       <Route
-        element={<Navigate replace to="/searches" />}
+        element={<Navigate replace to="/dashboard" />}
         path="/"
+      />
+      <Route
+        element={<Dashboard />}
+        path="/dashboard"
       />
       <Route
         element={(

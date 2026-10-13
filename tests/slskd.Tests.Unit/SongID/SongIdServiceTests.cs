@@ -530,6 +530,7 @@ public sealed class SongIdServiceTests : IDisposable
     {
         var property = typeof(Program).GetProperty(nameof(Program.AppDirectory), BindingFlags.Public | BindingFlags.Static);
         property?.SetValue(null, _originalAppDirectory);
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(_tempDir, "songid.db")}");
 
         SqliteTestDatabaseCleanup.ClearPool(Path.Combine(_tempDir, "songid.db"));
 

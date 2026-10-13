@@ -52,6 +52,7 @@ const STATUS_FILTERS = [
 ];
 
 const RECONCILE_INTERVAL_MS = 15_000;
+const ACTIVE_TRANSFER_PAGE_SIZE = 100;
 const HISTORY_PAGE_SIZE = 250;
 
 const getErrorMessage = (error) =>
@@ -135,6 +136,22 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
     download: { asOf: null, hasMore: true, loading: false, offset: 0 },
     upload: { asOf: null, hasMore: true, loading: false, offset: 0 },
   });
+  const activeTransferPagesRef = useRef({
+    download: {
+      afterId: null,
+      afterRequestedAt: null,
+      asOf: null,
+      hasMore: false,
+      loading: false,
+    },
+    upload: {
+      afterId: null,
+      afterRequestedAt: null,
+      asOf: null,
+      hasMore: false,
+      loading: false,
+    },
+  });
 
   const retrying = retryingSingle || bulkCounts.retry > 0;
   const cancelling = cancellingSingle || bulkCounts.cancel > 0;
@@ -171,25 +188,61 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       const since = cursor === null ? null : Math.max(0, cursor - 1);
       reconcileRequest = (async () => {
         try {
-          const snapshot = await transfersLibrary.getChanges({ since });
-          if (disposed || document.hidden) {
-            return;
-          }
-
           if (!seeded) {
-            store.seed(snapshot.transfers.filter((transfer) => !transfer.removed));
+            const downloadSnapshot = await transfersLibrary.getChanges({
+              direction: 'download',
+              limit: ACTIVE_TRANSFER_PAGE_SIZE,
+            });
+            if (disposed || document.hidden) {
+              return;
+            }
+
+            const uploadSnapshot = await transfersLibrary.getChanges({
+              direction: 'upload',
+              limit: ACTIVE_TRANSFER_PAGE_SIZE,
+              snapshot: downloadSnapshot.cursor,
+            });
+            if (disposed || document.hidden) {
+              return;
+            }
+
+            store.seed([
+              ...downloadSnapshot.transfers,
+              ...uploadSnapshot.transfers,
+            ].filter((transfer) => !transfer.removed));
+            activeTransferPagesRef.current.download = {
+              afterId: downloadSnapshot.nextAfterId,
+              afterRequestedAt: downloadSnapshot.nextAfterRequestedAt,
+              asOf: downloadSnapshot.cursor,
+              hasMore: downloadSnapshot.hasMore,
+              loading: false,
+            };
+            activeTransferPagesRef.current.upload = {
+              afterId: uploadSnapshot.nextAfterId,
+              afterRequestedAt: uploadSnapshot.nextAfterRequestedAt,
+              asOf: uploadSnapshot.cursor,
+              hasMore: uploadSnapshot.hasMore,
+              loading: false,
+            };
             seeded = true;
             pendingEvents.forEach(({ callback, event }) => callback(event));
             pendingEvents = [];
+            cursor = downloadSnapshot.cursor;
+            setTotalCounts(downloadSnapshot.counts);
             setInitialSnapshotLoaded(true);
+            setHistoryVersion((version) => version + 1);
           } else {
-            store.applySnapshot(snapshot.transfers);
-          }
+            const snapshot = await transfersLibrary.getChanges({ since });
+            if (disposed || document.hidden) {
+              return;
+            }
 
-          if (snapshot.cursor !== null) {
-            cursor = Math.max(cursor ?? 0, snapshot.cursor);
+            store.applySnapshot(snapshot.transfers);
+            if (snapshot.cursor !== null) {
+              cursor = Math.max(cursor ?? 0, snapshot.cursor);
+            }
+            setTotalCounts(snapshot.counts);
           }
-          setTotalCounts(snapshot.counts);
         } catch (error) {
           if (!disposed) {
             console.error('transfer reconcile failed', error);
@@ -307,6 +360,35 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       status.offset = page.nextOffset;
     } catch (error) {
       console.error('completed transfer history failed', error);
+    } finally {
+      status.loading = false;
+      setHistoryVersion((version) => version + 1);
+    }
+  }, [store]);
+
+  const loadMoreActiveTransfers = useCallback(async (pageDirection) => {
+    const status = activeTransferPagesRef.current[pageDirection];
+    if (document.hidden || status.loading || !status.hasMore) return;
+
+    status.loading = true;
+    setHistoryVersion((version) => version + 1);
+    try {
+      const page = await transfersLibrary.getChanges({
+        afterId: status.afterId,
+        afterRequestedAt: status.afterRequestedAt,
+        direction: pageDirection,
+        limit: ACTIVE_TRANSFER_PAGE_SIZE,
+        snapshot: status.asOf,
+      });
+      if (document.hidden) return;
+
+      store.applySnapshot(page.transfers);
+      status.afterId = page.nextAfterId;
+      status.afterRequestedAt = page.nextAfterRequestedAt;
+      status.hasMore = page.hasMore;
+    } catch (error) {
+      console.error('active transfer page failed', error);
+      toast.error('Could not load more transfers');
     } finally {
       status.loading = false;
       setHistoryVersion((version) => version + 1);
@@ -727,6 +809,10 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
     () => completedHistoryRef.current[activeTab],
     [activeTab, historyVersion],
   );
+  const activePageStatus = useMemo(
+    () => activeTransferPagesRef.current[activeTab],
+    [activeTab, historyVersion],
+  );
   const isEmpty = counts[activeTab] === 0;
 
   return (
@@ -789,6 +875,9 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
 
       {!isEmpty && (
         <div className="transfer-filter-bar">
+          <div className="transfer-loaded-note" role="status">
+            {`Loaded ${tabTransfers.length} of ${counts[activeTab]} transfer rows. Status filters and queue actions use loaded rows; removing completed rows applies server-wide.`}
+          </div>
           <div className="transfer-filter-chips">
             {STATUS_FILTERS.map((filter) => (
               <Popup
@@ -831,6 +920,21 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
                   size="small"
                 />
               }
+            />
+          )}
+          {activePageStatus.hasMore && (
+            <Popup
+              content="Load the next 100 active and unsuccessful transfer records from the server. Selection and live updates are retained as more rows arrive."
+              trigger={(
+                <Button
+                  content="Load more transfers"
+                  disabled={activePageStatus.loading}
+                  icon="ellipsis horizontal"
+                  loading={activePageStatus.loading}
+                  onClick={() => loadMoreActiveTransfers(activeTab)}
+                  size="small"
+                />
+              )}
             />
           )}
         </div>

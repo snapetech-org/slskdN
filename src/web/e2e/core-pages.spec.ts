@@ -51,6 +51,42 @@ test.describe('core pages', () => {
     }
   });
 
+  test('dashboard_shows_transfer_summary_from_the_default_home', async ({ page, request }) => {
+    const nodeA = harness ? harness.getNode('A').nodeCfg : NODES.A;
+    await waitForHealth(request, nodeA.baseUrl);
+    await login(page, nodeA);
+
+    const summaryResponse = page.waitForResponse((response) =>
+      response.request().method() === 'GET' &&
+      response.url().includes('/api/v0/telemetry/reports/transfers/summary'));
+    await page.goto(nodeA.baseUrl, {
+      timeout: 10_000,
+      waitUntil: 'domcontentloaded',
+    });
+
+    expect((await summaryResponse).ok()).toBeTruthy();
+    await expect(page).toHaveURL(/\/dashboard$/);
+    await expect(page.getByRole('heading', { name: 'Transfer overview' })).toBeVisible();
+    await expect(page.getByTestId('download-bytes')).toBeVisible();
+    await expect(page.getByTestId('upload-bytes')).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Open download list' })).toHaveAttribute(
+      'href',
+      '/downloads',
+    );
+
+    const refresh = page.getByRole('button', { name: 'Refresh transfer overview' });
+    await refresh.hover();
+    await expect(
+      page.getByText('Refresh the seven-day totals from the transfer history.'),
+    ).toBeVisible();
+
+    const refreshedSummary = page.waitForResponse((response) =>
+      response.request().method() === 'GET' &&
+      response.url().includes('/api/v0/telemetry/reports/transfers/summary'));
+    await refresh.click();
+    expect((await refreshedSummary).ok()).toBeTruthy();
+  });
+
   test('downloads_page_loads', async ({ page, request }) => {
     const nodeA = harness ? harness.getNode('A').nodeCfg : NODES.A;
     await waitForHealth(request, nodeA.baseUrl);

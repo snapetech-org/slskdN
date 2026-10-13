@@ -19093,3 +19093,72 @@ The full .NET suite passes 6,145 tests; the full Web suite passes 1,295 tests.
 build/startup, version-change cache check, release-note preview, identity scan,
 route inventory, and GitHub target verification pass. Push and hosted stable
 release verification remain.
+
+## Update 2026-10-13 — Stable `.350` publisher and exact-head validation follow-up
+
+The stable `.350` tag and 13 release assets are published; all six platform
+archives and checksums verify. Recovery publication succeeded for the AUR
+source and binary packages, COPR, container registries, and Nix metadata/smoke.
+The exact Jammy source package is `Published`, and its build log completed, but
+Launchpad's build API still reports `Uploading build`. The exact binary is absent
+from the published-binary API and the current Jammy amd64 package index. The
+release wait job timed out after repeated Launchpad API SSL timeouts; no source
+resubmission was made.
+
+Hosted `workflow_dispatch` run `38365844172` validated branch head
+`62f2f95f67bb11e8fc62571d5e137b3b74af5a38`: the release gate passed all 15
+selected tasks and 7,344 active cases with zero failures or blockers, three
+browser E2E tasks were excluded by the checked-in plan, and the Nix package
+smoke passed. The previous run's branch-sync failure came from `main` advancing
+after checkout. The local remediation baseline also passes after refreshing the
+candidate inventory to 12,811 matches; these are review candidates, not
+confirmed defects.
+
+## Update 2026-10-13 — System file management and responsive workflows
+
+System file browsing now supports on-demand subtree sizes and validated
+multi-item deletion with per-item outcomes. The narrow-screen workflow covers
+keyboard navigation, retry after a failed delete, selected-item confirmation,
+and partial-success reporting. Room queries preserve slash-containing names,
+and watched-user state is published after registration.
+
+The full .NET suite passes 6,180 tests, the web suite passes 1,300 tests, and
+the selected headless browser suite passes 97 tests with seven opt-in network
+and soak scenarios skipped. Repository lint and the Release build pass with
+zero compiler warnings and errors. The stable build tag and hosted artifact
+verification remain.
+
+## Update 2026-10-13 — Trusted browser cache and full E2E follow-up
+
+The trusted validation engine now preserves the Playwright browser cache when
+it comes from the launcher's read-only dependency mount, while continuing to
+isolate untrusted cache paths. Local testing instructions and a validation
+release-note fragment are updated. The transfer-column E2E fixture now marks
+the default-visible `requested` column hidden when asserting an exact set.
+
+The validation-engine suite passes 16 tests. The full headless Web suite passes
+89 tests with 16 skipped by opt-in/offline policy; the dedicated 15-minute
+loopback radio-renewal soak passes. Release build and repository formatting
+lint pass. The trusted local backend unit task did not reach test execution
+because restore/build stalled before launching a test host; no backend result
+is claimed from that attempt.
+
+## Update 2026-10-13 21:29 UTC — Unraid environment coverage
+
+Packaging metadata validation found documented download destination,
+permissions, retry, and retention environment settings missing from the
+Unraid template. Recorded gotcha `0z1847`, exposed every documented optional
+`SLSKD_*` setting in the advanced template fields, and updated the Unraid guide,
+support post, Unreleased changelog, validation inputs, and release-note
+fragment. The full packaging metadata validator passes; XML parsing and a
+documentation-to-template coverage scan also pass. Exact-head release
+validation remains pending because the currently running hosted job was
+dispatched before this follow-up.
+
+## Update 2026-10-13 21:38 UTC — Main release candidate
+
+Pushed the complete 154-commit candidate to the verified fork's `main` with a
+normal fast-forward. The Unreleased notes are now under the dated
+`2026101321-slskdn.351` section. The earlier branch workflow runs were
+superseded while queued and were cancelled; no result from those runs is
+counted. The exact-`main` hosted gate and stable tag remain pending.

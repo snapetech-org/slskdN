@@ -215,7 +215,7 @@ const TransfersHeader = ({
             { key: 'cancelled', text: 'Cancelled', value: 'Cancelled' },
             { key: 'all', text: 'All', value: 'All' },
           ]}
-          tooltip="Retry every eligible download in the chosen status group. This sends new requests to Soulseek peers; use the arrow menu to choose Errored, Cancelled, or All."
+          tooltip="Retry every eligible loaded download in the chosen status group. Load more transfers first to include older rows. This sends new requests to Soulseek peers; use the arrow menu to choose Errored, Cancelled, or All."
         >
           {`Retry ${retryOption === 'All' ? retryOption : `All ${retryOption}`}`}
         </ShrinkableDropdownButton>
@@ -236,7 +236,7 @@ const TransfersHeader = ({
             { key: 'queued', text: 'Queued', value: 'Queued' },
             { key: 'inProgress', text: 'In Progress', value: 'In Progress' },
           ]}
-          tooltip="Cancel transfers in the chosen state group to stop queued or active peer traffic. Use the arrow menu to choose All, Queued, or In Progress."
+          tooltip="Cancel loaded transfers in the chosen state group to stop queued or active peer traffic. Load more transfers first to include older rows. Use the arrow menu to choose All, Queued, or In Progress."
         >
           {`Cancel ${cancelOption === 'All' ? cancelOption : `All ${cancelOption}`}`}
         </ShrinkableDropdownButton>
@@ -261,7 +261,9 @@ const TransfersHeader = ({
             { key: 'cancelled', text: 'Cancelled', value: 'Cancelled' },
             { key: 'completed', text: 'Complete', value: 'Completed' },
           ]}
-          tooltip="Remove matching transfer rows from this list; completed files remain on disk. Use the arrow menu to choose which result group to remove."
+          tooltip={useBulkClear
+            ? 'Remove all matching completed rows from the server list; completed files remain on disk.'
+            : 'Remove matching loaded transfer rows from this list; completed files remain on disk. Load more transfers first to include older rows.'}
         >
           {`Remove All ${removeOption === 'Completed' ? 'Complete' : removeOption}`}
         </ShrinkableDropdownButton>

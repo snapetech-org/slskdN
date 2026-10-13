@@ -329,6 +329,7 @@ public class HashDbControllerTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={dbPath}");
             if (System.IO.File.Exists(dbPath))
             {
                 System.IO.File.Delete(dbPath);

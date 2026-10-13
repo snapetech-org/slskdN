@@ -4,6 +4,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
 using Moq;
 using slskd.Common.Security;
@@ -304,6 +305,7 @@ public class TorIntegrationTests
         // Assert - returned stream should start with payload, not leftover connect response bytes.
         var payload = Encoding.UTF8.GetString(readBuffer, 0, bytesRead);
         Assert.Equal("TorDialerPayload", payload);
+        Assert.Empty(mockServer.ServerErrors);
     }
 
     [Fact]
@@ -452,6 +454,7 @@ public class TorIntegrationTests
 
         public int Port { get; private set; }
         public int ConnectionAttempts { get; private set; }
+        public ConcurrentQueue<Exception> ServerErrors { get; } = new();
         public byte ResponseVersion { get; set; } = 0x05; // SOCKS5
         public bool RequireAuth { get; set; }
         public bool AuthSuccess { get; set; } = true;
@@ -496,69 +499,52 @@ public class TorIntegrationTests
                 {
                     var stream = client.GetStream();
 
-                    // Read the SOCKS5 version and method count, then consume every advertised method.
-                    var handshakeHeader = new byte[2];
-                    await stream.ReadExactlyAsync(handshakeHeader, ct);
-                    if (handshakeHeader[0] != 0x05)
+                    // The greeting's method count makes the frame length variable.
+                    var greetingHeader = new byte[2];
+                    await stream.ReadExactlyAsync(greetingHeader, ct);
+                    var methods = new byte[greetingHeader[1]];
+                    await stream.ReadExactlyAsync(methods, ct);
+
+                    var selectedMethod = RequireAuth
+                        ? methods.Contains((byte)0x02) ? (byte)0x02 : (byte)0xFF
+                        : methods.Contains((byte)0x00) ? (byte)0x00 : (byte)0xFF;
+                    var handshakeResponse = new[] { ResponseVersion, selectedMethod };
+                    await WriteFragmentedAsync(stream, handshakeResponse, FragmentHandshakeResponse, ct);
+
+                    if (selectedMethod == 0xFF)
                     {
-                        throw new InvalidDataException("Expected a SOCKS5 handshake.");
+                        return;
                     }
 
-                    var authenticationMethods = new byte[handshakeHeader[1]];
-                    await stream.ReadExactlyAsync(authenticationMethods, ct);
-
-                    if (RequireAuth)
+                    if (selectedMethod == 0x02)
                     {
-                        if (Array.IndexOf(authenticationMethods, (byte)0x02) < 0)
-                        {
-                            await stream.WriteAsync(new byte[] { 0x05, 0xFF }, ct);
-                            return;
-                        }
-
-                        // Respond with authentication required
-                        var authResponse = new byte[] { 0x05, 0x02 }; // SOCKS5, username/password auth
-                        await stream.WriteAsync(authResponse, ct);
-
-                        // Read auth request
                         var authHeader = new byte[2];
                         await stream.ReadExactlyAsync(authHeader, ct);
-                        if (authHeader[0] != 0x01)
-                        {
-                            throw new InvalidDataException("Expected a SOCKS5 username/password request.");
-                        }
-
-                        var username = new byte[authHeader[1]];
-                        await stream.ReadExactlyAsync(username, ct);
-                        var passwordLength = new byte[1];
-                        await stream.ReadExactlyAsync(passwordLength, ct);
-                        var password = new byte[passwordLength[0]];
+                        var usernameAndPasswordLength = new byte[authHeader[1] + 1];
+                        await stream.ReadExactlyAsync(usernameAndPasswordLength, ct);
+                        var password = new byte[usernameAndPasswordLength[^1]];
                         await stream.ReadExactlyAsync(password, ct);
 
-                        // Send auth result
                         var authResult = AuthSuccess ? (byte)0x00 : (byte)0x01;
-                        await stream.WriteAsync(new byte[] { 0x01, authResult }, ct);
+                        await stream.WriteAsync(new byte[] { 0x01, authResult }, 0, 2, ct);
 
                         if (!AuthSuccess)
                         {
                             return; // End connection on auth failure
                         }
                     }
-                    else
+                    var connectHeader = new byte[4];
+                    await stream.ReadExactlyAsync(connectHeader, ct);
+
+                    var addressLength = connectHeader[3] switch
                     {
-                        // Select no-auth only when the client offered it.
-                        var selectedMethod = Array.IndexOf(authenticationMethods, (byte)0x00) >= 0
-                            ? (byte)0x00
-                            : (byte)0xFF;
-                        var handshakeResponse = new byte[] { ResponseVersion, selectedMethod };
-                        await WriteFragmentedAsync(stream, handshakeResponse, FragmentHandshakeResponse, ct);
-
-                        if (selectedMethod == 0xFF)
-                        {
-                            return;
-                        }
-                    }
-
-                    await ReadConnectRequestAsync(stream, ct);
+                        0x01 => 4,
+                        0x04 => 16,
+                        0x03 => await ReadDomainAddressLengthAsync(stream, ct),
+                        _ => throw new InvalidDataException("Unsupported SOCKS5 address type"),
+                    };
+                    var addressAndPort = new byte[addressLength + 2];
+                    await stream.ReadExactlyAsync(addressAndPort, ct);
 
                     // Send success response
                     var connectResponse = ConnectResponse ??
@@ -569,46 +555,20 @@ public class TorIntegrationTests
                     {
                         var payload = Encoding.UTF8.GetBytes(PostConnectPayload);
                         await WriteFragmentedAsync(stream, payload, false, ct);
-
-                        // Keep the socket open until the client has consumed the response and payload.
-                        // Closing with unread data can reset the connection on Windows.
-                        await stream.CopyToAsync(Stream.Null, ct);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Connection handling error - expected in some test cases
-                Console.WriteLine($"Mock server error: {ex.Message}");
+                ServerErrors.Enqueue(ex);
             }
         }
 
-        private static async Task ReadConnectRequestAsync(Stream stream, CancellationToken cancellationToken)
-        {
-            var header = new byte[4];
-            await stream.ReadExactlyAsync(header, cancellationToken);
-            if (header[0] != 0x05)
-            {
-                throw new InvalidDataException("Expected a SOCKS5 connect request.");
-            }
-
-            var remainingAddressAndPortLength = header[3] switch
-            {
-                0x01 => 4 + 2,
-                0x04 => 16 + 2,
-                0x03 => await ReadDomainAddressAndPortLengthAsync(stream, cancellationToken),
-                _ => throw new InvalidDataException("Unsupported SOCKS5 address type."),
-            };
-
-            var remainingAddressAndPort = new byte[remainingAddressAndPortLength];
-            await stream.ReadExactlyAsync(remainingAddressAndPort, cancellationToken);
-        }
-
-        private static async Task<int> ReadDomainAddressAndPortLengthAsync(Stream stream, CancellationToken cancellationToken)
+        private static async Task<int> ReadDomainAddressLengthAsync(NetworkStream stream, CancellationToken ct)
         {
             var length = new byte[1];
-            await stream.ReadExactlyAsync(length, cancellationToken);
-            return length[0] + 2;
+            await stream.ReadExactlyAsync(length, ct);
+            return length[0];
         }
 
         private static async Task WriteFragmentedAsync(Stream stream, byte[] payload, bool fragment, CancellationToken ct)

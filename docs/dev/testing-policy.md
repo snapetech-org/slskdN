@@ -65,14 +65,14 @@ outside the checkout, keeping them together. The launcher snapshots only paths
 in the Git index, hides the original checkout and common host configuration and
 data roots, and runs candidate code offline. Dotted and extensionless credential
 names, private/API keys, access/refresh-token names, client-secret names, and
-credential material with source-like extensions are excluded. Source modules
-under credential folders remain available unless their own names identify
-credential material. Suffixed dotenv credentials such as tokens.env.local are
-excluded, while tokens.env.example remains available. Stage new candidate
-files first. The launcher opens each
-workspace, run-data, dependency, cache, and marker source
-before masking host paths, then binds those pinned sources through inherited
-file descriptors.
+credential material with source-like extensions are excluded. Non-source files
+under credential-named folders and suffixed dotenv credentials such as
+`tokens.env.local` are also filtered, while source modules such as `TokenStore.ts`
+and safe templates such as `tokens.env.example` remain. Stage new candidate files
+first.
+The launcher opens each workspace, run-data, dependency, cache, and marker
+source before masking host paths, then binds those pinned sources through
+inherited file descriptors.
 
 ```bash
 node /path/to/trusted-test-launcher.mjs "$PWD" -- node scripts/validate-development.mjs --tests-only
@@ -97,7 +97,8 @@ GitHub Actions shows these live updates in the step log because rendered job
 summaries are published after the step completes.
 
 Each execution creates a fresh receipt and per-task logs in a private directory
-under the operating system's temporary directory. Receipts bind the Git commit,
+under the operating system's temporary directory. Each log is capped at 16 MiB
+and carries a marker when output was truncated. Receipts bind the Git commit,
 tree, dirty diff, untracked files, lock/workflow inputs, discovered test-file
 digests, runtime versions, and (on GitHub Actions) the workflow run and attempt.
 Test tasks pass only when their native command succeeds and reports at least
@@ -114,8 +115,21 @@ reach child commands.
 Playwright tasks keep those private home and XDG directories and use the
 job-scoped `slskdn-playwright-browsers` cache under the runner temporary root.
 The E2E workflow installs Chromium into that same cache before the engine runs.
-For local browser validation, set `PLAYWRIGHT_BROWSERS_PATH` to the equivalent
-temporary-root path before installing browsers; see `tests/e2e/README.md`.
+The registered browser tasks set `SLSKDN_TEST_NO_CONNECT=true` explicitly, so
+the isolated suite does not attempt public Soulseek connections. Use the
+separate loopback journey command when exercising peer protocol behavior.
+For local browser validation, install Chromium into a task-scoped cache and
+pass that directory to the trusted launcher with `--playwright-cache`. The
+launcher mounts it read-only and the engine accepts only the launcher's guest
+mount path, so arbitrary operator cache paths remain isolated. For example:
+
+```bash
+node scripts/validation-engine/trusted-test-launcher.mjs "$PWD" \
+  --playwright-cache "$PLAYWRIGHT_BROWSERS_PATH" -- \
+  node scripts/validate-development.mjs --task web-browser-e2e
+```
+
+See `tests/e2e/README.md` for browser installation details.
 
 GitHub CI uploads the receipt and logs as a seven-day artifact. A passing local
 or hosted engine run does not include the separate Nix packaging job, release

@@ -63,6 +63,11 @@ namespace slskd.Users
     public interface IUserService : IDisposable
     {
         /// <summary>
+        ///     Occurs after the watched-user cache is changed.
+        /// </summary>
+        event EventHandler? WatchedUsersChanged;
+
+        /// <summary>
         ///     Gets the list of tracked users.
         /// </summary>
         IReadOnlyList<User> Users { get; }

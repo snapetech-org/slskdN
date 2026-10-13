@@ -16,7 +16,10 @@ namespace slskd.Transfers.Downloads
         public required string Filename { get; init; }
         public required long Size { get; init; }
         public Guid? BatchId { get; init; }
+        public string? BatchExternalId { get; init; }
         public string? DestinationDirectory { get; init; }
+        public Guid? SearchId { get; init; }
+        public string? SearchText { get; init; }
         public int? BitRate { get; init; }
         public int? SampleRate { get; init; }
         public int? BitDepth { get; init; }

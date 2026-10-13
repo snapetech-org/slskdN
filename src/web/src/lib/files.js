@@ -9,9 +9,10 @@ export const encodePathSegment = (value = '') => {
   return encodeURIComponent(btoa(binary));
 };
 
-export const list = async ({ root, subdirectory = '' }) => {
+export const list = async ({ root, subdirectory = '', includeDirectorySizes = false }) => {
+  const suffix = includeDirectorySizes ? '?includeDirectorySizes=true' : '';
   const response = (
-    await api.get(`/files/${root}/directories/${encodePathSegment(subdirectory)}`)
+    await api.get(`/files/${root}/directories/${encodePathSegment(subdirectory)}${suffix}`)
   ).data;
 
   return response;
@@ -27,4 +28,12 @@ export const deleteFile = async ({ root, path }) => {
   const response = await api.delete(`/files/${root}/files/${encodePathSegment(path)}`);
 
   return response;
+};
+
+export const deleteItems = async ({ root, items }) => {
+  const response = await api.delete(`/files/${root}/items`, {
+    data: { items },
+  });
+
+  return response.data;
 };

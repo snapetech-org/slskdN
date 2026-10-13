@@ -23,11 +23,14 @@ namespace slskd
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IdentityModel.Tokens.Jwt;
     using System.IO;
     using System.Linq;
     using System.Net;
     using System.Reflection;
+    using System.Security.Cryptography;
+    using System.Text;
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using System.Text.RegularExpressions;
@@ -42,6 +45,8 @@ namespace slskd
     /// </summary>
     public static class CommonExtensions
     {
+        private static readonly JsonSerializerOptions JsonOptions = CreateJsonSerializerOptions();
+
         /// <summary>
         ///     Times this Task out after the specified TimeSpan.
         /// </summary>
@@ -497,13 +502,59 @@ namespace slskd
 
             if (parts.Length == 1)
             {
-                return parts.First().ReplaceInvalidFileNameCharacters();
+                return NormalizeRemoteComponent(parts[0], preserveExtension: true);
             }
 
-            var file = parts.Last().ReplaceInvalidFileNameCharacters();
-            var directory = parts.Reverse().Skip(1).Take(1).Single().ReplaceInvalidFileNameCharacters();
+            var file = NormalizeRemoteComponent(parts[^1], preserveExtension: true);
+            var directory = NormalizeRemoteComponent(parts[^2], preserveExtension: false);
 
             return Path.Combine(directory, file);
+        }
+
+        private const int MaximumLocalComponentUtf8Bytes = 240;
+        private const int RemoteComponentHashLength = 16;
+
+        private static string NormalizeRemoteComponent(string remoteComponent, bool preserveExtension)
+        {
+            var sanitized = remoteComponent.ReplaceInvalidFileNameCharacters();
+            sanitized = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(sanitized));
+
+            if (Encoding.UTF8.GetByteCount(sanitized) <= MaximumLocalComponentUtf8Bytes)
+            {
+                return sanitized;
+            }
+
+            var extension = preserveExtension ? Path.GetExtension(sanitized) : string.Empty;
+            var stem = extension.Length > 0 ? sanitized[..^extension.Length] : sanitized;
+            var suffix = $"~{Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(remoteComponent)))[..RemoteComponentHashLength].ToLowerInvariant()}";
+            var extensionBytes = Encoding.UTF8.GetByteCount(extension);
+
+            if (extensionBytes + suffix.Length >= MaximumLocalComponentUtf8Bytes)
+            {
+                stem = sanitized;
+                extension = string.Empty;
+                extensionBytes = 0;
+            }
+
+            var prefixByteLimit = MaximumLocalComponentUtf8Bytes - extensionBytes - suffix.Length;
+            var prefix = new StringBuilder();
+            var prefixBytes = 0;
+            var textElements = StringInfo.GetTextElementEnumerator(stem);
+
+            while (textElements.MoveNext())
+            {
+                var element = (string)textElements.GetTextElement();
+                var elementBytes = Encoding.UTF8.GetByteCount(element);
+                if (prefixBytes + elementBytes > prefixByteLimit)
+                {
+                    break;
+                }
+
+                prefix.Append(element);
+                prefixBytes += elementBytes;
+            }
+
+            return string.Concat(prefix, suffix, extension);
         }
 
         private static bool IsUnsafeRemotePathPart(string part)
@@ -627,7 +678,9 @@ namespace slskd
         /// <returns>The new object deserialized from the string.</returns>
         public static T? FromJson<T>(this string str) => JsonSerializer.Deserialize<T>(str, GetJsonSerializerOptions());
 
-        private static JsonSerializerOptions GetJsonSerializerOptions()
+        private static JsonSerializerOptions GetJsonSerializerOptions() => JsonOptions;
+
+        private static JsonSerializerOptions CreateJsonSerializerOptions()
         {
             var options = new JsonSerializerOptions();
             options.Converters.Add(new IPAddressConverter());

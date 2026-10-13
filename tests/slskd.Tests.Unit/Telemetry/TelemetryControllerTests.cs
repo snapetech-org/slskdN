@@ -22,9 +22,57 @@ public class TelemetryControllerTests
         };
         controller.Request.Headers.Accept = "application/json; charset=utf-8";
 
-        var result = await controller.Get();
+        var result = await controller.Get(null, null);
 
         Assert.IsType<OkObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task Get_WithIncludeAndExcludeFilters_ReturnsFilteredTextFamilies()
+    {
+        var controller = new TelemetryController(CreateTelemetryService(new StubPrometheusService()));
+        controller.ControllerContext = new ControllerContext
+        {
+            HttpContext = new DefaultHttpContext(),
+        };
+
+        var result = await controller.Get(new[] { "^slskd_" }, new[] { "secret$" });
+
+        var content = Assert.IsType<ContentResult>(result);
+        Assert.Contains("# HELP slskd_test", content.Content, StringComparison.Ordinal);
+        Assert.Contains("slskd_test 1", content.Content, StringComparison.Ordinal);
+        Assert.DoesNotContain("slskd_secret", content.Content, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Get_WithIncludeOnlyFilter_ReturnsFilteredJson()
+    {
+        var controller = new TelemetryController(CreateTelemetryService(new StubPrometheusService()));
+        controller.ControllerContext = new ControllerContext
+        {
+            HttpContext = new DefaultHttpContext(),
+        };
+        controller.Request.Headers.Accept = "application/json";
+
+        var result = await controller.Get(new[] { "does_not_match" }, null);
+
+        var objectResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Empty(Assert.IsType<Dictionary<string, PrometheusMetric>>(objectResult.Value));
+    }
+
+    [Fact]
+    public async Task Get_WithInvalidFilter_ReturnsClearBadRequest()
+    {
+        var controller = new TelemetryController(CreateTelemetryService(new StubPrometheusService()));
+        controller.ControllerContext = new ControllerContext
+        {
+            HttpContext = new DefaultHttpContext(),
+        };
+
+        var result = await controller.Get(null, new[] { "[" });
+
+        var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+        Assert.Contains("not a valid regular expression", Assert.IsType<string>(badRequest.Value), StringComparison.Ordinal);
     }
 
     private static TelemetryService CreateTelemetryService(PrometheusService prometheusService)
@@ -43,7 +91,13 @@ public class TelemetryControllerTests
 
         public override Task<string> GetMetricsAsString()
         {
-            return Task.FromResult("slskd_test 1");
+            return Task.FromResult(
+                "# HELP slskd_test Test metric\n" +
+                "# TYPE slskd_test gauge\n" +
+                "slskd_test 1\n" +
+                "# HELP slskd_secret Secret metric\n" +
+                "# TYPE slskd_secret counter\n" +
+                "slskd_secret 9\n");
         }
     }
 }

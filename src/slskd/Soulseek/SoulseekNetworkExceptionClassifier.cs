@@ -72,6 +72,13 @@ public static class SoulseekNetworkExceptionClassifier
             exception is ObjectDisposedException listenerDisposedException &&
             string.Equals(listenerDisposedException.ObjectName, "System.Net.Sockets.Socket", StringComparison.Ordinal) &&
             details.Contains("Soulseek.Network.Tcp.Listener.ListenContinuouslyAsync", StringComparison.Ordinal);
+        var isExpectedSocketFailure =
+            exception is SocketException socketException &&
+            socketException.SocketErrorCode is SocketError.ConnectionRefused or
+                SocketError.ConnectionReset or
+                SocketError.HostUnreachable or
+                SocketError.NetworkUnreachable or
+                SocketError.TimedOut;
 
         var isNetworkFailure =
             exception is TimeoutException ||
@@ -122,9 +129,6 @@ public static class SoulseekNetworkExceptionClassifier
         {
             return true;
         }
-
-        var isExpectedSocketFailure = exception is SocketException socketException &&
-            socketException.SocketErrorCode is SocketError.ConnectionReset or SocketError.ConnectionRefused or SocketError.TimedOut;
 
         return isExpectedSocketFailure ||
             details.Contains("Soulseek.Network.PeerConnectionManager", StringComparison.Ordinal) ||

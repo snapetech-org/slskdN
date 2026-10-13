@@ -26,46 +26,22 @@
 
 ## Active Development
 
-### CI security and validation integrity — 2026-10-13
+### Files API and responsive system workflows — 2026-10-13
 
-- [x] Route every pull request and non-main manual run to GitHub-hosted runners;
-  keep trusted main validation eligible for local runners.
-- [x] Harden snapshot credential filtering and preserve installed pnpm/.NET
-  tools inside the isolated launcher.
-- [x] Bind manual publisher recovery to the exact current stable release,
-  require credentials for selected publishers, and keep Docker tag-only.
-- [x] Make the performance project runnable, repair benchmark setup, and make
-  CI reject incomplete measurements from its bounded HashDb sample.
-- [x] Restrict pushed and manually selected build tag names before parsed
-  versions reach downstream workflow shell scripts.
-- [x] Use nonpooled connections for disposable catalogue stores and retain
-  pooling in the high-volume share-scan fixture; clear its exact database pools
-  after repository disposal before fixture cleanup.
-- [x] Repair SQLite test-database cleanup ordering; add release notes and
-  workflow-policy coverage.
-- [x] Trace the remaining Windows scanner lock to the normalized connection
-  string's pool key and clear that exact repository pool; record gotcha `0z1839`.
-- [x] Disable package-manager caching in the .NET-only Windows smoke job after
-  all tests passed but post-job cache saving failed; record gotcha `0z1840`.
-- [ ] Push this candidate, verify all required exact-head checks, resolve the
-  review queue, and merge PR #357.
+- [x] Add on-demand subtree sizes and guarded multi-item file/directory deletion
+  with per-item outcomes.
+- [x] Complete keyboard-accessible selection, confirmation, recovery, and
+  partial-result handling in the System Files view.
+- [x] Preserve room-query routing for slash-containing identifiers and publish
+  watched-user state after successful registration.
+- [x] Verify API/filesystem boundaries and user workflows with integration,
+  unit, component, and headless browser coverage.
+- [x] Pass the full .NET suite (6,180 tests), web suite (1,300 tests), the
+  selected headless browser suite (97 passed, 7 opt-in skips), repository lint,
+  and the Release build.
 
-Status: the bounded BenchmarkDotNet run passes with 10 workload measurements
-(mean 135.956 us); its verifier contract covers valid measurements, missing
-reports, malformed roots, and reports without the selected benchmark. Workflow
-policy, YAML, shellcheck, diff, identity-leak, unit-project build, and repository
-lint pass. At exact PR head `fe5fb4699206b1fa3b7d31734fbdf13a2bda895f`, Windows
-passed all 5,785 unit tests, 289 integration tests, and 74 backend tests with
-zero skips, but the job failed during `setup-node` post-job cache saving because
-the pnpm store path did not exist. E2E, CodeQL, identity-leak, release-note,
-vendored-runtime, Nix, load, dependency-scan, and NuGet checks passed; Linux
-Build and Test, Performance Regression Testing, and Container Scanning were
-queued. Gotcha `0z1838` documents the original SQLite failures; `0z1839`
-explains the exact normalized pool-key mismatch; `0z1840` records the unused
-pnpm cache failure. The scanner correction passes its focused test 1/1. The
-workflow fix disables unused package-manager caching; exact-head validation
-for that change is pending push. PR #365's separate cache-cleanup failure is
-supporting evidence for this workflow issue.
+Status: implementation and validation are complete. A stable build tag and
+hosted artifact verification remain for the release step.
 
 ### SLSKDN runner-temp reliability — 2026-10-13
 
@@ -74,18 +50,17 @@ supporting evidence for this workflow issue.
 - [x] Preserve hosted routing for public pull requests and non-main manual runs.
 - [x] Preserve the existing tag, pull-request, and manual CI triggers.
 - [x] Keep the standalone load harness on hosted Linux after the local SIGBUS.
-- [x] Bound validation task logs and pin sandbox mounts through inherited
-  descriptors; exclude dotted and extensionless credentials, explicit
-  private/API/access/refresh/client-secret material, and credential files with
-  source-like extensions while retaining ordinary source modules.
-- [x] Pass workflow policy, runtime matrix, YAML, diff, and 21 focused engine
-  contract tests.
-- [ ] Verify exact-head hosted PR and main manual validation; classify the
-  previous Web unit-test and SIGBUS failures from run logs.
+- [x] Pass focused workflow policy, runtime matrix, YAML, and diff checks.
+- [x] Run a hosted `workflow_dispatch` at exact branch head
+  `62f2f95f67bb11e8fc62571d5e137b3b74af5a38`; the release gate passes all 15
+  selected tasks and 7,344 active cases, three browser E2E tasks remain excluded,
+  and Nix package smoke passes. The earlier failed run was stale because `main`
+  advanced after its checkout.
+- [ ] Verify PR-specific runner routing and main manual-dispatch paths separately.
 
-Status: runner-temp and sandbox hardening are implemented. The focused
-validation-engine suite passes 21/21; exact-head hosted CI is pending. Ordinary
-branch-push builds are intentionally not added.
+Status: runner-temp implementation and exact branch-head hosted validation are
+complete. PR-specific routing and main manual-dispatch validation remain open.
+Ordinary branch-push builds are intentionally not added.
 
 ### Public pull-request runner isolation — 2026-10-12
 
@@ -7410,5 +7385,50 @@ resource completion.
 - [x] Pass the full .NET suite (6,145 tests), full Web suite (1,295 tests),
   `./bin/lint`, Release build, retained-log Playwright regression, Docker build
   and startup smoke, and version-change Docker cache check.
-- [ ] Push the validated tree to `snapetech/slskdN/main`, create the authorized
-  stable tag, and verify hosted publishers and release artifacts.
+- [x] Push the validated tree to `snapetech/slskdN/main`, create the authorized
+  stable tag, and verify the hosted release assets; all six platform archives
+  and checksums are valid.
+- [x] Recover the AUR source and binary pushes, COPR, container registries, and
+  Nix metadata and smoke publication.
+- [ ] Verify the exact Jammy binary
+  `2026101222.slskdn.350-1ppa202610130538~jammy` reaches `Published` and appears
+  in the apt index. The source is published and the build log succeeded, but
+  Launchpad still reports `Uploading build`; the exact binary is absent from
+  the published-binary API and current Jammy amd64 index. The release waiter
+  timed out after repeated API SSL timeouts. Do not upload the accepted source
+  again while this publication remains in progress.
+
+## Trusted Playwright cache and browser verification — 2026-10-13
+
+- [x] Preserve the browser cache only when it is supplied through the trusted
+  sandbox dependency mount; keep arbitrary host cache paths isolated.
+- [x] Document the local launcher invocation and add the validation release-note
+  fragment.
+- [x] Fix the transfer-view regression fixture to explicitly hide the
+  default-visible `requested` column; record gotcha `0z1813`.
+- [x] Pass validation-engine tests (16), the complete headless Web suite
+  (89 passed, 16 skipped), the 15-minute loopback radio-renewal soak (1),
+  Release build, and repository formatting lint.
+- [ ] Complete the backend unit suite and exact-head hosted release gate. The
+  local trusted backend task stalled during restore/build before starting a
+  test host, so that task did not produce a result.
+
+## Unraid configuration coverage and release follow-up — 2026-10-13
+
+- [x] Expose each documented optional `SLSKD_*` setting in the Unraid advanced
+  template fields with blank defaults.
+- [x] Update the Unraid guide and support post, add the Unreleased changelog
+  bullet, and add a validated release-note fragment.
+- [x] Pass packaging metadata validation, Unraid XML parsing, and the direct
+  environment-variable coverage scan.
+- [ ] Pass the backend test suite and exact-head hosted release gate on `main`.
+- [ ] Prepare the `.351` versioned notes on validated `main`, create the
+  authorized stable tag, and verify the published assets.
+
+## Main release candidate — 2026-10-13
+
+- [x] Fast-forward the 154-commit candidate to the verified fork's `main`.
+- [x] Prepare dated `.351` changelog notes after the candidate reached `main`.
+- [ ] Pass the hosted CI release gate for the final exact `main` commit.
+- [ ] Create the authorized stable tag only after the gate passes; verify
+  published assets and downstream publication status.

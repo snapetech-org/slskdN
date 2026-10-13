@@ -128,6 +128,9 @@ namespace slskd.Users
         /// </summary>
         public IReadOnlyList<string> WatchedUsernames => WatchedUsernamesDictionary.Keys.ToList().AsReadOnly();
 
+        /// <inheritdoc />
+        public event EventHandler? WatchedUsersChanged;
+
         private ISoulseekClient Client { get; }
         private EventHandler<global::Soulseek.UserStatistics>? UserStatisticsChangedHandler { get; }
         private EventHandler<global::Soulseek.UserStatus>? UserStatusChangedHandler { get; }
@@ -385,7 +388,10 @@ namespace slskd.Users
             // in several unnecessary calls to WatchAsync (if someone is checking IsWatched() and WatchAsync()ing if false), but we
             // can be sure that if IsWatched() is true, we have valid stats and status. if we can't ensure this, the application
             // will have non-deterministic behavior when it makes decisions about user groups, limits, governance etc.
-            WatchedUsernamesDictionary.TryAdd(username, true);
+            if (WatchedUsernamesDictionary.TryAdd(username, true))
+            {
+                WatchedUsersChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void Client_PrivilegedUserListReceived(IEnumerable<string> list)
@@ -483,8 +489,14 @@ namespace slskd.Users
 
         private void Reset()
         {
+            var hadWatchedUsers = !WatchedUsernamesDictionary.IsEmpty;
             WatchedUsernamesDictionary.Clear();
             UserDictionary.Clear();
+
+            if (hadWatchedUsers)
+            {
+                WatchedUsersChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void UpdateStatistics(string username, Statistics statistics)

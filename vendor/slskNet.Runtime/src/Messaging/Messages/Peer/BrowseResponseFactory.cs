@@ -117,6 +117,49 @@ namespace Soulseek.Messaging.Messages
                 throw new ArgumentNullException(nameof(browseResponse));
             }
 
+            WriteToStream(
+                browseResponse.DirectoryCount,
+                browseResponse.Directories,
+                browseResponse.LockedDirectoryCount,
+                browseResponse.LockedDirectories,
+                stream);
+        }
+
+        /// <summary>
+        ///     Writes a browse message from streaming directory sequences without first creating a collection-backed response.
+        /// </summary>
+        /// <param name="directoryCount">The number of unlocked directories.</param>
+        /// <param name="directories">The unlocked directories in wire order.</param>
+        /// <param name="lockedDirectoryCount">The number of locked directories.</param>
+        /// <param name="lockedDirectories">The locked directories in wire order.</param>
+        /// <param name="stream">The seekable stream to which the message is written.</param>
+        public static void WriteToStream(
+            int directoryCount,
+            IEnumerable<Soulseek.Directory> directories,
+            int lockedDirectoryCount,
+            IEnumerable<Soulseek.Directory> lockedDirectories,
+            Stream stream)
+        {
+            if (directoryCount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(directoryCount));
+            }
+
+            if (directories == null)
+            {
+                throw new ArgumentNullException(nameof(directories));
+            }
+
+            if (lockedDirectoryCount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(lockedDirectoryCount));
+            }
+
+            if (lockedDirectories == null)
+            {
+                throw new ArgumentNullException(nameof(lockedDirectories));
+            }
+
             if (stream == null)
             {
                 throw new ArgumentNullException(nameof(stream));
@@ -142,19 +185,45 @@ namespace Soulseek.Messaging.Messages
 
             try
             {
-                WriteInteger(zStream, browseResponse.DirectoryCount);
+                WriteInteger(zStream, directoryCount);
 
-                foreach (var directory in browseResponse.Directories)
+                var writtenDirectories = 0;
+
+                foreach (var directory in directories)
                 {
+                    if (writtenDirectories == directoryCount)
+                    {
+                        throw new MessageException("Browse response directory count does not match the streamed entries");
+                    }
+
                     WriteDirectory(zStream, directory);
+                    writtenDirectories++;
+                }
+
+                if (writtenDirectories != directoryCount)
+                {
+                    throw new MessageException("Browse response directory count does not match the streamed entries");
                 }
 
                 WriteInteger(zStream, 0);
-                WriteInteger(zStream, browseResponse.LockedDirectoryCount);
+                WriteInteger(zStream, lockedDirectoryCount);
 
-                foreach (var directory in browseResponse.LockedDirectories)
+                var writtenLockedDirectories = 0;
+
+                foreach (var directory in lockedDirectories)
                 {
+                    if (writtenLockedDirectories == lockedDirectoryCount)
+                    {
+                        throw new MessageException("Browse response locked directory count does not match the streamed entries");
+                    }
+
                     WriteDirectory(zStream, directory);
+                    writtenLockedDirectories++;
+                }
+
+                if (writtenLockedDirectories != lockedDirectoryCount)
+                {
+                    throw new MessageException("Browse response locked directory count does not match the streamed entries");
                 }
 
                 zStream.finish();

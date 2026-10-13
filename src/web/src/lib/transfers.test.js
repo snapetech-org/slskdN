@@ -25,6 +25,9 @@ describe('transfers api', () => {
     await expect(transfers.getChanges()).resolves.toEqual({
       counts: { download: 0, upload: 0 },
       cursor: 1_234,
+      hasMore: false,
+      nextAfterId: null,
+      nextAfterRequestedAt: null,
       transfers: [{ id: 'transfer-1' }],
     });
     await transfers.getChanges({ since: 1_233 });
@@ -45,8 +48,41 @@ describe('transfers api', () => {
     await expect(transfers.getChanges()).resolves.toEqual({
       counts: { download: 0, upload: 0 },
       cursor: null,
+      hasMore: false,
+      nextAfterId: null,
+      nextAfterRequestedAt: null,
       transfers: [],
     });
+  });
+
+  it('requests a bounded direction page from a snapshot continuation', async () => {
+    api.get.mockResolvedValue({
+      data: {
+        cursor: 1_234,
+        hasMore: true,
+        nextAfterId: 'transfer-2',
+        nextAfterRequestedAt: '2026-10-13T12:00:00Z',
+        transfers: [{ id: 'transfer-2' }],
+      },
+    });
+
+    await expect(transfers.getChanges({
+      afterId: 'transfer-1',
+      afterRequestedAt: '2026-10-13T12:05:00Z',
+      direction: 'download',
+      limit: 100,
+      snapshot: 1_234,
+    })).resolves.toEqual({
+      counts: { download: 0, upload: 0 },
+      cursor: 1_234,
+      hasMore: true,
+      nextAfterId: 'transfer-2',
+      nextAfterRequestedAt: '2026-10-13T12:00:00Z',
+      transfers: [{ id: 'transfer-2' }],
+    });
+    expect(api.get).toHaveBeenCalledWith(
+      '/transfers/changes?includeCompleted=false&direction=download&limit=100&asOf=1234&afterRequestedAt=2026-10-13T12%3A05%3A00Z&afterId=transfer-1',
+    );
   });
 
   it('requests and normalizes a stable completed-history page', async () => {

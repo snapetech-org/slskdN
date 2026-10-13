@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using slskd.Mesh.Transport;
 using slskd.SocialFederation;
-using slskd.Tests.Unit;
 using Xunit;
 
 public sealed class ActivityPubInboxStoreTests : IDisposable
@@ -16,7 +15,7 @@ public sealed class ActivityPubInboxStoreTests : IDisposable
 
     public void Dispose()
     {
-        SqliteTestDatabaseCleanup.ClearPool(_dbPath);
+        slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={_dbPath}");
         File.Delete(_dbPath);
     }
 

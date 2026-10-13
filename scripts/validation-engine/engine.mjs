@@ -15,6 +15,7 @@ import {
   readFileSync,
   readlinkSync,
   readdirSync,
+  rmSync,
   writeFileSync,
   writeSync,
 } from 'node:fs';
@@ -270,26 +271,35 @@ function inheritedToolchainEnvironment(inherited = process.env) {
 function inspectRuntime(root, runtime) {
   const available = commandAvailable(runtime.command);
   if (!available) return { ...runtime, available, version: null, exitCode: null };
-  const result = spawnSync(runtime.command, runtime.args ?? ['--version'], {
-    cwd: root,
-    encoding: 'utf8',
-    timeout: 10_000,
-    maxBuffer: 1024 * 1024,
-    env: inheritedToolchainEnvironment(),
-  });
-  const version = (result.stdout ?? '') + (result.stderr ?? '');
-  const versionLine = version.trim().split(/\r?\n/, 1)[0] ?? '';
-  const versionCompatible = !runtime.versionPattern ||
-    new RegExp(runtime.versionPattern).test(versionLine);
-  return {
-    ...runtime,
-    available: !result.error && result.status === 0,
-    version: versionLine,
-    versionCompatible,
-    required: runtime.required !== false,
-    exitCode: result.status,
-    error: result.error?.message,
-  };
+  const probeRoot = mkdtempSync(path.join(os.tmpdir(), 'slskdn-validation-runtime-probe-'));
+  try {
+    const env = isolatedTaskEnvironment(
+      { id: 'runtime-probe', kind: 'check' },
+      probeRoot
+    );
+    const result = spawnSync(runtime.command, runtime.args ?? ['--version'], {
+      cwd: root,
+      encoding: 'utf8',
+      timeout: 10_000,
+      maxBuffer: 1024 * 1024,
+      env,
+    });
+    const version = (result.stdout ?? '') + (result.stderr ?? '');
+    const versionLine = version.trim().split(/\r?\n/, 1)[0] ?? '';
+    const versionCompatible = !runtime.versionPattern ||
+      new RegExp(runtime.versionPattern).test(versionLine);
+    return {
+      ...runtime,
+      available: !result.error && result.status === 0,
+      version: versionLine,
+      versionCompatible,
+      required: runtime.required !== false,
+      exitCode: result.status,
+      error: result.error?.message,
+    };
+  } finally {
+    rmSync(probeRoot, { recursive: true, force: true });
+  }
 }
 
 function validateConfig(config) {
@@ -506,7 +516,12 @@ export function isolatedTaskEnvironment(task, runRoot, inherited = process.env) 
   });
   if (task.browserCache === 'playwright') {
     const cacheRoot = inherited.RUNNER_TEMP || inherited.TMPDIR || inherited.TEMP || os.tmpdir();
-    env.PLAYWRIGHT_BROWSERS_PATH = path.join(path.resolve(cacheRoot), 'slskdn-playwright-browsers');
+    const mountedCache = inherited.PLAYWRIGHT_BROWSERS_PATH;
+    env.PLAYWRIGHT_BROWSERS_PATH =
+      typeof mountedCache === 'string' &&
+      /^\/mnt\/run-data\/dependencies\/\d+$/u.test(mountedCache)
+        ? mountedCache
+        : path.join(path.resolve(cacheRoot), 'slskdn-playwright-browsers');
   }
   if (task.kind === 'test') env.NODE_ENV = 'test';
   return env;

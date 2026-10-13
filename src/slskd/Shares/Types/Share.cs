@@ -18,7 +18,6 @@ namespace slskd.Shares
 {
     using System.Linq;
     using System.Text.Json.Serialization;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     ///     A file share.
@@ -64,14 +63,13 @@ namespace slskd.Shares
             }
 
             // test to see whether an alias has been specified
-            var matches = Regex.Matches(share, @"^\[(.*)\](.*)$");
+            var aliasEnd = share.StartsWith('[') ? share.IndexOf(']') : -1;
 
-            if (matches.Any())
+            if (aliasEnd > 0)
             {
                 // split the alias from the path, and validate the alias
-                var groups = matches[0].Groups;
-                Alias = groups[1].Value;
-                LocalPath = groups[2].Value;
+                Alias = share[1..aliasEnd];
+                LocalPath = share[(aliasEnd + 1)..];
             }
             else
             {

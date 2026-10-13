@@ -55,6 +55,11 @@ namespace slskd.Files
         public DateTime ModifiedAt { get; init; }
 
         /// <summary>
+        ///     The combined size of files below this directory, when requested.
+        /// </summary>
+        public long? Length { get; init; }
+
+        /// <summary>
         ///     The files within the directory.
         /// </summary>
         public IEnumerable<FilesystemFile> Files { get; init; } = Array.Empty<FilesystemFile>();

@@ -112,10 +112,12 @@ internal sealed class StubShareRepository : IShareRepository
     public (string Filename, long Size) FindFileInfo(string maskedFilename) => ("", 0L);
     public Scan FindLatestScan() => default;
     public void FlagLatestScanAsSuspect() { }
+    public void FlagScanAsSuspect(long timestamp) { }
     public void InsertDirectory(string name, long timestamp) { }
     public void InsertFile(string maskedFilename, string originalFilename, DateTime touchedAt, File file, long timestamp, bool isBlocked = false, bool isQuarantined = false, string? moderationReason = null) { }
     public void InsertScan(long timestamp, slskd.Options.SharesOptions options) { }
     public IEnumerable<string> ListDirectories(string? parentDirectory = null) => Array.Empty<string>();
+    public IEnumerable<string> EnumerateDirectories(string? parentDirectory = null) => ListDirectories(parentDirectory);
     public IEnumerable<File> ListFiles(string? parentDirectory = null, bool includeFullPath = false)
     {
         lock (_contentItemsByFile)
@@ -124,6 +126,7 @@ internal sealed class StubShareRepository : IShareRepository
                 yield return new File(1, masked, 1024, "mp3");
         }
     }
+    public IEnumerable<File> EnumerateFiles(string? parentDirectory = null, bool includeFullPath = false) => ListFiles(parentDirectory, includeFullPath);
     public IEnumerable<(string LocalPath, long Size)> ListLocalPathsAndSizes(string parentDirectory = null) => Array.Empty<(string, long)>();
     public IEnumerable<Scan> ListScans(long startedAtOrAfter = 0) => Array.Empty<Scan>();
     public long PruneDirectories(long olderThanTimestamp) => 0L;

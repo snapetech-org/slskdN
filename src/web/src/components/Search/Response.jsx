@@ -54,6 +54,18 @@ export const buildSearchItemActionPath = (
     : path;
 };
 
+export const buildDownloadRequestFiles = (files, searchId, searchText) =>
+  asArray(files).map(({ filename, size, bitRate, sampleRate, bitDepth, length }) => ({
+    filename,
+    size,
+    bitRate,
+    sampleRate,
+    bitDepth,
+    length,
+    searchId,
+    searchText,
+  }));
+
 const buildTree = (response) => {
   let files = asArray(response.files);
   const lockedFiles = asArray(response.lockedFiles);
@@ -159,7 +171,7 @@ class Response extends Component {
   download = (username, files) => {
     this.setState({ downloadRequest: 'inProgress' }, async () => {
       try {
-        const { destination, response, responseIndex, searchId } = this.props;
+        const { destination, response, responseIndex, searchId, searchText } = this.props;
         const sourceProviders = asArray(response.sourceProviders);
 
         // Check if this is a bridged search result (has provenance) and we have searchId
@@ -194,14 +206,7 @@ class Response extends Component {
           await Promise.all(downloadPromises);
         } else {
           // Use existing download method for non-bridged searches
-          const requests = asArray(files).map(({ filename, size, bitRate, sampleRate, bitDepth, length }) => ({
-            filename,
-            size,
-            bitRate,
-            sampleRate,
-            bitDepth,
-            length,
-          }));
+          const requests = buildDownloadRequestFiles(files, searchId, searchText);
           await transfers.download({
             destination,
             files: requests,

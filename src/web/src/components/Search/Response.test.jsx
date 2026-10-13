@@ -2,7 +2,7 @@
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
 
-import Response, { buildSearchItemActionPath } from './Response';
+import Response, { buildDownloadRequestFiles, buildSearchItemActionPath } from './Response';
 import { buildPeerStreamUrl } from '../../lib/streaming';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
@@ -27,6 +27,23 @@ describe('Search Response action routes', () => {
     ).toBe(
       '/searches/search-id/items/0%3A1/download?destination=%2Fdownloads%2FMusic%20%26%20Audio',
     );
+  });
+
+  it('retains the originating search context on queued files', () => {
+    expect(buildDownloadRequestFiles([
+      { filename: 'album/song.flac', size: 4096, bitRate: 320 },
+    ], 'search-7', 'artist album')).toEqual([
+      {
+        filename: 'album/song.flac',
+        size: 4096,
+        bitRate: 320,
+        sampleRate: undefined,
+        bitDepth: undefined,
+        length: undefined,
+        searchId: 'search-7',
+        searchText: 'artist album',
+      },
+    ]);
   });
 });
 

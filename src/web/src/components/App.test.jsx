@@ -59,6 +59,7 @@ vi.mock('../lib/server', () => ({
 
 vi.mock('./Browse/Browse', () => ({ default: () => <div>Browse</div> }));
 vi.mock('./Chat/Chat', () => ({ default: () => <div>Chat</div> }));
+vi.mock('./Dashboard/Dashboard', () => ({ default: () => <div>Dashboard</div> }));
 vi.mock('./Collections/Collections', () => ({
   default: () => <div>Collections</div>,
 }));
@@ -133,7 +134,7 @@ describe('App', () => {
     document.documentElement.className = '';
   });
 
-  it('redirects the root route to searches without logging a route miss', async () => {
+  it('routes the home page to Dashboard without logging a route miss', async () => {
     const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
 
     render(
@@ -143,7 +144,8 @@ describe('App', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId('nav-search').closest('a')).toHaveAttribute('href', '/searches');
+      expect(screen.getByText('Dashboard')).toBeInTheDocument();
+      expect(screen.getByTestId('nav-dashboard').closest('a')).toHaveAttribute('href', '/dashboard');
     });
 
     expect(consoleError).not.toHaveBeenCalledWith('[Router] Route miss for:', '/');
@@ -158,7 +160,7 @@ describe('App', () => {
       </MemoryRouter>,
     );
 
-    expect(await screen.findByText('Searches')).toBeInTheDocument();
+    expect(await screen.findByText('Dashboard')).toBeInTheDocument();
     expect(window).not.toHaveProperty('routeMissPath');
     expect(window).not.toHaveProperty('routeMissElement');
     expect(document.querySelector('[data-testid="route-miss"]')).toBeNull();
@@ -402,13 +404,14 @@ describe('App', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('Searches')).toBeInTheDocument();
+      expect(screen.getByText('Dashboard')).toBeInTheDocument();
     }, { timeout: 15_000 });
 
     expect(document.title).toBe('slskdN');
   });
 
   it.each([
+    ['/dashboard', 'Dashboard'],
     ['/collections', 'Collections'],
     ['/solid', 'Solid'],
     ['/discovery-graph', 'Discovery Graph'],
@@ -550,7 +553,7 @@ describe('App', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('Searches')).toBeInTheDocument();
+      expect(screen.getByText('Dashboard')).toBeInTheDocument();
     }, { timeout: 15_000 });
 
     hubHandlers.state({
@@ -616,7 +619,7 @@ describe('App', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('Searches')).toBeInTheDocument();
+      expect(screen.getByText('Dashboard')).toBeInTheDocument();
     }, { timeout: 15_000 });
 
     hubHandlers.state({
@@ -657,7 +660,7 @@ describe('App', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('Searches')).toBeInTheDocument();
+      expect(screen.getByText('Dashboard')).toBeInTheDocument();
     }, { timeout: 15_000 });
 
     hubHandlers.options({

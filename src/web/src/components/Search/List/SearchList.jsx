@@ -12,6 +12,9 @@ const isSearchComplete = (search) =>
 const SearchList = ({
   connecting = false,
   error = undefined,
+  hasMoreFromServer = false,
+  loadingMore = false,
+  onLoadMore = () => {},
   onCleanup = () => {},
   onRemove = () => {},
   onRemoveAll = () => {},
@@ -157,7 +160,7 @@ const SearchList = ({
             />
           </div>
           <div className="search-list-count">
-            {filteredCount} / {searchCount} searches
+            {filteredCount} / {searchCount} loaded searches
           </div>
         </div>
         {selectedSearches.length > 0 && (
@@ -317,10 +320,10 @@ const SearchList = ({
                 ))}
               </Table.Body>
             </Table>
-            {filteredCount > SEARCH_LIST_PAGE_SIZE && (
+            {(filteredCount > SEARCH_LIST_PAGE_SIZE || hasMoreFromServer) && (
               <div className="search-list-pagination">
                 <span>
-                  {pageStart}–{pageEnd} of {filteredCount}
+                  {pageStart}–{pageEnd} of {filteredCount} loaded
                 </span>
                 <Popup
                   content="Go to the previous page of searches."
@@ -352,6 +355,21 @@ const SearchList = ({
                     </span>
                   }
                 />
+                {hasMoreFromServer && (
+                  <Popup
+                    content="Fetch the next bounded page from the server. Existing loaded rows and selections stay in place."
+                    position="top center"
+                    trigger={(
+                      <Button
+                        content="Load more searches"
+                        disabled={loadingMore}
+                        loading={loadingMore}
+                        onClick={onLoadMore}
+                        size="small"
+                      />
+                    )}
+                  />
+                )}
               </div>
             )}
           </div>

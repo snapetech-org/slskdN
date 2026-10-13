@@ -953,7 +953,12 @@ namespace Soulseek
                 // construction rather than a real bind attempt.
                 try
                 {
-                    listener = new Listener(Options.ListenIPAddress, Options.ListenPort, Options.IncomingConnectionOptions, PrimaryListenerTcpListenerOverride);
+                    listener = new Listener(
+                        Options.ListenIPAddress,
+                        Options.ListenPort,
+                        Options.IncomingConnectionOptions,
+                        PrimaryListenerTcpListenerOverride,
+                        diagnosticFactory: Diagnostic);
                     listener.Start();
 
                     // a dedicated obfuscation listen port of 0 means obfuscated connections share the regular listener's
@@ -964,7 +969,8 @@ namespace Soulseek
                             Options.ListenIPAddress,
                             Options.PeerObfuscationOptions.ListenPort,
                             Options.IncomingConnectionOptions,
-                            obfuscated: true);
+                            obfuscated: true,
+                            diagnosticFactory: Diagnostic);
                         obfuscatedListener.Start();
                     }
                 }
@@ -2341,7 +2347,7 @@ namespace Soulseek
 
                 try
                 {
-                    listener = new Listener(newAddress, newPort, Options.IncomingConnectionOptions);
+                    listener = new Listener(newAddress, newPort, Options.IncomingConnectionOptions, diagnosticFactory: Diagnostic);
                     listener.Start();
                 }
                 catch (Exception)
@@ -3565,7 +3571,8 @@ namespace Soulseek
                             Options.ListenPort,
                             connectionOptions: Options.IncomingConnectionOptions,
                             tcpListener: PrimaryListenerTcpListenerOverride,
-                            obfuscationSniffingEnabled: sharedObfuscation);
+                            obfuscationSniffingEnabled: sharedObfuscation,
+                            diagnosticFactory: Diagnostic);
                         Listener.Accepted += ListenerHandler.HandleConnection;
                         Listener.Start();
 
@@ -3575,7 +3582,8 @@ namespace Soulseek
                                 Options.ListenIPAddress,
                                 Options.PeerObfuscationOptions.ListenPort,
                                 Options.IncomingConnectionOptions,
-                                obfuscated: true);
+                                obfuscated: true,
+                                diagnosticFactory: Diagnostic);
                             ObfuscatedListener.Accepted += ListenerHandler.HandleConnection;
                             ObfuscatedListener.Start();
                         }
@@ -4673,7 +4681,8 @@ namespace Soulseek
                             Options.ListenPort,
                             Options.IncomingConnectionOptions,
                             tcpListener: PrimaryListenerTcpListenerOverride,
-                            obfuscationSniffingEnabled: sharedObfuscation);
+                            obfuscationSniffingEnabled: sharedObfuscation,
+                            diagnosticFactory: Diagnostic);
                         Listener.Accepted += ListenerHandler.HandleConnection;
                         Listener.Start();
 
@@ -4683,7 +4692,8 @@ namespace Soulseek
                                 Options.ListenIPAddress,
                                 Options.PeerObfuscationOptions.ListenPort,
                                 Options.IncomingConnectionOptions,
-                                obfuscated: true);
+                                obfuscated: true,
+                                diagnosticFactory: Diagnostic);
                             ObfuscatedListener.Accepted += ListenerHandler.HandleConnection;
                             ObfuscatedListener.Start();
                         }

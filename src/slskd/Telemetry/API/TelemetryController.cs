@@ -68,19 +68,41 @@ public class TelemetryController : ControllerBase
     [HttpGet("metrics")]
     [Authorize(Policy = AuthPolicy.Any)]
     [Produces("text/plain", "application/json")]
-    public async Task<IActionResult> Get()
+    [ProducesResponseType(typeof(string), 400)]
+    public async Task<IActionResult> Get([FromQuery] string[]? include, [FromQuery] string[]? exclude)
     {
+        List<Regex>? includeFilters;
+        List<Regex>? excludeFilters;
+        try
+        {
+            includeFilters = PrometheusMetricFilter.Compile(include, "include");
+            excludeFilters = PrometheusMetricFilter.Compile(exclude, "exclude");
+        }
+        catch (MetricsFilterValidationException exception)
+        {
+            return BadRequest(exception.Message);
+        }
+
         var acceptsJson = Request.GetTypedHeaders().Accept?.Any(header =>
             string.Equals(header.MediaType.Value, "application/json", StringComparison.OrdinalIgnoreCase)) == true;
 
-        if (acceptsJson)
+        try
         {
-            Dictionary<string, PrometheusMetric> dict = await Telemetry.Prometheus.GetMetricsAsObject();
-            return Ok(dict);
-        }
+            if (acceptsJson)
+            {
+                Dictionary<string, PrometheusMetric> dict = includeFilters == null && excludeFilters == null
+                    ? await Telemetry.Prometheus.GetMetricsAsObject()
+                    : await Telemetry.Prometheus.GetMetricsAsObject(includeFilters, excludeFilters);
+                return Ok(dict);
+            }
 
-        var response = await Telemetry.Prometheus.GetMetricsAsString();
-        return Content(response, "text/plain");
+            var response = await Telemetry.Prometheus.GetMetricsAsString(includeFilters, excludeFilters);
+            return Content(response, "text/plain");
+        }
+        catch (RegexMatchTimeoutException)
+        {
+            return BadRequest("A metrics filter exceeded its evaluation time limit. Simplify the pattern and try again.");
+        }
     }
 
     /// <summary>

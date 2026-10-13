@@ -55,7 +55,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         var now = DateTime.UtcNow;
         var expiredId = Guid.NewGuid();
@@ -114,11 +114,163 @@ public class DownloadServiceTests
     }
 
     [Fact]
+    public async Task ListPage_UsesRequestedAtAndIdContinuationWithoutRepeatingRows()
+    {
+        var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
+        var options = new DbContextOptionsBuilder<TransfersDbContext>()
+            .UseSqlite($"Data Source={databasePath}")
+            .Options;
+        var requestedAt = new DateTime(2026, 10, 13, 12, 0, 0, DateTimeKind.Utc);
+        var downloadIds = new[]
+        {
+            Guid.Parse("00000000-0000-0000-0000-000000000001"),
+            Guid.Parse("00000000-0000-0000-0000-000000000002"),
+            Guid.Parse("00000000-0000-0000-0000-000000000003"),
+        };
+
+        slskd.Transfers.Transfer CreateTransfer(Guid id, TransferDirection direction, bool removed = false)
+            => new()
+            {
+                Id = id,
+                Username = "alice",
+                Direction = direction,
+                Filename = $"{id:N}.flac",
+                RequestedAt = requestedAt,
+                State = TransferStates.InProgress,
+                Removed = removed,
+            };
+
+        try
+        {
+            await using (var context = new TransfersDbContext(options))
+            {
+                await context.Database.EnsureCreatedAsync();
+                context.Transfers.AddRange(
+                    downloadIds
+                        .Select(id => CreateTransfer(id, TransferDirection.Download))
+                        .Concat(new[]
+                        {
+                            CreateTransfer(Guid.NewGuid(), TransferDirection.Download, removed: true),
+                            CreateTransfer(Guid.NewGuid(), TransferDirection.Upload),
+                        }));
+                await context.SaveChangesAsync();
+            }
+
+            using var service = CreateDownloadService(options, new Mock<ISoulseekClient>());
+            var firstPage = service.ListPage(transfer => true, false, null, null, limit: 2);
+            var last = Assert.IsType<slskd.Transfers.Transfer>(firstPage.LastOrDefault());
+            var secondPage = service.ListPage(
+                transfer => true,
+                false,
+                last.RequestedAt,
+                last.Id,
+                limit: 2);
+
+            Assert.Equal(downloadIds.Reverse().Take(2), firstPage.Select(transfer => transfer.Id));
+            Assert.Equal(downloadIds.Take(1), secondPage.Select(transfer => transfer.Id));
+            Assert.Empty(service.ListPage(
+                transfer => true,
+                false,
+                secondPage.Single().RequestedAt,
+                secondPage.Single().Id,
+                limit: 2));
+        }
+        finally
+        {
+            DeleteDatabase(databasePath);
+        }
+    }
+
+    [Fact]
+    public async Task PruneRemoved_DeletesOnlyExpiredTerminalRequestsWithoutRemainingDownloads()
+    {
+        var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
+        var options = new DbContextOptionsBuilder<TransfersDbContext>()
+            .UseSqlite($"Data Source={databasePath}")
+            .Options;
+        var now = DateTime.UtcNow;
+        var expiredRequestId = Guid.NewGuid();
+        var activeRequestId = Guid.NewGuid();
+        var recentRequestId = Guid.NewGuid();
+        var visibleRequestId = Guid.NewGuid();
+        var recentTransferRequestId = Guid.NewGuid();
+
+        DownloadRequest CreateRequest(Guid id, DownloadRequestState state, DateTime createdAt, DateTime? completedAt)
+            => new()
+            {
+                Id = id,
+                Name = id.ToString("N"),
+                OriginalFilename = $"{id:N}.flac",
+                State = state,
+                CreatedAt = createdAt,
+                CompletedAt = completedAt,
+            };
+
+        slskd.Transfers.Transfer CreateTransfer(Guid requestId, bool removed, DateTime endedAt)
+            => new()
+            {
+                Id = Guid.NewGuid(),
+                RequestId = requestId,
+                Username = "alice",
+                Direction = TransferDirection.Download,
+                Filename = $"{Guid.NewGuid():N}.flac",
+                RequestedAt = now.AddHours(-1),
+                EndedAt = endedAt,
+                UpdatedAt = endedAt,
+                State = TransferStates.Completed | TransferStates.Succeeded,
+                Removed = removed,
+            };
+
+        try
+        {
+            await using (var context = new TransfersDbContext(options))
+            {
+                await context.Database.EnsureCreatedAsync();
+                context.DownloadRequests.AddRange(
+                    CreateRequest(expiredRequestId, DownloadRequestState.Completed, now.AddHours(-1), now.AddMinutes(-30)),
+                    CreateRequest(activeRequestId, DownloadRequestState.Active, now.AddHours(-1), null),
+                    CreateRequest(recentRequestId, DownloadRequestState.Failed, now.AddMinutes(-1), now.AddMinutes(-1)),
+                    CreateRequest(visibleRequestId, DownloadRequestState.Completed, now.AddHours(-1), now.AddMinutes(-30)),
+                    CreateRequest(recentTransferRequestId, DownloadRequestState.Cancelled, now.AddHours(-1), now.AddMinutes(-30)));
+                context.Transfers.AddRange(
+                    CreateTransfer(expiredRequestId, true, now.AddMinutes(-30)),
+                    CreateTransfer(expiredRequestId, true, now.AddMinutes(-30)),
+                    CreateTransfer(visibleRequestId, false, now.AddMinutes(-30)),
+                    CreateTransfer(recentTransferRequestId, true, now));
+                await context.SaveChangesAsync();
+                await context.Database.ExecuteSqlInterpolatedAsync(
+                    $"UPDATE Transfers SET UpdatedAt = {now.AddMinutes(-30)} WHERE RequestId = {expiredRequestId}");
+            }
+
+            using var service = CreateDownloadService(options, new Mock<ISoulseekClient>());
+            Assert.Equal(2, service.PruneRemoved(5));
+
+            await using var verificationContext = new TransfersDbContext(options);
+            var remainingRequestIds = await verificationContext.DownloadRequests
+                .Select(request => request.Id)
+                .ToListAsync();
+            Assert.DoesNotContain(expiredRequestId, remainingRequestIds);
+            Assert.Contains(activeRequestId, remainingRequestIds);
+            Assert.Contains(recentRequestId, remainingRequestIds);
+            Assert.Contains(visibleRequestId, remainingRequestIds);
+            Assert.Contains(recentTransferRequestId, remainingRequestIds);
+
+            var remainingTransfers = await verificationContext.Transfers.ToListAsync();
+            Assert.Equal(2, remainingTransfers.Count);
+            Assert.All(remainingTransfers, transfer => Assert.NotEqual(expiredRequestId, transfer.RequestId));
+        }
+        finally
+        {
+            DeleteDatabase(databasePath);
+        }
+    }
+
+    [Fact]
     public async Task EnqueueAsync_GlobalDownloadExclusionEscapesPeerFieldsInLogsWithoutChangingRequestValues()
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -179,11 +331,66 @@ public class DownloadServiceTests
     }
 
     [Fact]
+    public async Task EnqueueAsync_PersistsBatchAndSearchContextForDestinationTemplates()
+    {
+        var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
+        var options = new DbContextOptionsBuilder<TransfersDbContext>()
+            .UseSqlite($"Data Source={databasePath}")
+            .Options;
+        await using (var context = new TransfersDbContext(options))
+        {
+            await context.Database.EnsureCreatedAsync();
+        }
+
+        var batchId = Guid.NewGuid();
+        var searchId = Guid.NewGuid();
+        var service = CreateDownloadService(options, CreateHangingSoulseekClient());
+
+        try
+        {
+            var (enqueued, failed) = await service.EnqueueAsync(
+                "alice",
+                new[]
+                {
+                    new DownloadEnqueueRequest
+                    {
+                        Filename = @"Music\Jazz\track.flac",
+                        Size = 1234,
+                        BatchId = batchId,
+                        BatchExternalId = "batch-42",
+                        SearchId = searchId,
+                        SearchText = "artist album",
+                    },
+                },
+                CancellationToken.None);
+
+            Assert.Single(enqueued);
+            Assert.Empty(failed);
+
+            await using var verificationContext = new TransfersDbContext(options);
+            var transfer = await verificationContext.Transfers.SingleAsync(item => item.Id == enqueued[0].Id);
+            var request = await verificationContext.DownloadRequests.SingleAsync(item => item.Id == transfer.RequestId);
+
+            Assert.Equal(batchId, request.BatchId);
+            Assert.Equal("batch-42", request.BatchExternalId);
+            Assert.Equal(searchId, request.SearchId);
+            Assert.Equal("artist album", request.SearchText);
+            Assert.True(service.TryCancel(transfer.Id));
+            await service.ShutdownAsync().WaitAsync(TimeSpan.FromSeconds(5));
+        }
+        finally
+        {
+            service.Dispose();
+            DeleteDatabase(databasePath);
+        }
+    }
+
+    [Fact]
     public async Task EnqueueAsync_GlobalDownloadExclusionRejectsBeforeCreatingTransfer()
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -242,7 +449,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -363,7 +570,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -446,7 +653,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         var existingId = Guid.NewGuid();
         var latestExistingId = Guid.NewGuid();
@@ -526,7 +733,6 @@ public class DownloadServiceTests
         }
         finally
         {
-            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
@@ -537,7 +743,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -583,9 +789,7 @@ public class DownloadServiceTests
         }
         finally
         {
-            await service.ShutdownAsync();
-            service.Dispose();
-            DeleteDatabase(databasePath);
+            await ShutdownAndDeleteDatabaseAsync(service, databasePath);
         }
     }
 
@@ -607,7 +811,7 @@ public class DownloadServiceTests
         System.IO.Directory.CreateSymbolicLink(linkDirectory, outsideDirectory);
 
         var databaseOptions = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         await using (var context = new TransfersDbContext(databaseOptions))
         {
@@ -668,13 +872,21 @@ public class DownloadServiceTests
         }
         finally
         {
-            service.Dispose();
-            await using (var context = new TransfersDbContext(databaseOptions))
+            try
             {
-                await context.Database.CloseConnectionAsync();
+                await service.ShutdownAsync().WaitAsync(TimeSpan.FromSeconds(5));
             }
+            finally
+            {
+                service.Dispose();
+                await using (var context = new TransfersDbContext(databaseOptions))
+                {
+                    await context.Database.CloseConnectionAsync();
+                }
 
-            System.IO.Directory.Delete(workDirectory, recursive: true);
+                DeleteDatabase(databasePath);
+                DeleteDirectory(workDirectory, databasePath);
+            }
         }
     }
 
@@ -761,7 +973,7 @@ public class DownloadServiceTests
                 return completed;
             });
 
-        using var service = CreateDownloadService(databaseOptions, soulseekClient, configuredOptions);
+        var service = CreateDownloadService(databaseOptions, soulseekClient, configuredOptions);
 
         try
         {
@@ -777,9 +989,29 @@ public class DownloadServiceTests
             Assert.Equal(2, enqueued.Count);
             Assert.Empty(failed);
 
+            var expectedRequestStates = enqueued.ToDictionary(
+                item => item.RequestId!.Value,
+                item => item.Filename.EndsWith(".mp3", StringComparison.OrdinalIgnoreCase) || verifyMagicBytes
+                    ? DownloadRequestState.Failed
+                    : DownloadRequestState.Completed);
+
             await WaitUntilAsync(
-                () => enqueued.All(item => service.Find(t => t.Id == item.Id)?.State.HasFlag(TransferStates.Completed) == true),
-                TimeSpan.FromSeconds(5));
+                () =>
+                {
+                    if (!enqueued.All(item => service.Find(t => t.Id == item.Id)?.State.HasFlag(TransferStates.Completed) == true))
+                    {
+                        return false;
+                    }
+
+                    using var requestContext = new TransfersDbContext(databaseOptions);
+                    var requestStates = requestContext.DownloadRequests
+                        .Where(request => expectedRequestStates.Keys.Contains(request.Id))
+                        .ToDictionary(request => request.Id, request => request.State);
+
+                    return expectedRequestStates.Count == requestStates.Count &&
+                        expectedRequestStates.All(expected => requestStates.TryGetValue(expected.Key, out var state) && state == expected.Value);
+                },
+                TimeSpan.FromSeconds(30));
 
             var rejectedTransfers = enqueued.Select(item => service.Find(t => t.Id == item.Id)).ToArray();
             var executableTransfer = rejectedTransfers.Single(t => t!.Filename.EndsWith(".mp3", StringComparison.OrdinalIgnoreCase))!;
@@ -808,27 +1040,36 @@ public class DownloadServiceTests
             Assert.False(System.IO.File.Exists(System.IO.Path.Combine(downloadsDirectory, "Music", "track.mp3")));
             Assert.Equal(verifyMagicBytes, System.IO.File.Exists(System.IO.Path.Combine(downloadsDirectory, ".quarantine", "mismatched.flac")));
 
-            await using var requestContext = new TransfersDbContext(databaseOptions);
-            var requestIds = enqueued.Select(item => item.RequestId).ToArray();
-            var requests = await requestContext.DownloadRequests.Where(r => requestIds.Contains(r.Id)).ToListAsync();
-            Assert.Equal(2, requests.Count);
-            Assert.Equal(DownloadRequestState.Failed, requests.Single(r => r.Id == executableTransfer.RequestId).State);
-            Assert.Equal(
-                verifyMagicBytes ? DownloadRequestState.Failed : DownloadRequestState.Completed,
-                requests.Single(r => r.Id == mismatchedTransfer.RequestId).State);
+            await using (var requestContext = new TransfersDbContext(databaseOptions))
+            {
+                var requestIds = expectedRequestStates.Keys.ToArray();
+                var requests = await requestContext.DownloadRequests.Where(request => requestIds.Contains(request.Id)).ToListAsync();
+                Assert.Equal(2, requests.Count);
+                Assert.Equal(DownloadRequestState.Failed, requests.Single(r => r.Id == executableTransfer.RequestId).State);
+                Assert.Equal(
+                    verifyMagicBytes ? DownloadRequestState.Failed : DownloadRequestState.Completed,
+                    requests.Single(r => r.Id == mismatchedTransfer.RequestId).State);
+            }
             Assert.False(service.TryCancel(executableTransfer.Id));
             Assert.False(service.TryCancel(mismatchedTransfer.Id));
         }
         finally
         {
-            await service.ShutdownAsync();
-            service.Dispose();
-            await using (var context = new TransfersDbContext(databaseOptions))
+            try
             {
-                await context.Database.CloseConnectionAsync();
+                await service.ShutdownAsync().WaitAsync(TimeSpan.FromSeconds(5));
             }
+            finally
+            {
+                service.Dispose();
+                await using (var context = new TransfersDbContext(databaseOptions))
+                {
+                    await context.Database.CloseConnectionAsync();
+                }
 
-            System.IO.Directory.Delete(workDirectory, recursive: true);
+                DeleteDatabase(databasePath);
+                System.IO.Directory.Delete(workDirectory, recursive: true);
+            }
         }
     }
 
@@ -837,7 +1078,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         var transfer = new slskd.Transfers.Transfer
         {
@@ -900,7 +1141,7 @@ public class DownloadServiceTests
 
         var transferId = Guid.NewGuid();
         var databaseOptions = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         await using (var context = new TransfersDbContext(databaseOptions))
         {
@@ -951,7 +1192,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         var transferId = Guid.NewGuid();
 
@@ -1002,7 +1243,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         var transferId = Guid.NewGuid();
 
@@ -1053,7 +1294,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1098,7 +1339,6 @@ public class DownloadServiceTests
         }
         finally
         {
-            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
@@ -1161,9 +1401,7 @@ public class DownloadServiceTests
         }
         finally
         {
-            await service.ShutdownAsync();
-            service.Dispose();
-            DeleteDatabase(databasePath);
+            await ShutdownAndDeleteDatabaseAsync(service, databasePath);
         }
     }
 
@@ -1172,7 +1410,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1395,7 +1633,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         var now = DateTime.UtcNow;
         var oldest = CreateFailedDownload("alice", "oldest.flac", now.AddHours(-3));
@@ -1452,7 +1690,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
         var now = DateTime.UtcNow;
         var requestId = Guid.NewGuid();
@@ -1499,7 +1737,7 @@ public class DownloadServiceTests
         }
         finally
         {
-            System.IO.File.Delete(databasePath);
+            DeleteDatabase(databasePath);
         }
     }
 
@@ -1639,7 +1877,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1687,9 +1925,7 @@ public class DownloadServiceTests
         finally
         {
             blockingFactory.ReleaseFirstCreate();
-            await service.ShutdownAsync();
-            service.Dispose();
-            DeleteDatabase(databasePath);
+            await ShutdownAndDeleteDatabaseAsync(service, databasePath);
         }
     }
 
@@ -1698,7 +1934,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1742,9 +1978,7 @@ public class DownloadServiceTests
         finally
         {
             blockingFactory.ReleaseFirstCreate();
-            await service.ShutdownAsync();
-            service.Dispose();
-            DeleteDatabase(databasePath);
+            await ShutdownAndDeleteDatabaseAsync(service, databasePath);
         }
     }
 
@@ -1755,7 +1989,7 @@ public class DownloadServiceTests
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
 
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1833,9 +2067,7 @@ public class DownloadServiceTests
         }
         finally
         {
-            await service.ShutdownAsync();
-            service.Dispose();
-            DeleteDatabase(databasePath);
+            await ShutdownAndDeleteDatabaseAsync(service, databasePath);
         }
     }
 
@@ -1844,7 +2076,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1920,13 +2152,7 @@ public class DownloadServiceTests
         }
         finally
         {
-            await service.ShutdownAsync();
-            service.Dispose();
-
-            if (System.IO.File.Exists(databasePath))
-            {
-                System.IO.File.Delete(databasePath);
-            }
+            await ShutdownAndDeleteDatabaseAsync(service, databasePath);
         }
     }
 
@@ -1935,7 +2161,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -2006,7 +2232,7 @@ public class DownloadServiceTests
 
             if (System.IO.File.Exists(databasePath))
             {
-                System.IO.File.Delete(databasePath);
+                DeleteDatabase(databasePath);
             }
         }
     }
@@ -2016,7 +2242,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath};Pooling=False")
+            .UseSqlite($"Data Source={databasePath}")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -2102,7 +2328,7 @@ public class DownloadServiceTests
 
             if (System.IO.File.Exists(databasePath))
             {
-                System.IO.File.Delete(databasePath);
+                DeleteDatabase(databasePath);
             }
         }
     }
@@ -2257,9 +2483,43 @@ public class DownloadServiceTests
             destination);
     }
 
+    [Fact]
+    public void ResolveCompletedDestinationDirectory_TokenTemplate_UsesPersistedRequestMetadata()
+    {
+        var options = CreateDownloadLayoutOptions(
+            completedLayout: "batch_id",
+            subdirectory: "${SOURCE_USERNAME}/${SOURCE_PATH}/${SOURCE_DIRECTORY}/${BATCH_EXTERNAL_ID}/${SEARCH_ID}/${SEARCH_TEXT}");
+        var batchId = Guid.NewGuid();
+        var searchId = Guid.NewGuid();
+        var transfer = new slskd.Transfers.Transfer
+        {
+            Id = Guid.NewGuid(),
+            Username = "alice",
+            Direction = TransferDirection.Download,
+            Filename = @"Music\Jazz\Track.flac",
+            BatchId = batchId,
+            RequestedAt = DateTime.UtcNow,
+        };
+        var request = new DownloadRequest
+        {
+            BatchId = batchId,
+            BatchExternalId = "batch-42",
+            SearchId = searchId,
+            SearchText = "artist album",
+        };
+
+        using var service = CreateDownloadServiceForLayoutTest(options);
+        var destination = ResolveCompletedDestinationDirectory(service, transfer, request);
+
+        Assert.Equal(
+            System.IO.Path.Combine(options.Directories.Downloads, "alice", "Music", "Jazz", "Jazz", "batch-42", searchId.ToString("D"), "artist album"),
+            destination);
+    }
+
     private static slskd.Options CreateDownloadLayoutOptions(
         string? completedLayout = null,
-        string? configuredDefault = null)
+        string? configuredDefault = null,
+        string? subdirectory = null)
     {
         return new slskd.Options
         {
@@ -2270,10 +2530,20 @@ public class DownloadServiceTests
             Global = new slskd.Options.GlobalOptions
             {
                 Download = completedLayout is null
-                    ? new slskd.Options.GlobalOptions.GlobalDownloadOptions()
+                    ? new slskd.Options.GlobalOptions.GlobalDownloadOptions
+                    {
+                        Destination = new slskd.Options.GlobalOptions.GlobalDownloadOptions.DownloadDestinationOptions
+                        {
+                            Subdirectory = subdirectory,
+                        },
+                    }
                     : new slskd.Options.GlobalOptions.GlobalDownloadOptions
                     {
                         CompletedLayout = completedLayout,
+                        Destination = new slskd.Options.GlobalOptions.GlobalDownloadOptions.DownloadDestinationOptions
+                        {
+                            Subdirectory = subdirectory,
+                        },
                     },
             },
             Destinations = new slskd.Options.DestinationsOptions
@@ -2306,12 +2576,12 @@ public class DownloadServiceTests
             new EventBus(new EventService(Mock.Of<Microsoft.EntityFrameworkCore.IDbContextFactory<EventsDbContext>>())));
     }
 
-    private static string ResolveCompletedDestinationDirectory(DownloadService service, slskd.Transfers.Transfer transfer)
+    private static string ResolveCompletedDestinationDirectory(DownloadService service, slskd.Transfers.Transfer transfer, DownloadRequest? request = null)
     {
         var method = typeof(DownloadService).GetMethod("ResolveCompletedDestinationDirectory", BindingFlags.Instance | BindingFlags.NonPublic)
             ?? throw new InvalidOperationException("ResolveCompletedDestinationDirectory was not found.");
 
-        return Assert.IsType<string>(method.Invoke(service, [transfer, null]));
+        return Assert.IsType<string>(method.Invoke(service, [transfer, request]));
     }
 
     private static async Task<slskd.Transfers.Transfer> WaitForTransferAsync(Func<slskd.Transfers.Transfer?> finder, TimeSpan timeout)
@@ -2529,9 +2799,59 @@ public class DownloadServiceTests
 
     private static void DeleteDatabase(string databasePath)
     {
-        if (System.IO.File.Exists(databasePath))
+        RetrySqliteCleanup(databasePath, () =>
         {
-            System.IO.File.Delete(databasePath);
+            if (System.IO.File.Exists(databasePath))
+            {
+                System.IO.File.Delete(databasePath);
+            }
+        });
+    }
+
+    private static void DeleteDirectory(string directoryPath, string databasePath)
+    {
+        RetrySqliteCleanup(databasePath, () =>
+        {
+            if (System.IO.Directory.Exists(directoryPath))
+            {
+                System.IO.Directory.Delete(directoryPath, recursive: true);
+            }
+        });
+    }
+
+    private static void RetrySqliteCleanup(string databasePath, Action cleanup)
+    {
+        IOException? lastError = null;
+        for (var attempt = 0; attempt < 60; attempt++)
+        {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath};Pooling=False");
+
+            try
+            {
+                cleanup();
+                return;
+            }
+            catch (IOException ex) when (attempt < 59)
+            {
+                lastError = ex;
+                System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(50));
+            }
+        }
+
+        throw lastError ?? new IOException($"SQLite test database cleanup did not complete for '{databasePath}'.");
+    }
+
+    private static async Task ShutdownAndDeleteDatabaseAsync(DownloadService service, string databasePath)
+    {
+        try
+        {
+            await service.ShutdownAsync().WaitAsync(TimeSpan.FromSeconds(5));
+        }
+        finally
+        {
+            service.Dispose();
+            DeleteDatabase(databasePath);
         }
     }
 

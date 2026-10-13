@@ -123,8 +123,13 @@ public class SourceDiscoveryServiceTests
         }
         finally
         {
-            service?.Dispose();
-            SqliteTestDatabaseCleanup.ClearPools(appDirectory);
+            if (service is not null)
+            {
+                await service.StopDiscoveryAsync();
+                service.Dispose();
+            }
+
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(appDirectory, "discovery", "discovery.db")}");
             System.IO.Directory.Delete(appDirectory, recursive: true);
         }
     }
