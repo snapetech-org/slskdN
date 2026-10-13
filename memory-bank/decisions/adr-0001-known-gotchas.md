@@ -41596,3 +41596,11 @@ are indexed, hide common host configuration and data roots plus the canonical
 checkout parent, and stage new candidate files before local validation. Keep
 contract coverage for nested configuration, credential names, checkout aliases,
 and host-root visibility.
+
+### 0z1784. Preserve Extensionless Credential Files In Validation Snapshots (2026-10-13)
+
+**What went wrong:** The snapshot filter was narrowed to known credential-file extensions so source files such as `token.js` and `auth.py` would remain in the candidate. That also stopped excluding extensionless credential files such as `credentials` and `token`.
+
+**Why:** The matcher had no separate rule for exact credential basenames after the broader path-segment check was removed.
+
+**Prevention:** Match credential names only on the final path segment, accepting the bare credential name and known configuration suffixes while preserving source files with code extensions. Keep the snapshot contract testing both cases.
