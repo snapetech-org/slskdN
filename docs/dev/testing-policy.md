@@ -187,6 +187,12 @@ If the vendored runtime suite exposes analyzer/baseline failures unrelated to th
 
 ## CI Expectations
 
+- The shared local runner pool is limited to manual validation on `main` in
+  `ci.yml`, plus scheduled and manual `main` validation in
+  `ci-enhancements.yml`. Pull requests, version-tag pushes, and manual runs on
+  other refs use GitHub-hosted runners.
+- The tag-only `publish`, `docker`, and `release` jobs in `ci.yml` use
+  GitHub-hosted runners.
 - `ci.yml` should run the release gate on pull requests.
 - `ci.yml` should also run the Nix package smoke on pull requests.
 - Release gate should include `scripts/check-remediation-baseline.sh` so route inventory and shared Web API client path drift are caught before packaging.

@@ -29,6 +29,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
   use SDK 10.0.402, and vulnerability checks inspect every first-party project.
 - CI validation artifacts now include only receipts and task logs, leaving
   temporary task environments and dependency caches on the runners.
+- The local runner pool is limited to trusted main-branch manual and scheduled
+  validation; pull requests and version-tag workflows, including tag
+  publishing, stay on GitHub-hosted runners.
 
 ## [2026101321-slskdn.351] — 2026-10-13
 
