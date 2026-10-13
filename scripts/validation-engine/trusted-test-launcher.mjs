@@ -6,11 +6,13 @@ import { execFileSync, spawn } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import {
   chmodSync,
+  closeSync,
   cpSync,
   existsSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
+  openSync,
   readdirSync,
   realpathSync,
   rmSync,
@@ -18,25 +20,24 @@ import {
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { hostPathsToHide } from './trusted-test-sandbox-policy.mjs';
+import {
+  hostPathsToHide,
+  isSensitiveCandidatePath,
+  sandboxMountOperations,
+} from './trusted-test-sandbox-policy.mjs';
 
 const GUEST_WORKSPACE = '/mnt/workspace';
 const GUEST_RUN = '/mnt/run-data';
 const GUEST_MARKER = '/run/validation-engine-sandbox';
 const GIT = ['/usr/bin/git', '/bin/git'].find(existsSync);
-const sensitiveName =
-  /^(?:\.env(?:$|\.(?!example$)[^/]+)|\.ssh|\.aws|\.gnupg|id_(?:rsa|ed25519)|auth(?:entication)?(?:\.[^/]+)?|tokens?(?:\.[^/]+)?|credentials?(?:\.[^/]+)?|secrets?(?:\.[^/]+)?|\.git-credentials|\.npmrc|\.pypirc|\.netrc|[^/]+\.(?:pem|key))$/iu;
-
 function isSensitive(relativePath, tracked) {
-  const segments = relativePath.split('/');
-  if (segments.includes('.git') || segments.includes('node_modules'))
-    return true;
+  const segments = relativePath.replaceAll(String.fromCharCode(92), '/').split('/');
   if (
     !tracked &&
     (segments.includes('config') || /^config\.[^/]+$/iu.test(segments[0]))
   )
     return true;
-  return segments.some((segment) => sensitiveName.test(segment));
+  return isSensitiveCandidatePath(relativePath);
 }
 
 function gitEnvironment(home, template) {
@@ -286,24 +287,48 @@ function makeSandboxCommand({
     '/',
     '/',
   ];
-  for (const directory of hostPathsToHide(sourceRoot))
-    if (directory === '/mnt' || existsSync(directory))
-      args.push('--tmpfs', directory);
-  args.push(
-    '--dir',
-    GUEST_WORKSPACE,
-    '--bind',
+  const hiddenDirectories = hostPathsToHide(sourceRoot)
+    .filter((directory) => directory === '/mnt' || existsSync(directory));
+  const mountOperations = sandboxMountOperations({
     workspace,
-    GUEST_WORKSPACE,
-    '--dir',
-    GUEST_RUN,
-    '--bind',
     runDirectory,
-    GUEST_RUN
-  );
-  for (const [source, target] of mounts) args.push('--ro-bind', source, target);
-  for (const [source, target] of dependencyMounts)
-    args.push('--ro-bind', source, target);
+    externalMounts: mounts,
+    dependencyMounts,
+    hiddenDirectories,
+    guestWorkspace: GUEST_WORKSPACE,
+    guestRun: GUEST_RUN,
+    markerFile,
+    guestMarker: GUEST_MARKER,
+  });
+  const commandPath = bubblewrapPath();
+  const sourceDescriptors = [];
+  try {
+    for (const operation of mountOperations) {
+      if (operation.type === 'dir') {
+        args.push('--dir', operation.path);
+      } else if (operation.type === 'tmpfs') {
+        args.push('--tmpfs', operation.path);
+      } else if (
+        operation.type === 'bind-fd' ||
+        operation.type === 'ro-bind-fd'
+      ) {
+        const descriptor = openSync(operation.source, 'r');
+        sourceDescriptors.push(descriptor);
+        const childDescriptor = sourceDescriptors.length + 2;
+        // The inherited fd pins the source even when its host path is masked.
+        args.push(
+          operation.type === 'bind-fd' ? '--bind' : '--ro-bind',
+          '/proc/self/fd/' + childDescriptor,
+          operation.target
+        );
+      } else {
+        throw new Error('Unknown sandbox mount operation: ' + operation.type);
+      }
+    }
+  } catch (error) {
+    for (const descriptor of sourceDescriptors) closeSync(descriptor);
+    throw error;
+  }
   args.push(
     '--proc',
     '/proc',
@@ -311,9 +336,6 @@ function makeSandboxCommand({
     '/dev',
     '--tmpfs',
     '/dev/shm',
-    '--ro-bind',
-    markerFile,
-    GUEST_MARKER,
   );
   for (const directory of [
     env.HOME,
@@ -334,23 +356,35 @@ function makeSandboxCommand({
       ? runtimeExecutable
       : requestedCommand;
   args.push('--', executable, ...requestedArgs);
-  return { command: bubblewrapPath(), args };
+  return { command: commandPath, args, sourceDescriptors };
 }
 
 async function executeSandboxed(command, env) {
   return new Promise((resolve, reject) => {
-    const child = spawn(command.command, command.args, {
-      env,
-      stdio: 'inherit',
-    });
+    let child;
+    try {
+      child = spawn(command.command, command.args, {
+        env,
+        stdio: ['inherit', 'inherit', 'inherit', ...command.sourceDescriptors],
+      });
+    } catch (error) {
+      for (const descriptor of command.sourceDescriptors) closeSync(descriptor);
+      reject(error);
+      return;
+    }
+    for (const descriptor of command.sourceDescriptors) closeSync(descriptor);
     const forward = (signal) => child.kill(signal);
     process.once('SIGINT', forward);
     process.once('SIGTERM', forward);
-    child.once('error', reject);
-    child.once('exit', (code, signal) => {
+    let spawnError;
+    child.once('error', (error) => {
+      spawnError = error;
+    });
+    child.once('close', (code, signal) => {
       process.removeListener('SIGINT', forward);
       process.removeListener('SIGTERM', forward);
-      if (signal) resolve(128 + (signal === 'SIGINT' ? 2 : 15));
+      if (spawnError) reject(spawnError);
+      else if (signal) resolve(128 + (signal === 'SIGINT' ? 2 : 15));
       else resolve(code ?? 1);
     });
   });
