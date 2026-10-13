@@ -5,17 +5,21 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import {
+  accessSync,
   chmodSync,
   closeSync,
+  constants,
   cpSync,
   existsSync,
   lstatSync,
   mkdirSync,
   mkdtempSync,
   openSync,
+  readFileSync,
   readdirSync,
   realpathSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -205,6 +209,51 @@ function bubblewrapPath() {
   throw new Error('bubblewrap is required; candidate code was not started.');
 }
 
+function hostExecutablePath(command) {
+  for (const directory of (process.env.PATH ?? '').split(path.delimiter)) {
+    if (!directory) continue;
+    const candidate = path.join(directory, command);
+    try {
+      accessSync(candidate, constants.X_OK);
+      return realpathSync(candidate);
+    } catch (error) {
+      if (error.code !== 'ENOENT' && error.code !== 'EACCES') throw error;
+    }
+  }
+  return null;
+}
+
+function packageRoot(executable, packageName) {
+  let directory = path.dirname(executable);
+  while (true) {
+    const manifest = path.join(directory, 'package.json');
+    if (existsSync(manifest)) {
+      try {
+        if (JSON.parse(readFileSync(manifest, 'utf8')).name === packageName)
+          return directory;
+      } catch {
+        // Continue searching parent directories; this file is a host tool manifest.
+      }
+    }
+    const parent = path.dirname(directory);
+    if (parent === directory) return path.dirname(executable);
+    directory = parent;
+  }
+}
+
+function dotnetRoot(executable) {
+  for (const candidate of [
+    process.env.DOTNET_ROOT_X64,
+    process.env.DOTNET_ROOT,
+    path.dirname(executable),
+  ]) {
+    if (!candidate || !existsSync(candidate)) continue;
+    const root = realpathSync(candidate);
+    if (isWithin(root, executable)) return root;
+  }
+  return path.dirname(executable);
+}
+
 function makeSandboxCommand({
   sourceRoot,
   workspace,
@@ -220,21 +269,30 @@ function makeSandboxCommand({
   const runtimePath = realpathSync(process.execPath);
   const runtimeDirectory = path.dirname(runtimePath);
   const externalRoots = [];
+  const addExternalRoot = (candidate) => {
+    const root = realpathSync(candidate);
+    const existing = externalRoots.indexOf(root);
+    if (existing !== -1) return existing;
+    externalRoots.push(root);
+    return externalRoots.length - 1;
+  };
   let playwrightCacheIndex = -1;
-  if (playwrightCache) {
-    playwrightCacheIndex = externalRoots.indexOf(playwrightCache);
-    if (playwrightCacheIndex === -1) {
-      playwrightCacheIndex = externalRoots.length;
-      externalRoots.push(playwrightCache);
-    }
-  }
-  let runtimeIndex = externalRoots.indexOf(runtimeDirectory);
-  if (runtimeIndex === -1) {
-    runtimeIndex = externalRoots.length;
-    externalRoots.push(runtimeDirectory);
+  if (playwrightCache) playwrightCacheIndex = addExternalRoot(playwrightCache);
+  const runtimeIndex = addExternalRoot(runtimeDirectory);
+  const toolInstallations = new Map();
+  for (const command of ['pnpm', 'dotnet']) {
+    const executable = hostExecutablePath(command);
+    if (!executable) continue;
+    const root = command === 'dotnet'
+      ? dotnetRoot(executable)
+      : packageRoot(executable, 'pnpm');
+    toolInstallations.set(command, {
+      index: addExternalRoot(root),
+      executable,
+    });
   }
   const mounts = externalRoots.map((source, index) => [
-    realpathSync(source),
+    source,
     `${GUEST_RUN}/dependencies/${index}`,
   ]);
   const dependencyMounts = dependencies.map(({ relative, source }) => [
@@ -250,12 +308,30 @@ function makeSandboxCommand({
 
   const runtimeGuest = mounts[runtimeIndex][1];
   const runtimeExecutable = `${runtimeGuest}/${path.basename(runtimePath)}`;
+  const toolBinHost = path.join(runDirectory, 'tool-bin');
+  mkdirSync(toolBinHost, { recursive: true, mode: 0o700 });
+  const toolBinGuest = `${GUEST_RUN}/tool-bin`;
+  for (const [command, installation] of toolInstallations) {
+    const root = externalRoots[installation.index];
+    const relativeExecutable = path.relative(root, installation.executable);
+    if (
+      relativeExecutable === '..' ||
+      relativeExecutable.startsWith(`..${path.sep}`) ||
+      path.isAbsolute(relativeExecutable)
+    )
+      throw new Error(`Resolved ${command} executable escaped its tool root`);
+    const guestExecutable = path.posix.join(
+      mounts[installation.index][1],
+      relativeExecutable.split(path.sep).join('/')
+    );
+    symlinkSync(guestExecutable, path.join(toolBinHost, command));
+  }
   const markerToken = randomBytes(32).toString('hex');
   const markerFile = path.join(runDirectory, 'sandbox-marker');
   writeFileSync(markerFile, markerToken, { mode: 0o600, flag: 'wx' });
 
   const env = {
-    PATH: `${runtimeGuest}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`,
+    PATH: `${runtimeGuest}:${toolBinGuest}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin`,
     NODE_ENV: 'test',
     HOME: `${GUEST_RUN}/home`,
     USERPROFILE: `${GUEST_RUN}/home`,
@@ -270,6 +346,9 @@ function makeSandboxCommand({
     CONFIG_DIRECTORY: `${GUEST_RUN}/config`,
     VALIDATION_OUTER_SANDBOX_TOKEN: markerToken,
   };
+  const dotnetInstallation = toolInstallations.get('dotnet');
+  if (dotnetInstallation)
+    env.DOTNET_ROOT = mounts[dotnetInstallation.index][1];
   if (playwrightCacheIndex !== -1)
     env.PLAYWRIGHT_BROWSERS_PATH = mounts[playwrightCacheIndex][1];
   for (const key of ['LANG', 'LC_ALL', 'LC_CTYPE', 'TZ'])

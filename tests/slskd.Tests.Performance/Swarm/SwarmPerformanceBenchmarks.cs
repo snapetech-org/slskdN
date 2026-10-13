@@ -13,10 +13,9 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using slskd.Transfers.MultiSource;
 using slskd.Transfers.MultiSource.Optimization;
-using Xunit;
-using Xunit.Abstractions;
 
 /// <summary>
 /// Performance benchmarks for swarm download operations.
@@ -24,18 +23,14 @@ using Xunit.Abstractions;
 /// </summary>
 [Config(typeof(SwarmBenchmarkConfig))]
 // [MemoryDiagnoser] // Requires BenchmarkDotNet.Diagnostics.Windows package
-[Trait("Category", "Benchmark")]
 public class SwarmPerformanceBenchmarks
 {
-    private readonly ITestOutputHelper _output;
     private readonly ILogger<ChunkSizeOptimizer> _logger;
     private ChunkSizeOptimizer? _optimizer;
 
-    public SwarmPerformanceBenchmarks(ITestOutputHelper output)
+    public SwarmPerformanceBenchmarks()
     {
-        _output = output;
-        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-        _logger = loggerFactory.CreateLogger<ChunkSizeOptimizer>();
+        _logger = NullLogger<ChunkSizeOptimizer>.Instance;
     }
 
 [GlobalSetup]
@@ -58,7 +53,7 @@ public class SwarmPerformanceBenchmarks
             averageRttMs: 100,
             CancellationToken.None);
 
-        _output.WriteLine($"[BENCH] File: {fileSize / 1024 / 1024}MB, Peers: {peerCount}, Chunk: {chunkSize / 1024}KB");
+        Console.WriteLine($"[BENCH] File: {fileSize / 1024 / 1024}MB, Peers: {peerCount}, Chunk: {chunkSize / 1024}KB");
     }
 
 [Benchmark]
@@ -83,7 +78,7 @@ public class SwarmPerformanceBenchmarks
             .Select(i => new { ChunkIndex = i, PeerId = $"peer-{i % 5}" })
             .ToList();
 
-        _output.WriteLine($"[BENCH] Assigned {chunks.Count} chunks to peers");
+        Console.WriteLine($"[BENCH] Assigned {chunks.Count} chunks to peers");
     }
 
 [Benchmark]
@@ -106,7 +101,7 @@ public class SwarmPerformanceBenchmarks
             }
         });
 
-        _output.WriteLine($"[BENCH] Assigned {chunks.Count} chunks to {peerCount} peers in parallel");
+        Console.WriteLine($"[BENCH] Assigned {chunks.Count} chunks to {peerCount} peers in parallel");
     }
 
 [Benchmark]
@@ -133,7 +128,7 @@ public class SwarmPerformanceBenchmarks
             .Take(5)
             .ToList();
 
-        _output.WriteLine($"[BENCH] Selected {peers.Count} peers from {candidateCount} candidates");
+        Console.WriteLine($"[BENCH] Selected {peers.Count} peers from {candidateCount} candidates");
     }
 
     /// <summary>

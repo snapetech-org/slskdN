@@ -5,4 +5,4 @@ area: ci-security
 action: none
 breaking: false
 ---
-Validation snapshots omit extensionless authentication, token, credential, and secret files while retaining source code with those names. Pull request validation now uses GitHub-hosted runners for every author. Persistent local runners are reserved for main-branch validation. Workflow tokens cannot approve pull requests, and the API-only load test stays loopback-only and offline.
+Validation snapshots omit extensionless credentials and secrets while retaining source files with similar names. Every pull request uses GitHub-hosted runners; persistent runners serve trusted main validation. Linux CI verifies runner-owned temporary storage and rejects /tmp and /var/tmp. Workflow tokens cannot approve pull requests, and the API load test stays loopback-only and offline.

@@ -149,15 +149,29 @@ from pathlib import Path
 workflow_dir = Path(sys.argv[1])
 workflow_paths = [*workflow_dir.glob("*.yml"), *workflow_dir.glob("*.yaml")]
 texts = {path.name: path.read_text() for path in workflow_paths}
+uses_pattern = re.compile(r"^\s*(?:-\s*)?uses:\s*([^\s#]+)")
+
+def action_is_pinned(line):
+    match = uses_pattern.match(line)
+    if not match:
+        return None
+    action = match.group(1)
+    if action.startswith("./"):
+        return True
+    return "@" in action and re.fullmatch(r"[0-9a-f]{40}", action.rsplit("@", 1)[1]) is not None
+
+sha = "a" * 40
+for line in (f"      uses: actions/checkout@{sha}", f"      - uses: actions/checkout@{sha}"):
+    if action_is_pinned(line) is not True:
+        raise SystemExit("action pin check must accept both YAML uses forms")
+for line in ("      uses: actions/checkout@v7", "      - uses: actions/checkout@v7"):
+    if action_is_pinned(line) is not False:
+        raise SystemExit("action pin check must reject mutable refs in both YAML uses forms")
+
 for name, text in texts.items():
     for line_number, line in enumerate(text.splitlines(), 1):
-        match = re.match(r"^\s*uses:\s*([^\s#]+)", line)
-        if not match:
-            continue
-        action = match.group(1)
-        if action.startswith("./"):
-            continue
-        if "@" not in action or not re.fullmatch(r"[0-9a-f]{40}", action.rsplit("@", 1)[1]):
+        pinned = action_is_pinned(line)
+        if pinned is False:
             raise SystemExit(f"{name}:{line_number} must pin its action to a full commit SHA")
 
 ci = texts["ci.yml"]
@@ -171,6 +185,18 @@ def job_block(workflow, job):
     return match.group(1)
 
 parse_job = job_block(tag_workflow, "parse")
+tag_character_guard = 'if [[ ! "$TAG" =~ ^build-(main|dev)-[A-Za-z0-9][A-Za-z0-9._-]*$ ]]'
+if tag_character_guard not in parse_job:
+    raise SystemExit("tag-derived versions must be restricted before downstream shell interpolation")
+for tag in (
+    "build-main-2026101323-slskdn.351",
+    "build-dev-0.25.0-dev.20261013",
+):
+    if not re.fullmatch(r"build-(main|dev)-[A-Za-z0-9][A-Za-z0-9._-]*", tag):
+        raise SystemExit(f"tag-character guard rejected supported tag {tag}")
+for tag in ("build-main-$(id)", "build-dev-version;id", "build-main-`id`"):
+    if re.fullmatch(r"build-(main|dev)-[A-Za-z0-9][A-Za-z0-9._-]*", tag):
+        raise SystemExit(f"tag-character guard accepted shell syntax in {tag}")
 if "Manual publisher recovery requires an existing build-main-* tag" not in parse_job:
     raise SystemExit("manual publisher recovery must accept only stable build tags")
 if 'Manual publisher recovery must run from refs/heads/main' not in parse_job or '"$GITHUB_REF" != "refs/heads/main"' not in parse_job:
@@ -181,14 +207,21 @@ if "GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}" not in parse_job:
     raise SystemExit("manual publisher recovery must authenticate its release lookup")
 if 'gh release view "$VERSION" --repo "$GITHUB_REPOSITORY"' not in parse_job:
     raise SystemExit("manual publisher recovery must verify the existing release before publishing")
+if 'repos/${GITHUB_REPOSITORY}/releases/latest' not in parse_job:
+    raise SystemExit("manual publisher recovery must reject stale stable releases")
+if 'repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG}' not in parse_job or 'echo "source_sha=$object_sha"' not in parse_job:
+    raise SystemExit("publisher recovery must resolve the requested tag to an immutable commit")
+if '"$object_sha" != "$GITHUB_SHA"' not in parse_job:
+    raise SystemExit("tag-triggered builds must use the exact commit from the push event")
 if "Select at least one publisher to retry" not in parse_job:
     raise SystemExit("manual publisher recovery must require an explicit target")
+if "retry_docker" in tag_workflow:
+    raise SystemExit("manual Docker recovery must not rebuild from source instead of release artifacts")
 
 for job, retry_input in {
     "aur-main": "retry_aur",
     "copr-main": "retry_copr",
     "ppa-main": "retry_ppa",
-    "docker-main": "retry_docker",
     "nix-main": "retry_nix",
 }.items():
     block = job_block(tag_workflow, job)
@@ -196,8 +229,40 @@ for job, retry_input in {
         raise SystemExit(f"{job} must be selected explicitly for recovery and gated on the normal release")
     if "github.ref == 'refs/heads/main'" not in block:
         raise SystemExit(f"{job} must reject manual publisher recovery outside main")
-    if "ref: ${{ inputs.tag || github.ref }}" not in block:
-        raise SystemExit(f"{job} must read source from the selected release tag during recovery")
+    if job == "nix-main":
+        if "ref: refs/heads/main" not in block:
+            raise SystemExit("Nix recovery must update the current main tree")
+        order = [block.index(marker) for marker in (
+            "name: Update Metadata Files",
+            "name: Verify Flake",
+            "name: Run Nix package smoke",
+            "name: Commit and Push",
+        )]
+        if order != sorted(order):
+            raise SystemExit("Nix recovery must validate the exact tree before committing it")
+        if "git reset --hard origin/main" in block or "git clean -fd" in block:
+            raise SystemExit("Nix recovery must not replace the validated tree before pushing")
+        if "git rev-parse refs/remotes/origin/main" not in block:
+            raise SystemExit("Nix recovery must fail if main advances after validation")
+    else:
+        if "ref: ${{ needs.parse.outputs.source_sha }}" not in block:
+            raise SystemExit(f"{job} must check out the commit resolved by the parse job")
+        if not re.search(r"(?m)^    permissions:\n      contents: read$", block):
+            raise SystemExit(f"{job} must have the minimum repository-read permission for release assets")
+
+if "AUR recovery requires AUR_SSH_KEY" not in job_block(tag_workflow, "aur-main"):
+    raise SystemExit("selected AUR recovery must fail when its publishing key is missing")
+for job in ("copr-main", "ppa-main"):
+    block = job_block(tag_workflow, job)
+    if "continue-on-error: ${{ github.event_name != 'workflow_dispatch' }}" not in block:
+        raise SystemExit(f"{job} recovery failures must fail the selected manual run")
+if "COPR recovery requires a complete supported credential set" not in job_block(tag_workflow, "copr-main"):
+    raise SystemExit("selected COPR recovery must fail when publishing credentials are missing")
+if "PPA recovery requires GPG_PRIVATE_KEY" not in job_block(tag_workflow, "ppa-main"):
+    raise SystemExit("selected PPA recovery must fail when its signing key is missing")
+docker_job = job_block(tag_workflow, "docker-main")
+if "github.event_name != 'workflow_dispatch'" not in docker_job or "ref: ${{ needs.parse.outputs.source_sha }}" not in docker_job:
+    raise SystemExit("Docker publication must remain tag-only and use the parsed commit")
 
 for job in ("build", "publish", "release-main", "announce-main", "docker-omnibus", "chocolatey-main", "homebrew-main"):
     block = job_block(tag_workflow, job)
@@ -208,8 +273,20 @@ for job in ("performance-regression", "dependency-scanning", "container-scanning
     match = re.search(rf"(?ms)^  {re.escape(job)}:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", enhancements)
     if not match:
         raise SystemExit(f"ci-enhancements.yml is missing {job}")
-    if re.search(r"(?m)^\s*continue-on-error:\s*true\s*$", match.group(1)):
+    block = match.group(1)
+    if re.search(r"(?m)^\s*continue-on-error:\s*true\s*$", block):
         raise SystemExit(f"ci-enhancements.yml {job} must fail when its checks fail")
+    if job == "performance-regression":
+        for required in (
+            '--filter "*HashDbPerformanceBenchmarks.LookupHash_WithoutCache*"',
+            "--buildTimeout 600",
+            "--stopOnFirstError",
+            "scripts/verify-benchmark-results.py",
+        ):
+            if required not in block:
+                raise SystemExit(
+                    f"ci-enhancements.yml performance-regression must include {required}"
+                )
 
 if "pnpm audit --prod --audit-level high || true" in enhancements:
     raise SystemExit("pnpm audit failures must not be suppressed")

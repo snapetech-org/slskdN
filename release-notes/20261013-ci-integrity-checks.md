@@ -5,4 +5,4 @@ area: ci-security
 action: none
 breaking: false
 ---
-CI actions use immutable commit pins. Dependency scans fail on high or critical vulnerabilities, and Trivy blocks fixable high or critical findings. Required performance and load checks now fail visibly. Maintainers can retry selected publishers for an existing stable release from `main`, using published assets without rebuilding or repeating successful channels.
+CI pins actions and fails on required tests, dependency scans, and fixable high/critical image findings. Benchmark CI runs one HashDb lookup and rejects empty reports. Tags are checked before shell use. Publisher recovery uses the current stable commit and requires credentials; Nix validates main before push. Docker stays tag-only. Windows SQLite fixtures close handles before cleanup.

@@ -198,6 +198,7 @@ test(
     writeFileSync(
       path.join(source, 'bin/run-local-validation.mjs'),
       `import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
@@ -237,6 +238,11 @@ assert.throws(() => readFileSync(path.join(originalCheckout, 'auth.json')), { co
 assert.throws(() => writeFileSync(hostFile, 'escaped'));
 assert.equal(readFileSync('/run/validation-engine-sandbox', 'utf8'), process.env.VALIDATION_OUTER_SANDBOX_TOKEN);
 assert.equal(fixtureDependency, 'sibling dependency resolved');
+for (const command of ['pnpm', 'dotnet']) {
+  if (!existsSync('/mnt/run-data/tool-bin/' + command)) continue;
+  const result = spawnSync(command, ['--version'], { encoding: 'utf8' });
+  assert.equal(result.status, 0, command + ' must remain executable after its host install root is hidden: ' + result.stderr);
+}
 const connectionResults = await Promise.all([
   new Promise((resolve) => { const socket = net.connect(hostPort, '127.0.0.1'); socket.once('connect', () => { socket.destroy(); resolve('connected'); }); socket.once('error', () => resolve('blocked')); socket.setTimeout(1000, () => { socket.destroy(); resolve('blocked'); }); }),
   new Promise((resolve) => { const socket = net.createConnection(hostSocket); socket.once('connect', () => { socket.destroy(); resolve('connected'); }); socket.once('error', () => resolve('blocked')); socket.setTimeout(1000, () => { socket.destroy(); resolve('blocked'); }); }),

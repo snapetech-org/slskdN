@@ -168,12 +168,7 @@ public sealed class SongIdRunStoreTests : IDisposable
     public void Dispose()
     {
         SetAppDirectory(_originalAppDirectory);
-
-        using (var poolConnection = new Microsoft.Data.Sqlite.SqliteConnection(
-            $"Data Source={Path.Combine(_tempDir, "songid.db")}"))
-        {
-            Microsoft.Data.Sqlite.SqliteConnection.ClearPool(poolConnection);
-        }
+        SqliteTestDatabaseCleanup.ClearPool(Path.Combine(_tempDir, "songid.db"));
 
         if (Directory.Exists(_tempDir))
         {

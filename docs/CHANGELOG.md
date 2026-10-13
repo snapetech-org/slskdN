@@ -47,10 +47,15 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - GitHub requires third-party workflow actions to use full immutable commit
   SHAs. Dependency scans fail on high or critical vulnerabilities, while the
   container scan blocks high or critical findings with available fixes.
-  Required test failures are no longer hidden as successful runs.
-- Maintainers can retry selected failed publishers for an existing stable
-  release from the trusted `main` workflow, using published assets without
-  rebuilding or repeating successful publishers and announcements.
+  Required test failures are no longer hidden as successful runs. The
+  performance job measures a bounded HashDb lookup and rejects empty benchmark
+  output. Windows share-scan fixtures now close SQLite handles before deleting
+  their temporary databases.
+- Maintainers can retry AUR, COPR, PPA, and Nix publication for the current
+  stable release from the trusted `main` workflow. Retries use the verified
+  release commit, require publisher credentials, and validate refreshed `main`
+  before a Nix metadata push; Docker remains tag-triggered. Tag-derived
+  versions are checked before use in workflow shell scripts.
 
 - Manual CI runs can select a GitHub-hosted runner while tag builds retain the
   configured runner policy.

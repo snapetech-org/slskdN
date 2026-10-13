@@ -1,3 +1,35 @@
+## Current state — CI security and validation integrity — 2026-10-13
+
+QuestarrNG PR #49 is merged as `e7ff5522cb1beaa685992219977f571aa2506f06`.
+slskdN PR #357 has a local remediation candidate covering runner and snapshot
+isolation, immutable recovery source selection, required publisher credentials,
+restricted tag syntax, test cleanup ordering, and the benchmark gate. Focused
+SQLite tests pass 43/43; the bounded HashDb benchmark records 10 workload
+measurements; the verifier contract covers valid measurements, missing reports,
+malformed roots, and absent selected benchmarks; workflow policy, YAML,
+shellcheck, identity-leak, diff, and repository lint checks pass. The old PR
+head's Windows run had one failure in the share-scan
+harness: its database file could not be deleted. Disposable share-scan
+repositories now disable pooling, dispose explicitly, and retry transient
+Windows sharing violations. The local rerun hit its 30-second limit under high
+server load; the local scan is not counted as passing. Current PR head
+`c0669159e639e3f3a369986baaf58c908450df11` still fails that deletion after
+bounded lock retries, and its CI build/test job remains in progress. The local
+candidate disables pooling, explicitly disposes the repositories, and retains
+transient Windows lock retries; its exact-head Windows result remains pending.
+A separate PR #365 Windows run passed all 5,813 unit tests with
+explicit SQLite cleanup and sharing-lock retries, but its job failed during
+post-run cache cleanup. That is not exact-head evidence for PR #357. Its 21
+review threads remain open until the corrected head is pushed and each response
+is verified.
+
+### Next steps
+
+- Commit and push the complete candidate after reviewing its final diff.
+- Reconcile every required check against the exact pushed SHA and address all
+  review threads.
+- Merge PR #357 and delete only its task branches after the worktrees are clear.
+
 ## Current state — Credential snapshot hardening — 2026-10-13
 
 PR #357 now also excludes dotted credential basenames and explicit private/API
@@ -17,15 +49,15 @@ separate.
 - Verify the exact pushed head's hosted test, scan, and release-note checks.
 - Keep runner routing and the existing tag-only build policy unchanged.
 
-## Prior current state — Runner trust and scan gates — 2026-10-13
+## Superseded runner-trust and scan-gate state — 2026-10-13
 
-The temporary local pool is enabled for `snapetech`-authored pull requests and
-trusted `main` validation. Pull requests from other contributors stay on
-GitHub-hosted runners, and all external contributors require workflow approval.
-These YAML rules are best-effort on personal-account repositories: a reviewed
-outside workflow can still request self-hosted after approval. Organization
-runner groups restricted to selected workflow refs remain the planned hard
-boundary.
+An earlier record said the temporary local pool was enabled for
+`snapetech`-authored pull requests. That routing is superseded by the current
+PR #357 candidate: every pull request and every manual dispatch outside `main`
+uses GitHub-hosted runners; trusted `main` validation may use the local pool.
+Workflow YAML remains a routing policy rather than a server-enforced boundary
+on a personal-account repository. Organization runner groups restricted to
+trusted workflow refs remain the planned hard boundary.
 
 PR #357 already isolates runner-owned temporary storage in Linux self-hosted
 jobs and scopes release write permissions to the publisher. This follow-up

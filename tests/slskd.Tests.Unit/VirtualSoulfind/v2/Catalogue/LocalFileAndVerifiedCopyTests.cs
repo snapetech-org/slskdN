@@ -7,6 +7,7 @@ namespace slskd.Tests.Unit.VirtualSoulfind.v2.Catalogue
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using slskd.Tests.Unit;
     using slskd.VirtualSoulfind.v2.Catalogue;
     using Xunit;
 
@@ -27,10 +28,7 @@ namespace slskd.Tests.Unit.VirtualSoulfind.v2.Catalogue
         public void Dispose()
         {
             _store.Dispose();
-            using (var poolConnection = new Microsoft.Data.Sqlite.SqliteConnection($"Data Source={_tempDbPath};"))
-            {
-                Microsoft.Data.Sqlite.SqliteConnection.ClearPool(poolConnection);
-            }
+            SqliteTestDatabaseCleanup.ClearPool(_tempDbPath);
 
             if (File.Exists(_tempDbPath))
             {

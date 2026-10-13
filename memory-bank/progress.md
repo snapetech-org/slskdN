@@ -1,3 +1,36 @@
+# Update 2026-10-13 — Validate malformed benchmark report shapes
+
+Final review reproduced a malformed BenchmarkDotNet report root reaching an
+undefined failure-list variable. The verifier now reports the invalid root
+directly, and its contract suite covers a valid result, a missing report, a
+non-object root, and a report without the selected benchmark. CI runs that
+contract before checking the real benchmark measurements.
+
+# Update 2026-10-13 16:39 UTC — Bound the required benchmark lane
+
+The required BenchmarkDotNet job now selects one representative HashDb lookup
+instead of all 13 class cases, keeping the workflow within its 30-minute limit
+on the constrained LVM host. It completes 10 workload measurements; the
+report verifier checks the selected method, per-iteration values, and aggregate
+statistics, and rejects an empty report. Build tag names are also restricted
+before their versions reach downstream shell scripts. The current full
+candidate passes `./bin/lint`; exact-head hosted checks remain pending until
+push.
+
+# Update 2026-10-13 — Close the Windows share-database handle
+
+The old PR head's Windows Smoke run failed only in
+`ShareScannerHarnessTests.ScanAsync_WithLargeSyntheticTree_CompletesAndIndexesAllFilesWithoutHashing`:
+the fixture could not delete its SQLite database. Disposable share-scan
+repositories now use `Pooling=False`, dispose explicitly, and retry only
+transient Windows sharing violations during cleanup. PR #357 head
+`c0669159e639e3f3a369986baaf58c908450df11` still failed the delete after the
+bounded retry loop, and its CI build/test job remains in progress. The local
+scan rerun hit its 30-second limit under high server load, so it is not counted
+as passing. PR #365's separate Windows run passed all 5,813 unit tests with the
+same cleanup changes, but its workflow failed afterward in setup-node cache
+cleanup. The updated PR #357 candidate needs its own exact-head Windows result.
+
 # Update 2026-10-13 — Exclude dotted and explicit credential material
 
 The trusted snapshot matcher now rejects dotted credential basenames and

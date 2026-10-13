@@ -26,6 +26,43 @@
 
 ## Active Development
 
+### CI security and validation integrity — 2026-10-13
+
+- [x] Route every pull request and non-main manual run to GitHub-hosted runners;
+  keep trusted main validation eligible for local runners.
+- [x] Harden snapshot credential filtering and preserve installed pnpm/.NET
+  tools inside the isolated launcher.
+- [x] Bind manual publisher recovery to the exact current stable release,
+  require credentials for selected publishers, and keep Docker tag-only.
+- [x] Make the performance project runnable, repair benchmark setup, and make
+  CI reject incomplete measurements from its bounded HashDb sample.
+- [x] Restrict pushed and manually selected build tag names before parsed
+  versions reach downstream workflow shell scripts.
+- [x] Disable SQLite pooling in disposable share-scan repositories to close
+  Windows file handles; explicitly dispose repositories and retry transient
+  sharing violations before fixture cleanup.
+- [x] Repair SQLite test-database cleanup ordering; add release notes and
+  workflow-policy coverage.
+- [ ] Push this candidate, verify all required exact-head checks, resolve the
+  review queue, and merge PR #357.
+
+Status: the selected SQLite fixtures pass 43/43. The bounded BenchmarkDotNet
+run passes with 10 workload measurements (mean 135.956 us); its result
+verifier contract covers valid measurements, missing reports, malformed roots,
+and reports without the selected benchmark. Workflow policy, YAML, shellcheck,
+diff, identity-leak, unit-project build, and repository lint pass. The targeted
+Linux share-scan rerun hit its 30-second scan limit on a busy server (load
+average above 125), so it is not counted as passing. The original PR head's
+Windows run failed when the share-scan harness deleted its database. Its
+repositories now disable pooling, dispose explicitly, and retry transient
+Windows sharing-lock errors. PR #357 head
+`c0669159e639e3f3a369986baaf58c908450df11` still failed Windows database
+deletion after bounded retries, while its CI build/test job remains in
+progress. PR #365's separate Windows run completed all 5,813 unit tests with
+the cleanup pattern, but its job failed in post-run cache cleanup; that is
+supporting evidence, not an exact-head PR #357 pass. Updated candidate checks
+remain unknown until push.
+
 ### SLSKDN runner-temp reliability — 2026-10-13
 
 - [x] Validate runner-owned temporary storage and export TMPDIR, TMP,

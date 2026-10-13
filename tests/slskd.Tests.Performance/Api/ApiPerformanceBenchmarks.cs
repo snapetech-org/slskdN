@@ -13,8 +13,6 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
-using Xunit;
-using Xunit.Abstractions;
 
 /// <summary>
 /// Performance benchmarks for API endpoints.
@@ -22,18 +20,12 @@ using Xunit.Abstractions;
 /// </summary>
 [Config(typeof(ApiBenchmarkConfig))]
 // [MemoryDiagnoser] // Requires BenchmarkDotNet.Diagnostics.Windows package
-[Trait("Category", "Benchmark")]
 public class ApiPerformanceBenchmarks : IDisposable
 {
-    private readonly ITestOutputHelper _output;
     private HttpClient? _httpClient;
     private string? _baseUrl;
-    private string? _authToken;
 
-    public ApiPerformanceBenchmarks(ITestOutputHelper output)
-    {
-        _output = output;
-    }
+    public ApiPerformanceBenchmarks() { }
 
 [GlobalSetup]
     public void Setup()
@@ -57,13 +49,12 @@ public class ApiPerformanceBenchmarks : IDisposable
             var loginResponse = _httpClient.PostAsync("/api/v0/session", loginContent).Result;
             if (loginResponse.IsSuccessStatusCode)
             {
-                _authToken = "authenticated"; // Simplified for benchmarks
-                _output.WriteLine("[BENCH] API authentication successful");
+                Console.WriteLine("[BENCH] API authentication successful");
             }
         }
         catch
         {
-            _output.WriteLine("[BENCH] API not available - benchmarks will be skipped");
+            Console.WriteLine("[BENCH] API not available - benchmarks will be skipped");
         }
     }
 
@@ -83,7 +74,7 @@ public class ApiPerformanceBenchmarks : IDisposable
         {
             var response = await _httpClient.GetAsync("/api/v0/session/enabled");
             var content = await response.Content.ReadAsStringAsync();
-            _output.WriteLine($"[BENCH] Session status: {response.StatusCode}");
+            Console.WriteLine($"[BENCH] Session status: {response.StatusCode}");
         }
         catch
         {
@@ -101,7 +92,7 @@ public class ApiPerformanceBenchmarks : IDisposable
         {
             var response = await _httpClient.GetAsync("/api/v0/application");
             var content = await response.Content.ReadAsStringAsync();
-            _output.WriteLine($"[BENCH] Application state: {response.StatusCode}");
+            Console.WriteLine($"[BENCH] Application state: {response.StatusCode}");
         }
         catch
         {
@@ -119,7 +110,7 @@ public class ApiPerformanceBenchmarks : IDisposable
         {
             var response = await _httpClient.GetAsync("/api/v0/hashdb/stats");
             var content = await response.Content.ReadAsStringAsync();
-            _output.WriteLine($"[BENCH] HashDb stats: {response.StatusCode}");
+            Console.WriteLine($"[BENCH] HashDb stats: {response.StatusCode}");
         }
         catch
         {
@@ -140,7 +131,7 @@ public class ApiPerformanceBenchmarks : IDisposable
         {
             var response = await _httpClient.GetAsync($"/api/jobs?limit={limit}&offset=0");
             var content = await response.Content.ReadAsStringAsync();
-            _output.WriteLine($"[BENCH] Jobs (limit={limit}): {response.StatusCode}");
+            Console.WriteLine($"[BENCH] Jobs (limit={limit}): {response.StatusCode}");
         }
         catch
         {
@@ -167,7 +158,7 @@ public class ApiPerformanceBenchmarks : IDisposable
             
             var response = await _httpClient.PostAsync("/api/v0/searches", content);
             var responseContent = await response.Content.ReadAsStringAsync();
-            _output.WriteLine($"[BENCH] Create search: {response.StatusCode}");
+            Console.WriteLine($"[BENCH] Create search: {response.StatusCode}");
         }
         catch
         {
@@ -191,7 +182,7 @@ public class ApiPerformanceBenchmarks : IDisposable
             
             var responses = await Task.WhenAll(tasks);
             var successCount = responses.Count(r => r.IsSuccessStatusCode);
-            _output.WriteLine($"[BENCH] Concurrent requests ({concurrency}): {successCount} succeeded");
+            Console.WriteLine($"[BENCH] Concurrent requests ({concurrency}): {successCount} succeeded");
         }
         catch
         {
