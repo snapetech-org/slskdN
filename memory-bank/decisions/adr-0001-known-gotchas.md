@@ -4,6 +4,23 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1794. Disable SQLite Pooling For File-Backed Tests On Windows (2026-10-13)
+
+**What went wrong:** Windows test cleanup could not delete SQLite files after
+their contexts or services were disposed because provider pools still held
+native handles. A full Windows test run then failed across otherwise unrelated
+fixtures.
+
+**Why:** Disposing a context closes its logical connection, but SQLite pooling
+can retain the native file handle. POSIX allows unlinking an open database;
+Windows does not.
+
+**Prevention:** Set `Pooling=False` on test-owned file-backed SQLite connection
+strings. When production constructors own the connection string, clear only
+that database's pool after all test connections are closed and before deleting
+the file. Do not clear global pools while tests can be using them. Keep cleanup
+verification on Windows.
+
 ### 0z1792. Exclude Dotted And Explicit Credential Material Names (2026-10-13)
 
 **What went wrong:** The trusted test snapshot excluded common extensionless
