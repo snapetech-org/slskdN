@@ -77,12 +77,20 @@ and engine-contract tests. The default run adds repository checks and the web
 build/output checks. Browser suites remain separately selectable because they
 need more time and platform setup.
 
+The engine starts up to three dependency-ready tasks at once. `dependsOn`
+continues to gate tasks that need installed packages or build outputs, and
+`concurrencyGroup` keeps tasks that share generated backend test outputs from
+running together. The three backend test tasks share one group; independent
+repository checks and frontend work can overlap with them. Each task keeps its
+own log and receipt entry, and the engine checks the planned source identity
+before launching work and after each task completes.
+
 During execution, the engine writes cumulative task progress to stderr when a
 task starts and finishes, with a heartbeat every minute for long tasks. The
-summary reports completed, failed, blocked, and pending tasks plus the active
-task and elapsed time. Native test-case totals update when each task finishes;
-GitHub Actions shows these live updates in the step log because rendered job
-summaries are published after the step completes.
+summary reports completed, failed, blocked, and pending tasks plus every active
+task and its elapsed time. Native test-case totals update when each task
+finishes; GitHub Actions shows these live updates in the step log because
+rendered job summaries are published after the step completes.
 
 Each execution creates a fresh receipt and per-task logs in a private directory
 under the operating system's temporary directory. Receipts bind the Git commit,

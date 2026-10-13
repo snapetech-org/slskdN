@@ -1,6 +1,7 @@
 // Copyright (c) slskdN Team. All rights reserved.
 export const validation = {
   repository: 'slskdn',
+  maxConcurrentTasks: 3,
   inputs: [
     'AGENTS.md',
     'global.json',
@@ -181,6 +182,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-unit'],
+      concurrencyGroup: 'backend-tests',
       timeoutSeconds: 1800,
     },
     {
@@ -205,6 +207,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-regression'],
+      concurrencyGroup: 'backend-tests',
       timeoutSeconds: 1800,
     },
     {
@@ -216,6 +219,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-integration'],
+      concurrencyGroup: 'backend-tests',
       timeoutSeconds: 1800,
     },
     {
