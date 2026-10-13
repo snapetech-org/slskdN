@@ -4,6 +4,25 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1838. Keep Windows SQLite Test Cleanup Reliable Without Disabling Scan Pooling (2026-10-13)
+
+**What went wrong:** The Windows unit job for PR `#357` at `0b3cff54` failed 25
+`LocalFileAndVerifiedCopyTests` during database deletion even after the store
+was disposed and its pool was cleared. The synthetic scanner also timed out
+after indexing 290 of its 480 files in 30 seconds.
+
+**Why:** A one-shot pool clear did not reliably release the catalogue fixture's
+Windows file handle before deletion. The synthetic scan disabled SQLite
+pooling on its high-volume repository path, so repeated connection setup pushed
+the scan past its existing time bound.
+
+**Prevention:** Use nonpooled SQLite connections for disposable catalogue test
+stores whose constructor owns the connection string. For high-volume scanner
+fixtures, keep normal pooling and clear the exact database pool after all
+repositories and readback connections are disposed, before deleting the files.
+Keep the 480-file correctness and existing timeout assertions, and verify the
+complete Windows unit job.
+
 ### 0z1837. Keep BenchmarkDotNet Output Aligned With Its Verifier (2026-10-13)
 
 **What went wrong:** The HashDb benchmark completed and returned success, but
