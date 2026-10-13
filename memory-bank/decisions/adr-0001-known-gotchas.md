@@ -41920,3 +41920,17 @@ logger instance and reused it across consumers with different category types.
 `NullLoggerFactory.Instance` when no provider is needed. Compile and execute
 the benchmark methods that construct these services before treating the
 benchmark host as usable.
+
+### 0z1817. Require Actual Benchmark Measurements Before Passing CI (2026-10-13)
+
+**What went wrong:** BenchmarkDotNet hit its default 120-second generated
+project build timeout on the required HashDb run, executed zero benchmarks,
+and still returned a successful process exit code.
+
+**Why:** The generated benchmark project recompiles the referenced application,
+and the workflow trusted the runner exit status without inspecting exported
+results.
+
+**Prevention:** Set a build timeout that fits within the workflow deadline and
+validate the exported result data contains completed measurements. A successful
+BenchmarkDotNet process with zero executed benchmarks is a failed gate.
