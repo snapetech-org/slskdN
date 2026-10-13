@@ -1,4 +1,23 @@
-## Current state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
+## Current state — Validation pool branch refreshed from org main — 2026-10-13 22:56 UTC
+
+SLSKDN now belongs to `snapetech-org`; the sibling repositories are being
+transferred there as work proceeds. This ownership change does not alter
+Actions runner registrations or routing. Public pull requests remain on
+GitHub-hosted runners.
+
+SLSKDN PR #366 adds bounded execution for independent validation tasks. Its
+branch now includes organization `main` at `b46ceb3a7997ae83ff14b756772e24f7ee172e4f`
+through merge commit `19ea7baea`; exact-head checks must be rerun before the
+branch is pushed. The local target guard verifies the organization repository
+explicitly and no longer depends on a global `gh` default.
+
+### Next Steps
+
+- Keep public pull-request workloads hosted.
+- Recheck repository owner and current `main` before each GitHub write.
+- Verify organization runner controls before any future runner attachment change.
+
+## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 
 The SignalR denial-of-service advisory is fixed by updating the complete
 first-party .NET dependency graph and bundled Flatpak runtime to .NET 10.0.13.
