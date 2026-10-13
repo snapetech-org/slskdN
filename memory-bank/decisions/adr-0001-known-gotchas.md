@@ -4,6 +4,24 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1839. Clear The Exact Normalized SQLite Pool (2026-10-13)
+
+**What went wrong:** The Windows share-scan fixture disposed its repositories
+and called the cleanup helper, but deletion of the main database still failed
+with a sharing violation.
+
+**Why:** `SqliteConnection.ClearPool` clears the pool group selected by the
+connection's exact connection string. `SqliteShareRepository` normalizes its
+connection string before opening connections, while the cleanup helper rebuilt
+one from only `Data Source=...`; the helper therefore cleared a different pool
+group and left the repository's pooled handles alive.
+
+**Prevention:** When cleanup targets a repository-owned SQLite pool, pass that
+repository's exact normalized `ConnectionString` to the pool-clear helper.
+Reconstructing a connection string from only the database path is not enough.
+Dispose repository/readback connections first, clear that exact pool, then
+delete the fixture files. Keep the scan's pooling and performance assertions.
+
 ### 0z1838. Keep Windows SQLite Test Cleanup Reliable Without Disabling Scan Pooling (2026-10-13)
 
 **What went wrong:** The Windows unit job for PR `#357` at `0b3cff54` failed 25
