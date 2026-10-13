@@ -45,6 +45,8 @@
   workflow-policy coverage.
 - [x] Trace the remaining Windows scanner lock to the normalized connection
   string's pool key and clear that exact repository pool; record gotcha `0z1839`.
+- [x] Disable package-manager caching in the .NET-only Windows smoke job after
+  all tests passed but post-job cache saving failed; record gotcha `0z1840`.
 - [ ] Push this candidate, verify all required exact-head checks, resolve the
   review queue, and merge PR #357.
 
@@ -52,18 +54,18 @@ Status: the bounded BenchmarkDotNet run passes with 10 workload measurements
 (mean 135.956 us); its verifier contract covers valid measurements, missing
 reports, malformed roots, and reports without the selected benchmark. Workflow
 policy, YAML, shellcheck, diff, identity-leak, unit-project build, and repository
-lint pass. The repair at `4ac7a1da7d01b7b89a9d29becfa664f9da5da51a` passed
-5,782/5,785 Windows unit tests; the synthetic scan indexed all 480 files in
-273 ms but deletion still failed with a sharing violation. Two other unit
-failures were in mesh-transfer lifecycle and download-content safety tests. The
-Windows integration suite passed 289/289; Linux Build and Test remained in
-progress and Nix Package Smoke was queued. Gotcha `0z1838` records the original
-cleanup and scan failures; gotcha `0z1839` records why the remaining pool clear
-did not match the repository's normalized connection string. The new cleanup
-passes the focused scan test 1/1 and `./bin/lint` locally. It is not yet pushed,
-so hosted results for this repair are unknown. PR #365's separate Windows run
-passed 5,813 unit tests but failed in post-run cache cleanup, so it remains
-supporting evidence only.
+lint pass. At exact PR head `fe5fb4699206b1fa3b7d31734fbdf13a2bda895f`, Windows
+passed all 5,785 unit tests, 289 integration tests, and 74 backend tests with
+zero skips, but the job failed during `setup-node` post-job cache saving because
+the pnpm store path did not exist. E2E, CodeQL, identity-leak, release-note,
+vendored-runtime, Nix, load, dependency-scan, and NuGet checks passed; Linux
+Build and Test, Performance Regression Testing, and Container Scanning were
+queued. Gotcha `0z1838` documents the original SQLite failures; `0z1839`
+explains the exact normalized pool-key mismatch; `0z1840` records the unused
+pnpm cache failure. The scanner correction passes its focused test 1/1. The
+workflow fix disables unused package-manager caching; exact-head validation
+for that change is pending push. PR #365's separate cache-cleanup failure is
+supporting evidence for this workflow issue.
 
 ### SLSKDN runner-temp reliability — 2026-10-13
 

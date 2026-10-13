@@ -2,27 +2,27 @@
 
 QuestarrNG PR #49 is merged as `e7ff5522cb1beaa685992219977f571aa2506f06`.
 slskdN PR #357 is open at exact head
-`4ac7a1da7d01b7b89a9d29becfa664f9da5da51a`. Windows `dotnet` failed 3 of 5,785
-unit tests: the scanner indexed all 480 files in 273 ms but cleanup still hit a
-database sharing violation; the other failures were in mesh-transfer lifecycle
-and download-content safety tests. The Windows integration project passed
-289/289. Linux Build and Test remained in progress, and Nix Package Smoke was
-queued. Do not treat those pending checks as passing.
+`fe5fb4699206b1fa3b7d31734fbdf13a2bda895f`. Windows passed all 5,785 unit
+tests, 289 integration tests, and 74 backend tests with zero skips; the job
+failed afterward because `setup-node` could not save a pnpm cache path that the
+workflow never created. E2E, both CodeQL checks, both identity-leak checks, the
+release-note contract, vendored-runtime sync, Nix smoke, load testing, dependency
+scanning, and NuGet submission passed. Linux Build and Test, Performance
+Regression Testing, and Container Scanning remained queued.
 
-The repair worktree adds gotcha `0z1839` before the source change. The root cause
-was a pool-key mismatch: `SqliteShareRepository` normalizes its connection
-string, but cleanup reconstructed a path-only string and cleared a different
-pool. The scanner fixture now clears each repository's exact normalized
-connection string while retaining pooling. Its focused test passes 1/1,
-`./bin/lint` passes, and `git diff --check` passes. This fix is not pushed, so
-its exact-head Windows and Linux results are unknown. Gotcha `0z1838`, the
-release note, benchmark-path fix, workflow-policy contract, and prior review
-replies remain on the PR branch. The existing 21 review threads were resolved;
-refresh the review queue after the next push.
+Gotchas `0z1839` and `0z1840` record the exact SQLite pool-key mismatch and the
+unused Windows pnpm cache failure before their respective fixes. The scanner
+fixture now clears each repository's normalized connection string while
+retaining pooling; its focused test passes 1/1. The Windows workflow change
+disables package-manager caching for its .NET-only job while retaining Node
+setup, restore, build, and tests. `./bin/lint` and `git diff --check` pass. The
+cache fix is not pushed yet, so exact-head checks for it are unknown. The
+existing 21 review threads were resolved; refresh the review queue after the
+next push.
 
 ### Next steps
 
-- Commit and push the exact-pool-key repair to PR #357.
+- Commit and push the Windows cache-cleanup repair to PR #357.
 - Reconcile every required check against the exact pushed SHA; fix new failures.
 - Refresh reviews and merge only after the exact-head gate passes.
 - Delete task branches only after all associated worktrees are clear.
