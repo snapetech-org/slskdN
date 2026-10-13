@@ -33241,6 +33241,21 @@ FocusContentId = normalizedFocusContentId,
 
 **Why This Keeps Happening**: The service layer treats some pod fields as optional, but the persistence model hard-requires non-null strings. If you change schema expectations or add a new required column, normalize the service input before save and keep the entity-to-model mapping tolerant of older/null rows.
 
+### 0z1793. Pin `pull_request_target` Actions In The Base Workflow (2026-10-13)
+
+**What went wrong:** A release-note check failed during job setup after the
+repository required actions to use full commit SHAs. The pull request already
+pinned `actions/checkout`, but its `pull_request_target` workflow still used a
+mutable action reference on `main`.
+
+**Why:** GitHub loads `pull_request_target` workflow definitions from the base
+branch. A pull request cannot change the workflow that evaluates its own check.
+
+**Prevention:** Pin actions in base-branch `pull_request_target` workflows
+before enforcing SHA-only action policy. If the policy is already enforced,
+apply the exact workflow pin on the authorized base branch, then rerun the
+check. Do not weaken the SHA policy or bypass the required check.
+
 ### 3c. Bash Heredoc Terminators in GitHub Actions Must Start at Column 1 Unless You Use `<<-`
 
 **The Bug**: The stable `metadata-main` job rewrote `Formula/slskdn.rb` with `cat <<EOF`, but the closing `EOF` was indented inside the workflow `run:` block. Bash never recognized the terminator, so the post-release metadata job crashed with `wanted 'EOF'` and `syntax error: unexpected end of file` even though the release artifacts were already published.
