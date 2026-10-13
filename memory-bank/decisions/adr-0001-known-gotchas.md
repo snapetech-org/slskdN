@@ -19,6 +19,22 @@ file handles need to be released.
 before deleting the database, and keep the Windows unit-test job in the
 verification matrix; Unix permits unlinking open files and can hide this bug.
 
+### 0z1804. Disable Pooling On Every Share-Scan Harness Database Connection (2026-10-13)
+
+**What went wrong:** The large share-scan harness disabled pooling for its manual
+database but left pooling enabled for the synthetic scan database and its raw
+copy connections. Windows retained a SQLite handle when the fixture deleted the
+synthetic database, so the Windows unit suite failed in cleanup.
+
+**Why:** A fixture can open the same file through its repository, copy/readback,
+and backup paths. Disabling pooling on only one connection string does not stop
+another connection from keeping the database open. Unix allows unlinking an open
+file and can hide the failure.
+
+**Prevention:** Use `Pooling=False` on every file-backed SQLite connection owned
+by a test fixture, including repository, raw-copy, and readback connections.
+Delete the database only after those connections and the scanner have finished.
+
 ### 0z1802. Clear The Pool For The Database The Test Actually Opens (2026-10-13)
 
 **What went wrong:** A Windows test cleared the pool for `pods.db`, but its
