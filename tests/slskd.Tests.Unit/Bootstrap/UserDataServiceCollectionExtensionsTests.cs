@@ -23,6 +23,7 @@ public sealed class UserDataServiceCollectionExtensionsTests : IDisposable
     {
         if (System.IO.Directory.Exists(_tempDirectory))
         {
+            SqliteTestDatabaseCleanup.ClearPools(_tempDirectory);
             System.IO.Directory.Delete(_tempDirectory, recursive: true);
         }
     }

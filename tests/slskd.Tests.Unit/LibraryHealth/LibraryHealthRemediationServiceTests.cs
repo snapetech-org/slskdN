@@ -21,6 +21,7 @@ public class LibraryHealthRemediationServiceTests
     [Fact]
     public async Task CreateRemediationJobAsync_AlbumCompletionStartsDownloadsForMissingRecordings()
     {
+        var targetDirectory = Path.Combine(Path.GetTempPath(), "slskdn-remediation", "Artist", "Album");
         using var metadata = JsonDocument.Parse("""
             [
               { "recording_id": "rec-1" },
@@ -32,7 +33,7 @@ public class LibraryHealthRemediationServiceTests
         {
             IssueId = "issue-1",
             Type = LibraryIssueType.MissingTrackInRelease,
-            FilePath = "/music/Artist/Album",
+            FilePath = targetDirectory,
             MusicBrainzReleaseId = "release-1",
             CanAutoFix = true,
             Status = LibraryIssueStatus.Detected,
@@ -138,7 +139,7 @@ public class LibraryHealthRemediationServiceTests
         await firstDownloadQueued.Task.WaitAsync(TimeSpan.FromSeconds(2));
         Assert.Contains(requests, request =>
             request.TargetMusicBrainzRecordingId == "rec-1" &&
-            request.OutputPath == Path.Combine("/music", "Artist", "Album", "Artist - Track One.flac"));
+            request.OutputPath == Path.Combine(targetDirectory, "Artist - Track One.flac"));
     }
 
     [Fact]

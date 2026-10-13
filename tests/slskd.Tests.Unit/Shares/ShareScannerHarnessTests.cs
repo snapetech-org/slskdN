@@ -268,6 +268,15 @@ public class ShareScannerHarnessTests
         {
             var indexedFiles = repository.CountFiles();
             scanner.TryCancelScan();
+            try
+            {
+                await scanTask.ConfigureAwait(false);
+            }
+            catch (OperationCanceledException)
+            {
+                // Drain the canceled scan before its repository and files are disposed.
+            }
+
             Assert.True(false, $"{operationName} did not finish within {timeout.TotalSeconds:N0}s. Indexed files before timeout: {indexedFiles}.");
         }
 

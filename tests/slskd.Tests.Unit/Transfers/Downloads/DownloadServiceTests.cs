@@ -582,6 +582,7 @@ public class DownloadServiceTests
         }
         finally
         {
+            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
@@ -819,6 +820,7 @@ public class DownloadServiceTests
         }
         finally
         {
+            await service.ShutdownAsync();
             service.Dispose();
             await using (var context = new TransfersDbContext(databaseOptions))
             {
@@ -1095,6 +1097,7 @@ public class DownloadServiceTests
         }
         finally
         {
+            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
@@ -1157,6 +1160,7 @@ public class DownloadServiceTests
         }
         finally
         {
+            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
@@ -1682,6 +1686,7 @@ public class DownloadServiceTests
         finally
         {
             blockingFactory.ReleaseFirstCreate();
+            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
@@ -1736,6 +1741,7 @@ public class DownloadServiceTests
         finally
         {
             blockingFactory.ReleaseFirstCreate();
+            await service.ShutdownAsync();
             service.Dispose();
             DeleteDatabase(databasePath);
         }
@@ -1912,6 +1918,7 @@ public class DownloadServiceTests
         }
         finally
         {
+            await service.ShutdownAsync();
             service.Dispose();
 
             if (System.IO.File.Exists(databasePath))
