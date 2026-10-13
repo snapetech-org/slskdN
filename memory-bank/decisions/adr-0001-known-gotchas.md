@@ -54,6 +54,48 @@ response-boundary behavior the test was meant to verify.
 using the address type and domain length before sending the response or closing
 the client connection.
 
+### 0z1798. Replace Open Cache Files With Windows-Compatible Semantics (2026-10-13)
+
+**What went wrong:** Browse-cache refresh used overwrite-move semantics while
+readers kept the existing cache file open. Windows rejected replacing that
+file even though readers allowed delete sharing.
+
+**Why:** Replacing an open file on Windows requires the destination to be
+replaced atomically with file-replacement semantics; overwrite-move does not
+provide the same behavior for this handle-sharing case.
+
+**Prevention:** Create the temporary cache file beside its destination. Use
+`File.Replace` when the destination exists and `File.Move` for first creation.
+Keep readers opened with delete sharing and retain a regression that reads an
+old stream while the cache is replaced.
+
+### 0z1799. Classify Expected Socket Failures By Error Code (2026-10-13)
+
+**What went wrong:** Windows reports socket reset and timeout failures with
+localized messages that did not match the classifier's English string checks,
+so ordinary peer disconnects were reported as unexpected failures.
+
+**Why:** Socket exception text varies by operating system and locale, while
+`SocketErrorCode` exposes the stable failure category.
+
+**Prevention:** Match only known expected `SocketError` values such as reset,
+refused, and timed out. Keep unrelated socket errors outside the expected
+network-noise bucket and cover both cases with enum-based regressions.
+
+### 0z1800. Keep Process-Output Assertions Stable Across Hosts (2026-10-13)
+
+**What went wrong:** A fingerprint-extraction test launched each host's command
+shell with FFmpeg arguments. The Windows shell wrote help text to stdout, so
+the service reached its PCM output limit instead of the no-output branch that
+the Unix shell reached.
+
+**Why:** A shell executable is not a deterministic stand-in for FFmpeg, and
+its handling of unknown arguments differs by platform.
+
+**Prevention:** Assert the stable platform-specific service result when using
+the shell fixture, or replace it with a deterministic helper process. Do not
+broaden the assertion to any error sharing a common prefix.
+
 ### 0z1792. Exclude Dotted And Explicit Credential Material Names (2026-10-13)
 
 **What went wrong:** The trusted test snapshot excluded common extensionless
