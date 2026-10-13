@@ -223,7 +223,7 @@ See `memory-bank/decisions/adr-0003-anti-slop-rules.md` for the full list.
 
 - `ci.yml` runs for pull requests targeting `main`, version-tag pushes, and manual dispatch. It does not run for ordinary branch pushes.
 - `build-on-tag.yml` runs for `build-main-*` and `build-dev-*` tags and manual dispatch. Separate package and release workflows run on published GitHub releases or their own manual dispatch; inspect each workflow's current triggers before relying on it.
-- Read `docs/dev/release-checklist.md`, `memory-bank/decisions/adr-0005-tagging-system.md`, and the current workflow definitions for release formats and required steps.
+- Read `docs/dev/release-checklist.md`, `memory-bank/decisions/adr-0005-tagging-system.md`, and the current workflow definitions for release formats and required steps. Use `scripts/create-release-tag.sh` when explicitly authorized to create a tag.
 - Do not create tags, publish packages or artifacts, release, or announce without explicit maintainer authorization. A request to commit, push, or open a PR does not authorize those actions.
 - Do not change workflow triggers solely to make validation run. Use `docs/dev/testing-policy.md` and the repository validation engine for PR and release checks.
 
