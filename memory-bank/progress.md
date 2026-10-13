@@ -60,7 +60,8 @@ temporary directory, reject root, `/tmp`, and `/var/tmp` (including symlinks),
 and persist `TMPDIR`, `TMP`, and `TEMP` through `GITHUB_ENV`. The NuGet
 vulnerability scan output now uses the validated job temp directory. The
 workflow guard checks all Linux self-hosted jobs and rejects fixed `/tmp` or
-`/var/tmp` use in later steps. Gotcha `0z1771` records the step-scope failure.
+`/var/tmp` use in later steps. Gotcha `0z1806` records the job-wide runner-temp
+contract.
 
 `bash scripts/check-dotnet-runtime-matrix.sh`, workflow YAML parsing, shell
 syntax, runner-temp behavior checks, `./bin/lint`, and the complete remediation

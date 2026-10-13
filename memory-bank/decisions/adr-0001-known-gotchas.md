@@ -41759,9 +41759,9 @@ not help the earlier SDK bootstrap.
 **Prevention:** In each eligible Linux self-hosted job, validate
 `RUNNER_TEMP` and export `TMPDIR` through `GITHUB_ENV` in the first step so SDK
 setup and later build/test steps use runner storage. Step-scoped `TMPDIR` covers
-only the setup action; see `0z1780` for the job-wide workflow contract.
+only the setup action; see `0z1806` for the job-wide workflow contract.
 
-### 0z1780. Export Runner Temporary Storage For The Whole Self-Hosted Job (2026-10-12)
+### 0z1806. Export Runner Temporary Storage For The Whole Self-Hosted Job (2026-10-12)
 
 **What went wrong:** A .NET build on the persistent Linux runner still failed
 after the `setup-dotnet` action was pointed at runner storage. The build ran in
@@ -41775,7 +41775,7 @@ the environment for later build, test, or compiler processes.
 `GITHUB_ENV`. Keep a workflow regression that checks every eligible job starts
 with this fail-closed setup.
 
-### 0z1781. Keep Packaging Guards Aligned With Job-Wide Runner Temp (2026-10-12)
+### 0z1807. Keep Packaging Guards Aligned With Job-Wide Runner Temp (2026-10-12)
 
 **What went wrong:** The workflow switched from step-scoped `TMPDIR` values to
 first-step validation and job-wide export through `GITHUB_ENV`, but packaging
@@ -41790,7 +41790,7 @@ first-step ordering.
 guard in the same change. Reuse the shared workflow-matrix check rather than
 asserting a stale step-scoped environment literal.
 
-### 0z1782. Keep Runner-Temp Fixes Within Existing CI Triggers (2026-10-13)
+### 0z1808. Keep Runner-Temp Fixes Within Existing CI Triggers (2026-10-13)
 
 **What went wrong:** A runner-temp reliability change also added CI builds to
 every branch push, expanding the workflow's trigger policy beyond its existing
@@ -41804,7 +41804,7 @@ Run pull-request checks on hosted runners and use an explicitly dispatched
 main-branch validation when a trusted self-hosted run is needed. Keep the
 resource-heavy load harness hosted after a local SIGBUS.
 
-### 0z1783. Keep Local Validation Snapshots Inside The Trust Boundary (2026-10-13)
+### 0z1809. Keep Local Validation Snapshots Inside The Trust Boundary (2026-10-13)
 
 **What went wrong:** The local runner copied untracked and ignored checkout
 files into its candidate snapshot and hid host paths based on a guessed
@@ -41821,10 +41821,85 @@ checkout parent, and stage new candidate files before local validation. Keep
 contract coverage for nested configuration, credential names, checkout aliases,
 and host-root visibility.
 
-### 0z1784. Preserve Extensionless Credential Files In Validation Snapshots (2026-10-13)
+### 0z1810. Preserve Extensionless Credential Files In Validation Snapshots (2026-10-13)
 
 **What went wrong:** The snapshot filter was narrowed to known credential-file extensions so source files such as `token.js` and `auth.py` would remain in the candidate. That also stopped excluding extensionless credential files such as `credentials` and `token`.
 
 **Why:** The matcher had no separate rule for exact credential basenames after the broader path-segment check was removed.
 
 **Prevention:** Match credential names only on the final path segment, accepting the bare credential name and known configuration suffixes while preserving source files with code extensions. Keep the snapshot contract testing both cases.
+
+### 0z1811. Bind Manual Publisher Recovery To The Verified Stable Release (2026-10-13)
+
+**What went wrong:** Manual publisher recovery accepted an old stable release,
+checked out an unqualified tag-like ref, and could run a same-named branch with
+release credentials. Some selected publishers could report success without
+credentials, COPR/PPA failures were ignored, and the Nix job validated one tree
+before resetting to a different main tree for its push. Docker recovery also
+rebuilt from source instead of using the published release binaries.
+
+**Why:** Recovery treated the requested tag and existing release as sufficient
+proof of provenance, freshness, publisher readiness, and validation of the
+final side effect.
+
+**Prevention:** Resolve the requested build tag to a commit SHA before checkout,
+require manual recovery to target the current stable release, grant only the
+needed repository read or write scopes, and fail selected retries when required
+credentials or publication steps are unavailable. Validate Nix metadata on the
+same refreshed main tree that is pushed. Do not expose a Docker retry that
+rebuilds from source when the recovery contract promises use of published
+artifacts.
+
+### 0z1812. Make Required Benchmark Gates Runnable Before Enabling Them (2026-10-13)
+
+**What went wrong:** The performance workflow made `dotnet run` a required gate
+for an xUnit library with no executable entry point and benchmark classes that
+required xUnit output-helper constructor arguments.
+
+**Why:** The project had been treated as a runnable BenchmarkDotNet program
+without checking its project output type or the benchmark discovery
+constructors.
+
+**Prevention:** Keep the xUnit fixture library separate from an executable
+BenchmarkDotNet host, make every discovered benchmark constructible, and smoke
+run the host with the same arguments the workflow uses before making the job a
+required gate.
+
+### 0z1813. Preserve Required Toolchains When Hiding Host Installation Roots (2026-10-13)
+
+**What went wrong:** The trusted local sandbox hid `/usr/local`, `/opt`, and
+home directories after mounting only Node. A required `pnpm` or `dotnet`
+installation beneath one of those roots disappeared from the sandbox even
+though validation preflight had found it on the host.
+
+**Why:** Tool availability was checked outside the sandbox, but sandbox mounts
+did not include the runtime installations needed by the task.
+
+**Prevention:** Resolve and mount the minimum required tool installations
+read-only before masking host roots, expose their guest paths through a clean
+PATH and runtime-specific variables, and add a sandbox canary that executes
+each required tool after those roots are hidden.
+
+### 0z1814. Open SQLite Cleanup Connections Before Clearing Their Pools (2026-10-13)
+
+**What went wrong:** Several tests created an unopened SQLite connection solely
+to clear a database pool before deleting the temporary file. On Windows, that
+connection did not reliably identify and clear the pool holding the open file.
+
+**Why:** Pool cleanup was duplicated in fixtures and skipped the open step
+already implemented by `SqliteTestDatabaseCleanup`.
+
+**Prevention:** Use the shared cleanup helper after disposing the store, and
+keep fixture cleanup regressions on Windows before deleting SQLite files.
+
+### 0z1815. Match Both Valid Workflow Action List Forms (2026-10-13)
+
+**What went wrong:** The immutable-action checker matched `uses:` only when it
+was the first token on a workflow line, so standard list entries written as
+`- uses: owner/action@ref` bypassed the pin check.
+
+**Why:** The policy parser modeled an action property but not the YAML step
+list syntax that contains it.
+
+**Prevention:** Parse the optional list marker before `uses:` and test both
+list-form and property-form action references against the SHA requirement.
