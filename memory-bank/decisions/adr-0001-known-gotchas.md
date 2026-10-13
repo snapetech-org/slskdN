@@ -19,6 +19,21 @@ dispose the cleanup connection, then delete the file. Keep any lock retry
 bounded to Windows sharing or lock violations; do not clear unrelated pools
 globally.
 
+### 0z1837. Keep Windows Database-Cleanup Retries Bounded and Observable (2026-10-13)
+
+**What went wrong:** A Windows CI run still failed while deleting the synthetic
+share-scan database after the test disposed its repositories and cleared that
+database's pool. The existing six-attempt retry ended in a sharing violation.
+
+**Why:** The Windows exception does not identify the process holding the file.
+Current evidence does not establish whether SQLite or another process owns the
+remaining handle, so do not claim a connection leak without further evidence.
+
+**Prevention:** Keep the per-database pool clear after the final repository use.
+Retry only sharing or lock violations, report the retry count and error code,
+and keep a strict maximum wait before allowing the test to fail. Do not clear
+unrelated pools or hide persistent locks.
+
 ### 0z1824. Keep Share-Scan Harness Pooling Representative (2026-10-13)
 
 **What went wrong:** The large synthetic share-scan test disabled SQLite
