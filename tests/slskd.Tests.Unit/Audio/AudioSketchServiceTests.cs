@@ -33,7 +33,7 @@ namespace slskd.Tests.Unit.Audio
                 Assert.Equal(
                     executablePath,
                     resolved,
-                    OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+                    OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
             }
             finally
             {
