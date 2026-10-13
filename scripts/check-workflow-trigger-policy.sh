@@ -277,11 +277,19 @@ for job in ("performance-regression", "dependency-scanning", "container-scanning
     if re.search(r"(?m)^\s*continue-on-error:\s*true\s*$", block):
         raise SystemExit(f"ci-enhancements.yml {job} must fail when its checks fail")
     if job == "performance-regression":
+        if "BENCHMARK_ARTIFACTS: ${{ github.workspace }}/tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts" not in block:
+            raise SystemExit(
+                "ci-enhancements.yml benchmark artifacts must use one workspace-rooted directory"
+            )
         for required in (
             '--filter "*HashDbPerformanceBenchmarks.LookupHash_WithoutCache*"',
             "--buildTimeout 600",
             "--stopOnFirstError",
+            '--artifacts "$BENCHMARK_ARTIFACTS"',
             "scripts/verify-benchmark-results.py",
+            '"$BENCHMARK_ARTIFACTS/results"',
+            "tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts/results/*.json",
+            "tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts/results/*.md",
         ):
             if required not in block:
                 raise SystemExit(
