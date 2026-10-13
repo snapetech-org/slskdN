@@ -1,3 +1,9 @@
+# Update 2026-10-13 23:19 UTC — Integrate latest main into PR #357
+
+After pushing merge commit `4b3abdf12` with main at `338faef6c`, main advanced to `0b91a1f28`. The PR became conflicting again. A checkpoint was saved at `backup/pr357-before-0b91-main-merge-20261013`. The new main commit added two artifact-contract gotchas to the ledger; their IDs collided with PR records `0z1852` and `0z1853`, so the new main records are renumbered `0z1908` and `0z1909`. The prior records are retained. The merge is staged, but not committed or pushed yet.
+
+The Windows Smoke fix passed on exact head `0b4b2e750` (5,863 unit, 293 integration, 74 regression/API). Checks for `4b3abdf12` were still queued when main moved and cannot validate the next head. A fresh exact-head gate is required after this merge.
+
 # Update 2026-10-13 23:05 UTC — Integrate latest main into PR #357
 
 After commit `0b4b2e750`, `main` advanced to `338faef6c`. GitHub marked PR #357 dirty. A checkpoint branch was created at the pushed candidate, and the latest-main merge is staged. The sole conflict in `adr-0001-known-gotchas.md` was resolved by retaining both main's `0z1815` and the PR's `0z1906`–`0z1907`; the workflow artifact scope, release note, and workflow-YAML regression changes from main were also retained. `bash scripts/check-workflow-yaml-syntax.sh` passed.
