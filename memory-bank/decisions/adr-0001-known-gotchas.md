@@ -16,9 +16,11 @@ allowlisting the trusted event and ref combinations. Publisher jobs had
 separate selectors from the validation job.
 
 **Prevention:** Fail closed: allow only documented main-branch manual and
-scheduled validation on the local pool, route pull requests and version tags
-to GitHub-hosted runners, and pin tag-only publisher jobs to hosted runners.
-Keep exact per-job runner assertions in
+scheduled validation on the restricted `trusted-main` group, and require the
+`TRUSTED_MAIN_RUNNERS_ENABLED` readiness variable before selecting it. Until
+enabled, route validation to GitHub-hosted runners. Route pull requests and
+version tags to hosted runners, pin tag-only publisher jobs to hosted runners,
+and keep exact per-job runner assertions in
 `scripts/check-workflow-trigger-policy.sh`.
 
 ### 0z1853. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)

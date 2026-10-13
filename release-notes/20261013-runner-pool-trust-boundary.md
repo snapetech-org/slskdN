@@ -5,4 +5,4 @@ area: validation
 action: none
 breaking: false
 ---
-The local runner pool is limited to trusted main-branch manual and scheduled validation. Pull requests and version-tag workflows, including tag publishing, remain on GitHub-hosted runners.
+Trusted main-branch manual and scheduled validation can use the restricted local runner group after `TRUSTED_MAIN_RUNNERS_ENABLED` is set to `true`. Pull requests, version-tag workflows, and tag publishing remain on GitHub-hosted runners.

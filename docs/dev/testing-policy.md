@@ -187,10 +187,10 @@ If the vendored runtime suite exposes analyzer/baseline failures unrelated to th
 
 ## CI Expectations
 
-- The shared local runner pool is limited to manual validation on `main` in
-  `ci.yml`, plus scheduled and manual `main` validation in
-  `ci-enhancements.yml`. Pull requests, version-tag pushes, and manual runs on
-  other refs use GitHub-hosted runners.
+- Trusted main-branch manual and scheduled validation uses the restricted
+  `trusted-main` runner group only when `TRUSTED_MAIN_RUNNERS_ENABLED` is exactly
+  `true`; otherwise it uses GitHub-hosted runners. Pull requests, version-tag
+  pushes, and manual runs on other refs always use GitHub-hosted runners.
 - The tag-only `publish`, `docker`, and `release` jobs in `ci.yml` use
   GitHub-hosted runners.
 - `ci.yml` should run the release gate on pull requests.
