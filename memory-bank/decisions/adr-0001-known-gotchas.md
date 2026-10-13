@@ -41934,3 +41934,18 @@ results.
 **Prevention:** Set a build timeout that fits within the workflow deadline and
 validate the exported result data contains completed measurements. A successful
 BenchmarkDotNet process with zero executed benchmarks is a failed gate.
+
+### 0z1818. Validate Tag Names Before Embedding Versions In Workflow Scripts (2026-10-13)
+
+**What went wrong:** The tag parser accepted any nonempty suffix after
+`build-main-` or `build-dev-`. Later jobs interpolated that version into shell
+scripts through GitHub expressions, so valid Git tag metacharacters could
+alter the shell program.
+
+**Why:** Git tag syntax is broader than a safe version alphabet, and validating
+manual dispatch inputs alone did not constrain push-triggered tags.
+
+**Prevention:** Validate every pushed or manually selected tag against a
+restricted version alphabet before exposing parsed values to downstream jobs.
+Keep workflow policy coverage for that validation and avoid interpolating
+unvalidated event data into `run:` scripts.
