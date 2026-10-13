@@ -102,14 +102,14 @@ public class ShareScannerHarnessTests
             backupRepository?.Dispose();
             repository?.Dispose();
 
-            if (File.Exists(databasePath))
+            if (repository is not null && File.Exists(databasePath))
             {
-                SqliteTestDatabaseCleanup.ClearPool(databasePath);
+                SqliteTestDatabaseCleanup.ClearPoolForConnectionString(repository.ConnectionString);
             }
 
-            if (File.Exists(backupDatabasePath))
+            if (backupRepository is not null && File.Exists(backupDatabasePath))
             {
-                SqliteTestDatabaseCleanup.ClearPool(backupDatabasePath);
+                SqliteTestDatabaseCleanup.ClearPoolForConnectionString(backupRepository.ConnectionString);
             }
 
             if (Directory.Exists(shareRoot))

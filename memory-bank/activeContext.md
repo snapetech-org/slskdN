@@ -2,25 +2,27 @@
 
 QuestarrNG PR #49 is merged as `e7ff5522cb1beaa685992219977f571aa2506f06`.
 slskdN PR #357 is open at exact head
-`0b3cff54b671801af56792faf6d9c2e9521da10c`. Thirteen hosted checks succeeded;
-Windows `dotnet` failed 25 catalogue-test database deletions and the synthetic
-share scan timed out after indexing 290/480 files in 30 seconds. The Windows
-integration project passed 289/289, while Linux Build and Test remained in
-progress. Earlier shared-pool cleanup did not prevent the catalogue lock, and
-disabling pooling on the high-volume scanner slowed it past the test bound.
+`4ac7a1da7d01b7b89a9d29becfa664f9da5da51a`. Windows `dotnet` failed 3 of 5,785
+unit tests: the scanner indexed all 480 files in 273 ms but cleanup still hit a
+database sharing violation; the other failures were in mesh-transfer lifecycle
+and download-content safety tests. The Windows integration project passed
+289/289. Linux Build and Test remained in progress, and Nix Package Smoke was
+queued. Do not treat those pending checks as passing.
 
-The repair worktree adds gotcha `0z1838` before code changes. The disposable
-catalogue fixture now uses nonpooled connections; the scanner keeps pooling and
-clears its exact database pools after disposal. The focused Linux filter passes
-26/26, `./bin/lint` passes, and `git diff --check` passes. This repair is not
-pushed, so its exact-head Windows and Linux results are unknown. The release
-note, benchmark-path fix, workflow-policy contract, and prior review replies
-remain on the PR branch. The 21 existing review threads were resolved; refresh
-the review queue after the next push.
+The repair worktree adds gotcha `0z1839` before the source change. The root cause
+was a pool-key mismatch: `SqliteShareRepository` normalizes its connection
+string, but cleanup reconstructed a path-only string and cleared a different
+pool. The scanner fixture now clears each repository's exact normalized
+connection string while retaining pooling. Its focused test passes 1/1,
+`./bin/lint` passes, and `git diff --check` passes. This fix is not pushed, so
+its exact-head Windows and Linux results are unknown. Gotcha `0z1838`, the
+release note, benchmark-path fix, workflow-policy contract, and prior review
+replies remain on the PR branch. The existing 21 review threads were resolved;
+refresh the review queue after the next push.
 
 ### Next steps
 
-- Review and commit the repair, then push it to PR #357.
+- Commit and push the exact-pool-key repair to PR #357.
 - Reconcile every required check against the exact pushed SHA; fix new failures.
 - Refresh reviews and merge only after the exact-head gate passes.
 - Delete task branches only after all associated worktrees are clear.

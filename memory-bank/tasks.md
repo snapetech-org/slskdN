@@ -43,6 +43,8 @@
   after repository disposal before fixture cleanup.
 - [x] Repair SQLite test-database cleanup ordering; add release notes and
   workflow-policy coverage.
+- [x] Trace the remaining Windows scanner lock to the normalized connection
+  string's pool key and clear that exact repository pool; record gotcha `0z1839`.
 - [ ] Push this candidate, verify all required exact-head checks, resolve the
   review queue, and merge PR #357.
 
@@ -50,17 +52,18 @@ Status: the bounded BenchmarkDotNet run passes with 10 workload measurements
 (mean 135.956 us); its verifier contract covers valid measurements, missing
 reports, malformed roots, and reports without the selected benchmark. Workflow
 policy, YAML, shellcheck, diff, identity-leak, unit-project build, and repository
-lint pass. At exact PR head `0b3cff54b671801af56792faf6d9c2e9521da10c`, Windows
-`dotnet` failed 25 catalogue-fixture database deletions and the synthetic scan
-timed out after indexing 290/480 files in 30 seconds. The Windows integration
-suite passed 289/289, and 13 other hosted checks succeeded; Linux Build and
-Test was still running. Gotcha `0z1838` records the failure before its repair.
-The follow-up uses nonpooled connections in the disposable catalogue store and
-restores pooling for the high-volume scan, clearing the exact pools after
-disposal. Its focused Linux filter passes 26/26 and `./bin/lint` passes. The
-repair is not pushed; exact-head Windows and Linux results remain pending.
-PR #365's separate Windows run passed 5,813 unit tests but failed in post-run
-cache cleanup, so it remains supporting evidence only.
+lint pass. The repair at `4ac7a1da7d01b7b89a9d29becfa664f9da5da51a` passed
+5,782/5,785 Windows unit tests; the synthetic scan indexed all 480 files in
+273 ms but deletion still failed with a sharing violation. Two other unit
+failures were in mesh-transfer lifecycle and download-content safety tests. The
+Windows integration suite passed 289/289; Linux Build and Test remained in
+progress and Nix Package Smoke was queued. Gotcha `0z1838` records the original
+cleanup and scan failures; gotcha `0z1839` records why the remaining pool clear
+did not match the repository's normalized connection string. The new cleanup
+passes the focused scan test 1/1 and `./bin/lint` locally. It is not yet pushed,
+so hosted results for this repair are unknown. PR #365's separate Windows run
+passed 5,813 unit tests but failed in post-run cache cleanup, so it remains
+supporting evidence only.
 
 ### SLSKDN runner-temp reliability — 2026-10-13
 
