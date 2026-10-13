@@ -4,6 +4,21 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1823. Bound Windows Test-Database Delete Retries (2026-10-13)
+
+**What went wrong:** Windows CI still reported a share-scan database in use
+after the scan task, repository instances, and query readers had been disposed.
+The test failed while deleting its temporary database.
+
+**Why:** Windows refuses to delete files while any process holds a conflicting
+handle. The exception does not identify that process, so it must not be treated
+as proof that SQLite resources are still live.
+
+**Prevention:** Dispose all test-owned operations and connections first. Retry
+only Windows sharing or lock violations (error codes 32 and 33), with a strict
+time bound; let persistent locks and every other deletion error fail normally.
+Do not use blanket sleeps, forced garbage collection, or global pool clearing.
+
 ### 0z1822. Drain Timed-Out Test Operations Before Cleanup (2026-10-13)
 
 **What went wrong:** A Windows share-scan test cancelled a scan after its
