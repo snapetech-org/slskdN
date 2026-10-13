@@ -15,6 +15,19 @@ bash packaging/scripts/run-release-gate.sh
 bash ./bin/lint
 ```
 
+When local test execution is unavailable, run the `CI` workflow manually on
+`main` using the GitHub-hosted runner option, then pass its run ID to the
+release helper:
+
+`scripts/create-release-tag.sh --hosted-ci-run <run-id> <tag>`
+
+Dispatch the workflow with `runner=github-hosted` so the release check does not
+depend on the checkout's local SDK or caches.
+
+The helper accepts only a completed successful workflow dispatch for the exact
+current `main` commit and the repository's `ci.yml` workflow. The hosted
+workflow must include the full release gate.
+
 `node scripts/validate-development.mjs --plan` can preview discovery, runtime versions, and
 selected work. It is read-only discovery evidence; only executing the release
 gate produces test and build results.
@@ -81,6 +94,7 @@ publishing and platform installer workflows succeeded.
 5. Push the code branch normally if needed.
 6. Only trigger build/release by running the guarded tag helper when explicitly desired:
    - `scripts/create-release-tag.sh build-main-YYYYMMDDHH-slskdn.N`
+   - `scripts/create-release-tag.sh --hosted-ci-run <run-id> build-main-YYYYMMDDHH-slskdn.N`
    - `scripts/create-release-tag.sh build-dev-MAJOR.MINOR.PATCH.dev.YYYYMMDD.HHMMSS`
 7. After GitHub publishes the release, verify the actual assets:
    - `scripts/verify-release-artifacts.sh <tag>`

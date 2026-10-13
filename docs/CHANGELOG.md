@@ -24,6 +24,11 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 _Add release notes here while developing; move only shipped bullets into a dated version section when a release is cut._
 
+- Manual CI runs can select a GitHub-hosted runner while tag builds retain the
+  configured runner policy.
+- The README includes a Ko-fi link for users who want to support maintenance.
+- The Unraid template exposes the optional Soulseek server MTU setting.
+
 ## [2026101222-slskdn.350] — 2026-10-12
 
 ### Added
@@ -36,6 +41,12 @@ _Add release notes here while developing; move only shipped bullets into a dated
 
 ### Changed
 
+- Maintainers can use a successful manual CI run to validate the exact main
+  commit before tagging when local test execution is unavailable.
+- Manual CI runs can select a GitHub-hosted runner while tag builds retain the
+  configured runner policy.
+- The README includes a Ko-fi link for users who want to support maintenance.
+- The Unraid template exposes the optional Soulseek server MTU setting.
 - Repeated audio codec profile comparisons now avoid transient string allocations.
 - Container builds now reuse web assets and system-package layers when release
   metadata changes, and no longer need a `.git` directory in the build context.

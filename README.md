@@ -93,6 +93,8 @@ slskdN is an unofficial fork. The separate [slskr project](https://github.com/sn
 is a Rust implementation; consult that repository for its own status and
 compatibility claims.
 
+- Support maintenance: [Ko-fi](https://ko-fi.com/snapetech).
+
 ## License
 
 GNU Affero General Public License v3.0. See [LICENSE](LICENSE).

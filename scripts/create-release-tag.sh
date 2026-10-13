@@ -8,11 +8,11 @@ cd "$ROOT"
 usage() {
     cat >&2 <<'USAGE'
 Usage:
-  scripts/create-release-tag.sh <build-main-*|build-dev-*>
+  scripts/create-release-tag.sh [--hosted-ci-run <run-id>] <build-main-*|build-dev-*>
 
-Runs the full local release gate against the exact pushed branch head, then
-creates and pushes the release tag. This is the only supported local path for
-starting a tag-triggered release.
+Runs the release gate against the exact pushed branch head, then creates and
+pushes the release tag. A successful manual CI run may be supplied when local
+test execution is unavailable.
 USAGE
 }
 
@@ -21,8 +21,31 @@ fail() {
     exit 1
 }
 
-tag="${1:-}"
-if [[ -z "$tag" || "${tag:-}" == "-h" || "${tag:-}" == "--help" ]]; then
+hosted_ci_run=""
+tag=""
+while (($#)); do
+    case "$1" in
+        --hosted-ci-run)
+            [[ -z "$hosted_ci_run" && $# -ge 2 ]] || fail "--hosted-ci-run requires exactly one run ID."
+            hosted_ci_run="$2"
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        -*)
+            fail "Unknown option: $1"
+            ;;
+        *)
+            [[ -z "$tag" ]] || fail "Only one release tag may be supplied."
+            tag="$1"
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "$tag" ]]; then
     usage
     exit 1
 fi
@@ -85,7 +108,11 @@ trap 'rm -f "$notes_tmp"' EXIT
 
 echo
 echo "==> Run release gate"
-bash packaging/scripts/run-release-gate.sh
+if [[ -n "$hosted_ci_run" ]]; then
+    ./scripts/verify-hosted-release-gate.sh "$hosted_ci_run" "$branch" "$(git rev-parse HEAD)"
+else
+    bash packaging/scripts/run-release-gate.sh
+fi
 
 echo
 echo "==> Create and push release tag"

@@ -9,6 +9,15 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      runner:
+        description: Runner for the manual validation run
+        required: true
+        default: configured
+        type: choice
+        options:
+          - configured
+          - github-hosted
 
 env:
   DOTNET_VERSION: '10.0.100'
@@ -22,9 +31,9 @@ permissions:
 jobs:
   build:
     name: Build and Test
-    # Public pull requests always use GitHub-hosted runners. Self-hosted runners
-    # are reserved for trusted tag and manual runs.
-    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    # Public pull requests always use GitHub-hosted runners. Manual runs may
+    # select that runner explicitly; trusted runs otherwise follow repo policy.
+    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || inputs.runner == 'github-hosted' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 120
     outputs:
       version: ${{ steps.version.outputs.version }}

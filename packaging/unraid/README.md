@@ -63,6 +63,9 @@ reference is in [`docs/config.md`](../../docs/config.md). Runtime-only
 `SLSKD_SCRIPT_DATA` and image metadata variables such as `SLSKD_DOCKER_TAG` are
 not user configuration fields.
 
+`SLSKD_SLSK_CONNECTION_MTU` optionally caps the Soulseek server TCP MTU from
+1280 to 9000. Leave it blank to use the operating system default.
+
 Blank optional variable fields may be passed by Unraid as variables such as
 `SLSKD_HEADLESS=`. slskdN treats empty `SLSKD_*` values as unset, so they do not
 cause Boolean or numeric configuration-binding errors and do not override the
