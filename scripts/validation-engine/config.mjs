@@ -31,7 +31,6 @@ export const validation = {
     'release-notes/20261012-trusted-test-sandbox.md',
     'release-notes/20261012-hosted-release-gate-evidence.md',
     'release-notes/20261012-manual-ci-runner-choice.md',
-    'release-notes/20261012-validation-sandbox-hardening.md',
     'release-notes/20261012-validation-credential-snapshot-filtering.md',
     'docs/dev/testing-policy.md',
   ],
