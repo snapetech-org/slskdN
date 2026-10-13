@@ -59,8 +59,16 @@ node scripts/validate-development.mjs --task web-browser-e2e
 ```
 
 Local execution of test tasks requires the trusted Linux bubblewrap launcher.
-When evaluating an unreviewed branch, copy `trusted-test-launcher.mjs` from a
-reviewed revision to a location outside the checkout and run:
+When evaluating an unreviewed branch, copy `trusted-test-launcher.mjs` and
+`trusted-test-sandbox-policy.mjs` from the same reviewed revision to a location
+outside the checkout, keeping them together. The launcher snapshots only paths
+in the Git index, hides the original checkout and common host configuration and
+data roots, and runs candidate code offline. Credential files are excluded
+even when extensionless or stored in credential-named folders, while token-like
+source files remain in the snapshot. Stage new candidate files first.
+The launcher opens each workspace, run-data, dependency, cache, and marker
+source before masking host paths, then binds those pinned sources through
+inherited file descriptors.
 
 ```bash
 node /path/to/trusted-test-launcher.mjs "$PWD" -- node scripts/validate-development.mjs --tests-only
@@ -72,6 +80,18 @@ responsible for hosted validation.
 
 `--plan` discovers test files, records the Git candidate and supported runtime
 versions, and reports command availability. It does not execute tests.
+Toolchain preflight follows the selected task and its dependency closure. Each
+task always requires its command executable and may declare additional
+`requiresCommands` and version-checked `requiresRuntimes` used by its scripts.
+Focused `--task` runs are not blocked by tools needed only by unselected tasks.
+In a complete run, a missing task toolchain blocks that task while independent
+tasks continue; the receipt counts it as blocked and reports the run as
+incomplete when a required task could not start. Globally required tools still
+stop all selected work, with every selected task recorded as blocked.
+The nested launcher integration case is skipped when Mode 1 is already inside
+the trusted bubblewrap launcher; it remains active in hosted validation, where
+the contract can start its own sandbox. Local policy and mount-operation
+contracts still run.
 `--tests-only` runs registered unit, regression, integration-smoke, release-note,
 and engine-contract tests. The default run adds repository checks and the web
 build/output checks. Browser suites remain separately selectable because they
@@ -85,7 +105,8 @@ GitHub Actions shows these live updates in the step log because rendered job
 summaries are published after the step completes.
 
 Each execution creates a fresh receipt and per-task logs in a private directory
-under the operating system's temporary directory. Receipts bind the Git commit,
+under the operating system's temporary directory. Each log is capped at 16 MiB
+and carries a marker when output was truncated. Receipts bind the Git commit,
 tree, dirty diff, untracked files, lock/workflow inputs, discovered test-file
 digests, runtime versions, and (on GitHub Actions) the workflow run and attempt.
 Test tasks pass only when their native command succeeds and reports at least

@@ -27,6 +27,7 @@ namespace slskd.Tests.Unit.VirtualSoulfind.v2.Catalogue
         public void Dispose()
         {
             _store.Dispose();
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={_tempDbPath};");
             if (File.Exists(_tempDbPath))
             {
                 File.Delete(_tempDbPath);

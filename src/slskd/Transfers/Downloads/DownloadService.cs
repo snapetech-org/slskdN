@@ -859,7 +859,17 @@ namespace slskd.Transfers.Downloads
                                         3. the linked CancellationTokenSource we add to CancellationTokens is cancelled
                                         4. the 'max wait time' CancellationTokenSource is cancelled
                                     */
-                                    await enqueuedTcs.Task;
+                                    var enqueueAcknowledgementTask = enqueuedTcs.Task;
+                                    var completedTask = await Task.WhenAny(enqueueAcknowledgementTask, downloadTask);
+                                    if (completedTask == downloadTask && !enqueueAcknowledgementTask.IsCompleted)
+                                    {
+                                        // A download may terminate before Soulseek reports a remote enqueue
+                                        // transition (for example, an expected remote failure). Release the
+                                        // enqueue semaphore using the state persisted by the download observer.
+                                        enqueuedTcs.TrySetResult(Find(t => t.Id == transfer.Id) ?? transfer);
+                                    }
+
+                                    await enqueueAcknowledgementTask;
 
                                     Log.Debug("Download of {Filename} from {Username} successfully entered state {State}",
                                         LoggingSanitizer.SanitizeFilePath(transfer.Filename), LoggingSanitizer.SanitizeExternalIdentifier(transfer.Username), state);

@@ -61,6 +61,7 @@ namespace slskd
     using slskd.Users;
     using Soulseek;
     using Soulseek.Diagnostics;
+    using Soulseek.Messaging.Messages;
 
     public interface IApplication : IHostedService
     {
@@ -107,6 +108,7 @@ namespace slskd
         public const string BlacklistedGroup = "blacklisted";
 
         private static readonly string ApplicationShutdownTransferExceptionMessage = "Application shut down";
+        private static readonly TimeSpan QueuedUploadLimitSnapshotLifetime = TimeSpan.FromSeconds(2);
         private static readonly Regex HumanChallengeDirectQuestionRegex = new(
             @"\b(are|r)\s+(u|you)\s+(a\s+)?(human|person|real|bot|robot|automated|automation)\b|\b(are|r)\s+(u|you)\s+(using|running)\s+(an?\s+)?(automated\s+)?(client|script|bot|robot)\b|\b(u|you)\s+(human|real|bot)\s*\??\b|\b(bot|human)\s*\?\s*$",
             RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
@@ -220,6 +222,7 @@ namespace slskd
 
             RoomService = roomService;
             Users = userService;
+            Users.WatchedUsersChanged += Users_WatchedUsersChanged;
             Messaging = messagingService;
             ApplicationHub = applicationHub;
 
@@ -1071,6 +1074,26 @@ namespace slskd
             return mtu - headerSize;
         }
 
+        internal static (bool Files, bool Megabytes) EvaluateUploadLimits(
+            int files,
+            long bytes,
+            Options.LimitsOptions.Limits? configured,
+            Options.LimitsOptions.Limits? defaults,
+            long size)
+        {
+            var fileLimit = configured?.Files ?? defaults?.Files;
+            var megabyteLimit = configured?.Megabytes ?? defaults?.Megabytes;
+
+            return (
+                Files: fileLimit is not null && files + 1 > fileLimit,
+                Megabytes: megabyteLimit is not null && bytes + size > megabyteLimit * 1_000_000L);
+        }
+
+        private static string GetQueuedUploadLimitSnapshotKey(string username)
+            => $"QueuedUploadLimitSnapshot:{username.ToUpperInvariant()}";
+
+        private readonly record struct QueuedUploadLimitSnapshot(int Files, long Bytes);
+
         // todo: consider moving this somewhere else; it's pretty long and complicated
         private async Task EnqueueDownload(string username, IPEndPoint endpoint, string filename)
         {
@@ -1106,6 +1129,8 @@ namespace slskd
             bool userSemaphoreAcquired = false;
 
             bool enqueueRequestsSemaphoreAcquired = false;
+            bool cachedQueueLimitRejection = false;
+            var queueLimitSnapshotKey = GetQueuedUploadLimitSnapshotKey(username);
 
             try
             {
@@ -1247,33 +1272,6 @@ namespace slskd
                  * 2) that were started within the time period
                  * 3) that did not end due to an error (state includes errored, exception column is set)
                 */
-                (bool Files, bool Megabytes) OverLimits(
-                    (int Files, long Bytes) stats,
-                    Options.LimitsOptions.Limits? options,
-                    Options.LimitsOptions.Limits? defaults,
-                    long size)
-                {
-                    var filesOver = false;
-                    var megabytesOver = false;
-                    var byteLimitInMegabytes = options?.Megabytes ?? defaults?.Megabytes;
-
-                    if (byteLimitInMegabytes is not null && (stats.Bytes + size) > (byteLimitInMegabytes * 1000L * 1000L))
-                    {
-                        Log.Debug("Projected bytes {Bytes} exceeds limit {Limit}", stats.Bytes + size, byteLimitInMegabytes * 1000L * 1000L);
-                        megabytesOver = true;
-                    }
-
-                    var fileLimit = options?.Files ?? defaults?.Files;
-
-                    if (fileLimit is not null && (stats.Files + 1) > fileLimit)
-                    {
-                        Log.Debug("Projected file count {Files} exceeds limit {Limit}", stats.Files + 1, fileLimit);
-                        filesOver = true;
-                    }
-
-                    return (filesOver, megabytesOver);
-                }
-
                 decisionStopwatch.Start();
 
                 // start with the queue, since that should contain the fewest files and should be the least expensive to check
@@ -1281,15 +1279,38 @@ namespace slskd
                 // for terminal transfers.
                 if (!IsNull(limits?.Queued, global?.Queued))
                 {
+                    if (Cache.TryGetValue<QueuedUploadLimitSnapshot>(queueLimitSnapshotKey, out var cachedQueue))
+                    {
+                        var cachedOver = EvaluateUploadLimits(
+                            cachedQueue.Files,
+                            cachedQueue.Bytes,
+                            limits?.Queued,
+                            global?.Queued,
+                            resolved.Size);
+
+                        if (cachedOver.Files || cachedOver.Megabytes)
+                        {
+                            cachedQueueLimitRejection = true;
+                            Metrics.Enqueue.QueueLimitSnapshotRejections.Inc();
+                            throw new DownloadEnqueueException($"Too many {(cachedOver.Megabytes ? "megabytes" : "files")}");
+                        }
+
+                        Cache.Remove(queueLimitSnapshotKey);
+                    }
+
                     var queued = Transfers.Uploads.Summarize(
                         expression: t => t.Username == username && t.EndedAt == null);
 
                     Log.Debug("Fetched queue stats: files: {Files}, bytes: {Bytes} ({Time}ms)", queued.Files, queued.Bytes, decisionStopwatch.ElapsedMilliseconds);
 
-                    var over = OverLimits(queued, limits?.Queued, global?.Queued, resolved.Size);
+                    var over = EvaluateUploadLimits(queued.Files, queued.Bytes, limits?.Queued, global?.Queued, resolved.Size);
 
                     if (over.Files || over.Megabytes)
                     {
+                        Cache.Set(
+                            queueLimitSnapshotKey,
+                            new QueuedUploadLimitSnapshot(queued.Files, queued.Bytes),
+                            QueuedUploadLimitSnapshotLifetime);
                         Log.Information("Rejected enqueue request for user {Username}: Queued limits exceeded",
                             LoggingSanitizer.SanitizeExternalIdentifier(username));
 
@@ -1335,7 +1356,7 @@ namespace slskd
 
                     Log.Debug("Fetched weekly stats: files: {Files}, bytes: {Bytes} ({Time}ms)", weekly.Files, weekly.Bytes, decisionStopwatch.ElapsedMilliseconds);
 
-                    var over = OverLimits(weekly, limits?.Weekly, global?.Weekly, resolved.Size);
+                    var over = EvaluateUploadLimits(weekly.Files, weekly.Bytes, limits?.Weekly, global?.Weekly, resolved.Size);
 
                     if (over.Files || over.Megabytes)
                     {
@@ -1378,7 +1399,7 @@ namespace slskd
 
                     Log.Debug("Fetched daily stats: files: {Files}, bytes: {Bytes} ({Time}ms)", daily.Files, daily.Bytes, decisionStopwatch.ElapsedMilliseconds);
 
-                    var over = OverLimits(daily, limits?.Daily, global?.Daily, resolved.Size);
+                    var over = EvaluateUploadLimits(daily.Files, daily.Bytes, limits?.Daily, global?.Daily, resolved.Size);
 
                     if (over.Files || over.Megabytes)
                     {
@@ -1398,6 +1419,7 @@ namespace slskd
                 });
 
                 await Transfers.Uploads.EnqueueAsync(username, filename);
+                Cache.Remove(queueLimitSnapshotKey);
 
                 stopwatch.Stop();
 
@@ -1415,12 +1437,16 @@ namespace slskd
             catch (DownloadEnqueueException ex)
             {
                 Metrics.Enqueue.RequestsRejected.Inc(1);
-                Log.Warning(
-                    "[UPLOAD-DIAG] Rejected upload enqueue request from {Username} ({Endpoint}) for {Filename}: {Reason}",
-                    username,
-                    endpoint,
-                    filename,
-                    ex.Message);
+                if (!cachedQueueLimitRejection)
+                {
+                    Log.Warning(
+                        "[UPLOAD-DIAG] Rejected upload enqueue request from {Username} ({Endpoint}) for {Filename}: {Reason}",
+                        username,
+                        endpoint,
+                        filename,
+                        ex.Message);
+                }
+
                 throw;
             }
             finally
@@ -1517,6 +1543,7 @@ namespace slskd
         {
             ConnectionWatchdog.Stop();
             Log.Information("Connected to the Soulseek server");
+            UpdateTrackedUsersState();
 
             EventBus.Raise(new Events.SoulseekClientConnectedEvent());
         }
@@ -1573,6 +1600,8 @@ namespace slskd
 
         private void Client_Disconnected(object? sender, SoulseekClientDisconnectedEventArgs args)
         {
+            ClearTrackedUsersState();
+
             if (State.CurrentValue.PendingReconnect)
             {
                 State.SetValue(state => state with { PendingReconnect = false });
@@ -2377,6 +2406,11 @@ namespace slskd
         private void Client_TransferStateChanged(object? sender, TransferStateChangedEventArgs args)
         {
             var xfer = args.Transfer;
+            if (xfer.Direction == TransferDirection.Upload)
+            {
+                Cache.Remove(GetQueuedUploadLimitSnapshotKey(xfer.Username));
+            }
+
             var direction = xfer.Direction.ToString().ToUpper();
             var user = xfer.Username;
             var file = xfer.Filename;
@@ -2480,7 +2514,35 @@ namespace slskd
 
         private void Client_UserStatusChanged(object? sender, UserStatus args)
         {
-            // todo: react to watched user status changes
+            UpdateTrackedUsersState();
+        }
+
+        private void Users_WatchedUsersChanged(object? sender, EventArgs args)
+        {
+            UpdateTrackedUsersState();
+        }
+
+        private void UpdateTrackedUsersState()
+        {
+            var watchedUsernames = new HashSet<string>(Users.WatchedUsernames, StringComparer.OrdinalIgnoreCase);
+            var users = Users.Users
+                .Where(user => watchedUsernames.Contains(user.Username))
+                .OrderBy(user => user.Username, StringComparer.OrdinalIgnoreCase)
+                .ThenBy(user => user.Username, StringComparer.Ordinal)
+                .ToArray();
+
+            if (!State.CurrentValue.Users.SequenceEqual(users))
+            {
+                State.SetValue(state => state with { Users = users });
+            }
+        }
+
+        private void ClearTrackedUsersState()
+        {
+            if (State.CurrentValue.Users.Length > 0)
+            {
+                State.SetValue(state => state with { Users = Array.Empty<User>() });
+            }
         }
 
         private Task<int?> PlaceInQueueResolver(string username, IPEndPoint endpoint, string filename)
@@ -3155,16 +3217,21 @@ namespace slskd
 
                 Log.Information("Warming browse response cache...");
                 var directories = await Shares.BrowseAsync();
-                var response = new BrowseResponse(directories);
+                var directoryCount = directories.Count();
 
                 await using (var stream = new FileStream(temp, FileMode.CreateNew, FileAccess.Write, FileShare.None))
                 {
-                    response.WriteTo(stream);
+                    BrowseResponseFactory.WriteToStream(
+                        directoryCount,
+                        directories,
+                        0,
+                        Array.Empty<Soulseek.Directory>(),
+                        stream);
                 }
 
                 Log.Debug("Saved cache to temp file {File}", temp);
 
-                System.IO.File.Move(temp, destination, overwrite: true);
+                ReplaceBrowseCacheFile(temp, destination);
 
                 sw.Stop();
                 Log.Information("Browse response cached successfully in {Duration}ms", sw.ElapsedMilliseconds);
@@ -3191,6 +3258,17 @@ namespace slskd
         internal static FileStream OpenBrowseCacheReadStream(string cacheFilename)
         {
             return new FileStream(cacheFilename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+        }
+
+        internal static void ReplaceBrowseCacheFile(string sourceFilename, string destinationFilename)
+        {
+            if (OperatingSystem.IsWindows() && System.IO.File.Exists(destinationFilename))
+            {
+                System.IO.File.Replace(sourceFilename, destinationFilename, null);
+                return;
+            }
+
+            System.IO.File.Move(sourceFilename, destinationFilename, overwrite: true);
         }
 
         private void State_OnChange((State Previous, State Current) state)
@@ -3322,6 +3400,7 @@ namespace slskd
             Client.TransferProgressUpdated -= Client_TransferProgressUpdated;
             Client.BrowseProgressUpdated -= Client_BrowseProgressUpdated;
             Client.UserStatusChanged -= Client_UserStatusChanged;
+            Users.WatchedUsersChanged -= Users_WatchedUsersChanged;
             Client.PrivateMessageReceived -= Client_PrivateMessageReceived;
 
             if (_privateRoomMembershipAddedHandler != null)

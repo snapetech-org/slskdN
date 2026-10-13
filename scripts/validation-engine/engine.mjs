@@ -5,24 +5,31 @@ import { spawn, spawnSync } from 'node:child_process';
 import {
   accessSync,
   chmodSync,
+  closeSync,
   constants,
+  fsyncSync,
   lstatSync,
   mkdtempSync,
   mkdirSync,
+  openSync,
   readFileSync,
   readlinkSync,
   readdirSync,
+  rmSync,
   writeFileSync,
+  writeSync,
 } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { requireTrustedLocalTestSandbox } from './trusted-sandbox.mjs';
 
-export const ENGINE_VERSION = 1;
+export const ENGINE_VERSION = 2;
 const ENGINE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.resolve(ENGINE_DIR, '..', '..');
 const MAX_BUFFER = 8 * 1024 * 1024;
+const MAX_LOG_BYTES = 16 * 1024 * 1024;
+const LOG_TRUNCATION_MARKER = Buffer.from('\n[validation log truncated after 16 MiB]\n');
 const PROGRESS_INTERVAL_MS = 60_000;
 const IGNORED_DIRS = new Set([
   '.git',
@@ -264,26 +271,35 @@ function inheritedToolchainEnvironment(inherited = process.env) {
 function inspectRuntime(root, runtime) {
   const available = commandAvailable(runtime.command);
   if (!available) return { ...runtime, available, version: null, exitCode: null };
-  const result = spawnSync(runtime.command, runtime.args ?? ['--version'], {
-    cwd: root,
-    encoding: 'utf8',
-    timeout: 10_000,
-    maxBuffer: 1024 * 1024,
-    env: inheritedToolchainEnvironment(),
-  });
-  const version = (result.stdout ?? '') + (result.stderr ?? '');
-  const versionLine = version.trim().split(/\r?\n/, 1)[0] ?? '';
-  const versionCompatible = !runtime.versionPattern ||
-    new RegExp(runtime.versionPattern).test(versionLine);
-  return {
-    ...runtime,
-    available: !result.error && result.status === 0,
-    version: versionLine,
-    versionCompatible,
-    required: runtime.required !== false,
-    exitCode: result.status,
-    error: result.error?.message,
-  };
+  const probeRoot = mkdtempSync(path.join(os.tmpdir(), 'slskdn-validation-runtime-probe-'));
+  try {
+    const env = isolatedTaskEnvironment(
+      { id: 'runtime-probe', kind: 'check' },
+      probeRoot
+    );
+    const result = spawnSync(runtime.command, runtime.args ?? ['--version'], {
+      cwd: root,
+      encoding: 'utf8',
+      timeout: 10_000,
+      maxBuffer: 1024 * 1024,
+      env,
+    });
+    const version = (result.stdout ?? '') + (result.stderr ?? '');
+    const versionLine = version.trim().split(/\r?\n/, 1)[0] ?? '';
+    const versionCompatible = !runtime.versionPattern ||
+      new RegExp(runtime.versionPattern).test(versionLine);
+    return {
+      ...runtime,
+      available: !result.error && result.status === 0,
+      version: versionLine,
+      versionCompatible,
+      required: runtime.required !== false,
+      exitCode: result.status,
+      error: result.error?.message,
+    };
+  } finally {
+    rmSync(probeRoot, { recursive: true, force: true });
+  }
 }
 
 function validateConfig(config) {
@@ -329,10 +345,30 @@ function validateConfig(config) {
   if (!Array.isArray(config.requiredCommands ?? [])) {
     fail('Required commands must be declared as an array.');
   }
+  for (const command of config.requiredCommands ?? []) {
+    if (typeof command !== 'string' || !command) {
+      fail('Required commands must be non-empty executable names.');
+    }
+  }
+  const runtimeCommands = new Set();
   for (const runtime of config.runtimes ?? []) {
     if (!runtime || typeof runtime.command !== 'string' || !runtime.command ||
         !Array.isArray(runtime.args ?? [])) {
       fail('Runtime declarations require an executable and an argument array.');
+    }
+    runtimeCommands.add(runtime.command);
+  }
+  for (const task of config.tasks) {
+    for (const field of ['requiresCommands', 'requiresRuntimes']) {
+      if (!Array.isArray(task[field] ?? []) || (task[field] ?? []).some((command) =>
+        typeof command !== 'string' || !command)) {
+        fail('Task toolchain requirements must be executable-name arrays: ' + task.id);
+      }
+    }
+    for (const runtime of task.requiresRuntimes ?? []) {
+      if (!runtimeCommands.has(runtime)) {
+        fail('Task references an unknown runtime: ' + task.id + '/' + runtime);
+      }
     }
   }
   for (const task of config.tasks) {
@@ -394,12 +430,44 @@ export function createPlan(root, config, options = {}) {
   };
   for (const task of config.tasks) if (selectedIds.has(task.id)) orderTask(task.id);
   const selectedTasks = orderedIds.map((id) => taskById.get(id));
-  const prerequisites = [...new Set([
-    ...(config.requiredCommands ?? []),
-    ...selectedTasks.map((task) => task.command[0]),
-  ])]
-    .map((command) => ({ command, available: commandAvailable(command) }));
-  const runtimes = (config.runtimes ?? []).map((runtime) => inspectRuntime(root, runtime));
+  const commandRequirements = new Map();
+  const requireCommand = (command, taskId = null) => {
+    const requirement = commandRequirements.get(command) ?? {
+      global: false,
+      requiredBy: new Set(),
+    };
+    if (taskId === null) requirement.global = true;
+    else requirement.requiredBy.add(taskId);
+    commandRequirements.set(command, requirement);
+  };
+  for (const command of config.requiredCommands ?? []) requireCommand(command);
+  for (const task of selectedTasks) {
+    requireCommand(task.command[0], task.id);
+    for (const command of task.requiresCommands ?? []) requireCommand(command, task.id);
+  }
+  const prerequisites = [...commandRequirements].map(([command, requirement]) => {
+    const requiredBy = [...requirement.requiredBy].sort();
+    return {
+      command,
+      available: commandAvailable(command),
+      global: requirement.global,
+      requiredBy,
+      required: requirement.global || requiredBy.length > 0,
+    };
+  });
+  const runtimes = (config.runtimes ?? []).map((runtime) => {
+    const requiredBy = selectedTasks
+      .filter((task) => task.command[0] === runtime.command ||
+        (task.requiresRuntimes ?? []).includes(runtime.command))
+      .map((task) => task.id);
+    const global = runtime.alwaysRequired === true;
+    const required = runtime.required !== false && (global || requiredBy.length > 0);
+    return {
+      ...inspectRuntime(root, { ...runtime, required }),
+      global,
+      requiredBy,
+    };
+  });
   const executionContext = options.executionContext ?? {
     executor: process.env.GITHUB_ACTIONS === 'true' ? 'github-actions' : 'local',
     platform: process.platform,
@@ -437,6 +505,8 @@ export function createPlan(root, config, options = {}) {
       timeoutSeconds: task.timeoutSeconds ?? 3600,
       command: task.command,
       cwd: task.cwd ?? '.',
+      requiresCommands: task.requiresCommands ?? [],
+      requiresRuntimes: task.requiresRuntimes ?? [],
       casePattern: task.casePattern ?? null,
       minimumCases: task.minimumCases ?? null,
       browserCache: task.browserCache ?? null,
@@ -530,46 +600,79 @@ export async function runCommand(task, root, logPath, options = {}) {
   let stderr = '';
   let outputBytes = 0;
   let timedOut = false;
-  const child = spawn(command, args, {
-    cwd,
-    env: isolatedTaskEnvironment(task, path.dirname(logPath)),
-    stdio: ['ignore', 'pipe', 'pipe'],
-    detached: process.platform !== 'win32',
-    windowsHide: true,
-  });
+  const logDescriptor = openSync(logPath, 'wx', 0o600);
+  const logContentLimit = MAX_LOG_BYTES - LOG_TRUNCATION_MARKER.length;
+  let logBytesWritten = 0;
+  let logTruncated = false;
+  let logError = null;
+  const persist = (chunk) => {
+    if (logError) return;
+    const length = Math.min(chunk.length, logContentLimit - logBytesWritten);
+    let offset = 0;
+    try {
+      while (offset < length)
+        offset += writeSync(logDescriptor, chunk, offset, length - offset);
+    } catch (error) {
+      logError = error.message;
+      return;
+    }
+    logBytesWritten += length;
+    if (length < chunk.length) logTruncated = true;
+  };
   const append = (chunk, target) => {
     outputBytes += chunk.length;
+    persist(chunk);
     target.value += chunk.toString('utf8');
     if (target.value.length > MAX_BUFFER) target.value = target.value.slice(-MAX_BUFFER);
   };
   const out = { value: stdout };
   const err = { value: stderr };
-  child.stdout.on('data', (chunk) => append(chunk, out));
-  child.stderr.on('data', (chunk) => append(chunk, err));
-  const timer = setTimeout(() => {
-    timedOut = true;
-    terminate(child);
-    setTimeout(() => {
-      if (child.exitCode === null && child.signalCode === null) {
-        if (child.pid && process.platform !== 'win32') {
-          try {
-            process.kill(-child.pid, 'SIGKILL');
-          } catch {}
-        } else {
-          child.kill('SIGKILL');
+  let child;
+  let exit;
+  try {
+    child = spawn(command, args, {
+      cwd,
+      env: isolatedTaskEnvironment(task, path.dirname(logPath)),
+      stdio: ['ignore', 'pipe', 'pipe'],
+      detached: process.platform !== 'win32',
+      windowsHide: true,
+    });
+    child.stdout.on('data', (chunk) => append(chunk, out));
+    child.stderr.on('data', (chunk) => append(chunk, err));
+    const timer = setTimeout(() => {
+      timedOut = true;
+      terminate(child);
+      setTimeout(() => {
+        if (child.exitCode === null && child.signalCode === null) {
+          if (child.pid && process.platform !== 'win32') {
+            try {
+              process.kill(-child.pid, 'SIGKILL');
+            } catch {}
+          } else {
+            child.kill('SIGKILL');
+          }
         }
-      }
-    }, 2000).unref();
-  }, timeout * 1000);
-  const exit = await new Promise((resolve) => {
-    child.once('error', (error) => resolve({ code: null, signal: null, error }));
-    child.once('close', (code, signal) => resolve({ code, signal, error: null }));
-  }).finally(() => clearTimeout(timer));
+      }, 2000).unref();
+    }, timeout * 1000);
+    exit = await new Promise((resolve) => {
+      child.once('error', (error) => resolve({ code: null, signal: null, error }));
+      child.once('close', (code, signal) => resolve({ code, signal, error: null }));
+    }).finally(() => clearTimeout(timer));
+  } finally {
+    try {
+      if (logTruncated && !logError)
+        writeSync(logDescriptor, LOG_TRUNCATION_MARKER);
+      fsyncSync(logDescriptor);
+    } catch (error) {
+      logError ??= error.message;
+    } finally {
+      closeSync(logDescriptor);
+    }
+  }
   stdout = out.value;
   stderr = err.value;
   const combined = stdout + (stdout && stderr ? '\n' : '') + stderr;
-  const logBuffer = Buffer.from(combined);
-  writeFileSync(logPath, logBuffer, { mode: 0o600 });
+  const logBuffer = readFileSync(logPath);
   const casePattern = task.casePattern ? new RegExp(task.casePattern, 'g') : null;
   let activeCases = null;
   if (casePattern) {
@@ -579,7 +682,7 @@ export async function runCommand(task, root, logPath, options = {}) {
       if (Number.isFinite(parsed)) activeCases += parsed;
     }
   }
-  const status = timedOut || exit.error || exit.code !== 0
+  const status = timedOut || exit.error || exit.code !== 0 || logError
     ? 'failed'
     : task.kind === 'test' && activeCases < task.minimumCases
       ? 'incomplete'
@@ -591,7 +694,7 @@ export async function runCommand(task, root, logPath, options = {}) {
     durationMs: Date.now() - started,
     exitCode: exit.code,
     signal: exit.signal,
-    error: exit.error?.message,
+    error: exit.error?.message ?? logError,
     timedOut,
     outputBytes,
     logSha256: hash(logBuffer),
@@ -607,6 +710,9 @@ export async function runCommand(task, root, logPath, options = {}) {
 
 export async function executePlan(root, config, plan, options = {}) {
   const { planSha256, ...planBody } = plan;
+  if (plan.schemaVersion !== ENGINE_VERSION) {
+    fail('Validation plan schema version is unsupported.');
+  }
   if (plan.repository !== config.repository || !planSha256 || hash(stable(planBody)) !== planSha256) {
     fail('Validation plan digest does not match its contents.');
   }
@@ -627,9 +733,9 @@ export async function executePlan(root, config, plan, options = {}) {
       });
     }
   }
-  const missing = [
-    ...plan.prerequisites.filter((item) => !item.available),
-    ...(plan.runtimes ?? []).filter((item) => item.required !== false &&
+  const missingGlobal = [
+    ...plan.prerequisites.filter((item) => item.global && !item.available),
+    ...(plan.runtimes ?? []).filter((item) => item.global && item.required !== false &&
       (!item.available || !item.versionCompatible)),
     ...(plan.executionContext?.executor === 'github-actions' &&
       plan.executionContext.github?.sha !== plan.candidate.commit
@@ -637,7 +743,7 @@ export async function executePlan(root, config, plan, options = {}) {
         actual: plan.executionContext.github?.sha ?? null }]
       : []),
   ];
-  if (missing.length > 0) {
+  if (missingGlobal.length > 0) {
     const receipt = {
       schemaVersion: ENGINE_VERSION,
       runId,
@@ -647,14 +753,19 @@ export async function executePlan(root, config, plan, options = {}) {
       candidate: plan.candidate,
       executionContext: plan.executionContext,
       status: 'incomplete',
-      prerequisites: missing,
+      prerequisites: [
+        ...plan.prerequisites,
+        ...missingGlobal.filter((item) => item.command === 'GITHUB_SHA'),
+      ],
+      runtimes: plan.runtimes,
       tasks: plan.tasks.map((task) => task.selected ? ({
         taskId: task.id,
-        status: 'not-run',
-        reason: 'required command is unavailable',
+        status: 'blocked',
+        reason: 'global validation preflight did not pass',
+        preflightFailures: missingGlobal,
         required: task.required,
       }) : receiptById.get(task.id)),
-      totals: { planned: selectedIds.size, executed: 0, passed: 0, failed: 0, blocked: 0, excluded: plan.tasks.length - selectedIds.size, activeCases: 0 },
+      totals: { planned: selectedIds.size, executed: 0, passed: 0, failed: 0, blocked: selectedIds.size, excluded: plan.tasks.length - selectedIds.size, activeCases: 0 },
     };
     writeFileSync(path.join(runRoot, 'receipt.json'), JSON.stringify(receipt, null, 2), { mode: 0o600 });
     return { receipt, runRoot, exitCode: 1 };
@@ -701,6 +812,24 @@ export async function executePlan(root, config, plan, options = {}) {
       });
       reportProgress();
       break;
+    }
+    const preflightFailures = [
+      ...plan.prerequisites.filter((item) =>
+        !item.available && (item.requiredBy ?? []).includes(task.id)),
+      ...(plan.runtimes ?? []).filter((item) =>
+        (item.requiredBy ?? []).includes(task.id) &&
+        (!item.available || item.versionCompatible === false)),
+    ];
+    if (preflightFailures.length > 0) {
+      receiptById.set(task.id, {
+        taskId: task.id,
+        status: 'blocked',
+        reason: 'required task toolchain is unavailable or incompatible',
+        preflightFailures,
+        required: task.required !== false,
+      });
+      reportProgress();
+      continue;
     }
     const configuredTask = config.tasks.find((item) => item.id === task.id);
     if (!configuredTask) fail('Selected task is missing from the registered configuration: ' + task.id);
@@ -753,10 +882,15 @@ export async function executePlan(root, config, plan, options = {}) {
     excluded: tasks.filter((task) => task.status === 'excluded').length,
     activeCases: tasks.reduce((sum, task) => sum + (task.activeCases ?? 0), 0),
   };
-  const status = sourceChanged || missing.length > 0 ||
-    plan.tasks.some((task) => task.selected && task.required !== false && receiptById.get(task.id)?.status !== 'passed')
+  const failedRequiredTasks = plan.tasks.some((task) => task.selected && task.required !== false &&
+    ['failed', 'incomplete'].includes(receiptById.get(task.id)?.status));
+  const blockedRequiredTasks = plan.tasks.some((task) => task.selected && task.required !== false &&
+    receiptById.get(task.id)?.status === 'blocked');
+  const status = sourceChanged || failedRequiredTasks
     ? 'failed'
-    : 'passed';
+    : blockedRequiredTasks
+      ? 'incomplete'
+      : 'passed';
   const receipt = {
     schemaVersion: ENGINE_VERSION,
     runId,
@@ -793,9 +927,11 @@ function help(config) {
 }
 
 export function summarizeResult(repository, result) {
-  const preflightFailures = (result.receipt.prerequisites ?? []).filter((item) =>
-    item.available === false || item.versionCompatible === false
-  );
+  const preflightFailures = [
+    ...(result.receipt.prerequisites ?? []),
+    ...(result.receipt.runtimes ?? []),
+  ].filter((item) => item.required !== false &&
+    (item.available === false || item.versionCompatible === false));
   return {
     repository,
     status: result.receipt.status,

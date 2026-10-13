@@ -245,6 +245,13 @@ public static class Metrics
         public static Counter RequestsRejected { get; } = Prometheus.Metrics.CreateCounter("slskd_enqueue_requests_rejected", "Total number of incoming enqueue requests rejected");
 
         /// <summary>
+        ///     Gets a counter representing enqueue rejections served from a recent per-user queue snapshot.
+        /// </summary>
+        public static Counter QueueLimitSnapshotRejections { get; } = Prometheus.Metrics.CreateCounter(
+            "slskd_enqueue_queue_limit_snapshot_rejections",
+            "Incoming enqueue requests rejected from a recent queue-limit snapshot without repeating the transfer-history query");
+
+        /// <summary>
         ///     Gets a counter representing the total number of incoming enqueue requests accepted.
         /// </summary>
         public static Counter RequestsAccepted { get; } = Prometheus.Metrics.CreateCounter("slskd_enqueue_requests_accepted", "Total number of incoming enqueue requests accepted");

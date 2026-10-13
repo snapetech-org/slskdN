@@ -209,6 +209,30 @@ public class RoomsControllerTests
         Assert.True(message.Self);
     }
 
+    [Fact]
+    public void GetMessagesByRoomName_ResolvesSlashNameFromQuery()
+    {
+        var roomName = "/mu/";
+        var tracker = CreateTracker();
+        tracker.Object.Rooms[roomName] = new Room();
+        var controller = CreateController(tracker: tracker.Object);
+
+        var result = controller.GetMessagesByRoomName(null, queryRoomName: roomName);
+
+        Assert.IsType<OkObjectResult>(result);
+    }
+
+    [Fact]
+    public void GetMessagesByRoomName_RejectsConflictingRouteAndQueryNames()
+    {
+        var controller = CreateController();
+
+        var result = controller.GetMessagesByRoomName("ambient", queryRoomName: "/mu/");
+
+        var badRequest = Assert.IsType<BadRequestObjectResult>(result);
+        Assert.Contains("conflicting", Assert.IsType<string>(badRequest.Value));
+    }
+
     [Theory]
     [InlineData(-1)]
     [InlineData(long.MaxValue)]

@@ -79,6 +79,20 @@ slskdN uses URL-based versioning: `/api/v{version}/`
 - `POST /api/v0/session` - Create session (login)
 - `DELETE /api/v0/session` - End session (logout)
 
+#### Rooms
+
+Room operations accept ordinary names in the existing `/rooms/joined/{roomName}` routes. For room names that contain `/`, use the query-addressed routes below so routing does not depend on encoded slashes in a path segment:
+
+- `GET /api/v0/rooms/by-name?roomName=%2Fmu%2F` - Get a joined room
+- `GET /api/v0/rooms/by-name/messages?roomName=%2Fmu%2F&since=0` - Read room messages
+- `GET /api/v0/rooms/by-name/users?roomName=%2Fmu%2F` - List room users
+- `POST /api/v0/rooms/by-name/messages?roomName=%2Fmu%2F` - Send a room message
+- `POST /api/v0/rooms/by-name/ticker?roomName=%2Fmu%2F` - Set a room ticker
+- `POST /api/v0/rooms/by-name/members?roomName=%2Fmu%2F` - Add a room member
+- `DELETE /api/v0/rooms/by-name?roomName=%2Fmu%2F` - Leave a room
+
+Pass the full room name as the `roomName` query value; URL-encode it as normal for a query string. The existing routes remain available for compatibility. If a request supplies both a route name and a different `roomName` query value, the API returns `400 Bad Request`.
+
 ### Search APIs
 
 #### Searches

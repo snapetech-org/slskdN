@@ -69,7 +69,7 @@ public class ShareScannerModerationTests
                 fileService: fileService.Object,
                 moderationProvider: new NoopModerationProvider());
 
-            using var repository = new SqliteShareRepository($"Data Source={databasePath}");
+            using var repository = new SqliteShareRepository($"Data Source={databasePath};Pooling=False");
             repository.Create(discardExisting: true);
 
             var share = new Share(shareRoot);
@@ -135,7 +135,7 @@ public class ShareScannerModerationTests
                     Mock.Of<ILogger<CompositeModerationProvider>>(),
                     externalClient: externalClient.Object));
 
-            using var repository = new SqliteShareRepository($"Data Source={databasePath}");
+            using var repository = new SqliteShareRepository($"Data Source={databasePath};Pooling=False");
             repository.Create(discardExisting: true);
 
             var share = new Share(shareRoot);
@@ -237,7 +237,7 @@ public class ShareRepositoryModerationTests : IDisposable
     {
         // Create a temporary database for testing
         _databasePath = Path.Combine(Path.GetTempPath(), $"ShareRepositoryTest_{Guid.NewGuid()}.db");
-        _repository = new SqliteShareRepository($"Data Source={_databasePath}");
+        _repository = new SqliteShareRepository($"Data Source={_databasePath};Pooling=False");
         _repository.Create(discardExisting: true);
     }
 
@@ -348,7 +348,7 @@ public class ShareRepositoryModerationTests : IDisposable
     [Fact]
     public void TryValidate_WhenContentItemsTableIsMissing_MigratesItInPlace()
     {
-        using (var connection = new Microsoft.Data.Sqlite.SqliteConnection($"Data Source={_databasePath}"))
+        using (var connection = new Microsoft.Data.Sqlite.SqliteConnection($"Data Source={_databasePath};Pooling=False"))
         {
             connection.Open();
             using var command = connection.CreateCommand();
@@ -367,7 +367,7 @@ public class ShareRepositoryModerationTests : IDisposable
     public void Dispose_DisposesKeepaliveTimer()
     {
         var path = Path.Combine(Path.GetTempPath(), $"ShareRepositoryDisposeTest_{Guid.NewGuid()}.db");
-        var repository = new SqliteShareRepository($"Data Source={path}");
+        var repository = new SqliteShareRepository($"Data Source={path};Pooling=False");
 
         repository.Dispose();
 

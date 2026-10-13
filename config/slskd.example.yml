@@ -278,6 +278,7 @@
 #    mesh_gateway_window_seconds: 60
 #retention:
 #  search: 10080 # 7 days, in minutes
+#  events: 30 # event age limit, in days
 #  events_max_count: 10000 # retain at most this many recent events (0 = no count limit)
 #  transfers:
 #    removed: 10080 # permanently remove hidden completed transfer rows after 7 days (null = keep indefinitely)

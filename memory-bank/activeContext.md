@@ -1,35 +1,63 @@
-## Current state — Public PR runner isolation and CI capacity review — 2026-10-12
+## Current state — Stable `.350` publication follow-through — 2026-10-13 08:51 UTC
 
-Public pull-request workflows in the SLSKDN CI, enhancement, and Windows smoke
-files now select GitHub-hosted runners. Manual dispatches from refs other than
-`main` also use hosted runners; trusted `main` dispatches can opt into hosted
-or follow configured runner policy. The main CI token defaults to read-only;
-release publishing gets its required write scopes in the release job. Focused
-workflow syntax, trigger-policy, identity, diff, and release-note checks pass.
+Stable release `2026101222-slskdn.350` is published with 13 assets; all six
+platform archives and checksums verify. Publisher recovery succeeded for AUR
+source and binary packages, COPR, container registries, and Nix metadata/smoke.
 
-The previously failing allocation assertion now warms expired-entry cleanup on
-the measured `DescriptorRetriever` instance, with its `<4 KiB` cap unchanged.
-The local engine planned one unit-test task but executed zero because `pnpm` and
-the .NET CLI home were unavailable. A direct filtered run also executed zero:
-the scratch package cache lacks the pinned .NET 10.0.12 reference pack. The
-fresh candidate scan reports 217 callback/event, 434 remote-text, 12,732
-red-team, and 836 mutable-ownership matches. After accounting for updated
-ledger descriptions, its only branch-added red-team match is expected
-CI-permission changelog text. PR #358 still needs hosted validation on this
-exact source before merge.
+Hosted `workflow_dispatch` run `38365844172` passed on branch head
+`62f2f95f67bb11e8fc62571d5e137b3b74af5a38`: 15/15 selected release-gate tasks,
+7,344 active cases, zero failures or blockers, three browser E2E exclusions,
+and successful Nix package smoke. The prior branch-sync failure was caused by
+`main` advancing after checkout. The refreshed local remediation baseline
+passes with 12,811 review candidates.
 
-Cross-repository runner pooling is still pending. All repositories remain under
-the existing personal account while its hosted-runner concurrency tier is
-unknown. The local CI hosts are under heavy load and already have active SLSKDN
-and TorrentNG jobs, so no runner agents or additional local test load were
-added. Standard hosted runner minutes remain free for the public repositories.
+The exact `.350` Jammy source is `Published` and its build log completed, but
+Launchpad's build API still says `Uploading build`; the exact binary is absent
+from all 331 published-binary records and the current Jammy amd64 apt index.
+The release waiter timed out after repeated API SSL timeouts. Do not resubmit
+the accepted source while publication is unresolved.
 
 ### Next Steps
 
-- Keep public pull-request workloads on hosted runners.
-- Reassess local host capacity before adding project-specific runner agents.
-- Confirm the account concurrency plan and organization destination before any
-repository transfer or shared organization runner setup.
+- Recheck Launchpad's exact binary publication state and apt index read-only.
+- Keep PR-specific runner routing and main manual-dispatch validation as a
+  separate follow-up.
+
+## Prior state — Runner trust and scan gates — 2026-10-13
+
+The temporary local pool is enabled for `snapetech`-authored pull requests and
+trusted `main` validation. Pull requests from other contributors stay on
+GitHub-hosted runners, and all external contributors require workflow approval.
+These YAML rules are best-effort on personal-account repositories: a reviewed
+outside workflow can still request self-hosted after approval. Organization
+runner groups restricted to selected workflow refs remain the planned hard
+boundary.
+
+PR #357 already isolates runner-owned temporary storage in Linux self-hosted
+jobs and scopes release write permissions to the publisher. This follow-up
+removes blanket failure suppression from the test and scan workflow, pins its
+external actions across workflows, and makes high/critical dependency and image
+findings fail their scan jobs. The repository's default workflow token is now
+read-only. The standalone load harness remains on hosted Linux after the prior
+local SIGBUS.
+
+The merged `68b36d3` validation run executed 15/15 tasks and failed two checks
+because `main` advanced during the run; the release-branch-sync check and the
+remediation baseline's nested copy both saw the checkout behind origin/main.
+A fresh full run for `252e92f` is pending. Earlier Web unit-test failures and
+the load-test SIGBUS still require exact-head hosted verification. Focused
+workflow policy, runtime matrix, YAML, and diff checks pass on the PR branch.
+
+### Next Steps
+
+- Verify non-`snapetech` pull requests select hosted runners and all external
+  contributors remain approval-gated.
+- Verify trusted pull requests and main pushes can use either local host where
+  their workflow labels match.
+- Rerun exact-head CI and report actual task counts, skips, exclusions, and
+  scanner findings separately.
+- Keep the future Free-organization migration plan current and check billing
+  remains $0 before any transfer.
 
 ## Current state — Stable `.349` released; issue and release-gate follow-up complete — 2026-10-11 23:30 UTC
 
@@ -19300,3 +19328,23 @@ verification pass.
 Fetch and verify current `origin/main`, push the validated tree to
 `snapetech/slskdN/main`, create the authorized stable `.350` tag, verify hosted
 release publishers and artifacts, then remove task-scoped scratch data.
+
+## Current state — System file management release validation — 2026-10-13 12:50 UTC
+
+System file browsing supports on-demand subtree sizes and validated mixed-item
+deletion with per-item results. Responsive browser coverage exercises folder
+sizes, keyboard navigation, deletion recovery, selection, and partial success.
+Room queries retain slash-containing names, and watched-user state is
+published after registration.
+
+The full .NET suite passes 6,180 tests; the web suite passes 1,300 tests; and
+the selected headless browser suite passes 97 tests with seven opt-in network
+and soak scenarios skipped. Repository lint and the Release build pass with
+zero compiler warnings and errors. Local Soulseek/DHT and VPN validation was
+not run because no credentials or VPN profile were available.
+
+### Next Steps
+
+- Commit and push the validated branch to `snapetech/slskdN`.
+- Create the authorized stable build tag and verify the hosted release gate and
+  artifacts.

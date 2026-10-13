@@ -635,6 +635,107 @@ public class SearchServiceLifecycleTests
     }
 
     [Fact]
+    public async Task DeleteAsync_DuringSearch_CancelsWorkAndDoesNotPublishCompletionAfterDelete()
+    {
+        await using var connection = new SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+        var options = new DbContextOptionsBuilder<SearchDbContext>()
+            .UseSqlite(connection)
+            .Options;
+        await using (var context = new SearchDbContext(options))
+        {
+            await context.Database.EnsureCreatedAsync();
+        }
+
+        var updates = new ConcurrentQueue<slskd.Search.Search>();
+        var deletes = new ConcurrentQueue<slskd.Search.Search>();
+        var completion = new TaskCompletionSource<Soulseek.Search>(TaskCreationOptions.RunContinuationsAsynchronously);
+        SearchOptions? capturedSearchOptions = null;
+        CancellationToken? capturedCancellationToken = null;
+        var client = new Mock<ISoulseekClient>();
+        client.Setup(candidate => candidate.GetNextToken()).Returns(42);
+        client
+            .Setup(candidate => candidate.SearchAsync(
+                It.IsAny<SearchQuery>(),
+                It.IsAny<Action<SearchResponse>>(),
+                It.IsAny<SearchScope>(),
+                It.IsAny<int?>(),
+                It.IsAny<SearchOptions>(),
+                It.IsAny<CancellationToken?>()))
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>(
+                (_, _, _, _, searchOptions, cancellationToken) =>
+                {
+                    capturedSearchOptions = searchOptions;
+                    capturedCancellationToken = cancellationToken;
+                })
+            .Returns(completion.Task);
+        var safetyLimiter = new Mock<ISoulseekSafetyLimiter>();
+        safetyLimiter.Setup(limiter => limiter.TryConsumeSearch("user")).Returns(true);
+        using var service = new SearchService(
+            CreateSearchHub(updates, deletes).Object,
+            new TestOptionsMonitor<slskd.Options>(new slskd.Options()),
+            client.Object,
+            new SearchDbContextFactory(options),
+            safetyLimiter.Object);
+
+        var searchId = Guid.NewGuid();
+        await service.StartAsync(
+            searchId,
+            SearchQuery.FromText("artist title"),
+            SearchScope.Network);
+
+        Assert.NotNull(capturedSearchOptions);
+        capturedSearchOptions.StateChanged?.Invoke((
+            SearchStates.InProgress,
+            new Soulseek.Search(
+                SearchQuery.FromText("artist title"),
+                SearchScope.Network,
+                42,
+                SearchStates.InProgress,
+                responseCount: 0,
+                fileCount: 0,
+                lockedFileCount: 0)));
+        capturedSearchOptions.StateChanged?.Invoke((
+            SearchStates.InProgress,
+            new Soulseek.Search(
+                SearchQuery.FromText("artist title"),
+                SearchScope.Network,
+                42,
+                SearchStates.Completed,
+                responseCount: 0,
+                fileCount: 0,
+                lockedFileCount: 0)));
+
+        var search = await service.FindAsync(candidate => candidate.Id == searchId);
+        Assert.NotNull(search);
+        var updatesBeforeDelete = updates.Count;
+
+        await service.DeleteAsync(search);
+
+        Assert.True(capturedCancellationToken.HasValue);
+        Assert.True(capturedCancellationToken.Value.IsCancellationRequested);
+        Assert.Equal(searchId, Assert.Single(deletes).Id);
+
+        completion.SetResult(new Soulseek.Search(
+            SearchQuery.FromText("artist title"),
+            SearchScope.Network,
+            42,
+            SearchStates.Completed,
+            responseCount: 0,
+            fileCount: 0,
+            lockedFileCount: 0));
+
+        Assert.True(await WaitUntilAsync(
+            () => GetCancellationTokens(service).IsEmpty,
+            attempts: 120,
+            delayMs: 25));
+        Assert.Equal(updatesBeforeDelete, updates.Count);
+
+        await using var verifyContext = new SearchDbContext(options);
+        Assert.False(await verifyContext.Searches.AnyAsync(candidate => candidate.Id == searchId));
+    }
+
+    [Fact]
     public async Task StartAsync_WishlistLowResult_UsesBoundedLeadingTermFallback()
     {
         await using var connection = new SqliteConnection("Data Source=:memory:");
@@ -1057,6 +1158,15 @@ public class SearchServiceLifecycleTests
     private sealed class RecordingCommandInterceptor : DbCommandInterceptor
     {
         public List<string> Commands { get; } = new();
+
+        public override InterceptionResult<int> NonQueryExecuting(
+            DbCommand command,
+            CommandEventData eventData,
+            InterceptionResult<int> result)
+        {
+            Commands.Add(command.CommandText);
+            return base.NonQueryExecuting(command, eventData, result);
+        }
 
         public override ValueTask<InterceptionResult<int>> NonQueryExecutingAsync(
             DbCommand command,

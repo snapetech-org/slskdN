@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Reflection;
@@ -73,6 +74,200 @@ public class ApplicationLifecycleTests
             Assert.Contains("peer\\r\\ninjected", rendered);
             Assert.Contains("denied\\r\\nwith reason", rendered);
             Assert.DoesNotContain("\r\n", rendered);
+        }
+        finally
+        {
+            application?.Dispose();
+            Log.Logger = originalLogger;
+        }
+    }
+
+    [Fact]
+    public void WatchedUserStatus_UpdatesSharedApplicationState()
+    {
+        var applicationState = new ManagedState<State>();
+        var trackedUsers = Array.Empty<User>();
+        var watchedUsernames = Array.Empty<string>();
+        var userService = new Mock<IUserService>();
+        userService.SetupGet(service => service.Users).Returns(() => trackedUsers);
+        userService.SetupGet(service => service.WatchedUsernames).Returns(() => watchedUsernames);
+
+        Application? application = null;
+        try
+        {
+            application = CreateApplication(
+                new OptionsAtStartup(),
+                new TestOptionsMonitor<Options>(new Options()),
+                applicationState,
+                new ManagedState<ShareState>(),
+                new ManagedState<RelayState>(),
+                out var hub,
+                out var soulseekClient,
+                out _,
+                userServiceMock: userService);
+            hub.Setup(client => client.SendCoreAsync(
+                    It.IsAny<string>(),
+                    It.IsAny<object?[]>(),
+                    It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            trackedUsers = [new User { Username = "peer", Status = new Status { Presence = UserPresence.Online } }];
+            watchedUsernames = ["peer"];
+            soulseekClient.Raise(
+                client => client.UserStatusChanged += null,
+                null,
+                new UserStatus("peer", UserPresence.Online, isPrivileged: false));
+
+            var user = Assert.Single(applicationState.CurrentValue.Users);
+            Assert.Equal("peer", user.Username);
+            Assert.Equal(UserPresence.Online, user.Status.Presence);
+        }
+        finally
+        {
+            application?.Dispose();
+        }
+    }
+
+    [Fact]
+    public void WatchedUsersChanged_UpdatesSharedStateAfterRegistration()
+    {
+        var applicationState = new ManagedState<State>();
+        var trackedUsers = Array.Empty<User>();
+        var watchedUsernames = Array.Empty<string>();
+        var userService = new Mock<IUserService>();
+        userService.SetupGet(service => service.Users).Returns(() => trackedUsers);
+        userService.SetupGet(service => service.WatchedUsernames).Returns(() => watchedUsernames);
+
+        Application? application = null;
+        try
+        {
+            application = CreateApplication(
+                new OptionsAtStartup(),
+                new TestOptionsMonitor<Options>(new Options()),
+                applicationState,
+                new ManagedState<ShareState>(),
+                new ManagedState<RelayState>(),
+                out var hub,
+                out _,
+                out _,
+                userServiceMock: userService);
+            hub.Setup(client => client.SendCoreAsync(
+                    It.IsAny<string>(),
+                    It.IsAny<object?[]>(),
+                    It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            trackedUsers = [new User { Username = "peer", Status = new Status { Presence = UserPresence.Online } }];
+            watchedUsernames = ["peer"];
+            userService.Raise(service => service.WatchedUsersChanged += null, null, EventArgs.Empty);
+
+            var user = Assert.Single(applicationState.CurrentValue.Users);
+            Assert.Equal("peer", user.Username);
+            Assert.Equal(UserPresence.Online, user.Status.Presence);
+        }
+        finally
+        {
+            application?.Dispose();
+        }
+    }
+
+    [Fact]
+    public async Task EnqueueDownload_RepeatedQueueLimitDenials_UsesSnapshotUntilUploadStateChanges()
+    {
+        var sink = new CapturingLogSink();
+        var originalLogger = Log.Logger;
+        using var logger = new LoggerConfiguration()
+            .MinimumLevel.Verbose()
+            .WriteTo.Sink(sink)
+            .CreateLogger();
+        Log.Logger = logger;
+
+        var configuredOptions = new Options
+        {
+            Global = new Options.GlobalOptions
+            {
+                Limits = new Options.LimitsOptions
+                {
+                    Queued = new Options.LimitsOptions.Limits { Files = 1 },
+                },
+            },
+        };
+        var shareService = new Mock<IShareService>();
+        shareService.Setup(service => service.ResolveFileAsync("track.flac"))
+            .ReturnsAsync(("share", "track.flac", 100L));
+        var userService = new Mock<IUserService>();
+        userService.Setup(service => service.IsBlacklisted("peer", It.IsAny<IPAddress?>())).Returns(false);
+        userService.Setup(service => service.GetOrFetchGroupAsync("peer", false)).ReturnsAsync(Application.DefaultGroup);
+        var uploadService = new Mock<slskd.Transfers.Uploads.IUploadService>();
+        uploadService.Setup(service => service.Summarize(
+                It.IsAny<System.Linq.Expressions.Expression<Func<slskd.Transfers.Transfer, bool>>>()))
+            .Returns((1, 100L));
+
+        Application? application = null;
+        Mock<IClientProxy>? hub = null;
+        try
+        {
+            application = CreateApplication(
+                new OptionsAtStartup(),
+                new TestOptionsMonitor<Options>(configuredOptions),
+                new ManagedState<State>(),
+                new ManagedState<ShareState>(),
+                new ManagedState<RelayState>(),
+                out hub,
+                out var soulseekClient,
+                out _,
+                shareServiceMock: shareService,
+                userServiceMock: userService,
+                uploadServiceMock: uploadService);
+            hub.Setup(client => client.SendCoreAsync(
+                    It.IsAny<string>(),
+                    It.IsAny<object?[]>(),
+                    It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var enqueueMethod = typeof(Application).GetMethod(
+                "EnqueueDownload",
+                BindingFlags.Instance | BindingFlags.NonPublic)
+                ?? throw new InvalidOperationException("EnqueueDownload method was not found.");
+            Task AttemptEnqueue() => (Task)(enqueueMethod.Invoke(application, [
+                "peer",
+                new IPEndPoint(IPAddress.Loopback, 50_000),
+                "track.flac",
+            ]) ?? throw new InvalidOperationException("EnqueueDownload returned no task."));
+
+            await Assert.ThrowsAsync<DownloadEnqueueException>(AttemptEnqueue);
+            await Assert.ThrowsAsync<DownloadEnqueueException>(AttemptEnqueue);
+
+            uploadService.Verify(service => service.Summarize(
+                It.IsAny<System.Linq.Expressions.Expression<Func<slskd.Transfers.Transfer, bool>>>()), Times.Once);
+            Assert.Single(sink.Events, logEvent =>
+                logEvent.Level == LogEventLevel.Warning
+                && logEvent.RenderMessage().Contains("[UPLOAD-DIAG] Rejected upload enqueue request", StringComparison.Ordinal));
+
+            var transfer = new Soulseek.Transfer(
+                TransferDirection.Upload,
+                "peer",
+                "track.flac",
+                token: 1,
+                state: TransferStates.Queued,
+                size: 100,
+                startOffset: 0);
+            var stateArgs = (TransferStateChangedEventArgs)(typeof(TransferStateChangedEventArgs)
+                .GetConstructor(
+                    BindingFlags.Instance | BindingFlags.NonPublic,
+                    binder: null,
+                    types: [typeof(TransferStates), typeof(Soulseek.Transfer)],
+                    modifiers: null)
+                ?? throw new InvalidOperationException("Transfer state event constructor was not found."))
+                .Invoke([TransferStates.Requested, transfer]);
+            soulseekClient.Raise(client => client.TransferStateChanged += null, stateArgs);
+
+            await Assert.ThrowsAsync<DownloadEnqueueException>(AttemptEnqueue);
+            uploadService.Verify(service => service.Summarize(
+                It.IsAny<System.Linq.Expressions.Expression<Func<slskd.Transfers.Transfer, bool>>>()), Times.Exactly(2));
+            Assert.Equal(2, sink.Events.Count(logEvent =>
+                logEvent.Level == LogEventLevel.Warning
+                && logEvent.RenderMessage().Contains("[UPLOAD-DIAG] Rejected upload enqueue request", StringComparison.Ordinal)));
         }
         finally
         {
@@ -681,7 +876,10 @@ public class ApplicationLifecycleTests
         out Mock<ISoulseekClient> soulseekClient,
         out Mock<ISearchService> searchService,
         Mock<slskd.Transfers.MultiSource.Metrics.ITrafficAccountingService>? trafficAccounting = null,
-        Mock<IHubContext<LogsHub>>? logsHubContext = null)
+        Mock<IHubContext<LogsHub>>? logsHubContext = null,
+        Mock<IShareService>? shareServiceMock = null,
+        Mock<IUserService>? userServiceMock = null,
+        Mock<slskd.Transfers.Uploads.IUploadService>? uploadServiceMock = null)
     {
         applicationHub = new Mock<IClientProxy>();
         soulseekClient = new Mock<ISoulseekClient>();
@@ -701,11 +899,11 @@ public class ApplicationLifecycleTests
         relayService.SetupGet(x => x.StateMonitor).Returns(relayState);
         relayService.SetupGet(x => x.Client).Returns(new NullRelayClient());
 
-        var shareService = new Mock<IShareService>();
+        var shareService = shareServiceMock ?? new Mock<IShareService>();
         shareService.SetupGet(x => x.StateMonitor).Returns(shareState);
         shareService.Setup(service => service.InitializeAsync(It.IsAny<bool>())).Returns(Task.CompletedTask);
 
-        var uploadService = new Mock<slskd.Transfers.Uploads.IUploadService>();
+        var uploadService = uploadServiceMock ?? new Mock<slskd.Transfers.Uploads.IUploadService>();
         uploadService
             .Setup(service => service.List(
                 It.IsAny<System.Linq.Expressions.Expression<Func<slskd.Transfers.Transfer, bool>>>(),
@@ -753,7 +951,7 @@ public class ApplicationLifecycleTests
             transferService.Object,
             Mock.Of<IBrowseTracker>(),
             Mock.Of<IRoomService>(),
-            Mock.Of<IUserService>(),
+            userServiceMock?.Object ?? Mock.Of<IUserService>(),
             Mock.Of<IMessagingService>(),
             shareService.Object,
             searchService.Object,

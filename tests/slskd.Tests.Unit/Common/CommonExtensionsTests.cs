@@ -4,10 +4,24 @@
 namespace slskd.Tests.Unit.Common;
 
 using System.Linq;
+using System.Reflection;
 using Xunit;
 
 public class CommonExtensionsTests
 {
+    [Fact]
+    public void JsonSerializerOptions_AreReusedAcrossCalls()
+    {
+        var helper = typeof(CommonExtensions).GetMethod("GetJsonSerializerOptions", BindingFlags.NonPublic | BindingFlags.Static);
+
+        Assert.NotNull(helper);
+        var first = helper.Invoke(null, null);
+        var second = helper.Invoke(null, null);
+
+        Assert.NotNull(first);
+        Assert.Same(first, second);
+    }
+
     [Fact]
     public void DiffWith_WhenBothSidesAreNull_ReturnsNoDifferences()
     {

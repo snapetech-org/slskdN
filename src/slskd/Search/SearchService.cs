@@ -152,6 +152,7 @@ namespace slskd.Search
     {
         private const int RetentionCleanupBatchSize = 250;
         private const int SearchProgressIntervalMs = 1_000;
+        private readonly object _searchPersistenceSync = new();
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="SearchService"/> class.
@@ -231,15 +232,29 @@ namespace slskd.Search
                 throw new ArgumentNullException(nameof(search));
             }
 
+            TryCancel(search.Id);
             return DoDeleteAsync(search);
 
             async Task DoDeleteAsync(Search search)
             {
-                using var context = ContextFactory.CreateDbContext();
-                context.Searches.Remove(search);
-                context.SaveChanges();
+                Task? broadcast = null;
+                lock (_searchPersistenceSync)
+                {
+                    using var context = ContextFactory.CreateDbContext();
+                    var deleted = context.Searches
+                        .Where(candidate => candidate.Id == search.Id)
+                        .ExecuteDelete();
 
-                await SearchHub.BroadcastDeleteAsync(search);
+                    if (deleted > 0)
+                    {
+                        broadcast = SearchHub.BroadcastDeleteAsync(search);
+                    }
+                }
+
+                if (broadcast != null)
+                {
+                    await broadcast.ConfigureAwait(false);
+                }
             }
         }
 
@@ -317,9 +332,68 @@ namespace slskd.Search
         /// <param name="search">The search to update.</param>
         public void Update(Search search)
         {
+            lock (_searchPersistenceSync)
+            {
+                PersistSearchIfPresent(search);
+            }
+        }
+
+        private bool PersistSearchIfPresent(Search search)
+        {
             using var context = ContextFactory.CreateDbContext();
-            context.Update(search);
-            context.SaveChanges();
+            var responsesJson = search.ResponsesJson;
+
+            return context.Searches
+                .Where(candidate => candidate.Id == search.Id)
+                .ExecuteUpdate(update => update
+                    .SetProperty(candidate => candidate.EndedAt, search.EndedAt)
+                    .SetProperty(candidate => candidate.FileCount, search.FileCount)
+                    .SetProperty(candidate => candidate.LockedFileCount, search.LockedFileCount)
+                    .SetProperty(candidate => candidate.ResponseCount, search.ResponseCount)
+                    .SetProperty(candidate => candidate.ResponsesJson, responsesJson)
+                    .SetProperty(candidate => candidate.State, search.State)) == 1;
+        }
+
+        private Task? PersistAndBroadcastSearchUpdate(Search search)
+        {
+            lock (_searchPersistenceSync)
+            {
+                if (!PersistSearchIfPresent(search))
+                {
+                    return null;
+                }
+
+                return SearchHub.BroadcastUpdateAsync(search);
+            }
+        }
+
+        private Task? BroadcastSearchUpdateIfPresent(Search search)
+        {
+            lock (_searchPersistenceSync)
+            {
+                using var context = ContextFactory.CreateDbContext();
+                if (!context.Searches.Any(candidate => candidate.Id == search.Id))
+                {
+                    return null;
+                }
+
+                return SearchHub.BroadcastUpdateAsync(search);
+            }
+        }
+
+        private async Task ObserveSearchBroadcastAsync(Task broadcast, Guid searchId)
+        {
+            try
+            {
+                await broadcast.ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(
+                    "Failed to broadcast update for search {SearchId}: {Exception}",
+                    searchId,
+                    LoggingSanitizer.SanitizeExternalIdentifier(ex.ToString()));
+            }
         }
 
         /// <summary>
@@ -406,13 +480,18 @@ namespace slskd.Search
 
             try
             {
-                using var context = ContextFactory.CreateDbContext();
-                context.Add(search);
-                context.SaveChanges();
+                Task createBroadcast;
+                lock (_searchPersistenceSync)
+                {
+                    using var context = ContextFactory.CreateDbContext();
+                    context.Add(search);
+                    context.SaveChanges();
 
-                searchCreated = true;
+                    searchCreated = true;
+                    createBroadcast = SearchHub.BroadcastCreateAsync(search);
+                }
 
-                await SearchHub.BroadcastCreateAsync(search);
+                await createBroadcast.ConfigureAwait(false);
 
                 searchBroadcasted = true;
 
@@ -450,9 +529,10 @@ namespace slskd.Search
                         if (!deferLowResultCompletion)
                         {
                             search = search.WithSoulseekSearch(args.Search);
-                            Update(search);
-
-                            SearchHub.BroadcastUpdateAsync(search);
+                            if (PersistAndBroadcastSearchUpdate(search) is { } updateBroadcast)
+                            {
+                                _ = ObserveSearchBroadcastAsync(updateBroadcast, id);
+                            }
                         }
 
                         Log.Debug("Search for '{Query}' state changed: {State} (id: {Id})", safeQuery, search.State, id);
@@ -493,7 +573,10 @@ namespace slskd.Search
 
                         // Progress is transient because responses remain in memory until
                         // completion. Avoid writing an incomplete row for every update.
-                        SearchHub.BroadcastUpdateAsync(search);
+                        if (BroadcastSearchUpdateIfPresent(search) is { } progressBroadcast)
+                        {
+                            _ = ObserveSearchBroadcastAsync(progressBroadcast, id);
+                        }
                     }));
 
                 // initiate the search. this can throw at invocation if there's a problem with
@@ -598,7 +681,11 @@ namespace slskd.Search
                         search.ResponsesAvailable = true;
                         ApplyResponseSummary(search, merged);
 
-                        Update(search);
+                        var finalBroadcast = PersistAndBroadcastSearchUpdate(search);
+                        if (finalBroadcast == null)
+                        {
+                            return;
+                        }
 
                         // Raise event for passive FLAC discovery (HashDb will pick up FLAC files)
                         if (EventBus != null && soulseekSnapshot.Count > 0)
@@ -615,9 +702,7 @@ namespace slskd.Search
                             await NotifyTrafficObserverAsync(TrafficObserver, query.SearchText, soulseekSnapshot, Log, CancellationToken.None);
                         }
 
-                        // zero responses before broadcasting, as we don't want to blast this
-                        // data out over the SignalR socket
-                        await SearchHub.BroadcastUpdateAsync(search with { Responses = [] });
+                        await finalBroadcast.ConfigureAwait(false);
 
                         Log.Debug("Search for '{Query}' finalized (id: {Id}): {Search}",
                             safeQuery, id, search with { SearchText = safeQuery, Responses = [] });
@@ -669,8 +754,13 @@ namespace slskd.Search
                             search.Responses = merged;
                             search.ResponsesAvailable = true;
                             ApplyResponseSummary(search, merged);
-                            Update(search);
-                            await SearchHub.BroadcastUpdateAsync(search with { Responses = [] });
+                            var meshBroadcast = PersistAndBroadcastSearchUpdate(search);
+                            if (meshBroadcast == null)
+                            {
+                                return meshResponses;
+                            }
+
+                            await meshBroadcast.ConfigureAwait(false);
 
                             Log.Debug(
                                 "Published early mesh results for '{Query}' (id: {Id}): meshResponses={MeshResponses} mergedResponses={MergedResponses} files={Files}",
@@ -709,7 +799,11 @@ namespace slskd.Search
                         safeQuery, id, LoggingSanitizer.SanitizeExternalIdentifier(ex.ToString())));
 
                 // broadcast and return the _newly created_ search; it will continue to be updated in the background
-                await SearchHub.BroadcastUpdateAsync(search);
+                if (BroadcastSearchUpdateIfPresent(search) is { } initialUpdateBroadcast)
+                {
+                    await initialUpdateBroadcast.ConfigureAwait(false);
+                }
+
                 return search;
             }
             catch (Exception ex)
@@ -738,11 +832,11 @@ namespace slskd.Search
                 {
                     search.State = SearchStates.Completed | SearchStates.Errored;
                     search.EndedAt = search.StartedAt;
-                    Update(search);
+                    var failureBroadcast = PersistAndBroadcastSearchUpdate(search);
 
-                    if (searchBroadcasted)
+                    if (searchBroadcasted && failureBroadcast != null)
                     {
-                        await SearchHub.BroadcastUpdateAsync(search with { Responses = [] });
+                        await failureBroadcast.ConfigureAwait(false);
                     }
                 }
 
@@ -1082,16 +1176,38 @@ namespace slskd.Search
                 }
 
                 var ids = batch.Select(search => search.Id).ToList();
-                await context.Searches
-                    .Where(search => ids.Contains(search.Id))
-                    .ExecuteDeleteAsync();
-
-                foreach (var search in batch)
+                var broadcasts = new List<Task>();
+                int batchDeletedCount;
+                lock (_searchPersistenceSync)
                 {
-                    await SearchHub.BroadcastDeleteAsync(search);
+                    var currentBatch = candidates
+                        .Where(search => ids.Contains(search.Id))
+                        .WithoutResponses()
+                        .AsNoTracking()
+                        .ToList();
+                    var currentIds = currentBatch.Select(search => search.Id).ToList();
+
+                    batchDeletedCount = currentIds.Count == 0
+                        ? 0
+                        : context.Searches
+                            .Where(search => currentIds.Contains(search.Id))
+                            .ExecuteDelete();
+
+                    if (batchDeletedCount > 0)
+                    {
+                        foreach (var search in currentBatch)
+                        {
+                            broadcasts.Add(SearchHub.BroadcastDeleteAsync(search));
+                        }
+                    }
                 }
 
-                deletedCount += batch.Count;
+                foreach (var broadcast in broadcasts)
+                {
+                    await broadcast.ConfigureAwait(false);
+                }
+
+                deletedCount += batchDeletedCount;
                 if (batch.Count < batchSize)
                 {
                     break;
@@ -1157,11 +1273,16 @@ namespace slskd.Search
 
             try
             {
-                using var context = ContextFactory.CreateDbContext();
-                context.Add(search);
-                context.SaveChanges();
+                Task createBroadcast;
+                lock (_searchPersistenceSync)
+                {
+                    using var context = ContextFactory.CreateDbContext();
+                    context.Add(search);
+                    context.SaveChanges();
+                    createBroadcast = SearchHub.BroadcastCreateAsync(search);
+                }
 
-                await SearchHub.BroadcastCreateAsync(search);
+                await createBroadcast.ConfigureAwait(false);
 
                 // T-823: Mesh-only search implementation
                 // Step 1: Resolve query to MBIDs (MusicBrainz IDs)
@@ -1197,8 +1318,12 @@ namespace slskd.Search
                     search.Responses = filteredOverlayResponses;
                     search.ResponsesAvailable = true;
                     ApplyResponseSummary(search, filteredOverlayResponses);
-                    Update(search);
-                    await SearchHub.BroadcastUpdateAsync(search);
+                    var fallbackBroadcast = PersistAndBroadcastSearchUpdate(search);
+                    if (fallbackBroadcast != null)
+                    {
+                        await fallbackBroadcast.ConfigureAwait(false);
+                    }
+
                     return search;
                 }
 
@@ -1248,8 +1373,11 @@ namespace slskd.Search
                 search.Responses = filteredResponses;
                 search.ResponsesAvailable = true;
 
-                Update(search);
-                await SearchHub.BroadcastUpdateAsync(search);
+                var completionBroadcast = PersistAndBroadcastSearchUpdate(search);
+                if (completionBroadcast != null)
+                {
+                    await completionBroadcast.ConfigureAwait(false);
+                }
 
                 Log.Information("[VSF-DISASTER-SEARCH] Mesh-only search completed: {PeerCount} peers, {FileCount} files (id: {Id})",
                     meshResults.Count, search.FileCount, id);
@@ -1263,8 +1391,11 @@ namespace slskd.Search
 
                 search.State = SearchStates.Completed;
                 search.EndedAt = DateTime.UtcNow;
-                Update(search);
-                await SearchHub.BroadcastUpdateAsync(search);
+                var failureBroadcast = PersistAndBroadcastSearchUpdate(search);
+                if (failureBroadcast != null)
+                {
+                    await failureBroadcast.ConfigureAwait(false);
+                }
 
                 throw;
             }

@@ -60,6 +60,7 @@ public sealed class WishlistServicePersistenceTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             System.IO.File.Delete(databasePath);
             System.IO.File.Delete(databasePath + "-shm");
             System.IO.File.Delete(databasePath + "-wal");
@@ -149,6 +150,7 @@ public sealed class WishlistServicePersistenceTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             System.IO.File.Delete(databasePath);
             System.IO.File.Delete(databasePath + "-shm");
             System.IO.File.Delete(databasePath + "-wal");
@@ -243,6 +245,7 @@ public sealed class WishlistServicePersistenceTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool(connectionString);
             System.IO.File.Delete(databasePath);
             System.IO.File.Delete(databasePath + "-shm");
             System.IO.File.Delete(databasePath + "-wal");

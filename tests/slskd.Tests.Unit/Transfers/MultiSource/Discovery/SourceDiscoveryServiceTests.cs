@@ -97,6 +97,7 @@ public class SourceDiscoveryServiceTests
     {
         var appDirectory = Path.Combine(Path.GetTempPath(), $"slskdn-discovery-test-{Guid.NewGuid():N}");
         System.IO.Directory.CreateDirectory(appDirectory);
+        SourceDiscoveryService? service = null;
 
         try
         {
@@ -108,7 +109,7 @@ public class SourceDiscoveryServiceTests
                 .Returns(false);
 
             var soulseekClient = new Mock<ISoulseekClient>(MockBehavior.Strict);
-            var service = new SourceDiscoveryService(
+            service = new SourceDiscoveryService(
                 appDirectory,
                 soulseekClient.Object,
                 Mock.Of<IContentVerificationService>(),
@@ -122,6 +123,13 @@ public class SourceDiscoveryServiceTests
         }
         finally
         {
+            if (service is not null)
+            {
+                await service.StopDiscoveryAsync();
+                service.Dispose();
+            }
+
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(appDirectory, "discovery", "discovery.db")}");
             System.IO.Directory.Delete(appDirectory, recursive: true);
         }
     }

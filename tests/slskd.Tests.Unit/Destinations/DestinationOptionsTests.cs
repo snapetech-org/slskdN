@@ -11,7 +11,7 @@ public class DestinationOptionsTests
     [Fact]
     public void Validate_WithOneAbsoluteDefault_Succeeds()
     {
-        var options = CreateOptions(("/downloads/music", true));
+        var options = CreateOptions((Path.Combine(Path.GetTempPath(), "downloads", "music"), true));
 
         Assert.Empty(options.Validate(new ValidationContext(options)));
     }
@@ -20,8 +20,8 @@ public class DestinationOptionsTests
     public void Validate_WithMultipleDefaults_ReturnsValidationError()
     {
         var options = CreateOptions(
-            ("/downloads/music", true),
-            ("/downloads/audiobooks", true));
+            (Path.Combine(Path.GetTempPath(), "downloads", "music"), true),
+            (Path.Combine(Path.GetTempPath(), "downloads", "audiobooks"), true));
 
         var result = Assert.Single(options.Validate(new ValidationContext(options)));
 

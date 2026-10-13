@@ -1357,6 +1357,8 @@ namespace slskd
                     /// <summary>
                     ///     Gets a value indicating how partial files are handled before a retry.
                     /// </summary>
+                    [Argument(default, "download-retry-incomplete")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_INCOMPLETE")]
                     [Description("how to handle partial files when retrying a direct Soulseek download: overwrite or resume")]
                     [Enum(typeof(slskd.Transfers.RetryIncompleteStrategy))]
                     public string Incomplete { get; init; } = slskd.Transfers.RetryIncompleteStrategy.Resume.ToString().ToLowerInvariant();
@@ -1364,18 +1366,27 @@ namespace slskd
                     /// <summary>
                     ///     Gets the maximum number of direct Soulseek transfer attempts.
                     /// </summary>
+                    [Argument(default, "download-retry-attempts")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_ATTEMPTS")]
+                    [Description("maximum number of direct Soulseek download attempts")]
                     [Range(1, 20)]
                     public int Attempts { get; init; } = 1;
 
                     /// <summary>
                     ///     Gets the initial retry delay in milliseconds.
                     /// </summary>
+                    [Argument(default, "download-retry-delay")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_DELAY")]
+                    [Description("initial delay between direct Soulseek download attempts in milliseconds")]
                     [Range(0, 3600000)]
                     public int Delay { get; init; } = 5000;
 
                     /// <summary>
                     ///     Gets the maximum retry delay in milliseconds.
                     /// </summary>
+                    [Argument(default, "download-retry-max-delay")]
+                    [EnvironmentVariable("DOWNLOAD_RETRY_MAX_DELAY")]
+                    [Description("maximum delay between direct Soulseek download attempts in milliseconds")]
                     [Range(1000, 86400000)]
                     public int MaxDelay { get; init; } = 60000;
                 }
@@ -2423,18 +2434,27 @@ namespace slskd
             /// <summary>
             ///     Gets the time to retain searches, in minutes.
             /// </summary>
+            [Argument(default, "retention-search")]
+            [EnvironmentVariable("RETENTION_SEARCH")]
+            [Description("time to retain completed search records, in minutes")]
             [Range(5, maximum: int.MaxValue)]
             public int? Search { get; init; } = null;
 
             /// <summary>
             ///     Gets the time to retain events, in days. Defaults to 30 days.
             /// </summary>
+            [Argument(default, "retention-events")]
+            [EnvironmentVariable("RETENTION_EVENTS")]
+            [Description("time to retain event records, in days")]
             [Range(1, maximum: int.MaxValue)]
             public int Events { get; init; } = 30;
 
             /// <summary>
             ///     Gets the maximum number of event records to retain. Defaults to 10,000; zero disables the count limit.
             /// </summary>
+            [Argument(default, "retention-events-max-count")]
+            [EnvironmentVariable("RETENTION_EVENTS_MAX_COUNT")]
+            [Description("maximum number of event records to retain (0 = no count limit)")]
             [Range(0, maximum: int.MaxValue)]
             public int EventsMaxCount { get; init; } = 10_000;
 
@@ -2453,6 +2473,9 @@ namespace slskd
             /// <summary>
             ///     Gets the time to retain logs, in days.
             /// </summary>
+            [Argument(default, "retention-logs")]
+            [EnvironmentVariable("RETENTION_LOGS")]
+            [Description("time to retain application logs, in days (minimum 2)")]
             [Range(2, maximum: int.MaxValue)]
             public int Logs { get; init; } = 14;
 
@@ -2464,6 +2487,9 @@ namespace slskd
                 /// <summary>
                 ///     Gets the time to retain soft-removed, completed transfers, in minutes. Defaults to seven days.
                 /// </summary>
+                [Argument(default, "retention-transfers-removed")]
+                [EnvironmentVariable("RETENTION_TRANSFERS_REMOVED")]
+                [Description("time to retain soft-removed transfers, in minutes")]
                 [Range(5, maximum: int.MaxValue)]
                 public int? Removed { get; init; } = 10_080;
 
@@ -2471,34 +2497,76 @@ namespace slskd
                 ///     Gets upload retention options.
                 /// </summary>
                 [Validate]
-                public TransferTypeRetentionOptions Upload { get; init; } = new TransferTypeRetentionOptions();
+                public UploadTransferRetentionOptions Upload { get; init; } = new UploadTransferRetentionOptions();
 
                 /// <summary>
                 ///     Gets download retention options.
                 /// </summary>
                 [Validate]
-                public TransferTypeRetentionOptions Download { get; init; } = new TransferTypeRetentionOptions();
+                public DownloadTransferRetentionOptions Download { get; init; } = new DownloadTransferRetentionOptions();
 
                 /// <summary>
-                ///     Transfer retention options.
+                ///     Upload retention options.
                 /// </summary>
-                public class TransferTypeRetentionOptions
+                public class UploadTransferRetentionOptions
                 {
                     /// <summary>
                     ///     Gets the time to retain successful transfers, in minutes.
                     /// </summary>
+                    [Argument(default, "retention-transfers-upload-succeeded")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_UPLOAD_SUCCEEDED")]
+                    [Description("time to retain succeeded uploads, in minutes")]
                     [Range(5, maximum: int.MaxValue)]
                     public int? Succeeded { get; init; } = null;
 
                     /// <summary>
                     ///     Gets the time to retain errored transfers, in minutes.
                     /// </summary>
+                    [Argument(default, "retention-transfers-upload-errored")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_UPLOAD_ERRORED")]
+                    [Description("time to retain errored uploads, in minutes")]
                     [Range(5, maximum: int.MaxValue)]
                     public int? Errored { get; init; } = null;
 
                     /// <summary>
                     ///     Gets the time to retain cancelled transfers, in minutes.
                     /// </summary>
+                    [Argument(default, "retention-transfers-upload-cancelled")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_UPLOAD_CANCELLED")]
+                    [Description("time to retain cancelled uploads, in minutes")]
+                    [Range(5, maximum: int.MaxValue)]
+                    public int? Cancelled { get; init; } = null;
+                }
+
+                /// <summary>
+                ///     Download retention options.
+                /// </summary>
+                public class DownloadTransferRetentionOptions
+                {
+                    /// <summary>
+                    ///     Gets the time to retain successful transfers, in minutes.
+                    /// </summary>
+                    [Argument(default, "retention-transfers-download-succeeded")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_DOWNLOAD_SUCCEEDED")]
+                    [Description("time to retain succeeded downloads, in minutes")]
+                    [Range(5, maximum: int.MaxValue)]
+                    public int? Succeeded { get; init; } = null;
+
+                    /// <summary>
+                    ///     Gets the time to retain errored transfers, in minutes.
+                    /// </summary>
+                    [Argument(default, "retention-transfers-download-errored")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_DOWNLOAD_ERRORED")]
+                    [Description("time to retain errored downloads, in minutes")]
+                    [Range(5, maximum: int.MaxValue)]
+                    public int? Errored { get; init; } = null;
+
+                    /// <summary>
+                    ///     Gets the time to retain cancelled transfers, in minutes.
+                    /// </summary>
+                    [Argument(default, "retention-transfers-download-cancelled")]
+                    [EnvironmentVariable("RETENTION_TRANSFERS_DOWNLOAD_CANCELLED")]
+                    [Description("time to retain cancelled downloads, in minutes")]
                     [Range(5, maximum: int.MaxValue)]
                     public int? Cancelled { get; init; } = null;
                 }
@@ -2512,12 +2580,18 @@ namespace slskd
                 /// <summary>
                 ///     Gets the time to retain completed files, in minutes.
                 /// </summary>
+                [Argument(default, "retention-files-complete")]
+                [EnvironmentVariable("RETENTION_FILES_COMPLETE")]
+                [Description("time to retain completed files, in minutes")]
                 [Range(30, maximum: int.MaxValue)]
                 public int? Complete { get; init; } = null;
 
                 /// <summary>
                 ///     Gets the time to retain incomplete files, in minutes.
                 /// </summary>
+                [Argument(default, "retention-files-incomplete")]
+                [EnvironmentVariable("RETENTION_FILES_INCOMPLETE")]
+                [Description("time to retain incomplete files, in minutes")]
                 [Range(30, maximum: int.MaxValue)]
                 public int? Incomplete { get; init; } = null;
             }

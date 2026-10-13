@@ -26,7 +26,7 @@ public class ApplicationBrowseCacheTests
 
             using var stream = Application.OpenBrowseCacheReadStream(destination);
 
-            File.Move(replacement, destination, overwrite: true);
+            Application.ReplaceBrowseCacheFile(replacement, destination);
 
             using var reader = new StreamReader(stream, Encoding.UTF8, detectEncodingFromByteOrderMarks: true, leaveOpen: false);
             var existingReaderContents = reader.ReadToEnd();

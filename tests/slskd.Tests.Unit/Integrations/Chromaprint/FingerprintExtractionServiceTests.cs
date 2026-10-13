@@ -64,7 +64,7 @@ public class FingerprintExtractionServiceTests
                 Chromaprint = new ChromaprintOptions
                 {
                     Enabled = true,
-                    FfmpegPath = GetProcessPath(),
+                    FfmpegPath = GetFakeFfmpegPath(),
                     SampleRate = 1,
                     Channels = 1,
                     DurationSeconds = 1,
@@ -80,8 +80,9 @@ public class FingerprintExtractionServiceTests
 
         try
         {
+            using var cancellation = new CancellationTokenSource(TimeSpan.FromSeconds(10));
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                service.ExtractFingerprintAsync(filePath));
+                service.ExtractFingerprintAsync(filePath, cancellation.Token));
 
             Assert.Contains("no PCM output", exception.Message, StringComparison.Ordinal);
             Assert.DoesNotContain("StandardError has not been redirected", exception.Message, StringComparison.Ordinal);
@@ -168,9 +169,10 @@ public class FingerprintExtractionServiceTests
         Assert.Equal("decoder failed\\r\\nforged", FingerprintExtractionService.FormatDiagnostic("decoder failed\r\nforged"));
     }
 
-    private static string GetProcessPath()
+    private static string GetFakeFfmpegPath()
     {
-        return OperatingSystem.IsWindows() ? "cmd.exe" : "/bin/sh";
+        var executableName = OperatingSystem.IsWindows() ? "slskd.Tests.FakeFfmpeg.exe" : "slskd.Tests.FakeFfmpeg";
+        return Path.Combine(AppContext.BaseDirectory, "fake-ffmpeg", executableName);
     }
 
     private static bool IsProcessRunning(int processId)

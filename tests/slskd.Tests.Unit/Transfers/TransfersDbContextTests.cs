@@ -324,6 +324,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -387,6 +388,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -457,6 +459,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -529,6 +532,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -611,6 +615,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }
@@ -676,6 +681,7 @@ public sealed class TransfersDbContextTests
         }
         finally
         {
+            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={databasePath}");
             System.IO.File.Delete(databasePath);
         }
     }

@@ -270,7 +270,15 @@ namespace slskd.Files
         /// <exception cref="ArgumentException">Thrown if the specified directory has a relative path.</exception>
         /// <exception cref="NotFoundException">Thrown if the specified directory does not exist.</exception>
         /// <exception cref="UnauthorizedException">Thrown if the specified root directory is restricted.</exception>
-        public virtual async Task<FilesystemDirectory> ListContentsAsync(string directory, EnumerationOptions? enumerationOptions = null)
+        public virtual Task<FilesystemDirectory> ListContentsAsync(
+            string directory,
+            EnumerationOptions? enumerationOptions = null)
+            => ListContentsAsync(directory, enumerationOptions, includeDirectorySizes: false);
+
+        public virtual async Task<FilesystemDirectory> ListContentsAsync(
+            string directory,
+            EnumerationOptions? enumerationOptions,
+            bool includeDirectorySizes)
         {
             if (Path.GetFullPath(directory) != directory)
             {
@@ -303,6 +311,7 @@ namespace slskd.Files
                         : dir.EnumerateFileSystemInfos("*", enumerationOptions);
                     var files = new List<FilesystemFile>();
                     var dirs = new List<FilesystemDirectory>();
+                    var directoryInfos = new List<DirectoryInfo>();
 
                     foreach (var content in contents)
                     {
@@ -319,7 +328,17 @@ namespace slskd.Files
                             {
                                 FullName = subdirectory.FullName.ReplaceFirst(directory, string.Empty).TrimStart('\\', '/'),
                             });
+                            directoryInfos.Add(subdirectory);
                         }
+                    }
+
+                    if (includeDirectorySizes && directoryInfos.Count > 0)
+                    {
+                        var directorySizes = CalculateDirectorySizes(directoryInfos);
+                        dirs = dirs.Select((subdirectory, index) => subdirectory with
+                        {
+                            Length = directorySizes[directoryInfos[index].FullName],
+                        }).ToList();
                     }
 
                     var response = FilesystemDirectory.FromDirectoryInfo(dir) with
@@ -336,6 +355,65 @@ namespace slskd.Files
                     throw new UnauthorizedException($"Access to directory '{directory}' was denied: {ex.Message}", ex);
                 }
             });
+        }
+
+        private static Dictionary<string, long?> CalculateDirectorySizes(IEnumerable<DirectoryInfo> directories)
+        {
+            var pathComparer = OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
+            var sizes = new Dictionary<string, long?>(pathComparer);
+            var pending = new Stack<(string Directory, string Root)>();
+
+            foreach (var directory in directories)
+            {
+                sizes.Add(directory.FullName, 0);
+                pending.Push((directory.FullName, directory.FullName));
+            }
+
+            while (pending.TryPop(out var current))
+            {
+                try
+                {
+                    foreach (var path in Directory.EnumerateFileSystemEntries(
+                        current.Directory,
+                        "*",
+                        new EnumerationOptions
+                        {
+                            AttributesToSkip = FileAttributes.System | FileAttributes.ReparsePoint,
+                            RecurseSubdirectories = false,
+                        }))
+                    {
+                        var attributes = File.GetAttributes(path);
+                        if ((attributes & (FileAttributes.System | FileAttributes.ReparsePoint)) != 0)
+                        {
+                            continue;
+                        }
+
+                        if ((attributes & FileAttributes.Directory) != 0)
+                        {
+                            pending.Push((path, current.Root));
+                            continue;
+                        }
+
+                        var currentSize = sizes[current.Root];
+                        if (currentSize.HasValue)
+                        {
+                            var fileLength = new FileInfo(path).Length;
+                            sizes[current.Root] = fileLength > long.MaxValue - currentSize.Value
+                                ? long.MaxValue
+                                : currentSize.Value + fileLength;
+                        }
+                    }
+                }
+                catch (Exception exception) when (
+                    exception is UnauthorizedAccessException ||
+                    exception is IOException ||
+                    exception is SecurityException)
+                {
+                    sizes[current.Root] = null;
+                }
+            }
+
+            return sizes;
         }
 
         /// <summary>
@@ -518,20 +596,44 @@ namespace slskd.Files
                 return;
             }
 
+            var incompleteRoot = Path.GetFullPath(OptionsMonitor.CurrentValue.Directories.Incomplete);
+            var safeRoot = PathGuard.NormalizeAbsolutePathWithinRoots(incompleteRoot, new[] { incompleteRoot });
+            var currentDirectory = PathGuard.NormalizeAbsolutePathWithinRoots(directory, new[] { incompleteRoot });
+
+            if (safeRoot is null || currentDirectory is null)
+            {
+                return;
+            }
+
+            var pathComparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+
             try
             {
-                if (Directory.Exists(directory) && !Directory.EnumerateFileSystemEntries(directory).Any())
+                while (!string.Equals(currentDirectory, safeRoot, pathComparison))
                 {
-                    Directory.Delete(directory);
+                    if (!Directory.Exists(currentDirectory) || Directory.EnumerateFileSystemEntries(currentDirectory).Any())
+                    {
+                        break;
+                    }
+
+                    Directory.Delete(currentDirectory);
+
+                    var parent = Path.GetDirectoryName(currentDirectory);
+                    if (string.IsNullOrWhiteSpace(parent) || string.Equals(parent, currentDirectory, pathComparison))
+                    {
+                        break;
+                    }
+
+                    currentDirectory = parent;
                 }
             }
             catch (IOException ex)
             {
-                Log.Debug(ex, "Skipped cleanup of non-empty source directory {Directory}", directory);
+                Log.Debug(ex, "Skipped cleanup of incomplete download directory {Directory}", LoggingSanitizer.SanitizeFilePath(currentDirectory));
             }
             catch (UnauthorizedAccessException ex)
             {
-                Log.Debug(ex, "Skipped cleanup of source directory {Directory}", directory);
+                Log.Debug(ex, "Skipped cleanup of incomplete download directory {Directory}", LoggingSanitizer.SanitizeFilePath(currentDirectory));
             }
         }
     }

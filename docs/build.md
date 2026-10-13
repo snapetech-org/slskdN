@@ -129,6 +129,13 @@ scripts/verify-release-artifacts.sh <tag>
 - **CI Workflow** (`ci.yml`): Runs on tags only (not on code pushes)
 - **Build on Tag** (`build-on-tag.yml`): Full release with packages for `build-main-*` and `build-dev-*`
 
+If a stable release already exists but one or more package publishers failed,
+maintainers can manually run **Build on Tag** on the current default branch,
+provide the original `build-main-*` tag, and select only the failed publisher
+targets. This recovery path reuses the published release assets and skips
+rebuilding binaries, creating another release, repeating announcements, and
+republishing successful targets.
+
 See `memory-bank/decisions/adr-0005-tagging-system.md` for historical tag format details.
 
 ## Hard Way
