@@ -33,12 +33,16 @@
 - [x] Preserve hosted routing for public pull requests and non-main manual runs.
 - [x] Preserve the existing tag, pull-request, and manual CI triggers.
 - [x] Keep the standalone load harness on hosted Linux after the local SIGBUS.
+- [x] Bound validation task logs and pin sandbox mounts through inherited
+  descriptors; exclude extensionless credential names while retaining
+  token-named source files.
 - [x] Pass focused workflow policy, runtime matrix, YAML, and diff checks.
-- [ ] Verify exact-head hosted PR and main manual validation; classify the previous
-  Web unit-test and SIGBUS failures from run logs.
+- [ ] Verify exact-head hosted PR and main manual validation; classify the
+  previous Web unit-test and SIGBUS failures from run logs.
 
-Status: runner-temp implementation and focused checks are complete; exact-head
-CI is pending. Ordinary branch-push builds are intentionally not added.
+Status: runner-temp and sandbox hardening are implemented. The trusted launcher
+and engine focused suite pass 20/20; exact-head CI is pending. Ordinary
+branch-push builds are intentionally not added.
 
 ### Public pull-request runner isolation — 2026-10-12
 
