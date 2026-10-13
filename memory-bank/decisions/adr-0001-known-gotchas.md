@@ -4,6 +4,21 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1803. Open The SQLite Cleanup Connection Before Clearing Its Pool (2026-10-13)
+
+**What went wrong:** The test cleanup helper called `SqliteConnection.ClearPool`
+with a connection that had never been opened. Windows kept a pooled database
+file handle alive, so deleting the test database failed even though the test
+repository had been disposed.
+
+**Why:** The provider associates an opened connection with its pool. A
+connection that has not been opened does not reliably identify the pool whose
+file handles need to be released.
+
+**Prevention:** Open the cleanup connection before clearing its pool, dispose it
+before deleting the database, and keep the Windows unit-test job in the
+verification matrix; Unix permits unlinking open files and can hide this bug.
+
 ### 0z1802. Clear The Pool For The Database The Test Actually Opens (2026-10-13)
 
 **What went wrong:** A Windows test cleared the pool for `pods.db`, but its
