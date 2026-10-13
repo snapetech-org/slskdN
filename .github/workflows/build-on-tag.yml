@@ -73,6 +73,10 @@ jobs:
           echo "Tag: $TAG"
 
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+              echo "::error::Manual publisher recovery must run from refs/heads/main"
+              exit 1
+            fi
             if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
               echo "::error::Manual publisher recovery requires an existing build-main-* tag"
               exit 1
@@ -499,7 +503,7 @@ jobs:
   aur-main:
     name: Publish to AUR (Main - Source & Binary)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
     outputs:
       short_sha: ${{ steps.info.outputs.short_sha }}
@@ -679,7 +683,7 @@ jobs:
   copr-main:
     name: Publish to COPR (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     continue-on-error: true
     runs-on: ubuntu-latest
     steps:
@@ -867,7 +871,7 @@ jobs:
   ppa-main:
     name: Publish to PPA (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     continue-on-error: true
     runs-on: ubuntu-latest
     concurrency:
@@ -1120,7 +1124,7 @@ jobs:
   docker-main:
     name: Build and Push Docker (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
@@ -1372,7 +1376,7 @@ jobs:
   nix-main:
     name: Update Nix/Main Release Metadata
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -173,6 +173,8 @@ def job_block(workflow, job):
 parse_job = job_block(tag_workflow, "parse")
 if "Manual publisher recovery requires an existing build-main-* tag" not in parse_job:
     raise SystemExit("manual publisher recovery must accept only stable build tags")
+if 'Manual publisher recovery must run from refs/heads/main' not in parse_job or '"$GITHUB_REF" != "refs/heads/main"' not in parse_job:
+    raise SystemExit("manual publisher recovery must reject non-main workflow refs")
 if not re.search(r"(?m)^    permissions:\n      contents: read$", parse_job):
     raise SystemExit("manual publisher recovery must use a read-only token to verify the release")
 if "GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}" not in parse_job:
@@ -192,6 +194,8 @@ for job, retry_input in {
     block = job_block(tag_workflow, job)
     if f"inputs.{retry_input}" not in block or "needs.release-main.result == 'success'" not in block:
         raise SystemExit(f"{job} must be selected explicitly for recovery and gated on the normal release")
+    if "github.ref == 'refs/heads/main'" not in block:
+        raise SystemExit(f"{job} must reject manual publisher recovery outside main")
     if "ref: ${{ inputs.tag || github.ref }}" not in block:
         raise SystemExit(f"{job} must read source from the selected release tag during recovery")
 

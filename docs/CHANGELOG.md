@@ -40,8 +40,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
   container scan blocks high or critical findings with available fixes.
   Required test failures are no longer hidden as successful runs.
 - Maintainers can retry selected failed publishers for an existing stable
-  release using its published assets, without rebuilding or repeating
-  successful publishers and announcements.
+  release from the trusted `main` workflow, using published assets without
+  rebuilding or repeating successful publishers and announcements.
 
 - Manual CI runs can select a GitHub-hosted runner while tag builds retain the
   configured runner policy.
