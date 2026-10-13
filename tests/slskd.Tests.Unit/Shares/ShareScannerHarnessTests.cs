@@ -164,7 +164,8 @@ public class ShareScannerHarnessTests
                 using (var poolConnection = new SqliteConnection($"Data Source={databasePath}"))
                 {
                     // CountFiles runs after the earlier pool clear and can rent a new connection.
-                    // Clear this per-database pool again after the repository is disposed.
+                    // Open before clearing so SQLite resolves the exact per-database pool.
+                    poolConnection.Open();
                     SqliteConnection.ClearPool(poolConnection);
                 }
 

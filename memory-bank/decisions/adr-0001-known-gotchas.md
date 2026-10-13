@@ -13,9 +13,11 @@ the test could not delete its database during cleanup.
 **Why:** `ClearPool` removes the currently idle connections, but later repository
 operations can repopulate the same pool before the repository is disposed.
 
-**Prevention:** Dispose the test-owned repository, clear only that database's
-pool after its final operation, then delete the file. Keep any lock retry bounded
-to Windows sharing or lock violations; do not clear unrelated pools globally.
+**Prevention:** Dispose the test-owned repository, open a cleanup connection to
+the same database, clear only that database's pool after its final operation,
+dispose the cleanup connection, then delete the file. Keep any lock retry
+bounded to Windows sharing or lock violations; do not clear unrelated pools
+globally.
 
 ### 0z1824. Keep Share-Scan Harness Pooling Representative (2026-10-13)
 
