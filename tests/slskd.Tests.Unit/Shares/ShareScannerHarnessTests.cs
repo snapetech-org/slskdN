@@ -67,7 +67,7 @@ public class ShareScannerHarnessTests
             {
                 if (File.Exists(filename))
                 {
-                    File.Delete(filename);
+                    DeleteTestFileWithWindowsLockRetry(filename);
                 }
             }
         }
@@ -103,7 +103,7 @@ public class ShareScannerHarnessTests
                 scanner,
                 shareRoot,
                 repository,
-                TimeSpan.FromSeconds(90),
+                TimeSpan.FromSeconds(30),
                 "Synthetic share-scan harness").ConfigureAwait(false);
             stopwatch.Stop();
 
@@ -153,22 +153,22 @@ public class ShareScannerHarnessTests
 
             if (File.Exists(databasePath))
             {
-                File.Delete(databasePath);
+                DeleteTestFileWithWindowsLockRetry(databasePath);
             }
 
             if (File.Exists(databaseCopyPath))
             {
-                File.Delete(databaseCopyPath);
+                DeleteTestFileWithWindowsLockRetry(databaseCopyPath);
             }
 
             if (File.Exists(backupDatabasePath))
             {
-                File.Delete(backupDatabasePath);
+                DeleteTestFileWithWindowsLockRetry(backupDatabasePath);
             }
 
             if (File.Exists(backupCopyPath))
             {
-                File.Delete(backupCopyPath);
+                DeleteTestFileWithWindowsLockRetry(backupCopyPath);
             }
         }
     }
@@ -225,7 +225,7 @@ public class ShareScannerHarnessTests
 
             if (File.Exists(databasePath))
             {
-                File.Delete(databasePath);
+                DeleteTestFileWithWindowsLockRetry(databasePath);
             }
         }
     }
@@ -299,7 +299,7 @@ public class ShareScannerHarnessTests
         {
             if (File.Exists(databasePath))
             {
-                File.Delete(databasePath);
+                DeleteTestFileWithWindowsLockRetry(databasePath);
             }
         }
     }
@@ -391,6 +391,34 @@ public class ShareScannerHarnessTests
         }
 
         await scanTask.ConfigureAwait(false);
+    }
+
+    private void DeleteTestFileWithWindowsLockRetry(string filename)
+    {
+        const int maximumAttempts = 6;
+
+        for (var attempt = 0; ; attempt++)
+        {
+            try
+            {
+                File.Delete(filename);
+
+                if (attempt > 0)
+                {
+                    output.WriteLine(
+                        $"Deleted {Path.GetFileName(filename)} after {attempt} Windows sharing-lock retries.");
+                }
+
+                return;
+            }
+            catch (IOException exception) when (
+                OperatingSystem.IsWindows()
+                && attempt < maximumAttempts - 1
+                && ((exception.HResult & 0xFFFF) is 32 or 33))
+            {
+                Thread.Sleep(TimeSpan.FromMilliseconds(50 * (1 << attempt)));
+            }
+        }
     }
 
     private sealed class FastSoulseekFileFactory : ISoulseekFileFactory
