@@ -1,3 +1,36 @@
+## Current state — PR #357 merged candidate awaiting exact-head validation — 2026-10-13 22:05 UTC
+
+The local candidate is `c1f123faa` on `codex/pr357-windows-gate-repair-20261013`.
+It merges current `origin/main` at `37d197d7c` and carries the two later
+benchmark-gate commits from the screenshot worktree. The GitHub PR still points
+to `e13ea38f5`; the candidate has not been pushed yet. The pre-merge PR head's
+CI and Windows Smoke runs were canceled, so neither is counted as passing. Its
+other 13 hosted checks succeeded. The PR has 21 review threads, all currently
+resolved; recheck them against the final head before merging.
+
+The merge preserves the newer main source and tests while retaining the PR's
+runner isolation and Windows database cleanup. The performance workflow now
+uses one workspace-rooted `BENCHMARK_ARTIFACTS` directory for BenchmarkDotNet,
+verification, and artifact upload; a contract test covers all three paths.
+Local `./bin/lint`, workflow-trigger policy, benchmark verifier tests (5/5),
+and the Release unit-project build passed. The first `--no-restore` build lacked
+the FakeFfmpeg assets; the normal restore-and-build succeeded with zero
+warnings or errors. The focused share-scan test did not produce a local result:
+an earlier run exceeded its 30-second timeout under high host load, so Windows
+behavior still needs exact-head hosted verification.
+
+The refreshed candidate discovery report contains 12,989 red-team matches,
+76 above an exact `origin/main` scan at 12,913. They are review candidates, not
+confirmed defects. All six active-backlog counts match the current scan.
+
+### Next Steps
+
+- Finish the release-note preview and final source review, then push this
+  candidate to PR #357.
+- Reconcile the full required hosted gate and Windows Smoke against the exact
+  pushed hash; do not count canceled or stale jobs.
+- Recheck review threads and merge only after the exact-head gate is green.
+
 ## Current state — Stable `.350` publication follow-through — 2026-10-13 08:51 UTC
 
 Stable release `2026101222-slskdn.350` is published with 13 assets; all six

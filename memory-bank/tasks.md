@@ -26,6 +26,22 @@
 
 ## Active Development
 
+### PR #357 Windows and validation gate — 2026-10-13
+
+- [x] Merge current `origin/main` (`37d197d7c`) into the PR candidate while
+  preserving both branches' source, test, and documentation changes.
+- [x] Integrate the later benchmark-path commits from
+  `codex/runner-temp-dotnet-20261012-update` and use one workspace-rooted
+  artifact location for benchmark output, verification, and upload.
+- [x] Pass `./bin/lint`, workflow-trigger policy, the benchmark verifier
+  contract (5/5), and the Release unit-project build (zero warnings/errors).
+- [x] Refresh the active backlog from the merged candidate and exact
+  `origin/main`; the red-team discovery delta is 76, not a defect count.
+- [ ] Preview release notes, push the candidate, and verify every required
+  hosted check on the exact pushed hash, including Windows Smoke.
+- [ ] Recheck all 21 PR review threads and merge only after the final exact-head
+  gate succeeds.
+
 ### Files API and responsive system workflows — 2026-10-13
 
 - [x] Add on-demand subtree sizes and guarded multi-item file/directory deletion

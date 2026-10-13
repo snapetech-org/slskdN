@@ -1,3 +1,24 @@
+# Update 2026-10-13 22:05 UTC — Reconcile PR #357 with current main
+
+Candidate `c1f123faa` now merges exact `origin/main` `37d197d7c` while retaining
+the PR work, plus the two later benchmark-artifact commits from the screenshot
+worktree. Conflict resolution keeps main's current app/test behavior and the
+candidate's runner-security and Windows cleanup changes. Benchmark output,
+verification, and upload now share one workspace-rooted artifact directory;
+the workflow contract test asserts that path. `./bin/lint`, the workflow
+trigger-policy check, five benchmark-verifier tests, and the Release unit
+project build pass. The build succeeded after restore generated the missing
+FakeFfmpeg assets. No full local unit suite result is claimed: a prior
+share-scan attempt exceeded its 30-second bound under high load.
+
+The old remote PR head is still `e13ea38f5`; its Build and Test and Windows
+Smoke jobs were canceled, while the other 13 checks succeeded. Those results
+are stale for this local candidate. The refreshed candidate scan reports
+12,989 red-team matches versus 12,913 on exact `origin/main`; the 76 additional
+lines are in validation, benchmark, workflow-policy, and testing-guidance
+files. All active-backlog rows match the scan. Push and exact-head hosted
+validation remain pending.
+
 # Update 2026-10-13 — Validate malformed benchmark report shapes
 
 Final review reproduced a malformed BenchmarkDotNet report root reaching an

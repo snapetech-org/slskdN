@@ -29,6 +29,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
   string after their repositories close, so Windows can remove the database.
 - Windows Smoke no longer asks setup-node to save a pnpm cache for a job that
   does not install JavaScript packages.
+- The performance gate generates, verifies, and uploads benchmark reports from
+  one workspace-rooted directory.
 
 ## [2026101321-slskdn.351] — 2026-10-13
 
