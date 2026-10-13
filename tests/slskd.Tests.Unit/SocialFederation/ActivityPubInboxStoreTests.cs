@@ -15,6 +15,11 @@ public sealed class ActivityPubInboxStoreTests : IDisposable
 
     public void Dispose()
     {
+        using (var poolConnection = new Microsoft.Data.Sqlite.SqliteConnection($"Data Source={_dbPath}"))
+        {
+            Microsoft.Data.Sqlite.SqliteConnection.ClearPool(poolConnection);
+        }
+
         File.Delete(_dbPath);
     }
 

@@ -245,7 +245,7 @@ public class HashDbControllerTests
     {
         var dbPath = Path.Combine(Path.GetTempPath(), $"hashdb-controller-{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<SearchDbContext>()
-            .UseSqlite($"Data Source={dbPath}")
+            .UseSqlite($"Data Source={dbPath};Pooling=False")
             .Options;
         var newest = DateTime.UtcNow;
         var oldest = newest.AddMinutes(-2);

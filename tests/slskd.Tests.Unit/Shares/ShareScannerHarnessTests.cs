@@ -43,7 +43,7 @@ public class ShareScannerHarnessTests
                 fileService: CreateNoHashFileService(),
                 moderationProvider: new slskd.Common.Moderation.NoopModerationProvider());
 
-            using var repository = new SqliteShareRepository($"Data Source={databasePath}");
+            using var repository = new SqliteShareRepository($"Data Source={databasePath};Pooling=False");
             repository.Create(discardExisting: true);
 
             var snapshots = new ConcurrentQueue<slskd.SharedFileCacheState>();
@@ -68,7 +68,7 @@ public class ShareScannerHarnessTests
                 Assert.Equal(expectedFiles, Convert.ToInt32(command.ExecuteScalar()));
             }
 
-            using var backupRepository = new SqliteShareRepository($"Data Source={backupDatabasePath}");
+            using var backupRepository = new SqliteShareRepository($"Data Source={backupDatabasePath};Pooling=False");
             repository.BackupTo(backupRepository);
             File.Copy(backupDatabasePath, backupCopyPath);
             using (var copiedBackup = new SqliteConnection($"Data Source={backupCopyPath};Pooling=False"))
@@ -154,7 +154,7 @@ public class ShareScannerHarnessTests
                 moderationProvider: new slskd.Common.Moderation.NoopModerationProvider(),
                 soulseekFileFactory: skipMediaAttributes ? new FastSoulseekFileFactory(fileService) : null);
 
-            using var repository = new SqliteShareRepository($"Data Source={databasePath}");
+            using var repository = new SqliteShareRepository($"Data Source={databasePath};Pooling=False");
             repository.Create(discardExisting: true);
 
             var snapshots = new ConcurrentQueue<slskd.SharedFileCacheState>();

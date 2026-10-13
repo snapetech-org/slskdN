@@ -83,7 +83,10 @@ public class FingerprintExtractionServiceTests
             var exception = await Assert.ThrowsAsync<InvalidOperationException>(() =>
                 service.ExtractFingerprintAsync(filePath));
 
-            Assert.Contains("no PCM output", exception.Message, StringComparison.Ordinal);
+            var expectedErrorPrefix = OperatingSystem.IsWindows()
+                ? "ffmpeg produced more PCM output than expected"
+                : "ffmpeg produced no PCM output";
+            Assert.StartsWith(expectedErrorPrefix, exception.Message, StringComparison.Ordinal);
             Assert.DoesNotContain("StandardError has not been redirected", exception.Message, StringComparison.Ordinal);
         }
         finally

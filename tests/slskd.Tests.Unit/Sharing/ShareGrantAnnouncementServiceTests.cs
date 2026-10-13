@@ -213,7 +213,7 @@ public class ShareGrantAnnouncementServiceTests
         {
             _dbPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"share_grant_{Guid.NewGuid()}.db");
             var optionsBuilder = new DbContextOptionsBuilder<CollectionsDbContext>()
-                .UseSqlite($"Data Source={_dbPath}");
+                .UseSqlite($"Data Source={_dbPath};Pooling=False");
             if (interceptors.Length > 0)
             {
                 optionsBuilder.AddInterceptors(interceptors);

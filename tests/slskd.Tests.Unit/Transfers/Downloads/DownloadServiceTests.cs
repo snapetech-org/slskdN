@@ -55,7 +55,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         var now = DateTime.UtcNow;
         var expiredId = Guid.NewGuid();
@@ -118,7 +118,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -183,7 +183,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -242,7 +242,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -363,7 +363,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -446,7 +446,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         var existingId = Guid.NewGuid();
         var latestExistingId = Guid.NewGuid();
@@ -536,7 +536,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -605,7 +605,7 @@ public class DownloadServiceTests
         System.IO.Directory.CreateSymbolicLink(linkDirectory, outsideDirectory);
 
         var databaseOptions = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         await using (var context = new TransfersDbContext(databaseOptions))
         {
@@ -688,7 +688,7 @@ public class DownloadServiceTests
         System.IO.Directory.CreateDirectory(workDirectory);
 
         var databaseOptions = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         await using (var context = new TransfersDbContext(databaseOptions))
         {
@@ -834,7 +834,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         var transfer = new slskd.Transfers.Transfer
         {
@@ -897,7 +897,7 @@ public class DownloadServiceTests
 
         var transferId = Guid.NewGuid();
         var databaseOptions = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         await using (var context = new TransfersDbContext(databaseOptions))
         {
@@ -948,7 +948,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         var transferId = Guid.NewGuid();
 
@@ -999,7 +999,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         var transferId = Guid.NewGuid();
 
@@ -1050,7 +1050,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1112,7 +1112,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1167,7 +1167,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1390,7 +1390,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         var now = DateTime.UtcNow;
         var oldest = CreateFailedDownload("alice", "oldest.flac", now.AddHours(-3));
@@ -1447,7 +1447,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         var now = DateTime.UtcNow;
         var requestId = Guid.NewGuid();
@@ -1634,7 +1634,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1692,7 +1692,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1748,7 +1748,7 @@ public class DownloadServiceTests
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
 
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1836,7 +1836,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -1926,7 +1926,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))
@@ -2007,7 +2007,7 @@ public class DownloadServiceTests
     {
         var databasePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<TransfersDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new TransfersDbContext(options))

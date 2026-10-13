@@ -530,6 +530,12 @@ public sealed class SongIdServiceTests : IDisposable
         var property = typeof(Program).GetProperty(nameof(Program.AppDirectory), BindingFlags.Public | BindingFlags.Static);
         property?.SetValue(null, _originalAppDirectory);
 
+        using (var poolConnection = new Microsoft.Data.Sqlite.SqliteConnection(
+            $"Data Source={Path.Combine(_tempDir, "songid.db")}"))
+        {
+            Microsoft.Data.Sqlite.SqliteConnection.ClearPool(poolConnection);
+        }
+
         if (Directory.Exists(_tempDir))
         {
             Directory.Delete(_tempDir, true);

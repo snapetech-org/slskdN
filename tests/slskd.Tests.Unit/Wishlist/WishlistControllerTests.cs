@@ -409,7 +409,7 @@ public class WishlistControllerTests : IDisposable
     public void SearchSourceMigration_BackfillsExistingNullSources()
     {
         var dbPath = Path.Combine(Path.GetTempPath(), $"slskdn-search-migration-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={dbPath}";
+        var connectionString = $"Data Source={dbPath};Pooling=False";
 
         try
         {

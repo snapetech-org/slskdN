@@ -28,7 +28,7 @@ public sealed class SqlitePodMessageStorageTests : IDisposable
         databasePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.sqlite");
 
         contextOptions = new DbContextOptionsBuilder<PodDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         dbContext = new PodDbContext(contextOptions);
@@ -138,7 +138,7 @@ public sealed class SqlitePodMessageStorageTests : IDisposable
     [Fact]
     public async Task SearchMessagesAsync_RecoversFromExistingFtsOnlyArtifact()
     {
-        await using (var connection = new SqliteConnection($"Data Source={databasePath}"))
+        await using (var connection = new SqliteConnection($"Data Source={databasePath};Pooling=False"))
         {
             await connection.OpenAsync();
 
@@ -189,7 +189,7 @@ public sealed class SqlitePodMessageStorageTests : IDisposable
 
     private async Task<bool> TableExistsAsync(string tableName)
     {
-        await using var connection = new SqliteConnection($"Data Source={databasePath}");
+        await using var connection = new SqliteConnection($"Data Source={databasePath};Pooling=False");
         await connection.OpenAsync();
 
         await using var command = new SqliteCommand(

@@ -4,6 +4,7 @@
 namespace slskd.Tests.Integration;
 
 using System;
+using System.IO;
 using System.Net;
 using slskd.Common.Security;
 using Xunit;
@@ -84,7 +85,7 @@ public class SecurityIntegrationTests
     public void PathGuard_BlocksTraversal()
     {
         // Arrange
-        var testRoot = "/home/user/downloads";
+        var testRoot = Path.Combine(Path.GetTempPath(), "slskdn-security-tests", "downloads");
         var maliciousPath = "../../../etc/passwd";
 
         // Act
@@ -98,7 +99,7 @@ public class SecurityIntegrationTests
     public void PathGuard_AllowsValidPaths()
     {
         // Arrange
-        var testRoot = "/home/user/downloads";
+        var testRoot = Path.Combine(Path.GetTempPath(), "slskdn-security-tests", "downloads");
         var validPath = "music/album/track.flac";
 
         // Act

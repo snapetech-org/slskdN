@@ -330,12 +330,23 @@ public class ProgramPathNormalizationTests
         Assert.True(SoulseekNetworkExceptionClassifier.IsExpected(exception));
     }
 
-    [Fact]
-    public void IsExpectedSoulseekNetworkException_ReturnsTrue_ForConnectionResetByPeerFailures()
+    [Theory]
+    [InlineData(SocketError.ConnectionReset)]
+    [InlineData(SocketError.ConnectionRefused)]
+    [InlineData(SocketError.TimedOut)]
+    public void IsExpectedSoulseekNetworkException_ReturnsTrue_ForExpectedSocketFailures(SocketError socketError)
     {
-        var exception = new AggregateException(new SocketException((int)SocketError.ConnectionReset));
+        var exception = new AggregateException(new SocketException((int)socketError));
 
         Assert.True(SoulseekNetworkExceptionClassifier.IsExpected(exception));
+    }
+
+    [Fact]
+    public void IsExpectedSoulseekNetworkException_ReturnsFalse_ForUnexpectedSocketFailures()
+    {
+        var exception = new AggregateException(new SocketException((int)SocketError.AccessDenied));
+
+        Assert.False(SoulseekNetworkExceptionClassifier.IsExpected(exception));
     }
 
     [Fact]

@@ -24,7 +24,7 @@ public sealed class ShareGrantRepositoryTests : IDisposable
     public ShareGrantRepositoryTests()
     {
         var options = new DbContextOptionsBuilder<CollectionsDbContext>()
-            .UseSqlite($"Data Source={_dbPath}")
+            .UseSqlite($"Data Source={_dbPath};Pooling=False")
             .AddInterceptors(_interceptor, _materialization)
             .Options;
         _factory = new TestDbContextFactory(options);

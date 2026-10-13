@@ -36,7 +36,7 @@ public sealed class UserDataServiceCollectionExtensionsTests : IDisposable
             context.Database.EnsureCreated();
         }
 
-        using (var connection = new SqliteConnection($"Data Source={databasePath}"))
+        using (var connection = new SqliteConnection($"Data Source={databasePath};Pooling=False"))
         {
             connection.Open();
             using var command = connection.CreateCommand();
@@ -65,7 +65,7 @@ public sealed class UserDataServiceCollectionExtensionsTests : IDisposable
     public void AddSlskdUserData_WhenExistingDatabaseHasMissingTable_ThrowsAtMigrationBoundary()
     {
         var databasePath = Path.Combine(_tempDirectory, "collections.db");
-        using (var connection = new SqliteConnection($"Data Source={databasePath}"))
+        using (var connection = new SqliteConnection($"Data Source={databasePath};Pooling=False"))
         {
             connection.Open();
             using var command = connection.CreateCommand();
@@ -80,14 +80,14 @@ public sealed class UserDataServiceCollectionExtensionsTests : IDisposable
     private static CollectionsDbContext CreateCollectionsContext(string databasePath)
     {
         var options = new DbContextOptionsBuilder<CollectionsDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
         return new CollectionsDbContext(options);
     }
 
     private static HashSet<string> GetColumnNames(string databasePath, string tableName)
     {
-        using var connection = new SqliteConnection($"Data Source={databasePath}");
+        using var connection = new SqliteConnection($"Data Source={databasePath};Pooling=False");
         connection.Open();
         using var command = connection.CreateCommand();
         command.CommandText = $"PRAGMA table_info(\"{tableName}\")";

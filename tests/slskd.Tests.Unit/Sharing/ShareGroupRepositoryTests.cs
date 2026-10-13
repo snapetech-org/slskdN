@@ -25,7 +25,7 @@ public class ShareGroupRepositoryTests : IDisposable
     {
         _dbPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), $"test_{Guid.NewGuid()}.db");
         var options = new DbContextOptionsBuilder<CollectionsDbContext>()
-            .UseSqlite($"Data Source={_dbPath}")
+            .UseSqlite($"Data Source={_dbPath};Pooling=False")
             .AddInterceptors(_commands)
             .Options;
         _factory = new TestDbContextFactory(options);

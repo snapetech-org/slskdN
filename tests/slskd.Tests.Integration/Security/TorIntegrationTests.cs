@@ -526,9 +526,7 @@ public class TorIntegrationTests
                         await WriteFragmentedAsync(stream, handshakeResponse, FragmentHandshakeResponse, ct);
                     }
 
-                    // Read connect request (simplified - just consume the data)
-                    var connectRequest = new byte[10];
-                    await stream.ReadExactlyAsync(connectRequest, ct);
+                    await ReadConnectRequestAsync(stream, ct);
 
                     // Send success response
                     var connectResponse = ConnectResponse ??
@@ -547,6 +545,34 @@ public class TorIntegrationTests
                 // Connection handling error - expected in some test cases
                 Console.WriteLine($"Mock server error: {ex.Message}");
             }
+        }
+
+        private static async Task ReadConnectRequestAsync(Stream stream, CancellationToken cancellationToken)
+        {
+            var header = new byte[4];
+            await stream.ReadExactlyAsync(header, cancellationToken);
+            if (header[0] != 0x05)
+            {
+                throw new InvalidDataException("Expected a SOCKS5 connect request.");
+            }
+
+            var remainingAddressAndPortLength = header[3] switch
+            {
+                0x01 => 4 + 2,
+                0x04 => 16 + 2,
+                0x03 => await ReadDomainAddressAndPortLengthAsync(stream, cancellationToken),
+                _ => throw new InvalidDataException("Unsupported SOCKS5 address type."),
+            };
+
+            var remainingAddressAndPort = new byte[remainingAddressAndPortLength];
+            await stream.ReadExactlyAsync(remainingAddressAndPort, cancellationToken);
+        }
+
+        private static async Task<int> ReadDomainAddressAndPortLengthAsync(Stream stream, CancellationToken cancellationToken)
+        {
+            var length = new byte[1];
+            await stream.ReadExactlyAsync(length, cancellationToken);
+            return length[0] + 2;
         }
 
         private static async Task WriteFragmentedAsync(Stream stream, byte[] payload, bool fragment, CancellationToken ct)

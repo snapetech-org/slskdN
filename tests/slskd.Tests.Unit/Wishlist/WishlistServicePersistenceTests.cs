@@ -24,7 +24,7 @@ public sealed class WishlistServicePersistenceTests
     public void LidarrWishlistTrackingMigration_AddsColumnsIdempotently()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"wishlist-lidarr-tracking-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
         try
         {
             using (var connection = new SqliteConnection(connectionString))
@@ -70,7 +70,7 @@ public sealed class WishlistServicePersistenceTests
     public async Task FindBySearchTextAsync_UsesCaseInsensitiveIndexAndHydratesOneRow()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"wishlist-lookup-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
         try
         {
             var commandCapture = new CommandCaptureInterceptor();
@@ -159,7 +159,7 @@ public sealed class WishlistServicePersistenceTests
     public async Task IgnoreResultAsync_UsesCaseInsensitiveCompositeIndexAndHydratesOneRule()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"wishlist-ignore-lookup-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
         try
         {
             var commandCapture = new CommandCaptureInterceptor();

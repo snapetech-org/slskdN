@@ -4,6 +4,7 @@
 namespace slskd.Tests.Unit;
 
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using Xunit;
 
@@ -294,7 +295,7 @@ public class SoulseekOptionsValidationTests
     {
         var options = new Options.SharesOptions
         {
-            Directories = new[] { "[music]/tmp/music]archive" },
+            Directories = new[] { $"[music]{Path.Combine(Path.GetTempPath(), "music]archive")}" },
         };
 
         var results = options.Validate(new ValidationContext(options)).ToList();

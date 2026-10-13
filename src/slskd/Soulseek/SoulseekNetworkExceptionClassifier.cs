@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 
 public static class SoulseekNetworkExceptionClassifier
 {
@@ -122,7 +123,11 @@ public static class SoulseekNetworkExceptionClassifier
             return true;
         }
 
-        return details.Contains("Soulseek.Network.PeerConnectionManager", StringComparison.Ordinal) ||
+        var isExpectedSocketFailure = exception is SocketException socketException &&
+            socketException.SocketErrorCode is SocketError.ConnectionReset or SocketError.ConnectionRefused or SocketError.TimedOut;
+
+        return isExpectedSocketFailure ||
+            details.Contains("Soulseek.Network.PeerConnectionManager", StringComparison.Ordinal) ||
             details.Contains("Soulseek.Network.DistributedConnectionManager", StringComparison.Ordinal) ||
             details.Contains("Soulseek.Network.Tcp.Connection", StringComparison.Ordinal) ||
             details.Contains("Soulseek.Network.Tcp.Listener", StringComparison.Ordinal) ||

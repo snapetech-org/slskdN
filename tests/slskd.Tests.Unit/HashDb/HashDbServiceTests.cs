@@ -35,6 +35,12 @@ public class HashDbServiceTests : IDisposable
 
     public void Dispose()
     {
+        using (var poolConnection = new Microsoft.Data.Sqlite.SqliteConnection(
+            $"Data Source={Path.Combine(testDir, "hashdb.db")}"))
+        {
+            Microsoft.Data.Sqlite.SqliteConnection.ClearPool(poolConnection);
+        }
+
         if (Directory.Exists(testDir))
         {
             Directory.Delete(testDir, recursive: true);

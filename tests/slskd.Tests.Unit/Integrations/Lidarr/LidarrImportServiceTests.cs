@@ -363,7 +363,7 @@ public class LidarrImportServiceTests
         try
         {
             var options = new DbContextOptionsBuilder<WishlistDbContext>()
-                .UseSqlite($"Data Source={databasePath}")
+                .UseSqlite($"Data Source={databasePath};Pooling=False")
                 .Options;
             var contextFactory = new TestWishlistDbContextFactory(options);
             await using (var context = await contextFactory.CreateDbContextAsync())

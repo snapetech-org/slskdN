@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Data.Sqlite;
 using slskd.Bootstrap;
 using Xunit;
 
@@ -41,6 +42,12 @@ public sealed class ExperimentalFeatureGraphServiceCollectionExtensionsTests
         finally
         {
             setAppDirectory.Invoke(null, new object[] { previousAppDirectory });
+
+            using (var poolConnection = new SqliteConnection($"Data Source={Path.Combine(temporaryDirectory, "pods.db")}"))
+            {
+                SqliteConnection.ClearPool(poolConnection);
+            }
+
             Directory.Delete(temporaryDirectory, recursive: true);
         }
     }

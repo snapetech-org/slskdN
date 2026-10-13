@@ -338,8 +338,11 @@ public class SlskdnFullInstanceRunner : IAsyncDisposable
             var candidates = new[]
             {
                 Path.Combine(solutionRoot, "src", "slskd", "bin", "Debug", "net10.0", "slskd"),
+                Path.Combine(solutionRoot, "src", "slskd", "bin", "Debug", "net10.0", "slskd.exe"),
                 Path.Combine(solutionRoot, "src", "slskd", "bin", "Release", "net10.0", "slskd"),
-                Path.Combine(solutionRoot, "publish", "slskd")
+                Path.Combine(solutionRoot, "src", "slskd", "bin", "Release", "net10.0", "slskd.exe"),
+                Path.Combine(solutionRoot, "publish", "slskd"),
+                Path.Combine(solutionRoot, "publish", "slskd.exe")
             };
 
             foreach (var candidate in candidates)

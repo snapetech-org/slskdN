@@ -4,6 +4,7 @@
 namespace slskd.Tests.Unit.LibraryHealth;
 
 using System.Collections.Concurrent;
+using System.IO;
 using System.Text.Json;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
@@ -135,7 +136,9 @@ public class LibraryHealthRemediationServiceTests
             It.IsAny<CancellationToken>()), Times.Never);
 
         await firstDownloadQueued.Task.WaitAsync(TimeSpan.FromSeconds(2));
-        Assert.Contains(requests, request => request.TargetMusicBrainzRecordingId == "rec-1" && request.OutputPath == "/music/Artist/Album/Artist - Track One.flac");
+        Assert.Contains(requests, request =>
+            request.TargetMusicBrainzRecordingId == "rec-1" &&
+            request.OutputPath == Path.Combine("/music", "Artist", "Album", "Artist - Track One.flac"));
     }
 
     [Fact]

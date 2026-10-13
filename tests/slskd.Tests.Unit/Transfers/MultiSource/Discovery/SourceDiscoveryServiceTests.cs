@@ -122,6 +122,11 @@ public class SourceDiscoveryServiceTests
         }
         finally
         {
+            using (var poolConnection = new SqliteConnection($"Data Source={Path.Combine(appDirectory, "discovery.db")}"))
+            {
+                SqliteConnection.ClearPool(poolConnection);
+            }
+
             System.IO.Directory.Delete(appDirectory, recursive: true);
         }
     }

@@ -22,6 +22,11 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+### Fixed
+
+- Browse-cache refresh now replaces open cache files safely on Windows,
+  preventing refresh errors while clients read cached results.
+
 ### Security
 
 - Manual workflow runs on refs outside `main` use GitHub-hosted runners. The

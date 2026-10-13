@@ -252,7 +252,7 @@ public sealed class TransfersDbContextTests
     public void TransferHistoryIndexesMigration_CreatesExactIdempotentIndexes()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-transfer-history-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {
@@ -332,7 +332,7 @@ public sealed class TransfersDbContextTests
     public void AutoRetryIndexMigration_CreatesExactIdempotentIndex()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-auto-retry-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {
@@ -395,7 +395,7 @@ public sealed class TransfersDbContextTests
     public async Task TransferLookupIndexesMigration_CreatesPartialIndexesAndUsesThemForHotQueries()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-transfer-lookups-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {
@@ -491,7 +491,7 @@ public sealed class TransfersDbContextTests
     public void AutoReplaceAttemptsMigration_AddsIdempotentDefaultedColumn()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-auto-replace-attempts-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {
@@ -537,7 +537,7 @@ public sealed class TransfersDbContextTests
     public async Task DownloadRequestSummaryIndexMigration_ReplacesLegacyIndexAndSupportsCurrentSelection()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-request-summary-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {
@@ -619,7 +619,7 @@ public sealed class TransfersDbContextTests
     public void TransferUpdatedAtMigration_Adds_Backfills_And_Reuses_Ordered_Index()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-transfers-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {

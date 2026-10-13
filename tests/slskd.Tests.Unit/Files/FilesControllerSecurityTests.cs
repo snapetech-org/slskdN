@@ -7,6 +7,7 @@ namespace slskd.Tests.Unit.Files
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Text;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
@@ -28,6 +29,7 @@ namespace slskd.Tests.Unit.Files
         private readonly Mock<FileService> mockFileService;
         private readonly Mock<IOptionsSnapshot<slskd.Options>> mockOptionsSnapshot;
         private readonly FilesController controller;
+        private readonly string downloadsDirectory;
 
         public FilesControllerSecurityTests()
         {
@@ -39,10 +41,11 @@ namespace slskd.Tests.Unit.Files
                 RemoteFileManagement = true,
                 Directories = new slskd.Options.DirectoriesOptions
                 {
-                    Downloads = "/test/downloads",
-                    Incomplete = "/test/incomplete"
+                    Downloads = Path.Combine(Path.GetTempPath(), "slskdn-files-tests", "downloads"),
+                    Incomplete = Path.Combine(Path.GetTempPath(), "slskdn-files-tests", "incomplete")
                 }
             };
+            downloadsDirectory = options.Directories.Downloads;
 
             mockOptionsSnapshot.Setup(o => o.Value).Returns(options);
 
@@ -89,7 +92,7 @@ namespace slskd.Tests.Unit.Files
             var validPath = "test-file.txt";
             var base64Path = Convert.ToBase64String(Encoding.UTF8.GetBytes(validPath));
 
-            var fullPath = "/test/downloads/test-file.txt";
+            var fullPath = Path.GetFullPath(Path.Combine(downloadsDirectory, "test-file.txt"));
             mockFileService.Setup(s => s.DeleteFilesAsync(It.IsAny<string>()))
                 .ReturnsAsync(new Dictionary<string, OneOf<bool, Exception>>
                 {
@@ -108,7 +111,7 @@ namespace slskd.Tests.Unit.Files
         public async Task GetDownloadSubdirectoryContentsAsync_ShouldTrimDecodedBase64Path()
         {
             var encodedPath = Convert.ToBase64String(Encoding.UTF8.GetBytes(" subdir "));
-            var expectedPath = Path.GetFullPath(Path.Combine("/test/downloads", "subdir"));
+            var expectedPath = Path.GetFullPath(Path.Combine(downloadsDirectory, "subdir"));
 
             mockFileService.Setup(s => s.ListContentsAsync(
                     It.Is<string>(path => path == expectedPath),
@@ -126,7 +129,7 @@ namespace slskd.Tests.Unit.Files
         public async Task GetDownloadSubdirectoryContentsAsync_RecursiveListingSkipsReparsePoints()
         {
             var encodedPath = Convert.ToBase64String(Encoding.UTF8.GetBytes("subdir"));
-            var expectedPath = Path.GetFullPath(Path.Combine("/test/downloads", "subdir"));
+            var expectedPath = Path.GetFullPath(Path.Combine(downloadsDirectory, "subdir"));
 
             mockFileService.Setup(s => s.ListContentsAsync(
                     It.Is<string>(path => path == expectedPath),
