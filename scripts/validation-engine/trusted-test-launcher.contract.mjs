@@ -35,8 +35,9 @@ for (const hostPath of ['/etc', '/opt', '/srv', '/usr/local'])
     `the sandbox must hide host path ${hostPath}`
   );
 const bwrap = ['/usr/bin/bwrap', '/bin/bwrap'].find(existsSync);
+const insideTrustedSandbox = process.env.SLSKDN_OUTER_VALIDATION_SANDBOX === 'true';
 const sandboxAvailable = (() => {
-  if (process.platform !== 'linux' || !bwrap) return false;
+  if (insideTrustedSandbox || process.platform !== 'linux' || !bwrap) return false;
   return (
     spawnSync(
       bwrap,
@@ -102,33 +103,39 @@ test('binds open sources only after masking their host directories', () => {
 
 test(
   'trusted launcher contains import-time candidate code before it runs',
-  { skip: !sandboxAvailable && 'bubblewrap user namespaces are unavailable' },
+  {
+    skip: !sandboxAvailable && (insideTrustedSandbox
+      ? 'nested bubblewrap namespaces are unavailable inside the trusted outer sandbox'
+      : 'bubblewrap user namespaces are unavailable'),
+  },
   async (t) => {
     const parent = mkdtempSync(
       path.join(tmpdir(), 'trusted-validation-launcher-')
     );
+    const socketDirectory = mkdtempSync(path.join(tmpdir(), 'slskdn-socket-'));
     const source = path.join(parent, 'candidate');
     const hostFile = path.join(parent, 'host-canary.txt');
     const browserCache = path.join(parent, 'playwright-cache');
     const outsideDependencies = path.join(parent, 'outside-dependencies');
-    const hostSocket = path.join(parent, 'host-canary.sock');
+    const hostSocket = path.join(socketDirectory, 'h.sock');
     const candidateWrite = path.join(source, 'launcher-write-canary.txt');
     mkdirSync(path.join(source, 'bin'), { recursive: true });
     mkdirSync(browserCache, { recursive: true });
     mkdirSync(outsideDependencies, { recursive: true });
     const tcpServer = createServer();
-    tcpServer.listen(0, '127.0.0.1');
-    await once(tcpServer, 'listening');
     const socketServer = createServer();
-    socketServer.listen(hostSocket);
-    await once(socketServer, 'listening');
     t.after(async () => {
       if (tcpServer.listening)
         await new Promise((resolve) => tcpServer.close(resolve));
       if (socketServer.listening)
         await new Promise((resolve) => socketServer.close(resolve));
       rmSync(parent, { recursive: true, force: true });
+      rmSync(socketDirectory, { recursive: true, force: true });
     });
+    tcpServer.listen(0, '127.0.0.1');
+    socketServer.listen(hostSocket);
+    await once(tcpServer, 'listening');
+    await once(socketServer, 'listening');
     mkdirSync(path.join(source, 'nested/config'), { recursive: true });
     mkdirSync(path.join(source, 'web/src/lib'), { recursive: true });
     mkdirSync(path.join(source, 'vendor/mainline/src/rpc/server'), { recursive: true });

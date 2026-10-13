@@ -183,11 +183,78 @@ test('plan binds the candidate and closes test selection over its dependencies',
   assert.match(plan.inventoryLaneDigests.unit, /^[a-f0-9]{64}$/);
 });
 
+test('preflight requirements follow selected task toolchains and preserve partial accounting', async () => {
+  const { root, config } = fixture();
+  const missingRuntime = 'slskdn-validation-missing-runtime-fixture';
+  const missingCommand = 'slskdn-validation-missing-command-fixture';
+  config.runtimes = [{ command: missingRuntime, args: ['--version'] }];
+  config.tasks.push({
+    id: 'web-tests',
+    name: 'Web tests',
+    stage: 'repository',
+    kind: 'check',
+    command: [process.execPath, '-e', 'process.exit(0)'],
+    requiresCommands: [missingCommand],
+    requiresRuntimes: [missingRuntime],
+  });
+
+  const focusedPlan = fixturePlan(root, config, { task: 'unit-tests' });
+  const focusedRuntime = focusedPlan.runtimes.find((runtime) => runtime.command === missingRuntime);
+  assert.equal(focusedRuntime.available, false);
+  assert.equal(focusedRuntime.required, false);
+  assert.deepEqual(focusedRuntime.requiredBy, []);
+  const focusedCommand = focusedPlan.prerequisites.find((item) => item.command === missingCommand);
+  assert.equal(focusedCommand, undefined);
+  const focusedResult = await executePlan(root, config, focusedPlan);
+  assert.equal(focusedResult.receipt.status, 'passed');
+  assert.equal(focusedResult.receipt.totals.executed, 1);
+  assert.equal(focusedResult.receipt.totals.blocked, 0);
+  assert.equal(summarizeResult('fixture', focusedResult).preflightFailures.length, 0);
+
+  const completePlan = fixturePlan(root, config);
+  const completeRuntime = completePlan.runtimes.find((runtime) => runtime.command === missingRuntime);
+  assert.equal(completeRuntime.required, true);
+  assert.deepEqual(completeRuntime.requiredBy, ['web-tests']);
+  const completeCommand = completePlan.prerequisites.find((item) => item.command === missingCommand);
+  assert.equal(completeCommand.required, true);
+  assert.deepEqual(completeCommand.requiredBy, ['web-tests']);
+  const completeResult = await executePlan(root, config, completePlan);
+  assert.equal(completeResult.receipt.status, 'incomplete');
+  assert.equal(completeResult.receipt.tasks.find((task) => task.taskId === 'unit-tests').status, 'passed');
+  assert.equal(completeResult.receipt.tasks.find((task) => task.taskId === 'web-tests').status, 'blocked');
+  assert.deepEqual(completeResult.receipt.totals, {
+    planned: 2,
+    executed: 1,
+    passed: 1,
+    failed: 0,
+    blocked: 1,
+    excluded: 0,
+    activeCases: 1,
+  });
+  assert.deepEqual(
+    summarizeResult('fixture', completeResult).preflightFailures.map((item) => item.command),
+    [missingCommand, missingRuntime],
+  );
+});
+
+test('task toolchain declarations must reference configured runtimes', () => {
+  const { root, config } = fixture();
+  config.tasks[0].requiresRuntimes = ['unregistered-runtime'];
+  assert.throws(() => fixturePlan(root, config), /unknown runtime/);
+});
+
 test('executor rejects a plan whose task contract was changed after hashing', async () => {
   const { root, config } = fixture();
   const plan = fixturePlan(root, config);
   plan.tasks[0].command = [process.execPath, '-e', 'process.exit(0)'];
   await assert.rejects(executePlan(root, config, plan), /plan digest/);
+});
+
+test('executor rejects plans produced by an older engine schema', async () => {
+  const { root, config } = fixture();
+  const plan = fixturePlan(root, config);
+  plan.schemaVersion -= 1;
+  await assert.rejects(executePlan(root, config, plan), /schema version/);
 });
 
 test('native execution records passing case counts, source identity and private evidence', async () => {
@@ -221,13 +288,14 @@ test('executor rejects a GitHub SHA that differs from the candidate commit', asy
   const result = await executePlan(root, config, plan);
 
   assert.equal(result.receipt.status, 'incomplete');
-  assert.deepEqual(result.receipt.prerequisites, [{
+  assert.deepEqual(result.receipt.prerequisites.filter((item) => item.command === 'GITHUB_SHA'), [{
     command: 'GITHUB_SHA',
     available: false,
     expected: plan.candidate.commit,
     actual: executionContext.github.sha,
   }]);
-  assert.equal(result.receipt.tasks[0].status, 'not-run');
+  assert.equal(result.receipt.tasks[0].status, 'blocked');
+  assert.equal(result.receipt.totals.blocked, 1);
 });
 
 test('execution fails closed when a test reports zero active cases', async () => {
@@ -445,6 +513,8 @@ test('plan and executor reject dependency cycles and report missing tools', asyn
   const result = await executePlan(missingRoot, missingConfig, plan);
   assert.equal(result.receipt.status, 'incomplete');
   assert.equal(result.receipt.totals.executed, 0);
+  assert.equal(result.receipt.tasks[0].status, 'blocked');
+  assert.equal(result.receipt.totals.blocked, 1);
   assert.equal(result.receipt.prerequisites.some((item) => !item.available), true);
   const summary = summarizeResult(missingConfig.repository, result);
   assert.deepEqual(summary.preflightFailures.map((item) => item.command), [

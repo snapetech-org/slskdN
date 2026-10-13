@@ -33,11 +33,12 @@ export const validation = {
     'release-notes/20261012-manual-ci-runner-choice.md',
     'release-notes/20261012-validation-sandbox-hardening.md',
     'release-notes/20261012-validation-credential-snapshot-filtering.md',
+    'release-notes/20261013-task-scoped-validation-preflight.md',
     'docs/dev/testing-policy.md',
   ],
-  requiredCommands: ['git', 'bash', 'rg', 'jq', 'python3'],
+  requiredCommands: ['git'],
   runtimes: [
-    { command: 'node', args: ['--version'], versionPattern: '^v(?:22\\.(?:2[2-9]|[3-9]\\d|\\d{3,})\\.\\d+|24\\.(?:1[5-9]|[2-9]\\d|\\d{3,})\\.\\d+|(?:2[6-9]|[3-9]\\d|\\d{3,})\\.\\d+\\.\\d+)$' },
+    { command: 'node', args: ['--version'], alwaysRequired: true, versionPattern: '^v(?:22\\.(?:2[2-9]|[3-9]\\d|\\d{3,})\\.\\d+|24\\.(?:1[5-9]|[2-9]\\d|\\d{3,})\\.\\d+|(?:2[6-9]|[3-9]\\d|\\d{3,})\\.\\d+\\.\\d+)$' },
     { command: 'pnpm', args: ['--version'], versionPattern: '^12\\.4\\.1$' },
     { command: 'dotnet', args: ['--version'], versionPattern: '^10\\.0\\.\\d+$' },
     { command: 'python3', args: ['--version'] },
@@ -95,6 +96,8 @@ export const validation = {
       stage: 'repository',
       kind: 'check',
       command: ['bash', 'packaging/scripts/validate-packaging-metadata.sh'],
+      requiresCommands: ['jq', 'rg', 'python3', 'dotnet'],
+      requiresRuntimes: ['python3', 'dotnet'],
       timeoutSeconds: 300,
     },
     {
@@ -103,6 +106,8 @@ export const validation = {
       stage: 'repository',
       kind: 'check',
       command: ['bash', 'scripts/check-remediation-baseline.sh'],
+      requiresCommands: ['rg', 'jq', 'python3', 'dotnet'],
+      requiresRuntimes: ['python3', 'dotnet'],
       passEnv: [
         'LOCAL_IDENTITY_DENYLIST',
         'LOCAL_IDENTITY_DENYLIST_FILE',
@@ -136,6 +141,9 @@ export const validation = {
       name: 'Validation engine contract tests',
       stage: 'repository',
       kind: 'test',
+      env: process.env.VALIDATION_OUTER_SANDBOX_TOKEN
+        ? { SLSKDN_OUTER_VALIDATION_SANDBOX: 'true' }
+        : {},
       command: ['node', '--test', 'scripts/validation-engine/engine.test.mjs', 'scripts/validation-engine/trusted-sandbox.contract.mjs', 'scripts/validation-engine/trusted-test-launcher.contract.mjs'],
       casePattern: '(?:ℹ|#)\\s*pass\\s+(\\d+)',
       minimumCases: 1,
@@ -215,6 +223,7 @@ export const validation = {
       stage: 'repository',
       kind: 'test',
       command: ['bash', 'packaging/scripts/run-release-integration-smoke.sh'],
+      requiresRuntimes: ['dotnet'],
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-integration'],

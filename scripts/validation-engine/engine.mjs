@@ -24,7 +24,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { requireTrustedLocalTestSandbox } from './trusted-sandbox.mjs';
 
-export const ENGINE_VERSION = 1;
+export const ENGINE_VERSION = 2;
 const ENGINE_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.resolve(ENGINE_DIR, '..', '..');
 const MAX_BUFFER = 8 * 1024 * 1024;
@@ -345,10 +345,30 @@ function validateConfig(config) {
   if (!Array.isArray(config.requiredCommands ?? [])) {
     fail('Required commands must be declared as an array.');
   }
+  for (const command of config.requiredCommands ?? []) {
+    if (typeof command !== 'string' || !command) {
+      fail('Required commands must be non-empty executable names.');
+    }
+  }
+  const runtimeCommands = new Set();
   for (const runtime of config.runtimes ?? []) {
     if (!runtime || typeof runtime.command !== 'string' || !runtime.command ||
         !Array.isArray(runtime.args ?? [])) {
       fail('Runtime declarations require an executable and an argument array.');
+    }
+    runtimeCommands.add(runtime.command);
+  }
+  for (const task of config.tasks) {
+    for (const field of ['requiresCommands', 'requiresRuntimes']) {
+      if (!Array.isArray(task[field] ?? []) || (task[field] ?? []).some((command) =>
+        typeof command !== 'string' || !command)) {
+        fail('Task toolchain requirements must be executable-name arrays: ' + task.id);
+      }
+    }
+    for (const runtime of task.requiresRuntimes ?? []) {
+      if (!runtimeCommands.has(runtime)) {
+        fail('Task references an unknown runtime: ' + task.id + '/' + runtime);
+      }
     }
   }
   for (const task of config.tasks) {
@@ -410,12 +430,44 @@ export function createPlan(root, config, options = {}) {
   };
   for (const task of config.tasks) if (selectedIds.has(task.id)) orderTask(task.id);
   const selectedTasks = orderedIds.map((id) => taskById.get(id));
-  const prerequisites = [...new Set([
-    ...(config.requiredCommands ?? []),
-    ...selectedTasks.map((task) => task.command[0]),
-  ])]
-    .map((command) => ({ command, available: commandAvailable(command) }));
-  const runtimes = (config.runtimes ?? []).map((runtime) => inspectRuntime(root, runtime));
+  const commandRequirements = new Map();
+  const requireCommand = (command, taskId = null) => {
+    const requirement = commandRequirements.get(command) ?? {
+      global: false,
+      requiredBy: new Set(),
+    };
+    if (taskId === null) requirement.global = true;
+    else requirement.requiredBy.add(taskId);
+    commandRequirements.set(command, requirement);
+  };
+  for (const command of config.requiredCommands ?? []) requireCommand(command);
+  for (const task of selectedTasks) {
+    requireCommand(task.command[0], task.id);
+    for (const command of task.requiresCommands ?? []) requireCommand(command, task.id);
+  }
+  const prerequisites = [...commandRequirements].map(([command, requirement]) => {
+    const requiredBy = [...requirement.requiredBy].sort();
+    return {
+      command,
+      available: commandAvailable(command),
+      global: requirement.global,
+      requiredBy,
+      required: requirement.global || requiredBy.length > 0,
+    };
+  });
+  const runtimes = (config.runtimes ?? []).map((runtime) => {
+    const requiredBy = selectedTasks
+      .filter((task) => task.command[0] === runtime.command ||
+        (task.requiresRuntimes ?? []).includes(runtime.command))
+      .map((task) => task.id);
+    const global = runtime.alwaysRequired === true;
+    const required = runtime.required !== false && (global || requiredBy.length > 0);
+    return {
+      ...inspectRuntime(root, { ...runtime, required }),
+      global,
+      requiredBy,
+    };
+  });
   const executionContext = options.executionContext ?? {
     executor: process.env.GITHUB_ACTIONS === 'true' ? 'github-actions' : 'local',
     platform: process.platform,
@@ -453,6 +505,8 @@ export function createPlan(root, config, options = {}) {
       timeoutSeconds: task.timeoutSeconds ?? 3600,
       command: task.command,
       cwd: task.cwd ?? '.',
+      requiresCommands: task.requiresCommands ?? [],
+      requiresRuntimes: task.requiresRuntimes ?? [],
       casePattern: task.casePattern ?? null,
       minimumCases: task.minimumCases ?? null,
       browserCache: task.browserCache ?? null,
@@ -656,6 +710,9 @@ export async function runCommand(task, root, logPath, options = {}) {
 
 export async function executePlan(root, config, plan, options = {}) {
   const { planSha256, ...planBody } = plan;
+  if (plan.schemaVersion !== ENGINE_VERSION) {
+    fail('Validation plan schema version is unsupported.');
+  }
   if (plan.repository !== config.repository || !planSha256 || hash(stable(planBody)) !== planSha256) {
     fail('Validation plan digest does not match its contents.');
   }
@@ -676,9 +733,9 @@ export async function executePlan(root, config, plan, options = {}) {
       });
     }
   }
-  const missing = [
-    ...plan.prerequisites.filter((item) => !item.available),
-    ...(plan.runtimes ?? []).filter((item) => item.required !== false &&
+  const missingGlobal = [
+    ...plan.prerequisites.filter((item) => item.global && !item.available),
+    ...(plan.runtimes ?? []).filter((item) => item.global && item.required !== false &&
       (!item.available || !item.versionCompatible)),
     ...(plan.executionContext?.executor === 'github-actions' &&
       plan.executionContext.github?.sha !== plan.candidate.commit
@@ -686,7 +743,7 @@ export async function executePlan(root, config, plan, options = {}) {
         actual: plan.executionContext.github?.sha ?? null }]
       : []),
   ];
-  if (missing.length > 0) {
+  if (missingGlobal.length > 0) {
     const receipt = {
       schemaVersion: ENGINE_VERSION,
       runId,
@@ -696,14 +753,19 @@ export async function executePlan(root, config, plan, options = {}) {
       candidate: plan.candidate,
       executionContext: plan.executionContext,
       status: 'incomplete',
-      prerequisites: missing,
+      prerequisites: [
+        ...plan.prerequisites,
+        ...missingGlobal.filter((item) => item.command === 'GITHUB_SHA'),
+      ],
+      runtimes: plan.runtimes,
       tasks: plan.tasks.map((task) => task.selected ? ({
         taskId: task.id,
-        status: 'not-run',
-        reason: 'required command is unavailable',
+        status: 'blocked',
+        reason: 'global validation preflight did not pass',
+        preflightFailures: missingGlobal,
         required: task.required,
       }) : receiptById.get(task.id)),
-      totals: { planned: selectedIds.size, executed: 0, passed: 0, failed: 0, blocked: 0, excluded: plan.tasks.length - selectedIds.size, activeCases: 0 },
+      totals: { planned: selectedIds.size, executed: 0, passed: 0, failed: 0, blocked: selectedIds.size, excluded: plan.tasks.length - selectedIds.size, activeCases: 0 },
     };
     writeFileSync(path.join(runRoot, 'receipt.json'), JSON.stringify(receipt, null, 2), { mode: 0o600 });
     return { receipt, runRoot, exitCode: 1 };
@@ -750,6 +812,24 @@ export async function executePlan(root, config, plan, options = {}) {
       });
       reportProgress();
       break;
+    }
+    const preflightFailures = [
+      ...plan.prerequisites.filter((item) =>
+        !item.available && (item.requiredBy ?? []).includes(task.id)),
+      ...(plan.runtimes ?? []).filter((item) =>
+        (item.requiredBy ?? []).includes(task.id) &&
+        (!item.available || item.versionCompatible === false)),
+    ];
+    if (preflightFailures.length > 0) {
+      receiptById.set(task.id, {
+        taskId: task.id,
+        status: 'blocked',
+        reason: 'required task toolchain is unavailable or incompatible',
+        preflightFailures,
+        required: task.required !== false,
+      });
+      reportProgress();
+      continue;
     }
     const configuredTask = config.tasks.find((item) => item.id === task.id);
     if (!configuredTask) fail('Selected task is missing from the registered configuration: ' + task.id);
@@ -802,10 +882,15 @@ export async function executePlan(root, config, plan, options = {}) {
     excluded: tasks.filter((task) => task.status === 'excluded').length,
     activeCases: tasks.reduce((sum, task) => sum + (task.activeCases ?? 0), 0),
   };
-  const status = sourceChanged || missing.length > 0 ||
-    plan.tasks.some((task) => task.selected && task.required !== false && receiptById.get(task.id)?.status !== 'passed')
+  const failedRequiredTasks = plan.tasks.some((task) => task.selected && task.required !== false &&
+    ['failed', 'incomplete'].includes(receiptById.get(task.id)?.status));
+  const blockedRequiredTasks = plan.tasks.some((task) => task.selected && task.required !== false &&
+    receiptById.get(task.id)?.status === 'blocked');
+  const status = sourceChanged || failedRequiredTasks
     ? 'failed'
-    : 'passed';
+    : blockedRequiredTasks
+      ? 'incomplete'
+      : 'passed';
   const receipt = {
     schemaVersion: ENGINE_VERSION,
     runId,
@@ -842,9 +927,11 @@ function help(config) {
 }
 
 export function summarizeResult(repository, result) {
-  const preflightFailures = (result.receipt.prerequisites ?? []).filter((item) =>
-    item.available === false || item.versionCompatible === false
-  );
+  const preflightFailures = [
+    ...(result.receipt.prerequisites ?? []),
+    ...(result.receipt.runtimes ?? []),
+  ].filter((item) => item.required !== false &&
+    (item.available === false || item.versionCompatible === false));
   return {
     repository,
     status: result.receipt.status,

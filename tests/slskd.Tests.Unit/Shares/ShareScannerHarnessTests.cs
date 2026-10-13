@@ -411,7 +411,7 @@ public class ShareScannerHarnessTests
 
     private void DeleteTestFileWithWindowsLockRetry(string filename)
     {
-        const int maximumAttempts = 6;
+        const int maximumAttempts = 9;
 
         for (var attempt = 0; ; attempt++)
         {
@@ -429,10 +429,16 @@ public class ShareScannerHarnessTests
             }
             catch (IOException exception) when (
                 OperatingSystem.IsWindows()
-                && attempt < maximumAttempts - 1
                 && ((exception.HResult & 0xFFFF) is 32 or 33))
             {
-                Thread.Sleep(TimeSpan.FromMilliseconds(50 * (1 << attempt)));
+                if (attempt >= maximumAttempts - 1)
+                {
+                    output.WriteLine(
+                        $"Failed to delete {Path.GetFileName(filename)} after {maximumAttempts} Windows sharing-lock attempts (error {(exception.HResult & 0xFFFF)}).");
+                    throw;
+                }
+
+                Thread.Sleep(TimeSpan.FromMilliseconds(Math.Min(50 * (1 << attempt), 1000)));
             }
         }
     }

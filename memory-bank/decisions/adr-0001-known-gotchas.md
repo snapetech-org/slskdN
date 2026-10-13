@@ -42279,3 +42279,24 @@ database contexts so they close before cleanup runs, disable pooling for
 temporary file-backed database tests or clear pools after closing connections,
 and assert the complete set of asynchronous results instead of relying on
 scheduling order. Keep the Windows test job enabled.
+### 2026-10-13: Preflight only the toolchains selected tasks need
+
+A focused validation task was incorrectly stopped because an unrelated
+frontend runtime (`pnpm`) was missing. The receipt reported the task as planned
+but neither executed nor blocked. Keep globally required tools explicit, bind
+each task's other command and runtime requirements to that task, and let
+independent selected tasks continue. A missing task toolchain must produce a
+blocked task and an incomplete required run; it must not suppress unrelated
+work or disappear from result accounting.
+
+### 0z1838. Keep Sandbox Socket Fixtures Within Unix Path Limits (2026-10-13)
+
+**What went wrong:** The trusted validation engine gives each task a private
+temporary directory. A launcher contract derived its Unix-domain socket path
+from that long directory and exceeded Linux's socket path limit. Setup failed
+before cleanup hooks were registered, leaving the TCP canary open until the
+outer task timed out.
+
+**Prevention:** Keep Unix socket fixture paths short even when `TMPDIR` is
+nested, and register cleanup hooks before opening test servers so setup errors
+cannot strand handles.

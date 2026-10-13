@@ -80,6 +80,18 @@ responsible for hosted validation.
 
 `--plan` discovers test files, records the Git candidate and supported runtime
 versions, and reports command availability. It does not execute tests.
+Toolchain preflight follows the selected task and its dependency closure. Each
+task always requires its command executable and may declare additional
+`requiresCommands` and version-checked `requiresRuntimes` used by its scripts.
+Focused `--task` runs are not blocked by tools needed only by unselected tasks.
+In a complete run, a missing task toolchain blocks that task while independent
+tasks continue; the receipt counts it as blocked and reports the run as
+incomplete when a required task could not start. Globally required tools still
+stop all selected work, with every selected task recorded as blocked.
+The nested launcher integration case is skipped when Mode 1 is already inside
+the trusted bubblewrap launcher; it remains active in hosted validation, where
+the contract can start its own sandbox. Local policy and mount-operation
+contracts still run.
 `--tests-only` runs registered unit, regression, integration-smoke, release-note,
 and engine-contract tests. The default run adds repository checks and the web
 build/output checks. Browser suites remain separately selectable because they
