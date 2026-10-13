@@ -19,7 +19,7 @@ file handles need to be released.
 before deleting the database, and keep the Windows unit-test job in the
 verification matrix; Unix permits unlinking open files and can hide this bug.
 
-### 0z1804. Disable Pooling On Every Share-Scan Harness Database Connection (2026-10-13)
+### 0z1804. Clear Share-Scan Database Pools After Disposal (2026-10-13)
 
 **What went wrong:** The large share-scan harness disabled pooling for its manual
 database but left pooling enabled for the synthetic scan database and its raw
@@ -31,9 +31,33 @@ and backup paths. Disabling pooling on only one connection string does not stop
 another connection from keeping the database open. Unix allows unlinking an open
 file and can hide the failure.
 
-**Prevention:** Use `Pooling=False` on every file-backed SQLite connection owned
-by a test fixture, including repository, raw-copy, and readback connections.
-Delete the database only after those connections and the scanner have finished.
+**Correction:** Disabling pooling on every share-scan connection avoids the
+Windows file lock, but adds per-operation connection setup to a large scan. The
+Windows rerun on `1cad710ac` indexed only 347 files before the harness's
+30-second bound. The fixture now restores normal pooling and clears the exact
+database pool after the scanner and repositories are disposed.
+
+**Prevention:** Drain scanner work and dispose all repository and readback
+connections before cleanup. For large file-backed scan fixtures, call
+`SqliteTestDatabaseCleanup.ClearPool` for each database before deleting it.
+Use `Pooling=False` only when a fixture specifically needs it and the extra
+connection overhead is acceptable.
+
+### 0z1805. Observe Canceled Staging Trees During Concurrent Removal (2026-10-13)
+
+**What went wrong:** A relay cancellation test checked whether a staging
+directory existed and then recursively enumerated it. Cancellation could
+remove a nested directory between those operations, raising
+`DirectoryNotFoundException` from the test observer before its final
+no-published-file assertions ran.
+
+**Why:** A directory-existence check is not a stable snapshot while another
+task is removing the tree.
+
+**Prevention:** Make cancellation-time enumeration retry transient
+`DirectoryNotFoundException` while honoring the test's cancellation deadline.
+Keep the final assertions that no destination file was published and no staged
+files remain.
 
 ### 0z1802. Clear The Pool For The Database The Test Actually Opens (2026-10-13)
 
@@ -54,15 +78,18 @@ service graph rather than copying a nearby pool-clear example.
 **What went wrong:** A timed share scan requested cancellation and immediately
 failed its timeout assertion. Cleanup then disposed and deleted the SQLite
 database while the canceled scan task could still be using it, so the cleanup
-error hid the original timeout.
+error hid the original timeout. A download-service test also disposed its
+service and deleted its database without awaiting `ShutdownAsync()`, while a
+canceled download worker still owned the database.
 
-**Why:** Requesting cancellation is asynchronous; it does not prove background
-work has stopped.
+**Why:** Requesting cancellation or disposing an owner is not proof that its
+background work has stopped. On Windows, an active SQLite handle prevents
+deleting the database.
 
-**Prevention:** Await the scan task after requesting cancellation, then report
-the original timeout only after the worker has drained. Dispose all task-owned
-resources before deleting test data, and preserve the primary failure if
-cleanup also fails.
+**Prevention:** Await the scan task after requesting cancellation and await
+`ShutdownAsync()` for services that own background work. Dispose all task-owned
+resources and clear the pool for the exact database before deleting test data.
+Preserve the primary failure if cleanup also fails.
 
 ### 0z1796. Use StringComparer With xUnit String Equality (2026-10-13)
 
