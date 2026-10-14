@@ -50,7 +50,7 @@ const TransferStream = ({ direction, summary }) => {
       </div>
       <p className="dashboard-stream-count" data-testid={`${direction}-count`}>
         <LocalizedText
-          source="Successful files: {count}"
+          source={stats.count === 1 ? '{count} successful file' : '{count} successful files'}
           values={{ count: formatRegionalNumber(stats.count, undefined, regionalLocale) }}
         />
       </p>
@@ -71,8 +71,12 @@ const Dashboard = () => {
     setError(null);
     try {
       setSummary(await getTransferSummary());
-    } catch {
-      setError(interfaceText('Transfer totals could not be loaded.'));
+    } catch (requestError) {
+      setError(
+        requestError?.response?.data ??
+          requestError?.message ??
+          interfaceText('Transfer totals could not be loaded.'),
+      );
     } finally {
       setLoading(false);
     }
@@ -88,19 +92,19 @@ const Dashboard = () => {
         <header className="dashboard-heading">
           <div>
             <Header as="h1" className="dashboard-title">
-              <LocalizedText source="Overview" />
+              <LocalizedText source="Transfer overview" />
             </Header>
             <p className="dashboard-intro">
-              <LocalizedText source="Successful transfers in the last seven days." />
+              <LocalizedText source="Successful files moved in the last seven days." />
             </p>
           </div>
           <Popup
-            content={<LocalizedText source="Refresh the seven-day transfer totals." />}
+            content={<LocalizedText source="Refresh the seven-day totals from the transfer history." />}
             position="top center"
             trigger={(
               <Button
-                aria-label={interfaceText('Refresh')}
-                {...interfaceTextProps('Refresh')}
+                aria-label={interfaceText('Refresh transfer overview')}
+                {...interfaceTextProps('Refresh transfer overview')}
                 disabled={loading}
                 icon="refresh"
                 loading={loading}
@@ -112,7 +116,7 @@ const Dashboard = () => {
         </header>
 
         {loading && !summary ? (
-          <PlaceholderSegment caption="Loading" icon="exchange" />
+          <PlaceholderSegment caption="Loading transfer totals" icon="exchange" />
         ) : error ? (
           <ErrorSegment caption={error} />
         ) : (
@@ -122,7 +126,7 @@ const Dashboard = () => {
               <TransferStream direction="upload" summary={summary} />
             </div>
             <p className="dashboard-footnote">
-              <LocalizedText source="Totals include bytes from successful transfers only." />
+              <LocalizedText source="Totals use bytes actually transferred and count successful transfers only." />
             </p>
           </>
         )}

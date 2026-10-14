@@ -323,7 +323,7 @@ const Network = ({ theme }) => {
         >
           <Message.Header><LocalizedText source={"LAN-only DHT is isolated"} /></Message.Header>
           <p>
-            <LocalizedText source={"LAN-only mesh uses"} />{" "}<code>dhtRendezvous.lanOnly: true</code><LocalizedText source={", so slskdN intentionally disables the public BitTorrent DHT engine. Seeing"} />{" "}<code>0</code> <LocalizedText source={"DHT nodes and"} />{" "}<code>0</code> <LocalizedText source={"discovered peers can be expected in this privacy mode even when the overlay and DHT ports are open."} /></p>
+            <LocalizedText source={"LAN-only mesh uses"} />{" "}<code>dhtRendezvous.lanOnly: true</code><LocalizedText source={", so slskdN intentionally disables the public BitTorrent DHT engine. In this privacy mode,"} />{" "}<code>0</code> <LocalizedText source={"DHT nodes and"} />{" "}<code>0</code> <LocalizedText source={"discovered peers are expected, even when the overlay and DHT ports are open."} /></p>
           <p>
             <LocalizedText source={"To discover public slskdN peers through DHT rendezvous, set"} /><code> dhtRendezvous.lanOnly: false</code> <LocalizedText source={"and restart. Keep LAN-only enabled if you want discovery limited to local or already-known private peers."} /></p>
         </Message>

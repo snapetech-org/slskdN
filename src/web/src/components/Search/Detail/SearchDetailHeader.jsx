@@ -121,8 +121,8 @@ const SearchDetailHeader = ({
   );
 
   const stopSource = isComplete
-    ? 'Delete completed search {search}'
-    : 'Stop search {search}';
+    ? 'Delete this finished search.'
+    : 'Stop this in-progress search.';
 
   const stopButton = (
     <StopOrDeleteButton
@@ -170,7 +170,7 @@ const SearchDetailHeader = ({
               trigger={<span>{discoveryGraphButton}</span>}
             />
             <Popup
-              content={<LocalizedText source={stopSource} parameters={{ search: searchText }} />}
+              content={<LocalizedText source={stopSource} />}
               position="top center"
               trigger={<span>{stopButton}</span>}
             />
@@ -203,7 +203,7 @@ const SearchDetailHeader = ({
             trigger={<span>{discoveryGraphButton}</span>}
           />
           <Popup
-            content={<LocalizedText source={stopSource} parameters={{ search: searchText }} />}
+            content={<LocalizedText source={stopSource} />}
             position="top center"
             trigger={<span>{stopButton}</span>}
           />

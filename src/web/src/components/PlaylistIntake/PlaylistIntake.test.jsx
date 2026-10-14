@@ -4,7 +4,8 @@ import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfac
 import { playlistIntakeStorageKey } from '../../lib/playlistIntake';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import React from 'react';
-import { afterEach, vi } from 'vitest';
+import { afterEach, beforeEach, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 vi.mock('../../lib/collections', () => ({
   addCollectionItem: vi.fn(),
@@ -12,9 +13,13 @@ vi.mock('../../lib/collections', () => ({
 }));
 
 describe('PlaylistIntake', () => {
-  afterEach(() => resetInterfaceLanguage());
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
+  });
 
   beforeEach(() => {
+    stubLocaleCatalogFetch(vi);
     localStorage.clear();
     vi.clearAllMocks();
   });
@@ -47,8 +52,8 @@ describe('PlaylistIntake', () => {
     expect(screen.getByText('Ready for review')).toBeInTheDocument();
   });
 
-  it('sets Arabic language and direction on the multi-artist policy control', () => {
-    setInterfaceLanguage('ar');
+  it('sets Arabic language and direction on the multi-artist policy control', async () => {
+    await setInterfaceLanguage('ar');
     render(<PlaylistIntake />);
 
     fireEvent.change(screen.getByLabelText('اسم قائمة التشغيل'), {
@@ -95,10 +100,8 @@ describe('PlaylistIntake', () => {
       screen.getByRole('button', { name: 'Reject playlist row Come On Let\'s Go' }),
     );
     const playlistCard = screen.getByText('Mirror queue').closest('.playlist-intake-card');
-    const rejectedSummary = within(playlistCard)
-      .getAllByText('Rejected')
-      .find((label) => label.closest('.ui.label'));
-    expect(rejectedSummary.closest('.ui.label')).toHaveTextContent('Rejected 1');
+    expect(playlistCard.querySelector('.playlist-intake-summary'))
+      .toHaveTextContent('Rejected 1');
 
     fireEvent.click(
       screen.getByRole('button', {

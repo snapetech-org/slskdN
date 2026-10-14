@@ -138,9 +138,9 @@ const ExperienceSettings = () => {
         message: interfaceText("Experience preference report copied."),
         type: 'success',
       });
-    } catch {
+    } catch (error) {
       setFeedback({
-        message: interfaceText("Could not copy the preference report."),
+        message: error?.message || interfaceText("Could not copy the preference report."),
         type: 'error',
       });
     }

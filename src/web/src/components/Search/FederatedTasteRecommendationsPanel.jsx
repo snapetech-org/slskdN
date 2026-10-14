@@ -65,7 +65,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
       const nextRecommendations = asArray(response.data?.recommendations);
       setSummary(response.data);
       setRecommendations(nextRecommendations);
-      setStatus(interfaceText('Privacy-filtered recommendations loaded: {count}.', {
+      setStatus(interfaceText('Loaded {count} privacy-filtered recommendations.', {
         count: nextRecommendations.length,
       }));
     } catch (loadError) {

@@ -4,11 +4,16 @@ import TransfersHeader from './TransfersHeader';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 describe('TransfersHeader', () => {
-  afterEach(() => resetInterfaceLanguage());
+  beforeEach(() => stubLocaleCatalogFetch(vi));
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
+  });
 
   it('surfaces download filters on an empty Downloads view', () => {
     render(
@@ -93,8 +98,8 @@ describe('TransfersHeader', () => {
     expect(await screen.findByText(cancelTooltip)).toBeInTheDocument();
   });
 
-  it('sets Arabic language and direction on each localized transfer label', () => {
-    setInterfaceLanguage('ar');
+  it('sets Arabic language and direction on each localized transfer label', async () => {
+    await setInterfaceLanguage('ar');
     render(
       <AppContext.Provider value={{ options: {} }}>
         <TransfersHeader

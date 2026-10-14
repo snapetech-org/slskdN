@@ -34,7 +34,7 @@ describe('SearchDetailHeader', () => {
       />,
     );
 
-    const button = screen.getByRole('button', { name: 'Delete completed search' });
+    const button = screen.getByRole('button', { name: 'Delete completed search ambient music' });
     expect(button).toHaveTextContent('Delete');
     fireEvent.mouseEnter(button.parentElement);
 

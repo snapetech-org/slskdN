@@ -150,7 +150,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setSimilarUsers(users.map(normalizeUser).filter((user) => user.username));
       setTitle('Similar users');
-      setStatus(interfaceText('Similar users loaded: {count}.', { count: users.length }));
+      setStatus(interfaceText('Loaded {count} similar users.', { count: users.length }));
     });
 
   const loadItemSimilarUsers = () => {

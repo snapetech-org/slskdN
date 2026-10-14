@@ -1,5 +1,4 @@
 import React, { useCallback, useSyncExternalStore } from 'react';
-import UI_LABELS from './ui-labels.json';
 
 export const INTERFACE_LANGUAGE_OPTIONS = [
   { key: 'en', text: 'English', value: 'en' },
@@ -20,6 +19,16 @@ export const INTERFACE_LANGUAGE_OPTIONS = [
 const STORAGE_KEY = 'slskdn.interface-language';
 const supportedLanguages = new Set(INTERFACE_LANGUAGE_OPTIONS.map((option) => option.value));
 const listeners = new Set();
+const catalogCache = new Map();
+const catalogLoads = new Map();
+let activeLanguage;
+let activeCatalog = null;
+let revision = 0;
+
+const notify = () => {
+  revision += 1;
+  listeners.forEach((listener) => listener());
+};
 
 const browserLanguage = () => {
   if (typeof navigator === 'undefined') return 'en';
@@ -49,15 +58,58 @@ const applyDocumentLanguage = (_language) => {
   document.documentElement.dir = 'ltr';
 };
 
-export const getInterfaceTextLanguage = (source, language) =>
-  language !== 'en' && UI_LABELS[source]?.[language] ? language : 'en';
+const loadCatalog = (language) => {
+  if (language === 'en') return Promise.resolve(null);
+  if (catalogCache.has(language)) return Promise.resolve(catalogCache.get(language));
+  if (catalogLoads.has(language)) return catalogLoads.get(language);
+
+  const request = fetch(`${import.meta.env.BASE_URL}locales/${encodeURIComponent(language)}.json`, {
+    headers: { Accept: 'application/json' },
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Locale catalog request failed (${response.status}).`);
+      return response.json();
+    })
+    .then((catalog) => {
+      if (!catalog || typeof catalog !== 'object' || Array.isArray(catalog)) return {};
+      catalogCache.set(language, catalog);
+      return catalog;
+    })
+    .catch(() => ({}))
+    .finally(() => catalogLoads.delete(language));
+
+  catalogLoads.set(language, request);
+  return request;
+};
+
+const activateLanguage = (language) => {
+  activeLanguage = language;
+  activeCatalog = language === 'en' ? null : catalogCache.get(language) ?? null;
+  applyDocumentLanguage(language);
+  notify();
+
+  if (language === 'en') return Promise.resolve();
+
+  return loadCatalog(language).then((catalog) => {
+    if (activeLanguage !== language) return;
+    activeCatalog = catalog;
+    notify();
+  });
+};
+
+export const getInterfaceTextLanguage = (source, language) => {
+  const catalog = catalogCache.get(language) || (language === activeLanguage ? activeCatalog : null);
+  return language !== 'en' && typeof catalog?.[source] === 'string' && catalog[source]
+    ? language
+    : 'en';
+};
 
 export const getInterfaceTextDirection = (source, language) =>
   getInterfaceTextLanguage(source, language) === 'ar' ? 'rtl' : 'ltr';
 
 const formatInterfaceText = (source, parameters = {}) => {
   if (typeof source !== 'string') return source;
-  const translated = activeLanguage === 'en' ? source : UI_LABELS[source]?.[activeLanguage] || source;
+  const translated = activeLanguage === 'en' ? source : activeCatalog?.[source] || source;
   return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
     const value = parameters?.[name];
     return typeof value === 'string' || typeof value === 'number'
@@ -70,7 +122,7 @@ export const interfaceText = (source, parameters = {}) =>
   formatInterfaceText(source, parameters);
 
 export const interfaceTextProps = (source, parameters = {}) => {
-  const translated = activeLanguage !== 'en' ? UI_LABELS[source]?.[activeLanguage] : undefined;
+  const translated = activeLanguage !== 'en' ? activeCatalog?.[source] : undefined;
   const text = formatInterfaceText(source, parameters);
   const unresolved = typeof text === 'string' && /\{[a-zA-Z][a-zA-Z0-9_]*\}/.test(text);
   const props = {
@@ -85,46 +137,37 @@ export const interfaceTextProps = (source, parameters = {}) => {
   return props;
 };
 
-let activeLanguage = readLanguage();
-const notify = () => listeners.forEach((listener) => listener());
+activeLanguage = readLanguage();
 
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (event) => {
     if (event.key !== STORAGE_KEY && event.key !== null) return;
-    activeLanguage = readLanguage();
-    applyDocumentLanguage(activeLanguage);
-    notify();
+    void activateLanguage(readLanguage());
   });
 }
 
-export const applyInitialInterfaceLanguage = () => {
-  activeLanguage = readLanguage();
-  applyDocumentLanguage(activeLanguage);
-};
+export const applyInitialInterfaceLanguage = () => activateLanguage(readLanguage());
 
 export const setInterfaceLanguage = (language) => {
-  if (!supportedLanguages.has(language)) return;
-  activeLanguage = language;
+  if (!supportedLanguages.has(language)) return Promise.resolve();
   try { localStorage.setItem(STORAGE_KEY, language); } catch { /* Keep this tab usable without browser storage. */ }
-  applyDocumentLanguage(language);
-  notify();
+  return activateLanguage(language);
 };
 
 export const resetInterfaceLanguage = () => {
   try { localStorage.removeItem(STORAGE_KEY); } catch { /* Use the browser language for this tab. */ }
-  activeLanguage = browserLanguage();
-  applyDocumentLanguage(activeLanguage);
-  notify();
+  return activateLanguage(browserLanguage());
 };
 
 export const useInterfaceLanguage = () => {
-  const language = useSyncExternalStore(
+  useSyncExternalStore(
     (listener) => { listeners.add(listener); return () => listeners.delete(listener); },
-    () => activeLanguage,
-    () => 'en',
+    () => revision,
+    () => 0,
   );
+  const language = activeLanguage;
   const t = useCallback((source, parameters) => {
-    const translated = language === 'en' ? source : UI_LABELS[source]?.[language] || source;
+    const translated = language === 'en' ? source : activeCatalog?.[source] || source;
     if (!parameters || typeof translated !== 'string') return translated;
     return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
       const value = parameters[name];

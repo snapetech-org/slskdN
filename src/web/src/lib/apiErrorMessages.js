@@ -1,4 +1,3 @@
-import UI_LABELS from './ui-labels.json';
 const API_ERROR_TEXT = {
   'source-feed-import.source-text-required': 'SourceText is required',
   'source-feed-import.limit-must-be-positive': 'Limit must be greater than 0',
@@ -26,14 +25,14 @@ export const getApiErrorMessage = (error, { t }, fallback) => {
   const code = response?.headers?.['x-slskd-error-code'] ||
     (data && typeof data === 'object' ? data.code : undefined);
   const source = API_ERROR_TEXT[code];
-  if (source && Object.hasOwn(UI_LABELS, source)) {
+  if (source) {
     const parameters = data?.parameters && typeof data.parameters === 'object' && !Array.isArray(data.parameters)
       ? data.parameters
       : {};
     return interpolateSafeParameters(t(source), parameters);
   }
 
-  const genericMessage = fallback && Object.hasOwn(UI_LABELS, fallback)
+  const genericMessage = typeof fallback === 'string' && fallback
     ? fallback
     : 'The request failed. Try again.';
   return t(genericMessage);

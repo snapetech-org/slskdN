@@ -234,7 +234,7 @@ const NetworkEndpointNotice = ({ onDismiss, options, portForwards }) => {
         <Icon name="exchange" />
         <div className="network-endpoint-change-notice-copy">
           <span>
-            <strong><LocalizedText source={"Ingress ports changed:"} /></strong> <LocalizedText source={"Older builds required five public forwards; now keep {ports} reachable."} values={{ ports: formatCurrentIngressPorts(options) }} />
+            <strong><LocalizedText source={"Ingress ports changed:"} /></strong> <LocalizedText source={"older builds needed 5 public forwards; now keep {ports} reachable."} values={{ ports: formatCurrentIngressPorts(options) }} />
           </span>
         </div>
       </div>

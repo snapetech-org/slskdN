@@ -38,12 +38,6 @@ const getWorkArtist = (notification = {}) =>
   notification.workRef?.Creator ||
   '';
 
-const getSubscriptionScopeSource = (scope) => ({
-  trusted: 'Trusted',
-  realm: 'Realm',
-  local: 'Local',
-}[String(scope || '').toLowerCase()]);
-
 const parseList = (value = '') =>
   value
     .split(',')
@@ -247,15 +241,13 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
       </div>
       <List divided relaxed>
         {subscriptions.map((subscription) => {
-          const scopeSource = getSubscriptionScopeSource(subscription.scope);
-
           return (
             <List.Item key={subscription.id || subscription.artistId}>
               <List.Icon name={subscription.enabled ? 'rss' : 'pause circle'} />
               <List.Content>
                 <List.Header>{subscription.artistName || subscription.artistId}</List.Header>
                 <List.Description>
-                  {scopeSource ? <LocalizedText source={scopeSource} /> : subscription.scope}{' '}
+                  {subscription.scope}{' '}
                   <LocalizedText source="scope · muted" />{' '}
                   {asArray(subscription.mutedReleaseGroupIds).length}
                 </List.Description>

@@ -889,6 +889,25 @@ body {
         max-width: 100%;
     }
 
+    .navigation.ui.labeled.icon.menu .navigation-primary > a > .item,
+    .navigation.ui.labeled.icon.menu .navigation-primary > .navigation-dropdown-trigger {
+        flex: 0 0 48px;
+        width: 48px;
+        max-width: 48px;
+        min-width: 48px !important;
+        padding: 0.45rem 0.15rem !important;
+    }
+
+    .navigation.ui.labeled.icon.menu .navigation-primary .navigation-alert-icon {
+        min-width: 0 !important;
+        width: auto;
+    }
+
+    .navigation-primary > a > .item > span[lang],
+    .navigation-primary > .navigation-dropdown-trigger > span[lang] {
+        display: none;
+    }
+
     .navigation .right.ui.inverted.menu {
         border-left: 0 !important;
         border-top: 1px solid var(--slskdn-nav-border, rgba(255,255,255,0.08)) !important;

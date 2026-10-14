@@ -11,11 +11,17 @@ const emptyDirectory = { directories: [], files: [] };
 const itemKey = ({ path, type }) => `${type}:${path}`;
 const joinPath = (...segments) => segments.filter(Boolean).join('/');
 
+const getErrorMessage = (error, fallback) => {
+  const response = error?.response?.data;
+  if (typeof response === 'string' && response.trim()) return response;
+  return response?.message || error?.message || fallback;
+};
+
 const getDeleteErrorSource = (error) => ({
-  'access-denied': 'Access was denied.',
-  'delete-failed': 'The file system could not delete this item.',
-  'not-found': 'The item no longer exists.',
-}[error] || 'The item could not be deleted.');
+  'access-denied': 'Access was denied',
+  'delete-failed': 'The file system could not delete this item',
+  'not-found': 'The item no longer exists',
+}[error] || 'The item could not be deleted');
 
 const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
   useInterfaceLanguage();
@@ -23,7 +29,7 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState(null);
   const itemType = isDirectory ? 'directory' : 'file';
-  const itemTypeLabel = interfaceText(isDirectory ? 'Directory' : 'File');
+  const itemTypeLabel = interfaceText(isDirectory ? 'directory' : 'file');
 
   const remove = async () => {
     setDeleting(true);
@@ -35,9 +41,7 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
       setOpen(false);
       onDeleted({ name: fullName, type: itemType });
     } catch (error_) {
-      setError(getDeleteErrorSource(
-        error_?.response?.data?.code ?? error_?.response?.data,
-      ));
+      setError(getErrorMessage(error_, `Unable to delete this ${itemType}.`));
     } finally {
       setDeleting(false);
     }
@@ -250,8 +254,8 @@ const BulkDeleteControl = ({ items, onDeleted, root }) => {
       });
       setOpen(false);
       onDeleted(response?.results ?? []);
-    } catch {
-      setError('Could not delete the selected items.');
+    } catch (error_) {
+      setError(getErrorMessage(error_, 'Unable to delete the selected items.'));
     } finally {
       setDeleting(false);
     }
@@ -395,9 +399,9 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
           directories: asArray(result?.directories),
           files: asArray(result?.files),
         });
-      } catch {
+      } catch (error_) {
         if (!requestIsCurrent) return;
-        setError('Unable to load this directory.');
+        setError(getErrorMessage(error_, 'Unable to load this directory.'));
       } finally {
         if (requestIsCurrent) setLoading(false);
       }
@@ -509,7 +513,7 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
               />
               <span>
                 <LocalizedText
-                  source="Selected items: {count}"
+                  source="{count} selected"
                   values={{ count: formatRegionalNumber(selectedItems.length, undefined, regionalLocale) }}
                 />
               </span>
@@ -549,7 +553,7 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
           role="status"
         >
           <LocalizedText
-            source="Items deleted: {count}"
+            source={operationReport.deleted === 1 ? 'Deleted 1 item.' : 'Deleted {count} items.'}
             values={{ count: formatRegionalNumber(operationReport.deleted, undefined, regionalLocale) }}
           />
         </Message>
@@ -558,7 +562,7 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
         <Message error role="alert">
           <Message.Header>
             <LocalizedText
-              source="Items could not be deleted: {count}"
+              source={operationReport.failed.length === 1 ? 'Could not delete 1 item' : 'Could not delete {count} items'}
               values={{ count: formatRegionalNumber(operationReport.failed.length, undefined, regionalLocale) }}
             />
           </Message.Header>

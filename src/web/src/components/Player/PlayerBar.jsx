@@ -361,7 +361,10 @@ const PlayerRadioModal = ({ current, onClose, onOpenSearch, open }) => {
     try {
       setRunningSearches(true);
       const count = await searches.createBatch({ queries });
-      setStatus(interfaceText('Smart-radio searches started: {count}.', { count }));
+      setStatus(interfaceText(
+        count === 1 ? 'Started 1 smart-radio search.' : 'Started {count} smart-radio searches.',
+        { count },
+      ));
     } catch {
       setStatus(interfaceText('Unable to start smart-radio searches.'));
     } finally {
@@ -391,7 +394,10 @@ const PlayerRadioModal = ({ current, onClose, onOpenSearch, open }) => {
           ),
         Promise.resolve(),
       );
-      setStatus(interfaceText('Smart-radio Wishlist seeds added: {count}.', { count: queries.length }));
+      setStatus(interfaceText(
+        queries.length === 1 ? 'Added 1 smart-radio seed to Wishlist.' : 'Added {count} smart-radio seeds to Wishlist.',
+        { count: queries.length },
+      ));
     } catch {
       setStatus(interfaceText('Unable to add smart-radio seeds to Wishlist.'));
     } finally {
@@ -597,7 +603,10 @@ const PlayerQueueModal = ({
       }
       setPlaylists((existing) => [...existing, response.data]);
       setPlaylistName('');
-      setHandoffStatus(interfaceText('Saved {count} tracks to {name}.', { count: items.length, name }));
+      setHandoffStatus(interfaceText(
+        items.length === 1 ? 'Saved {count} track to {name}.' : 'Saved {count} tracks to {name}.',
+        { count: items.length, name },
+      ));
     } catch {
       if (createdPlaylistId) {
         try {
@@ -643,7 +652,10 @@ const PlayerQueueModal = ({
     try {
       setSearchingSimilar(true);
       const count = await searches.createBatch({ queries });
-      setHandoffStatus(interfaceText('Similar-track searches started: {count}.', { count }));
+      setHandoffStatus(interfaceText(
+        count === 1 ? 'Started 1 similar-track search.' : 'Started {count} similar-track searches.',
+        { count },
+      ));
     } catch {
       setHandoffStatus(interfaceText('Unable to start similar-track searches.'));
     } finally {
@@ -673,7 +685,10 @@ const PlayerQueueModal = ({
           ),
         Promise.resolve(),
       );
-      setHandoffStatus(interfaceText('Similar-track Wishlist seeds added: {count}.', { count: queries.length }));
+      setHandoffStatus(interfaceText(
+        queries.length === 1 ? 'Added 1 similar-track seed to Wishlist.' : 'Added {count} similar-track seeds to Wishlist.',
+        { count: queries.length },
+      ));
     } catch {
       setHandoffStatus(interfaceText('Unable to add similar-track seeds to Wishlist.'));
     } finally {
@@ -1158,7 +1173,7 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
     importFileRequestRef.current += 1;
     const result = importListeningHistory(importText);
     setImportStatus(
-      interfaceText('{imported} rows imported; {skipped} duplicates or incomplete rows skipped.', {
+      interfaceText('{imported} imported, {skipped} skipped as duplicates or incomplete rows.', {
         imported: result.imported,
         skipped: result.skipped,
       }),
@@ -1192,7 +1207,10 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
     try {
       setRunningSeedSearches(true);
       const count = await searches.createBatch({ queries });
-      setImportStatus(interfaceText('Listening seed searches started: {count}.', { count }));
+      setImportStatus(interfaceText(
+        count === 1 ? 'Started 1 bounded listening seed search.' : 'Started {count} bounded listening seed searches.',
+        { count },
+      ));
     } catch {
       setImportStatus(interfaceText('Unable to start listening seed searches.'));
     } finally {
@@ -1222,7 +1240,10 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
           ),
         Promise.resolve(),
       );
-      setImportStatus(interfaceText('Listening seeds added to Wishlist for manual acquisition: {count}.', { count: queries.length }));
+      setImportStatus(interfaceText(
+        queries.length === 1 ? 'Added 1 listening seed to Wishlist.' : 'Added {count} listening seeds to Wishlist.',
+        { count: queries.length },
+      ));
     } catch {
       setImportStatus(interfaceText('Unable to add listening seeds to Wishlist.'));
     } finally {
@@ -1238,7 +1259,12 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
       });
       setImportStatus(
         result.submitted > 0
-          ? interfaceText('ListenBrainz listens submitted: {count}.', { count: result.submitted })
+          ? interfaceText(
+            result.submitted === 1
+              ? 'Submitted 1 recent listen to ListenBrainz.'
+              : 'Submitted {count} recent listens to ListenBrainz.',
+            { count: result.submitted },
+          )
           : interfaceText('No ListenBrainz token or eligible recent listens are available.'),
       );
     } catch {
@@ -3615,12 +3641,13 @@ const PlayerBar = () => {
           <Icon name="music" />
           <LocalizedText source={"Player hidden"} /></div>
         <PlayerToolButton
+         {...interfaceTextProps("Show the browser player again at this location.")}
           content={interfaceText("Show the browser player again at this location.")}
           aria-label={interfaceText("Show player")}
           data-testid="player-show"
           icon="eye"
           onClick={() => setExperiencePreference('playerVisible', true)}
-         {...interfaceTextProps("Show the browser player again at this location.")}/>
+        />
       </div>
     );
   }
@@ -3872,13 +3899,14 @@ const PlayerBar = () => {
             onClick={() => setCollapsed(false)}
            {...interfaceTextProps("Expand player")}/>
           <PlayerToolButton
+           {...interfaceTextProps("Stop playback and hide the player. Use Show player to restore it.")}
             content={interfaceText("Stop playback and hide the player. Use Show player to restore it.")}
             className="player-compact-secondary"
             aria-label={interfaceText("Hide player")}
             data-testid="player-hide"
             icon="eye slash"
             onClick={() => setExperiencePreference('playerVisible', false)}
-           {...interfaceTextProps("Stop playback and hide the player. Use Show player to restore it.")}/>
+          />
           <PlayerToolButton
             content={
               localMuted
@@ -4143,12 +4171,13 @@ const PlayerBar = () => {
               value={volume}
              {...interfaceTextProps("Playback volume")}/>
             <PlayerToolButton
+             {...interfaceTextProps("Collapse the player into a small drawer bar above the footer.")}
               content={interfaceText("Collapse the player into a small drawer bar above the footer.")}
               aria-label={interfaceText("Collapse player")}
               data-testid="player-collapse"
               icon="angle down"
               onClick={() => setCollapsed(true)}
-             {...interfaceTextProps("Collapse the player into a small drawer bar above the footer.")}/>
+            />
             <PlayerToolButton
               active={advancedOpen}
               aria-label={advancedOpen ? 'Hide player tools' : 'Show player tools'}
@@ -4157,12 +4186,13 @@ const PlayerBar = () => {
               onClick={() => setAdvancedOpen((open) => !open)}
             />
             <PlayerToolButton
+             {...interfaceTextProps("Stop playback and hide the player. Use Show player to restore it.")}
               content={interfaceText("Stop playback and hide the player. Use Show player to restore it.")}
               aria-label={interfaceText("Hide player")}
               data-testid="player-hide"
               icon="eye slash"
               onClick={() => setExperiencePreference('playerVisible', false)}
-             {...interfaceTextProps("Stop playback and hide the player. Use Show player to restore it.")}/>
+            />
             {advancedOpen ? <>
             <PlayerToolButton
               active={visualizerMode !== 'off'}

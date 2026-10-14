@@ -10,7 +10,7 @@ const Files = ({ options } = {}) => {
 
   const panes = [
     {
-      menuItem: <LocalizedText source="Downloads" />,
+      menuItem: { key: 'downloads', content: <LocalizedText source="Downloads" /> },
       pane: (
         <Tab.Pane key="downloads">
           <Explorer
@@ -23,7 +23,7 @@ const Files = ({ options } = {}) => {
       route: 'downloads',
     },
     {
-      menuItem: <LocalizedText source="Incomplete" />,
+      menuItem: { key: 'incomplete', content: <LocalizedText source="Incomplete" /> },
       pane: (
         <Tab.Pane key="incomplete">
           <Explorer

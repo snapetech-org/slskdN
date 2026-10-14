@@ -1,3 +1,20 @@
+## Current state — Localization PR #360 — 2026-10-14
+
+PR #360 adds the reviewed 12-locale UI catalog coverage and Arabic rendering
+fixes. Web tests, lint, build, bundle budget, output check, .NET tests, and
+repository formatting lint pass locally. The Agent VM review covered the real
+Arabic dashboard at 390px and 1,440px; mobile navigation has eight visible,
+accessible destinations without overflow. The server was bound to loopback,
+with Soulseek connection and DHT/mesh disabled for review. The earlier unsafe
+review launch that briefly contacted DHT bootstrap was stopped.
+
+The branch has not yet received the localization code commit or fresh exact-head
+hosted CI. Commit, fast-forward the current base branch into the candidate if
+needed, push to the existing `snapetech-org/slskdN` PR #360 branch, update its
+coverage/check summary, and refresh hosted status. A source audit must still reconcile the previous PR description’s raw API-error
+gaps against the current branch before claiming complete coverage. Fluent-speaker
+review remains outstanding. Keep PR open; do not merge, release, or tag.
+
 ## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
 The `.351` feature and documentation work is on `main`, including the README

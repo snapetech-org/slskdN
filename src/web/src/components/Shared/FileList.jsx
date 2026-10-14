@@ -66,7 +66,7 @@ const FileList = ({
         <div className="filelist-title">
           <TooltipButton
             aria-label={locked
-              ? 'Directory {directory} is locked'
+              ? '{directory} is locked'
               : folded ? 'Expand {directory}' : 'Collapse {directory}'}
             basic
             className="filelist-action-button"
@@ -75,15 +75,17 @@ const FileList = ({
             icon
             parameters={{ directory: directoryName }}
             lang={languageFor(locked
-              ? 'Directory {directory} is locked'
+              ? '{directory} is locked'
               : folded ? 'Expand {directory}' : 'Collapse {directory}')}
             dir={directionFor(locked
-              ? 'Directory {directory} is locked'
+              ? '{directory} is locked'
               : folded ? 'Expand {directory}' : 'Collapse {directory}')}
             onClick={() => setFolded(!folded)}
             tooltip={locked
-              ? 'Directory {directory} is locked'
-              : folded ? 'Expand {directory}' : 'Collapse {directory}'}
+              ? 'Directory {directory} is locked by the peer and cannot be expanded.'
+              : folded
+                ? 'Show the files inside {directory}.'
+                : 'Hide the files inside {directory} while keeping this result open.'}
           >
             <Icon
               name={locked ? 'lock' : folded ? 'folder' : 'folder open'}
@@ -94,15 +96,18 @@ const FileList = ({
 
           {Boolean(onClose) && (
             <TooltipButton
-              aria-label={interfaceText("Close file list for {directory}")}
+              aria-label={t('Close {directory} file list', { directory: directoryName })}
               basic
               className="close-button"
               compact
               icon
               parameters={{ directory: directoryName }}
               onClick={() => onClose()}
-              tooltip="Close file list for {directory}"
-             {...interfaceTextProps("Close file list for {directory}")}>
+              tooltip="Close the {directory} file list and return to the surrounding search results."
+              lang={languageFor('Close the {directory} file list and return to the surrounding search results.')}
+              dir={directionFor('Close the {directory} file list and return to the surrounding search results.')}
+              title={t('Close the {directory} file list and return to the surrounding search results.', { directory: directoryName })}
+            >
               <Icon color="red" name="close" />
             </TooltipButton>
           )}

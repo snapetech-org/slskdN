@@ -3,8 +3,9 @@ import ExperienceSettings from './index';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { setInterfaceLanguage, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { resetInterfaceLanguage, setInterfaceLanguage, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { stubLocaleCatalogFetch } from '../../../test/localeCatalogFetchMock';
 
 const storageKey = 'slskdn:experience-preferences:v1';
 const interfaceLanguageStorageKey = 'slskdn.interface-language';
@@ -16,12 +17,18 @@ const ActiveLanguage = () => {
 
 describe('ExperienceSettings', () => {
   beforeEach(() => {
+    stubLocaleCatalogFetch(vi);
     localStorage.clear();
     Object.assign(navigator, {
       clipboard: {
         writeText: vi.fn().mockResolvedValue(undefined),
       },
     });
+  });
+
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
   });
 
   it('surfaces only the Search and Player preferences currently used by the app', () => {
@@ -109,8 +116,8 @@ describe('ExperienceSettings', () => {
     );
   });
 
-  it('clears the separately stored interface-language override on reset', () => {
-    setInterfaceLanguage('fr');
+  it('clears the separately stored interface-language override on reset', async () => {
+    await setInterfaceLanguage('fr');
     localStorage.setItem(storageKey, JSON.stringify({ regionalFormat: 'de' }));
     render(<><ExperienceSettings /><ActiveLanguage /></>);
 

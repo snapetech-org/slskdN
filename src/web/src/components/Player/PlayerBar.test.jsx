@@ -12,6 +12,7 @@ import * as nowPlaying from '../../lib/nowPlaying';
 import * as searches from '../../lib/searches';
 import * as wishlistAPI from '../../lib/wishlist';
 import * as listeningParty from '../../lib/listeningParty';
+import { setExperiencePreferencesSnapshot } from '../../lib/experiencePreferences';
 
 vi.mock('../../lib/nowPlaying', () => ({
   clearNowPlaying: vi.fn(() => Promise.resolve()),
@@ -266,6 +267,7 @@ describe('PlayerBar', () => {
   const originalMatchMedia = Object.getOwnPropertyDescriptor(window, 'matchMedia');
   beforeEach(() => {
     vi.clearAllMocks();
+    setExperiencePreferencesSnapshot(null);
     window.localStorage.clear();
     window.sessionStorage.clear();
     // These tests exercise the expanded player UI; the collapsed-by-default
@@ -310,7 +312,9 @@ describe('PlayerBar', () => {
         <PlayerBar />
       </PlayerContext.Provider>
     )}</PlayerContext.Consumer></MemoryRouter>);
-    expect(screen.getByText(new RegExp(`Following host-a.*${message}`))).toBeInTheDocument();
+    expect(document.querySelector('.player-subtitle')).toHaveTextContent(
+      new RegExp(`Following host-a.*${message}`),
+    );
   });
 
   it('collapses by default when no preference has ever been stored', () => {

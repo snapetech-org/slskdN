@@ -69,7 +69,7 @@ const NavigationIcon = ({ alert, alertTestId, name }) => {
 
 const NavigationDropdown = ({ group }) => {
   const [open, setOpen] = React.useState(false);
-  const { directionFor, languageFor } = useInterfaceLanguage();
+  const { directionFor, languageFor, t } = useInterfaceLanguage();
   return (
     <Popup
       className="navigation-dropdown-popup"
@@ -80,6 +80,7 @@ const NavigationDropdown = ({ group }) => {
       position="bottom left"
       trigger={(
         <Menu.Item
+          aria-label={t(group.label)}
           aria-expanded={open}
           aria-haspopup="menu"
           className="navigation-dropdown-trigger"
@@ -117,7 +118,7 @@ const NavigationDropdown = ({ group }) => {
 };
 
 const PrimaryNavigation = ({ isAgent, navActivity, version }) => {
-  const { directionFor, languageFor } = useInterfaceLanguage();
+  const { directionFor, languageFor, t } = useInterfaceLanguage();
   return (
   <div className="navigation-primary">
     {version.isCanary && (
@@ -133,31 +134,31 @@ const PrimaryNavigation = ({ isAgent, navActivity, version }) => {
       </Menu.Item>
     ) : (
       <>
-        <NavLink to="/dashboard">
+        <NavLink aria-label={t('Overview')} to="/dashboard">
           <Menu.Item data-testid="nav-dashboard" dir={directionFor('Overview')} lang={languageFor('Overview')}>
             <Icon name="exchange" />
             <LocalizedText source="Overview" />
           </Menu.Item>
         </NavLink>
-        <NavLink to="/searches">
+        <NavLink aria-label={t('Search')} to="/searches">
           <Menu.Item data-testid="nav-search" dir={directionFor('Search')} lang={languageFor('Search')}>
             <Icon name="search" />
             <LocalizedText source="Search" />
           </Menu.Item>
         </NavLink>
-        <NavLink to="/downloads">
+        <NavLink aria-label={t('Downloads')} to="/downloads">
           <Menu.Item data-testid="nav-downloads" dir={directionFor('Downloads')} lang={languageFor('Downloads')}>
             <Icon name="download" />
             <LocalizedText source="Downloads" />
           </Menu.Item>
         </NavLink>
-        <NavLink to="/uploads">
+        <NavLink aria-label={t('Uploads')} to="/uploads">
           <Menu.Item data-testid="nav-uploads" dir={directionFor('Uploads')} lang={languageFor('Uploads')}>
             <Icon name="upload" />
             <LocalizedText source="Uploads" />
           </Menu.Item>
         </NavLink>
-        <NavLink to="/messages">
+        <NavLink aria-label={t('Messages')} to="/messages">
           <Menu.Item data-testid="nav-messages" dir={directionFor('Messages')} lang={languageFor('Messages')}>
             <NavigationIcon
               alert={navActivity.rooms || navActivity.chat}

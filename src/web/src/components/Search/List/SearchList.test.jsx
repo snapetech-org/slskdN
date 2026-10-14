@@ -11,7 +11,8 @@ import {
   resetInterfaceLanguage,
   setInterfaceLanguage,
 } from '../../../lib/interfaceLocale';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../../test/localeCatalogFetchMock';
 
 vi.mock('./SearchListRow', () => ({
   default: ({ onSelectionChange, search, selected, selectionDisabled }) => (
@@ -31,13 +32,17 @@ vi.mock('./SearchListRow', () => ({
 }));
 
 describe('SearchList', () => {
-  afterEach(() => resetInterfaceLanguage());
+  beforeEach(() => stubLocaleCatalogFetch(vi));
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
+  });
 
-  it('sets per-label Arabic metadata and falls back to English LTR for missing translations', () => {
+  it('sets per-label Arabic metadata and falls back to English LTR for missing translations', async () => {
     expect(getInterfaceTextLanguage('Not a catalog label', 'ar')).toBe('en');
     expect(getInterfaceTextDirection('Not a catalog label', 'ar')).toBe('ltr');
 
-    setInterfaceLanguage('ar');
+    await setInterfaceLanguage('ar');
     render(
       <SearchList
         hasMoreFromServer

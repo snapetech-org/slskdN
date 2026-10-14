@@ -447,12 +447,18 @@ const LibraryHealth = () => {
       setSelectedIssues((current) => new Set(
         [...current].filter((issueId) => !issueIds.includes(issueId)),
       ));
-      setReportMessage(remainingAutoFixable > 0
-        ? interfaceText('Remediation queued for auto-fixable issues: {count}. Still selected for another batch: {remaining}.', {
-          count: issueIds.length,
-          remaining: remainingAutoFixable,
+      const queuedMessage = interfaceText(
+        issueIds.length === 1
+          ? 'Queued remediation for 1 auto-fixable issue.'
+          : 'Queued remediation for {count} auto-fixable issues.',
+        { count: issueIds.length },
+      );
+      const remainingMessage = remainingAutoFixable > 0
+        ? interfaceText('{count} remain selected for another batch.', {
+          count: remainingAutoFixable,
         })
-        : interfaceText('Remediation queued for auto-fixable issues: {count}.', { count: issueIds.length }));
+        : '';
+      setReportMessage([queuedMessage, remainingMessage].filter(Boolean).join(' '));
       await loadSummary(dashboardPath, { preserveFeedback: true });
     } catch (error_) {
       setError(
@@ -566,7 +572,12 @@ const LibraryHealth = () => {
       setSearchingReplacements(true);
       setError(null);
       const count = await searches.createBatch({ queries });
-      setReportMessage(interfaceText('Bounded replacement searches started for selected Library Health issues: {count}.', { count }));
+      setReportMessage(interfaceText(
+        count === 1
+          ? 'Started 1 bounded replacement search for selected Library Health issues.'
+          : 'Started {count} bounded replacement searches for selected Library Health issues.',
+        { count },
+      ));
     } catch (error_) {
       setError(
         error_.response?.data?.message ||
@@ -916,7 +927,7 @@ const LibraryHealth = () => {
             {selectedIssues.size > 0 && (
               <Segment className="library-health-selection-actions">
                 <div className="library-health-selection-count" aria-live="polite">
-                  <LocalizedText source={"Selected issues: {count}"} values={{ count: selectedIssues.size }} />
+                  <LocalizedText source={"{count} issues selected"} values={{ count: selectedIssues.size }} />
                 </div>
                 <Popup
                   className="library-health-popup"

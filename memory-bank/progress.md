@@ -19177,3 +19177,24 @@ E2E run remains queued on the previous SHA. Next: push normally to the
 verified fork, rerun the complete remediation baseline, cancel the stale
 queued E2E run, and dispatch fresh CI and Playwright validation for the new
 exact head. No release tag or upstream write was made.
+
+
+## Update 2026-10-14 — Localization PR #360 validation
+
+The existing twelve-locale UI catalog now has 5,416 keys per locale with
+English fallback. Reviewed dashboard, player, search, file, transfer, settings,
+system, navigation, and API-error strings are catalog-backed. Dynamic user,
+library, provider, path, and protocol values remain unmodified. Arabic values
+render in isolated bidirectional spans; document metadata remains English/LTR
+because the full shell is not RTL.
+
+The Web suite passes 1,323 tests; Web lint, production build, bundle budget,
+built-output check, .NET suite (6,227 tests), and repository formatting lint
+pass. Agent VM screenshots at 390px and 1,440px show Arabic labels and no
+mobile page overflow. One earlier VM launch briefly enabled DHT bootstrap
+traffic and was stopped; the final review service was configured with
+`no-connect`, disabled DHT/mesh, and loopback-only HTTP. The previous PR description also identified raw server-error paths that were
+not yet mapped; their exact current source coverage needs a fresh audit before
+claiming catalog completeness. Fluent-speaker review and exact-head hosted
+checks are outstanding. The PR remains open; no merge, release, or tag is in
+scope.

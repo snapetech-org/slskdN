@@ -78,12 +78,13 @@ const LogoutMenuItem = ({ onLogout }) => {
         content={interfaceText("End this web session and return to the login screen.")}
         trigger={(
           <Menu.Item
+           {...interfaceTextProps("Log out of this web session.")}
             aria-haspopup="dialog"
             aria-label={interfaceText("Log out of this web session.")}
             data-testid="logout"
             onClick={() => setOpen(true)}
             title={interfaceText("End this web session and return to the login screen.")}
-           {...interfaceTextProps("Log out of this web session.")}>
+          >
             <Icon name="sign-out" />
             <LocalizedText source={"Log Out"} /></Menu.Item>
         )}

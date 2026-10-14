@@ -123,7 +123,7 @@ const ServarrReadinessPanel = ({ options }) => {
 
       const result = await lidarrAPI.syncWanted();
       setCopyStatus(interfaceText(
-        'Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.',
+        'Wanted sync ran: {created} created, {duplicates} duplicates, {skipped} skipped.',
         {
           created: result.createdCount ?? result.CreatedCount ?? 0,
           duplicates: result.duplicateCount ?? result.DuplicateCount ?? 0,
