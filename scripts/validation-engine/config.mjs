@@ -1,6 +1,7 @@
 // Copyright (c) slskdN Team. All rights reserved.
 export const validation = {
   repository: 'slskdn',
+  maxConcurrentTasks: 3,
   inputs: [
     'AGENTS.md',
     'global.json',
@@ -19,6 +20,9 @@ export const validation = {
     'scripts/verify-hosted-release-gate.sh',
     'scripts/test_verify_github_target.py',
     'scripts/test_hosted_release_gate.py',
+    'scripts/check-remediation-baseline.sh',
+    'scripts/check-local-identity-leaks.sh',
+    'scripts/test-local-identity-leaks.py',
     'docs/dev/release-checklist.md',
     'docs/dev/testing-policy.md',
     'scripts/validation-engine/engine.mjs',
@@ -174,6 +178,7 @@ export const validation = {
       minimumCases: 1,
       inventoryLanes: ['web-vitest'],
       dependsOn: ['web-install'],
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1200,
     },
     {
@@ -198,6 +203,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-unit'],
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1800,
     },
     {
@@ -222,6 +228,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-regression'],
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1800,
     },
     {
@@ -233,6 +240,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-integration'],
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1800,
     },
     {

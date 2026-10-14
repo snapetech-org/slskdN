@@ -23,6 +23,7 @@ import {
   formatValidationProgress,
   globRegex,
   isolatedTaskEnvironment,
+  runTaskPool,
   summarizeResult,
 } from './engine.mjs';
 
@@ -113,6 +114,7 @@ test('live progress summary distinguishes completed, blocked, pending, and activ
     { id: 'passed', name: 'Passed task' },
     { id: 'blocked', name: 'Blocked task' },
     { id: 'running', name: 'Long task' },
+    { id: 'another', name: 'Another task' },
   ];
   const results = new Map([
     ['passed', { status: 'passed', startedAt: '2026-10-12T00:00:00.000Z' }],
@@ -120,7 +122,130 @@ test('live progress summary distinguishes completed, blocked, pending, and activ
   ]);
   assert.equal(
     formatValidationProgress('sample', tasks, results, tasks[2], 65_000),
-    '[validation] sample: 1/3 selected tasks complete (1 passed, 0 failed, 1 blocked, 1 pending); running Long task (1m05s)',
+    '[validation] sample: 1/4 selected tasks complete (1 passed, 0 failed, 1 blocked, 2 pending); running Long task (1m05s)',
+  );
+  const running = [
+    { task: tasks[2], startedAt: Date.now() - 65_000 },
+    { task: tasks[3], startedAt: Date.now() - 125_000 },
+  ];
+  assert.match(
+    formatValidationProgress('sample', tasks, results, running),
+    /running Long task \(1m0[45]s\), Another task \(2m0[45]s\)$/,
+  );
+});
+
+test('task pool starts independent tasks together and releases dependents as soon as ready', async () => {
+  const tasks = [
+    { id: 'first' },
+    { id: 'second' },
+    { id: 'after-first', dependsOn: ['first'] },
+    { id: 'after-second', dependsOn: ['second'] },
+  ];
+  const started = [];
+  const finish = new Map();
+  let active = 0;
+  let maximumActive = 0;
+  const pool = runTaskPool(tasks, {
+    concurrency: 2,
+    receipts: new Map(),
+    run: (task) => {
+      started.push(task.id);
+      active += 1;
+      maximumActive = Math.max(maximumActive, active);
+      return new Promise((resolve) => finish.set(task.id, () => {
+        active -= 1;
+        resolve({ taskId: task.id, status: 'passed' });
+      }));
+    },
+  });
+
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(started, ['first', 'second']);
+  finish.get('first')();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(started, ['first', 'second', 'after-first']);
+  finish.get('second')();
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(started, ['first', 'second', 'after-first', 'after-second']);
+  finish.get('after-first')();
+  finish.get('after-second')();
+
+  const result = await pool;
+  assert.equal(maximumActive, 2);
+  assert.equal(result.receipts.get('after-first').status, 'passed');
+  assert.equal(result.receipts.get('after-second').status, 'passed');
+});
+
+test('task pool serializes tasks that share a concurrency group', async () => {
+  const tasks = [
+    { id: 'backend-unit', concurrencyGroup: 'backend-tests' },
+    { id: 'backend-regression', concurrencyGroup: 'backend-tests' },
+  ];
+  const started = [];
+  let finishFirst;
+  const pool = runTaskPool(tasks, {
+    concurrency: 2,
+    receipts: new Map(),
+    run: (task) => {
+      started.push(task.id);
+      if (task.id === 'backend-unit') {
+        return new Promise((resolve) => {
+          finishFirst = () => resolve({ taskId: task.id, status: 'passed' });
+        });
+      }
+      return Promise.resolve({ taskId: task.id, status: 'passed' });
+    },
+  });
+
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.deepEqual(started, ['backend-unit']);
+  finishFirst();
+  await pool;
+  assert.deepEqual(started, ['backend-unit', 'backend-regression']);
+});
+
+test('Web and backend test suites share one resource concurrency group', () => {
+  const taskIds = [
+    'web-tests',
+    'backend-unit-tests',
+    'backend-regression-tests',
+    'backend-integration-smoke',
+  ];
+  const groups = taskIds.map((id) => (
+    validation.tasks.find((task) => task.id === id)?.concurrencyGroup
+  ));
+
+  assert.deepEqual(groups, Array(taskIds.length).fill('validation-tests'));
+});
+
+test('task pool blocks dependent work after failure and stops pending work in fail-fast mode', async () => {
+  const tasks = [
+    { id: 'failed' },
+    { id: 'dependent', dependsOn: ['failed'] },
+    { id: 'later' },
+  ];
+  const started = [];
+  const result = await runTaskPool(tasks, {
+    concurrency: 1,
+    receipts: new Map(),
+    failFast: true,
+    run: async (task) => {
+      started.push(task.id);
+      if (task.id === 'failed') throw new Error('fixture task failure');
+      return { taskId: task.id, status: 'passed' };
+    },
+  });
+
+  assert.deepEqual(started, ['failed']);
+  assert.equal(result.receipts.get('dependent').status, 'blocked');
+  assert.equal(result.receipts.get('later').status, 'blocked');
+  assert.equal(result.receipts.get('failed').error, 'fixture task failure');
+});
+
+test('task pool rejects concurrency outside the supported bound', async () => {
+  await assert.rejects(
+    runTaskPool([{ id: 'unused' }], { concurrency: 17, run: async () => ({ status: 'passed' }) }),
+    /must be an integer from 1 to 16/,
   );
 });
 
@@ -440,7 +565,7 @@ test('Playwright tasks use the job cache and keep standard runs offline', () => 
   );
 });
 
-test('remediation baseline ignores synthetic runtime identities in its isolated task', () => {
+test('remediation baseline ignores synthetic runtime identities but keeps the operator denylist', () => {
   const runRoot = makeRoot({ 'package.json': '{}\n' });
   const task = validation.tasks.find((candidate) => candidate.id === 'remediation-baseline');
 
@@ -449,9 +574,11 @@ test('remediation baseline ignores synthetic runtime identities in its isolated 
   const environment = isolatedTaskEnvironment(task, runRoot, {
     HOME: '/operator/home',
     USER: 'operator',
+    LOCAL_IDENTITY_DENYLIST: 'private-token',
   });
 
   assert.equal(environment.LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES, '0');
+  assert.equal(environment.LOCAL_IDENTITY_DENYLIST, 'private-token');
   assert.equal(
     environment.HOME,
     path.join(runRoot, 'remediation-baseline-environment', 'home'),

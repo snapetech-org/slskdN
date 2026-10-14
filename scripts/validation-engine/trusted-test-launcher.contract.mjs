@@ -111,24 +111,27 @@ test(
     const hostFile = path.join(parent, 'host-canary.txt');
     const browserCache = path.join(parent, 'playwright-cache');
     const outsideDependencies = path.join(parent, 'outside-dependencies');
-    const hostSocket = path.join(parent, 'host-canary.sock');
+    // Keep the Unix socket path short and private when TMPDIR is nested.
+    const hostSocketDirectory = mkdtempSync(path.join('/tmp', 'validation-'));
+    const hostSocket = path.join(hostSocketDirectory, 'socket');
     const candidateWrite = path.join(source, 'launcher-write-canary.txt');
     mkdirSync(path.join(source, 'bin'), { recursive: true });
     mkdirSync(browserCache, { recursive: true });
     mkdirSync(outsideDependencies, { recursive: true });
     const tcpServer = createServer();
-    tcpServer.listen(0, '127.0.0.1');
-    await once(tcpServer, 'listening');
     const socketServer = createServer();
-    socketServer.listen(hostSocket);
-    await once(socketServer, 'listening');
     t.after(async () => {
       if (tcpServer.listening)
         await new Promise((resolve) => tcpServer.close(resolve));
       if (socketServer.listening)
         await new Promise((resolve) => socketServer.close(resolve));
+      rmSync(hostSocketDirectory, { recursive: true, force: true });
       rmSync(parent, { recursive: true, force: true });
     });
+    tcpServer.listen(0, '127.0.0.1');
+    await once(tcpServer, 'listening');
+    socketServer.listen(hostSocket);
+    await once(socketServer, 'listening');
     mkdirSync(path.join(source, 'nested/config'), { recursive: true });
     mkdirSync(path.join(source, 'web/src/lib'), { recursive: true });
     mkdirSync(path.join(source, 'vendor/mainline/src/rpc/server'), { recursive: true });

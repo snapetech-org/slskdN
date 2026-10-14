@@ -93,12 +93,22 @@ and engine-contract tests. The default run adds repository checks and the web
 build/output checks. Browser suites remain separately selectable because they
 need more time and platform setup.
 
+The engine starts up to three dependency-ready tasks at once. `dependsOn`
+continues to gate tasks that need installed packages or build outputs.
+`concurrencyGroup` keeps tasks that share generated outputs or compete for a
+limited resource budget from running together. The Web and backend test suites
+share one group because running them at the same time starved the hosted runner
+and made Web tests flaky. Independent repository checks can still overlap with
+one active suite. Each task keeps its own log and receipt entry, and the engine
+checks the planned source identity before launching work and after each task
+completes.
+
 During execution, the engine writes cumulative task progress to stderr when a
 task starts and finishes, with a heartbeat every minute for long tasks. The
-summary reports completed, failed, blocked, and pending tasks plus the active
-task and elapsed time. Native test-case totals update when each task finishes;
-GitHub Actions shows these live updates in the step log because rendered job
-summaries are published after the step completes.
+summary reports completed, failed, blocked, and pending tasks plus every active
+task and its elapsed time. Native test-case totals update when each task
+finishes; GitHub Actions shows these live updates in the step log because
+rendered job summaries are published after the step completes.
 
 Each execution creates a fresh receipt and per-task logs in a private directory
 under the operating system's temporary directory. Each log is capped at 16 MiB
@@ -115,6 +125,12 @@ allows only variables approved for that task by the engine. The engine forces
 `CI=true`; test tasks use `NODE_ENV=test`. Loader options, proxy settings,
 workflow context, arbitrary variables, and operator configuration paths do not
 reach child commands.
+
+The remediation baseline disables runtime-hostname and runtime-user discovery
+in its isolated task because those values describe the synthetic sandbox
+account, not the operator. Explicit denylist values remain available to the
+scanner. Plain identity names in commit messages match whole words, while
+path-shaped denylist values remain literal matches.
 
 Playwright tasks keep those private home and XDG directories and use the
 job-scoped `slskdn-playwright-browsers` cache under the runner temporary root.

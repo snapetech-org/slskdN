@@ -19158,22 +19158,35 @@ normal fast-forward. The Unreleased notes are now under the dated
 superseded while queued and were cancelled; no result from those runs is
 counted. The exact-`main` hosted gate and stable tag remain pending.
 
+# Update 2026-10-14 — Fix sandbox identity false positives in the remediation gate
+
+The trusted remediation task uses a synthetic private home and account. The
+identity scanner now skips runtime-discovered host/user tokens only in that
+isolated task, while explicit denylist values stay active. Plain identity names
+use whole-word matching in commit messages, and path-shaped terms retain exact
+literal matching. Added five Python scanner contract cases, an engine
+environment contract, and the trusted-sandbox explanation in testing policy.
+The focused scanner suite passes 5/5 and the validation-engine suite passes
+22/22 through the launcher hash-verified from reviewed commit
+6bad0696008970f1df54aea8f03b805475f50363. Exact-head hosted Mode 2 validation
+was pending until the candidate is pushed to PR #366.
+
 ## Update 2026-10-14 01:28 UTC — Hosted release verifier repository identity
 
-Hosted CI and the Nix package smoke passed on exact `main` SHA
-`03c352d32f7a31581dc29b8f34d33bffb0977405`. Running the guarded release
+Hosted CI and the Nix package smoke passed on exact main SHA
+03c352d32f7a31581dc29b8f34d33bffb0977405. Running the guarded release
 verifier against that successful receipt exposed an existing mismatch: the
-configured repository alias resolves to canonical `snapetech-org/slskdN`,
-while the verifier compared the run's canonical name to `snapetech/slskdN`.
-Recorded gotcha `0z1855` immediately, then changed the verifier to pin and
+configured repository alias resolves to canonical snapetech-org/slskdN,
+while the verifier compared the run's canonical name to snapetech/slskdN.
+Recorded gotcha 0z1855 immediately, then changed the verifier to pin and
 check the fork's immutable repository ID and added regression cases for
 canonical-name acceptance and wrong-target rejection. The focused suite passes
 8/8, shell syntax and release-note preview pass, and repository lint completed.
 
 The exact-head CI receipt is no longer current after the verifier fix. Three
-commits are local and unpushed; the remediation baseline stopped at its
-expected branch-sync guard because `main` is ahead of `origin/main`. The old
-E2E run remains queued on the previous SHA. Next: push normally to the
-verified fork, rerun the complete remediation baseline, cancel the stale
-queued E2E run, and dispatch fresh CI and Playwright validation for the new
-exact head. No release tag or upstream write was made.
+commits were local and unpushed at that point; the remediation baseline stopped
+at its expected branch-sync guard because main was ahead of origin/main. The
+old E2E run remained queued on the previous SHA. Next: push normally to the
+verified fork, rerun the complete remediation baseline, cancel the stale queued
+E2E run, and dispatch fresh CI and Playwright validation for the new exact
+head. No release tag or upstream write was made.

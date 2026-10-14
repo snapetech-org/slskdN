@@ -109,6 +109,15 @@ class LocalIdentityScannerTests(unittest.TestCase):
         self.assertNotEqual(runtime_result.returncode, 0)
         self.assertIn("recent commit messages", runtime_result.stderr)
 
+    def test_runtime_identity_setting_rejects_unsupported_values(self):
+        changelog = "## [Unreleased]\n\nNo release text.\n\n## [1.0.0]\n"
+        self._initialize_repository(changelog)
+
+        result = self._run_scanner(LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES="true")
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("must be 0 or 1", result.stderr)
+
     def test_explicit_path_tokens_still_scan_release_copy_literally(self):
         changelog = (
             "## [Unreleased]\n\n"
@@ -125,6 +134,18 @@ class LocalIdentityScannerTests(unittest.TestCase):
 
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("docs/CHANGELOG.md Unreleased", result.stderr)
+
+    def test_explicit_path_tokens_still_scan_commit_messages_literally(self):
+        changelog = "## [Unreleased]\n\nNo release text.\n\n## [1.0.0]\n"
+        self._initialize_repository(changelog, "docs: inspect /srv/private/operator")
+
+        result = self._run_scanner(
+            LOCAL_IDENTITY_DENYLIST="/srv/private/operator",
+            LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES="0",
+        )
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("recent commit messages", result.stderr)
 
 
 if __name__ == "__main__":

@@ -4,6 +4,22 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1858. Bound Independent Validation Tasks Without Breaking Shared Outputs (2026-10-14)
+
+**What went wrong:** The validation engine awaited every selected task in declaration order, so independent checks and tests could not use available runner capacity.
+
+**Why:** The plan recorded task dependencies, but execution treated the topological order as a required serial schedule. Some tasks also share generated outputs, so removing the sequential loop without explicit resource ownership would introduce collisions.
+
+**Prevention:** Schedule only dependency-ready tasks in a bounded pool. Keep shared-output tasks in explicit concurrency groups, put resource-heavy suites in a shared budget group, check the candidate identity while tasks run, and contract-test worker limits, dependency release, group exclusion, failure blocking, and receipt accounting.
+
+### 0z1857. Keep Resource-Heavy Validation Suites Out Of The Same Pool Slot (2026-10-14)
+
+**What went wrong:** The validation pool ran the Web test suite alongside backend test work. The Web suite took nearly three times as long as its serial run, timed out one component test, and failed another assertion after state was not ready.
+
+**Why:** Dependency independence does not mean two suites can safely compete for the same CPU and memory budget. The scheduler grouped backend suites that share outputs but let the resource-heavy Web and backend suites overlap.
+
+**Prevention:** Put CPU- and memory-heavy build/test tasks in an explicit shared resource group. Keep small repository checks outside that group so they can still overlap. Verify the complete hosted gate and its per-task receipts before accepting the schedule.
+
 ### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
 
 **What went wrong:** The hosted release-gate verifier rejected a successful
@@ -27,13 +43,15 @@ conclusion independently.
 checkout after its owner name changed, even though the old alias and new
 canonical name resolved to the same repository.
 
-**Why:** The guard compared exact remote URLs and owner/name strings, which are
-mutable labels rather than repository identity.
+**Why:** The guard compared the old owner/name and also depended on a personal
+GitHub default repository. The transfer changed the canonical remote name, and
+that default is not a reliable write target.
 
 **Prevention:** Accept only recognized GitHub remote forms, resolve both the
-configured remote and `gh` default repository through the API, and require each
-to match the pinned repository ID. Keep the upstream remote check separate and
-read-only.
+canonical repository name through the API, and require it to match the pinned
+repository ID. Require both fetch and push remotes to name the canonical org
+repository, pass `--repo` explicitly to write commands, and keep the upstream
+remote check separate and read-only.
 
 ### 0z1857. Recheck Self-Referential Candidate Counts After Backlog Edits (2026-10-14)
 

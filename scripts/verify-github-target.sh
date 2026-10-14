@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+expected_repo="snapetech-org/slskdN"
 expected_repo_id="1108894784"
 expected_upstream="https://github.com/slskd/slskd.git"
 
@@ -9,62 +10,55 @@ fail() {
   exit 1
 }
 
-repo_from_origin() {
-  local remote_url="$1"
-  local repository=""
+github_repo_from_url() {
+  local url="$1"
+  local repository
 
-  case "$remote_url" in
-    git@github.com:*) repository="${remote_url#git@github.com:}" ;;
-    ssh://git@github.com/*) repository="${remote_url#ssh://git@github.com/}" ;;
-    https://github.com/*) repository="${remote_url#https://github.com/}" ;;
-    *) fail "origin must use a recognized GitHub URL" ;;
+  case "$url" in
+    git@github.com:*) repository="${url#git@github.com:}" ;;
+    ssh://git@github.com/*) repository="${url#ssh://git@github.com/}" ;;
+    https://github.com/*) repository="${url#https://github.com/}" ;;
+    *) fail "remote must use a recognized GitHub URL" ;;
   esac
 
   repository="${repository%.git}"
-  if [[ ! "$repository" =~ ^[[:alnum:]_.-]+/slskdN$ ]]; then
-    fail "origin does not identify the expected repository"
-  fi
-
-  printf '%s\n' "$repository"
-}
-
-repo_id_for() {
-  local repository="$1"
-  local repository_id
-
-  if ! repository_id="$(gh api "repos/${repository}" --jq '.id | select(type == "number")')"; then
-    fail "could not resolve configured GitHub repository"
-  fi
-
-  if [[ "$repository_id" != "$expected_repo_id" ]]; then
-    fail "configured GitHub repository resolved to unexpected repository ID ${repository_id}"
-  fi
-
-  printf '%s\n' "$repository_id"
+  printf '%s\n' "${repository,,}"
 }
 
 origin_url="$(git remote get-url origin)"
+push_url="$(git remote get-url --push origin)"
 upstream_url="$(git remote get-url upstream 2>/dev/null || true)"
-default_repo="$(gh repo set-default --view 2>/dev/null || true)"
+expected_repo_lower="${expected_repo,,}"
+origin_repo="$(github_repo_from_url "$origin_url")"
+push_repo="$(github_repo_from_url "$push_url")"
+
+if [[ "$origin_repo" != "$expected_repo_lower" ]]; then
+  fail "origin fetch remote is '$origin_url'; expected a GitHub remote for '$expected_repo'"
+fi
+
+if [[ "$push_repo" != "$expected_repo_lower" ]]; then
+  fail "origin push remote is '$push_url'; expected a GitHub remote for '$expected_repo'"
+fi
 
 if [[ -n "$upstream_url" && "$upstream_url" != "$expected_upstream" ]]; then
   fail "upstream remote is not the expected read-only reference"
 fi
 
-origin_repo="$(repo_from_origin "$origin_url")"
-if [[ ! "$default_repo" =~ ^[[:alnum:]_.-]+/slskdN$ ]]; then
-  fail "GitHub default repository is unset or invalid"
+if ! repository_id="$(gh api "repos/$expected_repo" --jq '.id | select(type == "number")')"; then
+  fail "could not resolve canonical GitHub repository '$expected_repo'"
 fi
 
-origin_repo_id="$(repo_id_for "$origin_repo")"
-default_repo_id="$(repo_id_for "$default_repo")"
+if [[ "$repository_id" != "$expected_repo_id" ]]; then
+  fail "canonical GitHub repository resolved to unexpected repository ID '$repository_id'"
+fi
 
 cat <<EOF
-GitHub target verified by repository ID.
-- origin repository ID: ${origin_repo_id}
+GitHub target verified.
+- origin: ${origin_url}
+- origin push: ${push_url}
 - upstream: ${upstream_url:-<unset>}
-- gh default repository ID: ${default_repo_id}
+- GitHub repository: ${expected_repo} (ID ${repository_id})
 
-Write actions from this checkout must target repository ID ${expected_repo_id} only.
-Upstream slskd/slskd is read-only reference and must not be modified from this workspace.
+Write actions from this checkout must pass --repo ${expected_repo} explicitly.
+Upstream slskd/slskd is a read-only reference and must not be modified from this workspace.
 EOF

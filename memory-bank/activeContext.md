@@ -1,22 +1,38 @@
-## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
+## Current state — Validation pool branch refreshed — 2026-10-14
 
-The `.351` feature and documentation work is on `main`, including the README
-and feature/API/configuration guides. Exact-head CI and Nix smoke run
-`38493466154` passed on SHA `03c352d32f7a31581dc29b8f34d33bffb0977405`.
-The release verifier initially rejected this valid run because GitHub returned
-the canonical `snapetech-org/slskdN` name while the checkout uses the
-`snapetech/slskdN` alias. The verifier now checks the fork's pinned repository
-ID, confirms the alias resolves to it, and validates the run against that ID.
-Regression coverage passes 8/8, release-note preview passes, and `./bin/lint`
-completed. The remediation baseline stopped at the expected branch-sync guard
-because the two verifier-fix commits are not pushed yet.
+SLSKDN PR #366 adds a bounded pool for independent validation tasks. It runs up
+to three dependency-ready tasks together and keeps the Web and backend test
+suites in one resource group after the first hosted run showed that overlapping
+them made Web tests much slower and flaky. That run used head
+aa76b2af560ef284e57f60094b0c8f713e147534, executed 15/15 tasks, passed 14,
+and failed the required remediation baseline because the branch's tracked-source
+count was stale. All seven application repositories are now under snapetech-org. The candidate
+is being merged with current main at
+31d2106c33e8e2f3ffd26a69d5e97a479e673b37. The latest baseline and scanner
+changes from main must be reconciled, then the scan and exact-head gate
+must run again. Earlier focused checks passed at the previous candidate, but do
+not count as validation of this merged tree.
 
-The feature tree remains untagged. Push the gotcha and verifier fix with a
-normal fast-forward, then run the remediation baseline and dispatch new
-exact-head CI and Playwright E2E. The earlier E2E run still targets the prior
-SHA and remains queued. Create the stable tag only after both fresh exact-head
-runs pass, then verify release assets and downstream publication. Live
-DHT/VPN validation still has no supplied credentials or VPN profile.
+The scanner change keeps explicit operator denylist values active, excludes
+synthetic sandbox host/user discovery for the isolated remediation task, and
+matches plain commit-message identities as whole words while preserving literal
+matching for path tokens. Its focused checks and the engine contracts remain
+part of the candidate. Public pull-request workloads stay on GitHub-hosted
+runners; shared self-hosted groups remain restricted to trusted workflow
+definitions on main.
+
+The .351 release-verifier correction is now on main. Earlier exact-head
+CI and Nix evidence predates the correction, so fresh validation is required
+before creating the stable tag. No tag is created from stale receipts.
+
+### Next Steps
+
+- Finish resolving the latest-main merge while preserving both sides.
+- Re-run the focused scanner and engine contracts, then the full candidate gate.
+- Push the reconciled PR #366 head and verify every required check on that SHA.
+- Merge only after the branch is current and its required checks pass.
+- Refresh exact-head .351 CI and browser evidence before stable release tagging.
+
 
 ## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 
