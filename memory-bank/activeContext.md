@@ -1,3 +1,47 @@
+## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
+
+The `.351` feature and documentation work is on `main`, including the README
+and feature/API/configuration guides. Exact-head CI and Nix smoke run
+`38493466154` passed on SHA `03c352d32f7a31581dc29b8f34d33bffb0977405`.
+The release verifier initially rejected this valid run because GitHub returned
+the canonical `snapetech-org/slskdN` name while the checkout uses the
+`snapetech/slskdN` alias. The verifier now checks the fork's pinned repository
+ID, confirms the alias resolves to it, and validates the run against that ID.
+Regression coverage passes 8/8, release-note preview passes, and `./bin/lint`
+completed. The remediation baseline stopped at the expected branch-sync guard
+because the two verifier-fix commits are not pushed yet.
+
+The feature tree remains untagged. Push the gotcha and verifier fix with a
+normal fast-forward, then run the remediation baseline and dispatch new
+exact-head CI and Playwright E2E. The earlier E2E run still targets the prior
+SHA and remains queued. Create the stable tag only after both fresh exact-head
+runs pass, then verify release assets and downstream publication. Live
+DHT/VPN validation still has no supplied credentials or VPN profile.
+
+## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
+
+The SignalR denial-of-service advisory is fixed by updating the complete
+first-party .NET dependency graph and bundled Flatpak runtime to .NET 10.0.13.
+Workflow SDK pins use 10.0.402; the supported global SDK floor remains
+10.0.100. The new scanner inspects every `.csproj` under `src`, `tests`, and
+`tools` and was proven to fail on a vulnerable transitive dependency.
+
+The full local Release build and 6,227 tests pass; performance and VPN-agent
+builds, formatting lint, packaging metadata, release-note validation, and local
+identity checks also pass. The candidate is locally six commits ahead of
+`origin/main`. Next: push to `snapetech/slskdN`, run exact-head hosted CI and
+Playwright E2E, then use the guarded `.351` release-tag flow and verify assets.
+No public DHT/VPN test credentials are configured; any live network test must
+remain out of scope unless suitable credentials/profile are available.
+
+### Next Steps
+
+- Push the validated `.351` candidate after verifying the GitHub target.
+- Require successful hosted CI and browser E2E for the exact pushed SHA.
+- Create the authorized stable tag and verify all published assets.
+- Update the Flatpak application asset reference once the `.351` asset is
+  published and its checksum is available.
+
 ## Current state — Stable `.350` publication follow-through — 2026-10-13 08:51 UTC
 
 Stable release `2026101222-slskdn.350` is published with 13 assets; all six

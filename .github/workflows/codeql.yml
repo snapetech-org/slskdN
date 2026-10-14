@@ -24,7 +24,7 @@ permissions:
   security-events: write
 
 env:
-  DOTNET_VERSION: '10.0.100'
+  DOTNET_VERSION: '10.0.402'
 
 jobs:
   analyze:

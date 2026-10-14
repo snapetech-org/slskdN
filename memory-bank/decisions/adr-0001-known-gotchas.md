@@ -4,6 +4,148 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
+
+**What went wrong:** The hosted release-gate verifier rejected a successful
+workflow run for the intended repository because GitHub returned its current
+canonical owner/name while the verifier compared that value to the configured
+repository alias.
+
+**Why:** GitHub repository aliases and canonical names can differ after an
+organization transfer. A mutable display name is not a reliable identity
+check for a run.
+
+**Prevention:** Pin the intended fork's immutable numeric repository ID,
+confirm that the configured alias resolves to that ID, and compare the run's
+repository ID to it. Keep the release-gate contract test for a renamed
+repository and confirm the run's workflow, event, branch, commit, status, and
+conclusion independently.
+
+### 0z1856. Verify Checkout Targets By Repository ID Across Owner Renames (2026-10-14)
+
+**What went wrong:** The GitHub write-target guard rejected the intended
+checkout after its owner name changed, even though the old alias and new
+canonical name resolved to the same repository.
+
+**Why:** The guard compared exact remote URLs and owner/name strings, which are
+mutable labels rather than repository identity.
+
+**Prevention:** Accept only recognized GitHub remote forms, resolve both the
+configured remote and `gh` default repository through the API, and require each
+to match the pinned repository ID. Keep the upstream remote check separate and
+read-only.
+
+### 0z1857. Recheck Self-Referential Candidate Counts After Backlog Edits (2026-10-14)
+
+**What went wrong:** Updating the active candidate backlog changed the count it
+records because the broad source scan includes the backlog document itself.
+
+**Why:** The generated report and its durable count summary are both inputs to
+the same discovery scan, so new wording can match the scan patterns.
+
+**Prevention:** Regenerate and verify the candidate count after the final
+backlog edit. Avoid introducing scan terms into refresh prose unless the new
+match is intended and classified.
+
+### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
+
+**What went wrong:** The trusted validation environment sets `HOME` to a
+task-private path ending in `/home`. The release identity scanner treated the
+basename `home` as a private identity and searched for it as a substring in
+commit messages. This matched the ordinary plural word `homes` in a commit
+subject and failed the release gate.
+
+**Why:** Runtime identity discovery was applied unchanged inside an isolated
+test environment, and fixed-string matching allowed a short token to match
+inside a different word.
+
+**Prevention:** Do not treat the trusted sandbox's synthetic account and
+directory names as operator identities. Keep explicit denylist terms active,
+match plain-name tokens on word boundaries in commit messages, and retain
+literal matching for path-shaped denylist values. Cover the sandbox environment
+and positive identity matches with scanner contract tests.
+
+### 0z1853. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)
+
+**What went wrong:** A packaging check added the YAML `path:` key prefix to
+artifact patterns that are values inside a block scalar. The focused check
+failed because that literal does not occur in the workflow source.
+
+**Why:** The assertion copied the YAML key along with the value, even though
+the workflow uses `path: |` followed by separately indented path entries.
+
+**Prevention:** Match block-scalar values in text checks without adding the
+mapping key. Prefer a structural YAML contract for checking that the values
+belong to the correct field, and run both checks when changing workflow paths.
+
+### 0z1852. Keep Packaging Checks Aligned With Narrow Artifact Globs (2026-10-13)
+
+**What went wrong:** CI artifact uploads were narrowed to validation receipts
+and logs, but the packaging metadata check still expected the previous broad
+validation-directory path. The hosted release gate failed its packaging check.
+
+**Why:** The workflow path contract was repeated in separate validators. The
+workflow syntax check was updated, while the packaging metadata assertion kept
+the stale literal.
+
+**Prevention:** Keep the permitted artifact paths explicit and identical across
+all workflow validators. When changing upload paths, search for every assertion
+of the old path and run the packaging metadata check together with the workflow
+contract tests.
+
+### 0z1848. Scan Every Project For Transitive Package Advisories (2026-10-13)
+
+**What went wrong:** Scanning only the application project reported no
+vulnerable packages, while the unit-test and performance-test project graphs
+resolved an affected transitive SignalR package.
+
+**Why:** A package audit is scoped to the project graph passed to the command.
+Test and tooling projects can resolve dependency paths that a product-only
+scan does not examine.
+
+**Prevention:** Enumerate the first-party projects under `src`, `tests`, and
+`tools` when checking NuGet advisories. After a dependency update, scan each
+restored project graph and confirm the affected package is no longer resolved.
+
+### 0z1849. Update Every Test Double When Paged Service Contracts Change (2026-10-13)
+
+**What went wrong:** Search and download service interfaces gained continuation
+parameters, but test doubles in the regression and integration projects kept
+their old method signatures and prevented the full solution from compiling.
+
+**Why:** The implementation and focused tests were updated without auditing
+every class that implements the service interfaces across the solution.
+
+**Prevention:** After changing a service contract, search all implementations
+and test doubles in `src/` and `tests/`, then build and test the full solution
+instead of relying only on focused test projects.
+
+### 0z1850. Keep Snapshot Fixtures Away From Millisecond Watermark Edges (2026-10-13)
+
+**What went wrong:** A transfer snapshot test relied on the default
+`DateTime.UtcNow` timestamps. The API quantizes its snapshot watermark to Unix
+milliseconds, so rows created immediately before the request could still be
+newer than the rounded-down watermark and disappear from the initial page.
+
+**Why:** The fixture and the API cursor used different timestamp precision,
+and the test data was created inside the precision interval being truncated.
+
+**Prevention:** Assign transfer fixture timestamps explicitly, comfortably
+before the request watermark. For cursor-boundary tests, set timestamps to
+specific values on both sides of the serialized millisecond boundary.
+
+### 0z1851. Match ILogger Scope Nullability Constraints (2026-10-13)
+
+**What went wrong:** Updating the .NET logging abstractions package exposed a
+nullability warning on a benchmark `ILogger.BeginScope<TState>` implementation.
+
+**Why:** Its generic constraint no longer matched the interface contract after
+the package annotations were updated.
+
+**Prevention:** Keep custom logger implementations aligned with the current
+`ILogger.BeginScope<TState>` signature, including its `notnull` constraint,
+and compile the benchmark project after logging package updates.
+
 ### 0z1847. Include New Environment Options In Every Maintained Installer Template (2026-10-13)
 
 **What went wrong:** Several options documented as environment variables were
@@ -42603,3 +42745,19 @@ visibility keys inherit the current defaults for newly introduced columns.
 **Prevention:** When a test asserts an exact transfer-column set, specify an
 explicit visibility value for every column key, including `false` for hidden
 columns. This keeps the fixture stable when product defaults evolve.
+
+### 0z1814. Start Release-Note Bodies With A Capitalized Sentence (2026-10-13)
+
+**What went wrong:** A release-note fragment body began with a lowercase word and failed the release-note validator.
+
+**Why:** The fragment was reviewed for metadata and content but the capitalization rule was only exercised later by the full release-note validation gate.
+
+**Prevention:** Start each release-note body with a capitalized sentence, then run the validator before committing the fragment.
+
+### 0z1815. Upload Only Validation Receipts And Logs (2026-10-13)
+
+**What went wrong:** CI uploaded whole validation run directories, including private task environments and package caches, producing a 1.58 GB artifact.
+
+**Why:** The artifact glob included both evidence files and sibling environment/cache directories created under the same temporary root.
+
+**Prevention:** Upload only top-level `receipt.json` and task `*.log` files. Add a workflow contract check that rejects recursive globs over validation run directories.

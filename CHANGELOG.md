@@ -10,6 +10,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Security
 
+- .NET dependency graphs and bundled runtimes now use the 10.0.13 servicing
+  release for the SignalR denial-of-service fix. Hosted .NET build workflows
+  use SDK 10.0.402, and vulnerability checks inspect every first-party project.
+- CI validation artifacts now include only receipts and task logs, leaving
+  temporary task environments and dependency caches on the runners.
 - Public pull-request workflows now run on GitHub-hosted runners. Persistent
   self-hosted runners are reserved for trusted workflows. Manual runs from
   refs outside `main` also use hosted runners, and release jobs receive only

@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  DOTNET_VERSION: '10.0.100'
+  DOTNET_VERSION: '10.0.402'
   DOTNET_INSTALL_DIR: ${{ github.workspace }}/.dotnet
   NODE_VERSION: '22.22.2'
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
@@ -325,15 +325,7 @@ jobs:
       - name: Scan NuGet Dependencies
         run: |
           set -euo pipefail
-          # Use -p:Version=0.0.0 to prevent VERSION env var from being read as MSBuild $(Version),
-          # which would cause NuGet to reject build-main-* prefixed strings as invalid semver.
-          dotnet restore src/slskd/slskd.csproj -p:Version=0.0.0
-          dotnet list src/slskd/slskd.csproj package --vulnerable --include-transitive 2>&1 | tee "$TMPDIR/nuget-vuln.txt"
-          if grep -qiE 'High|Critical' "$TMPDIR/nuget-vuln.txt"; then
-            echo "::error::NuGet HIGH or CRITICAL vulnerability detected"
-            cat "$TMPDIR/nuget-vuln.txt"
-            exit 1
-          fi
+          python3 scripts/check-nuget-vulnerabilities.py
 
       - name: Scan Web Dependencies
         run: |

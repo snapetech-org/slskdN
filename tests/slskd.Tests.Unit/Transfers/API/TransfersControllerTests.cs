@@ -817,16 +817,19 @@ public class TransfersControllerTests
         {
             Id = Guid.NewGuid(),
             State = TransferStates.Completed | TransferStates.Succeeded,
+            UpdatedAt = DateTime.UnixEpoch,
         };
         var failed = new SlskdTransfer
         {
             Id = Guid.NewGuid(),
             State = TransferStates.Completed | TransferStates.Errored,
+            UpdatedAt = DateTime.UnixEpoch,
         };
         var active = new SlskdTransfer
         {
             Id = Guid.NewGuid(),
             State = TransferStates.InProgress,
+            UpdatedAt = DateTime.UnixEpoch,
         };
         Expression<Func<SlskdTransfer, bool>>? capturedExpression = null;
         var downloads = new Mock<IDownloadService>();

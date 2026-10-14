@@ -45,6 +45,14 @@ This is the minimum bar for code that is about to ship or gate CI:
 
 See [release-checklist.md](release-checklist.md) for the operator-facing release steps and what this gate does or does not prove.
 
+#### NuGet vulnerability scan
+
+Run `python3 scripts/check-nuget-vulnerabilities.py` to audit every first-party
+project under `src/`, `tests/`, and `tools/`. The check evaluates direct and
+transitive packages and fails on any reported severity. CI runs the same check;
+scanning only the application project can miss vulnerable packages resolved by
+test or tooling projects.
+
 #### Validation engine entry points
 
 The release gate is driven by the repository-specific validation engine. From
