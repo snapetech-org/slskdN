@@ -30,6 +30,8 @@ jobs:
     # All pull requests and manual dispatches outside main use hosted runners.
     runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 30
+    env:
+      BENCHMARK_ARTIFACTS: ${{ github.workspace }}/tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts
     steps:
       - name: Configure runner temporary storage
         shell: bash
@@ -77,8 +79,19 @@ jobs:
             --configuration Release \
             --no-build \
             -- \
+            --filter "*HashDbPerformanceBenchmarks.LookupHash_WithoutCache*" \
+            --buildTimeout 600 \
+            --stopOnFirstError \
             --exporters json \
-            --artifacts BenchmarkDotNet.Artifacts
+            --artifacts "$BENCHMARK_ARTIFACTS"
+
+      - name: Test benchmark result verifier
+        run: python3 scripts/test_verify_benchmark_results.py
+
+      - name: Verify benchmark measurements
+        run: |
+          python3 scripts/verify-benchmark-results.py \
+            "$BENCHMARK_ARTIFACTS/results"
 
       - name: Upload Benchmark Results
         if: always()
@@ -86,8 +99,8 @@ jobs:
         with:
           name: benchmark-results
           path: |
-            tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts/results/*.json
-            tests/slskd.Tests.Performance/BenchmarkDotNet.Artifacts/results/*.md
+            ${{ env.BENCHMARK_ARTIFACTS }}/results/*.json
+            ${{ env.BENCHMARK_ARTIFACTS }}/results/*.md
           retention-days: 30
           if-no-files-found: ignore
 

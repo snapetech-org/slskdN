@@ -197,22 +197,48 @@ public class RelayClientTests
 
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(5));
             var partialRoot = Path.Combine(downloadsRoot, ".partial");
+            var partialFiles = await GetFilesWhenPresentAsync(partialRoot, timeout.Token);
             while (!relayLifetime.IsCancellationRequested ||
-                   (Directory.Exists(partialRoot) && Directory.GetFiles(partialRoot, "*", SearchOption.AllDirectories).Length > 0))
+                   partialFiles.Length > 0)
             {
                 await Task.Delay(10, timeout.Token);
+                partialFiles = await GetFilesWhenPresentAsync(partialRoot, timeout.Token);
             }
 
             Assert.False(File.Exists(destinationPath));
-            Assert.Empty(Directory.Exists(partialRoot)
-                ? Directory.GetFiles(partialRoot, "*", SearchOption.AllDirectories)
-                : Array.Empty<string>());
+            Assert.Empty(await GetFilesWhenPresentAsync(partialRoot, timeout.Token));
         }
         finally
         {
             client.Dispose();
             Directory.Delete(downloadsRoot, recursive: true);
         }
+    }
+
+    private static async Task<string[]> GetFilesWhenPresentAsync(
+        string directory,
+        CancellationToken cancellationToken)
+    {
+        while (Directory.Exists(directory))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            try
+            {
+                return Directory.GetFiles(directory, "*", SearchOption.AllDirectories);
+            }
+            catch (DirectoryNotFoundException) when (!Directory.Exists(directory))
+            {
+                return System.Array.Empty<string>();
+            }
+            catch (DirectoryNotFoundException)
+            {
+                // Relay cancellation removes staging directories while the test observes them.
+                await Task.Delay(10, cancellationToken);
+            }
+        }
+
+        return Array.Empty<string>();
     }
 
     private sealed class RelayDownloadHandler : HttpMessageHandler

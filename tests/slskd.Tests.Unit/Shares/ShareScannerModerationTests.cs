@@ -384,7 +384,7 @@ public class ShareRepositoryModerationTests : IDisposable
     [Fact]
     public void TryValidate_WithBrokenConnectionString_ReturnsSanitizedProblem()
     {
-        using var repositoryWithBadPath = new SqliteShareRepository($"Data Source={Path.GetTempFileName()}");
+        using var repositoryWithBadPath = new SqliteShareRepository($"Data Source={Path.GetTempFileName()};Pooling=False");
         SetConnectionString(repositoryWithBadPath, "Data Source=/definitely/missing/share-validation/path/db.sqlite;Mode=ReadOnly");
 
         var isValid = repositoryWithBadPath.TryValidate(out var problems);

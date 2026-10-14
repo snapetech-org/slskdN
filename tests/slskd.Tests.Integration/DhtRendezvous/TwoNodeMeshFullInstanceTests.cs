@@ -12,6 +12,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 using slskd.Common.Security.API;
 using slskd.DhtRendezvous.API;
@@ -638,6 +639,20 @@ public class TwoNodeMeshFullInstanceTests
         if (!File.Exists(databasePath))
         {
             return Task.FromResult(false);
+        }
+
+        // The API can become ready before the background share scanner creates its SQLite schema.
+        // Treat that startup window as not-yet-indexed so the caller's bounded wait can retry.
+        using (var readinessConnection = new SqliteConnection(
+            $"Data Source={databasePath};Mode=ReadWrite;Cache=shared"))
+        {
+            readinessConnection.Open();
+            using var readinessCommand = readinessConnection.CreateCommand();
+            readinessCommand.CommandText = "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'files';";
+            if (readinessCommand.ExecuteScalar() is null)
+            {
+                return Task.FromResult(false);
+            }
         }
 
         using var repository = new SqliteShareRepository($"Data Source={databasePath};Cache=shared");

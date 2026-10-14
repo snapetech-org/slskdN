@@ -19,6 +19,7 @@ using slskd.Integrations.MetadataFacade;
 using slskd.Integrations.MusicBrainz;
 using slskd.SongID;
 using slskd.SongID.API;
+using slskd.Tests.Unit;
 using Xunit;
 
 [Collection("SongIdAppDirectory")]
@@ -530,6 +531,8 @@ public sealed class SongIdServiceTests : IDisposable
         var property = typeof(Program).GetProperty(nameof(Program.AppDirectory), BindingFlags.Public | BindingFlags.Static);
         property?.SetValue(null, _originalAppDirectory);
         slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={Path.Combine(_tempDir, "songid.db")}");
+
+        SqliteTestDatabaseCleanup.ClearPool(Path.Combine(_tempDir, "songid.db"));
 
         if (Directory.Exists(_tempDir))
         {

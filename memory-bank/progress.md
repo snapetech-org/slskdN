@@ -1,3 +1,52 @@
+# Update 2026-10-14 01:38:51 UTC — Resume PR #357 exact-head repair
+
+The pushed PR #357 head remains `b37a2153c92e86f8b1da55b0b5ea248055be85b5`. Its latest Windows retry failed the synthetic share-scan test at its 30-second limit (5,862/5,863 unit tests) and the two-node SQLite startup race (292/293 integration tests); regression/API passed 74/74. The prior exact Windows run on `0b4b2e750` passed 5,863 unit, 293 integration, and 74 regression/API tests. Twelve other required jobs on b37 were queued and remain unknown.
+
+The candidate serializes its three Windows test projects, isolates the share-scan harness from other unit collections, and waits for the SQLite `files` table before the integration fixture seeds content. Focused tests passed locally: scanner 4/4 and two-node integration 1/1. On the merged candidate, hosted-release-gate contract tests passed 8/8, identity scanner tests 3/3, and validation-engine tests 17/17. Workflow YAML, trigger policy, active backlog (all six sections; 13,005 red-team candidates, 76 above main), canonical GitHub target, and diff checks passed. The repository-ID contract uses canonical `snapetech-org/slskdN` ID `1108894784`.
+
+The candidate has checkpoint `backup/pr357-before-31d-main-merge-20261014` at `7059900e1`; the merge with current `origin/main` `31d2106c33e8e2f3ffd26a69d5e97a479e673b37` is resolved but not yet committed. The incoming rename notes use unique gotcha IDs `0z1910` and `0z1911`; the release note now records the SQLite readiness fix. No candidate update has been pushed, and the b37 results do not validate it.
+
+Next: commit the latest-main merge, preview the release note, run the tracked runtime-sync guard, verify the target, then push normally to PR #357. Reconcile every required hosted check against the exact pushed SHA; queued, stale, excluded without policy coverage, or failed checks are not passing evidence. Recheck all 21 review threads and merge only after the complete exact-head gate succeeds. No release tag has been created.
+
+# Update 2026-10-13 23:22 UTC — Integrate latest main into PR #357
+
+Main advanced from `0b91a1f28` to `6bad06960` before the previous merge could be pushed. The new main delta aligns packaging metadata assertions with artifact paths and refreshes the active-council counts. A checkpoint is saved at `backup/pr357-before-6bad-main-merge-20261013`. The merge conflicts in the gotcha ledger and active-council backlog are resolved. New main gotchas that collided with candidate IDs `0z1852` and `0z1853` are renumbered `0z1908` and `0z1909`. The candidate backlog count is refreshed to 12,993 against latest main's 12,917 (76 candidate lines). `scripts/check-council-active-backlog.sh` and `packaging/scripts/validate-packaging-metadata.sh` both pass.
+
+Windows Smoke run `38480392646` passed on old head `0b4b2e750`: unit 5,863, integration 293, regression/API 74. The checks for `4b3abdf12` were still queued when main moved, so the latest merge needs a new exact-head gate.
+
+# Update 2026-10-13 23:19 UTC — Integrate latest main into PR #357
+
+After pushing merge commit `4b3abdf12` with main at `338faef6c`, main advanced to `0b91a1f28`. The PR became conflicting again. A checkpoint was saved at `backup/pr357-before-0b91-main-merge-20261013`. The new main commit added two artifact-contract gotchas to the ledger; their IDs collided with PR records `0z1852` and `0z1853`, so the new main records are renumbered `0z1908` and `0z1909`. The prior records are retained. The merge is staged, but not committed or pushed yet.
+
+The Windows Smoke fix passed on exact head `0b4b2e750` (5,863 unit, 293 integration, 74 regression/API). Checks for `4b3abdf12` were still queued when main moved and cannot validate the next head. A fresh exact-head gate is required after this merge.
+
+# Update 2026-10-13 23:05 UTC — Integrate latest main into PR #357
+
+After commit `0b4b2e750`, `main` advanced to `338faef6c`. GitHub marked PR #357 dirty. A checkpoint branch was created at the pushed candidate, and the latest-main merge is staged. The sole conflict in `adr-0001-known-gotchas.md` was resolved by retaining both main's `0z1815` and the PR's `0z1906`–`0z1907`; the workflow artifact scope, release note, and workflow-YAML regression changes from main were also retained. `bash scripts/check-workflow-yaml-syntax.sh` passed.
+
+Windows Smoke run `38480392646` passed on the previous exact head `0b4b2e750`: unit 5,863/5,863, integration 293/293, and regression/API 74/74. The remaining checks for that SHA were still queued and cannot validate the integrated candidate. The focused local test run remains unknown. A fresh complete exact-head gate is required after the merge push.
+
+# Update 2026-10-13 22:49 UTC — Push Windows Smoke fixes for PR #357
+
+Windows Smoke run `38477538036` on exact head `a2bb9fdff2d27c09fc67ba83c6a1c177c70e1089` passed restore and build. The test command failed 26 of 5,863 unit tests: 25 `LocalFileAndVerifiedCopyTests` cases could not delete pooled SQLite files, and `ExtractFingerprintAsync_StartsProcessBeforeReadingStandardError` expected an overflow that the fake FFmpeg did not emit. Integration tests passed 293/293 and regression/API tests passed 74/74. Nix Package Smoke and Local Identity checks passed on this head.
+
+The catalogue fixture now requests `pooling: false` for its temporary database and no longer clears an unopened mismatched pool. The fingerprint test now asserts the fake executable's no-PCM output; a separate bounded-stream test retains deterministic overflow coverage. ADR gotchas `0z1906` and `0z1907` record the two causes. The focused sandbox test process stopped after more than seven minutes without output, with no reported cases; no process remains, so its result is unknown. Commit `d87578e8a` was pushed to PR #357. The validation-engine plan reported 921 test files, 18 planned tasks, and 7/8 prerequisites available; local `pnpm` is absent. The release-note preview passed. `./bin/lint` remains active. GitHub checks created for `d87578e8a` were queued or pending, but this status update changes the candidate; they will be stale after its push, so the new head needs a complete exact-head gate.
+
+# Update 2026-10-13 22:20 UTC — Integrate latest main into PR #357
+
+After the `f4b53641d` push, main advanced from `37d197d7c` to
+`b46ceb3a7`, which adds .NET 10.0.13 servicing and related test fixes. GitHub
+reported PR #357 as dirty, so the candidate is being updated before final
+validation. The merge keeps both changelog entries and progress histories,
+uses main's performance benchmark logger and 10.0.13 package versions, and
+renumbers five main-side ADR additions to `0z1901`–`0z1905` to avoid IDs already
+used by the candidate.
+
+The five manually dispatched workflows on `f4b53641d` are queued, not passing,
+and will be stale after this update. The new source commit still needs a current
+validation plan, release-note preview, push, full hosted gate, Windows Smoke,
+and exact-head review/check reconciliation.
+
 # Update 2026-10-14 01:02 UTC — Refresh validation inventory after the normal push
 
 Pushed the scanner fix, sandbox gotcha, and current vendored-runtime source
@@ -49,6 +98,82 @@ is six commits ahead of `origin/main`; local release notes are prepared. Exact
 head hosted CI, hosted browser E2E, the authorized release tag, and published
 asset verification remain pending.
 
+# Update 2026-10-13 22:05 UTC — Reconcile PR #357 with current main
+
+Candidate `c1f123faa` now merges exact `origin/main` `37d197d7c` while retaining
+the PR work, plus the two later benchmark-artifact commits from the screenshot
+worktree. Conflict resolution keeps main's current app/test behavior and the
+candidate's runner-security and Windows cleanup changes. Benchmark output,
+verification, and upload now share one workspace-rooted artifact directory;
+the workflow contract test asserts that path. `./bin/lint`, the workflow
+trigger-policy check, five benchmark-verifier tests, and the Release unit
+project build pass. The build succeeded after restore generated the missing
+FakeFfmpeg assets. No full local unit suite result is claimed: a prior
+share-scan attempt exceeded its 30-second bound under high load.
+
+The old remote PR head is still `e13ea38f5`; its Build and Test and Windows
+Smoke jobs were canceled, while the other 13 checks succeeded. Those results
+are stale for this local candidate. The refreshed candidate scan reports
+12,989 red-team matches versus 12,913 on exact `origin/main`; the 76 additional
+lines are in validation, benchmark, workflow-policy, and testing-guidance
+files. All active-backlog rows match the scan. Push and exact-head hosted
+validation remain pending.
+
+# Update 2026-10-13 — Validate malformed benchmark report shapes
+
+Final review reproduced a malformed BenchmarkDotNet report root reaching an
+undefined failure-list variable. The verifier now reports the invalid root
+directly, and its contract suite covers a valid result, a missing report, a
+non-object root, and a report without the selected benchmark. CI runs that
+contract before checking the real benchmark measurements.
+
+# Update 2026-10-13 16:39 UTC — Bound the required benchmark lane
+
+The required BenchmarkDotNet job now selects one representative HashDb lookup
+instead of all 13 class cases, keeping the workflow within its 30-minute limit
+on the constrained LVM host. It completes 10 workload measurements; the
+report verifier checks the selected method, per-iteration values, and aggregate
+statistics, and rejects an empty report. Build tag names are also restricted
+before their versions reach downstream shell scripts. The current full
+candidate passes `./bin/lint`; exact-head hosted checks remain pending until
+push.
+
+# Update 2026-10-13 — Close the Windows share-database handle
+
+The old PR head's Windows Smoke run failed only in
+`ShareScannerHarnessTests.ScanAsync_WithLargeSyntheticTree_CompletesAndIndexesAllFilesWithoutHashing`:
+the fixture could not delete its SQLite database. Disposable share-scan
+repositories now use `Pooling=False`, dispose explicitly, and retry only
+transient Windows sharing violations during cleanup. PR #357 head
+`c0669159e639e3f3a369986baaf58c908450df11` still failed the delete after the
+bounded retry loop, and its CI build/test job remains in progress. The local
+scan rerun hit its 30-second limit under high server load, so it is not counted
+as passing. PR #365's separate Windows run passed all 5,813 unit tests with the
+same cleanup changes, but its workflow failed afterward in setup-node cache
+cleanup. The updated PR #357 candidate needs its own exact-head Windows result.
+
+# Update 2026-10-13 — Exclude dotted and explicit credential material
+
+The trusted snapshot matcher now rejects dotted credential basenames and
+private/API key, access-token, refresh-token, and client-secret names even when
+they use source-like extensions. Ordinary source modules remain available
+inside credential-named folders, including TokenStore.ts. Sandbox canaries
+cover each sensitive family and the retained source module.
+
+The focused validation-engine contract suite passes 21/21 with no skips.
+Exact-head hosted PR checks are pending on the updated branch. No full native
+release gate or main-branch manual validation was run for this matcher update.
+
+# Update 2026-10-13 06:03 UTC — Pin sandbox inputs and bound validation logs
+
+The trusted launcher now binds workspace, run, dependency, cache, and marker
+sources through inherited file descriptors before host paths are masked. Task
+logs stream to private files with a 16 MiB cap and a visible truncation marker.
+Snapshot filtering excludes extensionless credential names and known credential
+configuration files while preserving source files such as `token.js` and
+`tokens.rs`. Focused tests pass 20/20 through the reviewed trusted launcher;
+exact-head PR #357 checks for `ce9968d5` are pending.
+
 # Update 2026-10-13 — Keep CI triggers unchanged for runner-temp hardening
 
 Repository policy keeps builds on tags, pull requests, and explicit manual
@@ -89,7 +214,8 @@ temporary directory, reject root, `/tmp`, and `/var/tmp` (including symlinks),
 and persist `TMPDIR`, `TMP`, and `TEMP` through `GITHUB_ENV`. The NuGet
 vulnerability scan output now uses the validated job temp directory. The
 workflow guard checks all Linux self-hosted jobs and rejects fixed `/tmp` or
-`/var/tmp` use in later steps. Gotcha `0z1771` records the step-scope failure.
+`/var/tmp` use in later steps. Gotcha `0z1806` records the job-wide runner-temp
+contract.
 
 `bash scripts/check-dotnet-runtime-matrix.sh`, workflow YAML parsing, shell
 syntax, runner-temp behavior checks, `./bin/lint`, and the complete remediation

@@ -13,7 +13,7 @@ public sealed class LidarrImportHistoryMigrationTests
     public void Apply_IsIdempotentAndCreatesHistoryTableAndIndexes()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"lidarr-history-migration-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
         try
         {
             var migration = new Z08172026_LidarrImportHistoryMigration(connectionString);

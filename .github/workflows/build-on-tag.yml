@@ -32,11 +32,6 @@ on:
         required: false
         default: false
         type: boolean
-      retry_docker:
-        description: Retry the main Docker publisher
-        required: false
-        default: false
-        type: boolean
       retry_nix:
         description: Retry the Nix metadata publisher
         required: false
@@ -57,6 +52,7 @@ jobs:
     outputs:
       channel: ${{ steps.parse.outputs.channel }}
       version: ${{ steps.parse.outputs.version }}
+      source_sha: ${{ steps.parse.outputs.source_sha }}
     steps:
       - name: Parse Tag
         id: parse
@@ -65,19 +61,28 @@ jobs:
           RETRY_AUR: ${{ inputs.retry_aur }}
           RETRY_COPR: ${{ inputs.retry_copr }}
           RETRY_PPA: ${{ inputs.retry_ppa }}
-          RETRY_DOCKER: ${{ inputs.retry_docker }}
           RETRY_NIX: ${{ inputs.retry_nix }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
           TAG="${REQUESTED_TAG:-$GITHUB_REF_NAME}"
           echo "Tag: $TAG"
 
+          if [[ ! "$TAG" =~ ^build-(main|dev)-[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+            echo "::error::Build tag contains unsupported characters"
+            exit 1
+          fi
+
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
+            if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+              echo "::error::Manual publisher recovery must run from refs/heads/main"
+              exit 1
+            fi
+            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
               echo "::error::Manual publisher recovery requires an existing build-main-* tag"
               exit 1
             fi
-            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_NIX" != true ]]; then
+            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_NIX" != true ]]; then
               echo "::error::Select at least one publisher to retry"
               exit 1
             fi
@@ -96,13 +101,39 @@ jobs:
           echo "Channel: $CHANNEL"
           echo "Version: $VERSION"
 
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && ! gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null; then
-            echo "::error::Manual publisher recovery requires an existing published release for $TAG"
+          tag_ref="repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG}"
+          tag_object="$(gh api "$tag_ref")"
+          object_type="$(jq -r '.object.type' <<< "$tag_object")"
+          object_sha="$(jq -r '.object.sha' <<< "$tag_object")"
+          while [[ "$object_type" == "tag" ]]; do
+            tag_object="$(gh api "repos/${GITHUB_REPOSITORY}/git/tags/${object_sha}")"
+            object_type="$(jq -r '.object.type' <<< "$tag_object")"
+            object_sha="$(jq -r '.object.sha' <<< "$tag_object")"
+          done
+          if [[ "$object_type" != "commit" || ! "$object_sha" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::The requested tag did not resolve to a commit"
             exit 1
+          fi
+          if [[ "$GITHUB_EVENT_NAME" == "push" && "$object_sha" != "$GITHUB_SHA" ]]; then
+            echo "::error::The pushed tag no longer resolves to the event commit"
+            exit 1
+          fi
+
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if ! gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null; then
+              echo "::error::Manual publisher recovery requires an existing published release for $TAG"
+              exit 1
+            fi
+            latest_release_tag="$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.tag_name')"
+            if [[ "$latest_release_tag" != "$VERSION" ]]; then
+              echo "::error::Manual publisher recovery only accepts the current stable release ($latest_release_tag)"
+              exit 1
+            fi
           fi
           
           echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$object_sha" >> "$GITHUB_OUTPUT"
 
   build:
     name: Build
@@ -114,6 +145,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ needs.parse.outputs.source_sha }}
           fetch-depth: 0
 
       - name: Install validation tools
@@ -179,6 +211,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ needs.parse.outputs.source_sha }}
           fetch-depth: 0
 
       - name: Set up .NET
@@ -277,6 +310,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ needs.parse.outputs.source_sha }}
           fetch-depth: 0
 
       - name: Download All Artifacts
@@ -501,15 +535,17 @@ jobs:
   aur-main:
     name: Publish to AUR (Main - Source & Binary)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       short_sha: ${{ steps.info.outputs.short_sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ needs.parse.outputs.source_sha }}
 
       - name: Get commit info
         id: info
@@ -531,6 +567,10 @@ jobs:
           AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
         run: |
           if [ -z "$AUR_SSH_KEY" ]; then
+            if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+              echo "::error::AUR recovery requires AUR_SSH_KEY"
+              exit 1
+            fi
             echo "⚠️ AUR_SSH_KEY not configured, skipping AUR publish"
             exit 0
           fi
@@ -681,14 +721,16 @@ jobs:
   copr-main:
     name: Publish to COPR (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
-    continue-on-error: true
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    continue-on-error: ${{ github.event_name != 'workflow_dispatch' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ needs.parse.outputs.source_sha }}
 
       - name: Download from Release
         env:
@@ -813,6 +855,10 @@ jobs:
           gssapi = true
           EOF
           else
+            if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+              echo "::error::COPR recovery requires a complete supported credential set"
+              exit 1
+            fi
             echo "COPR credentials not configured. Skipping."
           fi
 
@@ -869,9 +915,11 @@ jobs:
   ppa-main:
     name: Publish to PPA (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
-    continue-on-error: true
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    continue-on-error: ${{ github.event_name != 'workflow_dispatch' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     concurrency:
       group: slskdn-ppa-jammy
       cancel-in-progress: false
@@ -879,7 +927,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ needs.parse.outputs.source_sha }}
 
       - name: Download from Release
         env:
@@ -889,6 +937,15 @@ jobs:
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
           unzip slskdn-main-linux-glibc-x64.zip -d publish-linux-x64
+
+      - name: Require signing credentials for selected PPA recovery
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" && -z "$GPG_PRIVATE_KEY" ]]; then
+            echo "::error::PPA recovery requires GPG_PRIVATE_KEY"
+            exit 1
+          fi
 
       - name: Install Build Dependencies
         run: |
@@ -1122,7 +1179,7 @@ jobs:
   docker-main:
     name: Build and Push Docker (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'
     runs-on: ubuntu-latest
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
@@ -1134,7 +1191,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ needs.parse.outputs.source_sha }}
 
       - name: Download from Release
         env:
@@ -1214,6 +1271,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.parse.outputs.source_sha }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
@@ -1257,6 +1316,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.parse.outputs.source_sha }}
 
       - name: Download from Release
         env:
@@ -1374,16 +1435,25 @@ jobs:
   nix-main:
     name: Update Nix/Main Release Metadata
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     runs-on: ubuntu-latest
+    concurrency:
+      group: slskdn-stable-metadata
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: refs/heads/main
           fetch-depth: 0
+
+      - name: Refresh target main tree
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin refs/heads/main:refs/remotes/origin/main
+          git checkout --force -B main refs/remotes/origin/main
 
       - name: Install Nix
         uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
@@ -1431,69 +1501,51 @@ jobs:
             "${VERSION}"
 
       - name: Verify Flake
-        run: |
-          nix flake check --no-build --no-write-lock-file || echo "⚠️ Flake check failed (non-fatal)"
+        run: nix flake check --no-build --no-write-lock-file
 
       - name: Run Nix package smoke
         run: bash packaging/scripts/run-nix-package-smoke.sh
 
       - name: Commit and Push
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          validated_main_sha="$(git rev-parse HEAD)"
+          git fetch --no-tags origin refs/heads/main:refs/remotes/origin/main
+          if [[ "$(git rev-parse refs/remotes/origin/main)" != "$validated_main_sha" ]]; then
+            echo "::error::main advanced after metadata validation; rerun recovery against the new main tree"
+            exit 1
+          fi
 
-          for attempt in 1 2 3 4 5 6 7 8 9 10; do
-            git fetch origin +refs/heads/main:refs/remotes/origin/main
-            git reset --hard origin/main
-            git clean -fd
+          VERSION="${{ needs.parse.outputs.version }}"
+          git add \
+            flake.nix \
+            Formula/slskdn.rb \
+            packaging/winget/ \
+            packaging/homebrew/Formula/slskdn.rb \
+            packaging/snap/snapcraft.yaml \
+            packaging/flatpak/io.github.slskd.slskdn.yml \
+            packaging/truenas-scale/charts/slskdn/Chart.yaml \
+            packaging/helm/slskdn/Chart.yaml \
+            packaging/chocolatey/slskdn.nuspec \
+            packaging/chocolatey/tools/chocolateyinstall.ps1 \
+            packaging/rpm/slskdn.spec \
+            packaging/debian/changelog \
+            packaging/aur/PKGBUILD \
+            packaging/aur/PKGBUILD-bin \
+            packaging/proxmox-lxc/README.md \
+            packaging/helm/slskdn/README.md \
+            packaging/flatpak/FLATHUB_SUBMISSION.md
 
-            VERSION="${{ needs.parse.outputs.version }}"
-            chmod +x packaging/scripts/update-stable-release-metadata.sh
-            bash packaging/scripts/update-stable-release-metadata.sh \
-              "${VERSION}" \
-              "${{ steps.hashes.outputs.linux_x64_hex }}" \
-              "${{ steps.hashes.outputs.linux_arm64_hex }}" \
-              "${{ steps.hashes.outputs.macos_x64_hex }}" \
-              "${{ steps.hashes.outputs.macos_arm64_hex }}" \
-              "${{ steps.hashes.outputs.win_x64_hex }}" \
-              "${VERSION}"
+          if git diff --cached --quiet; then
+            echo "No metadata changes"
+            exit 0
+          fi
 
-            git add \
-              flake.nix \
-              Formula/slskdn.rb \
-              packaging/winget/ \
-              packaging/homebrew/Formula/slskdn.rb \
-              packaging/snap/snapcraft.yaml \
-              packaging/flatpak/io.github.slskd.slskdn.yml \
-              packaging/truenas-scale/charts/slskdn/Chart.yaml \
-              packaging/helm/slskdn/Chart.yaml \
-              packaging/chocolatey/slskdn.nuspec \
-              packaging/chocolatey/tools/chocolateyinstall.ps1 \
-              packaging/rpm/slskdn.spec \
-              packaging/debian/changelog \
-              packaging/aur/PKGBUILD \
-              packaging/aur/PKGBUILD-bin \
-              packaging/proxmox-lxc/README.md \
-              packaging/helm/slskdn/README.md \
-              packaging/flatpak/FLATHUB_SUBMISSION.md
-
-            if git diff --cached --quiet; then
-              echo "No metadata changes"
-              exit 0
-            fi
-
-            git commit -m "chore(release): update stable metadata to ${VERSION} [skip ci]"
-
-            if git push origin HEAD:main; then
-              echo "✅ Updated main repo metadata"
-              exit 0
-            fi
-
-            sleep $((attempt * 5))
-          done
-
-          echo "::error::Failed to push main repo metadata after 10 attempts"
-          exit 1
+          git commit -m "chore(release): update stable metadata to ${VERSION} [skip ci]"
+          git push origin HEAD:refs/heads/main
+          echo "✅ Updated main repo metadata"
 
   homebrew-main:
     name: Update Homebrew Tap (Main)

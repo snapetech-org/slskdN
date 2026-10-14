@@ -20,7 +20,7 @@ public class ConversationServiceTests
     public void TimelineIndexMigration_Adds_Ordered_Index_And_Is_Idempotent()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-messaging-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {
@@ -78,7 +78,7 @@ public class ConversationServiceTests
     public void AcknowledgementIndexMigration_Upgrades_Single_Column_Index_And_Is_Idempotent()
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"slskdn-messaging-{Guid.NewGuid():N}.db");
-        var connectionString = $"Data Source={databasePath}";
+        var connectionString = $"Data Source={databasePath};Pooling=False";
 
         try
         {

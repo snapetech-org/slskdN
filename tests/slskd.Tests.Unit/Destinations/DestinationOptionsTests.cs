@@ -4,6 +4,7 @@
 namespace slskd.Tests.Unit.Destinations;
 
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using Xunit;
 
 public class DestinationOptionsTests

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-expected_repo="snapetech/slskdN"
-expected_origin="git@github.com:snapetech/slskdN.git"
+expected_repo="snapetech-org/slskdN"
+expected_origin="git@github.com:snapetech-org/slskdN.git"
 expected_upstream="https://github.com/slskd/slskd.git"
 
 origin_url="$(git remote get-url origin)"

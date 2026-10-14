@@ -26,28 +26,27 @@
 
 ## Active Development
 
-### Release identity scan sandbox scope — 2026-10-14
+### PR #357 Windows and validation gate — 2026-10-14
 
-- [x] Reproduce the false positive caused by a validation task's synthetic
-  `HOME` basename being scanned as an operator identity.
-- [x] Make runtime-derived identity discovery configurable and disable it only
-  for the isolated remediation task; explicit denylist entries remain active.
-- [x] Match commit-message identities as whole words while retaining literal
-  matching for release-facing files.
-- [x] Add scanner contract tests and a validation-engine environment test.
-- [x] Sync the vendored runtime manifest and mirror to its current source ref;
-  the intervening source change is limited to a hosted CI runner setting.
-- [x] Pass the scanner and validation-engine tests, static checks, lint, and
-  the runtime source/mirror check.
-- [x] Push the implementation and complete the post-push remediation baseline;
-  refresh the tracked candidate inventory with the measured count change.
-- [ ] Run exact-head hosted CI and Playwright workflows, then complete the
-  guarded stable release after all required checks pass.
+- [x] Integrate current `origin/main` (`31d2106c3`) with a recoverable
+  checkpoint at `backup/pr357-before-31d-main-merge-20261014`.
+- [x] Preserve the repository-ID release verifier, both branch histories, and
+  the Windows reliability fixes; resolve conflicting gotcha IDs as `0z1910`
+  and `0z1911` without weakening existing checks.
+- [x] Reconcile the b37 Windows failures: scan harness timeout (5,862/5,863
+  unit), SQLite startup race (292/293 integration), and API suite 74/74.
+- [x] Keep the 30-second scan bound and all assertions; serialize Windows test
+  projects, isolate the scan harness, and wait for the SQLite schema in the
+  integration fixture.
+- [x] Pass focused local scanner (4/4), integration (1/1), hosted release
+  verifier (8/8), identity scanner (3/3), validation-engine (17/17), workflow
+  YAML, trigger policy, active backlog, target, and diff checks.
+- [ ] Commit the resolved merge, preview the release note, run the tracked
+  runtime-sync guard, push, and reconcile all required checks on the exact SHA.
+- [ ] Recheck all 21 PR review threads and merge only after the exact-head gate
+  succeeds. Do not create a release tag.
 
-Status: The scanner regression and tracked inventory refresh are pushed to the
-fork, and the full post-push remediation baseline passes. Exact-head hosted
-CI/E2E and stable-release verification remain. History is preserved; no tag
-has been created.
+Status: PR #357 still points to failed head `b37a2153c92e86f8b1da55b0b5ea248055be85b5`; its other 12 required jobs were queued/unknown. The latest-main merge and focused fixes are local and unpushed. No result from b37 validates the candidate, and no release tag has been created.
 
 ### Files API and responsive system workflows — 2026-10-13
 

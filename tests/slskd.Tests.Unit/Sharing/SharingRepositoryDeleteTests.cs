@@ -23,7 +23,7 @@ public sealed class SharingRepositoryDeleteTests : IDisposable
     public SharingRepositoryDeleteTests()
     {
         var options = new DbContextOptionsBuilder<CollectionsDbContext>()
-            .UseSqlite($"Data Source={_dbPath}")
+            .UseSqlite($"Data Source={_dbPath};Pooling=False")
             .AddInterceptors(_commands)
             .Options;
         _factory = new TestDbContextFactory(options);

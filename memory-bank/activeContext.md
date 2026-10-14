@@ -1,4 +1,155 @@
-## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
+## Current state — PR #357 Windows exact-head repair — 2026-10-14 01:37:18 UTC
+
+PR #357 still points to `b37a2153c92e86f8b1da55b0b5ea248055be85b5`. Its latest
+Windows Smoke retry failed the synthetic share-scan timeout (5,862/5,863 unit
+tests) and the two-node SQLite startup race (292/293 integration tests); the
+regression/API suite passed 74/74. The earlier Windows run on `0b4b2e750`
+passed 5,863/5,863, 293/293, and 74/74. Twelve other required b37 checks were
+queued and remain unknown.
+
+The candidate now serializes Windows test projects, isolates the synthetic
+share-scan test from parallel unit collections, and waits for the SQLite
+`files` table before seeding integration content. Focused local checks passed:
+scanner harness 4/4, two-node integration 1/1, local identity scanner 3/3,
+and validation-engine tests 17/17. Workflow YAML, workflow trigger policy,
+active backlog, diff formatting, and target verification also passed before
+this latest merge. The merge with current `origin/main` at
+`31d2106c33e8e2f3ffd26a69d5e97a479e673b37` is in progress. A recovery point
+exists at `backup/pr357-before-31d-main-merge-20261014`.
+
+GitHub resolves the fork to canonical `snapetech-org/slskdN`, repository ID
+`1108894784`; the local origin and GitHub CLI default target that repository.
+The release-gate verifier on main now validates this immutable ID across owner
+renames. No PR update has been pushed for the new fixes, so the b37 results do
+not validate the candidate.
+
+Next: finish the latest-main merge, rerun affected checks and release-note
+preview, commit, run the tracked runtime-sync guard, verify the write target,
+and push to PR #357. Reconcile every required hosted check against that exact
+head; queued, stale, skipped without policy coverage, and failed results do
+not pass. Recheck all 21 review threads and merge only after the exact-head
+gate is green. No release tag has been created.
+
+## Current state — PR #357 exact-head gate repair — 2026-10-14 00:32 UTC
+
+The pushed candidate is `2d88cb78f358b19ab4417d35d0039b375ac4b898`, based
+on current `main` at `6bad0696008970f1df54aea8f03b805475f50363`. Its hosted
+Release Gate completed 14/15 tasks, with 7,461 active cases and three tasks
+excluded. The sole failure was the runtime sync check: upstream
+`slskNet.Runtime` advanced from `af73ff3` to `ad515de`. The guarded sync
+accepted the existing local patch and changed only the runtime manifest and
+the vendored Windows Smoke workflow (`self-hosted` to `windows-latest`).
+
+On `2d88cb7`, CodeQL, E2E, identity-leak, release-note, dependency submission,
+Nix Smoke, dependency scanning, and performance checks passed. The Windows
+Smoke retry, load test, and container scan were still running when this sync
+was prepared. The failed Release Gate and those running checks are not evidence
+for the updated candidate.
+
+### Next steps
+
+- Run the runtime sync check after committing the tracked vendor update; its
+  current worktree guard treats tracked edits as dirty input.
+- Preview the release note, commit and push this update, then reconcile every
+  required exact-head hosted check and receipt.
+- Recheck all 21 review threads and the PR base/head; merge only after every
+  required check for the final head passes. Do not create a release tag.
+
+## Previous state — PR #357 latest-main integration — 2026-10-13 23:22 UTC
+
+The pushed PR head remains `4b3abdf120ced4b7352ff35f50e1b326968815d7`; remote
+`main` advanced to `6bad0696008970f1df54aea8f03b805475f50363`. A checkpoint
+exists at `backup/pr357-before-6bad-main-merge-20261013`. The latest-main merge
+is staged but not committed or pushed. Its conflicts were in the gotcha ledger
+and active-council count table. The two new main gotchas collided with the PR's
+existing `0z1852` and `0z1853`, so the incoming entries are `0z1908` and
+`0z1909`. The candidate report now records 12,993 red-team matches versus
+12,917 on current main, a 76-line delta; the backlog check confirms all six
+section counts.
+
+Main's packaging metadata assertion was also aligned with the narrowed
+validation-artifact globs. Focused checks passed for packaging metadata and the
+active-council backlog; the workflow-YAML check passed during the prior main
+merge. Windows Smoke run `38480392646` passed on the older head `0b4b2e750`:
+unit 5,863/5,863, integration 293/293, and regression/API 74/74. The focused
+local sandbox test produced no result and remains unknown.
+
+Checks for `4b3abdf12` remained queued when main moved again and do not validate
+this merge candidate. After pushing the new merge, refresh the validation plan
+and release-note preview and reconcile all required exact-head checks.
+
+### Next Steps
+
+- Record the focused sandbox test as unknown; it stopped without reporting cases.
+- Commit the current main merge, then verify the GitHub target and push.
+- Refresh the plan and release-note preview, then reconcile every required
+  check on the resulting exact head.
+- Recheck base/head SHAs, all review threads, and Dependabot alert 120; merge
+  only after the new exact-head gate passes.
+- Recheck the PR base and review threads; merge only after every required
+  exact-head result passes.
+
+## Previous state — PR #357 latest-main integration before push — 2026-10-13 22:20 UTC
+
+PR #357 points to `f4b53641d`, but `origin/main` advanced from `37d197d7c` to
+`b46ceb3a7`. GitHub reports the PR dirty, and the local candidate is merging
+that current main commit before the next push. The merge includes main's
+.NET 10.0.13 servicing update and retains the PR's runner, Windows SQLite, and
+benchmark-gate fixes. Conflict resolution preserves both changelog entries,
+appends both progress histories, and gives the main-side gotchas new unique IDs
+`0z1901` through `0z1905` because their original IDs already exist on the
+candidate branch.
+
+Five manually dispatched workflows are queued on `f4b53641d`: CI with
+`runner=github-hosted`, CI Enhancements, Windows Smoke, E2E, and Local Identity
+Leak Check. They are stale once the merged candidate is pushed. No check on
+`f4b53641d` will count as a final result for the updated candidate. The normal
+PR synchronize workflows did not enqueue after the last push; inspect the new
+head's Actions state and use the authorized workflow dispatches if needed.
+
+### Next Steps
+
+- Finish and commit the merge with `origin/main` at `b46ceb3a7`.
+- Refresh the validation plan and release-note preview on that exact commit.
+- Push the candidate, then reconcile full Mode 2, Windows Smoke, and all other
+  applicable exact-head checks. Do not merge while any required result is
+  pending, stale, skipped without policy coverage, or failed.
+- Recheck review threads and merge only after the exact-head gate is green.
+
+## Previous state — PR #357 pre-push candidate — 2026-10-13 22:05 UTC
+
+The local candidate is `c1f123faa` on `codex/pr357-windows-gate-repair-20261013`.
+It merges current `origin/main` at `37d197d7c` and carries the two later
+benchmark-gate commits from the screenshot worktree. The GitHub PR still points
+to `e13ea38f5`; the candidate has not been pushed yet. The pre-merge PR head's
+CI and Windows Smoke runs were canceled, so neither is counted as passing. Its
+other 13 hosted checks succeeded. The PR has 21 review threads, all currently
+resolved; recheck them against the final head before merging.
+
+The merge preserves the newer main source and tests while retaining the PR's
+runner isolation and Windows database cleanup. The performance workflow now
+uses one workspace-rooted `BENCHMARK_ARTIFACTS` directory for BenchmarkDotNet,
+verification, and artifact upload; a contract test covers all three paths.
+Local `./bin/lint`, workflow-trigger policy, benchmark verifier tests (5/5),
+and the Release unit-project build passed. The first `--no-restore` build lacked
+the FakeFfmpeg assets; the normal restore-and-build succeeded with zero
+warnings or errors. The focused share-scan test did not produce a local result:
+an earlier run exceeded its 30-second timeout under high host load, so Windows
+behavior still needs exact-head hosted verification.
+
+The refreshed candidate discovery report contains 12,989 red-team matches,
+76 above an exact `origin/main` scan at 12,913. They are review candidates, not
+confirmed defects. All six active-backlog counts match the current scan.
+
+### Next Steps
+
+- Finish the release-note preview and final source review, then push this
+  candidate to PR #357.
+- Reconcile the full required hosted gate and Windows Smoke against the exact
+  pushed hash; do not count canceled or stale jobs.
+- Recheck review threads and merge only after the exact-head gate is green.
+
+## Main branch state — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
 The `.351` feature and documentation work is on `main`, including the README
 and feature/API/configuration guides. Exact-head CI and Nix smoke run

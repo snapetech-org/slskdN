@@ -25,7 +25,7 @@ public sealed class SourceRankingServiceTests
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<SourceRankingDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new SourceRankingDbContext(options))
@@ -95,7 +95,7 @@ public sealed class SourceRankingServiceTests
         const int candidateCount = 10_000;
         var databasePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<SourceRankingDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new SourceRankingDbContext(options))
@@ -148,7 +148,7 @@ public sealed class SourceRankingServiceTests
         const int usernameCount = 10_000;
         var databasePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<SourceRankingDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new SourceRankingDbContext(options))
@@ -192,7 +192,7 @@ public sealed class SourceRankingServiceTests
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<SourceRankingDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new SourceRankingDbContext(options))
@@ -232,7 +232,7 @@ public sealed class SourceRankingServiceTests
     {
         var databasePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.db");
         var options = new DbContextOptionsBuilder<SourceRankingDbContext>()
-            .UseSqlite($"Data Source={databasePath}")
+            .UseSqlite($"Data Source={databasePath};Pooling=False")
             .Options;
 
         await using (var context = new SourceRankingDbContext(options))

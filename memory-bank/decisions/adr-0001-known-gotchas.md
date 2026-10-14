@@ -4,7 +4,7 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
-### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
+### 0z1911. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
 
 **What went wrong:** The hosted release-gate verifier rejected a successful
 workflow run for the intended repository because GitHub returned its current
@@ -21,7 +21,9 @@ repository ID to it. Keep the release-gate contract test for a renamed
 repository and confirm the run's workflow, event, branch, commit, status, and
 conclusion independently.
 
-### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
+### 0z1910. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
+
+
 
 **What went wrong:** The trusted validation environment sets `HOME` to a
 task-private path ending in `/home`. The release identity scanner treated the
@@ -39,35 +41,7 @@ match plain-name tokens on word boundaries in commit messages, and retain
 literal matching for path-shaped denylist values. Cover the sandbox environment
 and positive identity matches with scanner contract tests.
 
-### 0z1853. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)
-
-**What went wrong:** A packaging check added the YAML `path:` key prefix to
-artifact patterns that are values inside a block scalar. The focused check
-failed because that literal does not occur in the workflow source.
-
-**Why:** The assertion copied the YAML key along with the value, even though
-the workflow uses `path: |` followed by separately indented path entries.
-
-**Prevention:** Match block-scalar values in text checks without adding the
-mapping key. Prefer a structural YAML contract for checking that the values
-belong to the correct field, and run both checks when changing workflow paths.
-
-### 0z1852. Keep Packaging Checks Aligned With Narrow Artifact Globs (2026-10-13)
-
-**What went wrong:** CI artifact uploads were narrowed to validation receipts
-and logs, but the packaging metadata check still expected the previous broad
-validation-directory path. The hosted release gate failed its packaging check.
-
-**Why:** The workflow path contract was repeated in separate validators. The
-workflow syntax check was updated, while the packaging metadata assertion kept
-the stale literal.
-
-**Prevention:** Keep the permitted artifact paths explicit and identical across
-all workflow validators. When changing upload paths, search for every assertion
-of the old path and run the packaging metadata check together with the workflow
-contract tests.
-
-### 0z1848. Scan Every Project For Transitive Package Advisories (2026-10-13)
+### 0z1901. Scan Every Project For Transitive Package Advisories (2026-10-13)
 
 **What went wrong:** Scanning only the application project reported no
 vulnerable packages, while the unit-test and performance-test project graphs
@@ -81,7 +55,7 @@ scan does not examine.
 `tools` when checking NuGet advisories. After a dependency update, scan each
 restored project graph and confirm the affected package is no longer resolved.
 
-### 0z1849. Update Every Test Double When Paged Service Contracts Change (2026-10-13)
+### 0z1902. Update Every Test Double When Paged Service Contracts Change (2026-10-13)
 
 **What went wrong:** Search and download service interfaces gained continuation
 parameters, but test doubles in the regression and integration projects kept
@@ -94,7 +68,7 @@ every class that implements the service interfaces across the solution.
 and test doubles in `src/` and `tests/`, then build and test the full solution
 instead of relying only on focused test projects.
 
-### 0z1850. Keep Snapshot Fixtures Away From Millisecond Watermark Edges (2026-10-13)
+### 0z1903. Keep Snapshot Fixtures Away From Millisecond Watermark Edges (2026-10-13)
 
 **What went wrong:** A transfer snapshot test relied on the default
 `DateTime.UtcNow` timestamps. The API quantizes its snapshot watermark to Unix
@@ -108,7 +82,7 @@ and the test data was created inside the precision interval being truncated.
 before the request watermark. For cursor-boundary tests, set timestamps to
 specific values on both sides of the serialized millisecond boundary.
 
-### 0z1851. Match ILogger Scope Nullability Constraints (2026-10-13)
+### 0z1904. Match ILogger Scope Nullability Constraints (2026-10-13)
 
 **What went wrong:** Updating the .NET logging abstractions package exposed a
 nullability warning on a benchmark `ILogger.BeginScope<TState>` implementation.
@@ -119,6 +93,34 @@ the package annotations were updated.
 **Prevention:** Keep custom logger implementations aligned with the current
 `ILogger.BeginScope<TState>` signature, including its `notnull` constraint,
 and compile the benchmark project after logging package updates.
+
+### 0z1909. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)
+
+**What went wrong:** A packaging check added the YAML `path:` key prefix to
+artifact patterns that are values inside a block scalar. The focused check
+failed because that literal does not occur in the workflow source.
+
+**Why:** The assertion copied the YAML key along with the value, even though
+the workflow uses `path: |` followed by separately indented path entries.
+
+**Prevention:** Match block-scalar values in text checks without adding the
+mapping key. Prefer a structural YAML contract for checking that the values
+belong to the correct field, and run both checks when changing workflow paths.
+
+### 0z1908. Keep Packaging Checks Aligned With Narrow Artifact Globs (2026-10-13)
+
+**What went wrong:** CI artifact uploads were narrowed to validation receipts
+and logs, but the packaging metadata check still expected the previous broad
+validation-directory path. The hosted release gate failed its packaging check.
+
+**Why:** The workflow path contract was repeated in separate validators. The
+workflow syntax check was updated, while the packaging metadata assertion kept
+the stale literal.
+
+**Prevention:** Keep the permitted artifact paths explicit and identical across
+all workflow validators. When changing upload paths, search for every assertion
+of the old path and run the packaging metadata check together with the workflow
+contract tests.
 
 ### 0z1847. Include New Environment Options In Every Maintained Installer Template (2026-10-13)
 
@@ -466,7 +468,7 @@ the transfer table alone does not clean the owning request.
 download requests with no remaining download rows. Preserve active requests and
 requests that still have any transfer history.
 
-### 0z1821. Dispose SQLite Readers Before Their Connections (2026-10-13)
+### 0z1848. Dispose SQLite Readers Before Their Connections (2026-10-13)
 
 **What went wrong:** A Windows test could not delete its temporary share
 database after repository disposal because a scalar/count query had returned
@@ -539,7 +541,7 @@ XDG, and .NET CLI directory. Remove that directory after probing, and test the
 probe with a fake runtime that verifies operator paths and unrelated variables
 are not inherited.
 
-### 0z1807. Budget E2E Timeouts For Sequential Capability Lifetimes (2026-10-13)
+### 0z1849. Budget E2E Timeouts For Sequential Capability Lifetimes (2026-10-13)
 
 **What went wrong:** A browser test waited for a two-minute stream ticket to
 expire, then required more than two minutes of playback after reselection, but
@@ -552,7 +554,7 @@ in the full user journey.
 startup and browser setup. Run the full journey headlessly after changing its
 timeout budget.
 
-### 0z1808. Locate Shrinkable Buttons By Their Accessible Label (2026-10-13)
+### 0z1850. Locate Shrinkable Buttons By Their Accessible Label (2026-10-13)
 
 **What went wrong:** A Playwright test looked up a compact `ShrinkableButton` by
 its tooltip text and waited for the full test timeout because the button's
@@ -566,7 +568,7 @@ such as `Sync`.
 labels to the containing row or section, and assert the tooltip text separately
 after hovering. Do not treat popup content as the button's name.
 
-### 0z1809. Wait For Durable Request State After Transfer Completion (2026-10-13)
+### 0z1851. Wait For Durable Request State After Transfer Completion (2026-10-13)
 
 **What went wrong:** A download test waited for the in-memory transfer to become
 Completed, then immediately asserted that its separate durable request record
@@ -678,7 +680,7 @@ with the client's authentication options.
 number of authentication methods. Select only a method the client offered and
 keep mock negotiation aligned with the protocol frame boundaries.
 
-### 0z1806. Keep Moq Expression Closings Formatter-Safe (2026-10-13)
+### 0z1852. Keep Moq Expression Closings Formatter-Safe (2026-10-13)
 
 **What went wrong:** A new Moq setup added whitespace between the
 `It.IsAny<...>()` expression and its enclosing call. `./bin/lint` failed with a
@@ -720,7 +722,7 @@ the watch registration.
 when the watch cache resets. Test the complete watch lifecycle with the status
 response occurring before the watched-set update.
 
-### 0z1793. Bound Validation Output And Reap Task Descendants (2026-10-12)
+### 0z1853. Bound Validation Output And Reap Task Descendants (2026-10-12)
 
 **What went wrong:** Validation output could accumulate in an unbounded pump
 queue or log, and a task that left a descendant holding stdout open could keep
@@ -32282,7 +32284,7 @@ repo.UpsertContentItem(contentId, "GenericFile", null, maskedFilename, true, str
 
 ## ⚠️ HIGH: Common Mistakes
 
-### 0z1796. Mark Interrupted Share Scans Suspect (2026-10-13)
+### 0z1854. Mark Interrupted Share Scans Suspect (2026-10-13)
 
 **What went wrong:** A cancelled share scan still wrote an end timestamp, which
 made the partial scan look complete. Startup therefore accepted a cache that
@@ -32296,7 +32298,7 @@ suspect before finalizing it. Keep a regression that cancels an in-progress scan
 and verifies the persisted record is ended and suspect; startup must reject it
 and rebuild the cache.
 
-### 0z1797. Keep Relative Web Content Paths Inside The App Directory (2026-10-13)
+### 0z1855. Keep Relative Web Content Paths Inside The App Directory (2026-10-13)
 
 **What went wrong:** Web content configuration rejected rooted paths but accepted
 relative paths containing `..`, allowing the resolved content directory to
@@ -42413,7 +42415,7 @@ mapping contract.
 environment mapping, including the Unraid template, and run packaging metadata
 validation before preparing release notes or tagging.
 
-### 0z1779. Keep .NET SDK Bootstrap Temporary Files On Runner Storage (2026-10-12)
+### 0z1821. Keep .NET SDK Bootstrap Temporary Files On Runner Storage (2026-10-12)
 
 **What went wrong:** `actions/setup-dotnet` could not install the pinned SDK or
 runtime on the persistent Linux runner. The runner's default `/tmp` was nearly
@@ -42426,9 +42428,9 @@ not help the earlier SDK bootstrap.
 **Prevention:** In each eligible Linux self-hosted job, validate
 `RUNNER_TEMP` and export `TMPDIR` through `GITHUB_ENV` in the first step so SDK
 setup and later build/test steps use runner storage. Step-scoped `TMPDIR` covers
-only the setup action; see `0z1780` for the job-wide workflow contract.
+only the setup action; see `0z1806` for the job-wide workflow contract.
 
-### 0z1780. Export Runner Temporary Storage For The Whole Self-Hosted Job (2026-10-12)
+### 0z1806. Export Runner Temporary Storage For The Whole Self-Hosted Job (2026-10-12)
 
 **What went wrong:** A .NET build on the persistent Linux runner still failed
 after the `setup-dotnet` action was pointed at runner storage. The build ran in
@@ -42442,7 +42444,7 @@ the environment for later build, test, or compiler processes.
 `GITHUB_ENV`. Keep a workflow regression that checks every eligible job starts
 with this fail-closed setup.
 
-### 0z1781. Keep Packaging Guards Aligned With Job-Wide Runner Temp (2026-10-12)
+### 0z1807. Keep Packaging Guards Aligned With Job-Wide Runner Temp (2026-10-12)
 
 **What went wrong:** The workflow switched from step-scoped `TMPDIR` values to
 first-step validation and job-wide export through `GITHUB_ENV`, but packaging
@@ -42457,7 +42459,7 @@ first-step ordering.
 guard in the same change. Reuse the shared workflow-matrix check rather than
 asserting a stale step-scoped environment literal.
 
-### 0z1782. Keep Runner-Temp Fixes Within Existing CI Triggers (2026-10-13)
+### 0z1808. Keep Runner-Temp Fixes Within Existing CI Triggers (2026-10-13)
 
 **What went wrong:** A runner-temp reliability change also added CI builds to
 every branch push, expanding the workflow's trigger policy beyond its existing
@@ -42471,7 +42473,7 @@ Run pull-request checks on hosted runners and use an explicitly dispatched
 main-branch validation when a trusted self-hosted run is needed. Keep the
 resource-heavy load harness hosted after a local SIGBUS.
 
-### 0z1783. Keep Local Validation Snapshots Inside The Trust Boundary (2026-10-13)
+### 0z1809. Keep Local Validation Snapshots Inside The Trust Boundary (2026-10-13)
 
 **What went wrong:** The local runner copied untracked and ignored checkout
 files into its candidate snapshot and hid host paths based on a guessed
@@ -42488,7 +42490,7 @@ checkout parent, and stage new candidate files before local validation. Keep
 contract coverage for nested configuration, credential names, checkout aliases,
 and host-root visibility.
 
-### 0z1784. Keep Search Deletion Safe During In-flight Completion (2026-10-13)
+### 0z1856. Keep Search Deletion Safe During In-flight Completion (2026-10-13)
 
 **What went wrong:** A search can be deleted while its asynchronous lifecycle
 callback still holds a detached entity. A later state update then tries to
@@ -42503,7 +42505,7 @@ detect a row removed during completion, and avoid broadcasting a stale update
 after deletion. Cover the delete-versus-finalize ordering with a deterministic
 regression test.
 
-### 0z1785. Record Both Sync And Async Database Commands In Tests (2026-10-13)
+### 0z1857. Record Both Sync And Async Database Commands In Tests (2026-10-13)
 
 **What went wrong:** A lifecycle test stopped counting set-based deletes after
 the implementation moved the guarded database operation to a synchronous EF
@@ -42516,7 +42518,7 @@ so the assertion silently missed the new execution path.
 observe both synchronous and asynchronous calls before relying on command-count
 assertions.
 
-### 0z1786. Bound Repeated Queue-Limit Rejections (2026-10-13)
+### 0z1858. Bound Repeated Queue-Limit Rejections (2026-10-13)
 
 **What went wrong:** A peer that keeps retrying after reaching its upload queue
 limit caused the server to repeat the same transfer-history query and rejection
@@ -42530,7 +42532,7 @@ request.
 decisions, invalidate it when uploads change, suppress per-request logs for
 cached denials, and expose an aggregate metric without peer labels.
 
-### 0z1787. Include Required Transfer Offsets In Event Fixtures (2026-10-13)
+### 0z1859. Include Required Transfer Offsets In Event Fixtures (2026-10-13)
 
 **What went wrong:** A lifecycle regression fixture did not compile because the
 transfer constructor requires a start offset even when the test transfer has
@@ -42543,7 +42545,7 @@ missed a required constructor argument in the vendored transfer contract.
 required offset explicitly and use the shared constructor patterns already
 present in lifecycle tests.
 
-### 0z1788. Keep Peer Accept Loops Alive After Transient Socket Errors (2026-10-13)
+### 0z1860. Keep Peer Accept Loops Alive After Transient Socket Errors (2026-10-13)
 
 **What went wrong:** An unexpected socket error from an accept operation faulted
 the background listener loop while its listening state stayed true.
@@ -42555,7 +42557,7 @@ and its fire-and-forget task swallowed later faults.
 diagnostic for each retry; preserve shutdown as a terminal condition and test
 that a later connection is still accepted.
 
-### 0z1789. Bound Incomplete-Directory Cleanup To Its Configured Root (2026-10-13)
+### 0z1861. Bound Incomplete-Directory Cleanup To Its Configured Root (2026-10-13)
 
 **What went wrong:** Moving a completed download removed its immediate empty
 source directory but left empty peer and nested-folder directories behind.
@@ -42605,7 +42607,7 @@ versions even though they are built from the same checkout.
 syntax. Use scoped `using (...)` blocks in the vendored tests unless the
 project configuration is deliberately upgraded.
 
-### 0z1806. Keep Vendored Runtime Patch In Sync With The Mirror (2026-10-13)
+### 0z1862. Keep Vendored Runtime Patch In Sync With The Mirror (2026-10-13)
 
 **What went wrong:** Runtime source and test files changed in the vendored
 mirror, but the declared local patch did not include those edits. The runtime
@@ -42619,7 +42621,7 @@ behind the files being built.
 revision whenever vendored runtime files change, commit the patch with the
 mirror, and run `scripts/check-slsknet-runtime-sync.sh` before pushing.
 
-### 0z1807. Keep Versioned Changelog Sections Out Of Unmerged Pull Requests (2026-10-13)
+### 0z1863. Keep Versioned Changelog Sections Out Of Unmerged Pull Requests (2026-10-13)
 
 **What went wrong:** A release version section was prepared on a feature branch,
 but the pull request changelog check requires the branch to update
@@ -42634,7 +42636,7 @@ request. After merge, move the exact shipped bullets into the dated version
 section on the default branch and run the exact-head release gate before
 tagging.
 
-### 0z1808. Drain SQLite Test Services Before Deleting File-Backed Databases (2026-10-13)
+### 0z1864. Drain SQLite Test Services Before Deleting File-Backed Databases (2026-10-13)
 
 **What went wrong:** Windows tests failed while deleting temporary SQLite
 databases because repository/service connections, pooled connections, or
@@ -42655,7 +42657,7 @@ temporary file-backed database tests or clear pools after closing connections,
 and assert the complete set of asynchronous results instead of relying on
 scheduling order. Keep the Windows test job enabled.
 
-### 0z1809. Quantize Transfer History Watermarks Before Querying (2026-10-13)
+### 0z1865. Quantize Transfer History Watermarks Before Querying (2026-10-13)
 
 **What went wrong:** The first completed-history page filtered rows using a
 full-precision UTC timestamp, then returned that timestamp as Unix milliseconds.
@@ -42669,7 +42671,7 @@ affected the first page's query.
 back before filtering any rows. Query, respond, and continue with the same
 precision, and cover the boundary so offset pages cannot lose a transfer.
 
-### 0z1810. Keep Multi-Area Release Notes On One Valid Slug (2026-10-13)
+### 0z1866. Keep Multi-Area Release Notes On One Valid Slug (2026-10-13)
 
 **What went wrong:** A user-facing release fragment listed several feature
 areas separated by commas, but the release-note schema accepts one lowercase
@@ -42682,7 +42684,7 @@ one concise area that represents the primary change.
 feature areas in the fragment body, and run release-note preview before
 committing the fragment.
 
-### 0z1811. Use Only Supported Release-Note Audiences (2026-10-13)
+### 0z1867. Use Only Supported Release-Note Audiences (2026-10-13)
 
 **What went wrong:** A new release fragment named API clients as an audience,
 but the release-note schema accepts only users, operators, or both.
@@ -42693,7 +42695,7 @@ product roles cannot be added to the metadata.
 **Prevention:** Use only the supported audience values. Describe API and other
 client impacts in the fragment body, then run the release-note preview.
 
-### 0z1812. Declare Offline Mode In Trusted Browser Tasks (2026-10-13)
+### 0z1868. Declare Offline Mode In Trusted Browser Tasks (2026-10-13)
 
 **What went wrong:** Browser E2E tasks do not inherit arbitrary shell variables
 under the trusted validation runner, so they lost the workflow's
@@ -42706,7 +42708,7 @@ intentionally removed before candidate code starts.
 browser suites. Keep loopback peer journeys as separately selected tests with
 their own documented network boundary.
 
-### 0z1813. Specify Every Transfer Column In Visibility Fixtures (2026-10-13)
+### 0z1869. Specify Every Transfer Column In Visibility Fixtures (2026-10-13)
 
 **What went wrong:** A browser regression fixture selected three transfer
 columns but omitted the `requested` visibility setting. The table merged the
@@ -42720,13 +42722,505 @@ visibility keys inherit the current defaults for newly introduced columns.
 explicit visibility value for every column key, including `false` for hidden
 columns. This keeps the fixture stable when product defaults evolve.
 
-### 0z1814. Start Release-Note Bodies With A Capitalized Sentence (2026-10-13)
+### 0z1905. Start Release-Note Bodies With A Capitalized Sentence (2026-10-13)
 
 **What went wrong:** A release-note fragment body began with a lowercase word and failed the release-note validator.
 
 **Why:** The fragment was reviewed for metadata and content but the capitalization rule was only exercised later by the full release-note validation gate.
 
 **Prevention:** Start each release-note body with a capitalized sentence, then run the validator before committing the fragment.
+
+### 0z1870. Clear The Exact Normalized SQLite Pool (2026-10-13)
+
+**What went wrong:** The Windows share-scan fixture disposed its repositories
+and called the cleanup helper, but deletion of the main database still failed
+with a sharing violation.
+
+**Why:** `SqliteConnection.ClearPool` clears the pool group selected by the
+connection's exact connection string. `SqliteShareRepository` normalizes its
+connection string before opening connections, while the cleanup helper rebuilt
+one from only `Data Source=...`; the helper therefore cleared a different pool
+group and left the repository's pooled handles alive.
+
+**Prevention:** When cleanup targets a repository-owned SQLite pool, pass that
+repository's exact normalized `ConnectionString` to the pool-clear helper.
+Reconstructing a connection string from only the database path is not enough.
+Dispose repository/readback connections first, clear that exact pool, then
+delete the fixture files. Keep the scan's pooling and performance assertions.
+
+### 0z1871. Do Not Cache A Package Manager Store That The Job Never Creates (2026-10-13)
+
+**What went wrong:** The Windows smoke job passed its full `Test` step but
+failed in `setup-node` post-job cleanup with a cache-path validation error.
+
+**Why:** The job installed pnpm with `install: false` and did not run a package
+installation. It explicitly enabled the pnpm cache, and the repository's
+top-level `packageManager` metadata can also enable automatic caching in
+`setup-node` v7. No store path existed for the post-job cache save.
+
+**Prevention:** In jobs that do not install JavaScript packages, remove explicit
+cache settings and set `package-manager-cache: false`. Keep the .NET restore,
+build, and test steps, and confirm the post-job phase on Windows.
+
+### 0z1872. Keep Windows SQLite Test Cleanup Reliable Without Disabling Scan Pooling (2026-10-13)
+
+**What went wrong:** The Windows unit job for PR `#357` at `0b3cff54` failed 25
+`LocalFileAndVerifiedCopyTests` during database deletion even after the store
+was disposed and its pool was cleared. The synthetic scanner also timed out
+after indexing 290 of its 480 files in 30 seconds.
+
+**Why:** A one-shot pool clear did not reliably release the catalogue fixture's
+Windows file handle before deletion. The synthetic scan disabled SQLite
+pooling on its high-volume repository path, so repeated connection setup pushed
+the scan past its existing time bound.
+
+**Prevention:** Use nonpooled SQLite connections for disposable catalogue test
+stores whose constructor owns the connection string. For high-volume scanner
+fixtures, keep normal pooling and clear the exact database pool after all
+repositories and readback connections are disposed, before deleting the files.
+Keep the 480-file correctness and existing timeout assertions, and verify the
+complete Windows unit job.
+
+### 0z1873. Keep BenchmarkDotNet Output Aligned With Its Verifier (2026-10-13)
+
+**What went wrong:** The HashDb benchmark completed and returned success, but
+the required verification step found no report. BenchmarkDotNet wrote its
+artifacts relative to the repository root while the verifier and uploader
+searched under the performance-test project directory.
+
+**Why:** BenchmarkDotNet resolves `--artifacts` relative to the workflow's
+working directory. The output, verifier, and upload paths used different
+directories.
+
+**Prevention:** Use the same explicit project-relative results directory for
+benchmark output, verification, and upload. Keep a workflow contract test that
+checks the producer and consumers stay aligned, and require a measured report.
+
+### 0z1874. Open The SQLite Cleanup Connection Before Clearing Its Pool (2026-10-13)
+
+**What went wrong:** The test cleanup helper called `SqliteConnection.ClearPool`
+with a connection that had never been opened. Windows kept a pooled database
+file handle alive, so deleting the test database failed even though the test
+repository had been disposed.
+
+**Why:** The provider associates an opened connection with its pool. A
+connection that has not been opened does not reliably identify the pool whose
+file handles need to be released.
+
+**Prevention:** Open the cleanup connection before clearing its pool, dispose it
+before deleting the database, and keep the Windows unit-test job in the
+verification matrix; Unix permits unlinking open files and can hide this bug.
+
+### 0z1875. Clear Share-Scan Database Pools After Disposal (2026-10-13)
+
+**What went wrong:** The large share-scan harness disabled pooling for its manual
+database but left pooling enabled for the synthetic scan database and its raw
+copy connections. Windows retained a SQLite handle when the fixture deleted the
+synthetic database, so the Windows unit suite failed in cleanup.
+
+**Why:** A fixture can open the same file through its repository, copy/readback,
+and backup paths. Disabling pooling on only one connection string does not stop
+another connection from keeping the database open. Unix allows unlinking an open
+file and can hide the failure.
+
+**Correction:** Disabling pooling on every share-scan connection avoids the
+Windows file lock, but adds per-operation connection setup to a large scan. The
+Windows rerun on `1cad710ac` indexed only 347 files before the harness's
+30-second bound. The fixture now restores normal pooling and clears the exact
+database pool after the scanner and repositories are disposed.
+
+**Prevention:** Drain scanner work and dispose all repository and readback
+connections before cleanup. For large file-backed scan fixtures, call
+`SqliteTestDatabaseCleanup.ClearPool` for each database before deleting it.
+Use `Pooling=False` only when a fixture specifically needs it and the extra
+connection overhead is acceptable.
+
+### 0z1876. Observe Canceled Staging Trees During Concurrent Removal (2026-10-13)
+
+**What went wrong:** A relay cancellation test checked whether a staging
+directory existed and then recursively enumerated it. Cancellation could
+remove a nested directory between those operations, raising
+`DirectoryNotFoundException` from the test observer before its final
+no-published-file assertions ran.
+
+**Why:** A directory-existence check is not a stable snapshot while another
+task is removing the tree.
+
+**Prevention:** Make cancellation-time enumeration retry transient
+`DirectoryNotFoundException` while honoring the test's cancellation deadline.
+Keep the final assertions that no destination file was published and no staged
+files remain.
+
+### 0z1877. Clear The Pool For The Database The Test Actually Opens (2026-10-13)
+
+**What went wrong:** A Windows test cleared the pool for `pods.db`, but its
+service graph opened `wishlist.db`; deleting the temporary app directory then
+failed because the wishlist database was still held open.
+
+**Why:** SQLite pools are keyed by connection string. Clearing a different
+database's pool does not release the handle that owns the file being deleted.
+
+**Prevention:** Trace test startup to the exact database paths it creates, then
+clear each corresponding pool after its owners are closed and before deleting
+the temporary directory. Keep the database filename tied to the tested
+service graph rather than copying a nearby pool-clear example.
+
+### 0z1878. Await Canceled Work Before Deleting Test Databases (2026-10-13)
+
+**What went wrong:** A timed share scan requested cancellation and immediately
+failed its timeout assertion. Cleanup then disposed and deleted the SQLite
+database while the canceled scan task could still be using it, so the cleanup
+error hid the original timeout. A download-service test also disposed its
+service and deleted its database without awaiting `ShutdownAsync()`, while a
+canceled download worker still owned the database.
+
+**Why:** Requesting cancellation or disposing an owner is not proof that its
+background work has stopped. On Windows, an active SQLite handle prevents
+deleting the database.
+
+**Prevention:** Await the scan task after requesting cancellation and await
+`ShutdownAsync()` for services that own background work. Dispose all task-owned
+resources and clear the pool for the exact database before deleting test data.
+Preserve the primary failure if cleanup also fails.
+
+### 0z1879. Use StringComparer With xUnit String Equality (2026-10-13)
+
+**What went wrong:** A platform-sensitive path assertion passed a
+`StringComparison` value to `Assert.Equal`, and the unit-test project failed to
+compile on Windows because the selected xUnit overload expects an
+`IEqualityComparer<string>`.
+
+**Why:** .NET string comparison APIs accept `StringComparison`, but xUnit's
+generic equality assertion uses an equality comparer instead.
+
+**Prevention:** Pass `StringComparer.Ordinal` or
+`StringComparer.OrdinalIgnoreCase` to the assertion, and compile the owning test
+project on every supported platform after changing test code.
+
+### 0z1880. Disable SQLite Pooling For File-Backed Tests On Windows (2026-10-13)
+
+**What went wrong:** Windows test cleanup could not delete SQLite files after
+their contexts or services were disposed because provider pools still held
+native handles. A full Windows test run then failed across otherwise unrelated
+fixtures.
+
+**Why:** Disposing a context closes its logical connection, but SQLite pooling
+can retain the native file handle. POSIX allows unlinking an open database;
+Windows does not.
+
+**Prevention:** Set `Pooling=False` on test-owned file-backed SQLite connection
+strings. When production constructors own the connection string, clear only
+that database's pool after all test connections are closed and before deleting
+the file. Do not clear global pools while tests can be using them. Keep cleanup
+verification on Windows.
+
+### 0z1881. Keep Filesystem Test Paths Native To The Host (2026-10-13)
+
+**What went wrong:** Several path-validation tests used Unix paths as both
+configured roots and expected canonical results. On Windows, a path beginning
+with `/` is rooted on the current drive and canonicalizes to a drive-qualified
+backslash path, so valid-path tests failed even though the guard preserved the
+root.
+
+**Prevention:** Build test roots with `Path.GetTempPath`, `Path.Combine`, and
+`Path.GetFullPath`. Derive expected values from the same canonical root, and
+use host path APIs for other absolute-path fixtures.
+
+### 0z1882. Discover The Windows Executable In Full-Instance Tests (2026-10-13)
+
+**What went wrong:** Windows integration tests could not start full application
+instances because the test harness searched only extensionless build outputs;
+the Windows build produces `slskd.exe`.
+
+**Prevention:** Resolve platform build artifacts using their real executable
+names, including `.exe`, before reporting that the application was not built.
+Keep the full-instance Windows integration tests in the hosted gate.
+
+### 0z1883. Parse Complete SOCKS Requests In TCP Test Servers (2026-10-13)
+
+**What went wrong:** A SOCKS test server consumed a fixed ten bytes for every
+connect request. Domain-name requests are variable length, leaving client bytes
+unread; Windows reset the connection when the fixture closed it, hiding the
+response-boundary behavior the test was meant to verify.
+
+**Prevention:** Read the SOCKS request header, then consume the address and port
+using the address type and domain length before sending the response or closing
+the client connection.
+
+### 0z1884. Replace Open Cache Files With Windows-Compatible Semantics (2026-10-13)
+
+**What went wrong:** Browse-cache refresh used overwrite-move semantics while
+readers kept the existing cache file open. Windows rejected replacing that
+file even though readers allowed delete sharing.
+
+**Why:** Replacing an open file on Windows requires the destination to be
+replaced atomically with file-replacement semantics; overwrite-move does not
+provide the same behavior for this handle-sharing case.
+
+**Prevention:** Create the temporary cache file beside its destination. Use
+`File.Replace` when the destination exists and `File.Move` for first creation.
+Keep readers opened with delete sharing and retain a regression that reads an
+old stream while the cache is replaced.
+
+### 0z1885. Classify Expected Socket Failures By Error Code (2026-10-13)
+
+**What went wrong:** Windows reports socket reset and timeout failures with
+localized messages that did not match the classifier's English string checks,
+so ordinary peer disconnects were reported as unexpected failures.
+
+**Why:** Socket exception text varies by operating system and locale, while
+`SocketErrorCode` exposes the stable failure category.
+
+**Prevention:** Match only known expected `SocketError` values such as reset,
+refused, and timed out. Keep unrelated socket errors outside the expected
+network-noise bucket and cover both cases with enum-based regressions.
+
+### 0z1886. Keep Process-Output Assertions Stable Across Hosts (2026-10-13)
+
+**What went wrong:** A fingerprint-extraction test launched each host's command
+shell with FFmpeg arguments. The Windows shell wrote help text to stdout, so
+the service reached its PCM output limit instead of the no-output branch that
+the Unix shell reached.
+
+**Why:** A shell executable is not a deterministic stand-in for FFmpeg, and
+its handling of unknown arguments differs by platform.
+
+**Prevention:** Assert the stable platform-specific service result when using
+the shell fixture, or replace it with a deterministic helper process. Do not
+broaden the assertion to any error sharing a common prefix.
+
+### 0z1887. Exclude Dotted And Explicit Credential Material Names (2026-10-13)
+
+**What went wrong:** The trusted test snapshot excluded common extensionless
+credentials and config files, but dotted basenames such as \`.token\` and explicit
+key/token names such as \`api-key.json\` or \`private-key.ts\` could still be
+copied into the candidate workspace.
+
+**Why:** Filtering covered established credential directories and extensions
+but did not independently recognize dotted credential basenames or key/token
+material whose filename used a source-like extension.
+
+**Prevention:** Match dotted credential basenames and explicit private/API,
+access-token, refresh-token, and client-secret filenames before applying the
+source-extension retention rule. Test both secret canaries and ordinary source
+modules under credential-named directories.
+
+### 0z1888. Dispatch Publisher Recovery From Trusted Main (2026-10-13)
+
+**What went wrong:** Selective stable-publisher recovery accepted a tag input
+without requiring the workflow dispatch itself to target `main`. GitHub lets a
+manual workflow run against a selected branch, so the workflow source and the
+validated release tag are separate trust decisions.
+
+**Why:** The recovery path treated an existing stable release as proof that the
+workflow definition was trusted, even though a caller can select a different
+branch ref.
+
+**Prevention:** Reject manual publisher recovery unless `GITHUB_REF` is
+`refs/heads/main`. Keep the selected release tag constrained to an existing
+stable release and test both conditions. This workflow check is not protection
+from modified workflow code on a writable branch; protect workflow changes and
+the default branch in repository settings.
+
+### 0z1889. Preserve Extensionless Credential Files In Validation Snapshots (2026-10-13)
+
+**What went wrong:** The snapshot filter was narrowed to known credential-file extensions so source files such as `token.js` and `auth.py` would remain in the candidate. That also stopped excluding extensionless credential files such as `credentials` and `token`.
+
+**Why:** The matcher had no separate rule for exact credential basenames after the broader path-segment check was removed.
+
+**Prevention:** Match credential names only on the final path segment, accepting the bare credential name and known configuration suffixes while preserving source files with code extensions. Keep the snapshot contract testing both cases.
+
+### 0z1890. Bind Manual Publisher Recovery To The Verified Stable Release (2026-10-13)
+
+**What went wrong:** Manual publisher recovery accepted an old stable release,
+checked out an unqualified tag-like ref, and could run a same-named branch with
+release credentials. Some selected publishers could report success without
+credentials, COPR/PPA failures were ignored, and the Nix job validated one tree
+before resetting to a different main tree for its push. Docker recovery also
+rebuilt from source instead of using the published release binaries.
+
+**Why:** Recovery treated the requested tag and existing release as sufficient
+proof of provenance, freshness, publisher readiness, and validation of the
+final side effect.
+
+**Prevention:** Resolve the requested build tag to a commit SHA before checkout,
+require manual recovery to target the current stable release, grant only the
+needed repository read or write scopes, and fail selected retries when required
+credentials or publication steps are unavailable. Validate Nix metadata on the
+same refreshed main tree that is pushed. Do not expose a Docker retry that
+rebuilds from source when the recovery contract promises use of published
+artifacts.
+
+### 0z1891. Make Required Benchmark Gates Runnable Before Enabling Them (2026-10-13)
+
+**What went wrong:** The performance workflow made `dotnet run` a required gate
+for an xUnit library with no executable entry point and benchmark classes that
+required xUnit output-helper constructor arguments.
+
+**Why:** The project had been treated as a runnable BenchmarkDotNet program
+without checking its project output type or the benchmark discovery
+constructors.
+
+**Prevention:** Keep the xUnit fixture library separate from an executable
+BenchmarkDotNet host, make every discovered benchmark constructible, and smoke
+run the host with the same arguments the workflow uses before making the job a
+required gate.
+
+### 0z1892. Preserve Required Toolchains When Hiding Host Installation Roots (2026-10-13)
+
+**What went wrong:** The trusted local sandbox hid `/usr/local`, `/opt`, and
+home directories after mounting only Node. A required `pnpm` or `dotnet`
+installation beneath one of those roots disappeared from the sandbox even
+though validation preflight had found it on the host.
+
+**Why:** Tool availability was checked outside the sandbox, but sandbox mounts
+did not include the runtime installations needed by the task.
+
+**Prevention:** Resolve and mount the minimum required tool installations
+read-only before masking host roots, expose their guest paths through a clean
+PATH and runtime-specific variables, and add a sandbox canary that executes
+each required tool after those roots are hidden.
+
+### 0z1893. Open SQLite Cleanup Connections Before Clearing Their Pools (2026-10-13)
+
+**What went wrong:** Several tests created an unopened SQLite connection solely
+to clear a database pool before deleting the temporary file. On Windows, that
+connection did not reliably identify and clear the pool holding the open file.
+
+**Why:** Pool cleanup was duplicated in fixtures and skipped the open step
+already implemented by `SqliteTestDatabaseCleanup`.
+
+**Prevention:** Use the shared cleanup helper after disposing the store, and
+keep fixture cleanup regressions on Windows before deleting SQLite files.
+
+### 0z1894. Match Both Valid Workflow Action List Forms (2026-10-13)
+
+**What went wrong:** The immutable-action checker matched `uses:` only when it
+was the first token on a workflow line, so standard list entries written as
+`- uses: owner/action@ref` bypassed the pin check.
+
+**Why:** The policy parser modeled an action property but not the YAML step
+list syntax that contains it.
+
+**Prevention:** Parse the optional list marker before `uses:` and test both
+list-form and property-form action references against the SHA requirement.
+
+### 0z1895. Use A Logger For The Exact Benchmark Consumer (2026-10-13)
+
+**What went wrong:** Transport benchmarks stored a logger for
+`DirectTransport`, then cast it to unrelated `ILogger<T>` interfaces for the
+transport selector, policy manager, WebSocket transport, and privacy layer.
+Generic logger implementations do not become compatible with another closed
+generic logger type through a cast, so those benchmark methods failed at
+runtime.
+
+**Why:** Replacing test-output logging with a null logger kept one generic
+logger instance and reused it across consumers with different category types.
+
+**Prevention:** Pass each consumer a matching `NullLogger<T>.Instance` and use
+`NullLoggerFactory.Instance` when no provider is needed. Compile and execute
+the benchmark methods that construct these services before treating the
+benchmark host as usable.
+
+### 0z1896. Require Actual Benchmark Measurements Before Passing CI (2026-10-13)
+
+**What went wrong:** BenchmarkDotNet hit its default 120-second generated
+project build timeout on the required HashDb run, executed zero benchmarks,
+and still returned a successful process exit code.
+
+**Why:** The generated benchmark project recompiles the referenced application,
+and the workflow trusted the runner exit status without inspecting exported
+results.
+
+**Prevention:** Set a build timeout that fits within the workflow deadline and
+validate the exported result data contains completed measurements. A successful
+BenchmarkDotNet process with zero executed benchmarks is a failed gate.
+
+### 0z1897. Validate Tag Names Before Embedding Versions In Workflow Scripts (2026-10-13)
+
+**What went wrong:** The tag parser accepted any nonempty suffix after
+`build-main-` or `build-dev-`. Later jobs interpolated that version into shell
+scripts through GitHub expressions, so valid Git tag metacharacters could
+alter the shell program.
+
+**Why:** Git tag syntax is broader than a safe version alphabet, and validating
+manual dispatch inputs alone did not constrain push-triggered tags.
+
+**Prevention:** Validate every pushed or manually selected tag against a
+restricted version alphabet before exposing parsed values to downstream jobs.
+Keep workflow policy coverage for that validation and avoid interpolating
+unvalidated event data into `run:` scripts.
+
+### 0z1898. Disable SQLite Pooling For Windows Fixtures That Delete Databases (2026-10-13)
+
+**What went wrong:** The Windows unit suite failed deleting a disposable share
+database because a pooled SQLite connection still held the file open after the
+fixture's cleanup path ran.
+
+**Why:** A repository can hold pooled file connections for its lifetime, and
+clearing an idle pool does not release a connection that remains checked out.
+
+**Prevention:** Create disposable fixture repositories with `Pooling=False` so
+disposing the repository closes its file handles before the fixture deletes
+the database. Keep cleanup ordering explicit and retain Windows verification.
+
+### 0z1899. Fail Explicitly On Malformed Benchmark Reports (2026-10-13)
+
+**What went wrong:** The benchmark-result verifier referenced an undefined
+failure list when the report root was not a JSON object. The gate still exited
+nonzero, but emitted a Python `NameError` instead of its validation error.
+
+**Why:** The malformed-report branch was copied from an aggregation path that
+did not exist in this single-report verifier.
+
+**Prevention:** Use the verifier's explicit failure function for every invalid
+report shape, and keep a malformed-root regression alongside the empty-report
+and valid-measurement checks.
+
+### 0z1900. Keep BenchmarkDotNet Artifact Paths Aligned Across CI Steps (2026-10-13)
+
+**What went wrong:** BenchmarkDotNet completed the selected HashDb benchmark and
+emitted eight workload measurements, but the required verifier found no report
+because its expected project artifact directory did not match the benchmark's
+relative artifact path.
+
+**Why:** The benchmark command, verifier, and artifact upload each assumed the
+same relative path had the same base directory.
+
+**Prevention:** Define one absolute workspace artifact directory and use it for
+BenchmarkDotNet output, report verification, and upload. Keep a workflow-policy
+regression that asserts all three steps use that shared path.
+
+### 0z1906. Disable Pooling For Disposable Catalogue Test Databases (2026-10-13)
+
+**What went wrong:** The Windows Smoke suite failed deleting the temporary
+catalogue database in 25 `LocalFileAndVerifiedCopyTests` cases after the store
+had been disposed.
+
+**Why:** The fixture used the catalogue store's default pooled connections.
+Disposal closed each logical connection, but SQLite pooling could retain native
+file handles that prevent Windows from deleting the database. Its cleanup also
+cleared a separate, unopened connection rather than relying on a nonpooled test
+store.
+
+**Prevention:** Construct disposable catalogue test stores with
+`pooling: false`, await operations and dispose the store before deleting the
+database. Keep the full Windows test suite as the verification for file-handle
+cleanup.
+
+### 0z1907. Match Fake FFmpeg Assertions To Its Actual Output (2026-10-13)
+
+**What went wrong:** Windows Smoke failed the fingerprint extraction test
+because it expected an oversized PCM error, while the fake FFmpeg executable
+only wrote diagnostic text to stderr and emitted no PCM bytes.
+
+**Why:** An OS-specific assertion assumed a stdout overflow that the fake
+process never generated. The service correctly reported that it received no
+PCM output.
+
+**Prevention:** Assert the error that follows from the fake process's actual
+stdout and stderr. Keep overflow coverage in the deterministic bounded-stream
+unit test, and keep the stderr-draining process test platform-independent.
 
 ### 0z1815. Upload Only Validation Receipts And Logs (2026-10-13)
 

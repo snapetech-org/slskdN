@@ -21,13 +21,12 @@ namespace slskd.Tests.Unit.VirtualSoulfind.v2.Catalogue
         public LocalFileAndVerifiedCopyTests()
         {
             _tempDbPath = Path.Combine(Path.GetTempPath(), $"test_catalogue_{Guid.NewGuid()}.db");
-            _store = new SqliteCatalogueStore(_tempDbPath);
+            _store = new SqliteCatalogueStore(_tempDbPath, pooling: false);
         }
 
         public void Dispose()
         {
             _store.Dispose();
-            slskd.Tests.Unit.SqliteTestDatabase.ClearPool($"Data Source={_tempDbPath};");
             if (File.Exists(_tempDbPath))
             {
                 File.Delete(_tempDbPath);

@@ -16,9 +16,8 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using slskd.HashDb;
-using Xunit;
-using Xunit.Abstractions;
 
 /// <summary>
 /// Performance benchmarks for HashDb operations.
@@ -26,21 +25,17 @@ using Xunit.Abstractions;
 /// </summary>
 [Config(typeof(HashDbBenchmarkConfig))]
 // [MemoryDiagnoser] // Requires BenchmarkDotNet.Diagnostics.Windows package
-[Trait("Category", "Benchmark")]
 public class HashDbPerformanceBenchmarks
 {
-    private readonly ITestOutputHelper _output;
     private readonly ILogger<HashDbService> _logger;
     private HashDbService? _hashDbService;
     private HashDbService? _hashDbServiceWithCache;
     private string? _tempDir;
     private readonly string[] _testKeys = new string[1000];
 
-    public HashDbPerformanceBenchmarks(ITestOutputHelper output)
+    public HashDbPerformanceBenchmarks()
     {
-        _output = output;
-        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-        _logger = loggerFactory.CreateLogger<HashDbService>();
+        _logger = NullLogger<HashDbService>.Instance;
     }
 
 [GlobalSetup]
@@ -75,7 +70,7 @@ public class HashDbPerformanceBenchmarks
             hashCache: memoryCache);
 
         // Populate database with test data
-        _output.WriteLine("[BENCH] Populating HashDb with test data...");
+        Console.WriteLine("[BENCH] Populating HashDb with test data...");
         for (int i = 0; i < 1000; i++)
         {
             var key = $"test-key-{i:D6}";
@@ -95,7 +90,7 @@ public class HashDbPerformanceBenchmarks
             _hashDbService.StoreHashAsync(entry).Wait();
         }
 
-        _output.WriteLine("[BENCH] HashDb populated with 1000 entries");
+        Console.WriteLine("[BENCH] HashDb populated with 1000 entries");
     }
 
 [GlobalCleanup]
@@ -152,7 +147,7 @@ public class HashDbPerformanceBenchmarks
         var size = 50 * 1024 * 1024;
         var results = await _hashDbService!.LookupHashesBySizeAsync(size);
         var count = results.Count();
-        _output.WriteLine($"[BENCH] Found {count} entries for size {size / 1024 / 1024}MB");
+        Console.WriteLine($"[BENCH] Found {count} entries for size {size / 1024 / 1024}MB");
     }
 
 [Benchmark]
@@ -230,7 +225,7 @@ public class HashDbPerformanceBenchmarks
     public void GetStats()
     {
         var stats = _hashDbService!.GetStats();
-        _output.WriteLine($"[BENCH] Stats: {stats.TotalHashEntries} entries");
+        Console.WriteLine($"[BENCH] Stats: {stats.TotalHashEntries} entries");
     }
 
 

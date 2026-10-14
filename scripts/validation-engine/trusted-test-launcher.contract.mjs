@@ -58,15 +58,30 @@ test('preserves tracked token-named source while excluding credential files', ()
   assert.equal(isSensitiveCandidatePath('web/src/lib/token.js'), false);
   assert.equal(isSensitiveCandidatePath('vendor/mainline/src/rpc/server/tokens.rs'), false);
   assert.equal(isSensitiveCandidatePath('src/authentication.ts'), false);
-  assert.equal(isSensitiveCandidatePath('src/authentication/UserStore.cs'), false);
+  assert.equal(isSensitiveCandidatePath('src/auth.ts'), false);
   assert.equal(isSensitiveCandidatePath('auth'), true);
   assert.equal(isSensitiveCandidatePath('nested/tokens'), true);
   assert.equal(isSensitiveCandidatePath('credentials'), true);
   assert.equal(isSensitiveCandidatePath('secrets'), true);
+  assert.equal(isSensitiveCandidatePath('nested/secrets.env'), true);
+  assert.equal(isSensitiveCandidatePath('src/authentication/UserStore.cs'), false);
   assert.equal(isSensitiveCandidatePath('auth.json'), true);
   assert.equal(isSensitiveCandidatePath('nested/config/secrets.yaml'), true);
   assert.equal(isSensitiveCandidatePath('.env.local'), true);
   assert.equal(isSensitiveCandidatePath('tokens.env'), true);
+  assert.equal(isSensitiveCandidatePath('tokens.env.local'), true);
+  assert.equal(isSensitiveCandidatePath('secrets.env.production'), true);
+  assert.equal(isSensitiveCandidatePath('tokens.env.example'), false);
+  assert.equal(isSensitiveCandidatePath('.token'), true);
+  assert.equal(isSensitiveCandidatePath('.auth'), true);
+  assert.equal(isSensitiveCandidatePath('.credentials'), true);
+  assert.equal(isSensitiveCandidatePath('.secrets'), true);
+  assert.equal(isSensitiveCandidatePath('api-key.json'), true);
+  assert.equal(isSensitiveCandidatePath('access-token.json'), true);
+  assert.equal(isSensitiveCandidatePath('refresh_token.yaml'), true);
+  assert.equal(isSensitiveCandidatePath('client-secret.ts'), true);
+  assert.equal(isSensitiveCandidatePath('.private-key.ts'), true);
+  assert.equal(isSensitiveCandidatePath('nested/private-key.ts'), true);
   assert.equal(isSensitiveCandidatePath('nested/credentials/private-key'), true);
   assert.equal(isSensitiveCandidatePath('src/tokens/index.ts'), false);
   assert.equal(isSensitiveCandidatePath('nested/credentials/TokenStore.ts'), false);
@@ -149,9 +164,21 @@ test(
     );
     writeFileSync(path.join(source, 'auth.json'), '{"token":"private"}\n');
     writeFileSync(path.join(source, 'token.json'), '{"token":"private"}\n');
+    writeFileSync(path.join(source, 'credentials'), 'private credential\n');
     writeFileSync(path.join(source, 'tokens.env'), 'PRIVATE_TOKENS_CANARY=hidden\n');
+    writeFileSync(path.join(source, 'tokens.env.local'), 'SUFFIXED_TOKEN_CANARY=hidden\n');
+    writeFileSync(path.join(source, 'secrets.env.production'), 'SUFFIXED_SECRET_CANARY=hidden\n');
+    writeFileSync(path.join(source, 'tokens.env.example'), 'EXAMPLE_TOKEN_TEMPLATE=visible\n');
+    writeFileSync(path.join(source, '.token'), 'DOT_TOKEN_CANARY=hidden\n');
+    writeFileSync(path.join(source, 'api-key.json'), '{"api_key":"hidden"}\n');
+    writeFileSync(path.join(source, 'access-token.json'), '{"access_token":"hidden"}\n');
+    writeFileSync(path.join(source, 'refresh_token.yaml'), 'refresh_token: hidden\n');
+    writeFileSync(path.join(source, 'client-secret.ts'), 'CLIENT_SECRET_CANARY=hidden\n');
+    writeFileSync(path.join(source, '.private-key.ts'), 'PRIVATE_KEY_CANARY=hidden\n');
+    writeFileSync(path.join(source, 'private-key.ts'), 'PRIVATE_KEY_CANARY=hidden\n');
     mkdirSync(path.join(source, 'nested/credentials'), { recursive: true });
     writeFileSync(path.join(source, 'nested/credentials/private-key'), 'private credential\n');
+    writeFileSync(path.join(source, 'nested/credentials/TokenStore.ts'), 'export const source = "nested credential source";\n');
     mkdirSync(path.join(source, 'src/tokens'), { recursive: true });
     writeFileSync(path.join(source, 'src/tokens/index.ts'), 'export const source = "token directory source";\n');
     mkdirSync(path.join(source, 'node_modules'), { recursive: true });
@@ -171,6 +198,7 @@ test(
     writeFileSync(
       path.join(source, 'bin/run-local-validation.mjs'),
       `import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
@@ -185,8 +213,20 @@ assert.equal(existsSync('/mnt/workspace/config.json'), true);
 assert.equal(existsSync('/mnt/workspace/nested/config/operator.json'), false);
 assert.equal(existsSync('/mnt/workspace/auth.json'), false);
 assert.equal(existsSync('/mnt/workspace/token.json'), false);
+assert.equal(existsSync('/mnt/workspace/credentials'), false);
 assert.equal(existsSync('/mnt/workspace/tokens.env'), false);
+assert.equal(existsSync('/mnt/workspace/tokens.env.local'), false);
+assert.equal(existsSync('/mnt/workspace/secrets.env.production'), false);
+assert.equal(readFileSync('/mnt/workspace/tokens.env.example', 'utf8'), 'EXAMPLE_TOKEN_TEMPLATE=visible\\n');
+assert.equal(existsSync('/mnt/workspace/.token'), false);
+assert.equal(existsSync('/mnt/workspace/api-key.json'), false);
+assert.equal(existsSync('/mnt/workspace/access-token.json'), false);
+assert.equal(existsSync('/mnt/workspace/refresh_token.yaml'), false);
+assert.equal(existsSync('/mnt/workspace/client-secret.ts'), false);
+assert.equal(existsSync('/mnt/workspace/.private-key.ts'), false);
+assert.equal(existsSync('/mnt/workspace/private-key.ts'), false);
 assert.equal(existsSync('/mnt/workspace/nested/credentials/private-key'), false);
+assert.match(readFileSync('/mnt/workspace/nested/credentials/TokenStore.ts', 'utf8'), /nested credential source/u);
 assert.match(readFileSync('/mnt/workspace/src/tokens/index.ts', 'utf8'), /token directory source/u);
 assert.match(readFileSync('/mnt/workspace/web/src/lib/token.js', 'utf8'), /source code/u);
 assert.match(readFileSync('/mnt/workspace/vendor/mainline/src/rpc/server/tokens.rs', 'utf8'), /pub fn tokens/u);
@@ -198,6 +238,11 @@ assert.throws(() => readFileSync(path.join(originalCheckout, 'auth.json')), { co
 assert.throws(() => writeFileSync(hostFile, 'escaped'));
 assert.equal(readFileSync('/run/validation-engine-sandbox', 'utf8'), process.env.VALIDATION_OUTER_SANDBOX_TOKEN);
 assert.equal(fixtureDependency, 'sibling dependency resolved');
+for (const command of ['pnpm', 'dotnet']) {
+  if (!existsSync('/mnt/run-data/tool-bin/' + command)) continue;
+  const result = spawnSync(command, ['--version'], { encoding: 'utf8' });
+  assert.equal(result.status, 0, command + ' must remain executable after its host install root is hidden: ' + result.stderr);
+}
 const connectionResults = await Promise.all([
   new Promise((resolve) => { const socket = net.connect(hostPort, '127.0.0.1'); socket.once('connect', () => { socket.destroy(); resolve('connected'); }); socket.once('error', () => resolve('blocked')); socket.setTimeout(1000, () => { socket.destroy(); resolve('blocked'); }); }),
   new Promise((resolve) => { const socket = net.createConnection(hostSocket); socket.once('connect', () => { socket.destroy(); resolve('connected'); }); socket.once('error', () => resolve('blocked')); socket.setTimeout(1000, () => { socket.destroy(); resolve('blocked'); }); }),

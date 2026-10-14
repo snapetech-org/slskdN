@@ -37,8 +37,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "22.22.2"
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          package-manager-cache: false
 
       - name: Restore
         run: dotnet restore slskd.sln -p:Version=0.0.0
@@ -46,5 +45,11 @@ jobs:
       - name: Build
         run: dotnet build slskd.sln --configuration Release --no-restore -p:Version=0.0.0
 
-      - name: Test
-        run: dotnet test slskd.sln --configuration Release --no-build
+      - name: Test unit suite
+        run: dotnet test tests/slskd.Tests.Unit/slskd.Tests.Unit.csproj --configuration Release --no-build --no-restore
+
+      - name: Test integration suite
+        run: dotnet test tests/slskd.Tests.Integration/slskd.Tests.Integration.csproj --configuration Release --no-build --no-restore
+
+      - name: Test regression and API suite
+        run: dotnet test tests/slskd.Tests/slskd.Tests.csproj --configuration Release --no-build --no-restore
