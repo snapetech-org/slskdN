@@ -1,12 +1,19 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { interfaceText, resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
+import { interfaceText, resetInterfaceLanguage, setInterfaceLanguage, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 import LocalizedText from './LocalizedText';
 
+const ActiveLanguage = () => {
+  const { language } = useInterfaceLanguage();
+  return <span data-testid="active-language">{language}</span>;
+};
+
 describe('LocalizedText', () => {
-  beforeEach(() => stubLocaleCatalogFetch(vi));
+  let fetchMock;
+
+  beforeEach(() => { fetchMock = stubLocaleCatalogFetch(vi); });
 
   afterEach(async () => {
     await resetInterfaceLanguage();
@@ -34,5 +41,37 @@ describe('LocalizedText', () => {
 
     expect(interfaceText(source, { directory })).toBe(translation);
     expect(interfaceText(source, { directory })).not.toMatch(/[\u2066-\u2069]/);
+  });
+
+  it('keeps the last complete locale when another catalog fails to load', async () => {
+    await setInterfaceLanguage('ar');
+    fetchMock.mockRejectedValueOnce(new Error('catalog unavailable'));
+
+    await setInterfaceLanguage('de');
+
+    const { container, getByTestId } = render(
+      <><ActiveLanguage /><LocalizedText source="Overview" /></>,
+    );
+    expect(getByTestId('active-language')).toHaveTextContent('ar');
+    expect(localStorage.getItem('slskdn.interface-language')).toBe('ar');
+    expect(container.querySelector('[lang="ar"]')).toHaveTextContent('ملخص');
+    expect(interfaceText('Overview')).toBe('ملخص');
+  });
+
+  it('ignores an older locale request that finishes after the newer selection', async () => {
+    let resolveGerman;
+    fetchMock.mockImplementationOnce(() => new Promise((resolve) => { resolveGerman = resolve; }));
+    const germanRequest = setInterfaceLanguage('de');
+
+    await setInterfaceLanguage('fr');
+    resolveGerman(new Response(JSON.stringify({ Overview: 'Übersicht' }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    }));
+    await germanRequest;
+
+    const { getByTestId } = render(<ActiveLanguage />);
+    expect(getByTestId('active-language')).toHaveTextContent('fr');
+    expect(localStorage.getItem('slskdn.interface-language')).toBe('fr');
   });
 });

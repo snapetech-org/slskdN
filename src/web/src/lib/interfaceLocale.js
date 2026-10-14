@@ -24,6 +24,7 @@ const catalogLoads = new Map();
 let activeLanguage;
 let activeCatalog = null;
 let revision = 0;
+let languageRequest = 0;
 
 const notify = () => {
   revision += 1;
@@ -71,29 +72,46 @@ const loadCatalog = (language) => {
       return response.json();
     })
     .then((catalog) => {
-      if (!catalog || typeof catalog !== 'object' || Array.isArray(catalog)) return {};
+      if (!catalog || typeof catalog !== 'object' || Array.isArray(catalog) || Object.keys(catalog).length === 0) {
+        throw new Error('Locale catalog is empty or invalid.');
+      }
       catalogCache.set(language, catalog);
       return catalog;
     })
-    .catch(() => ({}))
+    .catch(() => null)
     .finally(() => catalogLoads.delete(language));
 
   catalogLoads.set(language, request);
   return request;
 };
 
-const activateLanguage = (language) => {
-  activeLanguage = language;
-  activeCatalog = language === 'en' ? null : catalogCache.get(language) ?? null;
-  applyDocumentLanguage(language);
-  notify();
+const activateLanguage = (language, { persist = false } = {}) => {
+  if (!supportedLanguages.has(language)) return Promise.resolve();
+  const request = ++languageRequest;
+  const activate = (nextLanguage, catalog) => {
+    activeLanguage = nextLanguage;
+    activeCatalog = nextLanguage === 'en' ? null : catalog;
+    applyDocumentLanguage(nextLanguage);
+    notify();
+    if (persist) {
+      try { localStorage.setItem(STORAGE_KEY, nextLanguage); } catch { /* Keep this tab usable without browser storage. */ }
+    }
+  };
 
-  if (language === 'en') return Promise.resolve();
+  if (language === 'en') {
+    activate('en', null);
+    return Promise.resolve();
+  }
+
+  const cachedCatalog = catalogCache.get(language);
+  if (cachedCatalog) {
+    activate(language, cachedCatalog);
+    return Promise.resolve();
+  }
 
   return loadCatalog(language).then((catalog) => {
-    if (activeLanguage !== language) return;
-    activeCatalog = catalog;
-    notify();
+    if (request !== languageRequest || !catalog) return;
+    activate(language, catalog);
   });
 };
 
@@ -137,7 +155,7 @@ export const interfaceTextProps = (source, parameters = {}) => {
   return props;
 };
 
-activeLanguage = readLanguage();
+activeLanguage = 'en';
 
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (event) => {
@@ -149,9 +167,7 @@ if (typeof window !== 'undefined') {
 export const applyInitialInterfaceLanguage = () => activateLanguage(readLanguage());
 
 export const setInterfaceLanguage = (language) => {
-  if (!supportedLanguages.has(language)) return Promise.resolve();
-  try { localStorage.setItem(STORAGE_KEY, language); } catch { /* Keep this tab usable without browser storage. */ }
-  return activateLanguage(language);
+  return activateLanguage(language, { persist: true });
 };
 
 export const resetInterfaceLanguage = () => {
