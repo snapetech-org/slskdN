@@ -19,7 +19,9 @@ if [[ -n "${upstream_url}" && "${upstream_url}" != "${expected_upstream}" ]]; th
   exit 1
 fi
 
-if [[ "${default_repo}" != "${expected_repo}" ]]; then
+normalized_default_repo="$(printf '%s' "${default_repo}" | tr '[:upper:]' '[:lower:]')"
+normalized_expected_repo="$(printf '%s' "${expected_repo}" | tr '[:upper:]' '[:lower:]')"
+if [[ "${normalized_default_repo}" != "${normalized_expected_repo}" ]]; then
   echo "ERROR: gh default repo is '${default_repo:-<unset>}', expected '${expected_repo}'." >&2
   echo "Run: gh repo set-default ${expected_repo}" >&2
   exit 1
