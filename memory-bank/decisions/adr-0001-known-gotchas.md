@@ -4,6 +4,21 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1858. Isolate Dynamic Values In Right-To-Left UI Text (2026-10-14)
+
+**What went wrong:** Arabic UI translations interpolated Latin file paths and
+other dynamic values directly into right-to-left sentences, allowing the
+Unicode bidirectional algorithm to reorder punctuation and parts of the value.
+
+**Why:** The translation component applied right-to-left direction to the full
+message but did not isolate string and numeric placeholders with their own
+direction context.
+
+**Prevention:** When rendering translated right-to-left text, isolate each
+string or numeric placeholder in a `<bdi dir="auto">` element. Keep translation
+and API/clipboard helpers returning the original plain value without bidi
+control characters, and test both rendered isolation and unchanged raw output.
+
 ### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
 
 **What went wrong:** The hosted release-gate verifier rejected a successful
