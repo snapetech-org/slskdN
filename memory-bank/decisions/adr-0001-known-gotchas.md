@@ -4,6 +4,22 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1856. Select Organization Runner Groups With A Group And Labels (2026-10-14)
+
+**What went wrong:** A workflow used `runs-on: 'trusted-main'` as though the
+organization runner-group name were a runner label. GitHub interpreted it as a
+label and found no matching runner, leaving trusted jobs queued.
+
+**Why:** A group name does not identify an eligible runner by itself. The
+selector must specify both the organization group and labels that match its
+members.
+
+**Prevention:** Use an object selector such as
+`fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}')`
+behind the trusted event/ref and readiness checks. Keep pull-request jobs on
+hosted runners, and assert the group and label object in the workflow policy
+test.
+
 ### 0z1855. Keep GitHub Write Guards Aligned With Repository Ownership (2026-10-14)
 
 **What went wrong:** The repository had moved to the organization, but its GitHub
