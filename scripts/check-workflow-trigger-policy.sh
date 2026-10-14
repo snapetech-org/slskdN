@@ -149,6 +149,10 @@ for name, text in texts.items():
 ci = texts["ci.yml"]
 enhancements = texts["ci-enhancements.yml"]
 tag_workflow = texts["build-on-tag.yml"]
+windows_smoke = texts["windows-smoke.yml"]
+
+if re.search(r"(?m)^\s*uses:\s*(?:pnpm/setup|actions/setup-node)@", windows_smoke):
+    raise SystemExit("Windows .NET smoke must not configure unused Node/pnpm setup or cache")
 
 def job_block(workflow, job):
     match = re.search(rf"(?ms)^  {re.escape(job)}:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", workflow)
