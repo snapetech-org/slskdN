@@ -15,9 +15,11 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 tmp_tokens="$(mktemp)"
+tmp_commit_word_tokens="$(mktemp)"
+tmp_commit_path_tokens="$(mktemp)"
 tmp_commits="$(mktemp)"
 tmp_files="$(mktemp)"
-trap 'rm -f "$tmp_tokens" "$tmp_commits" "$tmp_files"' EXIT
+trap 'rm -f "$tmp_tokens" "$tmp_commit_word_tokens" "$tmp_commit_path_tokens" "$tmp_commits" "$tmp_files"' EXIT
 
 add_token() {
   local token="$1"
@@ -30,15 +32,34 @@ add_token() {
       ;;
   esac
   printf '%s\n' "$token" >>"$tmp_tokens"
+  case "$token" in
+    */*|*\\*)
+      printf '%s\n' "$token" >>"$tmp_commit_path_tokens"
+      ;;
+    *)
+      printf '%s\n' "$token" >>"$tmp_commit_word_tokens"
+      ;;
+  esac
 }
 
 add_token "${LOCAL_IDENTITY_DENYLIST:-}"
 add_token "${SLSKDN_LOCAL_IDENTITY_DENYLIST:-}"
 add_token "${SLSKDN_FORBIDDEN_LOCAL_HOSTNAME:-}"
-add_token "$(hostname -s 2>/dev/null || true)"
-add_token "${USER:-}"
-add_token "$(id -un 2>/dev/null || true)"
-add_token "$(basename "${HOME:-}" 2>/dev/null || true)"
+
+case "${LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES:-1}" in
+  0)
+    ;;
+  1)
+    add_token "$(hostname -s 2>/dev/null || true)"
+    add_token "${USER:-}"
+    add_token "$(id -un 2>/dev/null || true)"
+    add_token "$(basename "${HOME:-}" 2>/dev/null || true)"
+    ;;
+  *)
+    echo "LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES must be 0 or 1." >&2
+    exit 2
+    ;;
+esac
 
 read_csv_tokens() {
   local value="$1"
@@ -65,6 +86,8 @@ read_denylist_file "${LOCAL_IDENTITY_DENYLIST_FILE:-}"
 read_denylist_file "${SLSKDN_LOCAL_IDENTITY_DENYLIST_FILE:-}"
 
 sort -u "$tmp_tokens" -o "$tmp_tokens"
+sort -u "$tmp_commit_word_tokens" -o "$tmp_commit_word_tokens"
+sort -u "$tmp_commit_path_tokens" -o "$tmp_commit_path_tokens"
 if [[ ! -s "$tmp_tokens" ]]; then
   echo "No local identity tokens configured for scanning."
   exit 0
@@ -76,11 +99,18 @@ check_file() {
   local label="$1"
   local path="$2"
   local display_path="${3:-$path}"
+  local whole_words="${4:-0}"
+  local token_file="${5:-$tmp_tokens}"
   local matches=""
+  local -a rg_args=(--json --fixed-strings --ignore-case --file "$token_file")
 
-  [[ -f "$path" ]] || return 0
+  if [[ "$whole_words" == "1" ]]; then
+    rg_args+=(--word-regexp)
+  fi
+
+  [[ -f "$path" && -s "$token_file" ]] || return 0
   matches="$(
-    rg --json --fixed-strings --ignore-case --file "$tmp_tokens" "$path" |
+    rg "${rg_args[@]}" "$path" |
       jq -r --arg label "$label" --arg display_path "$display_path" 'select(.type == "match") | "\($label): \($display_path):\(.data.line_number)"' |
       sort -u || true
   )"
@@ -93,7 +123,7 @@ check_file() {
 
 if [[ -f docs/CHANGELOG.md ]]; then
   tmp_unreleased="$(mktemp)"
-  trap 'rm -f "$tmp_tokens" "$tmp_commits" "$tmp_files" "$tmp_unreleased"' EXIT
+  trap 'rm -f "$tmp_tokens" "$tmp_commit_word_tokens" "$tmp_commit_path_tokens" "$tmp_commits" "$tmp_files" "$tmp_unreleased"' EXIT
   awk '
     $0 == "## [Unreleased]" { in_section = 1; next }
     in_section && /^## \[/ { exit }
@@ -113,7 +143,10 @@ if [[ "${LOCAL_IDENTITY_SCAN_COMMITS:-0}" == "1" ]]; then
     # exclude only those trailers while retaining the subject and body scan.
     git log --format='%s%n%b' "${latest_tag}..HEAD" |
       sed '/^[[:space:]]*Co-authored-by:/Id' >"$tmp_commits"
-    check_file "recent commit messages" "$tmp_commits" "git log"
+    # Runtime usernames and hostnames match as whole words. Explicit paths
+    # stay literal because their separators are not word characters.
+    check_file "recent commit messages" "$tmp_commits" "git log" "1" "$tmp_commit_word_tokens"
+    check_file "recent commit messages" "$tmp_commits" "git log" "0" "$tmp_commit_path_tokens"
   fi
 fi
 

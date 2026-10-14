@@ -1,4 +1,27 @@
-## Current state — Validation pool concurrency correction — 2026-10-14 00:25 UTC
+## Current state — Remediation scanner sandbox identity fix — 2026-10-14
+
+SLSKDN PR #366 is also carrying a remediation-scanner correction discovered
+while validating in the isolated runner. The baseline task now disables only
+runtime host/user discovery for its synthetic sandbox identity; explicit
+operator denylist values still reach the scanner. Commit-message matching uses
+whole-word checks for plain identity names and literal matching for path-shaped
+tokens. Focused scanner and engine contracts are added. The trusted launcher
+copied and hash-verified from reviewed commit
+`6bad0696008970f1df54aea8f03b805475f50363` reports 5/5 scanner cases and
+22/22 validation-engine cases; `git diff --check` passes. The updated exact-head
+hosted gate is pending because the GitHub PR still points at the earlier head.
+
+The local sandbox-identity gotcha was integrated with the pool branch and
+renumbered `0z1856` to avoid colliding with the pool's existing ADR entries.
+The candidate remains on a scratch branch until the focused checks pass and the
+exact GitHub owner/head are reverified.
+
+### Next Steps
+
+- Push the verified candidate to PR #366 and wait for exact-head Mode 2 checks.
+- Keep public pull-request workloads on GitHub-hosted runners.
+
+## Prior state — Validation pool concurrency correction — 2026-10-14 00:25 UTC
 
 All seven application repositories are under `snapetech-org`. This ownership
 change does not alter Actions runner registrations or routing. Public pull

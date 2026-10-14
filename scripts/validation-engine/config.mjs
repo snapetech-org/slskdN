@@ -18,6 +18,9 @@ export const validation = {
     'scripts/create-release-tag.sh',
     'scripts/verify-hosted-release-gate.sh',
     'scripts/test_hosted_release_gate.py',
+    'scripts/check-remediation-baseline.sh',
+    'scripts/check-local-identity-leaks.sh',
+    'scripts/test-local-identity-leaks.py',
     'docs/dev/release-checklist.md',
     'docs/dev/testing-policy.md',
     'scripts/validation-engine/engine.mjs',
@@ -106,6 +109,7 @@ export const validation = {
       stage: 'repository',
       kind: 'check',
       command: ['bash', 'scripts/check-remediation-baseline.sh'],
+      env: { LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES: '0' },
       passEnv: [
         'LOCAL_IDENTITY_DENYLIST',
         'LOCAL_IDENTITY_DENYLIST_FILE',

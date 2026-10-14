@@ -126,6 +126,12 @@ allows only variables approved for that task by the engine. The engine forces
 workflow context, arbitrary variables, and operator configuration paths do not
 reach child commands.
 
+The remediation baseline disables runtime-hostname and runtime-user discovery
+in its isolated task because those values describe the synthetic sandbox
+account, not the operator. Explicit denylist values remain available to the
+scanner. Plain identity names in commit messages match whole words, while
+path-shaped denylist values remain literal matches.
+
 Playwright tasks keep those private home and XDG directories and use the
 job-scoped `slskdn-playwright-browsers` cache under the runner temporary root.
 The E2E workflow installs Chromium into that same cache before the engine runs.

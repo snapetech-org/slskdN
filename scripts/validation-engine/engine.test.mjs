@@ -565,6 +565,26 @@ test('Playwright tasks use the job cache and keep standard runs offline', () => 
   );
 });
 
+test('remediation baseline ignores synthetic runtime identities but keeps the operator denylist', () => {
+  const runRoot = makeRoot({ 'package.json': '{}\n' });
+  const task = validation.tasks.find((candidate) => candidate.id === 'remediation-baseline');
+
+  assert.ok(task);
+  assert.equal(task.env?.LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES, '0');
+  const environment = isolatedTaskEnvironment(task, runRoot, {
+    HOME: '/operator/home',
+    USER: 'operator',
+    LOCAL_IDENTITY_DENYLIST: 'private-token',
+  });
+
+  assert.equal(environment.LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES, '0');
+  assert.equal(environment.LOCAL_IDENTITY_DENYLIST, 'private-token');
+  assert.equal(
+    environment.HOME,
+    path.join(runRoot, 'remediation-baseline-environment', 'home'),
+  );
+});
+
 test('plan and executor reject dependency cycles and report missing tools', async () => {
   const { root, config } = fixture();
   config.tasks[0].dependsOn = ['other'];

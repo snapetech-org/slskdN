@@ -19124,3 +19124,16 @@ normal fast-forward. The Unreleased notes are now under the dated
 `2026101321-slskdn.351` section. The earlier branch workflow runs were
 superseded while queued and were cancelled; no result from those runs is
 counted. The exact-`main` hosted gate and stable tag remain pending.
+
+# Update 2026-10-14 — Fix sandbox identity false positives in the remediation gate
+
+The trusted remediation task uses a synthetic private home and account. The
+identity scanner now skips runtime-discovered host/user tokens only in that
+isolated task, while explicit denylist values stay active. Plain identity names
+use whole-word matching in commit messages, and path-shaped terms retain exact
+literal matching. Added five Python scanner contract cases, an engine
+environment contract, and the trusted-sandbox explanation in testing policy.
+The focused scanner suite passes 5/5 and the validation-engine suite passes
+22/22 through the launcher hash-verified from reviewed commit
+`6bad0696008970f1df54aea8f03b805475f50363`. Exact-head hosted Mode 2 validation
+remains pending until the candidate is pushed to PR #366.
