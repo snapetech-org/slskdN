@@ -27,6 +27,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - .NET dependency graphs and bundled runtimes now use the 10.0.13 servicing
   release for the SignalR denial-of-service fix. Hosted .NET build workflows
   use SDK 10.0.402, and vulnerability checks inspect every first-party project.
+- CI validation artifacts now include only receipts and task logs, leaving
+  temporary task environments and dependency caches on the runners.
 
 ## [2026101321-slskdn.351] — 2026-10-13
 

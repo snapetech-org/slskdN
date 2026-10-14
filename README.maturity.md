@@ -29,12 +29,28 @@ For first use, follow the setup guide to install the daemon, open its Web UI,
 set credentials, configure a download directory and Soulseek account, then
 search, browse, and manage transfers.
 
+### Install the latest stable release on Linux
+
+Download the current stable installer and run it with administrator privileges:
+
+```bash
+curl -fsSLO https://github.com/snapetech/slskdn/releases/latest/download/install-linux-release.sh
+sudo bash install-linux-release.sh
+```
+
+The installer configures the system service. See the [setup guide](docs/getting-started.md)
+for configuration and first-login steps.
+
 ## Use the main workflows
 
+- [Dashboard](docs/dashboard.md) — review successful transfers from the last
+  seven days and open the corresponding download or upload list.
 - [Search and discovery](docs/soulseek-native-discovery.md) — search peers and
   review optional discovery tools.
 - [Browse and download](docs/advanced-features.md) — select files and folders,
-  choose a destination, and follow transfer progress.
+  choose a destination, and follow transfer progress. [Transfer Operations](docs/transfer-operations.md)
+  explains path templates, file-name collisions, permissions, request history
+  retention, API timestamp format, and paging through long transfer lists.
 - [Wishlist and Lidarr](docs/lidarr-integration.md) — configure background
   acquisition workflows and their safeguards.
 - [Messages, rooms, and pods](docs/pods-and-rooms.md) — review the distinct
@@ -42,7 +58,7 @@ search, browse, and manage transfers.
 - [Player and listening parties](docs/listening-party.md) — configure local
   playback and optional shared listening.
 - [System settings](docs/system-surfaces.md) — manage policies, integrations,
-  diagnostics, and local experience preferences.
+  metrics, diagnostics, and local experience preferences.
 
 ## Feature maturity
 
@@ -80,6 +96,8 @@ application and may differ with configuration and installed tools.
 slskdN is an unofficial fork. The separate [slskr project](https://github.com/snapetech/slskr)
 is a Rust implementation; consult that repository for its own status and
 compatibility claims.
+
+- Support maintenance: [Ko-fi](https://ko-fi.com/snapetech).
 
 ## License
 

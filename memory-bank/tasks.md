@@ -26,6 +26,29 @@
 
 ## Active Development
 
+### Release identity scan sandbox scope — 2026-10-14
+
+- [x] Reproduce the false positive caused by a validation task's synthetic
+  `HOME` basename being scanned as an operator identity.
+- [x] Make runtime-derived identity discovery configurable and disable it only
+  for the isolated remediation task; explicit denylist entries remain active.
+- [x] Match commit-message identities as whole words while retaining literal
+  matching for release-facing files.
+- [x] Add scanner contract tests and a validation-engine environment test.
+- [x] Sync the vendored runtime manifest and mirror to its current source ref;
+  the intervening source change is limited to a hosted CI runner setting.
+- [x] Pass the scanner and validation-engine tests, static checks, lint, and
+  the runtime source/mirror check.
+- [x] Push the implementation and complete the post-push remediation baseline;
+  refresh the tracked candidate inventory with the measured count change.
+- [ ] Run exact-head hosted CI and Playwright workflows, then complete the
+  guarded stable release after all required checks pass.
+
+Status: The scanner regression and tracked inventory refresh are pushed to the
+fork, and the full post-push remediation baseline passes. Exact-head hosted
+CI/E2E and stable-release verification remain. History is preserved; no tag
+has been created.
+
 ### Files API and responsive system workflows — 2026-10-13
 
 - [x] Add on-demand subtree sizes and guarded multi-item file/directory deletion
@@ -7434,6 +7457,11 @@ resource completion.
 - [x] Pass the full Release build, unit/integration/regression suites
   (6,227 tests), performance and VPN-agent builds, repository lint, package
   validators, and release-note/identity checks.
+- Validation note (2026-10-14): hosted CI and Nix smoke passed on SHA
+  `03c352d32f7a31581dc29b8f34d33bffb0977405`. The release verifier exposed a
+  canonical repository-name mismatch after the fork's owner rename. The fix
+  now checks the pinned repository ID and has contract coverage; because it
+  advances `main`, fresh exact-head CI and browser E2E are still required.
 - [ ] Pass the hosted CI release gate for the final exact `main` commit.
 - [ ] Pass hosted browser E2E on the same final `main` commit.
 - [ ] Create the authorized stable tag only after the gate passes; verify

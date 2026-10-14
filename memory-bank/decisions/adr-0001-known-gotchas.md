@@ -4,6 +4,109 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
+
+**What went wrong:** The hosted release-gate verifier rejected a successful
+workflow run for the intended repository because GitHub returned its current
+canonical owner/name while the verifier compared that value to the configured
+repository alias.
+
+**Why:** GitHub repository aliases and canonical names can differ after an
+organization transfer. A mutable display name is not a reliable identity
+check for a run.
+
+**Prevention:** Pin the intended fork's immutable numeric repository ID,
+confirm that the configured alias resolves to that ID, and compare the run's
+repository ID to it. Keep the release-gate contract test for a renamed
+repository and confirm the run's workflow, event, branch, commit, status, and
+conclusion independently.
+
+### 0z1856. Verify Checkout Targets By Repository ID Across Owner Renames (2026-10-14)
+
+**What went wrong:** The GitHub write-target guard rejected the intended
+checkout after its owner name changed, even though the old alias and new
+canonical name resolved to the same repository.
+
+**Why:** The guard compared exact remote URLs and owner/name strings, which are
+mutable labels rather than repository identity.
+
+**Prevention:** Accept only recognized GitHub remote forms, resolve both the
+configured remote and `gh` default repository through the API, and require each
+to match the pinned repository ID. Keep the upstream remote check separate and
+read-only.
+
+### 0z1857. Recheck Self-Referential Candidate Counts After Backlog Edits (2026-10-14)
+
+**What went wrong:** Updating the active candidate backlog changed the count it
+records because the broad source scan includes the backlog document itself.
+
+**Why:** The generated report and its durable count summary are both inputs to
+the same discovery scan, so new wording can match the scan patterns.
+
+**Prevention:** Regenerate and verify the candidate count after the final
+backlog edit. Avoid introducing scan terms into refresh prose unless the new
+match is intended and classified.
+
+### 0z1858. Keep Pnpm Lockfile Importers Aligned With Manifest Updates (2026-10-14)
+
+**What went wrong:** A grouped web dependency update changed version ranges in
+`src/web/package.json` without updating the corresponding importer entries in
+`pnpm-lock.yaml`.
+
+**Why:** Updating the manifest alone leaves frozen installs with a stale
+dependency contract and prevents the checkout from reproducing its declared
+workspace dependencies.
+
+**Prevention:** Update and review the pnpm lockfile with each manifest change,
+then require `pnpm install --frozen-lockfile` to pass before accepting the
+dependency update.
+
+### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
+
+**What went wrong:** The trusted validation environment sets `HOME` to a
+task-private path ending in `/home`. The release identity scanner treated the
+basename `home` as a private identity and searched for it as a substring in
+commit messages. This matched the ordinary plural word `homes` in a commit
+subject and failed the release gate.
+
+**Why:** Runtime identity discovery was applied unchanged inside an isolated
+test environment, and fixed-string matching allowed a short token to match
+inside a different word.
+
+**Prevention:** Do not treat the trusted sandbox's synthetic account and
+directory names as operator identities. Keep explicit denylist terms active,
+match plain-name tokens on word boundaries in commit messages, and retain
+literal matching for path-shaped denylist values. Cover the sandbox environment
+and positive identity matches with scanner contract tests.
+
+### 0z1853. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)
+
+**What went wrong:** A packaging check added the YAML `path:` key prefix to
+artifact patterns that are values inside a block scalar. The focused check
+failed because that literal does not occur in the workflow source.
+
+**Why:** The assertion copied the YAML key along with the value, even though
+the workflow uses `path: |` followed by separately indented path entries.
+
+**Prevention:** Match block-scalar values in text checks without adding the
+mapping key. Prefer a structural YAML contract for checking that the values
+belong to the correct field, and run both checks when changing workflow paths.
+
+### 0z1852. Keep Packaging Checks Aligned With Narrow Artifact Globs (2026-10-13)
+
+**What went wrong:** CI artifact uploads were narrowed to validation receipts
+and logs, but the packaging metadata check still expected the previous broad
+validation-directory path. The hosted release gate failed its packaging check.
+
+**Why:** The workflow path contract was repeated in separate validators. The
+workflow syntax check was updated, while the packaging metadata assertion kept
+the stale literal.
+
+**Prevention:** Keep the permitted artifact paths explicit and identical across
+all workflow validators. When changing upload paths, search for every assertion
+of the old path and run the packaging metadata check together with the workflow
+contract tests.
+
 ### 0z1848. Scan Every Project For Transitive Package Advisories (2026-10-13)
 
 **What went wrong:** Scanning only the application project reported no
@@ -42664,3 +42767,11 @@ columns. This keeps the fixture stable when product defaults evolve.
 **Why:** The fragment was reviewed for metadata and content but the capitalization rule was only exercised later by the full release-note validation gate.
 
 **Prevention:** Start each release-note body with a capitalized sentence, then run the validator before committing the fragment.
+
+### 0z1815. Upload Only Validation Receipts And Logs (2026-10-13)
+
+**What went wrong:** CI uploaded whole validation run directories, including private task environments and package caches, producing a 1.58 GB artifact.
+
+**Why:** The artifact glob included both evidence files and sibling environment/cache directories created under the same temporary root.
+
+**Prevention:** Upload only top-level `receipt.json` and task `*.log` files. Add a workflow contract check that rejects recursive globs over validation run directories.
