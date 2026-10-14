@@ -32,9 +32,9 @@ class HostedReleaseGateTests(unittest.TestCase):
             "#!/usr/bin/env bash\n"
             "set -euo pipefail\n"
             "case \"${2:-}\" in\n"
-            "  repos/snapetech/slskdN) cat \"$MOCK_GH_DIR/repository.json\" ;;\n"
-            "  repos/snapetech/slskdN/actions/workflows/ci.yml) cat \"$MOCK_GH_DIR/workflow.json\" ;;\n"
-            "  repos/snapetech/slskdN/actions/runs/*) cat \"$MOCK_GH_DIR/run.json\" ;;\n"
+            "  repos/snapetech-org/slskdN) cat \"$MOCK_GH_DIR/repository.json\" ;;\n"
+            "  repos/snapetech-org/slskdN/actions/workflows/ci.yml) cat \"$MOCK_GH_DIR/workflow.json\" ;;\n"
+            "  repos/snapetech-org/slskdN/actions/runs/*) cat \"$MOCK_GH_DIR/run.json\" ;;\n"
             "  *) echo \"Unexpected API path: ${2:-}\" >&2; exit 3 ;;\n"
             "esac\n",
             encoding="utf-8",
@@ -50,7 +50,7 @@ class HostedReleaseGateTests(unittest.TestCase):
             "head_sha": COMMIT,
             "status": "completed",
             "conclusion": "success",
-            "html_url": "https://github.com/snapetech/slskdN/actions/runs/987654",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/987654",
         }
         self.write_run()
 

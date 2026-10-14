@@ -26,6 +26,23 @@
 
 ## Active Development
 
+### Organization target and shared runner route — 2026-10-14
+
+- [x] Update the GitHub write guard, repository instructions, release scripts,
+  application links, documentation, and active package metadata to
+  `snapetech-org/slskdN`.
+- [x] Keep separately owned GHCR/DockerHub images and the independent package
+  tap namespace intact; verify the GHCR package still belongs to `snapetech`.
+- [x] Add a policy regression check for stale active repository-owner links and
+  a release-note fragment for the canonical organization address.
+- [x] Pass the focused target, workflow, packaging, release-gate, frontend-link,
+  and .NET format checks.
+- [ ] Push this exact branch, pass all required hosted checks, merge the route
+  PR, and confirm the complete post-merge main validation.
+
+Status: local source checks pass. The PR needs exact-head hosted results and a
+fresh main validation before this task is complete.
+
 ### Release identity scan sandbox scope — 2026-10-14
 
 - [x] Reproduce the false positive caused by a validation task's synthetic

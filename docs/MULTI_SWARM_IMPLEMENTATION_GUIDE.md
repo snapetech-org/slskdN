@@ -11,7 +11,7 @@
 
 This document provides concrete GitHub issues for implementing the multi-swarm + MBID intelligence features outlined in [MULTI_SWARM_ROADMAP.md](archive/duplicates/MULTI_SWARM_ROADMAP.md).
 
-Each issue is designed to be copy-pasted directly into `snapetech/slskdn` as a backlog item.
+Each issue is designed to be copy-pasted directly into `snapetech-org/slskdN` as a backlog item.
 
 ---
 

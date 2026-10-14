@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: slskdn
 Upstream-Contact: snapetech <slskdn@proton.me>
-Source: https://github.com/snapetech/slskdn
+Source: https://github.com/snapetech-org/slskdN
 
 Files: *
 Copyright: 2024-2025 slskd Team

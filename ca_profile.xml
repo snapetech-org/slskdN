@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CommunityApplications>
   <Profile>slskdN is an open-source, batteries-included Soulseek web client and unofficial fork of slskd. This repository maintains the slskdN Docker image and Unraid template. Use the project page for documentation and GitHub Issues for application support.</Profile>
-  <Icon>https://github.com/snapetech/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>
-  <WebPage>https://github.com/snapetech/slskdN</WebPage>
+  <Icon>https://github.com/snapetech-org/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>
+  <WebPage>https://github.com/snapetech-org/slskdN</WebPage>
 </CommunityApplications>

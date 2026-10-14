@@ -13,7 +13,7 @@ or will ever own the copyright.
 
 ## slskdn Fork Attribution Policy
 
-[slskdN](https://github.com/snapetech/slskdn) is an unofficial fork of [slskd/slskd](https://github.com/slskd/slskd). We maintain the following copyright attribution policy:
+[slskdN](https://github.com/snapetech-org/slskdN) is an unofficial fork of [slskd/slskd](https://github.com/slskd/slskd). We maintain the following copyright attribution policy:
 
 ### Existing Files (from upstream slskd)
 Files that exist in the upstream repository retain their original copyright:
@@ -83,7 +83,7 @@ You're free to use whichever development tools you prefer.  If you don't yet hav
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/snapetech/slskdn.git
+   git clone https://github.com/snapetech-org/slskdN.git
    cd slskdn
    ```
 
@@ -352,7 +352,7 @@ Before submitting a PR, ensure:
 ## Getting Help
 
 - **Discord**: [Join our Discord](https://discord.gg/5PyXBfvS6T)
-- **GitHub Issues**: [Open an issue](https://github.com/snapetech/slskdn/issues)
+- **GitHub Issues**: [Open an issue](https://github.com/snapetech-org/slskdN/issues)
 - **Documentation**: See [docs/README.md](docs/README.md)
 
 ---

@@ -61,7 +61,7 @@ Download the Linux archive for the release being tested:
 
 ```bash
 RELEASE=RELEASE_TAG
-curl -fLO "https://github.com/snapetech/slskdN/releases/download/${RELEASE}/slskdn-main-linux-glibc-x64.zip"
+curl -fLO "https://github.com/snapetech-org/slskdN/releases/download/${RELEASE}/slskdn-main-linux-glibc-x64.zip"
 rm -rf /tmp/slskdn-relay-release
 mkdir -p /tmp/slskdn-relay-release
 unzip -q slskdn-main-linux-glibc-x64.zip -d /tmp/slskdn-relay-release

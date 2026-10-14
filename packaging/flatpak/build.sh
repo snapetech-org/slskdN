@@ -35,8 +35,8 @@ check_prerequisites() {
 validate_manifest() {
     echo "🔍 Validating manifest..."
     # When cutting a new release, update version, url, and sha256 in io.github.slskd.slskdn.yml
-    if ! grep -q "https://github.com/snapetech/slskdn/releases/download" "$MANIFEST_FILE"; then
-        echo "⚠️ Warning: Manifest source URL should point to https://github.com/snapetech/slskdn/releases/..."
+    if ! grep -q "https://github.com/snapetech-org/slskdN/releases/download" "$MANIFEST_FILE"; then
+        echo "⚠️ Warning: Manifest source URL should point to https://github.com/snapetech-org/slskdN/releases/..."
     fi
 }
 

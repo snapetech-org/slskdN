@@ -1,3 +1,18 @@
+## Current state — Organization target and shared runner route — 2026-10-14
+
+The canonical fork target is `snapetech-org/slskdN`. The runner-route PR now
+updates active GitHub targets in application links, release tooling, and package
+metadata, and its repository policy check rejects stale active-owner links.
+GHCR still lists `slskdn` under the personal account, so container image names
+and the independent Homebrew tap namespace remain unchanged. No release tag was
+created.
+
+Local target, workflow-policy, packaging, release-gate contract, web-link, and
+.NET format checks pass. Exact-head hosted checks and the post-merge main
+validation remain. Next: push the updated PR branch, review every exact-head
+check and any failures, merge only after required checks pass, then inspect the
+new main run.
+
 ## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
 The `.351` feature and documentation work is on `main`, including the README

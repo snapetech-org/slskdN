@@ -7,7 +7,7 @@ pkgrel=7
 _archive_root="slskdN-${pkgver//.slskdn/-slskdn}"
 pkgdesc="slskdN, an unofficial batteries-included fork of slskd with SongID, Discovery Graph, multi-source downloads, DHT mesh networking, auto-replace, wishlist, and security hardening."
 arch=('x86_64' 'aarch64')
-url="https://github.com/snapetech/slskdn"
+url="https://github.com/snapetech-org/slskdN"
 license=('AGPL-3.0-or-later')
 depends=('dotnet-runtime-10.0' 'aspnet-runtime-10.0' 'yt-dlp')
 makedepends=('dotnet-sdk-10.0' 'dotnet-runtime-10.0' 'aspnet-runtime-10.0' 'nodejs' 'pnpm')
@@ -22,7 +22,7 @@ conflicts=('slskd' 'slskd-bin' 'slskdN-bin')
 backup=('etc/slskd/slskd.yml')
 install=slskd.install
 source=(
-    "${pkgname}-${pkgver}.tar.gz::https://github.com/snapetech/slskdn/archive/refs/tags/${pkgver//.slskdn/-slskdn}.tar.gz"
+    "${pkgname}-${pkgver}.tar.gz::https://github.com/snapetech-org/slskdN/archive/refs/tags/${pkgver//.slskdn/-slskdn}.tar.gz"
     "slskd.service"
     "slskd.yml"
     "slskd.sysusers"

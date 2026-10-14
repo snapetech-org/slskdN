@@ -284,7 +284,7 @@ the repository's `global.json` before building.
 
 ```bash
 # Clone repository
-git clone https://github.com/snapetech/slskdn.git
+git clone https://github.com/snapetech-org/slskdN.git
 cd slskdn
 
 # Build for macOS
@@ -324,8 +324,8 @@ slskdN includes many advanced community service features:
 
 ## Support
 
-- **Documentation**: https://github.com/snapetech/slskdn#readme
-- **Issues**: https://github.com/snapetech/slskdn/issues
+- **Documentation**: https://github.com/snapetech-org/slskdN#readme
+- **Issues**: https://github.com/snapetech-org/slskdN/issues
 - **Upstream slskd**: https://github.com/slskd/slskd
 - **Discussions**: GitHub Discussions
 - **Soulseek Forums**: Community support

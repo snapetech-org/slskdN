@@ -1,6 +1,6 @@
 # VirtualSoulfind v2 – Design Document
 
-**Repo:** `github.com/snapetech/slskdn`
+**Repo:** `github.com/snapetech-org/slskdN`
 
 **Current Branch:** `main`
 

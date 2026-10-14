@@ -251,7 +251,7 @@ describe('App', () => {
     expect(await screen.findByText('1.2.3')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'See Release Notes' })).toHaveAttribute(
       'href',
-      'https://github.com/snapetech/slskdn/releases',
+      'https://github.com/snapetech-org/slskdN/releases',
     );
   });
 

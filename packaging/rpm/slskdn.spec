@@ -4,9 +4,9 @@ Release:        1%{?dist}
 Summary:        slskdN, an unofficial batteries-included fork of slskd
 
 License:        AGPL-3.0-or-later
-URL:            https://github.com/snapetech/slskdn
+URL:            https://github.com/snapetech-org/slskdN
 # Pre-built zip from GitHub releases (asset slskdn-main-linux-glibc-x64.zip). CI overwrites Version and Source0.
-Source0:        https://github.com/snapetech/slskdn/releases/download/2026101222-slskdn.350/slskdn-main-linux-glibc-x64.zip
+Source0:        https://github.com/snapetech-org/slskdN/releases/download/2026101222-slskdn.350/slskdn-main-linux-glibc-x64.zip
 Source1:        slskd.service
 Source2:        slskd.yml
 Source3:        slskd.conf

@@ -9,7 +9,7 @@ import { urlBase } from '../../config';
 import React, { Component } from 'react';
 import { Icon } from 'semantic-ui-react';
 
-const GITHUB_BASE = 'https://github.com/snapetech/slskdn';
+const GITHUB_BASE = 'https://github.com/snapetech-org/slskdN';
 const SLSKD_GITHUB = 'https://github.com/slskd/slskd';
 const SPEED_POLL_INTERVAL_MS = 2_000;
 const STATS_POLL_INTERVAL_MS = 10_000;

@@ -72,10 +72,10 @@
     <keyword>secure</keyword>
   </keywords>
 
-  <url type="homepage">https://github.com/snapetech/slskdn</url>
-  <url type="bugtracker">https://github.com/snapetech/slskdn/issues</url>
-  <url type="help">https://github.com/snapetech/slskdn#readme</url>
-  <url type="vcs-browser">https://github.com/snapetech/slskdn</url>
+  <url type="homepage">https://github.com/snapetech-org/slskdN</url>
+  <url type="bugtracker">https://github.com/snapetech-org/slskdN/issues</url>
+  <url type="help">https://github.com/snapetech-org/slskdN#readme</url>
+  <url type="vcs-browser">https://github.com/snapetech-org/slskdN</url>
 
   <provides>
     <binary>slskdn</binary>

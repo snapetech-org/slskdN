@@ -24,10 +24,10 @@
     "localstorage": {}
   },
   "manifestVersion": 2,
-  "website": "https://github.com/snapetech/slskdn",
-  "documentationUrl": "https://github.com/snapetech/slskdn#readme",
-  "packageUrl": "https://github.com/snapetech/slskdn",
-  "iconUrl": "https://raw.githubusercontent.com/snapetech/slskdn/main/src/web/public/logo512.png",
+  "website": "https://github.com/snapetech-org/slskdN",
+  "documentationUrl": "https://github.com/snapetech-org/slskdN#readme",
+  "packageUrl": "https://github.com/snapetech-org/slskdN",
+  "iconUrl": "https://raw.githubusercontent.com/snapetech-org/slskdN/main/src/web/public/logo512.png",
   "tags": [
     "music",
     "soulseek",
@@ -37,7 +37,7 @@
   "minBoxVersion": "10.0.0",
   "changelog": "* Cloudron community package for slskdN 2026100421-slskdn.338.",
   "mediaLinks": [
-    "https://raw.githubusercontent.com/snapetech/slskdN/main/packaging/cloudron/screenshot.png"
+    "https://raw.githubusercontent.com/snapetech-org/slskdN/main/packaging/cloudron/screenshot.png"
   ],
   "packagerName": "Snapetech",
   "packagerUrl": "https://github.com/snapetech"

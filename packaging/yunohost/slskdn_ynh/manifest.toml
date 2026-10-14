@@ -10,9 +10,9 @@ maintainers = ["snapetech"]
 
 [upstream]
 license = "AGPL-3.0-or-later"
-code = "https://github.com/snapetech/slskdN"
-admindoc = "https://github.com/snapetech/slskdN/blob/main/docs/config.md"
-userdoc = "https://github.com/snapetech/slskdN/blob/main/docs/getting-started.md"
+code = "https://github.com/snapetech-org/slskdN"
+admindoc = "https://github.com/snapetech-org/slskdN/blob/main/docs/config.md"
+userdoc = "https://github.com/snapetech-org/slskdN/blob/main/docs/getting-started.md"
 
 [integration]
 yunohost = ">= 12.1.17"
@@ -43,9 +43,9 @@ non-free-network.en = "Soulseek is a third-party network and requires a Soulseek
 [resources]
     [resources.sources.main]
     in_subdir = false
-    amd64.url = "https://github.com/snapetech/slskdN/releases/download/2026092517-slskdn.325/slskdn-main-linux-glibc-x64.zip"
+    amd64.url = "https://github.com/snapetech-org/slskdN/releases/download/2026092517-slskdn.325/slskdn-main-linux-glibc-x64.zip"
     amd64.sha256 = "31c929d2755beb6c058454e65b8d08b1c080d6bfc713c5a973e7a943236740a7"
-    arm64.url = "https://github.com/snapetech/slskdN/releases/download/2026092517-slskdn.325/slskdn-main-linux-glibc-arm64.zip"
+    arm64.url = "https://github.com/snapetech-org/slskdN/releases/download/2026092517-slskdn.325/slskdn-main-linux-glibc-arm64.zip"
     arm64.sha256 = "9deb432ece4c4ac126b275447031dfac62fc6d1348ae86d167ba621a5e6e29f0"
     autoupdate.strategy = "latest_github_release"
     autoupdate.version_regex = "^(\\d{4})(\\d{2})(\\d{2})(\\d+)-slskdn\\.(\\d+)$"

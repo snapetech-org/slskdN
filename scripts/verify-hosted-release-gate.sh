@@ -14,7 +14,7 @@ fi
 run_id="$1"
 branch="$2"
 commit_sha="$3"
-repo="snapetech/slskdN"
+repo="snapetech-org/slskdN"
 expected_repo_id="1108894784"
 
 if [[ ! "$run_id" =~ ^[1-9][0-9]*$ ]]; then

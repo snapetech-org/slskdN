@@ -177,7 +177,7 @@ shares:
 ## CI / Release
 
 - **Checksums**: `slskdn-bin` keeps the GitHub-hosted binary zip on `sha256sums=('SKIP' ...)`. GitHub release assets are not treated as immutable here, so only the repo-owned static packaging files (`slskd.service`, `slskd.yml`, `slskd.sysusers`) use real hashes. The binary package source filename includes `${pkgver}` so makepkg cannot reuse an older cached zip for a newer package version.
-- **Source archive root**: the `slskdn` source package downloads lower-case release URLs, but GitHub extracts the `snapetech/slskdN` tag archive under a case-preserving `slskdN-<tag>/` directory. Keep the source PKGBUILD `cd` path tied to `_archive_root`, not `${pkgname}`, so clean `yay` builds can enter the extracted tree.
+- **Source archive root**: the `slskdn` source package downloads lower-case release URLs, but GitHub extracts the `snapetech-org/slskdN` tag archive under a case-preserving `slskdN-<tag>/` directory. Keep the source PKGBUILD `cd` path tied to `_archive_root`, not `${pkgname}`, so clean `yay` builds can enter the extracted tree.
 
 ## Building Manually
 

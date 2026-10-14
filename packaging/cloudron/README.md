@@ -12,4 +12,4 @@ Run an install, backup/restore, and update cycle before changing the version
 state to `published`.
 
 Versions URL:
-`https://raw.githubusercontent.com/snapetech/slskdN/main/packaging/cloudron/CloudronVersions.json`
+`https://raw.githubusercontent.com/snapetech-org/slskdN/main/packaging/cloudron/CloudronVersions.json`

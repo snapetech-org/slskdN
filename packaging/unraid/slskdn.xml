@@ -10,8 +10,8 @@
   <Network>bridge</Network>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/snapetech/slskdN/issues</Support>
-  <Project>https://github.com/snapetech/slskdN</Project>
+  <Support>https://github.com/snapetech-org/slskdN/issues</Support>
+  <Project>https://github.com/snapetech-org/slskdN</Project>
   <Overview>
 slskdN is a feature-rich Soulseek web client and an unofficial batteries-included fork of slskd.
 
@@ -32,9 +32,9 @@ No scripts required. Everything built-in.
   </Overview>
   <Category>Downloaders: MediaApp:Music Status:Stable</Category>
   <WebUI>http://[IP]:[PORT:5030]/</WebUI>
-  <TemplateURL>https://github.com/snapetech/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml</TemplateURL>
-  <Icon>https://github.com/snapetech/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>
-  <ReadMe>https://github.com/snapetech/slskdN/blob/main/README.md</ReadMe>
+  <TemplateURL>https://github.com/snapetech-org/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml</TemplateURL>
+  <Icon>https://github.com/snapetech-org/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>
+  <ReadMe>https://github.com/snapetech-org/slskdN/blob/main/README.md</ReadMe>
   <Licence>AGPL-3.0 license</Licence>
   <Requires>Internet access is required for the Soulseek network. Forward the Soulseek port for best connectivity.</Requires>
   <ExtraParams>--restart=unless-stopped</ExtraParams>

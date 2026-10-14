@@ -236,5 +236,5 @@ POST /api/virtualsoulfind/scenes/{sceneId}/chat
 ## Support
 
 For issues or questions:
-- GitHub Issues: `https://github.com/snapetech/slskdn/issues`
+- GitHub Issues: `https://github.com/snapetech-org/slskdN/issues`
 - Documentation: `docs/VIRTUAL_SOULFIND.md`

@@ -153,7 +153,7 @@ jobs:
 
           for attempt in {1..20}; do
             for ASSET_NAME in "${ASSET_NAMES[@]}"; do
-              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
+              ASSET_URL="https://github.com/snapetech-org/slskdN/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
               echo "Attempt $attempt: checking ${ASSET_NAME}..."
 
               if curl -fsSL "${CURL_AUTH_ARGS[@]}" -H "Accept: application/octet-stream" "$ASSET_URL" -o release-linux-x64.zip; then

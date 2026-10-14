@@ -1,6 +1,6 @@
 # slskdn Helm Chart (Generic Kubernetes)
 
-Helm chart for [slskdN](https://github.com/snapetech/slskdn) on any Kubernetes cluster. No TrueCharts or TrueNAS-specific dependencies.
+Helm chart for [slskdN](https://github.com/snapetech-org/slskdN) on any Kubernetes cluster. No TrueCharts or TrueNAS-specific dependencies.
 
 ## Prerequisites
 
@@ -75,5 +75,5 @@ helm uninstall slskdn
 
 ## Links
 
-- [slskdN](https://github.com/snapetech/slskdn)
+- [slskdN](https://github.com/snapetech-org/slskdN)
 - [slskd configuration](https://github.com/slskd/slskd/wiki/Configuration)

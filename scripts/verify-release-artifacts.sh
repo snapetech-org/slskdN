@@ -6,7 +6,7 @@
 #   TAG defaults to latest dev tag (build-dev-*). Use e.g. build-dev-0.24.1.dev.91769607746
 set -euo pipefail
 
-REPO="${REPO:-snapetech/slskdn}"
+REPO="${REPO:-snapetech-org/slskdN}"
 TAG="${1:-}"
 
 if [ -z "$TAG" ]; then

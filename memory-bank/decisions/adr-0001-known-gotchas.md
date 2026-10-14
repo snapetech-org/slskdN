@@ -4,6 +4,20 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1859. Audit All Active Repository Targets After An Owner Transfer (2026-10-14)
+
+**What went wrong:** Updating the repository guard and agent instructions left
+application links, release tooling, and package metadata pointing at the former
+personal repository owner.
+
+**Why:** The transfer review checked the write target but did not inventory every
+active GitHub URL and API target that users and release scripts consume.
+
+**Prevention:** Search active source, documentation, package metadata, and release
+scripts for the former repository target. Preserve separately owned image and tap
+namespaces, upstream references, and shipped historical records. Add a repository
+policy check that rejects stale active links.
+
 ### 0z1858. Keep GitHub Write Guards Aligned With Repository Ownership (2026-10-14)
 
 **What went wrong:** The repository had moved to the organization, but its GitHub

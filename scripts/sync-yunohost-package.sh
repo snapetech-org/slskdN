@@ -4,7 +4,7 @@ set -euo pipefail
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-expected_origin="git@github.com:snapetech/slskdN.git"
+expected_origin="git@github.com:snapetech-org/slskdN.git"
 origin_url="$(git remote get-url origin)"
 if [[ "$origin_url" != "$expected_origin" ]]; then
   echo "Refusing YunoHost sync: origin is '$origin_url', expected '$expected_origin'." >&2

@@ -17,7 +17,7 @@ resolve_release_tag() {
   fi
 
   local latest_json latest_tag
-  latest_json="$(wget -qO- https://api.github.com/repos/snapetech/slskdn/releases/latest)"
+  latest_json="$(wget -qO- https://api.github.com/repos/snapetech-org/slskdN/releases/latest)"
   latest_tag="$(echo "$latest_json" | sed -n 's/.*"tag_name":[[:space:]]*"\([^"]*\)".*/\1/p' | head -n 1)"
   if [ -z "$latest_tag" ]; then
     echo "Unable to resolve latest release tag from GitHub API" >&2
@@ -57,7 +57,7 @@ download_asset() {
   local release_tag="$1"
   local asset_name="$2"
   local destination="$3"
-  local url="https://github.com/snapetech/slskdn/releases/download/${release_tag}/${asset_name}"
+  local url="https://github.com/snapetech-org/slskdN/releases/download/${release_tag}/${asset_name}"
 
   if wget -q -O "$destination" "$url"; then
     echo "$url"
@@ -71,7 +71,7 @@ download_asset() {
 download_checksums() {
   local release_tag="$1"
   local destination="$2"
-  local url="https://github.com/snapetech/slskdn/releases/download/${release_tag}/SHA256SUMS.txt"
+  local url="https://github.com/snapetech-org/slskdN/releases/download/${release_tag}/SHA256SUMS.txt"
 
   wget -q -O "$destination" "$url"
 }
@@ -155,7 +155,7 @@ write_default_config() {
 
   cat > "$CONFIG_FILE" <<'CFG'
 # slskd configuration — edit: soulseek.username, soulseek.password, shares.directories
-# See https://github.com/snapetech/slskdn for full options
+# See https://github.com/snapetech-org/slskdN for full options
 
 soulseek:
   username:
@@ -201,7 +201,7 @@ write_systemd_unit() {
   cat > "$SERVICE_FILE" <<SVC
 [Unit]
 Description=slskd - Soulseek client/server
-Documentation=https://github.com/snapetech/slskdn
+Documentation=https://github.com/snapetech-org/slskdN
 After=network-online.target
 Wants=network-online.target
 

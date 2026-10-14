@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <RepositoryUrl>https://github.com/snapetech/slskdn</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/snapetech/slskdn</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/snapetech-org/slskdN</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/snapetech-org/slskdN</PackageProjectUrl>
     <Authors>slskdN Team; slskd Team</Authors>
     <Copyright>Copyright (c) slskdN Team and slskd Team</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>

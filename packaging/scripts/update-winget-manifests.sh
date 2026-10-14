@@ -35,10 +35,10 @@ EOF
         RELEASE_NOTES=$(cat <<EOF
 Stable Release $VERSION
 
-See https://github.com/snapetech/slskdn/releases/tag/$RELEASE_TAG for details.
+See https://github.com/snapetech-org/slskdN/releases/tag/$RELEASE_TAG for details.
 EOF
 )
-        RELEASE_NOTES_URL="https://github.com/snapetech/slskdn/releases/tag/$RELEASE_TAG"
+        RELEASE_NOTES_URL="https://github.com/snapetech-org/slskdN/releases/tag/$RELEASE_TAG"
         ;;
     *)
         echo "Unknown channel: $CHANNEL"
@@ -86,11 +86,11 @@ PackageVersion: "$WINGET_VERSION"
 PackageLocale: en-US
 Publisher: slskdN Team
 PublisherUrl: https://github.com/snapetech
-PublisherSupportUrl: https://github.com/snapetech/slskdn/issues
+PublisherSupportUrl: https://github.com/snapetech-org/slskdN/issues
 PackageName: $PACKAGE_NAME
-PackageUrl: https://github.com/snapetech/slskdn
+PackageUrl: https://github.com/snapetech-org/slskdN
 License: AGPL-3.0-or-later
-LicenseUrl: https://github.com/snapetech/slskdn/blob/main/LICENSE
+LicenseUrl: https://github.com/snapetech-org/slskdN/blob/main/LICENSE
 ShortDescription: $SHORT_DESCRIPTION
 Description: |-
 $(printf '%s\n' "$DESCRIPTION" | sed 's/^/  /')

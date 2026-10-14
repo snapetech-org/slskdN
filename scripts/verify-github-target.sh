@@ -2,7 +2,7 @@
 set -euo pipefail
 
 expected_repo="snapetech-org/slskdN"
-expected_origin="git@github.com:snapetech-org/SLSKDN.git"
+expected_origin="git@github.com:snapetech-org/slskdN.git"
 expected_upstream="https://github.com/slskd/slskd.git"
 
 origin_url="$(git remote get-url origin)"

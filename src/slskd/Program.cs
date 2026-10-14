@@ -54,7 +54,7 @@ namespace slskd
         /// <summary>
         ///     The url to the issues/support site.
         /// </summary>
-        public static readonly string IssuesUrl = "https://github.com/snapetech/slskdn/issues";
+        public static readonly string IssuesUrl = "https://github.com/snapetech-org/slskdN/issues";
 
         /// <summary>
         ///     The global prefix for environment variables.

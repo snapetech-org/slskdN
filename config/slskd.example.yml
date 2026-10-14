@@ -462,7 +462,7 @@
 #  port: 2271
 #  username: ~
 #  password: ~
-#  description: "A slskdN user. Unofficial fork of slskd: https://github.com/snapetech/slskdn"
+#  description: "A slskdN user. Unofficial fork of slskd: https://github.com/snapetech-org/slskdN"
 #  picture: path/to/slsk-profile-picture.jpg
 #  listen_ip_address: 0.0.0.0  # do not use 127.0.0.1/::1 for live peer traffic; remote peers will not be able to connect back
 #  listen_port: 50300           # default consolidated public TCP budget: regular/type-1 Soulseek plus mesh TCP share this port
