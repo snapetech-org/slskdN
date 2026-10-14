@@ -37,6 +37,34 @@ repository ID to it. Keep the release-gate contract test for a renamed
 repository and confirm the run's workflow, event, branch, commit, status, and
 conclusion independently.
 
+### 0z1856. Verify Checkout Targets By Repository ID Across Owner Renames (2026-10-14)
+
+**What went wrong:** The GitHub write-target guard rejected the intended
+checkout after its owner name changed, even though the old alias and new
+canonical name resolved to the same repository.
+
+**Why:** The guard compared the old owner/name and also depended on a personal
+GitHub default repository. The transfer changed the canonical remote name, and
+that default is not a reliable write target.
+
+**Prevention:** Accept only recognized GitHub remote forms, resolve both the
+canonical repository name through the API, and require it to match the pinned
+repository ID. Require both fetch and push remotes to name the canonical org
+repository, pass `--repo` explicitly to write commands, and keep the upstream
+remote check separate and read-only.
+
+### 0z1857. Recheck Self-Referential Candidate Counts After Backlog Edits (2026-10-14)
+
+**What went wrong:** Updating the active candidate backlog changed the count it
+records because the broad source scan includes the backlog document itself.
+
+**Why:** The generated report and its durable count summary are both inputs to
+the same discovery scan, so new wording can match the scan patterns.
+
+**Prevention:** Regenerate and verify the candidate count after the final
+backlog edit. Avoid introducing scan terms into refresh prose unless the new
+match is intended and classified.
+
 ### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
 
 **What went wrong:** The trusted validation environment sets `HOME` to a
