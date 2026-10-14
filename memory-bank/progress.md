@@ -1,3 +1,39 @@
+# Update 2026-10-14 01:28 UTC — Resume PR #357 exact-head repair
+
+The pushed PR #357 head b37a2153c92e86f8b1da55b0b5ea248055be85b5 failed its
+Windows retry. The unit suite passed 5,862/5,863: the unchanged synthetic
+share-scan harness timed out at 30 seconds after indexing 260 files. The
+integration suite passed 292/293: TwoFullInstances_CanSearchAndDownloadOverOverlayMesh
+queried the share database after the file existed but before its files table
+was ready, then failed with no such table: files. The regression/API suite
+passed 74/74. On the previous exact Windows head 0b4b2e750, all three suites
+passed (5,863, 293, and 74); the current run took 6m50 in Unit versus 3m23 on
+that passing run. Confidence is high that the integration failure was a
+readiness race and moderate that suite contention contributed to the scanner
+timeout.
+
+A checkpoint is saved at backup/pr357-before-03c-main-merge-20261014.
+The worktree now merges current origin/main 03c352d32, retaining main's
+validation-identity changes and both branches' documentation. Conflicting
+gotcha IDs were reconciled; the new identity-sandbox entry is 0z1910, while
+the candidate's 0z1901–1904 and 0z1908–1909 remain intact. The refreshed
+tracked-source scan reports 13,005 red-team candidates, 76 above current main's
+12,929; all six active-backlog counts pass.
+
+The Windows Smoke workflow now runs the Unit, Integration, and API projects
+sequentially, and ShareScannerHarnessTests runs outside other unit-test
+collections. The integration helper checks sqlite_master for the files table
+before listing files, leaving the existing 30-second scan bound and
+all file-count assertions unchanged. Focused local checks pass: scanner harness
+4/4 and the two-node integration test 1/1. A first probe using a read-only
+shared cache blocked the fixture's write; changing that probe to read-write
+resolved it and the focused integration test passed.
+
+The merge and fixes are not committed or pushed. Release-note preview,
+target verification, all exact-head hosted checks, review-thread recheck, and
+merge remain pending. The b37a215 Windows failure is retained as historical
+evidence; no queued job has been counted as passing and no release tag exists.
+
 # Update 2026-10-13 23:22 UTC — Integrate latest main into PR #357
 
 Main advanced from `0b91a1f28` to `6bad06960` before the previous merge could be pushed. The new main delta aligns packaging metadata assertions with artifact paths and refreshes the active-council counts. A checkpoint is saved at `backup/pr357-before-6bad-main-merge-20261013`. The merge conflicts in the gotcha ledger and active-council backlog are resolved. New main gotchas that collided with candidate IDs `0z1852` and `0z1853` are renumbered `0z1908` and `0z1909`. The candidate backlog count is refreshed to 12,993 against latest main's 12,917 (76 candidate lines). `scripts/check-council-active-backlog.sh` and `packaging/scripts/validate-packaging-metadata.sh` both pass.
@@ -36,6 +72,39 @@ The five manually dispatched workflows on `f4b53641d` are queued, not passing,
 and will be stale after this update. The new source commit still needs a current
 validation plan, release-note preview, push, full hosted gate, Windows Smoke,
 and exact-head review/check reconciliation.
+
+# Update 2026-10-14 01:02 UTC — Refresh validation inventory after the normal push
+
+Pushed the scanner fix, sandbox gotcha, and current vendored-runtime source
+revision to `main` with a normal fast-forward. The complete remediation check
+then found the tracked red-team candidate count was stale at 12,917. Compared
+normalized report lines with the pre-change head: the net increase is 12 (17
+new validation-code/test fixture lines, minus five old matches removed by the
+conditional runtime-identity branch). These are validation-only candidates,
+not confirmed defects. Refreshed `docs/dev/bug-council-active-backlog.md` to
+12,929 and reran the full remediation baseline successfully, including source
+sync, branch sync, all candidate counts, and negative-space checks. Exact-head
+hosted CI and Playwright E2E remain pending; no tag has been created.
+
+# Update 2026-10-14 00:42 UTC — Fix sandbox identity false positive in release validation
+
+The remediation task creates a private validation environment whose `HOME`
+basename is the generic word `home`. The local identity scanner treated that
+synthetic value as an operator identity and its substring search matched it
+inside ordinary commit text. Runtime-derived identities can now be disabled
+for that isolated task while explicit denylist values remain active; commit
+messages use whole-word matching, and release-facing files retain literal
+matching. Added three isolated scanner contract tests and a validation-engine
+environment regression. Focused tests pass (3/3 scanner, 17/17 engine), shell,
+Node and Python syntax checks pass, and `./bin/lint` passes.
+
+The full remediation baseline passes through the release branch-sync guard.
+The initial stop also exposed a stale vendored-runtime source revision; the
+guarded sync helper updated the manifest and CI workflow mirror, and the
+source/mirror check now passes. The source change only selects a hosted Windows
+runner. The branch-sync guard is expected to stop until these local commits are
+pushed. Exact-head hosted CI and browser validation remain pending; no release
+tag has been created.
 
 # Update 2026-10-13 22:13 UTC — Patch SignalR servicing advisory for `.351`
 

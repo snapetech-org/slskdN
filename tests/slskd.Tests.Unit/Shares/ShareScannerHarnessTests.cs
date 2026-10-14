@@ -17,6 +17,12 @@ using slskd.Shares;
 using Xunit;
 using Xunit.Abstractions;
 
+[CollectionDefinition(nameof(ShareScannerHarnessCollection), DisableParallelization = true)]
+public sealed class ShareScannerHarnessCollection
+{
+}
+
+[Collection(nameof(ShareScannerHarnessCollection))]
 public class ShareScannerHarnessTests
 {
     private readonly ITestOutputHelper output;

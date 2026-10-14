@@ -26,27 +26,31 @@
 
 ## Active Development
 
-### PR #357 Windows and validation gate — 2026-10-13
+### PR #357 Windows and validation gate — 2026-10-14
 
-- [x] Merge current `origin/main` (`6bad06960`) into the PR candidate at
-  `2d88cb78f`, preserving both branches' source, test, and documentation
-  changes.
-- [x] Integrate the later benchmark-path commits from
-  `codex/runner-temp-dotnet-20261012-update` and use one workspace-rooted
-  artifact location for benchmark output, verification, and upload.
-- [x] Pass `./bin/lint`, workflow-trigger policy, the benchmark verifier
-  contract (5/5), and the Release unit-project build (zero warnings/errors).
-- [x] Refresh the active backlog from the merged candidate and exact
-  `origin/main`; the red-team discovery delta is 76, not a defect count.
-- [x] Sync vendored `slskNet.Runtime` after upstream `main` advanced to
-  `ad515dec3`; preserve the local patch and move the vendored Windows Smoke job
-  from self-hosted to GitHub-hosted Windows.
-- [ ] Commit and push the sync, preview release notes, and verify every
-  required hosted check on the exact pushed hash, including Windows Smoke and
-  the complete validation-engine receipt.
+- [x] Integrate current origin/main (03c352d32) with a recoverable checkpoint
+  at backup/pr357-before-03c-main-merge-20261014.
+- [x] Preserve the vendored runtime sync and release note while resolving
+  documentation conflicts and refreshing the active-council count.
+- [x] Reconcile the failed Windows retry on b37a215: the scanner harness again
+  exceeded its 30-second limit (260 files indexed); the integration suite hit
+  the share-database startup window before the files table existed; API tests
+  passed 74/74.
+- [x] Make the integration fixture wait for the files table, isolate the
+  share-scan harness from parallel unit tests, and run the Windows test
+  projects sequentially without changing the 30-second bound or test coverage.
+- [x] Pass focused local scanner tests (4/4), the two-node integration test
+  (1/1), the active-backlog count check (13,005 red-team candidates, 76 above
+  current main), and diff whitespace checks.
+- [ ] Commit and push the refreshed candidate, run the release-note preview,
+  and reconcile every required hosted check on its exact final SHA.
 - [ ] Recheck all 21 PR review threads and merge only after the final exact-head
-  gate succeeds.
+  gate succeeds. Do not create a release tag.
 
+Status: The pushed b37a215 candidate failed its Windows retry; its other 12
+required jobs remain queued/unknown. The latest-main merge and test reliability
+fixes are in the worktree and have not yet been committed or pushed. No release
+tag has been created.
 ### Files API and responsive system workflows — 2026-10-13
 
 - [x] Add on-demand subtree sizes and guarded multi-item file/directory deletion

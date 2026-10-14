@@ -105,6 +105,7 @@ export const validation = {
       stage: 'repository',
       kind: 'check',
       command: ['bash', 'scripts/check-remediation-baseline.sh'],
+      env: { LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES: '0' },
       passEnv: [
         'LOCAL_IDENTITY_DENYLIST',
         'LOCAL_IDENTITY_DENYLIST_FILE',

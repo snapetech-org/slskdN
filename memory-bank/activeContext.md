@@ -1,3 +1,27 @@
+## Current state — PR #357 Windows exact-head repair — 2026-10-14 01:28 UTC
+
+PR #357 points to b37a2153c92e86f8b1da55b0b5ea248055be85b5. Windows Smoke
+retry attempt 2 failed: Unit 5,862/5,863 with the 30-second synthetic share
+scan timeout, Integration 292/293 with a startup-time no such table: files
+race, Regression/API 74/74. The preceding exact Windows pass at 0b4b2e750
+passed 5,863/5,863, 293/293, and 74/74. All other 12 checks for b37a215 remain
+queued and are unknown.
+
+Current main is 03c352d32. A checkpoint exists at
+backup/pr357-before-03c-main-merge-20261014, and its merge is in progress in
+the worktree. The SQLite integration helper now waits for the files table;
+the share-scan harness is isolated from parallel unit tests; and Windows Smoke
+runs all three test projects sequentially. The 30-second scan bound and all
+test assertions are unchanged. Focused local checks pass (scanner 4/4,
+two-node integration 1/1); active backlog tracks 13,005 red-team matches,
+76 above current main's 12,929. Release note was updated for sequential
+Windows validation.
+
+Next: finish candidate review and merge commit, run workflow/release-note
+checks, verify target and push, then reconcile the complete exact-head hosted
+gate. Recheck the 21 PR threads and merge only if every required result passes.
+No release tag has been created. The merge/fixes are not committed or pushed.
+
 ## Current state — PR #357 exact-head gate repair — 2026-10-14 00:32 UTC
 
 The pushed candidate is `2d88cb78f358b19ab4417d35d0039b375ac4b898`, based
@@ -118,6 +142,29 @@ confirmed defects. All six active-backlog counts match the current scan.
 - Recheck review threads and merge only after the exact-head gate is green.
 
 ## Current state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
+
+## Current state — Stable `.351` post-push validation — 2026-10-14 01:02 UTC
+
+The `.351` feature and documentation work is prepared in the candidate, with
+README and feature/API/configuration guides updated. Release validation
+revealed a false positive: an isolated task's synthetic `HOME` basename was
+treated as a local identity and matched ordinary commit text. The scanner now
+ignores runtime-derived values only in that sandbox, preserves explicit
+denylist values, and matches commit identities as whole words. Three scanner
+contract tests and the validation-engine environment regression pass; all 17
+validation-engine tests, `./bin/lint`, syntax checks, and `git diff --check`
+pass.
+
+The guarded runtime sync corrected the manifest and vendored CI workflow
+mirror to the current source revision. Three commits were pushed with a normal
+fast-forward to the fork. The post-push remediation baseline now passes all
+checks; the tracked red-team candidate inventory is refreshed to 12,929 after
+classifying its net twelve-line validation-fixture change. Next: run exact-head
+hosted CI and Playwright E2E, then use the guarded stable release flow only if
+both are green. No release tag has been created. Live DHT/VPN validation still
+lacks credentials and a VPN profile.
+
+## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 
 The SignalR denial-of-service advisory is fixed by updating the complete
 first-party .NET dependency graph and bundled Flatpak runtime to .NET 10.0.13.

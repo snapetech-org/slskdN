@@ -77,12 +77,12 @@ If you skip this step, you WILL generate slop.
 
 ### Fork Boundary And GitHub Targeting
 
-**This workspace writes to `snapetech/slskdN`, not upstream `slskd/slskd`.**
+**This workspace writes to `snapetech-org/slskdN`, not upstream `slskd/slskd`.**
 
 - Treat upstream `slskd/slskd` as read-only reference only
 - Never comment on, close, label, review, or otherwise modify upstream issues / PRs from this repo workspace
 - Before any GitHub issue / PR / release action, run `./scripts/verify-github-target.sh`
-- Prefer passing the repo explicitly to GitHub tooling when possible (`snapetech/slskdN`)
+- Prefer passing the repo explicitly to GitHub tooling when possible (`snapetech-org/slskdN`)
 - If the target repo is ambiguous, stop and resolve it before taking any write action
 
 ### Local Identity Privacy
