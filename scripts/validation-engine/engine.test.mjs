@@ -204,6 +204,20 @@ test('task pool serializes tasks that share a concurrency group', async () => {
   assert.deepEqual(started, ['backend-unit', 'backend-regression']);
 });
 
+test('Web and backend test suites share one resource concurrency group', () => {
+  const taskIds = [
+    'web-tests',
+    'backend-unit-tests',
+    'backend-regression-tests',
+    'backend-integration-smoke',
+  ];
+  const groups = taskIds.map((id) => (
+    validation.tasks.find((task) => task.id === id)?.concurrencyGroup
+  ));
+
+  assert.deepEqual(groups, Array(taskIds.length).fill('validation-tests'));
+});
+
 test('task pool blocks dependent work after failure and stops pending work in fail-fast mode', async () => {
   const tasks = [
     { id: 'failed' },

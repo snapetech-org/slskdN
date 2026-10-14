@@ -162,6 +162,7 @@ export const validation = {
       minimumCases: 1,
       inventoryLanes: ['web-vitest'],
       dependsOn: ['web-install'],
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1200,
     },
     {
@@ -186,7 +187,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-unit'],
-      concurrencyGroup: 'backend-tests',
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1800,
     },
     {
@@ -211,7 +212,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-regression'],
-      concurrencyGroup: 'backend-tests',
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1800,
     },
     {
@@ -223,7 +224,7 @@ export const validation = {
       casePattern: 'Passed:\\s*(\\d+)',
       minimumCases: 1,
       inventoryLanes: ['backend-integration'],
-      concurrencyGroup: 'backend-tests',
+      concurrencyGroup: 'validation-tests',
       timeoutSeconds: 1800,
     },
     {

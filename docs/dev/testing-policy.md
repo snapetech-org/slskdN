@@ -94,12 +94,14 @@ build/output checks. Browser suites remain separately selectable because they
 need more time and platform setup.
 
 The engine starts up to three dependency-ready tasks at once. `dependsOn`
-continues to gate tasks that need installed packages or build outputs, and
-`concurrencyGroup` keeps tasks that share generated backend test outputs from
-running together. The three backend test tasks share one group; independent
-repository checks and frontend work can overlap with them. Each task keeps its
-own log and receipt entry, and the engine checks the planned source identity
-before launching work and after each task completes.
+continues to gate tasks that need installed packages or build outputs.
+`concurrencyGroup` keeps tasks that share generated outputs or compete for a
+limited resource budget from running together. The Web and backend test suites
+share one group because running them at the same time starved the hosted runner
+and made Web tests flaky. Independent repository checks can still overlap with
+one active suite. Each task keeps its own log and receipt entry, and the engine
+checks the planned source identity before launching work and after each task
+completes.
 
 During execution, the engine writes cumulative task progress to stderr when a
 task starts and finishes, with a heartbeat every minute for long tasks. The

@@ -1,17 +1,19 @@
-## Current state — Validation pool branch refreshed from org main — 2026-10-13 23:00 UTC
+## Current state — Validation pool concurrency correction — 2026-10-14 00:25 UTC
 
-SLSKDN now belongs to `snapetech-org`; the sibling repositories are being
-transferred there as work proceeds. This ownership change does not alter
-Actions runner registrations or routing. Public pull requests remain on
-GitHub-hosted runners.
+All seven application repositories are under `snapetech-org`. This ownership
+change does not alter Actions runner registrations or routing. Public pull
+requests remain on GitHub-hosted runners.
 
 SLSKDN PR #366 adds bounded execution for independent validation tasks. Its
-branch includes organization `main` at `338faef6c71d16380a5784ff21a1ae3e7524c9f4`
-through merge commit `b207e32`; exact-head checks must be rerun before the
-branch is pushed. The local target guard verifies the organization repository
-explicitly and no longer depends on a global `gh` default. Local Mode 1 stops
-at preflight because `pnpm` is unavailable inside the trusted sandbox; hosted
-Mode 2 must supply the complete gate result.
+branch now includes organization `main` at `6bad0696008970f1df54aea8f03b805475f50363`
+through merge commit `ca28394`. The first hosted pool run exposed resource
+contention: Web and backend test suites overlapped and Web tests became slow and
+flaky. The updated plan keeps those suites in one concurrency group while
+independent repository checks can still overlap. Exact-head hosted validation
+is required before merge. The local target guard verifies the organization
+repository explicitly and no longer depends on a global `gh` default. Local
+Mode 1 previously stopped at preflight because `pnpm` was unavailable inside
+the trusted sandbox; hosted Mode 2 must supply the complete gate result.
 
 ### Next Steps
 
