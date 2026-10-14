@@ -42,8 +42,6 @@ The installer configures the system service. See the [setup guide](docs/getting-
 for configuration and first-login steps.
 
 ## Use the main workflows
-See the [UI localization roadmap](docs/localization-roadmap.md) for supported languages, existing translated areas, and the next high-use screens to cover.
-
 
 - [Dashboard](docs/dashboard.md) — review successful transfers from the last
   seven days and open the corresponding download or upload list.
