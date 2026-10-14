@@ -4,6 +4,22 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1860. Preserve The Last Complete Locale During Catalog Loads (2026-10-14)
+
+**What went wrong:** Changing languages updated the active locale before its
+catalog finished loading. A failed catalog request then replaced a working
+translation set with English fallbacks while leaving the failed preference
+stored.
+
+**Why:** Catalog requests are asynchronous, but active language, catalog, and
+storage state were changed eagerly. Treating a failed request as an empty
+catalog hid the failure from the locale activation path.
+
+**Prevention:** Load and validate a complete catalog before activating or
+persisting a new language. Ignore stale request completions, and keep the last
+complete language and catalog when loading fails. Verify failure and concurrent
+language-change behavior.
+
 ### 0z1859. Keep Localized Icon Navigation Legible On Narrow Screens (2026-10-14)
 
 **What went wrong:** Longer translated navigation labels overflowed neighboring
