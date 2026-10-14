@@ -164,12 +164,12 @@ def assert_runner(workflow, job, expected):
 assert_runner(
     ci,
     "build",
-    """${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.runner != 'github-hosted' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && 'trusted-main' || 'ubuntu-latest' }}""",
+    """${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.runner != 'github-hosted' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}') || 'ubuntu-latest' }}""",
 )
 for job in ("publish", "docker", "release"):
     assert_runner(ci, job, "ubuntu-latest")
 
-enhancement_runner = """${{ ((github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && 'trusted-main') || 'ubuntu-latest' }}"""
+enhancement_runner = """${{ ((github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}')) || 'ubuntu-latest' }}"""
 for job in ("performance-regression", "dependency-scanning", "container-scanning"):
     assert_runner(enhancements, job, enhancement_runner)
 
