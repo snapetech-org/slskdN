@@ -4,7 +4,7 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
-### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
+### 0z1856. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
 
 **What went wrong:** The trusted validation environment sets `HOME` to a
 task-private path ending in `/home`. The release identity scanner treated the
