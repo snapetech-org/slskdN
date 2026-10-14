@@ -5,9 +5,11 @@ import {
   routeArtistReleaseRadarNotification,
   subscribeArtistReleaseRadar,
 } from '../../lib/musicBrainz';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 vi.mock('../../lib/musicBrainz', () => ({
   fetchArtistReleaseRadarNotifications: vi.fn(),
@@ -54,6 +56,12 @@ describe('ArtistReleaseRadarPanel', () => {
     subscribeArtistReleaseRadar.mockResolvedValue({
       data: {},
     });
+  });
+
+  afterEach(async () => {
+    cleanup();
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
   });
 
   it('shows subscriptions and direct routing actions for radar hits', async () => {
@@ -163,5 +171,17 @@ describe('ArtistReleaseRadarPanel', () => {
         }),
       ),
     );
+  });
+
+  it('localizes the Release Radar load failure', async () => {
+    stubLocaleCatalogFetch(vi);
+    await setInterfaceLanguage('de');
+    fetchArtistReleaseRadarSubscriptions.mockRejectedValueOnce(new Error('offline'));
+    fetchArtistReleaseRadarNotifications.mockRejectedValueOnce(new Error('offline'));
+
+    render(<ArtistReleaseRadarPanel />);
+
+    expect(await screen.findByText('Release Radar konnte nicht geladen werden.'))
+      .toBeInTheDocument();
   });
 });

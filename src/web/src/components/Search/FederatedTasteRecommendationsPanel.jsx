@@ -10,6 +10,7 @@ import {
   promoteTasteRecommendationToWishlist,
   subscribeTasteRecommendationReleaseRadar,
 } from '../../lib/tasteRecommendations';
+import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import FeatureGateNotice from '../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../Shared/useFeatureGates';
 import React, { useState } from 'react';
@@ -38,6 +39,7 @@ const asArray = (value) => (Array.isArray(value) ? value : []);
 
 const FederatedTasteRecommendationsPanel = ({ disabled }) => {
   useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const socialFederationEnabled =
     featureGatesReady && isFeatureEnabled(featureGates, 'socialFederation');
@@ -226,7 +228,13 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
       )}
       {graphPreview && (
         <Message compact size="mini">
-          <LocalizedText source={"Graph preview:"} />{" "}{graphPreview.nodeCount} <LocalizedText source={"nodes,"} />{" "}{graphPreview.edgeCount} edges.
+          <LocalizedText
+            source={"Graph preview: {nodes} nodes, {edges} edges."}
+            values={{
+              nodes: formatRegionalNumber(graphPreview.nodeCount, undefined, regionalLocale),
+              edges: formatRegionalNumber(graphPreview.edgeCount, undefined, regionalLocale),
+            }}
+          />
         </Message>
       )}
       <List divided relaxed>

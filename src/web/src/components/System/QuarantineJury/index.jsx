@@ -48,6 +48,16 @@ const valueOrDash = (value) => {
 };
 
 const asArray = (value) => (Array.isArray(value) ? value : []);
+const appOwnedRouteAttemptErrors = new Set([
+  'Request not found.',
+  'Route metadata must be opaque and safe.',
+  'Route targets must be selected safe jurors.',
+  'Routing backend is not available.',
+]);
+
+const RouteAttemptError = ({ message }) => appOwnedRouteAttemptErrors.has(message)
+  ? <LocalizedText source={message} />
+  : message || <LocalizedText source={'Failed'} />;
 
 const normalizeRequest = (request = {}) => ({
   createdAt: request.createdAt ?? request.CreatedAt ?? '',
@@ -546,7 +556,7 @@ const QuarantineJury = () => {
                         <Table.Cell>{valueOrDash(attempt.failedJurors)}</Table.Cell>
                         <Table.Cell>
                           <Label color={attempt.success ? 'green' : 'red'}>
-                            {attempt.success ? <LocalizedText source={"Routed"} /> : attempt.errorMessage || interfaceText('Failed')}
+                            {attempt.success ? <LocalizedText source={"Routed"} /> : <RouteAttemptError message={attempt.errorMessage} />}
                           </Label>
                         </Table.Cell>
                       </Table.Row>

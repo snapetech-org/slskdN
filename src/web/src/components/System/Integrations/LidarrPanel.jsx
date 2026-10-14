@@ -11,6 +11,7 @@ import {
   syncWanted as lidarrSyncWanted,
   importCompletedDirectory as lidarrImportCompletedDirectory,
 } from '../../../lib/lidarr';
+import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 
 import * as optionsApi from '../../../lib/options';
 import {
@@ -60,6 +61,8 @@ const valueOrDash = (value) =>
 
 const LidarrPanel = ({ options }) => {
   useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
+  const formatCount = (value) => formatRegionalNumber(value, undefined, regionalLocale);
   const lidarrOptions = getLidarrOptions(options);
   const [status, setStatus] = useState(null);
   const [wanted, setWanted] = useState([]);
@@ -229,9 +232,14 @@ const LidarrPanel = ({ options }) => {
             info
             size="small"
           >
-            <LocalizedText source={"Wanted sync:"} />{" "}{syncResult.createdCount ?? syncResult.CreatedCount ?? 0} <LocalizedText source={"created,"} />{' '}
-            {syncResult.duplicateCount ?? syncResult.DuplicateCount ?? 0} <LocalizedText source={"duplicates,"} />{' '}
-            {syncResult.skippedCount ?? syncResult.SkippedCount ?? 0} skipped.
+            <LocalizedText
+              source={"Wanted sync: {created} created, {duplicates} duplicates, {skipped} skipped."}
+              values={{
+                created: formatCount(syncResult.createdCount ?? syncResult.CreatedCount ?? 0),
+                duplicates: formatCount(syncResult.duplicateCount ?? syncResult.DuplicateCount ?? 0),
+                skipped: formatCount(syncResult.skippedCount ?? syncResult.SkippedCount ?? 0),
+              }}
+            />
           </Message>
         )}
         {wanted.length > 0 && (

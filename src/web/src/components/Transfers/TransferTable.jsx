@@ -111,7 +111,7 @@ function cellContent(transfer, key) {
       return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.bytesRemaining != null ? formatBytes(transfer.bytesRemaining) : '-'}</span>;
     case 'requested': {
       const requestedAt = transfer.requestedAt || transfer.enqueuedAt || transfer.startTime || transfer.endTime;
-      return <span>{requestedAt ? new Date(requestedAt).toLocaleString() : '-'}</span>;
+      return <span>{requestedAt ? new Date(requestedAt).toLocaleString(getRegionalLocale()) : '-'}</span>;
     }
     case 'started':
       return <span style={{ fontSize: '0.85em' }}>{transfer.startTime ? new Date(transfer.startTime).toLocaleString(getRegionalLocale()) : '-'}</span>;

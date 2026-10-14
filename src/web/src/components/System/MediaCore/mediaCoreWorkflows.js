@@ -64,7 +64,7 @@ export const podWorkflowSections = [
   {
     get description() { return interfaceText("Request, accept, leave, and review pod membership flows."); },
     href: '#pod-join-leave',
-    label: 'Join/Leave',
+    get label() { return interfaceText("Join/Leave"); },
     risk: 'Publishes signed membership events',
   },
   {

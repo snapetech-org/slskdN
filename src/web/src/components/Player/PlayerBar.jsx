@@ -3972,31 +3972,31 @@ const PlayerBar = () => {
             <div className="player-track">
               <div>
                 <div className="player-eyebrow">
-                  {current ? interfaceText(({
+                  {current ? <LocalizedText source={({
                     buffering: 'Buffering',
                     ended: 'Finished',
                     error: 'Playback error',
                     loading: 'Loading',
                     paused: 'Paused',
                     playing: 'Now playing',
-                  }[playbackStatus] || 'Ready')) : <LocalizedText source={"Ready"} />}
+                  }[playbackStatus] || 'Ready')} /> : <LocalizedText source={"Ready"} />}
                 </div>
                 <div className="player-title">
-                  {current?.title || 'Nothing playing'}
+                  {current?.title || <LocalizedText source={"Nothing playing"} />}
                 </div>
                 <div className="player-subtitle">
-                  {current?.artist || 'Pick a collection or local audio file'}
+                  {current?.artist || <LocalizedText source={"Pick a collection or local audio file"} />}
                   {current?.album ? <LocalizedText source={"| {album}"} values={{ "album": (current.album) }} /> : ''}
                   {followingParty ? followingParty.hostPeerId
-                    ? ` | Following ${followingParty.hostPeerId}`
-                    : ' | Waiting for room broadcast' : ''}
+                    ? <> | <LocalizedText source={"Following {peerId}"} values={{ peerId: followingParty.hostPeerId }} /></>
+                    : <> | <LocalizedText source={"Waiting for room broadcast"} /></> : ''}
                   {broadcastStatus?.active ? <LocalizedText source={"| Broadcasting to room"} /> : ''}
                   {followingPartyStatus?.pending ? <LocalizedText source={"(connecting to room)"} />
-                    : followingPartyStatus?.error ? ' (room updates unavailable)' : ''}
+                    : followingPartyStatus?.error ? <> <LocalizedText source={"(room updates unavailable)"} /></> : ''}
                 </div>
                 {broadcastStatus ? (
                   <div className="player-broadcast-controls">
-                    {broadcastStatus.error ? <span role="alert">{broadcastStatus.error}</span> : null}
+                    {broadcastStatus.error ? <span role="alert"><LocalizedText source={broadcastStatus.error} /></span> : null}
                     {broadcastStatus.active ? <>
                       {broadcastStatus.error ? <Popup content={interfaceText("Retry publishing this room's current playback state after an update failure.")} trigger={<Button aria-label={interfaceText("Retry room broadcast")} onClick={() => retryBroadcast().catch(() => {})} size="mini" {...interfaceTextProps("Retry room broadcast")}><LocalizedText source={"Retry broadcast"} /></Button>}  {...interfaceTextProps("Retry publishing this room's current playback state after an update failure.")}/> : null}
                       <Popup content={interfaceText("Stop this room broadcast while keeping your own playback available.")} trigger={<Button aria-label={interfaceText("Stop active room broadcast")} onClick={() => stopBroadcast().catch(() => {})} size="mini" {...interfaceTextProps("Stop active room broadcast")}><LocalizedText source={"Stop broadcast"} /></Button>}  {...interfaceTextProps("Stop this room broadcast while keeping your own playback available.")}/>

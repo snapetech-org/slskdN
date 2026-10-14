@@ -8,8 +8,10 @@ import PodListenAlongPanel from './PodListenAlongPanel';
 import { usePlayer } from './PlayerContext';
 import useListeningPartyBroadcast from './useListeningPartyBroadcast';
 import useListeningPartyRooms from './useListeningPartyRooms';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
 import { act, cleanup, fireEvent, render as renderView, screen } from '@testing-library/react';
 import React, { createContext, useContext, useRef, useState } from 'react';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 vi.mock('../../lib/hubFactory', () => ({
   createListeningPartyHubConnection: vi.fn(),
@@ -69,8 +71,10 @@ describe('PodListenAlongPanel directory polling', () => {
     usePlayer.mockReturnValue(player);
   });
 
-  afterEach(() => {
+  afterEach(async () => {
     cleanup();
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
     vi.clearAllMocks();
     vi.useRealTimers();
   });
@@ -272,6 +276,22 @@ describe('PodListenAlongPanel directory polling', () => {
     expect(recovered.invoke).toHaveBeenCalledWith('JoinParty', 'pod-a', 'channel-a');
     expect(screen.getByLabelText('Listen Along live')).toBeInTheDocument();
     expect(failed.stop).toHaveBeenCalledOnce();
+  });
+
+  it('translates retained listen-along errors again when the interface language changes', async () => {
+    stubLocaleCatalogFetch(vi);
+    await setInterfaceLanguage('de');
+    const hub = createHub();
+    hub.start.mockRejectedValueOnce(new Error('Offline'));
+    createListeningPartyHubConnection.mockReturnValueOnce(hub);
+    render(<PodListenAlongPanel channelId="channel-a" compact podId="pod-a" user="user-a" />);
+    await act(async () => { await Promise.resolve(); });
+
+    const alert = screen.getByRole('alert');
+    expect(alert).toHaveTextContent('Die Verbindung zum gemeinsamen Hören ist fehlgeschlagen.');
+
+    await setInterfaceLanguage('fr');
+    expect(alert).toHaveTextContent('Impossible de se connecter à l’écoute partagée.');
   });
 
   it('does not join after a pending startup is disposed', async () => {

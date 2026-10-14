@@ -330,11 +330,12 @@ const Logs = () => {
                     trigger={(
                       <Button
                         active={active}
-                        aria-label={accessibleName}
+                        aria-label={interfaceText(accessibleName)}
                         aria-pressed={active}
                         color={active ? color : undefined}
                         onClick={() => setFilterLevel(level)}
                         toggle
+                       {...interfaceTextProps(accessibleName)}
                       >
                         {label}
                       </Button>

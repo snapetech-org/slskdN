@@ -710,7 +710,12 @@ const Network = ({ theme }) => {
                 {discoveredPeers.length > 10 && (
                   <List.Item>
                     <List.Content>
-                      <em>...and {discoveredPeers.length - 10} <LocalizedText source={"more"} /></em>
+                      <em>
+                      <LocalizedText
+                        source={"...and {count} more"}
+                        values={{ count: formatNumber(discoveredPeers.length - 10) }}
+                      />
+                      </em>
                     </List.Content>
                   </List.Item>
                 )}

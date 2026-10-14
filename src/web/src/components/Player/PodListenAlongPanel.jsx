@@ -151,24 +151,24 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
       if (error?.name === 'AbortError' || error?.code === 'ERR_CANCELED') return;
       if (mountedRef.current && requestId === publishRequestRef.current) {
         setPublishError(error?.message === 'Stop the active broadcast before starting another room.'
-          ? interfaceText('Stop the active broadcast before starting another room.')
+          ? 'Stop the active broadcast before starting another room.'
           : error?.response?.status === 429
-          ? interfaceText('Room updates are at capacity. Retry later.')
+          ? 'Room updates are at capacity. Retry later.'
           : error?.response?.status === 409 && error?.response?.data?.code === 'party_id_in_use'
-            ? interfaceText('This Party ID is already in use. Start the broadcast again to claim a new ID.')
+            ? 'This Party ID is already in use. Start the broadcast again to claim a new ID.'
           : error?.response?.status === 403
-            ? interfaceText('Room access was revoked. Rejoin before broadcasting.')
+            ? 'Room access was revoked. Rejoin before broadcasting.'
           : error?.response?.status === 404
-            ? interfaceText('This room is unavailable. Choose an existing room.')
+            ? 'This room is unavailable. Choose an existing room.'
           : error?.response?.data?.code === 'room_storage_unavailable'
-              ? interfaceText('The room update could not be saved. Try again.')
+              ? 'The room update could not be saved. Try again.'
               : error?.response?.data?.code === 'party_directory_unavailable'
-                ? interfaceText('Party ID ownership could not be checked. Try again.')
+                ? 'Party ID ownership could not be checked. Try again.'
               : action === 'stop'
-          ? interfaceText('Could not stop the room broadcast. Try again.')
+          ? 'Could not stop the room broadcast. Try again.'
           : updatingSettings
-            ? interfaceText('Could not confirm broadcast settings. Retry to apply the requested settings.')
-            : interfaceText('Could not start the room broadcast. Try again.'));
+            ? 'Could not confirm broadcast settings. Retry to apply the requested settings.'
+            : 'Could not start the room broadcast. Try again.');
       }
     });
   };
@@ -195,7 +195,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
       ? <div className="pod-listen-along-state" role="status"><LocalizedText source={"Stopping room broadcast…"} /></div> : null}
     {hosting && player.broadcastStatus.settingsPending
       ? <div className="pod-listen-along-state" role="status"><LocalizedText source={"Applying broadcast settings…"} /></div> : null}
-    {visiblePublishError ? <div className="pod-listen-along-error" role="alert">{visiblePublishError}</div> : null}
+    {visiblePublishError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={visiblePublishError} /></div> : null}
     {hosting && player.broadcastStatus.error ? <Popup
       content={interfaceText("Retry the failed room update using the current playback state. Failed Stop requests are retried as Stop.")}
       trigger={<Button aria-label={interfaceText("Retry room broadcast update")} className="pod-listen-along-retry" disabled={player.broadcastStatus.pending || player.broadcastStatus.stopping}
@@ -365,7 +365,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
             }
            {...interfaceTextProps("Stop broadcasting listen-along metadata for this room.")}/>
         </div>
-        {connectionError ? <div className="pod-listen-along-error" role="alert">{connectionError}</div> : null}
+        {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
         {broadcastFeedback}
       </Segment>
     );
@@ -474,7 +474,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           }
          {...interfaceTextProps("Stop hosting listen-along metadata for this pod.")}/>
       </Button.Group>
-      {connectionError ? <div className="pod-listen-along-error" role="alert">{connectionError}</div> : null}
+      {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
       {broadcastFeedback}
       {directory.length > 0 && (
         <div className="pod-listen-along-directory">

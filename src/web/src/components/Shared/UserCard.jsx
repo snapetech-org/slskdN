@@ -1,5 +1,5 @@
 import LocalizedText from "./LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import './UserCard.css';
 import * as opinions from '../../lib/opinions';
 import * as security from '../../lib/security';
@@ -275,11 +275,15 @@ class UserCard extends Component {
     return 'olive';
   };
 
-  getOpinionValue = (summary) => {
+  getOpinionValue = (summary, formatNumber) => {
     if (!summary || Number(summary.total ?? 0) === 0) return '?';
     const score = Number(summary.weightedScore ?? 0);
-    if (Math.abs(score) < 0.05) return '0';
-    return score > 0 ? `+${score.toFixed(1)}` : score.toFixed(1);
+    if (Math.abs(score) < 0.05) return formatNumber(0);
+    const formattedScore = formatNumber(Math.abs(score), {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    });
+    return score > 0 ? `+${formattedScore}` : `-${formattedScore}`;
   };
 
   renderInterestPopup = () => {
@@ -350,6 +354,8 @@ class UserCard extends Component {
 
     const reputationScore = reputation?.score ?? null;
     const reputationColor = this.getReputationColor(reputationScore);
+    const formatNumber = (value, options) =>
+      formatRegionalNumber(value, options, this.props.regionalLocale);
 
     // Build compact stats display - always show placeholders if no data
     const stats = [];
@@ -362,9 +368,9 @@ class UserCard extends Component {
       key: 'rep',
       tooltip:
         reputationScore === null
-          ? 'Reputation unavailable'
-          : `Reputation Score: ${reputationScore}/100`,
-      value: reputationScore === null ? '?' : reputationScore,
+          ? <LocalizedText source={"Reputation unavailable"} />
+          : <LocalizedText source={"Reputation Score: {score}/100"} values={{ score: formatNumber(reputationScore) }} />,
+      value: reputationScore === null ? '?' : formatNumber(reputationScore),
     });
 
     stats.push({
@@ -372,9 +378,19 @@ class UserCard extends Component {
       icon: 'thumbs up outline',
       key: 'opinion',
       tooltip: opinionSummary?.total
-        ? `Canonical opinions: ${opinionSummary.positive || 0} positive, ${opinionSummary.negative || 0} negative, weighted ${Number(opinionSummary.weightedScore || 0).toFixed(2)}`
-        : 'No canonical opinions recorded',
-      value: this.getOpinionValue(opinionSummary),
+        ? <LocalizedText
+          source={"Canonical opinions: {positive} positive, {negative} negative, weighted {weightedScore}"}
+          values={{
+            positive: formatNumber(opinionSummary.positive || 0),
+            negative: formatNumber(opinionSummary.negative || 0),
+            weightedScore: formatNumber(Number(opinionSummary.weightedScore || 0), {
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2,
+            }),
+          }}
+        />
+        : <LocalizedText source={"No canonical opinions recorded"} />,
+      value: this.getOpinionValue(opinionSummary, formatNumber),
     });
 
     // Upload speed (always show, grayed if no data)
@@ -383,7 +399,7 @@ class UserCard extends Component {
         color: 'grey',
         icon: 'arrow up',
         key: 'speed',
-        tooltip: 'Speed unavailable',
+        tooltip: <LocalizedText source={"Speed unavailable"} />,
         value: '?',
       });
     } else {
@@ -392,8 +408,8 @@ class UserCard extends Component {
         color: speedKbps > 1_000 ? 'green' : speedKbps > 500 ? 'blue' : 'grey',
         icon: 'arrow up',
         key: 'speed',
-        tooltip: `Upload Speed: ${speedKbps} KB/s`,
-        value: `${speedKbps}`,
+        tooltip: <LocalizedText source={"Upload Speed: {speed} KB/s"} values={{ speed: formatNumber(speedKbps) }} />,
+        value: formatNumber(speedKbps),
       });
     }
 
@@ -403,7 +419,7 @@ class UserCard extends Component {
         color: 'grey',
         icon: 'list',
         key: 'queue',
-        tooltip: 'Queue unavailable',
+        tooltip: <LocalizedText source={"Queue unavailable"} />,
         value: '?',
       });
     } else {
@@ -416,8 +432,8 @@ class UserCard extends Component {
               : 'orange',
         icon: 'list',
         key: 'queue',
-        tooltip: `Queue Length: ${info.queueLength}`,
-        value: info.queueLength,
+        tooltip: <LocalizedText source={"Queue Length: {length}"} values={{ length: formatNumber(info.queueLength) }} />,
+        value: formatNumber(info.queueLength),
       });
     }
 
@@ -427,7 +443,7 @@ class UserCard extends Component {
         color: 'grey',
         icon: 'unlock',
         key: 'slot',
-        tooltip: 'Slot status unavailable',
+        tooltip: <LocalizedText source={"Slot status unavailable"} />,
         value: '?',
       });
     } else {
@@ -436,8 +452,8 @@ class UserCard extends Component {
         icon: 'unlock',
         key: 'slot',
         tooltip: info.hasFreeUploadSlot
-          ? 'Free upload slot available'
-          : 'No free slots',
+          ? <LocalizedText source={"Free upload slot available"} />
+          : <LocalizedText source={"No free slots"} />,
         value: info.hasFreeUploadSlot ? '✓' : '✗',
       });
     }
@@ -505,4 +521,9 @@ class UserCard extends Component {
   }
 }
 
-export default UserCard;
+const LocalizedUserCard = (props) => {
+  const regionalLocale = useRegionalLocale();
+  return <UserCard {...props} regionalLocale={regionalLocale} />;
+};
+
+export default LocalizedUserCard;

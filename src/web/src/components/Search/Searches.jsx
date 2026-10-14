@@ -300,7 +300,7 @@ const Searches = ({ server } = {}) => {
           loadError?.response?.data ?? loadError?.message ?? 'Could not load searches',
         );
       } else {
-        toast.error('Could not load more searches');
+        toast.error(interfaceText('Could not load more searches'));
       }
       return false;
     }

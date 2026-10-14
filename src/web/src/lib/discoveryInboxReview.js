@@ -2,6 +2,8 @@
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
 
+import { interfaceText } from './interfaceLocale';
+
 const normalize = (value = '') => value.toLowerCase();
 
 export const classifyDiscoveryInboxImpact = (item = {}) => {
@@ -38,7 +40,7 @@ export const classifyDiscoveryInboxImpact = (item = {}) => {
     return {
       color: 'green',
       icon: 'shield',
-      label: 'Local/manual',
+      label: interfaceText('Local/manual'),
       level: 'local-manual',
     };
   }

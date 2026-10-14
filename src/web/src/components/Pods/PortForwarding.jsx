@@ -56,6 +56,11 @@ const AVAILABLE_PORT_PREVIEW_LIMIT = 100;
 const STATUS_POLL_INTERVAL_MS = 10_000;
 const asArray = (value) => (Array.isArray(value) ? value : []);
 const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
+const PortForwardingError = ({ error }) => {
+  if (typeof error === 'string') return <LocalizedText source={error} />;
+  if (error?.source) return <LocalizedText source={error.source} values={error.values} />;
+  return error?.message || String(error);
+};
 const forwardingStatusSignature = (statuses) =>
   statuses
     .map((status) =>
@@ -142,7 +147,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to initialize port forwarding:', error);
-      if (this.mounted) this.setState({ error: error.message });
+      if (this.mounted) this.setState({ error: { message: error.message } });
     } finally {
       if (this.mounted) this.setState({ loading: false });
     }
@@ -273,7 +278,12 @@ class PortForwarding extends Component {
       this.setState({ selectedPodDetail: podDetail });
     } catch (error) {
       console.error('Failed to fetch pod detail:', error);
-      this.setState({ error: `Failed to load pod details: ${error.message}` });
+      this.setState({
+        error: {
+          source: 'Failed to load pod details: {message}',
+          values: { message: error.message },
+        },
+      });
     } finally {
       this.setState({ loading: false });
     }
@@ -337,7 +347,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to create port forwarding:', error);
-      this.setState({ error: error.message });
+      this.setState({ error: { message: error.message } });
     } finally {
       this.setState({ creatingForwarding: false });
     }
@@ -353,11 +363,14 @@ class PortForwarding extends Component {
         this.refreshForwardingStatusAfterMutation(),
       ]);
       this.setState({
-        success: `Successfully stopped forwarding on port ${localPort}`,
+        success: {
+          source: 'Successfully stopped forwarding on port {port}',
+          values: { port: localPort },
+        },
       });
     } catch (error) {
       console.error('Failed to stop port forwarding:', error);
-      this.setState({ error: error.message });
+      this.setState({ error: { message: error.message } });
     } finally {
       this.setState({ stoppingForwarding: false });
     }
@@ -753,7 +766,7 @@ class PortForwarding extends Component {
         {error && (
           <Message error>
             <Message.Header><LocalizedText source={"Error"} /></Message.Header>
-            <p>{error}</p>
+            <p><PortForwardingError error={error} /></p>
             <TooltipButton
               onClick={() => this.setState({ error: null })}
               size="small"
@@ -766,7 +779,7 @@ class PortForwarding extends Component {
         {success && (
           <Message success>
             <Message.Header><LocalizedText source={"Success"} /></Message.Header>
-            <p>{success}</p>
+            <p><LocalizedText source={success.source} values={success.values} /></p>
             <TooltipButton
               onClick={() => this.setState({ success: null })}
               size="small"

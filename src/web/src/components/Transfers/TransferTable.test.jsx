@@ -5,6 +5,7 @@
 import TransferTable from './TransferTable';
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { setExperiencePreference } from '../../lib/experiencePreferences';
 import { ALL_COLUMNS } from '../../lib/transferColumns';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -84,6 +85,23 @@ describe('TransferTable', () => {
     );
     expect(transferRows[0]).toHaveTextContent('newer.flac');
     expect(transferRows[1]).toHaveTextContent('older.flac');
+  });
+
+  it('formats request timestamps with the selected regional locale', () => {
+    setExperiencePreference('regionalFormat', 'de');
+    const requestedAt = '2026-10-13T10:00:00Z';
+
+    renderTable([{
+      direction: 'Download',
+      filename: 'localized-date.flac',
+      id: 'localized-date',
+      requestedAt,
+      size: 10,
+      state: 'Queued',
+      username: 'peer',
+    }]);
+
+    expect(screen.getByText(new Date(requestedAt).toLocaleString('de'))).toBeInTheDocument();
   });
 
   it('explains the scope of each selected-transfer action', async () => {
