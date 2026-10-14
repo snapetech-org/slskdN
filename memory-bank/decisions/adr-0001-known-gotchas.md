@@ -4,6 +4,24 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
+
+**What went wrong:** The trusted validation environment sets `HOME` to a
+task-private path ending in `/home`. The release identity scanner treated the
+basename `home` as a private identity and searched for it as a substring in
+commit messages. This matched the ordinary plural word `homes` in a commit
+subject and failed the release gate.
+
+**Why:** Runtime identity discovery was applied unchanged inside an isolated
+test environment, and fixed-string matching allowed a short token to match
+inside a different word.
+
+**Prevention:** Do not treat the trusted sandbox's synthetic account and
+directory names as operator identities. Keep explicit denylist terms active,
+match plain-name tokens on word boundaries in commit messages, and retain
+literal matching for path-shaped denylist values. Cover the sandbox environment
+and positive identity matches with scanner contract tests.
+
 ### 0z1853. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)
 
 **What went wrong:** A packaging check added the YAML `path:` key prefix to
