@@ -1,3 +1,36 @@
+# Update 2026-10-14 01:02 UTC — Refresh validation inventory after the normal push
+
+Pushed the scanner fix, sandbox gotcha, and current vendored-runtime source
+revision to `main` with a normal fast-forward. The complete remediation check
+then found the tracked red-team candidate count was stale at 12,917. Compared
+normalized report lines with the pre-change head: the net increase is 12 (17
+new validation-code/test fixture lines, minus five old matches removed by the
+conditional runtime-identity branch). These are validation-only candidates,
+not confirmed defects. Refreshed `docs/dev/bug-council-active-backlog.md` to
+12,929 and reran the full remediation baseline successfully, including source
+sync, branch sync, all candidate counts, and negative-space checks. Exact-head
+hosted CI and Playwright E2E remain pending; no tag has been created.
+
+# Update 2026-10-14 00:42 UTC — Fix sandbox identity false positive in release validation
+
+The remediation task creates a private validation environment whose `HOME`
+basename is the generic word `home`. The local identity scanner treated that
+synthetic value as an operator identity and its substring search matched it
+inside ordinary commit text. Runtime-derived identities can now be disabled
+for that isolated task while explicit denylist values remain active; commit
+messages use whole-word matching, and release-facing files retain literal
+matching. Added three isolated scanner contract tests and a validation-engine
+environment regression. Focused tests pass (3/3 scanner, 17/17 engine), shell,
+Node and Python syntax checks pass, and `./bin/lint` passes.
+
+The full remediation baseline passes through the release branch-sync guard.
+The initial stop also exposed a stale vendored-runtime source revision; the
+guarded sync helper updated the manifest and CI workflow mirror, and the
+source/mirror check now passes. The source change only selects a hosted Windows
+runner. The branch-sync guard is expected to stop until these local commits are
+pushed. Exact-head hosted CI and browser validation remain pending; no release
+tag has been created.
+
 # Update 2026-10-13 22:13 UTC — Patch SignalR servicing advisory for `.351`
 
 Updated all first-party .NET dependencies and the Flatpak runtime to 10.0.13,
@@ -19135,5 +19168,25 @@ literal matching. Added five Python scanner contract cases, an engine
 environment contract, and the trusted-sandbox explanation in testing policy.
 The focused scanner suite passes 5/5 and the validation-engine suite passes
 22/22 through the launcher hash-verified from reviewed commit
-`6bad0696008970f1df54aea8f03b805475f50363`. Exact-head hosted Mode 2 validation
-remains pending until the candidate is pushed to PR #366.
+6bad0696008970f1df54aea8f03b805475f50363. Exact-head hosted Mode 2 validation
+was pending until the candidate is pushed to PR #366.
+
+## Update 2026-10-14 01:28 UTC — Hosted release verifier repository identity
+
+Hosted CI and the Nix package smoke passed on exact main SHA
+03c352d32f7a31581dc29b8f34d33bffb0977405. Running the guarded release
+verifier against that successful receipt exposed an existing mismatch: the
+configured repository alias resolves to canonical snapetech-org/slskdN,
+while the verifier compared the run's canonical name to snapetech/slskdN.
+Recorded gotcha 0z1855 immediately, then changed the verifier to pin and
+check the fork's immutable repository ID and added regression cases for
+canonical-name acceptance and wrong-target rejection. The focused suite passes
+8/8, shell syntax and release-note preview pass, and repository lint completed.
+
+The exact-head CI receipt is no longer current after the verifier fix. Three
+commits were local and unpushed at that point; the remediation baseline stopped
+at its expected branch-sync guard because main was ahead of origin/main. The
+old E2E run remained queued on the previous SHA. Next: push normally to the
+verified fork, rerun the complete remediation baseline, cancel the stale queued
+E2E run, and dispatch fresh CI and Playwright validation for the new exact
+head. No release tag or upstream write was made.

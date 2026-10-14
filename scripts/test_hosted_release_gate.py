@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VERIFIER = ROOT / "scripts/verify-hosted-release-gate.sh"
 COMMIT = "a" * 40
 WORKFLOW_ID = 123456
+REPOSITORY_ID = 1108894784
 
 
 class HostedReleaseGateTests(unittest.TestCase):
@@ -31,6 +32,7 @@ class HostedReleaseGateTests(unittest.TestCase):
             "#!/usr/bin/env bash\n"
             "set -euo pipefail\n"
             "case \"${2:-}\" in\n"
+            "  repos/snapetech/slskdN) cat \"$MOCK_GH_DIR/repository.json\" ;;\n"
             "  repos/snapetech/slskdN/actions/workflows/ci.yml) cat \"$MOCK_GH_DIR/workflow.json\" ;;\n"
             "  repos/snapetech/slskdN/actions/runs/*) cat \"$MOCK_GH_DIR/run.json\" ;;\n"
             "  *) echo \"Unexpected API path: ${2:-}\" >&2; exit 3 ;;\n"
@@ -39,9 +41,10 @@ class HostedReleaseGateTests(unittest.TestCase):
         )
         mock_gh.chmod(mock_gh.stat().st_mode | stat.S_IXUSR)
         self.write_workflow()
+        self.write_target_repository()
         self.run_data: dict[str, object] = {
             "workflow_id": WORKFLOW_ID,
-            "repository": {"full_name": "snapetech/slskdN"},
+            "repository": {"id": REPOSITORY_ID, "full_name": "snapetech-org/slskdN"},
             "event": "workflow_dispatch",
             "head_branch": "main",
             "head_sha": COMMIT,
@@ -57,6 +60,12 @@ class HostedReleaseGateTests(unittest.TestCase):
     def write_workflow(self, *, workflow_id: int = WORKFLOW_ID, path: str = ".github/workflows/ci.yml") -> None:
         (self.data / "workflow.json").write_text(
             json.dumps({"id": workflow_id, "path": path}), encoding="utf-8"
+        )
+
+    def write_target_repository(self, *, repository_id: int = REPOSITORY_ID) -> None:
+        (self.data / "repository.json").write_text(
+            json.dumps({"id": repository_id, "full_name": "snapetech-org/slskdN"}),
+            encoding="utf-8",
         )
 
     def write_run(self) -> None:
@@ -101,10 +110,16 @@ class HostedReleaseGateTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
 
     def test_rejects_runs_from_another_repository(self) -> None:
-        self.run_data["repository"] = {"full_name": "slskd/slskd"}
+        self.run_data["repository"] = {"id": 12345, "full_name": "slskd/slskd"}
         self.write_run()
         result = self.invoke()
         self.assertNotEqual(result.returncode, 0)
+
+    def test_rejects_an_alias_that_resolves_to_another_repository(self) -> None:
+        self.write_target_repository(repository_id=12345)
+        result = self.invoke()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("unexpected repository ID", result.stderr)
 
     def test_rejects_a_mismatched_workflow_path(self) -> None:
         self.write_workflow(path=".github/workflows/other.yml")

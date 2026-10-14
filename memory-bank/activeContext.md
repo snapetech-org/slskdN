@@ -1,48 +1,38 @@
-## Current state — Remediation scanner sandbox identity fix — 2026-10-14
+## Current state — Validation pool branch refreshed — 2026-10-14
 
-SLSKDN PR #366 is also carrying a remediation-scanner correction discovered
-while validating in the isolated runner. The baseline task now disables only
-runtime host/user discovery for its synthetic sandbox identity; explicit
-operator denylist values still reach the scanner. Commit-message matching uses
-whole-word checks for plain identity names and literal matching for path-shaped
-tokens. Focused scanner and engine contracts are added. The trusted launcher
-copied and hash-verified from reviewed commit
-`6bad0696008970f1df54aea8f03b805475f50363` reports 5/5 scanner cases and
-22/22 validation-engine cases; `git diff --check` passes. The updated exact-head
-hosted gate is pending because the GitHub PR still points at the earlier head.
+SLSKDN PR #366 adds a bounded pool for independent validation tasks. It runs up
+to three dependency-ready tasks together and keeps the Web and backend test
+suites in one resource group after the first hosted run showed that overlapping
+them made Web tests much slower and flaky. That run used head
+aa76b2af560ef284e57f60094b0c8f713e147534, executed 15/15 tasks, passed 14,
+and failed the required remediation baseline because the branch's tracked-source
+count was stale. All seven application repositories are now under snapetech-org. The candidate
+is being merged with current main at
+31d2106c33e8e2f3ffd26a69d5e97a479e673b37. The latest baseline and scanner
+changes from main must be reconciled, then the scan and exact-head gate
+must run again. Earlier focused checks passed at the previous candidate, but do
+not count as validation of this merged tree.
 
-The local sandbox-identity gotcha was integrated with the pool branch and
-renumbered `0z1856` to avoid colliding with the pool's existing ADR entries.
-The candidate remains on a scratch branch until the focused checks pass and the
-exact GitHub owner/head are reverified.
+The scanner change keeps explicit operator denylist values active, excludes
+synthetic sandbox host/user discovery for the isolated remediation task, and
+matches plain commit-message identities as whole words while preserving literal
+matching for path tokens. Its focused checks and the engine contracts remain
+part of the candidate. Public pull-request workloads stay on GitHub-hosted
+runners; shared self-hosted groups remain restricted to trusted workflow
+definitions on main.
 
-### Next Steps
-
-- Push the verified candidate to PR #366 and wait for exact-head Mode 2 checks.
-- Keep public pull-request workloads on GitHub-hosted runners.
-
-## Prior state — Validation pool concurrency correction — 2026-10-14 00:25 UTC
-
-All seven application repositories are under `snapetech-org`. This ownership
-change does not alter Actions runner registrations or routing. Public pull
-requests remain on GitHub-hosted runners.
-
-SLSKDN PR #366 adds bounded execution for independent validation tasks. Its
-branch now includes organization `main` at `6bad0696008970f1df54aea8f03b805475f50363`
-through merge commit `ca28394`. The first hosted pool run exposed resource
-contention: Web and backend test suites overlapped and Web tests became slow and
-flaky. The updated plan keeps those suites in one concurrency group while
-independent repository checks can still overlap. Exact-head hosted validation
-is required before merge. The local target guard verifies the organization
-repository explicitly and no longer depends on a global `gh` default. Local
-Mode 1 previously stopped at preflight because `pnpm` was unavailable inside
-the trusted sandbox; hosted Mode 2 must supply the complete gate result.
+The .351 release-verifier correction is now on main. Earlier exact-head
+CI and Nix evidence predates the correction, so fresh validation is required
+before creating the stable tag. No tag is created from stale receipts.
 
 ### Next Steps
 
-- Keep public pull-request workloads hosted.
-- Recheck repository owner and current `main` before each GitHub write.
-- Verify organization runner controls before any future runner attachment change.
+- Finish resolving the latest-main merge while preserving both sides.
+- Re-run the focused scanner and engine contracts, then the full candidate gate.
+- Push the reconciled PR #366 head and verify every required check on that SHA.
+- Merge only after the branch is current and its required checks pass.
+- Refresh exact-head .351 CI and browser evidence before stable release tagging.
+
 
 ## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 
