@@ -123,7 +123,7 @@ const SwarmVisualization = ({ jobId }) => {
       ) {
         return;
       }
-      setError(error_?.message || 'Failed to fetch swarm data');
+      setError(error_?.message || interfaceText('Failed to fetch swarm data'));
       console.error('Failed to fetch swarm visualization data:', error_);
     } finally {
       if (statusRequestGenerationRef.current === requestGeneration) {
@@ -375,7 +375,7 @@ const SwarmVisualization = ({ jobId }) => {
                   ? `${Math.round(jobStatus.estimatedSecondsRemaining)}s`
                   : interfaceText('N/A')}
               </Statistic.Value>
-              <Statistic.Label>ETA</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"ETA"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
         </Grid>
@@ -486,7 +486,10 @@ const SwarmVisualization = ({ jobId }) => {
                       borderRadius: '2px',
                       cursor: 'pointer',
                       height: '12px',
-                      title: `Chunk ${chunk.index + 1}: ${chunk.completed ? 'Completed' : 'Pending'}`,
+                      title: interfaceText('Chunk {index}: {status}', {
+                        index: chunk.index + 1,
+                        status: interfaceText(chunk.completed ? 'Completed' : 'Pending'),
+                      }),
                       width: '12px',
                     }}
                   />

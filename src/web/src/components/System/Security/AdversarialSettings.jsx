@@ -56,7 +56,7 @@ const AdversarialSettings = () => {
         setError(interfaceText("Adversarial features are not configured on this server"));
       }
     } catch (fetchError) {
-      setError(fetchError.message || 'Failed to load adversarial settings');
+      setError(fetchError.message || interfaceText('Failed to load adversarial settings'));
     } finally {
       setLoading(false);
     }
@@ -141,7 +141,7 @@ const AdversarialSettings = () => {
       setSuccess(interfaceText("Adversarial settings updated successfully"));
       setHasChanges(false);
     } catch (saveError) {
-      setError(saveError.message || 'Failed to save adversarial settings');
+      setError(saveError.message || interfaceText('Failed to save adversarial settings'));
     } finally {
       setSaving(false);
     }
@@ -1082,7 +1082,7 @@ const AdversarialSettings = () => {
                               position="top center"
                               trigger={(
                                 <Button
-                                  aria-label={`Remove Obfs4 bridge line ${index + 1}`}
+                                  aria-label={interfaceText('Remove Obfs4 bridge line {index}', { index: index + 1 })}
                                   icon="minus"
                                   onClick={() =>
                                     removeArrayItem(
@@ -1216,7 +1216,7 @@ const AdversarialSettings = () => {
                     setError(
                       error?.response?.data ??
                         error?.message ??
-                        'Transport test failed',
+                        interfaceText('Transport test failed'),
                     );
                   }
                 }}
@@ -1241,7 +1241,7 @@ const AdversarialSettings = () => {
                     setError(
                       error?.response?.data ??
                         error?.message ??
-                        'Tor test failed',
+                        interfaceText('Tor test failed'),
                     );
                   }
                 }}

@@ -96,7 +96,8 @@ describe('QuarantineJury', () => {
   it('loads jury review evidence, routes explicitly, and accepts through confirmation', async () => {
     render(<QuarantineJury />);
 
-    expect(await screen.findByText('quarantine-jury:fixture')).toBeInTheDocument();
+    await screen.findByText('Fixture content id evidence');
+    expect(screen.getAllByText('quarantine-jury:fixture')).toHaveLength(2);
     expect(screen.getByText('Fixture local quarantine reason')).toBeInTheDocument();
     expect(screen.getAllByText('Release Candidate').length).toBeGreaterThan(0);
     expect(screen.getByText('Fixture content id evidence')).toBeInTheDocument();
@@ -139,7 +140,8 @@ describe('QuarantineJury', () => {
 
     render(<QuarantineJury />);
 
-    expect(await screen.findByText('quarantine-jury:fixture')).toBeInTheDocument();
+    await screen.findByText('Fixture content id evidence');
+    expect(screen.getAllByText('quarantine-jury:fixture')).toHaveLength(2);
     expect(screen.getByText('Fixture content id evidence')).toBeInTheDocument();
     expect(screen.queryByText('Fixture juror evidence supports release.')).not.toBeInTheDocument();
   });

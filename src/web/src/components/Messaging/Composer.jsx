@@ -12,7 +12,7 @@ const getSendErrorMessage = (error) => {
     return data.detail || data.message || data.title || JSON.stringify(data);
   }
 
-  return error?.message || 'The message could not be sent.';
+  return error?.message || interfaceText("The message could not be sent.");
 };
 
 const matchSuggestions = (draft, commands) => {
@@ -176,24 +176,22 @@ const Composer = ({
       )}
       <div className="msgv2-composer">
         <textarea
-          aria-label={label || 'Message composer'}
+          aria-label={label || interfaceText('Message composer')}
           className="msgv2-composer-input"
           disabled={isDisabled}
           onChange={(event) => setValue(event.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={
-            isDisabled
-              ? 'Open a tab to start typing'
-              : placeholder || 'Type a message — Enter sends, Shift+Enter newline'
-          }
+          placeholder={isDisabled
+            ? interfaceText('Open a tab to start typing')
+            : placeholder || interfaceText('Type a message — Enter sends, Shift+Enter newline')}
           ref={ref}
           rows={1}
           value={draft}
         />
         <Popup
-          content={isDisabled || draft.trim().length === 0 || busy
+          content={interfaceText(isDisabled || draft.trim().length === 0 || busy
             ? 'Enter a message in the active conversation before sending.'
-            : 'Send this message to the active conversation. Press Enter to send; Shift+Enter adds a line break.'}
+            : 'Send this message to the active conversation. Press Enter to send; Shift+Enter adds a line break.')}
           trigger={(
             <span>
               <button

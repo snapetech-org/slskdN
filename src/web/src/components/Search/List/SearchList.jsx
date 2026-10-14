@@ -386,11 +386,11 @@ const SearchList = ({
                 />
                 {hasMoreFromServer && (
                   <Popup
-                    content="Fetch the next bounded page from the server. Existing loaded rows and selections stay in place."
+                    content={localized('Fetch the next bounded page from the server. Existing loaded rows and selections stay in place.')}
                     position="top center"
                     trigger={(
                       <Button
-                        content="Load more searches"
+                        content={localized('Load more searches')}
                         disabled={loadingMore}
                         loading={loadingMore}
                         onClick={onLoadMore}

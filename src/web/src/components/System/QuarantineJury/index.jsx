@@ -40,7 +40,7 @@ const verdictColor = (verdict) => {
 };
 
 const normalizeVerdict = (verdict) =>
-  verdictNames[verdict] || String(verdict || 'Needs Manual Review');
+  verdictNames[verdict] || (verdict ? String(verdict) : interfaceText('Needs Manual Review'));
 
 const valueOrDash = (value) => {
   if (Array.isArray(value)) return value.length > 0 ? value.join(', ') : '-';
@@ -216,7 +216,7 @@ const QuarantineJury = () => {
         loadError?.response?.data ||
           loadError?.response?.statusText ||
           loadError?.message ||
-          'Unable to load Quarantine Jury review',
+          interfaceText('Unable to load Quarantine Jury review'),
       );
     } finally {
       setLoadingReview(false);
@@ -246,7 +246,7 @@ const QuarantineJury = () => {
         loadError?.response?.data ||
           loadError?.response?.statusText ||
           loadError?.message ||
-          'Unable to load Quarantine Jury requests',
+          interfaceText('Unable to load Quarantine Jury requests'),
       );
     } finally {
       setLoadingRequests(false);
@@ -282,7 +282,7 @@ const QuarantineJury = () => {
         routeError?.response?.data?.errorMessage ||
           routeError?.response?.data ||
           routeError?.message ||
-          'Unable to route Quarantine Jury request',
+          interfaceText('Unable to route Quarantine Jury request'),
       );
     } finally {
       setSaving(false);
@@ -306,7 +306,7 @@ const QuarantineJury = () => {
           ? errors.join(' ')
           : acceptError?.response?.data ||
               acceptError?.message ||
-              'Unable to accept release-candidate recommendation',
+              interfaceText('Unable to accept release-candidate recommendation'),
       );
     } finally {
       setSaving(false);
@@ -546,7 +546,7 @@ const QuarantineJury = () => {
                         <Table.Cell>{valueOrDash(attempt.failedJurors)}</Table.Cell>
                         <Table.Cell>
                           <Label color={attempt.success ? 'green' : 'red'}>
-                            {attempt.success ? <LocalizedText source={"Routed"} /> : attempt.errorMessage || 'Failed'}
+                            {attempt.success ? <LocalizedText source={"Routed"} /> : attempt.errorMessage || interfaceText('Failed')}
                           </Label>
                         </Table.Cell>
                       </Table.Row>
@@ -624,7 +624,10 @@ const QuarantineJury = () => {
                   <Message
                     positive
                     header={interfaceText("Release candidate accepted")}
-                    content={`${normalizeAcceptance(review.acceptance).acceptedBy} accepted this recommendation at ${formatDate(normalizeAcceptance(review.acceptance).createdAt)}.`}
+                    content={interfaceText('{acceptedBy} accepted this recommendation at {time}.', {
+                      acceptedBy: normalizeAcceptance(review.acceptance).acceptedBy,
+                      time: formatDate(normalizeAcceptance(review.acceptance).createdAt),
+                    })}
                    {...interfaceTextProps("Release candidate accepted")}/>
                 ) : (
                   <>

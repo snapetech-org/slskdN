@@ -1,19 +1,14 @@
 import React from 'react';
 import { Header, Icon, Segment } from 'semantic-ui-react';
 import { useInterfaceLanguage } from '../../lib/interfaceLocale';
-import UI_LABELS from '../../lib/ui-labels.json';
 
-const ErrorSegment = ({ caption, icon = 'x', suppressPrefix = false }) => {
+const ErrorSegment = ({ caption, icon = 'x', suppressPrefix = false, translateCaption = false }) => {
   const { t, languageFor, directionFor } = useInterfaceLanguage();
-  const captionSource = typeof caption === 'string' &&
-    Object.prototype.hasOwnProperty.call(UI_LABELS, caption)
-    ? caption
-    : 'The request failed. Try again.';
-  const localizedCaption = typeof caption === 'string' ? (
-    <span dir={directionFor(captionSource)} lang={languageFor(captionSource)}>
-      {t(captionSource)}
+  const localizedCaption = typeof caption === 'string' && translateCaption ? (
+    <span dir={directionFor(caption)} lang={languageFor(caption)}>
+      {t(caption)}
     </span>
-  ) : caption;
+  ) : typeof caption === 'string' ? <span>{caption}</span> : caption;
   return (
     <Segment
       basic

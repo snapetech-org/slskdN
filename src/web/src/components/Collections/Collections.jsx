@@ -26,6 +26,12 @@ const isObject = (value) => value && typeof value === 'object' && !Array.isArray
 const COLLECTION_PAGE_SIZE = 100;
 const COLLECTION_ITEM_PAGE_SIZE = 100;
 
+const getCollectionTypeLabel = (type) => {
+  if (type === 'Playlist') return interfaceText('Playlist');
+  if (type === 'ShareList') return interfaceText('Share List');
+  return type || interfaceText('Playlist');
+};
+
 const getErrorMessage = (error, fallback = 'Request failed') => {
   const data = error?.response?.data;
 
@@ -38,7 +44,7 @@ const getErrorMessage = (error, fallback = 'Request failed') => {
       JSON.stringify(data);
   }
 
-  return error?.message || fallback;
+  return error?.message || interfaceText(fallback);
 };
 
 export default class Collections extends Component {
@@ -98,7 +104,7 @@ export default class Collections extends Component {
         loading: false,
       });
     } catch (error) {
-      let errorMessage = error.message;
+      let errorMessage = error.message || interfaceText('Failed to load collections');
       if (error.response?.data) {
         if (typeof error.response.data === 'string') {
           errorMessage = error.response.data;
@@ -202,7 +208,7 @@ export default class Collections extends Component {
       });
       await this.loadData();
     } catch (error) {
-      let errorMessage = error.message || 'Failed to create collection';
+      let errorMessage = error.message || interfaceText('Failed to create collection');
       if (error.response?.data) {
         if (typeof error.response.data === 'string') {
           errorMessage = error.response.data;
@@ -223,7 +229,7 @@ export default class Collections extends Component {
 
   handleDeleteCollection = async (id) => {
     // eslint-disable-next-line no-alert
-    if (!window.confirm('Delete this collection?')) return;
+    if (!window.confirm(interfaceText('Delete this collection?'))) return;
     try {
       await collectionsAPI.deleteCollection(id);
       await this.loadData();
@@ -295,7 +301,7 @@ export default class Collections extends Component {
       });
       await this.loadCollectionItems(this.state.selectedCollection.id);
     } catch (error) {
-      let errorMessage = error.message || 'Failed to add item';
+      let errorMessage = error.message || interfaceText('Failed to add item');
       if (error.response?.data) {
         if (typeof error.response.data === 'string') {
           errorMessage = error.response.data;
@@ -466,7 +472,7 @@ export default class Collections extends Component {
                     style={{ cursor: 'pointer' }}
                   >
                     <Table.Cell>{collection.title}</Table.Cell>
-                    <Table.Cell>{collection.type || 'Playlist'}</Table.Cell>
+                    <Table.Cell>{getCollectionTypeLabel(collection.type)}</Table.Cell>
                     <Table.Cell>{collection.itemCount || 0}</Table.Cell>
                     <Table.Cell>
                       <TooltipButton
@@ -522,7 +528,7 @@ export default class Collections extends Component {
               <Header as="h2">
                 {selectedCollection.title}
                 <Header.Subheader>
-                  {selectedCollection.type || 'Playlist'}
+                  {getCollectionTypeLabel(selectedCollection.type)}
                 </Header.Subheader>
               </Header>
 
@@ -567,14 +573,16 @@ export default class Collections extends Component {
                             {item.title || item.fileName || item.contentId || interfaceText('N/A')}
                             {item.artist ? <small> — {item.artist}</small> : null}
                           </Table.Cell>
-                          <Table.Cell>{item.mediaKind || 'Unknown'}</Table.Cell>
+                          <Table.Cell>{item.mediaKind || interfaceText('Unknown')}</Table.Cell>
                           <Table.Cell>
                             <PlayCollectionItemButton item={item} />
                             <Popup
                               content={interfaceText("Edit how this item appears in the collection without changing the audio file.")}
                               trigger={
                                 <Button
-                                  aria-label={`Edit ${item.title || item.fileName || 'item'} display metadata`}
+                                  aria-label={interfaceText('Edit {item} display metadata', {
+                                    item: item.title || item.fileName || interfaceText('item'),
+                                  })}
                                   icon="edit"
                                   onClick={() => this.setState({ editFileTags: false, editItem: { ...item } })}
                                   size="small"
@@ -585,7 +593,9 @@ export default class Collections extends Component {
                               content={interfaceText("Edit the tags in this server audio file. Administrator access and write permission are required.")}
                               trigger={
                                 <Button
-                                  aria-label={`Edit ${item.title || item.fileName || 'item'} audio file tags`}
+                                  aria-label={interfaceText('Edit {item} audio file tags', {
+                                    item: item.title || item.fileName || interfaceText('item'),
+                                  })}
                                   icon="tags"
                                   onClick={() => this.setState({ editFileTags: true, editItem: { ...item } })}
                                   size="small"
@@ -858,7 +868,7 @@ export default class Collections extends Component {
                 {['title', 'artist', 'album'].map((field) => (
                   <Form.Input
                     key={field}
-                    label={field[0].toUpperCase() + field.slice(1)}
+                    label={interfaceText(field[0].toUpperCase() + field.slice(1))}
                     onChange={(event) => this.setState({ editItem: { ...editItem, [field]: event.target.value } })}
                     value={editItem?.[field] || ''}
                   />
@@ -869,7 +879,9 @@ export default class Collections extends Component {
               <Popup content={interfaceText("Discard changes to this collection entry.")} trigger={
                 <Button onClick={() => this.setState({ editItem: null })}><LocalizedText source={"Cancel"} /></Button>
               }  {...interfaceTextProps("Discard changes to this collection entry.")}/>
-              <Popup content={editFileTags ? 'Write tags to the server audio file and update its collection references.' : 'Save this item’s display metadata without writing to the audio file.'} trigger={
+              <Popup content={interfaceText(editFileTags
+                ? 'Write tags to the server audio file and update its collection references.'
+                : 'Save this item’s display metadata without writing to the audio file.')} trigger={
                 <Button
                   disabled={!editItem || !selectedCollection}
                   onClick={async () => {
@@ -892,7 +904,7 @@ export default class Collections extends Component {
                       await this.loadCollectionItems(selectedCollection.id);
                       this.setState({
                         editItem: null,
-                        error: shareScanStarted ? null : 'Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.',
+                        error: shareScanStarted ? null : interfaceText('Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.'),
                       });
                     } catch (saveError) {
                       this.setState({ error: getErrorMessage(saveError, 'Could not save display metadata') });
@@ -947,7 +959,7 @@ export default class Collections extends Component {
                       }}
                       options={itemSearchResults.map((item, index) => ({
                         key: item.contentId || index,
-                        text: `${item.fileName || item.path} (${item.mediaKind || 'File'})`,
+                        text: `${item.fileName || item.path} (${item.mediaKind || interfaceText('File')})`,
                         value: item.contentId,
                       }))}
                       placeholder={interfaceText("Select an item from search results")}

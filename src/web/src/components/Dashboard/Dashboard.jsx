@@ -72,7 +72,7 @@ const Dashboard = () => {
     try {
       setSummary(await getTransferSummary());
     } catch {
-      setError('Transfer totals could not be loaded.');
+      setError(interfaceText('Transfer totals could not be loaded.'));
     } finally {
       setLoading(false);
     }

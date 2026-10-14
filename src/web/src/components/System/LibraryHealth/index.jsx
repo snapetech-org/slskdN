@@ -303,7 +303,7 @@ const LibraryHealth = () => {
         ? response.data.scanId
         : '';
       if (!scanId) {
-        throw new Error('Library Health scan response did not include a scan id');
+        throw new Error(interfaceText('Library Health scan response did not include a scan id'));
       }
       if (!mountedRef.current) {
         return;
@@ -776,7 +776,7 @@ const LibraryHealth = () => {
                     </Statistic>
                     <Statistic color="red">
                       <Statistic.Value>{summary.issuesOpen}</Statistic.Value>
-                      <Statistic.Label><LocalizedText source={"Open"} /></Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Open issues"} /></Statistic.Label>
                     </Statistic>
                     <Statistic color="green">
                       <Statistic.Value>
@@ -916,7 +916,8 @@ const LibraryHealth = () => {
             {selectedIssues.size > 0 && (
               <Segment className="library-health-selection-actions">
                 <div className="library-health-selection-count" aria-live="polite">
-                  {selectedIssues.size} <LocalizedText source={"issue"} />{selectedIssues.size === 1 ? '' : <LocalizedText source={"s"} />} <LocalizedText source={"selected"} /></div>
+                  <LocalizedText source={"Selected issues: {count}"} values={{ count: selectedIssues.size }} />
+                </div>
                 <Popup
                   className="library-health-popup"
                   content={interfaceText("Queue bounded remediation downloads for up to 25 selected auto-fixable issues. This starts the existing download/remediation workflow; use it when you want slskd to attempt a replacement. The original files are not edited by this control.")}
@@ -1104,7 +1105,9 @@ const LibraryHealth = () => {
                       <Table.Cell collapsing>
                         <label className="library-health-issue-checkbox">
                           <input
-                            aria-label={`Select ${[issue.artist, issue.title].filter(Boolean).join(' — ') || issue.issueId}`}
+                            aria-label={interfaceText('Select {item}', {
+                              item: [issue.artist, issue.title].filter(Boolean).join(' — ') || issue.issueId,
+                            })}
                             checked={selectedIssues.has(issue.issueId)}
                             onChange={() => handleToggleIssue(issue.issueId)}
                             type="checkbox"
@@ -1159,7 +1162,9 @@ const LibraryHealth = () => {
                             content={interfaceText("Queue a remediation job for this auto-fixable issue. The backend still applies its remediation safeguards.")}
                             trigger={
                               <Button
-                                aria-label={`Queue a remediation job for ${[issue.artist, issue.title].filter(Boolean).join(' — ') || 'this issue'}`}
+                                aria-label={interfaceText('Queue a remediation job for {item}', {
+                                  item: [issue.artist, issue.title].filter(Boolean).join(' — ') || interfaceText('this issue'),
+                                })}
                                 className="library-health-action"
                                 disabled={fixing}
                                 onClick={() => handleFixSingle(issue.issueId)}

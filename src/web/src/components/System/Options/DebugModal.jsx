@@ -11,7 +11,7 @@ const getErrorText = (error) => {
   if (data && typeof data === 'object') {
     return data.detail || data.message || data.error || data.title || JSON.stringify(data);
   }
-  return error?.message || 'Could not load the debug view.';
+  return error?.message || interfaceText('Could not load the debug view.');
 };
 
 const DebugModal = ({ onClose, open, theme }) => {

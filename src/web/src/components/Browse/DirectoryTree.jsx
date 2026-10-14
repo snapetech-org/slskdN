@@ -58,11 +58,13 @@ const DirectoryRow = memo(
           <div style={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
             {hasChildren ? (
               <Popup
-                content={`${isExpanded ? 'Collapse' : 'Expand'} ${folderName} to ${isExpanded ? 'hide' : 'show'} its subfolders.`}
+                content={interfaceText(isExpanded
+                  ? 'Collapse {folder} to hide its subfolders.'
+                  : 'Expand {folder} to show its subfolders.', { folder: folderName })}
                 trigger={(
                   <button
                     aria-expanded={isExpanded}
-                    aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${folderName}`}
+                    aria-label={interfaceText(isExpanded ? 'Collapse {folder}' : 'Expand {folder}', { folder: folderName })}
                     onClick={() => onToggleExpand(directory.name)}
                     style={{
                       alignItems: 'center',

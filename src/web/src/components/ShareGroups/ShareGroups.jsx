@@ -37,7 +37,7 @@ const getErrorMessage = (error, fallback = 'Request failed') => {
       JSON.stringify(data);
   }
 
-  return error?.message || fallback;
+  return error?.message || interfaceText(fallback);
 };
 
 export default class ShareGroups extends Component {
@@ -129,10 +129,10 @@ export default class ShareGroups extends Component {
     } catch (error) {
       console.error('[ShareGroups] Create group error:', error);
       // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message || 'Failed to create share group';
+      let errorMessage = error.message || interfaceText('Failed to create share group');
       if (error.response) {
         const status = error.response.status;
-        const url = error.response.config?.url || 'unknown';
+        const url = error.response.config?.url || interfaceText('Unknown');
         const contentLength = error.response.headers['content-length'];
 
         console.error('[ShareGroups] Response status:', status);
@@ -162,29 +162,34 @@ export default class ShareGroups extends Component {
           }
         } else if (status === 400) {
           // 400 with empty body likely means CSRF validation failed or user identity missing
-          errorMessage =
-            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.';
+          errorMessage = interfaceText(
+            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.',
+          );
         } else if (status === 401) {
-          errorMessage = 'Authentication required. Please refresh the page.';
+          errorMessage = interfaceText('Authentication required. Please refresh the page.');
         } else if (status === 403) {
-          errorMessage = 'Not authorized.';
+          errorMessage = interfaceText('Not authorized.');
         } else if (status === 404) {
           // 404 could be route mismatch (double prefix bug) or feature disabled
           if (url.includes('/api/v0/api/v0')) {
-            errorMessage = `Endpoint not found: ${url} (possible route mismatch - check browser console)`;
+            errorMessage = interfaceText(
+              'Endpoint not found: {url} (possible route mismatch - check browser console)',
+              { url },
+            );
           } else {
-            errorMessage =
-              'Collections sharing feature is not enabled, or endpoint not found.';
+            errorMessage = interfaceText(
+              'Collections sharing feature is not enabled, or endpoint not found.',
+            );
           }
         } else if (status >= 500) {
-          errorMessage = 'Server error. Please check server logs.';
+          errorMessage = interfaceText('Server error. Please check server logs.');
         }
       }
 
       this.setState({
         error:
           errorMessage ||
-          'Failed to create share group. Please configure Soulseek username or enable Identity & Friends.',
+          interfaceText('Failed to create share group. Please configure Soulseek username or enable Identity & Friends.'),
       });
     }
   };
@@ -233,13 +238,13 @@ export default class ShareGroups extends Component {
       this.setState({
         error:
           errorMessage ||
-          'Failed to add member. Please configure Soulseek username or enable Identity & Friends.',
+          interfaceText('Failed to add member. Please configure Soulseek username or enable Identity & Friends.'),
       });
     }
   };
 
   handleDeleteGroup = async (id) => {
-    if (!window.confirm('Delete this share group?')) return;
+    if (!window.confirm(interfaceText('Delete this share group?'))) return;
     try {
       await collectionsAPI.deleteShareGroup(id);
       await this.loadData();
@@ -249,7 +254,7 @@ export default class ShareGroups extends Component {
   };
 
   handleRemoveMember = async (groupId, userId) => {
-    if (!window.confirm('Remove this member?')) return;
+    if (!window.confirm(interfaceText('Remove this member?'))) return;
     try {
       await collectionsAPI.removeShareGroupMember(groupId, userId);
       await this.loadData();
@@ -321,7 +326,7 @@ export default class ShareGroups extends Component {
     const contactOptions = contacts.map((c) => ({
       contact: c,
       key: c.id,
-      text: `${c.nickname || 'Unnamed'} (${c.peerId?.slice(0, 16)}...)`,
+      text: `${c.nickname || interfaceText('Unnamed')} (${c.peerId?.slice(0, 16)}...)`,
       value: c.peerId,
     }));
 
@@ -552,7 +557,12 @@ export default class ShareGroups extends Component {
           onClose={this.closeMemberDetails}
           open={memberDetailsModalOpen}
         >
-          <Modal.Header><LocalizedText source={"Members of"} />{" "}{memberDetailsGroup?.name || 'Share Group'}</Modal.Header>
+          <Modal.Header>
+            <LocalizedText
+              source="Members of {group}"
+              values={{ group: memberDetailsGroup?.name || interfaceText('Share Group') }}
+            />
+          </Modal.Header>
           <Modal.Content>
             {memberDetailsLoading ? (
               <LoaderSegment />
@@ -572,7 +582,7 @@ export default class ShareGroups extends Component {
               <List divided relaxed>
                 {memberDetails.map((member, index) => (
                   <List.Item key={member.userId || member.peerId || index}>
-                    {member.contactNickname || member.nickname || member.userId || member.peerId || 'Unknown member'}
+                    {member.contactNickname || member.nickname || member.userId || member.peerId || interfaceText('Unknown member')}
                   </List.Item>
                 ))}
               </List>

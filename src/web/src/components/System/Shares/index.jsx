@@ -23,7 +23,7 @@ const ScanButton = ({ rescan, scanPending, working }) => (
     mediaQuery="(max-width: 516px)"
     onClick={() => rescan()}
     primary={!scanPending}
-    tooltip="Recount files in configured shares after changing files or exclusions."
+    tooltip={interfaceText("Recount files in configured shares after changing files or exclusions.")}
   >
     <LocalizedText source={"Rescan Shares"} /></ShrinkableButton>
 );
@@ -35,7 +35,7 @@ const CancelButton = ({ cancel, working }) => (
     icon="x"
     mediaQuery="(max-width: 516px)"
     onClick={() => cancel()}
-    tooltip="Stop the active share scan; counts may stay incomplete until the next scan."
+    tooltip={interfaceText("Stop the active share scan; counts may stay incomplete until the next scan.")}
   >
     <LocalizedText source={"Cancel Scan"} /></ShrinkableButton>
 );
@@ -122,7 +122,7 @@ const Shares = ({ state = {}, theme } = {}) => {
         error?.response?.data ??
           error?.message ??
           error ??
-          'Failed to cancel the scan',
+          interfaceText('Failed to cancel the scan'),
       );
     } finally {
       setWorking(false);
@@ -160,7 +160,10 @@ const Shares = ({ state = {}, theme } = {}) => {
               <div>
                 <div>{Math.round(scanProgress * 100)}%</div>
                 <div className="share-scan-detail">
-                  <LocalizedText source={"Found"} />{" "}{files} <LocalizedText source={"files in"} />{" "}{directories} <LocalizedText source={"directories"} /></div>
+                  <LocalizedText
+                    source="Found {files} files in {directories} directories"
+                    values={{ files, directories }}
+                  /></div>
               </div>
             </LoaderSegment>
           )

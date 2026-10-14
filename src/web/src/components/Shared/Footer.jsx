@@ -300,13 +300,18 @@ class Footer extends Component {
       isLoggedIn && stats && stats.natType && stats.natType !== 'Unknown';
 
     // Format NAT type tooltip
-    const natTooltip =
-      isLoggedIn && stats
-        ? `NAT Type: ${stats.natType || 'Unknown'}`
-        : 'NAT: Login to see stats';
+    const natTooltip = isLoggedIn && stats
+      ? interfaceText('NAT Type: {natType}', { natType: stats.natType || interfaceText('Unknown') })
+      : interfaceText('NAT: Login to see stats');
     const networkTooltip = isLoggedIn
-      ? `DHT peers: ${displayedDhtPeers}; DHT nodes: ${dhtNodes}; mesh peers: ${meshPeers}; hashes: ${hashCount}; seq: ${seqId}`
-      : 'Login to see slskdN network stats';
+      ? interfaceText('DHT peers: {dhtPeers}; DHT nodes: {dhtNodes}; mesh peers: {meshPeers}; hashes: {hashes}; seq: {sequence}', {
+        dhtPeers: displayedDhtPeers,
+        dhtNodes,
+        meshPeers,
+        hashes: hashCount,
+        sequence: seqId,
+      })
+      : interfaceText('Login to see slskdN network stats');
 
     if (!isLoggedIn) {
       // Nothing here is real yet — no donation asks, build badge, or live
@@ -384,11 +389,12 @@ class Footer extends Component {
                 href={isUpdateAvailable ? latestUrl : `${GITHUB_BASE}/releases`}
                 rel="noopener noreferrer"
                 target="_blank"
-                title={
-                  isUpdateAvailable
-                    ? `Running ${fullBuild}; GitHub has ${latestTag || latestBuild}`
-                    : `Running ${fullBuild}`
-                }
+                title={isUpdateAvailable
+                  ? interfaceText('Running {currentBuild}; GitHub has {latestBuild}', {
+                    currentBuild: fullBuild,
+                    latestBuild: latestTag || latestBuild,
+                  })
+                  : interfaceText('Running {currentBuild}', { currentBuild: fullBuild })}
               >
                 <Icon name={isUpdateAvailable ? 'bullhorn' : 'code branch'} />
                 <span className="slskdn-footer-build-label"><LocalizedText source={"Build"} /></span>
@@ -410,11 +416,9 @@ class Footer extends Component {
               <span className="slskdn-footer-group-label"><LocalizedText source={"Speed"} /></span>
               <span
                 className="slskdn-footer-speed-item"
-                title={
-                  isLoggedIn
-                    ? 'Total transfer speed (upload + download)'
-                    : 'Login to see real-time speeds'
-                }
+                title={interfaceText(isLoggedIn
+                  ? 'Total transfer speed (upload + download)'
+                  : 'Login to see real-time speeds')}
               >
                 <strong>T:</strong>{' '}
                 <span className="speed-value">
@@ -424,11 +428,9 @@ class Footer extends Component {
               </span>
               <span
                 className="slskdn-footer-speed-item"
-                title={
-                  isLoggedIn
-                    ? 'Soulseek network speed'
-                    : 'Login to see real-time speeds'
-                }
+                title={interfaceText(isLoggedIn
+                  ? 'Soulseek network speed'
+                  : 'Login to see real-time speeds')}
               >
                 <strong>S:</strong>{' '}
                 <span className="speed-value">
@@ -440,11 +442,9 @@ class Footer extends Component {
               </span>
               <span
                 className="slskdn-footer-speed-item"
-                title={
-                  isLoggedIn
-                    ? 'Mesh network speed'
-                    : 'Login to see real-time speeds'
-                }
+                title={interfaceText(isLoggedIn
+                  ? 'Mesh network speed'
+                  : 'Login to see real-time speeds')}
               >
                 <strong>M:</strong>{' '}
                 <span className="speed-value">
@@ -455,7 +455,14 @@ class Footer extends Component {
               {sessionTotal && (
                 <span
                   className="slskdn-footer-speed-item slskdn-footer-session-total"
-                  title={`Session total: ${speeds.sessionBytesDownloaded ? formatBytes(speeds.sessionBytesDownloaded).value + formatBytes(speeds.sessionBytesDownloaded).unit + ' ↓' : '0'} / ${speeds.sessionBytesUploaded ? formatBytes(speeds.sessionBytesUploaded).value + formatBytes(speeds.sessionBytesUploaded).unit + ' ↑' : '0'}`}
+                  title={interfaceText('Session total: {downloaded} / {uploaded}', {
+                    downloaded: speeds.sessionBytesDownloaded
+                      ? `${formatBytes(speeds.sessionBytesDownloaded).value}${formatBytes(speeds.sessionBytesDownloaded).unit} ↓`
+                      : '0',
+                    uploaded: speeds.sessionBytesUploaded
+                      ? `${formatBytes(speeds.sessionBytesUploaded).value}${formatBytes(speeds.sessionBytesUploaded).unit} ↑`
+                      : '0',
+                  })}
                 >
                   <span className="speed-value">{sessionTotal.value}</span>
                   <span className="speed-unit">{sessionTotal.unit}</span>
@@ -503,7 +510,7 @@ class Footer extends Component {
               {activeSwarms > 0 && (
                 <span className="slskdn-footer-network-item active">
                   <Icon name="bolt" />
-                  {activeSwarms} <LocalizedText source={"swarm"} />{activeSwarms === 1 ? '' : <LocalizedText source={"s"} />}
+                  {activeSwarms} <LocalizedText source={activeSwarms === 1 ? "swarm" : "swarms"} />
                 </span>
               )}
               {backfillActive && (
@@ -532,11 +539,9 @@ class Footer extends Component {
                     : 'slskdn-footer-stat-icon'
                 }
                 name="sitemap"
-                title={
-                  isLoggedIn && stats
-                    ? `DHT Nodes: ${stats.dht}`
-                    : 'DHT: Login to see stats'
-                }
+                title={isLoggedIn && stats
+                  ? interfaceText('DHT Nodes: {count}', { count: stats.dht })
+                  : interfaceText('DHT: Login to see stats')}
               />
               <Icon
                 className={
@@ -554,11 +559,9 @@ class Footer extends Component {
                     : 'slskdn-footer-stat-icon'
                 }
                 name="globe"
-                title={
-                  isLoggedIn && stats
-                    ? `Overlay Peers: ${stats.overlay}`
-                    : 'Overlay: Login to see stats'
-                }
+                title={isLoggedIn && stats
+                  ? interfaceText('Overlay Peers: {count}', { count: stats.overlay })
+                  : interfaceText('Overlay: Login to see stats')}
               />
             </div>
           </div>

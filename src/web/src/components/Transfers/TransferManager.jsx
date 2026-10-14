@@ -54,6 +54,14 @@ const STATUS_FILTERS = [
   },
 ];
 
+const FILTER_HELP_SOURCES = {
+  all: 'Show transfers in every status.',
+  active: 'Show only active transfers so you can focus on that part of the queue.',
+  queued: 'Show only queued transfers so you can focus on that part of the queue.',
+  completed: 'Show only completed transfers so you can focus on that part of the queue.',
+  failed: 'Show only failed transfers so you can focus on that part of the queue.',
+};
+
 const RECONCILE_INTERVAL_MS = 15_000;
 const ACTIVE_TRANSFER_PAGE_SIZE = 100;
 const HISTORY_PAGE_SIZE = 250;
@@ -395,7 +403,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       status.hasMore = page.hasMore;
     } catch (error) {
       console.error('active transfer page failed', error);
-      toast.error('Could not load more transfers');
+      toast.error(interfaceText('Could not load more transfers'));
     } finally {
       status.loading = false;
       setHistoryVersion((version) => version + 1);
@@ -690,8 +698,8 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       setAcceleratedEnabled(status?.enabled ?? enabled);
       toast.info(
         enabled
-          ? 'Accelerated mode enabled. Slow or stalled downloads can use verified alternate sources.'
-          : 'Accelerated mode disabled',
+          ? interfaceText('Accelerated mode enabled. Slow or stalled downloads can use verified alternate sources.')
+          : interfaceText('Accelerated mode disabled'),
       );
     } catch (error) {
       console.error('Failed to toggle accelerated mode:', error);
@@ -849,9 +857,12 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
             style={{ fontSize: '0.78em', padding: '0.3em 0.6em' }}
             title={
               connected
-                ? 'Live transfer feed connected'
-                : 'Live feed disconnected — using periodic refresh'
+                ? interfaceText('Live transfer feed connected')
+                : interfaceText('Live feed disconnected — using periodic refresh')
             }
+            {...interfaceTextProps(connected
+              ? 'Live transfer feed connected'
+              : 'Live feed disconnected — using periodic refresh')}
           >
             <span
               className={`transfer-feed-dot ${connected ? 'is-live' : 'is-offline'}`}
@@ -891,10 +902,9 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
           <div className="transfer-filter-chips">
             {STATUS_FILTERS.map((filter) => (
               <Popup
-                content={filter.key === 'all'
-                  ? 'Show transfers in every status.'
-                  : `Show only ${filter.label.toLowerCase()} transfers so you can focus on that part of the queue.`}
+                content={interfaceText(FILTER_HELP_SOURCES[filter.key])}
                 key={filter.key}
+                {...interfaceTextProps(FILTER_HELP_SOURCES[filter.key])}
                 trigger={(
                   <button
                     className={`transfer-chip${
@@ -940,10 +950,12 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
           )}
           {activePageStatus.hasMore && (
             <Popup
-              content="Load the next 100 active and unsuccessful transfer records from the server. Selection and live updates are retained as more rows arrive."
+              content={interfaceText('Load the next 100 active and unsuccessful transfer records from the server. Selection and live updates are retained as more rows arrive.')}
               trigger={(
                 <Button
-                  content="Load more transfers"
+                  content={t('Load more transfers')}
+                  lang={languageFor('Load more transfers')}
+                  dir={directionFor('Load more transfers')}
                   disabled={activePageStatus.loading}
                   icon="ellipsis horizontal"
                   loading={activePageStatus.loading}
@@ -951,6 +963,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
                   size="small"
                 />
               )}
+             {...interfaceTextProps('Load the next 100 active and unsuccessful transfer records from the server. Selection and live updates are retained as more rows arrive.')}
             />
           )}
         </div>

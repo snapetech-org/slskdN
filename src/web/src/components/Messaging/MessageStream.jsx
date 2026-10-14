@@ -112,7 +112,7 @@ const getErrorText = (error) => {
   if (data && typeof data === 'object') {
     return data.detail || data.message || data.error || data.title || JSON.stringify(data);
   }
-  return error?.message || 'The message history could not be loaded.';
+  return error?.message || interfaceText("The message history could not be loaded.");
 };
 
 const autolink = (text) => {

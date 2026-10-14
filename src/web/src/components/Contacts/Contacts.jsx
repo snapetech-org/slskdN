@@ -44,7 +44,7 @@ const getErrorMessage = (error, fallback = 'Request failed') => {
       JSON.stringify(data);
   }
 
-  return error?.message || fallback;
+  return error?.message || interfaceText(fallback);
 };
 
 const normalizeContact = (contact) =>
@@ -181,7 +181,7 @@ class Contacts extends Component {
       const data = isObject(response.data) ? response.data : {};
       const inviteLink = typeof data.inviteLink === 'string' ? data.inviteLink : '';
       if (!inviteLink) {
-        throw new Error('Identity invite response did not include an invite link.');
+        throw new Error(interfaceText('Identity invite response did not include an invite link.'));
       }
 
       const inviteQrDataUrl = inviteLink
@@ -201,10 +201,10 @@ class Contacts extends Component {
     } catch (error) {
       console.error('[Contacts] Create invite error:', error);
       // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message || 'Failed to create invite';
+      let errorMessage = error.message || interfaceText('Failed to create invite');
       if (error.response) {
         const status = error.response.status;
-        const url = error.response.config?.url || 'unknown';
+        const url = error.response.config?.url || interfaceText('Unknown');
         const contentLength = error.response.headers['content-length'];
 
         console.error('[Contacts] Response status:', status);
@@ -234,22 +234,27 @@ class Contacts extends Component {
           }
         } else if (status === 400) {
           // 400 with empty body likely means CSRF validation failed or user identity missing
-          errorMessage =
-            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.';
+          errorMessage = interfaceText(
+            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.',
+          );
         } else if (status === 401) {
-          errorMessage = 'Authentication required. Please refresh the page.';
+          errorMessage = interfaceText('Authentication required. Please refresh the page.');
         } else if (status === 403) {
-          errorMessage = 'Not authorized.';
+          errorMessage = interfaceText('Not authorized.');
         } else if (status === 404) {
           // 404 could be route mismatch (double prefix bug) or feature disabled
           if (url.includes('/api/v0/api/v0')) {
-            errorMessage = `Endpoint not found: ${url} (possible route mismatch - check browser console)`;
+            errorMessage = interfaceText(
+              'Endpoint not found: {url} (possible route mismatch - check browser console)',
+              { url },
+            );
           } else {
-            errorMessage =
-              'Identity & Friends feature is not enabled, or endpoint not found.';
+            errorMessage = interfaceText(
+              'Identity & Friends feature is not enabled, or endpoint not found.',
+            );
           }
         } else if (status >= 500) {
-          errorMessage = 'Server error. Please check server logs.';
+          errorMessage = interfaceText('Server error. Please check server logs.');
         }
       }
 
@@ -257,14 +262,14 @@ class Contacts extends Component {
         createInviteModalOpen: false,
         error:
           errorMessage ||
-          'Failed to create invite. Please ensure Identity & Friends is enabled and configured.',
+          interfaceText('Failed to create invite. Please ensure Identity & Friends is enabled and configured.'),
         inviteQrDataUrl: null,
       });
     }
   };
 
   handleDeleteContact = async (id) => {
-    if (!window.confirm('Delete this contact?')) return;
+    if (!window.confirm(interfaceText('Delete this contact?'))) return;
     try {
       await identityAPI.deleteContact(id);
       await this.loadContacts();
@@ -381,7 +386,7 @@ class Contacts extends Component {
                       data-testid={`contact-row-${contact.nickname || contact.peerId.slice(0, 8)}`}
                       key={contact.id}
                     >
-                      <Table.Cell>{contact.nickname || 'Unnamed'}</Table.Cell>
+                      <Table.Cell>{contact.nickname || interfaceText('Unnamed')}</Table.Cell>
                       <Table.Cell>
                         <code style={{ fontSize: '0.85em' }}>
                           {contact.peerId.slice(0, 16)}...
@@ -405,7 +410,9 @@ class Contacts extends Component {
                             content={interfaceText("Open a private chat with this contact.")}
                             trigger={
                               <Button
-                                aria-label={`Chat with ${contact.nickname || contact.peerId}`}
+                                aria-label={interfaceText('Chat with {contact}', {
+                                  contact: contact.nickname || contact.peerId,
+                                })}
                                 icon="chat"
                                 onClick={() => this.openChat(contact)}
                               />
@@ -415,7 +422,9 @@ class Contacts extends Component {
                             content={interfaceText("Browse this contact's shared files.")}
                             trigger={
                               <Button
-                                aria-label={`Browse files shared by ${contact.nickname || contact.peerId}`}
+                                aria-label={interfaceText('Browse files shared by {contact}', {
+                                  contact: contact.nickname || contact.peerId,
+                                })}
                                 icon="folder open"
                                 onClick={() => this.browseContact(contact)}
                               />
@@ -425,7 +434,9 @@ class Contacts extends Component {
                             content={interfaceText("Remove this saved contact.")}
                             trigger={
                               <Button
-                                aria-label={`Remove ${contact.nickname || contact.peerId} as a contact`}
+                                aria-label={interfaceText('Remove {contact} as a contact', {
+                                  contact: contact.nickname || contact.peerId,
+                                })}
                                 icon="trash"
                                 negative
                                 onClick={() =>
@@ -638,7 +649,7 @@ class Contacts extends Component {
                     placeholder={interfaceText("Contact name")}
                     type="text"
                     value={nearbyNickname}
-                   {...interfaceTextProps("Contact name")}/>
+                   {...interfaceTextProps("Nickname")}/>
                 </Form.Field>
               </Form>
               {nearbyAddError && (
@@ -749,7 +760,7 @@ class AddFriendForm extends Component {
     try {
       if (!('BarcodeDetector' in window) || !window.createImageBitmap) {
         throw new Error(
-          'This browser does not support QR scanning from images yet.',
+          interfaceText('This browser does not support QR scanning from images yet.'),
         );
       }
 
@@ -762,7 +773,7 @@ class AddFriendForm extends Component {
         )?.rawValue;
 
         if (!inviteLink) {
-          throw new Error('No slskdN invite QR code was found in that image.');
+          throw new Error(interfaceText('No slskdN invite QR code was found in that image.'));
         }
 
         this.setState({ inviteLink, scanError: null });
@@ -770,7 +781,7 @@ class AddFriendForm extends Component {
         bitmap.close?.();
       }
     } catch (error) {
-      this.setState({ scanError: error.message || 'QR scan failed.' });
+      this.setState({ scanError: error.message || interfaceText('QR scan failed.') });
     } finally {
       event.target.value = '';
       this.setState({ scanning: false });

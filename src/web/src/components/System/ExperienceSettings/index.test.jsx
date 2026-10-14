@@ -4,8 +4,15 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { setInterfaceLanguage, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 
 const storageKey = 'slskdn:experience-preferences:v1';
+const interfaceLanguageStorageKey = 'slskdn.interface-language';
+
+const ActiveLanguage = () => {
+  const { language } = useInterfaceLanguage();
+  return <span data-testid="active-language">{language}</span>;
+};
 
 describe('ExperienceSettings', () => {
   beforeEach(() => {
@@ -100,6 +107,19 @@ describe('ExperienceSettings', () => {
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
       expect.stringContaining('Search: album_candidates=true'),
     );
+  });
+
+  it('clears the separately stored interface-language override on reset', () => {
+    setInterfaceLanguage('fr');
+    localStorage.setItem(storageKey, JSON.stringify({ regionalFormat: 'de' }));
+    render(<><ExperienceSettings /><ActiveLanguage /></>);
+
+    expect(screen.getByTestId('active-language')).toHaveTextContent('fr');
+    fireEvent.click(screen.getByRole('button', { name: 'Réinitialiser' }));
+
+    expect(localStorage.getItem(interfaceLanguageStorageKey)).toBeNull();
+    expect(localStorage.getItem(storageKey)).toBeNull();
+    expect(screen.getByTestId('active-language')).toHaveTextContent('en');
   });
 
   it('reports clipboard failures instead of claiming the report was copied', async () => {

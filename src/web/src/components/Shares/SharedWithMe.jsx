@@ -39,7 +39,7 @@ const getErrorMessage = (error, fallback) => {
       JSON.stringify(data);
   }
 
-  return error?.message || fallback;
+  return error?.message || interfaceText(fallback);
 };
 
 const normalizeBackfillResult = (data) =>
@@ -225,7 +225,7 @@ export default class SharedWithMe extends Component {
     const popup = window.open('about:blank', '_blank');
     if (!popup) {
       this.setState({
-        streamError: 'Allow pop-ups for this site to open the secure stream.',
+        streamError: interfaceText('Allow pop-ups for this site to open the secure stream.'),
       });
       return;
     }
@@ -245,7 +245,7 @@ export default class SharedWithMe extends Component {
       if (!popup.closed) popup.close();
       this.setState({
         streamError: error instanceof TypeError
-          ? 'Could not reach the share owner to prepare a secure stream. The owner may be offline or its CORS settings may not allow this app.'
+          ? interfaceText('Could not reach the share owner to prepare a secure stream. The owner may be offline or its CORS settings may not allow this app.')
           : getErrorMessage(error, 'Could not prepare a secure stream.'),
       });
     }
@@ -265,10 +265,10 @@ export default class SharedWithMe extends Component {
       });
 
       if (backfillResult.failed === 0) {
-        toast.success(backfillResult.message || 'Backfill started successfully');
+        toast.success(backfillResult.message || interfaceText('Backfill started successfully'));
       } else {
         toast.warning(
-          backfillResult.message || 'Backfill started with some failures',
+          backfillResult.message || interfaceText('Backfill started with some failures'),
         );
       }
     } catch (error) {
@@ -366,8 +366,6 @@ export default class SharedWithMe extends Component {
             <Table.Body>
               {visibleShares.map((share) => {
                 const ownerNickname = this.getOwnerNickname(share.collection);
-                const displayName =
-                  ownerNickname || share.collection?.ownerUserId || 'Unknown';
 
                 return (
                   <Table.Row
@@ -375,7 +373,7 @@ export default class SharedWithMe extends Component {
                     key={share.id}
                   >
                     <Table.Cell>
-                      <strong>{share.collection?.title || 'Untitled'}</strong>
+                      <strong>{share.collection?.title || interfaceText('Untitled')}</strong>
                       {share.collection?.description && (
                         <div
                           style={{
@@ -397,10 +395,12 @@ export default class SharedWithMe extends Component {
                           {ownerNickname}
                         </Label>
                       )}
-                      <span>{share.collection?.ownerUserId || 'Unknown'}</span>
+                      <span>{share.collection?.ownerUserId || interfaceText('Unknown')}</span>
                     </Table.Cell>
                     <Table.Cell>
-                      {share.collection?.type || 'ShareList'}
+                      {share.collection?.type === 'ShareList' || !share.collection?.type
+                        ? interfaceText('Share List')
+                        : share.collection.type}
                     </Table.Cell>
                     <Table.Cell>
                       {share.allowStream && <Label color="green"><LocalizedText source={"Stream"} /></Label>}
@@ -467,7 +467,7 @@ export default class SharedWithMe extends Component {
           <Modal.Header>
             {selectedShare?.collection?.title ||
               manifest?.title ||
-              'Collection Contents'}
+              interfaceText('Collection Contents')}
             {manifest?.ownerContactNickname && (
               <span
                 style={{
@@ -539,11 +539,11 @@ export default class SharedWithMe extends Component {
                               <code style={{ fontSize: '0.85em' }}>
                                 {item.fileName ||
                                   item.contentId?.slice(0, 32) ||
-                                  'Unknown'}
+                                  interfaceText('Unknown')}
                               </code>
                             </Table.Cell>
                             <Table.Cell>
-                              {item.mediaKind || 'Unknown'}
+                              {item.mediaKind || interfaceText('Unknown')}
                             </Table.Cell>
                             <Table.Cell>
                               {item.streamUrl && (
@@ -603,7 +603,7 @@ export default class SharedWithMe extends Component {
                 )}
               </div>
             ) : (
-              <ErrorSegment caption="Failed to load manifest" />
+              <ErrorSegment caption="Failed to load manifest" translateCaption />
             )}
           </Modal.Content>
           <Modal.Actions>

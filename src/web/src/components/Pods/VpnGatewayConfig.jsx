@@ -130,7 +130,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
       setSuccess(interfaceText("VPN policy updated successfully"));
     } catch (error) {
       console.error('Failed to update VPN policy:', error);
-      setError(error.message || 'Failed to update VPN policy');
+      setError(error.message || interfaceText('Failed to update VPN policy'));
     } finally {
       setSaving(false);
     }
@@ -376,8 +376,8 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                       icon="trash"
                       onClick={() => handleRemoveDestination(index)}
                       size="small"
-                      tooltip={`Remove ${destination.hostPattern}:${destination.port} from the draft policy. Save the VPN configuration to stop allowing this route.`}
-                     {...interfaceTextProps("Remove allowed destination {hostPattern}:{port}")}/>
+                      tooltip="Remove {hostPattern}:{port} from the draft policy. Save the VPN configuration to stop allowing this route."
+                     {...interfaceTextProps("Remove allowed destination {hostPattern}:{port}", { hostPattern: destination.hostPattern, port: destination.port })}/>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -441,8 +441,8 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                       icon="trash"
                       onClick={() => handleRemoveService(index)}
                       size="small"
-                      tooltip={`Remove ${service.name} from the draft service list. Save the VPN configuration to stop advertising this route to pod members.`}
-                     {...interfaceTextProps("Remove registered service {name}")}/>
+                      tooltip="Remove {name} from the draft service list. Save the VPN configuration to stop advertising this route to pod members."
+                     {...interfaceTextProps("Remove registered service {name}", { name: service.name })}/>
                   </Table.Cell>
                 </Table.Row>
               ))}

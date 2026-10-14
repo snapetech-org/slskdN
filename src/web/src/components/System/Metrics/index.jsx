@@ -186,7 +186,7 @@ const Metrics = () => {
       setMetrics(data);
       setLastUpdated(new Date());
     } catch (err) {
-      setError(err?.response?.data?.message || err.message || 'Failed to load metrics');
+      setError(err?.response?.data?.message || err.message || interfaceText('Failed to load metrics'));
     } finally {
       setLoading(false);
     }
@@ -230,7 +230,12 @@ const Metrics = () => {
           <LocalizedText source={"Prometheus Metrics"} /></Header>
         <div className="system-metrics-refresh">
           {lastUpdated && (
-            <span><LocalizedText source={"Updated"} />{" "}{lastUpdated.toLocaleTimeString(regionalLocale)}</span>
+            <span>
+              <LocalizedText
+                source="Updated {time}"
+                values={{ time: lastUpdated.toLocaleTimeString(regionalLocale) }}
+              />
+            </span>
           )}
           <Popup
             content={interfaceText("Fetch the latest Prometheus metrics now to review current application activity.")}

@@ -98,7 +98,7 @@ const Rooms = () => {
     const tabKey = `room-tab-${tabCounter}`;
     return {
       key: tabKey,
-      label: roomName || 'New Room Tab',
+      label: roomName || interfaceText('New Room Tab'),
       roomName,
     };
   }, []);
@@ -251,7 +251,10 @@ const Rooms = () => {
       openRoomTab(roomName);
     } catch (error) {
       console.error('Failed to join room:', error);
-      toast.error(`Failed to join room "${roomName}": ${error?.message ?? error}`);
+      toast.error(interfaceText('Failed to join room "{roomName}": {message}', {
+        roomName,
+        message: error?.message ?? String(error),
+      }));
     }
   };
 
@@ -275,7 +278,7 @@ const Rooms = () => {
 
   const createRoom = async (roomName, isPrivate) => {
     if (isPrivate) {
-      throw new Error('Private room creation is not supported by this server API');
+      throw new Error(interfaceText('Private room creation is not supported by this server API.'));
     }
 
     await joinRoom(roomName);
@@ -314,7 +317,7 @@ const Rooms = () => {
         .sort((a, b) => (b.userCount || 0) - (a.userCount || 0))
         .slice(0, 100)
         .map((r) => ({
-          description: r.isPrivate ? 'Private' : '',
+          description: r.isPrivate ? interfaceText('Private') : '',
           key: r.name,
           text: `${r.name} (${r.userCount} users)`,
           value: r.name,
@@ -340,8 +343,8 @@ const Rooms = () => {
             }}
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
-            tooltip={`Close the ${tab.label} room tab without leaving the Soulseek room.`}
-           {...interfaceTextProps("Close {label} room tab")}>
+            tooltip="Close the {label} room tab without leaving the Soulseek room."
+           {...interfaceTextProps("Close {label} room tab", { label: tab.label })}>
             <Icon name="close" />
           </TooltipButton>
         )}

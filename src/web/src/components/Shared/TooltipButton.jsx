@@ -17,7 +17,12 @@ const getText = (children) => {
   }
 
   if (Array.isArray(children)) {
-    return children.filter((child) => typeof child === 'string').join(' ').trim();
+    return children.map(getText).filter(Boolean).join(' ').trim();
+  }
+
+  if (React.isValidElement(children)) {
+    const { source, children: nestedChildren } = children.props || {};
+    return typeof source === 'string' ? source : getText(nestedChildren);
   }
 
   return '';

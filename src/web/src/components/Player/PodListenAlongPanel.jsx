@@ -151,24 +151,24 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
       if (error?.name === 'AbortError' || error?.code === 'ERR_CANCELED') return;
       if (mountedRef.current && requestId === publishRequestRef.current) {
         setPublishError(error?.message === 'Stop the active broadcast before starting another room.'
-          ? error.message
+          ? interfaceText('Stop the active broadcast before starting another room.')
           : error?.response?.status === 429
-          ? 'Room updates are at capacity. Retry later.'
+          ? interfaceText('Room updates are at capacity. Retry later.')
           : error?.response?.status === 409 && error?.response?.data?.code === 'party_id_in_use'
-            ? 'This Party ID is already in use. Start the broadcast again to claim a new ID.'
+            ? interfaceText('This Party ID is already in use. Start the broadcast again to claim a new ID.')
           : error?.response?.status === 403
-            ? 'Room access was revoked. Rejoin before broadcasting.'
+            ? interfaceText('Room access was revoked. Rejoin before broadcasting.')
           : error?.response?.status === 404
-            ? 'This room is unavailable. Choose an existing room.'
+            ? interfaceText('This room is unavailable. Choose an existing room.')
           : error?.response?.data?.code === 'room_storage_unavailable'
-              ? 'The room update could not be saved. Try again.'
+              ? interfaceText('The room update could not be saved. Try again.')
               : error?.response?.data?.code === 'party_directory_unavailable'
-                ? 'Party ID ownership could not be checked. Try again.'
+                ? interfaceText('Party ID ownership could not be checked. Try again.')
               : action === 'stop'
-          ? 'Could not stop the room broadcast. Try again.'
+          ? interfaceText('Could not stop the room broadcast. Try again.')
           : updatingSettings
-            ? 'Could not confirm broadcast settings. Retry to apply the requested settings.'
-            : 'Could not start the room broadcast. Try again.');
+            ? interfaceText('Could not confirm broadcast settings. Retry to apply the requested settings.')
+            : interfaceText('Could not start the room broadcast. Try again.'));
       }
     });
   };
@@ -254,15 +254,18 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           <Popup
             content={
               partyState
-                ? `${partyState.hostPeerId} ${partyState.action}: ${partyState.title || partyState.contentId}`
-                : 'No active room broadcast'
+                ? interfaceText('{hostPeerId} {action}: {title}', {
+                  action: partyState.action,
+                  hostPeerId: partyState.hostPeerId,
+                  title: partyState.title || partyState.contentId,
+                })
+                : interfaceText('No active room broadcast')
             }
             trigger={
               <span
-                aria-label={connected ? 'Listen Along live' : connectionPending ? 'Listen Along connecting' : 'Listen Along offline'}
                 className={`pod-listen-along-orb ${connected ? 'pod-listen-along-orb-live' : ''}`}
                 role="status"
-                title={connected ? 'Listen Along live' : connectionPending ? 'Listen Along connecting' : 'Listen Along offline'}
+               {...interfaceTextProps(connected ? 'Listen Along live' : connectionPending ? 'Listen Along connecting' : 'Listen Along offline')}
               />
             }
           />
@@ -274,8 +277,11 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           {retryConnection}
           <Popup
             content={player.playerVisible === false
+              ? interfaceText('Show the browser player before following this room.')
+              : interfaceText("Follow this room's broadcast using your own stream access.")}
+            {...interfaceTextProps(player.playerVisible === false
               ? 'Show the browser player before following this room.'
-              : "Follow this room's broadcast using your own stream access."}
+              : "Follow this room's broadcast using your own stream access.")}
             trigger={
               <Button
                 active={following}
@@ -372,12 +378,20 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           <strong><LocalizedText source={"Listen Along"} /></strong>
           <div className="pod-listen-along-state">
             {partyState
-              ? `${partyState.hostPeerId} ${partyState.action}: ${partyState.title || partyState.contentId}`
+              ? interfaceText('{hostPeerId} {action}: {title}', {
+                action: partyState.action,
+                hostPeerId: partyState.hostPeerId,
+                title: partyState.title || partyState.contentId,
+              })
               : <LocalizedText source={"No active party"} />}
           </div>
         </div>
         <Label color={connected ? 'green' : 'grey'}>
-          {connected ? <LocalizedText source={"Live"} /> : connectionPending ? 'Connecting' : 'Offline'}
+          {connected
+            ? <LocalizedText source={"Live"} />
+            : connectionPending
+              ? <LocalizedText source={"Connecting"} />
+              : <LocalizedText source={"Offline"} />}
         </Label>
         {retryConnection}
       </div>
@@ -414,8 +428,11 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
       <Button.Group size="small">
         <Popup
           content={player.playerVisible === false
+            ? interfaceText('Show the browser player before following this pod.')
+            : interfaceText("Follow this pod's host playback using your own stream access.")}
+          {...interfaceTextProps(player.playerVisible === false
             ? 'Show the browser player before following this pod.'
-            : "Follow this pod's host playback using your own stream access."}
+            : "Follow this pod's host playback using your own stream access.")}
           trigger={
             <Button
               active={following}

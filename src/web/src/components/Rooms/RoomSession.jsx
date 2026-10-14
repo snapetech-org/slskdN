@@ -450,7 +450,7 @@ class RoomSession extends Component {
                   compact
                   icon
                   onClick={() => onLeaveRoom && onLeaveRoom(roomName)}
-                  tooltip={`Send a leave request for ${roomName} to the Soulseek server and close this room view.`}
+                  tooltip={interfaceText('Send a leave request for {roomName} to the Soulseek server and close this room view.', { roomName })}
                  {...interfaceTextProps("Leave {roomName}")}>
                   <Icon color="red" name="close" />
                 </TooltipButton>
@@ -481,7 +481,7 @@ class RoomSession extends Component {
                 compact
                 icon
                 onClick={() => onLeaveRoom && onLeaveRoom(roomName)}
-                tooltip={`Send a leave request for ${roomName} to the Soulseek server and close this room view.`}
+                tooltip={interfaceText('Send a leave request for {roomName} to the Soulseek server and close this room view.', { roomName })}
                {...interfaceTextProps("Leave {roomName}")}>
                 <Icon color="red" name="close" />
               </TooltipButton>

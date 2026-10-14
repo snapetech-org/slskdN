@@ -21,11 +21,11 @@ const getConnectionStatus = (server) => {
 const SystemOverview = ({ state = {} }) => {
   useInterfaceLanguage();
   const connection = getConnectionStatus(state.server);
-  const version = state.version?.current || state.version?.full || 'Unavailable';
+  const version = state.version?.current || state.version?.full || interfaceText('Unavailable');
   const pendingActions = [
-    state.pendingRestart && 'Restart required',
-    state.pendingReconnect && 'Reconnect required',
-    state.shares?.scanPending && 'Share scan pending',
+    state.pendingRestart && interfaceText('Restart required'),
+    state.pendingReconnect && interfaceText('Reconnect required'),
+    state.shares?.scanPending && interfaceText('Share scan pending'),
   ].filter(Boolean);
 
   return (
@@ -49,7 +49,7 @@ const SystemOverview = ({ state = {} }) => {
             {connection.label}
           </strong>
           <span className="system-overview-detail">
-            {state.user?.username || 'Account status unavailable'}
+            {state.user?.username || interfaceText('Account status unavailable')}
           </span>
         </article>
         <article className="system-overview-card">

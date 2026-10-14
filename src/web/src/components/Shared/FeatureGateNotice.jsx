@@ -1,5 +1,4 @@
 import LocalizedText from "./LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import React from 'react';
 import { Message } from 'semantic-ui-react';
 
@@ -8,10 +7,12 @@ const FeatureGateNotice = ({ configurationKeys = [], featureGate, featureName })
 
   return (
     <Message info role="status" size="small">
-      <Message.Header>{featureName} <LocalizedText source={"is disabled"} /></Message.Header>
+      <Message.Header>
+        <LocalizedText source={"{featureName} is disabled"} values={{ featureName }} />
+      </Message.Header>
       <p>
         {featureGate.message ||
-          'This feature is disabled in the server’s effective settings.'}
+          <LocalizedText source={"This feature is disabled in the server’s effective settings."} />}
       </p>
       {configurationKeys.length > 0 && (
         <p>

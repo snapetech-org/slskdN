@@ -93,7 +93,7 @@ const getBrowseErrorMessage = (error) => {
     return data.detail || data.message || data.error || data.title;
   }
 
-  return error?.message || 'Browse failed';
+  return error?.message || interfaceText('Browse failed');
 };
 
 // Cleanup old browse cache entries using LRU strategy
@@ -564,9 +564,10 @@ class BrowseSession extends Component {
 
     if (
       // eslint-disable-next-line no-alert
-      window.confirm(
-        `Download ${filesToDownload.length} files from ${directory.name}?`,
-      )
+      window.confirm(interfaceText(
+        'Download {count} files from {directory}?',
+        { count: filesToDownload.length, directory: directory.name },
+      ))
     ) {
       transfers
         .download({
@@ -579,7 +580,7 @@ class BrowseSession extends Component {
         })
         .catch((error) => {
           console.error(error);
-          toast.error(`Failed to queue download: ${error?.message || error}`);
+          toast.error(interfaceText('Failed to queue download: {message}', { message: error?.message || String(error) }));
         });
     }
   };
@@ -628,17 +629,17 @@ class BrowseSession extends Component {
               !pending && (
                 <Popup
                   content={
-                    browseState === 'idle'
+                    interfaceText(browseState === 'idle'
                       ? "Browse this Soulseek user's shared files."
-                      : 'Clear this browse result and enter another username.'
+                      : 'Clear this browse result and enter another username.')
                   }
                   position="top center"
                   trigger={
                     <Button
                       aria-label={
-                        browseState === 'idle'
+                        interfaceText(browseState === 'idle'
                           ? 'Browse user files'
-                          : 'Clear browse result'
+                          : 'Clear browse result')
                       }
                       color={browseState === 'idle' ? undefined : 'red'}
                       icon={browseState === 'idle' ? 'search' : 'x'}
@@ -678,7 +679,10 @@ class BrowseSession extends Component {
           <div>
             {browseError ? (
               <span className="browse-error">
-                <LocalizedText source={"Failed to browse"} />{" "}{username}: {browseError}
+                <LocalizedText
+                  source="Failed to browse {username}: {message}"
+                  values={{ username, message: browseError }}
+                />
               </span>
             ) : (
               <div className="browse-container">
@@ -724,8 +728,8 @@ class BrowseSession extends Component {
                                 icon
                                 size="small"
                                 style={{ marginLeft: '4px', opacity: 0.5 }}
-                                tooltip={`Open your local note and color rating for ${username}.`}
-                               {...interfaceTextProps("Edit user note for {username}")}>
+                                tooltip="Open your local note and color rating for {username}."
+                               {...interfaceTextProps("Edit user note for {username}", { username })}>
                                 <Icon color="grey" name="pencil alternate" />
                               </TooltipButton>
                             }
@@ -738,8 +742,8 @@ class BrowseSession extends Component {
                           compact
                           icon
                           onClick={this.handleRefresh}
-                          tooltip={`Request ${username}'s current shared file list from Soulseek and refresh this browse view.`}
-                         {...interfaceTextProps("Refresh {username}'s shared files")}>
+                          tooltip="Request {username}'s current shared file list from Soulseek and refresh this browse view."
+                         {...interfaceTextProps("Refresh {username}'s shared files", { username })}>
                           <Icon name="refresh" />
                         </TooltipButton>
                       </Card.Header>

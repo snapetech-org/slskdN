@@ -528,7 +528,7 @@ const NotificationIntegrationsPanel = ({ options }) => {
           <Segment>
             <Header as="h4">
               <Icon name="rss" />
-              <LocalizedText source={"Ntfy"} /></Header>
+              <LocalizedText source={"ntfy"} /></Header>
             <Popup
               content={interfaceText("Turn on Ntfy delivery for enabled notification triggers.")}
               trigger={
@@ -556,11 +556,9 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 disabled={!remoteConfiguration || saving}
                 label={interfaceText("Access Token")}
                 onChange={(_, { value }) => update('ntfyAccessToken', value)}
-                placeholder={
-                  form.ntfyAccessTokenConfigured
-                    ? 'Configured'
-                    : 'Optional Ntfy token'
-                }
+                placeholder={interfaceText(form.ntfyAccessTokenConfigured
+                  ? 'Configured'
+                  : 'Optional Ntfy token')}
                 type="password"
                 value={form.ntfyAccessToken}
                {...interfaceTextProps("Ntfy access token")}/>
@@ -640,11 +638,9 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 disabled={!remoteConfiguration || saving}
                 label={interfaceText("API Token")}
                 onChange={(_, { value }) => update('pushoverToken', value)}
-                placeholder={
-                  form.pushoverTokenConfigured
-                    ? 'Configured'
-                    : 'Pushover application token'
-                }
+                placeholder={interfaceText(form.pushoverTokenConfigured
+                  ? 'Configured'
+                  : 'Pushover application token')}
                 type="password"
                 value={form.pushoverToken}
                {...interfaceTextProps("Pushover API token")}/>

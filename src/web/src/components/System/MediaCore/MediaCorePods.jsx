@@ -883,7 +883,9 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         checkPodId,
       );
       toast.success(
-        `Message registered as seen: ${result.wasNewlyRegistered ? 'New' : 'Already known'}`,
+        interfaceText('Message registered as seen: {status}', {
+          status: interfaceText(result.wasNewlyRegistered ? 'New' : 'Already known'),
+        }),
       );
     } catch (error_) {
       toast.error(interfaceText("Failed to register message: {message}", { "message": (error_.message) }));
@@ -1008,8 +1010,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.rebuildSearchIndex();
       toast.success(
         result
-          ? 'Search index rebuilt successfully'
-          : 'Search index rebuild failed',
+          ? interfaceText('Search index rebuilt successfully')
+          : interfaceText('Search index rebuild failed'),
       );
     } catch (error_) {
       toast.error(interfaceText("Failed to rebuild search index: {message}", { "message": (error_.message) }));
@@ -1024,8 +1026,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.vacuumDatabase();
       toast.success(
         result
-          ? 'Database vacuum completed successfully'
-          : 'Database vacuum failed',
+          ? interfaceText('Database vacuum completed successfully')
+          : interfaceText('Database vacuum failed'),
       );
     } catch (error_) {
       toast.error(interfaceText("Failed to vacuum database: {message}", { "message": (error_.message) }));
@@ -1566,7 +1568,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   value={podMetadataToRetrieve}
                  {...interfaceTextProps("Pod ID")}/>
                 <Button
-                  tooltip="Query the DHT for this pod’s signed metadata so you can inspect the record participants may discover. This is a manual lookup."
+                  tooltip={interfaceText("Query the DHT for this pod’s signed metadata so you can inspect the record participants may discover. This is a manual lookup.")}
                   disabled={
                     retrievingPodMetadata || !podMetadataToRetrieve.trim()
                   }
@@ -1638,7 +1640,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={podToPublish}
                      {...interfaceTextProps("Pod JSON")} dir="ltr"/>
                     <Button
-                      tooltip="Publish this pod metadata to the DHT so mesh participants can discover it. Review its visibility, tags, and focus content before publishing."
+                      tooltip={interfaceText("Publish this pod metadata to the DHT so mesh participants can discover it. Review its visibility, tags, and focus content before publishing.")}
                       disabled={publishingPod || !podToPublish.trim()}
                       loading={publishingPod}
                       onClick={handlePublishPod}
@@ -1694,7 +1696,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={podToUnpublish}
                      {...interfaceTextProps("Pod ID")}/>
                     <Button
-                      tooltip="Remove this pod’s metadata from the DHT so discovery no longer advertises it. Use this when you want to withdraw a listing."
+                      tooltip={interfaceText("Remove this pod’s metadata from the DHT so discovery no longer advertises it. Use this when you want to withdraw a listing.")}
                       color="red"
                       disabled={unpublishingPod || !podToUnpublish.trim()}
                       fluid
@@ -1728,7 +1730,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Button.Group fluid>
                 <Button
-                  tooltip="Load publication counts and timing so you can review recent pod metadata publishing activity."
+                  tooltip={interfaceText("Load publication counts and timing so you can review recent pod metadata publishing activity.")}
                   disabled={loadingPodStats}
                   loading={loadingPodStats}
                   onClick={handleLoadPodPublishingStats}
@@ -1841,7 +1843,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                      {...interfaceTextProps("Peer ID")}/>
                     <Button.Group fluid>
                       <Button
-                        tooltip="Look up the selected peer’s membership record for this pod so you can review its role and status."
+                        tooltip={interfaceText("Look up the selected peer’s membership record for this pod so you can review its role and status.")}
                         disabled={
                           gettingMembership ||
                           !membershipPodId.trim() ||
@@ -1852,7 +1854,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       >
                         <LocalizedText source={"Get Membership"} /></Button>
                       <Button
-                        tooltip="Verify the selected peer’s signed membership record before relying on its role or ban status."
+                        tooltip={interfaceText("Verify the selected peer’s signed membership record before relying on its role or ban status.")}
                         disabled={
                           verifyingMembership ||
                           !membershipPodId.trim() ||
@@ -1958,7 +1960,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={banReason}
                      {...interfaceTextProps("Ban Reason (optional)")}/>
                     <Button
-                      tooltip="Ban the selected peer from this pod after reviewing the membership record and reason. This publishes a membership change."
+                      tooltip={interfaceText("Ban the selected peer from this pod after reviewing the membership record and reason. This publishes a membership change.")}
                       color="red"
                       disabled={
                         banningMember ||
@@ -1985,7 +1987,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={newRole}
                      {...interfaceTextProps("New Role")}/>
                     <Button
-                      tooltip="Change the selected peer’s pod role. Use this to grant or remove moderator or owner duties after verifying the peer."
+                      tooltip={interfaceText("Change the selected peer’s pod role. Use this to grant or remove moderator or owner duties after verifying the peer.")}
                       color="blue"
                       disabled={
                         changingRole ||
@@ -2038,7 +2040,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     value={membershipRecord}
                    {...interfaceTextProps("Membership Record JSON")}/>
                   <Button
-                    tooltip="Publish this signed membership record to the DHT so peers can verify participation and roles. Check peer IDs and key material first."
+                    tooltip={interfaceText("Publish this signed membership record to the DHT so peers can verify participation and roles. Check peer IDs and key material first.")}
                     disabled={publishingMembership || !membershipRecord.trim()}
                     loading={publishingMembership}
                     onClick={handlePublishMembership}
@@ -2091,7 +2093,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Button.Group fluid>
                 <Button
-                  tooltip="Load membership counts and expiration state so you can decide whether cleanup is needed."
+                  tooltip={interfaceText("Load membership counts and expiration state so you can decide whether cleanup is needed.")}
                   disabled={loadingMembershipStats}
                   loading={loadingMembershipStats}
                   onClick={handleLoadMembershipStats}
@@ -2105,7 +2107,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 <Message warning>
                   <LocalizedText source={"Cleanup removes expired membership records from local membership state. Load stats before running cleanup."} /></Message>
                 <Button
-                  tooltip="Remove expired membership records from local state to clear stale entries. Review membership stats first."
+                  tooltip={interfaceText("Remove expired membership records from local state to clear stale entries. Review membership stats first.")}
                   color="orange"
                   onClick={handleCleanupMemberships}
                 >
@@ -2208,7 +2210,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                    {...interfaceTextProps("Peer ID")}/>
                 </Form.Group>
                 <Button
-                  tooltip="Check the selected peer’s membership proof and signature for this pod before relying on the claimed membership."
+                  tooltip={interfaceText("Check the selected peer’s membership proof and signature for this pod before relying on the claimed membership.")}
                   disabled={
                     verifyingMembership ||
                     !verifyPodId.trim() ||
@@ -2266,7 +2268,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={messageToVerify}
                      {...interfaceTextProps("Pod Message JSON")}/>
                     <Button
-                      tooltip="Validate the supplied message signature so you can detect altered or untrusted pod messages."
+                      tooltip={interfaceText("Validate the supplied message signature so you can detect altered or untrusted pod messages.")}
                       disabled={verifyingMessage || !messageToVerify.trim()}
                       fluid
                       loading={verifyingMessage}
@@ -2342,7 +2344,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={requiredRole}
                      {...interfaceTextProps("Required Role")}/>
                     <Button
-                      tooltip="Check whether this peer has the required role in the selected pod before authorizing an operation."
+                      tooltip={interfaceText("Check whether this peer has the required role in the selected pod before authorizing an operation.")}
                       disabled={
                         checkingRole ||
                         !roleCheckPodId.trim() ||
@@ -2380,7 +2382,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
             <Card.Content>
               <Button.Group fluid>
                 <Button
-                  tooltip="Load local verification counts and timing so you can review membership and message signature checks."
+                  tooltip={interfaceText("Load local verification counts and timing so you can review membership and message signature checks.")}
                   disabled={loadingVerificationStats}
                   loading={loadingVerificationStats}
                   onClick={handleLoadVerificationStats}
@@ -2474,7 +2476,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={discoverByName}
                     />
                     <Button
-                      tooltip="Run a manual discovery lookup for pods matching this name. Use it to find a specific community; the query contacts the pod discovery service."
+                      tooltip={interfaceText("Run a manual discovery lookup for pods matching this name. Use it to find a specific community; the query contacts the pod discovery service.")}
                       disabled={discoveringByName || !discoverByName.trim()}
                       fluid
                       loading={discoveringByName}
@@ -2497,7 +2499,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p><LocalizedText source={"Found"} />{" "}{nameDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
+                          <p><LocalizedText source="Found {count} pods" values={{ count: nameDiscoveryResult.totalFound }} /></p>
                         </Message>
                       )}
                     </div>
@@ -2514,7 +2516,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={discoverByTag}
                      {...interfaceTextProps("electronic")}/>
                     <Button
-                      tooltip="Run a manual discovery lookup for pods with this tag. Use it to browse a topic; the query contacts the pod discovery service."
+                      tooltip={interfaceText("Run a manual discovery lookup for pods with this tag. Use it to browse a topic; the query contacts the pod discovery service.")}
                       disabled={discoveringByTag || !discoverByTag.trim()}
                       fluid
                       loading={discoveringByTag}
@@ -2537,7 +2539,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p><LocalizedText source={"Found"} />{" "}{tagDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
+                          <p><LocalizedText source="Found {count} pods" values={{ count: tagDiscoveryResult.totalFound }} /></p>
                         </Message>
                       )}
                     </div>
@@ -2554,7 +2556,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={discoverTags}
                      {...interfaceTextProps("electronic,french-house")}/>
                     <Button
-                      tooltip="Run a manual lookup for pods matching the entered tags. Use it to narrow discovery to a combination of topics."
+                      tooltip={interfaceText("Run a manual lookup for pods matching the entered tags. Use it to narrow discovery to a combination of topics.")}
                       disabled={discoveringByTags || !discoverTags.trim()}
                       fluid
                       loading={discoveringByTags}
@@ -2577,7 +2579,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p><LocalizedText source={"Found"} />{" "}{tagsDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
+                          <p><LocalizedText source="Found {count} pods" values={{ count: tagsDiscoveryResult.totalFound }} /></p>
                         </Message>
                       )}
                     </div>
@@ -2599,7 +2601,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={discoverLimit}
                      {...interfaceTextProps("Limit")}/>
                     <Button
-                      tooltip="Browse a bounded sample of discoverable pods. This performs a manual discovery request using the selected result limit."
+                      tooltip={interfaceText("Browse a bounded sample of discoverable pods. This performs a manual discovery request using the selected result limit.")}
                       disabled={discoveringAll}
                       fluid
                       loading={discoveringAll}
@@ -2622,7 +2624,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p><LocalizedText source={"Found"} />{" "}{allDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
+                          <p><LocalizedText source="Found {count} pods" values={{ count: allDiscoveryResult.totalFound }} /></p>
                         </Message>
                       )}
                     </div>
@@ -2643,7 +2645,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={discoverByContent}
                     />
                     <Button
-                      tooltip="Find pods linked to this content ID so you can browse communities about the item. This is a manual discovery lookup."
+                      tooltip={interfaceText("Find pods linked to this content ID so you can browse communities about the item. This is a manual discovery lookup.")}
                       disabled={
                         discoveringByContent || !discoverByContent.trim()
                       }
@@ -2668,7 +2670,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           size="tiny"
                           success
                         >
-                          <p><LocalizedText source={"Found"} />{" "}{contentDiscoveryResult.totalFound} <LocalizedText source={"pods"} /></p>
+                          <p><LocalizedText source="Found {count} pods" values={{ count: contentDiscoveryResult.totalFound }} /></p>
                         </Message>
                       )}
                     </div>
@@ -2680,14 +2682,14 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <Header size="small"><LocalizedText source={"Discovery Statistics"} /></Header>
                   <Button.Group fluid>
                     <Button
-                      tooltip="Load discovery index counts and freshness so you can review the current local index state."
+                      tooltip={interfaceText("Load discovery index counts and freshness so you can review the current local index state.")}
                       disabled={loadingDiscoveryStats}
                       loading={loadingDiscoveryStats}
                       onClick={handleLoadDiscoveryStats}
                     >
                       <LocalizedText source={"Load Stats"} /></Button>
                     <Button
-                      tooltip="Refresh the pod discovery index and expire stale entries. Use this when discovery results appear out of date."
+                      tooltip={interfaceText("Refresh the pod discovery index and expire stale entries. Use this when discovery results appear out of date.")}
                       color="blue"
                       onClick={handleRefreshDiscovery}
                     >
@@ -2750,7 +2752,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={podToRegister}
                        {...interfaceTextProps("Pod JSON (must have Visibility: Listed)")} dir="ltr"/>
                       <Button
-                        tooltip="Publish this pod to the discovery index so others can find it. Check its public metadata and visibility before registering."
+                        tooltip={interfaceText("Publish this pod to the discovery index so others can find it. Check its public metadata and visibility before registering.")}
                         disabled={registeringPod || !podToRegister.trim()}
                         loading={registeringPod}
                         onClick={handleRegisterPodForDiscovery}
@@ -2805,7 +2807,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={podToUnregister}
                        {...interfaceTextProps("Pod ID")}/>
                       <Button
-                        tooltip="Remove this pod from the discovery index so future lookups stop returning it."
+                        tooltip={interfaceText("Remove this pod from the discovery index so future lookups stop returning it.")}
                         color="red"
                         disabled={unregisteringPod || !podToUnregister.trim()}
                         loading={unregisteringPod}
@@ -2867,7 +2869,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   value={pendingPodId}
                  {...interfaceTextProps("Pod ID")}/>
                 <Button
-                  tooltip="Load pending join and leave requests for this pod so you can review them before accepting a membership change."
+                  tooltip={interfaceText("Load pending join and leave requests for this pod so you can review them before accepting a membership change.")}
                   disabled={loadingPendingRequests || !pendingPodId.trim()}
                   loading={loadingPendingRequests}
                   onClick={handleLoadPendingRequests}
@@ -2922,7 +2924,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={joinRequestData}
                        {...interfaceTextProps("Join Request JSON (signed by requester)")}/>
                       <Button
-                        tooltip="Submit a signed request to join the pod. Use this to ask its owner or moderators for membership; the request includes the supplied identity details."
+                        tooltip={interfaceText("Submit a signed request to join the pod. Use this to ask its owner or moderators for membership; the request includes the supplied identity details.")}
                         disabled={requestingJoin || !joinRequestData.trim()}
                         loading={requestingJoin}
                         onClick={handleRequestJoin}
@@ -2972,7 +2974,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={acceptanceData}
                        {...interfaceTextProps("Acceptance JSON (signed by owner/mod)")}/>
                       <Button
-                        tooltip="Accept the signed join request and publish the membership change so the peer can participate. Verify the peer and requested role first."
+                        tooltip={interfaceText("Accept the signed join request and publish the membership change so the peer can participate. Verify the peer and requested role first.")}
                         disabled={acceptingJoin || !acceptanceData.trim()}
                         loading={acceptingJoin}
                         onClick={handleAcceptJoin}
@@ -3013,7 +3015,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={leaveRequestData}
                        {...interfaceTextProps("Leave Request JSON (signed by member)")}/>
                       <Button
-                        tooltip="Submit a signed request to leave the pod so its owner or moderators can review the membership change."
+                        tooltip={interfaceText("Submit a signed request to leave the pod so its owner or moderators can review the membership change.")}
                         disabled={requestingLeave || !leaveRequestData.trim()}
                         loading={requestingLeave}
                         onClick={handleRequestLeave}
@@ -3054,7 +3056,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={acceptanceData}
                        {...interfaceTextProps("Leave Acceptance JSON (signed by owner/mod)")}/>
                       <Button
-                        tooltip="Accept the signed leave request and publish the membership removal. Verify the peer and request before accepting."
+                        tooltip={interfaceText("Accept the signed leave request and publish the membership removal. Verify the peer and request before accepting.")}
                         disabled={acceptingLeave || !acceptanceData.trim()}
                         loading={acceptingLeave}
                         negative
@@ -3127,7 +3129,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                        {...interfaceTextProps("Pod ID")}/>
                     </Form.Group>
                     <Button
-                      tooltip="Check whether a seen receipt exists for this message and pod before registering another one."
+                      tooltip={interfaceText("Check whether a seen receipt exists for this message and pod before registering another one.")}
                       disabled={
                         checkingMessageSeen ||
                         !checkMessageId.trim() ||
@@ -3167,7 +3169,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 <Grid.Column width={8}>
                   <Header size="small"><LocalizedText source={"Routing Statistics"} /></Header>
                   <Button
-                    tooltip="Load message-routing counts and outcomes so you can review recent Pod delivery activity."
+                    tooltip={interfaceText("Load message-routing counts and outcomes so you can review recent Pod delivery activity.")}
                     disabled={loadingRoutingStats}
                     fluid
                     loading={loadingRoutingStats}
@@ -3244,7 +3246,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={routeMessageData}
                        {...interfaceTextProps("Pod Message JSON")}/>
                       <Button
-                        tooltip="Route this message through the pod messaging service to its eligible recipients. Use this to deliver a message to the pod."
+                        tooltip={interfaceText("Route this message through the pod messaging service to its eligible recipients. Use this to deliver a message to the pod.")}
                         disabled={routingMessage || !routeMessageData.trim()}
                         loading={routingMessage}
                         onClick={handleRouteMessage}
@@ -3306,7 +3308,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={routeToPeersIds}
                        {...interfaceTextProps("Target Peer IDs (comma-separated)")}/>
                       <Button
-                        tooltip="Route this message only to the listed peer IDs. Confirm the recipients because each selected peer receives the payload."
+                        tooltip={interfaceText("Route this message only to the listed peer IDs. Confirm the recipients because each selected peer receives the payload.")}
                         disabled={
                           routingToPeers ||
                           !routeToPeersMessage.trim() ||
@@ -3352,14 +3354,14 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 <Message warning>
                   <LocalizedText source={"Marking messages as seen and cleanup mutate local routing deduplication state. Use them only after checking the target message and pod IDs."} /></Message>
                 <Button
-                  tooltip="Record a seen receipt for this message and pod so the message state reflects that it was observed."
+                  tooltip={interfaceText("Record a seen receipt for this message and pod so the message state reflects that it was observed.")}
                   color="blue"
                   disabled={!checkMessageId.trim() || !checkPodId.trim()}
                   onClick={handleRegisterMessageSeen}
                 >
                   <LocalizedText source={"Mark Seen"} /></Button>
                 <Button
-                  tooltip="Remove expired seen-message receipts from local state to clear stale routing records."
+                  tooltip={interfaceText("Remove expired seen-message receipts from local state to clear stale routing records.")}
                   color="red"
                   onClick={handleCleanupSeenMessages}
                 >
@@ -3393,7 +3395,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
               <div style={{ marginBottom: '1em' }}>
                 <Button
-                  tooltip="Load local message-storage counts so you can review database usage before cleanup or maintenance."
+                  tooltip={interfaceText("Load local message-storage counts so you can review database usage before cleanup or maintenance.")}
                   color="teal"
                   loading={storageStatsLoading}
                   onClick={() => handleGetStorageStats()}
@@ -3407,7 +3409,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 <Message warning>
                   <LocalizedText source={"Cleanup, search-index rebuild, and vacuum operations mutate local pod message storage. Review storage stats before running maintenance."} /></Message>
                 <Button
-                  tooltip="Permanently remove local pod messages older than 30 days. Use this to reclaim storage after reviewing the retention period."
+                  tooltip={interfaceText("Permanently remove local pod messages older than 30 days. Use this to reclaim storage after reviewing the retention period.")}
                   color="purple"
                   loading={cleanupLoading}
                   onClick={() => handleCleanupMessages()}
@@ -3416,7 +3418,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <LocalizedText source={"Cleanup Old Messages (30 days)"} /></Button>
 
                 <Button
-                  tooltip="Rebuild the local message search index from stored messages if search results are stale or incomplete."
+                  tooltip={interfaceText("Rebuild the local message search index from stored messages if search results are stale or incomplete.")}
                   color="blue"
                   loading={rebuildIndexLoading}
                   onClick={() => handleRebuildSearchIndex()}
@@ -3425,7 +3427,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <LocalizedText source={"Rebuild Search Index"} /></Button>
 
                 <Button
-                  tooltip="Run SQLite vacuum to compact the local message database and reclaim unused file space. This may take time."
+                  tooltip={interfaceText("Run SQLite vacuum to compact the local message database and reclaim unused file space. This may take time.")}
                   color="orange"
                   loading={vacuumLoading}
                   onClick={() => handleVacuumDatabase()}
@@ -3471,7 +3473,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               <Input
                 action={
                   <Button
-                    tooltip="Search stored pod messages locally for the entered text. Use this to find prior messages without contacting peers."
+                    tooltip={interfaceText("Search stored pod messages locally for the entered text. Use this to find prior messages without contacting peers.")}
                     color="green"
                     disabled={!searchQuery.trim()}
                     loading={searchLoading}
@@ -3545,7 +3547,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
               <div style={{ marginBottom: '1em' }}>
                 <Button
-                  tooltip="Load local backfill status so you can see which pod histories may need to catch up."
+                  tooltip={interfaceText("Load local backfill status so you can see which pod histories may need to catch up.")}
                   color="purple"
                   loading={backfillStatsLoading}
                   onClick={() => handleGetBackfillStats()}
@@ -3596,7 +3598,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               <Input
                 action={
                   <Button
-                    tooltip="Read the latest stored message timestamps for this pod so you can inspect its current history position."
+                    tooltip={interfaceText("Read the latest stored message timestamps for this pod so you can inspect its current history position.")}
                     color="blue"
                     disabled={!backfillPodId.trim()}
                     onClick={() => handleGetLastSeenTimestamps()}
@@ -3614,7 +3616,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 <Message warning>
                   <LocalizedText source={"Backfill sync can request missed messages for the selected pod. Confirm timestamps and pod ID before starting sync."} /></Message>
                 <Button
-                  tooltip="Request missing message history for this pod from its backfill sources. Run it manually when history is missing; it can transfer data over the network."
+                  tooltip={interfaceText("Request missing message history for this pod from its backfill sources. Run it manually when history is missing; it can transfer data over the network.")}
                   color="green"
                   disabled={!backfillPodId.trim()}
                   loading={syncBackfillLoading}
@@ -3682,7 +3684,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               <Input
                 action={
                   <Button
-                    tooltip="Load the selected pod’s channel list so you can review its current discussion spaces."
+                    tooltip={interfaceText("Load the selected pod’s channel list so you can review its current discussion spaces.")}
                     color="blue"
                     disabled={!channelPodId.trim()}
                     loading={channelsLoading}
@@ -3720,7 +3722,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <option value="Bound"><LocalizedText source={"Bound"} /></option>
                       </select>
                       <Button
-                        tooltip="Create a channel in this pod so members can use a new discussion space."
+                        tooltip={interfaceText("Create a channel in this pod so members can use a new discussion space.")}
                         color="green"
                         disabled={!newChannelName.trim() || !channelPodId.trim()}
                         loading={createChannelLoading}
@@ -3754,7 +3756,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                                 action={
                                   <>
                                     <Button
-                                      tooltip="Save the channel name and kind changes to the selected pod."
+                                      tooltip={interfaceText("Save the channel name and kind changes to the selected pod.")}
                                       color="green"
                                       disabled={!editChannelName.trim()}
                                       loading={updateChannelLoading}
@@ -3765,7 +3767,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                                     >
                                       <LocalizedText source={"Save"} /></Button>
                                     <Button
-                                      tooltip="Discard the unsaved channel edits and return to the channel list."
+                                      tooltip={interfaceText("Discard the unsaved channel edits and return to the channel list.")}
                                       onClick={() => cancelEditingChannel()}
                                       size="small"
                                     >
@@ -3805,7 +3807,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                               <details>
                                 <summary><LocalizedText source={"Actions"} /></summary>
                                 <Button
-                                  tooltip="Open this channel’s details for editing; changes are not saved until you choose Save."
+                                  tooltip={interfaceText("Open this channel’s details for editing; changes are not saved until you choose Save.")}
                                   disabled={
                                     channel.name.toLowerCase() === 'general' &&
                                     channel.kind === 'General'
@@ -3815,7 +3817,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                                 >
                                   <LocalizedText source={"Edit"} /></Button>
                                 <Button
-                                  tooltip="Permanently delete this channel from the pod after confirmation. Use this only when the discussion space is no longer needed."
+                                  tooltip={interfaceText("Permanently delete this channel from the pod after confirmation. Use this only when the discussion space is no longer needed.")}
                                   color="red"
                                   disabled={
                                     channel.name.toLowerCase() === 'general' &&
@@ -3873,7 +3875,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               <Input
                 action={
                   <Button
-                    tooltip="Search content metadata so you can choose the exact item to link with a pod."
+                    tooltip={interfaceText("Search content metadata so you can choose the exact item to link with a pod.")}
                     color="blue"
                     disabled={!contentSearchQuery.trim()}
                     loading={contentSearchLoading}
@@ -3913,7 +3915,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
               <Input
                 action={
                   <Button
-                    tooltip="Validate this content ID and load its metadata before creating a linked pod."
+                    tooltip={interfaceText("Validate this content ID and load its metadata before creating a linked pod.")}
                     color="green"
                     disabled={!contentId.trim()}
                     loading={contentValidationLoading}
@@ -3994,7 +3996,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </div>
 
                   <Button
-                    tooltip="Create a pod linked to this content ID so members can discuss the item. Review its visibility before creation."
+                    tooltip={interfaceText("Create a pod linked to this content ID so members can discuss the item. Review its visibility before creation.")}
                     color="teal"
                     disabled={!newPodName.trim()}
                     loading={createPodLoading}
@@ -4038,7 +4040,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                {...interfaceTextProps("Pod ID")}/>
 
               <Button
-                tooltip="Refresh opinion records for this pod and update the current view. Use this when displayed community ratings may be stale."
+                tooltip={interfaceText("Refresh opinion records for this pod and update the current view. Use this when displayed community ratings may be stale.")}
                 color="blue"
                 disabled={!opinionPodId.trim()}
                 loading={refreshOpinionsLoading}
@@ -4058,7 +4060,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
               <div style={{ marginBottom: '1em' }}>
                 <Button
-                  tooltip="Load opinions for this pod and content ID so you can review the available ratings and notes."
+                  tooltip={interfaceText("Load opinions for this pod and content ID so you can review the available ratings and notes.")}
                   color="teal"
                   disabled={!opinionPodId.trim() || !opinionContentId.trim()}
                   loading={getOpinionsLoading}
@@ -4068,7 +4070,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <LocalizedText source={"Get Opinions"} /></Button>
 
                 <Button
-                  tooltip="Load rating counts and distribution for this pod and content item so you can review the data before publishing."
+                  tooltip={interfaceText("Load rating counts and distribution for this pod and content item so you can review the data before publishing.")}
                   color="purple"
                   disabled={!opinionPodId.trim() || !opinionContentId.trim()}
                   loading={getStatsLoading}
@@ -4178,7 +4180,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                  {...interfaceTextProps("Optional note about this variant")}/>
 
                 <Button
-                  tooltip="Publish your score and note for this content to the pod. Review the content ID and variant hash because other participants may see this opinion."
+                  tooltip={interfaceText("Publish your score and note for this content to the pod. Review the content ID and variant hash because other participants may see this opinion.")}
                   color="green"
                   disabled={
                     !opinionPodId.trim() ||
@@ -4198,7 +4200,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
               <div style={{ marginBottom: '1em' }}>
                 <Button
-                  tooltip="Request the combined opinion view for this pod and content item to compare member feedback."
+                  tooltip={interfaceText("Request the combined opinion view for this pod and content item to compare member feedback.")}
                   color="purple"
                   disabled={!opinionPodId.trim() || !opinionContentId.trim()}
                   loading={getAggregatedLoading}
@@ -4208,7 +4210,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <LocalizedText source={"Get Aggregated Opinions"} /></Button>
 
                 <Button
-                  tooltip="Load member affinity scores for this pod so you can understand how current recommendations are ranked."
+                  tooltip={interfaceText("Load member affinity scores for this pod so you can understand how current recommendations are ranked.")}
                   color="blue"
                   disabled={!opinionPodId.trim()}
                   loading={getAffinitiesLoading}
@@ -4218,7 +4220,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <LocalizedText source={"Get Member Affinities"} /></Button>
 
                 <Button
-                  tooltip="Load recommendations derived from pod consensus so you can review what members collectively favor."
+                  tooltip={interfaceText("Load recommendations derived from pod consensus so you can review what members collectively favor.")}
                   color="teal"
                   disabled={!opinionPodId.trim() || !opinionContentId.trim()}
                   loading={getRecommendationsLoading}
@@ -4234,7 +4236,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 <Message warning>
                   <LocalizedText source={"Updating member affinities recalculates stored relationship weights from pod opinion history. Review current opinions and affinities before running it."} /></Message>
                 <Button
-                  tooltip="Recompute stored member affinity values from available pod opinion data after ratings change."
+                  tooltip={interfaceText("Recompute stored member affinity values from available pod opinion data after ratings change.")}
                   color="orange"
                   disabled={!opinionPodId.trim()}
                   loading={updateAffinitiesLoading}
@@ -4425,7 +4427,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       value={messageToVerify}
                      {...interfaceTextProps("Pod Message JSON (with signature)")}/>
                     <Button
-                      tooltip="Verify the supplied message signature locally so you can check authenticity without routing the message."
+                      tooltip={interfaceText("Verify the supplied message signature locally so you can check authenticity without routing the message.")}
                       disabled={verifyingSignature || !messageToVerify.trim()}
                       fluid
                       loading={verifyingSignature}
@@ -4459,7 +4461,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   <Header size="small"><LocalizedText source={"Signing Statistics"} /></Header>
                   <Button.Group fluid>
                     <Button
-                      tooltip="Load local signing and verification counts so you can review recent signature operations."
+                      tooltip={interfaceText("Load local signing and verification counts so you can review recent signature operations.")}
                       disabled={loadingSigningStats}
                       loading={loadingSigningStats}
                       onClick={handleLoadSigningStats}
@@ -4528,7 +4530,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         value={privateKeyForSigning}
                        {...interfaceTextProps("Private Key")}/>
                       <Button
-                        tooltip="Sign this message with the supplied private key so it can be authenticated before routing. Signing does not send it to pod members."
+                        tooltip={interfaceText("Sign this message with the supplied private key so it can be authenticated before routing. Signing does not send it to pod members.")}
                         disabled={
                           signingMessage ||
                           !messageToSign.trim() ||
@@ -4574,7 +4576,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     <Header size="small"><LocalizedText source={"Generate Key Pair"} /></Header>
                     <Form>
                       <Button
-                        tooltip="Generate a new key pair for pod message signing. Keep the private key secret and store it securely before clearing this result."
+                        tooltip={interfaceText("Generate a new key pair for pod message signing. Keep the private key secret and store it securely before clearing this result.")}
                         disabled={generatingKeyPair}
                         fluid
                         loading={generatingKeyPair}

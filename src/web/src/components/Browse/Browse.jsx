@@ -21,7 +21,7 @@ const createBrowseTab = (username = '') => {
   tabCounter += 1;
   return {
     key: `tab-${tabCounter}`,
-    label: username || 'New Tab',
+    label: username || interfaceText('New Tab'),
     username,
   };
 };
@@ -194,8 +194,8 @@ const Browse = () => {
             }}
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
-            tooltip={`Close the ${tab.label} browse tab without changing the user's shared files.`}
-           {...interfaceTextProps("Close {label} browse tab")}>
+            tooltip="Close the {label} browse tab without changing the user's shared files."
+           {...interfaceTextProps("Close {label} browse tab", { label: tab.label })}>
             <Icon name="close" />
           </TooltipButton>
         )}

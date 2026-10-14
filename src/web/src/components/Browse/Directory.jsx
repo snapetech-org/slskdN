@@ -16,7 +16,7 @@ const getDownloadErrorMessage = (error) => {
     return data.detail || data.message || data.title || JSON.stringify(data);
   }
 
-  return error?.message || 'The download request could not be completed.';
+  return error?.message || interfaceText('The download request could not be completed.');
 };
 
 const initialState = {
@@ -111,7 +111,9 @@ class Directory extends Component {
           <Card.Content extra>
             <span>
               <Button
-                aria-label={`Download ${selectedFiles.length} selected file${selectedFiles.length === 1 ? '' : 's'}`}
+                aria-label={interfaceText(selectedFiles.length === 1
+                  ? 'Download {count} selected file'
+                  : 'Download {count} selected files', { count: selectedFiles.length })}
                 color="green"
                 content={interfaceText("Download")}
                 disabled={downloadRequest === 'inProgress'}
@@ -119,11 +121,18 @@ class Directory extends Component {
                 label={{
                   as: 'a',
                   basic: false,
-                  content: `${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}, ${selectedSize}`,
+                  content: interfaceText(selectedFiles.length === 1
+                    ? '{count} file, {size}'
+                    : '{count} files, {size}', { count: selectedFiles.length, size: selectedSize }),
                 }}
                 labelPosition="right"
                 onClick={() => this.download(username, selectedFiles)}
-                tooltip={`Queue ${selectedFiles.length} selected file${selectedFiles.length === 1 ? '' : 's'} from ${name} for download.`}
+                tooltip={interfaceText(selectedFiles.length === 1
+                  ? 'Queue {count} selected file from {directory} for download.'
+                  : 'Queue {count} selected files from {directory} for download.', {
+                  count: selectedFiles.length,
+                  directory: name,
+                })}
                {...interfaceTextProps("Download")}/>
               {downloadRequest === 'inProgress' && (
                 <Icon

@@ -56,7 +56,7 @@ const Security = () => {
     } catch (fetchError) {
       if (!mountedRef.current || document.hidden) return;
       if (!dashboardLoadedRef.current) {
-        setError(fetchError.message || 'Failed to load security data');
+        setError(fetchError.message || interfaceText('Failed to load security data'));
       }
     } finally {
       fetchInFlightRef.current = false;

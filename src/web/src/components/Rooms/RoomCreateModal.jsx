@@ -40,7 +40,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
       setIsPrivate(false);
     } catch (error) {
       setError(
-        error?.response?.data || error?.message || 'Failed to create room',
+        error?.response?.data || error?.message || interfaceText('Failed to create room'),
       );
     } finally {
       setLoading(false);
@@ -72,7 +72,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
             icon
             onClick={() => setOpen(true)}
             title={interfaceText("Create New Room")}
-           {...interfaceTextProps("Create New Room")}>
+           {...interfaceTextProps("Create Room")}>
             <Icon name="plus" />
             <LocalizedText source={"Create Room"} /></Button>
         }

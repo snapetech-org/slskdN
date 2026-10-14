@@ -110,7 +110,7 @@ const Jobs = () => {
       toast.error(
         error?.response?.data?.message ||
           error?.message ||
-          'Failed to fetch jobs',
+          interfaceText('Failed to fetch jobs'),
       );
       console.error('Failed to fetch jobs:', error);
     } finally {
@@ -360,7 +360,9 @@ const Jobs = () => {
             columns={2}
             stackable
           >
-            {swarmJobs.map((job) => (
+            {swarmJobs.map((job) => {
+              const fileName = job.filename?.split('/').pop();
+              return (
               <Grid.Column key={job.jobId}>
                 <Card fluid>
                   <Card.Content>
@@ -369,7 +371,7 @@ const Jobs = () => {
                         color="yellow"
                         name="bolt"
                       />
-                      {job.filename?.split('/').pop() ?? 'Unknown file'}
+                      {fileName ?? interfaceText('Unknown file')}
                     </Card.Header>
                     <Card.Meta>
                       {job.activeSources ?? 0} <LocalizedText source={"sources •"} />{' '}
@@ -396,11 +398,15 @@ const Jobs = () => {
                     )}
                     <div style={{ marginTop: '0.5em' }}>
                       <Popup
-                        content={`Inspect contributing sources and chunk progress for ${job.filename?.split('/').pop() ?? 'this swarm download'}.`}
+                        content={interfaceText('Inspect contributing sources and chunk progress for {download}.', {
+                          download: fileName ?? interfaceText('this swarm download'),
+                        })}
                         position="top center"
                         trigger={(
                           <Button
-                            aria-label={`View swarm download details for ${job.filename?.split('/').pop() ?? 'unknown file'}`}
+                            aria-label={interfaceText('View swarm download details for {file}', {
+                              file: fileName ?? interfaceText('Unknown file'),
+                            })}
                             compact
                             onClick={() => {
                               setSelectedSwarmJobId(job.jobId);
@@ -416,7 +422,8 @@ const Jobs = () => {
                   </Card.Content>
                 </Card>
               </Grid.Column>
-            ))}
+              );
+            })}
           </Grid>
         </Segment>
       )}
@@ -504,11 +511,9 @@ const Jobs = () => {
             value={filters.sortBy}
            {...interfaceTextProps("Sort By")}/>
           <Popup
-            content={
-              filters.sortOrder === 'asc'
-                ? 'Sort the current job list in descending order.'
-                : 'Sort the current job list in ascending order.'
-            }
+            content={interfaceText(filters.sortOrder === 'asc'
+              ? 'Sort the current job list in descending order.'
+              : 'Sort the current job list in ascending order.')}
             position="top center"
             trigger={(
               <Button
@@ -577,7 +582,7 @@ const Jobs = () => {
               <Table celled>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>ID</Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"ID"} /></Table.HeaderCell>
                     <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
                     <Table.HeaderCell><LocalizedText source={"Status"} /></Table.HeaderCell>
                     <Table.HeaderCell><LocalizedText source={"Progress"} /></Table.HeaderCell>

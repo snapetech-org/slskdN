@@ -399,7 +399,7 @@ const MediaCore = () => {
         .filter((n) => !isNaN(n));
 
       if (samples.length === 0) {
-        throw new Error('No valid audio samples provided');
+        throw new Error(interfaceText("No valid audio samples provided"));
       }
 
       const result = await mediacore.computeAudioHash(
@@ -429,7 +429,7 @@ const MediaCore = () => {
         .filter((n) => !isNaN(n) && n >= 0 && n <= 255);
 
       if (pixels.length === 0) {
-        throw new Error('No valid pixel data provided');
+        throw new Error(interfaceText("No valid pixel data provided"));
       }
 
       const result = await mediacore.computeImageHash(
@@ -553,7 +553,7 @@ const MediaCore = () => {
       try {
         packageData = JSON.parse(importPackage.trim());
       } catch {
-        throw new Error('Invalid JSON format for metadata package');
+        throw new Error(interfaceText("Invalid JSON format for metadata package"));
       }
 
       const result = await mediacore.importMetadata(
@@ -580,7 +580,7 @@ const MediaCore = () => {
       try {
         packageData = JSON.parse(importPackage.trim());
       } catch {
-        throw new Error('Invalid JSON format for metadata package');
+        throw new Error(interfaceText("Invalid JSON format for metadata package"));
       }
 
       const result = await mediacore.analyzeMetadataConflicts(packageData);
@@ -660,7 +660,7 @@ const MediaCore = () => {
         updates.newConfidence = Number.parseFloat(updateConfidence);
 
       if (Object.keys(updates).length === 0) {
-        throw new Error('At least one update field is required');
+        throw new Error(interfaceText("At least one update field is required"));
       }
 
       const result = await mediacore.updateContentDescriptor(
@@ -769,7 +769,7 @@ const MediaCore = () => {
       try {
         descriptor = JSON.parse(verifyDescriptor.trim());
       } catch {
-        throw new Error('Invalid JSON format for descriptor');
+        throw new Error(interfaceText("Invalid JSON format for descriptor"));
       }
 
       const result = await mediacore.verifyContentDescriptor(descriptor);
@@ -856,9 +856,13 @@ const MediaCore = () => {
           >
             <Message.Content>
               <Message.Header><LocalizedText source={"Focused pod workflow"} /></Message.Header>
-              <LocalizedText source={"Showing"} />{" "}{selectedPodWorkflow?.label || 'one pod workflow'}<LocalizedText source={". Choose \"Show all pod workflows\" or use the reset action to return to the complete MediaCore pod surface."} /><div style={{ marginTop: '0.75em' }}>
+              <LocalizedText
+                source={"Showing {workflow}"}
+                values={{ workflow: selectedPodWorkflow?.label || 'one pod workflow' }}
+              />{' '}
+              <LocalizedText source={". Choose \"Show all pod workflows\" or use the reset action to return to the complete MediaCore pod surface."} /><div style={{ marginTop: '0.75em' }}>
                 <Button
-                  tooltip="Show every Pod workflow card so you can browse the full set of available tasks."
+                  tooltip={interfaceText("Show every Pod workflow card so you can browse the full set of available tasks.")}
                   basic
                   onClick={() => setPodWorkflowFilter('all')}
                   size="tiny"
@@ -970,7 +974,7 @@ const MediaCore = () => {
                      {...interfaceTextProps("e.g., content:mb:recording:12345-6789-...")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Add this external-ID-to-ContentID mapping to the local registry so later lookups can resolve it."
+                    tooltip={interfaceText("Add this external-ID-to-ContentID mapping to the local registry so later lookups can resolve it.")}
                     disabled={
                       !externalId.trim() ||
                       !descriptorContentId.trim() ||
@@ -1004,7 +1008,7 @@ const MediaCore = () => {
                   <Input
                     action={
                       <Button
-                        tooltip="Look up this external ID in the local registry to find its associated ContentID."
+                        tooltip={interfaceText("Look up this external ID in the local registry to find its associated ContentID.")}
                         disabled={!resolveId.trim() || resolving}
                         loading={resolving}
                         onClick={handleResolve}
@@ -1059,7 +1063,7 @@ const MediaCore = () => {
                   <Input
                     action={
                       <Button
-                        tooltip="Check the ContentID format and extract its components before using it in another workflow."
+                        tooltip={interfaceText("Check the ContentID format and extract its components before using it in another workflow.")}
                         disabled={!validateContentIdInput.trim() || validating}
                         loading={validating}
                         onClick={handleValidate}
@@ -1136,7 +1140,7 @@ const MediaCore = () => {
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Search the local registry for ContentIDs in this domain and optional type so you can find registered items."
+                  tooltip={interfaceText("Search the local registry for ContentIDs in this domain and optional type so you can find registered items.")}
                   disabled={!domain.trim() || searchingDomain}
                   loading={searchingDomain}
                   onClick={handleDomainSearch}
@@ -1155,8 +1159,10 @@ const MediaCore = () => {
                     <div>
                       <p>
                         <strong>
-                          <LocalizedText source={"Found"} />{" "}{asArray(domainResults.contentIds).length}{' '}
-                          <LocalizedText source={"ContentIDs"} /></strong>
+                          <LocalizedText
+                            source="Found {count} content IDs"
+                            values={{ count: asArray(domainResults.contentIds).length }}
+                          /></strong>
                       </p>
                       {asArray(domainResults.contentIds).length > 0 && (
                         <List
@@ -1193,7 +1199,7 @@ const MediaCore = () => {
               {Object.entries(contentExamples).map(([domainName, types]) =>
                 Object.entries(types).map(([typeName, example]) => (
                   <Button
-                    tooltip="Fill the related fields with this sample ID pair so you can try resolve, validation, and registration without typing example values."
+                    tooltip={interfaceText("Fill the related fields with this sample ID pair so you can try resolve, validation, and registration without typing example values.")}
                     key={`${domainName}-${typeName}`}
                     onClick={() => fillExample(domainName, typeName)}
                     size="small"
@@ -1237,7 +1243,7 @@ const MediaCore = () => {
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Follow the selected link type from this ContentID to inspect connected content records."
+                  tooltip={interfaceText("Follow the selected link type from this ContentID to inspect connected content records.")}
                   disabled={
                     !traverseContentId.trim() ||
                     !traverseLinkName.trim() ||
@@ -1309,7 +1315,7 @@ const MediaCore = () => {
                   <Input
                     action={
                       <Button
-                        tooltip="Load the known relationship graph for this ContentID so you can review its linked records."
+                        tooltip={interfaceText("Load the known relationship graph for this ContentID so you can review its linked records.")}
                         disabled={!graphContentId.trim() || gettingGraph}
                         loading={gettingGraph}
                         onClick={handleGetGraph}
@@ -1396,7 +1402,7 @@ const MediaCore = () => {
                   <Input
                     action={
                       <Button
-                        tooltip="Find records that link to this ContentID so you can see where the item is referenced."
+                        tooltip={interfaceText("Find records that link to this ContentID so you can see where the item is referenced.")}
                         disabled={!inboundTargetId.trim() || findingInbound}
                         loading={findingInbound}
                         onClick={handleFindInbound}
@@ -1421,8 +1427,10 @@ const MediaCore = () => {
                     <div>
                       <p>
                         <strong>
-                          <LocalizedText source={"Found"} />{" "}{asArray(inboundResults.inboundLinks).length}{' '}
-                          <LocalizedText source={"inbound links"} /></strong>
+                          <LocalizedText
+                            source="Found {count} inbound links"
+                            values={{ count: asArray(inboundResults.inboundLinks).length }}
+                          /></strong>
                       </p>
                       {asArray(inboundResults.inboundLinks).length > 0 && (
                         <List
@@ -1500,7 +1508,7 @@ const MediaCore = () => {
                      {...interfaceTextProps("0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Compute the selected audio fingerprint from the supplied sample data so you can compare or identify audio."
+                    tooltip={interfaceText("Compute the selected audio fingerprint from the supplied sample data so you can compare or identify audio.")}
                     disabled={!audioSamples.trim() || computingAudioHash}
                     loading={computingAudioHash}
                     onClick={handleComputeAudioHash}
@@ -1594,7 +1602,7 @@ const MediaCore = () => {
                      {...interfaceTextProps("255, 128, 64, ... (RGBA pixel data)")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Compute the selected image fingerprint from the supplied pixel data so you can compare images."
+                    tooltip={interfaceText("Compute the selected image fingerprint from the supplied pixel data so you can compare images.")}
                     disabled={!imagePixels.trim() || computingImageHash}
                     loading={computingImageHash}
                     onClick={handleComputeImageHash}
@@ -1618,7 +1626,7 @@ const MediaCore = () => {
                         <br />
                         <strong><LocalizedText source={"Hex Hash:"} /></strong> {imageHashResult.hex}
                         <br />
-                        <strong><LocalizedText source={"Dimensions:"} /></strong> {imageWidth}<LocalizedText source={"x"} />{imageHeight}
+                        <strong><LocalizedText source={"Dimensions:"} /></strong> {imageWidth} × {imageHeight}
                       </p>
                     </Message>
                   )}
@@ -1670,7 +1678,7 @@ const MediaCore = () => {
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Compare these two hashes against the chosen threshold to see whether they are a likely match."
+                  tooltip={interfaceText("Compare these two hashes against the chosen threshold to see whether they are a likely match.")}
                   disabled={
                     !hashA.trim() || !hashB.trim() || computingSimilarity
                   }
@@ -1760,7 +1768,7 @@ const MediaCore = () => {
                     </Form.Field>
                   </Form.Group>
                   <Button
-                    tooltip="Search for content similar to this ID using the selected confidence and result limits."
+                    tooltip={interfaceText("Search for content similar to this ID using the selected confidence and result limits.")}
                     disabled={
                       !findSimilarContentId.trim() || findingSimilarContent
                     }
@@ -1791,7 +1799,10 @@ const MediaCore = () => {
                       </p>
                       <p>
                         <strong>
-                          <LocalizedText source={"Found"} />{" "}{asArray(findSimilarResult.matches).length} <LocalizedText source={"matches"} /></strong>
+                          <LocalizedText
+                            source="Found {count} matches"
+                            values={{ count: asArray(findSimilarResult.matches).length }}
+                          /></strong>
                       </p>
                       {asArray(findSimilarResult.matches).length > 0 && (
                         <List
@@ -1864,7 +1875,7 @@ const MediaCore = () => {
                   />
                 </Form.Field>
                 <Button
-                  tooltip="Compare these content IDs using their perceptual signatures and threshold to find similar media."
+                  tooltip={interfaceText("Compare these content IDs using their perceptual signatures and threshold to find similar media.")}
                   disabled={
                     !perceptualContentIdA.trim() ||
                     !perceptualContentIdB.trim() ||
@@ -1945,7 +1956,7 @@ const MediaCore = () => {
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Compare the supplied text values to measure how closely their content matches."
+                  tooltip={interfaceText("Compare the supplied text values to measure how closely their content matches.")}
                   disabled={
                     !textSimilarityA.trim() ||
                     !textSimilarityB.trim() ||
@@ -2025,7 +2036,7 @@ const MediaCore = () => {
                    {...interfaceTextProps("Include IPLD links")}/>
                 </Form.Field>
                 <Button
-                  tooltip="Build a metadata package for the selected ContentIDs and optional links so you can back it up or review it. This does not publish the package."
+                  tooltip={interfaceText("Build a metadata package for the selected ContentIDs and optional links so you can back it up or review it. This does not publish the package.")}
                   disabled={!exportContentIds.trim() || exportingMetadata}
                   loading={exportingMetadata}
                   onClick={handleExportMetadata}
@@ -2111,7 +2122,7 @@ const MediaCore = () => {
                    {...interfaceTextProps("Dry run (preview changes without applying)")}/>
                 </Form.Field>
                 <Button
-                  tooltip="Preview conflicts between this package and the local registry without importing changes; use this before choosing an import strategy."
+                  tooltip={interfaceText("Preview conflicts between this package and the local registry without importing changes; use this before choosing an import strategy.")}
                   disabled={!importPackage.trim() || analyzingConflicts}
                   loading={analyzingConflicts}
                   onClick={handleAnalyzeConflicts}
@@ -2139,8 +2150,8 @@ const MediaCore = () => {
                 <Button
                   tooltip={
                     dryRun
-                      ? 'Preview the changes this package would make to the local registry without applying them.'
-                      : 'Import this package and apply its changes to the local registry. Review the conflict strategy before applying.'
+                      ? interfaceText("Preview the changes this package would make to the local registry without applying them.")
+                      : interfaceText("Import this package and apply its changes to the local registry. Review the conflict strategy before applying.")
                   }
                   disabled={!importPackage.trim() || importingMetadata}
                   loading={importingMetadata}
@@ -2270,7 +2281,7 @@ const MediaCore = () => {
                     </Form.Field>
                   </Form.Group>
                   <Button
-                    tooltip="Publish a descriptor for this ContentID to the DHT so other participants can discover it. Review the supplied metadata before publishing."
+                    tooltip={interfaceText("Publish a descriptor for this ContentID to the DHT so other participants can discover it. Review the supplied metadata before publishing.")}
                     disabled={!publishContentId.trim() || publishingDescriptor}
                     loading={publishingDescriptor}
                     onClick={handlePublishDescriptor}
@@ -2333,7 +2344,7 @@ const MediaCore = () => {
                      {...interfaceTextProps("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Publish one descriptor for each listed ContentID to the DHT. Review the full list because each entry creates a network write."
+                    tooltip={interfaceText("Publish one descriptor for each listed ContentID to the DHT. Review the full list because each entry creates a network write.")}
                     disabled={!batchContentIds.trim() || publishingBatch}
                     loading={publishingBatch}
                     onClick={handlePublishBatch}
@@ -2428,7 +2439,7 @@ const MediaCore = () => {
                      {...interfaceTextProps("Leave empty to keep current")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Update the selected descriptor in the DHT so participants see the new values. Verify the ContentID and fields before applying."
+                    tooltip={interfaceText("Update the selected descriptor in the DHT so participants see the new values. Verify the ContentID and fields before applying.")}
                     disabled={!updateTargetId.trim() || updatingDescriptor}
                     loading={updatingDescriptor}
                     onClick={handleUpdateDescriptor}
@@ -2477,7 +2488,7 @@ const MediaCore = () => {
             <Card.Content>
               <Button.Group fluid>
                 <Button
-                  tooltip="Load local descriptor publication counts and timings so you can review recent publishing activity."
+                  tooltip={interfaceText("Load local descriptor publication counts and timings so you can review recent publishing activity.")}
                   disabled={loadingStats}
                   loading={loadingStats}
                   onClick={handleLoadPublishingStats}
@@ -2489,7 +2500,7 @@ const MediaCore = () => {
                 <Message warning size="small">
                   <LocalizedText source={"Republish only after reviewing publishing statistics. This refreshes DHT-visible descriptor records that are close to expiry."} /></Message>
                 <Button
-                  tooltip="Republish descriptors nearing expiry so they remain discoverable. This performs DHT writes; run it when renewal is needed."
+                  tooltip={interfaceText("Republish descriptors nearing expiry so they remain discoverable. This performs DHT writes; run it when renewal is needed.")}
                   disabled={republishing}
                   loading={republishing}
                   onClick={handleRepublishExpiring}
@@ -2604,7 +2615,7 @@ const MediaCore = () => {
                   />
                 </Form.Field>
                 <Button
-                  tooltip="Run one manual DHT lookup for this ContentID to inspect its published descriptor. Use the cache-bypass option only when a fresh read is needed."
+                  tooltip={interfaceText("Run one manual DHT lookup for this ContentID to inspect its published descriptor. Use the cache-bypass option only when a fresh read is needed.")}
                   disabled={!retrieveContentId.trim() || retrievingDescriptor}
                   loading={retrievingDescriptor}
                   onClick={handleRetrieveDescriptor}
@@ -2710,7 +2721,7 @@ const MediaCore = () => {
                      {...interfaceTextProps("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Run a DHT lookup for each listed ContentID to inspect their descriptors. Keep the batch bounded because every ID adds network traffic."
+                    tooltip={interfaceText("Run a DHT lookup for each listed ContentID to inspect their descriptors. Keep the batch bounded because every ID adds network traffic.")}
                     disabled={!batchRetrieveContentIds.trim() || retrievingBatch}
                     loading={retrievingBatch}
                     onClick={handleRetrieveBatch}
@@ -2802,7 +2813,7 @@ const MediaCore = () => {
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Search published descriptors by domain and type, up to the selected result limit. This is a manual DHT query."
+                  tooltip={interfaceText("Search published descriptors by domain and type, up to the selected result limit. This is a manual DHT query.")}
                   disabled={!queryDomain.trim() || queryingDescriptors}
                   loading={queryingDescriptors}
                   onClick={handleQueryDescriptors}
@@ -2869,7 +2880,7 @@ const MediaCore = () => {
                    {...interfaceTextProps("Paste descriptor JSON to verify...")}/>
                 </Form.Field>
                 <Button
-                  tooltip="Check this descriptor’s signature and validity before importing or trusting its metadata."
+                  tooltip={interfaceText("Check this descriptor’s signature and validity before importing or trusting its metadata.")}
                   disabled={!verifyDescriptor.trim() || verifyingDescriptor}
                   loading={verifyingDescriptor}
                   onClick={handleVerifyDescriptor}

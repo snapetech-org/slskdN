@@ -111,7 +111,9 @@ const SwarmAnalytics = () => {
         fetchRequestRef.current !== request
       ) return;
       toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to load analytics',
+        error?.response?.data ??
+          error?.message ??
+          interfaceText('Failed to load analytics'),
       );
       console.error('Failed to fetch analytics:', error);
     } finally {
@@ -265,7 +267,10 @@ const SwarmAnalytics = () => {
               <Card.Content>
                 <Card.Header><LocalizedText source={"Performance Metrics"} /></Card.Header>
                 <Card.Meta>
-                  <LocalizedText source={"Last"} />{" "}{timeWindow} <LocalizedText source={"hour"} />{timeWindow !== 1 ? <LocalizedText source={"s"} /> : ''}
+                  <LocalizedText
+                    source={timeWindow === 1 ? "Last hour" : "Last {count} hours"}
+                    values={{ count: timeWindow }}
+                  />
                 </Card.Meta>
               </Card.Content>
               <Card.Content>

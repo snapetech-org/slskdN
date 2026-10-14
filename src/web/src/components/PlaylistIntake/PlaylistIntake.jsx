@@ -189,14 +189,14 @@ const PlaylistIntake = () => {
         <Form.Group widths="equal">
           <Form.Input
             aria-label={interfaceText("Playlist name")}
-            label={interfaceText("Name")}
+            label={<LocalizedText source="Name" />}
             onChange={(event) => setName(event.target.value)}
             placeholder={interfaceText("Road trip, label sampler, friend recs")}
             value={name}
            {...interfaceTextProps("Playlist name")}/>
           <Form.Input
             aria-label={interfaceText("Playlist source")}
-            label={interfaceText("Source")}
+            label={<LocalizedText source="Source" />}
             onChange={(event) => setSource(event.target.value)}
             placeholder={interfaceText("Local file name or provider URL")}
             value={source}
@@ -344,7 +344,7 @@ const PlaylistIntake = () => {
                       <Form.Group widths="equal">
                         <Form.Input
                           aria-label={interfaceText("Organization album title for {name}", { "name": (playlist.name) })}
-                          label={interfaceText("Album title")}
+                          label={<LocalizedText source="Album title" />}
                           onChange={(event) =>
                             setOrganizationInput(
                               playlist,
@@ -356,7 +356,7 @@ const PlaylistIntake = () => {
                          {...interfaceTextProps("Organization album title for {name}")}/>
                         <Form.Select
                           aria-label={interfaceText("Organization path template for {name}", { "name": (playlist.name) })}
-                          label={interfaceText("Path template")}
+                          label={<LocalizedText source="Path template" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'pathTemplate', data.value)
                           }
@@ -367,7 +367,7 @@ const PlaylistIntake = () => {
                       <Form.Group widths="equal">
                         <Form.Select
                           aria-label={interfaceText("Multi-artist tag policy for {name}", { "name": (playlist.name) })}
-                          label="Multi-artist"
+                          label={<LocalizedText source="Multi-artist" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(
                               playlist,
@@ -377,10 +377,10 @@ const PlaylistIntake = () => {
                           }
                           options={multiArtistTagPolicies.map((option) => ({ ...option, text: interfaceText(option.text) }))}
                           value={organizationInput.multiArtistPolicy}
-                         {...interfaceTextProps("Multi-artist tag policy for {name}")}/>
+                         {...interfaceTextProps("Multi-artist")}/>
                         <Form.Select
                           aria-label={interfaceText("Cover art policy for {name}", { "name": (playlist.name) })}
-                          label={interfaceText("Cover art")}
+                          label={<LocalizedText source="Cover art" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'coverArtPolicy', data.value)
                           }
@@ -389,7 +389,7 @@ const PlaylistIntake = () => {
                          {...interfaceTextProps("Cover art policy for {name}")}/>
                         <Form.Select
                           aria-label={interfaceText("ReplayGain policy for {name}", { "name": (playlist.name) })}
-                          label={interfaceText("ReplayGain")}
+                          label={<LocalizedText source="ReplayGain" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'replayGainPolicy', data.value)
                           }

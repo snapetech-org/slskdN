@@ -30,7 +30,7 @@ const getErrorMessage = (error) => {
 
   return typeof responseData === 'string'
     ? responseData
-    : error?.response?.statusText || error?.message || 'Failed to save download filters.';
+    : error?.response?.statusText || error?.message || interfaceText('Failed to save download filters.');
 };
 
 const DownloadExclusionsModal = ({

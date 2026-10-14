@@ -57,7 +57,7 @@ const AlbumCompletionPanel = ({ disabled }) => {
       setError(
         loadError?.response?.data ??
           loadError?.message ??
-          'Unable to load album completion data',
+          interfaceText('Unable to load album completion data'),
       );
     } finally {
       setLoading(false);
@@ -169,7 +169,8 @@ const AlbumCompletionPanel = ({ disabled }) => {
                                 color="blue"
                                 size="tiny"
                               >
-                                {track.matches.length} <LocalizedText source={"fingerprint match"} />{track.matches.length === 1 ? '' : <LocalizedText source={"es"} />}
+                                {track.matches.length}{' '}
+                                <LocalizedText source={track.matches.length === 1 ? "fingerprint match" : "fingerprint matches"} />
                               </Label>
                             )}
                           </List.Header>
