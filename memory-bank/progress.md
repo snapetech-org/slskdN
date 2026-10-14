@@ -19157,3 +19157,23 @@ normal fast-forward. The Unreleased notes are now under the dated
 `2026101321-slskdn.351` section. The earlier branch workflow runs were
 superseded while queued and were cancelled; no result from those runs is
 counted. The exact-`main` hosted gate and stable tag remain pending.
+
+## Update 2026-10-14 01:28 UTC — Hosted release verifier repository identity
+
+Hosted CI and the Nix package smoke passed on exact `main` SHA
+`03c352d32f7a31581dc29b8f34d33bffb0977405`. Running the guarded release
+verifier against that successful receipt exposed an existing mismatch: the
+configured repository alias resolves to canonical `snapetech-org/slskdN`,
+while the verifier compared the run's canonical name to `snapetech/slskdN`.
+Recorded gotcha `0z1855` immediately, then changed the verifier to pin and
+check the fork's immutable repository ID and added regression cases for
+canonical-name acceptance and wrong-target rejection. The focused suite passes
+8/8, shell syntax and release-note preview pass, and repository lint completed.
+
+The exact-head CI receipt is no longer current after the verifier fix. Three
+commits are local and unpushed; the remediation baseline stopped at its
+expected branch-sync guard because `main` is ahead of `origin/main`. The old
+E2E run remains queued on the previous SHA. Next: push normally to the
+verified fork, rerun the complete remediation baseline, cancel the stale
+queued E2E run, and dispatch fresh CI and Playwright validation for the new
+exact head. No release tag or upstream write was made.

@@ -4,6 +4,21 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1858. Keep GitHub Write Guards Aligned With Repository Ownership (2026-10-14)
+
+**What went wrong:** The repository had moved to the organization, but its GitHub
+write guard and agent instructions still named the former personal owner. The
+required pre-write target check would reject the authorized organization repo.
+
+**Why:** Repository ownership changed without updating the exact-origin safety
+check and its documented target.
+
+**Prevention:** When a repository transfer changes its canonical owner, update
+the repository target instructions and write guard together. Keep the upstream
+remote read-only, pin both the expected repository and origin URL, and run the
+guard before every GitHub write. Never work around a target mismatch by disabling
+the guard.
+
 ### 0z1857. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
 
 **What went wrong:** Version-tag pushes and scheduled scans could fall through
@@ -39,20 +54,22 @@ behind the trusted event/ref and readiness checks. Keep pull-request jobs on
 hosted runners, and assert the group and label object in the workflow policy
 test.
 
-### 0z1855. Keep GitHub Write Guards Aligned With Repository Ownership (2026-10-14)
+### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
 
-**What went wrong:** The repository had moved to the organization, but its GitHub
-write guard and agent instructions still named the former personal owner. The
-required pre-write target check would reject the authorized organization repo.
+**What went wrong:** The hosted release-gate verifier rejected a successful
+workflow run for the intended repository because GitHub returned its current
+canonical owner/name while the verifier compared that value to the configured
+repository alias.
 
-**Why:** Repository ownership changed without updating the exact-origin safety
-check and its documented target.
+**Why:** GitHub repository aliases and canonical names can differ after an
+organization transfer. A mutable display name is not a reliable identity
+check for a run.
 
-**Prevention:** When a repository transfer changes its canonical owner, update
-the repository target instructions and write guard together. Keep the upstream
-remote read-only, pin both the expected repository and origin URL, and run the
-guard before every GitHub write. Never work around a target mismatch by disabling
-the guard.
+**Prevention:** Pin the intended fork's immutable numeric repository ID,
+confirm that the configured alias resolves to that ID, and compare the run's
+repository ID to it. Keep the release-gate contract test for a renamed
+repository and confirm the run's workflow, event, branch, commit, status, and
+conclusion independently.
 
 ### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
 

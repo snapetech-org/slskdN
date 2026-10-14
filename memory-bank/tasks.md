@@ -7457,6 +7457,11 @@ resource completion.
 - [x] Pass the full Release build, unit/integration/regression suites
   (6,227 tests), performance and VPN-agent builds, repository lint, package
   validators, and release-note/identity checks.
+- Validation note (2026-10-14): hosted CI and Nix smoke passed on SHA
+  `03c352d32f7a31581dc29b8f34d33bffb0977405`. The release verifier exposed a
+  canonical repository-name mismatch after the fork's owner rename. The fix
+  now checks the pinned repository ID and has contract coverage; because it
+  advances `main`, fresh exact-head CI and browser E2E are still required.
 - [ ] Pass the hosted CI release gate for the final exact `main` commit.
 - [ ] Pass hosted browser E2E on the same final `main` commit.
 - [ ] Create the authorized stable tag only after the gate passes; verify

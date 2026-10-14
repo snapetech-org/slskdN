@@ -1,23 +1,22 @@
-## Current state — Stable `.351` post-push validation — 2026-10-14 01:02 UTC
+## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
-The `.351` feature and documentation work is prepared in the candidate, with
-README and feature/API/configuration guides updated. Release validation
-revealed a false positive: an isolated task's synthetic `HOME` basename was
-treated as a local identity and matched ordinary commit text. The scanner now
-ignores runtime-derived values only in that sandbox, preserves explicit
-denylist values, and matches commit identities as whole words. Three scanner
-contract tests and the validation-engine environment regression pass; all 17
-validation-engine tests, `./bin/lint`, syntax checks, and `git diff --check`
-pass.
+The `.351` feature and documentation work is on `main`, including the README
+and feature/API/configuration guides. Exact-head CI and Nix smoke run
+`38493466154` passed on SHA `03c352d32f7a31581dc29b8f34d33bffb0977405`.
+The release verifier initially rejected this valid run because GitHub returned
+the canonical `snapetech-org/slskdN` name while the checkout uses the
+`snapetech/slskdN` alias. The verifier now checks the fork's pinned repository
+ID, confirms the alias resolves to it, and validates the run against that ID.
+Regression coverage passes 8/8, release-note preview passes, and `./bin/lint`
+completed. The remediation baseline stopped at the expected branch-sync guard
+because the two verifier-fix commits are not pushed yet.
 
-The guarded runtime sync corrected the manifest and vendored CI workflow
-mirror to the current source revision. Three commits were pushed with a normal
-fast-forward to the fork. The post-push remediation baseline now passes all
-checks; the tracked red-team candidate inventory is refreshed to 12,929 after
-classifying its net twelve-line validation-fixture change. Next: run exact-head
-hosted CI and Playwright E2E, then use the guarded stable release flow only if
-both are green. No release tag has been created. Live DHT/VPN validation still
-lacks credentials and a VPN profile.
+The feature tree remains untagged. Push the gotcha and verifier fix with a
+normal fast-forward, then run the remediation baseline and dispatch new
+exact-head CI and Playwright E2E. The earlier E2E run still targets the prior
+SHA and remains queued. Create the stable tag only after both fresh exact-head
+runs pass, then verify release assets and downstream publication. Live
+DHT/VPN validation still has no supplied credentials or VPN profile.
 
 ## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 
