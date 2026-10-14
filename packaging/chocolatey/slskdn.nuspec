@@ -7,7 +7,7 @@
     <authors>snapetech</authors>
     <owners>slskdn</owners>
     <projectUrl>https://github.com/snapetech-org/slskdN</projectUrl>
-    <iconUrl>https://cdn.jsdelivr.net/gh/snapetech/slskdn@main/etc/icon.svg</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/snapetech-org/slskdn@main/etc/icon.svg</iconUrl>
     <licenseUrl>https://github.com/snapetech-org/slskdN/blob/main/LICENSE</licenseUrl>
     <packageSourceUrl>https://github.com/snapetech-org/slskdN/tree/main/packaging/chocolatey</packageSourceUrl>
     <projectSourceUrl>https://github.com/snapetech-org/slskdN</projectSourceUrl>

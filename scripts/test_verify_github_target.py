@@ -101,7 +101,7 @@ class VerifyGitHubTargetTests(unittest.TestCase):
     def test_accepts_https_and_ssh_github_remotes(self) -> None:
         for origin_url in (
             "https://github.com/snapetech-org/slskdN.git",
-            "ssh://git@github.com/snapetech/slskdN.git",
+            "ssh://git@github.com/snapetech-org/slskdN.git",
         ):
             with self.subTest(origin_url=origin_url):
                 result = self.invoke(
