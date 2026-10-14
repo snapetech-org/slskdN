@@ -4,6 +4,19 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1859. Keep Localized Icon Navigation Legible On Narrow Screens (2026-10-14)
+
+**What went wrong:** Longer translated navigation labels overflowed neighboring
+fixed-width icon items on narrow screens, even though the navigation container
+itself had no horizontal page overflow.
+
+**Why:** The responsive layout allowed a horizontal row of fixed-width items to
+keep rendering each full translated label without a narrow-screen treatment.
+
+**Prevention:** Collapse primary navigation labels to icons below the mobile
+breakpoint, retain the translated accessible name on every interactive item,
+and verify a narrow viewport for both overlap and horizontal overflow.
+
 ### 0z1858. Isolate Dynamic Values In Right-To-Left UI Text (2026-10-14)
 
 **What went wrong:** Arabic UI translations interpolated Latin file paths and
