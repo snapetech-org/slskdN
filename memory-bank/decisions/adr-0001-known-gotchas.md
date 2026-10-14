@@ -85,13 +85,29 @@ the package annotations were updated.
 `ILogger.BeginScope<TState>` signature, including its `notnull` constraint,
 and compile the benchmark project after logging package updates.
 
-### 0z1852. Bound Independent Validation Tasks Without Breaking Shared Outputs (2026-10-13)
+### 0z1855. Keep Resource-Heavy Validation Suites Out Of The Same Pool Slot (2026-10-14)
+
+**What went wrong:** The validation pool ran the Web test suite alongside
+backend test work. The Web suite took nearly three times as long as its serial
+run, timed out one component test, and failed another assertion after state was
+not ready.
+
+**Why:** Dependency independence does not mean two suites can safely compete
+for the same CPU and memory budget. The scheduler grouped backend suites that
+share outputs but let the resource-heavy Web and backend suites overlap.
+
+**Prevention:** Put CPU- and memory-heavy build/test tasks in an explicit shared
+resource group. Keep small repository checks outside that group so they can
+still overlap. Verify the complete hosted gate and its per-task receipts before
+accepting the schedule.
+
+### 0z1854. Bound Independent Validation Tasks Without Breaking Shared Outputs (2026-10-14)
 
 **What went wrong:** The validation engine awaited every selected task in declaration order, so independent checks and tests could not use available runner capacity.
 
 **Why:** The plan recorded task dependencies, but execution treated the topological order as a required serial schedule. Some tasks also share generated outputs, so removing the sequential loop without explicit resource ownership would introduce collisions.
 
-**Prevention:** Schedule only dependency-ready tasks in a bounded pool. Keep shared-output tasks in an explicit concurrency group, check the candidate identity while tasks run, and contract-test worker limits, dependency release, resource-group exclusion, failure blocking, and receipt accounting.
+**Prevention:** Schedule only dependency-ready tasks in a bounded pool. Keep shared-output tasks in explicit concurrency groups, put resource-heavy suites in a shared budget group, check the candidate identity while tasks run, and contract-test worker limits, dependency release, group exclusion, failure blocking, and receipt accounting.
 
 ### 0z1847. Include New Environment Options In Every Maintained Installer Template (2026-10-13)
 
