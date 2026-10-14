@@ -4,6 +4,19 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1860. Keep Backend-Only Smoke Jobs Free Of Unused Node Caches (2026-10-14)
+
+**What went wrong:** The Windows .NET smoke job ran its build and tests, then
+failed during `actions/setup-node` post-job cleanup with a pnpm cache path
+validation error. The job does not build or test the Web workspace.
+
+**Why:** The workflow configured a package-manager cache and Node setup in a
+backend-only job, adding a failure point that the job's commands did not need.
+
+**Prevention:** Keep the Windows smoke job limited to its .NET SDK and .NET
+commands. Add Node and package-manager setup only when a job actually runs those
+toolchains, and validate the exact workflow after cache changes.
+
 ### 0z1859. Audit All Active Repository Targets After An Owner Transfer (2026-10-14)
 
 **What went wrong:** Updating the repository guard and agent instructions left
