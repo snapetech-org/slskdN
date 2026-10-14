@@ -1,4 +1,25 @@
-## Current state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
+## Current state — Stable `.351` post-push validation — 2026-10-14 01:02 UTC
+
+The `.351` feature and documentation work is prepared in the candidate, with
+README and feature/API/configuration guides updated. Release validation
+revealed a false positive: an isolated task's synthetic `HOME` basename was
+treated as a local identity and matched ordinary commit text. The scanner now
+ignores runtime-derived values only in that sandbox, preserves explicit
+denylist values, and matches commit identities as whole words. Three scanner
+contract tests and the validation-engine environment regression pass; all 17
+validation-engine tests, `./bin/lint`, syntax checks, and `git diff --check`
+pass.
+
+The guarded runtime sync corrected the manifest and vendored CI workflow
+mirror to the current source revision. Three commits were pushed with a normal
+fast-forward to the fork. The post-push remediation baseline now passes all
+checks; the tracked red-team candidate inventory is refreshed to 12,929 after
+classifying its net twelve-line validation-fixture change. Next: run exact-head
+hosted CI and Playwright E2E, then use the guarded stable release flow only if
+both are green. No release tag has been created. Live DHT/VPN validation still
+lacks credentials and a VPN profile.
+
+## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 
 The SignalR denial-of-service advisory is fixed by updating the complete
 first-party .NET dependency graph and bundled Flatpak runtime to .NET 10.0.13.

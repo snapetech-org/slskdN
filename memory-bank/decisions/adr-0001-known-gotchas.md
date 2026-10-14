@@ -4,6 +4,25 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1857. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
+
+**What went wrong:** Version-tag pushes and scheduled scans could fall through
+to the persistent local runner because the job selector treated events outside
+the pull-request and non-main-dispatch denylist as trusted. Tag-only publish,
+Docker, and release jobs also selected the local runner independently.
+
+**Why:** The workflow expressions defaulted to local capacity instead of
+allowlisting the trusted event and ref combinations. Publisher jobs had
+separate selectors from the validation job.
+
+**Prevention:** Fail closed: allow only documented main-branch manual and
+scheduled validation on the restricted `trusted-main` group, and require the
+`TRUSTED_MAIN_RUNNERS_ENABLED` readiness variable before selecting it. Until
+enabled, route validation to GitHub-hosted runners. Route pull requests and
+version tags to hosted runners, pin tag-only publisher jobs to hosted runners,
+and keep exact per-job runner assertions in
+`scripts/check-workflow-trigger-policy.sh`.
+
 ### 0z1856. Select Organization Runner Groups With A Group And Labels (2026-10-14)
 
 **What went wrong:** A workflow used `runs-on: 'trusted-main'` as though the
@@ -35,24 +54,23 @@ remote read-only, pin both the expected repository and origin URL, and run the
 guard before every GitHub write. Never work around a target mismatch by disabling
 the guard.
 
-### 0z1854. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
+### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
 
-**What went wrong:** Version-tag pushes and scheduled scans could fall through
-to the persistent local runner because the job selector treated events outside
-the pull-request and non-main-dispatch denylist as trusted. Tag-only publish,
-Docker, and release jobs also selected the local runner independently.
+**What went wrong:** The trusted validation environment sets `HOME` to a
+task-private path ending in `/home`. The release identity scanner treated the
+basename `home` as a private identity and searched for it as a substring in
+commit messages. This matched the ordinary plural word `homes` in a commit
+subject and failed the release gate.
 
-**Why:** The workflow expressions defaulted to local capacity instead of
-allowlisting the trusted event and ref combinations. Publisher jobs had
-separate selectors from the validation job.
+**Why:** Runtime identity discovery was applied unchanged inside an isolated
+test environment, and fixed-string matching allowed a short token to match
+inside a different word.
 
-**Prevention:** Fail closed: allow only documented main-branch manual and
-scheduled validation on the restricted `trusted-main` group, and require the
-`TRUSTED_MAIN_RUNNERS_ENABLED` readiness variable before selecting it. Until
-enabled, route validation to GitHub-hosted runners. Route pull requests and
-version tags to hosted runners, pin tag-only publisher jobs to hosted runners,
-and keep exact per-job runner assertions in
-`scripts/check-workflow-trigger-policy.sh`.
+**Prevention:** Do not treat the trusted sandbox's synthetic account and
+directory names as operator identities. Keep explicit denylist terms active,
+match plain-name tokens on word boundaries in commit messages, and retain
+literal matching for path-shaped denylist values. Cover the sandbox environment
+and positive identity matches with scanner contract tests.
 
 ### 0z1853. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)
 
