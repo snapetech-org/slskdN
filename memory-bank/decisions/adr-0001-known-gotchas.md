@@ -47,6 +47,20 @@ the same discovery scan, so new wording can match the scan patterns.
 backlog edit. Avoid introducing scan terms into refresh prose unless the new
 match is intended and classified.
 
+### 0z1858. Keep Pnpm Lockfile Importers Aligned With Manifest Updates (2026-10-14)
+
+**What went wrong:** A grouped web dependency update changed version ranges in
+`src/web/package.json` without updating the corresponding importer entries in
+`pnpm-lock.yaml`.
+
+**Why:** Updating the manifest alone leaves frozen installs with a stale
+dependency contract and prevents the checkout from reproducing its declared
+workspace dependencies.
+
+**Prevention:** Update and review the pnpm lockfile with each manifest change,
+then require `pnpm install --frozen-lockfile` to pass before accepting the
+dependency update.
+
 ### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
 
 **What went wrong:** The trusted validation environment sets `HOME` to a
