@@ -1,6 +1,5 @@
 // Copyright (c) snapetech and SeerrNG contributors.
 import assert from 'node:assert/strict';
-import { randomUUID } from 'node:crypto';
 import { execFileSync, spawnSync } from 'node:child_process';
 import {
   existsSync,
@@ -112,8 +111,9 @@ test(
     const hostFile = path.join(parent, 'host-canary.txt');
     const browserCache = path.join(parent, 'playwright-cache');
     const outsideDependencies = path.join(parent, 'outside-dependencies');
-    // Keep the Unix socket path short when the engine provides a nested TMPDIR.
-    const hostSocket = path.join('/tmp', `validation-${randomUUID()}.sock`);
+    // Keep the Unix socket path short and private when TMPDIR is nested.
+    const hostSocketDirectory = mkdtempSync(path.join('/tmp', 'validation-'));
+    const hostSocket = path.join(hostSocketDirectory, 'socket');
     const candidateWrite = path.join(source, 'launcher-write-canary.txt');
     mkdirSync(path.join(source, 'bin'), { recursive: true });
     mkdirSync(browserCache, { recursive: true });
@@ -125,7 +125,7 @@ test(
         await new Promise((resolve) => tcpServer.close(resolve));
       if (socketServer.listening)
         await new Promise((resolve) => socketServer.close(resolve));
-      rmSync(hostSocket, { force: true });
+      rmSync(hostSocketDirectory, { recursive: true, force: true });
       rmSync(parent, { recursive: true, force: true });
     });
     tcpServer.listen(0, '127.0.0.1');
