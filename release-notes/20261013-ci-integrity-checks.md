@@ -5,4 +5,4 @@ area: ci-security
 action: none
 breaking: false
 ---
-CI actions use immutable commit pins. Dependency scans fail on high or critical vulnerabilities, and Trivy blocks fixable high or critical findings. Required performance and load checks now fail visibly. Maintainers can retry selected publishers for an existing stable release using published assets, without rebuilding or repeating successful channels.
+CI pins actions; gates tests, dependency/image scans, and bounded benchmark/load checks; empty HashDb reports fail. Tags are checked before shell use. Publisher recovery uses the current stable commit, existing assets, and credentials. Docker stays tag-only; Nix validates main before push. Windows SQLite fixtures close before cleanup. Vendored runtime Windows smoke uses hosted runners.

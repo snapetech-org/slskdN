@@ -1,4 +1,29 @@
-## Current state — PR #357 latest-main integration — 2026-10-13 23:22 UTC
+## Current state — PR #357 exact-head gate repair — 2026-10-14 00:32 UTC
+
+The pushed candidate is `2d88cb78f358b19ab4417d35d0039b375ac4b898`, based
+on current `main` at `6bad0696008970f1df54aea8f03b805475f50363`. Its hosted
+Release Gate completed 14/15 tasks, with 7,461 active cases and three tasks
+excluded. The sole failure was the runtime sync check: upstream
+`slskNet.Runtime` advanced from `af73ff3` to `ad515de`. The guarded sync
+accepted the existing local patch and changed only the runtime manifest and
+the vendored Windows Smoke workflow (`self-hosted` to `windows-latest`).
+
+On `2d88cb7`, CodeQL, E2E, identity-leak, release-note, dependency submission,
+Nix Smoke, dependency scanning, and performance checks passed. The Windows
+Smoke retry, load test, and container scan were still running when this sync
+was prepared. The failed Release Gate and those running checks are not evidence
+for the updated candidate.
+
+### Next steps
+
+- Run the runtime sync check after committing the tracked vendor update; its
+  current worktree guard treats tracked edits as dirty input.
+- Preview the release note, commit and push this update, then reconcile every
+  required exact-head hosted check and receipt.
+- Recheck all 21 review threads and the PR base/head; merge only after every
+  required check for the final head passes. Do not create a release tag.
+
+## Previous state — PR #357 latest-main integration — 2026-10-13 23:22 UTC
 
 The pushed PR head remains `4b3abdf120ced4b7352ff35f50e1b326968815d7`; remote
 `main` advanced to `6bad0696008970f1df54aea8f03b805475f50363`. A checkpoint

@@ -28,8 +28,9 @@
 
 ### PR #357 Windows and validation gate — 2026-10-13
 
-- [x] Merge current `origin/main` (`37d197d7c`) into the PR candidate while
-  preserving both branches' source, test, and documentation changes.
+- [x] Merge current `origin/main` (`6bad06960`) into the PR candidate at
+  `2d88cb78f`, preserving both branches' source, test, and documentation
+  changes.
 - [x] Integrate the later benchmark-path commits from
   `codex/runner-temp-dotnet-20261012-update` and use one workspace-rooted
   artifact location for benchmark output, verification, and upload.
@@ -37,8 +38,12 @@
   contract (5/5), and the Release unit-project build (zero warnings/errors).
 - [x] Refresh the active backlog from the merged candidate and exact
   `origin/main`; the red-team discovery delta is 76, not a defect count.
-- [ ] Preview release notes, push the candidate, and verify every required
-  hosted check on the exact pushed hash, including Windows Smoke.
+- [x] Sync vendored `slskNet.Runtime` after upstream `main` advanced to
+  `ad515dec3`; preserve the local patch and move the vendored Windows Smoke job
+  from self-hosted to GitHub-hosted Windows.
+- [ ] Commit and push the sync, preview release notes, and verify every
+  required hosted check on the exact pushed hash, including Windows Smoke and
+  the complete validation-engine receipt.
 - [ ] Recheck all 21 PR review threads and merge only after the final exact-head
   gate succeeds.
 
