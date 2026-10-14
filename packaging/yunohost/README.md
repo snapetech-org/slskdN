@@ -4,7 +4,7 @@ The package tree lives in `packaging/yunohost/slskdn_ynh` and is mirrored in
 [`YunoHost-Apps/slskdn_ynh`](https://github.com/YunoHost-Apps/slskdn_ynh).
 That repository contains the YunoHost packaging files, not the slskdN
 application source. Its manifest downloads checksum-pinned, self-contained
-Linux release bundles from the [slskdN releases](https://github.com/snapetech/slskdN/releases).
+Linux release bundles from the [slskdN releases](https://github.com/snapetech-org/slskdN/releases).
 
 YunoHost's catalog expects an app package to have its own repository. The
 catalog tracks the `testing` branch while maintainers review and validate the

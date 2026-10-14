@@ -647,7 +647,7 @@ logging:
    - Real-time help from community
    - Share issues and solutions
 
-2. **GitHub Issues**: [Report Issues](https://github.com/snapetech/slskdn/issues)
+2. **GitHub Issues**: [Report Issues](https://github.com/snapetech-org/slskdN/issues)
    - Bug reports
    - Feature requests
    - Include logs and configuration (redact sensitive info)
@@ -678,4 +678,4 @@ For enterprise deployments or complex issues:
 
 ---
 
-**Still having issues?** Join our [Discord](https://discord.gg/5PyXBfvS6T) or [open an issue](https://github.com/snapetech/slskdn/issues)!
+**Still having issues?** Join our [Discord](https://discord.gg/5PyXBfvS6T) or [open an issue](https://github.com/snapetech-org/slskdN/issues)!

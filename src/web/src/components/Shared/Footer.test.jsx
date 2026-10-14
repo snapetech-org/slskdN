@@ -57,7 +57,7 @@ describe('Footer', () => {
       isUpdateAvailable: false,
       latest: '0.0.0-slskdn.manual.test',
       latestTag: '0.0.0-slskdn.manual.test',
-      latestUrl: 'https://github.com/snapetech/slskdn/releases/tag/test',
+      latestUrl: 'https://github.com/snapetech-org/slskdN/releases/tag/test',
     });
     localStorage.setItem('slskdn-karma', '2');
   });
@@ -204,7 +204,7 @@ describe('Footer', () => {
       isUpdateAvailable: true,
       latest: '2026050500-slskdn.221',
       latestTag: 'build-main-2026050500-slskdn.221',
-      latestUrl: 'https://github.com/snapetech/slskdn/releases/tag/build-main-2026050500-slskdn.221',
+      latestUrl: 'https://github.com/snapetech-org/slskdN/releases/tag/build-main-2026050500-slskdn.221',
     });
 
     render(<Footer />);

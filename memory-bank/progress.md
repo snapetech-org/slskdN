@@ -19177,3 +19177,12 @@ E2E run remains queued on the previous SHA. Next: push normally to the
 verified fork, rerun the complete remediation baseline, cancel the stale
 queued E2E run, and dispatch fresh CI and Playwright validation for the new
 exact head. No release tag or upstream write was made.
+## Update 2026-10-14 — Canonical organization repository references
+
+Updated active GitHub targets in the app, docs, release scripts, package
+metadata, and publication setup to `snapetech-org/slskdN`. The exact origin
+guard now matches the canonical remote casing. Added a stale-owner policy check
+and release-note fragment. GHCR still lists the public `slskdn` package under
+the personal account, so image names and the independent package tap remain
+unchanged. Focused workflow, package, release-gate, frontend-link, and formatting
+checks pass; exact PR and post-merge main results remain pending.

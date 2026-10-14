@@ -99,7 +99,7 @@ docker run -d \
 
 ### Manual Installation
 
-1. **Download the latest release** from [GitHub Releases](https://github.com/snapetech/slskdn/releases)
+1. **Download the latest release** from [GitHub Releases](https://github.com/snapetech-org/slskdN/releases)
 2. **Extract the archive** to your desired location
 3. **Run the executable**:
    - Linux/macOS: `./slskdn`
@@ -378,7 +378,7 @@ See [Pods, Rooms, And Messages](pods-and-rooms.md) for the full policy.
 
 3. **Community Support**:
    - [Discord](https://discord.gg/5PyXBfvS6T)
-   - [GitHub Issues](https://github.com/snapetech/slskdn/issues)
+   - [GitHub Issues](https://github.com/snapetech-org/slskdN/issues)
 
 4. **Documentation**:
    - [Configuration Reference](config.md)

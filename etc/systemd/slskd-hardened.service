@@ -11,7 +11,7 @@
 
 [Unit]
 Description=slskdN - Unofficial slskd Fork
-Documentation=https://github.com/snapetech/slskdn https://github.com/slskd/slskd
+Documentation=https://github.com/snapetech-org/slskdN https://github.com/slskd/slskd
 After=network.target network-online.target
 Wants=network-online.target
 

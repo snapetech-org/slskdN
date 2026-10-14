@@ -4,9 +4,9 @@ Priority: optional
 Maintainer: snapetech <slskdn@proton.me>
 Build-Depends: debhelper-compat (= 13), patchelf
 Standards-Version: 4.6.0
-Homepage: https://github.com/snapetech/slskdn
-Vcs-Browser: https://github.com/snapetech/slskdn
-Vcs-Git: https://github.com/snapetech/slskdn.git
+Homepage: https://github.com/snapetech-org/slskdN
+Vcs-Browser: https://github.com/snapetech-org/slskdN
+Vcs-Git: https://github.com/snapetech-org/slskdN.git
 Rules-Requires-Root: no
 
 Package: slskdn

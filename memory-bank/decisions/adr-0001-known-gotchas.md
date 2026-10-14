@@ -4,6 +4,83 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1860. Keep Backend-Only Smoke Jobs Free Of Unused Node Caches (2026-10-14)
+
+**What went wrong:** The Windows .NET smoke job ran its build and tests, then
+failed during `actions/setup-node` post-job cleanup with a pnpm cache path
+validation error. The job does not build or test the Web workspace.
+
+**Why:** The workflow configured a package-manager cache and Node setup in a
+backend-only job, adding a failure point that the job's commands did not need.
+
+**Prevention:** Keep the Windows smoke job limited to its .NET SDK and .NET
+commands. Add Node and package-manager setup only when a job actually runs those
+toolchains, and validate the exact workflow after cache changes.
+
+### 0z1859. Audit All Active Repository Targets After An Owner Transfer (2026-10-14)
+
+**What went wrong:** Updating the repository guard and agent instructions left
+application links, release tooling, and package metadata pointing at the former
+personal repository owner.
+
+**Why:** The transfer review checked the write target but did not inventory every
+active GitHub URL and API target that users and release scripts consume.
+
+**Prevention:** Search active source, documentation, package metadata, and release
+scripts for the former repository target. Preserve separately owned image and tap
+namespaces, upstream references, and shipped historical records. Add a repository
+policy check that rejects stale active links.
+
+### 0z1858. Keep GitHub Write Guards Aligned With Repository Ownership (2026-10-14)
+
+**What went wrong:** The repository had moved to the organization, but its GitHub
+write guard and agent instructions still named the former personal owner. The
+required pre-write target check would reject the authorized organization repo.
+
+**Why:** Repository ownership changed without updating the exact-origin safety
+check and its documented target.
+
+**Prevention:** When a repository transfer changes its canonical owner, update
+the repository target instructions and write guard together. Keep the upstream
+remote read-only, pin both the expected repository and origin URL, and run the
+guard before every GitHub write. Never work around a target mismatch by disabling
+the guard.
+
+### 0z1857. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
+
+**What went wrong:** Version-tag pushes and scheduled scans could fall through
+to the persistent local runner because the job selector treated events outside
+the pull-request and non-main-dispatch denylist as trusted. Tag-only publish,
+Docker, and release jobs also selected the local runner independently.
+
+**Why:** The workflow expressions defaulted to local capacity instead of
+allowlisting the trusted event and ref combinations. Publisher jobs had
+separate selectors from the validation job.
+
+**Prevention:** Fail closed: allow only documented main-branch manual and
+scheduled validation on the restricted `trusted-main` group, and require the
+`TRUSTED_MAIN_RUNNERS_ENABLED` readiness variable before selecting it. Until
+enabled, route validation to GitHub-hosted runners. Route pull requests and
+version tags to hosted runners, pin tag-only publisher jobs to hosted runners,
+and keep exact per-job runner assertions in
+`scripts/check-workflow-trigger-policy.sh`.
+
+### 0z1856. Select Organization Runner Groups With A Group And Labels (2026-10-14)
+
+**What went wrong:** A workflow used `runs-on: 'trusted-main'` as though the
+organization runner-group name were a runner label. GitHub interpreted it as a
+label and found no matching runner, leaving trusted jobs queued.
+
+**Why:** A group name does not identify an eligible runner by itself. The
+selector must specify both the organization group and labels that match its
+members.
+
+**Prevention:** Use an object selector such as
+`fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}')`
+behind the trusted event/ref and readiness checks. Keep pull-request jobs on
+hosted runners, and assert the group and label object in the workflow policy
+test.
+
 ### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
 
 **What went wrong:** The hosted release-gate verifier rejected a successful

@@ -124,7 +124,7 @@ cat <<MSG
 Release tag pushed: $tag
 
 Watch the tag build:
-  gh run list --repo snapetech/slskdN --workflow build-on-tag.yml --limit 5
+  gh run list --repo snapetech-org/slskdN --workflow build-on-tag.yml --limit 5
 
 After the GitHub release is published, verify artifacts:
   scripts/verify-release-artifacts.sh "$tag"

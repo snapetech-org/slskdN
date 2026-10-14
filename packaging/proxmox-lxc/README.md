@@ -107,5 +107,5 @@ The `setup-inside-ct.sh` path (binary from GitHub) is for when no repo is availa
 
 ## Links
 
-- [slskdn](https://github.com/snapetech/slskdn)
+- [slskdn](https://github.com/snapetech-org/slskdN)
 - [Proxmox LXC](https://pve.proxmox.com/pve-docs/chapter-pct.html)

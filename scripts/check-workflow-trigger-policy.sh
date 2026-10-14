@@ -57,20 +57,6 @@ done < <(find "$repo_root/.github/workflows" -maxdepth 1 -type f \( -name '*.yml
 
 ci_workflow="$repo_root/.github/workflows/ci.yml"
 ci_enhancements_workflow="$repo_root/.github/workflows/ci-enhancements.yml"
-for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
-  if ! rg -Fq "github.event_name == 'pull_request' ||" "$workflow" ||
-    ! rg -Fq "&& 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON" "$workflow"; then
-    printf '%s must route every pull request to hosted runners while preserving explicit runner preference\n' "${workflow#"$repo_root"/}" >&2
-    failed=1
-  fi
-done
-
-if ! rg -Fq "github.event_name == 'workflow_dispatch' && (github.ref != 'refs/heads/main' || inputs.runner == 'github-hosted')" "$ci_workflow" ||
-  ! rg -Fq "github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'" "$ci_enhancements_workflow"; then
-  printf 'CI workflows must keep non-main manual runs on hosted runners\n' >&2
-  failed=1
-fi
-
 upstream_access_workflow="$repo_root/.github/workflows/check-upstream-access.yml"
 if rg -q '^\s*workflow_dispatch:' "$upstream_access_workflow" ||
   ! rg -Fq "if: github.event_name == 'schedule'" "$upstream_access_workflow"; then
@@ -163,12 +149,33 @@ for name, text in texts.items():
 ci = texts["ci.yml"]
 enhancements = texts["ci-enhancements.yml"]
 tag_workflow = texts["build-on-tag.yml"]
+windows_smoke = texts["windows-smoke.yml"]
+
+if re.search(r"(?m)^\s*uses:\s*(?:pnpm/setup|actions/setup-node)@", windows_smoke):
+    raise SystemExit("Windows .NET smoke must not configure unused Node/pnpm setup or cache")
 
 def job_block(workflow, job):
     match = re.search(rf"(?ms)^  {re.escape(job)}:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", workflow)
     if not match:
-        raise SystemExit(f"build-on-tag.yml is missing {job}")
+        raise SystemExit(f"workflow is missing {job}")
     return match.group(1)
+
+def assert_runner(workflow, job, expected):
+    match = re.search(r"(?m)^    runs-on: (.+)$", job_block(workflow, job))
+    if not match or match.group(1) != expected:
+        raise SystemExit(f"{job} must use the reviewed runner policy")
+
+assert_runner(
+    ci,
+    "build",
+    """${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.runner != 'github-hosted' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}') || 'ubuntu-latest' }}""",
+)
+for job in ("publish", "docker", "release"):
+    assert_runner(ci, job, "ubuntu-latest")
+
+enhancement_runner = """${{ ((github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}')) || 'ubuntu-latest' }}"""
+for job in ("performance-regression", "dependency-scanning", "container-scanning"):
+    assert_runner(enhancements, job, enhancement_runner)
 
 parse_job = job_block(tag_workflow, "parse")
 if "Manual publisher recovery requires an existing build-main-* tag" not in parse_job:

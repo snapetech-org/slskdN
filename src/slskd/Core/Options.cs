@@ -2853,7 +2853,7 @@ namespace slskd
             [Argument(default, "slsk-description")]
             [EnvironmentVariable("SLSK_DESCRIPTION")]
             [Description("user description for the Soulseek network")]
-            public string Description { get; init; } = "A slskdN user. Unofficial fork of slskd: https://github.com/snapetech/slskdn";
+            public string Description { get; init; } = "A slskdN user. Unofficial fork of slskd: https://github.com/snapetech-org/slskdN";
 
             /// <summary>
             ///     Gets the file path for the user's profile picture.
@@ -4505,7 +4505,7 @@ namespace slskd
                 ///     Gets the User-Agent that will be sent to MusicBrainz.
                 /// </summary>
                 [NotNullOrWhiteSpace]
-                public string UserAgent { get; init; } = $"{Program.AppName}/{Program.SemanticVersion} (https://github.com/snapetech/slskdn)";
+                public string UserAgent { get; init; } = $"{Program.AppName}/{Program.SemanticVersion} (https://github.com/snapetech-org/slskdN)";
 
                 /// <summary>
                 ///     Gets the timeout for individual HTTP requests, in seconds.

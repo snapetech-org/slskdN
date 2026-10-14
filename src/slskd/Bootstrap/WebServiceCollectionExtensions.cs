@@ -534,12 +534,12 @@ public static class WebServiceCollectionExtensions
                     Contact = new OpenApiContact
                     {
                         Name = "slskdN on GitHub",
-                        Url = new Uri("https://github.com/snapetech/slskdn"),
+                        Url = new Uri("https://github.com/snapetech-org/slskdN"),
                     },
                     License = new OpenApiLicense
                     {
                         Name = "AGPL-3.0 license",
-                        Url = new Uri("https://github.com/snapetech/slskdn/blob/main/LICENSE"),
+                        Url = new Uri("https://github.com/snapetech-org/slskdN/blob/main/LICENSE"),
                     },
                 });
 

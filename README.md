@@ -1,8 +1,8 @@
 <h1 align="center">slskdN</h1>
 <p align="center"><strong>A web interface and daemon for Soulseek file sharing</strong></p>
 <p align="center">
-  <a href="https://github.com/snapetech/slskdn/releases">Releases</a> ·
-  <a href="https://github.com/snapetech/slskdn/issues">Issues</a> ·
+  <a href="https://github.com/snapetech-org/slskdN/releases">Releases</a> ·
+  <a href="https://github.com/snapetech-org/slskdN/issues">Issues</a> ·
   <a href="https://discord.gg/5PyXBfvS6T">Community</a>
 </p>
 
@@ -34,7 +34,7 @@ search, browse, and manage transfers.
 Download the current stable installer and run it with administrator privileges:
 
 ```bash
-curl -fsSLO https://github.com/snapetech/slskdn/releases/latest/download/install-linux-release.sh
+curl -fsSLO https://github.com/snapetech-org/slskdN/releases/latest/download/install-linux-release.sh
 sudo bash install-linux-release.sh
 ```
 

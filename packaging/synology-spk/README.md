@@ -13,7 +13,7 @@ Install slskdN, an unofficial fork of slskd, on Synology NAS devices through Pac
 
 ### Installing the Package
 
-1. **Download the SPK file** from the [slskdN releases page](https://github.com/snapetech/slskdn/releases)
+1. **Download the SPK file** from the [slskdN releases page](https://github.com/snapetech-org/slskdN/releases)
 2. **Open Package Center** on your Synology DSM
 3. **Click "Manual Install"** (top right)
 4. **Upload the SPK file** (`slskdn.spk`)
@@ -349,8 +349,8 @@ VPN tunnels provide encrypted, authenticated connections allowing secure access 
 
 ## Support
 
-- **Documentation**: https://github.com/snapetech/slskdn#readme
-- **Issues**: https://github.com/snapetech/slskdn/issues
+- **Documentation**: https://github.com/snapetech-org/slskdN#readme
+- **Issues**: https://github.com/snapetech-org/slskdN/issues
 - **Upstream slskd**: https://github.com/slskd/slskd
 - **Synology Forums**: Community support
 - **Soulseek Forums**: Network-specific help

@@ -36,5 +36,5 @@ log_step "📁 User data preserved at: /var/packages/slskdn/shares/slskdn/"
 log_step "   Remove this directory manually if you want to delete all data."
 log_step ""
 log_step "To reinstall later, download the SPK from:"
-log_step "https://github.com/snapetech/slskdn/releases"
+log_step "https://github.com/snapetech-org/slskdN/releases"
 

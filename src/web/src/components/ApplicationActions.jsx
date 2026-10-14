@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Icon, Menu, Modal, Popup } from 'semantic-ui-react';
 
-const RELEASES_URL = 'https://github.com/snapetech/slskdn/releases';
+const RELEASES_URL = 'https://github.com/snapetech-org/slskdN/releases';
 
 const VersionUpdateMenuItem = ({ current, latest }) => {
   const [open, setOpen] = useState(false);

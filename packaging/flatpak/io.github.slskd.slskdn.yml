@@ -110,7 +110,7 @@ modules:
     sources:
       # slskdN 2026101222-slskdn.350 Linux glibc x64 (snapetech; asset slskdn-main-linux-glibc-x64.zip)
       - type: archive
-        url: https://github.com/snapetech/slskdn/releases/download/2026101222-slskdn.350/slskdn-main-linux-glibc-x64.zip
+        url: https://github.com/snapetech-org/slskdN/releases/download/2026101222-slskdn.350/slskdn-main-linux-glibc-x64.zip
         sha256: dcd2ef16a3077d8df12c2260cec399f78ee306ca713b36158e69c154dc851541
 
       - type: file

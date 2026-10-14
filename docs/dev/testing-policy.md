@@ -187,6 +187,12 @@ If the vendored runtime suite exposes analyzer/baseline failures unrelated to th
 
 ## CI Expectations
 
+- Trusted main-branch manual and scheduled validation uses the restricted
+  `trusted-main` runner group only when `TRUSTED_MAIN_RUNNERS_ENABLED` is exactly
+  `true`; otherwise it uses GitHub-hosted runners. Pull requests, version-tag
+  pushes, and manual runs on other refs always use GitHub-hosted runners.
+- The tag-only `publish`, `docker`, and `release` jobs in `ci.yml` use
+  GitHub-hosted runners.
 - `ci.yml` should run the release gate on pull requests.
 - `ci.yml` should also run the Nix package smoke on pull requests.
 - Release gate should include `scripts/check-remediation-baseline.sh` so route inventory and shared Web API client path drift are caught before packaging.

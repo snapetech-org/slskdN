@@ -5,7 +5,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-repo="${RELEASE_NOTES_REPO:-snapetech/slskdN}"
+repo="${RELEASE_NOTES_REPO:-snapetech-org/slskdN}"
 mode="${1:---dry-run}"
 output_dir="${RELEASE_NOTES_AUDIT_DIR:-$ROOT/.local/release-notes-audit}"
 

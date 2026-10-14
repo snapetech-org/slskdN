@@ -27,8 +27,9 @@ permissions:
 jobs:
   performance-regression:
     name: Performance Regression Testing
-    # All pull requests and manual dispatches outside main use hosted runners.
-    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    # Main-branch schedules and manual runs may use the trusted pool after it
+    # is online and enabled. Pull requests and non-main refs stay hosted.
+    runs-on: ${{ ((github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}')) || 'ubuntu-latest' }}
     timeout-minutes: 30
     steps:
       - name: Configure runner temporary storage
@@ -273,7 +274,7 @@ jobs:
 
   dependency-scanning:
     name: Dependency Scanning
-    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ ((github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}')) || 'ubuntu-latest' }}
     timeout-minutes: 15
     steps:
       - name: Configure runner temporary storage
@@ -340,7 +341,7 @@ jobs:
 
   container-scanning:
     name: Container Scanning (Trivy)
-    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ${{ ((github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && vars.TRUSTED_MAIN_RUNNERS_ENABLED == 'true' && vars.PREFER_SELF_HOSTED != 'false' && fromJSON('{"group":"trusted-main","labels":["self-hosted","Linux","X64","host","slskdn"]}')) || 'ubuntu-latest' }}
     timeout-minutes: 20
     steps:
       - name: Configure runner temporary storage

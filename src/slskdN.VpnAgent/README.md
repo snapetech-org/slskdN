@@ -22,7 +22,7 @@ UID split routing, verification, status, watchdog behavior, and ingress cleanup.
 - [Self-hosted relay](self-hosted-relay.md): keep slskdN and shares behind
   CGNAT while a bounded Tailscale or WireGuard VPS companion provides public
   ingress/egress.
-- [Self-hosted relay tester guide](https://github.com/snapetech/slskdn/blob/main/docs/self-hosted-relay-tester-guide.md):
+- [Self-hosted relay tester guide](https://github.com/snapetech-org/slskdN/blob/main/docs/self-hosted-relay-tester-guide.md):
   install a published release and run the exact OCI/home acceptance checks.
 - [Windows and macOS](windows-macos.md): platform fail-closed behavior,
   required inputs, and limitations.

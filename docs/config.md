@@ -926,7 +926,7 @@ so formats .JPG/.JPEG, .GIF, and .BMP are advised.
 #### **YAML**
 ```yaml
 soulseek:
-  description: "A slskdN user. Unofficial fork of slskd: https://github.com/snapetech/slskdn"
+  description: "A slskdN user. Unofficial fork of slskd: https://github.com/snapetech-org/slskdN"
   picture: path/to/slsk-profile-picture.jpg
 ```
 

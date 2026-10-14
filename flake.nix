@@ -68,7 +68,7 @@
 
               meta = with pkgs.lib; {
                 description = "Unofficial slskd fork with batteries-included Soulseek features";
-                homepage = "https://github.com/snapetech/slskdn";
+                homepage = "https://github.com/snapetech-org/slskdN";
                 license = licenses.agpl3Plus;
                 platforms = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
               };
@@ -78,19 +78,19 @@
         
         stableSources = {
           "x86_64-linux" = {
-            url = "https://github.com/snapetech/slskdn/releases/download/2026101222-slskdn.350/slskdn-main-linux-glibc-x64.zip";
+            url = "https://github.com/snapetech-org/slskdN/releases/download/2026101222-slskdn.350/slskdn-main-linux-glibc-x64.zip";
             sha256 = "sha256-3NLvFqMHfY3xLCJgzsOZ947jBspxOzYVjmnBVNyFFUE="; # x86_64-linux (glibc)
           };
           "aarch64-linux" = {
-            url = "https://github.com/snapetech/slskdn/releases/download/${version}/slskdn-main-linux-glibc-arm64.zip";
+            url = "https://github.com/snapetech-org/slskdN/releases/download/${version}/slskdn-main-linux-glibc-arm64.zip";
             sha256 = "sha256-th6nCbu0vgEqmLMQffXypBrnoktUgRUzlplD0MOvINk="; # aarch64-linux (glibc)
           };
           "x86_64-darwin" = {
-            url = "https://github.com/snapetech/slskdn/releases/download/${version}/slskdn-main-osx-x64.zip";
+            url = "https://github.com/snapetech-org/slskdN/releases/download/${version}/slskdn-main-osx-x64.zip";
             sha256 = "sha256-I8TB8vOHCVFiq20ySJYzLqJOkNejpdQFA8bAMwcFNTQ="; # x86_64-darwin
           };
           "aarch64-darwin" = {
-            url = "https://github.com/snapetech/slskdn/releases/download/${version}/slskdn-main-osx-arm64.zip";
+            url = "https://github.com/snapetech-org/slskdN/releases/download/${version}/slskdn-main-osx-arm64.zip";
             sha256 = "sha256-j9tFXbiwEzERe7nyMTuy3al+x9WPsIroEjRgJg0Yws4="; # aarch64-darwin
           };
         };

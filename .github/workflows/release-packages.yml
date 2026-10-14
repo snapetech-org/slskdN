@@ -49,7 +49,7 @@ jobs:
 
           for i in {1..20}; do
             for ASSET_NAME in "${ASSET_NAMES[@]}"; do
-              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
+              ASSET_URL="https://github.com/snapetech-org/slskdN/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
               echo "Attempt $i: Checking ${ASSET_NAME}..."
               if curl -fsSL "${CURL_AUTH_ARGS[@]}" -H "Accept: application/octet-stream" "$ASSET_URL" -o slskdn.zip; then
                 echo "Asset downloaded successfully"
@@ -150,7 +150,7 @@ jobs:
 
           for i in {1..20}; do
             for ASSET_NAME in "${ASSET_NAMES[@]}"; do
-              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
+              ASSET_URL="https://github.com/snapetech-org/slskdN/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
               echo "Attempt $i: Checking ${ASSET_NAME}..."
               if curl -fsSL "${CURL_AUTH_ARGS[@]}" -H "Accept: application/octet-stream" "$ASSET_URL" -o ~/rpmbuild/SOURCES/slskdn-main-linux-glibc-x64.zip; then
                 echo "Asset downloaded successfully"

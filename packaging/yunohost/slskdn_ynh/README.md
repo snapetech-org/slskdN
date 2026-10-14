@@ -21,7 +21,7 @@ Self-hosted Soulseek client and server with a web interface.
 
 [![Automatic tests level](https://apps.yunohost.org/badge/cilevel/slskdn)](https://ci-apps.yunohost.org/ci/apps/slskdn/)
 
-🛠️ Upstream slskdN repository: <https://github.com/snapetech/slskdN>
+🛠️ Upstream slskdN repository: <https://github.com/snapetech-org/slskdN>
 
 Pull request are welcome and should target the [`testing` branch](https://github.com/YunoHost-Apps/slskdn_ynh/tree/testing).
 

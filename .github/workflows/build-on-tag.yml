@@ -1527,7 +1527,7 @@ jobs:
           cat > Formula/slskdn.rb <<EOF
           class Slskdn < Formula
             desc "Unofficial slskd fork with batteries-included Soulseek features"
-            homepage "https://github.com/snapetech/slskdn"
+            homepage "https://github.com/snapetech-org/slskdN"
             license "AGPL-3.0-or-later"
             version "${VERSION}"
             url "https://github.com/${{ github.repository }}/releases/download/${TAG}/slskdn-main-linux-glibc-x64.zip"

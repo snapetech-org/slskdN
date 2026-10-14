@@ -112,8 +112,7 @@ for workflow in \
     .github/workflows/e2e-tests.yml \
     .github/workflows/release-copr.yml \
     .github/workflows/release-linux.yml \
-    .github/workflows/release-ppa.yml \
-    .github/workflows/windows-smoke.yml; do
+    .github/workflows/release-ppa.yml; do
     expect_line "$workflow" 'uses: pnpm/setup@[0-9a-f]{40}[[:space:]]+# v3'
     expect_literal "$workflow" 'install: false'
 done
@@ -238,15 +237,15 @@ reject_literal AGENTS.md 'git tag build-main-'
 
 expect_line ca_profile.xml '^<CommunityApplications>$'
 expect_line ca_profile.xml '<Profile>[^<[:space:]][^<]*</Profile>'
-expect_literal ca_profile.xml '<Icon>https://github.com/snapetech/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>'
-expect_literal ca_profile.xml '<WebPage>https://github.com/snapetech/slskdN</WebPage>'
+expect_literal ca_profile.xml '<Icon>https://github.com/snapetech-org/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>'
+expect_literal ca_profile.xml '<WebPage>https://github.com/snapetech-org/slskdN</WebPage>'
 expect_literal packaging/unraid/slskdn.xml '<Repository>ghcr.io/snapetech/slskdn:latest</Repository>'
 expect_literal packaging/unraid/slskdn.xml '<Registry>https://ghcr.io</Registry>'
 reject_literal packaging/unraid/slskdn.xml '<Registry>https://github.com/'
 expect_literal packaging/unraid/slskdn.xml '<Category>Downloaders: MediaApp:Music Status:Stable</Category>'
-expect_literal packaging/unraid/slskdn.xml '<Icon>https://github.com/snapetech/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>'
-expect_literal packaging/unraid/slskdn.xml '<TemplateURL>https://github.com/snapetech/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml</TemplateURL>'
-expect_literal packaging/unraid/slskdn.xml '<ReadMe>https://github.com/snapetech/slskdN/blob/main/README.md</ReadMe>'
+expect_literal packaging/unraid/slskdn.xml '<Icon>https://github.com/snapetech-org/slskdN/raw/refs/heads/main/etc/icon.svg</Icon>'
+expect_literal packaging/unraid/slskdn.xml '<TemplateURL>https://github.com/snapetech-org/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml</TemplateURL>'
+expect_literal packaging/unraid/slskdn.xml '<ReadMe>https://github.com/snapetech-org/slskdN/blob/main/README.md</ReadMe>'
 expect_literal packaging/unraid/slskdn.xml '<Config Name="Soulseek and Mesh TCP Port" Target="50300" Default="50300" Mode="tcp"'
 expect_literal packaging/unraid/slskdn.xml '<Config Name="DHT, Mesh, and QUIC UDP Port" Target="50300" Default="50300" Mode="udp"'
 reject_literal packaging/unraid/slskdn.xml '<Config Name="Mesh Overlay TCP Port"'
@@ -494,7 +493,7 @@ reject_literal .github/workflows/release-copr.yml 'dotnet-version: 10.0.x'
 reject_literal .github/workflows/release-ppa.yml 'dotnet-version: 10.0.x'
 
 expect_line packaging/aur/PKGBUILD '^source=\($'
-expect_literal packaging/aur/PKGBUILD-bin '"slskdn-${pkgver}-main-linux-glibc-x64.zip::https://github.com/snapetech/slskdn/releases/download/${pkgver//.slskdn/-slskdn}/slskdn-main-linux-glibc-x64.zip"'
+expect_literal packaging/aur/PKGBUILD-bin '"slskdn-${pkgver}-main-linux-glibc-x64.zip::https://github.com/snapetech-org/slskdN/releases/download/${pkgver//.slskdn/-slskdn}/slskdn-main-linux-glibc-x64.zip"'
 expect_literal packaging/aur/PKGBUILD-bin 'noextract=("slskdn-${pkgver}-main-linux-glibc-x64.zip")'
 expect_line packaging/aur/PKGBUILD-bin '^install=slskd\.install$'
 expect_line packaging/aur/PKGBUILD '^install=slskd\.install$'
@@ -712,7 +711,7 @@ if [[ "$CHOC_RELEASE" != "$STABLE_FORMULA_VERSION" ]]; then
   fail "Chocolatey installer URL release ${CHOC_RELEASE} does not match stable Formula version ${STABLE_FORMULA_VERSION}"
 fi
 
-if [[ "$CHOC_URL" != "https://github.com/snapetech/slskdn/releases/download/${CHOC_VERSION}/slskdn-main-win-x64.zip" ]]; then
+if [[ "$CHOC_URL" != "https://github.com/snapetech-org/slskdN/releases/download/${CHOC_VERSION}/slskdn-main-win-x64.zip" ]]; then
   fail "Chocolatey installer URL must match version ${CHOC_VERSION}"
 fi
 

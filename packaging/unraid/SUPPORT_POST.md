@@ -4,9 +4,9 @@ slskdN is an unofficial, batteries-included fork of slskd, a web client for the 
 
 This thread is for Unraid installation, configuration, and container-specific support.
 
-Project: https://github.com/snapetech/slskdN
+Project: https://github.com/snapetech-org/slskdN
 Docker image: https://ghcr.io/snapetech/slskdn
-Unraid template: https://github.com/snapetech/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml
+Unraid template: https://github.com/snapetech-org/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml
 License: AGPL-3.0
 
 ## Community Applications status
@@ -59,7 +59,7 @@ The template includes advanced fields for the documented optional SLSKD_* Docker
 
 Runtime-only SLSKD_SCRIPT_DATA and image metadata variables such as SLSKD_DOCKER_TAG are not user configuration fields. The complete environment-variable reference is here:
 
-https://github.com/snapetech/slskdN/blob/main/docs/config.md
+https://github.com/snapetech-org/slskdN/blob/main/docs/config.md
 
 Change the default web UI username and password after the first login. Do not combine PUID/PGID with a Docker --user override.
 
@@ -102,4 +102,4 @@ Redact passwords, API keys, Soulseek credentials, public IP addresses, and other
 
 Application source and general bug reports are maintained at:
 
-https://github.com/snapetech/slskdN
+https://github.com/snapetech-org/slskdN

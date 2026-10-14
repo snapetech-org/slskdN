@@ -753,7 +753,7 @@ When downloading Pod results that aren't available locally:
 ### Quick Start
 ```bash
 # Clone repository
-git clone https://github.com/snapetech/slskdn.git
+git clone https://github.com/snapetech-org/slskdN.git
 cd slskdn
 
 # Checkout the active branch

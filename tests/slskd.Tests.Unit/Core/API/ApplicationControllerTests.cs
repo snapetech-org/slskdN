@@ -66,7 +66,7 @@ public class ApplicationControllerTests
                     IsUpdateAvailable = true,
                     Latest = "2026050500-slskdn.221",
                     LatestTag = "build-main-2026050500-slskdn.221",
-                    LatestUrl = "https://github.com/snapetech/slskdn/releases/tag/build-main-2026050500-slskdn.221",
+                    LatestUrl = "https://github.com/snapetech-org/slskdN/releases/tag/build-main-2026050500-slskdn.221",
                 },
             });
 

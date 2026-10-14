@@ -57,8 +57,8 @@ container_scanning:
 
 .github_publication_defaults:
   variables:
-    GITHUB_MIRROR_URL: "git@github.com:snapetech/slskdN.git"
-    GITHUB_REPOSITORY: "snapetech/slskdN"
+    GITHUB_MIRROR_URL: "git@github.com:snapetech-org/slskdN.git"
+    GITHUB_REPOSITORY: "snapetech-org/slskdN"
 
 # External publication is intentionally gated on all earlier GitLab stages.
 # Set GITHUB_MIRROR_SSH_KEY, GITHUB_TOKEN, and GHCR_TOKEN in GitLab CI as needed.

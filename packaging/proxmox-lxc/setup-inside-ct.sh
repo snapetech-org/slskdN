@@ -39,7 +39,7 @@ resolve_release_tag() {
   fi
 
   local latest_json
-  latest_json="$(wget -qO- https://api.github.com/repos/snapetech/slskdn/releases/latest)"
+  latest_json="$(wget -qO- https://api.github.com/repos/snapetech-org/slskdN/releases/latest)"
   local latest_tag
   latest_tag="$(echo "$latest_json" | sed -n 's/.*"tag_name":[[:space:]]*"\([^"]*\)".*/\1/p' | head -n 1)"
   if [ -z "$latest_tag" ]; then
@@ -55,7 +55,7 @@ download_asset() {
   local zip_name="$2"
   local destination="$3"
 
-  local url="https://github.com/snapetech/slskdn/releases/download/${release_tag}/${zip_name}"
+  local url="https://github.com/snapetech-org/slskdN/releases/download/${release_tag}/${zip_name}"
   if wget -q -O "$destination" "$url"; then
     echo "$url"
   else
@@ -66,7 +66,7 @@ download_asset() {
 download_checksums() {
   local release_tag="$1"
   local destination="$2"
-  local url="https://github.com/snapetech/slskdn/releases/download/${release_tag}/SHA256SUMS.txt"
+  local url="https://github.com/snapetech-org/slskdN/releases/download/${release_tag}/SHA256SUMS.txt"
 
   wget -q -O "$destination" "$url"
 }
@@ -176,7 +176,7 @@ echo "[5/7] Installing minimal config…"
 if [ ! -f "$CONFIG_FILE" ]; then
   cat > "$CONFIG_FILE" << 'CFG'
 # slskd configuration — edit: soulseek.username, soulseek.password, shares.directories
-# See https://github.com/snapetech/slskdn for full options
+# See https://github.com/snapetech-org/slskdN for full options
 
 soulseek:
   username:
@@ -215,7 +215,7 @@ echo "[6/7] Installing systemd unit…"
 cat > /etc/systemd/system/slskd.service << 'SVC'
 [Unit]
 Description=slskd - Soulseek client/server
-Documentation=https://github.com/snapetech/slskdn
+Documentation=https://github.com/snapetech-org/slskdN
 After=network-online.target
 Wants=network-online.target
 

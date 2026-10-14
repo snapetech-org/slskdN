@@ -1,6 +1,6 @@
 [Unit]
 Description=slskd - Soulseek client/server
-Documentation=https://github.com/snapetech/slskdn
+Documentation=https://github.com/snapetech-org/slskdN
 After=network-online.target
 Wants=network-online.target
 

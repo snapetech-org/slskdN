@@ -5,11 +5,11 @@ PackageVersion: "2026101222.350"
 PackageLocale: en-US
 Publisher: slskdN Team
 PublisherUrl: https://github.com/snapetech
-PublisherSupportUrl: https://github.com/snapetech/slskdn/issues
+PublisherSupportUrl: https://github.com/snapetech-org/slskdN/issues
 PackageName: slskdN
-PackageUrl: https://github.com/snapetech/slskdn
+PackageUrl: https://github.com/snapetech-org/slskdN
 License: AGPL-3.0-or-later
-LicenseUrl: https://github.com/snapetech/slskdn/blob/main/LICENSE
+LicenseUrl: https://github.com/snapetech-org/slskdN/blob/main/LICENSE
 ShortDescription: Soulseek client with built-in SongID and Discovery Graph
 Description: |-
   slskdN is an unofficial batteries-included fork of slskd that makes identity
@@ -29,7 +29,7 @@ Tags:
 ReleaseNotes: |-
   Stable Release 2026101222-slskdn.350
   
-  See https://github.com/snapetech/slskdn/releases/tag/2026101222-slskdn.350 for details.
-ReleaseNotesUrl: https://github.com/snapetech/slskdn/releases/tag/2026101222-slskdn.350
+  See https://github.com/snapetech-org/slskdN/releases/tag/2026101222-slskdn.350 for details.
+ReleaseNotesUrl: https://github.com/snapetech-org/slskdN/releases/tag/2026101222-slskdn.350
 ManifestType: defaultLocale
 ManifestVersion: 1.6.0

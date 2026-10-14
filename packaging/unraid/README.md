@@ -6,7 +6,7 @@ This template is the Community Applications package metadata for slskdN.
 
 The repository-level profile required by the current Community Applications submission portal is at [`ca_profile.xml`](../../ca_profile.xml). Submit the public GitHub repository through [Community Applications](https://ca.unraid.net/submit/new) after reviewing the [submission help](https://ca.unraid.net/submit/help).
 
-Until the listing is approved, use the [template XML](https://github.com/snapetech/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml) as a local user template. Copy it to `/boot/config/plugins/dockerMan/templates-user/slskdn.xml` on the Unraid flash, then open **Docker → Add Container → User Templates** and select `slskdn`.
+Until the listing is approved, use the [template XML](https://github.com/snapetech-org/slskdN/raw/refs/heads/main/packaging/unraid/slskdn.xml) as a local user template. Copy it to `/boot/config/plugins/dockerMan/templates-user/slskdn.xml` on the Unraid flash, then open **Docker → Add Container → User Templates** and select `slskdn`.
 
 The old **Settings → Docker → Template Repositories** instructions are obsolete on current Unraid releases.
 
@@ -93,8 +93,8 @@ defaults safe.
 
 ## Support
 
-- **Issues:** https://github.com/snapetech/slskdN/issues
-- **Documentation:** https://github.com/snapetech/slskdN
+- **Issues:** https://github.com/snapetech-org/slskdN/issues
+- **Documentation:** https://github.com/snapetech-org/slskdN
 - **Unraid support forum:** https://forums.unraid.net/forum/71-docker-containers/
 - **Unraid submission help:** https://ca.unraid.net/submit/help
 - **Copy-ready GitHub Markdown support post:** [`SUPPORT_POST.md`](SUPPORT_POST.md)
