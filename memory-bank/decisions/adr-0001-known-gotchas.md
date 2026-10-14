@@ -85,6 +85,46 @@ repository ID to it. Keep the release-gate contract test for a renamed
 repository and confirm the run's workflow, event, branch, commit, status, and
 conclusion independently.
 
+### 0z1856. Verify Checkout Targets By Repository ID Across Owner Renames (2026-10-14)
+
+**What went wrong:** The GitHub write-target guard rejected the intended
+checkout after its owner name changed, even though the old alias and new
+canonical name resolved to the same repository.
+
+**Why:** The guard compared exact remote URLs and owner/name strings, which are
+mutable labels rather than repository identity.
+
+**Prevention:** Accept only recognized GitHub remote forms, resolve both the
+configured remote and `gh` default repository through the API, and require each
+to match the pinned repository ID. Keep the upstream remote check separate and
+read-only.
+
+### 0z1857. Recheck Self-Referential Candidate Counts After Backlog Edits (2026-10-14)
+
+**What went wrong:** Updating the active candidate backlog changed the count it
+records because the broad source scan includes the backlog document itself.
+
+**Why:** The generated report and its durable count summary are both inputs to
+the same discovery scan, so new wording can match the scan patterns.
+
+**Prevention:** Regenerate and verify the candidate count after the final
+backlog edit. Avoid introducing scan terms into refresh prose unless the new
+match is intended and classified.
+
+### 0z1858. Keep Pnpm Lockfile Importers Aligned With Manifest Updates (2026-10-14)
+
+**What went wrong:** A grouped web dependency update changed version ranges in
+`src/web/package.json` without updating the corresponding importer entries in
+`pnpm-lock.yaml`.
+
+**Why:** Updating the manifest alone leaves frozen installs with a stale
+dependency contract and prevents the checkout from reproducing its declared
+workspace dependencies.
+
+**Prevention:** Update and review the pnpm lockfile with each manifest change,
+then require `pnpm install --frozen-lockfile` to pass before accepting the
+dependency update.
+
 ### 0z1854. Exclude Synthetic Sandbox Identity From Leak Scans (2026-10-13)
 
 **What went wrong:** The trusted validation environment sets `HOME` to a
