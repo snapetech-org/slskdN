@@ -4,6 +4,21 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1855. Keep GitHub Write Guards Aligned With Repository Ownership (2026-10-14)
+
+**What went wrong:** The repository had moved to the organization, but its GitHub
+write guard and agent instructions still named the former personal owner. The
+required pre-write target check would reject the authorized organization repo.
+
+**Why:** Repository ownership changed without updating the exact-origin safety
+check and its documented target.
+
+**Prevention:** When a repository transfer changes its canonical owner, update
+the repository target instructions and write guard together. Keep the upstream
+remote read-only, pin both the expected repository and origin URL, and run the
+guard before every GitHub write. Never work around a target mismatch by disabling
+the guard.
+
 ### 0z1854. Fail Closed When Selecting Persistent CI Runners (2026-10-13)
 
 **What went wrong:** Version-tag pushes and scheduled scans could fall through
