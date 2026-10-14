@@ -4,6 +4,34 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1853. Assert YAML Block-Scalar Values Without The Key Prefix (2026-10-13)
+
+**What went wrong:** A packaging check added the YAML `path:` key prefix to
+artifact patterns that are values inside a block scalar. The focused check
+failed because that literal does not occur in the workflow source.
+
+**Why:** The assertion copied the YAML key along with the value, even though
+the workflow uses `path: |` followed by separately indented path entries.
+
+**Prevention:** Match block-scalar values in text checks without adding the
+mapping key. Prefer a structural YAML contract for checking that the values
+belong to the correct field, and run both checks when changing workflow paths.
+
+### 0z1852. Keep Packaging Checks Aligned With Narrow Artifact Globs (2026-10-13)
+
+**What went wrong:** CI artifact uploads were narrowed to validation receipts
+and logs, but the packaging metadata check still expected the previous broad
+validation-directory path. The hosted release gate failed its packaging check.
+
+**Why:** The workflow path contract was repeated in separate validators. The
+workflow syntax check was updated, while the packaging metadata assertion kept
+the stale literal.
+
+**Prevention:** Keep the permitted artifact paths explicit and identical across
+all workflow validators. When changing upload paths, search for every assertion
+of the old path and run the packaging metadata check together with the workflow
+contract tests.
+
 ### 0z1848. Scan Every Project For Transitive Package Advisories (2026-10-13)
 
 **What went wrong:** Scanning only the application project reported no
