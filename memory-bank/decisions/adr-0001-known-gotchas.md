@@ -4,6 +4,22 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1861. Translate App-Owned Strings At Their Render Boundary (2026-10-14)
+
+**What went wrong:** Some fixed interface messages were stored in component
+state or data objects and rendered as plain strings. The locale catalog could
+contain a translation for a phrase while the visible UI still showed English.
+
+**Why:** Catalog audits found message keys without tracing the final render
+path. A string assigned to state is not translated merely because an equivalent
+catalog key exists elsewhere.
+
+**Prevention:** Keep fixed app-authored messages as source keys until rendering
+and pass them through `LocalizedText` or another subscribed translation
+boundary. Use explicit allowlists for stored errors with known app-owned values;
+leave unrecognized user, provider, server, and protocol text unchanged. Test
+both rendered language changes and unknown-value preservation.
+
 ### 0z1860. Preserve The Last Complete Locale During Catalog Loads (2026-10-14)
 
 **What went wrong:** Changing languages updated the active locale before its
