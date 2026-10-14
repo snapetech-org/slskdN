@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-expected_repo="snapetech-org/SLSKDN"
+expected_repo="snapetech-org/slskdN"
 expected_origin="git@github.com:snapetech-org/SLSKDN.git"
 expected_upstream="https://github.com/slskd/slskd.git"
 
