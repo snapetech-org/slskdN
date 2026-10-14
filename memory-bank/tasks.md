@@ -28,29 +28,26 @@
 
 ### PR #357 Windows and validation gate — 2026-10-14
 
-- [x] Integrate current origin/main (03c352d32) with a recoverable checkpoint
-  at backup/pr357-before-03c-main-merge-20261014.
-- [x] Preserve the vendored runtime sync and release note while resolving
-  documentation conflicts and refreshing the active-council count.
-- [x] Reconcile the failed Windows retry on b37a215: the scanner harness again
-  exceeded its 30-second limit (260 files indexed); the integration suite hit
-  the share-database startup window before the files table existed; API tests
-  passed 74/74.
-- [x] Make the integration fixture wait for the files table, isolate the
-  share-scan harness from parallel unit tests, and run the Windows test
-  projects sequentially without changing the 30-second bound or test coverage.
-- [x] Pass focused local scanner tests (4/4), the two-node integration test
-  (1/1), the active-backlog count check (13,005 red-team candidates, 76 above
-  current main), and diff whitespace checks.
-- [ ] Commit and push the refreshed candidate, run the release-note preview,
-  and reconcile every required hosted check on its exact final SHA.
-- [ ] Recheck all 21 PR review threads and merge only after the final exact-head
-  gate succeeds. Do not create a release tag.
+- [x] Integrate current `origin/main` (`31d2106c3`) with a recoverable
+  checkpoint at `backup/pr357-before-31d-main-merge-20261014`.
+- [x] Preserve the repository-ID release verifier, both branch histories, and
+  the Windows reliability fixes; resolve conflicting gotcha IDs as `0z1910`
+  and `0z1911` without weakening existing checks.
+- [x] Reconcile the b37 Windows failures: scan harness timeout (5,862/5,863
+  unit), SQLite startup race (292/293 integration), and API suite 74/74.
+- [x] Keep the 30-second scan bound and all assertions; serialize Windows test
+  projects, isolate the scan harness, and wait for the SQLite schema in the
+  integration fixture.
+- [x] Pass focused local scanner (4/4), integration (1/1), hosted release
+  verifier (8/8), identity scanner (3/3), validation-engine (17/17), workflow
+  YAML, trigger policy, active backlog, target, and diff checks.
+- [ ] Commit the resolved merge, preview the release note, run the tracked
+  runtime-sync guard, push, and reconcile all required checks on the exact SHA.
+- [ ] Recheck all 21 PR review threads and merge only after the exact-head gate
+  succeeds. Do not create a release tag.
 
-Status: The pushed b37a215 candidate failed its Windows retry; its other 12
-required jobs remain queued/unknown. The latest-main merge and test reliability
-fixes are in the worktree and have not yet been committed or pushed. No release
-tag has been created.
+Status: PR #357 still points to failed head `b37a2153c92e86f8b1da55b0b5ea248055be85b5`; its other 12 required jobs were queued/unknown. The latest-main merge and focused fixes are local and unpushed. No result from b37 validates the candidate, and no release tag has been created.
+
 ### Files API and responsive system workflows — 2026-10-13
 
 - [x] Add on-demand subtree sizes and guarded multi-item file/directory deletion
@@ -7459,6 +7456,11 @@ resource completion.
 - [x] Pass the full Release build, unit/integration/regression suites
   (6,227 tests), performance and VPN-agent builds, repository lint, package
   validators, and release-note/identity checks.
+- Validation note (2026-10-14): hosted CI and Nix smoke passed on SHA
+  `03c352d32f7a31581dc29b8f34d33bffb0977405`. The release verifier exposed a
+  canonical repository-name mismatch after the fork's owner rename. The fix
+  now checks the pinned repository ID and has contract coverage; because it
+  advances `main`, fresh exact-head CI and browser E2E are still required.
 - [ ] Pass the hosted CI release gate for the final exact `main` commit.
 - [ ] Pass hosted browser E2E on the same final `main` commit.
 - [ ] Create the authorized stable tag only after the gate passes; verify

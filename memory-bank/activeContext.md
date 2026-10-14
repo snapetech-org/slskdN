@@ -1,26 +1,34 @@
-## Current state — PR #357 Windows exact-head repair — 2026-10-14 01:28 UTC
+## Current state — PR #357 Windows exact-head repair — 2026-10-14 01:37:18 UTC
 
-PR #357 points to b37a2153c92e86f8b1da55b0b5ea248055be85b5. Windows Smoke
-retry attempt 2 failed: Unit 5,862/5,863 with the 30-second synthetic share
-scan timeout, Integration 292/293 with a startup-time no such table: files
-race, Regression/API 74/74. The preceding exact Windows pass at 0b4b2e750
-passed 5,863/5,863, 293/293, and 74/74. All other 12 checks for b37a215 remain
-queued and are unknown.
+PR #357 still points to `b37a2153c92e86f8b1da55b0b5ea248055be85b5`. Its latest
+Windows Smoke retry failed the synthetic share-scan timeout (5,862/5,863 unit
+tests) and the two-node SQLite startup race (292/293 integration tests); the
+regression/API suite passed 74/74. The earlier Windows run on `0b4b2e750`
+passed 5,863/5,863, 293/293, and 74/74. Twelve other required b37 checks were
+queued and remain unknown.
 
-Current main is 03c352d32. A checkpoint exists at
-backup/pr357-before-03c-main-merge-20261014, and its merge is in progress in
-the worktree. The SQLite integration helper now waits for the files table;
-the share-scan harness is isolated from parallel unit tests; and Windows Smoke
-runs all three test projects sequentially. The 30-second scan bound and all
-test assertions are unchanged. Focused local checks pass (scanner 4/4,
-two-node integration 1/1); active backlog tracks 13,005 red-team matches,
-76 above current main's 12,929. Release note was updated for sequential
-Windows validation.
+The candidate now serializes Windows test projects, isolates the synthetic
+share-scan test from parallel unit collections, and waits for the SQLite
+`files` table before seeding integration content. Focused local checks passed:
+scanner harness 4/4, two-node integration 1/1, local identity scanner 3/3,
+and validation-engine tests 17/17. Workflow YAML, workflow trigger policy,
+active backlog, diff formatting, and target verification also passed before
+this latest merge. The merge with current `origin/main` at
+`31d2106c33e8e2f3ffd26a69d5e97a479e673b37` is in progress. A recovery point
+exists at `backup/pr357-before-31d-main-merge-20261014`.
 
-Next: finish candidate review and merge commit, run workflow/release-note
-checks, verify target and push, then reconcile the complete exact-head hosted
-gate. Recheck the 21 PR threads and merge only if every required result passes.
-No release tag has been created. The merge/fixes are not committed or pushed.
+GitHub resolves the fork to canonical `snapetech-org/slskdN`, repository ID
+`1108894784`; the local origin and GitHub CLI default target that repository.
+The release-gate verifier on main now validates this immutable ID across owner
+renames. No PR update has been pushed for the new fixes, so the b37 results do
+not validate the candidate.
+
+Next: finish the latest-main merge, rerun affected checks and release-note
+preview, commit, run the tracked runtime-sync guard, verify the write target,
+and push to PR #357. Reconcile every required hosted check against that exact
+head; queued, stale, skipped without policy coverage, and failed results do
+not pass. Recheck all 21 review threads and merge only after the exact-head
+gate is green. No release tag has been created.
 
 ## Current state — PR #357 exact-head gate repair — 2026-10-14 00:32 UTC
 
@@ -141,28 +149,25 @@ confirmed defects. All six active-backlog counts match the current scan.
   pushed hash; do not count canceled or stale jobs.
 - Recheck review threads and merge only after the exact-head gate is green.
 
-## Current state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
+## Main branch state — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
-## Current state — Stable `.351` post-push validation — 2026-10-14 01:02 UTC
+The `.351` feature and documentation work is on `main`, including the README
+and feature/API/configuration guides. Exact-head CI and Nix smoke run
+`38493466154` passed on SHA `03c352d32f7a31581dc29b8f34d33bffb0977405`.
+The release verifier initially rejected this valid run because GitHub returned
+the canonical `snapetech-org/slskdN` name while the checkout uses the
+`snapetech/slskdN` alias. The verifier now checks the fork's pinned repository
+ID, confirms the alias resolves to it, and validates the run against that ID.
+Regression coverage passes 8/8, release-note preview passes, and `./bin/lint`
+completed. The remediation baseline stopped at the expected branch-sync guard
+because the two verifier-fix commits are not pushed yet.
 
-The `.351` feature and documentation work is prepared in the candidate, with
-README and feature/API/configuration guides updated. Release validation
-revealed a false positive: an isolated task's synthetic `HOME` basename was
-treated as a local identity and matched ordinary commit text. The scanner now
-ignores runtime-derived values only in that sandbox, preserves explicit
-denylist values, and matches commit identities as whole words. Three scanner
-contract tests and the validation-engine environment regression pass; all 17
-validation-engine tests, `./bin/lint`, syntax checks, and `git diff --check`
-pass.
-
-The guarded runtime sync corrected the manifest and vendored CI workflow
-mirror to the current source revision. Three commits were pushed with a normal
-fast-forward to the fork. The post-push remediation baseline now passes all
-checks; the tracked red-team candidate inventory is refreshed to 12,929 after
-classifying its net twelve-line validation-fixture change. Next: run exact-head
-hosted CI and Playwright E2E, then use the guarded stable release flow only if
-both are green. No release tag has been created. Live DHT/VPN validation still
-lacks credentials and a VPN profile.
+The feature tree remains untagged. Push the gotcha and verifier fix with a
+normal fast-forward, then run the remediation baseline and dispatch new
+exact-head CI and Playwright E2E. The earlier E2E run still targets the prior
+SHA and remains queued. Create the stable tag only after both fresh exact-head
+runs pass, then verify release assets and downstream publication. Live
+DHT/VPN validation still has no supplied credentials or VPN profile.
 
 ## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 

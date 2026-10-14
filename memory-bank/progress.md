@@ -1,38 +1,12 @@
-# Update 2026-10-14 01:28 UTC — Resume PR #357 exact-head repair
+# Update 2026-10-14 01:38:51 UTC — Resume PR #357 exact-head repair
 
-The pushed PR #357 head b37a2153c92e86f8b1da55b0b5ea248055be85b5 failed its
-Windows retry. The unit suite passed 5,862/5,863: the unchanged synthetic
-share-scan harness timed out at 30 seconds after indexing 260 files. The
-integration suite passed 292/293: TwoFullInstances_CanSearchAndDownloadOverOverlayMesh
-queried the share database after the file existed but before its files table
-was ready, then failed with no such table: files. The regression/API suite
-passed 74/74. On the previous exact Windows head 0b4b2e750, all three suites
-passed (5,863, 293, and 74); the current run took 6m50 in Unit versus 3m23 on
-that passing run. Confidence is high that the integration failure was a
-readiness race and moderate that suite contention contributed to the scanner
-timeout.
+The pushed PR #357 head remains `b37a2153c92e86f8b1da55b0b5ea248055be85b5`. Its latest Windows retry failed the synthetic share-scan test at its 30-second limit (5,862/5,863 unit tests) and the two-node SQLite startup race (292/293 integration tests); regression/API passed 74/74. The prior exact Windows run on `0b4b2e750` passed 5,863 unit, 293 integration, and 74 regression/API tests. Twelve other required jobs on b37 were queued and remain unknown.
 
-A checkpoint is saved at backup/pr357-before-03c-main-merge-20261014.
-The worktree now merges current origin/main 03c352d32, retaining main's
-validation-identity changes and both branches' documentation. Conflicting
-gotcha IDs were reconciled; the new identity-sandbox entry is 0z1910, while
-the candidate's 0z1901–1904 and 0z1908–1909 remain intact. The refreshed
-tracked-source scan reports 13,005 red-team candidates, 76 above current main's
-12,929; all six active-backlog counts pass.
+The candidate serializes its three Windows test projects, isolates the share-scan harness from other unit collections, and waits for the SQLite `files` table before the integration fixture seeds content. Focused tests passed locally: scanner 4/4 and two-node integration 1/1. On the merged candidate, hosted-release-gate contract tests passed 8/8, identity scanner tests 3/3, and validation-engine tests 17/17. Workflow YAML, trigger policy, active backlog (all six sections; 13,005 red-team candidates, 76 above main), canonical GitHub target, and diff checks passed. The repository-ID contract uses canonical `snapetech-org/slskdN` ID `1108894784`.
 
-The Windows Smoke workflow now runs the Unit, Integration, and API projects
-sequentially, and ShareScannerHarnessTests runs outside other unit-test
-collections. The integration helper checks sqlite_master for the files table
-before listing files, leaving the existing 30-second scan bound and
-all file-count assertions unchanged. Focused local checks pass: scanner harness
-4/4 and the two-node integration test 1/1. A first probe using a read-only
-shared cache blocked the fixture's write; changing that probe to read-write
-resolved it and the focused integration test passed.
+The candidate has checkpoint `backup/pr357-before-31d-main-merge-20261014` at `7059900e1`; the merge with current `origin/main` `31d2106c33e8e2f3ffd26a69d5e97a479e673b37` is resolved but not yet committed. The incoming rename notes use unique gotcha IDs `0z1910` and `0z1911`; the release note now records the SQLite readiness fix. No candidate update has been pushed, and the b37 results do not validate it.
 
-The merge and fixes are not committed or pushed. Release-note preview,
-target verification, all exact-head hosted checks, review-thread recheck, and
-merge remain pending. The b37a215 Windows failure is retained as historical
-evidence; no queued job has been counted as passing and no release tag exists.
+Next: commit the latest-main merge, preview the release note, run the tracked runtime-sync guard, verify the target, then push normally to PR #357. Reconcile every required hosted check against the exact pushed SHA; queued, stale, excluded without policy coverage, or failed checks are not passing evidence. Recheck all 21 review threads and merge only after the complete exact-head gate succeeds. No release tag has been created.
 
 # Update 2026-10-13 23:22 UTC — Integrate latest main into PR #357
 
@@ -19309,3 +19283,23 @@ normal fast-forward. The Unreleased notes are now under the dated
 `2026101321-slskdn.351` section. The earlier branch workflow runs were
 superseded while queued and were cancelled; no result from those runs is
 counted. The exact-`main` hosted gate and stable tag remain pending.
+
+## Update 2026-10-14 01:28 UTC — Hosted release verifier repository identity
+
+Hosted CI and the Nix package smoke passed on exact `main` SHA
+`03c352d32f7a31581dc29b8f34d33bffb0977405`. Running the guarded release
+verifier against that successful receipt exposed an existing mismatch: the
+configured repository alias resolves to canonical `snapetech-org/slskdN`,
+while the verifier compared the run's canonical name to `snapetech/slskdN`.
+Recorded gotcha `0z1855` immediately, then changed the verifier to pin and
+check the fork's immutable repository ID and added regression cases for
+canonical-name acceptance and wrong-target rejection. The focused suite passes
+8/8, shell syntax and release-note preview pass, and repository lint completed.
+
+The exact-head CI receipt is no longer current after the verifier fix. Three
+commits are local and unpushed; the remediation baseline stopped at its
+expected branch-sync guard because `main` is ahead of `origin/main`. The old
+E2E run remains queued on the previous SHA. Next: push normally to the
+verified fork, rerun the complete remediation baseline, cancel the stale
+queued E2E run, and dispatch fresh CI and Playwright validation for the new
+exact head. No release tag or upstream write was made.

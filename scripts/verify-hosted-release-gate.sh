@@ -15,6 +15,7 @@ run_id="$1"
 branch="$2"
 commit_sha="$3"
 repo="snapetech/slskdN"
+expected_repo_id="1108894784"
 
 if [[ ! "$run_id" =~ ^[1-9][0-9]*$ ]]; then
     echo "Hosted validation run ID must be a positive integer." >&2
@@ -29,6 +30,12 @@ if [[ ! "$commit_sha" =~ ^[a-f0-9]{40}([a-f0-9]{24})?$ ]]; then
     exit 2
 fi
 
+repo_id="$(gh api "repos/${repo}" | jq -er '.id | select(type == "number")')"
+if [[ "$repo_id" != "$expected_repo_id" ]]; then
+    echo "Configured GitHub target resolved to unexpected repository ID ${repo_id}." >&2
+    exit 1
+fi
+
 workflow_json="$(gh api "repos/${repo}/actions/workflows/ci.yml")"
 workflow_id="$(jq -er '.id | select(type == "number")' <<<"$workflow_json")"
 workflow_path="$(jq -er '.path' <<<"$workflow_json")"
@@ -40,11 +47,11 @@ fi
 run_json="$(gh api "repos/${repo}/actions/runs/${run_id}")"
 if ! jq -e \
     --argjson workflow_id "$workflow_id" \
-    --arg repo "$repo" \
+    --argjson repo_id "$expected_repo_id" \
     --arg branch "$branch" \
     --arg sha "$commit_sha" \
     '.workflow_id == $workflow_id
-     and .repository.full_name == $repo
+     and .repository.id == $repo_id
      and .event == "workflow_dispatch"
      and .head_branch == $branch
      and .head_sha == $sha
