@@ -2184,7 +2184,7 @@ const MediaCore = () => {
                         <strong><LocalizedText source={"Recommended Strategy:"} /></strong>{' '}
                         {Object.entries(
                           conflictAnalysis.recommendedStrategies || {},
-                        ).sort(([, a], [, b]) => b - a)[0]?.[0] || 'Merge'}
+                        ).sort(([, a], [, b]) => b - a)[0]?.[0] || <LocalizedText source={"Merge"} />}
                       </p>
                     </Message>
                   )}
@@ -2466,7 +2466,7 @@ const MediaCore = () => {
                         → {updateResult.newVersion}
                         <br />
                         <strong><LocalizedText source={"Updates Applied:"} /></strong>{' '}
-                        {updateResult.appliedUpdates?.join(', ') || 'none'}
+                        {updateResult.appliedUpdates?.join(', ') || <LocalizedText source={"none"} />}
                       </p>
                     </Message>
                   )}

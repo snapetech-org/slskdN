@@ -128,8 +128,8 @@ const TrafficTicker = () => {
           size="small"
           title={
             connected
-              ? 'Connected to transfer feed'
-              : 'Disconnected from transfer feed'
+              ? interfaceText('Connected to transfer feed')
+              : interfaceText('Disconnected from transfer feed')
           }
         />
       </div>
@@ -177,8 +177,11 @@ const TrafficTicker = () => {
           <div className="traffic-ticker-toggle">
             <Popup
               content={expanded
-                ? 'Collapse the activity list to its 10 most recent transfer events.'
-                : `Show ${activities.length - 10} older transfer events so you can review recent network activity.`}
+                ? interfaceText('Collapse the activity list to its 10 most recent transfer events.')
+                : interfaceText(
+                  'Show {count} older transfer events so you can review recent network activity.',
+                  { count: activities.length - 10 },
+                )}
               trigger={(
                 <button
                   className="traffic-ticker-toggle-button"

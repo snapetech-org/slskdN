@@ -377,7 +377,7 @@ class ChatSession extends Component {
                         </span>
                         <span className="chat-message-name">
                           {message.direction === 'Out'
-                            ? user?.username || 'You'
+                            ? user?.username || interfaceText('You')
                             : message.username}
                           :{' '}
                         </span>

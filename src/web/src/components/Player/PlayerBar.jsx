@@ -298,16 +298,19 @@ const PlayerRatingControls = ({ current, onChange, rating }) => {
         <Popup
           content={
             value === rating
-              ? 'Clear this local rating.'
-              : `Rate this track ${value} out of 5 for local discovery context.`
+              ? interfaceText('Clear this local rating.')
+              : interfaceText(
+                'Rate this track {rating} out of 5 for local discovery context.',
+                { rating: value },
+              )
           }
           key={value}
           trigger={
             <button
               aria-label={
                 value === rating
-                  ? `Clear ${value} star rating`
-                  : `Rate ${value} stars`
+                  ? interfaceText('Clear {rating} star rating', { rating: value })
+                  : interfaceText('Rate {rating} stars', { rating: value })
               }
               className={[
                 'player-rating-button',
@@ -318,8 +321,8 @@ const PlayerRatingControls = ({ current, onChange, rating }) => {
               onClick={() => onChange(value === rating ? 0 : value)}
               title={
                 value === rating
-                  ? 'Clear this local rating.'
-                  : `Rate this track ${value} out of 5.`
+                  ? interfaceText('Clear this local rating.')
+                  : interfaceText('Rate this track {rating} out of 5.', { rating: value })
               }
               type="button"
             >
@@ -731,7 +734,7 @@ const PlayerQueueModal = ({
               <Icon name="play circle outline" />
               <div>
                 <strong>{getTrackLabel(current)}</strong>
-                <span>{current?.artist || 'No active playback'}</span>
+                <span>{current?.artist || <LocalizedText source={"No active playback"} />}</span>
               </div>
             </div>
           </section>
@@ -1061,7 +1064,7 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
               <div className="player-shelf-track">
                 <strong>{item.title}</strong>
                 <span>
-                  {[item.artist, item.album].filter(Boolean).join(' - ') || 'Local discovery item'}
+                  {[item.artist, item.album].filter(Boolean).join(' - ') || <LocalizedText source={"Local discovery item"} />}
                 </span>
               </div>
               <Label size="mini">
@@ -1332,15 +1335,15 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
           ].map((range) => (
             <Popup
               content={range.value
-                ? `Show listening statistics from the last ${range.value} days.`
-                : 'Show listening statistics from all recorded plays.'}
+                ? interfaceText('Show listening statistics from the last {days} days.', { days: range.value })
+                : interfaceText('Show listening statistics from all recorded plays.')}
               key={range.label}
               trigger={
                 <Button
                   active={rangeDays === range.value}
                   aria-label={range.value
-                    ? `Show last ${range.value} days of listening statistics`
-                    : 'Show all listening statistics'}
+                    ? interfaceText('Show last {days} days of listening statistics', { days: range.value })
+                    : interfaceText('Show all listening statistics')}
                   data-testid={`player-stats-range-${range.label}`}
                   onClick={() => updateRange(range.value)}
                   size="mini"
@@ -1355,25 +1358,25 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
         <div className="player-stats-grid">
           <section>
             <div className="player-panel-title"><LocalizedText source={"Top Artists"} /></div>
-            {renderList(stats.topArtists, 'No artist plays recorded yet.')}
+            {renderList(stats.topArtists, interfaceText('No artist plays recorded yet.'))}
           </section>
           <section>
             <div className="player-panel-title"><LocalizedText source={"Top Tracks"} /></div>
-            {renderList(stats.topTracks, 'No track plays recorded yet.')}
+            {renderList(stats.topTracks, interfaceText('No track plays recorded yet.'))}
           </section>
           <section>
             <div className="player-panel-title"><LocalizedText source={"Top Genres"} /></div>
-            {renderList(stats.topGenres, 'No genre metadata recorded yet.')}
+            {renderList(stats.topGenres, interfaceText('No genre metadata recorded yet.'))}
           </section>
           <section>
             <div className="player-panel-title"><LocalizedText source={"Recent"} /></div>
-            {renderList(stats.recent, 'No recent plays recorded yet.')}
+            {renderList(stats.recent, interfaceText('No recent plays recorded yet.'))}
           </section>
           <section>
             <div className="player-panel-title"><LocalizedText source={"Forgotten Favorites"} /></div>
             {renderList(
               stats.forgottenFavorites,
-              'No older repeat plays outside this range yet.',
+              interfaceText('No older repeat plays outside this range yet.'),
             )}
           </section>
         </div>
@@ -1826,7 +1829,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                                {...interfaceTextProps("Show tracks in {title}")}>
                                 <strong>{collection.title}</strong>
                                 <span className="player-picker-meta">
-                                  {collection.type || 'Playlist'}
+                                  {collection.type || <LocalizedText source={"Playlist"} />}
                                 </span>
                               </button>
                             }
@@ -1840,7 +1843,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
             </Segment>
             <Segment className="player-browser-panel">
               <Header as="h4">
-                {selectedCollection?.title || 'Collection Items'}
+                {selectedCollection?.title || <LocalizedText source={"Collection Items"} />}
               </Header>
               {!selectedCollection ? (
                 <Message info><LocalizedText source={"Select a collection to see its tracks."} /></Message>
@@ -1864,7 +1867,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                             {item.fileName || item.title || item.contentId}
                           </strong>
                           <div className="player-picker-meta">
-                            {item.mediaKind || 'Audio'}
+                            {item.mediaKind || <LocalizedText source={"Audio"} />}
                           </div>
                         </Table.Cell>
                         <Table.Cell collapsing>
@@ -1940,7 +1943,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                {...interfaceTextProps("Search all audio by file, artist folder, album folder, or path")}/>
               <div className="player-file-explorer-counts">
                 {itemsLoading
-                  ? 'Loading...'
+                  ? interfaceText('Loading...')
                   : <LocalizedText source={"{shownFileCount} of {totalFiles} tracks"} values={{ "shownFileCount": (shownFileCount), "totalFiles": (browserStats.totalFiles) }} />}
                 {browserStats.duplicatesRemoved > 0
                   ? <LocalizedText source={", {duplicatesRemoved} duplicates collapsed"} values={{ "duplicatesRemoved": (browserStats.duplicatesRemoved) }} />
@@ -2011,7 +2014,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
 
               <section className="player-file-explorer-files">
                 <div className="player-file-explorer-section-title">
-                  {query ? <LocalizedText source={"Search Results"} /> : browserPath || 'Library Root'}
+                  {query ? <LocalizedText source={"Search Results"} /> : browserPath || <LocalizedText source={"Library Root"} />}
                 </div>
                 {itemsLoading ? (
                   <Message info><LocalizedText source={"Loading audio files..."} /></Message>
@@ -2041,7 +2044,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                           <Table.Cell>
                             <strong>{item.fileName || item.contentId}</strong>
                             <div className="player-picker-meta">
-                              {item.mediaKind || 'Audio'}
+                              {item.mediaKind || <LocalizedText source={"Audio"} />}
                               {item.bytes ? ` - ${Math.round(item.bytes / 1024 / 1024)} MB` : ''}
                             </div>
                           </Table.Cell>
@@ -2141,6 +2144,12 @@ const PlayerVisualTile = ({
     scope: 'signal scope',
     spectrum: 'spectrum bars',
   };
+  const localizedTileModeLabel = (mode) => {
+    if (mode === 'art') return interfaceText('album art');
+    if (mode === 'scope') return interfaceText('signal scope');
+    if (mode === 'spectrum') return interfaceText('spectrum bars');
+    return tileModeLabels[mode];
+  };
   const tileModeIcons = {
     butterchurn: 'magic',
     'native-webgl2': 'microchip',
@@ -2221,16 +2230,19 @@ const PlayerVisualTile = ({
     <div className="player-visual-tile" data-controls-open={controlsOpen}>
       <div className="player-visual-stage-shell">
         <Popup
-          content={
-            `Show ${tileModeLabels[nextTileMode]} in this square.`
-          }
+          content={interfaceText('Show {mode} in this square.', {
+            mode: localizedTileModeLabel(nextTileMode),
+          })}
           trigger={
             <div
-              aria-label={
-                `Show ${tileModeLabels[nextTileMode]} in player visual tile${analyzerMotionSuppressed
-                  ? '. Analyzer animation is paused because reduced motion is enabled'
-                  : ''}`
-              }
+              aria-label={analyzerMotionSuppressed
+                ? interfaceText(
+                  'Show {mode} in player visual tile. Analyzer animation is paused because reduced motion is enabled',
+                  { mode: localizedTileModeLabel(nextTileMode) },
+                )
+                : interfaceText('Show {mode} in player visual tile', {
+                  mode: localizedTileModeLabel(nextTileMode),
+                })}
               role="button"
               className="player-visual-stage"
               data-testid="player-visual-tile"
@@ -2313,11 +2325,11 @@ const PlayerVisualTile = ({
       <div className="player-visual-tile-controls" onClick={(event) => event.stopPropagation()}>
         {['spectrum', 'scope', 'butterchurn', 'native-webgl2', 'native-webgpu'].map((option) => (
           <Popup
-            content={`Show ${tileModeLabels[option]}.`}
+            content={interfaceText('Show {mode}.', { mode: localizedTileModeLabel(option) })}
             key={option}
             trigger={
               <Button
-                aria-label={`Show ${tileModeLabels[option]}`}
+                aria-label={interfaceText('Show {mode}', { mode: localizedTileModeLabel(option) })}
                 active={effectiveTileMode === option}
                 toggle
                 data-testid={`player-visual-tile-mode-${option}`}
@@ -3830,7 +3842,7 @@ const PlayerBar = () => {
       aria-label={interfaceText("Retry radio playback")}
       content={interfaceText("Reconnect to this radio snapshot if playback stalls. The host must still permit streaming.")}
       icon="redo"
-      label={collapsed ? undefined : 'Retry radio'}
+      label={collapsed ? undefined : interfaceText('Retry radio')}
       onClick={() => tryPlay(true)}
      {...interfaceTextProps("Retry radio playback")}/>
   ) : null;
@@ -3866,8 +3878,10 @@ const PlayerBar = () => {
             onClick={previousTrack}
            {...interfaceTextProps("Play the previous track or restart this one.")}/>
           <PlayerToolButton
-            content={canPause ? 'Pause playback or cancel pending autoplay.' : 'Play the selected track; retry if playback failed.'}
-            aria-label={canPause ? 'Pause local playback' : 'Resume local playback'}
+            content={canPause
+              ? interfaceText('Pause playback or cancel pending autoplay.')
+              : interfaceText('Play the selected track; retry if playback failed.')}
+            aria-label={canPause ? interfaceText('Pause local playback') : interfaceText('Resume local playback')}
             data-testid="player-collapsed-toggle-playback"
             disabled={!current}
             icon={canPause ? 'pause' : 'play'}
@@ -3889,7 +3903,9 @@ const PlayerBar = () => {
             onClick={() => setQueueOpen(true)}
            {...interfaceTextProps("Open the playback queue.")}/>
           <PlayerToolButton
-            content={broadcastStatus ? 'Expand the player to view this room broadcast and use Retry or Stop.' : 'Expand the player drawer.'}
+            content={broadcastStatus
+              ? interfaceText('Expand the player to view this room broadcast and use Retry or Stop.')
+              : interfaceText('Expand the player drawer.')}
             aria-label={interfaceText("Expand player")}
             data-testid="player-expand"
             icon="angle up"
@@ -3907,11 +3923,11 @@ const PlayerBar = () => {
           <PlayerToolButton
             content={
               localMuted
-                ? 'Unmute playback on this device without changing the stream.'
-                : 'Mute playback on this device without changing the stream.'
+              ? interfaceText('Unmute playback on this device without changing the stream.')
+              : interfaceText('Mute playback on this device without changing the stream.')
             }
             className="player-compact-secondary"
-            aria-label={localMuted ? 'Unmute local playback' : 'Mute local playback'}
+            aria-label={localMuted ? interfaceText('Unmute local playback') : interfaceText('Mute local playback')}
             data-testid="player-collapsed-toggle-mute"
             disabled={!current}
             icon={localMuted ? 'volume off' : 'volume up'}
@@ -4067,8 +4083,10 @@ const PlayerBar = () => {
               onClick={() => seekBy(-15)}
              {...interfaceTextProps("Rewind local playback by 15 seconds.")}/>
             <PlayerToolButton
-              content={canPause ? 'Pause the current stream or cancel pending autoplay.' : 'Resume the current stream; retry if playback failed.'}
-              aria-label={canPause ? 'Pause local playback' : 'Resume local playback'}
+              content={canPause
+                ? interfaceText('Pause the current stream or cancel pending autoplay.')
+                : interfaceText('Resume the current stream; retry if playback failed.')}
+              aria-label={canPause ? interfaceText('Pause local playback') : interfaceText('Resume local playback')}
               className="player-play-button"
               data-testid="player-toggle-playback"
               disabled={!current}
@@ -4101,8 +4119,10 @@ const PlayerBar = () => {
              {...interfaceTextProps("Stop playback and clear your now-playing profile status.")}/>
             <PlayerToolButton
               active={shuffle}
-              aria-label={shuffle ? 'Disable shuffle' : 'Enable shuffle'}
-              content={shuffle ? 'Play upcoming tracks in queue order.' : 'Choose upcoming tracks at random.'}
+              aria-label={shuffle ? interfaceText('Disable shuffle') : interfaceText('Enable shuffle')}
+              content={shuffle
+                ? interfaceText('Play upcoming tracks in queue order.')
+                : interfaceText('Choose upcoming tracks at random.')}
               icon="shuffle"
               onClick={() => setShuffle((enabled) => !enabled)}
             />
@@ -4147,10 +4167,10 @@ const PlayerBar = () => {
               active={localMuted}
               content={
                 localMuted
-                  ? 'Unmute playback on this device without changing the stream.'
-                  : 'Mute playback on this device without changing the stream.'
+                  ? interfaceText('Unmute playback on this device without changing the stream.')
+                  : interfaceText('Mute playback on this device without changing the stream.')
               }
-              aria-label={localMuted ? 'Unmute local playback' : 'Mute local playback'}
+              aria-label={localMuted ? interfaceText('Unmute local playback') : interfaceText('Mute local playback')}
               data-testid="player-toggle-mute"
               disabled={!current}
               icon={localMuted ? 'volume off' : 'volume up'}
@@ -4177,8 +4197,10 @@ const PlayerBar = () => {
             />
             <PlayerToolButton
               active={advancedOpen}
-              aria-label={advancedOpen ? 'Hide player tools' : 'Show player tools'}
-              content={advancedOpen ? 'Hide audio, discovery, and visual tools.' : 'Show audio, discovery, and visual tools.'}
+              aria-label={advancedOpen ? interfaceText('Hide player tools') : interfaceText('Show player tools')}
+              content={advancedOpen
+                ? interfaceText('Hide audio, discovery, and visual tools.')
+                : interfaceText('Show audio, discovery, and visual tools.')}
               icon="ellipsis horizontal"
               onClick={() => setAdvancedOpen((open) => !open)}
             />
@@ -4195,13 +4217,13 @@ const PlayerBar = () => {
               active={visualizerMode !== 'off'}
               content={
                 visualizerMode === 'off'
-                  ? 'Show the MilkDrop visualizer.'
-                  : 'Hide the MilkDrop visualizer.'
+                  ? interfaceText('Show the MilkDrop visualizer.')
+                  : interfaceText('Hide the MilkDrop visualizer.')
               }
               aria-label={
                 visualizerMode === 'off'
-                  ? 'Show MilkDrop visualizer'
-                  : 'Hide MilkDrop visualizer'
+                  ? interfaceText('Show MilkDrop visualizer')
+                  : interfaceText('Hide MilkDrop visualizer')
               }
               data-testid="player-toggle-visualizer"
               icon="eye"
@@ -4211,10 +4233,10 @@ const PlayerBar = () => {
               active={eqPanelOpen}
               content={
                 eqPanelOpen
-                  ? 'Hide the equalizer panel.'
-                  : 'Show the equalizer sliders and presets.'
+                  ? interfaceText('Hide the equalizer panel.')
+                  : interfaceText('Show the equalizer sliders and presets.')
               }
-              aria-label={eqPanelOpen ? 'Hide equalizer' : 'Show equalizer'}
+              aria-label={eqPanelOpen ? interfaceText('Hide equalizer') : interfaceText('Show equalizer')}
               data-testid="player-toggle-eq"
               icon="sliders horizontal"
               onClick={() => setEqPanelOpen((open) => !open)}
@@ -4223,10 +4245,10 @@ const PlayerBar = () => {
               active={lyricsOpen}
               content={
                 lyricsOpen
-                  ? 'Hide synced lyrics for the current track.'
-                  : 'Fetch synced lyrics for the current artist and title from LRCLIB.'
+                  ? interfaceText('Hide synced lyrics for the current track.')
+                  : interfaceText('Fetch synced lyrics for the current artist and title from LRCLIB.')
               }
-              aria-label={lyricsOpen ? 'Hide lyrics' : 'Show lyrics'}
+              aria-label={lyricsOpen ? interfaceText('Hide lyrics') : interfaceText('Show lyrics')}
               data-testid="player-toggle-lyrics"
               disabled={!current}
               icon="align left"
@@ -4279,7 +4301,7 @@ const PlayerBar = () => {
                   ) : null}
                 {outputDevices.map((device, index) => (
                   <option key={device.deviceId || index} value={device.deviceId}>
-                    {device.label || `Audio output ${index + 1}`}
+                    {device.label || interfaceText('Audio output {number}', { number: index + 1 })}
                   </option>
                 ))}
               </select>
@@ -4298,10 +4320,10 @@ const PlayerBar = () => {
               active={karaokeEnabled}
               content={
                 karaokeEnabled
-                  ? 'Turn off center-channel vocal reduction.'
-                  : 'Try center-channel vocal reduction for karaoke-style playback.'
+                  ? interfaceText('Turn off center-channel vocal reduction.')
+                  : interfaceText('Try center-channel vocal reduction for karaoke-style playback.')
               }
-              aria-label={karaokeEnabled ? 'Disable karaoke mode' : 'Enable karaoke mode'}
+              aria-label={karaokeEnabled ? interfaceText('Disable karaoke mode') : interfaceText('Enable karaoke mode')}
               data-testid="player-toggle-karaoke"
               disabled={!current}
               icon="microphone slash"
@@ -4311,10 +4333,10 @@ const PlayerBar = () => {
               active={crossfadeEnabled}
               content={
                 crossfadeEnabled
-                  ? 'Disable the five-second fade between queue items.'
-                  : 'Enable a five-second fade between queue items.'
+                  ? interfaceText('Disable the five-second fade between queue items.')
+                  : interfaceText('Enable a five-second fade between queue items.')
               }
-              aria-label={crossfadeEnabled ? 'Disable crossfade' : 'Enable crossfade'}
+              aria-label={crossfadeEnabled ? interfaceText('Disable crossfade') : interfaceText('Enable crossfade')}
               data-testid="player-toggle-crossfade"
               icon="exchange"
               onClick={() => setCrossfadeEnabled((enabled) => !enabled)}
@@ -4553,11 +4575,16 @@ const PlayerBar = () => {
         <div className="player-queue">
           {queue.slice(1, 4).map((item, index) => (
             <Popup
-              content={`Remove ${item.title || item.fileName || item.contentId} from upcoming playback without stopping the current track.`}
+              content={interfaceText(
+                'Remove {track} from upcoming playback without stopping the current track.',
+                { track: item.title || item.fileName || item.contentId },
+              )}
               key={`${item.contentId}-${index}`}
               trigger={
                 <button
-                  aria-label={`Remove ${item.title || item.fileName || item.contentId} from queue`}
+                  aria-label={interfaceText('Remove {track} from queue', {
+                    track: item.title || item.fileName || item.contentId,
+                  })}
                   className="player-queue-item"
                   onClick={() => removeFromQueue(index + 1)}
                   type="button"

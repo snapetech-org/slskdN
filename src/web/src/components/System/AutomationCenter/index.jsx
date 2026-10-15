@@ -373,8 +373,14 @@ const AutomationCenter = () => {
                   <Popup
                     content={
                       executable
-                        ? `Execute ${recipe.title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.`
-                        : `No live backend action is wired for ${recipe.title} yet. Use dry run to track readiness.`
+                        ? interfaceText(
+                          'Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.',
+                          { title: recipe.title },
+                        )
+                        : interfaceText(
+                          'No live backend action is wired for {title} yet. Use dry run to track readiness.',
+                          { title: recipe.title },
+                        )
                     }
                     position="top center"
                     trigger={

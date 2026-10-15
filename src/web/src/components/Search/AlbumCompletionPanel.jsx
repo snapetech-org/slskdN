@@ -137,7 +137,7 @@ const AlbumCompletionPanel = ({ disabled }) => {
                 </Header>
                 <div className="album-completion-meta">
                   <span>{album.artist}</span>
-                  <span>{album.releaseDate ?? 'Unknown date'}</span>
+                  <span>{album.releaseDate ?? <LocalizedText source={"Unknown date"} />}</span>
                   <span>{ratio} <LocalizedText source={"tracks complete"} /></span>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const AlbumCompletionPanel = ({ disabled }) => {
                             )}
                           </List.Header>
                           <List.Description>
-                            <LocalizedText source={"Recording ID:"} />{" "}{track.recordingId ?? 'unknown'} ·{' '}
+                            <LocalizedText source={"Recording ID:"} />{" "}{track.recordingId ?? <LocalizedText source={"unknown"} />} ·{' '}
                             {formatDuration(track.durationMs)}
                           </List.Description>
                         </List.Content>

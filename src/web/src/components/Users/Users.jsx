@@ -155,7 +155,7 @@ const Users = () => {
             <span><LocalizedText source={"Failed to retrieve information for"} />{" "}{selectedUsername}</span>
           ) : user == null ? (
             <PlaceholderSegment
-              caption="No user info to display"
+              caption={interfaceText("No user info to display")}
               icon="users"
             />
           ) : (

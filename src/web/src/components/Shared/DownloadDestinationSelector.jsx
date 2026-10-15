@@ -92,7 +92,7 @@ const DownloadDestinationSelector = ({ onChange }) => {
             loading={!error && options.length === 0}
             onChange={handleChange}
             options={options}
-            placeholder={error ? 'Configured default' : 'Loading destinations'}
+            placeholder={interfaceText(error ? 'Configured default' : 'Loading destinations')}
             selection
             value={selected}
            {...interfaceTextProps("Download destination")}/>

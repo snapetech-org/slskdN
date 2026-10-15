@@ -277,8 +277,8 @@ const TransfersHeader = ({
             { key: 'completed', text: localizedText('Completed'), value: 'Completed' },
           ]}
           tooltip={useBulkClear
-            ? 'Remove all matching completed rows from the server list; completed files remain on disk.'
-            : 'Remove matching loaded transfer rows from this list; completed files remain on disk. Load more transfers first to include older rows.'}
+            ? interfaceText('Remove all matching completed rows from the server list; completed files remain on disk.')
+            : interfaceText('Remove matching loaded transfer rows from this list; completed files remain on disk. Load more transfers first to include older rows.')}
         >
           {localizedText('Remove')}{' '}{localizedText('All')}{' '}{localizedText(removeOption)}
         </ShrinkableDropdownButton>

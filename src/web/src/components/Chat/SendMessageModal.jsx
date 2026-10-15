@@ -64,7 +64,7 @@ const SendMessageModal = ({ initiateConversation, ...rest }) => {
       <Modal.Actions>
         <TooltipButton
           onClick={() => setOpen(false)}
-          tooltip="Close this dialog without sending the private message."
+          tooltip={interfaceText('Close this dialog without sending the private message.')}
         >
           <LocalizedText source={"Cancel"} /></TooltipButton>
         <TooltipButton
@@ -73,8 +73,8 @@ const SendMessageModal = ({ initiateConversation, ...rest }) => {
           positive
           tooltip={
             validInput()
-              ? 'Start or open a private conversation and send this message.'
-              : 'Enter a username and message before sending.'
+              ? interfaceText('Start or open a private conversation and send this message.')
+              : interfaceText('Enter a username and message before sending.')
           }
         >
           <LocalizedText source={"Send"} /></TooltipButton>

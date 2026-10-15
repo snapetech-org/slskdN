@@ -608,7 +608,7 @@ const SongIDPanel = ({ disabled }) => {
       <div style={{ maxWidth: 360 }}>
         <div>
           <LocalizedText source={"Synthetic score"} />{" "}{matrix.syntheticScore || 0} <LocalizedText source={"· confidence"} />{' '}
-          {matrix.confidenceScore || 0} <LocalizedText source={"· family"} />{" "}{matrix.familyLabel || 'none'}
+          {matrix.confidenceScore || 0} <LocalizedText source={"· family"} />{" "}{matrix.familyLabel || <LocalizedText source={"none"} />}
         </div>
         {Array.isArray(matrix.topEvidenceFor) && matrix.topEvidenceFor.length > 0 ? (
           <div style={{ marginTop: '0.5em' }}>
@@ -645,7 +645,7 @@ const SongIDPanel = ({ disabled }) => {
         key={label}
         content={
           <div style={{ maxWidth: 360 }}>
-            <div>{lane.summary || 'No lane summary.'}</div>
+            <div>{lane.summary || <LocalizedText source={"No lane summary."} />}</div>
             {metricSummary ? (
               <div style={{ marginTop: '0.5em' }}>{metricSummary}</div>
             ) : null}
@@ -799,9 +799,9 @@ const SongIDPanel = ({ disabled }) => {
                           color={getStatusColor(item.status)}
                           size="tiny"
                         >
-                          {item.status || 'unknown'}
+                          {item.status || <LocalizedText source={"unknown"} />}
                         </Label>
-                        <Label size="tiny">{item.sourceType || 'unknown'}</Label>
+                        <Label size="tiny">{item.sourceType || <LocalizedText source={"unknown"} />}</Label>
                         {item.percentComplete ? (
                           <Label size="tiny">
                             {formatPercent(item.percentComplete)}%
@@ -868,10 +868,10 @@ const SongIDPanel = ({ disabled }) => {
             </Header>
             <div style={{ marginBottom: '0.75em' }}>
               <Label color={getStatusColor(run.status)} size="small">
-                {run.status || 'unknown'}
+                {run.status || <LocalizedText source={"unknown"} />}
               </Label>
-              <Label size="small">{run.currentStage || 'queued'}</Label>
-              <Label size="small">{run.sourceType || 'unknown'}</Label>
+              <Label size="small">{run.currentStage || <LocalizedText source={"queued"} />}</Label>
+              <Label size="small">{run.sourceType || <LocalizedText source={"unknown"} />}</Label>
               {run.workerSlot !== null && run.workerSlot !== undefined ? (
                 <Label size="small"><LocalizedText source={"Worker"} />{" "}{run.workerSlot}</Label>
               ) : null}
@@ -893,7 +893,7 @@ const SongIDPanel = ({ disabled }) => {
             progress
             size="small"
           >
-            {run.currentStage || 'queued'}
+            {run.currentStage || <LocalizedText source={"queued"} />}
           </Progress>
           {topActions.length > 0 ? (
             <>
@@ -1008,12 +1008,12 @@ const SongIDPanel = ({ disabled }) => {
                   color={getIdentityVerdictColor(identityVerdict)}
                   size="tiny"
                 >
-                  {identityVerdict || 'unclassified'}
+                  {identityVerdict || <LocalizedText source={"unclassified"} />}
                 </Label>
                 <br />
                 <strong><LocalizedText source={"Confidence:"} /></strong> {formatPercent(identityConfidence)}
                 <br />
-                <strong><LocalizedText source={"Reasoning:"} /></strong> {identitySummary || 'None'}
+                <strong><LocalizedText source={"Reasoning:"} /></strong> {identitySummary || <LocalizedText source={"None"} />}
               </p>
             </>
           ) : null}
@@ -1093,7 +1093,7 @@ const SongIDPanel = ({ disabled }) => {
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}><LocalizedText source={"Scorecard"} /></summary>
               <div style={{ marginBottom: '1em' }}>
-                <Label size="tiny"><LocalizedText source={"Audio"} />{" "}{run.scorecard.analysisAudioSource || 'none'}</Label>
+                <Label size="tiny"><LocalizedText source={"Audio"} />{" "}{run.scorecard.analysisAudioSource || <LocalizedText source={"none"} />}</Label>
                 <Label size="tiny"><LocalizedText source={"Clips"} />{" "}{run.scorecard.clipCount || 0}</Label>
                 <Label size="tiny"><LocalizedText source={"AcoustID"} />{" "}{run.scorecard.acoustIdHitCount || 0}</Label>
                 <Label size="tiny"><LocalizedText source={"AcoustID Raw"} />{" "}{run.scorecard.rawAcoustIdHitCount || 0}</Label>
@@ -1158,7 +1158,7 @@ const SongIDPanel = ({ disabled }) => {
                   <LocalizedText source={"Manifest"} />{" "}{run.provenance.manifestHint ? <LocalizedText source={"hinted"} /> : <LocalizedText source={"none"} />}
                 </Label>
                 <Label size="tiny">
-                  <LocalizedText source={"Validation"} />{" "}{run.provenance.validationState || 'unknown'}
+                  <LocalizedText source={"Validation"} />{" "}{run.provenance.validationState || <LocalizedText source={"unknown"} />}
                 </Label>
                 {run.provenance.verified ? (
                   <Label color="green" size="tiny">
@@ -1180,7 +1180,7 @@ const SongIDPanel = ({ disabled }) => {
                 <Label size="tiny">
                   <LocalizedText source={"Score"} />{" "}{Math.round((run.aiHeuristics.artifactScore || 0) * 100)}
                 </Label>
-                <Label size="tiny">{run.aiHeuristics.artifactLabel || 'unknown'}</Label>
+                <Label size="tiny">{run.aiHeuristics.artifactLabel || <LocalizedText source={"unknown"} />}</Label>
                 <Label size="tiny">
                   <LocalizedText source={"Peaks"} />{" "}{run.aiHeuristics.peakCount || 0}
                 </Label>
@@ -1217,7 +1217,7 @@ const SongIDPanel = ({ disabled }) => {
                       {item.heuristics ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
                           <LocalizedText source={"Score"} />{" "}{Math.round((item.heuristics.artifactScore || 0) * 100)} ·
-                          {` `}<LocalizedText source={"Label"} />{" "}{item.heuristics.artifactLabel || 'unknown'}
+                          {` `}<LocalizedText source={"Label"} />{" "}{item.heuristics.artifactLabel || <LocalizedText source={"unknown"} />}
                         </List.Description>
                       ) : null}
                     </List.Content>
@@ -1464,7 +1464,7 @@ const SongIDPanel = ({ disabled }) => {
                       <List.Description>{transcript.text}</List.Description>
                       <List.Description style={{ marginTop: '0.35em' }}>
                         <LocalizedText source={"Segments:"} />{" "}{transcript.segmentCount || 0} <LocalizedText source={"· Language:"} />{' '}
-                        {transcript.language || 'unknown'} <LocalizedText source={"· Excerpt:"} />{' '}
+                        {transcript.language || <LocalizedText source={"unknown"} />} <LocalizedText source={"· Excerpt:"} />{' '}
                         {transcript.excerptStartSeconds || 0}<LocalizedText source={"s /"} />{' '}
                         {transcript.excerptDurationSeconds || 0}<LocalizedText source={"s"} /></List.Description>
                       {Array.isArray(transcript.musicBrainzQueries) &&
@@ -1519,7 +1519,7 @@ const SongIDPanel = ({ disabled }) => {
               <List bulleted>
                 {run.chapters.map((chapter) => (
                   <List.Item key={chapter.chapterId}>
-                    {chapter.startSeconds}s: {chapter.title || 'untitled chapter'}
+                    {chapter.startSeconds}s: {chapter.title || <LocalizedText source={"untitled chapter"} />}
                     {chapter.endSeconds !== null &&
                     chapter.endSeconds !== undefined
                       ? <LocalizedText source={"-> {endSeconds}s"} values={{ "endSeconds": (chapter.endSeconds) }} />

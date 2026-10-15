@@ -1612,7 +1612,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <br />
                         <strong><LocalizedText source={"Members:"} /></strong>{' '}
                         {podMetadataResult.publishedPod?.metadata?.memberCount ||
-                          'Unknown'}
+                          <LocalizedText source={"Unknown"} />}
                       </p>
                     </Message>
                   ) : (
@@ -1933,7 +1933,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                               : <LocalizedText source={"No"} />}
                             <br />
                             <strong><LocalizedText source={"Role:"} /></strong>{' '}
-                            {membershipVerification.role || 'None'}
+                            {membershipVerification.role || <LocalizedText source={"None"} />}
                             <br />
                             <strong><LocalizedText source={"Banned:"} /></strong>{' '}
                             {membershipVerification.isBanned ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
@@ -2244,7 +2244,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           : <LocalizedText source={"No"} />}
                         <br />
                         <strong><LocalizedText source={"Role:"} /></strong>{' '}
-                        {membershipVerificationResult.role || 'None'}
+                        {membershipVerificationResult.role || <LocalizedText source={"None"} />}
                         <br />
                         <strong><LocalizedText source={"Banned:"} /></strong>{' '}
                         {membershipVerificationResult.isBanned ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
@@ -4450,7 +4450,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <Message size="tiny">
                           <p>
                             <LocalizedText source={"Message"} />{" "}{verificationResult.messageId}<LocalizedText source={": Signature is"} />{' '}
-                            {verificationResult.isValid ? 'VALID' : 'INVALID'}
+                            {verificationResult.isValid ? <LocalizedText source={"VALID"} /> : <LocalizedText source={"INVALID"} />}
                           </p>
                         </Message>
                       )}

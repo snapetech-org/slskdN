@@ -358,7 +358,9 @@ const Logs = () => {
         ) : (
           <div className="logs-history-actions">
             <span aria-live="polite" className="logs-count">
-              {historyLoading ? <LocalizedText source={"Loading retained logs…"} /> : `${history.length} retained log${history.length === 1 ? '' : 's'}`}
+              {historyLoading ? <LocalizedText source={"Loading retained logs…"} /> : history.length === 1
+                ? interfaceText('{count} retained log', { count: history.length })
+                : interfaceText('{count} retained logs', { count: history.length })}
             </span>
             <Popup
               content={interfaceText("Refresh the list of retained log files.")}
@@ -485,7 +487,7 @@ const Logs = () => {
           >
             <Modal.Header>
               <Icon name="file alternate outline" />
-              {preview?.file.name || 'Log file'}
+              {preview?.file.name || <LocalizedText source={"Log file"} />}
             </Modal.Header>
             <Modal.Content scrolling>
               {previewError ? <Message content={previewError} error role="alert" /> : null}

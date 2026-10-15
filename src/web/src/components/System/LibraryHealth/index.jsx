@@ -716,7 +716,7 @@ const LibraryHealth = () => {
                      {...interfaceTextProps("Start a recursive Library Health scan for this path")}>
                       <Icon name="search" />
                       {scanning
-                        ? scanMonitoringPaused ? 'Scan Monitor Paused' : 'Scanning...'
+                        ? scanMonitoringPaused ? <LocalizedText source={"Scan Monitor Paused"} /> : <LocalizedText source={"Scanning..."} />
                         : <LocalizedText source={"Start Scan"} />}
                     </Button>
                   )}

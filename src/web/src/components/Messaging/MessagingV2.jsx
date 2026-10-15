@@ -724,7 +724,10 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
   const deleteConversation = useCallback(
     async (username) => {
       if (!username) return;
-      if (!window.confirm(`Permanently delete the saved message thread with "${username}"?`)) {
+      if (!window.confirm(interfaceText(
+        'Permanently delete the saved message thread with "{username}"?',
+        { username },
+      ))) {
         return;
       }
       setActionError('');
@@ -755,7 +758,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
   const leaveRoom = useCallback(
     async (roomName) => {
       if (!roomName) return;
-      if (!window.confirm(`Leave room "${roomName}"?`)) return;
+      if (!window.confirm(interfaceText('Leave room "{room}"?', { room: roomName }))) return;
       setActionError('');
       try {
         await rooms.leave({ roomName });
@@ -788,8 +791,14 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       if (!channel?.podId) return;
       const prompt =
         channel.podId === GOLD_STAR_CLUB_POD_ID
-          ? `Permanently leave ${podName}? Gold Star Club membership is irrevocable.`
-          : `Leave pod "${podName}"? This exits the pod and removes its channels.`;
+          ? interfaceText(
+            'Permanently leave {pod}? Gold Star Club membership is irrevocable.',
+            { pod: podName },
+          )
+          : interfaceText(
+            'Leave pod "{pod}"? This exits the pod and removes its channels.',
+            { pod: podName },
+          );
       if (!window.confirm(prompt)) return;
       setActionError('');
       try {
@@ -1628,10 +1637,10 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
           <div className="msgv2-tabs-actions">
             <Popup
               content={humanCheckSaving
-                ? 'Wait for the current setting update to finish.'
+                ? interfaceText('Wait for the current setting update to finish.')
                 : canApplyHumanCheck
-                  ? 'Toggle automatic replies to private messages that look like human-check or share-gate prompts.'
-                  : 'Toggle this saved local preference. Enable remote configuration to apply it to daemon-side replies.'}
+                  ? interfaceText('Toggle automatic replies to private messages that look like human-check or share-gate prompts.')
+                  : interfaceText('Toggle this saved local preference. Enable remote configuration to apply it to daemon-side replies.')}
               trigger={(
                 <span className="msgv2-icon-button-trigger">
                   <button
