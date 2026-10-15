@@ -2,5 +2,5 @@
 # Keep this full SHA aligned with refs/heads/main in the fork repository.
 repository=https://github.com/snapetech/slskNet.Runtime.git
 ref=refs/heads/main
-commit=f7e28d8a9aef773d0b7eca402249b01f4e532efd
+commit=41dd171d24f61a65832b4b653fb26a9ea71d2975
 local_patch=vendor/slskNet.Runtime.patches/0001-slskdN-local-runtime-delta.patch
