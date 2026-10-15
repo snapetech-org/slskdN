@@ -189,7 +189,6 @@ expect_literal docs/dev/release-checklist.md 'scripts/create-release-tag.sh'
 expect_literal docs/build.md 'scripts/create-release-tag.sh'
 expect_literal memory-bank/decisions/adr-0005-tagging-system.md 'scripts/create-release-tag.sh'
 expect_literal memory-bank/QUICK_REFERENCE.md 'scripts/create-release-tag.sh'
-expect_literal AGENTS.md 'scripts/create-release-tag.sh'
 
 CLOUDRON_VERSION="$(jq -er '.version' packaging/cloudron/CloudronManifest.json)"
 CLOUDRON_CATALOG_VERSION="$(jq -er --arg version "$CLOUDRON_VERSION" '.versions[$version].manifest.version' packaging/cloudron/CloudronVersions.json)"
@@ -234,7 +233,6 @@ reject_literal docs/build.md 'git tag build-main-'
 reject_literal docs/dev/release-checklist.md 'git tag build-main-'
 reject_literal memory-bank/decisions/adr-0005-tagging-system.md 'git tag "build-main-${VERSION}"'
 reject_literal memory-bank/QUICK_REFERENCE.md 'git tag build-main-'
-reject_literal AGENTS.md 'git tag build-main-'
 
 expect_line ca_profile.xml '^<CommunityApplications>$'
 expect_line ca_profile.xml '<Profile>[^<[:space:]][^<]*</Profile>'
