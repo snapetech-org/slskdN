@@ -54,7 +54,7 @@ describe('BrowseSession', () => {
     ).toBeInTheDocument();
   });
 
-  it('shows the server browse failure reason', async () => {
+  it('shows a localized fallback for a browse failure', async () => {
     users.browse.mockRejectedValue({
       response: {
         data: 'Unable to browse user; the remote peer is unavailable',
@@ -66,7 +66,7 @@ describe('BrowseSession', () => {
 
     expect(
       await screen.findByText(
-        'Failed to browse alice: Unable to browse user; the remote peer is unavailable',
+        'Failed to browse alice: Browse failed',
       ),
     ).toBeInTheDocument();
 

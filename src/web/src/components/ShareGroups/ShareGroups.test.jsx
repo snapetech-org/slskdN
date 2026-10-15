@@ -55,7 +55,7 @@ describe('ShareGroups', () => {
 
     await user.click(await screen.findByText('Delete'));
 
-    expect(await screen.findByText(/Share group still has grants/))
+    expect(await screen.findByText('Failed to delete share group'))
       .toBeInTheDocument();
   });
 
@@ -93,7 +93,7 @@ describe('ShareGroups', () => {
     render(<ShareGroups />);
 
     await user.click(await screen.findByTestId('group-view-members'));
-    expect(await screen.findByText('Member service unavailable'))
+    expect(await screen.findByText('Failed to load group members'))
       .toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Retry Members' }));
 

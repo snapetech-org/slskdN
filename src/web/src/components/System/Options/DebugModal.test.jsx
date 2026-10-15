@@ -27,7 +27,7 @@ describe('DebugModal', () => {
 
     render(<DebugModal onClose={vi.fn()} open theme="dark" />);
 
-    expect(await screen.findByText('Options view unavailable')).toBeInTheDocument();
+    expect(await screen.findByText('Could not load the debug view.')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Retry Debug View' }));
 
     await waitFor(() => {

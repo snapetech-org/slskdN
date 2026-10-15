@@ -138,7 +138,7 @@ describe('ExperienceSettings', () => {
 
     await user.click(screen.getByRole('button', { name: 'Copy Report' }));
 
-    expect(await screen.findByText('Clipboard permission denied'))
+    expect(await screen.findByText('Could not copy the preference report.'))
       .toBeInTheDocument();
     expect(screen.queryByText('Experience preference report copied.'))
       .not.toBeInTheDocument();

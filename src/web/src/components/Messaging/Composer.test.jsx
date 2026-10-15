@@ -149,7 +149,7 @@ describe('Composer', () => {
     fireEvent.keyDown(input, { key: 'Enter' });
 
     expect(await screen.findByRole('alert'))
-      .toHaveTextContent('Network disconnected');
+      .toHaveTextContent('The message could not be sent.');
     expect(input).toHaveValue('hello again');
     await user.click(screen.getByRole('button', { name: 'Send' }));
 

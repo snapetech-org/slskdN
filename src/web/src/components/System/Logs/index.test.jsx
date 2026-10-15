@@ -114,7 +114,7 @@ describe('System Logs', () => {
 
     render(<Logs />);
 
-    expect(await screen.findByText('logs unavailable')).toBeInTheDocument();
+    expect(await screen.findByText('Unable to connect to live logs.')).toBeInTheDocument();
     const retry = screen.getByRole('button', { name: 'Retry live log connection' });
     expect(retry).toBeVisible();
     await user.click(retry);

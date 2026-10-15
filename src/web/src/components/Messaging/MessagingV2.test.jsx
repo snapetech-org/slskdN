@@ -386,7 +386,7 @@ describe('MessagingV2 hydration', () => {
     await user.click(screen.getByRole('button', { name: 'Create' }));
 
     expect(await screen.findByTestId('messaging-action-error'))
-      .toHaveTextContent('Pod service unavailable');
+      .toHaveTextContent('Could not create the pod room: Please try again.');
     expect(nameInput).toHaveValue('Listening room');
   });
 
@@ -396,7 +396,7 @@ describe('MessagingV2 hydration', () => {
     renderMessaging();
 
     expect(await screen.findByTestId('messaging-list-error'))
-      .toHaveTextContent('Conversation store offline');
+      .toHaveTextContent('Could not load saved conversations and joined rooms: Please try again.');
     expect(screen.queryByText('No saved direct messages.')).not.toBeInTheDocument();
     await user.click(screen.getByRole('button', {
       name: 'Retry loading saved conversations',
@@ -413,7 +413,7 @@ describe('MessagingV2 hydration', () => {
     renderMessaging();
 
     expect(await screen.findByTestId('pod-list-error'))
-      .toHaveTextContent('Pod storage offline');
+      .toHaveTextContent('Could not load saved pod channels: Please try again.');
     expect(screen.queryByText('No pod rooms or discovered pods yet.'))
       .not.toBeInTheDocument();
     await user.click(screen.getByRole('button', {

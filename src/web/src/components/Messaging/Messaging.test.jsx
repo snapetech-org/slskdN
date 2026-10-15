@@ -228,7 +228,7 @@ describe('Messaging', () => {
     });
     fireEvent.click(screen.getByRole('button', { name: 'Join/Create room' }));
 
-    expect(await screen.findByText('Soulseek is reconnecting; try again shortly.')).toBeInTheDocument();
+    expect(await screen.findByText('Room join failed. Try again shortly.')).toBeInTheDocument();
     expect(screen.getByLabelText('Search or create Soulseek room')).toHaveValue('slskdn');
   });
 

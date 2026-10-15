@@ -122,7 +122,7 @@ describe('SharedWithMe', () => {
     await screen.findByText('No items in this collection');
     await user.click(screen.getByTestId('incoming-backfill'));
 
-    expect(await screen.findByText(/Backfill is disabled for this share/))
+    expect(await screen.findByText('Failed to start backfill'))
       .toBeInTheDocument();
   });
 
@@ -142,7 +142,7 @@ describe('SharedWithMe', () => {
     expect(await screen.findByText('Shared Album')).toBeInTheDocument();
     await user.click(screen.getByTestId('incoming-share-open'));
     expect(await screen.findByTestId('incoming-manifest-error'))
-      .toHaveTextContent('Manifest token expired');
+      .toHaveTextContent('Failed to load manifest');
     await user.click(screen.getByRole('button', { name: 'Retry Contents' }));
 
     expect(await screen.findByText('No items in this collection')).toBeInTheDocument();
@@ -156,7 +156,7 @@ describe('SharedWithMe', () => {
     });
     render(<SharedWithMe />);
 
-    expect(await screen.findByText(/Share list unavailable/)).toBeInTheDocument();
+    expect(await screen.findByText('Failed to load incoming shares')).toBeInTheDocument();
     expect(screen.queryByText('No shares yet')).not.toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Retry' }));
 

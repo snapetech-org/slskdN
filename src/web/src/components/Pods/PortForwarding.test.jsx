@@ -82,7 +82,7 @@ describe('Pod port forwarding', () => {
     setDocumentHidden(false);
   });
 
-  it('localizes port-range validation but keeps unknown service errors intact', async () => {
+  it('localizes port-range validation and hides unknown service error prose', async () => {
     stubLocaleCatalogFetch(vi);
     await setInterfaceLanguage('de');
     render(<PortForwarding />);
@@ -113,7 +113,7 @@ describe('Pod port forwarding', () => {
     );
     fireEvent.change(numberFields[0], { target: { value: '8080' } });
     fireEvent.click(screen.getByRole('button', { name: 'Weiterleitung starten' }));
-    expect(await screen.findByText('Pod service says retry later.')).toBeInTheDocument();
+    expect(await screen.findByText('Die Anfrage ist fehlgeschlagen. Versuchen Sie es erneut.')).toBeInTheDocument();
     expect(portForwarding.startForwarding).toHaveBeenCalledOnce();
   });
 

@@ -61,7 +61,7 @@ describe('Collections', () => {
     await screen.findByText('Fixture Collection');
     fireEvent.click(screen.getByText('Delete'));
 
-    expect(await screen.findByText(/Collection is still shared/))
+    expect(await screen.findByText('Failed to delete collection'))
       .toBeInTheDocument();
   });
 
@@ -83,7 +83,7 @@ describe('Collections', () => {
     fireEvent.click(screen.getByTestId('share-create'));
     fireEvent.click(await screen.findByTestId('share-create-submit'));
 
-    expect(await screen.findByText(/Share group no longer exists/))
+    expect(await screen.findByText('Failed to create share'))
       .toBeInTheDocument();
   });
 

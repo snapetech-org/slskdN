@@ -179,7 +179,7 @@ describe('System Bridge polling', () => {
       .mockResolvedValueOnce(config);
     render(<Bridge />);
 
-    expect(await screen.findByText('config unavailable')).toBeInTheDocument();
+    expect(await screen.findByText('The request failed. Try again.')).toBeInTheDocument();
 
     Object.defineProperty(document, 'hidden', {
       configurable: true,

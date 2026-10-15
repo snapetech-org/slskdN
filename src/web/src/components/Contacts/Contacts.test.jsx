@@ -92,7 +92,7 @@ describe('Contacts', () => {
     renderContacts();
 
     expect(await screen.findByTestId('contacts-load-error'))
-      .toHaveTextContent('Contacts service unavailable');
+      .toHaveTextContent('Failed to load contacts.');
     expect(screen.queryByText('No contacts yet')).not.toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Retry Contacts' }));
 
@@ -113,7 +113,7 @@ describe('Contacts', () => {
     fireEvent.click(await screen.findByText('Nearby'));
 
     expect(await screen.findByTestId('contacts-nearby-error'))
-      .toHaveTextContent('mDNS service unavailable');
+      .toHaveTextContent('Nearby peer discovery failed.');
     expect(screen.queryByText('No nearby peers found')).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Retry Nearby' }));
 
@@ -162,7 +162,7 @@ describe('Contacts', () => {
 
     expect(
       await screen.findByText(
-        /Identity invite response did not include an invite link/,
+        'Failed to create invite',
       ),
     ).toBeInTheDocument();
     expect(QRCode.toDataURL).not.toHaveBeenCalled();
@@ -190,7 +190,7 @@ describe('Contacts', () => {
     });
     fireEvent.click(screen.getByTestId('contacts-add-invite-submit'));
 
-    expect(await screen.findByText(/Invite expired/)).toBeInTheDocument();
+    expect(await screen.findByText('Failed to add contact')).toBeInTheDocument();
   });
 
   it('fills the invite input from a scanned QR image', async () => {

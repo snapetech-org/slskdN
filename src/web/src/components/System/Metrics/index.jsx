@@ -187,7 +187,7 @@ const Metrics = () => {
       setMetrics(data);
       setLastUpdated(new Date());
     } catch (err) {
-      setError(getApiErrorMessage(err, { t: interfaceText }, 'Failed to load metrics'));
+      setError(getApiErrorMessage(err, { t: interfaceText }));
     } finally {
       setLoading(false);
     }

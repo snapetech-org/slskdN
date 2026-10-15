@@ -55,6 +55,7 @@ describe('Metrics', () => {
     render(<Metrics />);
 
     expect(await screen.findByText('Failed to load metrics')).toBeInTheDocument();
+    expect(screen.getByText('The request failed. Try again.')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Try Again' }));
 
     await waitFor(() =>

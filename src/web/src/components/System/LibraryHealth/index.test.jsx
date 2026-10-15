@@ -259,7 +259,7 @@ describe('LibraryHealth', () => {
 
     fireEvent.change(pathInput(), { target: { value: '/fixture/music' } });
     fireEvent.click(screen.getByLabelText('Load saved Library Health results for this path'));
-    expect(await screen.findByText('dashboard unavailable')).toBeInTheDocument();
+    expect(await screen.findByText('Failed to load library health data')).toBeInTheDocument();
     fireEvent.click(screen.getByLabelText('Retry loading saved Library Health results'));
 
     await waitFor(() => expect(libraryHealth.getDashboard).toHaveBeenCalledTimes(2));
@@ -384,7 +384,7 @@ describe('LibraryHealth', () => {
     fireEvent.click(screen.getByLabelText('Start a recursive Library Health scan for this path'));
 
     expect(
-      await screen.findAllByText(/Library Health scan response did not include a scan id/),
+      await screen.findAllByText(/Failed to start scan/),
     ).not.toHaveLength(0);
     expect(libraryHealth.getScanStatus).not.toHaveBeenCalled();
   });
@@ -422,7 +422,7 @@ describe('LibraryHealth', () => {
     await vi.advanceTimersByTimeAsync(2_000);
 
     await waitFor(() =>
-      expect(screen.getAllByText('poll failed').length).toBeGreaterThan(0),
+      expect(screen.getAllByText('Failed to poll Library Health scan status').length).toBeGreaterThan(0),
     );
     await vi.advanceTimersByTimeAsync(2_000);
     expect(libraryHealth.getScanStatus).toHaveBeenCalledTimes(1);

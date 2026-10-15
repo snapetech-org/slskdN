@@ -1453,7 +1453,7 @@ describe('Visualizer', () => {
     );
 
     expect(
-      await screen.findByText(/Native MilkDrop render failed. Unsupported MilkDrop function: rand/),
+      await screen.findByText('Native MilkDrop render failed.'),
     ).toBeInTheDocument();
     expect(window.localStorage.getItem('slskdn.player.nativeMilkdropPreset')).toBeNull();
   });

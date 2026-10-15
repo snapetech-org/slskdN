@@ -41,6 +41,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
   error codes when available and translated fallback text otherwise. The
   twelve locale catalogs include the added success summaries and player status
   messages.
+- System metrics now use the shared translated request-error fallback.
 
 ## [2026101321-slskdn.351] — 2026-10-13
 
