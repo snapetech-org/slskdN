@@ -126,6 +126,45 @@ class LocalIdentityScannerTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("docs/CHANGELOG.md Unreleased", result.stderr)
 
+    def test_signed_off_by_trailer_is_metadata_but_commit_body_is_scanned(self):
+        changelog = "## [Unreleased]\n\nNo release text.\n\n## [1.0.0]\n"
+        self._initialize_repository(changelog)
+        self._git(
+            "commit",
+            "--quiet",
+            "--allow-empty",
+            "-m",
+            "docs: update validation guidance",
+            "-m",
+            "release-note: none",
+            "-m",
+            "Signed-off-by: synthetic-user <synthetic-user@example.invalid>",
+        )
+
+        signoff_result = self._run_scanner(
+            LOCAL_IDENTITY_DENYLIST="synthetic-user",
+            LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES="0",
+        )
+
+        self.assertEqual(signoff_result.returncode, 0, signoff_result.stderr)
+
+        self._git(
+            "commit",
+            "--quiet",
+            "--allow-empty",
+            "-m",
+            "docs: clarify validation guidance",
+            "-m",
+            "The operator is synthetic-user.",
+        )
+        body_result = self._run_scanner(
+            LOCAL_IDENTITY_DENYLIST="synthetic-user",
+            LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES="0",
+        )
+
+        self.assertNotEqual(body_result.returncode, 0)
+        self.assertIn("recent commit messages", body_result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

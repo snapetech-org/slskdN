@@ -125,11 +125,11 @@ if [[ "${LOCAL_IDENTITY_SCAN_COMMITS:-0}" == "1" ]]; then
     latest_tag="$(git describe --tags --abbrev=0 2>/dev/null || true)"
   fi
   if [[ -n "$latest_tag" ]]; then
-    # GitHub adds Co-authored-by trailers to squash-merge commits. They are
-    # immutable provenance metadata rather than release-facing content, so
-    # exclude only those trailers while retaining the subject and body scan.
+    # Co-authored-by and Signed-off-by trailers are attribution metadata rather
+    # than release-facing content, so exclude only those trailers while
+    # retaining the subject and body scan.
     git log --format='%s%n%b' "${latest_tag}..HEAD" |
-      sed '/^[[:space:]]*Co-authored-by:/Id' >"$tmp_commits"
+      sed -E '/^[[:space:]]*(Co-authored-by|Signed-off-by):/Id' >"$tmp_commits"
     # Match names as complete words so a synthetic sandbox token such as
     # "home" does not match the ordinary plural "homes".
     check_file "recent commit messages" "$tmp_commits" "git log" "1"
