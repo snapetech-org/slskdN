@@ -112,11 +112,12 @@ for workflow in \
     .github/workflows/e2e-tests.yml \
     .github/workflows/release-copr.yml \
     .github/workflows/release-linux.yml \
-    .github/workflows/release-ppa.yml \
-    .github/workflows/windows-smoke.yml; do
+    .github/workflows/release-ppa.yml; do
     expect_line "$workflow" 'uses: pnpm/setup@[0-9a-f]{40}[[:space:]]+# v3'
     expect_literal "$workflow" 'install: false'
 done
+reject_line .github/workflows/windows-smoke.yml 'uses:[[:space:]]+(pnpm/setup|actions/setup-node)@'
+expect_literal .github/workflows/windows-smoke.yml 'run: dotnet test slskd.sln --configuration Release --no-build'
 for workflow in \
     .github/workflows/build-on-tag.yml \
     .github/workflows/ci.yml \
