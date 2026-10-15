@@ -2,7 +2,6 @@
 export const validation = {
   repository: 'slskdn',
   inputs: [
-    'AGENTS.md',
     'global.json',
     'package.json',
     'pnpm-lock.yaml',
