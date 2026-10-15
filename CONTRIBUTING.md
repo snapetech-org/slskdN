@@ -45,18 +45,17 @@ When creating new files, use the slskdn Team copyright header. When modifying ex
 
 1. Assign yourself to the issue that you'll be working on.  If you'd like to contribute something for which there is no 
    existing issue, consider creating one before you start so we can discuss.
-1. Clone the repository and `git checkout master` to ensure you are on the master branch.
+1. Clone the repository and `git checkout main` to ensure you are on the default branch.
 1. Create a new branch for your change with `git checkout -b <your-branch-name>` be descriptive, but terse.
 1. Make your changes.  When finished, push your branch with `git push origin --set-upstream <your-branch-name>`.
-1. Create a pull request to merge `<your-branch-name>` into `master`.
-1. A maintainer will review your pull request and may make comments, ask questions, or request changes.  When all
-   feedback has been addressed the pull request will be approved, and after all checks have passed it will be merged by
-   a maintainer, or you may merge it yourself if you have the necessary access.
+1. Use `main` as the target. Open a pull request only when current GitHub rules require one; push directly when they allow it.
+1. Keep the branch current with `main` only when current GitHub rules require it. Merge after the
+   checks and approvals required by those rules are satisfied. An explicit maintainer direction to
+   merge is sufficient; no additional review or approval is required beyond those rules. Use any
+   merge method enabled in GitHub.
 1. Delete your branch, unless you plan to submit additional pull request from it.
 
-Note that we require that all branches are up to date with target branch prior to merging.  If you see a message about this
-on your pull request, use `git fetch` to retrieve the latest changes,  `git merge origin/master` to merge the changes from master
-into your local branch, then `git push` to update your branch.
+If the pull request needs an update, use `git fetch` and rebase or merge `origin/main` into your branch, then push the updated branch.
 
 ## Environment Setup
 
@@ -329,11 +328,10 @@ slskdn/
 
 Before contributing, read:
 
-1. **[AGENTS.md](AGENTS.md)**: AI agent guidelines and rules
-2. **[memory-bank/decisions/adr-0001-known-gotchas.md](memory-bank/decisions/adr-0001-known-gotchas.md)**: Critical bugs to avoid
-3. **[memory-bank/decisions/adr-0002-code-patterns.md](memory-bank/decisions/adr-0002-code-patterns.md)**: Code patterns to follow
-4. **[memory-bank/decisions/adr-0003-anti-slop-rules.md](memory-bank/decisions/adr-0003-anti-slop-rules.md)**: What NOT to do
-5. **[docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md)**: Architecture overview
+1. **[memory-bank/decisions/adr-0001-known-gotchas.md](memory-bank/decisions/adr-0001-known-gotchas.md)**: Critical bugs to avoid
+2. **[memory-bank/decisions/adr-0002-code-patterns.md](memory-bank/decisions/adr-0002-code-patterns.md)**: Code patterns to follow
+3. **[memory-bank/decisions/adr-0003-anti-slop-rules.md](memory-bank/decisions/adr-0003-anti-slop-rules.md)**: What NOT to do
+4. **[docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md)**: Architecture overview
 
 ## Code Review Checklist
 
