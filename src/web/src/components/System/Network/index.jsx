@@ -3,7 +3,7 @@ import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../.
 
 
 import * as slskdnAPI from '../../../lib/slskdn';
-import { formatRegionalCompactNumber, useRegionalLocale } from '../../../lib/regionalFormat';
+import { formatRegionalCompactNumber, formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import { formatBytes as formatLocalizedBytes } from '../../../lib/util';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
@@ -39,16 +39,25 @@ const asArray = (value) => (Array.isArray(value) ? value : []);
 
 const formatBytes = (bytes) => formatLocalizedBytes(bytes, 1);
 
-const formatTimeAgo = (dateString) => {
-  if (!dateString) return 'never';
+const formatTimeAgo = (dateString, locale) => {
+  if (!dateString) return <LocalizedText source="Never" />;
   const date = new Date(dateString);
-  const now = new Date();
-  const seconds = Math.floor((now - date) / 1_000);
+  if (Number.isNaN(date.getTime())) return <LocalizedText source="Unknown" />;
 
-  if (seconds < 60) return `${seconds}s ago`;
-  if (seconds < 3_600) return `${Math.floor(seconds / 60)}m ago`;
-  if (seconds < 86_400) return `${Math.floor(seconds / 3_600)}h ago`;
-  return `${Math.floor(seconds / 86_400)}d ago`;
+  const seconds = Math.round((date.getTime() - Date.now()) / 1_000);
+  const absoluteSeconds = Math.abs(seconds);
+  const [value, unit] = absoluteSeconds < 60
+    ? [seconds, 'second']
+    : absoluteSeconds < 3_600
+      ? [Math.round(seconds / 60), 'minute']
+      : absoluteSeconds < 86_400
+        ? [Math.round(seconds / 3_600), 'hour']
+        : [Math.round(seconds / 86_400), 'day'];
+  const formatter = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+  const resolvedLocale = formatter.resolvedOptions().locale;
+  const direction = /^ar(?:-|$)/i.test(resolvedLocale) ? 'rtl' : 'ltr';
+
+  return <span lang={resolvedLocale} dir={direction}>{formatter.format(value, unit)}</span>;
 };
 
 const StatCard = ({ color, icon, inverted = false, label, subLabel, value }) => (
@@ -76,19 +85,41 @@ const StatCard = ({ color, icon, inverted = false, label, subLabel, value }) => 
 );
 
 // eslint-disable-next-line complexity
-const LocalizedNetworkFindingSummary = ({ source }) => {
+const LocalizedNetworkFindingSummary = ({ source, locale }) => {
   const securityMatch = source.match(/^(\d+) mesh security signal(s?) visible$/);
-  if (securityMatch) return <LocalizedText source={securityMatch[2] ? "{count} mesh security signals visible" : "{count} mesh security signal visible"} values={{ count: securityMatch[1] }} />;
+  if (securityMatch) return <LocalizedText source={securityMatch[2] ? "{count} mesh security signals visible" : "{count} mesh security signal visible"} values={{ count: formatRegionalNumber(Number(securityMatch[1]), undefined, locale) }} />;
   const backfillMatch = source.match(/^(\d+) pending backfill candidates$/);
-  if (backfillMatch) return <LocalizedText source="{count} pending backfill candidates" values={{ count: backfillMatch[1] }} />;
+  if (backfillMatch) return <LocalizedText source="{count} pending backfill candidates" values={{ count: formatRegionalNumber(Number(backfillMatch[1]), undefined, locale) }} />;
   return <LocalizedText source={source} />;
+};
+
+const LocalizedMeshWarning = ({ source, locale }) => {
+  const warningMatch = typeof source === 'string' && source.match(/^(Signature verification failures|Rate limit violations|Quarantine events) \((\d+)\) >= (\d+)$/);
+  if (!warningMatch) return <LocalizedText source={source} />;
+
+  const sourceByWarning = {
+    'Signature verification failures': 'Signature verification failures ({count}) >= {threshold}',
+    'Rate limit violations': 'Rate limit violations ({count}) >= {threshold}',
+    'Quarantine events': 'Quarantine events ({count}) >= {threshold}',
+  };
+  return (
+    <LocalizedText
+      source={sourceByWarning[warningMatch[1]]}
+      values={{
+        count: formatRegionalNumber(Number(warningMatch[2]), undefined, locale),
+        threshold: formatRegionalNumber(Number(warningMatch[3]), undefined, locale),
+      }}
+    />
+  );
 };
 
 const Network = ({ theme }) => {
   useInterfaceLanguage();
   const regionalLocale = useRegionalLocale();
   const formatNumber = (value) => {
-    if (value === undefined || value === null) return '0';
+    if (value === undefined || value === null) {
+      return formatRegionalCompactNumber(0, { maximumFractionDigits: 1 }, regionalLocale);
+    }
     return formatRegionalCompactNumber(value, { maximumFractionDigits: 1 }, regionalLocale);
   };
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
@@ -218,10 +249,25 @@ const Network = ({ theme }) => {
         setBackfillProgress(result);
 
         if (result.complete) {
-          toast.success(result.message || 'Backfill complete!');
+          toast.success(
+            <LocalizedText
+              source="Backfill complete! Processed {searches} searches, discovered {files} FLACs."
+              values={{
+                searches: formatNumber(result.searchesProcessed ?? 0),
+                files: formatNumber(result.flacsDiscovered ?? 0),
+              }}
+            />,
+          );
         } else {
           toast.info(
-            result.message || 'Batch processed - click again to continue',
+            <LocalizedText
+              source="Processed {searches} searches, discovered {files} FLACs. {remaining} searches remaining - click again to continue."
+              values={{
+                searches: formatNumber(result.searchesProcessed ?? 0),
+                files: formatNumber(result.flacsDiscovered ?? 0),
+                remaining: formatNumber(result.remainingSearches ?? 0),
+              }}
+            />,
           );
         }
 
@@ -381,38 +427,38 @@ const Network = ({ theme }) => {
           color="blue"
           icon="sitemap"
           inverted={darkTheme}
-          label={interfaceText("Mesh Peers")}
-          subLabel="slskdN clients connected"
-          value={mesh?.connectedPeerCount ?? meshPeers.length ?? 0}
-         {...interfaceTextProps("Mesh Peers")}/>
+          label={<LocalizedText source="Mesh Peers" />}
+          subLabel={<LocalizedText source="slskdN clients connected" />}
+          value={formatNumber(mesh?.connectedPeerCount ?? meshPeers.length ?? 0)}
+        />
         <StatCard
           color="green"
           icon="database"
           inverted={darkTheme}
-          label={interfaceText("Hash Entries")}
+          label={<LocalizedText source="Hash Entries" />}
           subLabel={
-            hashDb?.dbSizeBytes
-              ? `${formatBytes(hashDb.dbSizeBytes)} on disk`
-              : 'Local database'
+            hashDb?.dbSizeBytes !== undefined && hashDb?.dbSizeBytes !== null
+              ? <LocalizedText source="{size} on disk" values={{ size: formatBytes(hashDb.dbSizeBytes) }} />
+              : <LocalizedText source="Local database" />
           }
           value={formatNumber(hashDb?.totalEntries ?? 0)}
-         {...interfaceTextProps("Hash Entries")}/>
+        />
         <StatCard
           color="purple"
           icon="sync"
           inverted={darkTheme}
-          label={interfaceText("Sequence ID")}
-          subLabel="Mesh sync position"
-          value={hashDb?.currentSeqId ?? mesh?.localSeqId ?? 0}
-         {...interfaceTextProps("Sequence ID")}/>
+          label={<LocalizedText source="Sequence ID" />}
+          subLabel={<LocalizedText source="Mesh sync position" />}
+          value={formatRegionalNumber(hashDb?.currentSeqId ?? mesh?.localSeqId ?? 0, undefined, regionalLocale)}
+        />
         <StatCard
           color="orange"
           icon="bolt"
           inverted={darkTheme}
-          label={interfaceText("Active Swarms")}
-          subLabel="Multi-source downloads"
-          value={multiSourceEnabled ? swarmJobs?.length ?? 0 : 'Disabled'}
-         {...interfaceTextProps("Active Swarms")}/>
+          label={<LocalizedText source="Active Swarms" />}
+          subLabel={<LocalizedText source="Multi-source downloads" />}
+          value={multiSourceEnabled ? formatNumber(swarmJobs?.length ?? 0) : <LocalizedText source="Disabled" />}
+        />
       </Card.Group>
 
       <Divider />
@@ -457,20 +503,20 @@ const Network = ({ theme }) => {
           {/* These four are inputs to the score above, not states of their
               own — one neutral pill style, not four unrelated hues. */}
           <Label basic>
-            <LocalizedText source={"Mesh"} /><Label.Detail>{networkHealth.inputs.meshCount}</Label.Detail>
+            <LocalizedText source={"Mesh"} /><Label.Detail>{formatNumber(networkHealth.inputs.meshCount)}</Label.Detail>
           </Label>
           <Label basic>
-            <LocalizedText source={"Discovered"} /><Label.Detail>{networkHealth.inputs.discoveredCount}</Label.Detail>
+            <LocalizedText source={"Discovered"} /><Label.Detail>{formatNumber(networkHealth.inputs.discoveredCount)}</Label.Detail>
           </Label>
           <Label basic>
             DHT
-            <Label.Detail>{networkHealth.inputs.dhtNodes}</Label.Detail>
+            <Label.Detail>{formatNumber(networkHealth.inputs.dhtNodes)}</Label.Detail>
           </Label>
           <Label
             basic={networkHealth.inputs.securityWarningCount === 0}
             color={networkHealth.inputs.securityWarningCount > 0 ? 'orange' : undefined}
           >
-            <LocalizedText source={"Security"} /><Label.Detail>{networkHealth.inputs.securityWarningCount}</Label.Detail>
+            <LocalizedText source={"Security"} /><Label.Detail>{formatNumber(networkHealth.inputs.securityWarningCount)}</Label.Detail>
           </Label>
         </div>
         {networkHealth.findings.length > 0 ? (
@@ -499,7 +545,7 @@ const Network = ({ theme }) => {
                 />
                 <List.Content>
                   <List.Header>
-                    <LocalizedText source={finding.area} />: <LocalizedNetworkFindingSummary source={finding.summary} />
+                    <LocalizedText source={finding.area} />: <LocalizedNetworkFindingSummary source={finding.summary} locale={regionalLocale} />
                   </List.Header>
                   <List.Description><LocalizedText source={finding.action} /></List.Description>
                 </List.Content>
@@ -640,8 +686,8 @@ const Network = ({ theme }) => {
                         />{' '}
                         {peer.username}
                       </Table.Cell>
-                      <Table.Cell>{peer.lastSeqId ?? '-'}</Table.Cell>
-                      <Table.Cell>{formatTimeAgo(peer.lastSyncAt)}</Table.Cell>
+                      <Table.Cell>{peer.lastSeqId == null ? '-' : formatRegionalNumber(peer.lastSeqId, undefined, regionalLocale)}</Table.Cell>
+                      <Table.Cell>{formatTimeAgo(peer.lastSyncAt, regionalLocale)}</Table.Cell>
                       <Table.Cell>
                         <ShrinkableButton
                           compact
@@ -702,7 +748,7 @@ const Network = ({ theme }) => {
                       <List.Header>{peer.username}</List.Header>
                       <List.Description>
                         {peer.version ?? 'slskdN'} <LocalizedText source={"• Last seen:"} />{' '}
-                        {formatTimeAgo(peer.lastSeenAt)}
+                        {formatTimeAgo(peer.lastSeenAt, regionalLocale)}
                       </List.Description>
                     </List.Content>
                   </List.Item>
@@ -749,8 +795,8 @@ const Network = ({ theme }) => {
               bulleted
               size="small"
             >
-              {asArray(mesh?.warnings).map((w, index) => (
-                <List.Item key={index}>{w}</List.Item>
+              {asArray(mesh?.warnings).map((warning, index) => (
+                <List.Item key={index}><LocalizedMeshWarning source={warning} locale={regionalLocale} /></List.Item>
               ))}
             </List>
           </Message>
@@ -821,13 +867,19 @@ const Network = ({ theme }) => {
                 size="tiny"
                 style={{ marginRight: '0.5em' }}
               >
-                {backfillProgress.remainingSearches} <LocalizedText source={"searches left"} /></Label>
+                {formatNumber(backfillProgress.remainingSearches)} <LocalizedText source={"searches left"} /></Label>
             )}
             <Popup
               content={
                 backfillProgress && !backfillProgress.complete
-                  ? `Continue processing search history. ${backfillProgress.remainingSearches} of ${backfillProgress.totalSearches} searches remaining.`
-                  : 'Scan your search history to discover FLAC files from past searches. This populates the inventory with files that can be probed for content hashes, enabling multi-source downloads for those files. Processes in batches - click multiple times for large histories.'
+                  ? <LocalizedText
+                    source="Continue processing search history ({remaining} of {total} searches remain)."
+                    values={{
+                      remaining: formatNumber(backfillProgress.remainingSearches ?? 0),
+                      total: formatNumber(backfillProgress.totalSearches ?? 0),
+                    }}
+                  />
+                  : <LocalizedText source="Scan past searches to add their FLAC files to the hash inventory for multi-source downloads. Large histories are processed in batches; click again to continue." />
               }
               position="top right"
               trigger={
@@ -896,7 +948,7 @@ const Network = ({ theme }) => {
             <Statistic.Label><LocalizedText source={"Database Size"} /></Statistic.Label>
           </Statistic>
           <Statistic>
-            <Statistic.Value>{hashDb?.currentSeqId ?? 0}</Statistic.Value>
+            <Statistic.Value>{formatRegionalNumber(hashDb?.currentSeqId ?? 0, undefined, regionalLocale)}</Statistic.Value>
             <Statistic.Label><LocalizedText source={"Sequence ID"} /></Statistic.Label>
           </Statistic>
         </Statistic.Group>
@@ -949,7 +1001,7 @@ const Network = ({ theme }) => {
               inverted={darkTheme}
               size="mini"
             >
-              <Statistic.Value>{backfill?.pendingCount ?? 0}</Statistic.Value>
+              <Statistic.Value>{formatNumber(backfill?.pendingCount ?? 0)}</Statistic.Value>
               <Statistic.Label><LocalizedText source={"Pending Files"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
@@ -958,7 +1010,7 @@ const Network = ({ theme }) => {
               inverted={darkTheme}
               size="mini"
             >
-              <Statistic.Value>{backfill?.completedToday ?? 0}</Statistic.Value>
+              <Statistic.Value>{formatNumber(backfill?.completedToday ?? 0)}</Statistic.Value>
               <Statistic.Label><LocalizedText source={"Completed Today"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
@@ -968,7 +1020,7 @@ const Network = ({ theme }) => {
               size="mini"
             >
               <Statistic.Value>
-                {backfill?.discoveryRate ?? 0}/hr
+                {formatNumber(backfill?.discoveryRate ?? 0)}/hr
               </Statistic.Value>
               <Statistic.Label><LocalizedText source={"Discovery Rate"} /></Statistic.Label>
             </Statistic>
@@ -1001,7 +1053,7 @@ const Network = ({ theme }) => {
                   {job.filename?.split('/').pop() ?? 'Unknown file'}
                 </Card.Header>
                 <Card.Meta>
-                  {job.activeSources ?? 0} <LocalizedText source={"sources •"} />{' '}
+                  {formatNumber(job.activeSources ?? 0)} <LocalizedText source={"sources •"} />{' '}
                   {formatBytes(job.downloadedBytes ?? 0)} /{' '}
                   {formatBytes(job.totalBytes ?? 0)}
                 </Card.Meta>
@@ -1031,7 +1083,7 @@ const Network = ({ theme }) => {
                     {job.workers.length > 5 && (
                       <List.Item>
                         <Label size="tiny">
-                          +{job.workers.length - 5} <LocalizedText source={"more"} /></Label>
+                          +{formatNumber(job.workers.length - 5)} <LocalizedText source={"more"} /></Label>
                       </List.Item>
                     )}
                   </List>

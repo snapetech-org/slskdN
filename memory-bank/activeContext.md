@@ -1,19 +1,23 @@
-## Current state — Localization PR #360 — 2026-10-14
+## Current state — Localization PR #360 — 2026-10-15
 
-PR #360 adds the reviewed 12-locale UI catalog coverage and Arabic rendering
-fixes. Web tests, lint, build, bundle budget, output check, .NET tests, and
-repository formatting lint pass locally. The Agent VM review covered the real
-Arabic dashboard at 390px and 1,440px; mobile navigation has eight visible,
-accessible destinations without overflow. The server was bound to loopback,
-with Soulseek connection and DHT/mesh disabled for review. The earlier unsafe
-review launch that briefly contacted DHT bootstrap was stopped.
+PR #360 contains the 12-locale UI coverage and Arabic rendering fixes. The
+follow-up closes the remaining identified Network display gaps: per-label
+translations, regionalized peer and sequence counts, relative timestamps,
+stable mesh security warnings, and localized backfill progress. All twelve
+catalogs now have 5,475 matching keys (65,700 translated values), with nonempty
+entries and matching placeholders. The README and maturity draft are identical.
 
-The branch has not yet received the localization code commit or fresh exact-head
-hosted CI. Commit, fast-forward the current base branch into the candidate if
-needed, push to the existing `snapetech-org/slskdN` PR #360 branch, update its
-coverage/check summary, and refresh hosted status. A source audit must still reconcile the previous PR description’s raw API-error
-gaps against the current branch before claiming complete coverage. Fluent-speaker
-review remains outstanding. Keep PR open; do not merge, release, or tag.
+Follow-up validation passed the focused Network suite (15/15), ESLint for the
+changed Network component, the Web UI production build, catalog key/value and
+placeholder parity, and the README maturity audit. Fresh exact-head hosted CI
+must be checked after the PR branch is updated. The broad Web UI suite and .NET
+suite were not rerun for this JavaScript-only follow-up.
+
+Broader raw API-error flows and fluent-speaker review remain open and are
+tracked in `docs/localization-roadmap.md`. The earlier Agent VM review covered
+Arabic metrics and downloads at mobile and desktop widths; this follow-up has
+not had a fresh browser pass and does not claim app-wide RTL support. Keep PR
+open; do not merge, release, or tag.
 
 ## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
