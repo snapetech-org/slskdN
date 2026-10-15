@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 // <copyright file="FederatedTasteRecommendationsPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -71,11 +72,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         count: nextRecommendations.length,
       }));
     } catch (loadError) {
-      setError(
-        loadError?.response?.data ||
-          loadError?.message ||
-          interfaceText('Unable to load federated taste recommendations.'),
-      );
+      setError(getApiErrorMessage(
+        loadError,
+        { t: interfaceText },
+        'Unable to load federated taste recommendations.',
+      ));
     } finally {
       setLoading(false);
     }
@@ -83,29 +84,29 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
 
   const promoteToWishlist = async (recommendation) => {
     try {
-      const response = await promoteTasteRecommendationToWishlist({
+      await promoteTasteRecommendationToWishlist({
         note: 'Promoted from federated taste recommendation review.',
         workRef: recommendation.workRef,
       });
-      setStatus(response.data?.message || interfaceText('Promoted {title} to Wishlist.', {
+      setStatus(interfaceText('Promoted {title} to Wishlist.', {
         title: getTitle(recommendation.workRef),
       }));
     } catch (promoteError) {
-      toast.error(promoteError?.response?.data?.message || promoteError.message);
+      toast.error(getApiErrorMessage(promoteError, { t: interfaceText }));
     }
   };
 
   const subscribeRadar = async (recommendation) => {
     try {
-      const response = await subscribeTasteRecommendationReleaseRadar({
+      await subscribeTasteRecommendationReleaseRadar({
         scope: 'trusted',
         workRef: recommendation.workRef,
       });
-      setStatus(response.data?.message || interfaceText('Subscribed {creator} to Release Radar.', {
+      setStatus(interfaceText('Subscribed {creator} to Release Radar.', {
         creator: getCreator(recommendation.workRef),
       }));
     } catch (subscribeError) {
-      toast.error(subscribeError?.response?.data?.message || subscribeError.message);
+      toast.error(getApiErrorMessage(subscribeError, { t: interfaceText }));
     }
   };
 
@@ -119,7 +120,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         title: getTitle(recommendation.workRef),
       }));
     } catch (previewError) {
-      toast.error(previewError?.response?.data?.message || previewError.message);
+      toast.error(getApiErrorMessage(previewError, { t: interfaceText }));
     }
   };
 

@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import * as sourceProvidersApi from '../../../lib/sourceProviders';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
@@ -95,12 +96,7 @@ const SourceProviders = () => {
     try {
       setCatalog(await sourceProvidersApi.getSourceProviders());
     } catch (loadError) {
-      setError(
-        loadError?.response?.data ||
-          loadError?.response?.statusText ||
-          loadError?.message ||
-          'Unable to load source providers',
-      );
+      setError(getApiErrorMessage(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }

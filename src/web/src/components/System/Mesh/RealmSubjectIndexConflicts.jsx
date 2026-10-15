@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="RealmSubjectIndexConflicts.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -58,12 +59,7 @@ const RealmSubjectIndexConflicts = () => {
       });
       setReport(response.data);
     } catch (loadError) {
-      setError(
-        loadError?.response?.data ||
-          loadError?.response?.statusText ||
-          loadError?.message ||
-          'Unable to load realm subject-index conflicts.',
-      );
+      setError(getApiErrorMessage(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }

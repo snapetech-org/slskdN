@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import {
   fetchDiscographyCoverage,
   promoteDiscographyCoverageToWishlist,
@@ -110,11 +111,7 @@ const DiscographyCoveragePanel = ({ disabled }) => {
       setCoverage(normalizeDiscographyCoverage(response.data));
     } catch (loadError) {
       console.error(loadError);
-      setError(
-        loadError?.response?.data ??
-          loadError?.message ??
-          'Unable to load discography coverage',
-      );
+      setError(getApiErrorMessage(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -133,17 +130,13 @@ const DiscographyCoveragePanel = ({ disabled }) => {
         filter: filter.trim() || 'flac',
         profile,
       });
-      toast.success(
-        `Added ${response.data?.createdCount ?? 0} missing tracks to Wishlist`,
-      );
+      toast.success(interfaceText('Added {count} missing tracks to Wishlist', {
+        count: response.data?.createdCount ?? 0,
+      }));
       await loadCoverage();
     } catch (promoteError) {
       console.error(promoteError);
-      toast.error(
-        promoteError?.response?.data ??
-          promoteError?.message ??
-          'Unable to add missing tracks to Wishlist',
-      );
+      toast.error(getApiErrorMessage(promoteError, { t: interfaceText }));
     } finally {
       setPromoting(false);
     }

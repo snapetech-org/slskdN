@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="NotificationIntegrationsPanel.js" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -249,11 +250,7 @@ const NotificationIntegrationsPanel = ({ options }) => {
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to apply notification integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -349,11 +346,7 @@ const NotificationIntegrationsPanel = ({ options }) => {
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to save notification integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');

@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as streaming from '../../lib/streaming';
 import PlayCollectionItemButton from '../Player/PlayCollectionItemButton';
@@ -32,20 +33,8 @@ const getCollectionTypeLabel = (type) => {
   return type || interfaceText('Playlist');
 };
 
-const getErrorMessage = (error, fallback = 'Request failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || interfaceText(fallback);
-};
+const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 export default class Collections extends Component {
   constructor(props) {
@@ -104,18 +93,7 @@ export default class Collections extends Component {
         loading: false,
       });
     } catch (error) {
-      let errorMessage = error.message || interfaceText('Failed to load collections');
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else {
-          errorMessage = JSON.stringify(error.response.data);
-        }
-      }
+      const errorMessage = getErrorMessage(error, 'Failed to load collections');
 
       const isAuthOrFeatureError =
         error.response?.status === 401 ||
@@ -208,20 +186,7 @@ export default class Collections extends Component {
       });
       await this.loadData();
     } catch (error) {
-      let errorMessage = error.message || interfaceText('Failed to create collection');
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.detail) {
-          errorMessage = error.response.data.detail;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else if (error.response.data.title) {
-          errorMessage = error.response.data.title;
-        }
-      }
+      const errorMessage = getErrorMessage(error, 'Failed to create collection');
 
       this.setState({ error: errorMessage });
     }
@@ -301,16 +266,7 @@ export default class Collections extends Component {
       });
       await this.loadCollectionItems(this.state.selectedCollection.id);
     } catch (error) {
-      let errorMessage = error.message || interfaceText('Failed to add item');
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.detail) {
-          errorMessage = error.response.data.detail;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        }
-      }
+      const errorMessage = getErrorMessage(error, 'Failed to add item');
 
       this.setState({ error: errorMessage });
     }
@@ -618,7 +574,7 @@ export default class Collections extends Component {
                                         selectedCollection.id,
                                       );
                                     } catch (error) {
-                                      this.setState({ error: error.message });
+                                      this.setState({ error: getErrorMessage(error) });
                                     }
                                   }}
                                   size="small"

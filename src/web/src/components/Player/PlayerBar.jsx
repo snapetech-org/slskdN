@@ -13,6 +13,7 @@ import {
   upsertDiscoveryShelfItem,
 } from '../../lib/discoveryShelf';
 import * as externalVisualizer from '../../lib/externalVisualizer';
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { setExperiencePreference } from '../../lib/experiencePreferences';
 import * as listenBrainz from '../../lib/listenBrainz';
 import * as nowPlaying from '../../lib/nowPlaying';
@@ -185,20 +186,16 @@ const setPlayerHeightVariable = (element) => {
 };
 
 const getExternalVisualizerStatusText = (status, loading) => {
-  if (loading) return 'Checking external visualizer launcher...';
-  if (!status) return 'Status unavailable.';
-  if (!status.enabled) return 'Disabled in slskd.yml.';
-  if (!status.configured) return 'No launcher path configured.';
-  if (!status.available) return 'Configured launcher path was not found.';
-  return 'Ready to launch on the slskdN host.';
+  if (loading) return interfaceText('Checking external visualizer launcher...');
+  if (!status) return interfaceText('Status unavailable.');
+  if (!status.enabled) return interfaceText('Disabled in slskd.yml.');
+  if (!status.configured) return interfaceText('No launcher path configured.');
+  if (!status.available) return interfaceText('Configured launcher path was not found.');
+  return interfaceText('Ready to launch on the slskdN host.');
 };
 
-const getExternalVisualizerError = (error) => {
-  const data = error?.response?.data;
-  if (typeof data === 'string') return data;
-  if (data?.error) return data.error;
-  return 'External visualizer did not launch.';
-};
+const getExternalVisualizerError = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'External visualizer did not launch.');
 
 const PlayerToolButton = ({
   active = false,
@@ -3220,13 +3217,13 @@ const PlayerBar = () => {
         if (!cancelled) {
           setPlaybackStatus('error');
           const status = error?.response?.status;
-          setPlaybackError(error?.response?.data?.code === 'radio_fairness_limited'
+          setPlaybackError(interfaceText(error?.response?.data?.code === 'radio_fairness_limited'
             ? 'Remote radio is limited by network fairness. Check sharing activity before retrying.'
             : status === 429
               ? 'Radio streaming is at capacity. Retry later.'
               : status === 404
                 ? 'This radio snapshot expired or is unavailable. Refresh listed radio.'
-                : 'The radio host could not provide this snapshot. Retry or refresh listed radio.');
+                : 'The request failed. Try again.'));
         }
       });
       return () => { cancelled = true; };

@@ -4,6 +4,7 @@ import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../.
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
 import Button from './MediaCoreButton';
@@ -198,7 +199,7 @@ const MediaCore = () => {
     } catch (error_) {
       if (!mountedRef.current) return;
       if (document.hidden) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       statsInFlightRef.current = false;
       if (mountedRef.current && !document.hidden) {
@@ -260,7 +261,7 @@ const MediaCore = () => {
       const data = await mediacore.getContentIdStats();
       setStats(data);
     } catch (error_) {
-      setError(interfaceText("Failed to register: {message}", { "message": (error_.message) }));
+      setError(interfaceText("Failed to register: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setRegistering(false);
     }
@@ -275,7 +276,7 @@ const MediaCore = () => {
       const result = await mediacore.resolveContentId(resolveId.trim());
       setResolvedContent(result);
     } catch (error_) {
-      setResolvedContent({ error: error_.message });
+      setResolvedContent({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setResolving(false);
     }
@@ -292,7 +293,7 @@ const MediaCore = () => {
       );
       setValidatedContent(result);
     } catch (error_) {
-      setValidatedContent({ error: error_.message });
+      setValidatedContent({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setValidating(false);
     }
@@ -312,7 +313,7 @@ const MediaCore = () => {
         : await mediacore.findContentIdsByDomain(domain.trim());
       setDomainResults(result);
     } catch (error_) {
-      setDomainResults({ error: error_.message });
+      setDomainResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setSearchingDomain(false);
     }
@@ -340,7 +341,7 @@ const MediaCore = () => {
       );
       setTraversalResults(result);
     } catch (error_) {
-      setTraversalResults({ error: error_.message });
+      setTraversalResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setTraversing(false);
     }
@@ -355,7 +356,7 @@ const MediaCore = () => {
       const result = await mediacore.getContentGraph(graphContentId.trim());
       setGraphResults(result);
     } catch (error_) {
-      setGraphResults({ error: error_.message });
+      setGraphResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setGettingGraph(false);
     }
@@ -370,7 +371,7 @@ const MediaCore = () => {
       const result = await mediacore.findInboundLinks(inboundTargetId.trim());
       setInboundResults(result);
     } catch (error_) {
-      setInboundResults({ error: error_.message });
+      setInboundResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setFindingInbound(false);
     }
@@ -409,7 +410,7 @@ const MediaCore = () => {
       );
       setAudioHashResult(result);
     } catch (error_) {
-      setAudioHashResult({ error: error_.message });
+      setAudioHashResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingAudioHash(false);
     }
@@ -440,7 +441,7 @@ const MediaCore = () => {
       );
       setImageHashResult(result);
     } catch (error_) {
-      setImageHashResult({ error: error_.message });
+      setImageHashResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingImageHash(false);
     }
@@ -459,7 +460,7 @@ const MediaCore = () => {
       );
       setSimilarityResult(result);
     } catch (error_) {
-      setSimilarityResult({ error: error_.message });
+      setSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingSimilarity(false);
     }
@@ -478,7 +479,7 @@ const MediaCore = () => {
       );
       setPerceptualSimilarityResult(result);
     } catch (error_) {
-      setPerceptualSimilarityResult({ error: error_.message });
+      setPerceptualSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingPerceptualSimilarity(false);
     }
@@ -499,7 +500,7 @@ const MediaCore = () => {
       );
       setFindSimilarResult(result);
     } catch (error_) {
-      setFindSimilarResult({ error: error_.message });
+      setFindSimilarResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setFindingSimilarContent(false);
     }
@@ -517,7 +518,7 @@ const MediaCore = () => {
       );
       setTextSimilarityResult(result);
     } catch (error_) {
-      setTextSimilarityResult({ error: error_.message });
+      setTextSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingTextSimilarity(false);
     }
@@ -536,7 +537,7 @@ const MediaCore = () => {
       const result = await mediacore.exportMetadata(contentIds, includeLinks);
       setExportResult(result);
     } catch (error_) {
-      setExportResult({ error: error_.message });
+      setExportResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setExportingMetadata(false);
     }
@@ -563,7 +564,7 @@ const MediaCore = () => {
       );
       setImportResult(result);
     } catch (error_) {
-      setImportResult({ error: error_.message });
+      setImportResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setImportingMetadata(false);
     }
@@ -586,7 +587,7 @@ const MediaCore = () => {
       const result = await mediacore.analyzeMetadataConflicts(packageData);
       setConflictAnalysis(result);
     } catch (error_) {
-      setConflictAnalysis({ error: error_.message });
+      setConflictAnalysis({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setAnalyzingConflicts(false);
     }
@@ -609,7 +610,7 @@ const MediaCore = () => {
       const result = await mediacore.publishContentDescriptor(descriptor);
       setPublishResult(result);
     } catch (error_) {
-      setPublishResult({ error: error_.message });
+      setPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setPublishingDescriptor(false);
     }
@@ -640,7 +641,7 @@ const MediaCore = () => {
         await mediacore.publishContentDescriptorsBatch(descriptors);
       setBatchPublishResult(result);
     } catch (error_) {
-      setBatchPublishResult({ error: error_.message });
+      setBatchPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setPublishingBatch(false);
     }
@@ -669,7 +670,7 @@ const MediaCore = () => {
       );
       setUpdateResult(result);
     } catch (error_) {
-      setUpdateResult({ error: error_.message });
+      setUpdateResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setUpdatingDescriptor(false);
     }
@@ -682,7 +683,7 @@ const MediaCore = () => {
       const result = await mediacore.republishExpiringDescriptors();
       setRepublishResult(result);
     } catch (error_) {
-      setRepublishResult({ error: error_.message });
+      setRepublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRepublishing(false);
     }
@@ -695,7 +696,7 @@ const MediaCore = () => {
       const result = await mediacore.getPublishingStats();
       setPublishingStats(result);
     } catch (error_) {
-      setPublishingStats({ error: error_.message });
+      setPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingStats(false);
     }
@@ -713,7 +714,7 @@ const MediaCore = () => {
       );
       setRetrievalResult(result);
     } catch (error_) {
-      setRetrievalResult({ error: error_.message });
+      setRetrievalResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRetrievingDescriptor(false);
     }
@@ -733,7 +734,7 @@ const MediaCore = () => {
         await mediacore.retrieveContentDescriptorsBatch(contentIds);
       setBatchRetrievalResult(result);
     } catch (error_) {
-      setBatchRetrievalResult({ error: error_.message });
+      setBatchRetrievalResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRetrievingBatch(false);
     }
@@ -752,7 +753,7 @@ const MediaCore = () => {
       );
       setQueryResult(result);
     } catch (error_) {
-      setQueryResult({ error: error_.message });
+      setQueryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setQueryingDescriptors(false);
     }
@@ -775,7 +776,7 @@ const MediaCore = () => {
       const result = await mediacore.verifyContentDescriptor(descriptor);
       setDescriptorVerificationResult(result);
     } catch (error_) {
-      setDescriptorVerificationResult({ error: error_.message });
+      setDescriptorVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setVerifyingDescriptor(false);
     }

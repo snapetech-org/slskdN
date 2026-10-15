@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { list } from '../../../lib/events';
 import React, { useEffect, useState } from 'react';
@@ -55,11 +56,7 @@ const Events = () => {
       } catch (error_) {
         if (!active) return;
         setEvents([]);
-        setError(
-          error_?.response?.data?.message ||
-            error_?.message ||
-            'Unable to load system events.',
-        );
+        setError(getApiErrorMessage(error_, { t: interfaceText }));
       } finally {
         if (active) setLoading(false);
       }

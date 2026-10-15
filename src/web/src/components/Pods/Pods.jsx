@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
 import { getRegionalLocale } from '../../lib/regionalFormat';
@@ -465,7 +466,7 @@ export class Pods extends Component {
       // Messages will be refreshed by interval
     } catch (error) {
       console.error('Failed to send message:', error);
-      toast.error(interfaceText("Failed to send message: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to send message: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 
@@ -517,7 +518,7 @@ export class Pods extends Component {
       );
     } catch (error) {
       console.error('Failed to create pod:', error);
-      toast.error(interfaceText("Failed to create pod: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to create pod: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 
@@ -532,7 +533,7 @@ export class Pods extends Component {
       this.setState({ discoveryResults: asArray(discovered).filter(isObject) });
     } catch (error) {
       console.error('Failed to discover pods:', error);
-      toast.error(interfaceText("Failed to discover pods: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to discover pods: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       this.setState({ discoveryLoading: false });
     }
@@ -573,7 +574,7 @@ export class Pods extends Component {
       );
     } catch (error) {
       console.error('Failed to save discovered pod:', error);
-      toast.error(interfaceText("Failed to save pod: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to save pod: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 
@@ -599,7 +600,7 @@ export class Pods extends Component {
       await this.fetchPodDetail(activePodId);
     } catch (error) {
       console.error('Failed to leave pod:', error);
-      toast.error(interfaceText("Failed to leave pod: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to leave pod: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 

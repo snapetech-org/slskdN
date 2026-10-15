@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 
 
 import * as bridge from '../../../lib/bridge';
@@ -165,7 +166,7 @@ const Bridge = () => {
       } catch (error_) {
         if (!isCurrentLifecycle(lifecycle) || document.hidden) return;
         if (needsConfig) {
-          setError(error_.message);
+          setError(getApiErrorMessage(error_, { t: interfaceText }));
         }
       } finally {
         if (configRequest && configRequestRef.current === configRequest) {
@@ -240,7 +241,7 @@ const Bridge = () => {
       );
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setSaving(false);
@@ -258,7 +259,7 @@ const Bridge = () => {
       await requestDashboard(lifecycleRef.current, true);
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setBridgeAction(null);
@@ -276,7 +277,7 @@ const Bridge = () => {
       await requestDashboard(lifecycleRef.current, true);
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setBridgeAction(null);

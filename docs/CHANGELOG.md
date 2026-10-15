@@ -36,6 +36,11 @@ For dev or build tags, use the same logical version string embedded in the tag.
   security-threshold alerts, and backfill progress; the Network statistic cards
   now translate their labels and descriptions, including zero-byte database
   sizes.
+- Reviewed app-owned error displays across browsing, collections, contacts,
+  transfers, search, messaging, player, Lidarr, and system tools now use stable
+  error codes when available and translated fallback text otherwise. The
+  twelve locale catalogs include the added success summaries and player status
+  messages.
 
 ## [2026101321-slskdn.351] — 2026-10-13
 

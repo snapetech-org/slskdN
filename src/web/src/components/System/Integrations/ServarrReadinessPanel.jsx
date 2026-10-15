@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="ServarrReadinessPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -131,12 +132,7 @@ const ServarrReadinessPanel = ({ options }) => {
         },
       ));
     } catch (error) {
-      setCopyStatus(
-        error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          interfaceText('Servarr action failed.'),
-      );
+      setCopyStatus(getApiErrorMessage(error, { t: interfaceText }, 'Servarr action failed.'));
     } finally {
       setRunning(false);
     }

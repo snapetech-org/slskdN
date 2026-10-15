@@ -1,6 +1,7 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { clearCompleted } from '../../../lib/transfers';
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Button, Divider, Header, Icon, Message, Popup } from 'semantic-ui-react';
@@ -13,11 +14,7 @@ const clear = async ({ direction, setError, setLoading }) => {
     await clearCompleted({ direction });
     toast.success(interfaceText("Completed {direction}s cleared!", { "direction": (direction) }));
   } catch (error) {
-    const message =
-      error?.response?.data?.message ||
-      error?.message ||
-      `Unable to clear completed ${direction}s.`;
-    setError(message);
+    setError(getApiErrorMessage(error, { t: interfaceText }));
   } finally {
     setLoading(false);
   }

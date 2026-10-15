@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import './Transfers.css';
 import * as autoReplaceLibrary from '../../lib/autoReplace';
 import { createTransfersHubConnection } from '../../lib/hubFactory';
@@ -67,19 +68,14 @@ const ACTIVE_TRANSFER_PAGE_SIZE = 100;
 const HISTORY_PAGE_SIZE = 250;
 
 const getErrorMessage = (error) =>
-  error?.response?.data ?? error?.message ?? `${error}`;
+  getApiErrorMessage(error, { t: interfaceText });
 
-const summarizeBulkFailures = ({ action, failures }) => {
+const summarizeBulkFailures = ({ failures }) => {
   if (failures.length === 0) {
     return;
   }
 
-  const [firstFailure] = failures;
-  toast.error(
-    failures.length === 1
-      ? `Failed to ${action} ${firstFailure.label}: ${firstFailure.message}`
-      : `Failed to ${action} ${failures.length} transfer(s). First error: ${firstFailure.label}: ${firstFailure.message}`,
-  );
+  toast.error(interfaceText('Some transfers could not be updated. Try again.'));
 };
 
 const matchesDirection = (transfer, direction) =>

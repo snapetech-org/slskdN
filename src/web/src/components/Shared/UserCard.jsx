@@ -1,5 +1,7 @@
 import LocalizedText from "./LocalizedText";
 import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
+import { interfaceText } from '../../lib/interfaceLocale';
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import './UserCard.css';
 import * as opinions from '../../lib/opinions';
 import * as security from '../../lib/security';
@@ -248,11 +250,7 @@ class UserCard extends Component {
       });
     } catch (error) {
       this.setState({
-        interestsError:
-          error?.response?.data?.message ||
-          error?.response?.data ||
-          error?.message ||
-          'Interests unavailable',
+        interestsError: getApiErrorMessage(error, { t: interfaceText }),
         interestsLoading: false,
       });
     }

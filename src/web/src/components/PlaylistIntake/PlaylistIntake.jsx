@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
 import './PlaylistIntake.css';
@@ -164,7 +165,7 @@ const PlaylistIntake = () => {
         interfaceText("Created playlist collection for {playlistName} with {count} planned rows", { playlistName: playlist.name, count: itemsToCreate.length }),
       );
     } catch (error) {
-      setStatus(interfaceText("Playlist creation failed for {playlistName}: {message}", { playlistName: playlist.name, message: error.message }));
+      setStatus(interfaceText("Playlist creation failed for {playlistName}: {message}", { playlistName: playlist.name, message: getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setBusyPlaylistId('');
     }

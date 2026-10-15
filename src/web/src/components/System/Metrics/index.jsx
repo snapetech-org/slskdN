@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import { formatRegionalCompactNumber, formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import { getKpiMetrics } from '../../../lib/telemetry';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -186,7 +187,7 @@ const Metrics = () => {
       setMetrics(data);
       setLastUpdated(new Date());
     } catch (err) {
-      setError(err?.response?.data?.message || err.message || interfaceText('Failed to load metrics'));
+      setError(getApiErrorMessage(err, { t: interfaceText }, 'Failed to load metrics'));
     } finally {
       setLoading(false);
     }

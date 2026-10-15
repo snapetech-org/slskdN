@@ -5,6 +5,7 @@ import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../.
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import './Security.css';
 import * as securityApi from '../../../lib/security';
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Button,
@@ -1213,11 +1214,7 @@ const AdversarialSettings = () => {
                     setSuccess(interfaceText("Transport connectivity test completed"));
                     fetchTransportStatus();
                   } catch (error) {
-                    setError(
-                      error?.response?.data ??
-                        error?.message ??
-                        interfaceText('Transport test failed'),
-                    );
+                    setError(getApiErrorMessage(error, { t: interfaceText }, 'Transport test failed'));
                   }
                 }}
                 size="tiny"
@@ -1238,11 +1235,7 @@ const AdversarialSettings = () => {
                     setSuccess(interfaceText("Tor connectivity test completed"));
                     fetchTorStatus();
                   } catch (error) {
-                    setError(
-                      error?.response?.data ??
-                        error?.message ??
-                        interfaceText('Tor test failed'),
-                    );
+                    setError(getApiErrorMessage(error, { t: interfaceText }, 'Tor test failed'));
                   }
                 }}
                 size="tiny"

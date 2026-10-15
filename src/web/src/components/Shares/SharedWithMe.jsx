@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
 import { createRemoteShareStreamUrl } from '../../lib/streaming';
@@ -27,20 +28,8 @@ const isObject = (value) => value && typeof value === 'object' && !Array.isArray
 const SHARE_PAGE_SIZE = 100;
 const MANIFEST_ITEM_PAGE_SIZE = 100;
 
-const getErrorMessage = (error, fallback) => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || interfaceText(fallback);
-};
+const getErrorMessage = (error, fallback) =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const normalizeBackfillResult = (data) =>
   isObject(data)

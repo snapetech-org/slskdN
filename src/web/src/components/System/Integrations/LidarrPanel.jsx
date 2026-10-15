@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="LidarrPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -85,12 +86,7 @@ const LidarrPanel = ({ options }) => {
     try {
       await action();
     } catch (error) {
-      setError(
-        error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Lidarr request failed',
-      );
+      setError(getApiErrorMessage(error, { t: interfaceText }));
     } finally {
       setLoading('');
     }

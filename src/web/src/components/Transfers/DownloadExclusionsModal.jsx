@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as optionsApi from '../../lib/options';
 import {
   formatDownloadExclusions,
@@ -25,13 +26,8 @@ const getOption = (source, ...keys) => {
   return undefined;
 };
 
-const getErrorMessage = (error) => {
-  const responseData = error?.response?.data;
-
-  return typeof responseData === 'string'
-    ? responseData
-    : error?.response?.statusText || error?.message || interfaceText('Failed to save download filters.');
-};
+const getErrorMessage = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'Failed to save download filters.');
 
 const DownloadExclusionsModal = ({
   onClose,

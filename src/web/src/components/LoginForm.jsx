@@ -1,5 +1,6 @@
 import LocalizedText from "./Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
+import { getApiErrorMessage } from '../lib/apiErrorMessages';
 import Footer from './Shared/Footer';
 import TooltipButton from './Shared/TooltipButton';
 import brandLogo from '../assets/brand/slskdn-logo-lockup.png';
@@ -142,7 +143,7 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
                 negative
               >
                 <Icon name="x" />
-                {error.message}
+                {getApiErrorMessage(error, { t: interfaceText })}
               </Message>
             )}
             {httpsUrl && (

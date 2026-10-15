@@ -296,9 +296,7 @@ const Searches = ({ server } = {}) => {
       updateSearchPageState(key, { loading: false });
       console.error('Failed to load another search page', loadError);
       if (key === 'all' && !current.initialized && Object.keys(searches).length === 0) {
-        setError(
-          loadError?.response?.data ?? loadError?.message ?? 'Could not load searches',
-        );
+        setError(getApiErrorMessage(loadError, { t }));
       } else {
         toast.error(interfaceText('Could not load more searches'));
       }

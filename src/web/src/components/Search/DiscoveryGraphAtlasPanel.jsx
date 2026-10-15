@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import * as searches from '../../lib/searches';
 import { getLocalStorageItem } from '../../lib/storage';
@@ -115,9 +116,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
       }
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to build discovery graph',
-      );
+      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to build discovery graph'));
     } finally {
       setLoading(false);
     }
@@ -178,9 +177,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
       toast.success(interfaceText("Started {count} nearby atlas searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to queue nearby atlas searches',
-      );
+      toast.error(getApiErrorMessage(error, { t: interfaceText }));
     }
   };
 

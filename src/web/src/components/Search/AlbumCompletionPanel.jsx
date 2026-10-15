@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { fetchAlbumCompletion } from '../../lib/musicBrainz';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -54,11 +55,7 @@ const AlbumCompletionPanel = ({ disabled }) => {
       setAlbums(normalizeAlbumCompletionAlbums(response.data));
     } catch (loadError) {
       console.error(loadError);
-      setError(
-        loadError?.response?.data ??
-          loadError?.message ??
-          interfaceText('Unable to load album completion data'),
-      );
+      setError(getApiErrorMessage(loadError, { t: interfaceText }, 'Unable to load album completion data'));
     } finally {
       setLoading(false);
     }

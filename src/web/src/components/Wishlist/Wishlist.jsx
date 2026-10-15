@@ -113,7 +113,7 @@ const WishlistItemRow = ({
       const result = await onRunSearch(item.id);
       toast.success(interfaceText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
     } catch (error) {
-      toast.error(interfaceText("Search failed: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Search failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setRunning(false);
     }
@@ -128,7 +128,7 @@ const WishlistItemRow = ({
         const searches = await wishlistAPI.getSearches(item.id);
         setRelatedSearches(searches);
       } catch (error) {
-        toast.error(interfaceText("Failed to load searches: {message}", { "message": (error.message) }));
+        toast.error(interfaceText("Failed to load searches: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       } finally {
         setLoadingSearches(false);
       }
@@ -152,7 +152,7 @@ const WishlistItemRow = ({
       const results = await searchesAPI.getResponses({ id: searchId });
       setExpandedSearchResults(results);
     } catch (error) {
-      toast.error(interfaceText("Failed to load results: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to load results: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       setExpandedSearchResults([]);
     } finally {
       setLoadingResults(false);
@@ -529,7 +529,7 @@ const WishlistItemCard = ({
       const result = await onRunSearch(item.id);
       toast.success(interfaceText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
     } catch (error) {
-      toast.error(interfaceText("Search failed: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Search failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setRunning(false);
     }
@@ -544,7 +544,7 @@ const WishlistItemCard = ({
         const searches = await wishlistAPI.getSearches(item.id);
         setRelatedSearches(searches);
       } catch (error) {
-        toast.error(interfaceText("Failed to load searches: {message}", { "message": (error.message) }));
+        toast.error(interfaceText("Failed to load searches: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       } finally {
         setLoadingSearches(false);
       }
@@ -568,7 +568,7 @@ const WishlistItemCard = ({
       const results = await searchesAPI.getResponses({ id: searchId });
       setExpandedSearchResults(results);
     } catch (error) {
-      toast.error(interfaceText("Failed to load results: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to load results: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       setExpandedSearchResults([]);
     } finally {
       setLoadingResults(false);
@@ -1090,7 +1090,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
       });
       onClose();
     } catch (error) {
-      toast.error(interfaceText("Failed to save: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to save: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setSaving(false);
     }
@@ -1268,7 +1268,7 @@ const BulkFilterModal = ({ count, onClose, onSave }) => {
       await onSave(filter.trim());
       onClose();
     } catch (error) {
-      toast.error(interfaceText("Failed to update filters: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to update filters: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setSaving(false);
     }
@@ -1365,7 +1365,7 @@ const CsvImportModal = ({ onClose, onImport }) => {
       });
       onClose();
     } catch (error) {
-      toast.error(interfaceText("CSV import failed: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("CSV import failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setImporting(false);
     }
@@ -1592,7 +1592,7 @@ const Wishlist = () => {
           });
         } catch (error) {
           results.push({
-            error: error.message || interfaceText('Search failed'),
+            error: getApiErrorMessage(error, { t: interfaceText }, 'Search failed'),
             id: item.id,
             status: 'failed',
           });
@@ -1629,7 +1629,7 @@ const Wishlist = () => {
       setAutoSearchEnabled(checked);
       toast.success(interfaceText(checked ? 'Auto-search enabled' : 'Auto-search paused'));
     } catch (error) {
-      toast.error(interfaceText("Failed to update: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to update: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setTogglingAutoSearch(false);
     }
@@ -1640,7 +1640,7 @@ const Wishlist = () => {
       const data = await wishlistAPI.getAll();
       setItems(Array.isArray(data) ? data : []);
     } catch (error) {
-      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -1700,7 +1700,7 @@ const Wishlist = () => {
       toast.success(interfaceText("Wishlist item deleted"));
       await loadItems();
     } catch (error) {
-      toast.error(interfaceText("Failed to delete: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to delete: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 
@@ -1893,7 +1893,7 @@ const Wishlist = () => {
                       await loadItems();
                       toast.success(interfaceText("All wishlist items marked as viewed"));
                     } catch (error) {
-                      toast.error(interfaceText("Failed: {message}", { "message": (error.message) }));
+                      toast.error(interfaceText("Failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
                     }
                   }}
                   size="small"

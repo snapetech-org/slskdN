@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 /* eslint-disable promise/prefer-await-to-then */
 import './Browse.css';
 import * as transfers from '../../lib/transfers';
@@ -82,19 +83,8 @@ const sameBrowseStatus = (left, right) =>
     && left.size === right.size
   );
 
-const getBrowseErrorMessage = (error) => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string' && data.trim()) {
-    return data.trim();
-  }
-
-  if (data && typeof data === 'object' && !Array.isArray(data)) {
-    return data.detail || data.message || data.error || data.title;
-  }
-
-  return error?.message || interfaceText('Browse failed');
-};
+const getBrowseErrorMessage = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'Browse failed');
 
 // Cleanup old browse cache entries using LRU strategy
 const cleanupBrowseCache = () => {
@@ -580,7 +570,9 @@ class BrowseSession extends Component {
         })
         .catch((error) => {
           console.error(error);
-          toast.error(interfaceText('Failed to queue download: {message}', { message: error?.message || String(error) }));
+          toast.error(interfaceText('Failed to queue download: {message}', {
+            message: getApiErrorMessage(error, { t: interfaceText }),
+          }));
         });
     }
   };

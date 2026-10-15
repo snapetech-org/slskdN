@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
@@ -237,7 +238,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodPublishingResult(result);
       setPodToPublish('');
     } catch (error_) {
-      setPodPublishingResult({ error: error_.message });
+      setPodPublishingResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setPublishingPod(false);
     }
@@ -257,7 +258,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setPodMetadataResult(result);
     } catch (error_) {
-      setPodMetadataResult({ error: error_.message });
+      setPodMetadataResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRetrievingPodMetadata(false);
     }
@@ -282,7 +283,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodUnpublishResult(result);
       setPodToUnpublish('');
     } catch (error_) {
-      setPodUnpublishResult({ error: error_.message });
+      setPodUnpublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setUnpublishingPod(false);
     }
@@ -295,7 +296,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getPodPublishingStats();
       setPodPublishingStats(result);
     } catch (error_) {
-      setPodPublishingStats({ error: error_.message });
+      setPodPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPodStats(false);
     }
@@ -316,7 +317,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setMembershipPublishResult(result);
       setMembershipRecord('');
     } catch (error_) {
-      setMembershipPublishResult({ error: error_.message });
+      setMembershipPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setPublishingMembership(false);
     }
@@ -337,7 +338,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMembershipResult(result);
     } catch (error_) {
-      setMembershipResult({ error: error_.message });
+      setMembershipResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setGettingMembership(false);
     }
@@ -358,7 +359,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMembershipVerification(result);
     } catch (error_) {
-      setMembershipVerification({ error: error_.message });
+      setMembershipVerification({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setVerifyingMembership(false);
     }
@@ -389,7 +390,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setBanResult(result);
       setBanReason('');
     } catch (error_) {
-      setBanResult({ error: error_.message });
+      setBanResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setBanningMember(false);
     }
@@ -411,7 +412,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setRoleChangeResult(result);
     } catch (error_) {
-      setRoleChangeResult({ error: error_.message });
+      setRoleChangeResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setChangingRole(false);
     }
@@ -424,7 +425,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getMembershipStats();
       setMembershipStats(result);
     } catch (error_) {
-      setMembershipStats({ error: error_.message });
+      setMembershipStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingMembershipStats(false);
     }
@@ -445,7 +446,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Reload stats to reflect changes
       await handleLoadMembershipStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -465,7 +466,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMembershipVerificationResult(result);
     } catch (error_) {
-      setMembershipVerificationResult({ error: error_.message });
+      setMembershipVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setVerifyingMembership(false);
     }
@@ -484,7 +485,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.verifyPodMessage(message);
       setMessageVerificationResult(result);
     } catch (error_) {
-      setMessageVerificationResult({ error: error_.message });
+      setMessageVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setVerifyingMessage(false);
     }
@@ -506,7 +507,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setRoleCheckResult({ hasRole });
     } catch (error_) {
-      setRoleCheckResult({ error: error_.message });
+      setRoleCheckResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setCheckingRole(false);
     }
@@ -519,7 +520,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getVerificationStats();
       setVerificationStats(result);
     } catch (error_) {
-      setVerificationStats({ error: error_.message });
+      setVerificationStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingVerificationStats(false);
     }
@@ -540,7 +541,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodRegistrationResult(result);
       setPodToRegister('');
     } catch (error_) {
-      setPodRegistrationResult({ error: error_.message });
+      setPodRegistrationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRegisteringPod(false);
     }
@@ -560,7 +561,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodUnregistrationResult(result);
       setPodToUnregister('');
     } catch (error_) {
-      setPodUnregistrationResult({ error: error_.message });
+      setPodUnregistrationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setUnregisteringPod(false);
     }
@@ -578,7 +579,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByName(discoverByName);
       setNameDiscoveryResult(result);
     } catch (error_) {
-      setNameDiscoveryResult({ error: error_.message });
+      setNameDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByName(false);
     }
@@ -596,7 +597,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByTag(discoverByTag);
       setTagDiscoveryResult(result);
     } catch (error_) {
-      setTagDiscoveryResult({ error: error_.message });
+      setTagDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByTag(false);
     }
@@ -618,7 +619,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByTags(tagList);
       setTagsDiscoveryResult(result);
     } catch (error_) {
-      setTagsDiscoveryResult({ error: error_.message });
+      setTagsDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByTags(false);
     }
@@ -631,7 +632,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverAllPods(discoverLimit);
       setAllDiscoveryResult(result);
     } catch (error_) {
-      setAllDiscoveryResult({ error: error_.message });
+      setAllDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringAll(false);
     }
@@ -649,7 +650,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByContent(discoverByContent);
       setContentDiscoveryResult(result);
     } catch (error_) {
-      setContentDiscoveryResult({ error: error_.message });
+      setContentDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByContent(false);
     }
@@ -662,7 +663,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getPodDiscoveryStats();
       setDiscoveryStats(result);
     } catch (error_) {
-      setDiscoveryStats({ error: error_.message });
+      setDiscoveryStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingDiscoveryStats(false);
     }
@@ -677,7 +678,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Reload stats to reflect changes
       await handleLoadDiscoveryStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to refresh discovery: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to refresh discovery: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -696,7 +697,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setJoinRequestResult(result);
       setJoinRequestData('');
     } catch (error_) {
-      setJoinRequestResult({ error: error_.message });
+      setJoinRequestResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRequestingJoin(false);
     }
@@ -716,7 +717,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setAcceptanceResult(result);
       setAcceptanceData('');
     } catch (error_) {
-      setAcceptanceResult({ error: error_.message });
+      setAcceptanceResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setAcceptingJoin(false);
     }
@@ -736,7 +737,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setLeaveRequestResult(result);
       setLeaveRequestData('');
     } catch (error_) {
-      setLeaveRequestResult({ error: error_.message });
+      setLeaveRequestResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRequestingLeave(false);
     }
@@ -756,7 +757,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setLeaveAcceptanceResult(result);
       setAcceptanceData('');
     } catch (error_) {
-      setLeaveAcceptanceResult({ error: error_.message });
+      setLeaveAcceptanceResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setAcceptingLeave(false);
     }
@@ -781,8 +782,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPendingJoinRequests(joinRequests);
       setPendingLeaveRequests(leaveRequests);
     } catch (error_) {
-      setPendingJoinRequests({ error: error_.message });
-      setPendingLeaveRequests({ error: error_.message });
+      setPendingJoinRequests({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPendingLeaveRequests({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPendingRequests(false);
     }
@@ -803,7 +804,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setRoutingResult(result);
       setRouteMessageData('');
     } catch (error_) {
-      setRoutingResult({ error: error_.message });
+      setRoutingResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRoutingMessage(false);
     }
@@ -831,7 +832,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setRouteToPeersMessage('');
       setRouteToPeersIds('');
     } catch (error_) {
-      setRoutingToPeersResult({ error: error_.message });
+      setRoutingToPeersResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRoutingToPeers(false);
     }
@@ -844,7 +845,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getPodMessageRoutingStats();
       setRoutingStats(result);
     } catch (error_) {
-      setRoutingStats({ error: error_.message });
+      setRoutingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingRoutingStats(false);
     }
@@ -865,7 +866,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMessageSeenResult(result);
     } catch (error_) {
-      setMessageSeenResult({ error: error_.message });
+      setMessageSeenResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setCheckingMessageSeen(false);
     }
@@ -888,7 +889,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         }),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to register message: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to register message: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -901,7 +902,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Reload stats to reflect changes
       await handleLoadRoutingStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -923,7 +924,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setSignedMessageResult(result);
       setMessageToSign('');
     } catch (error_) {
-      setSignedMessageResult({ error: error_.message });
+      setSignedMessageResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setSigningMessage(false);
     }
@@ -942,7 +943,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.verifyPodMessageSignature(message);
       setVerificationResult(result);
     } catch (error_) {
-      setVerificationResult({ error: error_.message });
+      setVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setVerifyingSignature(false);
     }
@@ -955,7 +956,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.generateMessageKeyPair();
       setGeneratedKeyPair(result);
     } catch (error_) {
-      setGeneratedKeyPair({ error: error_.message });
+      setGeneratedKeyPair({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setGeneratingKeyPair(false);
     }
@@ -968,7 +969,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getMessageSigningStats();
       setSigningStats(result);
     } catch (error_) {
-      setSigningStats({ error: error_.message });
+      setSigningStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingSigningStats(false);
     }
@@ -982,8 +983,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getMessageStorageStats();
       setStorageStats(result);
     } catch (error_) {
-      setStorageStats({ error: error_.message });
-      toast.error(interfaceText("Failed to get storage stats: {message}", { "message": (error_.message) }));
+      setStorageStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      toast.error(interfaceText("Failed to get storage stats: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setStorageStatsLoading(false);
     }
@@ -998,7 +999,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Refresh stats after cleanup
       await handleGetStorageStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to cleanup messages: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to cleanup messages: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setCleanupLoading(false);
     }
@@ -1014,7 +1015,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
           : interfaceText('Search index rebuild failed'),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to rebuild search index: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to rebuild search index: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setRebuildIndexLoading(false);
     }
@@ -1030,7 +1031,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
           : interfaceText('Database vacuum failed'),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to vacuum database: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to vacuum database: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setVacuumLoading(false);
     }
@@ -1051,7 +1052,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setSearchResults(result);
     } catch (error_) {
       setSearchResults([]);
-      toast.error(interfaceText("Failed to search messages: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to search messages: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setSearchLoading(false);
     }
@@ -1065,8 +1066,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getBackfillStats();
       setBackfillStats(result);
     } catch (error_) {
-      setBackfillStats({ error: error_.message });
-      toast.error(interfaceText("Failed to get backfill stats: {message}", { "message": (error_.message) }));
+      setBackfillStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      toast.error(interfaceText("Failed to get backfill stats: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setBackfillStatsLoading(false);
     }
@@ -1089,7 +1090,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Refresh stats
       await handleGetBackfillStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to sync pod backfill: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to sync pod backfill: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setSyncBackfillLoading(false);
     }
@@ -1105,7 +1106,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const timestamps = await mediacore.getLastSeenTimestamps(backfillPodId);
       setLastSeenTimestamps(timestamps);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get last seen timestamps: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get last seen timestamps: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setLastSeenTimestamps(null);
     }
   };
@@ -1122,7 +1123,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getChannels(channelPodId);
       setChannels(asArray(result));
     } catch (error_) {
-      toast.error(interfaceText("Failed to get channels: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get channels: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setChannels([]);
     } finally {
       setChannelsLoading(false);
@@ -1152,7 +1153,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(interfaceText("Failed to create channel: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to create channel: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setCreateChannelLoading(false);
     }
@@ -1178,7 +1179,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(interfaceText("Failed to update channel: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to update channel: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setUpdateChannelLoading(false);
     }
@@ -1200,7 +1201,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(interfaceText("Failed to delete channel: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to delete channel: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setDeleteChannelLoading(false);
     }
@@ -1235,8 +1236,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         await handleGetContentMetadata();
       }
     } catch (error_) {
-      setContentValidation({ error: error_.message, isValid: false });
-      toast.error(interfaceText("Failed to validate content ID: {message}", { "message": (error_.message) }));
+      setContentValidation({ error: getApiErrorMessage(error_, { t: interfaceText }), isValid: false });
+      toast.error(interfaceText("Failed to validate content ID: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setContentValidationLoading(false);
     }
@@ -1255,7 +1256,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         setNewPodName(`${metadata.artist} - ${metadata.title}`);
       }
     } catch (error_) {
-      toast.error(interfaceText("Failed to get content metadata: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get content metadata: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setContentMetadata(null);
     } finally {
       setContentMetadataLoading(false);
@@ -1275,7 +1276,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setContentSearchResults(results);
     } catch (error_) {
-      toast.error(interfaceText("Failed to search content: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to search content: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setContentSearchResults([]);
     } finally {
       setContentSearchLoading(false);
@@ -1330,7 +1331,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setContentSearchQuery('');
       setContentSearchResults([]);
     } catch (error_) {
-      toast.error(interfaceText("Failed to create pod: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to create pod: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setCreatePodLoading(false);
     }
@@ -1382,7 +1383,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         await handleGetOpinions();
       }
     } catch (error_) {
-      toast.error(interfaceText("Failed to publish opinion: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to publish opinion: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setPublishOpinionLoading(false);
     }
@@ -1402,7 +1403,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setOpinions(result);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get opinions: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get opinions: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setOpinions([]);
     } finally {
       setGetOpinionsLoading(false);
@@ -1423,7 +1424,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setOpinionStatistics(stats);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get opinion statistics: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get opinion statistics: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setOpinionStatistics(null);
     } finally {
       setGetStatsLoading(false);
@@ -1446,7 +1447,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         await Promise.all([handleGetOpinions(), handleGetOpinionStatistics()]);
       }
     } catch (error_) {
-      toast.error(interfaceText("Failed to refresh opinions: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to refresh opinions: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setRefreshOpinionsLoading(false);
     }
@@ -1467,7 +1468,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setAggregatedOpinions(aggregated);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get aggregated opinions: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get aggregated opinions: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setAggregatedOpinions(null);
     } finally {
       setGetAggregatedLoading(false);
@@ -1487,7 +1488,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMemberAffinities(affinities);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get member affinities: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get member affinities: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setMemberAffinities({});
     } finally {
       setGetAffinitiesLoading(false);
@@ -1508,7 +1509,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setConsensusRecommendations(recommendations);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get consensus recommendations: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to get consensus recommendations: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
       setConsensusRecommendations([]);
     } finally {
       setGetRecommendationsLoading(false);
@@ -1531,7 +1532,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       // Refresh affinities display
       await handleGetMemberAffinities();
     } catch (error_) {
-      toast.error(interfaceText("Failed to update member affinities: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to update member affinities: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setUpdateAffinitiesLoading(false);
     }

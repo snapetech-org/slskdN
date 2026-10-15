@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -107,11 +108,7 @@ const Jobs = () => {
       }));
     } catch (error) {
       if (!mountedRef.current) return;
-      toast.error(
-        error?.response?.data?.message ||
-          error?.message ||
-          interfaceText('Failed to fetch jobs'),
-      );
+      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to fetch jobs'));
       console.error('Failed to fetch jobs:', error);
     } finally {
       if (mountedRef.current) {

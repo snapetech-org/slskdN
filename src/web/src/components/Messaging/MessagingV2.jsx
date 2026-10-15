@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './MessagingV2.css';
 import * as chat from '../../lib/chat';
@@ -134,15 +135,8 @@ const conversationListSignature = (conversations) =>
 
 const roomListSignature = (rooms) => rooms.join('\u0001');
 
-const getActionErrorDetail = (error) => {
-  const data = error?.response?.data;
-  if (typeof data === 'string') return data;
-  if (data && typeof data === 'object') {
-    return data.detail || data.message || data.title || JSON.stringify(data);
-  }
-
-  return error?.message || interfaceText("Please try again.");
-};
+const getActionErrorDetail = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'Please try again.');
 
 const InlineLoadError = ({ message, onRetry, retryLabel, testId }) => (
   <div
@@ -843,10 +837,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       openTab('room', trimmed);
       return true;
     } catch (error) {
-      const detail = error?.response?.data;
-      const message = typeof detail === 'string'
-        ? detail
-        : detail?.detail || detail?.message || error?.message || interfaceText("Room join failed. Try again shortly.");
+      const message = getApiErrorMessage(error, { t: interfaceText }, 'Room join failed. Try again shortly.');
       setRoomJoinError(message);
       return false;
     }

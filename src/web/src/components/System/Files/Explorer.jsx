@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import { deleteDirectory, deleteFile, deleteItems, list } from '../../../lib/files';
 import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import { formatBytes, formatDate } from '../../../lib/util';
@@ -11,11 +12,8 @@ const emptyDirectory = { directories: [], files: [] };
 const itemKey = ({ path, type }) => `${type}:${path}`;
 const joinPath = (...segments) => segments.filter(Boolean).join('/');
 
-const getErrorMessage = (error, fallback) => {
-  const response = error?.response?.data;
-  if (typeof response === 'string' && response.trim()) return response;
-  return response?.message || error?.message || fallback;
-};
+const getErrorMessage = (error, fallback) =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const getDeleteErrorSource = (error) => ({
   'access-denied': 'Access was denied',

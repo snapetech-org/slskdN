@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import './MessageStream.css';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Button, Popup } from 'semantic-ui-react';
@@ -106,14 +107,8 @@ const messageListSignature = (messages) =>
     .map((message, index) => messageRenderKey(message, index))
     .join('\u0002');
 
-const getErrorText = (error) => {
-  const data = error?.response?.data;
-  if (typeof data === 'string') return data;
-  if (data && typeof data === 'object') {
-    return data.detail || data.message || data.error || data.title || JSON.stringify(data);
-  }
-  return error?.message || interfaceText("The message history could not be loaded.");
-};
+const getErrorText = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'The message history could not be loaded.');
 
 const autolink = (text) => {
   if (typeof text !== 'string' || text.length === 0) return [text];

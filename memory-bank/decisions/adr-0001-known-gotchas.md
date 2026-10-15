@@ -4,6 +4,24 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1862. Keep API Error Prose Out Of Localized UI (2026-10-15)
+
+**What went wrong:** Several Web UI error states interpolated `error.message`
+or response bodies directly into otherwise translated copy. This exposed raw
+server, proxy, and transport text in English and could display serialized API
+details to users.
+
+**Why:** Request errors carry arbitrary prose that is not a stable translation
+key. Only allowlisted API error codes have an application-owned message
+contract.
+
+**Prevention:** At UI boundaries, use `getApiErrorMessage(error, { t },
+fallback)` so allowlisted error codes resolve to translated source strings and
+unknown errors use a translated contextual or generic fallback. Keep filenames,
+paths, usernames, media titles, and protocol values as data; do not translate
+or expose arbitrary server error prose. Raw details may remain in diagnostic
+logs where needed, but not in user-facing error copy.
+
 ### 0z1861. Translate App-Owned Strings At Their Render Boundary (2026-10-14)
 
 **What went wrong:** Some fixed interface messages were stored in component

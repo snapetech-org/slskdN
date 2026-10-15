@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
 import { urlBase } from '../../config';
@@ -147,7 +148,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to initialize port forwarding:', error);
-      if (this.mounted) this.setState({ error: { message: error.message } });
+      if (this.mounted) this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
     } finally {
       if (this.mounted) this.setState({ loading: false });
     }
@@ -281,7 +282,7 @@ class PortForwarding extends Component {
       this.setState({
         error: {
           source: 'Failed to load pod details: {message}',
-          values: { message: error.message },
+          values: { message: getApiErrorMessage(error, { t: interfaceText }) },
         },
       });
     } finally {
@@ -347,7 +348,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to create port forwarding:', error);
-      this.setState({ error: { message: error.message } });
+      this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
     } finally {
       this.setState({ creatingForwarding: false });
     }
@@ -370,7 +371,7 @@ class PortForwarding extends Component {
       });
     } catch (error) {
       console.error('Failed to stop port forwarding:', error);
-      this.setState({ error: { message: error.message } });
+      this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
     } finally {
       this.setState({ stoppingForwarding: false });
     }

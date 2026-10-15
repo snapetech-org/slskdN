@@ -1,6 +1,7 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import * as listeningParty from '../../lib/listeningParty';
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { usePlayer } from './PlayerContext';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Button, Checkbox, Icon, Label, List, Popup, Segment } from 'semantic-ui-react';
@@ -150,7 +151,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
     }).catch((error) => {
       if (error?.name === 'AbortError' || error?.code === 'ERR_CANCELED') return;
       if (mountedRef.current && requestId === publishRequestRef.current) {
-        setPublishError(error?.message === 'Stop the active broadcast before starting another room.'
+        setPublishError(interfaceText(error?.message === 'Stop the active broadcast before starting another room.'
           ? 'Stop the active broadcast before starting another room.'
           : error?.response?.status === 429
           ? 'Room updates are at capacity. Retry later.'
@@ -168,7 +169,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           ? 'Could not stop the room broadcast. Try again.'
           : updatingSettings
             ? 'Could not confirm broadcast settings. Retry to apply the requested settings.'
-            : 'Could not start the room broadcast. Try again.');
+            : getApiErrorMessage(error, { t: interfaceText }, 'Could not start the room broadcast. Try again.')));
       }
     });
   };

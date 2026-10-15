@@ -326,9 +326,7 @@ const SongIDPanel = ({ disabled }) => {
       toast.success(interfaceText("Started search for {artist} - {title}", { "artist": (candidate.artist), "title": (candidate.title) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to start song search',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -346,11 +344,7 @@ const SongIDPanel = ({ disabled }) => {
       toast.success(interfaceText("Started {count} candidate searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to start candidate searches',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -374,11 +368,7 @@ const SongIDPanel = ({ disabled }) => {
       toast.success(interfaceText("Started {count} mix search(es) for {segmentCount} segments", { "count": (count), "segmentCount": (mix.segmentCount) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to start mix searches',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -388,11 +378,7 @@ const SongIDPanel = ({ disabled }) => {
       toast.success(interfaceText("Prepared album target for {title}", { "title": (candidate.title) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to prepare album target',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -406,11 +392,7 @@ const SongIDPanel = ({ disabled }) => {
       toast.success(interfaceText("Planned discography job {job_id}", { "job_id": (response?.job_id) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to create discography job',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -437,11 +419,7 @@ const SongIDPanel = ({ disabled }) => {
       toast.success(interfaceText("Planned album job {job_id}", { "job_id": (response?.job_id) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to create album download job',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -457,11 +435,7 @@ const SongIDPanel = ({ disabled }) => {
       toast.success(interfaceText("SongID forensic matrix copied"));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to copy SongID forensic matrix',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -475,11 +449,7 @@ const SongIDPanel = ({ disabled }) => {
       setGraphData(graph);
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to build discovery graph',
-      );
+      toast.error(getApiErrorMessage(error, { t }, 'Failed to build discovery graph'));
       setGraphOpen(false);
     } finally {
       setGraphLoading(false);

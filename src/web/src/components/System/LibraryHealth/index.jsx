@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 
 
 import * as libraryHealth from '../../../lib/libraryHealth';
@@ -141,11 +142,7 @@ const LibraryHealth = () => {
       }
 
       setDashboardLoadFailed(true);
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          interfaceText('Failed to load library health data'),
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to load library health data'));
     } finally {
       if (mountedRef.current && dashboardRequestRef.current === requestId) {
         setLoading(false);
@@ -257,11 +254,7 @@ const LibraryHealth = () => {
         return;
       }
 
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          interfaceText('Failed to poll Library Health scan status'),
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to poll Library Health scan status'));
       pauseAfterRequest = true;
       pauseScanMonitoring(
         interfaceText('The server may still be scanning. Retry status checks before starting another scan.'),
@@ -318,11 +311,7 @@ const LibraryHealth = () => {
       if (mountedRef.current) {
         scanMonitoringPausedRef.current = false;
         setScanMonitoringPaused(false);
-        setError(
-          error_.response?.data?.message ||
-            error_.message ||
-            interfaceText('Failed to start scan'),
-        );
+        setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to start scan'));
         setScanning(false);
       }
     }
@@ -461,11 +450,7 @@ const LibraryHealth = () => {
       setReportMessage([queuedMessage, remainingMessage].filter(Boolean).join(' '));
       await loadSummary(dashboardPath, { preserveFeedback: true });
     } catch (error_) {
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          interfaceText('Failed to create fix job'),
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to create fix job'));
     } finally {
       setFixing(false);
     }
@@ -479,11 +464,7 @@ const LibraryHealth = () => {
       setReportMessage(interfaceText('Remediation queued for auto-fixable issues: {count}.', { count: 1 }));
       await loadSummary(dashboardPath, { preserveFeedback: true });
     } catch (error_) {
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          interfaceText('Failed to create fix job'),
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to create fix job'));
     } finally {
       setFixing(false);
     }
@@ -579,11 +560,7 @@ const LibraryHealth = () => {
         { count },
       ));
     } catch (error_) {
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          interfaceText('Failed to start replacement searches'),
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to start replacement searches'));
     } finally {
       setSearchingReplacements(false);
     }

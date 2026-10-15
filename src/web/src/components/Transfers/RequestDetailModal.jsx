@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Header, Icon, Input, Label, Modal, Table } from 'semantic-ui-react';
@@ -30,7 +31,7 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
       setDetail(data);
       setNameDraft(data?.request?.name ?? '');
     } catch (error) {
-      toast.error(interfaceText("Failed to load request: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Failed to load request: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       setDetail(null);
     } finally {
       setLoading(false);
@@ -56,7 +57,7 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
       setDetail((prev) => (prev ? { ...prev, request: updated } : prev));
       toast.success(interfaceText("Renamed"));
     } catch (error) {
-      toast.error(interfaceText("Rename failed: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Rename failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setRenaming(false);
     }
@@ -69,7 +70,7 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
       toast.success(interfaceText("Request cancelled"));
       await load();
     } catch (error) {
-      toast.error(interfaceText("Cancel failed: {message}", { "message": (error.message) }));
+      toast.error(interfaceText("Cancel failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 

@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 // <copyright file="SoulseekDiscoveryPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -60,10 +61,7 @@ const getUsernames = (payload) =>
     .filter((user) => user.username);
 
 const errorMessage = (error, fallback) =>
-  error?.response?.data?.message ||
-  error?.response?.data ||
-  error?.message ||
-  fallback;
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
   useInterfaceLanguage();
@@ -95,20 +93,20 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
     setUserInterests(null);
   };
 
-  const run = async (label, action) => {
+  const run = async (action) => {
     setError('');
     setLoading(true);
     try {
       await action();
     } catch (actionError) {
-      setError(errorMessage(actionError, interfaceText('Unable to {action}.', { action: label })));
+      setError(errorMessage(actionError, 'The request failed. Try again.'));
     } finally {
       setLoading(false);
     }
   };
 
   const loadRecommendations = (global = false) =>
-    run(global ? 'load global recommendations' : 'load recommendations', async () => {
+    run(async () => {
       const response = global
         ? await soulseekDiscovery.getGlobalRecommendations()
         : await soulseekDiscovery.getRecommendations();
@@ -130,7 +128,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       return;
     }
 
-    run('load item recommendations', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getItemRecommendations({
         item: trimmed,
       });
@@ -143,7 +141,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
   };
 
   const loadSimilarUsers = () =>
-    run('load similar users', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getSimilarUsers();
       const users = asArray(response.data);
 
@@ -160,7 +158,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       return;
     }
 
-    run('load item similar users', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getItemSimilarUsers({
         item: trimmed,
       });
@@ -179,7 +177,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       return;
     }
 
-    run('load user interests', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getUserInterests({
         username: trimmed,
       });
@@ -206,7 +204,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
         ? soulseekDiscovery.removeInterest
         : soulseekDiscovery.addInterest;
 
-    run('update interests', async () => {
+    run(async () => {
       await action({ item: trimmed });
       const statusSource = remove
         ? hated ? 'Removed {interest} as a hated interest.' : 'Removed {interest} as an interest.'

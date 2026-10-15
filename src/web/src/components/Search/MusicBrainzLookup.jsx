@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import * as searches from '../../lib/searches';
 import { resolveTarget } from '../../lib/musicBrainz';
@@ -59,9 +60,7 @@ const MusicBrainzLookup = ({ disabled }) => {
       setGraphData(graph);
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to build discovery graph',
-      );
+      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to build discovery graph'));
       setGraphOpen(false);
     } finally {
       setGraphLoading(false);
@@ -93,14 +92,12 @@ const MusicBrainzLookup = ({ disabled }) => {
 
       toast.success(
         resolvedTarget.album
-          ? `Loaded album ${resolvedTarget.album.title}`
-          : `Loaded track ${resolvedTarget.track?.title}`,
+          ? interfaceText('Loaded album {title}', { title: resolvedTarget.album.title })
+          : interfaceText('Loaded track {title}', { title: resolvedTarget.track?.title }),
       );
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to resolve target',
-      );
+      toast.error(getApiErrorMessage(error, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -214,9 +211,7 @@ const MusicBrainzLookup = ({ disabled }) => {
       toast.success(interfaceText("Started {count} nearby graph searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to queue nearby searches',
-      );
+      toast.error(getApiErrorMessage(error, { t: interfaceText }));
     }
   };
 

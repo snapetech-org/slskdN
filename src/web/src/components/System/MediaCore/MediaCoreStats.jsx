@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
@@ -45,7 +46,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getRetrievalStats();
       setRetrievalStats(result);
     } catch (error_) {
-      setRetrievalStats({ error: error_.message });
+      setRetrievalStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingRetrievalStats(false);
     }
@@ -59,7 +60,7 @@ const MediaCoreStats = () => {
         interfaceText("Cache cleared: {entriesCleared} entries, {bytesFreed} bytes freed", { "entriesCleared": (result.entriesCleared), "bytesFreed": (result.bytesFreed) }),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to clear cache: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to clear cache: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -70,7 +71,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getMediaCoreDashboard();
       setMediaCoreDashboard(result);
     } catch (error_) {
-      setMediaCoreDashboard({ error: error_.message });
+      setMediaCoreDashboard({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingDashboard(false);
     }
@@ -97,7 +98,7 @@ const MediaCoreStats = () => {
       setContentPublishingStats(null);
       toast.success(interfaceText("MediaCore statistics have been reset"));
     } catch (error_) {
-      toast.error(interfaceText("Failed to reset stats: {message}", { "message": (error_.message) }));
+      toast.error(interfaceText("Failed to reset stats: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -108,7 +109,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getContentRegistryStats();
       setContentRegistryStats(result);
     } catch (error_) {
-      setContentRegistryStats({ error: error_.message });
+      setContentRegistryStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingRegistryStats(false);
     }
@@ -121,7 +122,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getDescriptorStats();
       setDescriptorStats(result);
     } catch (error_) {
-      setDescriptorStats({ error: error_.message });
+      setDescriptorStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingDescriptorStats(false);
     }
@@ -134,7 +135,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getFuzzyMatchingStats();
       setFuzzyMatchingStats(result);
     } catch (error_) {
-      setFuzzyMatchingStats({ error: error_.message });
+      setFuzzyMatchingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingFuzzyStats(false);
     }
@@ -147,7 +148,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getIpldMappingStats();
       setIpldMappingStats(result);
     } catch (error_) {
-      setIpldMappingStats({ error: error_.message });
+      setIpldMappingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingIpldStats(false);
     }
@@ -160,7 +161,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getPerceptualHashingStats();
       setPerceptualHashingStats(result);
     } catch (error_) {
-      setPerceptualHashingStats({ error: error_.message });
+      setPerceptualHashingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPerceptualStats(false);
     }
@@ -173,7 +174,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getMetadataPortabilityStats();
       setMetadataPortabilityStats(result);
     } catch (error_) {
-      setMetadataPortabilityStats({ error: error_.message });
+      setMetadataPortabilityStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPortabilityStats(false);
     }
@@ -186,7 +187,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getContentPublishingStats();
       setContentPublishingStats(result);
     } catch (error_) {
-      setContentPublishingStats({ error: error_.message });
+      setContentPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPublishingStats(false);
     }

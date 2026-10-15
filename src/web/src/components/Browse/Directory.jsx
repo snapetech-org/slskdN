@@ -1,4 +1,5 @@
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as transfers from '../../lib/transfers';
 import { formatBytes } from '../../lib/util';
 import FileList from '../Shared/FileList';
@@ -8,16 +9,8 @@ import { Card, Icon, Message } from 'semantic-ui-react';
 
 const Button = TooltipButton;
 
-const getDownloadErrorMessage = (error) => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (data && typeof data === 'object') {
-    return data.detail || data.message || data.title || JSON.stringify(data);
-  }
-
-  return error?.message || interfaceText('The download request could not be completed.');
-};
+const getDownloadErrorMessage = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'The download request could not be completed.');
 
 const initialState = {
   downloadError: '',

@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { createLogsHubConnection } from '../../../lib/hubFactory';
 import { downloadLogFile, getLogFile, getLogFiles } from '../../../lib/logs';
@@ -62,7 +63,7 @@ const levels = {
 };
 
 const getErrorMessage = (error, fallback) =>
-  error?.message || fallback;
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);

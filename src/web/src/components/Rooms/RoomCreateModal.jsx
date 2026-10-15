@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
 import './Rooms.css';
@@ -39,9 +40,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
       setRoomName('');
       setIsPrivate(false);
     } catch (error) {
-      setError(
-        error?.response?.data || error?.message || interfaceText('Failed to create room'),
-      );
+      setError(getApiErrorMessage(error, { t: interfaceText }, 'Failed to create room'));
     } finally {
       setLoading(false);
     }

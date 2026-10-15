@@ -242,8 +242,8 @@ const getVisualizerErrorMessage = (engineType, error) => {
     'WebGPU adapter is unavailable for the native MilkDrop renderer.',
     'WebGPU canvas context is unavailable for the native MilkDrop renderer.',
   ]);
-  const detail = message
-    ? ` ${localizedWebGpuErrorSources.has(message) ? interfaceText(message) : message}`
+  const detail = localizedWebGpuErrorSources.has(message)
+    ? ` ${interfaceText(message)}`
     : '';
   return isNativeEngine(engineType)
     ? `${interfaceText('Native MilkDrop render failed.')}${detail}`

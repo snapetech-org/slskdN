@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Lidarr.css';
 import * as lidarrAPI from '../../lib/lidarr';
@@ -109,7 +110,7 @@ const StatusBar = ({ status, syncState, onSync, syncing }) => {
         {syncState?.lastError && (
           <Label color="red" size="large">
             <Icon name="warning sign" />
-            {syncState.lastError}
+            {interfaceText('The request failed. Try again.')}
           </Label>
         )}
       </div>
@@ -155,7 +156,7 @@ const WantedSection = ({ connected }) => {
       setTotal(data.totalRecords ?? 0);
       setPage(p);
     } catch (err) {
-      toast.error(interfaceText("Failed to load wanted: {message}", { "message": (err.message) }));
+      toast.error(interfaceText("Failed to load wanted: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -270,7 +271,7 @@ const WishlistSection = () => {
       setItems(all.filter((i) => i.autoDownload && i.filter));
       setPage(1);
     } catch (err) {
-      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": (err.message) }));
+      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -416,13 +417,10 @@ const ImportSection = ({ connected, onHistoryChanged }) => {
         toast.success(interfaceText("Lidarr import queued: {safeCandidates} file(s)", { "safeCandidates": (safeCandidates) }));
         setDirectory('');
       } else {
-        toast.error(
-          result?.skippedReason ||
-          `Lidarr found ${result?.candidateCount ?? 0} candidate(s), but none were safe to import automatically`,
-        );
+        toast.error(interfaceText('The request failed. Try again.'));
       }
     } catch (err) {
-      toast.error(interfaceText("Import failed: {message}", { "message": (err.message) }));
+      toast.error(interfaceText("Import failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setImporting(false);
       onHistoryChanged?.();
@@ -491,7 +489,7 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
       const data = await lidarrAPI.getImportHistory({ limit: 50 });
       setHistory(Array.isArray(data) ? data : []);
     } catch (err) {
-      toast.error(interfaceText("Failed to load Lidarr import history: {message}", { "message": (err.message) }));
+      toast.error(interfaceText("Failed to load Lidarr import history: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -533,16 +531,15 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
     try {
       const result = await lidarrAPI.retryImport(historyId);
       if (result?.commandId) {
-        toast.success(`Lidarr import retry queued: ${result.safeCandidateCount ?? 0} file(s)`);
+        toast.success(interfaceText('Lidarr import queued: {safeCandidates} file(s)', {
+          safeCandidates: result.safeCandidateCount ?? 0,
+        }));
       } else {
-        toast.error(
-          result?.skippedReason ||
-          'Lidarr could not find a safe file to import on retry',
-        );
+        toast.error(interfaceText('The request failed. Try again.'));
       }
       await load();
     } catch (err) {
-      toast.error(interfaceText("Import retry failed: {message}", { "message": (err.message) }));
+      toast.error(interfaceText("Import retry failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setRetryingId(null);
     }
@@ -598,7 +595,9 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
             {history.map((entry) => {
               const status = entry.status || 'Queued';
               const canRetry = status === 'Failed' || status === 'Skipped';
-              const details = entry.errorMessage || entry.skippedReason || '—';
+              const details = entry.errorMessage || entry.skippedReason
+                ? interfaceText('The request failed. Try again.')
+                : '—';
               return (
                 <Table.Row key={entry.id}>
                   <Table.Cell>
@@ -730,7 +729,7 @@ const Lidarr = () => {
       );
       await loadStatus();
     } catch (err) {
-      toast.error(interfaceText("Sync failed: {message}", { "message": (err.message) }));
+      toast.error(interfaceText("Sync failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setSyncing(false);
     }

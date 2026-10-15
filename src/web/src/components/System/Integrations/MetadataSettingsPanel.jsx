@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="MetadataSettingsPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -380,11 +381,7 @@ const MetadataSettingsPanel = ({ options }) => {
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to save metadata integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSaving(false);

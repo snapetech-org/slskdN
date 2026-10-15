@@ -1,18 +1,13 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import { getCurrentDebugView } from '../../../lib/options';
 import { CodeEditor, PlaceholderSegment, Switch } from '../../Shared';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Icon, Message, Modal, Popup } from 'semantic-ui-react';
 
-const getErrorText = (error) => {
-  const data = error?.response?.data;
-  if (typeof data === 'string') return data;
-  if (data && typeof data === 'object') {
-    return data.detail || data.message || data.error || data.title || JSON.stringify(data);
-  }
-  return error?.message || interfaceText('Could not load the debug view.');
-};
+const getErrorText = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'Could not load the debug view.');
 
 const DebugModal = ({ onClose, open, theme }) => {
   useInterfaceLanguage();

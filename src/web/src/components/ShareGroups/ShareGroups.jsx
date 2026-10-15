@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
@@ -25,20 +26,8 @@ const Button = TooltipButton;
 const asArray = (value) => (Array.isArray(value) ? value : []);
 const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
 
-const getErrorMessage = (error, fallback = 'Request failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || interfaceText(fallback);
-};
+const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 export default class ShareGroups extends Component {
   state = {
@@ -95,19 +84,7 @@ export default class ShareGroups extends Component {
         shareGroups: asArray(groupsRes.data),
       });
     } catch (error) {
-      // Extract error message from response
-      let errorMessage = error.message;
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else {
-          errorMessage = JSON.stringify(error.response.data);
-        }
-      }
+      const errorMessage = getErrorMessage(error);
 
       // Only suppress errors for 401/403/404 (auth/feature disabled)
       const isAuthOrFeatureError =
@@ -129,11 +106,11 @@ export default class ShareGroups extends Component {
     } catch (error) {
       console.error('[ShareGroups] Create group error:', error);
       // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message || interfaceText('Failed to create share group');
+      let errorMessage = getErrorMessage(error, 'Failed to create share group');
       if (error.response) {
         const status = error.response.status;
         const url = error.response.config?.url || interfaceText('Unknown');
-        const contentLength = error.response.headers['content-length'];
+        const contentLength = error.response.headers?.['content-length'];
 
         console.error('[ShareGroups] Response status:', status);
         console.error('[ShareGroups] Response URL:', url);
@@ -146,21 +123,7 @@ export default class ShareGroups extends Component {
           );
         }
 
-        if (error.response.data) {
-          if (typeof error.response.data === 'string') {
-            errorMessage = error.response.data;
-          } else if (error.response.data.detail) {
-            errorMessage = error.response.data.detail; // ProblemDetails format
-          } else if (error.response.data.message) {
-            errorMessage = error.response.data.message;
-          } else if (error.response.data.error) {
-            errorMessage = error.response.data.error;
-          } else if (error.response.data.title) {
-            errorMessage = error.response.data.title; // ProblemDetails title as fallback
-          } else {
-            errorMessage = JSON.stringify(error.response.data);
-          }
-        } else if (status === 400) {
+        if (status === 400 && !error.response.data) {
           // 400 with empty body likely means CSRF validation failed or user identity missing
           errorMessage = interfaceText(
             'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.',
@@ -217,28 +180,11 @@ export default class ShareGroups extends Component {
       });
       await this.loadData();
     } catch (error) {
-      // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message;
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.detail) {
-          errorMessage = error.response.data.detail; // ProblemDetails format
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else if (error.response.data.title) {
-          errorMessage = error.response.data.title; // ProblemDetails title as fallback
-        } else {
-          errorMessage = JSON.stringify(error.response.data);
-        }
-      }
-
       this.setState({
-        error:
-          errorMessage ||
-          interfaceText('Failed to add member. Please configure Soulseek username or enable Identity & Friends.'),
+        error: getErrorMessage(
+          error,
+          'Failed to add member. Please configure Soulseek username or enable Identity & Friends.',
+        ),
       });
     }
   };

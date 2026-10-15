@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -123,7 +124,7 @@ const SwarmVisualization = ({ jobId }) => {
       ) {
         return;
       }
-      setError(error_?.message || interfaceText('Failed to fetch swarm data'));
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to fetch swarm data'));
       console.error('Failed to fetch swarm visualization data:', error_);
     } finally {
       if (statusRequestGenerationRef.current === requestGeneration) {

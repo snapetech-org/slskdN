@@ -561,7 +561,7 @@ describe('PlayerBar', () => {
     renderPlayer();
     fireEvent.click(screen.getByTestId('player-open-listed-radio'));
     fireEvent.click(await screen.findByRole('button', { name: 'Play Retry radio from listed radio' }));
-    expect(await screen.findByText('The radio host could not provide this snapshot. Retry or refresh listed radio.')).toBeInTheDocument();
+    expect(await screen.findByText('The request failed. Try again.')).toBeInTheDocument();
     streaming.createStreamTicket.mockClear();
     fireEvent.click(screen.getByTestId('player-toggle-playback'));
     await waitFor(() => expect(document.querySelector('audio').getAttribute('src')).toBe('/api/v0/mesh-streams/retry-ticket'));

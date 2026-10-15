@@ -195,14 +195,14 @@ describe('Lidarr', () => {
 
     render(<Lidarr />);
 
-    expect(await screen.findByText('Artist with ID 0 does not exist')).toBeInTheDocument();
+    expect(await screen.findByText('The request failed. Try again.')).toBeInTheDocument();
     const retry = screen.getByRole('button', { name: 'Retry Lidarr import for /downloads/Artist/Album' });
     fireEvent.click(retry);
 
     await waitFor(() => {
       expect(lidarrAPI.retryImport).toHaveBeenCalledWith('history-1');
     });
-    expect(toast.success).toHaveBeenCalledWith('Lidarr import retry queued: 1 file(s)');
+    expect(toast.success).toHaveBeenCalledWith('Lidarr import queued: 1 file(s)');
   });
 
   it('does not overlap slow status polls', async () => {

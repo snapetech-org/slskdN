@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { TooltipButton } from '../Shared';
 import { Form, Message, Segment } from 'semantic-ui-react';
@@ -15,14 +16,8 @@ export default function SolidSettings() {
   const [resolving, setResolving] = useState(false);
   const statusRequestId = useRef(0);
 
-  const formatError = (e) => {
-    const data = e?.response?.data;
-    if (typeof data === 'string' && data.trim().length > 0) return data;
-    if (data && typeof data === 'object') {
-      return data.detail || data.message || data.error || data.title || JSON.stringify(data);
-    }
-    return e?.message ?? String(e);
-  };
+  const formatError = (error) =>
+    getApiErrorMessage(error, { t: interfaceText });
 
   const loadStatus = useCallback(async () => {
     const requestId = ++statusRequestId.current;

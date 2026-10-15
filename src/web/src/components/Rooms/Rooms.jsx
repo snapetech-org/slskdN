@@ -1,4 +1,5 @@
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import './Rooms.css';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import * as rooms from '../../lib/rooms';
@@ -253,7 +254,7 @@ const Rooms = () => {
       console.error('Failed to join room:', error);
       toast.error(interfaceText('Failed to join room "{roomName}": {message}', {
         roomName,
-        message: error?.message ?? String(error),
+        message: getApiErrorMessage(error, { t: interfaceText }),
       }));
     }
   };

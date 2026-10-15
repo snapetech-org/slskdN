@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as pods from '../../lib/pods';
 import React, { useEffect, useState } from 'react';
 import {
@@ -130,7 +131,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
       setSuccess(interfaceText("VPN policy updated successfully"));
     } catch (error) {
       console.error('Failed to update VPN policy:', error);
-      setError(error.message || interfaceText('Failed to update VPN policy'));
+      setError(getApiErrorMessage(error, { t: interfaceText }, 'Failed to update VPN policy'));
     } finally {
       setSaving(false);
     }

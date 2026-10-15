@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import {
   getYaml,
   getYamlLocation,
@@ -11,23 +12,8 @@ import CodeEditor from '../../Shared/CodeEditor';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Icon, Message, Modal, Popup } from 'semantic-ui-react';
 
-const getErrorText = (error, fallback = 'Options update failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') {
-    return data;
-  }
-
-  if (data && typeof data === 'object' && !Array.isArray(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || fallback;
-};
+const getErrorText = (error) =>
+  getApiErrorMessage(error, { t: interfaceText });
 
 const EditModal = ({ onClose, open, theme }) => {
   useInterfaceLanguage();
@@ -60,7 +46,7 @@ const EditModal = ({ onClose, open, theme }) => {
       setLoading({ error: false, loading: false });
     } catch (getError) {
       setLoading({
-        error: getErrorText(getError, 'Could not load remote options.'),
+        error: getErrorText(getError),
         loading: false,
       });
     }
@@ -72,15 +58,15 @@ const EditModal = ({ onClose, open, theme }) => {
       const response = await validateYaml({ yaml: newYaml });
       if (requestId !== validationRequestId.current) return undefined;
       const error = typeof response === 'string'
-        ? response
+        ? getErrorText({ response: { data: response } })
         : response
-          ? getErrorText({ response: { data: response } }, 'YAML validation failed.')
+          ? getErrorText({ response: { data: response } })
           : undefined;
       setYamlError(error);
       return error;
     } catch (error) {
       if (requestId !== validationRequestId.current) return undefined;
-      const message = getErrorText(error, 'YAML validation failed.');
+      const message = getErrorText(error);
       setYamlError(message);
       return message;
     }

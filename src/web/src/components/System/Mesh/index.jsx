@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import * as mesh from '../../../lib/mesh';
 import * as soulseekDiscovery from '../../../lib/soulseekDiscovery';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
@@ -64,13 +65,8 @@ const Mesh = () => {
   const [rendezvousLoading, setRendezvousLoading] = useState(false);
   const [rendezvousMessage, setRendezvousMessage] = useState(null);
 
-  const getRendezvousErrorText = (error_, fallback) => {
-    const data = error_?.response?.data;
-    if (typeof data === 'string') return data;
-    if (data?.error) return data.error;
-    if (data?.title) return data.title;
-    return error_?.message || fallback;
-  };
+  const getRendezvousErrorText = (error_, fallback) =>
+    getApiErrorMessage(error_, { t: interfaceText }, fallback);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -106,7 +102,7 @@ const Mesh = () => {
     } catch (error_) {
       if (!mountedRef.current || document.hidden) return;
       if (!statsLoadedRef.current) {
-        setError(error_.message);
+        setError(getApiErrorMessage(error_, { t: interfaceText }));
       }
     } finally {
       statsFetchInFlightRef.current = false;
@@ -167,7 +163,7 @@ const Mesh = () => {
         if (!mountedRef.current) return;
         setRendezvousStatus({
           enabled: false,
-          error: error_?.response?.data || error_.message,
+          error: getApiErrorMessage(error_, { t: interfaceText }),
         });
       }
     };
@@ -238,7 +234,10 @@ const Mesh = () => {
       setCapabilityRecords(records);
       setRendezvousMessage({
         positive: true,
-        text: `Discovered ${users.length} Soulseek rendezvous candidate(s) and ${records.length} runtime capability record(s).`,
+        text: interfaceText('Discovered {users} Soulseek rendezvous candidate(s) and {records} runtime capability record(s).', {
+          users: users.length,
+          records: records.length,
+        }),
       });
     } catch (error_) {
       setRendezvousUsers([]);

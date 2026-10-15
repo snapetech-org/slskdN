@@ -98,9 +98,9 @@ const MeshEvidencePolicy = () => {
       const entries = parseMeshEvidenceReviewInput(reviewInput);
       setReview(evaluateMeshEvidenceEntries(entries, policy));
       setReviewError('');
-    } catch (error) {
+    } catch {
       setReview(null);
-      setReviewError(error instanceof Error ? error.message : String(error));
+      setReviewError(interfaceText('Invalid evidence JSON'));
     }
   };
 

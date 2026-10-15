@@ -1,5 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
 import { getRegionalLocale } from '../../lib/regionalFormat';
@@ -32,20 +33,8 @@ const isObject = (value) => value && typeof value === 'object' && !Array.isArray
 const CONTACT_PAGE_SIZE = 100;
 const NEARBY_PAGE_SIZE = 100;
 
-const getErrorMessage = (error, fallback = 'Request failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || interfaceText(fallback);
-};
+const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const normalizeContact = (contact) =>
   isObject(contact) && typeof contact.peerId === 'string' && contact.peerId.length > 0
@@ -201,11 +190,11 @@ class Contacts extends Component {
     } catch (error) {
       console.error('[Contacts] Create invite error:', error);
       // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message || interfaceText('Failed to create invite');
+      let errorMessage = getErrorMessage(error, 'Failed to create invite');
       if (error.response) {
         const status = error.response.status;
         const url = error.response.config?.url || interfaceText('Unknown');
-        const contentLength = error.response.headers['content-length'];
+        const contentLength = error.response.headers?.['content-length'];
 
         console.error('[Contacts] Response status:', status);
         console.error('[Contacts] Response URL:', url);
@@ -218,21 +207,7 @@ class Contacts extends Component {
           );
         }
 
-        if (error.response.data) {
-          if (typeof error.response.data === 'string') {
-            errorMessage = error.response.data;
-          } else if (error.response.data.detail) {
-            errorMessage = error.response.data.detail; // ProblemDetails format
-          } else if (error.response.data.message) {
-            errorMessage = error.response.data.message;
-          } else if (error.response.data.error) {
-            errorMessage = error.response.data.error;
-          } else if (error.response.data.title) {
-            errorMessage = error.response.data.title; // ProblemDetails title as fallback
-          } else {
-            errorMessage = JSON.stringify(error.response.data);
-          }
-        } else if (status === 400) {
+        if (status === 400 && !error.response.data) {
           // 400 with empty body likely means CSRF validation failed or user identity missing
           errorMessage = interfaceText(
             'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.',
@@ -781,7 +756,7 @@ class AddFriendForm extends Component {
         bitmap.close?.();
       }
     } catch (error) {
-      this.setState({ scanError: error.message || interfaceText('QR scan failed.') });
+      this.setState({ scanError: getErrorMessage(error, 'QR scan failed.') });
     } finally {
       event.target.value = '';
       this.setState({ scanning: false });
