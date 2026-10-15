@@ -29,17 +29,6 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - uses: pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4 # v3
-        with:
-          version: 12.4.1
-          install: false
-
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: "22.22.2"
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
       - name: Restore
         run: dotnet restore slskd.sln -p:Version=0.0.0
 
