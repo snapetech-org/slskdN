@@ -73,6 +73,9 @@ const getRemoteDirectory = (filename) => getDirectoryName(filename || '') || '-'
 
 const INTERACTIVE_SELECTOR = 'button, a, input, label, .ui.checkbox, .ui.dropdown';
 
+// Numeric columns are right-aligned; header cells and row cells must use the same list so values sit under their headers.
+const NUMERIC_COLUMN_KEYS = ['progress', 'speed', 'eta', 'elapsed', 'remaining', 'size', 'bitrate', 'samplerate', 'length', 'track', 'year'];
+
 function cellContent(transfer, key) {
   switch (key) {
     case 'extension':
@@ -139,6 +142,7 @@ const Row = React.memo(({ index, style, ...data }) => {
   const key = transferKey(transfer);
   const selected = selectedKeys.has(key);
   const inProgress = transfer.state === 'InProgress';
+  const succeeded = transfer.state === 'Completed, Succeeded';
   const color = stateColor(transfer.state);
   const retryable = direction === 'download' && isStateRetryable(transfer.state);
   const cancellable = Boolean(isStateCancellable(transfer.state));
@@ -183,7 +187,7 @@ const Row = React.memo(({ index, style, ...data }) => {
       </div>
       {columnOrder.map((k) => (
         <div key={k}
-          className={`transfer-cell ${k === 'name' ? 'transfer-cell-name' : ''} ${['progress','speed','eta','elapsed','remaining','size','bitrate','samplerate','length','track','year'].includes(k) ? 'transfer-cell-num' : ''}`}
+          className={`transfer-cell ${k === 'name' ? 'transfer-cell-name' : ''} ${NUMERIC_COLUMN_KEYS.includes(k) ? 'transfer-cell-num' : ''}`}
           data-colkey={k}
           role="gridcell"
           title={transfer.filename}
@@ -217,15 +221,16 @@ const Row = React.memo(({ index, style, ...data }) => {
             </div>
           )}
           {k === 'size' && <span>{formatSize(transfer)}</span>}
-          {k === 'progress' && inProgress && (
+          {k === 'progress' && (inProgress || succeeded) && (
             <div className="transfer-progress">
               <div className="transfer-progress-track">
-                <div className="transfer-progress-fill" style={{ width: `${Math.min(100, Math.round(transfer.percentComplete ?? 0))}%` }} />
+                <div className="transfer-progress-fill" style={{ width: `${succeeded ? 100 : Math.min(100, Math.round(transfer.percentComplete ?? 0))}%` }} />
               </div>
-              <span className="transfer-progress-label">{`${Math.round(transfer.percentComplete ?? 0)}%`}</span>
+              <span className="transfer-progress-label">{`${succeeded ? 100 : Math.round(transfer.percentComplete ?? 0)}%`}</span>
             </div>
           )}
-          {k === 'progress' && !inProgress && (
+          {/* Other states keep the pill here: it carries the queue position and, on hover, the failure reason */}
+          {k === 'progress' && !inProgress && !succeeded && (
             <Popup
               content={transfer.exception ? getFailureReason(transfer.exception) || transfer.exception : null}
               disabled={!transfer.exception}
@@ -238,7 +243,11 @@ const Row = React.memo(({ index, style, ...data }) => {
               }
             />
           )}
-          {k === 'speed' && <span>{inProgress && transfer.averageSpeed ? `${formatBytes(transfer.averageSpeed)}/s` : '-'}</span>}
+          {k === 'speed' && (
+            succeeded && transfer.averageSpeed
+              ? <span className="transfer-speed-final" title="Average speed of the completed transfer">{`${formatBytes(transfer.averageSpeed)}/s`}</span>
+              : <span>{inProgress && transfer.averageSpeed ? `${formatBytes(transfer.averageSpeed)}/s` : '-'}</span>
+          )}
           {k === 'eta' && <span>{formatEta(transfer)}</span>}
           {k === 'state' && (
             <div className="transfer-cell-state">
@@ -424,7 +433,7 @@ const TransferTable = ({
       case 'year':       return transfer.year ?? 0;
       case 'size':       return transfer.size ?? 0;
       case 'progress':   return transfer.percentComplete ?? 0;
-      case 'speed':      return transfer.state === 'InProgress' ? transfer.averageSpeed ?? 0 : -1;
+      case 'speed':      return transfer.state === 'InProgress' || transfer.state === 'Completed, Succeeded' ? transfer.averageSpeed ?? 0 : -1;
       case 'eta':        return transfer.state === 'InProgress' ? transfer.remainingTime ?? Number.MAX_SAFE_INTEGER : Number.MAX_SAFE_INTEGER;
       case 'state':      return (transfer.state ?? '').toLowerCase();
       case 'elapsed':    return transfer.elapsedTime ?? 0;
@@ -550,7 +559,8 @@ const TransferTable = ({
         </div>
       )}
       <div aria-label={interfaceText("Transfers")} aria-rowcount={sorted.length} className="transfer-grid" ref={gridRef} role="grid" {...interfaceTextProps("Transfers")}>
-        <div className="transfer-header-row" role="row" style={{ gridTemplateColumns: headerTemplate, display: 'grid' }}>
+        {/* Same .transfer-row spacing (column-gap/padding) as the data rows, or every column drifts 6px further right */}
+        <div className="transfer-row transfer-header-row" role="row" style={{ gridTemplateColumns: headerTemplate, display: 'grid' }}>
           <div className="transfer-cell transfer-cell-check" role="columnheader">
             <Checkbox
               aria-label={interfaceText("Select all transfers")}
@@ -565,7 +575,7 @@ const TransferTable = ({
             return (
               <div
                 aria-sort={col.sortable ? (isSorted ? sort.direction : 'none') : undefined}
-                className={`transfer-cell transfer-header-cell${col.sortable ? ' is-sortable' : ''}`}
+                className={`transfer-cell transfer-header-cell${col.sortable ? ' is-sortable' : ''}${NUMERIC_COLUMN_KEYS.includes(col.key) ? ' transfer-cell-num' : ''}`}
                 key={col.key}
                 data-colkey={col.key}
                 draggable

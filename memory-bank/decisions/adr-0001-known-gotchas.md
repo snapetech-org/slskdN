@@ -4,6 +4,25 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1863. Give Grid Header Rows The Same Row Spacing Class As Data Rows (2026-10-12)
+
+**What went wrong:** The transfer table header row used only
+`.transfer-header-row` while data rows used `.transfer-row`, which adds
+`column-gap: 6px` and `padding: 0 6px`. Both rows had identical
+`grid-template-columns`, yet every data column drifted another 6px right of
+its header (about 60px by Remote Folder) on the Downloads and Uploads tabs.
+Numeric cells were also right-aligned under left-aligned headers.
+
+**Why:** Matching column templates looked sufficient, but grid gap and row
+padding come from the row class, not the template. The stylesheet already
+excluded the header with `.transfer-row:not(.transfer-header-row)`, showing
+the header was meant to carry `.transfer-row` too.
+
+**Prevention:** Put header and data rows on the same row class and override
+only header-specific styling. Share one list of right-aligned column keys
+between header and data cells, and pin the header row class and template in
+a component regression test.
+
 ### 0z1862. Keep API Error Prose Out Of Localized UI (2026-10-15)
 
 **What went wrong:** Several Web UI error states interpolated `error.message`
