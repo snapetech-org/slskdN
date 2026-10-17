@@ -472,7 +472,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
 
       {hasResults && (
         <Segment secondary>
-          <Header as="h5">{title || 'Discovery results'}</Header>
+          <Header as="h5">{title || <LocalizedText source={"Discovery results"} />}</Header>
           {recommendations.length > 0 && (
             <List
               divided

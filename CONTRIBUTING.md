@@ -46,14 +46,14 @@ When creating new files, use the slskdn Team copyright header. When modifying ex
 1. Assign yourself to the issue that you'll be working on.  If you'd like to contribute something for which there is no 
    existing issue, consider creating one before you start so we can discuss.
 1. Clone the repository and `git checkout main` to ensure you are on the default branch.
-1. Create a new branch for your change with `git checkout -b <your-branch-name>` be descriptive, but terse.
-1. Make your changes.  When finished, push your branch with `git push origin --set-upstream <your-branch-name>`.
+1. Create a topic branch with `git checkout -b <your-branch-name>` only when current GitHub rules require a pull request.
+1. Make your changes. Push the topic branch only when using the pull-request route.
 1. Use `main` as the target. Open a pull request only when current GitHub rules require one; push directly when they allow it.
 1. Keep the branch current with `main` only when current GitHub rules require it. Merge after the
    checks and approvals required by those rules are satisfied. An explicit maintainer direction to
    merge is sufficient; no additional review or approval is required beyond those rules. Use any
    merge method enabled in GitHub.
-1. Delete your branch, unless you plan to submit additional pull request from it.
+1. Delete a completed topic branch when it is no longer needed.
 
 If the pull request needs an update, use `git fetch` and rebase or merge `origin/main` into your branch, then push the updated branch.
 
@@ -107,10 +107,11 @@ You're free to use whichever development tools you prefer.  If you don't yet hav
 
 ### Development Workflow
 
-1. **Create a feature branch:**
+1. **Choose a working branch:**
    ```bash
    git checkout -b feature/your-feature-name
    ```
+   Create a feature branch only when current GitHub rules require a pull request; otherwise work on `main`.
 
 2. **Make your changes:**
    - Follow code style guidelines (see below)
@@ -129,10 +130,10 @@ You're free to use whichever development tools you prefer.  If you don't yet hav
    git commit -m "feat: Add your feature description"
    ```
 
-5. **Push and create PR:**
+5. **Push and open a PR when current GitHub rules require one:**
    ```bash
    git push origin feature/your-feature-name
-   # Then create PR on GitHub
+   # Open a PR on GitHub only when current rules require it
    ```
 
 ## Code Style & Guidelines

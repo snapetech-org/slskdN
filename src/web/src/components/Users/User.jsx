@@ -62,7 +62,7 @@ const User = ({
         <LocalizedText source={"Free Upload Slot:"} />{" "}<FreeUploadSlot hasFreeUploadSlot /><LocalizedText source={", Total Upload Slots:"} />{" "}{uploadSlots}<LocalizedText source={", Queue Length:"} />{" "}{queueLength}<LocalizedText source={", IP Address:"} />{" "}{address}
         <LocalizedText source={", Port:"} />{" "}{port}
       </Item.Meta>
-      <Item.Description>{description || 'No user info.'}</Item.Description>
+      <Item.Description>{description || <LocalizedText source={"No user info."} />}</Item.Description>
     </Item.Content>
   </Item>
 );

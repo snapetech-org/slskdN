@@ -332,7 +332,7 @@ const FtpIntegrationPanel = ({ options }) => {
               disabled={!remoteConfiguration || saving}
               label={interfaceText("Password")}
               onChange={(_, { value }) => update('password', value)}
-              placeholder={form.passwordConfigured ? 'Configured' : 'Optional password'}
+              placeholder={interfaceText(form.passwordConfigured ? 'Configured' : 'Optional password')}
               type="password"
               value={form.password}
              {...interfaceTextProps("FTP password")}/>

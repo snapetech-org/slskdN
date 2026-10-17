@@ -1053,8 +1053,8 @@ class Response extends Component {
               <Popup
                 content={
                   isBlocked
-                    ? 'Unblock this user'
-                    : 'Block this user from search results'
+                    ? interfaceText('Unblock this user')
+                    : interfaceText('Block this user from search results')
                 }
                 position="top center"
                 trigger={

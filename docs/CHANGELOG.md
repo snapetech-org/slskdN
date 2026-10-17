@@ -32,6 +32,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ### Localization
 
+- Chat, player/radio, search, pod, system integration, transfer, and wishlist
+  copy now follow the selected language. All twelve catalogs share 5,691 keys,
+  with source-reference and placeholder-parity coverage checks.
 - The Network dashboard regionalizes peer and sequence counts, relative times,
   security-threshold alerts, and backfill progress; the Network statistic cards
   now translate their labels and descriptions, including zero-byte database

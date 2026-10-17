@@ -445,11 +445,11 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 disabled={!remoteConfiguration || saving}
                 label={interfaceText("Access Token")}
                 onChange={(_, { value }) => update('pushbulletAccessToken', value)}
-                placeholder={
+                placeholder={interfaceText(
                   form.pushbulletAccessTokenConfigured
                     ? 'Configured'
-                    : 'Pushbullet access token'
-                }
+                    : 'Pushbullet access token',
+                )}
                 type="password"
                 value={form.pushbulletAccessToken}
                {...interfaceTextProps("Pushbullet access token")}/>
@@ -618,11 +618,11 @@ const NotificationIntegrationsPanel = ({ options }) => {
                 disabled={!remoteConfiguration || saving}
                 label={interfaceText("User Key")}
                 onChange={(_, { value }) => update('pushoverUserKey', value)}
-                placeholder={
+                placeholder={interfaceText(
                   form.pushoverUserKeyConfigured
                     ? 'Configured'
-                    : 'Pushover user key'
-                }
+                    : 'Pushover user key',
+                )}
                 type="password"
                 value={form.pushoverUserKey}
                {...interfaceTextProps("Pushover user key")}/>

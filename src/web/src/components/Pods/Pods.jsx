@@ -587,8 +587,9 @@ export class Pods extends Component {
 
     if (
       podDetail?.podId === 'pod:901d57a2c1bb4e5d90d57a2c1bb4e5d0' &&
-      !window.confirm(
+        !window.confirm(interfaceText(
         'Leaving Gold Star Club is irrevocable. You will not be able to rejoin or recover Gold Star status later. Leave anyway?',
+      ),
       )
     ) {
       return;
@@ -755,7 +756,7 @@ export class Pods extends Component {
                   <List.Content>
                     <List.Header>{pod.name || pod.podId}</List.Header>
                     <List.Description>
-                      {pod.tags?.join(', ') || 'No tags'}
+                      {pod.tags?.join(', ') || <LocalizedText source={"No tags"} />}
                     </List.Description>
                   </List.Content>
                 </List.Item>
@@ -812,12 +813,14 @@ export class Pods extends Component {
                   <Popup
                     content={
                       isGoldStarClub
-                        ? 'Permanently leave Gold Star Club. This is irrevocable and cannot be undone.'
-                        : 'Remove the current peer from this pod and stop participating in its channels. Leave when you no longer want this peer to participate.'
+                        ? interfaceText('Permanently leave Gold Star Club. This is irrevocable and cannot be undone.')
+                        : interfaceText('Remove the current peer from this pod and stop participating in its channels. Leave when you no longer want this peer to participate.')
                     }
                     trigger={
                       <Button
-                        aria-label={isGoldStarClub ? 'Permanently leave Gold Star Club' : `Leave pod ${podDetail.name || podDetail.podId}`}
+                        aria-label={isGoldStarClub
+                          ? interfaceText('Permanently leave Gold Star Club')
+                          : interfaceText('Leave pod {pod}', { pod: podDetail.name || podDetail.podId })}
                         icon
                         labelPosition="left"
                         negative={isGoldStarClub}
@@ -846,7 +849,9 @@ export class Pods extends Component {
                     {podDetail.channels.map((channel, index) => (
                       <TooltipButton
                         active={channel.channelId === activeChannelId}
-                        aria-label={`Open ${channel.name || channel.channelId} channel`}
+                        aria-label={interfaceText('Open {channel} channel', {
+                          channel: channel.name || channel.channelId,
+                        })}
                         icon={channel.kind === 'Direct' ? 'comments' : 'comment alternate'}
                         key={channel.channelId}
                         labelPosition="left"
@@ -854,7 +859,10 @@ export class Pods extends Component {
                           this.handleDetailTabChange(null, { activeIndex: index })
                         }
                         size="small"
-                        tooltip={`Open ${channel.name || channel.channelId} to read its messages and compose updates for the channel participants.`}
+                        tooltip={interfaceText(
+                          'Open {channel} to read its messages and compose updates for the channel participants.',
+                          { channel: channel.name || channel.channelId },
+                        )}
                       >
                         {channel.name || channel.channelId}
                       </TooltipButton>
@@ -870,7 +878,9 @@ export class Pods extends Component {
                         <span className="pod-channel-subtitle">
                           {activeChannel?.kind === 'Direct'
                             ? <LocalizedText source={"Direct pod channel"} />
-                            : `${activeChannel?.kind || 'Pod'} channel`}
+                            : interfaceText('{kind} channel', {
+                              kind: activeChannel?.kind || interfaceText('Pod'),
+                            })}
                         </span>
                       </div>
                       <Label basic>

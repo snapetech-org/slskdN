@@ -649,7 +649,7 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
           <div className="msg-stream-loading"><LocalizedText source={"Loading…"} /></div>
         ) : items.length === 0 && error ? null : items.length === 0 ? (
           <div className="msg-stream-empty">
-            {emptyHint || 'No messages yet.'}
+            {emptyHint || <LocalizedText source={"No messages yet."} />}
           </div>
         ) : (
           <>

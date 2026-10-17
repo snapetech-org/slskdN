@@ -254,8 +254,8 @@ const WishlistItemRow = ({
             >
               <Popup
                 content={item.filter
-                  ? 'View the latest search results with this wishlist filter already applied.'
-                  : 'View the latest search results for this wishlist item.'}
+                  ? interfaceText('View the latest search results with this wishlist filter already applied.')
+                  : interfaceText('View the latest search results for this wishlist item.')}
                 position="top center"
                 trigger={
                   <Button
@@ -297,8 +297,8 @@ const WishlistItemRow = ({
             onClick={handleToggleSearches}
             size="tiny"
             tooltip={showSearches
-              ? 'Hide earlier searches to return to the wishlist items.'
-              : 'Review this item’s linked search history and past results.'}
+              ? interfaceText('Hide earlier searches to return to the wishlist items.')
+              : interfaceText('Review this item’s linked search history and past results.')}
           />
           <TooltipButton
             aria-label={interfaceText("Run {searchText} wishlist search now", { "searchText": (item.searchText) })}
@@ -1236,8 +1236,8 @@ const WishlistModal = ({ item, onClose, onSave }) => {
           onClick={handleSave}
           primary
           tooltip={isEdit
-            ? 'Save the updated search, filter, and automation settings for this wishlist item.'
-            : 'Add this search to the wishlist with the filter and automation settings below.'}
+            ? interfaceText('Save the updated search, filter, and automation settings for this wishlist item.')
+            : interfaceText('Add this search to the wishlist with the filter and automation settings below.')}
         >
           {isEdit ? <LocalizedText source={"Save"} /> : <LocalizedText source={"Add"} />}
         </TooltipButton>

@@ -1,0 +1,29 @@
+name: slskdN feature coherence validation
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  audit:
+    name: Feature coherence audit
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.fork == true &&
+      github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
+      github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN' &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true && github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name && github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN' && github.event.pull_request.base.ref == 'main' && fromJSON('["self-hosted", "linux", "x64", "public-pr-slskdn"]') || 'ubuntu-latest' }}
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run feature coherence audit
+        run: bash scripts/audit-feature-coherence.sh
+      - name: Run README maturity draft audit
+        run: bash scripts/audit-readme-maturity-draft.sh
+      - name: Run roadmap claim audit
+        run: bash scripts/audit-roadmap-claims.sh
+

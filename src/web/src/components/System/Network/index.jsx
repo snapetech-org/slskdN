@@ -222,7 +222,7 @@ const Network = ({ theme }) => {
     try {
       const result = await slskdnAPI.triggerMeshSync(username);
       if (!result?.success) {
-        toast.error(result?.error || `Failed to sync with ${username}`);
+        toast.error(result?.error || interfaceText('Failed to sync with {username}', { username }));
         return;
       }
 
@@ -1050,7 +1050,7 @@ const Network = ({ theme }) => {
                     color="yellow"
                     name="bolt"
                   />
-                  {job.filename?.split('/').pop() ?? 'Unknown file'}
+                  {job.filename?.split('/').pop() ?? <LocalizedText source={"Unknown file"} />}
                 </Card.Header>
                 <Card.Meta>
                   {formatNumber(job.activeSources ?? 0)} <LocalizedText source={"sources •"} />{' '}

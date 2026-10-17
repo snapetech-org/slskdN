@@ -516,8 +516,8 @@ const Jobs = () => {
               <Button
                 aria-label={
                   filters.sortOrder === 'asc'
-                    ? 'Sort jobs in descending order'
-                    : 'Sort jobs in ascending order'
+                    ? interfaceText('Sort jobs in descending order')
+                    : interfaceText('Sort jobs in ascending order')
                 }
                 icon
                 onClick={() =>
@@ -528,8 +528,8 @@ const Jobs = () => {
                 }
                 title={
                   filters.sortOrder === 'asc'
-                    ? 'Sort jobs in descending order'
-                    : 'Sort jobs in ascending order'
+                    ? interfaceText('Sort jobs in descending order')
+                    : interfaceText('Sort jobs in ascending order')
                 }
                 toggle
               >
@@ -593,12 +593,12 @@ const Jobs = () => {
                         <code>{job.id}</code>
                       </Table.Cell>
                       <Table.Cell>
-                        <Label>{job.type || 'unknown'}</Label>
+                        <Label>{job.type || <LocalizedText source={"unknown"} />}</Label>
                       </Table.Cell>
                       <Table.Cell>
                         <Label color={getStatusColor(job.status)}>
                           <Icon name={getStatusIcon(job.status)} />
-                          {job.status || 'unknown'}
+                          {job.status || <LocalizedText source={"unknown"} />}
                         </Label>
                       </Table.Cell>
                       <Table.Cell>

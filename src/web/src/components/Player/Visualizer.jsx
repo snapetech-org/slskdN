@@ -1914,8 +1914,8 @@ const Visualizer = ({
                 <Popup
                   content={
                     nativeLibraryMode === 'favorites'
-                      ? 'Reload a favorite native preset from this browser.'
-                      : 'Reload a previously imported native preset from this browser.'
+                      ? interfaceText('Reload a favorite native preset from this browser.')
+                      : interfaceText('Reload a previously imported native preset from this browser.')
                   }
                   trigger={
                     <select
@@ -1927,7 +1927,9 @@ const Visualizer = ({
                      {...interfaceTextProps("Native MilkDrop preset library")}>
                       <option value="">
                         {visibleNativePresetLibrary.length === 0 ? <LocalizedText source={"No matches"} /> : (
-                          nativeLibraryMode === 'favorites' ? 'Favorites' : 'Presets'
+                          nativeLibraryMode === 'favorites'
+                            ? <LocalizedText source={"Favorites"} />
+                            : <LocalizedText source={"Presets"} />
                         )}
                       </option>
                       {visibleNativePresetLibrary.map((preset) => (
@@ -1966,15 +1968,15 @@ const Visualizer = ({
                 <Popup
                   content={
                     nativeLibraryMode === 'favorites'
-                      ? 'Show all imported native presets.'
-                      : 'Show only favorite native presets.'
+                      ? interfaceText('Show all imported native presets.')
+                      : interfaceText('Show only favorite native presets.')
                   }
                   trigger={
                     <Button
                       aria-label={
                         nativeLibraryMode === 'favorites'
-                          ? 'Show all native presets'
-                          : 'Show favorite native presets'
+                          ? interfaceText('Show all native presets')
+                          : interfaceText('Show favorite native presets')
                       }
                       active={nativeLibraryMode === 'favorites'}
                       data-testid="visualizer-toggle-native-favorites-only"

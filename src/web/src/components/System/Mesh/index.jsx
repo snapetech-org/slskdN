@@ -342,10 +342,10 @@ const Mesh = () => {
                   color={getHealthColor(stats?.status)}
                   name={getHealthIcon(stats?.status)}
                 />
-                <LocalizedText source={"Network Health:"} />{" "}{stats?.status || 'Unknown'}
+                <LocalizedText source={"Network Health:"} />{" "}{stats?.status || <LocalizedText source={"Unknown"} />}
               </Card.Header>
               <Card.Description>
-                {stats?.description || 'No health information available'}
+                {stats?.description || <LocalizedText source={"No health information available"} />}
               </Card.Description>
             </Card.Content>
           </Card>
@@ -485,7 +485,7 @@ const Mesh = () => {
                             stats?.natType === 'Direct' ? 'green' : 'yellow'
                           }
                         >
-                          {stats?.natType || 'Unknown'}
+                          {stats?.natType || <LocalizedText source={"Unknown"} />}
                         </Label>
                       </List.Description>
                     </List.Content>
@@ -546,8 +546,8 @@ const Mesh = () => {
                   {!dhtEnabled
                     ? <LocalizedText source={"DHT rendezvous is disabled by its feature gate"} />
                     : rendezvousStatus?.enabled
-                    ? 'Opt-in public rendezvous is enabled'
-                    : 'Opt-in public rendezvous is disabled'}
+                    ? <LocalizedText source={"Opt-in public rendezvous is enabled"} />
+                    : <LocalizedText source={"Opt-in public rendezvous is disabled"} />}
                 </Message.Header>
                 <p>
                   {dhtEnabled

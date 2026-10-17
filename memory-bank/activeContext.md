@@ -88,15 +88,11 @@ the accepted source while publication is unresolved.
 - Keep PR-specific runner routing and main manual-dispatch validation as a
   separate follow-up.
 
-## Prior state — Runner trust and scan gates — 2026-10-13
+## Prior state — Runner trust and scan gates — retired 2026-10-16
 
-The temporary local pool is enabled for `snapetech`-authored pull requests and
-trusted `main` validation. Pull requests from other contributors stay on
-GitHub-hosted runners, and all external contributors require workflow approval.
-These YAML rules are best-effort on personal-account repositories: a reviewed
-outside workflow can still request self-hosted after approval. Organization
-runner groups restricted to selected workflow refs remain the planned hard
-boundary.
+This describes the retired configuration. All workflows now use GitHub-hosted
+runners, and the private GitHub Actions runners have been removed from
+`kspls0` and `kspld0`. The routing and runner-group plans below are historical.
 
 PR #357 already isolates runner-owned temporary storage in Linux self-hosted
 jobs and scopes release write permissions to the publisher. This follow-up

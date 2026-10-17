@@ -1094,7 +1094,7 @@ const AdminPolicies = ({ options = {} }) => {
                   disabled={!remoteConfiguration || saving}
                   label={interfaceText("JWT Key")}
                   onChange={(_, { value }) => update('jwtKey', value)}
-                  placeholder={form.jwtConfigured ? 'Configured' : 'New JWT key'}
+                  placeholder={interfaceText(form.jwtConfigured ? 'Configured' : 'New JWT key')}
                   type="password"
                   value={form.jwtKey}
                  {...interfaceTextProps("JWT replacement key")}/>
@@ -1128,7 +1128,7 @@ const AdminPolicies = ({ options = {} }) => {
                   disabled={!remoteConfiguration || saving}
                   label={interfaceText("API Key")}
                   onChange={(_, { value }) => update('apiKeyValue', value)}
-                  placeholder={form.apiKeyConfigured ? 'Configured' : 'New API key'}
+                  placeholder={interfaceText(form.apiKeyConfigured ? 'Configured' : 'New API key')}
                   type="password"
                   value={form.apiKeyValue}
                  {...interfaceTextProps("API key replacement value")}/>
@@ -1221,11 +1221,11 @@ const AdminPolicies = ({ options = {} }) => {
                   onChange={(_, { value }) =>
                     update('httpsCertificatePassword', value)
                   }
-                  placeholder={
+                  placeholder={interfaceText(
                     form.httpsCertificatePasswordConfigured
                       ? 'Configured'
-                      : 'Certificate password'
-                  }
+                      : 'Certificate password',
+                  )}
                   type="password"
                   value={form.httpsCertificatePassword}
                  {...interfaceTextProps("HTTPS certificate password")}/>

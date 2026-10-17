@@ -354,7 +354,7 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
                 disabled={!remoteConfiguration || saving}
                 label={interfaceText("Client ID")}
                 onChange={(_, { value }) => update('spotifyClientId', value)}
-                placeholder={form.spotifyConfigured ? 'Configured' : 'Spotify app client ID'}
+                placeholder={interfaceText(form.spotifyConfigured ? 'Configured' : 'Spotify app client ID')}
                 type="password"
                 value={form.spotifyClientId}
                {...interfaceTextProps("Spotify client ID")}/>
@@ -363,11 +363,11 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
                 disabled={!remoteConfiguration || saving}
                 label={interfaceText("Client Secret")}
                 onChange={(_, { value }) => update('spotifyClientSecret', value)}
-                placeholder={
+                placeholder={interfaceText(
                   form.spotifySecretConfigured
                     ? 'Configured'
-                    : 'Optional for OAuth; required for app-token public imports'
-                }
+                    : 'Optional for OAuth; required for app-token public imports',
+                )}
                 type="password"
                 value={form.spotifyClientSecret}
                {...interfaceTextProps("Spotify client secret")}/>
@@ -434,7 +434,7 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
               disabled={!remoteConfiguration || saving}
               label={interfaceText("API Key")}
               onChange={(_, { value }) => update('youTubeApiKey', value)}
-              placeholder={form.youTubeConfigured ? 'Configured' : 'YouTube Data API key'}
+              placeholder={interfaceText(form.youTubeConfigured ? 'Configured' : 'YouTube Data API key')}
               type="password"
               value={form.youTubeApiKey}
              {...interfaceTextProps("YouTube Data API key")}/>
@@ -463,7 +463,7 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
               disabled={!remoteConfiguration || saving}
               label={interfaceText("API Key")}
               onChange={(_, { value }) => update('lastFmApiKey', value)}
-              placeholder={form.lastFmConfigured ? 'Configured' : 'Last.fm API key'}
+              placeholder={interfaceText(form.lastFmConfigured ? 'Configured' : 'Last.fm API key')}
               type="password"
               value={form.lastFmApiKey}
              {...interfaceTextProps("Last.fm API key")}/>

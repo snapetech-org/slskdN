@@ -36,7 +36,7 @@ const VersionUpdateMenuItem = ({ current, latest }) => {
         <Modal.Header><LocalizedText source={"slskdN update available"} /></Modal.Header>
         <Modal.Content>
           <p>
-            <LocalizedText source={"You are running version"} />{" "}<strong>{current || 'unknown'}</strong><LocalizedText source={". Version"} />{" "}<strong>{latest || 'unknown'}</strong> <LocalizedText source={"is available."} /></p>
+            <LocalizedText source={"You are running version"} />{" "}<strong>{current || <LocalizedText source={"unknown"} />}</strong><LocalizedText source={". Version"} />{" "}<strong>{latest || <LocalizedText source={"unknown"} />}</strong> <LocalizedText source={"is available."} /></p>
         </Modal.Content>
         <Modal.Actions>
           <Popup

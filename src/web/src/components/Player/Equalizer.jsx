@@ -1,4 +1,5 @@
 import { bands, resumeAudioGraph, setEqGains } from './audioGraph';
+import { interfaceText } from '../../lib/interfaceLocale';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import React, { useEffect, useState } from 'react';
 import { Button, Dropdown, Icon, Popup } from 'semantic-ui-react';
@@ -62,7 +63,7 @@ const Equalizer = ({ audioElement, fadeAudioElement, onAudioError }) => {
 
   const presetOptions = Object.keys(presets).map((name) => ({
     key: name,
-    text: name,
+    text: interfaceText(name),
     value: name,
   }));
 
@@ -88,12 +89,12 @@ const Equalizer = ({ audioElement, fadeAudioElement, onAudioError }) => {
           <Popup
             content={
               state.enabled
-                ? 'Bypass the equalizer without losing your slider settings.'
-                : 'Enable the equalizer for this browser player.'
+                ? interfaceText('Bypass the equalizer without losing your slider settings.')
+                : interfaceText('Enable the equalizer for this browser player.')
             }
             trigger={
               <Button
-                aria-label={state.enabled ? 'Disable equalizer' : 'Enable equalizer'}
+                aria-label={state.enabled ? interfaceText('Disable equalizer') : interfaceText('Enable equalizer')}
                 compact
                 data-testid="player-eq-toggle"
                 icon
@@ -116,7 +117,7 @@ const Equalizer = ({ audioElement, fadeAudioElement, onAudioError }) => {
         {bands.map((frequency, index) => (
           <label className="player-eq-band" key={frequency}>
             <input
-              aria-label={`${formatBand(frequency)} equalizer gain`}
+              aria-label={interfaceText('{frequency} equalizer gain', { frequency: formatBand(frequency) })}
               aria-orientation="vertical"
               aria-valuetext={`${state.gains[index]} dB`}
               data-testid={`player-eq-slider-${frequency}`}

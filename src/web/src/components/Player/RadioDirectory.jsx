@@ -57,13 +57,22 @@ const RadioDirectory = ({ onClose, onPlay }) => {
             return (
               <List.Item key={party.partyId}>
                 <List.Content floated="right">
-                  <Popup content={playable ? "Play this host's current track. Remote playback needs an existing mesh connection to the host." : party.allowMeshStreaming ? 'This host needs to publish a current snapshot with radio transport support.' : 'This broadcast shares metadata only; its host has not enabled streaming.'} trigger={
-                    <Button aria-label={`Play ${party.title || party.contentId} from listed radio`} disabled={!playable} icon="play" onClick={() => { onPlay(party); onClose(); }} size="small" />
+                  <Popup content={playable
+                    ? interfaceText("Play this host's current track. Remote playback needs an existing mesh connection to the host.")
+                    : party.allowMeshStreaming
+                      ? interfaceText('This host needs to publish a current snapshot with radio transport support.')
+                      : interfaceText('This broadcast shares metadata only; its host has not enabled streaming.')}
+                    trigger={
+                    <Button aria-label={interfaceText('Play {track} from listed radio', { track: party.title || party.contentId })} disabled={!playable} icon="play" onClick={() => { onPlay(party); onClose(); }} size="small" />
                   } />
                 </List.Content>
                 <List.Content>
                   <List.Header>{party.title || party.contentId}</List.Header>
-                  <List.Description>{party.artist || party.hostPeerId} · {playable ? <LocalizedText source={"Host enables streaming"} /> : party.allowMeshStreaming ? 'Host update required' : 'Metadata only'}</List.Description>
+                  <List.Description>{party.artist || party.hostPeerId} · {playable
+                    ? <LocalizedText source={"Host enables streaming"} />
+                    : party.allowMeshStreaming
+                      ? <LocalizedText source={"Host update required"} />
+                      : <LocalizedText source={"Metadata only"} />}</List.Description>
                 </List.Content>
               </List.Item>
             );
