@@ -87,7 +87,7 @@ describe('Events', () => {
 
     render(<Events />);
 
-    expect(await screen.findByText('events unavailable')).toBeInTheDocument();
+    expect(await screen.findByText('The request failed. Try again.')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Try Again' }));
 
     expect(await screen.findByText('RecoveredEvent')).toBeInTheDocument();

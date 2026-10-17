@@ -32,6 +32,6 @@ describe('Directory', () => {
     await user.click(screen.getByRole('button', { name: 'Download' }));
 
     expect(await screen.findByTestId('browse-download-error'))
-      .toHaveTextContent('Network unavailable');
+      .toHaveTextContent('The download request could not be completed.');
   });
 });

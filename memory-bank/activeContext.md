@@ -1,3 +1,24 @@
+## Current state — Localization PR #360 — 2026-10-15
+
+PR #360 contains the 12-locale UI coverage and Arabic rendering fixes. The
+follow-up closes the remaining identified Network display gaps: per-label
+translations, regionalized peer and sequence counts, relative timestamps,
+stable mesh security warnings, and localized backfill progress. All twelve
+catalogs now have 5,475 matching keys (65,700 translated values), with nonempty
+entries and matching placeholders. The README and maturity draft are identical.
+
+Follow-up validation passed the focused Network suite (15/15), ESLint for the
+changed Network component, the Web UI production build, catalog key/value and
+placeholder parity, and the README maturity audit. Fresh exact-head hosted CI
+must be checked after the PR branch is updated. The broad Web UI suite and .NET
+suite were not rerun for this JavaScript-only follow-up.
+
+Broader raw API-error flows and fluent-speaker review remain open and are
+tracked in `docs/localization-roadmap.md`. The earlier Agent VM review covered
+Arabic metrics and downloads at mobile and desktop widths; this follow-up has
+not had a fresh browser pass and does not claim app-wide RTL support. Keep PR
+open; do not merge, release, or tag.
+
 ## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
 The `.351` feature and documentation work is on `main`, including the README
@@ -67,15 +88,11 @@ the accepted source while publication is unresolved.
 - Keep PR-specific runner routing and main manual-dispatch validation as a
   separate follow-up.
 
-## Prior state — Runner trust and scan gates — 2026-10-13
+## Prior state — Runner trust and scan gates — retired 2026-10-16
 
-The temporary local pool is enabled for `snapetech`-authored pull requests and
-trusted `main` validation. Pull requests from other contributors stay on
-GitHub-hosted runners, and all external contributors require workflow approval.
-These YAML rules are best-effort on personal-account repositories: a reviewed
-outside workflow can still request self-hosted after approval. Organization
-runner groups restricted to selected workflow refs remain the planned hard
-boundary.
+This describes the retired configuration. All workflows now use GitHub-hosted
+runners, and the private GitHub Actions runners have been removed from
+`kspls0` and `kspld0`. The routing and runner-group plans below are historical.
 
 PR #357 already isolates runner-owned temporary storage in Linux self-hosted
 jobs and scopes release write permissions to the publisher. This follow-up

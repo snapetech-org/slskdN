@@ -1,12 +1,3 @@
-# On-demand Windows runner
+# Windows smoke coverage
 
-The `Windows Smoke` workflow runs on the private `snapetech/packer` disposable
-Windows VM runner:
-
-```yaml
-runs-on: [self-hosted, Windows, X64, packer-windows]
-```
-
-The existing Windows release/publishing workflows can stay on their current
-hosted or protected runner paths. This smoke workflow is for PR-time Windows
-restore/build/test coverage and shuts the VM down after one ephemeral job.
+The `Windows Smoke` workflow runs on GitHub-hosted `windows-latest` for pull requests and manual dispatches. It restores, builds, and tests the .NET solution.

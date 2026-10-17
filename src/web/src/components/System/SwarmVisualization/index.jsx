@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -121,7 +124,7 @@ const SwarmVisualization = ({ jobId }) => {
       ) {
         return;
       }
-      setError(error_?.message || 'Failed to fetch swarm data');
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to fetch swarm data'));
       console.error('Failed to fetch swarm visualization data:', error_);
     } finally {
       if (statusRequestGenerationRef.current === requestGeneration) {
@@ -310,7 +313,7 @@ const SwarmVisualization = ({ jobId }) => {
           color="red"
         >
           <Icon name="exclamation triangle" />
-          <Header.Content>Error Loading Swarm Data</Header.Content>
+          <Header.Content><LocalizedText source={"Error Loading Swarm Data"} /></Header.Content>
         </Header>
         <p>{error}</p>
       </Segment>
@@ -322,9 +325,8 @@ const SwarmVisualization = ({ jobId }) => {
       <Segment placeholder>
         <Header icon>
           <Icon name="info circle" />
-          No swarm job selected
-        </Header>
-        <p>Select a swarm download job to view visualization</p>
+          <LocalizedText source={"No swarm job selected"} /></Header>
+        <p><LocalizedText source={"Select a swarm download job to view visualization"} /></p>
       </Segment>
     );
   }
@@ -340,7 +342,7 @@ const SwarmVisualization = ({ jobId }) => {
       <Segment>
         <Header as="h3">
           <Icon name="bolt" />
-          <Header.Content>Swarm Download Status</Header.Content>
+          <Header.Content><LocalizedText source={"Swarm Download Status"} /></Header.Content>
         </Header>
         <Grid columns={4}>
           <Grid.Column>
@@ -348,13 +350,13 @@ const SwarmVisualization = ({ jobId }) => {
               <Statistic.Value>
                 {jobStatus.completedChunks || 0} / {jobStatus.totalChunks || 0}
               </Statistic.Value>
-              <Statistic.Label>Chunks</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Chunks"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
           <Grid.Column>
             <Statistic>
               <Statistic.Value>{jobStatus.activeWorkers || 0}</Statistic.Value>
-              <Statistic.Label>Active Workers</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Active Workers"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
           <Grid.Column>
@@ -364,7 +366,7 @@ const SwarmVisualization = ({ jobId }) => {
                   ? jobStatus.chunksPerSecond.toFixed(1)
                   : '0.0'}
               </Statistic.Value>
-              <Statistic.Label>Chunks/Second</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Chunks per second"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
           <Grid.Column>
@@ -372,9 +374,9 @@ const SwarmVisualization = ({ jobId }) => {
               <Statistic.Value>
                 {jobStatus.estimatedSecondsRemaining > 0
                   ? `${Math.round(jobStatus.estimatedSecondsRemaining)}s`
-                  : 'N/A'}
+                  : interfaceText('N/A')}
               </Statistic.Value>
-              <Statistic.Label>ETA</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"ETA"} /></Statistic.Label>
             </Statistic>
           </Grid.Column>
         </Grid>
@@ -397,16 +399,16 @@ const SwarmVisualization = ({ jobId }) => {
         <Segment>
           <Header as="h3">
             <Icon name="users" />
-            <Header.Content>Peer Contributions</Header.Content>
+            <Header.Content><LocalizedText source={"Peer Contributions"} /></Header.Content>
           </Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Peer</Table.HeaderCell>
-                <Table.HeaderCell>Chunks Completed</Table.HeaderCell>
-                <Table.HeaderCell>Chunks Failed</Table.HeaderCell>
-                <Table.HeaderCell>Bytes Served</Table.HeaderCell>
-                <Table.HeaderCell>Success Rate</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Peer"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Chunks Completed"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Chunks Failed"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Bytes Served"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Success Rate"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -455,10 +457,9 @@ const SwarmVisualization = ({ jobId }) => {
         <Segment>
           <Header as="h3">
             <Icon name="grid layout" />
-            <Header.Content>Chunk Progress Heatmap</Header.Content>
+            <Header.Content><LocalizedText source={"Chunk Progress Heatmap"} /></Header.Content>
             <Header.Subheader>
-              Visual representation of chunk completion status
-            </Header.Subheader>
+              <LocalizedText source={"Visual representation of chunk completion status"} /></Header.Subheader>
           </Header>
           <div
             style={{
@@ -486,7 +487,10 @@ const SwarmVisualization = ({ jobId }) => {
                       borderRadius: '2px',
                       cursor: 'pointer',
                       height: '12px',
-                      title: `Chunk ${chunk.index + 1}: ${chunk.completed ? 'Completed' : 'Pending'}`,
+                      title: interfaceText('Chunk {index}: {status}', {
+                        index: chunk.index + 1,
+                        status: interfaceText(chunk.completed ? 'Completed' : 'Pending'),
+                      }),
                       width: '12px',
                     }}
                   />
@@ -513,8 +517,7 @@ const SwarmVisualization = ({ jobId }) => {
                   width: '12px',
                 }}
               />
-              Completed
-            </div>
+              <LocalizedText source={"Completed"} /></div>
             <div>
               <span
                 style={{
@@ -526,8 +529,7 @@ const SwarmVisualization = ({ jobId }) => {
                   width: '12px',
                 }}
               />
-              Pending
-            </div>
+              <LocalizedText source={"Pending"} /></div>
           </div>
         </Segment>
       )}
@@ -537,7 +539,7 @@ const SwarmVisualization = ({ jobId }) => {
         <Segment>
           <Header as="h3">
             <Icon name="chart line" />
-            <Header.Content>Performance Metrics</Header.Content>
+            <Header.Content><LocalizedText source={"Performance Metrics"} /></Header.Content>
           </Header>
           <Grid columns={3}>
             <Grid.Column>
@@ -545,7 +547,7 @@ const SwarmVisualization = ({ jobId }) => {
                 <Statistic.Value>
                   {traceSummary.totalEvents || 0}
                 </Statistic.Value>
-                <Statistic.Label>Total Events</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"Total Events"} /></Statistic.Label>
               </Statistic>
             </Grid.Column>
             <Grid.Column>
@@ -578,11 +580,11 @@ const SwarmVisualization = ({ jobId }) => {
                           }
                         }
 
-                        return 'N/A';
+                        return interfaceText('N/A');
                       })()
-                    : 'N/A'}
+                    : interfaceText('N/A')}
                 </Statistic.Value>
-                <Statistic.Label>Duration</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"Duration"} /></Statistic.Label>
               </Statistic>
             </Grid.Column>
             <Grid.Column>
@@ -601,7 +603,7 @@ const SwarmVisualization = ({ jobId }) => {
                   )}
                 </Statistic.Value>
                 <Statistic.Label>
-                  {traceSummary.rescueInvoked ? 'Rescue Invoked' : 'Normal'}
+                  {traceSummary.rescueInvoked ? <LocalizedText source={"Rescue Invoked"} /> : <LocalizedText source={"Normal"} />}
                 </Statistic.Label>
               </Statistic>
             </Grid.Column>
@@ -612,8 +614,7 @@ const SwarmVisualization = ({ jobId }) => {
                   as="h4"
                   size="small"
                 >
-                  Bytes by Source
-                </Header>
+                  <LocalizedText source={"Bytes by Source"} /></Header>
                 <Table size="small">
                   <Table.Body>
                     {Object.entries(asObject(traceSummary.bytesBySource))
@@ -639,12 +640,10 @@ const SwarmVisualization = ({ jobId }) => {
             size="small"
           >
             <Icon name="info circle" />
-            <Header.Content>Trace Data Not Available</Header.Content>
+            <Header.Content><LocalizedText source={"Trace Data Not Available"} /></Header.Content>
           </Header>
           <p>
-            Detailed peer contribution and performance metrics require trace
-            data. This may not be available for all swarm downloads.
-          </p>
+            <LocalizedText source={"Detailed peer contribution and performance metrics require trace data. This may not be available for all swarm downloads."} /></p>
         </Segment>
       )}
     </div>

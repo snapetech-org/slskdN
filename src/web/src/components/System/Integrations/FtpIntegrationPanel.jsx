@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="FtpIntegrationPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -85,6 +88,7 @@ const buildFtpForm = (options = {}) => {
 };
 
 const FtpIntegrationPanel = ({ options }) => {
+  useInterfaceLanguage();
   const remoteConfiguration = Boolean(
     getOption(options, 'remoteConfiguration', 'RemoteConfiguration'),
   );
@@ -157,16 +161,12 @@ const FtpIntegrationPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: 'FTP integration settings applied for this running daemon.',
+        text: interfaceText("FTP integration settings applied for this running daemon."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to apply FTP integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -212,16 +212,12 @@ const FtpIntegrationPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: 'FTP integration settings saved to YAML.',
+        text: interfaceText("FTP integration settings saved to YAML."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to save FTP integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -233,22 +229,20 @@ const FtpIntegrationPanel = ({ options }) => {
       <Card.Content>
         <Card.Header>
           <Icon name="upload" />
-          FTP Uploads
-        </Card.Header>
+          <LocalizedText source={"FTP Uploads"} /></Card.Header>
         <Card.Meta>
-          Completed-download upload target and connection policy.
-        </Card.Meta>
+          <LocalizedText source={"Completed-download upload target and connection policy."} /></Card.Meta>
       </Card.Content>
       <Card.Content>
         <div className="integration-status-row">
           {boolLabel(form.enabled, 'FTP On', 'FTP Off')}
           <Label>
             <Icon name={form.address ? 'server' : 'warning sign'} />
-            Address {form.address ? 'Configured' : 'Missing'}
+            <LocalizedText source={"Address"} />{" "}{form.address ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
           <Label>
             <Icon name={form.passwordConfigured ? 'key' : 'lock'} />
-            Password {form.passwordConfigured ? 'Configured' : 'Optional'}
+            <LocalizedText source={"Password"} />{" "}{form.passwordConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Optional"} />}
           </Label>
           {boolLabel(
             form.overwriteExisting,
@@ -262,10 +256,7 @@ const FtpIntegrationPanel = ({ options }) => {
             info
             size="small"
           >
-            Runtime configuration changes are disabled. Enable remote
-            configuration or edit YAML in the Options tab to change FTP
-            settings.
-          </Message>
+            <LocalizedText source={"Runtime configuration changes are disabled. Enable remote configuration or edit YAML in the Options tab to change FTP settings."} /></Message>
         )}
 
         {message && (
@@ -288,127 +279,127 @@ const FtpIntegrationPanel = ({ options }) => {
 
         <Form className="ftp-settings-form">
           <Popup
-            content="Turn on FTP uploads after completed downloads. This affects future completed-transfer handling."
+            content={interfaceText("Turn on FTP uploads after completed downloads. This affects future completed-transfer handling.")}
             trigger={
               <Checkbox
-                aria-label="Enable FTP completed-download uploads"
+                aria-label={interfaceText("Enable FTP completed-download uploads")}
                 checked={form.enabled}
                 disabled={!remoteConfiguration || saving}
-                label="Enable FTP uploads"
+                label={interfaceText("Enable FTP uploads")}
                 onChange={(_, { checked }) => update('enabled', checked)}
                 toggle
-              />
+               {...interfaceTextProps("Enable FTP completed-download uploads")}/>
             }
-          />
+           {...interfaceTextProps("Turn on FTP uploads after completed downloads. This affects future completed-transfer handling.")}/>
           <Form.Group widths="equal">
             <Form.Input
-              aria-label="FTP server address"
+              aria-label={interfaceText("FTP server address")}
               disabled={!remoteConfiguration || saving}
-              label="Server Address"
+              label={interfaceText("Server Address")}
               onChange={(_, { value }) => update('address', value)}
               placeholder="ftp.example.net"
               value={form.address}
-            />
+             {...interfaceTextProps("FTP server address")}/>
             <Form.Input
-              aria-label="FTP server port"
+              aria-label={interfaceText("FTP server port")}
               disabled={!remoteConfiguration || saving}
-              label="Port"
+              label={interfaceText("Port")}
               max={65535}
               min={1}
               onChange={(_, { value }) => update('port', value)}
               type="number"
               value={form.port}
-            />
+             {...interfaceTextProps("FTP server port")}/>
             <Form.Select
-              aria-label="FTP encryption mode"
+              aria-label={interfaceText("FTP encryption mode")}
               disabled={!remoteConfiguration || saving}
-              label="Encryption"
+              label={interfaceText("Encryption")}
               onChange={(_, { value }) => update('encryptionMode', value)}
               options={ftpEncryptionOptions}
               value={form.encryptionMode}
-            />
+             {...interfaceTextProps("FTP encryption mode")}/>
           </Form.Group>
           <Form.Group widths="equal">
             <Form.Input
-              aria-label="FTP username"
+              aria-label={interfaceText("FTP username")}
               disabled={!remoteConfiguration || saving}
-              label="Username"
+              label={interfaceText("Username")}
               onChange={(_, { value }) => update('username', value)}
               value={form.username}
-            />
+             {...interfaceTextProps("FTP username")}/>
             <Form.Input
-              aria-label="FTP password"
+              aria-label={interfaceText("FTP password")}
               disabled={!remoteConfiguration || saving}
-              label="Password"
+              label={interfaceText("Password")}
               onChange={(_, { value }) => update('password', value)}
-              placeholder={form.passwordConfigured ? 'Configured' : 'Optional password'}
+              placeholder={interfaceText(form.passwordConfigured ? 'Configured' : 'Optional password')}
               type="password"
               value={form.password}
-            />
+             {...interfaceTextProps("FTP password")}/>
           </Form.Group>
           <Form.Input
-            aria-label="FTP remote upload path"
+            aria-label={interfaceText("FTP remote upload path")}
             disabled={!remoteConfiguration || saving}
-            label="Remote Path"
+            label={interfaceText("Remote Path")}
             onChange={(_, { value }) => update('remotePath', value)}
             value={form.remotePath}
-          />
+           {...interfaceTextProps("FTP remote upload path")}/>
           <Form.Group widths="equal">
             <Form.Input
-              aria-label="FTP connection timeout milliseconds"
+              aria-label={interfaceText("FTP connection timeout milliseconds")}
               disabled={!remoteConfiguration || saving}
-              label="Connection Timeout Milliseconds"
+              label={interfaceText("Connection Timeout Milliseconds")}
               min={0}
               onChange={(_, { value }) => update('connectionTimeout', value)}
               type="number"
               value={form.connectionTimeout}
-            />
+             {...interfaceTextProps("FTP connection timeout milliseconds")}/>
             <Form.Input
-              aria-label="FTP retry attempts"
+              aria-label={interfaceText("FTP retry attempts")}
               disabled={!remoteConfiguration || saving}
-              label="Retry Attempts"
+              label={interfaceText("Retry Attempts")}
               max={5}
               min={0}
               onChange={(_, { value }) => update('retryAttempts', value)}
               type="number"
               value={form.retryAttempts}
-            />
+             {...interfaceTextProps("FTP retry attempts")}/>
           </Form.Group>
           <Form.Group grouped>
             <Popup
-              content="Overwrite files already present at the remote FTP path instead of skipping them."
+              content={interfaceText("Overwrite files already present at the remote FTP path instead of skipping them.")}
               trigger={
                 <Checkbox
-                  aria-label="FTP overwrite existing remote files"
+                  aria-label={interfaceText("FTP overwrite existing remote files")}
                   checked={form.overwriteExisting}
                   disabled={!remoteConfiguration || saving}
-                  label="Overwrite existing remote files"
+                  label={interfaceText("Overwrite existing remote files")}
                   onChange={(_, { checked }) =>
                     update('overwriteExisting', checked)
                   }
-                />
+                 {...interfaceTextProps("FTP overwrite existing remote files")}/>
               }
-            />
+             {...interfaceTextProps("Overwrite files already present at the remote FTP path instead of skipping them.")}/>
             <Popup
-              content="Allow FTP certificate validation failures for self-signed or untrusted certificates."
+              content={interfaceText("Allow FTP certificate validation failures for self-signed or untrusted certificates.")}
               trigger={
                 <Checkbox
-                  aria-label="FTP ignore certificate errors"
+                  aria-label={interfaceText("FTP ignore certificate errors")}
                   checked={form.ignoreCertificateErrors}
                   disabled={!remoteConfiguration || saving}
-                  label="Ignore certificate errors"
+                  label={interfaceText("Ignore certificate errors")}
                   onChange={(_, { checked }) =>
                     update('ignoreCertificateErrors', checked)
                   }
-                />
+                 {...interfaceTextProps("FTP ignore certificate errors")}/>
               }
-            />
+             {...interfaceTextProps("Allow FTP certificate validation failures for self-signed or untrusted certificates.")}/>
           </Form.Group>
         </Form>
 
         <div className="integration-actions">
           <Popup
-            content="Apply these FTP settings through the runtime configuration overlay."
+            content={interfaceText("Apply these FTP settings through the runtime configuration overlay.")}
             trigger={
               <Button
                 disabled={!remoteConfiguration || missingRequiredSettings.length > 0}
@@ -419,12 +410,11 @@ const FtpIntegrationPanel = ({ options }) => {
                 primary
               >
                 <Icon name="save" />
-                Apply Runtime
-              </Button>
+                <LocalizedText source={"Apply Runtime"} /></Button>
             }
-          />
+           {...interfaceTextProps("Apply these FTP settings through the runtime configuration overlay.")}/>
           <Popup
-            content="Persist these FTP settings to the YAML configuration file."
+            content={interfaceText("Persist these FTP settings to the YAML configuration file.")}
             trigger={
               <Button
                 disabled={!remoteConfiguration || missingRequiredSettings.length > 0}
@@ -434,12 +424,11 @@ const FtpIntegrationPanel = ({ options }) => {
                 onClick={saveYaml}
               >
                 <Icon name="file alternate" />
-                Save YAML
-              </Button>
+                <LocalizedText source={"Save YAML"} /></Button>
             }
-          />
+           {...interfaceTextProps("Persist these FTP settings to the YAML configuration file.")}/>
           <Popup
-            content="Discard unsaved FTP edits and restore the values currently reported by the daemon."
+            content={interfaceText("Discard unsaved FTP edits and restore the values currently reported by the daemon.")}
             trigger={
               <Button
                 disabled={saving}
@@ -448,10 +437,9 @@ const FtpIntegrationPanel = ({ options }) => {
                 onClick={reset}
               >
                 <Icon name="undo" />
-                Reset
-              </Button>
+                <LocalizedText source={"Reset"} /></Button>
             }
-          />
+           {...interfaceTextProps("Discard unsaved FTP edits and restore the values currently reported by the daemon.")}/>
         </div>
       </Card.Content>
     </Card>

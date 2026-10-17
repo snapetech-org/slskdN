@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import {
   isStateCancellable,
   isStateRetryable,
@@ -16,6 +17,7 @@ import { Div, Nbsp, TooltipButton } from '../Shared';
 import DownloadExclusionsModal from './DownloadExclusionsModal';
 import ShrinkableDropdownButton from '../Shared/ShrinkableDropdownButton';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
+
 import { Checkbox, Icon, Popup, Segment } from 'semantic-ui-react';
 
 const getRetryableFiles = ({ files, retryOption }) => {
@@ -94,6 +96,10 @@ const TransfersHeader = ({
   totalCount = null,
   transfers,
 }) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const localizedText = (source) => (
+    <span lang={languageFor(source)} dir={directionFor(source)}>{t(source)}</span>
+  );
   const appContext = useContext(AppContext) || {};
   const options = appContext.options || {};
   const [removeOption, setRemoveOption] = useState('Succeeded');
@@ -183,17 +189,20 @@ const TransfersHeader = ({
         <div className="transfers-header-actions">
           {direction === 'download' && (
             <TooltipButton
-              aria-label="Open download filters"
+              aria-label={interfaceText("Open download filters")}
               className="download-filter-button"
               icon="filter"
               onClick={() => setDownloadFilterOpen(true)}
               size="small"
-              title="Download filters"
+              title={interfaceText("Download filters")}
               tooltip="Block unwanted downloads by matching literal terms anywhere in remote filenames or folder paths."
-            >
-              {downloadFilterCount > 0
-                ? `Download filters (${downloadFilterCount})`
-                : 'Download filters'}
+             {...interfaceTextProps("Open download filters")}>
+              <span
+                dir={directionFor('Download filters')}
+                lang={languageFor('Download filters')}
+              >
+                {t('Download filters')}{downloadFilterCount > 0 ? ` (${downloadFilterCount})` : ''}
+              </span>
             </TooltipButton>
           )}
           <Div
@@ -211,13 +220,16 @@ const TransfersHeader = ({
           onClick={() => onRetryAll(retryableFiles)}
           menuLabel="Choose downloads to retry"
           options={[
-            { key: 'errored', text: 'Errored', value: 'Errored' },
-            { key: 'cancelled', text: 'Cancelled', value: 'Cancelled' },
-            { key: 'all', text: 'All', value: 'All' },
+            { key: 'errored', text: localizedText('Errored'), value: 'Errored' },
+            { key: 'cancelled', text: localizedText('Cancelled'), value: 'Cancelled' },
+            { key: 'all', text: localizedText('All'), value: 'All' },
           ]}
           tooltip="Retry every eligible loaded download in the chosen status group. Load more transfers first to include older rows. This sends new requests to Soulseek peers; use the arrow menu to choose Errored, Cancelled, or All."
         >
-          {`Retry ${retryOption === 'All' ? retryOption : `All ${retryOption}`}`}
+          {localizedText('Retry')}{' '}
+          {retryOption === 'All'
+            ? localizedText('All')
+            : <>{localizedText('All')}{' '}{localizedText(retryOption)}</>}
         </ShrinkableDropdownButton>
         <Nbsp />
         <ShrinkableDropdownButton
@@ -232,13 +244,16 @@ const TransfersHeader = ({
           }
           menuLabel="Choose transfers to cancel"
           options={[
-            { key: 'all', text: 'All', value: 'All' },
-            { key: 'queued', text: 'Queued', value: 'Queued' },
-            { key: 'inProgress', text: 'In Progress', value: 'In Progress' },
+            { key: 'all', text: localizedText('All'), value: 'All' },
+            { key: 'queued', text: localizedText('Queued'), value: 'Queued' },
+            { key: 'inProgress', text: localizedText('In Progress'), value: 'In Progress' },
           ]}
           tooltip="Cancel loaded transfers in the chosen state group to stop queued or active peer traffic. Load more transfers first to include older rows. Use the arrow menu to choose All, Queued, or In Progress."
         >
-          {`Cancel ${cancelOption === 'All' ? cancelOption : `All ${cancelOption}`}`}
+          {localizedText('Cancel')}{' '}
+          {cancelOption === 'All'
+            ? localizedText('All')
+            : <>{localizedText('All')}{' '}{localizedText(cancelOption)}</>}
         </ShrinkableDropdownButton>
         <Nbsp />
         <ShrinkableDropdownButton
@@ -256,20 +271,20 @@ const TransfersHeader = ({
           }
           menuLabel="Choose transfer rows to remove"
           options={[
-            { key: 'succeeded', text: 'Succeeded', value: 'Succeeded' },
-            { key: 'errored', text: 'Errored', value: 'Errored' },
-            { key: 'cancelled', text: 'Cancelled', value: 'Cancelled' },
-            { key: 'completed', text: 'Complete', value: 'Completed' },
+            { key: 'succeeded', text: localizedText('Succeeded'), value: 'Succeeded' },
+            { key: 'errored', text: localizedText('Errored'), value: 'Errored' },
+            { key: 'cancelled', text: localizedText('Cancelled'), value: 'Cancelled' },
+            { key: 'completed', text: localizedText('Completed'), value: 'Completed' },
           ]}
           tooltip={useBulkClear
-            ? 'Remove all matching completed rows from the server list; completed files remain on disk.'
-            : 'Remove matching loaded transfer rows from this list; completed files remain on disk. Load more transfers first to include older rows.'}
+            ? interfaceText('Remove all matching completed rows from the server list; completed files remain on disk.')
+            : interfaceText('Remove matching loaded transfer rows from this list; completed files remain on disk. Load more transfers first to include older rows.')}
         >
-          {`Remove All ${removeOption === 'Completed' ? 'Complete' : removeOption}`}
+          {localizedText('Remove')}{' '}{localizedText('All')}{' '}{localizedText(removeOption)}
         </ShrinkableDropdownButton>
         <Nbsp />
         <Popup
-          content="Allow slow or stalled downloads to use verified alternate sources. Soulseek peers use sequential failover; true multipart chunking is reserved for trusted slskdN mesh peers."
+          content={interfaceText("Allow slow or stalled downloads to use verified alternate sources. Soulseek peers use sequential failover; true multipart chunking is reserved for trusted slskdN mesh peers.")}
           position="bottom right"
           trigger={
             <Checkbox
@@ -277,15 +292,15 @@ const TransfersHeader = ({
               className="accelerated-downloads-toggle"
               disabled={!server.isConnected}
               hidden={direction === 'upload'}
-              label="Accelerated"
+              label={localizedText('Accelerated')}
               onChange={(_, data) => onAcceleratedChange?.(data.checked)}
               toggle
             />
           }
-        />
+         {...interfaceTextProps("Allow slow or stalled downloads to use verified alternate sources. Soulseek peers use sequential failover; true multipart chunking is reserved for trusted slskdN mesh peers.")}/>
         <Nbsp />
         <Popup
-          content={`Automatically find and replace stuck downloads with alternative sources. Replacements must be within ${autoReplaceThreshold}% file size. This is separate from automatic retry of failed downloads; disable transfers.download.auto_retry.enabled to stop those retries.`}
+          content={interfaceText("Automatically find and replace stuck downloads with alternative sources. Replacements must be within {autoReplaceThreshold}% file size. This is separate from automatic retry of failed downloads; disable transfers.download.auto_retry.enabled to stop those retries.", { "autoReplaceThreshold": (autoReplaceThreshold) })}
           position="bottom right"
           trigger={
             <Checkbox
@@ -293,19 +308,17 @@ const TransfersHeader = ({
               className="auto-replace-toggle"
               disabled={!server.isConnected}
               hidden={direction === 'upload'}
-              label="Auto-Replace"
+              label={localizedText('Auto-Replace')}
               onChange={(_, data) => onAutoReplaceChange?.(data.checked)}
               toggle
             />
           }
-        />
+         {...interfaceTextProps("Automatically find and replace stuck downloads with alternative sources. Replacements must be within {autoReplaceThreshold}% file size. This is separate from automatic retry of failed downloads; disable transfers.download.auto_retry.enabled to stop those retries.")}/>
         <Nbsp />
         <Popup
-          content={
-            canApplyHumanCheck
-              ? 'Automatically answer private messages that look like human-check or share-gate prompts. This helps with peer gates before or during downloads.'
-              : 'Remember this preference in the browser. Enable remote configuration to apply it to the daemon so replies are sent even when you are not on this pane.'
-          }
+          content={localizedText(canApplyHumanCheck
+            ? 'Automatically answer private messages that look like human-check or share-gate prompts. This helps with peer gates before or during downloads.'
+            : 'Remember this preference in the browser. Enable remote configuration to apply it to the daemon so replies are sent even when you are not on this pane.')}
           position="bottom right"
           trigger={
             <Checkbox
@@ -313,7 +326,7 @@ const TransfersHeader = ({
               className="human-check-auto-response-toggle"
               disabled={humanCheckSaving}
               hidden={direction === 'upload'}
-              label={humanCheckError ? 'Auto Reply (local)' : 'Auto Reply'}
+              label={localizedText(humanCheckError ? 'Auto Reply (local)' : 'Auto Reply')}
               onChange={(_, data) => setHumanCheckAutoResponse(data.checked)}
               toggle
             />
@@ -321,18 +334,18 @@ const TransfersHeader = ({
         />
         <Nbsp />
         <Popup
-          content="Hide successful 100% transfers from the list. Failed, aborted, timed-out, and rejected downloads stay visible for retry or review."
+          content={interfaceText("Hide successful 100% transfers from the list. Failed, aborted, timed-out, and rejected downloads stay visible for retry or review.")}
           position="bottom right"
           trigger={
             <Checkbox
               checked={hideCompleted}
               className="hide-completed-toggle"
-              label="Hide Complete"
+              label={interfaceText("Hide Complete")}
               onChange={(_, data) => onHideCompletedChange?.(data.checked)}
               toggle
-            />
+             {...interfaceTextProps("Hide Complete")}/>
           }
-        />
+         {...interfaceTextProps("Hide successful 100% transfers from the list. Failed, aborted, timed-out, and rejected downloads stay visible for retry or review.")}/>
           </Div>
         </div>
       </Segment>

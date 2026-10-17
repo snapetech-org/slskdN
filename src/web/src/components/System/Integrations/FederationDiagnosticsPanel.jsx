@@ -1,3 +1,7 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
+
+
 // <copyright file="FederationDiagnosticsPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -76,12 +80,9 @@ const FederationDiagnosticsPanel = () => {
         <Card.Content>
           <Card.Header>
             <Icon name="share alternate" />
-            Federation and Pod Diagnostics
-          </Card.Header>
+            <LocalizedText source={"Federation and Pod Diagnostics"} /></Card.Header>
           <Card.Meta>
-            Read-only posture for ActivityPub, pod signing, and mesh-adjacent
-            publishing.
-          </Card.Meta>
+            <LocalizedText source={"Read-only posture for ActivityPub, pod signing, and mesh-adjacent publishing."} /></Card.Meta>
         </Card.Content>
         <Card.Content>
           {featureGatesReady ? (
@@ -91,7 +92,7 @@ const FederationDiagnosticsPanel = () => {
               featureName="Social federation"
             />
           ) : (
-            <Message info size="small">Checking feature availability…</Message>
+            <Message info size="small"><LocalizedText source={"Checking feature availability…"} /></Message>
           )}
         </Card.Content>
       </Card>
@@ -109,12 +110,9 @@ const FederationDiagnosticsPanel = () => {
       <Card.Content>
         <Card.Header>
           <Icon name="share alternate" />
-          Federation and Pod Diagnostics
-        </Card.Header>
+          <LocalizedText source={"Federation and Pod Diagnostics"} /></Card.Header>
         <Card.Meta>
-          Read-only posture for ActivityPub, pod signing, and mesh-adjacent
-          publishing.
-        </Card.Meta>
+          <LocalizedText source={"Read-only posture for ActivityPub, pod signing, and mesh-adjacent publishing."} /></Card.Meta>
       </Card.Content>
       <Card.Content>
         {error && (
@@ -122,14 +120,13 @@ const FederationDiagnosticsPanel = () => {
             negative
             size="small"
           >
-            Federation diagnostics could not be loaded.
-          </Message>
+            <LocalizedText source={"Federation diagnostics could not be loaded."} /></Message>
         )}
         <div className="integration-status-row">
           {boolLabel(federation.enabled, 'Federation On', 'Federation Off')}
           <Label>
             <Icon name="privacy" />
-            Exposure: {valueOrDash(federation.exposure)}
+            <LocalizedText source={"Exposure:"} />{" "}{valueOrDash(federation.exposure)}
           </Label>
           {boolLabel(publishing.enabled, 'Publishing On', 'Publishing Off')}
           {boolLabel(
@@ -145,36 +142,36 @@ const FederationDiagnosticsPanel = () => {
         >
           <Table.Body>
             <Table.Row>
-              <Table.Cell>Domain configured</Table.Cell>
-              <Table.Cell>{federation.domainConfigured ? 'Yes' : 'No'}</Table.Cell>
+              <Table.Cell><LocalizedText source={"Domain configured"} /></Table.Cell>
+              <Table.Cell>{federation.domainConfigured ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Base URL configured</Table.Cell>
-              <Table.Cell>{federation.baseUrlConfigured ? 'Yes' : 'No'}</Table.Cell>
+              <Table.Cell><LocalizedText source={"Base URL configured"} /></Table.Cell>
+              <Table.Cell>{federation.baseUrlConfigured ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Publishable domains</Table.Cell>
+              <Table.Cell><LocalizedText source={"Publishable domains"} /></Table.Cell>
               <Table.Cell>{publishing.publishableDomains?.join(', ') || '-'}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Publishing visibility</Table.Cell>
+              <Table.Cell><LocalizedText source={"Publishing visibility"} /></Table.Cell>
               <Table.Cell>{valueOrDash(publishing.defaultVisibility)}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Pod join signatures</Table.Cell>
+              <Table.Cell><LocalizedText source={"Pod join signatures"} /></Table.Cell>
               <Table.Cell>{valueOrDash(pods.joinSignatureMode)}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Pod message signatures</Table.Cell>
+              <Table.Cell><LocalizedText source={"Pod message signatures"} /></Table.Cell>
               <Table.Cell>{valueOrDash(pods.messageSignatureMode)}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Mesh self peer ID</Table.Cell>
-              <Table.Cell>{mesh.selfPeerIdConfigured ? 'Configured' : 'Missing'}</Table.Cell>
+              <Table.Cell><LocalizedText source={"Mesh self peer ID"} /></Table.Cell>
+              <Table.Cell>{mesh.selfPeerIdConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Soulseek rendezvous</Table.Cell>
-              <Table.Cell>{mesh.soulseekRendezvousEnabled ? 'Enabled' : 'Disabled'}</Table.Cell>
+              <Table.Cell><LocalizedText source={"Soulseek rendezvous"} /></Table.Cell>
+              <Table.Cell>{mesh.soulseekRendezvousEnabled ? <LocalizedText source={"Enabled"} /> : <LocalizedText source={"Disabled"} />}</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
@@ -183,7 +180,7 @@ const FederationDiagnosticsPanel = () => {
             size="small"
             warning
           >
-            <Message.Header>Federation posture warnings</Message.Header>
+            <Message.Header><LocalizedText source={"Federation posture warnings"} /></Message.Header>
             <Message.List items={warnings} />
           </Message>
         )}
@@ -192,8 +189,7 @@ const FederationDiagnosticsPanel = () => {
             positive
             size="small"
           >
-            No federation or pod signing posture warnings were reported.
-          </Message>
+            <LocalizedText source={"No federation or pod signing posture warnings were reported."} /></Message>
         )}
       </Card.Content>
     </Card>

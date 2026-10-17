@@ -1,3 +1,8 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+
+
 import './Rooms.css';
 import TooltipButton from '../Shared/TooltipButton';
 import React, { useState } from 'react';
@@ -12,6 +17,7 @@ import {
 } from 'semantic-ui-react';
 
 const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
+  useInterfaceLanguage();
   const [open, setOpen] = useState(false);
   const [roomName, setRoomName] = useState('');
   const [isPrivate, setIsPrivate] = useState(false);
@@ -21,7 +27,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
   const handleCreate = async () => {
     const name = roomName.trim();
     if (!name) {
-      setError('Room name cannot be empty');
+      setError(interfaceText("Room name cannot be empty"));
       return;
     }
 
@@ -34,9 +40,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
       setRoomName('');
       setIsPrivate(false);
     } catch (error) {
-      setError(
-        error?.response?.data || error?.message || 'Failed to create room',
-      );
+      setError(getApiErrorMessage(error, { t: interfaceText }, 'Failed to create room'));
     } finally {
       setLoading(false);
     }
@@ -60,19 +64,18 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
   return (
     <>
       <Popup
-        content="Create or join a public Soulseek room by name. Private room creation is not supported by this server API."
+        content={interfaceText("Create or join a public Soulseek room by name. Private room creation is not supported by this server API.")}
         trigger={
           <Button
             color="green"
             icon
             onClick={() => setOpen(true)}
-            title="Create New Room"
-          >
+            title={interfaceText("Create New Room")}
+           {...interfaceTextProps("Create Room")}>
             <Icon name="plus" />
-            Create Room
-          </Button>
+            <LocalizedText source={"Create Room"} /></Button>
         }
-      />
+       {...interfaceTextProps("Create or join a public Soulseek room by name. Private room creation is not supported by this server API.")}/>
       <Modal
         size="small"
         {...modalOptions}
@@ -81,20 +84,19 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
       >
         <Modal.Header>
           <Icon name="plus" />
-          Create New Room
-        </Modal.Header>
+          <LocalizedText source={"Create New Room"} /></Modal.Header>
         <Modal.Content>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
-              <Header as="h4">Room Name</Header>
+              <Header as="h4"><LocalizedText source={"Room Name"} /></Header>
               <Input
                 error={Boolean(error)}
                 fluid
                 onChange={(_, { value }) => setRoomName(value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Enter room name..."
+                placeholder={interfaceText("Enter room name...")}
                 value={roomName}
-              />
+               {...interfaceTextProps("Enter room name...")}/>
               {error && (
                 <div
                   style={{
@@ -109,7 +111,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
             </div>
 
             <div>
-              <Header as="h4">Room Type</Header>
+              <Header as="h4"><LocalizedText source={"Room Type"} /></Header>
               <div style={{ display: 'flex', gap: '24px' }}>
                 <div
                   style={{ alignItems: 'center', display: 'flex', gap: '8px' }}
@@ -121,17 +123,16 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
                     value="public"
                   />
                   <div>
-                    <strong>Public Room</strong>
+                    <strong><LocalizedText source={"Public Room"} /></strong>
                     <div className="room-create-type-description">
-                      Anyone can join and see the room
-                    </div>
+                      <LocalizedText source={"Anyone can join and see the room"} /></div>
                   </div>
                 </div>
                 <div
                   style={{ alignItems: 'center', display: 'flex', gap: '8px' }}
                 >
                   <Popup
-                    content="Private room creation is not supported by this server API."
+                    content={interfaceText("Private room creation is not supported by this server API.")}
                     trigger={
                       <Radio
                         checked={isPrivate}
@@ -141,12 +142,11 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
                         value="private"
                       />
                     }
-                  />
+                   {...interfaceTextProps("Private room creation is not supported by this server API.")}/>
                   <div>
-                    <strong>Private Room</strong>
+                    <strong><LocalizedText source={"Private Room"} /></strong>
                     <div className="room-create-type-description">
-                      Not supported by this server API
-                    </div>
+                      <LocalizedText source={"Not supported by this server API"} /></div>
                   </div>
                 </div>
               </div>
@@ -154,9 +154,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
 
             <div className="room-create-note">
               <Icon name="info circle" />
-              <strong>Note:</strong> Public room creation depends on server
-              permissions. Private room creation is currently unavailable.
-            </div>
+              <strong><LocalizedText source={"Note:"} /></strong> <LocalizedText source={"Public room creation depends on server permissions. Private room creation is currently unavailable."} /></div>
           </div>
         </Modal.Content>
         <Modal.Actions>
@@ -166,8 +164,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
             tooltip="Close this dialog without creating or joining a room."
             type="button"
           >
-            Cancel
-          </TooltipButton>
+            <LocalizedText source={"Cancel"} /></TooltipButton>
           <TooltipButton
             disabled={!roomName.trim() || loading}
             loading={loading}
@@ -177,8 +174,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
             type="button"
           >
             <Icon name="plus" />
-            Create Room
-          </TooltipButton>
+            <LocalizedText source={"Create Room"} /></TooltipButton>
         </Modal.Actions>
       </Modal>
     </>

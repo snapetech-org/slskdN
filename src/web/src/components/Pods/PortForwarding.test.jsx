@@ -6,9 +6,11 @@ import '@testing-library/jest-dom';
 import * as pods from '../../lib/pods';
 import * as portForwarding from '../../lib/portForwarding';
 import PortForwarding from './PortForwarding';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 vi.mock('../../lib/pods', () => ({
   get: vi.fn(),
@@ -71,10 +73,48 @@ describe('Pod port forwarding', () => {
     portForwarding.getForwardingStatus.mockResolvedValue([forwarding]);
   });
 
-  afterEach(() => {
+  afterEach(async () => {
+    cleanup();
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
     vi.useRealTimers();
     vi.restoreAllMocks();
     setDocumentHidden(false);
+  });
+
+  it('localizes port-range validation and hides unknown service error prose', async () => {
+    stubLocaleCatalogFetch(vi);
+    await setInterfaceLanguage('de');
+    render(<PortForwarding />);
+
+    await waitFor(() => {
+      expect(portForwarding.getForwardingStatus).toHaveBeenCalledTimes(1);
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Weiterleitung hinzufügen' }));
+    fireEvent.click(screen.getByRole('listbox', { name: 'Wählen Sie einen VPN-fähigen Pod aus' }));
+    fireEvent.click(screen.getByRole('option', { name: 'Test Pod' }));
+    const numberFields = screen.getAllByRole('spinbutton');
+    fireEvent.change(numberFields[0], {
+      target: { value: '1023' },
+    });
+    fireEvent.change(screen.getAllByRole('textbox')[0], {
+      target: { value: 'service.internal' },
+    });
+    fireEvent.change(numberFields[1], {
+      target: { value: '5432' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Weiterleitung starten' }));
+
+    expect(await screen.findByText('Der lokale Port muss zwischen 1024 und 65535 liegen'))
+      .toBeInTheDocument();
+    expect(portForwarding.startForwarding).not.toHaveBeenCalled();
+    portForwarding.startForwarding.mockRejectedValueOnce(
+      new Error('Pod service says retry later.'),
+    );
+    fireEvent.change(numberFields[0], { target: { value: '8080' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Weiterleitung starten' }));
+    expect(await screen.findByText('Die Anfrage ist fehlgeschlagen. Versuchen Sie es erneut.')).toBeInTheDocument();
+    expect(portForwarding.startForwarding).toHaveBeenCalledOnce();
   });
 
   it('lazy-loads bounded secondary-tab data and renders only the active pane', async () => {

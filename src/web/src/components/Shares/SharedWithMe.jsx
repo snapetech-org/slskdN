@@ -1,3 +1,6 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
 import { createRemoteShareStreamUrl } from '../../lib/streaming';
@@ -25,20 +28,8 @@ const isObject = (value) => value && typeof value === 'object' && !Array.isArray
 const SHARE_PAGE_SIZE = 100;
 const MANIFEST_ITEM_PAGE_SIZE = 100;
 
-const getErrorMessage = (error, fallback) => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || fallback;
-};
+const getErrorMessage = (error, fallback) =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const normalizeBackfillResult = (data) =>
   isObject(data)
@@ -223,7 +214,7 @@ export default class SharedWithMe extends Component {
     const popup = window.open('about:blank', '_blank');
     if (!popup) {
       this.setState({
-        streamError: 'Allow pop-ups for this site to open the secure stream.',
+        streamError: interfaceText('Allow pop-ups for this site to open the secure stream.'),
       });
       return;
     }
@@ -243,7 +234,7 @@ export default class SharedWithMe extends Component {
       if (!popup.closed) popup.close();
       this.setState({
         streamError: error instanceof TypeError
-          ? 'Could not reach the share owner to prepare a secure stream. The owner may be offline or its CORS settings may not allow this app.'
+          ? interfaceText('Could not reach the share owner to prepare a secure stream. The owner may be offline or its CORS settings may not allow this app.')
           : getErrorMessage(error, 'Could not prepare a secure stream.'),
       });
     }
@@ -263,10 +254,10 @@ export default class SharedWithMe extends Component {
       });
 
       if (backfillResult.failed === 0) {
-        toast.success(backfillResult.message || 'Backfill started successfully');
+        toast.success(backfillResult.message || interfaceText('Backfill started successfully'));
       } else {
         toast.warning(
-          backfillResult.message || 'Backfill started with some failures',
+          backfillResult.message || interfaceText('Backfill started with some failures'),
         );
       }
     } catch (error) {
@@ -326,8 +317,7 @@ export default class SharedWithMe extends Component {
         <Header as="h1">
           <Icon name="share" />
           <Header.Content>
-            Shared with Me
-            <Header.Subheader>Collections shared with you</Header.Subheader>
+            <LocalizedText source={"Shared with Me"} /><Header.Subheader><LocalizedText source={"Collections shared with you"} /></Header.Subheader>
           </Header.Content>
         </Header>
 
@@ -338,8 +328,7 @@ export default class SharedWithMe extends Component {
             primary
             tooltip="Retry loading the incoming collection list."
           >
-            Retry
-          </Button>
+            <LocalizedText source={"Retry"} /></Button>
         )}
 
         {shares.length === 0 ? (
@@ -347,27 +336,25 @@ export default class SharedWithMe extends Component {
             <Segment placeholder>
               <Header icon>
                 <Icon name="inbox" />
-                {loading ? 'Loading shares' : 'No shares yet'}
+                {loading ? <LocalizedText source={"Loading shares"} /> : <LocalizedText source={"No shares yet"} />}
               </Header>
-              {!loading && <p>Collections shared with you will appear here.</p>}
+              {!loading && <p><LocalizedText source={"Collections shared with you will appear here."} /></p>}
             </Segment>
           )
         ) : (
           <Table>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Collection</Table.HeaderCell>
-                <Table.HeaderCell>Shared By</Table.HeaderCell>
-                <Table.HeaderCell>Type</Table.HeaderCell>
-                <Table.HeaderCell>Permissions</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Collection"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Shared By"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Permissions"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
               {visibleShares.map((share) => {
                 const ownerNickname = this.getOwnerNickname(share.collection);
-                const displayName =
-                  ownerNickname || share.collection?.ownerUserId || 'Unknown';
 
                 return (
                   <Table.Row
@@ -375,7 +362,7 @@ export default class SharedWithMe extends Component {
                     key={share.id}
                   >
                     <Table.Cell>
-                      <strong>{share.collection?.title || 'Untitled'}</strong>
+                      <strong>{share.collection?.title || interfaceText('Untitled')}</strong>
                       {share.collection?.description && (
                         <div
                           style={{
@@ -397,17 +384,19 @@ export default class SharedWithMe extends Component {
                           {ownerNickname}
                         </Label>
                       )}
-                      <span>{share.collection?.ownerUserId || 'Unknown'}</span>
+                      <span>{share.collection?.ownerUserId || interfaceText('Unknown')}</span>
                     </Table.Cell>
                     <Table.Cell>
-                      {share.collection?.type || 'ShareList'}
+                      {share.collection?.type === 'ShareList' || !share.collection?.type
+                        ? interfaceText('Share List')
+                        : share.collection.type}
                     </Table.Cell>
                     <Table.Cell>
-                      {share.allowStream && <Label color="green">Stream</Label>}
+                      {share.allowStream && <Label color="green"><LocalizedText source={"Stream"} /></Label>}
                       {share.allowDownload && (
-                        <Label color="blue">Download</Label>
+                        <Label color="blue"><LocalizedText source={"Download"} /></Label>
                       )}
-                      {share.allowReshare && <Label>Reshare</Label>}
+                      {share.allowReshare && <Label><LocalizedText source={"Reshare"} /></Label>}
                     </Table.Cell>
                     <Table.Cell>
                       <Button
@@ -417,8 +406,7 @@ export default class SharedWithMe extends Component {
                         size="small"
                         tooltip="Open this shared collection to review its contents and available actions."
                       >
-                        View Contents
-                      </Button>
+                        <LocalizedText source={"View Contents"} /></Button>
                     </Table.Cell>
                   </Table.Row>
                 );
@@ -429,32 +417,32 @@ export default class SharedWithMe extends Component {
         {shares.length > SHARE_PAGE_SIZE && (
           <div className="shares-pagination">
             <span>
-              {sharePageStart}–{sharePageEnd} of {shares.length}
+              {sharePageStart}–{sharePageEnd} <LocalizedText source={"of"} />{" "}{shares.length}
             </span>
             <Popup
-              content="Show the previous page of incoming shares."
+              content={interfaceText("Show the previous page of incoming shares.")}
               trigger={
                 <Button
-                  aria-label="Previous incoming shares page"
+                  aria-label={interfaceText("Previous incoming shares page")}
                   disabled={currentSharePage <= 1}
                   icon="chevron left"
                   onClick={() => this.setState({ sharePage: currentSharePage - 1 })}
                   size="mini"
-                />
+                 {...interfaceTextProps("Previous incoming shares page")}/>
               }
-            />
+             {...interfaceTextProps("Show the previous page of incoming shares.")}/>
             <Popup
-              content="Show the next page of incoming shares without rendering the whole list at once."
+              content={interfaceText("Show the next page of incoming shares without rendering the whole list at once.")}
               trigger={
                 <Button
-                  aria-label="Next incoming shares page"
+                  aria-label={interfaceText("Next incoming shares page")}
                   disabled={currentSharePage >= sharePages}
                   icon="chevron right"
                   onClick={() => this.setState({ sharePage: currentSharePage + 1 })}
                   size="mini"
-                />
+                 {...interfaceTextProps("Next incoming shares page")}/>
               }
-            />
+             {...interfaceTextProps("Show the next page of incoming shares without rendering the whole list at once.")}/>
           </div>
         )}
 
@@ -468,7 +456,7 @@ export default class SharedWithMe extends Component {
           <Modal.Header>
             {selectedShare?.collection?.title ||
               manifest?.title ||
-              'Collection Contents'}
+              interfaceText('Collection Contents')}
             {manifest?.ownerContactNickname && (
               <span
                 style={{
@@ -477,7 +465,7 @@ export default class SharedWithMe extends Component {
                   marginLeft: '1em',
                 }}
               >
-                by {manifest.ownerContactNickname}
+                <LocalizedText source={"by"} />{" "}{manifest.ownerContactNickname}
               </span>
             )}
           </Modal.Header>
@@ -491,8 +479,7 @@ export default class SharedWithMe extends Component {
                   primary
                   tooltip="Retry loading this collection's contents without closing this dialog."
                 >
-                  Retry Contents
-                </Button>
+                  <LocalizedText source={"Retry Contents"} /></Button>
               </Message>
             ) : manifestLoading ? (
               <LoaderSegment />
@@ -509,10 +496,7 @@ export default class SharedWithMe extends Component {
                 )}
                 {incomingStreamUnavailable && (
                   <Message info data-testid="incoming-stream-unavailable">
-                    The share owner has not published a peer-reachable endpoint.
-                    Ask the owner to configure sharing.externalEndpoint before
-                    streaming items.
-                  </Message>
+                    <LocalizedText source={"The share owner has not published a peer-reachable endpoint. Ask the owner to configure sharing.externalEndpoint before streaming items."} /></Message>
                 )}
                 {manifest.description && (
                   <p style={{ marginBottom: '1em' }}>{manifest.description}</p>
@@ -521,9 +505,9 @@ export default class SharedWithMe extends Component {
                   <Table>
                     <Table.Header>
                       <Table.Row>
-                        <Table.HeaderCell>Content ID</Table.HeaderCell>
-                        <Table.HeaderCell>Media Kind</Table.HeaderCell>
-                        <Table.HeaderCell>Actions</Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Content ID"} /></Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Media Kind"} /></Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
                       </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -544,11 +528,11 @@ export default class SharedWithMe extends Component {
                               <code style={{ fontSize: '0.85em' }}>
                                 {item.fileName ||
                                   item.contentId?.slice(0, 32) ||
-                                  'Unknown'}
+                                  interfaceText('Unknown')}
                               </code>
                             </Table.Cell>
                             <Table.Cell>
-                              {item.mediaKind || 'Unknown'}
+                              {item.mediaKind || interfaceText('Unknown')}
                             </Table.Cell>
                             <Table.Cell>
                               {item.streamUrl && (
@@ -560,8 +544,7 @@ export default class SharedWithMe extends Component {
                                   tooltip="Exchange the share credential for a short-lived ticket, then open this item without exposing the reusable share token in the URL."
                                 >
                                   <Icon name="play" />
-                                  Stream
-                                </Button>
+                                  <LocalizedText source={"Stream"} /></Button>
                               )}
                             </Table.Cell>
                           </Table.Row>
@@ -573,44 +556,43 @@ export default class SharedWithMe extends Component {
                   <Segment placeholder>
                     <Header icon>
                       <Icon name="file outline" />
-                      No items in this collection
-                    </Header>
+                      <LocalizedText source={"No items in this collection"} /></Header>
                   </Segment>
                 )}
                 {manifestItems.length > MANIFEST_ITEM_PAGE_SIZE && (
                   <div className="shares-pagination">
                     <span>
-                      {manifestItemPageStart}–{manifestItemPageEnd} of {manifestItems.length}
+                      {manifestItemPageStart}–{manifestItemPageEnd} <LocalizedText source={"of"} />{" "}{manifestItems.length}
                     </span>
                     <Popup
-                      content="Show the previous page of manifest items."
+                      content={interfaceText("Show the previous page of manifest items.")}
                       trigger={
                         <Button
-                          aria-label="Previous manifest page"
+                          aria-label={interfaceText("Previous manifest page")}
                           disabled={currentManifestItemPage <= 1}
                           icon="chevron left"
                           onClick={() => this.setState({ manifestItemPage: currentManifestItemPage - 1 })}
                           size="mini"
-                        />
+                         {...interfaceTextProps("Previous manifest page")}/>
                       }
-                    />
+                     {...interfaceTextProps("Show the previous page of manifest items.")}/>
                     <Popup
-                      content="Show the next page of manifest items without rendering the whole manifest at once."
+                      content={interfaceText("Show the next page of manifest items without rendering the whole manifest at once.")}
                       trigger={
                         <Button
-                          aria-label="Next manifest page"
+                          aria-label={interfaceText("Next manifest page")}
                           disabled={currentManifestItemPage >= manifestItemPages}
                           icon="chevron right"
                           onClick={() => this.setState({ manifestItemPage: currentManifestItemPage + 1 })}
                           size="mini"
-                        />
+                         {...interfaceTextProps("Next manifest page")}/>
                       }
-                    />
+                     {...interfaceTextProps("Show the next page of manifest items without rendering the whole manifest at once.")}/>
                   </div>
                 )}
               </div>
             ) : (
-              <ErrorSegment caption="Failed to load manifest" />
+              <ErrorSegment caption="Failed to load manifest" translateCaption />
             )}
           </Modal.Content>
           <Modal.Actions>
@@ -624,23 +606,20 @@ export default class SharedWithMe extends Component {
                 tooltip="Download every item in this shared collection when its grant permits downloads."
               >
                 <Icon name="download" />
-                Backfill All
-              </Button>
+                <LocalizedText source={"Backfill All"} /></Button>
             )}
             {this.state.backfillResult && (
               <span
                 style={{ color: '#666', fontSize: '0.9em', marginRight: '1em' }}
               >
-                {this.state.backfillResult.enqueued} enqueued,{' '}
-                {this.state.backfillResult.failed} failed
-              </span>
+                {this.state.backfillResult.enqueued} <LocalizedText source={"enqueued,"} />{' '}
+                {this.state.backfillResult.failed} <LocalizedText source={"failed"} /></span>
             )}
             <Button
               onClick={this.closeManifest}
               tooltip="Close the collection contents and return to incoming shares."
             >
-              Close
-            </Button>
+              <LocalizedText source={"Close"} /></Button>
           </Modal.Actions>
         </Modal>
       </Container>

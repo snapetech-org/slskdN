@@ -118,7 +118,7 @@ describe('MessageStream', () => {
     render(<MessageStream adapter={adapter} emptyHint="No messages yet." />);
 
     expect(await screen.findByRole('alert')).toHaveTextContent(
-      'Message service unavailable',
+      'The message history could not be loaded.',
     );
     expect(screen.queryByText('No messages yet.')).not.toBeInTheDocument();
 
@@ -152,7 +152,7 @@ describe('MessageStream', () => {
     await act(async () => {
       document.dispatchEvent(new Event('visibilitychange'));
     });
-    expect(await screen.findByRole('alert')).toHaveTextContent('Chat refresh failed');
+    expect(await screen.findByRole('alert')).toHaveTextContent('The message history could not be loaded.');
     expect(screen.getByText('last known message')).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Retry' }));

@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="MetadataSettingsPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -158,6 +161,7 @@ const buildMetadataSettingsForm = (options = {}) => {
 };
 
 const MetadataSettingsPanel = ({ options }) => {
+  useInterfaceLanguage();
   const remoteConfiguration = Boolean(
     getOption(options, 'remoteConfiguration', 'RemoteConfiguration'),
   );
@@ -372,16 +376,12 @@ const MetadataSettingsPanel = ({ options }) => {
       markSecretsConfigured(patch);
       setMessage({
         positive: true,
-        text: 'Metadata and Servarr integration settings saved to YAML.',
+        text: interfaceText("Metadata and Servarr integration settings saved to YAML."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to save metadata integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSaving(false);
@@ -393,11 +393,9 @@ const MetadataSettingsPanel = ({ options }) => {
       <Card.Content>
         <Card.Header>
           <Icon name="settings" />
-          Metadata and Servarr Settings
-        </Card.Header>
+          <LocalizedText source={"Metadata and Servarr Settings"} /></Card.Header>
         <Card.Meta>
-          YAML-backed setup for fingerprint, metadata, and Lidarr integrations.
-        </Card.Meta>
+          <LocalizedText source={"YAML-backed setup for fingerprint, metadata, and Lidarr integrations."} /></Card.Meta>
       </Card.Content>
       <Card.Content>
         <div className="integration-status-row">
@@ -407,13 +405,13 @@ const MetadataSettingsPanel = ({ options }) => {
             <Icon
               name={form.acoustIdClientIdConfigured ? 'key' : 'warning sign'}
             />
-            AcoustID Client{' '}
-            {form.acoustIdClientIdConfigured ? 'Configured' : 'Missing'}
+            <LocalizedText source={"AcoustID Client"} />{' '}
+            {form.acoustIdClientIdConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
           {boolLabel(form.lidarrEnabled, 'Lidarr On', 'Lidarr Off')}
           <Label>
             <Icon name={form.lidarrApiKeyConfigured ? 'key' : 'warning sign'} />
-            Lidarr API Key {form.lidarrApiKeyConfigured ? 'Configured' : 'Missing'}
+            <LocalizedText source={"Lidarr API Key"} />{" "}{form.lidarrApiKeyConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
         </div>
 
@@ -422,9 +420,7 @@ const MetadataSettingsPanel = ({ options }) => {
             info
             size="small"
           >
-            Remote configuration is disabled. Enable it or edit YAML manually in
-            the Options tab to change these integration settings.
-          </Message>
+            <LocalizedText source={"Remote configuration is disabled. Enable it or edit YAML manually in the Options tab to change these integration settings."} /></Message>
         )}
 
         {message && (
@@ -449,370 +445,366 @@ const MetadataSettingsPanel = ({ options }) => {
           <Segment>
             <Header as="h4">
               <Icon name="barcode" />
-              Chromaprint
-            </Header>
+              <LocalizedText source={"Chromaprint"} /></Header>
             <Popup
-              content="Enable local audio fingerprint generation through ffmpeg and Chromaprint. This only changes YAML; scans still run through explicit feature workflows."
+              content={interfaceText("Enable local audio fingerprint generation through ffmpeg and Chromaprint. This only changes YAML; scans still run through explicit feature workflows.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable Chromaprint fingerprinting"
+                  aria-label={interfaceText("Enable Chromaprint fingerprinting")}
                   checked={form.chromaprintEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable Chromaprint"
+                  label={interfaceText("Enable Chromaprint")}
                   onChange={(_, { checked }) =>
                     update('chromaprintEnabled', checked)
                   }
                   toggle
-                />
+                 {...interfaceTextProps("Enable Chromaprint fingerprinting")}/>
               }
-            />
+             {...interfaceTextProps("Enable local audio fingerprint generation through ffmpeg and Chromaprint. This only changes YAML; scans still run through explicit feature workflows.")}/>
             <Form.Group widths="equal">
               <Form.Select
-                aria-label="Chromaprint algorithm"
+                aria-label={interfaceText("Chromaprint algorithm")}
                 disabled={!remoteConfiguration || saving}
-                label="Algorithm"
+                label={interfaceText("Algorithm")}
                 onChange={(_, { value }) => update('chromaprintAlgorithm', value)}
                 options={chromaprintAlgorithmOptions}
                 value={form.chromaprintAlgorithm}
-              />
+               {...interfaceTextProps("Chromaprint algorithm")}/>
               <Form.Input
-                aria-label="Chromaprint ffmpeg path"
+                aria-label={interfaceText("Chromaprint ffmpeg path")}
                 disabled={!remoteConfiguration || saving}
-                label="ffmpeg Path"
+                label={interfaceText("ffmpeg Path")}
                 onChange={(_, { value }) => update('chromaprintFfmpegPath', value)}
                 value={form.chromaprintFfmpegPath}
-              />
+               {...interfaceTextProps("Chromaprint ffmpeg path")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Chromaprint sample rate"
+                aria-label={interfaceText("Chromaprint sample rate")}
                 disabled={!remoteConfiguration || saving}
-                label="Sample Rate"
+                label={interfaceText("Sample Rate")}
                 min={1}
                 onChange={(_, { value }) => update('chromaprintSampleRate', value)}
                 type="number"
                 value={form.chromaprintSampleRate}
-              />
+               {...interfaceTextProps("Chromaprint sample rate")}/>
               <Form.Input
-                aria-label="Chromaprint channels"
+                aria-label={interfaceText("Chromaprint channels")}
                 disabled={!remoteConfiguration || saving}
-                label="Channels"
+                label={interfaceText("Channels")}
                 min={1}
                 onChange={(_, { value }) => update('chromaprintChannels', value)}
                 type="number"
                 value={form.chromaprintChannels}
-              />
+               {...interfaceTextProps("Chromaprint channels")}/>
               <Form.Input
-                aria-label="Chromaprint duration seconds"
+                aria-label={interfaceText("Chromaprint duration seconds")}
                 disabled={!remoteConfiguration || saving}
-                label="Duration Seconds"
+                label={interfaceText("Duration Seconds")}
                 min={1}
                 onChange={(_, { value }) => update('chromaprintDuration', value)}
                 type="number"
                 value={form.chromaprintDuration}
-              />
+               {...interfaceTextProps("Chromaprint duration seconds")}/>
             </Form.Group>
           </Segment>
 
           <Segment>
             <Header as="h4">
               <Icon name="certificate" />
-              AcoustID
-            </Header>
+              <LocalizedText source={"AcoustID"} /></Header>
             <Popup
-              content="Enable AcoustID metadata lookup for existing fingerprint workflows. Saving this does not submit audio or contact AcoustID immediately."
+              content={interfaceText("Enable AcoustID metadata lookup for existing fingerprint workflows. Saving this does not submit audio or contact AcoustID immediately.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable AcoustID lookup"
+                  aria-label={interfaceText("Enable AcoustID lookup")}
                   checked={form.acoustIdEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable AcoustID"
+                  label={interfaceText("Enable AcoustID")}
                   onChange={(_, { checked }) => update('acoustIdEnabled', checked)}
                   toggle
-                />
+                 {...interfaceTextProps("Enable AcoustID lookup")}/>
               }
-            />
+             {...interfaceTextProps("Enable AcoustID metadata lookup for existing fingerprint workflows. Saving this does not submit audio or contact AcoustID immediately.")}/>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="AcoustID client ID"
+                aria-label={interfaceText("AcoustID client ID")}
                 disabled={!remoteConfiguration || saving}
-                label="Client ID"
+                label={interfaceText("Client ID")}
                 onChange={(_, { value }) => update('acoustIdClientId', value)}
-                placeholder={
+                placeholder={interfaceText(
                   form.acoustIdClientIdConfigured
                     ? 'Configured'
-                    : 'AcoustID client ID'
-                }
+                    : 'AcoustID client ID',
+                )}
                 type="password"
                 value={form.acoustIdClientId}
-              />
+               {...interfaceTextProps("AcoustID client ID")}/>
               <Form.Input
-                aria-label="AcoustID base URL"
+                aria-label={interfaceText("AcoustID base URL")}
                 disabled={!remoteConfiguration || saving}
-                label="Base URL"
+                label={interfaceText("Base URL")}
                 onChange={(_, { value }) => update('acoustIdBaseUrl', value)}
                 value={form.acoustIdBaseUrl}
-              />
+               {...interfaceTextProps("AcoustID base URL")}/>
             </Form.Group>
           </Segment>
 
           <Segment>
             <Header as="h4">
               <Icon name="database" />
-              MusicBrainz
-            </Header>
+              <LocalizedText source={"MusicBrainz"} /></Header>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="MusicBrainz base URL"
+                aria-label={interfaceText("MusicBrainz base URL")}
                 disabled={!remoteConfiguration || saving}
-                label="Base URL"
+                label={interfaceText("Base URL")}
                 onChange={(_, { value }) => update('musicBrainzBaseUrl', value)}
                 value={form.musicBrainzBaseUrl}
-              />
+               {...interfaceTextProps("MusicBrainz base URL")}/>
               <Form.Input
-                aria-label="MusicBrainz user agent"
+                aria-label={interfaceText("MusicBrainz user agent")}
                 disabled={!remoteConfiguration || saving}
-                label="User Agent"
+                label={interfaceText("User Agent")}
                 onChange={(_, { value }) => update('musicBrainzUserAgent', value)}
                 value={form.musicBrainzUserAgent}
-              />
+               {...interfaceTextProps("MusicBrainz user agent")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="MusicBrainz timeout seconds"
+                aria-label={interfaceText("MusicBrainz timeout seconds")}
                 disabled={!remoteConfiguration || saving}
-                label="Timeout Seconds"
+                label={interfaceText("Timeout Seconds")}
                 min={1}
                 onChange={(_, { value }) =>
                   update('musicBrainzTimeoutSeconds', value)
                 }
                 type="number"
                 value={form.musicBrainzTimeoutSeconds}
-              />
+               {...interfaceTextProps("MusicBrainz timeout seconds")}/>
               <Form.Input
-                aria-label="MusicBrainz retry attempts"
+                aria-label={interfaceText("MusicBrainz retry attempts")}
                 disabled={!remoteConfiguration || saving}
-                label="Retry Attempts"
+                label={interfaceText("Retry Attempts")}
                 min={1}
                 onChange={(_, { value }) =>
                   update('musicBrainzRetryAttempts', value)
                 }
                 type="number"
                 value={form.musicBrainzRetryAttempts}
-              />
+               {...interfaceTextProps("MusicBrainz retry attempts")}/>
             </Form.Group>
           </Segment>
 
           <Segment>
             <Header as="h4">
               <Icon name="disk" />
-              Lidarr
-            </Header>
+              <LocalizedText source={"Lidarr"} /></Header>
             <Popup
-              content="Enable Lidarr wanted-album sync and completed-download import settings. Live sync still runs only from explicit Lidarr actions or configured schedulers."
+              content={interfaceText("Enable Lidarr wanted-album sync and completed-download import settings. Live sync still runs only from explicit Lidarr actions or configured schedulers.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable Lidarr integration settings"
+                  aria-label={interfaceText("Enable Lidarr integration settings")}
                   checked={form.lidarrEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable Lidarr"
+                  label={interfaceText("Enable Lidarr")}
                   onChange={(_, { checked }) => update('lidarrEnabled', checked)}
                   toggle
-                />
+                 {...interfaceTextProps("Enable Lidarr integration settings")}/>
               }
-            />
+             {...interfaceTextProps("Enable Lidarr wanted-album sync and completed-download import settings. Live sync still runs only from explicit Lidarr actions or configured schedulers.")}/>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Lidarr base URL setting"
+                aria-label={interfaceText("Lidarr base URL setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Base URL"
+                label={interfaceText("Base URL")}
                 onChange={(_, { value }) => update('lidarrUrl', value)}
                 value={form.lidarrUrl}
-              />
+               {...interfaceTextProps("Lidarr base URL setting")}/>
               <Form.Input
-                aria-label="Lidarr API key setting"
+                aria-label={interfaceText("Lidarr API key setting")}
                 disabled={!remoteConfiguration || saving}
-                label="API Key"
+                label={interfaceText("API Key")}
                 onChange={(_, { value }) => update('lidarrApiKey', value)}
-                placeholder={
-                  form.lidarrApiKeyConfigured ? 'Configured' : 'Lidarr API key'
-                }
+                placeholder={interfaceText(
+                  form.lidarrApiKeyConfigured ? 'Configured' : 'Lidarr API key',
+                )}
                 type="password"
                 value={form.lidarrApiKey}
-              />
+               {...interfaceTextProps("Lidarr API key setting")}/>
               <Form.Input
-                aria-label="Lidarr timeout seconds setting"
+                aria-label={interfaceText("Lidarr timeout seconds setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Timeout Seconds"
+                label={interfaceText("Timeout Seconds")}
                 min={1}
                 onChange={(_, { value }) => update('lidarrTimeoutSeconds', value)}
                 type="number"
                 value={form.lidarrTimeoutSeconds}
-              />
+               {...interfaceTextProps("Lidarr timeout seconds setting")}/>
             </Form.Group>
             <Form.Group grouped>
               <Popup
-                content="Sync Lidarr wanted albums into slskdN Wishlist review items."
+                content={interfaceText("Sync Lidarr wanted albums into slskdN Wishlist review items.")}
                 trigger={
                   <Checkbox
-                    aria-label="Enable Lidarr wanted sync setting"
+                    aria-label={interfaceText("Enable Lidarr wanted sync setting")}
                     checked={form.lidarrSyncWantedToWishlist}
                     disabled={!remoteConfiguration || saving}
-                    label="Sync wanted albums to Wishlist"
+                    label={interfaceText("Sync wanted albums to Wishlist")}
                     onChange={(_, { checked }) =>
                       update('lidarrSyncWantedToWishlist', checked)
                     }
-                  />
+                   {...interfaceTextProps("Enable Lidarr wanted sync setting")}/>
                 }
-              />
+               {...interfaceTextProps("Sync Lidarr wanted albums into slskdN Wishlist review items.")}/>
               <Popup
-                content="Allow Lidarr-created Wishlist items to auto-download according to Wishlist rules."
+                content={interfaceText("Allow Lidarr-created Wishlist items to auto-download according to Wishlist rules.")}
                 trigger={
                   <Checkbox
-                    aria-label="Enable Lidarr auto-download setting"
+                    aria-label={interfaceText("Enable Lidarr auto-download setting")}
                     checked={form.lidarrAutoDownload}
                     disabled={!remoteConfiguration || saving}
-                    label="Auto-download synced Wishlist items"
+                    label={interfaceText("Auto-download synced Wishlist items")}
                     onChange={(_, { checked }) =>
                       update('lidarrAutoDownload', checked)
                     }
-                  />
+                   {...interfaceTextProps("Enable Lidarr auto-download setting")}/>
                 }
-              />
+               {...interfaceTextProps("Allow Lidarr-created Wishlist items to auto-download according to Wishlist rules.")}/>
               <Popup
-                content="Allow completed slskdN download directories to be sent to Lidarr manual import."
+                content={interfaceText("Allow completed slskdN download directories to be sent to Lidarr manual import.")}
                 trigger={
                   <Checkbox
-                    aria-label="Enable Lidarr completed import setting"
+                    aria-label={interfaceText("Enable Lidarr completed import setting")}
                     checked={form.lidarrAutoImportCompleted}
                     disabled={!remoteConfiguration || saving}
-                    label="Auto-import completed downloads"
+                    label={interfaceText("Auto-import completed downloads")}
                     onChange={(_, { checked }) =>
                       update('lidarrAutoImportCompleted', checked)
                     }
-                  />
+                   {...interfaceTextProps("Enable Lidarr completed import setting")}/>
                 }
-              />
+               {...interfaceTextProps("Allow completed slskdN download directories to be sent to Lidarr manual import.")}/>
               <Popup
-                content="Delete a completed directory only when Lidarr rejects every candidate in it. Disabled by default."
+                content={interfaceText("Delete a completed directory only when Lidarr rejects every candidate in it. Disabled by default.")}
                 trigger={
                   <Checkbox
-                    aria-label="Delete Lidarr rejected downloads setting"
+                    aria-label={interfaceText("Delete Lidarr rejected downloads setting")}
                     checked={form.lidarrDeleteRejectedDownloads}
                     disabled={!remoteConfiguration || saving}
-                    label="Delete fully rejected downloads"
+                    label={interfaceText("Delete fully rejected downloads")}
                     onChange={(_, { checked }) =>
                       update('lidarrDeleteRejectedDownloads', checked)
                     }
-                  />
+                   {...interfaceTextProps("Delete Lidarr rejected downloads setting")}/>
                 }
-              />
+               {...interfaceTextProps("Delete a completed directory only when Lidarr rejects every candidate in it. Disabled by default.")}/>
               <Popup
-                content="Exclude the exact rejected peer and remote release directory from the originating Wishlist item so it is not automatically selected again."
+                content={interfaceText("Exclude the exact rejected peer and remote release directory from the originating Wishlist item so it is not automatically selected again.")}
                 trigger={
                   <Checkbox
-                    aria-label="Blacklist Lidarr rejected downloads setting"
+                    aria-label={interfaceText("Blacklist Lidarr rejected downloads setting")}
                     checked={form.lidarrBlacklistRejectedDownloads}
                     disabled={!remoteConfiguration || saving}
-                    label="Blacklist rejected Wishlist result"
+                    label={interfaceText("Blacklist rejected Wishlist result")}
                     onChange={(_, { checked }) =>
                       update('lidarrBlacklistRejectedDownloads', checked)
                     }
-                  />
+                   {...interfaceTextProps("Blacklist Lidarr rejected downloads setting")}/>
                 }
-              />
+               {...interfaceTextProps("Exclude the exact rejected peer and remote release directory from the originating Wishlist item so it is not automatically selected again.")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Lidarr sync interval seconds setting"
+                aria-label={interfaceText("Lidarr sync interval seconds setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Sync Interval Seconds"
+                label={interfaceText("Sync Interval Seconds")}
                 min={300}
                 onChange={(_, { value }) =>
                   update('lidarrSyncIntervalSeconds', value)
                 }
                 type="number"
                 value={form.lidarrSyncIntervalSeconds}
-              />
+               {...interfaceTextProps("Lidarr sync interval seconds setting")}/>
               <Form.Input
-                aria-label="Lidarr max items per sync setting"
+                aria-label={interfaceText("Lidarr max items per sync setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Max Items Per Sync"
+                label={interfaceText("Max Items Per Sync")}
                 min={1}
                 onChange={(_, { value }) =>
                   update('lidarrMaxItemsPerSync', value)
                 }
                 type="number"
                 value={form.lidarrMaxItemsPerSync}
-              />
+               {...interfaceTextProps("Lidarr max items per sync setting")}/>
               <Form.Input
-                aria-label="Lidarr wishlist max results setting"
+                aria-label={interfaceText("Lidarr wishlist max results setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Wishlist Max Results"
+                label={interfaceText("Wishlist Max Results")}
                 min={10}
                 onChange={(_, { value }) =>
                   update('lidarrWishlistMaxResults', value)
                 }
                 type="number"
                 value={form.lidarrWishlistMaxResults}
-              />
+               {...interfaceTextProps("Lidarr wishlist max results setting")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Lidarr wishlist filter setting"
+                aria-label={interfaceText("Lidarr wishlist filter setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Wishlist Filter"
+                label={interfaceText("Wishlist Filter")}
                 onChange={(_, { value }) => update('lidarrWishlistFilter', value)}
                 value={form.lidarrWishlistFilter}
-              />
+               {...interfaceTextProps("Lidarr wishlist filter setting")}/>
               <Form.Input
-                aria-label="Lidarr import path from setting"
+                aria-label={interfaceText("Lidarr import path from setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Import Path From"
+                label={interfaceText("Import Path From")}
                 onChange={(_, { value }) => update('lidarrImportPathFrom', value)}
                 value={form.lidarrImportPathFrom}
-              />
+               {...interfaceTextProps("Lidarr import path from setting")}/>
               <Form.Input
-                aria-label="Lidarr import path to setting"
+                aria-label={interfaceText("Lidarr import path to setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Import Path To"
+                label={interfaceText("Import Path To")}
                 onChange={(_, { value }) => update('lidarrImportPathTo', value)}
                 value={form.lidarrImportPathTo}
-              />
+               {...interfaceTextProps("Lidarr import path to setting")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Select
-                aria-label="Lidarr import mode setting"
+                aria-label={interfaceText("Lidarr import mode setting")}
                 disabled={!remoteConfiguration || saving}
-                label="Import Mode"
+                label={interfaceText("Import Mode")}
                 onChange={(_, { value }) => update('lidarrImportMode', value)}
                 options={[
-                  { key: 'move', text: 'move', value: 'move' },
-                  { key: 'copy', text: 'copy', value: 'copy' },
+                  { key: 'move', text: interfaceText("move"), value: 'move' },
+                  { key: 'copy', text: interfaceText("copy"), value: 'copy' },
                 ]}
                 value={form.lidarrImportMode}
-              />
+               {...interfaceTextProps("Lidarr import mode setting")}/>
               <Popup
-                content="Allow Lidarr to replace existing files during completed-download import."
+                content={interfaceText("Allow Lidarr to replace existing files during completed-download import.")}
                 trigger={
                   <Checkbox
-                    aria-label="Enable Lidarr replace existing files setting"
+                    aria-label={interfaceText("Enable Lidarr replace existing files setting")}
                     checked={form.lidarrImportReplaceExistingFiles}
                     disabled={!remoteConfiguration || saving}
-                    label="Replace existing files"
+                    label={interfaceText("Replace existing files")}
                     onChange={(_, { checked }) =>
                       update('lidarrImportReplaceExistingFiles', checked)
                     }
-                  />
+                   {...interfaceTextProps("Enable Lidarr replace existing files setting")}/>
                 }
-              />
+               {...interfaceTextProps("Allow Lidarr to replace existing files during completed-download import.")}/>
             </Form.Group>
           </Segment>
         </Form>
 
         <div className="integration-actions">
           <Popup
-            content="Persist these YAML-only integration settings to the configuration file. This does not test credentials or start provider requests."
+            content={interfaceText("Persist these YAML-only integration settings to the configuration file. This does not test credentials or start provider requests.")}
             trigger={
               <Button
                 disabled={!remoteConfiguration || missingRequiredSettings.length > 0}
@@ -823,12 +815,11 @@ const MetadataSettingsPanel = ({ options }) => {
                 primary
               >
                 <Icon name="file alternate" />
-                Save YAML
-              </Button>
+                <LocalizedText source={"Save YAML"} /></Button>
             }
-          />
+           {...interfaceTextProps("Persist these YAML-only integration settings to the configuration file. This does not test credentials or start provider requests.")}/>
           <Popup
-            content="Discard unsaved metadata and Servarr edits and restore the values currently reported by the daemon."
+            content={interfaceText("Discard unsaved metadata and Servarr edits and restore the values currently reported by the daemon.")}
             trigger={
               <Button
                 disabled={saving}
@@ -837,10 +828,9 @@ const MetadataSettingsPanel = ({ options }) => {
                 onClick={reset}
               >
                 <Icon name="undo" />
-                Reset
-              </Button>
+                <LocalizedText source={"Reset"} /></Button>
             }
-          />
+           {...interfaceTextProps("Discard unsaved metadata and Servarr edits and restore the values currently reported by the daemon.")}/>
         </div>
       </Card.Content>
     </Card>

@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import {
   getYaml,
   getYamlLocation,
@@ -9,25 +12,11 @@ import CodeEditor from '../../Shared/CodeEditor';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Icon, Message, Modal, Popup } from 'semantic-ui-react';
 
-const getErrorText = (error, fallback = 'Options update failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') {
-    return data;
-  }
-
-  if (data && typeof data === 'object' && !Array.isArray(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || fallback;
-};
+const getErrorText = (error) =>
+  getApiErrorMessage(error, { t: interfaceText });
 
 const EditModal = ({ onClose, open, theme }) => {
+  useInterfaceLanguage();
   // eslint-disable-next-line react/hook-use-state
   const [{ error, loading }, setLoading] = useState({
     error: false,
@@ -57,7 +46,7 @@ const EditModal = ({ onClose, open, theme }) => {
       setLoading({ error: false, loading: false });
     } catch (getError) {
       setLoading({
-        error: getErrorText(getError, 'Could not load remote options.'),
+        error: getErrorText(getError),
         loading: false,
       });
     }
@@ -69,15 +58,15 @@ const EditModal = ({ onClose, open, theme }) => {
       const response = await validateYaml({ yaml: newYaml });
       if (requestId !== validationRequestId.current) return undefined;
       const error = typeof response === 'string'
-        ? response
+        ? getErrorText({ response: { data: response } })
         : response
-          ? getErrorText({ response: { data: response } }, 'YAML validation failed.')
+          ? getErrorText({ response: { data: response } })
           : undefined;
       setYamlError(error);
       return error;
     } catch (error) {
       if (requestId !== validationRequestId.current) return undefined;
-      const message = getErrorText(error, 'YAML validation failed.');
+      const message = getErrorText(error);
       setYamlError(message);
       return message;
     }
@@ -119,14 +108,13 @@ const EditModal = ({ onClose, open, theme }) => {
     >
       <Modal.Header>
         <Icon name="edit" />
-        Edit Options
-        <Div hidden={loading}>
+        <LocalizedText source={"Edit Options"} /><Div hidden={loading}>
           <Message
             className="no-grow edit-code-header"
             warning
           >
             <Icon name="warning sign" />
-            Editing {location}
+            <LocalizedText source={"Editing"} />{" "}{location}
           </Message>
         </Div>
       </Modal.Header>
@@ -139,13 +127,12 @@ const EditModal = ({ onClose, open, theme }) => {
             <Message negative>
               <Message.Content>{error}</Message.Content>
               <Popup
-                content="Retry loading the remote YAML and its source location."
+                content={interfaceText("Retry loading the remote YAML and its source location.")}
                 trigger={(
                   <Button onClick={get} primary>
-                    Retry Options
-                  </Button>
+                    <LocalizedText source={"Retry Options"} /></Button>
                 )}
-              />
+               {...interfaceTextProps("Retry loading the remote YAML and its source location.")}/>
             </Message>
           )}
           loading={loading && <PlaceholderSegment loading />}
@@ -179,7 +166,7 @@ const EditModal = ({ onClose, open, theme }) => {
           </Message>
         )}
         <Popup
-          content="Validate the current YAML and save it to the remote configuration file."
+          content={interfaceText("Validate the current YAML and save it to the remote configuration file.")}
           trigger={(
             <span>
               <Button
@@ -189,23 +176,21 @@ const EditModal = ({ onClose, open, theme }) => {
                 primary
               >
                 <Icon name="save" />
-                Save
-              </Button>
+                <LocalizedText source={"Save"} /></Button>
             </span>
           )}
-        />
+         {...interfaceTextProps("Validate the current YAML and save it to the remote configuration file.")}/>
         <Popup
-          content="Close the editor without applying unsaved YAML changes."
+          content={interfaceText("Close the editor without applying unsaved YAML changes.")}
           trigger={(
             <Button
               negative
               onClick={onClose}
             >
               <Icon name="close" />
-              Cancel
-            </Button>
+              <LocalizedText source={"Cancel"} /></Button>
           )}
-        >
+         {...interfaceTextProps("Close the editor without applying unsaved YAML changes.")}>
         </Popup>
       </Modal.Actions>
     </Modal>

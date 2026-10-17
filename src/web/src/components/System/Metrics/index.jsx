@@ -1,3 +1,7 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { formatRegionalCompactNumber, formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import { getKpiMetrics } from '../../../lib/telemetry';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -13,19 +17,21 @@ import {
   Table,
 } from 'semantic-ui-react';
 
-const formatBytes = (bytes) => {
-  if (!bytes) return '0 B';
+const formatBytes = (bytes, locale) => {
+  if (bytes === undefined || bytes === null) return formatRegionalNumber(0, undefined, locale) + ' B';
+  if (bytes === 0) return formatRegionalNumber(0, undefined, locale) + ' B';
   const k = 1_024;
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return `${(bytes / k ** i).toFixed(1)} ${sizes[i]}`;
+  return formatRegionalNumber(bytes / k ** i, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }, locale) + ' ' + sizes[i];
 };
 
-const formatNumber = (value) => {
+const formatNumber = (value, locale) => {
   if (value === undefined || value === null) return '—';
-  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
-  if (value >= 1_000) return `${(value / 1_000).toFixed(1)}K`;
-  return Number.parseFloat(value.toFixed(2)).toString();
+  return formatRegionalCompactNumber(value, { maximumFractionDigits: 2 }, locale);
 };
 
 // Extract the first sample value from a metric, or null
@@ -38,54 +44,56 @@ const sampleValue = (metric) => {
 const KPI_GROUPS = [
   {
     key: 'transfers',
-    title: 'Transfers',
+    get title() { return interfaceText("Transfers"); },
     icon: 'exchange',
     metrics: [
-      { key: 'slskd_uploads_total', label: 'Uploads Total', format: formatNumber },
-      { key: 'slskd_downloads_total', label: 'Downloads Total', format: formatNumber },
-      { key: 'slskd_uploads_active', label: 'Uploads Active', format: formatNumber },
-      { key: 'slskd_downloads_active', label: 'Downloads Active', format: formatNumber },
-      { key: 'slskd_uploads_queued', label: 'Uploads Queued', format: formatNumber },
-      { key: 'slskd_downloads_queued', label: 'Downloads Queued', format: formatNumber },
+      { key: 'slskd_uploads_total', get label() { return interfaceText("Uploads Total"); }, format: formatNumber },
+      { key: 'slskd_downloads_total', get label() { return interfaceText("Downloads Total"); }, format: formatNumber },
+      { key: 'slskd_uploads_active', get label() { return interfaceText("Uploads Active"); }, format: formatNumber },
+      { key: 'slskd_downloads_active', get label() { return interfaceText("Downloads Active"); }, format: formatNumber },
+      { key: 'slskd_uploads_queued', get label() { return interfaceText("Uploads Queued"); }, format: formatNumber },
+      { key: 'slskd_downloads_queued', get label() { return interfaceText("Downloads Queued"); }, format: formatNumber },
     ],
   },
   {
     key: 'search',
-    title: 'Search',
+    get title() { return interfaceText("Search"); },
     icon: 'search',
     metrics: [
-      { key: 'slskd_searches_incoming_requests_total', label: 'Incoming Requests', format: formatNumber },
-      { key: 'slskd_searches_incoming_requests_dropped_total', label: 'Dropped Requests', format: formatNumber },
-      { key: 'slskd_searches_outgoing_total', label: 'Outgoing Searches', format: formatNumber },
+      { key: 'slskd_searches_incoming_requests_total', get label() { return interfaceText("Incoming Requests"); }, format: formatNumber },
+      { key: 'slskd_searches_incoming_requests_dropped_total', get label() { return interfaceText("Dropped Requests"); }, format: formatNumber },
+      { key: 'slskd_searches_outgoing_total', get label() { return interfaceText("Outgoing Searches"); }, format: formatNumber },
     ],
   },
   {
     key: 'process',
-    title: 'Process',
+    get title() { return interfaceText("Process"); },
     icon: 'microchip',
     metrics: [
-      { key: 'process_working_set_bytes', label: 'Working Set', format: formatBytes },
-      { key: 'dotnet_total_memory_bytes', label: 'Managed Memory', format: formatBytes },
-      { key: 'process_cpu_seconds_total', label: 'CPU Seconds', format: formatNumber },
+      { key: 'process_working_set_bytes', get label() { return interfaceText("Working Set"); }, format: formatBytes },
+      { key: 'dotnet_total_memory_bytes', get label() { return interfaceText("Managed Memory"); }, format: formatBytes },
+      { key: 'process_cpu_seconds_total', get label() { return interfaceText("CPU Seconds"); }, format: formatNumber },
     ],
   },
   {
     key: 'network',
-    title: 'Network',
+    get title() { return interfaceText("Network"); },
     icon: 'wifi',
     metrics: [
-      { key: 'microsoft_aspnetcore_server_kestrel_current_connections', label: 'Kestrel Connections', format: formatNumber },
-      { key: 'system_net_sockets_connections_established_total', label: 'Sockets Established', format: formatNumber },
+      { key: 'microsoft_aspnetcore_server_kestrel_current_connections', get label() { return interfaceText("Kestrel Connections"); }, format: formatNumber },
+      { key: 'system_net_sockets_connections_established_total', get label() { return interfaceText("Sockets Established"); }, format: formatNumber },
     ],
   },
 ];
 
 const MetricGroup = ({ group, metrics }) => {
+  useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
   const items = group.metrics
     .map(({ key, label, format }) => ({
       label,
       value: sampleValue(metrics[key]),
-      format,
+      format: (value) => format(value, regionalLocale),
     }))
     .filter(({ value }) => value !== null);
 
@@ -113,6 +121,8 @@ const MetricGroup = ({ group, metrics }) => {
 };
 
 const SlskdMetricsTable = ({ metrics }) => {
+  useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
   const slskdMetrics = Object.entries(metrics)
     .filter(([key]) => key.startsWith('slskd_'))
     .sort(([a], [b]) => a.localeCompare(b));
@@ -123,14 +133,13 @@ const SlskdMetricsTable = ({ metrics }) => {
     <Segment>
       <Header size="small">
         <Icon name="table" />
-        All slskdN Metrics
-      </Header>
+        <LocalizedText source={"All slskdN Metrics"} /></Header>
       <div
-        aria-label="Prometheus metric details"
+        aria-label={interfaceText("Prometheus metric details")}
         className="system-metrics-table-scroll"
         role="region"
         tabIndex={0}
-      >
+       {...interfaceTextProps("Prometheus metric details")}>
         <Table
           compact
           size="small"
@@ -138,10 +147,10 @@ const SlskdMetricsTable = ({ metrics }) => {
         >
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Metric</Table.HeaderCell>
-              <Table.HeaderCell>Type</Table.HeaderCell>
-              <Table.HeaderCell>Value</Table.HeaderCell>
-              <Table.HeaderCell>Help</Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Metric"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Value"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Help"} /></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -151,7 +160,7 @@ const SlskdMetricsTable = ({ metrics }) => {
                   <code>{key}</code>
                 </Table.Cell>
                 <Table.Cell>{metric.type}</Table.Cell>
-                <Table.Cell>{formatNumber(sampleValue(metric))}</Table.Cell>
+                <Table.Cell>{formatNumber(sampleValue(metric), regionalLocale)}</Table.Cell>
                 <Table.Cell>{metric.help}</Table.Cell>
               </Table.Row>
             ))}
@@ -163,6 +172,8 @@ const SlskdMetricsTable = ({ metrics }) => {
 };
 
 const Metrics = () => {
+  useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
   const [metrics, setMetrics] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -176,7 +187,7 @@ const Metrics = () => {
       setMetrics(data);
       setLastUpdated(new Date());
     } catch (err) {
-      setError(err?.response?.data?.message || err.message || 'Failed to load metrics');
+      setError(getApiErrorMessage(err, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -191,11 +202,11 @@ const Metrics = () => {
       <>
         <Message
           error
-          header="Failed to load metrics"
+          header={interfaceText("Failed to load metrics")}
           content={error}
-        />
+         {...interfaceTextProps("Failed to load metrics")}/>
         <Popup
-          content="Try the Prometheus metrics request again after the current error."
+          content={interfaceText("Try the Prometheus metrics request again after the current error.")}
           position="top center"
           trigger={(
             <Button
@@ -203,10 +214,9 @@ const Metrics = () => {
               primary
             >
               <Icon name="refresh" />
-              Try Again
-            </Button>
+              <LocalizedText source={"Try Again"} /></Button>
           )}
-        />
+         {...interfaceTextProps("Try the Prometheus metrics request again after the current error.")}/>
       </>
     );
   }
@@ -218,14 +228,18 @@ const Metrics = () => {
       <div className="system-metrics-header">
         <Header size="medium">
           <Icon name="chart bar" />
-          Prometheus Metrics
-        </Header>
+          <LocalizedText source={"Prometheus Metrics"} /></Header>
         <div className="system-metrics-refresh">
           {lastUpdated && (
-            <span>Updated {lastUpdated.toLocaleTimeString()}</span>
+            <span>
+              <LocalizedText
+                source="Updated {time}"
+                values={{ time: lastUpdated.toLocaleTimeString(regionalLocale) }}
+              />
+            </span>
           )}
           <Popup
-            content="Fetch the latest Prometheus metrics now to review current application activity."
+            content={interfaceText("Fetch the latest Prometheus metrics now to review current application activity.")}
             position="top center"
             trigger={(
               <Button
@@ -234,10 +248,9 @@ const Metrics = () => {
                 onClick={fetchMetrics}
               >
                 <Icon name="refresh" />
-                Refresh
-              </Button>
+                <LocalizedText source={"Refresh"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Fetch the latest Prometheus metrics now to review current application activity.")}/>
         </div>
       </div>
 
@@ -247,8 +260,7 @@ const Metrics = () => {
             loading
             name="spinner"
           />
-          Loading metrics
-        </Message>
+          <LocalizedText source={"Loading metrics"} /></Message>
       )}
 
       <Grid stackable>

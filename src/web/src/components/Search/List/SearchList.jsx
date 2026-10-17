@@ -1,5 +1,7 @@
 import ErrorSegment from '../../Shared/ErrorSegment';
 import PlaceholderSegment from '../../Shared/PlaceholderSegment';
+import { useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import SearchListRow from './SearchListRow';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Button, Card, Checkbox, Icon, Loader, Popup, Table } from 'semantic-ui-react';
@@ -28,6 +30,13 @@ const SearchList = ({
   searches = {},
   sourceFilter = 'all',
 }) => {
+  const regionalLocale = useRegionalLocale();
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source, parameters) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {t(source, parameters)}
+    </span>
+  );
   const [page, setPage] = useState(1);
   const [selectedIds, setSelectedIds] = useState(() => new Set());
   const bulkWorking = Boolean(bulkAction);
@@ -121,7 +130,7 @@ const SearchList = ({
         <div className="search-list-header">
           <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap', alignItems: 'center' }}>
             <Popup
-              content="Clear all completed searches"
+              content={localized('Clear all completed searches')}
               position="top center"
               trigger={
                 <Button
@@ -135,12 +144,12 @@ const SearchList = ({
                   size="small"
                 >
                   <Icon name="trash" />
-                  Clear All
+                  {localized('Clear All')}
                 </Button>
               }
             />
             <Popup
-              content="Clear old searches"
+              content={localized('Clear old searches')}
               position="top center"
               trigger={
                 <Button
@@ -154,27 +163,30 @@ const SearchList = ({
                   size="small"
                 >
                   <Icon name="clock outline" />
-                  Clear Old
+                  {localized('Clear Old')}
                 </Button>
               }
             />
           </div>
           <div className="search-list-count">
-            {filteredCount} / {searchCount} loaded searches
+            {localized('Showing {filtered} of {total} loaded searches', {
+              filtered: formatRegionalNumber(filteredCount, undefined, regionalLocale),
+              total: formatRegionalNumber(searchCount, undefined, regionalLocale),
+            })}
           </div>
         </div>
         {selectedSearches.length > 0 && (
-          <div className="search-list-selection-toolbar" role="toolbar" aria-label="Selected search actions">
+          <div className="search-list-selection-toolbar" role="toolbar" aria-label={t('Selected search actions')}>
             <span className="search-list-selection-summary">
-              {selectedSearches.length} selected
-              <span className="search-list-selection-count">
-                {' '}
-                ({selectedCompletedSearches.length} completed, {selectedActiveSearches.length} active)
-              </span>
+              {localized('{selected} selected ({completed} completed, {active} active)', {
+                selected: formatRegionalNumber(selectedSearches.length, undefined, regionalLocale),
+                completed: formatRegionalNumber(selectedCompletedSearches.length, undefined, regionalLocale),
+                active: formatRegionalNumber(selectedActiveSearches.length, undefined, regionalLocale),
+              })}
             </span>
 
             <Popup
-              content="Run the selected completed searches again, one at a time, using the current acquisition profile."
+              content={localized('Run the selected completed searches again, one at a time, using the current acquisition profile.')}
               position="top center"
               trigger={(
                 <span>
@@ -185,14 +197,14 @@ const SearchList = ({
                     onClick={() => runSelectedAction(onResearchSelected, selectedCompletedSearches)}
                   >
                     <Icon name="refresh" />
-                    Search Again
+                    {localized('Search Again')}
                   </Button>
                 </span>
               )}
             />
 
             <Popup
-              content="Stop the selected searches that are still running."
+              content={localized('Stop the selected searches that are still running.')}
               position="top center"
               trigger={(
                 <span>
@@ -203,14 +215,14 @@ const SearchList = ({
                     onClick={() => runSelectedAction(onStopSelected, selectedActiveSearches)}
                   >
                     <Icon name="stop circle" />
-                    Stop Active
+                    {localized('Stop Active')}
                   </Button>
                 </span>
               )}
             />
 
             <Popup
-              content="Delete the selected completed searches from search history."
+              content={localized('Delete the selected completed searches from search history.')}
               position="top center"
               trigger={(
                 <span>
@@ -221,18 +233,20 @@ const SearchList = ({
                     onClick={() => runSelectedAction(onRemoveSelected, selectedCompletedSearches)}
                   >
                     <Icon name="trash" />
-                    Delete Selected
+                    {localized('Delete Selected')}
                   </Button>
                 </span>
               )}
             />
 
             <Popup
-              content="Clear the current selection without changing any searches."
+              content={localized('Clear the current selection without changing any searches.')}
               position="top center"
               trigger={(
                 <Button
-                  aria-label="Clear selection"
+                  aria-label={t('Clear selection')}
+                  dir={directionFor('Clear selection')}
+                  lang={languageFor('Clear selection')}
                   basic
                   disabled={bulkWorking}
                   icon="close"
@@ -250,14 +264,19 @@ const SearchList = ({
           />
         )}
         {error ? (
-          <ErrorSegment caption={error} />
+          <ErrorSegment caption={localized(error)} />
         ) : filteredCount === 0 && !connecting ? (
           <PlaceholderSegment
-            caption={
+            caption={localized(
               sourceFilter !== 'all'
-                ? `No ${sourceFilter} searches to display`
-                : 'No searches to display'
-            }
+                ? 'No {source} searches to display'
+                : 'No searches to display',
+              sourceFilter !== 'all' ? { source: t({
+                manual: 'Manual',
+                wishlist: 'Wishlist',
+                'auto-replace': 'Auto-Replace',
+              }[sourceFilter] || sourceFilter) } : undefined,
+            )}
             icon="search"
           />
         ) : (
@@ -270,12 +289,14 @@ const SearchList = ({
                 <Table.Row>
                   <Table.HeaderCell className="search-list-select">
                     <Popup
-                      content="Select all searches in the current list filter."
+                      content={localized('Select all searches in the current list filter.')}
                       position="top center"
                       trigger={(
                         <span>
                           <Checkbox
-                            aria-label="Select all searches in current list"
+                            aria-label={t('Select all searches in current list')}
+                            dir={directionFor('Select all searches in current list')}
+                            lang={languageFor('Select all searches in current list')}
                             checked={allVisibleSelected}
                             disabled={filteredCount === 0 || bulkWorking}
                             indeterminate={someVisibleSelected}
@@ -289,19 +310,19 @@ const SearchList = ({
                     <Icon name="info circle" />
                   </Table.HeaderCell>
                   <Table.HeaderCell className="search-list-phrase">
-                    Search
+                    {localized('Search')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="search-list-files">
-                    Files
+                    {localized('Files')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="search-list-locked">
-                    Locked
+                    {localized('Locked')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="search-list-responses">
-                    Responses
+                    {localized('Responses')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="search-list-started">
-                    Ended
+                    {localized('Ended')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="search-list-action" />
                 </Table.Row>
@@ -323,15 +344,21 @@ const SearchList = ({
             {(filteredCount > SEARCH_LIST_PAGE_SIZE || hasMoreFromServer) && (
               <div className="search-list-pagination">
                 <span>
-                  {pageStart}–{pageEnd} of {filteredCount} loaded
+                  {localized('Showing {start}–{end} of {count} loaded searches', {
+                    start: formatRegionalNumber(pageStart, undefined, regionalLocale),
+                    end: formatRegionalNumber(pageEnd, undefined, regionalLocale),
+                    count: formatRegionalNumber(filteredCount, undefined, regionalLocale),
+                  })}
                 </span>
                 <Popup
-                  content="Go to the previous page of searches."
+                  content={localized('Go to the previous page of searches.')}
                   position="top center"
                   trigger={
                     <span>
                       <Button
-                        aria-label="Previous search page"
+                        aria-label={t('Previous search page')}
+                        dir={directionFor('Previous search page')}
+                        lang={languageFor('Previous search page')}
                         disabled={currentPage <= 1}
                         icon="chevron left"
                         onClick={() => setPage(currentPage - 1)}
@@ -341,12 +368,14 @@ const SearchList = ({
                   }
                 />
                 <Popup
-                  content="Go to the next page of searches."
+                  content={localized('Go to the next page of searches.')}
                   position="top center"
                   trigger={
                     <span>
                       <Button
-                        aria-label="Next search page"
+                        aria-label={t('Next search page')}
+                        dir={directionFor('Next search page')}
+                        lang={languageFor('Next search page')}
                         disabled={currentPage >= totalPages}
                         icon="chevron right"
                         onClick={() => setPage(currentPage + 1)}
@@ -357,11 +386,11 @@ const SearchList = ({
                 />
                 {hasMoreFromServer && (
                   <Popup
-                    content="Fetch the next bounded page from the server. Existing loaded rows and selections stay in place."
+                    content={localized('Fetch the next bounded page from the server. Existing loaded rows and selections stay in place.')}
                     position="top center"
                     trigger={(
                       <Button
-                        content="Load more searches"
+                        content={localized('Load more searches')}
                         disabled={loadingMore}
                         loading={loadingMore}
                         onClick={onLoadMore}

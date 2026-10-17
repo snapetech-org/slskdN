@@ -1,3 +1,6 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as streaming from '../../lib/streaming';
 import PlayCollectionItemButton from '../Player/PlayCollectionItemButton';
@@ -24,20 +27,14 @@ const isObject = (value) => value && typeof value === 'object' && !Array.isArray
 const COLLECTION_PAGE_SIZE = 100;
 const COLLECTION_ITEM_PAGE_SIZE = 100;
 
-const getErrorMessage = (error, fallback = 'Request failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || fallback;
+const getCollectionTypeLabel = (type) => {
+  if (type === 'Playlist') return interfaceText('Playlist');
+  if (type === 'ShareList') return interfaceText('Share List');
+  return type || interfaceText('Playlist');
 };
+
+const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 export default class Collections extends Component {
   constructor(props) {
@@ -96,18 +93,7 @@ export default class Collections extends Component {
         loading: false,
       });
     } catch (error) {
-      let errorMessage = error.message;
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else {
-          errorMessage = JSON.stringify(error.response.data);
-        }
-      }
+      const errorMessage = getErrorMessage(error, 'Failed to load collections');
 
       const isAuthOrFeatureError =
         error.response?.status === 401 ||
@@ -200,20 +186,7 @@ export default class Collections extends Component {
       });
       await this.loadData();
     } catch (error) {
-      let errorMessage = error.message || 'Failed to create collection';
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.detail) {
-          errorMessage = error.response.data.detail;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else if (error.response.data.title) {
-          errorMessage = error.response.data.title;
-        }
-      }
+      const errorMessage = getErrorMessage(error, 'Failed to create collection');
 
       this.setState({ error: errorMessage });
     }
@@ -221,7 +194,7 @@ export default class Collections extends Component {
 
   handleDeleteCollection = async (id) => {
     // eslint-disable-next-line no-alert
-    if (!window.confirm('Delete this collection?')) return;
+    if (!window.confirm(interfaceText('Delete this collection?'))) return;
     try {
       await collectionsAPI.deleteCollection(id);
       await this.loadData();
@@ -293,16 +266,7 @@ export default class Collections extends Component {
       });
       await this.loadCollectionItems(this.state.selectedCollection.id);
     } catch (error) {
-      let errorMessage = error.message || 'Failed to add item';
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.detail) {
-          errorMessage = error.response.data.detail;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        }
-      }
+      const errorMessage = getErrorMessage(error, 'Failed to add item');
 
       this.setState({ error: errorMessage });
     }
@@ -374,8 +338,8 @@ export default class Collections extends Component {
     } = this.state;
 
     const typeOptions = [
-      { key: 'Playlist', text: 'Playlist', value: 'Playlist' },
-      { key: 'ShareList', text: 'Share List', value: 'ShareList' },
+      { key: 'Playlist', text: interfaceText("Playlist"), value: 'Playlist' },
+      { key: 'ShareList', text: interfaceText("Share List"), value: 'ShareList' },
     ];
 
     const collectionShares = shares;
@@ -413,10 +377,8 @@ export default class Collections extends Component {
           <Header as="h1">
             <Icon name="list" />
             <Header.Content>
-              Collections
-              <Header.Subheader>
-                Manage your playlists and share lists
-              </Header.Subheader>
+              <LocalizedText source={"Collections"} /><Header.Subheader>
+                <LocalizedText source={"Manage your playlists and share lists"} /></Header.Subheader>
             </Header.Content>
           </Header>
 
@@ -430,15 +392,14 @@ export default class Collections extends Component {
               tooltip="Open the collection form to create a playlist or list for organizing items."
             >
               <Icon name="plus" />
-              Create Collection
-            </TooltipButton>
+              <LocalizedText source={"Create Collection"} /></TooltipButton>
           </div>
 
           {collections.length === 0 ? (
             <Segment placeholder>
               <Header icon>
                 <Icon name="list" />
-                {loading ? 'Loading collections' : 'No collections yet'}
+                {loading ? <LocalizedText source={"Loading collections"} /> : <LocalizedText source={"No collections yet"} />}
               </Header>
               <TooltipButton
                 data-testid="collections-create-empty"
@@ -446,17 +407,16 @@ export default class Collections extends Component {
                 primary
                 tooltip="Open the collection form to create a playlist or list for organizing items."
               >
-                Create Collection
-              </TooltipButton>
+                <LocalizedText source={"Create Collection"} /></TooltipButton>
             </Segment>
           ) : (
             <Table celled>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Title</Table.HeaderCell>
-                  <Table.HeaderCell>Type</Table.HeaderCell>
-                  <Table.HeaderCell>Items</Table.HeaderCell>
-                  <Table.HeaderCell>Actions</Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Title"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Items"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -468,7 +428,7 @@ export default class Collections extends Component {
                     style={{ cursor: 'pointer' }}
                   >
                     <Table.Cell>{collection.title}</Table.Cell>
-                    <Table.Cell>{collection.type || 'Playlist'}</Table.Cell>
+                    <Table.Cell>{getCollectionTypeLabel(collection.type)}</Table.Cell>
                     <Table.Cell>{collection.itemCount || 0}</Table.Cell>
                     <Table.Cell>
                       <TooltipButton
@@ -480,8 +440,7 @@ export default class Collections extends Component {
                         size="small"
                         tooltip="Delete this collection after confirmation when you no longer need it."
                       >
-                        Delete
-                      </TooltipButton>
+                        <LocalizedText source={"Delete"} /></TooltipButton>
                     </Table.Cell>
                   </Table.Row>
                 ))}
@@ -491,32 +450,32 @@ export default class Collections extends Component {
           {collections.length > COLLECTION_PAGE_SIZE && (
             <div className="collections-pagination">
               <span>
-                {collectionPageStart}–{collectionPageEnd} of {collections.length}
+                {collectionPageStart}–{collectionPageEnd} <LocalizedText source={"of"} />{" "}{collections.length}
               </span>
               <Popup
-                content="Show the previous page of collections without reloading the route."
+                content={interfaceText("Show the previous page of collections without reloading the route.")}
                 trigger={
                   <Button
-                    aria-label="Previous collections page"
+                    aria-label={interfaceText("Previous collections page")}
                     disabled={currentCollectionPage <= 1}
                     icon="chevron left"
                     onClick={() => this.setState({ collectionPage: currentCollectionPage - 1 })}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Previous collections page")}/>
                 }
-              />
+               {...interfaceTextProps("Show the previous page of collections without reloading the route.")}/>
               <Popup
-                content="Show the next page of collections without rendering the entire list at once."
+                content={interfaceText("Show the next page of collections without rendering the entire list at once.")}
                 trigger={
                   <Button
-                    aria-label="Next collections page"
+                    aria-label={interfaceText("Next collections page")}
                     disabled={currentCollectionPage >= collectionPages}
                     icon="chevron right"
                     onClick={() => this.setState({ collectionPage: currentCollectionPage + 1 })}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Next collections page")}/>
                 }
-              />
+               {...interfaceTextProps("Show the next page of collections without rendering the entire list at once.")}/>
             </div>
           )}
 
@@ -525,7 +484,7 @@ export default class Collections extends Component {
               <Header as="h2">
                 {selectedCollection.title}
                 <Header.Subheader>
-                  {selectedCollection.type || 'Playlist'}
+                  {getCollectionTypeLabel(selectedCollection.type)}
                 </Header.Subheader>
               </Header>
 
@@ -537,8 +496,7 @@ export default class Collections extends Component {
                   tooltip="Open item search so you can add a library item or content ID to this collection."
                 >
                   <Icon name="plus" />
-                  Add Item
-                </TooltipButton>
+                  <LocalizedText source={"Add Item"} /></TooltipButton>
                 <TooltipButton
                   data-testid="share-create"
                   onClick={this.handleOpenShareModal}
@@ -546,20 +504,19 @@ export default class Collections extends Component {
                   tooltip="Choose a share group and permissions so its members can access this collection."
                 >
                   <Icon name="share alternate" />
-                  Share Collection
-                </TooltipButton>
+                  <LocalizedText source={"Share Collection"} /></TooltipButton>
               </div>
 
               <div data-testid="collection-items-table">
                 {selectedCollectionItems.length === 0 ? (
-                  <Message info>No items in this collection yet.</Message>
+                  <Message info><LocalizedText source={"No items in this collection yet."} /></Message>
                 ) : (
                   <Table>
                     <Table.Header>
                       <Table.Row>
-                        <Table.HeaderCell>File Name</Table.HeaderCell>
-                        <Table.HeaderCell>Media Kind</Table.HeaderCell>
-                        <Table.HeaderCell>Actions</Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"File Name"} /></Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Media Kind"} /></Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
                       </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -569,36 +526,40 @@ export default class Collections extends Component {
                           key={item.id}
                         >
                           <Table.Cell>
-                            {item.title || item.fileName || item.contentId || 'N/A'}
+                            {item.title || item.fileName || item.contentId || interfaceText('N/A')}
                             {item.artist ? <small> — {item.artist}</small> : null}
                           </Table.Cell>
-                          <Table.Cell>{item.mediaKind || 'Unknown'}</Table.Cell>
+                          <Table.Cell>{item.mediaKind || interfaceText('Unknown')}</Table.Cell>
                           <Table.Cell>
                             <PlayCollectionItemButton item={item} />
                             <Popup
-                              content="Edit how this item appears in the collection without changing the audio file."
+                              content={interfaceText("Edit how this item appears in the collection without changing the audio file.")}
                               trigger={
                                 <Button
-                                  aria-label={`Edit ${item.title || item.fileName || 'item'} display metadata`}
+                                  aria-label={interfaceText('Edit {item} display metadata', {
+                                    item: item.title || item.fileName || interfaceText('item'),
+                                  })}
                                   icon="edit"
                                   onClick={() => this.setState({ editFileTags: false, editItem: { ...item } })}
                                   size="small"
                                 />
                               }
-                            />
+                             {...interfaceTextProps("Edit how this item appears in the collection without changing the audio file.")}/>
                             <Popup
-                              content="Edit the tags in this server audio file. Administrator access and write permission are required."
+                              content={interfaceText("Edit the tags in this server audio file. Administrator access and write permission are required.")}
                               trigger={
                                 <Button
-                                  aria-label={`Edit ${item.title || item.fileName || 'item'} audio file tags`}
+                                  aria-label={interfaceText('Edit {item} audio file tags', {
+                                    item: item.title || item.fileName || interfaceText('item'),
+                                  })}
                                   icon="tags"
                                   onClick={() => this.setState({ editFileTags: true, editItem: { ...item } })}
                                   size="small"
                                 />
                               }
-                            />
+                             {...interfaceTextProps("Edit the tags in this server audio file. Administrator access and write permission are required.")}/>
                             <Popup
-                              content="Remove this item from the collection without deleting the shared file."
+                              content={interfaceText("Remove this item from the collection without deleting the shared file.")}
                               trigger={
                                 <Button
                                   data-testid={`collection-item-remove-${index}`}
@@ -613,15 +574,14 @@ export default class Collections extends Component {
                                         selectedCollection.id,
                                       );
                                     } catch (error) {
-                                      this.setState({ error: error.message });
+                                      this.setState({ error: getErrorMessage(error) });
                                     }
                                   }}
                                   size="small"
                                 >
-                                  Remove
-                                </Button>
+                                  <LocalizedText source={"Remove"} /></Button>
                               }
-                            />
+                             {...interfaceTextProps("Remove this item from the collection without deleting the shared file.")}/>
                           </Table.Cell>
                         </Table.Row>
                       ))}
@@ -631,32 +591,32 @@ export default class Collections extends Component {
                 {selectedCollectionItems.length > COLLECTION_ITEM_PAGE_SIZE && (
                   <div className="collections-pagination">
                     <span>
-                      {itemPageStart}–{itemPageEnd} of {selectedCollectionItems.length}
+                      {itemPageStart}–{itemPageEnd} <LocalizedText source={"of"} />{" "}{selectedCollectionItems.length}
                     </span>
                     <Popup
-                      content="Show the previous page of collection items."
+                      content={interfaceText("Show the previous page of collection items.")}
                       trigger={
                         <Button
-                          aria-label="Previous collection items page"
+                          aria-label={interfaceText("Previous collection items page")}
                           disabled={currentItemPage <= 1}
                           icon="chevron left"
                           onClick={() => this.setState({ collectionItemPage: currentItemPage - 1 })}
                           size="mini"
-                        />
+                         {...interfaceTextProps("Previous collection items page")}/>
                       }
-                    />
+                     {...interfaceTextProps("Show the previous page of collection items.")}/>
                     <Popup
-                      content="Show the next page of collection items without rendering the entire collection at once."
+                      content={interfaceText("Show the next page of collection items without rendering the entire collection at once.")}
                       trigger={
                         <Button
-                          aria-label="Next collection items page"
+                          aria-label={interfaceText("Next collection items page")}
                           disabled={currentItemPage >= itemPages}
                           icon="chevron right"
                           onClick={() => this.setState({ collectionItemPage: currentItemPage + 1 })}
                           size="mini"
-                        />
+                         {...interfaceTextProps("Next collection items page")}/>
                       }
-                    />
+                     {...interfaceTextProps("Show the next page of collection items without rendering the entire collection at once.")}/>
                   </div>
                 )}
               </div>
@@ -665,17 +625,17 @@ export default class Collections extends Component {
                 data-testid="shares-list"
                 style={{ marginTop: '1em' }}
               >
-                <Header as="h4">Shares</Header>
+                <Header as="h4"><LocalizedText source={"Shares"} /></Header>
                 {collectionShares.length === 0 ? (
-                  <Message info>No shares yet.</Message>
+                  <Message info><LocalizedText source={"No shares yet."} /></Message>
                 ) : (
                   <Table>
                     <Table.Header>
                       <Table.Row>
-                        <Table.HeaderCell>Collection</Table.HeaderCell>
-                        <Table.HeaderCell>Audience</Table.HeaderCell>
-                        <Table.HeaderCell>Stream</Table.HeaderCell>
-                        <Table.HeaderCell>Download</Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Collection"} /></Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Audience"} /></Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Stream"} /></Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Download"} /></Table.HeaderCell>
                       </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -687,14 +647,14 @@ export default class Collections extends Component {
                           </Table.Cell>
                           <Table.Cell>
                             {share.audienceType === 'ShareGroup'
-                              ? `Group ${share.audienceId}`
+                              ? <LocalizedText source={"Group {audienceId}"} values={{ "audienceId": (share.audienceId) }} />
                               : share.audienceId}
                           </Table.Cell>
                           <Table.Cell>
-                            {share.allowStream ? 'Yes' : 'No'}
+                            {share.allowStream ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                           </Table.Cell>
                           <Table.Cell>
-                            {share.allowDownload ? 'Yes' : 'No'}
+                            {share.allowDownload ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                           </Table.Cell>
                         </Table.Row>
                       ))}
@@ -717,11 +677,11 @@ export default class Collections extends Component {
             }
             open={createModalOpen}
           >
-            <Modal.Header>Create Collection</Modal.Header>
+            <Modal.Header><LocalizedText source={"Create Collection"} /></Modal.Header>
             <Modal.Content>
               <Form>
                 <Form.Field>
-                  <label htmlFor="collection-type">Type</label>
+                  <label htmlFor="collection-type"><LocalizedText source={"Type"} /></label>
                   <Dropdown
                     data-testid="collections-type-select"
                     id="collection-type"
@@ -735,23 +695,23 @@ export default class Collections extends Component {
                 </Form.Field>
                 <Form.Input
                   data-testid="collections-title-input"
-                  label="Title"
+                  label={interfaceText("Title")}
                   onChange={(event) =>
                     this.setState({ newCollectionTitle: event.target.value })
                   }
-                  placeholder="Enter collection title"
+                  placeholder={interfaceText("Enter collection title")}
                   value={newCollectionTitle}
-                />
+                 {...interfaceTextProps("Title")}/>
                 <Form.TextArea
-                  label="Description"
+                  label={interfaceText("Description")}
                   onChange={(event) =>
                     this.setState({
                       newCollectionDescription: event.target.value,
                     })
                   }
-                  placeholder="Optional description"
+                  placeholder={interfaceText("Optional description")}
                   value={newCollectionDescription}
-                />
+                 {...interfaceTextProps("Description")}/>
               </Form>
             </Modal.Content>
             <Modal.Actions>
@@ -766,8 +726,7 @@ export default class Collections extends Component {
                 }
                 tooltip="Close the form and discard the collection details you entered."
               >
-                Cancel
-              </TooltipButton>
+                <LocalizedText source={"Cancel"} /></TooltipButton>
               <TooltipButton
                 data-testid="collections-create-submit"
                 disabled={!newCollectionTitle.trim()}
@@ -775,8 +734,7 @@ export default class Collections extends Component {
                 primary
                 tooltip="Save this collection so you can organize items here. Enter a title first to enable creation."
               >
-                Create
-              </TooltipButton>
+                <LocalizedText source={"Create"} /></TooltipButton>
             </Modal.Actions>
           </Modal>
 
@@ -785,16 +743,16 @@ export default class Collections extends Component {
             onClose={() => this.setState({ shareModalOpen: false })}
             open={shareModalOpen}
           >
-            <Modal.Header>Share Collection</Modal.Header>
+            <Modal.Header><LocalizedText source={"Share Collection"} /></Modal.Header>
             <Modal.Content>
               {shareGroupsLoading ? (
                 <LoaderSegment />
               ) : shareGroups.length === 0 ? (
-                <Message warning>No share groups available.</Message>
+                <Message warning><LocalizedText source={"No share groups available."} /></Message>
               ) : (
                 <Form>
                   <Form.Field>
-                    <label htmlFor="share-group">Share Group</label>
+                    <label htmlFor="share-group"><LocalizedText source={"Share Group"} /></label>
                     <Dropdown
                       data-testid="share-audience-picker"
                       id="share-group"
@@ -811,7 +769,7 @@ export default class Collections extends Component {
                     />
                   </Form.Field>
                   <Form.Field>
-                    <label htmlFor="share-allow-stream">Allow streaming</label>
+                    <label htmlFor="share-allow-stream"><LocalizedText source={"Allow streaming"} /></label>
                     <input
                       checked={shareAllowStream}
                       data-testid="share-policy-stream"
@@ -825,7 +783,7 @@ export default class Collections extends Component {
                     />
                   </Form.Field>
                   <Form.Field>
-                    <label htmlFor="share-allow-download">Allow download</label>
+                    <label htmlFor="share-allow-download"><LocalizedText source={"Allow download"} /></label>
                     <input
                       checked={shareAllowDownload}
                       data-testid="share-policy-download"
@@ -846,8 +804,7 @@ export default class Collections extends Component {
                 onClick={() => this.setState({ shareModalOpen: false })}
                 tooltip="Close this form without creating a share."
               >
-                Cancel
-              </TooltipButton>
+                <LocalizedText source={"Cancel"} /></TooltipButton>
               <TooltipButton
                 data-testid="share-create-submit"
                 disabled={!shareAudienceId}
@@ -855,20 +812,19 @@ export default class Collections extends Component {
                 primary
                 tooltip="Share this collection with the selected group using the permissions below. Choose a group first to enable sharing."
               >
-                Share
-              </TooltipButton>
+                <LocalizedText source={"Share"} /></TooltipButton>
             </Modal.Actions>
           </Modal>
 
           {/* Add Item Modal */}
           <Modal onClose={() => this.setState({ editItem: null })} open={Boolean(editItem)} size="small">
-            <Modal.Header>{editFileTags ? 'Edit audio file tags' : 'Edit collection display metadata'}</Modal.Header>
+            <Modal.Header>{editFileTags ? <LocalizedText source={"Edit audio file tags"} /> : <LocalizedText source={"Edit collection display metadata"} />}</Modal.Header>
             <Modal.Content>
               <Form>
                 {['title', 'artist', 'album'].map((field) => (
                   <Form.Input
                     key={field}
-                    label={field[0].toUpperCase() + field.slice(1)}
+                    label={interfaceText(field[0].toUpperCase() + field.slice(1))}
                     onChange={(event) => this.setState({ editItem: { ...editItem, [field]: event.target.value } })}
                     value={editItem?.[field] || ''}
                   />
@@ -876,10 +832,12 @@ export default class Collections extends Component {
               </Form>
             </Modal.Content>
             <Modal.Actions>
-              <Popup content="Discard changes to this collection entry." trigger={
-                <Button onClick={() => this.setState({ editItem: null })}>Cancel</Button>
-              } />
-              <Popup content={editFileTags ? 'Write tags to the server audio file and update its collection references.' : 'Save this item’s display metadata without writing to the audio file.'} trigger={
+              <Popup content={interfaceText("Discard changes to this collection entry.")} trigger={
+                <Button onClick={() => this.setState({ editItem: null })}><LocalizedText source={"Cancel"} /></Button>
+              }  {...interfaceTextProps("Discard changes to this collection entry.")}/>
+              <Popup content={interfaceText(editFileTags
+                ? 'Write tags to the server audio file and update its collection references.'
+                : 'Save this item’s display metadata without writing to the audio file.')} trigger={
                 <Button
                   disabled={!editItem || !selectedCollection}
                   onClick={async () => {
@@ -902,14 +860,14 @@ export default class Collections extends Component {
                       await this.loadCollectionItems(selectedCollection.id);
                       this.setState({
                         editItem: null,
-                        error: shareScanStarted ? null : 'Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.',
+                        error: shareScanStarted ? null : interfaceText('Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.'),
                       });
                     } catch (saveError) {
                       this.setState({ error: getErrorMessage(saveError, 'Could not save display metadata') });
                     }
                   }}
                   primary
-                >Save</Button>
+                ><LocalizedText source={"Save"} /></Button>
               } />
             </Modal.Actions>
           </Modal>
@@ -924,32 +882,30 @@ export default class Collections extends Component {
             }
             open={addItemModalOpen}
           >
-            <Modal.Header>Add Item to {selectedCollection?.title}</Modal.Header>
+            <Modal.Header><LocalizedText source={"Add Item to"} />{" "}{selectedCollection?.title}</Modal.Header>
             <Modal.Content>
               <Form>
                 <Form.Field>
                   <label htmlFor="collection-item-search">
-                    Search for item
-                  </label>
+                    <LocalizedText source={"Search for item"} /></label>
                   <Form.Input
                     data-testid="collection-item-search-input"
                     id="collection-item-search"
-                    label="Search for item"
+                    label={interfaceText("Search for item")}
                     loading={itemSearchLoading}
                     onChange={(event) => {
                       const query = event.target.value;
                       this.setState({ itemSearchQuery: query });
                       this.handleSearchItems(query);
                     }}
-                    placeholder="Search by filename (e.g., sintel, aria, treasure)..."
+                    placeholder={interfaceText("Search by filename (e.g., sintel, aria, treasure)...")}
                     value={itemSearchQuery}
-                  />
+                   {...interfaceTextProps("Search for item")}/>
                 </Form.Field>
                 {itemSearchResults.length > 0 && (
                   <Form.Field>
                     <label htmlFor="collection-item-results">
-                      Search Results
-                    </label>
+                      <LocalizedText source={"Search Results"} /></label>
                     <Dropdown
                       data-testid="collection-item-results"
                       fluid
@@ -959,22 +915,20 @@ export default class Collections extends Component {
                       }}
                       options={itemSearchResults.map((item, index) => ({
                         key: item.contentId || index,
-                        text: `${item.fileName || item.path} (${item.mediaKind || 'File'})`,
+                        text: `${item.fileName || item.path} (${item.mediaKind || interfaceText('File')})`,
                         value: item.contentId,
                       }))}
-                      placeholder="Select an item from search results"
+                      placeholder={interfaceText("Select an item from search results")}
                       search
                       selection
-                    />
+                     {...interfaceTextProps("Select an item from search results")}/>
                   </Form.Field>
                 )}
                 {itemSearchQuery &&
                   itemSearchResults.length === 0 &&
                   !itemSearchLoading && (
                     <Message info>
-                      No results found. You can still add the search query as a
-                      content ID.
-                    </Message>
+                      <LocalizedText source={"No results found. You can still add the search query as a content ID."} /></Message>
                   )}
               </Form>
             </Modal.Content>
@@ -989,8 +943,7 @@ export default class Collections extends Component {
                 }
                 tooltip="Close item search and clear the current query and results."
               >
-                Cancel
-              </TooltipButton>
+                <LocalizedText source={"Cancel"} /></TooltipButton>
               <TooltipButton
                 data-testid="collection-add-item-submit"
                 disabled={!itemSearchQuery.trim()}
@@ -998,8 +951,7 @@ export default class Collections extends Component {
                 primary
                 tooltip="Add the selected search result or entered content ID to this collection. Enter a query first to enable."
               >
-                Add Item
-              </TooltipButton>
+                <LocalizedText source={"Add Item"} /></TooltipButton>
             </Modal.Actions>
           </Modal>
         </Container>

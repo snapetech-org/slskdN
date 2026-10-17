@@ -136,7 +136,9 @@ describe('System Security polling', () => {
       await Promise.resolve();
     });
 
-    const refreshButton = screen.getByTitle('Refresh');
+    const refreshButton = screen.getByRole('button', {
+      name: 'Refresh the security dashboard',
+    });
     fireEvent.click(refreshButton);
     expect(refreshButton).toHaveClass('loading');
 

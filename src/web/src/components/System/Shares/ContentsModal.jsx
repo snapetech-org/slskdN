@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { browse } from '../../../lib/shares';
 import { CodeEditor, LoaderSegment, Switch } from '../../Shared';
 import React, { useEffect, useState } from 'react';
@@ -7,6 +9,7 @@ const asArray = (value) => (Array.isArray(value) ? value : []);
 const asText = (value) => (typeof value === 'string' ? value : '');
 
 const ContentsModal = ({ onClose, share, theme }) => {
+  useInterfaceLanguage();
   const [loading, setLoading] = useState(true);
   const [contents, setContents] = useState();
 
@@ -84,17 +87,16 @@ const ContentsModal = ({ onClose, share, theme }) => {
       </Modal.Content>
       <Modal.Actions>
         <Popup
-          content="Close the share contents window."
+          content={interfaceText("Close the share contents window.")}
           trigger={(
             <Button
-              aria-label="Close share contents"
+              aria-label={interfaceText("Close share contents")}
               onClick={onClose}
-              title="Close the share contents window."
-            >
-              Close
-            </Button>
+              title={interfaceText("Close the share contents window.")}
+             {...interfaceTextProps("Close share contents")}>
+              <LocalizedText source={"Close"} /></Button>
           )}
-        />
+         {...interfaceTextProps("Close the share contents window.")}/>
       </Modal.Actions>
     </Modal>
   );

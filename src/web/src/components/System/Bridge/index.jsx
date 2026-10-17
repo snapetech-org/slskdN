@@ -1,3 +1,8 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+
+
 import * as bridge from '../../../lib/bridge';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
@@ -55,6 +60,7 @@ const dashboardRenderSignature = (dashboard) =>
   });
 
 const Bridge = () => {
+  useInterfaceLanguage();
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const virtualSoulfindEnabled =
     featureGatesReady && isFeatureEnabled(featureGates, 'virtualSoulfind');
@@ -160,7 +166,7 @@ const Bridge = () => {
       } catch (error_) {
         if (!isCurrentLifecycle(lifecycle) || document.hidden) return;
         if (needsConfig) {
-          setError(error_.message);
+          setError(getApiErrorMessage(error_, { t: interfaceText }));
         }
       } finally {
         if (configRequest && configRequestRef.current === configRequest) {
@@ -231,11 +237,11 @@ const Bridge = () => {
       await bridge.updateConfig(config);
       if (!mountedRef.current) return;
       setSuccess(
-        'Configuration updated. Restart bridge service to apply changes.',
+        interfaceText("Configuration updated. Restart bridge service to apply changes."),
       );
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setSaving(false);
@@ -253,7 +259,7 @@ const Bridge = () => {
       await requestDashboard(lifecycleRef.current, true);
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setBridgeAction(null);
@@ -271,7 +277,7 @@ const Bridge = () => {
       await requestDashboard(lifecycleRef.current, true);
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setBridgeAction(null);
@@ -284,8 +290,7 @@ const Bridge = () => {
       <div>
         <Header as="h2">
           <Icon name="exchange" />
-          Legacy Client Bridge
-        </Header>
+          <LocalizedText source={"Legacy Client Bridge"} /></Header>
         <FeatureGateNotice
           configurationKeys={['feature.VirtualSoulfind']}
           featureGate={featureGates.virtualSoulfind}
@@ -302,8 +307,7 @@ const Bridge = () => {
           active
           inline="centered"
         >
-          Loading bridge configuration...
-        </Loader>
+          <LocalizedText source={"Loading bridge configuration..."} /></Loader>
       </Segment>
     );
   }
@@ -317,19 +321,18 @@ const Bridge = () => {
     <div>
       <Header as="h2">
         <Icon name="exchange" />
-        Legacy Client Bridge
-      </Header>
+        <LocalizedText source={"Legacy Client Bridge"} /></Header>
 
       {error && (
         <Message error>
-          <Message.Header>Error</Message.Header>
+          <Message.Header><LocalizedText source={"Error"} /></Message.Header>
           <p>{error}</p>
         </Message>
       )}
 
       {success && (
         <Message success>
-          <Message.Header>Success</Message.Header>
+          <Message.Header><LocalizedText source={"Success"} /></Message.Header>
           <p>{success}</p>
         </Message>
       )}
@@ -341,8 +344,7 @@ const Bridge = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="cog" />
-                Configuration
-              </Card.Header>
+                <LocalizedText source={"Configuration"} /></Card.Header>
             </Card.Content>
             <Card.Content>
               <Form>
@@ -350,20 +352,19 @@ const Bridge = () => {
                   <Form.Field>
                     <Checkbox
                       checked={config?.enabled || false}
-                      label="Enable Bridge"
+                      label={interfaceText("Enable Bridge")}
                       onChange={(e, { checked }) =>
                         handleConfigChange('enabled', checked)
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable Bridge")}/>
                     <small>
-                      Allow legacy Soulseek clients to connect via bridge
-                    </small>
+                      <LocalizedText source={"Allow legacy Soulseek clients to connect via bridge"} /></small>
                   </Form.Field>
                 </Form.Group>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>Port</label>
+                    <label><LocalizedText source={"Port"} /></label>
                     <Input
                       disabled={!config?.enabled}
                       onChange={(e, { value }) =>
@@ -375,24 +376,24 @@ const Bridge = () => {
                       type="number"
                       value={config?.port || 2_242}
                     />
-                    <small>Soulseek protocol port (default: 2242)</small>
+                    <small><LocalizedText source={"Soulseek protocol port (default: 2242)"} /></small>
                   </Form.Field>
                   <Form.Field>
-                    <label>Soulfind Path</label>
+                    <label><LocalizedText source={"Soulfind Path"} /></label>
                     <Input
                       disabled={!config?.enabled}
                       onChange={(e, { value }) =>
                         handleConfigChange('soulfind_path', value)
                       }
-                      placeholder="soulfind"
+                      placeholder={interfaceText("soulfind")}
                       value={config?.soulfind_path || 'soulfind'}
-                    />
-                    <small>Path to Soulfind binary</small>
+                     {...interfaceTextProps("soulfind")}/>
+                    <small><LocalizedText source={"Path to Soulfind binary"} /></small>
                   </Form.Field>
                 </Form.Group>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>Max Clients</label>
+                    <label><LocalizedText source={"Max Clients"} /></label>
                     <Input
                       disabled={!config?.enabled}
                       max={50}
@@ -406,23 +407,23 @@ const Bridge = () => {
                       type="number"
                       value={config?.max_clients || 10}
                     />
-                    <small>Maximum concurrent legacy clients</small>
+                    <small><LocalizedText source={"Maximum concurrent legacy clients"} /></small>
                   </Form.Field>
                   <Form.Field>
                     <Checkbox
                       checked={config?.require_auth || false}
                       disabled={!config?.enabled}
-                      label="Require Authentication"
+                      label={interfaceText("Require Authentication")}
                       onChange={(e, { checked }) =>
                         handleConfigChange('require_auth', checked)
                       }
                       toggle
-                    />
-                    <small>Require password for bridge connections</small>
+                     {...interfaceTextProps("Require Authentication")}/>
+                    <small><LocalizedText source={"Require password for bridge connections"} /></small>
                   </Form.Field>
                 </Form.Group>
                 <Popup
-                  content="Save the bridge settings for the next service restart. This does not start or restart the bridge."
+                  content={interfaceText("Save the bridge settings for the next service restart. This does not start or restart the bridge.")}
                   position="top center"
                   trigger={
                     <Button
@@ -430,10 +431,9 @@ const Bridge = () => {
                       onClick={handleSaveConfig}
                       primary
                     >
-                      Save Configuration
-                    </Button>
+                      <LocalizedText source={"Save Configuration"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Save the bridge settings for the next service restart. This does not start or restart the bridge.")}/>
               </Form>
             </Card.Content>
           </Card>
@@ -445,15 +445,14 @@ const Bridge = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="power" />
-                Service Control
-              </Card.Header>
+                <LocalizedText source={"Service Control"} /></Card.Header>
             </Card.Content>
             <Card.Content>
               <div
                 style={{ alignItems: 'center', display: 'flex', gap: '10px' }}
               >
                 <Popup
-                  content="Start the configured local legacy-client bridge so compatible clients can connect."
+                  content={interfaceText("Start the configured local legacy-client bridge so compatible clients can connect.")}
                   position="top center"
                   trigger={
                     <Button
@@ -463,12 +462,11 @@ const Bridge = () => {
                       onClick={handleStartBridge}
                     >
                       <Icon name="play" />
-                      Start Bridge
-                    </Button>
+                      <LocalizedText source={"Start Bridge"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Start the configured local legacy-client bridge so compatible clients can connect.")}/>
                 <Popup
-                  content="Stop the local legacy-client bridge and disconnect its active clients."
+                  content={interfaceText("Stop the local legacy-client bridge and disconnect its active clients.")}
                   position="top center"
                   trigger={
                     <Button
@@ -478,18 +476,17 @@ const Bridge = () => {
                       onClick={handleStopBridge}
                     >
                       <Icon name="stop" />
-                      Stop Bridge
-                    </Button>
+                      <LocalizedText source={"Stop Bridge"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Stop the local legacy-client bridge and disconnect its active clients.")}/>
                 <Label
                   color={health?.isHealthy ? 'green' : 'red'}
                   size="large"
                 >
                   <Icon name={health?.isHealthy ? 'checkmark' : 'remove'} />
-                  {health?.isHealthy ? 'Running' : 'Stopped'}
+                  {health?.isHealthy ? <LocalizedText source={"Running"} /> : <LocalizedText source={"Stopped"} />}
                 </Label>
-                {health?.version && <Label>Version: {health.version}</Label>}
+                {health?.version && <Label><LocalizedText source={"Version:"} />{" "}{health.version}</Label>}
               </div>
             </Card.Content>
           </Card>
@@ -502,8 +499,7 @@ const Bridge = () => {
               <Card.Content>
                 <Card.Header>
                   <Icon name="chart bar" />
-                  Statistics
-                </Card.Header>
+                  <LocalizedText source={"Statistics"} /></Card.Header>
               </Card.Content>
               <Card.Content>
                 <Statistic.Group size="small">
@@ -511,25 +507,25 @@ const Bridge = () => {
                     <Statistic.Value>
                       {stats.currentConnections || 0}
                     </Statistic.Value>
-                    <Statistic.Label>Active Connections</Statistic.Label>
+                    <Statistic.Label><LocalizedText source={"Active Connections"} /></Statistic.Label>
                   </Statistic>
                   <Statistic>
                     <Statistic.Value>
                       {stats.totalSearches || 0}
                     </Statistic.Value>
-                    <Statistic.Label>Total Searches</Statistic.Label>
+                    <Statistic.Label><LocalizedText source={"Total Searches"} /></Statistic.Label>
                   </Statistic>
                   <Statistic>
                     <Statistic.Value>
                       {stats.totalDownloads || 0}
                     </Statistic.Value>
-                    <Statistic.Label>Total Downloads</Statistic.Label>
+                    <Statistic.Label><LocalizedText source={"Total Downloads"} /></Statistic.Label>
                   </Statistic>
                   <Statistic>
                     <Statistic.Value>
                       {(stats.totalBytesProxied / 1_024 / 1_024).toFixed(2)}
                     </Statistic.Value>
-                    <Statistic.Label>MB Proxied</Statistic.Label>
+                    <Statistic.Label><LocalizedText source={"MB Proxied"} /></Statistic.Label>
                   </Statistic>
                 </Statistic.Group>
               </Card.Content>
@@ -544,8 +540,7 @@ const Bridge = () => {
               <Card.Content>
                 <Card.Header>
                   <Icon name="sitemap" />
-                  Mesh Benefits
-                </Card.Header>
+                  <LocalizedText source={"Mesh Benefits"} /></Card.Header>
               </Card.Content>
               <Card.Content>
                 <Statistic.Group size="small">
@@ -553,13 +548,13 @@ const Bridge = () => {
                     <Statistic.Value>
                       {meshBenefits.meshPercentage.toFixed(1)}%
                     </Statistic.Value>
-                    <Statistic.Label>Via Mesh</Statistic.Label>
+                    <Statistic.Label><LocalizedText source={"Via Mesh"} /></Statistic.Label>
                   </Statistic>
                   <Statistic>
                     <Statistic.Value>
                       {(meshBenefits.bytesViaMesh / 1_024 / 1_024).toFixed(2)}
                     </Statistic.Value>
-                    <Statistic.Label>MB via Mesh</Statistic.Label>
+                    <Statistic.Label><LocalizedText source={"MB via Mesh"} /></Statistic.Label>
                   </Statistic>
                 </Statistic.Group>
               </Card.Content>
@@ -573,12 +568,12 @@ const Bridge = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="users" />
-                Connected Clients ({clients.length})
+                <LocalizedText source={"Connected Clients ("} />{clients.length})
               </Card.Header>
             </Card.Content>
             <Card.Content>
               {clients.length === 0 ? (
-                <Message info>No clients connected</Message>
+                <Message info><LocalizedText source={"No clients connected"} /></Message>
               ) : (
                 <Table
                   compact
@@ -586,9 +581,9 @@ const Bridge = () => {
                 >
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>Client</Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Client"} /></Table.HeaderCell>
                       <Table.HeaderCell>IP</Table.HeaderCell>
-                      <Table.HeaderCell>Requests</Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Requests"} /></Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>

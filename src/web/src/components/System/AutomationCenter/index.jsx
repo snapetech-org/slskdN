@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import {
   automationRecipes,
   buildAutomationExecutionReport,
@@ -46,10 +49,11 @@ const formatLastDryRun = (value) => {
     return 'Not run yet';
   }
 
-  return new Date(value).toLocaleString();
+  return new Date(value).toLocaleString(getRegionalLocale());
 };
 
 const AutomationCenter = () => {
+  useInterfaceLanguage();
   const [recipeState, setRecipeState] = useState(getAutomationRecipeState);
   const [recipeInputs, setRecipeInputs] = useState(getAutomationRecipeInputs);
   const [copyStatus, setCopyStatus] = useState('');
@@ -72,12 +76,12 @@ const AutomationCenter = () => {
 
   const toggleRecipe = (recipe, enabled) => {
     setRecipeState(setAutomationRecipeEnabled(recipe.id, enabled));
-    toast.info(`${recipe.title} ${enabled ? 'enabled' : 'disabled'}`);
+    toast.info(interfaceText(enabled ? "{title} enabled" : "{title} disabled", { title: interfaceText(recipe.title) }));
   };
 
   const dryRunRecipe = (recipe) => {
     setRecipeState(setAutomationRecipeDryRun(recipe.id));
-    toast.info(`${recipe.title} dry run recorded`);
+    toast.info(interfaceText("{title} dry run recorded", { title: interfaceText(recipe.title) }));
   };
 
   const executeWishlistRetry = async (recipe) => {
@@ -102,7 +106,7 @@ const AutomationCenter = () => {
     result.summary = `Ran ${result.started} Wishlist searches; ${result.failed} failed; ${result.skipped} skipped.`;
     const report = buildAutomationExecutionReport(recipe, result);
     setRecipeState(setAutomationRecipeExecution(recipe.id, report, report.generatedAt));
-    const status = `${recipe.title} ran ${result.started} bounded Wishlist searches; ${result.failed} failed. Downloads still require normal result review.`;
+    const status = interfaceText("{title} ran {started} bounded Wishlist searches; {failed} failed. Downloads still require normal result review.", { title: interfaceText(recipe.title), started: result.started, failed: result.failed });
     setCopyStatus(status);
     toast.info(status);
   };
@@ -110,7 +114,7 @@ const AutomationCenter = () => {
   const executeLibraryHealthScan = async (recipe) => {
     const libraryPath = `${recipeInputs[recipe.id]?.libraryPath || ''}`.trim();
     if (!libraryPath) {
-      setCopyStatus('Enter a Library Health path before starting the scan.');
+      setCopyStatus(interfaceText('Enter a Library Health path before starting the scan.'));
       return;
     }
 
@@ -122,14 +126,16 @@ const AutomationCenter = () => {
       summary: `Started Library Health scan ${scanId} for ${libraryPath}.`,
     });
     setRecipeState(setAutomationRecipeExecution(recipe.id, report, report.generatedAt));
-    const status = `${recipe.title} started scan ${scanId} for ${libraryPath}.`;
+    const status = interfaceText("{title} started scan {scanId} for {libraryPath}.", { title: interfaceText(recipe.title), scanId, libraryPath });
     setCopyStatus(status);
     toast.info(status);
   };
 
   const executeRecipe = async (recipe) => {
     if (!isAutomationRecipeExecutable(recipe)) {
-      setCopyStatus(`${recipe.title} does not have a live backend action wired yet.`);
+      setCopyStatus(interfaceText('{title} does not have a live backend action wired yet.', {
+        title: interfaceText(recipe.title),
+      }));
       return;
     }
 
@@ -153,15 +159,15 @@ const AutomationCenter = () => {
   const copyHistoryReport = async () => {
     const report = formatAutomationRunHistoryReport(runHistory);
     if (!navigator.clipboard?.writeText) {
-      setCopyStatus('Clipboard unavailable; copy the automation history manually.');
+      setCopyStatus(interfaceText('Clipboard unavailable; copy the automation history manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(report);
-      setCopyStatus('Automation history report copied.');
+      setCopyStatus(interfaceText('Automation history report copied.'));
     } catch {
-      setCopyStatus('Unable to copy automation history report.');
+      setCopyStatus(interfaceText('Unable to copy automation history report.'));
     }
   };
 
@@ -170,27 +176,24 @@ const AutomationCenter = () => {
       <Header as="h3">
         <Icon name="magic" />
         <Header.Content>
-          Automation Center
-          <Header.Subheader>
-            Every automation is visible here. Enable recipes when their dry-run output and impact fit your node.
-          </Header.Subheader>
+          <LocalizedText source={"Automation Center"} /><Header.Subheader>
+            <LocalizedText source={"Every automation is visible here. Enable recipes when their dry-run output and impact fit your node."} /></Header.Subheader>
         </Header.Content>
       </Header>
       <div className="automation-center-actions">
         <Popup
-          content="Copy enabled recipes and dry-run checkpoints for operator review. This does not execute any automation."
+          content={interfaceText("Copy enabled recipes and dry-run checkpoints for operator review. This does not execute any automation.")}
           position="top center"
           trigger={
             <Button
-              aria-label="Copy automation review history"
+              aria-label={interfaceText("Copy automation review history")}
               onClick={copyHistoryReport}
               size="small"
-            >
+             {...interfaceTextProps("Copy automation review history")}>
               <Icon name="copy" />
-              Copy History
-            </Button>
+              <LocalizedText source={"Copy History"} /></Button>
           }
-        />
+         {...interfaceTextProps("Copy enabled recipes and dry-run checkpoints for operator review. This does not execute any automation.")}/>
       </div>
       {copyStatus && (
         <Message
@@ -208,25 +211,24 @@ const AutomationCenter = () => {
       >
         <Statistic>
           <Statistic.Value>{summary.total}</Statistic.Value>
-          <Statistic.Label>Recipes</Statistic.Label>
+          <Statistic.Label><LocalizedText source={"Recipes"} /></Statistic.Label>
         </Statistic>
         <Statistic color="green">
           <Statistic.Value>{summary.enabled}</Statistic.Value>
-          <Statistic.Label>Enabled</Statistic.Label>
+          <Statistic.Label><LocalizedText source={"Enabled"} /></Statistic.Label>
         </Statistic>
         <Statistic color="orange">
           <Statistic.Value>{summary.disabled}</Statistic.Value>
-          <Statistic.Label>Visible Disabled</Statistic.Label>
+          <Statistic.Label><LocalizedText source={"Visible Disabled"} /></Statistic.Label>
         </Statistic>
       </Statistic.Group>
 
       <div className="automation-history-panel">
         <Header as="h4">
           <Icon name="history" />
-          Review History
-        </Header>
+          <LocalizedText source={"Review History"} /></Header>
         {runHistory.length === 0 ? (
-          <p>No enabled recipes or dry-run checkpoints yet.</p>
+          <p><LocalizedText source={"No enabled recipes or dry-run checkpoints yet."} /></p>
         ) : (
           <div className="automation-recipe-labels">
             {runHistory.map((entry) => (
@@ -235,7 +237,7 @@ const AutomationCenter = () => {
                 color={entry.lastRunAt ? 'purple' : entry.lastDryRunAt ? 'green' : 'grey'}
                 key={entry.recipeId}
               >
-                {entry.title}
+                {interfaceText(entry.title)}
                 <Label.Detail>
                   {formatLastDryRun(entry.lastRunAt || entry.lastDryRunAt)}
                 </Label.Detail>
@@ -271,14 +273,14 @@ const AutomationCenter = () => {
                     className="automation-recipe-title"
                   >
                     <Icon name={recipe.icon} />
-                    <Header.Content>{recipe.title}</Header.Content>
+                    <Header.Content><LocalizedText source={recipe.title} /></Header.Content>
                   </Header>
                   <Popup
-                    content={`${enabled ? 'Disable' : 'Enable'} ${recipe.title}. Disabled recipes remain visible so setup work is discoverable.`}
+                    content={interfaceText(enabled ? "Disable {title}. Disabled recipes remain visible so setup work is discoverable." : "Enable {title}. Disabled recipes remain visible so setup work is discoverable.", { title: interfaceText(recipe.title) })}
                     position="top center"
                     trigger={
                       <Checkbox
-                        aria-label={`${enabled ? 'Disable' : 'Enable'} ${recipe.title}`}
+                        aria-label={interfaceText(enabled ? "Disable {title}" : "Enable {title}", { title: interfaceText(recipe.title) })}
                         checked={enabled}
                         onChange={(_event, { checked }) =>
                           toggleRecipe(recipe, checked)
@@ -288,11 +290,11 @@ const AutomationCenter = () => {
                     }
                   />
                 </div>
-                <Card.Description>{recipe.description}</Card.Description>
+                <Card.Description><LocalizedText source={recipe.description} /></Card.Description>
                 {recipe.id === 'library-health-scan' && (
                   <Form className="automation-recipe-config">
                     <Form.Input
-                      aria-label="Library Health scan path"
+                      aria-label={interfaceText("Library Health scan path")}
                       fluid
                       icon="folder open outline"
                       onChange={(_event, { value }) =>
@@ -300,87 +302,91 @@ const AutomationCenter = () => {
                       }
                       placeholder="/music/library"
                       value={libraryHealthPath}
-                    />
+                     {...interfaceTextProps("Library Health scan path")}/>
                   </Form>
                 )}
                 <div className="automation-recipe-labels">
                   <Label basic>
                     <Icon name="clock outline" />
-                    {recipe.cadence}
+                    <LocalizedText source={recipe.cadence} />
                   </Label>
                   <Label basic>
                     <Icon name="hourglass half" />
-                    Cooldown {recipe.cooldown}
+                    <LocalizedText source={"Cooldown"} />{" "}<LocalizedText source={recipe.cooldown} />
                   </Label>
                   <Label basic>
                     <Icon name="stopwatch" />
-                    Max {recipe.maxRunTime}
+                    <LocalizedText source={"Max"} />{" "}<LocalizedText source={recipe.maxRunTime} />
                   </Label>
                   <Label
                     basic
                     color={impactColor(recipe.networkImpact)}
                   >
                     <Icon name="sitemap" />
-                    {recipe.networkImpact}
+                    <LocalizedText source={recipe.networkImpact} />
                   </Label>
                   <Label basic>
                     <Icon name="file outline" />
-                    {recipe.fileImpact}
+                    <LocalizedText source={recipe.fileImpact} />
                   </Label>
                   <Label basic>
                     <Icon name="lock" />
-                    {recipe.approvalGate}
+                    <LocalizedText source={recipe.approvalGate} />
                   </Label>
                 </div>
               </Card.Content>
               <Card.Content extra>
                 <div className="automation-recipe-actions">
                   <span className="automation-recipe-dry-run">
-                    Dry run: {formatLastDryRun(state.lastDryRunAt)}
+                    <LocalizedText source={"Dry run:"} />{" "}{formatLastDryRun(state.lastDryRunAt)}
                   </span>
                   {state.lastDryRunReport && (
                     <Label
                       basic
                       color="green"
                     >
-                      Preview only
-                    </Label>
+                      <LocalizedText source={"Preview only"} /></Label>
                   )}
                   {state.lastRunReport && (
                     <Label
                       basic
                       color="purple"
                     >
-                      Executed
-                    </Label>
+                      <LocalizedText source={"Executed"} /></Label>
                   )}
                   <Popup
-                    content={`Record a dry run checkpoint for ${recipe.title}. This shell does not execute network or file actions yet.`}
+                    content={interfaceText("Record a dry run checkpoint for {title}. This shell does not execute network or file actions yet.", { title: interfaceText(recipe.title) })}
                     position="top center"
                     trigger={
                       <Button
-                        aria-label={`Record dry run for ${recipe.title}`}
+                        aria-label={interfaceText("Record dry run for {title}", { title: interfaceText(recipe.title) })}
                         basic
                         icon
                         onClick={() => dryRunRecipe(recipe)}
                         size="small"
-                        title={`Record dry run for ${recipe.title}`}
-                      >
+                        title={interfaceText("Record dry run for {title}", { title: interfaceText(recipe.title) })}
+                       {...interfaceTextProps("Record dry run for {title}")}>
                         <Icon name="play circle outline" />
                       </Button>
                     }
-                  />
+                   {...interfaceTextProps("Record a dry run checkpoint for {title}. This shell does not execute network or file actions yet.")}/>
                   <Popup
                     content={
                       executable
-                        ? `Execute ${recipe.title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.`
-                        : `No live backend action is wired for ${recipe.title} yet. Use dry run to track readiness.`
+                        ? interfaceText(
+                          'Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.',
+                          { title: recipe.title },
+                        )
+                        : interfaceText(
+                          'No live backend action is wired for {title} yet. Use dry run to track readiness.',
+                          { title: recipe.title },
+                        )
                     }
                     position="top center"
                     trigger={
                       <span>
                         <Button
-                          aria-label={`Execute ${recipe.title}`}
+                          aria-label={interfaceText("Execute {title}", { title: interfaceText(recipe.title) })}
                           disabled={
                             !enabled ||
                             !executable ||
@@ -391,8 +397,8 @@ const AutomationCenter = () => {
                           loading={executing}
                           onClick={() => executeRecipe(recipe)}
                           size="small"
-                          title={`Execute ${recipe.title}`}
-                        >
+                          title={interfaceText("Execute {title}", { title: interfaceText(recipe.title) })}
+                         {...interfaceTextProps("Execute {title}")}>
                           <Icon name="bolt" />
                         </Button>
                       </span>

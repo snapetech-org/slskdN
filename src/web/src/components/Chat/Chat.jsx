@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Chat.css';
 import { activeChatKey } from '../../config';
 import * as chat from '../../lib/chat';
@@ -66,6 +67,7 @@ const saveTabsToStorage = (tabsToSave) => {
 };
 
 const Chat = ({ state }) => {
+  useInterfaceLanguage();
   const location = useLocation();
   const [tabs, setTabs] = useState(() => loadTabsFromStorage());
   const [activeIndex, setActiveIndex] = useState(0);
@@ -253,7 +255,7 @@ const Chat = ({ state }) => {
         {tab.label}
         {tabs.length > 1 && (
           <TooltipButton
-            aria-label={`Close ${tab.label} chat tab`}
+            aria-label={interfaceText("Close {label} chat tab", { "label": (tab.label) })}
             basic
             className="chat-tab-close"
             compact
@@ -265,7 +267,7 @@ const Chat = ({ state }) => {
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
             tooltip={`Close the ${tab.label} tab. Its saved conversation remains available in the chat list.`}
-          >
+           {...interfaceTextProps("Close {label} chat tab")}>
             <Icon name="close" />
           </TooltipButton>
         )}
@@ -302,7 +304,7 @@ const Chat = ({ state }) => {
         </div>
         <Input
           action={{
-            'aria-label': 'Start chat with user',
+            'aria-label': interfaceText("Start chat with user"),
             icon: 'chat',
             onClick: () => {
               if (usernameInput?.trim()) {
@@ -310,7 +312,7 @@ const Chat = ({ state }) => {
                 setUsernameInput('');
               }
             },
-            title: 'Start chat with user',
+            title: interfaceText("Start chat with user"),
           }}
           className="chat-input"
           onChange={(event) => setUsernameInput(event.target.value)}
@@ -320,27 +322,27 @@ const Chat = ({ state }) => {
               setUsernameInput('');
             }
           }}
-          placeholder="Chat with user..."
+          placeholder={interfaceText("Chat with user...")}
           size="big"
           value={usernameInput}
-        />
+         {...interfaceTextProps("Chat with user...")}/>
         <Popup
-          content="Reload saved conversations from the server after a browser refresh or restart."
+          content={interfaceText("Reload saved conversations from the server after a browser refresh or restart.")}
           trigger={
             <Button
-              aria-label="Reload saved conversations"
+              aria-label={interfaceText("Reload saved conversations")}
               icon="refresh"
               onClick={hydrateConversations}
-              title="Reload saved conversations"
-            />
+              title={interfaceText("Reload saved conversations")}
+             {...interfaceTextProps("Reload saved conversations")}/>
           }
-        />
+         {...interfaceTextProps("Reload saved conversations from the server after a browser refresh or restart.")}/>
       </Segment>
       {conversations.length > 0 && (
         <Segment className="chat-recovery-rail">
           {conversations.map((conversation) => (
             <Popup
-              content="Open this saved conversation."
+              content={interfaceText("Open this saved conversation.")}
               key={conversation.username}
               trigger={
                 <Button
@@ -362,7 +364,7 @@ const Chat = ({ state }) => {
                   )}
                 </Button>
               }
-            />
+             {...interfaceTextProps("Open this saved conversation.")}/>
           ))}
         </Segment>
       )}
@@ -382,11 +384,11 @@ const Chat = ({ state }) => {
           {
             menuItem: (
               <Menu.Item
-                aria-label="Open a new chat tab"
+                aria-label={interfaceText("Open a new chat tab")}
                 key="add-tab"
                 onClick={handleAddTab}
-                title="Open a new chat tab"
-              >
+                title={interfaceText("Open a new chat tab")}
+               {...interfaceTextProps("Open a new chat tab")}>
                 <Icon name="plus" />
               </Menu.Item>
             ),

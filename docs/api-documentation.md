@@ -61,6 +61,23 @@ slskdN uses URL-based versioning: `/api/v{version}/`
 }
 ```
 
+Some validation endpoints preserve their existing string error body and add
+the stable code in the `X-Slskd-Error-Code` response header. CORS exposes this
+header when configured. Clients should use the code for localization; the
+English string body remains available to clients that do not provide
+translations. Unknown or raw server error text is not a stable UI message and
+should be shown through a generic localized error in the Web UI.
+
+Current stable validation codes:
+
+| Code | English source message |
+| --- | --- |
+| `source-feed-import.source-text-required` | `SourceText is required` |
+| `source-feed-import.limit-must-be-positive` | `Limit must be greater than 0` |
+| `songid.source-required` | `SongID source is required.` |
+| `songid.request-invalid` | `SongID request is invalid.` |
+| `songid.analysis-queue-failed` | `SongID analysis could not be queued.` |
+
 ## API Endpoints
 
 ### Core APIs

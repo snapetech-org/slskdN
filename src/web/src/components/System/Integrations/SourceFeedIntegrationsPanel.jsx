@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="SourceFeedIntegrationsPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -88,6 +91,7 @@ const buildSourceFeedForm = (options = {}) => {
 };
 
 const SourceFeedIntegrationsPanel = ({ options }) => {
+  useInterfaceLanguage();
   const remoteConfiguration = Boolean(
     getOption(options, 'remoteConfiguration', 'RemoteConfiguration'),
   );
@@ -200,16 +204,12 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: 'Source-feed integration settings applied for this running daemon.',
+        text: interfaceText("Source-feed integration settings applied for this running daemon."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to apply source-feed integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -256,16 +256,12 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: 'Source-feed integration settings saved to YAML.',
+        text: interfaceText("Source-feed integration settings saved to YAML."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to save source-feed integration settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -277,28 +273,26 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
       <Card.Content>
         <Card.Header>
           <Icon name="rss" />
-          Source Feed Imports
-        </Card.Header>
+          <LocalizedText source={"Source Feed Imports"} /></Card.Header>
         <Card.Meta>
-          Provider settings for Wishlist Import Feed previews.
-        </Card.Meta>
+          <LocalizedText source={"Provider settings for Wishlist Import Feed previews."} /></Card.Meta>
       </Card.Content>
       <Card.Content>
         <div className="integration-status-row">
           {boolLabel(form.spotifyEnabled, 'Spotify On', 'Spotify Off')}
           <Label>
             <Icon name={form.spotifyConfigured ? 'key' : 'warning sign'} />
-            Spotify Client ID {form.spotifyConfigured ? 'Configured' : 'Missing'}
+            <LocalizedText source={"Spotify Client ID"} />{" "}{form.spotifyConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
           {boolLabel(form.youTubeEnabled, 'YouTube On', 'YouTube Off')}
           <Label>
             <Icon name={form.youTubeConfigured ? 'key' : 'warning sign'} />
-            YouTube API Key {form.youTubeConfigured ? 'Configured' : 'Missing'}
+            <LocalizedText source={"YouTube API Key"} />{" "}{form.youTubeConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
           {boolLabel(form.lastFmEnabled, 'Last.fm On', 'Last.fm Off')}
           <Label>
             <Icon name={form.lastFmConfigured ? 'key' : 'warning sign'} />
-            Last.fm API Key {form.lastFmConfigured ? 'Configured' : 'Missing'}
+            <LocalizedText source={"Last.fm API Key"} />{" "}{form.lastFmConfigured ? <LocalizedText source={"Configured"} /> : <LocalizedText source={"Missing"} />}
           </Label>
         </div>
 
@@ -307,10 +301,7 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
             info
             size="small"
           >
-            Runtime configuration changes are disabled. Enable remote
-            configuration or edit YAML in the Options tab to change these
-            provider settings.
-          </Message>
+            <LocalizedText source={"Runtime configuration changes are disabled. Enable remote configuration or edit YAML in the Options tab to change these provider settings."} /></Message>
         )}
 
         {message && (
@@ -335,120 +326,118 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
           <Segment>
             <Header as="h4">
               <Icon name="spotify" />
-              Spotify
-            </Header>
+              <LocalizedText source={"Spotify"} /></Header>
             <Message
               info
               size="small"
             >
-              <Message.Header>Spotify authorization redirect URI</Message.Header>
-              Register this Redirect URI in the Spotify developer dashboard:{' '}
+              <Message.Header><LocalizedText source={"Spotify authorization redirect URI"} /></Message.Header>
+              <LocalizedText source={"Register this Redirect URI in the Spotify developer dashboard:"} />{' '}
               <code>{inferredSpotifyRedirectUri}</code>
             </Message>
             <Popup
-              content="Turns on Spotify source-feed imports and account connection. Private liked/saved/followed feeds still require a connected Spotify account or bearer token."
+              content={interfaceText("Turns on Spotify source-feed imports and account connection. Private liked/saved/followed feeds still require a connected Spotify account or bearer token.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable Spotify source-feed imports"
+                  aria-label={interfaceText("Enable Spotify source-feed imports")}
                   checked={form.spotifyEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable Spotify imports"
+                  label={interfaceText("Enable Spotify imports")}
                   onChange={(_, { checked }) => update('spotifyEnabled', checked)}
                   toggle
-                />
+                 {...interfaceTextProps("Enable Spotify source-feed imports")}/>
               }
-            />
+             {...interfaceTextProps("Turns on Spotify source-feed imports and account connection. Private liked/saved/followed feeds still require a connected Spotify account or bearer token.")}/>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Spotify client ID"
+                aria-label={interfaceText("Spotify client ID")}
                 disabled={!remoteConfiguration || saving}
-                label="Client ID"
+                label={interfaceText("Client ID")}
                 onChange={(_, { value }) => update('spotifyClientId', value)}
-                placeholder={form.spotifyConfigured ? 'Configured' : 'Spotify app client ID'}
+                placeholder={interfaceText(form.spotifyConfigured ? 'Configured' : 'Spotify app client ID')}
                 type="password"
                 value={form.spotifyClientId}
-              />
+               {...interfaceTextProps("Spotify client ID")}/>
               <Form.Input
-                aria-label="Spotify client secret"
+                aria-label={interfaceText("Spotify client secret")}
                 disabled={!remoteConfiguration || saving}
-                label="Client Secret"
+                label={interfaceText("Client Secret")}
                 onChange={(_, { value }) => update('spotifyClientSecret', value)}
-                placeholder={
+                placeholder={interfaceText(
                   form.spotifySecretConfigured
                     ? 'Configured'
-                    : 'Optional for OAuth; required for app-token public imports'
-                }
+                    : 'Optional for OAuth; required for app-token public imports',
+                )}
                 type="password"
                 value={form.spotifyClientSecret}
-              />
+               {...interfaceTextProps("Spotify client secret")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Spotify redirect URI"
+                aria-label={interfaceText("Spotify redirect URI")}
                 disabled={!remoteConfiguration || saving}
-                label="Redirect URI"
+                label={interfaceText("Redirect URI")}
                 onChange={(_, { value }) => update('spotifyRedirectUri', value)}
                 placeholder={inferredSpotifyRedirectUri}
                 value={form.spotifyRedirectUri}
-              />
+               {...interfaceTextProps("Spotify redirect URI")}/>
               <Form.Input
-                aria-label="Spotify market"
+                aria-label={interfaceText("Spotify market")}
                 disabled={!remoteConfiguration || saving}
-                label="Market"
+                label={interfaceText("Market")}
                 maxLength={2}
                 onChange={(_, { value }) => update('spotifyMarket', value)}
                 value={form.spotifyMarket}
-              />
+               {...interfaceTextProps("Spotify market")}/>
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Spotify timeout seconds"
+                aria-label={interfaceText("Spotify timeout seconds")}
                 disabled={!remoteConfiguration || saving}
-                label="Timeout Seconds"
+                label={interfaceText("Timeout Seconds")}
                 min={1}
                 onChange={(_, { value }) => update('spotifyTimeout', value)}
                 type="number"
                 value={form.spotifyTimeout}
-              />
+               {...interfaceTextProps("Spotify timeout seconds")}/>
               <Form.Input
-                aria-label="Spotify max items per import"
+                aria-label={interfaceText("Spotify max items per import")}
                 disabled={!remoteConfiguration || saving}
-                label="Max Items Per Import"
+                label={interfaceText("Max Items Per Import")}
                 min={1}
                 onChange={(_, { value }) => update('spotifyMaxItems', value)}
                 type="number"
                 value={form.spotifyMaxItems}
-              />
+               {...interfaceTextProps("Spotify max items per import")}/>
             </Form.Group>
           </Segment>
 
           <Segment>
             <Header as="h4">
               <Icon name="youtube play" />
-              YouTube
-            </Header>
+              <LocalizedText source={"YouTube"} /></Header>
             <Popup
-              content="Turns on YouTube Data API playlist expansion for explicitly previewed Import Feed URLs."
+              content={interfaceText("Turns on YouTube Data API playlist expansion for explicitly previewed Import Feed URLs.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable YouTube playlist source-feed imports"
+                  aria-label={interfaceText("Enable YouTube playlist source-feed imports")}
                   checked={form.youTubeEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable YouTube playlist expansion"
+                  label={interfaceText("Enable YouTube playlist expansion")}
                   onChange={(_, { checked }) => update('youTubeEnabled', checked)}
                   toggle
-                />
+                 {...interfaceTextProps("Enable YouTube playlist source-feed imports")}/>
               }
-            />
+             {...interfaceTextProps("Turns on YouTube Data API playlist expansion for explicitly previewed Import Feed URLs.")}/>
             <Form.Input
-              aria-label="YouTube Data API key"
+              aria-label={interfaceText("YouTube Data API key")}
               disabled={!remoteConfiguration || saving}
-              label="API Key"
+              label={interfaceText("API Key")}
               onChange={(_, { value }) => update('youTubeApiKey', value)}
-              placeholder={form.youTubeConfigured ? 'Configured' : 'YouTube Data API key'}
+              placeholder={interfaceText(form.youTubeConfigured ? 'Configured' : 'YouTube Data API key')}
               type="password"
               value={form.youTubeApiKey}
-            />
+             {...interfaceTextProps("YouTube Data API key")}/>
           </Segment>
 
           <Segment>
@@ -457,33 +446,33 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
               Last.fm
             </Header>
             <Popup
-              content="Turns on Last.fm API imports for explicitly previewed loved, recent, and top-track user URLs."
+              content={interfaceText("Turns on Last.fm API imports for explicitly previewed loved, recent, and top-track user URLs.")}
               trigger={
                 <Checkbox
-                  aria-label="Enable Last.fm source-feed imports"
+                  aria-label={interfaceText("Enable Last.fm source-feed imports")}
                   checked={form.lastFmEnabled}
                   disabled={!remoteConfiguration || saving}
-                  label="Enable Last.fm imports"
+                  label={interfaceText("Enable Last.fm imports")}
                   onChange={(_, { checked }) => update('lastFmEnabled', checked)}
                   toggle
-                />
+                 {...interfaceTextProps("Enable Last.fm source-feed imports")}/>
               }
-            />
+             {...interfaceTextProps("Turns on Last.fm API imports for explicitly previewed loved, recent, and top-track user URLs.")}/>
             <Form.Input
-              aria-label="Last.fm API key"
+              aria-label={interfaceText("Last.fm API key")}
               disabled={!remoteConfiguration || saving}
-              label="API Key"
+              label={interfaceText("API Key")}
               onChange={(_, { value }) => update('lastFmApiKey', value)}
-              placeholder={form.lastFmConfigured ? 'Configured' : 'Last.fm API key'}
+              placeholder={interfaceText(form.lastFmConfigured ? 'Configured' : 'Last.fm API key')}
               type="password"
               value={form.lastFmApiKey}
-            />
+             {...interfaceTextProps("Last.fm API key")}/>
           </Segment>
         </Form>
 
         <div className="integration-actions">
           <Popup
-            content="Apply these source-feed integration settings through the runtime configuration overlay."
+            content={interfaceText("Apply these source-feed integration settings through the runtime configuration overlay.")}
             trigger={
               <Button
                 disabled={!remoteConfiguration || missingRequiredSettings.length > 0}
@@ -494,12 +483,11 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
                 primary
               >
                 <Icon name="save" />
-                Apply Runtime
-              </Button>
+                <LocalizedText source={"Apply Runtime"} /></Button>
             }
-          />
+           {...interfaceTextProps("Apply these source-feed integration settings through the runtime configuration overlay.")}/>
           <Popup
-            content="Persist these source-feed integration settings to the YAML configuration file."
+            content={interfaceText("Persist these source-feed integration settings to the YAML configuration file.")}
             trigger={
               <Button
                 disabled={!remoteConfiguration || missingRequiredSettings.length > 0}
@@ -509,12 +497,11 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
                 onClick={saveYaml}
               >
                 <Icon name="file alternate" />
-                Save YAML
-              </Button>
+                <LocalizedText source={"Save YAML"} /></Button>
             }
-          />
+           {...interfaceTextProps("Persist these source-feed integration settings to the YAML configuration file.")}/>
           <Popup
-            content="Discard unsaved edits and restore the values currently reported by the daemon."
+            content={interfaceText("Discard unsaved edits and restore the values currently reported by the daemon.")}
             trigger={
               <Button
                 disabled={saving}
@@ -523,10 +510,9 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
                 onClick={reset}
               >
                 <Icon name="undo" />
-                Reset
-              </Button>
+                <LocalizedText source={"Reset"} /></Button>
             }
-          />
+           {...interfaceTextProps("Discard unsaved edits and restore the values currently reported by the daemon.")}/>
         </div>
       </Card.Content>
     </Card>

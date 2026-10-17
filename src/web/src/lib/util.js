@@ -1,12 +1,16 @@
+import { formatRegionalNumber, getRegionalLocale } from './regionalFormat';
 export const formatSeconds = (seconds) => {
   if (seconds === undefined) return '';
   const date = new Date(1_970, 0, 1);
   date.setSeconds(seconds);
+  const localizeDigits = (value) => value.replace(/\d/gu, (digit) =>
+    formatRegionalNumber(Number(digit), { useGrouping: false }),
+  );
   if (seconds >= 3_600) {
-    return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/u, '$1');
+    return localizeDigits(date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/u, '$1'));
   }
 
-  return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/u, '$1');
+  return localizeDigits(date.toTimeString().replace(/.*(\d{2}:\d{2}).*/u, '$1'));
 };
 
 export const formatBytesAsUnit = (bytes, unit, decimals = 2) => {
@@ -20,21 +24,21 @@ export const formatBytesAsUnit = (bytes, unit, decimals = 2) => {
 };
 
 export const formatBytes = (bytes, decimals = 2) => {
-  if (bytes === 0) return '0 B';
+  const dm = decimals < 0 ? 0 : decimals;
+  if (bytes === 0) return formatRegionalNumber(0, { maximumFractionDigits: dm }) + ' B';
 
   const k = 1_024;
-  const dm = decimals < 0 ? 0 : decimals;
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
   const index = Math.floor(Math.log(bytes) / Math.log(k));
 
   return (
-    Number.parseFloat((bytes / k ** index).toFixed(dm)) + ' ' + sizes[index]
+    formatRegionalNumber(Number.parseFloat((bytes / k ** index).toFixed(dm))) + ' ' + sizes[index]
   );
 };
 
 export const formatDate = (date) => {
-  return new Date(date).toLocaleString();
+  return new Date(date).toLocaleString(getRegionalLocale());
 };
 
 export const getFileName = (fullPath) => {
@@ -72,14 +76,14 @@ export const formatAttributes = ({
   const isLossless = Boolean(sampleRate) && Boolean(bitDepth);
 
   if (isLossless) {
-    return `${bitDepth}/${sampleRate / 1_000}kHz`;
+    return formatRegionalNumber(bitDepth) + '/' + formatRegionalNumber(sampleRate / 1_000) + 'kHz';
   }
 
   if (isVariableBitRate) {
-    return `${bitRate} Kbps, VBR`;
+    return formatRegionalNumber(bitRate) + ' Kbps, VBR';
   }
 
-  return bitRate ? `${bitRate} Kbps` : '';
+  return bitRate ? formatRegionalNumber(bitRate) + ' Kbps' : '';
 };
 
 export const sleep = (milliseconds) => {

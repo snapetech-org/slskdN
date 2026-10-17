@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import {
   evaluateMeshEvidenceEntries,
   formatMeshEvidenceReviewReport,
@@ -29,7 +31,7 @@ import {
 
 const inboundOptions = inboundTrustTiers.map((tier) => ({
   key: tier.id,
-  text: tier.label,
+  text: interfaceText(tier.label),
   value: tier.id,
 }));
 
@@ -67,6 +69,7 @@ const sampleEvidence = JSON.stringify(
 );
 
 const MeshEvidencePolicy = () => {
+  useInterfaceLanguage();
   const [policy, setPolicy] = useState(getMeshEvidencePolicy);
   const [reviewError, setReviewError] = useState('');
   const [reviewInput, setReviewInput] = useState('');
@@ -75,7 +78,7 @@ const MeshEvidencePolicy = () => {
 
   const setInboundTier = (_event, { value }) => {
     setPolicy(setMeshEvidenceInboundTrustTier(value));
-    toast.info('Mesh evidence inbound trust policy updated');
+    toast.info(interfaceText("Mesh evidence inbound trust policy updated"));
   };
 
   const toggleOutbound = (evidenceType, enabled) => {
@@ -87,7 +90,7 @@ const MeshEvidencePolicy = () => {
 
   const resetPolicy = () => {
     setPolicy(resetMeshEvidencePolicy());
-    toast.info('Mesh evidence policy reset to private defaults');
+    toast.info(interfaceText("Mesh evidence policy reset to private defaults"));
   };
 
   const reviewEvidence = () => {
@@ -95,9 +98,9 @@ const MeshEvidencePolicy = () => {
       const entries = parseMeshEvidenceReviewInput(reviewInput);
       setReview(evaluateMeshEvidenceEntries(entries, policy));
       setReviewError('');
-    } catch (error) {
+    } catch {
       setReview(null);
-      setReviewError(error instanceof Error ? error.message : String(error));
+      setReviewError(interfaceText('Invalid evidence JSON'));
     }
   };
 
@@ -106,11 +109,11 @@ const MeshEvidencePolicy = () => {
 
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(formatMeshEvidenceReviewReport(review));
-      toast.success('Mesh evidence review copied');
+      toast.success(interfaceText("Mesh evidence review copied"));
       return;
     }
 
-    toast.info('Clipboard unavailable; select the review results manually');
+    toast.info(interfaceText("Clipboard unavailable; select the review results manually"));
   };
 
   return (
@@ -119,23 +122,21 @@ const MeshEvidencePolicy = () => {
         <Header as="h3">
           <Icon name="certificate" />
           <Header.Content>
-            Mesh Evidence Policy
-            <Header.Subheader>
-              Local controls for trusted metadata evidence. Nothing is published unless explicitly enabled here.
-            </Header.Subheader>
+            <LocalizedText source={"Mesh Evidence Policy"} /><Header.Subheader>
+              <LocalizedText source={"Local controls for trusted metadata evidence. Nothing is published unless explicitly enabled here."} /></Header.Subheader>
           </Header.Content>
         </Header>
         <Popup
-          content="Reset inbound and outbound mesh evidence controls to private defaults."
+          content={interfaceText("Reset inbound and outbound mesh evidence controls to private defaults.")}
           position="top center"
           trigger={
             <Button
-              aria-label="Reset mesh evidence policy to private defaults"
+              aria-label={interfaceText("Reset mesh evidence policy to private defaults")}
               icon="undo"
               onClick={resetPolicy}
-            />
+             {...interfaceTextProps("Reset mesh evidence policy to private defaults")}/>
           }
-        />
+         {...interfaceTextProps("Reset inbound and outbound mesh evidence controls to private defaults.")}/>
       </div>
 
       <Statistic.Group
@@ -143,59 +144,64 @@ const MeshEvidencePolicy = () => {
         widths="three"
       >
         <Statistic color={summary.inboundEnabled ? 'blue' : 'grey'}>
-          <Statistic.Value>{summary.inboundEnabled ? 'On' : 'Off'}</Statistic.Value>
-          <Statistic.Label>Inbound Evidence</Statistic.Label>
+          <Statistic.Value>{summary.inboundEnabled ? <LocalizedText source={"On"} /> : <LocalizedText source={"Off"} />}</Statistic.Value>
+          <Statistic.Label><LocalizedText source={"Inbound Evidence"} /></Statistic.Label>
         </Statistic>
         <Statistic color={summary.outboundEnabled ? 'orange' : 'grey'}>
           <Statistic.Value>{summary.enabledOutbound.length}</Statistic.Value>
-          <Statistic.Label>Outbound Types</Statistic.Label>
+          <Statistic.Label><LocalizedText source={"Outbound Types"} /></Statistic.Label>
         </Statistic>
         <Statistic color={policy.provenanceRequired ? 'green' : 'red'}>
           <Statistic.Value>
-            {policy.provenanceRequired ? 'Required' : 'Optional'}
+            {policy.provenanceRequired ? <LocalizedText source={"Required"} /> : <LocalizedText source={"Optional"} />}
           </Statistic.Value>
-          <Statistic.Label>Provenance</Statistic.Label>
+          <Statistic.Label><LocalizedText source={"Provenance"} /></Statistic.Label>
         </Statistic>
       </Statistic.Group>
 
       <div className="mesh-evidence-policy-grid">
         <Segment>
-          <Header as="h4">Inbound Trust Gate</Header>
+          <Header as="h4"><LocalizedText source={"Inbound Trust Gate"} /></Header>
           <Dropdown
-            aria-label="Mesh evidence inbound trust tier"
+            aria-label={interfaceText("Mesh evidence inbound trust tier")}
             fluid
             onChange={setInboundTier}
             options={inboundOptions}
             selection
             value={policy.inboundTrustTier}
-          />
+           {...interfaceTextProps("Mesh evidence inbound trust tier")}/>
           <p className="mesh-evidence-policy-help">
-            {summary.inboundTier.description}
+            <LocalizedText source={summary.inboundTier.description} />
           </p>
           <Label color="green">
             <Icon name="lock" />
-            Provenance required
-          </Label>
+            <LocalizedText source={"Provenance required"} /></Label>
         </Segment>
 
         <Segment>
-          <Header as="h4">Outbound Publication</Header>
+          <Header as="h4"><LocalizedText source={"Outbound Publication"} /></Header>
           <List
             divided
             relaxed
           >
             {outboundEvidenceTypes.map((evidenceType) => {
               const enabled = policy.outbound[evidenceType.id] === true;
+              const label = interfaceText(evidenceType.label);
+              const actionSource = enabled ? 'Disable {label} publication' : 'Enable {label} publication';
+              const detailSource = enabled
+                ? 'Disable publication of {label}. This remains local policy state until backend federation is wired.'
+                : 'Enable publication of {label}. This remains local policy state until backend federation is wired.';
 
               return (
                 <List.Item key={evidenceType.id}>
                   <List.Content floated="right">
                     <Popup
-                      content={`${enabled ? 'Disable' : 'Enable'} publication of ${evidenceType.label}. This remains local policy state until backend federation is wired.`}
+                      content={<LocalizedText source={detailSource} values={{ label }} />}
                       position="top center"
                       trigger={
                         <Checkbox
-                          aria-label={`${enabled ? 'Disable' : 'Enable'} ${evidenceType.label} publication`}
+                          aria-label={interfaceText(actionSource, { label })}
+                          {...interfaceTextProps(actionSource, { label })}
                           checked={enabled}
                           onChange={(_event, { checked }) =>
                             toggleOutbound(evidenceType, checked)
@@ -212,9 +218,9 @@ const MeshEvidencePolicy = () => {
                     verticalAlign="middle"
                   />
                   <List.Content>
-                    <List.Header>{evidenceType.label}</List.Header>
+                    <List.Header><LocalizedText source={evidenceType.label} /></List.Header>
                     <List.Description>
-                      {evidenceType.description}
+                      <LocalizedText source={evidenceType.description} />
                     </List.Description>
                   </List.Content>
                 </List.Item>
@@ -227,72 +233,66 @@ const MeshEvidencePolicy = () => {
       <Segment className="mesh-evidence-review">
         <Header as="h4">
           <Icon name="search" />
-          Evidence Review Sandbox
-          <Header.Subheader>
-            Paste signed mesh evidence JSON to preview local trust, provenance,
-            k-anonymity, confidence, and privacy gates before anything is applied.
-          </Header.Subheader>
+          <LocalizedText source={"Evidence Review Sandbox"} /><Header.Subheader>
+            <LocalizedText source={"Paste signed mesh evidence JSON to preview local trust, provenance, k-anonymity, confidence, and privacy gates before anything is applied."} /></Header.Subheader>
         </Header>
         <TextArea
-          aria-label="Mesh evidence review JSON"
+          aria-label={interfaceText("Mesh evidence review JSON")}
           className="mesh-evidence-review-input"
           onChange={(event) => setReviewInput(event.target.value)}
           placeholder={sampleEvidence}
           value={reviewInput}
-        />
+         {...interfaceTextProps("Mesh evidence review JSON")}/>
         <div className="mesh-evidence-review-actions">
           <Popup
-            content="Load a browser-local sample containing one acceptable realm-signed item and one rejected privacy-risk item."
+            content={interfaceText("Load a browser-local sample containing one acceptable realm-signed item and one rejected privacy-risk item.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Load sample mesh evidence"
+                aria-label={interfaceText("Load sample mesh evidence")}
                 onClick={() => {
                   setReviewInput(sampleEvidence);
                   setReviewError('');
                 }}
-              >
+               {...interfaceTextProps("Load sample mesh evidence")}>
                 <Icon name="flask" />
-                Load Sample
-              </Button>
+                <LocalizedText source={"Load Sample"} /></Button>
             }
-          />
+           {...interfaceTextProps("Load a browser-local sample containing one acceptable realm-signed item and one rejected privacy-risk item.")}/>
           <Popup
-            content="Evaluate the pasted evidence locally. This does not publish, query peers, or apply ranking changes."
+            content={interfaceText("Evaluate the pasted evidence locally. This does not publish, query peers, or apply ranking changes.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Review mesh evidence locally"
+                aria-label={interfaceText("Review mesh evidence locally")}
                 disabled={!reviewInput.trim()}
                 onClick={reviewEvidence}
                 primary
-              >
+               {...interfaceTextProps("Review mesh evidence locally")}>
                 <Icon name="check circle" />
-                Review Evidence
-              </Button>
+                <LocalizedText source={"Review Evidence"} /></Button>
             }
-          />
+           {...interfaceTextProps("Evaluate the pasted evidence locally. This does not publish, query peers, or apply ranking changes.")}/>
           <Popup
-            content="Copy the current mesh evidence review report."
+            content={interfaceText("Copy the current mesh evidence review report.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Copy mesh evidence review report"
+                aria-label={interfaceText("Copy mesh evidence review report")}
                 disabled={!review}
                 onClick={copyReviewReport}
-              >
+               {...interfaceTextProps("Copy mesh evidence review report")}>
                 <Icon name="copy" />
-                Copy Report
-              </Button>
+                <LocalizedText source={"Copy Report"} /></Button>
             }
-          />
+           {...interfaceTextProps("Copy the current mesh evidence review report.")}/>
         </div>
         {reviewError && (
           <Message
             className="mesh-evidence-review-message"
             negative
           >
-            <Message.Header>Invalid evidence JSON</Message.Header>
+            <Message.Header><LocalizedText source={"Invalid evidence JSON"} /></Message.Header>
             <p>{reviewError}</p>
           </Message>
         )}
@@ -300,16 +300,13 @@ const MeshEvidencePolicy = () => {
           <div className="mesh-evidence-review-results">
             <div className="mesh-evidence-review-summary">
               <Label color="blue">
-                Total
-                <Label.Detail>{review.summary.total}</Label.Detail>
+                <LocalizedText source={"Total"} /><Label.Detail>{review.summary.total}</Label.Detail>
               </Label>
               <Label color="green">
-                Accepted
-                <Label.Detail>{review.summary.accepted}</Label.Detail>
+                <LocalizedText source={"Accepted"} /><Label.Detail>{review.summary.accepted}</Label.Detail>
               </Label>
               <Label color="red">
-                Rejected
-                <Label.Detail>{review.summary.rejected}</Label.Detail>
+                <LocalizedText source={"Rejected"} /><Label.Detail>{review.summary.rejected}</Label.Detail>
               </Label>
             </div>
             <List
@@ -329,11 +326,10 @@ const MeshEvidencePolicy = () => {
                       {entry.type} · {entry.subject}
                     </List.Header>
                     <List.Description>
-                      Confidence {entry.confidence}; witnesses {entry.witnessCount};
-                      provenance {entry.provenance.trustTier}
+                      <LocalizedText source={"Confidence"} />{" "}{entry.confidence}<LocalizedText source={"; witnesses"} />{" "}{entry.witnessCount}<LocalizedText source={"; provenance"} />{" "}{entry.provenance.trustTier}
                       {entry.reasons.length > 0
                         ? `; rejected because ${entry.reasons.join(', ')}`
-                        : '; accepted for local use'}
+                        : <LocalizedText source={"; accepted for local use"} />}
                     </List.Description>
                   </List.Content>
                 </List.Item>

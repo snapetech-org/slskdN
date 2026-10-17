@@ -5,4 +5,4 @@ area: ci-security
 action: none
 breaking: false
 ---
-Public pull request workflows use GitHub-hosted runners. Trusted tag and manual runs can still use configured self-hosted runners, keeping untrusted contributions away from private runner environments.
+All pull request, tag, and manual workflows use GitHub-hosted runners. The private runner routes described in the original change were retired on 2026-10-16.

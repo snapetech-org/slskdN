@@ -6,23 +6,7 @@ export const EXPERIENCE_PREFERENCES_STORAGE_KEY =
 export const EXPERIENCE_PREFERENCES_CHANGED_EVENT =
   'slskdn:experience-preferences-changed';
 
-export const readExperiencePreference = (key, fallback) => {
-  const stored = getLocalStorageItem(EXPERIENCE_PREFERENCES_STORAGE_KEY);
-  if (!stored) return fallback;
-
-  try {
-    const parsed = JSON.parse(stored);
-    const value = parsed?.[key];
-    return typeof value === typeof fallback ? value : fallback;
-  } catch {
-    return fallback;
-  }
-};
-
-export const notifyExperiencePreferencesChanged = () => {
-  if (typeof window === 'undefined') return;
-  window.dispatchEvent(new window.Event(EXPERIENCE_PREFERENCES_CHANGED_EVENT));
-};
+let inMemoryPreferences = null;
 
 const readStoredExperiencePreferences = () => {
   const stored = getLocalStorageItem(EXPERIENCE_PREFERENCES_STORAGE_KEY);
@@ -38,16 +22,40 @@ const readStoredExperiencePreferences = () => {
   }
 };
 
+export const readExperiencePreference = (key, fallback) => {
+  if (inMemoryPreferences && Object.hasOwn(inMemoryPreferences, key)) {
+    const value = inMemoryPreferences[key];
+    return typeof value === typeof fallback ? value : fallback;
+  }
+
+  const value = readStoredExperiencePreferences()[key];
+  return typeof value === typeof fallback ? value : fallback;
+};
+
+export const notifyExperiencePreferencesChanged = () => {
+  if (typeof window === 'undefined') return;
+  window.dispatchEvent(new window.Event(EXPERIENCE_PREFERENCES_CHANGED_EVENT));
+};
+
+export const setExperiencePreferencesSnapshot = (preferences) => {
+  inMemoryPreferences =
+    preferences !== null && typeof preferences === 'object' && !Array.isArray(preferences)
+      ? { ...preferences }
+      : {};
+};
+
 export const setExperiencePreference = (key, value) => {
+  const next = {
+    ...readStoredExperiencePreferences(),
+    ...(inMemoryPreferences || {}),
+    [key]: value,
+  };
   const saved = setLocalStorageItem(
     EXPERIENCE_PREFERENCES_STORAGE_KEY,
-    JSON.stringify({
-      ...readStoredExperiencePreferences(),
-      [key]: value,
-    }),
+    JSON.stringify(next),
   );
-
-  if (saved) notifyExperiencePreferencesChanged();
+  inMemoryPreferences = next;
+  notifyExperiencePreferencesChanged();
   return saved;
 };
 
@@ -55,7 +63,8 @@ export const subscribeToExperiencePreferences = (callback) => {
   if (typeof window === 'undefined') return () => {};
 
   const handleStorageChange = (event) => {
-    if (event.key === EXPERIENCE_PREFERENCES_STORAGE_KEY) {
+    if (event.key === EXPERIENCE_PREFERENCES_STORAGE_KEY || event.key === null) {
+      inMemoryPreferences = null;
       callback();
     }
   };

@@ -1,3 +1,7 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
 import ErrorSegment from '../Shared/ErrorSegment';
@@ -22,20 +26,8 @@ const Button = TooltipButton;
 const asArray = (value) => (Array.isArray(value) ? value : []);
 const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
 
-const getErrorMessage = (error, fallback = 'Request failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || fallback;
-};
+const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 export default class ShareGroups extends Component {
   state = {
@@ -92,19 +84,7 @@ export default class ShareGroups extends Component {
         shareGroups: asArray(groupsRes.data),
       });
     } catch (error) {
-      // Extract error message from response
-      let errorMessage = error.message;
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else {
-          errorMessage = JSON.stringify(error.response.data);
-        }
-      }
+      const errorMessage = getErrorMessage(error);
 
       // Only suppress errors for 401/403/404 (auth/feature disabled)
       const isAuthOrFeatureError =
@@ -126,11 +106,11 @@ export default class ShareGroups extends Component {
     } catch (error) {
       console.error('[ShareGroups] Create group error:', error);
       // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message || 'Failed to create share group';
+      let errorMessage = getErrorMessage(error, 'Failed to create share group');
       if (error.response) {
         const status = error.response.status;
-        const url = error.response.config?.url || 'unknown';
-        const contentLength = error.response.headers['content-length'];
+        const url = error.response.config?.url || interfaceText('Unknown');
+        const contentLength = error.response.headers?.['content-length'];
 
         console.error('[ShareGroups] Response status:', status);
         console.error('[ShareGroups] Response URL:', url);
@@ -143,45 +123,36 @@ export default class ShareGroups extends Component {
           );
         }
 
-        if (error.response.data) {
-          if (typeof error.response.data === 'string') {
-            errorMessage = error.response.data;
-          } else if (error.response.data.detail) {
-            errorMessage = error.response.data.detail; // ProblemDetails format
-          } else if (error.response.data.message) {
-            errorMessage = error.response.data.message;
-          } else if (error.response.data.error) {
-            errorMessage = error.response.data.error;
-          } else if (error.response.data.title) {
-            errorMessage = error.response.data.title; // ProblemDetails title as fallback
-          } else {
-            errorMessage = JSON.stringify(error.response.data);
-          }
-        } else if (status === 400) {
+        if (status === 400 && !error.response.data) {
           // 400 with empty body likely means CSRF validation failed or user identity missing
-          errorMessage =
-            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.';
+          errorMessage = interfaceText(
+            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.',
+          );
         } else if (status === 401) {
-          errorMessage = 'Authentication required. Please refresh the page.';
+          errorMessage = interfaceText('Authentication required. Please refresh the page.');
         } else if (status === 403) {
-          errorMessage = 'Not authorized.';
+          errorMessage = interfaceText('Not authorized.');
         } else if (status === 404) {
           // 404 could be route mismatch (double prefix bug) or feature disabled
           if (url.includes('/api/v0/api/v0')) {
-            errorMessage = `Endpoint not found: ${url} (possible route mismatch - check browser console)`;
+            errorMessage = interfaceText(
+              'Endpoint not found: {url} (possible route mismatch - check browser console)',
+              { url },
+            );
           } else {
-            errorMessage =
-              'Collections sharing feature is not enabled, or endpoint not found.';
+            errorMessage = interfaceText(
+              'Collections sharing feature is not enabled, or endpoint not found.',
+            );
           }
         } else if (status >= 500) {
-          errorMessage = 'Server error. Please check server logs.';
+          errorMessage = interfaceText('Server error. Please check server logs.');
         }
       }
 
       this.setState({
         error:
           errorMessage ||
-          'Failed to create share group. Please configure Soulseek username or enable Identity & Friends.',
+          interfaceText('Failed to create share group. Please configure Soulseek username or enable Identity & Friends.'),
       });
     }
   };
@@ -209,34 +180,17 @@ export default class ShareGroups extends Component {
       });
       await this.loadData();
     } catch (error) {
-      // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message;
-      if (error.response?.data) {
-        if (typeof error.response.data === 'string') {
-          errorMessage = error.response.data;
-        } else if (error.response.data.detail) {
-          errorMessage = error.response.data.detail; // ProblemDetails format
-        } else if (error.response.data.message) {
-          errorMessage = error.response.data.message;
-        } else if (error.response.data.error) {
-          errorMessage = error.response.data.error;
-        } else if (error.response.data.title) {
-          errorMessage = error.response.data.title; // ProblemDetails title as fallback
-        } else {
-          errorMessage = JSON.stringify(error.response.data);
-        }
-      }
-
       this.setState({
-        error:
-          errorMessage ||
+        error: getErrorMessage(
+          error,
           'Failed to add member. Please configure Soulseek username or enable Identity & Friends.',
+        ),
       });
     }
   };
 
   handleDeleteGroup = async (id) => {
-    if (!window.confirm('Delete this share group?')) return;
+    if (!window.confirm(interfaceText('Delete this share group?'))) return;
     try {
       await collectionsAPI.deleteShareGroup(id);
       await this.loadData();
@@ -246,7 +200,7 @@ export default class ShareGroups extends Component {
   };
 
   handleRemoveMember = async (groupId, userId) => {
-    if (!window.confirm('Remove this member?')) return;
+    if (!window.confirm(interfaceText('Remove this member?'))) return;
     try {
       await collectionsAPI.removeShareGroupMember(groupId, userId);
       await this.loadData();
@@ -318,7 +272,7 @@ export default class ShareGroups extends Component {
     const contactOptions = contacts.map((c) => ({
       contact: c,
       key: c.id,
-      text: `${c.nickname || 'Unnamed'} (${c.peerId?.slice(0, 16)}...)`,
+      text: `${c.nickname || interfaceText('Unnamed')} (${c.peerId?.slice(0, 16)}...)`,
       value: c.peerId,
     }));
 
@@ -327,10 +281,8 @@ export default class ShareGroups extends Component {
         <Header as="h1">
           <Icon name="users" />
           <Header.Content>
-            Share Groups
-            <Header.Subheader>
-              Manage groups for sharing collections
-            </Header.Subheader>
+            <LocalizedText source={"Share Groups"} /><Header.Subheader>
+              <LocalizedText source={"Manage groups for sharing collections"} /></Header.Subheader>
           </Header.Content>
         </Header>
 
@@ -344,32 +296,30 @@ export default class ShareGroups extends Component {
             tooltip="Create a named group that can be granted access to shared collections."
           >
             <Icon name="plus" />
-            Create Group
-          </Button>
+            <LocalizedText source={"Create Group"} /></Button>
         </div>
 
         {shareGroups.length === 0 ? (
           <Segment placeholder>
             <Header icon>
               <Icon name="users" />
-              {loading ? 'Loading share groups' : 'No share groups yet'}
+              {loading ? <LocalizedText source={"Loading share groups"} /> : <LocalizedText source={"No share groups yet"} />}
             </Header>
             <Button
               onClick={() => this.setState({ createModalOpen: true })}
               primary
               tooltip="Create the first share group for collection permissions."
             >
-              Create Your First Group
-            </Button>
+              <LocalizedText source={"Create Your First Group"} /></Button>
           </Segment>
         ) : (
           <Table>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Members</Table.HeaderCell>
-                <Table.HeaderCell>Created</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Name"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Members"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Created"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -386,11 +336,10 @@ export default class ShareGroups extends Component {
                       size="small"
                       tooltip="Show the contacts or users currently assigned to this group."
                     >
-                      View Members
-                    </Button>
+                      <LocalizedText source={"View Members"} /></Button>
                   </Table.Cell>
                   <Table.Cell>
-                    {new Date(group.createdAt).toLocaleDateString()}
+                    {new Date(group.createdAt).toLocaleDateString(getRegionalLocale())}
                   </Table.Cell>
                   <Table.Cell>
                     <Button
@@ -405,16 +354,14 @@ export default class ShareGroups extends Component {
                       size="small"
                       tooltip="Add a contact or Soulseek username to this share group."
                     >
-                      Add Member
-                    </Button>
+                      <LocalizedText source={"Add Member"} /></Button>
                     <Button
                       negative
                       onClick={() => this.handleDeleteGroup(group.id)}
                       size="small"
                       tooltip="Delete this share group and remove its collection access."
                     >
-                      Delete
-                    </Button>
+                      <LocalizedText source={"Delete"} /></Button>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -429,18 +376,18 @@ export default class ShareGroups extends Component {
           }
           open={createModalOpen}
         >
-          <Modal.Header>Create Share Group</Modal.Header>
+          <Modal.Header><LocalizedText source={"Create Share Group"} /></Modal.Header>
           <Modal.Content>
             <Form>
               <Form.Input
                 data-testid="groups-name-input"
-                label="Group Name"
+                label={interfaceText("Group Name")}
                 onChange={(e) =>
                   this.setState({ newGroupName: e.target.value })
                 }
-                placeholder="Enter group name"
+                placeholder={interfaceText("Enter group name")}
                 value={newGroupName}
-              />
+               {...interfaceTextProps("Group Name")}/>
             </Form>
           </Modal.Content>
           <Modal.Actions>
@@ -450,8 +397,7 @@ export default class ShareGroups extends Component {
               }
               tooltip="Close this dialog without creating a share group."
             >
-              Cancel
-            </Button>
+              <LocalizedText source={"Cancel"} /></Button>
             <Button
               data-testid="groups-create-submit"
               disabled={!newGroupName.trim()}
@@ -459,8 +405,7 @@ export default class ShareGroups extends Component {
               primary
               tooltip="Create this share group."
             >
-              Create
-            </Button>
+              <LocalizedText source={"Create"} /></Button>
           </Modal.Actions>
         </Modal>
 
@@ -476,12 +421,12 @@ export default class ShareGroups extends Component {
           }
           open={addMemberModalOpen}
         >
-          <Modal.Header>Add Member to {selectedGroup?.name}</Modal.Header>
+          <Modal.Header><LocalizedText source={"Add Member to"} />{" "}{selectedGroup?.name}</Modal.Header>
           <Modal.Content>
             {contacts.length > 0 ? (
               <Form>
                 <Form.Field>
-                  <label>Add from Contacts</label>
+                  <label><LocalizedText source={"Add from Contacts"} /></label>
                   <Dropdown
                     data-testid="group-member-picker"
                     fluid
@@ -492,14 +437,14 @@ export default class ShareGroups extends Component {
                       })
                     }
                     options={contactOptions}
-                    placeholder="Select a contact"
+                    placeholder={interfaceText("Select a contact")}
                     search
                     selection
                     value={selectedContactId}
-                  />
+                   {...interfaceTextProps("Select a contact")}/>
                 </Form.Field>
                 <Message info>
-                  <p>Or enter a Soulseek username (legacy):</p>
+                  <p><LocalizedText source={"Or enter a Soulseek username (legacy):"} /></p>
                   <Form.Input
                     onChange={(e) =>
                       this.setState({
@@ -507,27 +452,25 @@ export default class ShareGroups extends Component {
                         usePeerId: false,
                       })
                     }
-                    placeholder="Soulseek username"
+                    placeholder={interfaceText("Soulseek username")}
                     value={selectedUserId}
-                  />
+                   {...interfaceTextProps("Soulseek username")}/>
                 </Message>
               </Form>
             ) : (
               <Form>
                 <Form.Field>
-                  <label>Soulseek Username (legacy)</label>
+                  <label><LocalizedText source={"Soulseek Username (legacy)"} /></label>
                   <Form.Input
                     onChange={(e) =>
                       this.setState({ selectedUserId: e.target.value })
                     }
-                    placeholder="Enter username"
+                    placeholder={interfaceText("Enter username")}
                     value={selectedUserId}
-                  />
+                   {...interfaceTextProps("Enter username")}/>
                 </Form.Field>
                 <Message warning>
-                  No contacts available. Add contacts from the Contacts page to
-                  use friend-based sharing.
-                </Message>
+                  <LocalizedText source={"No contacts available. Add contacts from the Contacts page to use friend-based sharing."} /></Message>
               </Form>
             )}
           </Modal.Content>
@@ -543,8 +486,7 @@ export default class ShareGroups extends Component {
               }
               tooltip="Close this dialog without adding a member."
             >
-              Cancel
-            </Button>
+              <LocalizedText source={"Cancel"} /></Button>
             <Button
               data-testid="group-member-add-submit"
               disabled={!selectedContactId && !selectedUserId}
@@ -552,8 +494,7 @@ export default class ShareGroups extends Component {
               primary
               tooltip="Add the selected contact or username to this share group."
             >
-              Add Member
-            </Button>
+              <LocalizedText source={"Add Member"} /></Button>
           </Modal.Actions>
         </Modal>
 
@@ -562,7 +503,12 @@ export default class ShareGroups extends Component {
           onClose={this.closeMemberDetails}
           open={memberDetailsModalOpen}
         >
-          <Modal.Header>Members of {memberDetailsGroup?.name || 'Share Group'}</Modal.Header>
+          <Modal.Header>
+            <LocalizedText
+              source="Members of {group}"
+              values={{ group: memberDetailsGroup?.name || interfaceText('Share Group') }}
+            />
+          </Modal.Header>
           <Modal.Content>
             {memberDetailsLoading ? (
               <LoaderSegment />
@@ -576,19 +522,18 @@ export default class ShareGroups extends Component {
                   primary
                   tooltip="Retry loading members for this share group."
                 >
-                  Retry Members
-                </Button>
+                  <LocalizedText source={"Retry Members"} /></Button>
               </Message>
             ) : memberDetails.length > 0 ? (
               <List divided relaxed>
                 {memberDetails.map((member, index) => (
                   <List.Item key={member.userId || member.peerId || index}>
-                    {member.contactNickname || member.nickname || member.userId || member.peerId || 'Unknown member'}
+                    {member.contactNickname || member.nickname || member.userId || member.peerId || interfaceText('Unknown member')}
                   </List.Item>
                 ))}
               </List>
             ) : (
-              <Segment placeholder>No members are assigned to this group.</Segment>
+              <Segment placeholder><LocalizedText source={"No members are assigned to this group."} /></Segment>
             )}
           </Modal.Content>
           <Modal.Actions>
@@ -596,8 +541,7 @@ export default class ShareGroups extends Component {
               onClick={this.closeMemberDetails}
               tooltip="Close the member list and return to share groups."
             >
-              Close
-            </Button>
+              <LocalizedText source={"Close"} /></Button>
           </Modal.Actions>
         </Modal>
       </Container>

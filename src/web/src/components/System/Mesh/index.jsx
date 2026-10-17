@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import * as mesh from '../../../lib/mesh';
 import * as soulseekDiscovery from '../../../lib/soulseekDiscovery';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
@@ -45,6 +48,7 @@ const sameMeshStats = (previous, next) =>
   previous?.messageFlowHealthy === next?.messageFlowHealthy;
 
 const Mesh = () => {
+  useInterfaceLanguage();
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const meshEnabled = featureGatesReady && isFeatureEnabled(featureGates, 'mesh');
   const dhtEnabled = featureGatesReady && isFeatureEnabled(featureGates, 'dht');
@@ -61,13 +65,8 @@ const Mesh = () => {
   const [rendezvousLoading, setRendezvousLoading] = useState(false);
   const [rendezvousMessage, setRendezvousMessage] = useState(null);
 
-  const getRendezvousErrorText = (error_, fallback) => {
-    const data = error_?.response?.data;
-    if (typeof data === 'string') return data;
-    if (data?.error) return data.error;
-    if (data?.title) return data.title;
-    return error_?.message || fallback;
-  };
+  const getRendezvousErrorText = (error_, fallback) =>
+    getApiErrorMessage(error_, { t: interfaceText }, fallback);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -103,7 +102,7 @@ const Mesh = () => {
     } catch (error_) {
       if (!mountedRef.current || document.hidden) return;
       if (!statsLoadedRef.current) {
-        setError(error_.message);
+        setError(getApiErrorMessage(error_, { t: interfaceText }));
       }
     } finally {
       statsFetchInFlightRef.current = false;
@@ -164,7 +163,7 @@ const Mesh = () => {
         if (!mountedRef.current) return;
         setRendezvousStatus({
           enabled: false,
-          error: error_?.response?.data || error_.message,
+          error: getApiErrorMessage(error_, { t: interfaceText }),
         });
       }
     };
@@ -182,7 +181,7 @@ const Mesh = () => {
       await soulseekDiscovery.addMeshRendezvousInterest();
       setRendezvousMessage({
         positive: true,
-        text: 'Published the slskdN mesh rendezvous interest on this Soulseek account.',
+        text: interfaceText("Published the slskdN mesh rendezvous interest on this Soulseek account."),
       });
     } catch (error_) {
       setRendezvousMessage({
@@ -206,7 +205,7 @@ const Mesh = () => {
       await soulseekDiscovery.removeMeshRendezvousInterest();
       setRendezvousMessage({
         positive: true,
-        text: 'Removed the slskdN mesh rendezvous interest from this Soulseek account.',
+        text: interfaceText("Removed the slskdN mesh rendezvous interest from this Soulseek account."),
       });
     } catch (error_) {
       setRendezvousMessage({
@@ -235,7 +234,10 @@ const Mesh = () => {
       setCapabilityRecords(records);
       setRendezvousMessage({
         positive: true,
-        text: `Discovered ${users.length} Soulseek rendezvous candidate(s) and ${records.length} runtime capability record(s).`,
+        text: interfaceText('Discovered {users} Soulseek rendezvous candidate(s) and {records} runtime capability record(s).', {
+          users: users.length,
+          records: records.length,
+        }),
       });
     } catch (error_) {
       setRendezvousUsers([]);
@@ -283,8 +285,7 @@ const Mesh = () => {
       <div>
         <Header as="h2">
           <Icon name="sitemap" />
-          Mesh Network Status
-        </Header>
+          <LocalizedText source={"Mesh Network Status"} /></Header>
         <FeatureGateNotice
           configurationKeys={['feature.Mesh', 'mesh.enable_overlay']}
           featureGate={featureGates.mesh}
@@ -306,8 +307,7 @@ const Mesh = () => {
           active
           inline="centered"
         >
-          Loading mesh statistics...
-        </Loader>
+          <LocalizedText source={"Loading mesh statistics..."} /></Loader>
       </Segment>
     );
   }
@@ -315,7 +315,7 @@ const Mesh = () => {
   if (error) {
     return (
       <Message error>
-        <Message.Header>Failed to load mesh statistics</Message.Header>
+        <Message.Header><LocalizedText source={"Failed to load mesh statistics"} /></Message.Header>
         <p>{error}</p>
       </Message>
     );
@@ -325,8 +325,7 @@ const Mesh = () => {
     <div>
       <Header as="h2">
         <Icon name="sitemap" />
-        Mesh Network Status
-      </Header>
+        <LocalizedText source={"Mesh Network Status"} /></Header>
       <FeatureGateNotice
         configurationKeys={['feature.Dht', 'dht.enabled']}
         featureGate={featureGates.dht}
@@ -343,10 +342,10 @@ const Mesh = () => {
                   color={getHealthColor(stats?.status)}
                   name={getHealthIcon(stats?.status)}
                 />
-                Network Health: {stats?.status || 'Unknown'}
+                <LocalizedText source={"Network Health:"} />{" "}{stats?.status || <LocalizedText source={"Unknown"} />}
               </Card.Header>
               <Card.Description>
-                {stats?.description || 'No health information available'}
+                {stats?.description || <LocalizedText source={"No health information available"} />}
               </Card.Description>
             </Card.Content>
           </Card>
@@ -355,29 +354,29 @@ const Mesh = () => {
         {/* Key Statistics */}
         <Grid.Column width={16}>
           <Segment>
-            <Header as="h3">Network Statistics</Header>
+            <Header as="h3"><LocalizedText source={"Network Statistics"} /></Header>
             <Statistic.Group size="small">
               <Statistic>
                 <Statistic.Value>{stats?.totalPeers || 0}</Statistic.Value>
-                <Statistic.Label>Total Peers</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"Total Peers"} /></Statistic.Label>
               </Statistic>
               <Statistic>
                 <Statistic.Value>
                   {stats?.activeDhtSessions || 0}
                 </Statistic.Value>
-                <Statistic.Label>DHT Sessions</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"DHT Sessions"} /></Statistic.Label>
               </Statistic>
               <Statistic>
                 <Statistic.Value>
                   {stats?.activeOverlaySessions || 0}
                 </Statistic.Value>
-                <Statistic.Label>Overlay Sessions</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"Overlay Sessions"} /></Statistic.Label>
               </Statistic>
               <Statistic>
                 <Statistic.Value>
                   {stats?.routingTableSize || 0}
                 </Statistic.Value>
-                <Statistic.Label>Routing Table Size</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"Routing Table Size"} /></Statistic.Label>
               </Statistic>
             </Statistic.Group>
           </Segment>
@@ -388,42 +387,37 @@ const Mesh = () => {
           <Segment>
             <Header as="h3">
               <Icon name="plug" />
-              Connections
-            </Header>
+              <LocalizedText source={"Connections"} /></Header>
             <List
               divided
               relaxed
             >
               <List.Item>
                 <List.Content>
-                  <List.Header>DHT Nodes</List.Header>
+                  <List.Header><LocalizedText source={"DHT Nodes"} /></List.Header>
                   <List.Description>
-                    {stats?.activeDhtSessions || 0} active connections
-                  </List.Description>
+                    {stats?.activeDhtSessions || 0} <LocalizedText source={"active connections"} /></List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Content>
-                  <List.Header>Overlay Sessions</List.Header>
+                  <List.Header><LocalizedText source={"Overlay Sessions"} /></List.Header>
                   <List.Description>
-                    {stats?.activeOverlaySessions || 0} active sessions
-                  </List.Description>
+                    {stats?.activeOverlaySessions || 0} <LocalizedText source={"active sessions"} /></List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Content>
-                  <List.Header>Mirrored Sessions</List.Header>
+                  <List.Header><LocalizedText source={"Mirrored Sessions"} /></List.Header>
                   <List.Description>
-                    {stats?.activeMirroredSessions || 0} relay connections
-                  </List.Description>
+                    {stats?.activeMirroredSessions || 0} <LocalizedText source={"relay connections"} /></List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Content>
-                  <List.Header>Bootstrap Peers</List.Header>
+                  <List.Header><LocalizedText source={"Bootstrap Peers"} /></List.Header>
                   <List.Description>
-                    {stats?.bootstrapPeers || 0} bootstrap nodes
-                  </List.Description>
+                    {stats?.bootstrapPeers || 0} <LocalizedText source={"bootstrap nodes"} /></List.Description>
                 </List.Content>
               </List.Item>
             </List>
@@ -435,15 +429,14 @@ const Mesh = () => {
           <Segment>
             <Header as="h3">
               <Icon name="chart line" />
-              Performance
-            </Header>
+              <LocalizedText source={"Performance"} /></Header>
             <List
               divided
               relaxed
             >
               <List.Item>
                 <List.Content>
-                  <List.Header>DHT Operations/sec</List.Header>
+                  <List.Header><LocalizedText source={"DHT Operations/sec"} /></List.Header>
                   <List.Description>
                     {stats?.dhtOperationsPerSecond?.toFixed(1) || '0.0'} ops/sec
                   </List.Description>
@@ -451,26 +444,23 @@ const Mesh = () => {
               </List.Item>
               <List.Item>
                 <List.Content>
-                  <List.Header>Messages Sent</List.Header>
+                  <List.Header><LocalizedText source={"Messages Sent"} /></List.Header>
                   <List.Description>
-                    {stats?.messagesSent || 0} total messages
-                  </List.Description>
+                    {stats?.messagesSent || 0} <LocalizedText source={"total messages"} /></List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Content>
-                  <List.Header>Messages Received</List.Header>
+                  <List.Header><LocalizedText source={"Messages Received"} /></List.Header>
                   <List.Description>
-                    {stats?.messagesReceived || 0} total messages
-                  </List.Description>
+                    {stats?.messagesReceived || 0} <LocalizedText source={"total messages"} /></List.Description>
                 </List.Content>
               </List.Item>
               <List.Item>
                 <List.Content>
-                  <List.Header>Peer Churn Events</List.Header>
+                  <List.Header><LocalizedText source={"Peer Churn Events"} /></List.Header>
                   <List.Description>
-                    {stats?.peerChurnEvents || 0} churn events
-                  </List.Description>
+                    {stats?.peerChurnEvents || 0} <LocalizedText source={"churn events"} /></List.Description>
                 </List.Content>
               </List.Item>
             </List>
@@ -482,21 +472,20 @@ const Mesh = () => {
           <Segment>
             <Header as="h3">
               <Icon name="shield" />
-              Network Configuration
-            </Header>
+              <LocalizedText source={"Network Configuration"} /></Header>
             <Grid>
               <Grid.Column width={8}>
                 <List>
                   <List.Item>
                     <List.Content>
-                      <List.Header>NAT Type</List.Header>
+                      <List.Header><LocalizedText source={"NAT Type"} /></List.Header>
                       <List.Description>
                         <Label
                           color={
                             stats?.natType === 'Direct' ? 'green' : 'yellow'
                           }
                         >
-                          {stats?.natType || 'Unknown'}
+                          {stats?.natType || <LocalizedText source={"Unknown"} />}
                         </Label>
                       </List.Description>
                     </List.Content>
@@ -507,13 +496,13 @@ const Mesh = () => {
                 <List>
                   <List.Item>
                     <List.Content>
-                      <List.Header>Health Indicators</List.Header>
+                      <List.Header><LocalizedText source={"Health Indicators"} /></List.Header>
                       <List.Description>
                         <Label
                           color={stats?.routingTableHealthy ? 'green' : 'red'}
                         >
-                          Routing Table:{' '}
-                          {stats?.routingTableHealthy ? 'Healthy' : 'Unhealthy'}
+                          <LocalizedText source={"Routing Table:"} />{' '}
+                          {stats?.routingTableHealthy ? <LocalizedText source={"Healthy"} /> : <LocalizedText source={"Unhealthy"} />}
                         </Label>
                         <br />
                         <Label
@@ -521,17 +510,17 @@ const Mesh = () => {
                             stats?.peerConnectivityHealthy ? 'green' : 'red'
                           }
                         >
-                          Peer Connectivity:{' '}
+                          <LocalizedText source={"Peer Connectivity:"} />{' '}
                           {stats?.peerConnectivityHealthy
-                            ? 'Healthy'
-                            : 'Unhealthy'}
+                            ? <LocalizedText source={"Healthy"} />
+                            : <LocalizedText source={"Unhealthy"} />}
                         </Label>
                         <br />
                         <Label
                           color={stats?.messageFlowHealthy ? 'green' : 'red'}
                         >
-                          Message Flow:{' '}
-                          {stats?.messageFlowHealthy ? 'Healthy' : 'Unhealthy'}
+                          <LocalizedText source={"Message Flow:"} />{' '}
+                          {stats?.messageFlowHealthy ? <LocalizedText source={"Healthy"} /> : <LocalizedText source={"Unhealthy"} />}
                         </Label>
                       </List.Description>
                     </List.Content>
@@ -546,8 +535,7 @@ const Mesh = () => {
           <Segment>
             <Header as="h3">
               <Icon name="users" />
-              Soulseek Mesh Rendezvous
-            </Header>
+              <LocalizedText source={"Soulseek Mesh Rendezvous"} /></Header>
             <Message
               icon
               warning={!rendezvousStatus?.enabled}
@@ -556,27 +544,25 @@ const Mesh = () => {
               <Message.Content>
                 <Message.Header>
                   {!dhtEnabled
-                    ? 'DHT rendezvous is disabled by its feature gate'
+                    ? <LocalizedText source={"DHT rendezvous is disabled by its feature gate"} />
                     : rendezvousStatus?.enabled
-                    ? 'Opt-in public rendezvous is enabled'
-                    : 'Opt-in public rendezvous is disabled'}
+                    ? <LocalizedText source={"Opt-in public rendezvous is enabled"} />
+                    : <LocalizedText source={"Opt-in public rendezvous is disabled"} />}
                 </Message.Header>
                 <p>
                   {dhtEnabled
-                    ? 'This feature uses the native Soulseek interest graph to find other slskdN mesh-capable accounts. Publishing the interest tag makes this account visibly identifiable as a slskdN mesh participant.'
-                    : 'Review the DHT feature gate notice above before using public rendezvous controls.'}
+                    ? <LocalizedText source={"This feature uses the native Soulseek interest graph to find other slskdN mesh-capable accounts. Publishing the interest tag makes this account visibly identifiable as a slskdN mesh participant."} />
+                    : <LocalizedText source={"Review the DHT feature gate notice above before using public rendezvous controls."} />}
                 </p>
                 {dhtEnabled && (
                   <p>
-                    Interest tag:{' '}
+                    <LocalizedText source={"Interest tag:"} />{' '}
                     <code>{rendezvousStatus?.interestTag || 'slskdn-mesh-v1'}</code>
                   </p>
                 )}
                 {dhtEnabled && !rendezvousStatus?.enabled && (
                   <p>
-                    Enable <code>mesh.enableSoulseekRendezvous</code> in
-                    configuration before using these controls.
-                  </p>
+                    <LocalizedText source={"Enable"} />{" "}<code>mesh.enableSoulseekRendezvous</code> <LocalizedText source={"in configuration before using these controls."} /></p>
                 )}
               </Message.Content>
             </Message>
@@ -590,7 +576,7 @@ const Mesh = () => {
             )}
             <div className="mesh-rendezvous-actions">
               <Popup
-                content="Publish the slskdN rendezvous interest on this Soulseek account so other mesh-capable users can discover it."
+                content={interfaceText("Publish the slskdN rendezvous interest on this Soulseek account so other mesh-capable users can discover it.")}
                 position="top center"
                 trigger={(
                   <Button
@@ -600,12 +586,11 @@ const Mesh = () => {
                     positive
                   >
                     <Icon name="bullhorn" />
-                    Publish Interest
-                  </Button>
+                    <LocalizedText source={"Publish Interest"} /></Button>
                 )}
-              />
+               {...interfaceTextProps("Publish the slskdN rendezvous interest on this Soulseek account so other mesh-capable users can discover it.")}/>
               <Popup
-                content="Remove this account's public slskdN rendezvous interest when you no longer want to appear in mesh discovery."
+                content={interfaceText("Remove this account's public slskdN rendezvous interest when you no longer want to appear in mesh discovery.")}
                 position="top center"
                 trigger={(
                   <Button
@@ -614,12 +599,11 @@ const Mesh = () => {
                     onClick={handleRemoveRendezvousInterest}
                   >
                     <Icon name="remove circle" />
-                    Remove Interest
-                  </Button>
+                    <LocalizedText source={"Remove Interest"} /></Button>
                 )}
-              />
+               {...interfaceTextProps("Remove this account's public slskdN rendezvous interest when you no longer want to appear in mesh discovery.")}/>
               <Popup
-                content="Search the Soulseek interest graph for opted-in mesh accounts and their published capabilities."
+                content={interfaceText("Search the Soulseek interest graph for opted-in mesh accounts and their published capabilities.")}
                 position="top center"
                 trigger={(
                   <Button
@@ -629,10 +613,9 @@ const Mesh = () => {
                     primary
                   >
                     <Icon name="search" />
-                    Load Candidates
-                  </Button>
+                    <LocalizedText source={"Load Candidates"} /></Button>
                 )}
-              />
+               {...interfaceTextProps("Search the Soulseek interest graph for opted-in mesh accounts and their published capabilities.")}/>
             </div>
             {rendezvousUsers.length > 0 && (
               <List
@@ -649,7 +632,7 @@ const Mesh = () => {
                     <List.Content>
                       <List.Header>{user.username || user.Username}</List.Header>
                       <List.Description>
-                        Similarity rating:{' '}
+                        <LocalizedText source={"Similarity rating:"} />{' '}
                         {user.rating ?? user.Rating ?? 'not reported'}
                       </List.Description>
                     </List.Content>
@@ -674,7 +657,7 @@ const Mesh = () => {
                       <List.Description>
                         {record.peerId || 'unsigned peer'}, {' '}
                         {asArray(record.features).join(', ') || 'no features'}, {' '}
-                        overlay port {record.overlayPort || 'not advertised'}
+                        <LocalizedText source={"overlay port"} />{" "}{record.overlayPort || 'not advertised'}
                       </List.Description>
                     </List.Content>
                   </List.Item>

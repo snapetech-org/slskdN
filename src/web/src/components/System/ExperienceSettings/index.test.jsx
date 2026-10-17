@@ -3,18 +3,32 @@ import ExperienceSettings from './index';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { resetInterfaceLanguage, setInterfaceLanguage, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { stubLocaleCatalogFetch } from '../../../test/localeCatalogFetchMock';
 
 const storageKey = 'slskdn:experience-preferences:v1';
+const interfaceLanguageStorageKey = 'slskdn.interface-language';
+
+const ActiveLanguage = () => {
+  const { language } = useInterfaceLanguage();
+  return <span data-testid="active-language">{language}</span>;
+};
 
 describe('ExperienceSettings', () => {
   beforeEach(() => {
+    stubLocaleCatalogFetch(vi);
     localStorage.clear();
     Object.assign(navigator, {
       clipboard: {
         writeText: vi.fn().mockResolvedValue(undefined),
       },
     });
+  });
+
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
   });
 
   it('surfaces only the Search and Player preferences currently used by the app', () => {
@@ -102,6 +116,19 @@ describe('ExperienceSettings', () => {
     );
   });
 
+  it('clears the separately stored interface-language override on reset', async () => {
+    await setInterfaceLanguage('fr');
+    localStorage.setItem(storageKey, JSON.stringify({ regionalFormat: 'de' }));
+    render(<><ExperienceSettings /><ActiveLanguage /></>);
+
+    expect(screen.getByTestId('active-language')).toHaveTextContent('fr');
+    fireEvent.click(screen.getByRole('button', { name: 'Réinitialiser' }));
+
+    expect(localStorage.getItem(interfaceLanguageStorageKey)).toBeNull();
+    expect(localStorage.getItem(storageKey)).toBeNull();
+    expect(screen.getByTestId('active-language')).toHaveTextContent('en');
+  });
+
   it('reports clipboard failures instead of claiming the report was copied', async () => {
     const user = userEvent.setup();
     vi.spyOn(navigator.clipboard, 'writeText').mockRejectedValue(
@@ -111,7 +138,7 @@ describe('ExperienceSettings', () => {
 
     await user.click(screen.getByRole('button', { name: 'Copy Report' }));
 
-    expect(await screen.findByText('Clipboard permission denied'))
+    expect(await screen.findByText('Could not copy the preference report.'))
       .toBeInTheDocument();
     expect(screen.queryByText('Experience preference report copied.'))
       .not.toBeInTheDocument();

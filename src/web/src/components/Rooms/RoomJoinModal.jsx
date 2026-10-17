@@ -1,7 +1,9 @@
+import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
+import { useInterfaceLanguage } from '../../lib/interfaceLocale';
 import './Rooms.css';
 import * as rooms from '../../lib/rooms';
 import TooltipButton from '../Shared/TooltipButton';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
   Button,
@@ -38,6 +40,15 @@ const normalizeRoom = (room) => {
 };
 
 const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
+  const regionalLocale = useRegionalLocale();
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source, parameters) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {t(source, parameters)}
+    </span>
+  );
+  const tRef = useRef(t);
+  tRef.current = t;
   const [open, setOpen] = useState(false);
   const [available, setAvailable] = useState([]);
   const [selected, setSelected] = useState(undefined);
@@ -55,7 +66,7 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
           asArray(availableResult).map(normalizeRoom).filter(Boolean),
         );
       } catch {
-        toast.error('Failed to load room list');
+        toast.error(tRef.current('Failed to load room list'));
         setAvailable([]);
       } finally {
         setLoading(false);
@@ -109,16 +120,19 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
   return (
     <>
       <Popup
-        content="Browse available Soulseek rooms and join the selected room."
+        content={localized('Browse available Soulseek rooms and join the selected room.')}
         trigger={
           <Button
             color="green"
             icon
+            aria-label={t('Join Room')}
+            dir={directionFor('Join Room')}
+            lang={languageFor('Join Room')}
             onClick={() => setOpen(true)}
-            title="Join Room"
+            title={t('Join Room')}
           >
             <Icon name="sign in" />
-            Join Room
+            {localized('Join Room')}
           </Button>
         }
       />
@@ -130,7 +144,7 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
       >
         <Header>
           <Icon name="comments" />
-          <Modal.Content>Join Room</Modal.Content>
+          <Modal.Content>{localized('Join Room')}</Modal.Content>
         </Header>
         <Modal.Content scrolling>
           {loading ? (
@@ -139,7 +153,7 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
               inverted
             >
               <Loader
-                content="Loading Room List"
+                content={t('Loading Room List')}
                 inverted
               />
             </Dimmer>
@@ -148,8 +162,11 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
               <Input
                 fluid
                 icon="filter"
+                aria-label={t('Room Filter')}
+                dir={directionFor('Room Filter')}
+                lang={languageFor('Room Filter')}
                 onChange={(_, event) => setFilter(event.value)}
-                placeholder="Room Filter"
+                placeholder={t('Room Filter')}
               />
               {!filter.trim() ? (
                 <Segment
@@ -158,9 +175,11 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
                 >
                   <Header icon>
                     <Icon name="search" />
-                    Type to search rooms
+                    {localized('Type to search rooms')}
                   </Header>
-                  <p>{available.length.toLocaleString()} rooms available. Enter a name above to filter.</p>
+                  <p>{localized('Rooms available: {count}. Enter a name above to filter.', {
+                    count: formatRegionalNumber(available.length, undefined, regionalLocale),
+                  })}</p>
                 </Segment>
               ) : sortedAvailable.length === 0 ? (
                 <Segment
@@ -169,9 +188,9 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
                 >
                   <Header icon>
                     <Icon name="comments outline" />
-                    No rooms match &ldquo;{filter}&rdquo;
+                    {localized('No rooms match “{filter}”', { filter })}
                   </Header>
-                  <p>Try a different search term.</p>
+                  <p>{localized('Try a different search term.')}</p>
                 </Segment>
               ) : (
                 <Table
@@ -186,18 +205,22 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
                           : 'none'}
                       >
                         <TooltipButton
-                          aria-label="Sort available rooms by name"
+                          aria-label={t('Sort available rooms by name')}
+                          dir={directionFor('Sort available rooms by name')}
+                          lang={languageFor('Sort available rooms by name')}
                           basic
                           className="room-sort-button"
                           compact
                           fluid
                           onClick={() => changeSort('name')}
                           style={{ textAlign: 'left' }}
-                          tooltip={sortBy === 'name'
-                            ? `Sort room names ${sortOrder === 'asc' ? 'descending' : 'ascending'} to change the order of the list.`
-                            : 'Sort available Soulseek rooms alphabetically so you can find a room by name.'}
+                          tooltip={localized(sortBy === 'name'
+                            ? 'Sort room names {direction} to change the order of the list.'
+                            : 'Sort available Soulseek rooms alphabetically so you can find a room by name.', {
+                            direction: t(sortOrder === 'asc' ? 'descending' : 'ascending'),
+                          })}
                         >
-                          Name
+                          {localized('Name')}
                           {sortBy === 'name' && (
                             <Icon name={sortOrder === 'asc' ? 'chevron up' : 'chevron down'} />
                           )}
@@ -209,18 +232,22 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
                           : 'none'}
                       >
                         <TooltipButton
-                          aria-label="Sort available rooms by user count"
+                          aria-label={t('Sort available rooms by user count')}
+                          dir={directionFor('Sort available rooms by user count')}
+                          lang={languageFor('Sort available rooms by user count')}
                           basic
                           className="room-sort-button"
                           compact
                           fluid
                           onClick={() => changeSort('userCount')}
                           style={{ textAlign: 'left' }}
-                          tooltip={sortBy === 'userCount'
-                            ? `Sort room member counts ${sortOrder === 'asc' ? 'descending' : 'ascending'} to change the order of the list.`
-                            : 'Sort available Soulseek rooms by participant count so you can find active rooms.'}
+                          tooltip={localized(sortBy === 'userCount'
+                            ? 'Sort room member counts {direction} to change the order of the list.'
+                            : 'Sort available Soulseek rooms by participant count so you can find active rooms.', {
+                            direction: t(sortOrder === 'asc' ? 'descending' : 'ascending'),
+                          })}
                         >
-                          Users
+                          {localized('Users')}
                           {sortBy === 'userCount' && (
                             <Icon name={sortOrder === 'asc' ? 'chevron up' : 'chevron down'} />
                           )}
@@ -247,7 +274,7 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
                           {room.isModerated && <Icon name="gavel" />}
                           {room.name}
                         </Table.Cell>
-                        <Table.Cell>{room.userCount}</Table.Cell>
+                        <Table.Cell>{formatRegionalNumber(room.userCount, undefined, regionalLocale)}</Table.Cell>
                       </Table.Row>
                     ))}
                   </Table.Body>
@@ -259,19 +286,25 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
         <Modal.Actions>
           <TooltipButton
             onClick={() => close()}
-            tooltip="Close the dialog without joining a Soulseek room."
+            aria-label={t('Cancel')}
+            dir={directionFor('Cancel')}
+            lang={languageFor('Cancel')}
+            tooltip={localized('Close the dialog without joining a Soulseek room.')}
             type="button"
           >
-            Cancel
+            {localized('Cancel')}
           </TooltipButton>
           <TooltipButton
             disabled={!selected}
             onClick={() => joinRoom()}
             positive
-            tooltip="Join the selected Soulseek room; its members will see this account in the participant list."
+            aria-label={t('Join')}
+            dir={directionFor('Join')}
+            lang={languageFor('Join')}
+            tooltip={localized('Join the selected Soulseek room; its members will see this account in the participant list.')}
             type="button"
           >
-            Join
+            {localized('Join')}
           </TooltipButton>
         </Modal.Actions>
       </Modal>

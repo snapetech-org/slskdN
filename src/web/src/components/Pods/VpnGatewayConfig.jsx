@@ -1,3 +1,6 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as pods from '../../lib/pods';
 import React, { useEffect, useState } from 'react';
 import {
@@ -17,6 +20,7 @@ import {
 import { TooltipButton } from '../Shared';
 
 const VpnGatewayConfig = ({ podDetail, podId }) => {
+  useInterfaceLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -124,10 +128,10 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
       };
 
       await pods.update(podId, updatedPod);
-      setSuccess('VPN policy updated successfully');
+      setSuccess(interfaceText("VPN policy updated successfully"));
     } catch (error) {
       console.error('Failed to update VPN policy:', error);
-      setError(error.message || 'Failed to update VPN policy');
+      setError(getApiErrorMessage(error, { t: interfaceText }, 'Failed to update VPN policy'));
     } finally {
       setSaving(false);
     }
@@ -226,29 +230,26 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
       <Segment placeholder>
         <Header icon>
           <Icon name="lock" />
-          VPN Gateway Not Enabled
-        </Header>
+          <LocalizedText source={"VPN Gateway Not Enabled"} /></Header>
         <Segment.Inline>
-          <p>This pod does not have VPN gateway capability enabled.</p>
+          <p><LocalizedText source={"This pod does not have VPN gateway capability enabled."} /></p>
           <p>
-            To enable VPN functionality, add the "PrivateServiceGateway"
-            capability to the pod.
-          </p>
+            <LocalizedText source={"To enable VPN functionality, add the \"PrivateServiceGateway\" capability to the pod."} /></p>
         </Segment.Inline>
       </Segment>
     );
   }
 
   const serviceKindOptions = [
-    { key: 'WebInterface', text: 'Web Interface', value: 'WebInterface' },
-    { key: 'Database', text: 'Database', value: 'Database' },
-    { key: 'SSH', text: 'SSH', value: 'SSH' },
-    { key: 'Custom', text: 'Custom', value: 'Custom' },
+    { key: 'WebInterface', text: interfaceText("Web Interface"), value: 'WebInterface' },
+    { key: 'Database', text: interfaceText("Database"), value: 'Database' },
+    { key: 'SSH', text: interfaceText("SSH"), value: 'SSH' },
+    { key: 'Custom', text: interfaceText("Custom"), value: 'Custom' },
   ];
 
   const protocolOptions = [
-    { key: 'tcp', text: 'TCP', value: 'tcp' },
-    { key: 'udp', text: 'UDP', value: 'udp' },
+    { key: 'tcp', text: interfaceText("TCP"), value: 'tcp' },
+    { key: 'udp', text: interfaceText("UDP"), value: 'udp' },
   ];
 
   const panes = [
@@ -259,7 +260,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
           <Form>
             <Form.Group>
               <Form.Field width={4}>
-                <label>Enable VPN Gateway</label>
+                <label><LocalizedText source={"Enable VPN Gateway"} /></label>
                 <Checkbox
                   checked={vpnPolicy.enabled}
                   onChange={(e, { checked }) =>
@@ -272,7 +273,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                 />
               </Form.Field>
               <Form.Field width={4}>
-                <label>Max Pod Members</label>
+                <label><LocalizedText source={"Max Pod Members"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   max={3}
@@ -286,10 +287,10 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   type="number"
                   value={vpnPolicy.maxMembers}
                 />
-                <small>Hard limit of 3 for VPN-enabled pods</small>
+                <small><LocalizedText source={"Hard limit of 3 for VPN-enabled pods"} /></small>
               </Form.Field>
               <Form.Field width={8}>
-                <label>Gateway Peer ID</label>
+                <label><LocalizedText source={"Gateway Peer ID"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   onChange={(e, { value }) =>
@@ -304,33 +305,33 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
               </Form.Field>
             </Form.Group>
 
-            <Header as="h4">Network Access Control</Header>
+            <Header as="h4"><LocalizedText source={"Network Access Control"} /></Header>
             <Form.Group>
               <Form.Field>
                 <Checkbox
                   checked={vpnPolicy.allowPrivateRanges}
                   disabled={!vpnPolicy.enabled}
-                  label="Allow private IP ranges (RFC1918)"
+                  label={interfaceText("Allow private IP ranges (RFC1918)")}
                   onChange={(e, { checked }) =>
                     setVpnPolicy((previous) => ({
                       ...previous,
                       allowPrivateRanges: checked,
                     }))
                   }
-                />
+                 {...interfaceTextProps("Allow private IP ranges (RFC1918)")}/>
               </Form.Field>
               <Form.Field>
                 <Checkbox
                   checked={vpnPolicy.allowPublicDestinations}
                   disabled={!vpnPolicy.enabled}
-                  label="Allow public internet destinations"
+                  label={interfaceText("Allow public internet destinations")}
                   onChange={(e, { checked }) =>
                     setVpnPolicy((previous) => ({
                       ...previous,
                       allowPublicDestinations: checked,
                     }))
                   }
-                />
+                 {...interfaceTextProps("Allow public internet destinations")}/>
               </Form.Field>
             </Form.Group>
           </Form>
@@ -343,23 +344,23 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
         <Tab.Pane key="allowed-destinations">
           <div style={{ marginBottom: '20px' }}>
             <TooltipButton
-              aria-label="Add an allowed destination"
-              content="Add Destination"
+              aria-label={interfaceText("Add an allowed destination")}
+              content={interfaceText("Add Destination")}
               disabled={!vpnPolicy.enabled}
               icon="plus"
               onClick={() => setShowAddDestination(true)}
               primary
               tooltip="Add a host and port to this pod's allowed destination draft. Save the VPN configuration to apply the new route."
-            />
+             {...interfaceTextProps("Add an allowed destination")}/>
           </div>
 
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Host Pattern</Table.HeaderCell>
-                <Table.HeaderCell>Port</Table.HeaderCell>
-                <Table.HeaderCell>Protocol</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Host Pattern"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Port"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Protocol"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -370,14 +371,14 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   <Table.Cell>{destination.protocol?.toUpperCase()}</Table.Cell>
                   <Table.Cell>
                     <TooltipButton
-                      aria-label={`Remove allowed destination ${destination.hostPattern}:${destination.port}`}
+                      aria-label={interfaceText("Remove allowed destination {hostPattern}:{port}", { "hostPattern": (destination.hostPattern), "port": (destination.port) })}
                       color="red"
                       disabled={!vpnPolicy.enabled}
                       icon="trash"
                       onClick={() => handleRemoveDestination(index)}
                       size="small"
-                      tooltip={`Remove ${destination.hostPattern}:${destination.port} from the draft policy. Save the VPN configuration to stop allowing this route.`}
-                    />
+                      tooltip="Remove {hostPattern}:{port} from the draft policy. Save the VPN configuration to stop allowing this route."
+                     {...interfaceTextProps("Remove allowed destination {hostPattern}:{port}", { hostPattern: destination.hostPattern, port: destination.port })}/>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -387,8 +388,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                     colSpan={4}
                     textAlign="center"
                   >
-                    No destinations configured
-                  </Table.Cell>
+                    <LocalizedText source={"No destinations configured"} /></Table.Cell>
                 </Table.Row>
               )}
             </Table.Body>
@@ -402,24 +402,24 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
         <Tab.Pane key="registered-services">
           <div style={{ marginBottom: '20px' }}>
             <TooltipButton
-              aria-label="Add a registered service"
-              content="Add Service"
+              aria-label={interfaceText("Add a registered service")}
+              content={interfaceText("Add Service")}
               disabled={!vpnPolicy.enabled}
               icon="plus"
               onClick={() => setShowAddService(true)}
               primary
               tooltip="Register a named service and destination in this pod's policy draft so members can find the route. Save the VPN configuration to apply it."
-            />
+             {...interfaceTextProps("Add a registered service")}/>
           </div>
 
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Description</Table.HeaderCell>
-                <Table.HeaderCell>Type</Table.HeaderCell>
-                <Table.HeaderCell>Destination</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Name"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Description"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Destination"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -436,14 +436,14 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   </Table.Cell>
                   <Table.Cell>
                     <TooltipButton
-                      aria-label={`Remove registered service ${service.name}`}
+                      aria-label={interfaceText("Remove registered service {name}", { "name": (service.name) })}
                       color="red"
                       disabled={!vpnPolicy.enabled}
                       icon="trash"
                       onClick={() => handleRemoveService(index)}
                       size="small"
-                      tooltip={`Remove ${service.name} from the draft service list. Save the VPN configuration to stop advertising this route to pod members.`}
-                    />
+                      tooltip="Remove {name} from the draft service list. Save the VPN configuration to stop advertising this route to pod members."
+                     {...interfaceTextProps("Remove registered service {name}", { name: service.name })}/>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -453,8 +453,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                     colSpan={5}
                     textAlign="center"
                   >
-                    No services registered
-                  </Table.Cell>
+                    <LocalizedText source={"No services registered"} /></Table.Cell>
                 </Table.Row>
               )}
             </Table.Body>
@@ -467,10 +466,10 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
       pane: (
         <Tab.Pane key="resource-limits">
           <Form>
-            <Header as="h4">Connection Limits</Header>
+            <Header as="h4"><LocalizedText source={"Connection Limits"} /></Header>
             <Form.Group widths="equal">
               <Form.Field>
-                <label>Max Concurrent Tunnels Per Peer</label>
+                <label><LocalizedText source={"Max Concurrent Tunnels Per Peer"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   max={20}
@@ -487,7 +486,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                 />
               </Form.Field>
               <Form.Field>
-                <label>Max Concurrent Tunnels (Pod Total)</label>
+                <label><LocalizedText source={"Max Concurrent Tunnels (Pod Total)"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   max={100}
@@ -506,7 +505,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
 
             <Form.Group widths="equal">
               <Form.Field>
-                <label>Max New Tunnels Per Minute Per Peer</label>
+                <label><LocalizedText source={"Max New Tunnels Per Minute Per Peer"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   max={60}
@@ -523,7 +522,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                 />
               </Form.Field>
               <Form.Field>
-                <label>Max Bandwidth Per Day Per Peer</label>
+                <label><LocalizedText source={"Max Bandwidth Per Day Per Peer"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   min={0}
@@ -541,16 +540,15 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   )} // Convert to MB
                 />
                 <small>
-                  MB per day per peer (
-                  {formatBytes(vpnPolicy.maxBytesPerDayPerPeer)})
+                  <LocalizedText source={"MB per day per peer ("} />{formatBytes(vpnPolicy.maxBytesPerDayPerPeer)})
                 </small>
               </Form.Field>
             </Form.Group>
 
-            <Header as="h4">Timeouts</Header>
+            <Header as="h4"><LocalizedText source={"Timeouts"} /></Header>
             <Form.Group widths="equal">
               <Form.Field>
-                <label>Idle Timeout (HH:MM:SS)</label>
+                <label><LocalizedText source={"Idle Timeout (HH:MM:SS)"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   onChange={(e, { value }) =>
@@ -562,10 +560,10 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   placeholder="01:00:00"
                   value={vpnPolicy.idleTimeout}
                 />
-                <small>Close tunnels after this period of inactivity</small>
+                <small><LocalizedText source={"Close tunnels after this period of inactivity"} /></small>
               </Form.Field>
               <Form.Field>
-                <label>Max Lifetime (HH:MM:SS)</label>
+                <label><LocalizedText source={"Max Lifetime (HH:MM:SS)"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   onChange={(e, { value }) =>
@@ -577,10 +575,10 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   placeholder="24:00:00"
                   value={vpnPolicy.maxLifetime}
                 />
-                <small>Maximum duration a tunnel can remain open</small>
+                <small><LocalizedText source={"Maximum duration a tunnel can remain open"} /></small>
               </Form.Field>
               <Form.Field>
-                <label>Dial Timeout (HH:MM:SS)</label>
+                <label><LocalizedText source={"Dial Timeout (HH:MM:SS)"} /></label>
                 <Input
                   disabled={!vpnPolicy.enabled}
                   onChange={(e, { value }) =>
@@ -592,7 +590,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   placeholder="00:00:30"
                   value={vpnPolicy.dialTimeout}
                 />
-                <small>Timeout for establishing outbound connections</small>
+                <small><LocalizedText source={"Timeout for establishing outbound connections"} /></small>
               </Form.Field>
             </Form.Group>
           </Form>
@@ -605,14 +603,14 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
     <div>
       {error && (
         <Message error>
-          <Message.Header>Configuration Error</Message.Header>
+          <Message.Header><LocalizedText source={"Configuration Error"} /></Message.Header>
           <p>{error}</p>
         </Message>
       )}
 
       {success && (
         <Message success>
-          <Message.Header>Configuration Updated</Message.Header>
+          <Message.Header><LocalizedText source={"Configuration Updated"} /></Message.Header>
           <p>{success}</p>
         </Message>
       )}
@@ -635,8 +633,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
           primary
           tooltip="Save this pod's enabled VPN gateway policy so its destination rules, registered services, and limits take effect."
         >
-          Save VPN Configuration
-        </TooltipButton>
+          <LocalizedText source={"Save VPN Configuration"} /></TooltipButton>
       </div>
 
       {/* Add Destination Modal */}
@@ -645,11 +642,11 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
         open={showAddDestination}
         size="small"
       >
-        <Modal.Header>Add Allowed Destination</Modal.Header>
+        <Modal.Header><LocalizedText source={"Add Allowed Destination"} /></Modal.Header>
         <Modal.Content>
           <Form>
             <Form.Field required>
-              <label>Host Pattern</label>
+              <label><LocalizedText source={"Host Pattern"} /></label>
               <Input
                 onChange={(e, { value }) =>
                   setNewDestination((previous) => ({
@@ -657,15 +654,14 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                     hostPattern: value,
                   }))
                 }
-                placeholder="example.com or *.example.com"
+                placeholder={interfaceText("example.com or *.example.com")}
                 value={newDestination.hostPattern}
-              />
+               {...interfaceTextProps("example.com or *.example.com")}/>
               <small>
-                Use exact hostname or wildcard patterns (e.g., *.domain.com)
-              </small>
+                <LocalizedText source={"Use exact hostname or wildcard patterns (e.g., *.domain.com)"} /></small>
             </Form.Field>
             <Form.Field required>
-              <label>Port</label>
+              <label><LocalizedText source={"Port"} /></label>
               <Input
                 max={65_535}
                 min={1}
@@ -681,7 +677,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
               />
             </Form.Field>
             <Form.Field>
-              <label>Protocol</label>
+              <label><LocalizedText source={"Protocol"} /></label>
               <Dropdown
                 onChange={(e, { value }) =>
                   setNewDestination((previous) => ({
@@ -701,17 +697,15 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
             onClick={() => setShowAddDestination(false)}
             tooltip="Close the dialog and return to the allowed destination list without adding this entry."
           >
-            Cancel
-          </TooltipButton>
+            <LocalizedText source={"Cancel"} /></TooltipButton>
           <TooltipButton
-            aria-label="Add destination to draft policy"
+            aria-label={interfaceText("Add destination to draft policy")}
             disabled={!newDestination.hostPattern || !newDestination.port}
             onClick={handleAddDestination}
             primary
             tooltip="Add this host, port, and protocol to the draft allowlist. Save the VPN configuration to apply it to the pod."
-          >
-            Add Destination
-          </TooltipButton>
+           {...interfaceTextProps("Add destination to draft policy")}>
+            <LocalizedText source={"Add Destination"} /></TooltipButton>
         </Modal.Actions>
       </Modal>
 
@@ -721,21 +715,21 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
         open={showAddService}
         size="small"
       >
-        <Modal.Header>Add Registered Service</Modal.Header>
+        <Modal.Header><LocalizedText source={"Add Registered Service"} /></Modal.Header>
         <Modal.Content>
           <Form>
             <Form.Field required>
-              <label>Service Name</label>
+              <label><LocalizedText source={"Service Name"} /></label>
               <Input
                 onChange={(e, { value }) =>
                   setNewService((previous) => ({ ...previous, name: value }))
                 }
-                placeholder="My Web Service"
+                placeholder={interfaceText("My Web Service")}
                 value={newService.name}
-              />
+               {...interfaceTextProps("My Web Service")}/>
             </Form.Field>
             <Form.Field>
-              <label>Description</label>
+              <label><LocalizedText source={"Description"} /></label>
               <Input
                 onChange={(e, { value }) =>
                   setNewService((previous) => ({
@@ -743,12 +737,12 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                     description: value,
                   }))
                 }
-                placeholder="Description of the service"
+                placeholder={interfaceText("Description of the service")}
                 value={newService.description}
-              />
+               {...interfaceTextProps("Description of the service")}/>
             </Form.Field>
             <Form.Field>
-              <label>Service Type</label>
+              <label><LocalizedText source={"Service Type"} /></label>
               <Dropdown
                 onChange={(e, { value }) =>
                   setNewService((previous) => ({ ...previous, kind: value }))
@@ -759,7 +753,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
               />
             </Form.Field>
             <Form.Field required>
-              <label>Destination Host</label>
+              <label><LocalizedText source={"Destination Host"} /></label>
               <Input
                 onChange={(e, { value }) =>
                   setNewService((previous) => ({
@@ -772,7 +766,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
               />
             </Form.Field>
             <Form.Field required>
-              <label>Destination Port</label>
+              <label><LocalizedText source={"Destination Port"} /></label>
               <Input
                 max={65_535}
                 min={1}
@@ -788,7 +782,7 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
               />
             </Form.Field>
             <Form.Field>
-              <label>Protocol</label>
+              <label><LocalizedText source={"Protocol"} /></label>
               <Dropdown
                 onChange={(e, { value }) =>
                   setNewService((previous) => ({
@@ -808,10 +802,9 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
             onClick={() => setShowAddService(false)}
             tooltip="Close the dialog and return to registered services without adding this entry."
           >
-            Cancel
-          </TooltipButton>
+            <LocalizedText source={"Cancel"} /></TooltipButton>
           <TooltipButton
-            aria-label="Add service to draft policy"
+            aria-label={interfaceText("Add service to draft policy")}
             disabled={
               !newService.name ||
               !newService.destinationHost ||
@@ -820,9 +813,8 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
             onClick={handleAddService}
             primary
             tooltip="Add this named service and destination to the draft policy. Save the VPN configuration to publish the route to pod members."
-          >
-            Add Service
-          </TooltipButton>
+           {...interfaceTextProps("Add service to draft policy")}>
+            <LocalizedText source={"Add Service"} /></TooltipButton>
         </Modal.Actions>
       </Modal>
     </div>

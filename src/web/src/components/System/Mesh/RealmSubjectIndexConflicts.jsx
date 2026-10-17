@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="RealmSubjectIndexConflicts.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -27,6 +30,7 @@ const get = (source, camel, pascal, fallback = '') =>
   source?.[camel] ?? source?.[pascal] ?? fallback;
 
 const RealmSubjectIndexConflicts = () => {
+  useInterfaceLanguage();
   const [copyStatus, setCopyStatus] = useState('');
   const [disabledAuthorities, setDisabledAuthorities] = useState([]);
   const [error, setError] = useState('');
@@ -42,7 +46,7 @@ const RealmSubjectIndexConflicts = () => {
   const loadConflicts = async () => {
     const trimmedRealmId = realmId.trim();
     if (!trimmedRealmId) {
-      setError('Enter a realm id before loading subject-index conflicts.');
+      setError(interfaceText("Enter a realm id before loading subject-index conflicts."));
       return;
     }
 
@@ -55,12 +59,7 @@ const RealmSubjectIndexConflicts = () => {
       });
       setReport(response.data);
     } catch (loadError) {
-      setError(
-        loadError?.response?.data ||
-          loadError?.response?.statusText ||
-          loadError?.message ||
-          'Unable to load realm subject-index conflicts.',
-      );
+      setError(getApiErrorMessage(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -75,15 +74,15 @@ const RealmSubjectIndexConflicts = () => {
     });
 
     if (!navigator.clipboard?.writeText) {
-      setCopyStatus('Clipboard unavailable; copy the visible conflict report manually.');
+      setCopyStatus(interfaceText('Clipboard unavailable; copy the visible conflict report manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(text);
-      setCopyStatus('Realm subject-index conflict report copied.');
+      setCopyStatus(interfaceText('Realm subject-index conflict report copied.'));
     } catch {
-      setCopyStatus('Unable to copy realm subject-index conflict report.');
+      setCopyStatus(interfaceText('Unable to copy realm subject-index conflict report.'));
     }
   };
 
@@ -101,52 +100,48 @@ const RealmSubjectIndexConflicts = () => {
         <Header as="h3">
           <Icon name="object group" />
           <Header.Content>
-            Realm Subject Index Conflicts
-            <Header.Subheader>
-              Review accepted realm index disagreements with provenance before trusting a realm authority.
-            </Header.Subheader>
+            <LocalizedText source={"Realm Subject Index Conflicts"} /><Header.Subheader>
+              <LocalizedText source={"Review accepted realm index disagreements with provenance before trusting a realm authority."} /></Header.Subheader>
           </Header.Content>
         </Header>
         <div className="integration-actions">
           <Popup
-            content="Load the read-only conflict report for this realm. This does not publish, disable, search, browse, or download."
+            content={interfaceText("Load the read-only conflict report for this realm. This does not publish, disable, search, browse, or download.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Load realm subject-index conflicts"
+                aria-label={interfaceText("Load realm subject-index conflicts")}
                 loading={loading}
                 onClick={loadConflicts}
                 primary
-              >
+               {...interfaceTextProps("Load realm subject-index conflicts")}>
                 <Icon name="refresh" />
-                Load Conflicts
-              </Button>
+                <LocalizedText source={"Load Conflicts"} /></Button>
             }
-          />
+           {...interfaceTextProps("Load the read-only conflict report for this realm. This does not publish, disable, search, browse, or download.")}/>
           <Popup
-            content="Copy the visible conflict report, including local authority disable selections. This does not change backend realm governance."
+            content={interfaceText("Copy the visible conflict report, including local authority disable selections. This does not change backend realm governance.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Copy realm subject-index conflict report"
+                aria-label={interfaceText("Copy realm subject-index conflict report")}
                 disabled={!report}
                 onClick={copyReport}
-              >
+               {...interfaceTextProps("Copy realm subject-index conflict report")}>
                 <Icon name="copy" />
-                Copy Report
-              </Button>
+                <LocalizedText source={"Copy Report"} /></Button>
             }
-          />
+           {...interfaceTextProps("Copy the visible conflict report, including local authority disable selections. This does not change backend realm governance.")}/>
         </div>
       </div>
       <Input
-        aria-label="Realm subject-index realm id"
+        aria-label={interfaceText("Realm subject-index realm id")}
         fluid
-        label="Realm ID"
+        label={interfaceText("Realm ID")}
         onChange={(_, { value }) => setRealmId(value)}
         placeholder="scene-realm"
         value={realmId}
-      />
+       {...interfaceTextProps("Realm subject-index realm id")}/>
       {error && (
         <Message
           error
@@ -171,23 +166,23 @@ const RealmSubjectIndexConflicts = () => {
           >
             <Statistic>
               <Statistic.Value>{summary.indexCount}</Statistic.Value>
-              <Statistic.Label>Indexes</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Indexes"} /></Statistic.Label>
             </Statistic>
             <Statistic>
               <Statistic.Value>{summary.entryCount}</Statistic.Value>
-              <Statistic.Label>Entries</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Entries"} /></Statistic.Label>
             </Statistic>
             <Statistic color={summary.conflictCount > 0 ? 'orange' : 'green'}>
               <Statistic.Value>{summary.conflictCount}</Statistic.Value>
-              <Statistic.Label>Conflicts</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Conflicts"} /></Statistic.Label>
             </Statistic>
             <Statistic>
               <Statistic.Value>{summary.conflictTypeCount}</Statistic.Value>
-              <Statistic.Label>Types</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Types"} /></Statistic.Label>
             </Statistic>
             <Statistic color={disabledAuthorities.length > 0 ? 'yellow' : 'grey'}>
               <Statistic.Value>{disabledAuthorities.length}</Statistic.Value>
-              <Statistic.Label>Local Disables</Statistic.Label>
+              <Statistic.Label><LocalizedText source={"Local Disables"} /></Statistic.Label>
             </Statistic>
           </Statistic.Group>
           {conflicts.length === 0 ? (
@@ -195,7 +190,7 @@ const RealmSubjectIndexConflicts = () => {
               positive
               size="small"
             >
-              No subject-index conflicts reported for {get(report, 'realmId', 'RealmId')}.
+              <LocalizedText source={"No subject-index conflicts reported for"} />{" "}{get(report, 'realmId', 'RealmId')}.
             </Message>
           ) : (
             <Table
@@ -205,9 +200,9 @@ const RealmSubjectIndexConflicts = () => {
             >
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Conflict</Table.HeaderCell>
-                  <Table.HeaderCell>Subject</Table.HeaderCell>
-                  <Table.HeaderCell>Values</Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Conflict"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Subject"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Values"} /></Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -247,7 +242,7 @@ const RealmSubjectIndexConflicts = () => {
                           >
                             <div className="integration-status-row">
                               <Label color={disabled ? 'grey' : 'green'}>
-                                {disabled ? 'Locally disabled' : 'Active'}
+                                {disabled ? <LocalizedText source={"Locally disabled"} /> : <LocalizedText source={"Active"} />}
                               </Label>
                               <Label basic>{authorityKey}</Label>
                               <Popup
@@ -260,7 +255,7 @@ const RealmSubjectIndexConflicts = () => {
                                     size="mini"
                                   >
                                     <Icon name={disabled ? 'unlock' : 'ban'} />
-                                    {disabled ? 'Enable' : 'Disable'}
+                                    {disabled ? <LocalizedText source={"Enable"} /> : <LocalizedText source={"Disable"} />}
                                   </Button>
                                 }
                               />

@@ -1,3 +1,5 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import './Rooms.css';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import * as rooms from '../../lib/rooms';
@@ -66,6 +68,7 @@ const saveTabsToStorage = (tabsToSave) => {
 };
 
 const Rooms = () => {
+  useInterfaceLanguage();
   const navigate = useNavigate();
   const [tabs, setTabs] = useState(() => loadTabsFromStorage());
   const [activeIndex, setActiveIndex] = useState(0);
@@ -96,7 +99,7 @@ const Rooms = () => {
     const tabKey = `room-tab-${tabCounter}`;
     return {
       key: tabKey,
-      label: roomName || 'New Room Tab',
+      label: roomName || interfaceText('New Room Tab'),
       roomName,
     };
   }, []);
@@ -249,7 +252,10 @@ const Rooms = () => {
       openRoomTab(roomName);
     } catch (error) {
       console.error('Failed to join room:', error);
-      toast.error(`Failed to join room "${roomName}": ${error?.message ?? error}`);
+      toast.error(interfaceText('Failed to join room "{roomName}": {message}', {
+        roomName,
+        message: getApiErrorMessage(error, { t: interfaceText }),
+      }));
     }
   };
 
@@ -273,7 +279,7 @@ const Rooms = () => {
 
   const createRoom = async (roomName, isPrivate) => {
     if (isPrivate) {
-      throw new Error('Private room creation is not supported by this server API');
+      throw new Error(interfaceText('Private room creation is not supported by this server API.'));
     }
 
     await joinRoom(roomName);
@@ -312,7 +318,7 @@ const Rooms = () => {
         .sort((a, b) => (b.userCount || 0) - (a.userCount || 0))
         .slice(0, 100)
         .map((r) => ({
-          description: r.isPrivate ? 'Private' : '',
+          description: r.isPrivate ? interfaceText('Private') : '',
           key: r.name,
           text: `${r.name} (${r.userCount} users)`,
           value: r.name,
@@ -327,7 +333,7 @@ const Rooms = () => {
         {tab.label}
         {tabs.length > 1 && (
           <TooltipButton
-            aria-label={`Close ${tab.label} room tab`}
+            aria-label={interfaceText("Close {label} room tab", { "label": (tab.label) })}
             basic
             className="room-tab-close"
             compact
@@ -338,8 +344,8 @@ const Rooms = () => {
             }}
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
-            tooltip={`Close the ${tab.label} room tab without leaving the Soulseek room.`}
-          >
+            tooltip="Close the {label} room tab without leaving the Soulseek room."
+           {...interfaceTextProps("Close {label} room tab", { label: tab.label })}>
             <Icon name="close" />
           </TooltipButton>
         )}
@@ -396,23 +402,23 @@ const Rooms = () => {
               }}
               onOpen={() => fetchAvailableRooms()}
               options={roomOptions}
-              placeholder="Search existing rooms..."
+              placeholder={interfaceText("Search existing rooms...")}
               search
               selection
-            />
+             {...interfaceTextProps("Search existing rooms...")}/>
             <RoomJoinModal joinRoom={joinRoom} />
             <RoomCreateModal onCreateRoom={createRoom} />
             <Popup
-              content="Reload rooms joined by the daemon and reopen their tabs."
+              content={interfaceText("Reload rooms joined by the daemon and reopen their tabs.")}
               trigger={
                 <Button
-                  aria-label="Reload joined rooms"
+                  aria-label={interfaceText("Reload joined rooms")}
                   icon="refresh"
                   onClick={hydrateJoinedRooms}
-                  title="Reload joined rooms"
-                />
+                  title={interfaceText("Reload joined rooms")}
+                 {...interfaceTextProps("Reload joined rooms")}/>
               }
-            />
+             {...interfaceTextProps("Reload rooms joined by the daemon and reopen their tabs.")}/>
           </div>
         </div>
       </Segment>
@@ -432,11 +438,11 @@ const Rooms = () => {
           {
             menuItem: (
               <Menu.Item
-                aria-label="Open a new room tab"
+                aria-label={interfaceText("Open a new room tab")}
                 key="add-tab"
                 onClick={handleAddTab}
-                title="Open a new room tab"
-              >
+                title={interfaceText("Open a new room tab")}
+               {...interfaceTextProps("Open a new room tab")}>
                 <Icon name="plus" />
               </Menu.Item>
             ),

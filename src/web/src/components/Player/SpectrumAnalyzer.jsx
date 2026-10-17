@@ -1,4 +1,5 @@
 import { getOrCreateAudioGraph, resumeAudioGraph, suspendAudioGraph } from './audioGraph';
+import { interfaceText, interfaceTextProps } from '../../lib/interfaceLocale';
 import React, { useCallback, useEffect, useRef } from 'react';
 import usePrefersReducedMotion from '../../lib/usePrefersReducedMotion';
 
@@ -283,11 +284,12 @@ const SpectrumAnalyzer = ({
 
   return (
     <canvas
-      aria-label={mode === 'scope' ? 'Oscilloscope' : 'Spectrum analyzer'}
+      aria-label={mode === 'scope' ? interfaceText('Oscilloscope') : interfaceText('Spectrum analyzer')}
       className={['player-spectrum', className].filter(Boolean).join(' ')}
       data-testid="player-spectrum"
       data-motion-suppressed={motionSuppressed ? 'true' : undefined}
       ref={canvasRef}
+      {...interfaceTextProps(mode === 'scope' ? 'Oscilloscope' : 'Spectrum analyzer')}
     />
   );
 };

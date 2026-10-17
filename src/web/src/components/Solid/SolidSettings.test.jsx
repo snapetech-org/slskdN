@@ -25,7 +25,7 @@ describe('SolidSettings', () => {
 
     render(<SolidSettings />);
 
-    expect(await screen.findByRole('alert')).toHaveTextContent('Solid status unavailable');
+    expect(await screen.findByRole('alert')).toHaveTextContent('The request failed. Try again.');
     fireEvent.click(screen.getByRole('button', { name: 'Retry Status' }));
 
     const webIdInput = await screen.findByRole('textbox', { name: 'WebID' });

@@ -1,3 +1,8 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+
+
 import * as libraryHealth from '../../../lib/libraryHealth';
 import {
   buildLibraryHealthActionPlan,
@@ -34,6 +39,7 @@ const SCAN_POLL_INTERVAL_MS = 2_000;
 const SCAN_POLL_TIMEOUT_MS = 60_000;
 
 const LibraryHealth = () => {
+  useInterfaceLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [libraryPath, setLibraryPath] = useState('');
   const [scanning, setScanning] = useState(false);
@@ -136,11 +142,7 @@ const LibraryHealth = () => {
       }
 
       setDashboardLoadFailed(true);
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          'Failed to load library health data',
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to load library health data'));
     } finally {
       if (mountedRef.current && dashboardRequestRef.current === requestId) {
         setLoading(false);
@@ -166,7 +168,7 @@ const LibraryHealth = () => {
     scanMonitoringPausedRef.current = true;
     if (mountedRef.current) {
       setScanMonitoringPaused(true);
-      setScanMessage(message);
+      setScanMessage(interfaceText(message));
       setScanMessageType(type);
     }
   };
@@ -184,7 +186,7 @@ const LibraryHealth = () => {
 
     if (Date.now() >= pollDeadlineRef.current) {
       pauseScanMonitoring(
-        'Status checks paused after one minute. The server may still be scanning this library; continue monitoring before starting another scan.',
+        interfaceText('Status checks paused after one minute. The server may still be scanning this library; continue monitoring before starting another scan.'),
       );
       loadSummary(activeScan.libraryPath);
       return;
@@ -214,33 +216,37 @@ const LibraryHealth = () => {
         setScanning(false);
         setScanMonitoringPaused(false);
         if (status === 'Completed') {
-          setScanMessage(
-            `Scan complete: ${filesScanned} files checked and ${issuesDetected} issues found.`,
-          );
+          setScanMessage(interfaceText('Scan complete: {files} files checked; issues found: {issues}.', {
+            files: filesScanned,
+            issues: issuesDetected,
+          }));
           setScanMessageType('positive');
         } else if (status === 'Failed') {
           setScanMessage(
             scanData.errorMessage ||
-              `Library Health scan failed after checking ${filesScanned} files.`,
+              interfaceText('Library Health scan failed after checking {files} files.', {
+                files: filesScanned,
+              }),
           );
           setScanMessageType('negative');
         } else {
-          setScanMessage(
-            `Library Health scan was cancelled after checking ${filesScanned} files.`,
-          );
+          setScanMessage(interfaceText('Library Health scan was cancelled after checking {files} files.', {
+            files: filesScanned,
+          }));
           setScanMessageType('warning');
         }
         loadSummary(activeScan.libraryPath);
       } else if (status !== 'Running') {
-        setError('The scan status response did not contain a supported status.');
+        setError(interfaceText("The scan status response did not contain a supported status."));
         pauseAfterRequest = true;
         pauseScanMonitoring(
-          'The scan may still be running. Retry status checks before starting another scan.',
+          interfaceText('The scan may still be running. Retry status checks before starting another scan.'),
         );
       } else {
-        setScanMessage(
-          `Scan in progress: ${filesScanned} files checked and ${issuesDetected} issues found.`,
-        );
+        setScanMessage(interfaceText('Scan in progress: {files} files checked; issues found: {issues}.', {
+          files: filesScanned,
+          issues: issuesDetected,
+        }));
         setScanMessageType('info');
       }
     } catch (error_) {
@@ -248,14 +254,10 @@ const LibraryHealth = () => {
         return;
       }
 
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          'Failed to poll Library Health scan status',
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to poll Library Health scan status'));
       pauseAfterRequest = true;
       pauseScanMonitoring(
-        'The server may still be scanning. Retry status checks before starting another scan.',
+        interfaceText('The server may still be scanning. Retry status checks before starting another scan.'),
       );
     } finally {
       if (pollRequestRef.current === activeScan) {
@@ -276,7 +278,7 @@ const LibraryHealth = () => {
 
   const handleStartScan = async () => {
     if (!libraryPath.trim()) {
-      setError('Please enter a library path');
+      setError(interfaceText("Please enter a library path"));
       return;
     }
 
@@ -286,7 +288,7 @@ const LibraryHealth = () => {
       setScanning(true);
       setScanMonitoringPaused(false);
       setScanProgress({ filesScanned: 0, issuesDetected: 0 });
-      setScanMessage('Starting a recursive, read-only scan of the entered server-side path.');
+      setScanMessage(interfaceText('Starting a recursive, read-only scan of the entered server-side path.'));
       setScanMessageType('info');
       setError(null);
       const response = await libraryHealth.startScan(libraryPath);
@@ -294,7 +296,7 @@ const LibraryHealth = () => {
         ? response.data.scanId
         : '';
       if (!scanId) {
-        throw new Error('Library Health scan response did not include a scan id');
+        throw new Error(interfaceText('Library Health scan response did not include a scan id'));
       }
       if (!mountedRef.current) {
         return;
@@ -302,18 +304,14 @@ const LibraryHealth = () => {
 
       activeScanRef.current = { libraryPath, scanId };
       pollDeadlineRef.current = Date.now() + SCAN_POLL_TIMEOUT_MS;
-      setScanMessage('Scan started. Waiting for the first progress update.');
+      setScanMessage(interfaceText('Scan started. Waiting for the first progress update.'));
       scheduleScanPoll();
     } catch (error_) {
       resetScanPolling();
       if (mountedRef.current) {
         scanMonitoringPausedRef.current = false;
         setScanMonitoringPaused(false);
-        setError(
-          error_.response?.data?.message ||
-            error_.message ||
-            'Failed to start scan',
-        );
+        setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to start scan'));
         setScanning(false);
       }
     }
@@ -327,7 +325,7 @@ const LibraryHealth = () => {
     setError(null);
     scanMonitoringPausedRef.current = false;
     setScanMonitoringPaused(false);
-    setScanMessage('Checking the current scan status.');
+    setScanMessage(interfaceText('Checking the current scan status.'));
     setScanMessageType('info');
     pollDeadlineRef.current = Date.now() + SCAN_POLL_TIMEOUT_MS;
     pollScanStatusRef.current?.(true);
@@ -424,7 +422,7 @@ const LibraryHealth = () => {
 
   const handleFixSelected = async () => {
     if (selectedFixableIssueIds.length === 0) {
-      setError('Please select issues to fix');
+      setError(interfaceText("Please select issues to fix"));
       return;
     }
 
@@ -438,16 +436,21 @@ const LibraryHealth = () => {
       setSelectedIssues((current) => new Set(
         [...current].filter((issueId) => !issueIds.includes(issueId)),
       ));
-      setReportMessage(
-        `Queued remediation for ${issueIds.length} auto-fixable issue${issueIds.length === 1 ? '' : 's'}.${remainingAutoFixable > 0 ? ` ${remainingAutoFixable} remain selected for another batch.` : ''}`,
+      const queuedMessage = interfaceText(
+        issueIds.length === 1
+          ? 'Queued remediation for 1 auto-fixable issue.'
+          : 'Queued remediation for {count} auto-fixable issues.',
+        { count: issueIds.length },
       );
+      const remainingMessage = remainingAutoFixable > 0
+        ? interfaceText('{count} remain selected for another batch.', {
+          count: remainingAutoFixable,
+        })
+        : '';
+      setReportMessage([queuedMessage, remainingMessage].filter(Boolean).join(' '));
       await loadSummary(dashboardPath, { preserveFeedback: true });
     } catch (error_) {
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          'Failed to create fix job',
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to create fix job'));
     } finally {
       setFixing(false);
     }
@@ -458,14 +461,10 @@ const LibraryHealth = () => {
       setFixing(true);
       setError(null);
       await libraryHealth.createRemediationJob([issueId]);
-      setReportMessage('Queued remediation job for 1 auto-fixable issue.');
+      setReportMessage(interfaceText('Remediation queued for auto-fixable issues: {count}.', { count: 1 }));
       await loadSummary(dashboardPath, { preserveFeedback: true });
     } catch (error_) {
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          'Failed to create fix job',
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to create fix job'));
     } finally {
       setFixing(false);
     }
@@ -480,11 +479,13 @@ const LibraryHealth = () => {
       await navigator.clipboard.writeText(text);
       setCopyFallback('');
       setCopyFallbackLabel('');
-      setReportMessage(`${label} copied to the clipboard.`);
+      setReportMessage(interfaceText('{label} copied to the clipboard.', { label: interfaceText(label) }));
     } catch (_error) {
       setCopyFallback(text);
       setCopyFallbackLabel(label);
-      setReportMessage(`Clipboard access failed. Select and copy the ${label.toLowerCase()} below.`);
+      setReportMessage(interfaceText('Clipboard access failed. Select and copy the {label} below.', {
+        label: interfaceText(label.toLowerCase()),
+      }));
     }
   };
 
@@ -544,7 +545,7 @@ const LibraryHealth = () => {
     });
 
     if (queries.length === 0) {
-      setError('Selected issues do not have replacement search candidates.');
+      setError(interfaceText("Selected issues do not have replacement search candidates."));
       return;
     }
 
@@ -552,13 +553,14 @@ const LibraryHealth = () => {
       setSearchingReplacements(true);
       setError(null);
       const count = await searches.createBatch({ queries });
-      setReportMessage(`Started ${count} bounded replacement search${count === 1 ? '' : 'es'} for selected Library Health issues.`);
+      setReportMessage(interfaceText(
+        count === 1
+          ? 'Started 1 bounded replacement search for selected Library Health issues.'
+          : 'Started {count} bounded replacement searches for selected Library Health issues.',
+        { count },
+      ));
     } catch (error_) {
-      setError(
-        error_.response?.data?.message ||
-          error_.message ||
-          'Failed to start replacement searches',
-      );
+      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to start replacement searches'));
     } finally {
       setSearchingReplacements(false);
     }
@@ -574,20 +576,19 @@ const LibraryHealth = () => {
       {dashboardLoadFailed && libraryPath ? (
         <Popup
           className="library-health-popup"
-          content="Retry loading saved Library Health results for this path. This does not start another scan."
+          content={interfaceText("Retry loading saved Library Health results for this path. This does not start another scan.")}
           trigger={(
             <Button
-              aria-label="Retry loading saved Library Health results"
+              aria-label={interfaceText("Retry loading saved Library Health results")}
               className="library-health-action"
               disabled={loading || scanning}
               loading={loading}
               onClick={() => loadSummary(libraryPath)}
               type="button"
-            >
-              Retry Loading Results
-            </Button>
+             {...interfaceTextProps("Retry loading saved Library Health results")}>
+              <LocalizedText source={"Retry Loading Results"} /></Button>
           )}
-        />
+         {...interfaceTextProps("Retry loading saved Library Health results for this path. This does not start another scan.")}/>
       ) : null}
     </Message>
   ) : null;
@@ -604,25 +605,22 @@ const LibraryHealth = () => {
       <Message.Content>{scanMessage}</Message.Content>
       {scanProgress && scanning ? (
         <div className="library-health-progress">
-          <strong>Progress:</strong> {scanProgress.filesScanned} files checked;
-          {' '}{scanProgress.issuesDetected} issues found.
-        </div>
+          <strong><LocalizedText source={"Progress:"} /></strong> {scanProgress.filesScanned} <LocalizedText source={"files checked;"} />{' '}{scanProgress.issuesDetected} <LocalizedText source={"issues found."} /></div>
       ) : null}
       {scanMonitoringPaused && activeScanRef.current ? (
         <Popup
           className="library-health-popup"
-          content="Resume status checks for the current server-side scan. This does not start a second scan."
+          content={interfaceText("Resume status checks for the current server-side scan. This does not start a second scan.")}
           trigger={(
             <Button
-              aria-label="Retry Library Health scan status checks"
+              aria-label={interfaceText("Retry Library Health scan status checks")}
               className="library-health-action"
               onClick={handleResumeScanMonitoring}
               type="button"
-            >
-              Retry Status Checks
-            </Button>
+             {...interfaceTextProps("Retry Library Health scan status checks")}>
+              <LocalizedText source={"Retry Status Checks"} /></Button>
           )}
-        />
+         {...interfaceTextProps("Resume status checks for the current server-side scan. This does not start a second scan.")}/>
       ) : null}
     </Message>
   ) : null;
@@ -638,14 +636,13 @@ const LibraryHealth = () => {
       </Message>
       {copyFallback ? (
         <label className="library-health-copy-fallback">
-          {copyFallbackLabel} — select and copy
-          <textarea
-            aria-label={`${copyFallbackLabel} text to copy manually`}
+          {copyFallbackLabel} <LocalizedText source={"— select and copy"} /><textarea
+            aria-label={interfaceText("{copyFallbackLabel} text to copy manually", { "copyFallbackLabel": (copyFallbackLabel) })}
             onFocus={(event) => event.target.select()}
             readOnly
             rows={8}
             value={copyFallback}
-          />
+           {...interfaceTextProps("{copyFallbackLabel} text to copy manually")}/>
         </label>
       ) : null}
     </div>
@@ -660,11 +657,8 @@ const LibraryHealth = () => {
               <Header as="h3">
                 <Icon name="heartbeat" />
                 <Header.Content>
-                  Library Health Scanner
-                  <Header.Subheader>
-                    Detect quality issues, transcodes, and missing tracks.
-                    Results are limited to the selected server-side path.
-                  </Header.Subheader>
+                  <LocalizedText source={"Library Health Scanner"} /><Header.Subheader>
+                    <LocalizedText source={"Detect quality issues, transcodes, and missing tracks. Results are limited to the selected server-side path."} /></Header.Subheader>
                 </Header.Content>
               </Header>
             </Segment>
@@ -678,67 +672,62 @@ const LibraryHealth = () => {
                 className="library-health-path-label"
                 htmlFor="library-health-path"
               >
-                Library path on the server
-              </label>
+                <LocalizedText source={"Library path on the server"} /></label>
               <Input
                 disabled={scanning}
                 fluid
                 input={{
-                  'aria-label': 'Library path on the server',
+                  'aria-label': interfaceText("Library path on the server"),
                   id: 'library-health-path',
                 }}
                 onChange={handleLibraryPathChange}
-                placeholder="Enter a server path (for example, /music or C:\\Music)"
+                placeholder={interfaceText("Enter a server path (for example, /music or C:\\\\Music)")}
                 value={libraryPath}
-              />
+               {...interfaceTextProps("Enter a server path (for example, /music or C:\\\\Music)")}/>
               <div className="library-health-actions">
                 <Popup
                   className="library-health-popup"
-                  content="Load saved health results for the entered server-side path without scanning files. Use this to review a previous scan or recover from a dashboard loading error."
+                  content={interfaceText("Load saved health results for the entered server-side path without scanning files. Use this to review a previous scan or recover from a dashboard loading error.")}
                   trigger={(
                     <Button
-                      aria-label="Load saved Library Health results for this path"
+                      aria-label={interfaceText("Load saved Library Health results for this path")}
                       className="library-health-action"
                       disabled={scanning || loading || !libraryPath.trim()}
                       loading={loading}
                       onClick={() => loadSummary(libraryPath)}
                       type="button"
-                    >
+                     {...interfaceTextProps("Load saved Library Health results for this path")}>
                       <Icon name="folder open" />
-                      Load Saved Results
-                    </Button>
+                      <LocalizedText source={"Load Saved Results"} /></Button>
                   )}
-                />
+                 {...interfaceTextProps("Load saved health results for the entered server-side path without scanning files. Use this to review a previous scan or recover from a dashboard loading error.")}/>
                 <Popup
                   className="library-health-popup"
-                  content="Recursively scan the entered server-side path for audio health issues. This manually starts read-only file inspection with up to four files checked at once; it does not contact peers or modify files."
+                  content={interfaceText("Recursively scan the entered server-side path for audio health issues. This manually starts read-only file inspection with up to four files checked at once; it does not contact peers or modify files.")}
                   trigger={(
                     <Button
-                      aria-label="Start a recursive Library Health scan for this path"
+                      aria-label={interfaceText("Start a recursive Library Health scan for this path")}
                       className="library-health-action"
                       disabled={scanning || loading || !libraryPath.trim()}
                       loading={scanning && !scanMonitoringPaused}
                       onClick={handleStartScan}
                       primary
                       type="button"
-                    >
+                     {...interfaceTextProps("Start a recursive Library Health scan for this path")}>
                       <Icon name="search" />
                       {scanning
-                        ? scanMonitoringPaused ? 'Scan Monitor Paused' : 'Scanning...'
-                        : 'Start Scan'}
+                        ? scanMonitoringPaused ? <LocalizedText source={"Scan Monitor Paused"} /> : <LocalizedText source={"Scanning..."} />
+                        : <LocalizedText source={"Start Scan"} />}
                     </Button>
                   )}
-                />
+                 {...interfaceTextProps("Recursively scan the entered server-side path for audio health issues. This manually starts read-only file inspection with up to four files checked at once; it does not contact peers or modify files.")}/>
               </div>
               <Message
                 className="library-health-scan-guidance"
                 info
                 size="small"
               >
-                Paths are resolved by the server. Scans include subdirectories,
-                inspect supported audio files, and leave the files unchanged.
-                You can load saved results without starting a scan.
-              </Message>
+                <LocalizedText source={"Paths are resolved by the server. Scans include subdirectories, inspect supported audio files, and leave the files unchanged. You can load saved results without starting a scan."} /></Message>
             </Segment>
           </Grid.Column>
         </Grid.Row>
@@ -760,7 +749,7 @@ const LibraryHealth = () => {
         {loading ? (
           <Grid.Row>
             <Grid.Column width={16}>
-              <LoaderSegment>Loading library health data...</LoaderSegment>
+              <LoaderSegment><LocalizedText source={"Loading library health data..."} /></LoaderSegment>
             </Grid.Column>
           </Grid.Row>
         ) : summary ? (
@@ -771,39 +760,38 @@ const LibraryHealth = () => {
                   <Statistic.Group widths="three">
                     <Statistic>
                       <Statistic.Value>{summary.totalIssues}</Statistic.Value>
-                      <Statistic.Label>Total Issues</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Total Issues"} /></Statistic.Label>
                     </Statistic>
                     <Statistic color="red">
                       <Statistic.Value>{summary.issuesOpen}</Statistic.Value>
-                      <Statistic.Label>Open</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Open issues"} /></Statistic.Label>
                     </Statistic>
                     <Statistic color="green">
                       <Statistic.Value>
                         {summary.issuesResolved}
                       </Statistic.Value>
-                      <Statistic.Label>Resolved</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Resolved"} /></Statistic.Label>
                     </Statistic>
                   </Statistic.Group>
                   <div className="library-health-loaded-path">
-                    Results for <strong>{dashboardPath}</strong>
+                    <LocalizedText source={"Results for"} />{" "}<strong>{dashboardPath}</strong>
                   </div>
                   <Popup
                     className="library-health-popup"
-                    content="Copy a read-only health report for offline review. This does not fix, rescan, quarantine, search, or mutate files."
+                    content={interfaceText("Copy a read-only health report for offline review. This does not fix, rescan, quarantine, search, or mutate files.")}
                     trigger={
                     <Button
-                      aria-label="Copy a read-only Library Health report"
+                      aria-label={interfaceText("Copy a read-only Library Health report")}
                       className="library-health-action"
                       data-testid="library-health-copy-report"
                         disabled={!summary}
                         onClick={handleCopyReport}
                         type="button"
-                      >
+                       {...interfaceTextProps("Copy a read-only Library Health report")}>
                         <Icon name="copy" />
-                        Copy Report
-                      </Button>
+                        <LocalizedText source={"Copy Report"} /></Button>
                     }
-                  />
+                   {...interfaceTextProps("Copy a read-only health report for offline review. This does not fix, rescan, quarantine, search, or mutate files.")}/>
                   {renderActionFeedback()}
                 </Segment>
               </Grid.Column>
@@ -812,14 +800,13 @@ const LibraryHealth = () => {
             <Grid.Row>
               <Grid.Column width={8}>
                 <Segment>
-                  <Header as="h4">Issues by Type</Header>
+                  <Header as="h4"><LocalizedText source={"Issues by Type"} /></Header>
                   <Table compact>
                     <Table.Header>
                       <Table.Row>
-                        <Table.HeaderCell>Type</Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
                         <Table.HeaderCell textAlign="right">
-                          Count
-                        </Table.HeaderCell>
+                          <LocalizedText source={"Count"} /></Table.HeaderCell>
                       </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -829,15 +816,14 @@ const LibraryHealth = () => {
                             colSpan={2}
                             textAlign="center"
                           >
-                            No issues detected
-                          </Table.Cell>
+                            <LocalizedText source={"No issues detected"} /></Table.Cell>
                         </Table.Row>
                       ) : (
                         issuesByType.map((group) => (
                           <Table.Row key={group.type}>
                             <Table.Cell>
                               <Label basic>
-                                {getIssueTypeLabel(group.type)}
+                                <LocalizedText source={getIssueTypeLabel(group.type)} />
                               </Label>
                             </Table.Cell>
                             <Table.Cell textAlign="right">
@@ -853,14 +839,13 @@ const LibraryHealth = () => {
 
               <Grid.Column width={8}>
                 <Segment>
-                  <Header as="h4">Top Artists with Issues</Header>
+                  <Header as="h4"><LocalizedText source={"Top Artists with Issues"} /></Header>
                   <Table compact>
                     <Table.Header>
                       <Table.Row>
-                        <Table.HeaderCell>Artist</Table.HeaderCell>
+                        <Table.HeaderCell><LocalizedText source={"Artist"} /></Table.HeaderCell>
                         <Table.HeaderCell textAlign="right">
-                          Issues
-                        </Table.HeaderCell>
+                          <LocalizedText source={"Issues"} /></Table.HeaderCell>
                       </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -870,8 +855,7 @@ const LibraryHealth = () => {
                             colSpan={2}
                             textAlign="center"
                           >
-                            No artist data available
-                          </Table.Cell>
+                            <LocalizedText source={"No artist data available"} /></Table.Cell>
                         </Table.Row>
                       ) : (
                         issuesByArtist.map((group, index) => (
@@ -895,8 +879,7 @@ const LibraryHealth = () => {
               <Segment placeholder>
                 <Header icon>
                   <Icon name="search" />
-                  Enter a library path and start a scan to detect issues
-                </Header>
+                  <LocalizedText source={"Enter a library path and start a scan to detect issues"} /></Header>
               </Segment>
             </Grid.Column>
           </Grid.Row>
@@ -914,21 +897,21 @@ const LibraryHealth = () => {
             {renderScanMessage()}
             {dashboardPath ? (
               <Message info size="small">
-                Showing results for <strong>{dashboardPath}</strong>
+                <LocalizedText source={"Showing results for"} />{" "}<strong>{dashboardPath}</strong>
               </Message>
             ) : null}
 
             {selectedIssues.size > 0 && (
               <Segment className="library-health-selection-actions">
                 <div className="library-health-selection-count" aria-live="polite">
-                  {selectedIssues.size} issue{selectedIssues.size === 1 ? '' : 's'} selected
+                  <LocalizedText source={"{count} issues selected"} values={{ count: selectedIssues.size }} />
                 </div>
                 <Popup
                   className="library-health-popup"
-                  content="Queue bounded remediation downloads for up to 25 selected auto-fixable issues. This starts the existing download/remediation workflow; use it when you want slskd to attempt a replacement. The original files are not edited by this control."
+                  content={interfaceText("Queue bounded remediation downloads for up to 25 selected auto-fixable issues. This starts the existing download/remediation workflow; use it when you want slskd to attempt a replacement. The original files are not edited by this control.")}
                   trigger={(
                     <Button
-                      aria-label={`Queue fixes for ${selectedFixableIssueIds.length} selected auto-fixable issues`}
+                      aria-label={interfaceText("Queue fixes for {length} selected auto-fixable issues", { "length": (selectedFixableIssueIds.length) })}
                       className="library-health-action"
                       data-testid="library-health-fix-selected"
                       disabled={fixing || selectedFixableIssueIds.length === 0}
@@ -936,17 +919,17 @@ const LibraryHealth = () => {
                       onClick={handleFixSelected}
                       primary
                       type="button"
-                    >
+                     {...interfaceTextProps("Queue fixes for {length} selected auto-fixable issues")}>
                       <Icon name="wrench" />
                       {selectedAutoFixableCount > 25
-                        ? `Queue fixes for ${selectedFixableIssueIds.length} of ${selectedAutoFixableCount} auto-fixable issues`
+                        ? <LocalizedText source={"Queue fixes for {length} of {selectedAutoFixableCount} auto-fixable issues"} values={{ "length": (selectedFixableIssueIds.length), "selectedAutoFixableCount": (selectedAutoFixableCount) }} />
                         : `Queue fixes for ${selectedFixableIssueIds.length} auto-fixable issue${selectedFixableIssueIds.length === 1 ? '' : 's'}`}
                     </Button>
                   )}
-                />
+                 {...interfaceTextProps("Queue bounded remediation downloads for up to 25 selected auto-fixable issues. This starts the existing download/remediation workflow; use it when you want slskd to attempt a replacement. The original files are not edited by this control.")}/>
                 <Popup
                   className="library-health-popup"
-                  content="Start bounded live Soulseek replacement searches for selected replacement candidates. This starts searches only; it does not browse peers, download, quarantine, or mutate files."
+                  content={interfaceText("Start bounded live Soulseek replacement searches for selected replacement candidates. This starts searches only; it does not browse peers, download, quarantine, or mutate files.")}
                   trigger={
                     <Button
                       className="library-health-action"
@@ -955,32 +938,30 @@ const LibraryHealth = () => {
                       loading={searchingReplacements}
                       onClick={handleRunReplacementSearches}
                       type="button"
-                      aria-label="Start bounded replacement searches for selected Library Health issues"
-                    >
+                      aria-label={interfaceText("Start bounded replacement searches for selected Library Health issues")}
+                     {...interfaceTextProps("Start bounded replacement searches for selected Library Health issues")}>
                       <Icon name="search" />
-                      Start Replacement Searches
-                    </Button>
+                      <LocalizedText source={"Start Replacement Searches"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Start bounded live Soulseek replacement searches for selected replacement candidates. This starts searches only; it does not browse peers, download, quarantine, or mutate files.")}/>
                 <Popup
                   className="library-health-popup"
-                  content="Clear selected issues without changing issue status or starting any job. Use this to choose a different review or action set."
+                  content={interfaceText("Clear selected issues without changing issue status or starting any job. Use this to choose a different review or action set.")}
                   trigger={(
                     <Button
-                      aria-label="Clear selected Library Health issues"
+                      aria-label={interfaceText("Clear selected Library Health issues")}
                       basic
                       className="library-health-action"
                       disabled={fixing}
                       onClick={() => setSelectedIssues(new Set())}
                       type="button"
-                    >
-                      Clear Selection
-                    </Button>
+                     {...interfaceTextProps("Clear selected Library Health issues")}>
+                      <LocalizedText source={"Clear Selection"} /></Button>
                   )}
-                />
+                 {...interfaceTextProps("Clear selected issues without changing issue status or starting any job. Use this to choose a different review or action set.")}/>
                 <Popup
                   className="library-health-popup"
-                  content="Copy a selected-issue action plan for review. This does not create remediation jobs, queue searches, quarantine files, or mutate files."
+                  content={interfaceText("Copy a selected-issue action plan for review. This does not create remediation jobs, queue searches, quarantine files, or mutate files.")}
                   trigger={
                     <Button
                       basic
@@ -989,16 +970,15 @@ const LibraryHealth = () => {
                       disabled={fixing}
                       onClick={handleCopyActionPlan}
                       type="button"
-                      aria-label="Copy a review plan for selected Library Health issues"
-                    >
+                      aria-label={interfaceText("Copy a review plan for selected Library Health issues")}
+                     {...interfaceTextProps("Copy a review plan for selected Library Health issues")}>
                       <Icon name="copy" />
-                      Copy Action Plan
-                    </Button>
+                      <LocalizedText source={"Copy Action Plan"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Copy a selected-issue action plan for review. This does not create remediation jobs, queue searches, quarantine files, or mutate files.")}/>
                 <Popup
                   className="library-health-popup"
-                  content="Copy an auto-fixable issue manifest for review. This does not create a remediation job, execute safe fixes, or mutate files."
+                  content={interfaceText("Copy an auto-fixable issue manifest for review. This does not create a remediation job, execute safe fixes, or mutate files.")}
                   trigger={
                     <Button
                       basic
@@ -1007,16 +987,15 @@ const LibraryHealth = () => {
                       disabled={fixing}
                       onClick={handleCopySafeFixManifest}
                       type="button"
-                      aria-label="Copy a safe-fix manifest for selected Library Health issues"
-                    >
+                      aria-label={interfaceText("Copy a safe-fix manifest for selected Library Health issues")}
+                     {...interfaceTextProps("Copy a safe-fix manifest for selected Library Health issues")}>
                       <Icon name="check circle" />
-                      Copy Safe-Fix Manifest
-                    </Button>
+                      <LocalizedText source={"Copy Safe-Fix Manifest"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Copy an auto-fixable issue manifest for review. This does not create a remediation job, execute safe fixes, or mutate files.")}/>
                 <Popup
                   className="library-health-popup"
-                  content="Copy replacement search seed queries for selected issues. This does not open Search, contact peers, download files, or mutate files."
+                  content={interfaceText("Copy replacement search seed queries for selected issues. This does not open Search, contact peers, download files, or mutate files.")}
                   trigger={
                     <Button
                       basic
@@ -1025,16 +1004,15 @@ const LibraryHealth = () => {
                       disabled={fixing}
                       onClick={handleCopySearchSeeds}
                       type="button"
-                      aria-label="Copy replacement search seeds for selected Library Health issues"
-                    >
+                      aria-label={interfaceText("Copy replacement search seeds for selected Library Health issues")}
+                     {...interfaceTextProps("Copy replacement search seeds for selected Library Health issues")}>
                       <Icon name="search" />
-                      Copy Search Seeds
-                    </Button>
+                      <LocalizedText source={"Copy Search Seeds"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Copy replacement search seed queries for selected issues. This does not open Search, contact peers, download files, or mutate files.")}/>
                 <Popup
                   className="library-health-popup"
-                  content="Copy a manual quarantine review packet for selected risky issues. This does not change quarantine state, move files, send peer messages, or mutate files."
+                  content={interfaceText("Copy a manual quarantine review packet for selected risky issues. This does not change quarantine state, move files, send peer messages, or mutate files.")}
                   trigger={
                     <Button
                       basic
@@ -1043,25 +1021,23 @@ const LibraryHealth = () => {
                       disabled={fixing}
                       onClick={handleCopyQuarantinePacket}
                       type="button"
-                      aria-label="Copy a quarantine review packet for selected Library Health issues"
-                    >
+                      aria-label={interfaceText("Copy a quarantine review packet for selected Library Health issues")}
+                     {...interfaceTextProps("Copy a quarantine review packet for selected Library Health issues")}>
                       <Icon name="shield" />
-                      Copy Quarantine Packet
-                    </Button>
+                      <LocalizedText source={"Copy Quarantine Packet"} /></Button>
                   }
-                />
+                 {...interfaceTextProps("Copy a manual quarantine review packet for selected risky issues. This does not change quarantine state, move files, send peer messages, or mutate files.")}/>
               </Segment>
             )}
             {renderActionFeedback()}
 
             {loading ? (
-              <LoaderSegment>Loading issues...</LoaderSegment>
+              <LoaderSegment><LocalizedText source={"Loading issues..."} /></LoaderSegment>
             ) : !dashboardPath ? (
               <Segment placeholder>
                 <Header icon>
                   <Icon name="search" />
-                  Load saved results or scan a library from the Overview tab to see issues.
-                </Header>
+                  <LocalizedText source={"Load saved results or scan a library from the Overview tab to see issues."} /></Header>
               </Segment>
             ) : issues.length === 0 ? (
               <Segment placeholder>
@@ -1070,17 +1046,16 @@ const LibraryHealth = () => {
                     color="green"
                     name="check circle"
                   />
-                  No issues detected
-                </Header>
+                  <LocalizedText source={"No issues detected"} /></Header>
               </Segment>
             ) : (
               <div
-                aria-label="Library Health issues table"
+                aria-label={interfaceText("Library Health issues table")}
                 className="library-health-issues-scroll"
                 data-testid="library-health-issues-scroll"
                 role="region"
                 tabIndex={0}
-              >
+               {...interfaceTextProps("Library Health issues table")}>
                 <Table
                   celled
                   className="library-health-issues-table"
@@ -1092,25 +1067,24 @@ const LibraryHealth = () => {
                     <Table.HeaderCell collapsing>
                       <label className="library-health-issue-checkbox">
                         <input
-                          aria-label={`Select all ${issues.length} loaded Library Health issues`}
+                          aria-label={interfaceText("Select all {length} loaded Library Health issues", { "length": (issues.length) })}
                           checked={
                             issues.length > 0 &&
                             issues.every((issue) => selectedIssues.has(issue.issueId))
                           }
                           onChange={handleToggleAll}
                           type="checkbox"
-                        />
+                         {...interfaceTextProps("Select all {length} loaded Library Health issues")}/>
                       </label>
                     </Table.HeaderCell>
-                    <Table.HeaderCell>Type</Table.HeaderCell>
-                    <Table.HeaderCell>Severity</Table.HeaderCell>
-                    <Table.HeaderCell>Artist</Table.HeaderCell>
-                    <Table.HeaderCell>Track</Table.HeaderCell>
-                    <Table.HeaderCell>Reason</Table.HeaderCell>
-                    <Table.HeaderCell>Status</Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Severity"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Artist"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Track"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Reason"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Status"} /></Table.HeaderCell>
                     <Table.HeaderCell textAlign="center">
-                      Actions
-                    </Table.HeaderCell>
+                      <LocalizedText source={"Actions"} /></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -1119,7 +1093,9 @@ const LibraryHealth = () => {
                       <Table.Cell collapsing>
                         <label className="library-health-issue-checkbox">
                           <input
-                            aria-label={`Select ${[issue.artist, issue.title].filter(Boolean).join(' — ') || issue.issueId}`}
+                            aria-label={interfaceText('Select {item}', {
+                              item: [issue.artist, issue.title].filter(Boolean).join(' — ') || issue.issueId,
+                            })}
                             checked={selectedIssues.has(issue.issueId)}
                             onChange={() => handleToggleIssue(issue.issueId)}
                             type="checkbox"
@@ -1131,7 +1107,7 @@ const LibraryHealth = () => {
                           basic
                           size="small"
                         >
-                          {getIssueTypeLabel(issue.type)}
+                          <LocalizedText source={getIssueTypeLabel(issue.type)} />
                         </Label>
                       </Table.Cell>
                       <Table.Cell>
@@ -1139,7 +1115,7 @@ const LibraryHealth = () => {
                           color={getSeverityColor(issue.severity)}
                           size="small"
                         >
-                          {issue.severity}
+                          <LocalizedText source={issue.severity} />
                         </Label>
                       </Table.Cell>
                       <Table.Cell>{issue.artist || '-'}</Table.Cell>
@@ -1164,17 +1140,19 @@ const LibraryHealth = () => {
                           }
                           size="mini"
                         >
-                          {issue.status}
+                          <LocalizedText source={issue.status} />
                         </Label>
                       </Table.Cell>
                       <Table.Cell textAlign="center">
                         {issue.canAutoFix && issue.status === 'Detected' && (
                           <Popup
                             className="library-health-popup"
-                            content="Queue a remediation job for this auto-fixable issue. The backend still applies its remediation safeguards."
+                            content={interfaceText("Queue a remediation job for this auto-fixable issue. The backend still applies its remediation safeguards.")}
                             trigger={
                               <Button
-                                aria-label={`Queue a remediation job for ${[issue.artist, issue.title].filter(Boolean).join(' — ') || 'this issue'}`}
+                                aria-label={interfaceText('Queue a remediation job for {item}', {
+                                  item: [issue.artist, issue.title].filter(Boolean).join(' — ') || interfaceText('this issue'),
+                                })}
                                 className="library-health-action"
                                 disabled={fixing}
                                 onClick={() => handleFixSingle(issue.issueId)}
@@ -1183,10 +1161,9 @@ const LibraryHealth = () => {
                                 type="button"
                               >
                                 <Icon name="wrench" />
-                                Fix
-                              </Button>
+                                <LocalizedText source={"Fix"} /></Button>
                             }
-                          />
+                           {...interfaceTextProps("Queue a remediation job for this auto-fixable issue. The backend still applies its remediation safeguards.")}/>
                         )}
                         {issue.status === 'Fixing' && (
                           <Loader
@@ -1211,7 +1188,7 @@ const LibraryHealth = () => {
   const panes = [
     {
       menuItem: {
-        content: 'Overview',
+        content: interfaceText("Overview"),
         icon: 'dashboard',
         key: 'overview',
       },
@@ -1219,7 +1196,7 @@ const LibraryHealth = () => {
     },
     {
       menuItem: {
-        content: 'All Issues',
+        content: interfaceText("All Issues"),
         icon: 'warning',
         key: 'issues',
       },

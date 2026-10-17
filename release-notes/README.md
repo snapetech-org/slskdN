@@ -1,12 +1,12 @@
 # Release-note fragments
 
-Every pull request adds one new fragment under this directory for user-facing
-behavior, security, operational, or user-facing documentation changes. The
-fragments are append-only: never edit a fragment after it has shipped.
+For any user-facing change, add one structured fragment under `release-notes/` describing it. A
+single fragment may cover related user-facing changes in the same pull request. Keep shipped fragments unchanged.
 
-Internal-only work must explicitly select the internal-only option in the pull
-request template. The release-note workflow rejects a pull request that has
-neither a fragment nor that explicit opt-out, and it rejects selecting both.
+For internal-only work, no fragment is needed. In a pull request, either select the internal-only
+option in the template or put `release-note: none` on its own line in the description. When a
+direct push or merge check reads commit messages, put the same marker on its own line in the
+commit message.
 
 Each fragment contains YAML-style frontmatter with exactly these fields:
 

@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { list } from '../../../lib/events';
 import React, { useEffect, useState } from 'react';
@@ -17,6 +20,7 @@ const formatEventData = (data) => {
 };
 
 const Events = () => {
+  useInterfaceLanguage();
   const [page, setPage] = useState(1);
   const [retrySequence, setRetrySequence] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -52,11 +56,7 @@ const Events = () => {
       } catch (error_) {
         if (!active) return;
         setEvents([]);
-        setError(
-          error_?.response?.data?.message ||
-            error_?.message ||
-            'Unable to load system events.',
-        );
+        setError(getApiErrorMessage(error_, { t: interfaceText }));
       } finally {
         if (active) setLoading(false);
       }
@@ -80,11 +80,11 @@ const Events = () => {
       <div className="events-error">
         <Message
           error
-          header="Failed to load events"
+          header={interfaceText("Failed to load events")}
           content={error}
-        />
+         {...interfaceTextProps("Failed to load events")}/>
         <Popup
-          content="Try loading this page of system events again after the current request error."
+          content={interfaceText("Try loading this page of system events again after the current request error.")}
           position="top center"
           trigger={(
             <Button
@@ -92,10 +92,9 @@ const Events = () => {
               primary
             >
               <Icon name="refresh" />
-              Try Again
-            </Button>
+              <LocalizedText source={"Try Again"} /></Button>
           )}
-        />
+         {...interfaceTextProps("Try loading this page of system events again after the current request error.")}/>
       </div>
     );
   }
@@ -104,74 +103,70 @@ const Events = () => {
     <div className="events-page">
       <Header as="h2">
         <Icon name="history" />
-        System Events
-        <Header.Subheader>
-          Review recorded events and their diagnostic details.
-        </Header.Subheader>
+        <LocalizedText source={"System Events"} /><Header.Subheader>
+          <LocalizedText source={"Review recorded events and their diagnostic details."} /></Header.Subheader>
       </Header>
 
       <div className="events-controls">
         {totalPages > 1 && (
           <Popup
-            content="Choose a page to review another batch of system events."
+            content={interfaceText("Choose a page to review another batch of system events.")}
             on={['hover', 'focus']}
             position="top center"
             trigger={(
               <Pagination
                 activePage={page}
-                aria-label="Event pages"
+                aria-label={interfaceText("Event pages")}
                 boundaryRange={1}
                 className="events-pagination"
-                firstItem={{ 'aria-label': 'First events page', content: '«' }}
-                lastItem={{ 'aria-label': 'Last events page', content: '»' }}
-                nextItem={{ 'aria-label': 'Next events page', content: '›' }}
+                firstItem={{ 'aria-label': interfaceText("First events page"), content: '«' }}
+                lastItem={{ 'aria-label': interfaceText("Last events page"), content: '»' }}
+                nextItem={{ 'aria-label': interfaceText("Next events page"), content: '›' }}
                 onPageChange={changePage}
-                prevItem={{ 'aria-label': 'Previous events page', content: '‹' }}
+                prevItem={{ 'aria-label': interfaceText("Previous events page"), content: '‹' }}
                 siblingRange={1}
                 totalPages={totalPages}
-              />
+               {...interfaceTextProps("Event pages")}/>
             )}
-          />
+           {...interfaceTextProps("Choose a page to review another batch of system events.")}/>
         )}
         {totalPages > 0 && (
           <span
             aria-live="polite"
             className="events-page-status"
           >
-            Page {page} of {totalPages}
+            <LocalizedText source={"Page"} />{" "}{page} <LocalizedText source={"of"} />{" "}{totalPages}
           </span>
         )}
       </div>
 
       <div
-        aria-label="System event records"
+        aria-label={interfaceText("System event records")}
         className="events-table-scroll"
         role="region"
         tabIndex={0}
-      >
+       {...interfaceTextProps("System event records")}>
         <Table
-          aria-label="System events"
+          aria-label={interfaceText("System events")}
           className="events-table"
           compact="very"
           unstackable
-        >
+         {...interfaceTextProps("System events")}>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell className="events-list-id">Id</Table.HeaderCell>
+              <Table.HeaderCell className="events-list-id"><LocalizedText source={"Id"} /></Table.HeaderCell>
               <Table.HeaderCell className="events-list-timestamp">
-                Timestamp
-              </Table.HeaderCell>
+                <LocalizedText source={"Timestamp"} /></Table.HeaderCell>
               <Table.HeaderCell className="events-list-type">
-                Type
-              </Table.HeaderCell>
-              <Table.HeaderCell>Data</Table.HeaderCell>
+                <LocalizedText source={"Type"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Data"} /></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body className="events-table-body">
             {events.length === 0 ? (
               <Table.Row>
                 <Table.Cell colSpan={4}>
-                  {loading ? 'Loading events' : 'No events'}
+                  {loading ? <LocalizedText source={"Loading events"} /> : <LocalizedText source={"No events"} />}
                 </Table.Cell>
               </Table.Row>
             ) : (
@@ -179,19 +174,19 @@ const Events = () => {
                 <Table.Row key={event.id}>
                   <Table.Cell className="events-list-id">
                     <Popup
-                      content={`Use this ID to find the ${event.type} event in diagnostics: ${event.id}`}
+                      content={interfaceText("Use this ID to find the {type} event in diagnostics: {id}", { "type": (event.type), "id": (event.id) })}
                       on={['hover', 'focus']}
                       position="top left"
                       trigger={(
                         <Button
-                          aria-label={`Show identifier for event ${event.id}`}
+                          aria-label={interfaceText("Show identifier for event {id}", { "id": (event.id) })}
                           basic
                           icon="info circle"
                           size="small"
-                        />
+                         {...interfaceTextProps("Show identifier for event {id}")}/>
                       )}
                       wide="very"
-                    />
+                     {...interfaceTextProps("Use this ID to find the {type} event in diagnostics: {id}")}/>
                   </Table.Cell>
                   <Table.Cell className="events-list-timestamp">
                     {replaceHyphensWithNonBreakingEquivalent(event.timestamp)}

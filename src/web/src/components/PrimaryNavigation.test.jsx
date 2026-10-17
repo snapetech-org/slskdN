@@ -24,5 +24,17 @@ describe('PrimaryNavigation', () => {
       'href',
       '/dashboard',
     );
+    expect(screen.getByTestId('nav-dashboard').closest('a')).toHaveAttribute(
+      'aria-label',
+      'Overview',
+    );
+    expect(screen.getByTestId('nav-uploads').closest('a')).toHaveAttribute(
+      'aria-label',
+      'Uploads',
+    );
+    expect(screen.getByTestId('nav-group-discover')).toHaveAttribute(
+      'aria-label',
+      'Discover',
+    );
   });
 });

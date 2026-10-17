@@ -5,7 +5,14 @@
 import SearchList from './SearchList';
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import {
+  getInterfaceTextDirection,
+  getInterfaceTextLanguage,
+  resetInterfaceLanguage,
+  setInterfaceLanguage,
+} from '../../../lib/interfaceLocale';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../../test/localeCatalogFetchMock';
 
 vi.mock('./SearchListRow', () => ({
   default: ({ onSelectionChange, search, selected, selectionDisabled }) => (
@@ -25,6 +32,29 @@ vi.mock('./SearchListRow', () => ({
 }));
 
 describe('SearchList', () => {
+  beforeEach(() => stubLocaleCatalogFetch(vi));
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
+  });
+
+  it('sets per-label Arabic metadata and falls back to English LTR for missing translations', async () => {
+    expect(getInterfaceTextLanguage('Not a catalog label', 'ar')).toBe('en');
+    expect(getInterfaceTextDirection('Not a catalog label', 'ar')).toBe('ltr');
+
+    await setInterfaceLanguage('ar');
+    render(
+      <SearchList
+        hasMoreFromServer
+        searches={{ first: { id: 'first', startedAt: '2026-08-20T12:00:00Z' } }}
+      />,
+    );
+
+    const loadMore = screen.getByText('تحميل المزيد من عمليات البحث');
+    expect(loadMore).toHaveAttribute('lang', 'ar');
+    expect(loadMore).toHaveAttribute('dir', 'rtl');
+  });
+
   it('labels pagination actions', () => {
     const searches = Object.fromEntries(
       Array.from({ length: 101 }, (_, index) => [
@@ -80,7 +110,7 @@ describe('SearchList', () => {
       />,
     );
 
-    expect(screen.getByText('1 selected')).toBeInTheDocument();
+    expect(screen.getByText('1 selected (1 completed, 0 active)')).toBeInTheDocument();
     expect(screen.getByRole('checkbox', { name: 'Select search first' })).toBeChecked();
   });
 
@@ -114,7 +144,7 @@ describe('SearchList', () => {
       screen.getByRole('checkbox', { name: 'Select all searches in current list' }),
     );
 
-    expect(screen.getByText('2 selected')).toBeInTheDocument();
+    expect(screen.getByText('2 selected (1 completed, 1 active)')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Search Again' })).toBeEnabled();
     expect(screen.getByRole('button', { name: 'Stop Active' })).toBeEnabled();
     expect(screen.getByRole('button', { name: 'Delete Selected' })).toBeEnabled();
@@ -124,7 +154,7 @@ describe('SearchList', () => {
     await waitFor(() => {
       expect(onRemoveSelected).toHaveBeenCalledWith([completed]);
     });
-    expect(screen.getByText('1 selected')).toBeInTheDocument();
+    expect(screen.getByText('1 selected (0 completed, 1 active)')).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: 'Stop Active' }));
 

@@ -1,3 +1,8 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+
+
 import { urlBase } from '../../config';
 import * as pods from '../../lib/pods';
 import * as portForwarding from '../../lib/portForwarding';
@@ -52,6 +57,11 @@ const AVAILABLE_PORT_PREVIEW_LIMIT = 100;
 const STATUS_POLL_INTERVAL_MS = 10_000;
 const asArray = (value) => (Array.isArray(value) ? value : []);
 const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
+const PortForwardingError = ({ error }) => {
+  if (typeof error === 'string') return <LocalizedText source={error} />;
+  if (error?.source) return <LocalizedText source={error.source} values={error.values} />;
+  return error?.message || String(error);
+};
 const forwardingStatusSignature = (statuses) =>
   statuses
     .map((status) =>
@@ -138,7 +148,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to initialize port forwarding:', error);
-      if (this.mounted) this.setState({ error: error.message });
+      if (this.mounted) this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
     } finally {
       if (this.mounted) this.setState({ loading: false });
     }
@@ -269,7 +279,12 @@ class PortForwarding extends Component {
       this.setState({ selectedPodDetail: podDetail });
     } catch (error) {
       console.error('Failed to fetch pod detail:', error);
-      this.setState({ error: `Failed to load pod details: ${error.message}` });
+      this.setState({
+        error: {
+          source: 'Failed to load pod details: {message}',
+          values: { message: getApiErrorMessage(error, { t: interfaceText }) },
+        },
+      });
     } finally {
       this.setState({ loading: false });
     }
@@ -333,7 +348,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to create port forwarding:', error);
-      this.setState({ error: error.message });
+      this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
     } finally {
       this.setState({ creatingForwarding: false });
     }
@@ -349,11 +364,14 @@ class PortForwarding extends Component {
         this.refreshForwardingStatusAfterMutation(),
       ]);
       this.setState({
-        success: `Successfully stopped forwarding on port ${localPort}`,
+        success: {
+          source: 'Successfully stopped forwarding on port {port}',
+          values: { port: localPort },
+        },
       });
     } catch (error) {
       console.error('Failed to stop port forwarding:', error);
-      this.setState({ error: error.message });
+      this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
     } finally {
       this.setState({ stoppingForwarding: false });
     }
@@ -420,19 +438,16 @@ class PortForwarding extends Component {
             {forwardingStatus.length === 0 ? (
               <Segment placeholder>
                 <Icon name="exchange" />
-                <h3>No active port forwarding</h3>
+                <h3><LocalizedText source={"No active port forwarding"} /></h3>
                 <p>
-                  Start forwarding local ports to remote services through VPN
-                  tunnels.
-                </p>
+                  <LocalizedText source={"Start forwarding local ports to remote services through VPN tunnels."} /></p>
                 <TooltipButton
                   disabled={vpnCapablePods.length === 0}
                   onClick={() => this.setState({ showCreateModal: true })}
                   primary
                   tooltip="Open the setup form to route a local app through a VPN-capable pod to a remote service. A pod must be available first."
                 >
-                  Start Forwarding
-                </TooltipButton>
+                  <LocalizedText source={"Start Forwarding"} /></TooltipButton>
               </Segment>
             ) : (
               <div>
@@ -444,20 +459,19 @@ class PortForwarding extends Component {
                     tooltip="Open the setup form for a loopback-only port forward through a VPN-capable pod. Use it to reach a remote service from an app on this machine."
                   >
                     <Icon name="plus" />
-                    Add Forwarding
-                  </TooltipButton>
+                    <LocalizedText source={"Add Forwarding"} /></TooltipButton>
                 </div>
 
                 <Table celled>
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>Local Port</Table.HeaderCell>
-                      <Table.HeaderCell>Pod</Table.HeaderCell>
-                      <Table.HeaderCell>Remote Service</Table.HeaderCell>
-                      <Table.HeaderCell>Status</Table.HeaderCell>
-                      <Table.HeaderCell>Connections</Table.HeaderCell>
-                      <Table.HeaderCell>Data Transferred</Table.HeaderCell>
-                      <Table.HeaderCell>Actions</Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Local Port"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Pod"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Remote Service"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Status"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Connections"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Data Transferred"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
@@ -470,7 +484,7 @@ class PortForwarding extends Component {
                           {forwarding.podId}
                           {forwarding.serviceName && (
                             <div style={{ color: 'var(--slskd-color-subtle, #666)', fontSize: '0.8em' }}>
-                              Service: {forwarding.serviceName}
+                              <LocalizedText source={"Service:"} />{" "}{forwarding.serviceName}
                             </div>
                           )}
                         </Table.Cell>
@@ -482,21 +496,21 @@ class PortForwarding extends Component {
                         </Table.Cell>
                         <Table.Cell>
                           <Label color={forwarding.isActive ? 'green' : 'red'}>
-                            {forwarding.isActive ? 'Active' : 'Inactive'}
+                            {forwarding.isActive ? <LocalizedText source={"Active"} /> : <LocalizedText source={"Inactive"} />}
                           </Label>
                         </Table.Cell>
                         <Table.Cell>{forwarding.activeConnections}</Table.Cell>
                         <Table.Cell>
                           {forwarding.bytesForwarded > 0
                             ? `${(forwarding.bytesForwarded / 1_024).toFixed(1)} KB`
-                            : '0 KB'}
+                            : <LocalizedText source={"0 KB"} />}
                         </Table.Cell>
                         <Table.Cell>
                           <Popup
-                            content={`Stop forwarding on localhost:${forwarding.localPort} and close this tunnel when you no longer need the local route.`}
+                            content={interfaceText("Stop forwarding on localhost:{localPort} and close this tunnel when you no longer need the local route.", { "localPort": (forwarding.localPort) })}
                             trigger={
                               <Button
-                                aria-label={`Stop forwarding on local port ${forwarding.localPort}`}
+                                aria-label={interfaceText("Stop forwarding on local port {localPort}", { "localPort": (forwarding.localPort) })}
                                 color="red"
                                 icon="stop"
                                 loading={stoppingForwarding}
@@ -506,9 +520,9 @@ class PortForwarding extends Component {
                                   )
                                 }
                                 size="small"
-                              />
+                               {...interfaceTextProps("Stop forwarding on local port {localPort}")}/>
                             }
-                          />
+                           {...interfaceTextProps("Stop forwarding on localhost:{localPort} and close this tunnel when you no longer need the local route.")}/>
                         </Table.Cell>
                       </Table.Row>
                     ))}
@@ -527,17 +541,17 @@ class PortForwarding extends Component {
               <Statistic.Group size="small">
                 <Statistic>
                   <Statistic.Value>{availablePortCount}</Statistic.Value>
-                  <Statistic.Label>Available Ports</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"Available Ports"} /></Statistic.Label>
                 </Statistic>
                 <Statistic>
                   <Statistic.Value>{forwardingStatus.length}</Statistic.Value>
-                  <Statistic.Label>In Use</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"In Use"} /></Statistic.Label>
                 </Statistic>
               </Statistic.Group>
             </div>
 
             <Segment>
-              <p>Available ports for forwarding (1024-65535):</p>
+              <p><LocalizedText source={"Available ports for forwarding (1024-65535):"} /></p>
               <div
                 style={{
                   backgroundColor: 'var(--slskd-color-inset, #f8f9fa)',
@@ -555,7 +569,7 @@ class PortForwarding extends Component {
                     ? ` ... (+${availablePortCount - availablePorts.length} more)`
                     : '')
                 ) : (
-                  <em>No ports available or still loading...</em>
+                  <em><LocalizedText source={"No ports available or still loading..."} /></em>
                 )}
               </div>
             </Segment>
@@ -572,7 +586,7 @@ class PortForwarding extends Component {
                   <Statistic.Value>
                     {forwardingStatus.filter((status) => status.isActive).length}
                   </Statistic.Value>
-                  <Statistic.Label>Active Tunnels</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"Active Tunnels"} /></Statistic.Label>
                 </Statistic>
                 <Statistic>
                   <Statistic.Value>
@@ -581,7 +595,7 @@ class PortForwarding extends Component {
                       0,
                     )}
                   </Statistic.Value>
-                  <Statistic.Label>Total Connections</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"Total Connections"} /></Statistic.Label>
                 </Statistic>
                 <Statistic>
                   <Statistic.Value>
@@ -595,7 +609,7 @@ class PortForwarding extends Component {
                     ).toFixed(2)}{' '}
                     MB
                   </Statistic.Value>
-                  <Statistic.Label>Data Transferred</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"Data Transferred"} /></Statistic.Label>
                 </Statistic>
                 <Statistic>
                   <Statistic.Value>
@@ -603,7 +617,7 @@ class PortForwarding extends Component {
                       (status) => status.performance?.isHighThroughput,
                     ).length}
                   </Statistic.Value>
-                  <Statistic.Label>High Throughput</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"High Throughput"} /></Statistic.Label>
                 </Statistic>
               </Statistic.Group>
             </div>
@@ -611,12 +625,12 @@ class PortForwarding extends Component {
             <Table celled>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Local Port</Table.HeaderCell>
-                  <Table.HeaderCell>Data Transferred</Table.HeaderCell>
-                  <Table.HeaderCell>Connections</Table.HeaderCell>
-                  <Table.HeaderCell>Average / Connection</Table.HeaderCell>
-                  <Table.HeaderCell>Stream Mapping</Table.HeaderCell>
-                  <Table.HeaderCell>Throughput</Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Local Port"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Data Transferred"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Connections"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Average / Connection"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Stream Mapping"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Throughput"} /></Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -634,11 +648,11 @@ class PortForwarding extends Component {
                     </Table.Cell>
                     <Table.Cell>
                       <Label color={forwarding.streamMappingEnabled ? 'green' : 'grey'}>
-                        {forwarding.streamMappingEnabled ? 'Enabled' : 'Disabled'}
+                        {forwarding.streamMappingEnabled ? <LocalizedText source={"Enabled"} /> : <LocalizedText source={"Disabled"} />}
                       </Label>
                     </Table.Cell>
                     <Table.Cell>
-                      {forwarding.performance?.isHighThroughput ? 'High' : 'Normal'}
+                      {forwarding.performance?.isHighThroughput ? <LocalizedText source={"High"} /> : <LocalizedText source={"Normal"} />}
                     </Table.Cell>
                   </Table.Row>
                 ))}
@@ -648,8 +662,7 @@ class PortForwarding extends Component {
                       colSpan={6}
                       textAlign="center"
                     >
-                      No active tunnels to display statistics for
-                    </Table.Cell>
+                      <LocalizedText source={"No active tunnels to display statistics for"} /></Table.Cell>
                   </Table.Row>
                 )}
               </Table.Body>
@@ -667,7 +680,7 @@ class PortForwarding extends Component {
                   <Statistic.Value>
                     {Object.keys(vpnPodStatus).length}
                   </Statistic.Value>
-                  <Statistic.Label>VPN-Capable Pods</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"VPN-Capable Pods"} /></Statistic.Label>
                 </Statistic>
                 <Statistic>
                   <Statistic.Value>
@@ -676,7 +689,7 @@ class PortForwarding extends Component {
                       0,
                     )}
                   </Statistic.Value>
-                  <Statistic.Label>Total Members</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"Total Members"} /></Statistic.Label>
                 </Statistic>
                 <Statistic>
                   <Statistic.Value>
@@ -685,7 +698,7 @@ class PortForwarding extends Component {
                       0,
                     )}
                   </Statistic.Value>
-                  <Statistic.Label>Active Tunnels</Statistic.Label>
+                  <Statistic.Label><LocalizedText source={"Active Tunnels"} /></Statistic.Label>
                 </Statistic>
               </Statistic.Group>
             </div>
@@ -693,11 +706,11 @@ class PortForwarding extends Component {
             <Table celled>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Pod Name</Table.HeaderCell>
-                  <Table.HeaderCell>Members</Table.HeaderCell>
-                  <Table.HeaderCell>Active Tunnels</Table.HeaderCell>
-                  <Table.HeaderCell>Data Transferred</Table.HeaderCell>
-                  <Table.HeaderCell>Status</Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Pod Name"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Members"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Active Tunnels"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Data Transferred"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Status"} /></Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -709,16 +722,16 @@ class PortForwarding extends Component {
                         ID: {pod.podId}
                       </div>
                     </Table.Cell>
-                    <Table.Cell>{pod.members ?? 'Unavailable'}</Table.Cell>
+                    <Table.Cell>{pod.members ?? <LocalizedText source="Unavailable" />}</Table.Cell>
                     <Table.Cell>{pod.activeTunnels}</Table.Cell>
                     <Table.Cell>
                       {pod.totalBandwidth > 0
                         ? `${(pod.totalBandwidth / 1_024 / 1_024).toFixed(2)} MB`
-                        : '0 MB'}
+                        : <LocalizedText source={"0 MB"} />}
                     </Table.Cell>
                     <Table.Cell>
                       <Label color={pod.status === 'Active' ? 'green' : 'grey'}>
-                        {pod.status}
+                        <LocalizedText source={pod.status} />
                       </Label>
                     </Table.Cell>
                   </Table.Row>
@@ -729,8 +742,7 @@ class PortForwarding extends Component {
                       colSpan={5}
                       textAlign="center"
                     >
-                      No VPN-capable pods found
-                    </Table.Cell>
+                      <LocalizedText source={"No VPN-capable pods found"} /></Table.Cell>
                   </Table.Row>
                 )}
               </Table.Body>
@@ -747,51 +759,45 @@ class PortForwarding extends Component {
         </Dimmer>
 
         <div style={{ marginBottom: '30px' }}>
-          <h2>Port Forwarding</h2>
+          <h2><LocalizedText source={"Port Forwarding"} /></h2>
           <p>
-            Forward local ports to remote services through secure VPN tunnels.
-          </p>
+            <LocalizedText source={"Forward local ports to remote services through secure VPN tunnels."} /></p>
         </div>
 
         {error && (
           <Message error>
-            <Message.Header>Error</Message.Header>
-            <p>{error}</p>
+            <Message.Header><LocalizedText source={"Error"} /></Message.Header>
+            <p><PortForwardingError error={error} /></p>
             <TooltipButton
               onClick={() => this.setState({ error: null })}
               size="small"
               tooltip="Dismiss this error message. It does not change forwarding or configuration."
             >
-              Dismiss
-            </TooltipButton>
+              <LocalizedText source={"Dismiss"} /></TooltipButton>
           </Message>
         )}
 
         {success && (
           <Message success>
-            <Message.Header>Success</Message.Header>
-            <p>{success}</p>
+            <Message.Header><LocalizedText source={"Success"} /></Message.Header>
+            <p><LocalizedText source={success.source} values={success.values} /></p>
             <TooltipButton
               onClick={() => this.setState({ success: null })}
               size="small"
               tooltip="Dismiss this success message. It does not change forwarding or configuration."
             >
-              Dismiss
-            </TooltipButton>
+              <LocalizedText source={"Dismiss"} /></TooltipButton>
           </Message>
         )}
 
         {vpnCapablePods.length === 0 && (
           <Message warning>
-            <Message.Header>No VPN-Capable Pods</Message.Header>
+            <Message.Header><LocalizedText source={"No VPN-Capable Pods"} /></Message.Header>
             <p>
-              You need at least one pod with VPN gateway capability to use port
-              forwarding.
-            </p>
+              <LocalizedText source={"You need at least one pod with VPN gateway capability to use port forwarding."} /></p>
             <p>
-              Create or join a pod that has the{' '}
-              <code>PrivateServiceGateway</code> capability enabled.
-            </p>
+              <LocalizedText source={"Create or join a pod that has the"} />{' '}
+              <code>PrivateServiceGateway</code> <LocalizedText source={"capability enabled."} /></p>
           </Message>
         )}
 
@@ -808,11 +814,11 @@ class PortForwarding extends Component {
           open={showCreateModal}
           size="small"
         >
-          <Modal.Header>Start Port Forwarding</Modal.Header>
+          <Modal.Header><LocalizedText source={"Start Port Forwarding"} /></Modal.Header>
           <Modal.Content>
             <Form>
               <Form.Field>
-                <label>VPN Pod</label>
+                <label><LocalizedText source={"VPN Pod"} /></label>
                 <Dropdown
                   fluid
                   onChange={(e, { value }) => this.handlePodSelection(value)}
@@ -821,10 +827,10 @@ class PortForwarding extends Component {
                     text: pod.name || pod.podId,
                     value: pod.podId,
                   }))}
-                  placeholder="Select a VPN-capable pod"
+                  placeholder={interfaceText("Select a VPN-capable pod")}
                   selection
                   value={selectedPodId || ''}
-                />
+                 {...interfaceTextProps("Select a VPN-capable pod")}/>
                 {selectedPodDetail && (
                   <div
                     style={{
@@ -834,78 +840,73 @@ class PortForwarding extends Component {
                     }}
                   >
                     <p>
-                      <strong>Members:</strong>{' '}
+                      <strong><LocalizedText source={"Members:"} /></strong>{' '}
                       {selectedPodDetail.members?.length || 0}
                     </p>
                     {selectedPodDetail.privateServicePolicy?.enabled && (
                       <p>
-                        <strong>VPN Gateway:</strong> Enabled
-                      </p>
+                        <strong><LocalizedText source={"VPN Gateway:"} /></strong> <LocalizedText source={"Enabled"} /></p>
                     )}
                   </div>
                 )}
               </Form.Field>
 
               <Form.Field required>
-                <label>Local Port</label>
+                <label><LocalizedText source={"Local Port"} /></label>
                 <Input
                   max="65535"
                   min="1024"
                   onChange={(e) =>
                     this.handleFormChange('localPort', e.target.value)
                   }
-                  placeholder="e.g., 8080"
+                  placeholder={interfaceText("e.g., 8080")}
                   type="number"
                   value={createForm.localPort}
-                />
+                 {...interfaceTextProps("e.g., 8080")}/>
                 <small style={{ color: 'var(--slskd-color-subtle, #666)' }}>
-                  Port on your local machine (1024-65535)
-                </small>
+                  <LocalizedText source={"Port on your local machine (1024-65535)"} /></small>
               </Form.Field>
 
               <Form.Field required>
-                <label>Remote Host</label>
+                <label><LocalizedText source={"Remote Host"} /></label>
                 <Input
                   onChange={(e) =>
                     this.handleFormChange('destinationHost', e.target.value)
                   }
-                  placeholder="e.g., database.internal.company.com"
+                  placeholder={interfaceText("e.g., database.internal.company.com")}
                   value={createForm.destinationHost}
-                />
+                 {...interfaceTextProps("e.g., database.internal.company.com")}/>
                 <small style={{ color: 'var(--slskd-color-subtle, #666)' }}>
-                  Hostname or IP address of the remote service
-                </small>
+                  <LocalizedText source={"Hostname or IP address of the remote service"} /></small>
               </Form.Field>
 
               <Form.Field required>
-                <label>Remote Port</label>
+                <label><LocalizedText source={"Remote Port"} /></label>
                 <Input
                   max="65535"
                   min="1"
                   onChange={(e) =>
                     this.handleFormChange('destinationPort', e.target.value)
                   }
-                  placeholder="e.g., 5432"
+                  placeholder={interfaceText("e.g., 5432")}
                   type="number"
                   value={createForm.destinationPort}
-                />
+                 {...interfaceTextProps("e.g., 5432")}/>
                 <small style={{ color: 'var(--slskd-color-subtle, #666)' }}>
-                  Port number of the remote service
-                </small>
+                  <LocalizedText source={"Port number of the remote service"} /></small>
               </Form.Field>
 
               <Form.Field>
-                <label>Service Name (Optional)</label>
+                <label><LocalizedText source={"Service Name (Optional)"} /></label>
                 <Input
                   onChange={(e) =>
                     this.handleFormChange('serviceName', e.target.value)
                   }
-                  placeholder="e.g., postgres-db"
+                  placeholder={interfaceText("e.g., postgres-db")}
                   value={createForm.serviceName}
-                />
+                 {...interfaceTextProps("e.g., postgres-db")}/>
                 <small style={{ color: 'var(--slskd-color-subtle, #666)' }}>
-                  Named service registered in the pod (for better organization)
-                </small>
+                  <LocalizedText source={"Named service registered in the pod (for better organization)"} /></small>
               </Form.Field>
             </Form>
           </Modal.Content>
@@ -914,8 +915,7 @@ class PortForwarding extends Component {
               onClick={() => this.setState({ showCreateModal: false })}
               tooltip="Close this setup form without starting the port forward."
             >
-              Cancel
-            </TooltipButton>
+              <LocalizedText source={"Cancel"} /></TooltipButton>
             <TooltipButton
               disabled={
                 !selectedPodId ||
@@ -928,8 +928,7 @@ class PortForwarding extends Component {
               primary
               tooltip={`Open a loopback-only listener on localhost:${createForm.localPort || 'the selected port'} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service.`}
             >
-              Start Forwarding
-            </TooltipButton>
+              <LocalizedText source={"Start Forwarding"} /></TooltipButton>
           </Modal.Actions>
         </Modal>
       </div>

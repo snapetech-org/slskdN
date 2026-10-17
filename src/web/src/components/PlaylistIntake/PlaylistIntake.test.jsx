@@ -1,9 +1,11 @@
 import PlaylistIntake from './PlaylistIntake';
 import * as collectionsAPI from '../../lib/collections';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
 import { playlistIntakeStorageKey } from '../../lib/playlistIntake';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import React from 'react';
-import { vi } from 'vitest';
+import { afterEach, beforeEach, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 vi.mock('../../lib/collections', () => ({
   addCollectionItem: vi.fn(),
@@ -11,7 +13,13 @@ vi.mock('../../lib/collections', () => ({
 }));
 
 describe('PlaylistIntake', () => {
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
+  });
+
   beforeEach(() => {
+    stubLocaleCatalogFetch(vi);
     localStorage.clear();
     vi.clearAllMocks();
   });
@@ -44,6 +52,29 @@ describe('PlaylistIntake', () => {
     expect(screen.getByText('Ready for review')).toBeInTheDocument();
   });
 
+  it('sets Arabic language and direction on the multi-artist policy control', async () => {
+    await setInterfaceLanguage('ar');
+    render(<PlaylistIntake />);
+
+    fireEvent.change(screen.getByLabelText('اسم قائمة التشغيل'), {
+      target: { value: 'Road trip' },
+    });
+    fireEvent.change(screen.getByLabelText('مصدر قائمة التشغيل'), {
+      target: { value: 'local:road-trip.csv' },
+    });
+    fireEvent.change(screen.getByLabelText('صفوف قائمة التشغيل'), {
+      target: { value: 'Stereolab,French Disko' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'استيراد قائمة التشغيل للمراجعة' }));
+
+    const label = screen.getByText('فنانون متعددون');
+    expect(label).toHaveAttribute('lang', 'ar');
+    expect(label).toHaveAttribute('dir', 'rtl');
+    const control = label.closest('.field').querySelector('[role="listbox"]');
+    expect(control).toHaveAttribute('lang', 'ar');
+    expect(control).toHaveAttribute('dir', 'rtl');
+  });
+
   it('supports row review states and playlist previews', () => {
     render(<PlaylistIntake />);
 
@@ -68,7 +99,9 @@ describe('PlaylistIntake', () => {
     fireEvent.click(
       screen.getByRole('button', { name: 'Reject playlist row Come On Let\'s Go' }),
     );
-    expect(screen.getByText('Rejected 1')).toBeInTheDocument();
+    const playlistCard = screen.getByText('Mirror queue').closest('.playlist-intake-card');
+    expect(playlistCard.querySelector('.playlist-intake-summary'))
+      .toHaveTextContent('Rejected 1');
 
     fireEvent.click(
       screen.getByRole('button', {

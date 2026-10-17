@@ -1,3 +1,5 @@
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as transfers from '../../lib/transfers';
 import { formatBytes } from '../../lib/util';
 import FileList from '../Shared/FileList';
@@ -7,16 +9,8 @@ import { Card, Icon, Message } from 'semantic-ui-react';
 
 const Button = TooltipButton;
 
-const getDownloadErrorMessage = (error) => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (data && typeof data === 'object') {
-    return data.detail || data.message || data.title || JSON.stringify(data);
-  }
-
-  return error?.message || 'The download request could not be completed.';
-};
+const getDownloadErrorMessage = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'The download request could not be completed.');
 
 const initialState = {
   downloadError: '',
@@ -110,20 +104,29 @@ class Directory extends Component {
           <Card.Content extra>
             <span>
               <Button
-                aria-label={`Download ${selectedFiles.length} selected file${selectedFiles.length === 1 ? '' : 's'}`}
+                aria-label={interfaceText(selectedFiles.length === 1
+                  ? 'Download {count} selected file'
+                  : 'Download {count} selected files', { count: selectedFiles.length })}
                 color="green"
-                content="Download"
+                content={interfaceText("Download")}
                 disabled={downloadRequest === 'inProgress'}
                 icon="download"
                 label={{
                   as: 'a',
                   basic: false,
-                  content: `${selectedFiles.length} file${selectedFiles.length === 1 ? '' : 's'}, ${selectedSize}`,
+                  content: interfaceText(selectedFiles.length === 1
+                    ? '{count} file, {size}'
+                    : '{count} files, {size}', { count: selectedFiles.length, size: selectedSize }),
                 }}
                 labelPosition="right"
                 onClick={() => this.download(username, selectedFiles)}
-                tooltip={`Queue ${selectedFiles.length} selected file${selectedFiles.length === 1 ? '' : 's'} from ${name} for download.`}
-              />
+                tooltip={interfaceText(selectedFiles.length === 1
+                  ? 'Queue {count} selected file from {directory} for download.'
+                  : 'Queue {count} selected files from {directory} for download.', {
+                  count: selectedFiles.length,
+                  directory: name,
+                })}
+               {...interfaceTextProps("Download")}/>
               {downloadRequest === 'inProgress' && (
                 <Icon
                   loading

@@ -4,9 +4,17 @@ import TransfersHeader from './TransfersHeader';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 describe('TransfersHeader', () => {
+  beforeEach(() => stubLocaleCatalogFetch(vi));
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
+  });
+
   it('surfaces download filters on an empty Downloads view', () => {
     render(
       <AppContext.Provider
@@ -88,5 +96,30 @@ describe('TransfersHeader', () => {
     expect(cancelScope).toBeInTheDocument();
     await user.hover(cancelScope);
     expect(await screen.findByText(cancelTooltip)).toBeInTheDocument();
+  });
+
+  it('sets Arabic language and direction on each localized transfer label', async () => {
+    await setInterfaceLanguage('ar');
+    render(
+      <AppContext.Provider value={{ options: {} }}>
+        <TransfersHeader
+          direction="download"
+          onCancelAll={vi.fn()}
+          onRemoveAll={vi.fn()}
+          onRetryAll={vi.fn()}
+          server={{ isConnected: true }}
+          totalCount={1}
+          transfers={[{
+            directories: [{
+              files: [{ direction: 'download', state: 'Completed, Errored' }],
+            }],
+          }]}
+        />
+      </AppContext.Provider>,
+    );
+
+    const retryLabel = screen.getByText('إعادة المحاولة');
+    expect(retryLabel).toHaveAttribute('lang', 'ar');
+    expect(retryLabel).toHaveAttribute('dir', 'rtl');
   });
 });

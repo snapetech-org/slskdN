@@ -1,3 +1,6 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 // <copyright file="SoulseekDiscoveryPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -58,12 +61,10 @@ const getUsernames = (payload) =>
     .filter((user) => user.username);
 
 const errorMessage = (error, fallback) =>
-  error?.response?.data?.message ||
-  error?.response?.data ||
-  error?.message ||
-  fallback;
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
+  useInterfaceLanguage();
   const [error, setError] = useState('');
   const [interest, setInterest] = useState('');
   const [item, setItem] = useState('');
@@ -92,20 +93,20 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
     setUserInterests(null);
   };
 
-  const run = async (label, action) => {
+  const run = async (action) => {
     setError('');
     setLoading(true);
     try {
       await action();
     } catch (actionError) {
-      setError(errorMessage(actionError, `Unable to ${label}.`));
+      setError(errorMessage(actionError, 'The request failed. Try again.'));
     } finally {
       setLoading(false);
     }
   };
 
   const loadRecommendations = (global = false) =>
-    run(global ? 'load global recommendations' : 'load recommendations', async () => {
+    run(async () => {
       const response = global
         ? await soulseekDiscovery.getGlobalRecommendations()
         : await soulseekDiscovery.getRecommendations();
@@ -115,21 +116,19 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       setRecommendations(getRecommendations(payload));
       setUnrecommendations(getUnrecommendations(payload));
       setTitle(global ? 'Global recommendations' : 'My recommendations');
-      setStatus(
-        `Loaded ${getRecommendations(payload).length} recommendation${
-          getRecommendations(payload).length === 1 ? '' : 's'
-        }.`,
-      );
+      setStatus(interfaceText('Recommendations loaded: {count}.', {
+        count: getRecommendations(payload).length,
+      }));
     });
 
   const loadItemRecommendations = () => {
     const trimmed = item.trim();
     if (!trimmed) {
-      toast.error('Item is required');
+      toast.error(interfaceText("Item is required"));
       return;
     }
 
-    run('load item recommendations', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getItemRecommendations({
         item: trimmed,
       });
@@ -137,29 +136,29 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setRecommendations(getRecommendations(response.data || {}));
       setTitle(`Recommendations for ${trimmed}`);
-      setStatus(`Loaded related recommendation seeds for ${trimmed}.`);
+      setStatus(interfaceText('Related recommendation seeds loaded for {item}.', { item: trimmed }));
     });
   };
 
   const loadSimilarUsers = () =>
-    run('load similar users', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getSimilarUsers();
       const users = asArray(response.data);
 
       clearResults();
       setSimilarUsers(users.map(normalizeUser).filter((user) => user.username));
       setTitle('Similar users');
-      setStatus(`Loaded ${users.length} similar user${users.length === 1 ? '' : 's'}.`);
+      setStatus(interfaceText('Loaded {count} similar users.', { count: users.length }));
     });
 
   const loadItemSimilarUsers = () => {
     const trimmed = item.trim();
     if (!trimmed) {
-      toast.error('Item is required');
+      toast.error(interfaceText("Item is required"));
       return;
     }
 
-    run('load item similar users', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getItemSimilarUsers({
         item: trimmed,
       });
@@ -167,18 +166,18 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setSimilarUsers(getUsernames(response.data || {}));
       setTitle(`Users similar to ${trimmed}`);
-      setStatus(`Loaded users associated with ${trimmed}.`);
+      setStatus(interfaceText('Users associated with {item} loaded.', { item: trimmed }));
     });
   };
 
   const loadUserInterests = (target = username) => {
     const trimmed = `${target || ''}`.trim();
     if (!trimmed) {
-      toast.error('Username is required');
+      toast.error(interfaceText("Username is required"));
       return;
     }
 
-    run('load user interests', async () => {
+    run(async () => {
       const response = await soulseekDiscovery.getUserInterests({
         username: trimmed,
       });
@@ -186,14 +185,14 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setUserInterests(response.data || {});
       setTitle(`${trimmed} interests`);
-      setStatus(`Loaded native interests for ${trimmed}.`);
+      setStatus(interfaceText('Native interests loaded for {username}.', { username: trimmed }));
     });
   };
 
   const updateInterest = (hated = false, remove = false) => {
     const trimmed = interest.trim();
     if (!trimmed) {
-      toast.error('Interest is required');
+      toast.error(interfaceText("Interest is required"));
       return;
     }
 
@@ -205,9 +204,12 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
         ? soulseekDiscovery.removeInterest
         : soulseekDiscovery.addInterest;
 
-    run('update interests', async () => {
+    run(async () => {
       await action({ item: trimmed });
-      setStatus(`${remove ? 'Removed' : 'Added'} ${trimmed} ${hated ? 'as a hated interest' : 'as an interest'}.`);
+      const statusSource = remove
+        ? hated ? 'Removed {interest} as a hated interest.' : 'Removed {interest} as an interest.'
+        : hated ? 'Added {interest} as a hated interest.' : 'Added {interest} as an interest.';
+      setStatus(interfaceText(statusSource, { interest: trimmed }));
       setInterest('');
     });
   };
@@ -221,7 +223,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
         maxResults: 25,
         searchText,
       });
-      toast.success(`Added ${searchText} to Wishlist for review`);
+      toast.success(interfaceText("Added {searchText} to Wishlist for review", { "searchText": (searchText) }));
     } catch (wishlistError) {
       toast.error(errorMessage(wishlistError, 'Unable to add to Wishlist.'));
     }
@@ -231,34 +233,34 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
     <List.Item key={`${recommendation.item}-${recommendation.score ?? 'n'}`}>
       <List.Content floated="right">
         <Popup
-          content="Start a normal Soulseek search for this recommendation."
+          content={interfaceText("Start a normal Soulseek search for this recommendation.")}
           trigger={
             <SemanticButton
-              aria-label={`Search ${recommendation.item}`}
+              aria-label={interfaceText("Search {item}", { "item": (recommendation.item) })}
               icon="search"
               onClick={() => onSearch?.(recommendation.item)}
               size="mini"
-            />
+             {...interfaceTextProps("Search {item}")}/>
           }
-        />
+         {...interfaceTextProps("Start a normal Soulseek search for this recommendation.")}/>
         <Popup
-          content="Save this raw recommendation to Wishlist for manual review."
+          content={interfaceText("Save this raw recommendation to Wishlist for manual review.")}
           trigger={
             <SemanticButton
-              aria-label={`Add ${recommendation.item} to Wishlist`}
+              aria-label={interfaceText("Add {item} to Wishlist", { "item": (recommendation.item) })}
               icon="bookmark outline"
               onClick={() => addToWishlist(recommendation.item)}
               size="mini"
-            />
+             {...interfaceTextProps("Add {item} to Wishlist")}/>
           }
-        />
+         {...interfaceTextProps("Save this raw recommendation to Wishlist for manual review.")}/>
       </List.Content>
       <List.Icon name="music" />
       <List.Content>
         <List.Header>{recommendation.item}</List.Header>
         {recommendation.score !== null && (
           <List.Description>
-            <Label size="mini">score {recommendation.score}</Label>
+            <Label size="mini"><LocalizedText source={"score"} />{" "}{recommendation.score}</Label>
           </List.Description>
         )}
       </List.Content>
@@ -269,23 +271,23 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
     <List.Item key={user.username}>
       <List.Content floated="right">
         <Popup
-          content="Load this user's native Soulseek interests."
+          content={interfaceText("Load this user's native Soulseek interests.")}
           trigger={
             <SemanticButton
-              aria-label={`Load ${user.username} interests`}
+              aria-label={interfaceText("Load {username} interests", { "username": (user.username) })}
               icon="heart outline"
               onClick={() => loadUserInterests(user.username)}
               size="mini"
-            />
+             {...interfaceTextProps("Load {username} interests")}/>
           }
-        />
+         {...interfaceTextProps("Load this user's native Soulseek interests.")}/>
       </List.Content>
       <List.Icon name="user" />
       <List.Content>
         <List.Header>{user.username}</List.Header>
         {user.rating !== null && (
           <List.Description>
-            <Label size="mini">rating {user.rating}</Label>
+            <Label size="mini"><LocalizedText source={"rating"} />{" "}{user.rating}</Label>
           </List.Description>
         )}
       </List.Content>
@@ -301,7 +303,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
         {label}
       </Header>
       {values.length === 0 ? (
-        <span style={{ opacity: 0.65 }}>None reported</span>
+        <span style={{ opacity: 0.65 }}><LocalizedText source={"None reported"} /></span>
       ) : (
         values.map((value) => (
           <Label
@@ -319,8 +321,8 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
   if (disabled) {
     return (
       <Segment raised>
-        <Header as="h4">Soulseek Native Discovery</Header>
-        <p>Connect to the server to use native Soulseek interests and recommendations.</p>
+        <Header as="h4"><LocalizedText source={"Soulseek Native Discovery"} /></Header>
+        <p><LocalizedText source={"Connect to the server to use native Soulseek interests and recommendations."} /></p>
       </Segment>
     );
   }
@@ -332,29 +334,29 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
     <Segment loading={loading}>
       <Header as="h4">
         <Icon name="compass outline" />
-        <Header.Content>Soulseek Native Discovery</Header.Content>
+        <Header.Content><LocalizedText source={"Soulseek Native Discovery"} /></Header.Content>
       </Header>
 
       <Form>
         <Form.Group widths="equal">
           <Form.Input
-            label="Interest"
+            label={interfaceText("Interest")}
             onChange={(event) => setInterest(event.target.value)}
-            placeholder="genre, artist, scene, tag"
+            placeholder={interfaceText("genre, artist, scene, tag")}
             value={interest}
-          />
+           {...interfaceTextProps("Interest")}/>
           <Form.Input
-            label="Item"
+            label={interfaceText("Item")}
             onChange={(event) => setItem(event.target.value)}
-            placeholder="item to branch from"
+            placeholder={interfaceText("item to branch from")}
             value={item}
-          />
+           {...interfaceTextProps("Item")}/>
           <Form.Input
-            label="User"
+            label={interfaceText("User")}
             onChange={(event) => setUsername(event.target.value)}
-            placeholder="username"
+            placeholder={interfaceText("username")}
             value={username}
-          />
+           {...interfaceTextProps("User")}/>
         </Form.Group>
         <Button.Group size="small">
           <Button
@@ -365,8 +367,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Add this text to your Soulseek interest profile to shape future recommendations."
           >
             <Icon name="heart" />
-            Add Interest
-          </Button>
+            <LocalizedText source={"Add Interest"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -375,8 +376,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Mark this text as something you do not want recommended."
           >
             <Icon name="ban" />
-            Add Hated
-          </Button>
+            <LocalizedText source={"Add Hated"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -385,8 +385,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Remove this text from your interest profile."
           >
             <Icon name="minus circle" />
-            Remove Interest
-          </Button>
+            <LocalizedText source={"Remove Interest"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -395,8 +394,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Stop suppressing this text from recommendations."
           >
             <Icon name="minus square outline" />
-            Remove Hated
-          </Button>
+            <LocalizedText source={"Remove Hated"} /></Button>
         </Button.Group>
         <Button.Group
           floated="right"
@@ -410,8 +408,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Load recommendations based on your own Soulseek interests."
           >
             <Icon name="lightbulb outline" />
-            My Recs
-          </Button>
+            <LocalizedText source={"My Recs"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -420,8 +417,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Load shared recommendations across the Soulseek community."
           >
             <Icon name="globe" />
-            Global
-          </Button>
+            <LocalizedText source={"Global"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -430,8 +426,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Find users with interests similar to yours."
           >
             <Icon name="users" />
-            Similar Users
-          </Button>
+            <LocalizedText source={"Similar Users"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -440,8 +435,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Find recommendations related to the item you entered."
           >
             <Icon name="sitemap" />
-            Item Recs
-          </Button>
+            <LocalizedText source={"Item Recs"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -450,8 +444,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Find users who are similar to people interested in this item."
           >
             <Icon name="user plus" />
-            Item Users
-          </Button>
+            <LocalizedText source={"Item Users"} /></Button>
           <Button
             icon
             labelPosition="left"
@@ -460,8 +453,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
             tooltip="Fetch the entered user's public interest and hated-item lists."
           >
             <Icon name="address card outline" />
-            User Interests
-          </Button>
+            <LocalizedText source={"User Interests"} /></Button>
         </Button.Group>
       </Form>
 
@@ -480,7 +472,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
 
       {hasResults && (
         <Segment secondary>
-          <Header as="h5">{title || 'Discovery results'}</Header>
+          <Header as="h5">{title || <LocalizedText source={"Discovery results"} />}</Header>
           {recommendations.length > 0 && (
             <List
               divided
@@ -491,7 +483,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
           )}
           {unrecommendations.length > 0 && (
             <>
-              <Header as="h5">Unrecommendations</Header>
+              <Header as="h5"><LocalizedText source={"Unrecommendations"} /></Header>
               <List
                 divided
                 relaxed

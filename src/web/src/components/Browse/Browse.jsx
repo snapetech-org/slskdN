@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import BrowseSession from './BrowseSession';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import TooltipButton from '../Shared/TooltipButton';
@@ -20,7 +21,7 @@ const createBrowseTab = (username = '') => {
   tabCounter += 1;
   return {
     key: `tab-${tabCounter}`,
-    label: username || 'New Tab',
+    label: username || interfaceText('New Tab'),
     username,
   };
 };
@@ -58,6 +59,7 @@ const saveTabsToStorage = (tabsToSave) => {
 };
 
 const Browse = () => {
+  useInterfaceLanguage();
   const location = useLocation();
   const requestedUser =
     location.state?.user ||
@@ -181,7 +183,7 @@ const Browse = () => {
         {tab.label}
         {tabs.length > 1 && (
           <TooltipButton
-            aria-label={`Close ${tab.label} browse tab`}
+            aria-label={interfaceText("Close {label} browse tab", { "label": (tab.label) })}
             basic
             className="browse-tab-close"
             compact
@@ -192,8 +194,8 @@ const Browse = () => {
             }}
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
-            tooltip={`Close the ${tab.label} browse tab without changing the user's shared files.`}
-          >
+            tooltip="Close the {label} browse tab without changing the user's shared files."
+           {...interfaceTextProps("Close {label} browse tab", { label: tab.label })}>
             <Icon name="close" />
           </TooltipButton>
         )}
@@ -234,11 +236,11 @@ const Browse = () => {
           {
             menuItem: (
               <Menu.Item
-                aria-label="Open a new browse tab"
+                aria-label={interfaceText("Open a new browse tab")}
                 key="add-tab"
                 onClick={handleAddTab}
-                title="Open a new browse tab"
-              >
+                title={interfaceText("Open a new browse tab")}
+               {...interfaceTextProps("Open a new browse tab")}>
                 <Icon name="plus" />
               </Menu.Item>
             ),

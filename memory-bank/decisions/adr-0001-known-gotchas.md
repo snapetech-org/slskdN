@@ -4,6 +4,84 @@
 > **Date**: 2025-12-08  
 > **Author**: AI-assisted development sessions
 
+### 0z1862. Keep API Error Prose Out Of Localized UI (2026-10-15)
+
+**What went wrong:** Several Web UI error states interpolated `error.message`
+or response bodies directly into otherwise translated copy. This exposed raw
+server, proxy, and transport text in English and could display serialized API
+details to users.
+
+**Why:** Request errors carry arbitrary prose that is not a stable translation
+key. Only allowlisted API error codes have an application-owned message
+contract.
+
+**Prevention:** At UI boundaries, use `getApiErrorMessage(error, { t },
+fallback)` so allowlisted error codes resolve to translated source strings and
+unknown errors use a translated contextual or generic fallback. Keep filenames,
+paths, usernames, media titles, and protocol values as data; do not translate
+or expose arbitrary server error prose. Raw details may remain in diagnostic
+logs where needed, but not in user-facing error copy.
+
+### 0z1861. Translate App-Owned Strings At Their Render Boundary (2026-10-14)
+
+**What went wrong:** Some fixed interface messages were stored in component
+state or data objects and rendered as plain strings. The locale catalog could
+contain a translation for a phrase while the visible UI still showed English.
+
+**Why:** Catalog audits found message keys without tracing the final render
+path. A string assigned to state is not translated merely because an equivalent
+catalog key exists elsewhere.
+
+**Prevention:** Keep fixed app-authored messages as source keys until rendering
+and pass them through `LocalizedText` or another subscribed translation
+boundary. Use explicit allowlists for stored errors with known app-owned values;
+leave unrecognized user, provider, server, and protocol text unchanged. Test
+both rendered language changes and unknown-value preservation.
+
+### 0z1860. Preserve The Last Complete Locale During Catalog Loads (2026-10-14)
+
+**What went wrong:** Changing languages updated the active locale before its
+catalog finished loading. A failed catalog request then replaced a working
+translation set with English fallbacks while leaving the failed preference
+stored.
+
+**Why:** Catalog requests are asynchronous, but active language, catalog, and
+storage state were changed eagerly. Treating a failed request as an empty
+catalog hid the failure from the locale activation path.
+
+**Prevention:** Load and validate a complete catalog before activating or
+persisting a new language. Ignore stale request completions, and keep the last
+complete language and catalog when loading fails. Verify failure and concurrent
+language-change behavior.
+
+### 0z1859. Keep Localized Icon Navigation Legible On Narrow Screens (2026-10-14)
+
+**What went wrong:** Longer translated navigation labels overflowed neighboring
+fixed-width icon items on narrow screens, even though the navigation container
+itself had no horizontal page overflow.
+
+**Why:** The responsive layout allowed a horizontal row of fixed-width items to
+keep rendering each full translated label without a narrow-screen treatment.
+
+**Prevention:** Collapse primary navigation labels to icons below the mobile
+breakpoint, retain the translated accessible name on every interactive item,
+and verify a narrow viewport for both overlap and horizontal overflow.
+
+### 0z1858. Isolate Dynamic Values In Right-To-Left UI Text (2026-10-14)
+
+**What went wrong:** Arabic UI translations interpolated Latin file paths and
+other dynamic values directly into right-to-left sentences, allowing the
+Unicode bidirectional algorithm to reorder punctuation and parts of the value.
+
+**Why:** The translation component applied right-to-left direction to the full
+message but did not isolate string and numeric placeholders with their own
+direction context.
+
+**Prevention:** When rendering translated right-to-left text, isolate each
+string or numeric placeholder in a `<bdi dir="auto">` element. Keep translation
+and API/clipboard helpers returning the original plain value without bidi
+control characters, and test both rendered isolation and unchanged raw output.
+
 ### 0z1855. Compare GitHub Runs By Repository ID Across Renames (2026-10-14)
 
 **What went wrong:** The hosted release-gate verifier rejected a successful

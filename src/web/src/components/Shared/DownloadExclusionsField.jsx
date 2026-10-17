@@ -1,3 +1,5 @@
+import LocalizedText from "./LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import React from 'react';
 import { Form, Message } from 'semantic-ui-react';
 
@@ -22,11 +24,7 @@ const DownloadExclusionsField = ({
       info
       size="small"
     >
-      One literal term per line. Matching is case-insensitive and checks the
-      remote filename and folder path. Up to 100 terms are supported, with a
-      maximum of 256 characters per term. Live policy changes cancel active
-      transfers that become blocked.
-    </Message>
+      <LocalizedText source={"One literal term per line. Matching is case-insensitive and checks the remote filename and folder path. Up to 100 terms are supported, with a maximum of 256 characters per term. Live policy changes cancel active transfers that become blocked."} /></Message>
   </>
 );
 

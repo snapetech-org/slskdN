@@ -1,0 +1,22 @@
+name: slskdN fork PR validation
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions:
+  contents: read
+concurrency:
+  group: public-fork-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    name: Run disposable fork validation
+    if: >-
+      github.event.pull_request.head.repo.fork == true &&
+      github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
+      github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN' &&
+      github.event.pull_request.base.ref == 'main'
+    permissions:
+      contents: read
+    uses: snapetech-org/slskdN/.github/workflows/feature-coherence-validation.yml@7308a0ba1fe1b32a09ffd489fca43346a6e6b82c
+

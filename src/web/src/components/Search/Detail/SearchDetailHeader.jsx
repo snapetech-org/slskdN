@@ -1,7 +1,17 @@
 import SearchStatusIcon from '../SearchStatusIcon';
+import { useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Button, Header, Icon, Popup, Segment } from 'semantic-ui-react';
+
+const LocalizedText = ({ source, parameters }) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  return (
+    <span lang={languageFor(source)} dir={directionFor(source)}>
+      {t(source, parameters)}
+    </span>
+  );
+};
 
 const RefreshButton = ({
   creating,
@@ -12,42 +22,60 @@ const RefreshButton = ({
   onCreate,
   searchText,
   working,
-}) =>
-  loaded && (
+}) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const source = 'Search Again';
+  if (!loaded) return null;
+
+  return (
     <Button
-      aria-label="Run this search again"
+      aria-label={t(source)}
+      dir={directionFor(source)}
       disabled={disabled || working}
       icon={isSmallScreen && !isTinyScreen}
+      lang={languageFor(source)}
       loading={creating}
       onClick={() => onCreate({ navigate: true, search: searchText })}
     >
       <Icon name="refresh" />
-      {(!isSmallScreen || isTinyScreen) && 'Search Again'}
+      {(!isSmallScreen || isTinyScreen) && <LocalizedText source={source} />}
     </Button>
   );
+};
 
 const StopOrDeleteButton = ({
   isComplete,
   isSmallScreen,
   isTinyScreen,
   removing,
+  searchText,
   stopOrRemove,
   stopping,
   working,
-}) => (
-  <Button
-    aria-label={isComplete ? 'Delete completed search' : 'Stop this search'}
-    disabled={working}
-    floated={isTinyScreen ? 'right' : undefined}
-    icon={isSmallScreen && !isTinyScreen}
-    loading={removing || stopping}
-    negative
-    onClick={stopOrRemove}
-  >
-    <Icon name={isComplete ? 'trash alternate' : 'stop circle'} />
-    {(!isSmallScreen || isTinyScreen) && (isComplete ? 'Delete' : 'Stop')}
-  </Button>
-);
+}) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const source = isComplete ? 'Delete' : 'Stop';
+  const accessibleSource = isComplete
+    ? 'Delete completed search {search}'
+    : 'Stop search {search}';
+
+  return (
+    <Button
+      aria-label={t(accessibleSource, { search: searchText })}
+      dir={directionFor(accessibleSource)}
+      disabled={working}
+      floated={isTinyScreen ? 'right' : undefined}
+      icon={isSmallScreen && !isTinyScreen}
+      lang={languageFor(accessibleSource)}
+      loading={removing || stopping}
+      negative
+      onClick={stopOrRemove}
+    >
+      <Icon name={isComplete ? 'trash alternate' : 'stop circle'} />
+      {(!isSmallScreen || isTinyScreen) && <LocalizedText source={source} />}
+    </Button>
+  );
+};
 
 const SearchDetailHeader = ({
   creating,
@@ -62,29 +90,56 @@ const SearchDetailHeader = ({
   search,
   stopping,
 }) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
   const isSmallScreen = useMediaQuery({ query: '(max-width: 899px)' });
   const isTinyScreen = useMediaQuery({ query: '(max-width: 684px)' });
 
   const { isComplete, searchText, state } = search;
   const working = loading || creating || removing || stopping;
+  const graphSource = 'Open Discovery Graph for {search}';
 
   const stopOrRemove = () => {
-    if (isComplete) {
-      onRemove(search);
-    } else {
-      onStop(search);
-    }
+    if (isComplete) onRemove(search);
+    else onStop(search);
   };
 
-  // if the screen is full width, display the header and action buttons in the same segment, with full
-  // button text.  if the screen is between 684 and 899 pixels, display the buttons with no text.
-  // if the screen is less than 684 pixels, display the action buttons in a new segment, with full text.
+  const discoveryGraphButton = (
+    <Button
+      aria-label={t(graphSource, { search: searchText })}
+      dir={directionFor(graphSource)}
+      disabled={!loaded}
+      icon={isSmallScreen && !isTinyScreen}
+      lang={languageFor(graphSource)}
+      onClick={onOpenGraph}
+      style={!isSmallScreen ? { marginLeft: '0.5em' } : undefined}
+    >
+      <Icon name="crosshairs" />
+      {(!isSmallScreen || isTinyScreen) && (
+        <LocalizedText source="Discovery Graph" />
+      )}
+    </Button>
+  );
+
+  const stopSource = isComplete
+    ? 'Delete this finished search.'
+    : 'Stop this in-progress search.';
+
+  const stopButton = (
+    <StopOrDeleteButton
+      isComplete={isComplete}
+      isSmallScreen={isSmallScreen}
+      isTinyScreen={isTinyScreen}
+      removing={removing}
+      searchText={searchText}
+      stopOrRemove={stopOrRemove}
+      stopping={stopping}
+      working={working}
+    />
+  );
+
   return (
     <>
-      <Segment
-        className="search-detail-header-segment"
-        raised
-      >
+      <Segment className="search-detail-header-segment" raised>
         <Header>
           <SearchStatusIcon state={state} />
           {searchText}
@@ -92,7 +147,7 @@ const SearchDetailHeader = ({
         {!isTinyScreen && (
           <div className="search-detail-header-buttons">
             <Popup
-              content="Run the same query against Soulseek peers again to refresh the result pool."
+              content={<LocalizedText source="Search Again" />}
               position="top center"
               trigger={
                 <span>
@@ -110,39 +165,14 @@ const SearchDetailHeader = ({
               }
             />
             <Popup
-              content="Open a Discovery Graph around this search phrase so the result set becomes a navigable neighborhood."
+              content={<LocalizedText source="Open a Discovery Graph for this search phrase so the query history becomes a browsable neighborhood." />}
               position="top center"
-              trigger={
-                <span>
-                  <Button
-                    aria-label="Open Discovery Graph for this search"
-                    disabled={!loaded}
-                    icon={isSmallScreen && !isTinyScreen}
-                    onClick={onOpenGraph}
-                    style={{ marginLeft: '0.5em' }}
-                  >
-                    <Icon name="crosshairs" />
-                    {(!isSmallScreen || isTinyScreen) && 'Discovery Graph'}
-                  </Button>
-                </span>
-              }
+              trigger={<span>{discoveryGraphButton}</span>}
             />
             <Popup
-              content={isComplete ? 'Delete this finished search.' : 'Stop this in-progress search.'}
+              content={<LocalizedText source={stopSource} />}
               position="top center"
-              trigger={
-                <span>
-                  <StopOrDeleteButton
-                    isComplete={isComplete}
-                    isSmallScreen={isSmallScreen}
-                    isTinyScreen={isTinyScreen}
-                    removing={removing}
-                    stopOrRemove={stopOrRemove}
-                    stopping={stopping}
-                    working={working}
-                  />
-                </span>
-              }
+              trigger={<span>{stopButton}</span>}
             />
           </div>
         )}
@@ -150,7 +180,7 @@ const SearchDetailHeader = ({
       {isTinyScreen && (
         <Segment>
           <Popup
-            content="Run the same query against Soulseek peers again to refresh the result pool."
+            content={<LocalizedText source="Search Again" />}
             position="top center"
             trigger={
               <span>
@@ -168,37 +198,14 @@ const SearchDetailHeader = ({
             }
           />
           <Popup
-            content="Open a Discovery Graph around this search phrase so the result set becomes a navigable neighborhood."
+            content={<LocalizedText source="Open a Discovery Graph for this search phrase so the query history becomes a browsable neighborhood." />}
             position="top center"
-              trigger={
-                <span>
-                  <Button
-                    aria-label="Open Discovery Graph for this search"
-                    disabled={!loaded}
-                    onClick={onOpenGraph}
-                  >
-                  <Icon name="crosshairs" />
-                  Discovery Graph
-                  </Button>
-                </span>
-              }
+            trigger={<span>{discoveryGraphButton}</span>}
           />
           <Popup
-            content={isComplete ? 'Delete this finished search.' : 'Stop this in-progress search.'}
+            content={<LocalizedText source={stopSource} />}
             position="top center"
-              trigger={
-                <span>
-                  <StopOrDeleteButton
-                    isComplete={isComplete}
-                    isSmallScreen={isSmallScreen}
-                    isTinyScreen={isTinyScreen}
-                    removing={removing}
-                  stopOrRemove={stopOrRemove}
-                  stopping={stopping}
-                  working={working}
-                  />
-                </span>
-            }
+            trigger={<span>{stopButton}</span>}
           />
         </Segment>
       )}

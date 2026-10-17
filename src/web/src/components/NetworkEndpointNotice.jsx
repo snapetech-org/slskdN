@@ -1,3 +1,5 @@
+import LocalizedText from "./Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
 import { getLocalStorageItem, setLocalStorageItem } from '../lib/storage';
 import React from 'react';
 import { Button, Icon, Popup, Segment } from 'semantic-ui-react';
@@ -179,7 +181,7 @@ const buildCurrentIngressPorts = (options = {}) => {
   );
   const ports = [{
     config: 'soulseek.listen_port',
-    label: 'Soulseek',
+    label: interfaceText("Soulseek"),
     port: soulseekListenPort,
     proto: 'TCP',
   }];
@@ -201,7 +203,7 @@ const buildCurrentIngressPorts = (options = {}) => {
       },
       {
         config: 'dht.dht_port',
-        label: 'DHT',
+        label: interfaceText("DHT"),
         port: dhtPort,
         proto: 'UDP',
       },
@@ -218,6 +220,7 @@ const formatCurrentIngressPorts = (options) =>
   buildCurrentIngressPorts(options).map(formatIngressPort).join(', ');
 
 const NetworkEndpointNotice = ({ onDismiss, options, portForwards }) => {
+  useInterfaceLanguage();
   if (!portForwards.length) {
     return null;
   }
@@ -231,23 +234,22 @@ const NetworkEndpointNotice = ({ onDismiss, options, portForwards }) => {
         <Icon name="exchange" />
         <div className="network-endpoint-change-notice-copy">
           <span>
-            <strong>Ingress ports changed:</strong> older builds needed 5 public
-            forwards; now keep {formatCurrentIngressPorts(options)} reachable.
+            <strong><LocalizedText source={"Ingress ports changed:"} /></strong> <LocalizedText source={"older builds needed 5 public forwards; now keep {ports} reachable."} values={{ ports: formatCurrentIngressPorts(options) }} />
           </span>
         </div>
       </div>
       <Popup
-        content="Dismiss this port migration reminder permanently in this browser."
+        content={interfaceText("Dismiss this port migration reminder permanently in this browser.")}
         trigger={
           <Button
             basic
             compact
             icon="close"
             onClick={onDismiss}
-            title="Dismiss port migration reminder permanently"
-          />
+            title={interfaceText("Dismiss port migration reminder permanently")}
+           {...interfaceTextProps("Dismiss port migration reminder permanently")}/>
         }
-      />
+       {...interfaceTextProps("Dismiss this port migration reminder permanently in this browser.")}/>
     </Segment>
   );
 };

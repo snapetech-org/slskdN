@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -37,7 +40,7 @@ const verdictColor = (verdict) => {
 };
 
 const normalizeVerdict = (verdict) =>
-  verdictNames[verdict] || String(verdict || 'Needs Manual Review');
+  verdictNames[verdict] || (verdict ? String(verdict) : interfaceText('Needs Manual Review'));
 
 const valueOrDash = (value) => {
   if (Array.isArray(value)) return value.length > 0 ? value.join(', ') : '-';
@@ -45,6 +48,16 @@ const valueOrDash = (value) => {
 };
 
 const asArray = (value) => (Array.isArray(value) ? value : []);
+const appOwnedRouteAttemptErrors = new Set([
+  'Request not found.',
+  'Route metadata must be opaque and safe.',
+  'Route targets must be selected safe jurors.',
+  'Routing backend is not available.',
+]);
+
+const RouteAttemptError = ({ message }) => appOwnedRouteAttemptErrors.has(message)
+  ? <LocalizedText source={message} />
+  : message || <LocalizedText source={'Failed'} />;
 
 const normalizeRequest = (request = {}) => ({
   createdAt: request.createdAt ?? request.CreatedAt ?? '',
@@ -118,7 +131,7 @@ const normalizeReview = (review = {}) => ({
 
 const formatDate = (value) => {
   if (!value) return '-';
-  return new Date(value).toLocaleString();
+  return new Date(value).toLocaleString(getRegionalLocale());
 };
 
 const getVerdictCount = (counts = {}, key, numericKey) =>
@@ -137,15 +150,15 @@ const EvidenceTable = ({ evidence = [] }) => (
   >
     <Table.Header>
       <Table.Row>
-        <Table.HeaderCell>Type</Table.HeaderCell>
-        <Table.HeaderCell>Reference</Table.HeaderCell>
-        <Table.HeaderCell>Summary</Table.HeaderCell>
+        <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
+        <Table.HeaderCell><LocalizedText source={"Reference"} /></Table.HeaderCell>
+        <Table.HeaderCell><LocalizedText source={"Summary"} /></Table.HeaderCell>
       </Table.Row>
     </Table.Header>
     <Table.Body>
       {evidence.length === 0 ? (
         <Table.Row>
-          <Table.Cell colSpan={3}>No evidence supplied.</Table.Cell>
+          <Table.Cell colSpan={3}><LocalizedText source={"No evidence supplied."} /></Table.Cell>
         </Table.Row>
       ) : (
         evidence.map((item, index) => {
@@ -164,6 +177,7 @@ const EvidenceTable = ({ evidence = [] }) => (
 );
 
 const QuarantineJury = () => {
+  useInterfaceLanguage();
   const [requests, setRequests] = useState([]);
   const [selectedId, setSelectedId] = useState('');
   const [review, setReview] = useState(null);
@@ -212,7 +226,7 @@ const QuarantineJury = () => {
         loadError?.response?.data ||
           loadError?.response?.statusText ||
           loadError?.message ||
-          'Unable to load Quarantine Jury review',
+          interfaceText('Unable to load Quarantine Jury review'),
       );
     } finally {
       setLoadingReview(false);
@@ -242,7 +256,7 @@ const QuarantineJury = () => {
         loadError?.response?.data ||
           loadError?.response?.statusText ||
           loadError?.message ||
-          'Unable to load Quarantine Jury requests',
+          interfaceText('Unable to load Quarantine Jury requests'),
       );
     } finally {
       setLoadingRequests(false);
@@ -271,14 +285,14 @@ const QuarantineJury = () => {
         senderPeerId: routeForm.senderPeerId,
         targetJurors: parseJurors(routeForm.targetJurors),
       });
-      setMessage('Quarantine Jury route attempt recorded.');
+      setMessage(interfaceText("Quarantine Jury route attempt recorded."));
       await loadReview(selectedId);
     } catch (routeError) {
       setError(
         routeError?.response?.data?.errorMessage ||
           routeError?.response?.data ||
           routeError?.message ||
-          'Unable to route Quarantine Jury request',
+          interfaceText('Unable to route Quarantine Jury request'),
       );
     } finally {
       setSaving(false);
@@ -292,7 +306,7 @@ const QuarantineJury = () => {
 
     try {
       await quarantineJuryApi.acceptReleaseCandidate(selectedId, acceptForm);
-      setMessage('Release-candidate recommendation accepted for this review.');
+      setMessage(interfaceText("Release-candidate recommendation accepted for this review."));
       setAcceptOpen(false);
       await loadReview(selectedId);
     } catch (acceptError) {
@@ -302,7 +316,7 @@ const QuarantineJury = () => {
           ? errors.join(' ')
           : acceptError?.response?.data ||
               acceptError?.message ||
-              'Unable to accept release-candidate recommendation',
+              interfaceText('Unable to accept release-candidate recommendation'),
       );
     } finally {
       setSaving(false);
@@ -319,24 +333,22 @@ const QuarantineJury = () => {
           <Header as="h3">
             <Icon name="shield" />
             <Header.Content>
-              Quarantine Jury
-              <Header.Subheader>
-                Review trusted juror evidence before local quarantine release decisions.
-              </Header.Subheader>
+              <LocalizedText source={"Quarantine Jury"} /><Header.Subheader>
+                <LocalizedText source={"Review trusted juror evidence before local quarantine release decisions."} /></Header.Subheader>
             </Header.Content>
           </Header>
           <Popup
-            content="Reload requests and the selected review without changing quarantine state."
+            content={interfaceText("Reload requests and the selected review without changing quarantine state.")}
             trigger={
               <Button
-                aria-label="Refresh Quarantine Jury reviews"
+                aria-label={interfaceText("Refresh Quarantine Jury reviews")}
                 icon="refresh"
                 loading={loadingRequests}
                 onClick={loadRequests}
                 type="button"
-              />
+               {...interfaceTextProps("Refresh Quarantine Jury reviews")}/>
             }
-          />
+           {...interfaceTextProps("Reload requests and the selected review without changing quarantine state.")}/>
         </div>
         <Statistic.Group
           className="quarantine-jury-summary"
@@ -345,7 +357,7 @@ const QuarantineJury = () => {
         >
           <Statistic>
             <Statistic.Value>{normalizedRequests.length}</Statistic.Value>
-            <Statistic.Label>Requests</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Requests"} /></Statistic.Label>
           </Statistic>
           {/* Nothing to review yet isn't a warning state — only color these
               once a verdict has actually been cast. */}
@@ -357,17 +369,17 @@ const QuarantineJury = () => {
             }
           >
             <Statistic.Value>{aggregate.totalVerdicts}</Statistic.Value>
-            <Statistic.Label>Verdicts</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Verdicts"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>{aggregate.requiredVotes}</Statistic.Value>
-            <Statistic.Label>Required</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Required"} /></Statistic.Label>
           </Statistic>
           <Statistic color={aggregate.totalVerdicts === 0 ? undefined : verdictColor(aggregate.recommendation)}>
             <Statistic.Value>
-              {aggregate.totalVerdicts === 0 ? 'No verdicts yet' : normalizeVerdict(aggregate.recommendation)}
+              {aggregate.totalVerdicts === 0 ? <LocalizedText source={"No verdicts yet"} /> : normalizeVerdict(aggregate.recommendation)}
             </Statistic.Value>
-            <Statistic.Label>Recommendation</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Recommendation"} /></Statistic.Label>
           </Statistic>
         </Statistic.Group>
       </Segment>
@@ -375,28 +387,28 @@ const QuarantineJury = () => {
       {error && (
         <Message
           error
-          header="Quarantine Jury action failed"
+          header={interfaceText("Quarantine Jury action failed")}
           content={String(error)}
-        />
+         {...interfaceTextProps("Quarantine Jury action failed")}/>
       )}
       {message && (
         <Message
           info
-          header="Quarantine Jury updated"
+          header={interfaceText("Quarantine Jury updated")}
           content={message}
-        />
+         {...interfaceTextProps("Quarantine Jury updated")}/>
       )}
 
       <div className="quarantine-jury-layout">
         <Segment className="quarantine-jury-list">
-          <Header as="h4">Requests</Header>
+          <Header as="h4"><LocalizedText source={"Requests"} /></Header>
           {loadingRequests ? (
             <Loader active inline="centered" />
           ) : normalizedRequests.length === 0 ? (
             <Message
               info
-              content="No Quarantine Jury requests are available."
-            />
+              content={interfaceText("No Quarantine Jury requests are available.")}
+             {...interfaceTextProps("No Quarantine Jury requests are available.")}/>
           ) : (
             <Card.Group itemsPerRow={1}>
               {normalizedRequests.map((request) => (
@@ -417,12 +429,10 @@ const QuarantineJury = () => {
                   <Card.Content extra>
                     <Label basic>
                       <Icon name="users" />
-                      {request.jurors.length} jurors
-                    </Label>
+                      {request.jurors.length} <LocalizedText source={"jurors"} /></Label>
                     <Label basic>
                       <Icon name="check" />
-                      {request.minJurorVotes} votes
-                    </Label>
+                      {request.minJurorVotes} <LocalizedText source={"votes"} /></Label>
                   </Card.Content>
                 </Card>
               ))}
@@ -436,15 +446,15 @@ const QuarantineJury = () => {
           ) : !review ? (
             <Message
               info
-              content="Select a request to inspect jury evidence."
-            />
+              content={interfaceText("Select a request to inspect jury evidence.")}
+             {...interfaceTextProps("Select a request to inspect jury evidence.")}/>
           ) : (
             <>
               <div className="quarantine-jury-detail-head">
                 <Header as="h4">
                   <Icon name="file alternate outline" />
                   <Header.Content>
-                    Review {selectedRequest?.id}
+                    <LocalizedText source={"Review"} />{" "}{selectedRequest?.id}
                     <Header.Subheader>
                       {review.acceptanceReason || aggregate.reason}
                     </Header.Subheader>
@@ -457,39 +467,39 @@ const QuarantineJury = () => {
 
               <Label.Group>
                 <Label color={aggregate.quorumReached ? 'green' : 'orange'}>
-                  {aggregate.quorumReached ? 'Quorum Reached' : 'Awaiting Quorum'}
+                  {aggregate.quorumReached ? <LocalizedText source={"Quorum Reached"} /> : <LocalizedText source={"Awaiting Quorum"} />}
                 </Label>
                 <Label basic>
-                  Release {getVerdictCount(aggregate.verdictCounts, 'ReleaseCandidate', 2)}
+                  <LocalizedText source={"Release"} />{" "}{getVerdictCount(aggregate.verdictCounts, 'ReleaseCandidate', 2)}
                 </Label>
                 <Label basic>
-                  Uphold {getVerdictCount(aggregate.verdictCounts, 'UpholdQuarantine', 1)}
+                  <LocalizedText source={"Uphold"} />{" "}{getVerdictCount(aggregate.verdictCounts, 'UpholdQuarantine', 1)}
                 </Label>
                 <Label basic>
-                  Manual {getVerdictCount(aggregate.verdictCounts, 'NeedsManualReview', 0)}
+                  <LocalizedText source={"Manual"} />{" "}{getVerdictCount(aggregate.verdictCounts, 'NeedsManualReview', 0)}
                 </Label>
               </Label.Group>
 
-              <Header as="h5">Request Evidence</Header>
+              <Header as="h5"><LocalizedText source={"Request Evidence"} /></Header>
               <EvidenceTable evidence={review.request.evidence} />
 
-              <Header as="h5">Juror Verdicts</Header>
+              <Header as="h5"><LocalizedText source={"Juror Verdicts"} /></Header>
               <Table
                 compact
                 size="small"
               >
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>Juror</Table.HeaderCell>
-                    <Table.HeaderCell>Verdict</Table.HeaderCell>
-                    <Table.HeaderCell>Reason</Table.HeaderCell>
-                    <Table.HeaderCell>Evidence</Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Juror"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Verdict"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Reason"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Evidence"} /></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
                   {review.verdicts.length === 0 ? (
                     <Table.Row>
-                      <Table.Cell colSpan={4}>No juror verdicts yet.</Table.Cell>
+                      <Table.Cell colSpan={4}><LocalizedText source={"No juror verdicts yet."} /></Table.Cell>
                     </Table.Row>
                   ) : (
                     review.verdicts.map((verdict) => (
@@ -511,29 +521,29 @@ const QuarantineJury = () => {
               {aggregate.dissentingJurors.length > 0 && (
                 <Message
                   warning
-                  header="Dissenting jurors"
+                  header={interfaceText("Dissenting jurors")}
                   content={aggregate.dissentingJurors.join(', ')}
-                />
+                 {...interfaceTextProps("Dissenting jurors")}/>
               )}
 
-              <Header as="h5">Route Attempts</Header>
+              <Header as="h5"><LocalizedText source={"Route Attempts"} /></Header>
               <Table
                 compact
                 size="small"
               >
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>Created</Table.HeaderCell>
-                    <Table.HeaderCell>Pod / Channel</Table.HeaderCell>
-                    <Table.HeaderCell>Routed</Table.HeaderCell>
-                    <Table.HeaderCell>Failed</Table.HeaderCell>
-                    <Table.HeaderCell>Status</Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Created"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Pod / Channel"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Routed"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Failed"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Status"} /></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
                   {review.routeAttempts.length === 0 ? (
                     <Table.Row>
-                      <Table.Cell colSpan={5}>No route attempts recorded.</Table.Cell>
+                      <Table.Cell colSpan={5}><LocalizedText source={"No route attempts recorded."} /></Table.Cell>
                     </Table.Row>
                   ) : (
                     review.routeAttempts.map((attempt) => (
@@ -546,7 +556,7 @@ const QuarantineJury = () => {
                         <Table.Cell>{valueOrDash(attempt.failedJurors)}</Table.Cell>
                         <Table.Cell>
                           <Label color={attempt.success ? 'green' : 'red'}>
-                            {attempt.success ? 'Routed' : attempt.errorMessage || 'Failed'}
+                            {attempt.success ? <LocalizedText source={"Routed"} /> : <RouteAttemptError message={attempt.errorMessage} />}
                           </Label>
                         </Table.Cell>
                       </Table.Row>
@@ -556,11 +566,11 @@ const QuarantineJury = () => {
               </Table>
 
               <Segment>
-                <Header as="h5">Manual Route Dispatch</Header>
+                <Header as="h5"><LocalizedText source={"Manual Route Dispatch"} /></Header>
                 <Form>
                   <Form.Group widths="equal">
                     <Form.Input
-                      label="Sender Peer ID"
+                      label={interfaceText("Sender Peer ID")}
                       onChange={(_event, { value }) =>
                         setRouteForm((current) => ({
                           ...current,
@@ -568,9 +578,9 @@ const QuarantineJury = () => {
                         }))
                       }
                       value={routeForm.senderPeerId}
-                    />
+                     {...interfaceTextProps("Sender Peer ID")}/>
                     <Form.Input
-                      label="Pod ID"
+                      label={interfaceText("Pod ID")}
                       onChange={(_event, { value }) =>
                         setRouteForm((current) => ({
                           ...current,
@@ -578,9 +588,9 @@ const QuarantineJury = () => {
                         }))
                       }
                       value={routeForm.podId}
-                    />
+                     {...interfaceTextProps("Pod ID")}/>
                     <Form.Input
-                      label="Channel ID"
+                      label={interfaceText("Channel ID")}
                       onChange={(_event, { value }) =>
                         setRouteForm((current) => ({
                           ...current,
@@ -588,10 +598,10 @@ const QuarantineJury = () => {
                         }))
                       }
                       value={routeForm.channelId}
-                    />
+                     {...interfaceTextProps("Channel ID")}/>
                   </Form.Group>
                   <Form.Input
-                    label="Target Jurors"
+                    label={interfaceText("Target Jurors")}
                     onChange={(_event, { value }) =>
                       setRouteForm((current) => ({
                         ...current,
@@ -599,9 +609,9 @@ const QuarantineJury = () => {
                       }))
                     }
                     value={routeForm.targetJurors}
-                  />
+                   {...interfaceTextProps("Target Jurors")}/>
                   <Popup
-                    content="Route this request only to the explicit target jurors listed here. Raw files are not attached."
+                    content={interfaceText("Route this request only to the explicit target jurors listed here. Raw files are not attached.")}
                     trigger={
                       <Button
                         disabled={saving}
@@ -612,21 +622,23 @@ const QuarantineJury = () => {
                         type="button"
                       >
                         <Icon name="paper plane" />
-                        Route to Jurors
-                      </Button>
+                        <LocalizedText source={"Route to Jurors"} /></Button>
                     }
-                  />
+                   {...interfaceTextProps("Route this request only to the explicit target jurors listed here. Raw files are not attached.")}/>
                 </Form>
               </Segment>
 
               <Segment>
-                <Header as="h5">Acceptance</Header>
+                <Header as="h5"><LocalizedText source={"Acceptance"} /></Header>
                 {accepted ? (
                   <Message
                     positive
-                    header="Release candidate accepted"
-                    content={`${normalizeAcceptance(review.acceptance).acceptedBy} accepted this recommendation at ${formatDate(normalizeAcceptance(review.acceptance).createdAt)}.`}
-                  />
+                    header={interfaceText("Release candidate accepted")}
+                    content={interfaceText('{acceptedBy} accepted this recommendation at {time}.', {
+                      acceptedBy: normalizeAcceptance(review.acceptance).acceptedBy,
+                      time: formatDate(normalizeAcceptance(review.acceptance).createdAt),
+                    })}
+                   {...interfaceTextProps("Release candidate accepted")}/>
                 ) : (
                   <>
                     <Message
@@ -634,7 +646,7 @@ const QuarantineJury = () => {
                       content={review.acceptanceReason}
                     />
                     <Popup
-                      content="Open the confirmation dialog. Accepting records a local decision only when the aggregate recommends Release Candidate."
+                      content={interfaceText("Open the confirmation dialog. Accepting records a local decision only when the aggregate recommends Release Candidate.")}
                       trigger={
                         <Button
                           color="green"
@@ -645,10 +657,9 @@ const QuarantineJury = () => {
                           type="button"
                         >
                           <Icon name="check circle" />
-                          Accept Release Candidate
-                        </Button>
+                          <LocalizedText source={"Accept Release Candidate"} /></Button>
                       }
-                    />
+                     {...interfaceTextProps("Open the confirmation dialog. Accepting records a local decision only when the aggregate recommends Release Candidate.")}/>
                   </>
                 )}
               </Segment>
@@ -662,15 +673,15 @@ const QuarantineJury = () => {
         open={acceptOpen}
         size="small"
       >
-        <Modal.Header>Accept Release Candidate</Modal.Header>
+        <Modal.Header><LocalizedText source={"Accept Release Candidate"} /></Modal.Header>
         <Modal.Content>
           <Message
             warning
-            content="This records a local acceptance decision for the jury recommendation. It does not automatically move files or broadcast a release."
-          />
+            content={interfaceText("This records a local acceptance decision for the jury recommendation. It does not automatically move files or broadcast a release.")}
+           {...interfaceTextProps("This records a local acceptance decision for the jury recommendation. It does not automatically move files or broadcast a release.")}/>
           <Form>
             <Form.Input
-              label="Accepted By"
+              label={interfaceText("Accepted By")}
               onChange={(_event, { value }) =>
                 setAcceptForm((current) => ({
                   ...current,
@@ -678,9 +689,9 @@ const QuarantineJury = () => {
                 }))
               }
               value={acceptForm.acceptedBy}
-            />
+             {...interfaceTextProps("Accepted By")}/>
             <Form.TextArea
-              label="Review Note"
+              label={interfaceText("Review Note")}
               onChange={(_event, { value }) =>
                 setAcceptForm((current) => ({
                   ...current,
@@ -688,24 +699,23 @@ const QuarantineJury = () => {
                 }))
               }
               value={acceptForm.note}
-            />
+             {...interfaceTextProps("Review Note")}/>
           </Form>
         </Modal.Content>
         <Modal.Actions>
           <Popup
-            content="Close without recording an acceptance decision."
+            content={interfaceText("Close without recording an acceptance decision.")}
             trigger={
               <Button
                 disabled={saving}
                 onClick={() => setAcceptOpen(false)}
                 type="button"
               >
-                Cancel
-              </Button>
+                <LocalizedText source={"Cancel"} /></Button>
             }
-          />
+           {...interfaceTextProps("Close without recording an acceptance decision.")}/>
           <Popup
-            content="Record the local acceptance decision for this release-candidate recommendation."
+            content={interfaceText("Record the local acceptance decision for this release-candidate recommendation.")}
             trigger={
               <Button
                 color="green"
@@ -714,10 +724,9 @@ const QuarantineJury = () => {
                 onClick={submitAccept}
                 type="button"
               >
-                Accept Recommendation
-              </Button>
+                <LocalizedText source={"Accept Recommendation"} /></Button>
             }
-          />
+           {...interfaceTextProps("Record the local acceptance decision for this release-candidate recommendation.")}/>
         </Modal.Actions>
       </Modal>
     </div>

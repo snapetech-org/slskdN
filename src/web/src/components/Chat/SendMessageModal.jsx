@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Chat.css';
 import React, { useEffect } from 'react';
 import { Form, Header, Icon, Input, Modal } from 'semantic-ui-react';
@@ -6,6 +8,7 @@ import { TooltipButton } from '../Shared';
 const usernameRef = React.createRef();
 
 const SendMessageModal = ({ initiateConversation, ...rest }) => {
+  useInterfaceLanguage();
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [message, setMessage] = React.useState('');
@@ -39,44 +42,42 @@ const SendMessageModal = ({ initiateConversation, ...rest }) => {
     >
       <Header>
         <Icon name="send" />
-        <Modal.Content>Send Private Message</Modal.Content>
+        <Modal.Content><LocalizedText source={"Send Private Message"} /></Modal.Content>
       </Header>
       <Modal.Content>
         <Form>
           <Form.Field>
             <Input
               onChange={(_event, data) => setUsername(data.value)}
-              placeholder="Username"
+              placeholder={interfaceText("Username")}
               ref={usernameRef}
-            />
+             {...interfaceTextProps("Username")}/>
           </Form.Field>
           <Form.Field>
             <Input
               onChange={(_event, data) => setMessage(data.value)}
-              placeholder="Message"
-            />
+              placeholder={interfaceText("Message")}
+             {...interfaceTextProps("Message")}/>
           </Form.Field>
         </Form>
       </Modal.Content>
       <Modal.Actions>
         <TooltipButton
           onClick={() => setOpen(false)}
-          tooltip="Close this dialog without sending the private message."
+          tooltip={interfaceText('Close this dialog without sending the private message.')}
         >
-          Cancel
-        </TooltipButton>
+          <LocalizedText source={"Cancel"} /></TooltipButton>
         <TooltipButton
           disabled={!validInput()}
           onClick={() => sendMessage()}
           positive
           tooltip={
             validInput()
-              ? 'Start or open a private conversation and send this message.'
-              : 'Enter a username and message before sending.'
+              ? interfaceText('Start or open a private conversation and send this message.')
+              : interfaceText('Enter a username and message before sending.')
           }
         >
-          Send
-        </TooltipButton>
+          <LocalizedText source={"Send"} /></TooltipButton>
       </Modal.Actions>
     </Modal>
   );

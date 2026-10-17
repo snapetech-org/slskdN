@@ -4,9 +4,11 @@ import React from 'react';
 import { createLogsHubConnection } from '../../../lib/hubFactory';
 import { downloadLogFile, getLogFile, getLogFiles } from '../../../lib/logs';
 import { downloadFile } from '../../../lib/util';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../../test/localeCatalogFetchMock';
 
 vi.mock('../../../lib/hubFactory', () => ({
   createLogsHubConnection: vi.fn(),
@@ -55,6 +57,12 @@ const records = [
 describe('System Logs', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  afterEach(async () => {
+    cleanup();
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
   });
 
   it('renders the server buffer newest-first and filters by severity', async () => {
@@ -106,7 +114,7 @@ describe('System Logs', () => {
 
     render(<Logs />);
 
-    expect(await screen.findByText('logs unavailable')).toBeInTheDocument();
+    expect(await screen.findByText('Unable to connect to live logs.')).toBeInTheDocument();
     const retry = screen.getByRole('button', { name: 'Retry live log connection' });
     expect(retry).toBeVisible();
     await user.click(retry);
@@ -187,5 +195,16 @@ describe('System Logs', () => {
 
     expect(screen.queryByText('late preview response')).not.toBeInTheDocument();
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('localizes the accessible name of severity filters', async () => {
+    stubLocaleCatalogFetch(vi);
+    await setInterfaceLanguage('de');
+    createLogsHubConnection.mockReturnValue(createHub());
+
+    render(<Logs />);
+
+    expect(await screen.findByRole('button', { name: 'Warnungsprotokolle anzeigen' }))
+      .toBeInTheDocument();
   });
 });

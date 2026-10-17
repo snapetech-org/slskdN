@@ -58,18 +58,17 @@ done < <(find "$repo_root/.github/workflows" -maxdepth 1 -type f \( -name '*.yml
 ci_workflow="$repo_root/.github/workflows/ci.yml"
 ci_enhancements_workflow="$repo_root/.github/workflows/ci-enhancements.yml"
 for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
-  if ! rg -Fq "github.event_name == 'pull_request' ||" "$workflow" ||
-    ! rg -Fq "&& 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON" "$workflow"; then
-    printf '%s must route every pull request to hosted runners while preserving explicit runner preference\n' "${workflow#"$repo_root"/}" >&2
+  if rg -n 'self-hosted|PREFER_SELF_HOSTED|inputs\.runner' "$workflow"; then
+    printf '%s must not select a private runner
+' "${workflow#"$repo_root"/}" >&2
+    failed=1
+  fi
+  if ! rg -q '^    runs-on: ubuntu-latest$' "$workflow"; then
+    printf '%s must keep CI jobs on GitHub-hosted Linux runners
+' "${workflow#"$repo_root"/}" >&2
     failed=1
   fi
 done
-
-if ! rg -Fq "github.event_name == 'workflow_dispatch' && (github.ref != 'refs/heads/main' || inputs.runner == 'github-hosted')" "$ci_workflow" ||
-  ! rg -Fq "github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'" "$ci_enhancements_workflow"; then
-  printf 'CI workflows must keep non-main manual runs on hosted runners\n' >&2
-  failed=1
-fi
 
 upstream_access_workflow="$repo_root/.github/workflows/check-upstream-access.yml"
 if rg -q '^\s*workflow_dispatch:' "$upstream_access_workflow" ||

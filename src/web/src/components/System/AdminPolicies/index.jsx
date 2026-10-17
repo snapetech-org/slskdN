@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import './AdminPolicies.css';
 import * as optionsApi from '../../../lib/options';
 import {
@@ -315,6 +318,7 @@ const setOptionalNumber = (document, path, value) => {
 };
 
 const AdminPolicies = ({ options = {} }) => {
+  useInterfaceLanguage();
   const remoteConfiguration = Boolean(
     getOption(options, 'remoteConfiguration', 'RemoteConfiguration'),
   );
@@ -614,16 +618,12 @@ const AdminPolicies = ({ options = {} }) => {
       }));
       setMessage({
         positive: true,
-        text: 'Policy settings saved to YAML. Restart-signalled options still require a daemon restart.',
+        text: interfaceText("Policy settings saved to YAML. Restart-signalled options still require a daemon restart."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text:
-          error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Failed to save policy settings.',
+        text: getApiErrorMessage(error, { t: interfaceText }),
       });
     } finally {
       setSaving(false);
@@ -635,12 +635,9 @@ const AdminPolicies = ({ options = {} }) => {
       <Segment>
         <Header as="h3">
           <Icon name="sliders horizontal" />
-          Policies
-        </Header>
+          <LocalizedText source={"Policies"} /></Header>
         <p>
-          Guided YAML controls for operator policies that are otherwise easy to
-          miss in raw configuration.
-        </p>
+          <LocalizedText source={"Guided YAML controls for operator policies that are otherwise easy to miss in raw configuration."} /></p>
       </Segment>
 
       {!remoteConfiguration && (
@@ -648,10 +645,7 @@ const AdminPolicies = ({ options = {} }) => {
           info
           size="small"
         >
-          Remote configuration is disabled. These controls show the settings
-          shape, but YAML saving is disabled until remote configuration is
-          enabled.
-        </Message>
+          <LocalizedText source={"Remote configuration is disabled. These controls show the settings shape, but YAML saving is disabled until remote configuration is enabled."} /></Message>
       )}
 
       {message && (
@@ -680,132 +674,131 @@ const AdminPolicies = ({ options = {} }) => {
           <Card.Content>
             <Card.Header>
               <Icon name="bolt" />
-              Actions: Webhooks and Scripts
-            </Card.Header>
-            <Card.Meta>Event hooks, remote targets, command hooks, and retry shape.</Card.Meta>
+              <LocalizedText source={"Actions: Webhooks and Scripts"} /></Card.Header>
+            <Card.Meta><LocalizedText source={"Event hooks, remote targets, command hooks, and retry shape."} /></Card.Meta>
           </Card.Content>
           <Card.Content>
             <Form>
               <Form.Group grouped>
                 <Popup
                   className="admin-policy-popup"
-                  content="Probe shared audio files for bitrate, duration, and sample metadata during share scans. Disable on slow or remote storage."
+                  content={interfaceText("Probe shared audio files for bitrate, duration, and sample metadata during share scans. Disable on slow or remote storage.")}
                   trigger={
                     <Checkbox
-                      aria-label="Probe share media attributes"
+                      aria-label={interfaceText("Probe share media attributes")}
                       checked={form.shareProbeMediaAttributes}
                       disabled={!remoteConfiguration || saving}
-                      label="Probe share media attributes"
+                      label={interfaceText("Probe share media attributes")}
                       onChange={(_, { checked }) =>
                         update('shareProbeMediaAttributes', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Probe share media attributes")}/>
                   }
-                />
+                 {...interfaceTextProps("Probe shared audio files for bitrate, duration, and sample metadata during share scans. Disable on slow or remote storage.")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Webhook policy name"
+                  aria-label={interfaceText("Webhook policy name")}
                   disabled={!remoteConfiguration || saving}
-                  label="Webhook Name"
+                  label={interfaceText("Webhook Name")}
                   onChange={(_, { value }) => update('webhookName', value)}
                   value={form.webhookName}
-                />
+                 {...interfaceTextProps("Webhook policy name")}/>
                 <Form.Input
-                  aria-label="Webhook target URL"
+                  aria-label={interfaceText("Webhook target URL")}
                   disabled={!remoteConfiguration || saving}
-                  label="Webhook URL"
+                  label={interfaceText("Webhook URL")}
                   onChange={(_, { value }) => update('webhookUrl', value)}
                   placeholder="https://example.invalid/slskdn-hook"
                   value={form.webhookUrl}
-                />
+                 {...interfaceTextProps("Webhook target URL")}/>
                 <Form.Input
-                  aria-label="Webhook retry attempts"
+                  aria-label={interfaceText("Webhook retry attempts")}
                   disabled={!remoteConfiguration || saving}
-                  label="Retry Attempts"
+                  label={interfaceText("Retry Attempts")}
                   min={1}
                   onChange={(_, { value }) => update('webhookRetryAttempts', value)}
                   type="number"
                   value={form.webhookRetryAttempts}
-                />
+                 {...interfaceTextProps("Webhook retry attempts")}/>
                 <Form.Input
-                  aria-label="Webhook timeout milliseconds"
+                  aria-label={interfaceText("Webhook timeout milliseconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Timeout ms"
+                  label={interfaceText("Timeout ms")}
                   min={1000}
                   onChange={(_, { value }) => update('webhookTimeout', value)}
                   type="number"
                   value={form.webhookTimeout}
-                />
+                 {...interfaceTextProps("Webhook timeout milliseconds")}/>
               </Form.Group>
               <Form.TextArea
-                aria-label="Webhook event names"
+                aria-label={interfaceText("Webhook event names")}
                 disabled={!remoteConfiguration || saving}
-                label="Webhook Events"
+                label={interfaceText("Webhook Events")}
                 onChange={(_, { value }) => update('webhookEvents', value)}
-                placeholder="PrivateMessageReceived&#10;DownloadFileComplete"
+                placeholder={interfaceText("PrivateMessageReceived&#10;DownloadFileComplete")}
                 value={form.webhookEvents}
-              />
+               {...interfaceTextProps("Webhook event names")}/>
               <Popup
                 className="admin-policy-popup"
-                content="Allow this webhook to call a target with a self-signed or otherwise untrusted certificate."
+                content={interfaceText("Allow this webhook to call a target with a self-signed or otherwise untrusted certificate.")}
                 trigger={
                   <Checkbox
-                    aria-label="Ignore webhook certificate errors"
+                    aria-label={interfaceText("Ignore webhook certificate errors")}
                     checked={form.webhookIgnoreCertificateErrors}
                     disabled={!remoteConfiguration || saving}
-                    label="Ignore webhook certificate errors"
+                    label={interfaceText("Ignore webhook certificate errors")}
                     onChange={(_, { checked }) =>
                       update('webhookIgnoreCertificateErrors', Boolean(checked))
                     }
                     toggle
-                  />
+                   {...interfaceTextProps("Ignore webhook certificate errors")}/>
                 }
-              />
+               {...interfaceTextProps("Allow this webhook to call a target with a self-signed or otherwise untrusted certificate.")}/>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Script policy name"
+                  aria-label={interfaceText("Script policy name")}
                   disabled={!remoteConfiguration || saving}
-                  label="Script Name"
+                  label={interfaceText("Script Name")}
                   onChange={(_, { value }) => update('scriptName', value)}
                   value={form.scriptName}
-                />
+                 {...interfaceTextProps("Script policy name")}/>
                 <Form.Input
-                  aria-label="Script command"
+                  aria-label={interfaceText("Script command")}
                   disabled={!remoteConfiguration || saving}
-                  label="Script Command"
+                  label={interfaceText("Script Command")}
                   onChange={(_, { value }) => update('scriptCommand', value)}
                   placeholder="/usr/local/bin/slskdn-hook"
                   value={form.scriptCommand}
-                />
+                 {...interfaceTextProps("Script command")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Script executable"
+                  aria-label={interfaceText("Script executable")}
                   disabled={!remoteConfiguration || saving}
-                  label="Script Executable"
+                  label={interfaceText("Script Executable")}
                   onChange={(_, { value }) => update('scriptExecutable', value)}
                   placeholder="/bin/sh"
                   value={form.scriptExecutable}
-                />
+                 {...interfaceTextProps("Script executable")}/>
                 <Form.Input
-                  aria-label="Script arguments"
+                  aria-label={interfaceText("Script arguments")}
                   disabled={!remoteConfiguration || saving}
-                  label="Script Args"
+                  label={interfaceText("Script Args")}
                   onChange={(_, { value }) => update('scriptArgs', value)}
                   placeholder="-c ./hook.sh"
                   value={form.scriptArgs}
-                />
+                 {...interfaceTextProps("Script arguments")}/>
               </Form.Group>
               <Form.TextArea
-                aria-label="Script event names"
+                aria-label={interfaceText("Script event names")}
                 disabled={!remoteConfiguration || saving}
-                label="Script Events"
+                label={interfaceText("Script Events")}
                 onChange={(_, { value }) => update('scriptEvents', value)}
-                placeholder="DownloadFileComplete"
+                placeholder={interfaceText("DownloadFileComplete")}
                 value={form.scriptEvents}
-              />
+               {...interfaceTextProps("Script event names")}/>
             </Form>
           </Card.Content>
         </Card>
@@ -814,9 +807,8 @@ const AdminPolicies = ({ options = {} }) => {
           <Card.Content>
             <Card.Header>
               <Icon name="exchange" />
-              Transfer Policy
-            </Card.Header>
-            <Card.Meta>Slots, speed ceilings, auto-replace, and schedule enablement.</Card.Meta>
+              <LocalizedText source={"Transfer Policy"} /></Card.Header>
+            <Card.Meta><LocalizedText source={"Slots, speed ceilings, auto-replace, and schedule enablement."} /></Card.Meta>
           </Card.Content>
           <Card.Content>
             <div className="integration-status-row">
@@ -829,13 +821,9 @@ const AdminPolicies = ({ options = {} }) => {
             >
               <Header as="h4">
                 <Icon name="ban" />
-                Global download exclusions
-              </Header>
+                <LocalizedText source={"Global download exclusions"} /></Header>
               <p>
-                Advanced operator view of the same global filter available from
-                the Downloads view. Use it when managing YAML policy alongside
-                the rest of the daemon configuration.
-              </p>
+                <LocalizedText source={"Advanced operator view of the same global filter available from the Downloads view. Use it when managing YAML policy alongside the rest of the daemon configuration."} /></p>
               <DownloadExclusionsField
                 disabled={!remoteConfiguration || saving}
                 onChange={(value) => update('downloadFilterExclude', value)}
@@ -845,172 +833,172 @@ const AdminPolicies = ({ options = {} }) => {
             <Form>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Global upload slots"
+                  aria-label={interfaceText("Global upload slots")}
                   disabled={!remoteConfiguration || saving}
-                  label="Upload Slots"
+                  label={interfaceText("Upload Slots")}
                   onChange={(_, { value }) => update('uploadSlots', value)}
                   type="number"
                   value={form.uploadSlots}
-                />
+                 {...interfaceTextProps("Global upload slots")}/>
                 <Form.Input
-                  aria-label="Global upload speed limit"
+                  aria-label={interfaceText("Global upload speed limit")}
                   disabled={!remoteConfiguration || saving}
-                  label="Upload KiB/s"
+                  label={interfaceText("Upload KiB/s")}
                   onChange={(_, { value }) => update('uploadSpeedLimit', value)}
                   type="number"
                   value={form.uploadSpeedLimit}
-                />
+                 {...interfaceTextProps("Global upload speed limit")}/>
                 <Form.Input
-                  aria-label="Global download slots"
+                  aria-label={interfaceText("Global download slots")}
                   disabled={!remoteConfiguration || saving}
-                  label="Download Slots"
+                  label={interfaceText("Download Slots")}
                   onChange={(_, { value }) => update('downloadSlots', value)}
                   type="number"
                   value={form.downloadSlots}
-                />
+                 {...interfaceTextProps("Global download slots")}/>
                 <Form.Input
-                  aria-label="Global download speed limit"
+                  aria-label={interfaceText("Global download speed limit")}
                   disabled={!remoteConfiguration || saving}
-                  label="Download KiB/s"
+                  label={interfaceText("Download KiB/s")}
                   onChange={(_, { value }) => update('downloadSpeedLimit', value)}
                   type="number"
                   value={form.downloadSpeedLimit}
-                />
+                 {...interfaceTextProps("Global download speed limit")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Select
-                  aria-label="Download retry incomplete strategy"
+                  aria-label={interfaceText("Download retry incomplete strategy")}
                   disabled={!remoteConfiguration || saving}
-                  label="Retry Partial Files"
+                  label={interfaceText("Retry Partial Files")}
                   onChange={(_, { value }) => update('downloadRetryIncomplete', value)}
                   options={[
-                    { key: 'resume', text: 'resume', value: 'resume' },
-                    { key: 'overwrite', text: 'overwrite', value: 'overwrite' },
+                    { key: 'resume', text: interfaceText("resume"), value: 'resume' },
+                    { key: 'overwrite', text: interfaceText("overwrite"), value: 'overwrite' },
                   ]}
                   value={form.downloadRetryIncomplete}
-                />
+                 {...interfaceTextProps("Download retry incomplete strategy")}/>
                 <Form.Input
-                  aria-label="Download retry attempts"
+                  aria-label={interfaceText("Download retry attempts")}
                   disabled={!remoteConfiguration || saving}
-                  label="Retry Attempts"
+                  label={interfaceText("Retry Attempts")}
                   min={1}
                   onChange={(_, { value }) => update('downloadRetryAttempts', value)}
                   type="number"
                   value={form.downloadRetryAttempts}
-                />
+                 {...interfaceTextProps("Download retry attempts")}/>
                 <Form.Input
-                  aria-label="Download retry delay milliseconds"
+                  aria-label={interfaceText("Download retry delay milliseconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Retry Delay ms"
+                  label={interfaceText("Retry Delay ms")}
                   min={0}
                   onChange={(_, { value }) => update('downloadRetryDelay', value)}
                   type="number"
                   value={form.downloadRetryDelay}
-                />
+                 {...interfaceTextProps("Download retry delay milliseconds")}/>
                 <Form.Input
-                  aria-label="Download retry max delay milliseconds"
+                  aria-label={interfaceText("Download retry max delay milliseconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Retry Max Delay ms"
+                  label={interfaceText("Retry Max Delay ms")}
                   min={1000}
                   onChange={(_, { value }) => update('downloadRetryMaxDelay', value)}
                   type="number"
                   value={form.downloadRetryMaxDelay}
-                />
+                 {...interfaceTextProps("Download retry max delay milliseconds")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Auto replace interval seconds"
+                  aria-label={interfaceText("Auto replace interval seconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Auto-Replace Interval"
+                  label={interfaceText("Auto-Replace Interval")}
                   min={60}
                   onChange={(_, { value }) => update('autoReplaceInterval', value)}
                   type="number"
                   value={form.autoReplaceInterval}
-                />
+                 {...interfaceTextProps("Auto replace interval seconds")}/>
                 <Form.Input
-                  aria-label="Auto replace size threshold"
+                  aria-label={interfaceText("Auto replace size threshold")}
                   disabled={!remoteConfiguration || saving}
-                  label="Size Threshold %"
+                  label={interfaceText("Size Threshold %")}
                   min={0}
                   onChange={(_, { value }) => update('autoReplaceThreshold', value)}
                   type="number"
                   value={form.autoReplaceThreshold}
-                />
+                 {...interfaceTextProps("Auto replace size threshold")}/>
                 <Form.Input
-                  aria-label="Auto replace max retries"
+                  aria-label={interfaceText("Auto replace max retries")}
                   disabled={!remoteConfiguration || saving}
-                  label="Max Retries"
+                  label={interfaceText("Max Retries")}
                   min={0}
                   onChange={(_, { value }) => update('autoReplaceMaxRetries', value)}
                   type="number"
                   value={form.autoReplaceMaxRetries}
-                />
+                 {...interfaceTextProps("Auto replace max retries")}/>
               </Form.Group>
               <Form.Group grouped>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable automatic replacement of stuck downloads with alternative sources."
+                  content={interfaceText("Enable automatic replacement of stuck downloads with alternative sources.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable auto replace stuck downloads"
+                      aria-label={interfaceText("Enable auto replace stuck downloads")}
                       checked={form.autoReplaceStuck}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable auto-replace stuck downloads"
+                      label={interfaceText("Enable auto-replace stuck downloads")}
                       onChange={(_, { checked }) =>
                         update('autoReplaceStuck', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable auto replace stuck downloads")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable automatic replacement of stuck downloads with alternative sources.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable the legacy top-level scheduled speed-limit policy in YAML."
+                  content={interfaceText("Enable the legacy top-level scheduled speed-limit policy in YAML.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable scheduled speed limits"
+                      aria-label={interfaceText("Enable scheduled speed limits")}
                       checked={form.scheduledLimitsEnabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable scheduled speed limits"
+                      label={interfaceText("Enable scheduled speed limits")}
                       onChange={(_, { checked }) =>
                         update('scheduledLimitsEnabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable scheduled speed limits")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable the legacy top-level scheduled speed-limit policy in YAML.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable scheduled upload speed limits under global upload policy."
+                  content={interfaceText("Enable scheduled upload speed limits under global upload policy.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable upload scheduled speed limits"
+                      aria-label={interfaceText("Enable upload scheduled speed limits")}
                       checked={form.uploadScheduledLimitsEnabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable upload schedules"
+                      label={interfaceText("Enable upload schedules")}
                       onChange={(_, { checked }) =>
                         update('uploadScheduledLimitsEnabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable upload scheduled speed limits")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable scheduled upload speed limits under global upload policy.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable scheduled download speed limits under global download policy."
+                  content={interfaceText("Enable scheduled download speed limits under global download policy.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable download scheduled speed limits"
+                      aria-label={interfaceText("Enable download scheduled speed limits")}
                       checked={form.downloadScheduledLimitsEnabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable download schedules"
+                      label={interfaceText("Enable download schedules")}
                       onChange={(_, { checked }) =>
                         update('downloadScheduledLimitsEnabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable download scheduled speed limits")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable scheduled download speed limits under global download policy.")}/>
               </Form.Group>
             </Form>
           </Card.Content>
@@ -1020,9 +1008,8 @@ const AdminPolicies = ({ options = {} }) => {
           <Card.Content>
             <Card.Header>
               <Icon name="lock" />
-              Security and Access
-            </Card.Header>
-            <Card.Meta>Authentication, API keys, HTTPS, CORS-adjacent rate limits, and restart cues.</Card.Meta>
+              <LocalizedText source={"Security and Access"} /></Card.Header>
+            <Card.Meta><LocalizedText source={"Authentication, API keys, HTTPS, CORS-adjacent rate limits, and restart cues."} /></Card.Meta>
           </Card.Content>
           <Card.Content>
             <div className="integration-status-row">
@@ -1040,262 +1027,262 @@ const AdminPolicies = ({ options = {} }) => {
               <Form.Group grouped>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable strict startup and request hardening checks for exposed deployments."
+                  content={interfaceText("Enable strict startup and request hardening checks for exposed deployments.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enforce web security hardening"
+                      aria-label={interfaceText("Enforce web security hardening")}
                       checked={form.enforceSecurity}
                       disabled={!remoteConfiguration || saving}
-                      label="Enforce security hardening"
+                      label={interfaceText("Enforce security hardening")}
                       onChange={(_, { checked }) =>
                         update('enforceSecurity', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enforce web security hardening")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable strict startup and request hardening checks for exposed deployments.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Disable Web UI authentication only for tightly controlled loopback deployments."
+                  content={interfaceText("Disable Web UI authentication only for tightly controlled loopback deployments.")}
                   trigger={
                     <Checkbox
-                      aria-label="Disable web authentication"
+                      aria-label={interfaceText("Disable web authentication")}
                       checked={form.noAuth}
                       disabled={!remoteConfiguration || saving}
-                      label="Disable authentication"
+                      label={interfaceText("Disable authentication")}
                       onChange={(_, { checked }) => update('noAuth', Boolean(checked))}
                       toggle
-                    />
+                     {...interfaceTextProps("Disable web authentication")}/>
                   }
-                />
+                 {...interfaceTextProps("Disable Web UI authentication only for tightly controlled loopback deployments.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Allow no-auth access from explicitly configured non-loopback CIDRs."
+                  content={interfaceText("Allow no-auth access from explicitly configured non-loopback CIDRs.")}
                   trigger={
                     <Checkbox
-                      aria-label="Allow remote no-auth CIDRs"
+                      aria-label={interfaceText("Allow remote no-auth CIDRs")}
                       checked={form.allowRemoteNoAuth}
                       disabled={!remoteConfiguration || saving}
-                      label="Allow remote no-auth CIDRs"
+                      label={interfaceText("Allow remote no-auth CIDRs")}
                       onChange={(_, { checked }) =>
                         update('allowRemoteNoAuth', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Allow remote no-auth CIDRs")}/>
                   }
-                />
+                 {...interfaceTextProps("Allow no-auth access from explicitly configured non-loopback CIDRs.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable HTTP rate limiting for API, federation, and mesh gateway policies."
+                  content={interfaceText("Enable HTTP rate limiting for API, federation, and mesh gateway policies.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable HTTP rate limiting"
+                      aria-label={interfaceText("Enable HTTP rate limiting")}
                       checked={form.rateLimitEnabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable HTTP rate limiting"
+                      label={interfaceText("Enable HTTP rate limiting")}
                       onChange={(_, { checked }) =>
                         update('rateLimitEnabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable HTTP rate limiting")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable HTTP rate limiting for API, federation, and mesh gateway policies.")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="JWT replacement key"
+                  aria-label={interfaceText("JWT replacement key")}
                   disabled={!remoteConfiguration || saving}
-                  label="JWT Key"
+                  label={interfaceText("JWT Key")}
                   onChange={(_, { value }) => update('jwtKey', value)}
-                  placeholder={form.jwtConfigured ? 'Configured' : 'New JWT key'}
+                  placeholder={interfaceText(form.jwtConfigured ? 'Configured' : 'New JWT key')}
                   type="password"
                   value={form.jwtKey}
-                />
+                 {...interfaceTextProps("JWT replacement key")}/>
                 <Form.Input
-                  aria-label="JWT TTL milliseconds"
+                  aria-label={interfaceText("JWT TTL milliseconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="JWT TTL ms"
+                  label={interfaceText("JWT TTL ms")}
                   min={3600}
                   onChange={(_, { value }) => update('jwtTtl', value)}
                   type="number"
                   value={form.jwtTtl}
-                />
+                 {...interfaceTextProps("JWT TTL milliseconds")}/>
                 <Form.Input
-                  aria-label="No auth allowed CIDRs"
+                  aria-label={interfaceText("No auth allowed CIDRs")}
                   disabled={!remoteConfiguration || saving}
-                  label="No-Auth CIDRs"
+                  label={interfaceText("No-Auth CIDRs")}
                   onChange={(_, { value }) => update('passthroughCidrs', value)}
                   value={form.passthroughCidrs}
-                />
+                 {...interfaceTextProps("No auth allowed CIDRs")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="API key policy name"
+                  aria-label={interfaceText("API key policy name")}
                   disabled={!remoteConfiguration || saving}
-                  label="API Key Name"
+                  label={interfaceText("API Key Name")}
                   onChange={(_, { value }) => update('apiKeyName', value)}
                   value={form.apiKeyName}
-                />
+                 {...interfaceTextProps("API key policy name")}/>
                 <Form.Input
-                  aria-label="API key replacement value"
+                  aria-label={interfaceText("API key replacement value")}
                   disabled={!remoteConfiguration || saving}
-                  label="API Key"
+                  label={interfaceText("API Key")}
                   onChange={(_, { value }) => update('apiKeyValue', value)}
-                  placeholder={form.apiKeyConfigured ? 'Configured' : 'New API key'}
+                  placeholder={interfaceText(form.apiKeyConfigured ? 'Configured' : 'New API key')}
                   type="password"
                   value={form.apiKeyValue}
-                />
+                 {...interfaceTextProps("API key replacement value")}/>
                 <Form.Select
-                  aria-label="API key role"
+                  aria-label={interfaceText("API key role")}
                   disabled={!remoteConfiguration || saving}
-                  label="Role"
+                  label={interfaceText("Role")}
                   onChange={(_, { value }) => update('apiKeyRole', value)}
                   options={[
-                    { key: 'ReadOnly', text: 'ReadOnly', value: 'ReadOnly' },
-                    { key: 'ReadWrite', text: 'ReadWrite', value: 'ReadWrite' },
+                    { key: 'ReadOnly', text: interfaceText("ReadOnly"), value: 'ReadOnly' },
+                    { key: 'ReadWrite', text: interfaceText("ReadWrite"), value: 'ReadWrite' },
                     {
                       key: 'Administrator',
-                      text: 'Administrator',
+                      text: interfaceText("Administrator"),
                       value: 'Administrator',
                     },
                   ]}
                   value={form.apiKeyRole}
-                />
+                 {...interfaceTextProps("API key role")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="API key CIDR allowlist"
+                  aria-label={interfaceText("API key CIDR allowlist")}
                   disabled={!remoteConfiguration || saving}
-                  label="API CIDRs"
+                  label={interfaceText("API CIDRs")}
                   onChange={(_, { value }) => update('apiKeyCidr', value)}
                   value={form.apiKeyCidr}
-                />
+                 {...interfaceTextProps("API key CIDR allowlist")}/>
                 <Form.Input
-                  aria-label="API key scopes"
+                  aria-label={interfaceText("API key scopes")}
                   disabled={!remoteConfiguration || saving}
-                  label="API Scopes"
+                  label={interfaceText("API Scopes")}
                   onChange={(_, { value }) => update('apiKeyScopes', value)}
                   value={form.apiKeyScopes}
-                />
+                 {...interfaceTextProps("API key scopes")}/>
               </Form.Group>
               <Form.Group grouped>
                 <Popup
                   className="admin-policy-popup"
-                  content="Disable HTTPS listener. Keep this off when exposing the Web UI beyond localhost."
+                  content={interfaceText("Disable HTTPS listener. Keep this off when exposing the Web UI beyond localhost.")}
                   trigger={
                     <Checkbox
-                      aria-label="Disable HTTPS listener"
+                      aria-label={interfaceText("Disable HTTPS listener")}
                       checked={form.httpsDisabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Disable HTTPS"
+                      label={interfaceText("Disable HTTPS")}
                       onChange={(_, { checked }) =>
                         update('httpsDisabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Disable HTTPS listener")}/>
                   }
-                />
+                 {...interfaceTextProps("Disable HTTPS listener. Keep this off when exposing the Web UI beyond localhost.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Redirect HTTP requests to HTTPS after certificate settings are valid."
+                  content={interfaceText("Redirect HTTP requests to HTTPS after certificate settings are valid.")}
                   trigger={
                     <Checkbox
-                      aria-label="Force HTTPS redirects"
+                      aria-label={interfaceText("Force HTTPS redirects")}
                       checked={form.forceHttps}
                       disabled={!remoteConfiguration || saving}
-                      label="Force HTTPS"
+                      label={interfaceText("Force HTTPS")}
                       onChange={(_, { checked }) =>
                         update('forceHttps', Boolean(checked))
                       }
-                    />
+                     {...interfaceTextProps("Force HTTPS redirects")}/>
                   }
-                />
+                 {...interfaceTextProps("Redirect HTTP requests to HTTPS after certificate settings are valid.")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="HTTPS port"
+                  aria-label={interfaceText("HTTPS port")}
                   disabled={!remoteConfiguration || saving}
-                  label="HTTPS Port"
+                  label={interfaceText("HTTPS Port")}
                   onChange={(_, { value }) => update('httpsPort', value)}
                   type="number"
                   value={form.httpsPort}
-                />
+                 {...interfaceTextProps("HTTPS port")}/>
                 <Form.Input
-                  aria-label="HTTPS certificate PFX path"
+                  aria-label={interfaceText("HTTPS certificate PFX path")}
                   disabled={!remoteConfiguration || saving}
-                  label="Certificate PFX (optional)"
+                  label={interfaceText("Certificate PFX (optional)")}
                   onChange={(_, { value }) => update('httpsCertificatePfx', value)}
                   value={form.httpsCertificatePfx}
-                />
+                 {...interfaceTextProps("HTTPS certificate PFX path")}/>
                 <Form.Input
-                  aria-label="HTTPS certificate password"
+                  aria-label={interfaceText("HTTPS certificate password")}
                   disabled={!remoteConfiguration || saving}
-                  label="Certificate Password"
+                  label={interfaceText("Certificate Password")}
                   onChange={(_, { value }) =>
                     update('httpsCertificatePassword', value)
                   }
-                  placeholder={
+                  placeholder={interfaceText(
                     form.httpsCertificatePasswordConfigured
                       ? 'Configured'
-                      : 'Certificate password'
-                  }
+                      : 'Certificate password',
+                  )}
                   type="password"
                   value={form.httpsCertificatePassword}
-                />
+                 {...interfaceTextProps("HTTPS certificate password")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="API rate limit permits"
+                  aria-label={interfaceText("API rate limit permits")}
                   disabled={!remoteConfiguration || saving}
-                  label="API Permits/min"
+                  label={interfaceText("API Permits/min")}
                   onChange={(_, { value }) => update('rateLimitApi', value)}
                   type="number"
                   value={form.rateLimitApi}
-                />
+                 {...interfaceTextProps("API rate limit permits")}/>
                 <Form.Input
-                  aria-label="API rate limit window seconds"
+                  aria-label={interfaceText("API rate limit window seconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="API Window sec"
+                  label={interfaceText("API Window sec")}
                   onChange={(_, { value }) => update('rateLimitApiWindow', value)}
                   type="number"
                   value={form.rateLimitApiWindow}
-                />
+                 {...interfaceTextProps("API rate limit window seconds")}/>
                 <Form.Input
-                  aria-label="Federation rate limit permits"
+                  aria-label={interfaceText("Federation rate limit permits")}
                   disabled={!remoteConfiguration || saving}
-                  label="Federation Permits/min"
+                  label={interfaceText("Federation Permits/min")}
                   onChange={(_, { value }) => update('rateLimitFederation', value)}
                   type="number"
                   value={form.rateLimitFederation}
-                />
+                 {...interfaceTextProps("Federation rate limit permits")}/>
                 <Form.Input
-                  aria-label="Federation rate limit window seconds"
+                  aria-label={interfaceText("Federation rate limit window seconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Federation Window sec"
+                  label={interfaceText("Federation Window sec")}
                   onChange={(_, { value }) =>
                     update('rateLimitFederationWindow', value)
                   }
                   type="number"
                   value={form.rateLimitFederationWindow}
-                />
+                 {...interfaceTextProps("Federation rate limit window seconds")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Mesh gateway rate limit permits"
+                  aria-label={interfaceText("Mesh gateway rate limit permits")}
                   disabled={!remoteConfiguration || saving}
-                  label="Mesh Permits/min"
+                  label={interfaceText("Mesh Permits/min")}
                   onChange={(_, { value }) => update('rateLimitMesh', value)}
                   type="number"
                   value={form.rateLimitMesh}
-                />
+                 {...interfaceTextProps("Mesh gateway rate limit permits")}/>
                 <Form.Input
-                  aria-label="Mesh gateway rate limit window seconds"
+                  aria-label={interfaceText("Mesh gateway rate limit window seconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Mesh Window sec"
+                  label={interfaceText("Mesh Window sec")}
                   onChange={(_, { value }) => update('rateLimitMeshWindow', value)}
                   type="number"
                   value={form.rateLimitMeshWindow}
-                />
+                 {...interfaceTextProps("Mesh gateway rate limit window seconds")}/>
               </Form.Group>
             </Form>
           </Card.Content>
@@ -1305,9 +1292,8 @@ const AdminPolicies = ({ options = {} }) => {
           <Card.Content>
             <Card.Header>
               <Icon name="sitemap" />
-              Search and Network Policy
-            </Card.Header>
-            <Card.Meta>Incoming search throttles, request filters, and managed blacklist setup.</Card.Meta>
+              <LocalizedText source={"Search and Network Policy"} /></Card.Header>
+            <Card.Meta><LocalizedText source={"Incoming search throttles, request filters, and managed blacklist setup."} /></Card.Meta>
           </Card.Content>
           <Card.Content>
             <div className="integration-status-row">
@@ -1319,182 +1305,182 @@ const AdminPolicies = ({ options = {} }) => {
             </div>
             <Form>
               <Form.TextArea
-                aria-label="Incoming search request filters"
+                aria-label={interfaceText("Incoming search request filters")}
                 disabled={!remoteConfiguration || saving}
-                label="Incoming Search Filter Regexes"
+                label={interfaceText("Incoming Search Filter Regexes")}
                 onChange={(_, { value }) => update('searchFilterRequest', value)}
                 placeholder="(?i)forbidden term"
                 value={form.searchFilterRequest}
-              />
+               {...interfaceTextProps("Incoming search request filters")}/>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Incoming search concurrency"
+                  aria-label={interfaceText("Incoming search concurrency")}
                   disabled={!remoteConfiguration || saving}
-                  label="Incoming Concurrency"
+                  label={interfaceText("Incoming Concurrency")}
                   onChange={(_, { value }) =>
                     update('searchIncomingConcurrency', value)
                   }
                   type="number"
                   value={form.searchIncomingConcurrency}
-                />
+                 {...interfaceTextProps("Incoming search concurrency")}/>
                 <Form.Input
-                  aria-label="Incoming search circuit breaker"
+                  aria-label={interfaceText("Incoming search circuit breaker")}
                   disabled={!remoteConfiguration || saving}
-                  label="Circuit Breaker"
+                  label={interfaceText("Circuit Breaker")}
                   onChange={(_, { value }) =>
                     update('searchIncomingCircuitBreaker', value)
                   }
                   type="number"
                   value={form.searchIncomingCircuitBreaker}
-                />
+                 {...interfaceTextProps("Incoming search circuit breaker")}/>
                 <Form.Input
-                  aria-label="Incoming search response file limit"
+                  aria-label={interfaceText("Incoming search response file limit")}
                   disabled={!remoteConfiguration || saving}
-                  label="Response File Limit"
+                  label={interfaceText("Response File Limit")}
                   onChange={(_, { value }) =>
                     update('searchIncomingResponseFileLimit', value)
                   }
                   type="number"
                   value={form.searchIncomingResponseFileLimit}
-                />
+                 {...interfaceTextProps("Incoming search response file limit")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable loading a managed CIDR/P2P/DAT blacklist file at startup."
+                  content={interfaceText("Enable loading a managed CIDR/P2P/DAT blacklist file at startup.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable managed blacklist"
+                      aria-label={interfaceText("Enable managed blacklist")}
                       checked={form.blacklistEnabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable managed blacklist"
+                      label={interfaceText("Enable managed blacklist")}
                       onChange={(_, { checked }) =>
                         update('blacklistEnabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable managed blacklist")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable loading a managed CIDR/P2P/DAT blacklist file at startup.")}/>
                 <Form.Input
-                  aria-label="Managed blacklist file path"
+                  aria-label={interfaceText("Managed blacklist file path")}
                   disabled={!remoteConfiguration || saving}
-                  label="Blacklist File"
+                  label={interfaceText("Blacklist File")}
                   onChange={(_, { value }) => update('blacklistFile', value)}
                   value={form.blacklistFile}
-                />
+                 {...interfaceTextProps("Managed blacklist file path")}/>
               </Form.Group>
               <Form.Group grouped>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable DHT rendezvous. Disable this when you want no DHT peer discovery."
+                  content={interfaceText("Enable DHT rendezvous. Disable this when you want no DHT peer discovery.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable DHT rendezvous"
+                      aria-label={interfaceText("Enable DHT rendezvous")}
                       checked={form.dhtEnabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable DHT rendezvous"
+                      label={interfaceText("Enable DHT rendezvous")}
                       onChange={(_, { checked }) =>
                         update('dhtEnabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable DHT rendezvous")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable DHT rendezvous. Disable this when you want no DHT peer discovery.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Keep DHT discovery away from public bootstrap routers and use only private or local discovery paths."
+                  content={interfaceText("Keep DHT discovery away from public bootstrap routers and use only private or local discovery paths.")}
                   trigger={
                     <Checkbox
-                      aria-label="Use LAN-only DHT rendezvous"
+                      aria-label={interfaceText("Use LAN-only DHT rendezvous")}
                       checked={form.dhtLanOnly}
                       disabled={!remoteConfiguration || saving}
-                      label="LAN-only DHT"
+                      label={interfaceText("LAN-only DHT")}
                       onChange={(_, { checked }) =>
                         update('dhtLanOnly', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Use LAN-only DHT rendezvous")}/>
                   }
-                />
+                 {...interfaceTextProps("Keep DHT discovery away from public bootstrap routers and use only private or local discovery paths.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Opt in to experimental Scene and Pod bridge aggregation."
+                  content={interfaceText("Opt in to experimental Scene and Pod bridge aggregation.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable Scene Pod Bridge"
+                      aria-label={interfaceText("Enable Scene Pod Bridge")}
                       checked={form.featureScenePodBridge}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable Scene Pod Bridge"
+                      label={interfaceText("Enable Scene Pod Bridge")}
                       onChange={(_, { checked }) =>
                         update('featureScenePodBridge', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable Scene Pod Bridge")}/>
                   }
-                />
+                 {...interfaceTextProps("Opt in to experimental Scene and Pod bridge aggregation.")}/>
                 <Popup
                   className="admin-policy-popup"
-                  content="Enable underperformance rescue policies for queued or stalled downloads."
+                  content={interfaceText("Enable underperformance rescue policies for queued or stalled downloads.")}
                   trigger={
                     <Checkbox
-                      aria-label="Enable rescue mode"
+                      aria-label={interfaceText("Enable rescue mode")}
                       checked={form.rescueModeEnabled}
                       disabled={!remoteConfiguration || saving}
-                      label="Enable rescue mode"
+                      label={interfaceText("Enable rescue mode")}
                       onChange={(_, { checked }) =>
                         update('rescueModeEnabled', Boolean(checked))
                       }
                       toggle
-                    />
+                     {...interfaceTextProps("Enable rescue mode")}/>
                   }
-                />
+                 {...interfaceTextProps("Enable underperformance rescue policies for queued or stalled downloads.")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="DHT overlay TCP port"
+                  aria-label={interfaceText("DHT overlay TCP port")}
                   disabled={!remoteConfiguration || saving}
-                  label="Overlay TCP Port"
+                  label={interfaceText("Overlay TCP Port")}
                   onChange={(_, { value }) => update('dhtOverlayPort', value)}
                   type="number"
                   value={form.dhtOverlayPort}
-                />
+                 {...interfaceTextProps("DHT overlay TCP port")}/>
                 <Form.Input
-                  aria-label="DHT UDP port"
+                  aria-label={interfaceText("DHT UDP port")}
                   disabled={!remoteConfiguration || saving}
-                  label="DHT UDP Port"
+                  label={interfaceText("DHT UDP Port")}
                   onChange={(_, { value }) => update('dhtPort', value)}
                   type="number"
                   value={form.dhtPort}
-                />
+                 {...interfaceTextProps("DHT UDP port")}/>
                 <Form.Input
-                  aria-label="DHT announce interval seconds"
+                  aria-label={interfaceText("DHT announce interval seconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="DHT Announce sec"
+                  label={interfaceText("DHT Announce sec")}
                   onChange={(_, { value }) =>
                     update('dhtAnnounceIntervalSeconds', value)
                   }
                   type="number"
                   value={form.dhtAnnounceIntervalSeconds}
-                />
+                 {...interfaceTextProps("DHT announce interval seconds")}/>
                 <Form.Input
-                  aria-label="Rescue max queue seconds"
+                  aria-label={interfaceText("Rescue max queue seconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Rescue Queue sec"
+                  label={interfaceText("Rescue Queue sec")}
                   onChange={(_, { value }) =>
                     update('rescueModeMaxQueueSeconds', value)
                   }
                   type="number"
                   value={form.rescueModeMaxQueueSeconds}
-                />
+                 {...interfaceTextProps("Rescue max queue seconds")}/>
               </Form.Group>
               <Form.TextArea
-                aria-label="DHT bootstrap routers"
+                aria-label={interfaceText("DHT bootstrap routers")}
                 disabled={!remoteConfiguration || saving}
-                label="DHT Bootstrap Routers"
+                label={interfaceText("DHT Bootstrap Routers")}
                 onChange={(_, { value }) => update('dhtBootstrapRouters', value)}
                 placeholder="router.bittorrent.com"
                 value={form.dhtBootstrapRouters}
-              />
+               {...interfaceTextProps("DHT bootstrap routers")}/>
             </Form>
           </Card.Content>
         </Card>
@@ -1503,149 +1489,148 @@ const AdminPolicies = ({ options = {} }) => {
           <Card.Content>
             <Card.Header>
               <Icon name="archive" />
-              Retention and Storage
-            </Card.Header>
-            <Card.Meta>Search/event/log cleanup, transfer history, file records, share cache pressure, and search retention (max age, max count, cleanup interval).</Card.Meta>
+              <LocalizedText source={"Retention and Storage"} /></Card.Header>
+            <Card.Meta><LocalizedText source={"Search/event/log cleanup, transfer history, file records, share cache pressure, and search retention (max age, max count, cleanup interval)."} /></Card.Meta>
           </Card.Content>
           <Card.Content>
             <Form>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Search retention minutes"
+                  aria-label={interfaceText("Search retention minutes")}
                   disabled={!remoteConfiguration || saving}
-                  label="Search Retention min"
+                  label={interfaceText("Search Retention min")}
                   onChange={(_, { value }) => update('retentionSearch', value)}
                   value={form.retentionSearch}
-                />
+                 {...interfaceTextProps("Search retention minutes")}/>
                 <Form.Input
-                  aria-label="Event retention days"
+                  aria-label={interfaceText("Event retention days")}
                   disabled={!remoteConfiguration || saving}
-                  label="Events Retention days"
+                  label={interfaceText("Events Retention days")}
                   onChange={(_, { value }) => update('eventsRetention', value)}
                   type="number"
                   value={form.eventsRetention}
-                />
+                 {...interfaceTextProps("Event retention days")}/>
                 <Form.Input
-                  aria-label="Log retention days"
+                  aria-label={interfaceText("Log retention days")}
                   disabled={!remoteConfiguration || saving}
-                  label="Logs Retention days"
+                  label={interfaceText("Logs Retention days")}
                   min={2}
                   onChange={(_, { value }) => update('logRetention', value)}
                   type="number"
                   value={form.logRetention}
-                />
+                 {...interfaceTextProps("Log retention days")}/>
               </Form.Group>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Search retention max age days"
+                  aria-label={interfaceText("Search retention max age days")}
                   disabled={!remoteConfiguration || saving}
-                  label="Search Max Age (days)"
+                  label={interfaceText("Search Max Age (days)")}
                   onChange={(_, { value }) => update('searchRetentionMaxAgeDays', value)}
                   type="number"
                   value={form.searchRetentionMaxAgeDays}
-                />
+                 {...interfaceTextProps("Search retention max age days")}/>
                 <Form.Input
-                  aria-label="Search retention max count"
+                  aria-label={interfaceText("Search retention max count")}
                   disabled={!remoteConfiguration || saving}
-                  label="Search Max Count"
+                  label={interfaceText("Search Max Count")}
                   onChange={(_, { value }) => update('searchRetentionMaxCount', value)}
                   type="number"
                   value={form.searchRetentionMaxCount}
-                />
+                 {...interfaceTextProps("Search retention max count")}/>
                 <Form.Input
-                  aria-label="Search retention cleanup interval seconds"
+                  aria-label={interfaceText("Search retention cleanup interval seconds")}
                   disabled={!remoteConfiguration || saving}
-                  label="Cleanup Interval (sec)"
+                  label={interfaceText("Cleanup Interval (sec)")}
                   onChange={(_, { value }) => update('searchRetentionCleanupInterval', value)}
                   type="number"
                   value={form.searchRetentionCleanupInterval}
-                />
+                 {...interfaceTextProps("Search retention cleanup interval seconds")}/>
               </Form.Group>
               <div
-                aria-label="Transfer history retention settings"
+                aria-label={interfaceText("Transfer history retention settings")}
                 className="admin-policy-table-scroll"
                 role="region"
                 tabIndex={0}
-              >
+               {...interfaceTextProps("Transfer history retention settings")}>
                 <Table
-                  aria-label="Transfer history retention settings by status"
+                  aria-label={interfaceText("Transfer history retention settings by status")}
                   celled
                   className="admin-policy-retention-table"
                   compact
-                >
+                 {...interfaceTextProps("Transfer history retention settings by status")}>
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>History</Table.HeaderCell>
-                      <Table.HeaderCell>Succeeded</Table.HeaderCell>
-                      <Table.HeaderCell>Errored</Table.HeaderCell>
-                      <Table.HeaderCell>Cancelled</Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"History"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Succeeded"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Errored"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Cancelled"} /></Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
                     <Table.Row>
-                      <Table.Cell>Uploads</Table.Cell>
+                      <Table.Cell><LocalizedText source={"Uploads"} /></Table.Cell>
                       <Table.Cell>
                         <Form.Input
-                          aria-label="Upload succeeded retention minutes"
+                          aria-label={interfaceText("Upload succeeded retention minutes")}
                           disabled={!remoteConfiguration || saving}
                           onChange={(_, { value }) =>
                             update('retentionUploadSucceeded', value)
                           }
                           value={form.retentionUploadSucceeded}
-                        />
+                         {...interfaceTextProps("Upload succeeded retention minutes")}/>
                       </Table.Cell>
                       <Table.Cell>
                         <Form.Input
-                          aria-label="Upload errored retention minutes"
+                          aria-label={interfaceText("Upload errored retention minutes")}
                           disabled={!remoteConfiguration || saving}
                           onChange={(_, { value }) =>
                             update('retentionUploadErrored', value)
                           }
                           value={form.retentionUploadErrored}
-                        />
+                         {...interfaceTextProps("Upload errored retention minutes")}/>
                       </Table.Cell>
                       <Table.Cell>
                         <Form.Input
-                          aria-label="Upload cancelled retention minutes"
+                          aria-label={interfaceText("Upload cancelled retention minutes")}
                           disabled={!remoteConfiguration || saving}
                           onChange={(_, { value }) =>
                             update('retentionUploadCancelled', value)
                           }
                           value={form.retentionUploadCancelled}
-                        />
+                         {...interfaceTextProps("Upload cancelled retention minutes")}/>
                       </Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                      <Table.Cell>Downloads</Table.Cell>
+                      <Table.Cell><LocalizedText source={"Downloads"} /></Table.Cell>
                       <Table.Cell>
                         <Form.Input
-                          aria-label="Download succeeded retention minutes"
+                          aria-label={interfaceText("Download succeeded retention minutes")}
                           disabled={!remoteConfiguration || saving}
                           onChange={(_, { value }) =>
                             update('retentionDownloadSucceeded', value)
                           }
                           value={form.retentionDownloadSucceeded}
-                        />
+                         {...interfaceTextProps("Download succeeded retention minutes")}/>
                       </Table.Cell>
                       <Table.Cell>
                         <Form.Input
-                          aria-label="Download errored retention minutes"
+                          aria-label={interfaceText("Download errored retention minutes")}
                           disabled={!remoteConfiguration || saving}
                           onChange={(_, { value }) =>
                             update('retentionDownloadErrored', value)
                           }
                           value={form.retentionDownloadErrored}
-                        />
+                         {...interfaceTextProps("Download errored retention minutes")}/>
                       </Table.Cell>
                       <Table.Cell>
                         <Form.Input
-                          aria-label="Download cancelled retention minutes"
+                          aria-label={interfaceText("Download cancelled retention minutes")}
                           disabled={!remoteConfiguration || saving}
                           onChange={(_, { value }) =>
                             update('retentionDownloadCancelled', value)
                           }
                           value={form.retentionDownloadCancelled}
-                        />
+                         {...interfaceTextProps("Download cancelled retention minutes")}/>
                       </Table.Cell>
                     </Table.Row>
                   </Table.Body>
@@ -1653,36 +1638,36 @@ const AdminPolicies = ({ options = {} }) => {
               </div>
               <Form.Group widths="equal">
                 <Form.Input
-                  aria-label="Complete file retention minutes"
+                  aria-label={interfaceText("Complete file retention minutes")}
                   disabled={!remoteConfiguration || saving}
-                  label="Complete Files min"
+                  label={interfaceText("Complete Files min")}
                   onChange={(_, { value }) => update('fileCompleteRetention', value)}
                   value={form.fileCompleteRetention}
-                />
+                 {...interfaceTextProps("Complete file retention minutes")}/>
                 <Form.Input
-                  aria-label="Incomplete file retention minutes"
+                  aria-label={interfaceText("Incomplete file retention minutes")}
                   disabled={!remoteConfiguration || saving}
-                  label="Incomplete Files min"
+                  label={interfaceText("Incomplete Files min")}
                   onChange={(_, { value }) =>
                     update('fileIncompleteRetention', value)
                   }
                   value={form.fileIncompleteRetention}
-                />
+                 {...interfaceTextProps("Incomplete file retention minutes")}/>
                 <Form.Input
-                  aria-label="Share cache workers"
+                  aria-label={interfaceText("Share cache workers")}
                   disabled={!remoteConfiguration || saving}
-                  label="Share Cache Workers"
+                  label={interfaceText("Share Cache Workers")}
                   onChange={(_, { value }) => update('shareCacheWorkers', value)}
                   type="number"
                   value={form.shareCacheWorkers}
-                />
+                 {...interfaceTextProps("Share cache workers")}/>
                 <Form.Input
-                  aria-label="Share cache retention minutes"
+                  aria-label={interfaceText("Share cache retention minutes")}
                   disabled={!remoteConfiguration || saving}
-                  label="Share Cache Retention min"
+                  label={interfaceText("Share Cache Retention min")}
                   onChange={(_, { value }) => update('shareCacheRetention', value)}
                   value={form.shareCacheRetention}
-                />
+                 {...interfaceTextProps("Share cache retention minutes")}/>
               </Form.Group>
             </Form>
           </Card.Content>
@@ -1692,7 +1677,7 @@ const AdminPolicies = ({ options = {} }) => {
       <div className="integration-actions admin-policy-actions">
         <Popup
           className="admin-policy-popup"
-          content="Persist the policy settings above to YAML. This does not test webhooks, run scripts, contact peers, restart the daemon, or mutate downloads."
+          content={interfaceText("Persist the policy settings above to YAML. This does not test webhooks, run scripts, contact peers, restart the daemon, or mutate downloads.")}
           trigger={
             <Button
               disabled={!remoteConfiguration || missing.length > 0}
@@ -1703,13 +1688,12 @@ const AdminPolicies = ({ options = {} }) => {
               primary
             >
               <Icon name="file alternate" />
-              Save YAML
-            </Button>
+              <LocalizedText source={"Save YAML"} /></Button>
           }
-        />
+         {...interfaceTextProps("Persist the policy settings above to YAML. This does not test webhooks, run scripts, contact peers, restart the daemon, or mutate downloads.")}/>
         <Popup
           className="admin-policy-popup"
-          content="Discard unsaved policy edits and restore values currently reported by the daemon."
+          content={interfaceText("Discard unsaved policy edits and restore values currently reported by the daemon.")}
           trigger={
             <Button
               disabled={saving}
@@ -1718,10 +1702,9 @@ const AdminPolicies = ({ options = {} }) => {
               onClick={reset}
             >
               <Icon name="undo" />
-              Reset
-            </Button>
+              <LocalizedText source={"Reset"} /></Button>
           }
-        />
+         {...interfaceTextProps("Discard unsaved policy edits and restore values currently reported by the daemon.")}/>
       </div>
     </div>
   );

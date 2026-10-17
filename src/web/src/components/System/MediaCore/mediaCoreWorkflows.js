@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
 export const contentExamples = {
   audio: {
     album: {
@@ -37,81 +38,81 @@ export const contentExamples = {
 
 export const podWorkflowSections = [
   {
-    description: 'Publish or retrieve pod metadata through DHT workflows.',
+    get description() { return interfaceText("Publish or retrieve pod metadata through DHT workflows."); },
     href: '#podcore-dht-publishing',
-    label: 'DHT Publishing',
+    get label() { return interfaceText("DHT Publishing"); },
     risk: 'Publishes metadata',
   },
   {
-    description: 'Manage signed membership records, bans, and roles.',
+    get description() { return interfaceText("Manage signed membership records, bans, and roles."); },
     href: '#pod-membership-management',
-    label: 'Membership',
+    get label() { return interfaceText("Membership"); },
     risk: 'Publishes membership state',
   },
   {
-    description: 'Verify membership, message authenticity, and role claims.',
+    get description() { return interfaceText("Verify membership, message authenticity, and role claims."); },
     href: '#pod-membership-verification',
-    label: 'Verification',
+    get label() { return interfaceText("Verification"); },
     risk: 'Read-only checks',
   },
   {
-    description: 'Find listed pods by name, tag, content, or registry scan.',
+    get description() { return interfaceText("Find listed pods by name, tag, content, or registry scan."); },
     href: '#pod-discovery',
-    label: 'Discovery',
+    get label() { return interfaceText("Discovery"); },
     risk: 'Read-only unless registering',
   },
   {
-    description: 'Request, accept, leave, and review pod membership flows.',
+    get description() { return interfaceText("Request, accept, leave, and review pod membership flows."); },
     href: '#pod-join-leave',
-    label: 'Join/Leave',
+    get label() { return interfaceText("Join/Leave"); },
     risk: 'Publishes signed membership events',
   },
   {
-    description: 'Route messages, target peers, and review deduplication state.',
+    get description() { return interfaceText("Route messages, target peers, and review deduplication state."); },
     href: '#pod-message-routing',
-    label: 'Routing',
+    get label() { return interfaceText("Routing"); },
     risk: 'Sends pod messages',
   },
   {
-    description: 'Search, count, clean up, rebuild, and vacuum pod messages.',
+    get description() { return interfaceText("Search, count, clean up, rebuild, and vacuum pod messages."); },
     href: '#pod-message-storage',
-    label: 'Storage',
+    get label() { return interfaceText("Storage"); },
     risk: 'Local storage operations',
   },
   {
-    description: 'Synchronize missed messages and last-seen timestamps.',
+    get description() { return interfaceText("Synchronize missed messages and last-seen timestamps."); },
     href: '#pod-message-backfill',
-    label: 'Backfill',
+    get label() { return interfaceText("Backfill"); },
     risk: 'Syncs pod state',
   },
   {
-    description: 'Create, inspect, update, and delete pod channels.',
+    get description() { return interfaceText("Create, inspect, update, and delete pod channels."); },
     href: '#pod-channel-management',
-    label: 'Channels',
+    get label() { return interfaceText("Channels"); },
     risk: 'Mutates pod structure',
   },
   {
-    description: 'Search content and create content-linked pods.',
+    get description() { return interfaceText("Search content and create content-linked pods."); },
     href: '#pod-content-linking',
-    label: 'Content Linking',
+    get label() { return interfaceText("Content Linking"); },
     risk: 'Can create pods',
   },
   {
-    description: 'Publish, aggregate, and review pod opinions.',
+    get description() { return interfaceText("Publish, aggregate, and review pod opinions."); },
     href: '#pod-opinion-management',
-    label: 'Opinions',
+    get label() { return interfaceText("Opinions"); },
     risk: 'Publishes opinion data',
   },
   {
-    description: 'Sign messages, verify signatures, and generate key pairs.',
+    get description() { return interfaceText("Sign messages, verify signatures, and generate key pairs."); },
     href: '#pod-message-signing',
-    label: 'Signing',
+    get label() { return interfaceText("Signing"); },
     risk: 'Handles key material',
   },
 ];
 
 export const podWorkflowFilterOptions = [
-  { key: 'all', text: 'Show all pod workflows', value: 'all' },
+  { key: 'all', get text() { return interfaceText("Show all pod workflows"); }, value: 'all' },
   ...podWorkflowSections.map((section) => ({
     key: section.href,
     text: section.label,

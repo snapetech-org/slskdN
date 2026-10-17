@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 // <copyright file="MediaServerPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -25,6 +27,7 @@ import {
 } from 'semantic-ui-react';
 
 const MediaServerPanel = () => {
+  useInterfaceLanguage();
   const [activeAdapterId, setActiveAdapterId] = useState(
     mediaServerAdapters[0]?.id ?? null,
   );
@@ -98,41 +101,34 @@ const MediaServerPanel = () => {
       <Card.Content>
         <Card.Header>
           <Icon name="server" />
-          Media Servers
-        </Card.Header>
+          <LocalizedText source={"Media Servers"} /></Card.Header>
         <Card.Meta>
-          Local readiness reviews for Plex, Jellyfin/Emby, and Navidrome.
-          Nothing here saves credentials or contacts a media server.
-        </Card.Meta>
+          <LocalizedText source={"Local readiness reviews for Plex, Jellyfin/Emby, and Navidrome. Nothing here saves credentials or contacts a media server."} /></Card.Meta>
       </Card.Content>
       <Card.Content>
         <Message info size="small">
-          Enter the values you want to review. They remain in this page only;
-          preview and contract actions do not run scans or other server work.
-        </Message>
+          <LocalizedText source={"Enter the values you want to review. They remain in this page only; preview and contract actions do not run scans or other server work."} /></Message>
 
         {!hasAdapters && (
           <Message info size="small">
-            No registered media server adapters are available.
-          </Message>
+            <LocalizedText source={"No registered media server adapters are available."} /></Message>
         )}
 
         {!hasContracts && hasAdapters && (
           <Message warning size="small">
-            No media server automation contracts are available.
-          </Message>
+            <LocalizedText source={"No media server automation contracts are available."} /></Message>
         )}
 
         {hasAdapters && (
           <div className="integration-actions">
             {mediaServerAdapters.map((adapter) => (
               <Popup
-                content={`Review ${adapter.label} integration readiness and path mapping.`}
+                content={interfaceText("Review {label} integration readiness and path mapping.", { "label": (adapter.label) })}
                 key={adapter.id}
                 position="top center"
                 trigger={
                   <Button
-                    aria-label={`Review ${adapter.label} sync readiness`}
+                    aria-label={interfaceText("Review {label} sync readiness", { "label": (adapter.label) })}
                     basic={activeAdapterId !== adapter.id}
                     color={
                       activeAdapterId === adapter.id ? 'purple' : undefined
@@ -140,12 +136,12 @@ const MediaServerPanel = () => {
                     icon
                     labelPosition="left"
                     onClick={() => setActiveAdapterId(adapter.id)}
-                  >
+                   {...interfaceTextProps("Review {label} sync readiness")}>
                     <Icon name={adapter.icon || 'server'} />
-                    {adapter.label}
+                    <LocalizedText source={adapter.label} />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Review {label} integration readiness and path mapping.")}/>
             ))}
           </div>
         )}
@@ -155,130 +151,129 @@ const MediaServerPanel = () => {
           onSubmit={(event) => event.preventDefault()}
         >
           <section className="media-server-review-section">
-            <Header as="h4">Connection</Header>
+            <Header as="h4"><LocalizedText source={"Connection"} /></Header>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Media server base URL"
+                aria-label={interfaceText("Media server base URL")}
                 id="media-server-base-url"
-                label="Media server base URL"
+                label={interfaceText("Media server base URL")}
                 onChange={(_event, { value }) => setBaseUrl(value)}
                 placeholder="https://media.example"
                 value={baseUrl}
-              />
+               {...interfaceTextProps("Media server base URL")}/>
               <Form.Checkbox
-                aria-label="API token is configured"
+                aria-label={interfaceText("API token is configured")}
                 checked={tokenConfigured}
                 id="media-server-token-configured"
-                label="API token is configured"
+                label={interfaceText("API token is configured")}
                 onChange={(_event, { checked }) => setTokenConfigured(checked)}
-              />
+               {...interfaceTextProps("API token is configured")}/>
             </Form.Group>
           </section>
 
           <section className="media-server-review-section">
-            <Header as="h4">Path mapping</Header>
+            <Header as="h4"><LocalizedText source={"Path mapping"} /></Header>
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Completed-download path on slskdN"
+                aria-label={interfaceText("Completed-download path on slskdN")}
                 id="media-server-local-path"
-                label="Completed-download path on slskdN"
+                label={interfaceText("Completed-download path on slskdN")}
                 onChange={(_event, { value }) => setLocalPath(value)}
                 placeholder="/downloads/music"
                 value={localPath}
-              />
+               {...interfaceTextProps("Completed-download path on slskdN")}/>
               <Form.Input
-                aria-label="Library path on the media server"
+                aria-label={interfaceText("Library path on the media server")}
                 id="media-server-server-path"
-                label="Library path on the media server"
+                label={interfaceText("Library path on the media server")}
                 onChange={(_event, { value }) => setServerPath(value)}
                 placeholder="/library/music"
                 value={serverPath}
-              />
+               {...interfaceTextProps("Library path on the media server")}/>
             </Form.Group>
 
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Remote path mapping: from"
+                aria-label={interfaceText("Remote path mapping: from")}
                 id="media-server-remote-path-from"
-                label="Remote path mapping: from"
+                label={interfaceText("Remote path mapping: from")}
                 onChange={(_event, { value }) => setRemotePathFrom(value)}
                 placeholder="/downloads"
                 value={remotePathFrom}
-              />
+               {...interfaceTextProps("Remote path mapping: from")}/>
               <Form.Input
-                aria-label="Remote path mapping: to"
+                aria-label={interfaceText("Remote path mapping: to")}
                 id="media-server-remote-path-to"
-                label="Remote path mapping: to"
+                label={interfaceText("Remote path mapping: to")}
                 onChange={(_event, { value }) => setRemotePathTo(value)}
                 placeholder="/library"
                 value={remotePathTo}
-              />
+               {...interfaceTextProps("Remote path mapping: to")}/>
             </Form.Group>
           </section>
 
           <section className="media-server-review-section">
-            <Header as="h4">Safety contract</Header>
+            <Header as="h4"><LocalizedText source={"Safety contract"} /></Header>
             <Form.Group widths="equal">
               <Form.Checkbox
-                aria-label="Media server user mapping is configured"
+                aria-label={interfaceText("Media server user mapping is configured")}
                 checked={userMappingConfigured}
                 id="media-server-user-mapping-configured"
-                label="Media server user mapping is configured"
+                label={interfaceText("Media server user mapping is configured")}
                 onChange={(_event, { checked }) =>
                   setUserMappingConfigured(checked)
                 }
-              />
+               {...interfaceTextProps("Media server user mapping is configured")}/>
               <Form.Checkbox
-                aria-label="Require confirmation for actions"
+                aria-label={interfaceText("Require confirmation for actions")}
                 checked={confirmationRequired}
                 id="media-server-confirmation-required"
-                label="Require confirmation for actions"
+                label={interfaceText("Require confirmation for actions")}
                 onChange={(_event, { checked }) =>
                   setConfirmationRequired(checked)
                 }
-              />
+               {...interfaceTextProps("Require confirmation for actions")}/>
             </Form.Group>
 
             <Form.Group widths="equal">
               <Form.Input
-                aria-label="Maximum calls per minute"
+                aria-label={interfaceText("Maximum calls per minute")}
                 id="media-server-rate-limit"
-                label="Maximum calls per minute"
+                label={interfaceText("Maximum calls per minute")}
                 min={0}
                 onChange={(_event, { value }) =>
                   setRateLimitPerMinute(Number(value))
                 }
                 type="number"
                 value={rateLimitPerMinute}
-              />
+               {...interfaceTextProps("Maximum calls per minute")}/>
               <Form.Input
-                aria-label="Dedupe window in hours"
+                aria-label={interfaceText("Dedupe window in hours")}
                 id="media-server-dedupe-window"
-                label="Dedupe window in hours"
+                label={interfaceText("Dedupe window in hours")}
                 min={0}
                 onChange={(_event, { value }) =>
                   setDedupeWindowHours(Number(value))
                 }
                 type="number"
                 value={dedupeWindowHours}
-              />
+               {...interfaceTextProps("Dedupe window in hours")}/>
             </Form.Group>
 
             <Form.Group grouped>
               <Header as="h5">
-                Include automations in the local readiness review
-              </Header>
+                <LocalizedText source={"Include automations in the local readiness review"} /></Header>
               {mediaServerAutomationContracts.map((automation) => (
                 <Form.Checkbox
-                  aria-label={`Include ${automation.label} in review`}
+                  aria-label={interfaceText("Include {label} in review", { "label": (automation.label) })}
                   checked={Boolean(enabledAutomations[automation.id])}
                   id={`media-server-automation-${automation.id}`}
                   key={automation.id}
-                  label={`${automation.label}: ${automation.description}`}
+                  label={interfaceText("{label}: {description}", { "label": (automation.label), "description": (automation.description) })}
                   onChange={(_event, { checked }) =>
                     updateAutomation(automation.id, checked)
                   }
-                />
+                 {...interfaceTextProps("Include {label} in review")}/>
               ))}
             </Form.Group>
           </section>
@@ -293,8 +288,7 @@ const MediaServerPanel = () => {
             tooltip="Check URL, token, and path readiness. This creates a local report and does not contact the media server."
           >
             <Icon name="sync" />
-            Preview Sync
-          </TooltipButton>
+            <LocalizedText source={"Preview Sync"} /></TooltipButton>
           <TooltipButton
             disabled={!hasAdapters}
             icon
@@ -303,8 +297,7 @@ const MediaServerPanel = () => {
             tooltip="Compare the local and server paths, applying the optional remote mapping; this check stays in your browser."
           >
             <Icon name="folder open" />
-            Path Diagnostic
-          </TooltipButton>
+            <LocalizedText source={"Path Diagnostic"} /></TooltipButton>
           <TooltipButton
             disabled={!hasContracts}
             icon
@@ -314,13 +307,12 @@ const MediaServerPanel = () => {
             tooltip="Review readiness gates and selected automations. This report runs no media server actions."
           >
             <Icon name="clipboard check" />
-            Review Contract
-          </TooltipButton>
+            <LocalizedText source={"Review Contract"} /></TooltipButton>
         </div>
 
         {contractReport && (
           <Segment style={{ marginTop: '1em' }}>
-            <Header as="h4">Contract Review</Header>
+            <Header as="h4"><LocalizedText source={"Contract Review"} /></Header>
             <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
               {contractReport}
             </pre>
@@ -329,7 +321,7 @@ const MediaServerPanel = () => {
 
         {syncReport && (
           <Segment style={{ marginTop: '1em' }}>
-            <Header as="h4">Sync Preview</Header>
+            <Header as="h4"><LocalizedText source={"Sync Preview"} /></Header>
             <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
               {syncReport}
             </pre>
@@ -338,13 +330,13 @@ const MediaServerPanel = () => {
 
         {pathDiagnostic && (
           <Segment style={{ marginTop: '1em' }}>
-            <Header as="h4">Path Diagnostic</Header>
+            <Header as="h4"><LocalizedText source={"Path Diagnostic"} /></Header>
             <Message color={pathDiagnostic.color} size="small">
-              <Message.Header>{pathDiagnostic.status}</Message.Header>
-              <p>{pathDiagnostic.message}</p>
+              <Message.Header><LocalizedText source={pathDiagnostic.status} /></Message.Header>
+              <p><LocalizedText source={pathDiagnostic.message} /></p>
               {pathDiagnostic.mappedPath && (
                 <p>
-                  Mapped path: <code>{pathDiagnostic.mappedPath}</code>
+                  <LocalizedText source={"Mapped path:"} />{" "}<code>{pathDiagnostic.mappedPath}</code>
                 </p>
               )}
             </Message>

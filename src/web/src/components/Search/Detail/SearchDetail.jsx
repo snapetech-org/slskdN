@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import {
   createBatch,
   filterResponse,
@@ -25,6 +27,9 @@ import {
   saveSearchFilter,
 } from '../../../lib/savedSearchFilters';
 import { useExperiencePreference } from '../../../lib/experiencePreferences';
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+
+import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import {
   getLocalStorageItem,
   removeLocalStorageItem,
@@ -64,22 +69,22 @@ import {
 const sortDropdownOptions = [
   {
     key: 'smart',
-    text: '⭐ Smart Ranking (Best Overall)',
+    get text() { return interfaceText("⭐ Smart Ranking (Best Overall)"); },
     value: 'smart',
   },
   {
     key: 'uploadSpeed',
-    text: 'Upload Speed (Fastest to Slowest)',
+    get text() { return interfaceText("Upload Speed (Fastest to Slowest)"); },
     value: 'uploadSpeed',
   },
   {
     key: 'queueLength',
-    text: 'Queue Depth (Least to Most)',
+    get text() { return interfaceText("Queue Depth (Least to Most)"); },
     value: 'queueLength',
   },
   {
     key: 'fileCount',
-    text: 'File Count (Most to Least)',
+    get text() { return interfaceText("File Count (Most to Least)"); },
     value: 'fileCount',
   },
 ];
@@ -151,6 +156,18 @@ const SearchDetail = ({
   search,
   stopping,
 }) => {
+  const regionalLocale = useRegionalLocale();
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = useCallback((source, parameters) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {t(source, parameters)}
+    </span>
+  ), [directionFor, languageFor, t]);
+  const localizedError = useCallback((error_, fallback) => (
+    <span dir={directionFor(fallback)} lang={languageFor(fallback)}>
+      {getApiErrorMessage(error_, { t }, fallback)}
+    </span>
+  ), [directionFor, languageFor, t]);
   const {
     fileCount,
     id,
@@ -269,7 +286,7 @@ const SearchDetail = ({
       } catch (error_) {
         if (!cancelled) {
           console.error(error_);
-          toast.error('Failed to load ignored wishlist results');
+          toast.error(localized('Could not load ignored Wishlist results.'));
         }
       }
     };
@@ -278,7 +295,7 @@ const SearchDetail = ({
     return () => {
       cancelled = true;
     };
-  }, [search.wishlistItemId]);
+  }, [search.wishlistItemId, localized]);
 
   const isIgnoredWishlistFile = useCallback(
     (username, filename) => {
@@ -301,10 +318,13 @@ const SearchDetail = ({
         rule,
         ...current.filter((candidate) => candidate.id !== rule.id),
       ]);
-      toast.info(`Ignored ${request.directory} from ${request.username} for this wishlist item`);
+      toast.info(localized('Ignored folder {directory} from {username} for this Wishlist item.', {
+        directory: request.directory,
+        username: request.username,
+      }));
     } catch (error_) {
       console.error(error_);
-      toast.error(error_?.response?.data ?? error_?.message ?? error_);
+      toast.error(localizedError(error_, 'Could not ignore this Wishlist result.'));
     }
   };
 
@@ -347,21 +367,21 @@ const SearchDetail = ({
     try {
       const updated = await blockUserOnServer(username);
       setBlockedUsers(updated);
-      toast.info(`Blocked ${username} from search results`);
+      toast.info(localized('Blocked {username} from search results.', { username }));
     } catch (error_) {
-      toast.error(`Failed to block ${username}: ${error_.message}`);
+      toast.error(localizedError(error_, 'Could not block this user.'));
     }
-  }, []);
+  }, [localized, localizedError]);
 
   const handleUnblockUser = useCallback(async (username) => {
     try {
       const updated = await unblockUserOnServer(username);
       setBlockedUsers(updated);
-      toast.info(`Unblocked ${username}`);
+      toast.info(localized('Unblocked {username}.', { username }));
     } catch (error_) {
-      toast.error(`Failed to unblock ${username}: ${error_.message}`);
+      toast.error(localizedError(error_, 'Could not unblock this user.'));
     }
-  }, []);
+  }, [localized, localizedError]);
 
   // Fetch durable results at completion or when early mesh responses are
   // explicitly available. Soulseek progress counts do not imply that the
@@ -604,11 +624,7 @@ const SearchDetail = ({
       setGraphData(graph);
     } catch (error_) {
       console.error(error_);
-      toast.error(
-        error_?.response?.data ??
-          error_?.message ??
-          'Failed to build discovery graph',
-      );
+      toast.error(localizedError(error_, 'The discovery graph could not be loaded.'));
       setGraphOpen(false);
     } finally {
       setGraphLoading(false);
@@ -668,20 +684,18 @@ const SearchDetail = ({
       .slice(0, 8);
 
     if (queries.length === 0) {
-      toast.error('No nearby track nodes were available to queue');
+      toast.error(localized('No nearby track nodes were available to queue'));
       return;
     }
 
     try {
       const count = await createBatch({ queries });
-      toast.success(`Started ${count} nearby graph searches`);
+      toast.success(localized('Nearby graph searches started: {count}.', {
+        count: formatRegionalNumber(count, undefined, regionalLocale),
+      }));
     } catch (error_) {
       console.error(error_);
-      toast.error(
-        error_?.response?.data ??
-          error_?.message ??
-          'Failed to queue nearby graph searches',
-      );
+      toast.error(localizedError(error_, 'Nearby graph searches could not be queued.'));
     }
   };
 
@@ -693,17 +707,17 @@ const SearchDetail = ({
   const saveAsDefault = () => {
     setLocalStorageItem('slskd-default-search-filter', resultFilters);
     setHasSavedDefault(true);
-    toast.success('Search filters saved as default');
+    toast.success(localized('Search filters saved as default.'));
   };
 
   const clearSavedDefault = () => {
     removeLocalStorageItem('slskd-default-search-filter');
     setHasSavedDefault(false);
-    toast.info('Saved default filter cleared');
+    toast.info(localized('Saved default filter cleared.'));
   };
 
   const openSaveFilter = () => {
-    setSaveFilterName(search.searchText || 'Search filter');
+    setSaveFilterName(search.searchText || t('Search filter'));
     setSaveFilterError('');
     setSaveFilterOpen(true);
   };
@@ -711,11 +725,11 @@ const SearchDetail = ({
   const saveNamedFilter = () => {
     const name = saveFilterName.trim();
     if (!name) {
-      setSaveFilterError('Enter a name for this saved filter.');
+      setSaveFilterError(interfaceText('Enter a name for this saved filter.'));
       return;
     }
     if (!resultFilters.trim()) {
-      setSaveFilterError('Add at least one result condition before saving.');
+      setSaveFilterError(interfaceText('Add at least one result condition before saving.'));
       return;
     }
 
@@ -723,11 +737,10 @@ const SearchDetail = ({
       const next = saveSearchFilter({ name, value: resultFilters });
       setSavedFilters(next);
       setSaveFilterOpen(false);
-      toast.success('Search filter saved');
+      toast.success(localized('Search filter saved.'));
     } catch (error_) {
-      setSaveFilterError(
-        error_?.message || 'Could not save this filter in browser storage.',
-      );
+      console.error(error_);
+      setSaveFilterError(interfaceText('Could not save this filter in browser storage.'));
     }
   };
 
@@ -747,7 +760,7 @@ const SearchDetail = ({
     }
 
     setSavedFilters(removeSavedSearchFilter(current.name));
-    toast.info('Saved search filter removed');
+    toast.info(localized('Saved search filter removed.'));
   };
 
   const focusAlbumCandidate = (candidate) => {
@@ -769,7 +782,7 @@ const SearchDetail = ({
       searchText: search.searchText,
     });
 
-    toast.success(`Saved local album rule for ${rule.albumTitle}`);
+    toast.success(localized('Saved a local album rule for {album}.', { album: rule.albumTitle }));
   };
 
   const filteredCount = results?.length - sortedAndFilteredResults.length;
@@ -777,7 +790,7 @@ const SearchDetail = ({
   const loaded = !removing && !creating && !loading && results;
 
   if (error) {
-    return <ErrorSegment caption={error?.message ?? error} />;
+    return <ErrorSegment caption={t('Could not load search results. Try again later.')} />;
   }
 
   return (
@@ -801,12 +814,17 @@ const SearchDetail = ({
           !isComplete && (
             <LoaderSegment>
               {state === 'InProgress'
-                ? `Found ${fileCount} files ${
-                    lockedFileCount > 0
-                      ? `(plus ${lockedFileCount} locked) `
-                      : ''
-                  }from ${responseCount} users`
-                : 'Loading results...'}
+                ? lockedFileCount > 0
+                  ? localized('Found {files} files (plus {locked} locked) from {users} users.', {
+                    files: formatRegionalNumber(fileCount, undefined, regionalLocale),
+                    locked: formatRegionalNumber(lockedFileCount, undefined, regionalLocale),
+                    users: formatRegionalNumber(responseCount, undefined, regionalLocale),
+                  })
+                  : localized('Found {files} files from {users} users.', {
+                    files: formatRegionalNumber(fileCount, undefined, regionalLocale),
+                    users: formatRegionalNumber(responseCount, undefined, regionalLocale),
+                  })
+                : localized('Loading results...')}
             </LoaderSegment>
           )
         }
@@ -827,41 +845,45 @@ const SearchDetail = ({
             raised
           >
             <Popup
-              content="Choose how search results are ordered. Smart Ranking balances quality and availability."
+              content={localized('Choose how search results are ordered. Smart Ranking balances quality and availability.')}
               trigger={(
                 <Dropdown
-                  aria-label="Sort search results"
+                  aria-label={t('Sort search results')}
+                  lang={languageFor('Sort search results')}
+                  dir={directionFor('Sort search results')}
                   button
                   className="search-options-sort icon"
                   floating
                   icon="sort"
                   labeled
                   onChange={(_event, { value }) => setResultSort(value)}
-                  options={sortDropdownOptions}
+                  options={sortDropdownOptions.map((option) => ({ ...option, text: localized(option.text) }))}
                   text={
-                    sortDropdownOptions.find((o) => o.value === resultSort).text
+                    localized(sortDropdownOptions.find((o) => o.value === resultSort).text)
                   }
                 />
               )}
             />
             <Popup
-              content="Choose how many matching results to render at once."
+              content={localized('Choose how many matching results to render at once.')}
               trigger={(
                 <Dropdown
-                  aria-label="Results per page"
+                  aria-label={t('Results per page')}
+                  lang={languageFor('Results per page')}
+                  dir={directionFor('Results per page')}
                   button
                   className="search-options-pagesize"
                   floating
                   onChange={(_event, { value }) => handlePageSizeChange(value)}
                   options={[
-                    { key: '10', text: '10 per page', value: 10 },
-                    { key: '25', text: '25 per page', value: 25 },
-                    { key: '50', text: '50 per page', value: 50 },
-                    { key: '100', text: '100 per page', value: 100 },
-                    { key: 'all', text: 'Show All', value: 999_999 },
+                    { key: '10', text: localized('{count} per page', { count: formatRegionalNumber(10, undefined, regionalLocale) }), value: 10 },
+                    { key: '25', text: localized('{count} per page', { count: formatRegionalNumber(25, undefined, regionalLocale) }), value: 25 },
+                    { key: '50', text: localized('{count} per page', { count: formatRegionalNumber(50, undefined, regionalLocale) }), value: 50 },
+                    { key: '100', text: localized('{count} per page', { count: formatRegionalNumber(100, undefined, regionalLocale) }), value: 100 },
+                    { key: 'all', text: localized('Show All'), value: 999_999 },
                   ]}
                   style={{ marginLeft: '0.5em' }}
-                  text={pageSize >= 999_999 ? 'Show All' : `${pageSize} per page`}
+                  text={pageSize >= 999_999 ? localized('Show All') : localized('{count} per page', { count: formatRegionalNumber(pageSize, undefined, regionalLocale) })}
                 />
               )}
             />
@@ -870,43 +892,41 @@ const SearchDetail = ({
               <Checkbox
                 checked={hideLocked}
                 className="search-options-hide-locked"
-                label="Hide Locked Results"
+                label={localized('Hide Locked Results')}
                 onChange={() => setHideLocked(!hideLocked)}
                 toggle
               />
               <Checkbox
                 checked={hideNoFreeSlots}
                 className="search-options-hide-no-slots"
-                label="Hide Results with No Free Slots"
+                label={localized('Hide Results with No Free Slots')}
                 onChange={() => setHideNoFreeSlots(!hideNoFreeSlots)}
                 toggle
               />
               <Checkbox
                 checked={hideBlockedUsers}
                 className="search-options-hide-blocked"
-                label={`Hide Blocked Users (${blockedUsers.length})`}
+                label={localized('Hide Blocked Users ({count})', { count: formatRegionalNumber(blockedUsers.length, undefined, regionalLocale) })}
                 onChange={() => setHideBlockedUsers(!hideBlockedUsers)}
                 toggle
               />
               <Checkbox
                 checked={foldResults}
                 className="search-options-fold-results"
-                label="Fold Results"
+                label={localized('Fold Results')}
                 onChange={() => setFoldResults(!foldResults)}
                 toggle
               />
               <Popup
-                content="Fold duplicate file candidates that appear from multiple providers or peers, keeping the highest-ranked visible result and showing the folded sources as metadata."
+              content={localized('Fold duplicate file candidates that appear from multiple providers or peers, keeping the highest-ranked visible result and showing the folded sources as metadata.')}
                 position="top center"
                 trigger={
                   <Checkbox
                     checked={foldDuplicateResults}
                     className="search-options-fold-duplicates"
-                    label={`Fold Duplicates${
-                      deduplicatedResults.foldedCount > 0
-                        ? ` (${deduplicatedResults.foldedCount})`
-                        : ''
-                    }`}
+                    label={deduplicatedResults.foldedCount > 0
+                      ? localized('Fold Duplicates ({count})', { count: formatRegionalNumber(deduplicatedResults.foldedCount, undefined, regionalLocale) })
+                      : localized('Fold Duplicates')}
                     onChange={handleFoldDuplicateResultsChange}
                     toggle
                   />
@@ -919,18 +939,20 @@ const SearchDetail = ({
             >
               <Icon name={search.wishlistItemId ? 'ban' : 'info circle'} />
               {search.wishlistItemId
-                ? 'Wishlist search: use “Ignore for Wishlist” below a result folder to hide that peer and folder from future runs of this wishlist item.'
-                : 'Folder ignores are available only for wishlist searches because each rule belongs to one wishlist item. Open a result from Wishlist history to use them.'}
+                ? localized('Wishlist search: use “Ignore for Wishlist” below a result folder to hide that peer and folder from future runs of this wishlist item.')
+                : localized('Folder ignores are available only for wishlist searches because each rule belongs to one wishlist item. Open a result from Wishlist history to use them.')}
             </div>
             <Input
               action={
                 <Button.Group>
                   {savedFilters.length > 0 && (
                     <Popup
-                      content="Load a saved browser-local filter into the current result list."
+                      content={localized('Load a saved browser-local filter into the current result list.')}
                       trigger={(
                         <Dropdown
-                          aria-label="Load saved filter"
+                          aria-label={interfaceText("Load saved filter")}
+                          lang={languageFor('Load saved filter')}
+                          dir={directionFor('Load saved filter')}
                           button
                           className="icon"
                           floating
@@ -941,75 +963,85 @@ const SearchDetail = ({
                             text: filter.name,
                             value: filter.name,
                           }))}
-                          title="Load saved filter"
+                          title={t('Load saved filter')}
                         />
                       )}
                     />
                   )}
                   {Boolean(resultFilters) && (
                     <Popup
-                      content="Remove the current filter text and show results without these conditions."
+                      content={localized('Remove the current filter text and show results without these conditions.')}
                       trigger={(
                         <Button
-                          aria-label="Clear current filter"
+                          aria-label={interfaceText("Clear current filter")}
+                          lang={languageFor('Clear current filter')}
+                          dir={directionFor('Clear current filter')}
                           color="red"
                           icon="x"
                           onClick={() => setResultFilters('')}
-                          title="Clear current filter"
+                          title={t('Clear current filter')}
                         />
                       )}
                     />
                   )}
                   {Boolean(resultFilters) && (
                     <Popup
-                      content="Save the current result filter under a name for reuse later."
+                      content={localized('Save the current result filter under a name for reuse later.')}
                       trigger={(
                         <Button
-                          aria-label="Save named filter"
+                          aria-label={interfaceText("Save named filter")}
+                          lang={languageFor('Save named filter')}
+                          dir={directionFor('Save named filter')}
                           color="teal"
                           icon="bookmark"
                           onClick={openSaveFilter}
-                          title="Save named filter"
+                          title={t('Save named filter')}
                         />
                       )}
                     />
                   )}
                   {savedFilters.some((filter) => filter.value === resultFilters) && (
                     <Popup
-                      content="Remove the saved filter that exactly matches the current filter text."
+                      content={localized('Remove the saved filter that exactly matches the current filter text.')}
                       trigger={(
                         <Button
-                          aria-label="Delete matching saved filter"
+                          aria-label={interfaceText("Delete matching saved filter")}
+                          lang={languageFor('Delete matching saved filter')}
+                          dir={directionFor('Delete matching saved filter')}
                           color="orange"
                           icon="minus circle"
                           onClick={deleteNamedFilter}
-                          title="Delete matching saved filter"
+                          title={t('Delete matching saved filter')}
                         />
                       )}
                     />
                   )}
                   <Popup
-                    content="Use the current filter automatically for future search-result lists in this browser."
+                    content={localized('Use the current filter automatically for future search-result lists in this browser.')}
                     trigger={(
                       <Button
-                        aria-label="Save as default filter"
+                        aria-label={interfaceText("Save as default filter")}
+                        lang={languageFor('Save as default filter')}
+                        dir={directionFor('Save as default filter')}
                         color="blue"
                         icon="save"
                         onClick={saveAsDefault}
-                        title="Save as default filter"
+                        title={t('Save as default filter')}
                       />
                     )}
                   />
                   {hasSavedDefault && (
                     <Popup
-                      content="Remove the saved default filter from this browser."
+                      content={localized('Remove the saved default filter from this browser.')}
                       trigger={(
                         <Button
-                          aria-label="Clear saved default filter"
+                          aria-label={interfaceText("Clear saved default filter")}
+                          lang={languageFor('Clear saved default filter')}
+                          dir={directionFor('Clear saved default filter')}
                           color="orange"
                           icon="trash"
                           onClick={clearSavedDefault}
-                          title="Clear saved default filter"
+                          title={t('Clear saved default filter')}
                         />
                       )}
                     />
@@ -1019,12 +1051,14 @@ const SearchDetail = ({
                     onChange={setResultFilters}
                     trigger={
                       <Popup
-                        content="Build result-filter conditions without memorizing the filter syntax."
+                        content={localized('Build result-filter conditions without memorizing the filter syntax.')}
                         trigger={(
                           <Button
-                            aria-label="Advanced Filters"
+                            aria-label={interfaceText("Advanced Filters")}
+                            lang={languageFor('Advanced Filters')}
+                            dir={directionFor('Advanced Filters')}
                             icon
-                            title="Advanced Filters"
+                            title={t('Advanced Filters')}
                           >
                             <Icon name="sliders horizontal" />
                           </Button>
@@ -1035,14 +1069,11 @@ const SearchDetail = ({
                 </Button.Group>
               }
               className="search-filter"
-              label={{ content: 'Filter', icon: 'filter' }}
+              label={{ content: localized('Filter'), icon: 'filter' }}
               onChange={(_event, data) => setResultFilters(data.value)}
-              placeholder="
-                lackluster container -bothersome iscbr|isvbr islossless|islossy 
-                minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000
-              "
+              placeholder={interfaceText("lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000")}
               value={resultFilters}
-            />
+             {...interfaceTextProps("lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000")}/>
           </Segment>
         )}
         {loaded && albumCandidates.length > 0 && (
@@ -1050,8 +1081,8 @@ const SearchDetail = ({
             className="search-album-picker-segment"
             raised
           >
-            <Header as="h4">
-              Album candidates
+            <Header as="h4" lang={languageFor('Album candidates')} dir={directionFor('Album candidates')}>
+              {t('Album candidates')}
               <Label
                 color="blue"
                 size="mini"
@@ -1071,11 +1102,13 @@ const SearchDetail = ({
                 >
                   <List.Content floated="right">
                     <Popup
-                      content="Save this visible album review as a browser-local rule preview for similar future searches. This does not alter download behavior or contact peers."
+              content={localized('Save this visible album review as a browser-local rule preview for similar future searches. This does not alter download behavior or contact peers.')}
                       position="top center"
                       trigger={
                         <Button
-                          aria-label={`Save album rule ${candidate.albumTitle}`}
+                          aria-label={t('Save album rule for {album}', { album: candidate.albumTitle })}
+                          lang={languageFor('Save album rule for {album}')}
+                          dir={directionFor('Save album rule for {album}')}
                           icon="bookmark outline"
                           onClick={() => saveAlbumCandidateRule(candidate)}
                           size="mini"
@@ -1083,11 +1116,13 @@ const SearchDetail = ({
                       }
                     />
                     <Popup
-                      content="Focus the current result filter on this album folder name without starting another search or download."
+                      content={localized('Focus the current result filter on this album folder name without starting another search or download.')}
                       position="top center"
                       trigger={
                         <Button
-                          aria-label={`Focus album candidate ${candidate.albumTitle}`}
+                          aria-label={t('Focus album candidate {album}', { album: candidate.albumTitle })}
+                          lang={languageFor('Focus album candidate {album}')}
+                          dir={directionFor('Focus album candidate {album}')}
                           icon="filter"
                           onClick={() => focusAlbumCandidate(candidate)}
                           size="mini"
@@ -1106,37 +1141,41 @@ const SearchDetail = ({
                       </Label>
                     </List.Header>
                     <List.Description>
-                      {candidate.trackCount}/{candidate.expectedTrackCount}{' '}
-                      visible tracks · {candidate.sourceCount} source
-                      {candidate.sourceCount === 1 ? '' : 's'} ·{' '}
-                      {Math.round(candidate.completenessRatio * 100)}%
+                        {t('{tracks} of {expected} visible tracks · {sources} sources · {percent}%', {
+                          tracks: formatRegionalNumber(candidate.trackCount, undefined, regionalLocale),
+                          expected: formatRegionalNumber(candidate.expectedTrackCount, undefined, regionalLocale),
+                          sources: formatRegionalNumber(candidate.sourceCount, undefined, regionalLocale),
+                          percent: formatRegionalNumber(Math.round(candidate.completenessRatio * 100), undefined, regionalLocale),
+                        })}
                     </List.Description>
                     <div className="search-album-candidate-review">
                       <span>
-                        Formats:{' '}
+                        {localized('Formats:')}{' '}
                         {candidate.formatMix
                           .map((item) => `${item.format} ${item.count}`)
                           .join(', ')}
                       </span>
                       {candidate.missingTrackNumbers.length > 0 && (
                         <span>
-                          Missing:{' '}
+                          {localized('Missing:')}{' '}
                           {candidate.missingTrackNumbers.slice(0, 8).join(', ')}
                         </span>
                       )}
                       {candidate.durationVarianceSeconds > 0 && (
                         <span>
-                          Duration spread:{' '}
-                          {Math.round(candidate.durationVarianceSeconds / 60)}m
+                          {t('Duration spread: {minutes} min', { minutes: formatRegionalNumber(Math.round(candidate.durationVarianceSeconds / 60), undefined, regionalLocale) })}
                         </span>
                       )}
                       {candidate.substitutionOptions.length > 0 && (
                         <span>
-                          Substitutions:{' '}
+                          {localized('Substitutions:')}{' '}
                           {candidate.substitutionOptions
                             .map(
                               (option) =>
-                                `track ${option.trackNumber} (${option.optionCount})`,
+                                t('track {number} ({count} options)', {
+                                  number: formatRegionalNumber(option.trackNumber, undefined, regionalLocale),
+                                  count: formatRegionalNumber(option.optionCount, undefined, regionalLocale),
+                                }),
                             )
                             .join(', ')}
                         </span>
@@ -1146,7 +1185,10 @@ const SearchDetail = ({
                       <div className="search-album-candidate-substitutions">
                         {candidate.substitutionOptions.slice(0, 4).map((option) => (
                           <Popup
-                            content={`Manual review options from ${option.sources.join(', ')} in ${option.formats.join(', ')}. This only describes visible alternatives; it does not select or download them.`}
+              content={localized('Manual review options from {sources} in {formats}. This only describes visible alternatives; it does not select or download them.', {
+                sources: option.sources.join(', '),
+                formats: option.formats.join(', '),
+              })}
                             key={option.trackNumber}
                             position="top center"
                             trigger={
@@ -1155,9 +1197,8 @@ const SearchDetail = ({
                                 size="tiny"
                               >
                                 <Icon name="exchange" />
-                                Track {option.trackNumber}: {option.optionCount}{' '}
-                                options
-                              </Label>
+                                <LocalizedText source={"Track"} />{" "}{option.trackNumber}: {option.optionCount}{' '}
+                                <LocalizedText source={"options"} /></Label>
                             }
                           />
                         ))}
@@ -1174,7 +1215,7 @@ const SearchDetail = ({
                       ))}
                       {asArray(candidate.warnings).map((warning) => (
                         <Popup
-                          content="This is a local confidence warning from visible search result metadata only; it does not reject the candidate or contact peers."
+                          content={localized('This is a local confidence warning from visible search result metadata only; it does not reject the candidate or contact peers.')}
                           key={warning}
                           position="top center"
                           trigger={
@@ -1229,12 +1270,15 @@ const SearchDetail = ({
             />
           ))}
         <Confirm
-          cancelButton="Keep Result"
-          confirmButton="Ignore Folder"
+          cancelButton={localized('Keep Result')}
+          confirmButton={localized('Ignore Folder')}
           content={ignoreRequest
-            ? `Hide “${ignoreRequest.directory}” from ${ignoreRequest.username} in every future run of this wishlist item? Other results from this user will remain visible.`
+            ? localized('Hide “{directory}” from {username} in every future run of this wishlist item? Other results from this user will remain visible.', {
+              directory: ignoreRequest.directory,
+              username: ignoreRequest.username,
+            })
             : ''}
-          header="Ignore Wishlist Folder"
+          header={localized('Ignore Wishlist Folder')}
           onCancel={() => setIgnoreRequest(null)}
           onConfirm={handleIgnoreWishlistDirectory}
           open={Boolean(ignoreRequest)}
@@ -1243,7 +1287,7 @@ const SearchDetail = ({
         {loaded &&
           (remainingCount > 0 ? (
             <Popup
-              content="Add the next batch of matching results to the current list."
+              content={localized('Add the next batch of matching results to the current list.')}
               trigger={(
                 <Button
                   className="showmore-button"
@@ -1252,16 +1296,22 @@ const SearchDetail = ({
                   primary
                   size="large"
                 >
-                  Show {remainingCount > pageSize ? pageSize : remainingCount} More
-                  Results{' '}
-                  {`(${remainingCount} remaining, ${filteredCount} hidden by filter(s))`}
+                  {localized('Show {count} More Results', {
+                    count: formatRegionalNumber(remainingCount > pageSize ? pageSize : remainingCount, undefined, regionalLocale),
+                  })}{' '}
+                  {localized('{remaining} remaining, {hidden} hidden by filters', {
+                    remaining: formatRegionalNumber(remainingCount, undefined, regionalLocale),
+                    hidden: formatRegionalNumber(filteredCount, undefined, regionalLocale),
+                  })}
                 </Button>
               )}
             >
             </Popup>
           ) : filteredCount > 0 ? (
             <div className="showmore-button" role="status">
-              {`All results shown. ${filteredCount} results hidden by filter(s)`}
+              {localized('All results shown. {count} results hidden by filters', {
+                count: formatRegionalNumber(filteredCount, undefined, regionalLocale),
+              })}
             </div>
           ) : (
             ''
@@ -1274,17 +1324,19 @@ const SearchDetail = ({
         open={saveFilterOpen}
         size="small"
       >
-        <Modal.Header>Save Search Filter</Modal.Header>
+        <Modal.Header lang={languageFor('Save Search Filter')} dir={directionFor('Save Search Filter')}>{t('Save Search Filter')}</Modal.Header>
         <Modal.Content>
-          <p>Save the current result filter in this browser for later searches.</p>
+          <p lang={languageFor('Save the current result filter in this browser for later searches.')} dir={directionFor('Save the current result filter in this browser for later searches.')}>{t('Save the current result filter in this browser for later searches.')}</p>
           <Form>
             <Form.Field>
-              <label htmlFor="saved-search-filter-name">Filter name</label>
+              <label htmlFor="saved-search-filter-name" lang={languageFor('Filter name')} dir={directionFor('Filter name')}>{t('Filter name')}</label>
               <input
                 autoFocus
                 id="saved-search-filter-name"
                 onChange={(event) => setSaveFilterName(event.target.value)}
-                placeholder="Filter name"
+                placeholder={t('Filter name')}
+                lang={languageFor('Filter name')}
+                dir={directionFor('Filter name')}
                 value={saveFilterName}
               />
             </Form.Field>
@@ -1295,22 +1347,22 @@ const SearchDetail = ({
         </Modal.Content>
         <Modal.Actions>
           <Popup
-            content="Close this dialog without saving the current result filter."
+            content={localized('Close this dialog without saving the current result filter.')}
             trigger={(
               <Button onClick={() => setSaveFilterOpen(false)}>
-                Cancel
+                {localized('Cancel')}
               </Button>
             )}
           />
           <Popup
-            content="Save this filter under the name above in this browser."
+            content={localized('Save this filter under the name above in this browser.')}
             trigger={(
               <Button
                 disabled={!saveFilterName.trim() || !resultFilters.trim()}
                 onClick={saveNamedFilter}
                 primary
               >
-                Save Filter
+                {localized('Save Filter')}
               </Button>
             )}
           />

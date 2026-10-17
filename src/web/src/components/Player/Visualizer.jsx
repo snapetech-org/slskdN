@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Icon, Popup } from 'semantic-ui-react';
 import {
@@ -30,7 +32,7 @@ const nativeEditableParameters = [
   {
     defaultValue: 0.9,
     key: 'decay',
-    label: 'Decay',
+    get label() { return interfaceText("Decay"); },
     max: 1,
     min: 0.5,
     step: 0.01,
@@ -38,7 +40,7 @@ const nativeEditableParameters = [
   {
     defaultValue: 1,
     key: 'zoom',
-    label: 'Zoom',
+    get label() { return interfaceText("Zoom"); },
     max: 1.5,
     min: 0.5,
     step: 0.01,
@@ -46,7 +48,7 @@ const nativeEditableParameters = [
   {
     defaultValue: 0,
     key: 'rot',
-    label: 'Rotation',
+    get label() { return interfaceText("Rotation"); },
     max: 0.5,
     min: -0.5,
     step: 0.01,
@@ -54,7 +56,7 @@ const nativeEditableParameters = [
   {
     defaultValue: 0.7,
     key: 'wave_r',
-    label: 'Wave red',
+    get label() { return interfaceText("Wave red"); },
     max: 1,
     min: 0,
     step: 0.01,
@@ -62,7 +64,7 @@ const nativeEditableParameters = [
   {
     defaultValue: 0.7,
     key: 'wave_g',
-    label: 'Wave green',
+    get label() { return interfaceText("Wave green"); },
     max: 1,
     min: 0,
     step: 0.01,
@@ -70,7 +72,7 @@ const nativeEditableParameters = [
   {
     defaultValue: 0.7,
     key: 'wave_b',
-    label: 'Wave blue',
+    get label() { return interfaceText("Wave blue"); },
     max: 1,
     min: 0,
     step: 0.01,
@@ -78,7 +80,7 @@ const nativeEditableParameters = [
   {
     defaultValue: 1,
     key: 'wave_a',
-    label: 'Wave alpha',
+    get label() { return interfaceText("Wave alpha"); },
     max: 1,
     min: 0,
     step: 0.01,
@@ -125,9 +127,9 @@ const getNextNativeAutomationMode = (mode) => {
 };
 
 const getNativeAutomationLabel = (mode) => {
-  if (mode === 'beat') return 'Beat';
-  if (mode === 'timed') return 'Timed';
-  return 'Off';
+  if (mode === 'beat') return interfaceText('Beat');
+  if (mode === 'timed') return interfaceText('Timed');
+  return interfaceText('Off');
 };
 
 const defaultNativeAutomationSettings = {
@@ -186,15 +188,15 @@ const getNativeFpsCapMs = (fpsCap) => {
 const nativeQualityPresets = {
   balanced: {
     fpsCap: '60',
-    label: 'Balanced',
+    get label() { return interfaceText("Balanced"); },
   },
   efficient: {
     fpsCap: '30',
-    label: 'Efficient',
+    get label() { return interfaceText("Efficient"); },
   },
   full: {
     fpsCap: 'full',
-    label: 'Full',
+    get label() { return interfaceText("Full"); },
   },
 };
 
@@ -205,23 +207,47 @@ const readStoredNativeQuality = () => {
     : 'balanced';
 };
 
+const nativeWebGpuReasonSources = new Set([
+  'navigator.gpu unavailable',
+  'WebGPU adapter request failed',
+  'WebGPU adapter unavailable',
+  'WebGPU device request failed',
+  'WebGPU unavailable',
+  'WebGPU renderer failed',
+]);
+
 const getNativeWebGpuDebugLabel = (status = {}) => {
   if (!status.available) {
-    return status.reason ? `WebGL2 baseline (${status.reason})` : 'WebGL2 baseline';
+    const reason = nativeWebGpuReasonSources.has(status.reason)
+      ? interfaceText(status.reason)
+      : status.reason;
+    return reason
+      ? interfaceText('WebGL2 baseline ({reason})', { reason })
+      : interfaceText('WebGL2 baseline');
   }
   const adapterLabel = [
     status.adapterInfo?.vendor,
     status.adapterInfo?.architecture,
     status.adapterInfo?.device,
   ].filter(Boolean).join(' ');
-  return adapterLabel ? `WebGPU ${adapterLabel}` : 'WebGPU adapter ready';
+  return adapterLabel
+    ? interfaceText('WebGPU {adapter}', { adapter: adapterLabel })
+    : interfaceText('WebGPU adapter ready');
 };
 
 const getVisualizerErrorMessage = (engineType, error) => {
-  const detail = error?.message ? ` ${error.message}` : '';
+  const message = error?.message || '';
+  const localizedWebGpuErrorSources = new Set([
+    'WebGPU is unavailable for the native MilkDrop renderer.',
+    'WebGPU adapter is unavailable for the native MilkDrop renderer.',
+    'WebGPU canvas context is unavailable for the native MilkDrop renderer.',
+  ]);
+  const detail = localizedWebGpuErrorSources.has(message)
+    ? ` ${interfaceText(message)}`
+    : '';
   return isNativeEngine(engineType)
-    ? `Native MilkDrop render failed.${detail}`
-    : 'MilkDrop failed. Showing analyzer fallback.';
+    ? `${interfaceText('Native MilkDrop render failed.')}${detail}`
+    : interfaceText('MilkDrop failed. Showing analyzer fallback.');
 };
 
 const readStoredNativePreset = () => {
@@ -388,13 +414,13 @@ const getNativeTextureAssetSkip = (file) => {
   if (!isNativeTextureAssetCandidateFile(file)) {
     return {
       fileName: file.name,
-      message: 'Unsupported file type.',
+      message: interfaceText("Unsupported file type."),
     };
   }
   if (file.size > nativeTextureAssetMaxBytes) {
     return {
       fileName: file.name,
-      message: 'Texture asset is larger than 1 MB.',
+      message: interfaceText("Texture asset is larger than 1 MB."),
     };
   }
   return null;
@@ -442,11 +468,11 @@ const selectNativePresetTextureAssets = (source, textureAssets) => {
 
 const readFileAsDataUrl = (file) => new Promise((resolve, reject) => {
   if (typeof FileReader !== 'function') {
-    reject(new Error('Texture asset imports require FileReader support.'));
+    reject(new Error(interfaceText('Texture asset imports require FileReader support.')));
     return;
   }
   const reader = new FileReader();
-  reader.onerror = () => reject(reader.error || new Error(`Failed to read ${file.name}.`));
+  reader.onerror = () => reject(reader.error || new Error(interfaceText('Failed to read {fileName}.', { fileName: file.name })));
   reader.onload = () => resolve(reader.result);
   reader.readAsDataURL(file);
 });
@@ -467,7 +493,7 @@ const readNativeTextureAssets = async (files) => {
     } catch (textureError) {
       skippedTextureAssets.push({
         fileName: file.name,
-        message: textureError?.message || 'Texture asset could not be read.',
+        message: textureError?.message || interfaceText('Texture asset could not be read.'),
       });
       continue;
     }
@@ -496,23 +522,40 @@ const downloadTextFile = (fileName, source) => {
 
 const formatSkippedFileNames = (skipped) => {
   const skippedNames = skipped.slice(0, 3).map((entry) => entry.fileName).join(', ');
-  const remaining = skipped.length > 3 ? `, +${skipped.length - 3} more` : '';
-  return `${skippedNames}${remaining}`;
+  return skipped.length > 3
+    ? interfaceText('{fileNames}, +{count} more', {
+      count: skipped.length - 3,
+      fileNames: skippedNames,
+    })
+    : skippedNames;
 };
 
 const getNativePresetImportMessage = ({ importedCount, skipped, skippedTextureAssets }) => {
   const messages = [];
   if (skipped.length > 0) {
-    const prefix = importedCount > 0
-      ? `Imported ${importedCount}; skipped ${skipped.length}`
-      : `Native preset import failed for ${skipped.length}`;
-    messages.push(`${prefix}: ${formatSkippedFileNames(skipped)}.`);
+    const fileNames = formatSkippedFileNames(skipped);
+    messages.push(importedCount > 0
+      ? interfaceText('Imported {importedCount}; skipped {skippedCount}: {fileNames}.', {
+        fileNames,
+        importedCount,
+        skippedCount: skipped.length,
+      })
+      : interfaceText('Native preset import failed for {count}: {fileNames}.', {
+        count: skipped.length,
+        fileNames,
+      }));
   }
   if (skippedTextureAssets.length > 0) {
-    const noun = skippedTextureAssets.length === 1 ? 'texture asset' : 'texture assets';
-    messages.push(
-      `Skipped ${skippedTextureAssets.length} ${noun}: ${formatSkippedFileNames(skippedTextureAssets)}.`,
-    );
+    const fileNames = formatSkippedFileNames(skippedTextureAssets);
+    messages.push(skippedTextureAssets.length === 1
+      ? interfaceText('Skipped {count} texture asset: {fileNames}.', {
+        count: skippedTextureAssets.length,
+        fileNames,
+      })
+      : interfaceText('Skipped {count} texture assets: {fileNames}.', {
+        count: skippedTextureAssets.length,
+        fileNames,
+      }));
   }
   return messages.length > 0 ? messages.join(' ') : null;
 };
@@ -534,6 +577,7 @@ const Visualizer = ({
   onEngineChange,
   onModeChange,
 }) => {
+  useInterfaceLanguage();
   const prefersReducedMotion = usePrefersReducedMotion();
   const [allowReducedMotionAnimation, setAllowReducedMotionAnimation] = useState(false);
   const motionSuppressed = prefersReducedMotion && !allowReducedMotionAnimation;
@@ -853,7 +897,7 @@ const Visualizer = ({
     } catch (presetError) {
       // eslint-disable-next-line no-console
       console.error('Failed to load native MilkDrop preset from library', presetError);
-      setError(presetError?.message || 'Native preset load failed.');
+      setError(presetError?.message || interfaceText('Native preset load failed.'));
       return false;
     }
   }, [activeNativePresetId, refreshNativeFragmentSummary, sizeCanvas]);
@@ -1041,13 +1085,13 @@ const Visualizer = ({
           graph = await resumeAudioGraph(audioElement);
         }
         if (!graph) {
-          setError('Web Audio is not available in this browser.');
+          setError(interfaceText("Web Audio is not available in this browser."));
           setFallbackMode(true);
           return;
         }
 
         if (activeEngineType === 'native-webgl2' && !supportsWebGl2()) {
-          setError('Native MilkDrop WebGL2 needs WebGL2. Showing analyzer fallback.');
+          setError(interfaceText("Native MilkDrop WebGL2 needs WebGL2. Showing analyzer fallback."));
           setFallbackMode(true);
           return;
         }
@@ -1264,7 +1308,7 @@ const Visualizer = ({
         console.error('Failed to import native MilkDrop preset', presetError);
         skipped.push({
           fileName: file.name,
-          message: presetError?.message || 'Unsupported syntax or shader features may be present.',
+          message: presetError?.message || interfaceText('Unsupported syntax or shader features may be present.'),
         });
       }
     }
@@ -1300,7 +1344,7 @@ const Visualizer = ({
       if (!engineRef.current?.loadPresetFragmentText) {
         skipped.push({
           fileName: file.name,
-          message: 'Native fragment import is not available.',
+          message: interfaceText("Native fragment import is not available."),
         });
         continue;
       }
@@ -1345,7 +1389,7 @@ const Visualizer = ({
         console.error('Failed to import native MilkDrop fragment', presetError);
         skipped.push({
           fileName: file.name,
-          message: presetError?.message || 'Unsupported fragment syntax may be present.',
+          message: presetError?.message || interfaceText('Unsupported fragment syntax may be present.'),
         });
       }
     }
@@ -1366,7 +1410,7 @@ const Visualizer = ({
       const selectedIndex = type === 'wave' ? selectedNativeWaveIndex : selectedNativeShapeIndex;
       const exported = engineRef.current.exportPresetFragment(type, selectedIndex);
       if (!exported) {
-        setError(`No ${type} fragment is available in the active native preset.`);
+        setError(interfaceText("No {type} fragment is available in the active native preset.", { "type": (type) }));
         return;
       }
       downloadTextFile(exported.fileName, exported.source);
@@ -1374,7 +1418,7 @@ const Visualizer = ({
     } catch (exportError) {
       // eslint-disable-next-line no-console
       console.error('Failed to export native MilkDrop fragment', exportError);
-      setError(exportError?.message || 'Native fragment export failed.');
+      setError(exportError?.message || interfaceText('Native fragment export failed.'));
     }
   }, [selectedNativeShapeIndex, selectedNativeWaveIndex]);
 
@@ -1383,7 +1427,7 @@ const Visualizer = ({
     try {
       const exported = engineRef.current.exportPresetText();
       if (!exported) {
-        setError('No native preset is available to export.');
+        setError(interfaceText("No native preset is available to export."));
         return;
       }
       downloadTextFile(exported.fileName, exported.source);
@@ -1391,7 +1435,7 @@ const Visualizer = ({
     } catch (exportError) {
       // eslint-disable-next-line no-console
       console.error('Failed to export native MilkDrop preset', exportError);
-      setError(exportError?.message || 'Native preset export failed.');
+      setError(exportError?.message || interfaceText('Native preset export failed.'));
     }
   }, []);
 
@@ -1407,7 +1451,7 @@ const Visualizer = ({
         result = await result;
       }
       if (!result) {
-        setError(`No ${type} fragment is available in the active native preset.`);
+        setError(interfaceText("No {type} fragment is available in the active native preset.", { "type": (type) }));
         return;
       }
       const editedPreset = {
@@ -1431,7 +1475,7 @@ const Visualizer = ({
     } catch (removeError) {
       // eslint-disable-next-line no-console
       console.error('Failed to remove native MilkDrop fragment', removeError);
-      setError(removeError?.message || 'Native fragment removal failed.');
+      setError(removeError?.message || interfaceText('Native fragment removal failed.'));
     }
   }, [
     refreshNativeFragmentSummary,
@@ -1455,7 +1499,7 @@ const Visualizer = ({
         result = await result;
       }
       if (!result) {
-        setError('Native parameter editing is not available for this value.');
+        setError(interfaceText("Native parameter editing is not available for this value."));
         return;
       }
       const editedPreset = {
@@ -1480,7 +1524,7 @@ const Visualizer = ({
     } catch (editError) {
       // eslint-disable-next-line no-console
       console.error('Failed to edit native MilkDrop parameter', editError);
-      setError(editError?.message || 'Native parameter edit failed.');
+      setError(editError?.message || interfaceText('Native parameter edit failed.'));
     }
   }, [nativeParameterValue, selectedNativeParameter, sizeCanvas]);
 
@@ -1495,7 +1539,7 @@ const Visualizer = ({
         result = await result;
       }
       if (!result) {
-        setError('Native parameter randomization is not available for this preset.');
+        setError(interfaceText("Native parameter randomization is not available for this preset."));
         return;
       }
       const editedPreset = {
@@ -1521,7 +1565,7 @@ const Visualizer = ({
     } catch (randomizeError) {
       // eslint-disable-next-line no-console
       console.error('Failed to randomize native MilkDrop preset', randomizeError);
-      setError(randomizeError?.message || 'Native parameter randomization failed.');
+      setError(randomizeError?.message || interfaceText('Native parameter randomization failed.'));
     }
   }, [refreshNativeFragmentSummary, sizeCanvas]);
 
@@ -1641,21 +1685,20 @@ const Visualizer = ({
       <div className="player-visualizer-overlay">
         {motionSuppressed ? (
           <div className="player-visualizer-motion-status" data-testid="visualizer-motion-status">
-            <span role="status">Animation is paused because reduced motion is enabled.</span>
+            <span role="status"><LocalizedText source={"Animation is paused because reduced motion is enabled."} /></span>
             <Popup
-              content="Run the visualizer until it is hidden, even though reduced motion is enabled."
+              content={interfaceText("Run the visualizer until it is hidden, even though reduced motion is enabled.")}
               trigger={
                 <Button
-                  aria-label="Animate anyway"
+                  aria-label={interfaceText("Animate anyway")}
                   data-testid="visualizer-motion-override"
                   onClick={() => setAllowReducedMotionAnimation(true)}
                   size="mini"
                   type="button"
-                >
-                  Animate anyway
-                </Button>
+                 {...interfaceTextProps("Animate anyway")}>
+                  <LocalizedText source={"Animate anyway"} /></Button>
               }
-            />
+             {...interfaceTextProps("Run the visualizer until it is hidden, even though reduced motion is enabled.")}/>
           </div>
         ) : null}
         {mode !== 'inline' && (engineName || presetName) ? (
@@ -1670,32 +1713,37 @@ const Visualizer = ({
               {nativeDebugSnapshot.format}
               {' · '}
               {nativeDebugSnapshot.presetCount}
-              {' preset'}
-              {nativeDebugSnapshot.presetCount === 1 ? '' : 's'}
+              {' '}
+              <LocalizedText source={nativeDebugSnapshot.presetCount === 1 ? "preset" : "presets"} />
             </div>
             <div>
-              {nativeDebugSnapshot.shapes}
-              {' shapes · '}
-              {nativeDebugSnapshot.waves}
-              {' waves · '}
-              {nativeDebugSnapshot.sprites}
-              {' sprites'}
+              <LocalizedText
+                source="{shapes} shapes · {waves} waves · {sprites} sprites"
+                values={{
+                  shapes: nativeDebugSnapshot.shapes,
+                  waves: nativeDebugSnapshot.waves,
+                  sprites: nativeDebugSnapshot.sprites,
+                }}
+              />
             </div>
             <div>
-              {nativeDebugSnapshot.shaderSections.warp ? 'warp' : 'no warp'}
+              {nativeDebugSnapshot.shaderSections.warp ? <LocalizedText source={"warp"} /> : <LocalizedText source={"no warp"} />}
               {' / '}
-              {nativeDebugSnapshot.shaderSections.comp ? 'comp' : 'no comp'}
+              {nativeDebugSnapshot.shaderSections.comp ? <LocalizedText source={"comp"} /> : <LocalizedText source={"no comp"} />}
             </div>
             <div>
-              {nativeFpsCap === 'full' ? 'uncapped' : `${nativeFpsCap} fps`}
+              {nativeFpsCap === 'full' ? <LocalizedText source={"uncapped"} /> : <LocalizedText source={"{nativeFpsCap} fps"} values={{ "nativeFpsCap": (nativeFpsCap) }} />}
               {' · '}
               {nativeFrameMs.toFixed(1)}
-              {' ms'}
+              {<LocalizedText source={"ms"} />}
             </div>
             <div>
               {nativeQualityPreset === 'custom'
-                ? 'custom quality'
-                : `${nativeQualityPresets[nativeQualityPreset]?.label || 'Balanced'} quality`}
+                ? <LocalizedText source={"custom quality"} />
+                : <LocalizedText
+                  source="{quality} quality"
+                  values={{ quality: nativeQualityPresets[nativeQualityPreset]?.label || interfaceText('Balanced') }}
+                />}
               {' · '}
               {getNativeWebGpuDebugLabel(nativeDebugSnapshot.webGpu)}
             </div>
@@ -1724,10 +1772,14 @@ const Visualizer = ({
             webkitdirectory=""
           />
           <Popup
-            content={`Cycle visualizer engine to ${getEngineLabel(getNextEngine(activeEngineType))}.`}
+            content={interfaceText('Cycle visualizer engine to {engine}.', {
+              engine: getEngineLabel(getNextEngine(activeEngineType)),
+            })}
             trigger={
               <Button
-                aria-label={`Cycle visualizer engine to ${getEngineLabel(getNextEngine(activeEngineType))}`}
+                aria-label={interfaceText('Cycle visualizer engine to {engine}', {
+                  engine: getEngineLabel(getNextEngine(activeEngineType)),
+                })}
                 data-testid="visualizer-switch-engine"
                 icon
                 onClick={cycleEngineType}
@@ -1741,49 +1793,49 @@ const Visualizer = ({
             <>
               {nativePresetLibrary.length > 0 ? (
                 <Popup
-                  content="Filter imported native presets by title or file name. The current filter also scopes next and random preset jumps."
+                  content={interfaceText("Filter imported native presets by title or file name. The current filter also scopes next and random preset jumps.")}
                   trigger={
                     <input
-                      aria-label="Search native MilkDrop presets"
+                      aria-label={interfaceText("Search native MilkDrop presets")}
                       className="player-visualizer-native-search"
                       data-testid="visualizer-native-preset-search"
                       onChange={updateNativePresetSearch}
-                      placeholder="Search presets"
+                      placeholder={interfaceText("Search presets")}
                       type="search"
                       value={nativePresetSearch}
-                    />
+                     {...interfaceTextProps("Search native MilkDrop presets")}/>
                   }
-                />
+                 {...interfaceTextProps("Filter imported native presets by title or file name. The current filter also scopes next and random preset jumps.")}/>
               ) : null}
               {nativePresetLibrary.length > 0 ? (
                 <Popup
-                  content="Clear the native preset search filter."
+                  content={interfaceText("Clear the native preset search filter.")}
                   trigger={
                     <Button
-                      aria-label="Clear native preset search"
+                      aria-label={interfaceText("Clear native preset search")}
                       data-testid="visualizer-clear-native-preset-search"
                       disabled={!hasNativePresetSearch}
                       icon
                       onClick={clearNativePresetSearch}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Clear native preset search")}>
                       <Icon name="remove" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Clear the native preset search filter.")}/>
               ) : null}
               {nativePresetPlaylists.length > 0 ? (
                 <Popup
-                  content="Use a saved native playlist as the active preset bank."
+                  content={interfaceText("Use a saved native playlist as the active preset bank.")}
                   trigger={
                     <select
-                      aria-label="Native MilkDrop playlist"
+                      aria-label={interfaceText("Native MilkDrop playlist")}
                       className="player-visualizer-native-library"
                       data-testid="visualizer-native-playlist"
                       onChange={selectNativePlaylist}
                       value={activeNativePlaylistId}
-                    >
-                      <option value="">All imported</option>
+                     {...interfaceTextProps("Native MilkDrop playlist")}>
+                      <option value=""><LocalizedText source={"All imported"} /></option>
                       {nativePresetPlaylists.map((playlist) => (
                         <option key={playlist.id} value={playlist.id}>
                           {playlist.name}
@@ -1791,96 +1843,98 @@ const Visualizer = ({
                       ))}
                     </select>
                   }
-                />
+                 {...interfaceTextProps("Use a saved native playlist as the active preset bank.")}/>
               ) : null}
               {nativePresetLibrary.length > 0 ? (
                 <Popup
-                  content="Save the current visible native preset bank as a browser-local playlist."
+                  content={interfaceText("Save the current visible native preset bank as a browser-local playlist.")}
                   trigger={
                     <Button
-                      aria-label="Save visible native presets as playlist"
+                      aria-label={interfaceText("Save visible native presets as playlist")}
                       data-testid="visualizer-save-native-playlist"
                       disabled={!canSaveNativePlaylist}
                       icon
                       onClick={saveNativePlaylistFromVisibleBank}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Save visible native presets as playlist")}>
                       <Icon name="save outline" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Save the current visible native preset bank as a browser-local playlist.")}/>
               ) : null}
               {activeNativePlaylistId ? (
                 <Popup
-                  content="Rename the active native playlist in this browser."
+                  content={interfaceText("Rename the active native playlist in this browser.")}
                   trigger={
                     <Button
-                      aria-label="Rename active native playlist"
+                      aria-label={interfaceText("Rename active native playlist")}
                       data-testid="visualizer-rename-native-playlist"
                       icon
                       onClick={renameActiveNativePlaylist}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Rename active native playlist")}>
                       <Icon name="edit outline" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Rename the active native playlist in this browser.")}/>
               ) : null}
               {activeNativePlaylistId ? (
                 <Popup
-                  content="Return to the full imported native preset bank without deleting this playlist."
+                  content={interfaceText("Return to the full imported native preset bank without deleting this playlist.")}
                   trigger={
                     <Button
-                      aria-label="Clear active native playlist"
+                      aria-label={interfaceText("Clear active native playlist")}
                       data-testid="visualizer-clear-active-native-playlist"
                       icon
                       onClick={clearActiveNativePlaylist}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Clear active native playlist")}>
                       <Icon name="list" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Return to the full imported native preset bank without deleting this playlist.")}/>
               ) : null}
               {activeNativePlaylistId ? (
                 <Popup
-                  content="Delete the active native playlist from this browser."
+                  content={interfaceText("Delete the active native playlist from this browser.")}
                   trigger={
                     <Button
-                      aria-label="Delete active native playlist"
+                      aria-label={interfaceText("Delete active native playlist")}
                       data-testid="visualizer-remove-native-playlist"
                       icon
                       onClick={removeActiveNativePlaylist}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Delete active native playlist")}>
                       <Icon name="times circle outline" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Delete the active native playlist from this browser.")}/>
               ) : null}
               {nativePresetLibrary.length > 0 ? (
                 <Popup
                   content={
                     nativeLibraryMode === 'favorites'
-                      ? 'Reload a favorite native preset from this browser.'
-                      : 'Reload a previously imported native preset from this browser.'
+                      ? interfaceText('Reload a favorite native preset from this browser.')
+                      : interfaceText('Reload a previously imported native preset from this browser.')
                   }
                   trigger={
                     <select
-                      aria-label="Native MilkDrop preset library"
+                      aria-label={interfaceText("Native MilkDrop preset library")}
                       className="player-visualizer-native-library"
                       data-testid="visualizer-native-preset-library"
                       onChange={loadNativeLibraryPreset}
                       value={selectedNativePresetValue}
-                    >
+                     {...interfaceTextProps("Native MilkDrop preset library")}>
                       <option value="">
-                        {visibleNativePresetLibrary.length === 0 ? 'No matches' : (
-                          nativeLibraryMode === 'favorites' ? 'Favorites' : 'Presets'
+                        {visibleNativePresetLibrary.length === 0 ? <LocalizedText source={"No matches"} /> : (
+                          nativeLibraryMode === 'favorites'
+                            ? <LocalizedText source={"Favorites"} />
+                            : <LocalizedText source={"Presets"} />
                         )}
                       </option>
                       {visibleNativePresetLibrary.map((preset) => (
                         <option key={preset.id} value={preset.id}>
-                          {nativeFavoritePresetIds.includes(preset.id) ? '(favorite) ' : ''}
+                          {nativeFavoritePresetIds.includes(preset.id) ? <><LocalizedText source={"(favorite)"} />{' '}</> : ''}
                           {preset.title || preset.fileName}
                         </option>
                       ))}
@@ -1889,19 +1943,15 @@ const Visualizer = ({
                 />
               ) : null}
               {nativePresetLibrary.length > 0 ? (
-                <Popup
-                  content={
-                    activeNativePresetIsFavorite
-                      ? 'Remove the active native preset from favorites.'
-                      : 'Mark the active native preset as a favorite.'
-                  }
+              <Popup
+                content={interfaceText(activeNativePresetIsFavorite
+                  ? 'Remove the active native preset from favorites.'
+                  : 'Mark the active native preset as a favorite.')}
                   trigger={
                     <Button
-                      aria-label={
-                        activeNativePresetIsFavorite
-                          ? 'Unfavorite active native preset'
-                          : 'Favorite active native preset'
-                      }
+                      aria-label={interfaceText(activeNativePresetIsFavorite
+                        ? 'Unfavorite active native preset'
+                        : 'Favorite active native preset')}
                       active={activeNativePresetIsFavorite}
                       data-testid="visualizer-toggle-native-favorite"
                       disabled={!activeNativePresetId}
@@ -1918,15 +1968,15 @@ const Visualizer = ({
                 <Popup
                   content={
                     nativeLibraryMode === 'favorites'
-                      ? 'Show all imported native presets.'
-                      : 'Show only favorite native presets.'
+                      ? interfaceText('Show all imported native presets.')
+                      : interfaceText('Show only favorite native presets.')
                   }
                   trigger={
                     <Button
                       aria-label={
                         nativeLibraryMode === 'favorites'
-                          ? 'Show all native presets'
-                          : 'Show favorite native presets'
+                          ? interfaceText('Show all native presets')
+                          : interfaceText('Show favorite native presets')
                       }
                       active={nativeLibraryMode === 'favorites'}
                       data-testid="visualizer-toggle-native-favorites-only"
@@ -1942,109 +1992,109 @@ const Visualizer = ({
               ) : null}
               {nativePresetLibrary.length > 1 ? (
                 <Popup
-                  content="Return to the previous native preset, or move backward in the local preset library."
+                  content={interfaceText("Return to the previous native preset, or move backward in the local preset library.")}
                   trigger={
                     <Button
-                      aria-label="Previous native preset"
+                      aria-label={interfaceText("Previous native preset")}
                       data-testid="visualizer-previous-native-preset"
                       disabled={visibleNativePresetLibrary.length === 0}
                       icon
                       onClick={previousNativeLibraryPreset}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Previous native preset")}>
                       <Icon name="step backward" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Return to the previous native preset, or move backward in the local preset library.")}/>
               ) : null}
               {nativePresetLibrary.length > 1 ? (
                 <Popup
-                  content="Jump to a random imported native preset from this browser."
+                  content={interfaceText("Jump to a random imported native preset from this browser.")}
                   trigger={
                     <Button
-                      aria-label="Random imported native preset"
+                      aria-label={interfaceText("Random imported native preset")}
                       data-testid="visualizer-random-native-preset"
                       disabled={visibleNativePresetLibrary.length === 0}
                       icon
                       onClick={randomNativeLibraryPreset}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Random imported native preset")}>
                       <Icon name="random" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Jump to a random imported native preset from this browser.")}/>
               ) : null}
               {nativePresetLibrary.length > 0 ? (
                 <Popup
-                  content="Remove the selected native preset from this browser."
+                  content={interfaceText("Remove the selected native preset from this browser.")}
                   trigger={
                     <Button
-                      aria-label="Remove selected native preset"
+                      aria-label={interfaceText("Remove selected native preset")}
                       data-testid="visualizer-remove-native-preset"
                       disabled={!activeNativePresetId}
                       icon
                       onClick={removeActiveNativePreset}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Remove selected native preset")}>
                       <Icon name="minus circle" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Remove the selected native preset from this browser.")}/>
               ) : null}
               {nativePresetLibrary.length > 0 ? (
                 <Popup
-                  content="Clear imported native presets from this browser."
+                  content={interfaceText("Clear imported native presets from this browser.")}
                   trigger={
                     <Button
-                      aria-label="Clear imported native presets"
+                      aria-label={interfaceText("Clear imported native presets")}
                       data-testid="visualizer-clear-native-preset-library"
                       icon
                       onClick={clearNativePresetLibrary}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Clear imported native presets")}>
                       <Icon name="trash alternate outline" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Clear imported native presets from this browser.")}/>
               ) : null}
               <Popup
-                content="Import a local .milk or .milk2 preset into the native MilkDrop renderer."
+                content={interfaceText("Import a local .milk or .milk2 preset into the native MilkDrop renderer.")}
                 trigger={
                   <Button
-                    aria-label="Import native MilkDrop preset"
+                    aria-label={interfaceText("Import native MilkDrop preset")}
                     data-testid="visualizer-import-native-preset"
                     icon
                     onClick={() => fileInputRef.current?.click()}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Import native MilkDrop preset")}>
                     <Icon name="upload" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Import a local .milk or .milk2 preset into the native MilkDrop renderer.")}/>
               <Popup
-                content="Import a native MilkDrop preset folder with its local image assets."
+                content={interfaceText("Import a native MilkDrop preset folder with its local image assets.")}
                 trigger={
                   <Button
-                    aria-label="Import native MilkDrop preset folder"
+                    aria-label={interfaceText("Import native MilkDrop preset folder")}
                     data-testid="visualizer-import-native-preset-folder"
                     icon
                     onClick={() => directoryInputRef.current?.click()}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Import native MilkDrop preset folder")}>
                     <Icon name="folder open outline" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Import a native MilkDrop preset folder with its local image assets.")}/>
               <Popup
-                content="Choose a global native MilkDrop parameter to edit on the active preset."
+                content={interfaceText("Choose a global native MilkDrop parameter to edit on the active preset.")}
                 trigger={
                   <select
-                    aria-label="Native MilkDrop editable parameter"
+                    aria-label={interfaceText("Native MilkDrop editable parameter")}
                     className="player-visualizer-native-library"
                     data-testid="visualizer-native-parameter"
                     onChange={selectNativeParameter}
                     value={selectedNativeParameter}
-                  >
+                   {...interfaceTextProps("Native MilkDrop editable parameter")}>
                     {nativeEditableParameters.map((parameter) => (
                       <option key={parameter.key} value={parameter.key}>
                         {parameter.label}
@@ -2052,12 +2102,14 @@ const Visualizer = ({
                     ))}
                   </select>
                 }
-              />
+               {...interfaceTextProps("Choose a global native MilkDrop parameter to edit on the active preset.")}/>
               <Popup
-                content={`Adjust ${nativeParameter.label.toLowerCase()} for the active native preset before applying the edited copy locally.`}
+                content={interfaceText('Adjust {label} for the active native preset before applying the edited copy locally.', {
+                  label: nativeParameter.label.toLowerCase(),
+                })}
                 trigger={
                   <input
-                    aria-label={`Adjust native MilkDrop ${nativeParameter.label}`}
+                    aria-label={interfaceText("Adjust native MilkDrop {label}", { "label": (nativeParameter.label) })}
                     className="player-visualizer-native-range"
                     data-testid="visualizer-native-parameter-value"
                     max={nativeParameter.max}
@@ -2066,42 +2118,44 @@ const Visualizer = ({
                     step={nativeParameter.step}
                     type="range"
                     value={nativeParameterValue}
-                  />
+                   {...interfaceTextProps("Adjust native MilkDrop {label}")}/>
                 }
               />
               <Popup
-                content="Apply the selected native MilkDrop parameter value and save the edited preset in this browser."
+                content={interfaceText("Apply the selected native MilkDrop parameter value and save the edited preset in this browser.")}
                 trigger={
                   <Button
-                    aria-label="Apply native MilkDrop parameter edit"
+                    aria-label={interfaceText("Apply native MilkDrop parameter edit")}
                     data-testid="visualizer-apply-native-parameter"
                     icon
                     onClick={applyNativeParameterEdit}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Apply native MilkDrop parameter edit")}>
                     <Icon name="sliders horizontal" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Apply the selected native MilkDrop parameter value and save the edited preset in this browser.")}/>
               <Popup
-                content="Randomize the active native MilkDrop preset's common visual parameters and save the edited copy locally."
+                content={interfaceText("Randomize the active native MilkDrop preset's common visual parameters and save the edited copy locally.")}
                 trigger={
                   <Button
-                    aria-label="Randomize native MilkDrop visual parameters"
+                    aria-label={interfaceText("Randomize native MilkDrop visual parameters")}
                     data-testid="visualizer-randomize-native-parameters"
                     icon
                     onClick={randomizeNativePresetParameters}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Randomize native MilkDrop visual parameters")}>
                     <Icon name="shuffle" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Randomize the active native MilkDrop preset's common visual parameters and save the edited copy locally.")}/>
               <Popup
-                content="Show or hide native MilkDrop debug details for the active preset."
+                content={interfaceText("Show or hide native MilkDrop debug details for the active preset.")}
                 trigger={
                   <Button
-                    aria-label={showNativeDebug ? 'Hide native MilkDrop debug details' : 'Show native MilkDrop debug details'}
+                    aria-label={interfaceText(showNativeDebug
+                      ? 'Hide native MilkDrop debug details'
+                      : 'Show native MilkDrop debug details')}
                     active={showNativeDebug}
                     data-testid="visualizer-toggle-native-debug"
                     icon
@@ -2111,162 +2165,166 @@ const Visualizer = ({
                     <Icon name="bug" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Show or hide native MilkDrop debug details for the active preset.")}/>
               <Popup
-                content="Cap native MilkDrop rendering for lower GPU load, or leave it uncapped for maximum smoothness."
+                content={interfaceText("Cap native MilkDrop rendering for lower GPU load, or leave it uncapped for maximum smoothness.")}
                 trigger={
                   <select
-                    aria-label="Native MilkDrop FPS cap"
+                    aria-label={interfaceText("Native MilkDrop FPS cap")}
                     className="player-visualizer-native-library"
                     data-testid="visualizer-native-fps-cap"
                     onChange={updateNativeFpsCap}
                     value={nativeFpsCap}
-                  >
-                    <option value="full">Full FPS</option>
-                    <option value="60">60 FPS</option>
-                    <option value="30">30 FPS</option>
-                    <option value="24">24 FPS</option>
+                   {...interfaceTextProps("Native MilkDrop FPS cap")}>
+                    <option value="full"><LocalizedText source={"Full FPS"} /></option>
+                    <option value="60"><LocalizedText source={"60 FPS"} /></option>
+                    <option value="30"><LocalizedText source={"30 FPS"} /></option>
+                    <option value="24"><LocalizedText source={"24 FPS"} /></option>
                   </select>
                 }
-              />
+               {...interfaceTextProps("Cap native MilkDrop rendering for lower GPU load, or leave it uncapped for maximum smoothness.")}/>
               <Popup
-                content="Choose a native MilkDrop quality preset. Efficient lowers GPU load, Balanced caps at 60 FPS, and Full leaves rendering uncapped."
+                content={interfaceText("Choose a native MilkDrop quality preset. Efficient lowers GPU load, Balanced caps at 60 FPS, and Full leaves rendering uncapped.")}
                 trigger={
                   <select
-                    aria-label="Native MilkDrop quality preset"
+                    aria-label={interfaceText("Native MilkDrop quality preset")}
                     className="player-visualizer-native-library"
                     data-testid="visualizer-native-quality"
                     onChange={updateNativeQualityPreset}
                     value={nativeQualityPreset}
-                  >
-                    <option value="balanced">Balanced</option>
-                    <option value="efficient">Efficient</option>
-                    <option value="full">Full</option>
-                    <option value="custom">Custom</option>
+                   {...interfaceTextProps("Native MilkDrop quality preset")}>
+                    <option value="balanced"><LocalizedText source={"Balanced"} /></option>
+                    <option value="efficient"><LocalizedText source={"Efficient"} /></option>
+                    <option value="full"><LocalizedText source={"Full"} /></option>
+                    <option value="custom"><LocalizedText source={"Custom"} /></option>
                   </select>
                 }
-              />
+               {...interfaceTextProps("Choose a native MilkDrop quality preset. Efficient lowers GPU load, Balanced caps at 60 FPS, and Full leaves rendering uncapped.")}/>
               <Popup
-                content="Export the active native MilkDrop preset text after any local edits."
+                content={interfaceText("Export the active native MilkDrop preset text after any local edits.")}
                 trigger={
                   <Button
-                    aria-label="Export active native MilkDrop preset"
+                    aria-label={interfaceText("Export active native MilkDrop preset")}
                     data-testid="visualizer-export-native-preset"
                     icon
                     onClick={exportNativePreset}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Export active native MilkDrop preset")}>
                     <Icon name="file alternate outline" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Export the active native MilkDrop preset text after any local edits.")}/>
               <Popup
-                content="Choose which custom shape from the active native preset should be exported or removed."
+                content={interfaceText("Choose which custom shape from the active native preset should be exported or removed.")}
                 trigger={
                   <select
-                    aria-label="Native MilkDrop shape fragment"
+                    aria-label={interfaceText("Native MilkDrop shape fragment")}
                     className="player-visualizer-native-library"
                     data-testid="visualizer-native-shape-fragment"
                     disabled={!hasNativeShapes}
                     onChange={(event) => setSelectedNativeShapeIndex(Number(event.target.value))}
                     value={hasNativeShapes ? selectedNativeShapeIndex : 0}
-                  >
+                   {...interfaceTextProps("Native MilkDrop shape fragment")}>
                     {hasNativeShapes ? nativeFragmentSummary.shapes.map((shape) => (
                       <option key={shape.index} value={shape.index}>
                         {shape.label}
                       </option>
                     )) : (
-                      <option value={0}>No shapes</option>
+                      <option value={0}><LocalizedText source={"No shapes"} /></option>
                     )}
                   </select>
                 }
-              />
+               {...interfaceTextProps("Choose which custom shape from the active native preset should be exported or removed.")}/>
               <Popup
-                content="Export the selected custom shape in the active native preset as a .shape fragment."
+                content={interfaceText("Export the selected custom shape in the active native preset as a .shape fragment.")}
                 trigger={
                   <Button
-                    aria-label="Export native MilkDrop shape fragment"
+                    aria-label={interfaceText("Export native MilkDrop shape fragment")}
                     data-testid="visualizer-export-native-shape"
                     disabled={!hasNativeShapes}
                     icon
                     onClick={() => exportNativeFragment('shape')}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Export native MilkDrop shape fragment")}>
                     <Icon name="download" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Export the selected custom shape in the active native preset as a .shape fragment.")}/>
               <Popup
-                content="Remove the selected custom shape from the active native preset and persist the edited copy locally."
+                content={interfaceText("Remove the selected custom shape from the active native preset and persist the edited copy locally.")}
                 trigger={
                   <Button
-                    aria-label="Remove native MilkDrop shape fragment"
+                    aria-label={interfaceText("Remove native MilkDrop shape fragment")}
                     data-testid="visualizer-remove-native-shape"
                     disabled={!hasNativeShapes}
                     icon
                     onClick={() => removeNativeFragment('shape')}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Remove native MilkDrop shape fragment")}>
                     <Icon name="erase" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Remove the selected custom shape from the active native preset and persist the edited copy locally.")}/>
               <Popup
-                content="Choose which custom wave from the active native preset should be exported or removed."
+                content={interfaceText("Choose which custom wave from the active native preset should be exported or removed.")}
                 trigger={
                   <select
-                    aria-label="Native MilkDrop wave fragment"
+                    aria-label={interfaceText("Native MilkDrop wave fragment")}
                     className="player-visualizer-native-library"
                     data-testid="visualizer-native-wave-fragment"
                     disabled={!hasNativeWaves}
                     onChange={(event) => setSelectedNativeWaveIndex(Number(event.target.value))}
                     value={hasNativeWaves ? selectedNativeWaveIndex : 0}
-                  >
+                   {...interfaceTextProps("Native MilkDrop wave fragment")}>
                     {hasNativeWaves ? nativeFragmentSummary.waves.map((wave) => (
                       <option key={wave.index} value={wave.index}>
                         {wave.label}
                       </option>
                     )) : (
-                      <option value={0}>No waves</option>
+                      <option value={0}><LocalizedText source={"No waves"} /></option>
                     )}
                   </select>
                 }
-              />
+               {...interfaceTextProps("Choose which custom wave from the active native preset should be exported or removed.")}/>
               <Popup
-                content="Export the selected custom wave in the active native preset as a .wave fragment."
+                content={interfaceText("Export the selected custom wave in the active native preset as a .wave fragment.")}
                 trigger={
                   <Button
-                    aria-label="Export native MilkDrop wave fragment"
+                    aria-label={interfaceText("Export native MilkDrop wave fragment")}
                     data-testid="visualizer-export-native-wave"
                     disabled={!hasNativeWaves}
                     icon
                     onClick={() => exportNativeFragment('wave')}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Export native MilkDrop wave fragment")}>
                     <Icon name="download" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Export the selected custom wave in the active native preset as a .wave fragment.")}/>
               <Popup
-                content="Remove the selected custom wave from the active native preset and persist the edited copy locally."
+                content={interfaceText("Remove the selected custom wave from the active native preset and persist the edited copy locally.")}
                 trigger={
                   <Button
-                    aria-label="Remove native MilkDrop wave fragment"
+                    aria-label={interfaceText("Remove native MilkDrop wave fragment")}
                     data-testid="visualizer-remove-native-wave"
                     disabled={!hasNativeWaves}
                     icon
                     onClick={() => removeNativeFragment('wave')}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Remove native MilkDrop wave fragment")}>
                     <Icon name="erase" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Remove the selected custom wave from the active native preset and persist the edited copy locally.")}/>
               <Popup
-                content={`Native automatic preset changes: ${getNativeAutomationLabel(nativeAutomationMode)}. Beat mode advances after repeated detected bass beats; timed mode advances on an interval.`}
+                content={interfaceText('Native automatic preset changes: {mode}. Beat mode advances after repeated detected bass beats; timed mode advances on an interval.', {
+                  mode: getNativeAutomationLabel(nativeAutomationMode),
+                })}
                 trigger={
                   <Button
-                    aria-label={`Native automatic preset changes: ${getNativeAutomationLabel(nativeAutomationMode)}`}
+                    aria-label={interfaceText('Native automatic preset changes: {mode}', {
+                      mode: getNativeAutomationLabel(nativeAutomationMode),
+                    })}
                     active={nativeAutomationMode !== 'off'}
                     data-testid="visualizer-native-automation"
                     icon
@@ -2279,57 +2337,55 @@ const Visualizer = ({
               />
               {nativeAutomationMode === 'beat' ? (
                 <Popup
-                  content="Choose how many detected bass beats should pass before native MilkDrop advances to another preset."
+                  content={interfaceText("Choose how many detected bass beats should pass before native MilkDrop advances to another preset.")}
                   trigger={
                     <select
-                      aria-label="Native MilkDrop beats per preset"
+                      aria-label={interfaceText("Native MilkDrop beats per preset")}
                       className="player-visualizer-native-library"
                       data-testid="visualizer-native-automation-beats"
                       onChange={updateNativeAutomationBeats}
                       value={nativeAutomationSettings.beatsPerPreset}
-                    >
-                      <option value={4}>4 beats</option>
-                      <option value={8}>8 beats</option>
-                      <option value={16}>16 beats</option>
+                     {...interfaceTextProps("Native MilkDrop beats per preset")}>
+                      <option value={4}><LocalizedText source={"4 beats"} /></option>
+                      <option value={8}><LocalizedText source={"8 beats"} /></option>
+                      <option value={16}><LocalizedText source={"16 beats"} /></option>
                     </select>
                   }
-                />
+                 {...interfaceTextProps("Choose how many detected bass beats should pass before native MilkDrop advances to another preset.")}/>
               ) : null}
               {nativeAutomationMode === 'timed' ? (
                 <Popup
-                  content="Choose how long native MilkDrop should wait before timed preset changes."
+                  content={interfaceText("Choose how long native MilkDrop should wait before timed preset changes.")}
                   trigger={
                     <select
-                      aria-label="Native MilkDrop timed preset interval"
+                      aria-label={interfaceText("Native MilkDrop timed preset interval")}
                       className="player-visualizer-native-library"
                       data-testid="visualizer-native-automation-interval"
                       onChange={updateNativeAutomationInterval}
                       value={nativeAutomationSettings.timedIntervalSeconds}
-                    >
-                      <option value={15}>15 sec</option>
-                      <option value={30}>30 sec</option>
-                      <option value={60}>60 sec</option>
+                     {...interfaceTextProps("Native MilkDrop timed preset interval")}>
+                      <option value={15}><LocalizedText source={"15 sec"} /></option>
+                      <option value={30}><LocalizedText source={"30 sec"} /></option>
+                      <option value={60}><LocalizedText source={"60 sec"} /></option>
                     </select>
                   }
-                />
+                 {...interfaceTextProps("Choose how long native MilkDrop should wait before timed preset changes.")}/>
               ) : null}
             </>
           ) : null}
           <Popup
-            content={
-              nativeBankNavigationDisabled
+              content={interfaceText(nativeBankNavigationDisabled
                 ? 'No imported native presets match the current filter.'
-                : 'Load a different MilkDrop preset.'
-            }
+                : 'Load a different MilkDrop preset.')}
             trigger={
               <Button
-                aria-label="Next visualizer preset"
+                aria-label={interfaceText("Next visualizer preset")}
                 data-testid="visualizer-next-preset"
                 disabled={nativeBankNavigationDisabled}
                 icon
                 onClick={cyclePreset}
                 size="mini"
-              >
+               {...interfaceTextProps("Next visualizer preset")}>
                 <Icon name="random" />
               </Button>
             }
@@ -2337,66 +2393,66 @@ const Visualizer = ({
           {mode === 'inline' && !compactControls ? (
             <>
               <Popup
-                content="Expand visualizer to fill the browser window."
+                content={interfaceText("Expand visualizer to fill the browser window.")}
                 trigger={
                   <Button
-                    aria-label="Expand visualizer to full browser window"
+                    aria-label={interfaceText("Expand visualizer to full browser window")}
                     data-testid="visualizer-fullwindow"
                     icon
                     onClick={() => onModeChange('fullwindow')}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Expand visualizer to full browser window")}>
                     <Icon name="expand arrows alternate" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Expand visualizer to fill the browser window.")}/>
               <Popup
-                content="Enter true fullscreen."
+                content={interfaceText("Enter true fullscreen.")}
                 trigger={
                   <Button
-                    aria-label="Enter fullscreen visualizer"
+                    aria-label={interfaceText("Enter fullscreen visualizer")}
                     data-testid="visualizer-fullscreen"
                     icon
                     onClick={enterFullscreen}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Enter fullscreen visualizer")}>
                     <Icon name="expand" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Enter true fullscreen.")}/>
             </>
           ) : mode === 'inline' ? null : (
             <>
               {mode === 'fullwindow' ? (
                 <Popup
-                  content="Enter true fullscreen."
+                  content={interfaceText("Enter true fullscreen.")}
                   trigger={
                     <Button
-                      aria-label="Enter fullscreen visualizer"
+                      aria-label={interfaceText("Enter fullscreen visualizer")}
                       data-testid="visualizer-fullscreen"
                       icon
                       onClick={enterFullscreen}
                       size="mini"
-                    >
+                     {...interfaceTextProps("Enter fullscreen visualizer")}>
                       <Icon name="expand" />
                     </Button>
                   }
-                />
+                 {...interfaceTextProps("Enter true fullscreen.")}/>
               ) : null}
               <Popup
-                content="Return visualizer to the player bar."
+                content={interfaceText("Return visualizer to the player bar.")}
                 trigger={
                   <Button
-                    aria-label="Collapse visualizer"
+                    aria-label={interfaceText("Collapse visualizer")}
                     data-testid="visualizer-collapse"
                     icon
                     onClick={exitFullscreen}
                     size="mini"
-                  >
+                   {...interfaceTextProps("Collapse visualizer")}>
                     <Icon name="compress" />
                   </Button>
                 }
-              />
+               {...interfaceTextProps("Return visualizer to the player bar.")}/>
             </>
           )}
         </div>

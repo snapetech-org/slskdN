@@ -57,7 +57,7 @@ describe('EditModal', () => {
       });
     });
     expect(updateYaml).not.toHaveBeenCalled();
-    expect(await screen.findByText(/invalid yaml/)).toBeInTheDocument();
+    expect(await screen.findByText(/The request failed\. Try again\./)).toBeInTheDocument();
   });
 
   it('renders structured update errors as stable text', async () => {
@@ -84,7 +84,7 @@ describe('EditModal', () => {
     });
     fireEvent.click(screen.getByText('Save'));
 
-    expect(await screen.findByText(/Remote configuration is read-only/))
+    expect(await screen.findByText(/The request failed\. Try again\./))
       .toBeInTheDocument();
   });
 
@@ -102,7 +102,7 @@ describe('EditModal', () => {
       target: { value: 'feature: true\n' },
     });
 
-    expect(await screen.findByText(/YAML validator unavailable/))
+    expect(await screen.findByText(/The request failed\. Try again\./))
       .toBeInTheDocument();
     fireEvent.click(screen.getByText('Save'));
 
@@ -125,7 +125,7 @@ describe('EditModal', () => {
       />,
     );
 
-    expect(await screen.findByText('Options file unavailable'))
+    expect(await screen.findByText('The request failed. Try again.'))
       .toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Retry Options' }));
 

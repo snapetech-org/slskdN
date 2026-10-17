@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Search.css';
 import {
   acquisitionProfiles,
@@ -7,7 +8,9 @@ import {
 } from '../../lib/acquisitionProfiles';
 import { createSearchHubConnection } from '../../lib/hubFactory';
 import { getCapabilities } from '../../lib/slskdn';
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
+
 import * as library from '../../lib/searches';
 import ErrorSegment from '../Shared/ErrorSegment';
 import PlaceholderSegment from '../Shared/PlaceholderSegment';
@@ -94,6 +97,7 @@ const CollapsibleSection = ({
   storageKey,
   title,
 }) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
   const [open, setOpen] = useState(() => {
     if (!storageKey) {
       return defaultOpen;
@@ -118,6 +122,12 @@ const CollapsibleSection = ({
       return next;
     });
   };
+  const localizedTitle = t(title);
+  const localized = (source, parameters) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {t(source, parameters)}
+    </span>
+  );
 
   return (
     <Segment raised>
@@ -133,18 +143,23 @@ const CollapsibleSection = ({
           as="h4"
           style={{ margin: 0 }}
         >
-          {title}
+          {localized(title)}
         </Header>
         <Popup
           content={
             open
-              ? `Collapse the ${title.toLowerCase()} panel to free up room on the page.`
-              : `Expand the ${title.toLowerCase()} panel to inspect its contents.`
+              ? localized('Collapse the {title} panel to free up room on the page.', { title: localizedTitle })
+              : localized('Expand the {title} panel to inspect its contents.', { title: localizedTitle })
           }
           position="top center"
           trigger={
             <Button
-              aria-label={`${open ? 'Collapse' : 'Expand'} ${title}`}
+              aria-label={t('{action} {title}', {
+                action: t(open ? 'Collapse' : 'Expand'),
+                title: localizedTitle,
+              })}
+              dir={directionFor('{action} {title}')}
+              lang={languageFor('{action} {title}')}
               icon
               onClick={toggleOpen}
               size="mini"
@@ -158,7 +173,7 @@ const CollapsibleSection = ({
         <Suspense
           fallback={
             <PlaceholderSegment
-              caption={`Loading ${title}`}
+              caption={localized('Loading {title}', { title: localizedTitle })}
               icon="circle notched"
             />
           }
@@ -171,6 +186,12 @@ const CollapsibleSection = ({
 };
 
 const Searches = ({ server } = {}) => {
+  const { language, t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source, parameters) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {t(source, parameters)}
+    </span>
+  );
   const normalizedServer = server ?? { isConnected: false };
   const isServerConnecting =
     normalizedServer.isConnecting || normalizedServer.IsLoggingIn;
@@ -198,6 +219,8 @@ const Searches = ({ server } = {}) => {
   );
 
   const inputRef = useRef();
+  const i18nRef = useRef({ language, t });
+  i18nRef.current = { language, t };
   const processedUrlSearchRef = useRef(new Set());
   const searchPageStateRef = useRef({});
   const loadSearchPageRef = useRef();
@@ -273,14 +296,21 @@ const Searches = ({ server } = {}) => {
       updateSearchPageState(key, { loading: false });
       console.error('Failed to load another search page', loadError);
       if (key === 'all' && !current.initialized && Object.keys(searches).length === 0) {
-        setError(
-          loadError?.response?.data ?? loadError?.message ?? 'Could not load searches',
-        );
+        setError(getApiErrorMessage(loadError, { t }));
       } else {
-        toast.error('Could not load more searches');
+        toast.error(interfaceText('Could not load more searches'));
       }
       return false;
     }
+  };
+
+  const localizedError = (error_, fallback, translator = t, locale = language) => {
+    const message = getApiErrorMessage(error_, { t: translator }, fallback);
+    return (
+      <span dir={locale === 'ar' ? 'rtl' : 'ltr'} lang={locale}>
+        {message}
+      </span>
+    );
   };
 
   const location = useLocation();
@@ -292,16 +322,16 @@ const Searches = ({ server } = {}) => {
     : null;
   const acquisitionProfileOptions = acquisitionProfiles.map((profile) => ({
     content: (
-      <div>
-        <strong>{profile.label}</strong>
+      <div dir={directionFor(profile.label)} lang={languageFor(profile.label)}>
+        <strong>{t(profile.label)}</strong>
         <div className="search-acquisition-profile-option-summary">
-          {profile.summary}
+          {t(profile.summary)}
         </div>
       </div>
     ),
     icon: profile.icon,
     key: profile.id,
-    text: profile.label,
+    text: t(profile.label),
     value: profile.id,
   }));
 
@@ -347,9 +377,9 @@ const Searches = ({ server } = {}) => {
     setError(undefined);
   };
 
-  const onConnectionError = (connectionError) => {
+  const onConnectionError = () => {
     setConnecting(false);
-    setError(connectionError);
+    setError(interfaceText("Search connection failed."));
   };
 
   const onUpdate = (update) => {
@@ -402,11 +432,11 @@ const Searches = ({ server } = {}) => {
     });
 
     searchHub.onreconnecting((connectionError) =>
-      onConnectionError(connectionError?.message ?? 'Disconnected'),
+      onConnectionError(connectionError),
     );
     searchHub.onreconnected(() => onConnected());
     searchHub.onclose((connectionError) =>
-      onConnectionError(connectionError?.message ?? 'Disconnected'),
+      onConnectionError(connectionError),
     );
 
     const loadInitialSearches = async () => {
@@ -416,7 +446,7 @@ const Searches = ({ server } = {}) => {
         }
       } catch (loadError) {
         console.error(loadError);
-        setError(loadError?.response?.data ?? loadError?.message ?? loadError);
+        setError(interfaceText("Searches could not be loaded."));
       } finally {
         setInitialSearchesLoaded(true);
       }
@@ -427,8 +457,14 @@ const Searches = ({ server } = {}) => {
         onConnecting();
         await searchHub.start();
       } catch (connectionError) {
-        toast.error(connectionError?.message ?? 'Failed to connect');
-        onConnectionError(connectionError?.message ?? 'Failed to connect');
+        const currentLocale = i18nRef.current;
+        toast.error(localizedError(
+          connectionError,
+          'Could not connect to Soulseek.',
+          currentLocale.t,
+          currentLocale.language,
+        ));
+        onConnectionError(connectionError);
         await loadInitialSearches();
       }
     };
@@ -499,7 +535,7 @@ const Searches = ({ server } = {}) => {
     const id = uuidv4();
 
     if (!searchText) {
-      toast.error('Please enter a search phrase');
+      toast.error(localized('Please enter a search phrase'));
       return;
     }
 
@@ -527,9 +563,7 @@ const Searches = ({ server } = {}) => {
       return id;
     } catch (createError) {
       console.error(createError);
-      toast.error(
-        createError?.response?.data ?? createError?.message ?? createError,
-      );
+      toast.error(localizedError(createError, 'Search could not be started.'));
       setCreating(false);
     }
   };
@@ -548,7 +582,7 @@ const Searches = ({ server } = {}) => {
       setRemoving(false);
     } catch (error_) {
       console.error(error_);
-      toast.error(error?.response?.data ?? error?.message ?? error);
+      toast.error(localizedError(error_, 'Search could not be removed.'));
       setRemoving(false);
     }
   };
@@ -557,17 +591,13 @@ const Searches = ({ server } = {}) => {
   const removeAll = async () => {
     try {
       setRemovingAll(true);
-      const result = await library.removeAll();
+      await library.removeAll();
       setSearches({});
-      toast.success(`Cleared ${result?.data?.deleted ?? 'all'} searches`);
+      toast.success(localized('Search history cleared.'));
       setRemovingAll(false);
     } catch (removeAllError) {
       console.error(removeAllError);
-      toast.error(
-        removeAllError?.response?.data ??
-          removeAllError?.message ??
-          removeAllError,
-      );
+      toast.error(localizedError(removeAllError, 'Search history could not be cleared.'));
       setRemovingAll(false);
     }
   };
@@ -576,16 +606,12 @@ const Searches = ({ server } = {}) => {
   const cleanup = async () => {
     try {
       setCleaningUp(true);
-      const result = await library.cleanupSearches();
-      toast.success(`Cleaned up ${result?.data?.deleted ?? 'old'} searches`);
+      await library.cleanupSearches();
+      toast.success(localized('Old searches cleared.'));
       setCleaningUp(false);
     } catch (cleanupError) {
       console.error(cleanupError);
-      toast.error(
-        cleanupError?.response?.data ??
-          cleanupError?.message ??
-          cleanupError,
-      );
+      toast.error(localizedError(cleanupError, 'Old searches could not be cleared.'));
       setCleaningUp(false);
     }
   };
@@ -598,11 +624,7 @@ const Searches = ({ server } = {}) => {
       setStopping(false);
     } catch (stoppingError) {
       console.error(stoppingError);
-      toast.error(
-        stoppingError?.response?.data ??
-          stoppingError?.message ??
-          stoppingError,
-      );
+      toast.error(localizedError(stoppingError, 'Search could not be stopped.'));
       setStopping(false);
     }
   };
@@ -618,14 +640,10 @@ const Searches = ({ server } = {}) => {
         processedIds.push(search.id);
       }
 
-      toast.success(`Deleted ${processedIds.length} selected searches`);
+      toast.success(localized('Selected searches deleted.'));
     } catch (error_) {
       console.error(error_);
-      toast.error(
-        error_?.response?.data ??
-          error_?.message ??
-          error_,
-      );
+      toast.error(localizedError(error_, 'Selected searches could not be deleted.'));
     } finally {
       if (processedIds.length > 0) {
         setSearches((old) => {
@@ -651,14 +669,10 @@ const Searches = ({ server } = {}) => {
         processedIds.push(search.id);
       }
 
-      toast.success(`Stopped ${processedIds.length} selected searches`);
+      toast.success(localized('Selected searches stopped.'));
     } catch (error_) {
       console.error(error_);
-      toast.error(
-        error_?.response?.data ??
-          error_?.message ??
-          error_,
-      );
+      toast.error(localizedError(error_, 'Selected searches could not be stopped.'));
     } finally {
       setBulkAction(null);
     }
@@ -672,27 +686,23 @@ const Searches = ({ server } = {}) => {
     );
 
     if (searchable.length === 0) {
-      toast.error('The selected searches do not contain searchable text');
+      toast.error(localized('The selected searches do not contain searchable text'));
       return [];
     }
 
     setBulkAction('research');
 
     try {
-      const count = await library.createBatch({
+      await library.createBatch({
         acquisitionProfile: acquisitionProfile.id,
         providers: searchProviders,
         queries: searchable.map((search) => search.searchText),
       });
-      toast.success(`Started ${count} selected searches again`);
+      toast.success(localized('Selected searches were started again.'));
       return searchable.map((search) => search.id);
     } catch (error_) {
       console.error(error_);
-      toast.error(
-        error_?.response?.data ??
-          error_?.message ??
-          error_,
-      );
+      toast.error(localizedError(error_, 'Selected searches could not be started.'));
       return [];
     } finally {
       setBulkAction(null);
@@ -720,7 +730,7 @@ const Searches = ({ server } = {}) => {
     if (!initialSearchesLoaded) {
       return (
         <PlaceholderSegment
-          caption="Loading search details"
+          caption={localized('Loading search details')}
           icon="search"
         />
       );
@@ -737,8 +747,8 @@ const Searches = ({ server } = {}) => {
     <>
       <CollapsibleSection
         storageKey="slskdn.search.section.search"
-        title="Search"
-      >
+        title={interfaceText("Search")}
+       {...interfaceTextProps("Search")}>
         <Segment className="search-segment">
           <div className="search-segment-icon">
             <Icon
@@ -750,11 +760,13 @@ const Searches = ({ server } = {}) => {
             action={
               <>
                 <Popup
-                  content="Queue this search without leaving the search page."
+                  content={localized('Queue this search without leaving the search page.')}
                   position="top center"
                   trigger={
                     <Button
-                      aria-label="Queue search"
+                      aria-label={t('Queue search')}
+                      dir={directionFor('Queue search')}
+                      lang={languageFor('Queue search')}
                       disabled={creating || !normalizedServer.isConnected}
                       icon="plus"
                       onClick={create}
@@ -762,11 +774,13 @@ const Searches = ({ server } = {}) => {
                   }
                 />
                 <Popup
-                  content="Start this search and open its detailed results immediately."
+                  content={localized('Start this search and open its detailed results immediately.')}
                   position="top center"
                   trigger={
                     <Button
-                      aria-label="Search and open results"
+                      aria-label={t('Search and open results')}
+                      dir={directionFor('Search and open results')}
+                      lang={languageFor('Search and open results')}
                       disabled={creating || !normalizedServer.isConnected}
                       icon="search"
                       onClick={() => create({ navigate: true })}
@@ -781,12 +795,15 @@ const Searches = ({ server } = {}) => {
               <input
                 data-lpignore="true"
                 data-testid="search-input"
+                aria-label={t('Search phrase')}
+                dir={directionFor('Search phrase')}
+                lang={languageFor('Search phrase')}
                 placeholder={
                   normalizedServer.isConnected
-                    ? 'Search phrase'
+                    ? t('Search phrase')
                     : isServerConnecting
-                      ? 'Connecting to Soulseek…'
-                      : 'Connect to Soulseek to search'
+                      ? t('Connecting to Soulseek…')
+                      : t('Connect to Soulseek to search')
                 }
                 type="search"
               />
@@ -795,7 +812,7 @@ const Searches = ({ server } = {}) => {
             onKeyUp={(keyUpEvent) =>
               keyUpEvent.key === 'Enter' ? create({ navigate: true }) : undefined
             }
-            placeholder="Search phrase"
+            placeholder={t('Search phrase')}
             ref={inputRef}
             size="big"
           />
@@ -806,25 +823,25 @@ const Searches = ({ server } = {}) => {
               size="small"
             >
               <Message.Header>
-                {isServerConnecting
+                {localized(isServerConnecting
                   ? 'Connecting to Soulseek'
-                  : 'Soulseek connection needed'}
+                  : 'Soulseek connection needed')}
               </Message.Header>
               <p>
-                {isServerConnecting
+                {localized(isServerConnecting
                   ? 'Search and peer browsing will be available when the connection completes.'
-                  : 'Connect to search files, browse peer shares, and send Soulseek messages. Check your credentials in connection settings, then use Disconnected in the top bar to reconnect.'}
+                  : 'Connect to search files, browse peer shares, and send Soulseek messages. Check your credentials in connection settings, then use Disconnected in the top bar to reconnect.')}
               </p>
               {!isServerConnecting && (
                 <Popup
-                  content="Open System → Options to review your Soulseek credentials, then use Disconnected in the top bar to reconnect."
+                  content={localized('Open System → Options to review your Soulseek credentials, then use Disconnected in the top bar to reconnect.')}
                   position="top center"
                   trigger={
                     <Link
                       className="ui basic small button"
                       to="/system/options"
                     >
-                      Open connection settings
+                      {localized('Open connection settings')}
                     </Link>
                   }
                 />
@@ -849,7 +866,7 @@ const Searches = ({ server } = {}) => {
                 }}
               >
                 <span style={{ fontSize: '0.95em', fontWeight: 'bold' }}>
-                  Search Sources:
+                  {localized('Search Sources:')}
                 </span>
                 <Checkbox
                   checked={providerPod}
@@ -859,7 +876,7 @@ const Searches = ({ server } = {}) => {
                         name="sitemap"
                         style={{ marginRight: '0.25em' }}
                       />
-                      Pod/Mesh
+                      {localized('Pod/Mesh')}
                     </label>
                   }
                   onChange={(e, { checked }) => setProviderPod(checked)}
@@ -873,7 +890,7 @@ const Searches = ({ server } = {}) => {
                         name="globe"
                         style={{ marginRight: '0.25em' }}
                       />
-                      Soulseek Scene
+                      {localized('Soulseek Scene')}
                     </label>
                   }
                   onChange={(e, { checked }) => setProviderScene(checked)}
@@ -887,7 +904,7 @@ const Searches = ({ server } = {}) => {
                       fontStyle: 'italic',
                     }}
                   >
-                    <Icon name="warning" /> At least one source must be selected
+                    <Icon name="warning" /> {localized('At least one source must be selected')}
                   </span>
                 )}
               </div>
@@ -896,14 +913,19 @@ const Searches = ({ server } = {}) => {
           <div className="search-acquisition-profile-strip">
             <div className="search-acquisition-profile-label">
               <Icon name={acquisitionProfile.icon} />
-              Acquisition Profile
+              {localized('Acquisition Profile')}
             </div>
             <Popup
-              content={`${acquisitionProfile.label}: ${acquisitionProfile.description}`}
+              content={localized('Acquisition profile {profile}: {description}', {
+                profile: t(acquisitionProfile.label),
+                description: t(acquisitionProfile.description),
+              })}
               position="top center"
               trigger={
                 <Dropdown
-                  aria-label="Acquisition profile"
+                  aria-label={t('Acquisition profile')}
+                  dir={directionFor('Acquisition profile')}
+                  lang={languageFor('Acquisition profile')}
                   className="search-acquisition-profile-dropdown"
                   data-testid="acquisition-profile-select"
                   onChange={updateAcquisitionProfile}
@@ -914,7 +936,7 @@ const Searches = ({ server } = {}) => {
               }
             />
             <span className="search-acquisition-profile-summary">
-              {acquisitionProfile.summary}
+              {localized(acquisitionProfile.summary)}
             </span>
           </div>
         </Segment>
@@ -922,41 +944,41 @@ const Searches = ({ server } = {}) => {
       <CollapsibleSection
         defaultOpen={hasPreviouslyExpandedDiscoveryTool}
         storageKey="slskdn.search.section.discoveryTools"
-        title="Music discovery tools"
-      >
+        title={interfaceText("Music discovery tools")}
+       {...interfaceTextProps("Music discovery tools")}>
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.songid"
-          title="SongID"
-        >
+          title={interfaceText("SongID")}
+         {...interfaceTextProps("SongID")}>
           <SongIDPanel disabled={!normalizedServer.isConnected} />
         </CollapsibleSection>
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.musicbrainz"
-          title="MusicBrainz Lookup"
-        >
+          title={interfaceText("MusicBrainz Lookup")}
+         {...interfaceTextProps("MusicBrainz Lookup")}>
           <MusicBrainzLookup disabled={!normalizedServer.isConnected} />
         </CollapsibleSection>
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.discographyCoverage"
-          title="Discography Concierge"
-        >
+          title={interfaceText("Discography Concierge")}
+         {...interfaceTextProps("Discography Concierge")}>
           <DiscographyCoveragePanel disabled={!normalizedServer.isConnected} />
         </CollapsibleSection>
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.artistReleaseRadar"
-          title="Artist Release Radar"
-        >
+          title={interfaceText("Artist Release Radar")}
+         {...interfaceTextProps("Artist Release Radar")}>
           <ArtistReleaseRadarPanel disabled={!normalizedServer.isConnected} />
         </CollapsibleSection>
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.soulseekDiscovery"
-          title="Soulseek Discovery"
-        >
+          title={interfaceText("Soulseek Discovery")}
+         {...interfaceTextProps("Soulseek Discovery")}>
           <SoulseekDiscoveryPanel
             disabled={!normalizedServer.isConnected}
             onSearch={(search) => create({ navigate: true, search })}
@@ -965,53 +987,55 @@ const Searches = ({ server } = {}) => {
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.federatedTaste"
-          title="Federated Taste"
-        >
+          title={interfaceText("Federated Taste")}
+         {...interfaceTextProps("Federated Taste")}>
           <FederatedTasteRecommendationsPanel disabled={!normalizedServer.isConnected} />
         </CollapsibleSection>
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.discoveryGraphAtlas"
-          title="Discovery Graph Atlas"
-        >
+          title={interfaceText("Discovery Graph Atlas")}
+         {...interfaceTextProps("Discovery Graph Atlas")}>
           <DiscoveryGraphAtlasPanel disabled={!normalizedServer.isConnected} />
         </CollapsibleSection>
         <CollapsibleSection
           defaultOpen={false}
           storageKey="slskdn.search.section.albumCompletion"
-          title="Album Completion"
-        >
+          title={interfaceText("Album Completion")}
+         {...interfaceTextProps("Album Completion")}>
           <AlbumCompletionPanel disabled={!normalizedServer.isConnected} />
         </CollapsibleSection>
       </CollapsibleSection>
       <CollapsibleSection
         defaultOpen
         storageKey="slskdn.search.section.searchResults"
-        title="Search Results"
-      >
+        title={interfaceText("Search Results")}
+       {...interfaceTextProps("Search Results")}>
         {error ? (
-          <ErrorSegment caption={error?.message ?? error} />
+          <ErrorSegment caption={localized(error)} />
         ) : Object.keys(searches).length === 0 ? (
           <PlaceholderSegment
-            caption={
+            caption={localized(
               connecting || !initialSearchesLoaded
                 ? 'Loading searches'
                 : 'No searches to display'
-            }
+            )}
             icon="search"
           />
         ) : (
           <>
             <div style={{ marginBottom: '1em', display: 'flex', gap: '1em', alignItems: 'center' }}>
               <span style={{ fontSize: '0.9em', fontWeight: 'bold' }}>
-                Filter by source:
+                {localized('Filter by source:')}
               </span>
               <Popup
-                content="Show only searches from a specific source. Auto-replace searches are automatic stuck-download replacements."
+                content={localized('Show only searches from a specific source. Auto-replace searches are automatic stuck-download replacements.')}
                 position="top center"
                 trigger={
                   <Dropdown
-                    aria-label="Search source filter"
+                    aria-label={t('Search source filter')}
+                    dir={directionFor('Search source filter')}
+                    lang={languageFor('Search source filter')}
                     compact
                     onChange={(_, { value }) => {
                       setSourceFilter(value);
@@ -1035,10 +1059,10 @@ const Searches = ({ server } = {}) => {
                       }
                     }}
                     options={[
-                      { key: 'all', text: 'All Sources', value: 'all' },
-                      { key: 'manual', text: 'Manual', value: 'manual', icon: 'search' },
-                      { key: 'wishlist', text: 'Wishlist', value: 'wishlist', icon: 'bookmark' },
-                      { key: 'auto-replace', text: 'Auto-Replace', value: 'auto-replace', icon: 'sync' },
+                      { key: 'all', text: t('All Sources'), value: 'all' },
+                      { key: 'manual', text: t('Manual'), value: 'manual', icon: 'search' },
+                      { key: 'wishlist', text: t('Wishlist'), value: 'wishlist', icon: 'bookmark' },
+                      { key: 'auto-replace', text: t('Auto-Replace'), value: 'auto-replace', icon: 'sync' },
                     ]}
                     selection
                     value={sourceFilter}

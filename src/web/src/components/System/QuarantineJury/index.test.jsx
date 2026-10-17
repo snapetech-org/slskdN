@@ -4,8 +4,11 @@
 
 import QuarantineJury from '.';
 import * as quarantineJuryApi from '../../../lib/quarantineJury';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { stubLocaleCatalogFetch } from '../../../test/localeCatalogFetchMock';
 
 vi.mock('../../../lib/quarantineJury', () => ({
   acceptReleaseCandidate: vi.fn(),
@@ -93,10 +96,19 @@ describe('QuarantineJury', () => {
     });
   });
 
+  afterEach(async () => {
+    cleanup();
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
+  });
+
   it('loads jury review evidence, routes explicitly, and accepts through confirmation', async () => {
     render(<QuarantineJury />);
 
-    expect(await screen.findByText('quarantine-jury:fixture')).toBeInTheDocument();
+    await screen.findByText('Fixture content id evidence');
+    expect(screen.getByText('quarantine-jury:fixture')).toBeInTheDocument();
+    expect(document.querySelector('.quarantine-jury-detail-head'))
+      .toHaveTextContent('Review quarantine-jury:fixture');
     expect(screen.getByText('Fixture local quarantine reason')).toBeInTheDocument();
     expect(screen.getAllByText('Release Candidate').length).toBeGreaterThan(0);
     expect(screen.getByText('Fixture content id evidence')).toBeInTheDocument();
@@ -139,8 +151,40 @@ describe('QuarantineJury', () => {
 
     render(<QuarantineJury />);
 
-    expect(await screen.findByText('quarantine-jury:fixture')).toBeInTheDocument();
+    await screen.findByText('Fixture content id evidence');
+    expect(screen.getByText('quarantine-jury:fixture')).toBeInTheDocument();
+    expect(document.querySelector('.quarantine-jury-detail-head'))
+      .toHaveTextContent('Review quarantine-jury:fixture');
     expect(screen.getByText('Fixture content id evidence')).toBeInTheDocument();
     expect(screen.queryByText('Fixture juror evidence supports release.')).not.toBeInTheDocument();
+  });
+
+  it('localizes only known persisted service errors and preserves unknown router text', async () => {
+    stubLocaleCatalogFetch(vi);
+    await setInterfaceLanguage('de');
+    quarantineJuryApi.getReview.mockResolvedValue({
+      ...review,
+      routeAttempts: [
+        {
+          ...review.routeAttempts[0],
+          errorMessage: 'Route metadata must be opaque and safe.',
+          id: 'route-known',
+          success: false,
+        },
+        {
+          ...review.routeAttempts[0],
+          errorMessage: 'Remote router detail: retry on the next cycle.',
+          id: 'route-unknown',
+          success: false,
+        },
+      ],
+    });
+
+    render(<QuarantineJury />);
+
+    expect(await screen.findByText('Routenmetadaten müssen undurchsichtig und sicher sein.'))
+      .toBeInTheDocument();
+    expect(screen.getByText('Remote router detail: retry on the next cycle.'))
+      .toBeInTheDocument();
   });
 });

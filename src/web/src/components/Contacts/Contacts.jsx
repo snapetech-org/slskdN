@@ -1,3 +1,9 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+
+
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import * as identityAPI from '../../lib/identity';
 import ErrorSegment from '../Shared/ErrorSegment';
 import LoaderSegment from '../Shared/LoaderSegment';
@@ -27,20 +33,8 @@ const isObject = (value) => value && typeof value === 'object' && !Array.isArray
 const CONTACT_PAGE_SIZE = 100;
 const NEARBY_PAGE_SIZE = 100;
 
-const getErrorMessage = (error, fallback = 'Request failed') => {
-  const data = error?.response?.data;
-
-  if (typeof data === 'string') return data;
-  if (isObject(data)) {
-    return data.detail ||
-      data.message ||
-      data.error ||
-      data.title ||
-      JSON.stringify(data);
-  }
-
-  return error?.message || fallback;
-};
+const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const normalizeContact = (contact) =>
   isObject(contact) && typeof contact.peerId === 'string' && contact.peerId.length > 0
@@ -49,6 +43,7 @@ const normalizeContact = (contact) =>
 
 const withNavigate = (WrappedComponent) => {
   const RoutedComponent = (props) => {
+    useInterfaceLanguage();
     const navigate = useNavigate();
     return (
       <WrappedComponent
@@ -175,7 +170,7 @@ class Contacts extends Component {
       const data = isObject(response.data) ? response.data : {};
       const inviteLink = typeof data.inviteLink === 'string' ? data.inviteLink : '';
       if (!inviteLink) {
-        throw new Error('Identity invite response did not include an invite link.');
+        throw new Error(interfaceText('Identity invite response did not include an invite link.'));
       }
 
       const inviteQrDataUrl = inviteLink
@@ -195,11 +190,11 @@ class Contacts extends Component {
     } catch (error) {
       console.error('[Contacts] Create invite error:', error);
       // Extract error message from response (supports ProblemDetails, object with message/error, or string)
-      let errorMessage = error.message || 'Failed to create invite';
+      let errorMessage = getErrorMessage(error, 'Failed to create invite');
       if (error.response) {
         const status = error.response.status;
-        const url = error.response.config?.url || 'unknown';
-        const contentLength = error.response.headers['content-length'];
+        const url = error.response.config?.url || interfaceText('Unknown');
+        const contentLength = error.response.headers?.['content-length'];
 
         console.error('[Contacts] Response status:', status);
         console.error('[Contacts] Response URL:', url);
@@ -212,38 +207,29 @@ class Contacts extends Component {
           );
         }
 
-        if (error.response.data) {
-          if (typeof error.response.data === 'string') {
-            errorMessage = error.response.data;
-          } else if (error.response.data.detail) {
-            errorMessage = error.response.data.detail; // ProblemDetails format
-          } else if (error.response.data.message) {
-            errorMessage = error.response.data.message;
-          } else if (error.response.data.error) {
-            errorMessage = error.response.data.error;
-          } else if (error.response.data.title) {
-            errorMessage = error.response.data.title; // ProblemDetails title as fallback
-          } else {
-            errorMessage = JSON.stringify(error.response.data);
-          }
-        } else if (status === 400) {
+        if (status === 400 && !error.response.data) {
           // 400 with empty body likely means CSRF validation failed or user identity missing
-          errorMessage =
-            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.';
+          errorMessage = interfaceText(
+            'Request failed. This may be due to: missing CSRF token (try refreshing the page), user identity not available (configure Soulseek username or enable Identity & Friends), or invalid input.',
+          );
         } else if (status === 401) {
-          errorMessage = 'Authentication required. Please refresh the page.';
+          errorMessage = interfaceText('Authentication required. Please refresh the page.');
         } else if (status === 403) {
-          errorMessage = 'Not authorized.';
+          errorMessage = interfaceText('Not authorized.');
         } else if (status === 404) {
           // 404 could be route mismatch (double prefix bug) or feature disabled
           if (url.includes('/api/v0/api/v0')) {
-            errorMessage = `Endpoint not found: ${url} (possible route mismatch - check browser console)`;
+            errorMessage = interfaceText(
+              'Endpoint not found: {url} (possible route mismatch - check browser console)',
+              { url },
+            );
           } else {
-            errorMessage =
-              'Identity & Friends feature is not enabled, or endpoint not found.';
+            errorMessage = interfaceText(
+              'Identity & Friends feature is not enabled, or endpoint not found.',
+            );
           }
         } else if (status >= 500) {
-          errorMessage = 'Server error. Please check server logs.';
+          errorMessage = interfaceText('Server error. Please check server logs.');
         }
       }
 
@@ -251,14 +237,14 @@ class Contacts extends Component {
         createInviteModalOpen: false,
         error:
           errorMessage ||
-          'Failed to create invite. Please ensure Identity & Friends is enabled and configured.',
+          interfaceText('Failed to create invite. Please ensure Identity & Friends is enabled and configured.'),
         inviteQrDataUrl: null,
       });
     }
   };
 
   handleDeleteContact = async (id) => {
-    if (!window.confirm('Delete this contact?')) return;
+    if (!window.confirm(interfaceText('Delete this contact?'))) return;
     try {
       await identityAPI.deleteContact(id);
       await this.loadContacts();
@@ -328,30 +314,27 @@ class Contacts extends Component {
                   onClick={this.loadContacts}
                   tooltip="Try loading the latest contacts again."
                 >
-                  Retry Contacts
-                </Button>
+                  <LocalizedText source={"Retry Contacts"} /></Button>
               </Message>
             )}
             {loading ? (
               <LoaderSegment />
             ) : contactsLoadError && contacts.length === 0 ? (
               <Message negative data-testid="contacts-load-error">
-                <Message.Header>Contacts could not be loaded</Message.Header>
+                <Message.Header><LocalizedText source={"Contacts could not be loaded"} /></Message.Header>
                 <p>{contactsLoadError}</p>
                 <Button
                   onClick={this.loadContacts}
                   primary
                   tooltip="Retry loading your saved contacts."
                 >
-                  Retry Contacts
-                </Button>
+                  <LocalizedText source={"Retry Contacts"} /></Button>
               </Message>
             ) : contacts.length === 0 ? (
               <Segment placeholder>
                 <Header icon>
                   <Icon name="users" />
-                  No contacts yet
-                </Header>
+                  <LocalizedText source={"No contacts yet"} /></Header>
                 <Button
                   as="button"
                   data-testid="contacts-create-invite-empty"
@@ -359,18 +342,17 @@ class Contacts extends Component {
                   primary
                   tooltip="Generate a 24-hour invite link and QR code so a friend can add you."
                 >
-                  Create Invite
-                </Button>
+                  <LocalizedText source={"Create Invite"} /></Button>
               </Segment>
             ) : (
               <Table>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>Nickname</Table.HeaderCell>
-                    <Table.HeaderCell>Peer ID</Table.HeaderCell>
-                    <Table.HeaderCell>Verified</Table.HeaderCell>
-                    <Table.HeaderCell>Last Seen</Table.HeaderCell>
-                    <Table.HeaderCell>Actions</Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Nickname"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Peer ID"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Verified"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Last Seen"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -379,7 +361,7 @@ class Contacts extends Component {
                       data-testid={`contact-row-${contact.nickname || contact.peerId.slice(0, 8)}`}
                       key={contact.id}
                     >
-                      <Table.Cell>{contact.nickname || 'Unnamed'}</Table.Cell>
+                      <Table.Cell>{contact.nickname || interfaceText('Unnamed')}</Table.Cell>
                       <Table.Cell>
                         <code style={{ fontSize: '0.85em' }}>
                           {contact.peerId.slice(0, 16)}...
@@ -387,43 +369,49 @@ class Contacts extends Component {
                       </Table.Cell>
                       <Table.Cell>
                         {contact.verified ? (
-                          <Label color="green">Verified</Label>
+                          <Label color="green"><LocalizedText source={"Verified"} /></Label>
                         ) : (
-                          <Label>Unverified</Label>
+                          <Label><LocalizedText source={"Unverified"} /></Label>
                         )}
                       </Table.Cell>
                       <Table.Cell>
                         {contact.lastSeen
-                          ? new Date(contact.lastSeen).toLocaleString()
-                          : 'Never'}
+                          ? new Date(contact.lastSeen).toLocaleString(getRegionalLocale())
+                          : <LocalizedText source={"Never"} />}
                       </Table.Cell>
                       <Table.Cell>
                         <Button.Group size="small">
                           <Popup
-                            content="Open a private chat with this contact."
+                            content={interfaceText("Open a private chat with this contact.")}
                             trigger={
                               <Button
-                                aria-label={`Chat with ${contact.nickname || contact.peerId}`}
+                                aria-label={interfaceText('Chat with {contact}', {
+                                  contact: contact.nickname || contact.peerId,
+                                })}
                                 icon="chat"
                                 onClick={() => this.openChat(contact)}
                               />
                             }
-                          />
+                           {...interfaceTextProps("Open a private chat with this contact.")}/>
                           <Popup
-                            content="Browse this contact's shared files."
+                            content={interfaceText("Browse this contact's shared files.")}
                             trigger={
                               <Button
-                                aria-label={`Browse files shared by ${contact.nickname || contact.peerId}`}
+                                aria-label={interfaceText('Browse files shared by {contact}', {
+                                  contact: contact.nickname || contact.peerId,
+                                })}
                                 icon="folder open"
                                 onClick={() => this.browseContact(contact)}
                               />
                             }
-                          />
+                           {...interfaceTextProps("Browse this contact's shared files.")}/>
                           <Popup
-                            content="Remove this saved contact."
+                            content={interfaceText("Remove this saved contact.")}
                             trigger={
                               <Button
-                                aria-label={`Remove ${contact.nickname || contact.peerId} as a contact`}
+                                aria-label={interfaceText('Remove {contact} as a contact', {
+                                  contact: contact.nickname || contact.peerId,
+                                })}
                                 icon="trash"
                                 negative
                                 onClick={() =>
@@ -431,7 +419,7 @@ class Contacts extends Component {
                                 }
                               />
                             }
-                          />
+                           {...interfaceTextProps("Remove this saved contact.")}/>
                         </Button.Group>
                       </Table.Cell>
                     </Table.Row>
@@ -442,7 +430,7 @@ class Contacts extends Component {
             {contacts.length > CONTACT_PAGE_SIZE && (
               <div className="contacts-pagination">
                 <span>
-                  {contactPageStart}–{contactPageEnd} of {contacts.length}
+                  {contactPageStart}–{contactPageEnd} <LocalizedText source={"of"} />{" "}{contacts.length}
                 </span>
                 <Button
                   disabled={currentContactPage <= 1}
@@ -471,29 +459,26 @@ class Contacts extends Component {
               <LoaderSegment />
             ) : nearbyError ? (
               <Message negative data-testid="contacts-nearby-error">
-                <Message.Header>Nearby discovery failed</Message.Header>
+                <Message.Header><LocalizedText source={"Nearby discovery failed"} /></Message.Header>
                 <p>{nearbyError}</p>
                 <Button
                   onClick={this.loadNearby}
                   primary
                   tooltip="Try nearby peer discovery again."
                 >
-                  Retry Nearby
-                </Button>
+                  <LocalizedText source={"Retry Nearby"} /></Button>
               </Message>
             ) : nearby.length === 0 ? (
               <Segment placeholder>
                 <Header icon>
                   <Icon name="wifi" />
-                  No nearby peers found
-                </Header>
-                <p>Make sure you're on the same network and mDNS is working.</p>
+                  <LocalizedText source={"No nearby peers found"} /></Header>
+                <p><LocalizedText source={"Make sure you're on the same network and mDNS is working."} /></p>
                 <Button
                   onClick={this.loadNearby}
                   tooltip="Query local-network discovery again to refresh the nearby peers list."
                 >
-                  Refresh
-                </Button>
+                  <LocalizedText source={"Refresh"} /></Button>
               </Segment>
             ) : (
               <List
@@ -505,9 +490,9 @@ class Contacts extends Component {
                     <List.Content>
                       <List.Header>{peer.displayName}</List.Header>
                       <List.Description>
-                        Code: <code>{peer.peerCode}</code>
+                        <LocalizedText source={"Code:"} />{" "}<code>{peer.peerCode}</code>
                         <br />
-                        Endpoint: {peer.endpoint}
+                        <LocalizedText source={"Endpoint:"} />{" "}{peer.endpoint}
                       </List.Description>
                       <Button
                         onClick={() => this.setState({
@@ -520,8 +505,7 @@ class Contacts extends Component {
                         style={{ marginTop: '0.5em' }}
                         tooltip="Choose a nickname and save this nearby peer as a contact."
                       >
-                        Add Contact
-                      </Button>
+                        <LocalizedText source={"Add Contact"} /></Button>
                     </List.Content>
                   </List.Item>
                 ))}
@@ -530,7 +514,7 @@ class Contacts extends Component {
             {nearby.length > NEARBY_PAGE_SIZE && (
               <div className="contacts-pagination">
                 <span>
-                  {nearbyPageStart}–{nearbyPageEnd} of {nearby.length}
+                  {nearbyPageStart}–{nearbyPageEnd} <LocalizedText source={"of"} />{" "}{nearby.length}
                 </span>
                 <Button
                   disabled={currentNearbyPage <= 1}
@@ -559,8 +543,7 @@ class Contacts extends Component {
           <Header as="h1">
             <Icon name="address book" />
             <Header.Content>
-              Contacts
-              <Header.Subheader>Manage your peer contacts</Header.Subheader>
+              <LocalizedText source={"Contacts"} /><Header.Subheader><LocalizedText source={"Manage your peer contacts"} /></Header.Subheader>
             </Header.Content>
           </Header>
 
@@ -576,8 +559,7 @@ class Contacts extends Component {
               tooltip="Generate a 24-hour invite link and QR code so a friend can add you."
             >
               <Icon name="plus" />
-              Create Invite
-            </Button>
+              <LocalizedText source={"Create Invite"} /></Button>
             <Button
               as="button"
               data-testid="contacts-add-friend"
@@ -585,15 +567,13 @@ class Contacts extends Component {
               tooltip="Open the form to add a contact from an invite link or QR code."
             >
               <Icon name="user plus" />
-              Add Friend
-            </Button>
+              <LocalizedText source={"Add Friend"} /></Button>
             <Button
               onClick={this.loadNearby}
               tooltip="Query local-network discovery again to refresh the nearby peers list."
             >
               <Icon name="refresh" />
-              Refresh Nearby
-            </Button>
+              <LocalizedText source={"Refresh Nearby"} /></Button>
           </div>
 
           <Tab
@@ -609,9 +589,9 @@ class Contacts extends Component {
             onClose={() => this.setState({ addFriendModalOpen: false })}
             open={addFriendModalOpen}
           >
-            <Modal.Header>Add Friend from Invite</Modal.Header>
+            <Modal.Header><LocalizedText source={"Add Friend from Invite"} /></Modal.Header>
             <Modal.Content>
-              <p>Paste an invite link:</p>
+              <p><LocalizedText source={"Paste an invite link:"} /></p>
               <AddFriendForm
                 onSubmit={(inviteLink, nickname) => {
                   this.handleAddFromInvite(inviteLink, nickname);
@@ -630,21 +610,21 @@ class Contacts extends Component {
             })}
             open={Boolean(nearbyAddPeer)}
           >
-            <Modal.Header>Add Nearby Contact</Modal.Header>
+            <Modal.Header><LocalizedText source={"Add Nearby Contact"} /></Modal.Header>
             <Modal.Content>
-              <p>Choose a nickname for {nearbyAddPeer?.displayName || nearbyAddPeer?.peerId}.</p>
+              <p><LocalizedText source={"Choose a nickname for"} />{" "}{nearbyAddPeer?.displayName || nearbyAddPeer?.peerId}.</p>
               <Form>
                 <Form.Field>
-                  <label htmlFor="nearby-contact-nickname">Nickname</label>
+                  <label htmlFor="nearby-contact-nickname"><LocalizedText source={"Nickname"} /></label>
                   <input
                     autoFocus
                     data-testid="nearby-contact-nickname"
                     id="nearby-contact-nickname"
                     onChange={(event) => this.setState({ nearbyNickname: event.target.value })}
-                    placeholder="Contact name"
+                    placeholder={interfaceText("Contact name")}
                     type="text"
                     value={nearbyNickname}
-                  />
+                   {...interfaceTextProps("Nickname")}/>
                 </Form.Field>
               </Form>
               {nearbyAddError && (
@@ -663,8 +643,7 @@ class Contacts extends Component {
                 })}
                 tooltip="Close this dialog without adding the contact."
               >
-                Cancel
-              </Button>
+                <LocalizedText source={"Cancel"} /></Button>
               <Button
                 data-testid="nearby-contact-add-submit"
                 disabled={!nearbyNickname.trim() || nearbyAdding}
@@ -676,8 +655,7 @@ class Contacts extends Component {
                 primary
                 tooltip="Save this peer as a contact using the nickname above."
               >
-                Add Contact
-              </Button>
+                <LocalizedText source={"Add Contact"} /></Button>
             </Modal.Actions>
           </Modal>
 
@@ -686,9 +664,9 @@ class Contacts extends Component {
             onClose={() => this.setState({ createInviteModalOpen: false })}
             open={createInviteModalOpen}
           >
-            <Modal.Header>Invite Created</Modal.Header>
+            <Modal.Header><LocalizedText source={"Invite Created"} /></Modal.Header>
             <Modal.Content>
-              <p>Share this invite link:</p>
+              <p><LocalizedText source={"Share this invite link:"} /></p>
               <div style={{ marginBottom: '1em' }}>
                 <input
                   data-testid="contacts-invite-output"
@@ -700,7 +678,7 @@ class Contacts extends Component {
               </div>
               {inviteFriendCode && (
                 <p>
-                  Friend Code:{' '}
+                  <LocalizedText source={"Friend Code:"} />{' '}
                   <code data-testid="contacts-invite-friend-code">
                     {inviteFriendCode}
                   </code>
@@ -713,7 +691,7 @@ class Contacts extends Component {
                   textAlign="center"
                 >
                   <img
-                    alt="QR invite code"
+                    alt={interfaceText("QR invite code")}
                     data-testid="contacts-invite-qr"
                     src={inviteQrDataUrl}
                     style={{
@@ -721,7 +699,7 @@ class Contacts extends Component {
                       imageRendering: 'pixelated',
                       width: 192,
                     }}
-                  />
+                   {...interfaceTextProps("QR invite code")}/>
                 </Segment>
               )}
             </Modal.Content>
@@ -730,8 +708,7 @@ class Contacts extends Component {
                 onClick={() => this.setState({ createInviteModalOpen: false })}
                 tooltip="Close the invite and return to your contacts list."
               >
-                Close
-              </Button>
+                <LocalizedText source={"Close"} /></Button>
             </Modal.Actions>
           </Modal>
         </Container>
@@ -758,7 +735,7 @@ class AddFriendForm extends Component {
     try {
       if (!('BarcodeDetector' in window) || !window.createImageBitmap) {
         throw new Error(
-          'This browser does not support QR scanning from images yet.',
+          interfaceText('This browser does not support QR scanning from images yet.'),
         );
       }
 
@@ -771,7 +748,7 @@ class AddFriendForm extends Component {
         )?.rawValue;
 
         if (!inviteLink) {
-          throw new Error('No slskdN invite QR code was found in that image.');
+          throw new Error(interfaceText('No slskdN invite QR code was found in that image.'));
         }
 
         this.setState({ inviteLink, scanError: null });
@@ -779,7 +756,7 @@ class AddFriendForm extends Component {
         bitmap.close?.();
       }
     } catch (error) {
-      this.setState({ scanError: error.message || 'QR scan failed.' });
+      this.setState({ scanError: getErrorMessage(error, 'QR scan failed.') });
     } finally {
       event.target.value = '';
       this.setState({ scanning: false });
@@ -797,15 +774,15 @@ class AddFriendForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div style={{ marginBottom: '1em' }}>
-          <label>Invite Link:</label>
+          <label><LocalizedText source={"Invite Link:"} /></label>
           <input
             data-testid="contacts-add-invite-input"
             onChange={(e) => this.setState({ inviteLink: e.target.value })}
-            placeholder="slskdn://invite/..."
+            placeholder={interfaceText("slskdn://invite/...")}
             style={{ padding: '0.5em', width: '100%' }}
             type="text"
             value={this.state.inviteLink}
-          />
+           {...interfaceTextProps("slskdn://invite/...")}/>
           <input
             accept="image/*"
             data-testid="contacts-add-invite-qr-file"
@@ -819,9 +796,9 @@ class AddFriendForm extends Component {
             disabled={this.state.scanning}
             icon
             onClick={() => this.fileInputRef.current?.click()}
-            title="Scan a QR invite image from your camera or photo library."
+            title={interfaceText("Scan a QR invite image from your camera or photo library.")}
             type="button"
-          >
+           {...interfaceTextProps("Scan a QR invite image from your camera or photo library.")}>
             <Icon name="qrcode" />
           </Button>
           {this.state.scanError && (
@@ -834,15 +811,15 @@ class AddFriendForm extends Component {
           )}
         </div>
         <div style={{ marginBottom: '1em' }}>
-          <label>Nickname:</label>
+          <label><LocalizedText source={"Nickname:"} /></label>
           <input
             data-testid="contacts-contact-nickname"
             onChange={(e) => this.setState({ nickname: e.target.value })}
-            placeholder="Friend's name"
+            placeholder={interfaceText("Friend's name")}
             style={{ padding: '0.5em', width: '100%' }}
             type="text"
             value={this.state.nickname}
-          />
+           {...interfaceTextProps("Friend's name")}/>
         </div>
         <Button
           data-testid="contacts-add-invite-submit"
@@ -850,8 +827,7 @@ class AddFriendForm extends Component {
           type="submit"
           tooltip="Validate the invite link and save this peer to your contacts."
         >
-          Add Contact
-        </Button>
+          <LocalizedText source={"Add Contact"} /></Button>
       </form>
     );
   }

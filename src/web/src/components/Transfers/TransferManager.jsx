@@ -1,3 +1,6 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import './Transfers.css';
 import * as autoReplaceLibrary from '../../lib/autoReplace';
 import { createTransfersHubConnection } from '../../lib/hubFactory';
@@ -14,6 +17,7 @@ import { PlaceholderSegment } from '../Shared';
 import TransferTable from './TransferTable';
 import TransfersHeader from './TransfersHeader';
 import RequestDetailModal from './RequestDetailModal';
+
 import React, {
   useCallback,
   useEffect,
@@ -26,49 +30,52 @@ import { Button, Input, Menu, Popup } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
 
 const STATUS_FILTERS = [
-  { key: 'all', label: 'All', match: () => true },
+  { key: 'all', get label() { return interfaceText("All"); }, match: () => true },
   {
     key: 'active',
-    label: 'Active',
+    get label() { return interfaceText("Active"); },
     match: (t) => t.state === 'InProgress' || t.state === 'Initializing',
   },
   {
     key: 'queued',
-    label: 'Queued',
+    get label() { return interfaceText("Queued"); },
     match: (t) => String(t.state ?? '').includes('Queued'),
   },
   {
     key: 'completed',
-    label: 'Completed',
+    get label() { return interfaceText("Completed"); },
     match: (t) => t.state === 'Completed, Succeeded',
   },
   {
     key: 'failed',
-    label: 'Failed',
+    get label() { return interfaceText("Failed"); },
     match: (t) =>
       String(t.state ?? '').includes('Completed') &&
       t.state !== 'Completed, Succeeded',
   },
 ];
 
+const FILTER_HELP_SOURCES = {
+  all: 'Show transfers in every status.',
+  active: 'Show only active transfers so you can focus on that part of the queue.',
+  queued: 'Show only queued transfers so you can focus on that part of the queue.',
+  completed: 'Show only completed transfers so you can focus on that part of the queue.',
+  failed: 'Show only failed transfers so you can focus on that part of the queue.',
+};
+
 const RECONCILE_INTERVAL_MS = 15_000;
 const ACTIVE_TRANSFER_PAGE_SIZE = 100;
 const HISTORY_PAGE_SIZE = 250;
 
 const getErrorMessage = (error) =>
-  error?.response?.data ?? error?.message ?? `${error}`;
+  getApiErrorMessage(error, { t: interfaceText });
 
-const summarizeBulkFailures = ({ action, failures }) => {
+const summarizeBulkFailures = ({ failures }) => {
   if (failures.length === 0) {
     return;
   }
 
-  const [firstFailure] = failures;
-  toast.error(
-    failures.length === 1
-      ? `Failed to ${action} ${firstFailure.label}: ${firstFailure.message}`
-      : `Failed to ${action} ${failures.length} transfer(s). First error: ${firstFailure.label}: ${firstFailure.message}`,
-  );
+  toast.error(interfaceText('Some transfers could not be updated. Try again.'));
 };
 
 const matchesDirection = (transfer, direction) =>
@@ -77,6 +84,10 @@ const matchesDirection = (transfer, direction) =>
 const isSucceeded = (state) => state === 'Completed, Succeeded';
 
 const TransferManager = ({ direction, server = { isConnected: true } }) => {
+  const { language, t, languageFor, directionFor } = useInterfaceLanguage();
+  const localizedText = (source) => (
+    <span lang={languageFor(source)} dir={directionFor(source)}>{t(source)}</span>
+  );
   const testId = direction === 'download' ? 'downloads-root' : 'uploads-root';
 
   const storeRef = useRef();
@@ -388,7 +399,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       status.hasMore = page.hasMore;
     } catch (error) {
       console.error('active transfer page failed', error);
-      toast.error('Could not load more transfers');
+      toast.error(interfaceText('Could not load more transfers'));
     } finally {
       status.loading = false;
       setHistoryVersion((version) => version + 1);
@@ -662,18 +673,18 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
         await autoReplaceLibrary.enableAutoReplace();
         setAutoReplaceEnabled(true);
         toast.info(
-          'Auto-replace enabled. Backend will check for stuck downloads periodically.',
+          interfaceText("Auto-replace enabled. Backend will check for stuck downloads periodically."),
         );
       } else {
         await autoReplaceLibrary.disableAutoReplace();
         setAutoReplaceEnabled(false);
         toast.info(
-          'Auto-replace disabled. Automatic retry is separate; disable transfers.download.auto_retry.enabled to stop retries of failed downloads.',
+          interfaceText("Auto-replace disabled. Automatic retry is separate; disable transfers.download.auto_retry.enabled to stop retries of failed downloads."),
         );
       }
     } catch (error) {
       console.error('Failed to toggle auto-replace:', error);
-      toast.error('Failed to toggle auto-replace');
+      toast.error(interfaceText("Failed to toggle auto-replace"));
     }
   };
 
@@ -683,12 +694,12 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       setAcceleratedEnabled(status?.enabled ?? enabled);
       toast.info(
         enabled
-          ? 'Accelerated mode enabled. Slow or stalled downloads can use verified alternate sources.'
-          : 'Accelerated mode disabled',
+          ? interfaceText('Accelerated mode enabled. Slow or stalled downloads can use verified alternate sources.')
+          : interfaceText('Accelerated mode disabled'),
       );
     } catch (error) {
       console.error('Failed to toggle accelerated mode:', error);
-      toast.error('Failed to toggle accelerated mode');
+      toast.error(interfaceText("Failed to toggle accelerated mode"));
     }
   };
 
@@ -828,28 +839,31 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
           onClick={() => setActiveTab('download')}
           style={{ fontSize: '0.85em', padding: '0.4em 0.8em' }}
         >
-          {`Downloads (${counts.download})`}
+          {interfaceText("Downloads ({download})", { "download": (counts.download) })}
         </Menu.Item>
         <Menu.Item
           active={activeTab === 'upload'}
           onClick={() => setActiveTab('upload')}
           style={{ fontSize: '0.85em', padding: '0.4em 0.8em' }}
         >
-          {`Uploads (${counts.upload})`}
+          {interfaceText("Uploads ({upload})", { "upload": (counts.upload) })}
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item
             style={{ fontSize: '0.78em', padding: '0.3em 0.6em' }}
             title={
               connected
-                ? 'Live transfer feed connected'
-                : 'Live feed disconnected — using periodic refresh'
+                ? interfaceText('Live transfer feed connected')
+                : interfaceText('Live feed disconnected — using periodic refresh')
             }
+            {...interfaceTextProps(connected
+              ? 'Live transfer feed connected'
+              : 'Live feed disconnected — using periodic refresh')}
           >
             <span
               className={`transfer-feed-dot ${connected ? 'is-live' : 'is-offline'}`}
             />
-            {connected ? 'Live' : 'Reconnecting'}
+            {connected ? <LocalizedText source={"Live"} /> : <LocalizedText source={"Reconnecting"} />}
           </Menu.Item>
         </Menu.Menu>
       </Menu>
@@ -876,15 +890,17 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       {!isEmpty && (
         <div className="transfer-filter-bar">
           <div className="transfer-loaded-note" role="status">
-            {`Loaded ${tabTransfers.length} of ${counts[activeTab]} transfer rows. Status filters and queue actions use loaded rows; removing completed rows applies server-wide.`}
+            <LocalizedText
+              source="Loaded {loadedCount} of {totalCount} transfers. Filters and queue actions apply to loaded rows; completed-transfer removal applies server-wide."
+              values={{ loadedCount: tabTransfers.length, totalCount: counts[activeTab] }}
+            />
           </div>
           <div className="transfer-filter-chips">
             {STATUS_FILTERS.map((filter) => (
               <Popup
-                content={filter.key === 'all'
-                  ? 'Show transfers in every status.'
-                  : `Show only ${filter.label.toLowerCase()} transfers so you can focus on that part of the queue.`}
+                content={interfaceText(FILTER_HELP_SOURCES[filter.key])}
                 key={filter.key}
+                {...interfaceTextProps(FILTER_HELP_SOURCES[filter.key])}
                 trigger={(
                   <button
                     className={`transfer-chip${
@@ -892,8 +908,10 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
                     }`}
                     onClick={() => updateViewState({ statusFilter: filter.key })}
                     type="button"
+                    lang={languageFor(filter.label)}
+                    dir={directionFor(filter.label)}
                   >
-                    {`${filter.label} (${statusCounts[filter.key] ?? 0})`}
+                    {`${t(filter.label)} (${statusCounts[filter.key] ?? 0})`}
                   </button>
                 )}
               />
@@ -903,16 +921,20 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
             className="transfer-filter-search"
             icon="search"
             onChange={(_, data) => setSearchText(data.value)}
-            placeholder="Filter by name or peer…"
+            placeholder={t('Filter by name or peer…')}
+            lang={language}
+            dir={language === 'ar' ? 'rtl' : 'ltr'}
             size="small"
             value={searchText}
           />
           {!hideCompleted && historyStatus.hasMore && (
             <Popup
-              content="Load the next 250 successful transfers from the server without loading the entire history."
+              content={interfaceText("Load the next 250 successful transfers from the server without loading the entire history.")}
               trigger={
                 <Button
-                  content="Load older completed"
+                  content={t('Load older completed')}
+                  lang={languageFor('Load older completed')}
+                  dir={directionFor('Load older completed')}
                   disabled={historyStatus.loading}
                   icon="history"
                   loading={historyStatus.loading}
@@ -920,14 +942,16 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
                   size="small"
                 />
               }
-            />
+             {...interfaceTextProps("Load the next 250 successful transfers from the server without loading the entire history.")}/>
           )}
           {activePageStatus.hasMore && (
             <Popup
-              content="Load the next 100 active and unsuccessful transfer records from the server. Selection and live updates are retained as more rows arrive."
+              content={interfaceText('Load the next 100 active and unsuccessful transfer records from the server. Selection and live updates are retained as more rows arrive.')}
               trigger={(
                 <Button
-                  content="Load more transfers"
+                  content={t('Load more transfers')}
+                  lang={languageFor('Load more transfers')}
+                  dir={directionFor('Load more transfers')}
                   disabled={activePageStatus.loading}
                   icon="ellipsis horizontal"
                   loading={activePageStatus.loading}
@@ -935,6 +959,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
                   size="small"
                 />
               )}
+             {...interfaceTextProps('Load the next 100 active and unsuccessful transfer records from the server. Selection and live updates are retained as more rows arrive.')}
             />
           )}
         </div>
@@ -944,8 +969,8 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
         <PlaceholderSegment
           caption={
             connecting
-              ? `Loading ${activeTab}s`
-              : `No ${activeTab}s to display`
+              ? localizedText(activeTab === 'download' ? 'Loading downloads' : 'Loading uploads')
+              : localizedText(activeTab === 'download' ? 'No downloads to display' : 'No uploads to display')
           }
           icon={activeTab}
         />
@@ -953,12 +978,12 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
         <PlaceholderSegment
           caption={
             searchText.trim() || statusFilter !== 'all'
-              ? `No ${activeTab}s match the current filter`
+              ? localizedText('No transfers match the current filter')
               : hideCompleted
-                ? `Successful completed ${activeTab}s are hidden`
+                ? localizedText('Completed transfers are hidden')
               : historyStatus.loading
-                ? `Loading completed ${activeTab} history`
-                : `All loaded ${activeTab}s are completed`
+                ? localizedText('Loading completed history')
+                : localizedText('All loaded transfers are complete')
           }
           icon={searchText.trim() || statusFilter !== 'all' ? 'filter' : 'check'}
         />

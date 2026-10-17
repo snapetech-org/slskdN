@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import * as sourceProvidersApi from '../../../lib/sourceProviders';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
@@ -59,6 +62,7 @@ const riskColor = (riskLevel) => {
 };
 
 const SourceProviders = () => {
+  useInterfaceLanguage();
   const [catalog, setCatalog] = useState({
     acquisitionPlanningEnabled: false,
     providers: [],
@@ -92,12 +96,7 @@ const SourceProviders = () => {
     try {
       setCatalog(await sourceProvidersApi.getSourceProviders());
     } catch (loadError) {
-      setError(
-        loadError?.response?.data ||
-          loadError?.response?.statusText ||
-          loadError?.message ||
-          'Unable to load source providers',
-      );
+      setError(getApiErrorMessage(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -115,38 +114,35 @@ const SourceProviders = () => {
             loading
             name="spinner"
           />
-          Loading source providers
-        </Message>
+          <LocalizedText source={"Loading source providers"} /></Message>
       )}
       {error && (
         <Message
           error
-          header="Source providers unavailable"
+          header={interfaceText("Source providers unavailable")}
           content={error}
-        />
+         {...interfaceTextProps("Source providers unavailable")}/>
       )}
       <Segment>
         <div className="source-providers-header">
           <Header as="h3">
             <Icon name="random" />
             <Header.Content>
-              Source Providers
-              <Header.Subheader>
-                Search, discovery, download, and verification sources available to acquisition planning.
-              </Header.Subheader>
+              <LocalizedText source={"Source Providers"} /><Header.Subheader>
+                <LocalizedText source={"Search, discovery, download, and verification sources available to acquisition planning."} /></Header.Subheader>
             </Header.Content>
           </Header>
           <Popup
-            content="Reload the provider catalogue and current enablement state."
+            content={interfaceText("Reload the provider catalogue and current enablement state.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Refresh source providers"
+                aria-label={interfaceText("Refresh source providers")}
                 icon="refresh"
                 onClick={load}
-              />
+               {...interfaceTextProps("Refresh source providers")}/>
             }
-          />
+           {...interfaceTextProps("Reload the provider catalogue and current enablement state.")}/>
         </div>
         <Statistic.Group
           className="source-providers-summary"
@@ -154,23 +150,23 @@ const SourceProviders = () => {
         >
           <Statistic>
             <Statistic.Value>{activeCount}</Statistic.Value>
-            <Statistic.Label>Active</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Active"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>{providers.length}</Statistic.Value>
-            <Statistic.Label>Known</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Known"} /></Statistic.Label>
           </Statistic>
           <Statistic>
             <Statistic.Value>{configuredCount}</Statistic.Value>
-            <Statistic.Label>Ready</Statistic.Label>
+            <Statistic.Label><LocalizedText source={"Ready"} /></Statistic.Label>
           </Statistic>
         </Statistic.Group>
         {!catalog.acquisitionPlanningEnabled && (
           <Message
             info
-            header="Acquisition planning is disabled"
-            content="Providers remain visible here so enablement gaps are inspectable before automation is turned on."
-          />
+            header={interfaceText("Acquisition planning is disabled")}
+            content={interfaceText("Providers remain visible here so enablement gaps are inspectable before automation is turned on.")}
+           {...interfaceTextProps("Acquisition planning is disabled")}/>
         )}
       </Segment>
       <Card.Group
@@ -188,7 +184,7 @@ const SourceProviders = () => {
                 <Card.Header>{provider.name}</Card.Header>
                 <Label color={provider.active ? 'green' : 'grey'}>
                   <Icon name={provider.active ? 'check circle' : 'pause circle'} />
-                  {provider.active ? 'Active' : 'Disabled'}
+                  {provider.active ? <LocalizedText source={"Active"} /> : <LocalizedText source={"Disabled"} />}
                 </Label>
               </div>
               <Card.Meta>{provider.domain}</Card.Meta>
@@ -199,10 +195,10 @@ const SourceProviders = () => {
                 </Label>
                 {/* Registration is a fact, not a state that needs attention. */}
                 <Label basic>
-                  {provider.registered ? 'Registered' : 'Not Registered'}
+                  {provider.registered ? <LocalizedText source={"Registered"} /> : <LocalizedText source={"Not Registered"} />}
                 </Label>
                 {provider.requiresConfiguration && (
-                  <Label color="yellow">Needs Config</Label>
+                  <Label color="yellow"><LocalizedText source={"Needs Config"} /></Label>
                 )}
               </div>
             </Card.Content>
@@ -226,10 +222,8 @@ const SourceProviders = () => {
         <Header as="h4">
           <Icon name="sliders horizontal" />
           <Header.Content>
-            Profile Provider Priority
-            <Header.Subheader>
-              Read-only routing policy for each acquisition profile.
-            </Header.Subheader>
+            <LocalizedText source={"Profile Provider Priority"} /><Header.Subheader>
+              <LocalizedText source={"Read-only routing policy for each acquisition profile."} /></Header.Subheader>
           </Header.Content>
         </Header>
         <Card.Group
@@ -244,7 +238,7 @@ const SourceProviders = () => {
                   <Card.Header>{policy.profileName}</Card.Header>
                   <Label color={policy.autoDownloadEnabled ? 'green' : 'grey'}>
                     <Icon name={policy.autoDownloadEnabled ? 'play' : 'pause'} />
-                    {policy.autoDownloadEnabled ? 'Auto' : 'Manual'}
+                    {policy.autoDownloadEnabled ? <LocalizedText source={"Auto"} /> : <LocalizedText source={"Manual"} />}
                   </Label>
                 </div>
                 <Card.Description>{policy.notes}</Card.Description>

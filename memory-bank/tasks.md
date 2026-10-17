@@ -26,6 +26,36 @@
 
 ## Active Development
 
+### Finish UI localization coverage — PR #360 — 2026-10-14
+
+- [x] Extend the existing interface catalog to 5,463 keys in each of the 12
+  target locales, with English fallback and key/placeholder parity.
+- [x] Migrate reviewed dashboard, player, search, file, transfer, settings,
+  system, and API-error labels to the catalogs. Keep external/user/protocol
+  values unchanged and isolate interpolated values in Arabic rendered text.
+- [x] Add accessible translated navigation labels; hide translated icon labels
+  at narrow widths and fit all eight primary destinations without overflow.
+- [x] Sync the package lock with the existing Web package manifest and the
+  maturity README with the current README.
+- [x] Pass Web tests (1,332), Web lint, production build, bundle budget, build
+  output check, .NET suite (6,227), and repository formatting lint.
+- [x] Review Arabic on the Agent VM at 390px and 1,440px; rendered labels are
+  Arabic, document language/direction intentionally stay English/LTR, and the
+  mobile navigation has no horizontal page overflow.
+- [ ] Commit and push the reviewed changes to the existing PR branch; refresh
+  the PR description and verify hosted checks on the exact pushed SHA.
+- [x] Re-audit the identified remaining UI gaps, including persisted
+  Quarantine Jury errors. The scoped gaps are fixed; broader raw API error
+  migration remains documented separately in the localization roadmap.
+- [ ] Obtain fluent-speaker review; automated catalog and semantic checks are
+  not native-speaker signoff.
+
+Status: local validation, Agent VM review, and the scoped source audit are
+complete. Commit/push and exact-head hosted checks remain. Broader raw API error
+migration and fluent-speaker review remain follow-up work. No merge, release, or
+tag is in scope.
+
+
 ### Release identity scan sandbox scope — 2026-10-14
 
 - [x] Reproduce the false positive caused by a validation task's synthetic

@@ -1,7 +1,10 @@
+import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import SearchStatusIcon from '../SearchStatusIcon';
 import { buildDiscoveryGraph } from '../../../lib/discoveryGraph';
 import DiscoveryGraphModal from '../DiscoveryGraphModal';
 import * as searches from '../../../lib/searches';
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import SearchActionIcon from './SearchActionIcon';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -21,13 +24,30 @@ const sourceIcons = {
 };
 
 const SourceBadge = ({ source }) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
   const normalizedSource = (source || 'manual').toLowerCase();
   const color = sourceColors[normalizedSource] || 'grey';
   const icon = sourceIcons[normalizedSource] || 'search';
+  const sourceLabel = {
+    'auto-replace': 'Auto-Replace',
+    manual: 'Manual',
+    wishlist: 'Wishlist',
+  }[normalizedSource] || normalizedSource;
+  const localized = (text) => (
+    <span dir={directionFor(text)} lang={languageFor(text)}>{t(text)}</span>
+  );
 
   return (
     <Popup
-      content={`This search was started by ${normalizedSource === 'auto-replace' ? 'auto-replace (automatic stuck-download replacement)' : normalizedSource}`}
+      content={(
+        <span dir={directionFor('Search started by {source}')} lang={languageFor('Search started by {source}')}>
+          {t('Search started by {source}', {
+            source: normalizedSource === 'auto-replace'
+              ? t('Auto-Replace (automatic stuck-download replacement)')
+              : t(sourceLabel),
+          })}
+        </span>
+      )}
       position="top center"
       trigger={
         <Label
@@ -37,7 +57,7 @@ const SourceBadge = ({ source }) => {
           style={{ marginLeft: '0.5em' }}
         >
           <Icon name={icon} />
-          {normalizedSource}
+          {localized(sourceLabel)}
         </Label>
       }
     />
@@ -54,6 +74,16 @@ const SearchListRow = ({
   selected = false,
   selectionDisabled = false,
 }) => {
+  const regionalLocale = useRegionalLocale();
+  const { language, t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>{t(source)}</span>
+  );
+  const localizedError = (error, fallback) => (
+    <span dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language}>
+      {getApiErrorMessage(error, { t }, fallback)}
+    </span>
+  );
   const [working, setWorking] = useState(false);
   const [graphData, setGraphData] = useState(null);
   const [graphLoading, setGraphLoading] = useState(false);
@@ -81,9 +111,7 @@ const SearchListRow = ({
       setGraphData(graph);
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to build discovery graph',
-      );
+      toast.error(localizedError(error, 'The discovery graph could not be loaded.'));
       setGraphOpen(false);
     } finally {
       setGraphLoading(false);
@@ -142,18 +170,22 @@ const SearchListRow = ({
       .slice(0, 8);
 
     if (queries.length === 0) {
-      toast.error('No nearby track nodes were available to queue');
+      toast.error(localized('No nearby track nodes were available to queue'));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries });
-      toast.success(`Started ${count} nearby graph searches`);
+      toast.success((
+        <span dir={directionFor('Nearby graph searches started: {count}.')} lang={languageFor('Nearby graph searches started: {count}.')}>
+          {t('Nearby graph searches started: {count}.', {
+        count: formatRegionalNumber(count, undefined, regionalLocale),
+          })}
+        </span>
+      ));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to queue nearby graph searches',
-      );
+      toast.error(localizedError(error, 'Nearby graph searches could not be queued.'));
     }
   };
 
@@ -167,12 +199,14 @@ const SearchListRow = ({
       >
         <Table.Cell className="search-list-select">
           <Popup
-            content="Select this search for a bulk action."
+            content={localized('Select this search for a bulk action.')}
             position="top center"
             trigger={(
               <span>
                 <Checkbox
-                  aria-label={`Select search ${search.searchText || search.id}`}
+                  aria-label={t('Select search {search}', { search: search.searchText || search.id })}
+                  dir={directionFor('Select search {search}')}
+                  lang={languageFor('Select search {search}')}
                   checked={selected}
                   disabled={selectionDisabled || working}
                   onChange={(event, data) => onSelectionChange(data.checked)}
@@ -190,11 +224,13 @@ const SearchListRow = ({
           </Link>
           <SourceBadge source={search.source} />
           <Popup
-            content="Open a Discovery Graph for this search phrase so the query history becomes a browsable neighborhood."
+            content={localized('Open a Discovery Graph for this search phrase so the query history becomes a browsable neighborhood.')}
             position="top center"
             trigger={
               <Button
-                aria-label={`Open Discovery Graph for ${search.searchText || search.id}`}
+                aria-label={t('Open Discovery Graph for {search}', { search: search.searchText || search.id })}
+                dir={directionFor('Open Discovery Graph for {search}')}
+                lang={languageFor('Open Discovery Graph for {search}')}
                 basic
                 compact
                 icon
@@ -207,18 +243,18 @@ const SearchListRow = ({
             }
           />
         </Table.Cell>
-        <Table.Cell>{search.fileCount}</Table.Cell>
+        <Table.Cell>{formatRegionalNumber(search.fileCount, undefined, regionalLocale)}</Table.Cell>
         <Table.Cell>
           <Icon
             color="yellow"
             name="lock"
             size="small"
           />
-          {search.lockedFileCount}
+          {formatRegionalNumber(search.lockedFileCount, undefined, regionalLocale)}
         </Table.Cell>
-        <Table.Cell>{search.responseCount}</Table.Cell>
+        <Table.Cell>{formatRegionalNumber(search.responseCount, undefined, regionalLocale)}</Table.Cell>
         <Table.Cell>
-          {search.endedAt ? new Date(search.endedAt).toLocaleTimeString() : '-'}
+          {search.endedAt ? new Date(search.endedAt).toLocaleTimeString(regionalLocale) : '-'}
         </Table.Cell>
         <Table.Cell>
           <SearchActionIcon

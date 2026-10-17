@@ -1,3 +1,8 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+
+
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -6,6 +11,7 @@ import * as swarmAnalyticsLibrary from '../../../lib/swarmAnalytics';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
 import { formatBytes } from '../../../lib/util';
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
@@ -41,6 +47,7 @@ const normalizeDashboard = (value) => {
 };
 
 const SwarmAnalytics = () => {
+  useInterfaceLanguage();
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const multiSourceEnabled =
     featureGatesReady && isFeatureEnabled(featureGates, 'multiSourceDownloads');
@@ -58,11 +65,11 @@ const SwarmAnalytics = () => {
   const recommendations = analytics?.recommendations ?? [];
 
   const timeWindowOptions = [
-    { key: '1', text: '1 hour', value: 1 },
-    { key: '6', text: '6 hours', value: 6 },
-    { key: '24', text: '24 hours', value: 24 },
-    { key: '72', text: '3 days', value: 72 },
-    { key: '168', text: '7 days', value: 168 },
+    { key: '1', text: interfaceText("1 hour"), value: 1 },
+    { key: '6', text: interfaceText("6 hours"), value: 6 },
+    { key: '24', text: interfaceText("24 hours"), value: 24 },
+    { key: '72', text: interfaceText("3 days"), value: 72 },
+    { key: '168', text: interfaceText("7 days"), value: 168 },
   ];
 
   useEffect(() => {
@@ -104,9 +111,7 @@ const SwarmAnalytics = () => {
         document.hidden ||
         fetchRequestRef.current !== request
       ) return;
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to load analytics',
-      );
+      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to load analytics'));
       console.error('Failed to fetch analytics:', error);
     } finally {
       if (fetchRequestRef.current === request) {
@@ -194,7 +199,7 @@ const SwarmAnalytics = () => {
           dividing
         >
           <Icon name="chart line" />
-          <Header.Content>Swarm Analytics</Header.Content>
+          <Header.Content><LocalizedText source={"Swarm Analytics"} /></Header.Content>
         </Header>
         <FeatureGateNotice
           configurationKeys={['feature.MultiSourceDownloads']}
@@ -212,14 +217,14 @@ const SwarmAnalytics = () => {
         dividing
       >
         <Icon name="chart line" />
-        <Header.Content>Swarm Analytics</Header.Content>
+        <Header.Content><LocalizedText source={"Swarm Analytics"} /></Header.Content>
       </Header>
 
       {/* Controls */}
       <Segment>
         <Grid columns={2}>
           <Grid.Column>
-            <label>Time Window</label>
+            <label><LocalizedText source={"Time Window"} /></label>
             <Dropdown
               onChange={(e, { value }) => setTimeWindow(value)}
               options={timeWindowOptions}
@@ -228,14 +233,14 @@ const SwarmAnalytics = () => {
             />
           </Grid.Column>
           <Grid.Column>
-            <label>Peer Rankings Limit</label>
+            <label><LocalizedText source={"Peer Rankings Limit"} /></label>
             <Dropdown
               onChange={(e, { value }) => setRankingLimit(value)}
               options={[
-                { key: '10', text: 'Top 10', value: 10 },
-                { key: '20', text: 'Top 20', value: 20 },
-                { key: '50', text: 'Top 50', value: 50 },
-                { key: '100', text: 'Top 100', value: 100 },
+                { key: '10', text: interfaceText("Top 10"), value: 10 },
+                { key: '20', text: interfaceText("Top 20"), value: 20 },
+                { key: '50', text: interfaceText("Top 50"), value: 50 },
+                { key: '100', text: interfaceText("Top 100"), value: 100 },
               ]}
               selection
               value={rankingLimit}
@@ -257,9 +262,12 @@ const SwarmAnalytics = () => {
           {performanceMetrics && (
             <Card fluid>
               <Card.Content>
-                <Card.Header>Performance Metrics</Card.Header>
+                <Card.Header><LocalizedText source={"Performance Metrics"} /></Card.Header>
                 <Card.Meta>
-                  Last {timeWindow} hour{timeWindow !== 1 ? 's' : ''}
+                  <LocalizedText
+                    source={timeWindow === 1 ? "Last hour" : "Last {count} hours"}
+                    values={{ count: timeWindow }}
+                  />
                 </Card.Meta>
               </Card.Content>
               <Card.Content>
@@ -270,10 +278,10 @@ const SwarmAnalytics = () => {
                   <Grid.Column>
                     <Statistic>
                       <Statistic.Value>
-                        {performanceMetrics.totalDownloads?.toLocaleString() ??
+                        {performanceMetrics.totalDownloads?.toLocaleString(getRegionalLocale()) ??
                           0}
                       </Statistic.Value>
-                      <Statistic.Label>Total Downloads</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Total Downloads"} /></Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                   <Grid.Column>
@@ -281,7 +289,7 @@ const SwarmAnalytics = () => {
                       <Statistic.Value>
                         {(performanceMetrics.successRate * 100).toFixed(1)}%
                       </Statistic.Value>
-                      <Statistic.Label>Success Rate</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Success Rate"} /></Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                   <Grid.Column>
@@ -292,7 +300,7 @@ const SwarmAnalytics = () => {
                         )}
                         /s
                       </Statistic.Value>
-                      <Statistic.Label>Avg Speed</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Avg Speed"} /></Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                   <Grid.Column>
@@ -301,9 +309,8 @@ const SwarmAnalytics = () => {
                         {performanceMetrics.averageDurationSeconds?.toFixed(
                           1,
                         ) ?? 0}
-                        s
-                      </Statistic.Value>
-                      <Statistic.Label>Avg Duration</Statistic.Label>
+                        <LocalizedText source={"s"} /></Statistic.Value>
+                      <Statistic.Label><LocalizedText source={"Avg Duration"} /></Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                 </Grid>
@@ -316,16 +323,16 @@ const SwarmAnalytics = () => {
                       <Statistic.Value>
                         {formatBytes(performanceMetrics.totalBytesDownloaded)}
                       </Statistic.Value>
-                      <Statistic.Label>Total Bytes</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Total Bytes"} /></Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                   <Grid.Column>
                     <Statistic size="small">
                       <Statistic.Value>
-                        {performanceMetrics.totalChunksCompleted?.toLocaleString() ??
+                        {performanceMetrics.totalChunksCompleted?.toLocaleString(getRegionalLocale()) ??
                           0}
                       </Statistic.Value>
-                      <Statistic.Label>Chunks Completed</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Chunks Completed"} /></Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                   <Grid.Column>
@@ -334,7 +341,7 @@ const SwarmAnalytics = () => {
                         {(performanceMetrics.chunkSuccessRate * 100).toFixed(1)}
                         %
                       </Statistic.Value>
-                      <Statistic.Label>Chunk Success Rate</Statistic.Label>
+                      <Statistic.Label><LocalizedText source={"Chunk Success Rate"} /></Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                 </Grid>
@@ -349,7 +356,7 @@ const SwarmAnalytics = () => {
               style={{ marginTop: '1em' }}
             >
               <Card.Content>
-                <Card.Header>Efficiency Metrics</Card.Header>
+                <Card.Header><LocalizedText source={"Efficiency Metrics"} /></Card.Header>
               </Card.Content>
               <Card.Content>
                 <Grid
@@ -358,7 +365,7 @@ const SwarmAnalytics = () => {
                 >
                   <Grid.Column>
                     <div>
-                      <label>Chunk Utilization</label>
+                      <label><LocalizedText source={"Chunk Utilization"} /></label>
                       <Progress
                         indicating
                         percent={efficiencyMetrics.chunkUtilization * 100}
@@ -367,7 +374,7 @@ const SwarmAnalytics = () => {
                   </Grid.Column>
                   <Grid.Column>
                     <div>
-                      <label>Peer Utilization</label>
+                      <label><LocalizedText source={"Peer Utilization"} /></label>
                       <Progress
                         indicating
                         percent={efficiencyMetrics.peerUtilization * 100}
@@ -376,7 +383,7 @@ const SwarmAnalytics = () => {
                   </Grid.Column>
                   <Grid.Column>
                     <div>
-                      <label>Redundancy Factor</label>
+                      <label><LocalizedText source={"Redundancy Factor"} /></label>
                       <Statistic size="small">
                         <Statistic.Value>
                           {efficiencyMetrics.redundancyFactor?.toFixed(2) ?? 0}
@@ -396,20 +403,20 @@ const SwarmAnalytics = () => {
               style={{ marginTop: '1em' }}
             >
               <Card.Content>
-                <Card.Header>Top Peer Rankings</Card.Header>
+                <Card.Header><LocalizedText source={"Top Peer Rankings"} /></Card.Header>
               </Card.Content>
               <Card.Content>
                 <Table celled>
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>Rank</Table.HeaderCell>
-                      <Table.HeaderCell>Peer ID</Table.HeaderCell>
-                      <Table.HeaderCell>Source</Table.HeaderCell>
-                      <Table.HeaderCell>Reputation</Table.HeaderCell>
-                      <Table.HeaderCell>Avg RTT</Table.HeaderCell>
-                      <Table.HeaderCell>Avg Throughput</Table.HeaderCell>
-                      <Table.HeaderCell>Chunks</Table.HeaderCell>
-                      <Table.HeaderCell>Success Rate</Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Rank"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Peer ID"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Source"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Reputation"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Avg RTT"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Avg Throughput"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Chunks"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Success Rate"} /></Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
@@ -442,13 +449,12 @@ const SwarmAnalytics = () => {
                           {(peer.reputationScore * 100).toFixed(1)}%
                         </Table.Cell>
                         <Table.Cell>
-                          {peer.averageRttMs?.toFixed(1)} ms
-                        </Table.Cell>
+                          {peer.averageRttMs?.toFixed(1)} <LocalizedText source={"ms"} /></Table.Cell>
                         <Table.Cell>
                           {formatBytes(peer.averageThroughputBytesPerSecond)}/s
                         </Table.Cell>
                         <Table.Cell>
-                          {peer.chunksCompleted?.toLocaleString() ?? 0}
+                          {peer.chunksCompleted?.toLocaleString(getRegionalLocale()) ?? 0}
                         </Table.Cell>
                         <Table.Cell>
                           {(peer.chunkSuccessRate * 100).toFixed(1)}%
@@ -468,7 +474,7 @@ const SwarmAnalytics = () => {
               style={{ marginTop: '1em' }}
             >
               <Card.Content>
-                <Card.Header>Optimization Recommendations</Card.Header>
+                <Card.Header><LocalizedText source={"Optimization Recommendations"} /></Card.Header>
               </Card.Content>
               <Card.Content>
                 {recommendations.map((rec, index) => (
@@ -491,10 +497,10 @@ const SwarmAnalytics = () => {
                       </Message.Header>
                       <p>{rec.description}</p>
                       <p>
-                        <strong>Action:</strong> {rec.action}
+                        <strong><LocalizedText source={"Action:"} /></strong> {rec.action}
                       </p>
                       <p>
-                        <strong>Estimated Impact:</strong>{' '}
+                        <strong><LocalizedText source={"Estimated Impact:"} /></strong>{' '}
                         {(rec.estimatedImpact * 100).toFixed(0)}%
                       </p>
                     </Message.Content>
@@ -509,11 +515,9 @@ const SwarmAnalytics = () => {
             peerRankings.length === 0 &&
             recommendations.length === 0 && (
               <Message info>
-                <Message.Header>No Analytics Data</Message.Header>
+                <Message.Header><LocalizedText source={"No Analytics Data"} /></Message.Header>
                 <p>
-                  No swarm analytics data available. Start some swarm downloads
-                  to see metrics.
-                </p>
+                  <LocalizedText source={"No swarm analytics data available. Start some swarm downloads to see metrics."} /></p>
               </Message>
             )}
         </>

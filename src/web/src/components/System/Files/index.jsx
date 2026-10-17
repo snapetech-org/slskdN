@@ -1,5 +1,6 @@
 import './Files.css';
 import Explorer from './Explorer';
+import LocalizedText from '../../Shared/LocalizedText';
 import React, { useState } from 'react';
 import { Tab } from 'semantic-ui-react';
 
@@ -9,7 +10,7 @@ const Files = ({ options } = {}) => {
 
   const panes = [
     {
-      menuItem: 'Downloads',
+      menuItem: { key: 'downloads', content: <LocalizedText source="Downloads" /> },
       pane: (
         <Tab.Pane key="downloads">
           <Explorer
@@ -22,7 +23,7 @@ const Files = ({ options } = {}) => {
       route: 'downloads',
     },
     {
-      menuItem: 'Incomplete',
+      menuItem: { key: 'incomplete', content: <LocalizedText source="Incomplete" /> },
       pane: (
         <Tab.Pane key="incomplete">
           <Explorer

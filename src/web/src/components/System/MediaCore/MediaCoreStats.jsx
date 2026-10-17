@@ -1,3 +1,9 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+
+
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -40,7 +46,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getRetrievalStats();
       setRetrievalStats(result);
     } catch (error_) {
-      setRetrievalStats({ error: error_.message });
+      setRetrievalStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingRetrievalStats(false);
     }
@@ -51,10 +57,10 @@ const MediaCoreStats = () => {
       const result = await mediacore.clearRetrievalCache();
       await handleLoadRetrievalStats();
       toast.success(
-        `Cache cleared: ${result.entriesCleared} entries, ${result.bytesFreed} bytes freed`,
+        interfaceText("Cache cleared: {entriesCleared} entries, {bytesFreed} bytes freed", { "entriesCleared": (result.entriesCleared), "bytesFreed": (result.bytesFreed) }),
       );
     } catch (error_) {
-      toast.error(`Failed to clear cache: ${error_.message}`);
+      toast.error(interfaceText("Failed to clear cache: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -65,7 +71,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getMediaCoreDashboard();
       setMediaCoreDashboard(result);
     } catch (error_) {
-      setMediaCoreDashboard({ error: error_.message });
+      setMediaCoreDashboard({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingDashboard(false);
     }
@@ -90,9 +96,9 @@ const MediaCoreStats = () => {
       setPerceptualHashingStats(null);
       setMetadataPortabilityStats(null);
       setContentPublishingStats(null);
-      toast.success('MediaCore statistics have been reset');
+      toast.success(interfaceText("MediaCore statistics have been reset"));
     } catch (error_) {
-      toast.error(`Failed to reset stats: ${error_.message}`);
+      toast.error(interfaceText("Failed to reset stats: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     }
   };
 
@@ -103,7 +109,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getContentRegistryStats();
       setContentRegistryStats(result);
     } catch (error_) {
-      setContentRegistryStats({ error: error_.message });
+      setContentRegistryStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingRegistryStats(false);
     }
@@ -116,7 +122,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getDescriptorStats();
       setDescriptorStats(result);
     } catch (error_) {
-      setDescriptorStats({ error: error_.message });
+      setDescriptorStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingDescriptorStats(false);
     }
@@ -129,7 +135,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getFuzzyMatchingStats();
       setFuzzyMatchingStats(result);
     } catch (error_) {
-      setFuzzyMatchingStats({ error: error_.message });
+      setFuzzyMatchingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingFuzzyStats(false);
     }
@@ -142,7 +148,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getIpldMappingStats();
       setIpldMappingStats(result);
     } catch (error_) {
-      setIpldMappingStats({ error: error_.message });
+      setIpldMappingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingIpldStats(false);
     }
@@ -155,7 +161,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getPerceptualHashingStats();
       setPerceptualHashingStats(result);
     } catch (error_) {
-      setPerceptualHashingStats({ error: error_.message });
+      setPerceptualHashingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPerceptualStats(false);
     }
@@ -168,7 +174,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getMetadataPortabilityStats();
       setMetadataPortabilityStats(result);
     } catch (error_) {
-      setMetadataPortabilityStats({ error: error_.message });
+      setMetadataPortabilityStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPortabilityStats(false);
     }
@@ -181,7 +187,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getContentPublishingStats();
       setContentPublishingStats(result);
     } catch (error_) {
-      setContentPublishingStats({ error: error_.message });
+      setContentPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingPublishingStats(false);
     }
@@ -194,11 +200,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="chart line" />
-              Retrieval Management
-            </Card.Header>
+              <LocalizedText source={"Retrieval Management"} /></Card.Header>
             <Card.Description>
-              Monitor retrieval performance and manage cache
-            </Card.Description>
+              <LocalizedText source={"Monitor retrieval performance and manage cache"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -208,24 +212,19 @@ const MediaCoreStats = () => {
               onClick={handleLoadRetrievalStats}
               tooltip="Load descriptor retrieval performance and cache statistics."
             >
-              Load Stats
-            </TooltipButton>
+              <LocalizedText source={"Load Stats"} /></TooltipButton>
             <details style={{ marginTop: '1em' }}>
-              <summary>Advanced retrieval cache controls</summary>
+              <summary><LocalizedText source={"Advanced retrieval cache controls"} /></summary>
               <Message
                 size="small"
                 warning
               >
-                Clear the retrieval cache only after reviewing stats. This
-                removes cached descriptor lookup results and can increase
-                follow-up DHT retrieval traffic.
-              </Message>
+                <LocalizedText source={"Clear the retrieval cache only after reviewing stats. This removes cached descriptor lookup results and can increase follow-up DHT retrieval traffic."} /></Message>
               <TooltipButton
                 onClick={handleClearRetrievalCache}
                 tooltip="Remove cached descriptor lookups. Later DHT retrievals may generate more peer traffic."
               >
-                Clear Cache
-              </TooltipButton>
+                <LocalizedText source={"Clear Cache"} /></TooltipButton>
             </details>
 
             {retrievalStats && (
@@ -236,29 +235,28 @@ const MediaCoreStats = () => {
                   </Message>
                 ) : (
                   <Message>
-                    <Message.Header>Retrieval Statistics</Message.Header>
+                    <Message.Header><LocalizedText source={"Retrieval Statistics"} /></Message.Header>
                     <p>
-                      <strong>Total Retrievals:</strong>{' '}
+                      <strong><LocalizedText source={"Total Retrievals:"} /></strong>{' '}
                       {retrievalStats.totalRetrievals}
                       <br />
-                      <strong>Cache Hits:</strong> {retrievalStats.cacheHits}
+                      <strong><LocalizedText source={"Cache Hits:"} /></strong> {retrievalStats.cacheHits}
                       <br />
-                      <strong>Cache Misses:</strong>{' '}
+                      <strong><LocalizedText source={"Cache Misses:"} /></strong>{' '}
                       {retrievalStats.cacheMisses}
                       <br />
-                      <strong>Hit Ratio:</strong>{' '}
+                      <strong><LocalizedText source={"Hit Ratio:"} /></strong>{' '}
                       {(retrievalStats.cacheHitRatio * 100).toFixed(1)}%
                       <br />
-                      <strong>Avg Retrieval Time:</strong>{' '}
+                      <strong><LocalizedText source={"Avg Retrieval Time:"} /></strong>{' '}
                       {retrievalStats.averageRetrievalTime?.totalMilliseconds.toFixed(
                         0,
                       )}{' '}
-                      ms
-                      <br />
-                      <strong>Active Cache Entries:</strong>{' '}
+                      <LocalizedText source={"ms"} /><br />
+                      <strong><LocalizedText source={"Active Cache Entries:"} /></strong>{' '}
                       {retrievalStats.activeCacheEntries}
                       <br />
-                      <strong>Cache Size:</strong>{' '}
+                      <strong><LocalizedText source={"Cache Size:"} /></strong>{' '}
                       {(retrievalStats.cacheSizeBytes / 1_024).toFixed(1)} KB
                     </p>
                   </Message>
@@ -274,12 +272,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="chart bar" />
-              MediaCore Statistics Dashboard
-            </Card.Header>
+              <LocalizedText source={"MediaCore Statistics Dashboard"} /></Card.Header>
             <Card.Description>
-              Comprehensive overview of all MediaCore system performance and
-              usage metrics
-            </Card.Description>
+              <LocalizedText source={"Comprehensive overview of all MediaCore system performance and usage metrics"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <div className="ui fluid buttons">
@@ -290,52 +285,47 @@ const MediaCoreStats = () => {
                 primary
                 tooltip="Load overall MediaCore performance and usage metrics."
               >
-                Load Full Dashboard
-              </TooltipButton>
+                <LocalizedText source={"Load Full Dashboard"} /></TooltipButton>
             </div>
             <details style={{ marginTop: '1em' }}>
-              <summary>Advanced dashboard reset controls</summary>
+              <summary><LocalizedText source={"Advanced dashboard reset controls"} /></summary>
               <Message
                 size="small"
                 warning
               >
-                Resetting clears accumulated MediaCore statistics. Load and
-                review the dashboard first so operational context is not lost
-                accidentally.
-              </Message>
+                <LocalizedText source={"Resetting clears accumulated MediaCore statistics. Load and review the dashboard first so operational context is not lost accidentally."} /></Message>
               <TooltipButton
                 color="red"
                 onClick={handleResetMediaCoreStats}
                 tooltip="Clear all accumulated MediaCore statistics after confirming."
               >
-                Reset All Stats
-              </TooltipButton>
+                <LocalizedText source={"Reset All Stats"} /></TooltipButton>
             </details>
 
             {mediaCoreDashboard && !mediaCoreDashboard.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message info>
-                  <Message.Header>System Overview</Message.Header>
+                  <Message.Header><LocalizedText source={"System Overview"} /></Message.Header>
                   <p>
-                    <strong>Uptime:</strong>{' '}
+                    <strong><LocalizedText source={"Uptime:"} /></strong>{' '}
                     {mediaCoreDashboard.uptime
                       ? `${Math.floor(mediaCoreDashboard.uptime.totalHours)}h ${mediaCoreDashboard.uptime.minutes}m`
-                      : 'N/A'}
+                      : interfaceText('N/A')}
                     <br />
-                    <strong>Last Updated:</strong>{' '}
+                    <strong><LocalizedText source={"Last Updated:"} /></strong>{' '}
                     {mediaCoreDashboard.timestamp
                       ? new Date(
                           mediaCoreDashboard.timestamp,
-                        ).toLocaleString()
-                      : 'N/A'}
+                        ).toLocaleString(getRegionalLocale())
+                      : interfaceText('N/A')}
                   </p>
                 </Message>
 
                 {mediaCoreDashboard.systemResources && (
                   <Message>
-                    <Message.Header>System Resources</Message.Header>
+                    <Message.Header><LocalizedText source={"System Resources"} /></Message.Header>
                     <p>
-                      <strong>Working Set:</strong>{' '}
+                      <strong><LocalizedText source={"Working Set:"} /></strong>{' '}
                       {(
                         mediaCoreDashboard.systemResources.workingSetBytes /
                         1_024 /
@@ -343,7 +333,7 @@ const MediaCoreStats = () => {
                       ).toFixed(1)}{' '}
                       MB
                       <br />
-                      <strong>Private Memory:</strong>{' '}
+                      <strong><LocalizedText source={"Private Memory:"} /></strong>{' '}
                       {(
                         mediaCoreDashboard.systemResources
                           .privateMemoryBytes /
@@ -352,7 +342,7 @@ const MediaCoreStats = () => {
                       ).toFixed(1)}{' '}
                       MB
                       <br />
-                      <strong>GC Memory:</strong>{' '}
+                      <strong><LocalizedText source={"GC Memory:"} /></strong>{' '}
                       {(
                         mediaCoreDashboard.systemResources
                           .gcTotalMemoryBytes /
@@ -361,7 +351,7 @@ const MediaCoreStats = () => {
                       ).toFixed(1)}{' '}
                       MB
                       <br />
-                      <strong>Thread Count:</strong>{' '}
+                      <strong><LocalizedText source={"Thread Count:"} /></strong>{' '}
                       {mediaCoreDashboard.systemResources.threadCount}
                     </p>
                   </Message>
@@ -374,7 +364,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>Failed to load dashboard: {mediaCoreDashboard.error}</p>
+                <p><LocalizedText source={"Failed to load dashboard:"} />{" "}{mediaCoreDashboard.error}</p>
               </Message>
             )}
           </Card.Content>
@@ -386,11 +376,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="database" />
-              Content Registry
-            </Card.Header>
+              <LocalizedText source={"Content Registry"} /></Card.Header>
             <Card.Description>
-              Content ID mappings and domain statistics
-            </Card.Description>
+              <LocalizedText source={"Content ID mappings and domain statistics"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -400,28 +388,27 @@ const MediaCoreStats = () => {
               onClick={handleLoadContentRegistryStats}
               tooltip="Load Content Registry mapping totals and domain statistics."
             >
-              Load Registry Stats
-            </TooltipButton>
+              <LocalizedText source={"Load Registry Stats"} /></TooltipButton>
 
             {contentRegistryStats && !contentRegistryStats.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message success>
-                  <Message.Header>Registry Overview</Message.Header>
+                  <Message.Header><LocalizedText source={"Registry Overview"} /></Message.Header>
                   <p>
-                    <strong>Total Mappings:</strong>{' '}
+                    <strong><LocalizedText source={"Total Mappings:"} /></strong>{' '}
                     {contentRegistryStats.totalMappings}
                     <br />
-                    <strong>Domains:</strong>{' '}
+                    <strong><LocalizedText source={"Domains:"} /></strong>{' '}
                     {contentRegistryStats.totalDomains}
                     <br />
-                    <strong>Avg Mappings/Domain:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Mappings/Domain:"} /></strong>{' '}
                     {contentRegistryStats.averageMappingsPerDomain.toFixed(1)}
                   </p>
                   {contentRegistryStats.mappingsByDomain &&
                     Object.keys(contentRegistryStats.mappingsByDomain)
                       .length > 0 && (
                       <div style={{ marginTop: '0.5em' }}>
-                        <strong>Mappings by Domain:</strong>
+                        <strong><LocalizedText source={"Mappings by Domain:"} /></strong>
                         {Object.entries(
                           contentRegistryStats.mappingsByDomain,
                         ).map(([domain, count]) => (
@@ -456,11 +443,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="search" />
-              Descriptor Retrieval
-            </Card.Header>
+              <LocalizedText source={"Descriptor Retrieval"} /></Card.Header>
             <Card.Description>
-              Cache performance and retrieval statistics
-            </Card.Description>
+              <LocalizedText source={"Cache performance and retrieval statistics"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -470,35 +455,33 @@ const MediaCoreStats = () => {
               onClick={handleLoadDescriptorStats}
               tooltip="Load descriptor retrieval and cache performance metrics."
             >
-              Load Descriptor Stats
-            </TooltipButton>
+              <LocalizedText source={"Load Descriptor Stats"} /></TooltipButton>
 
             {descriptorStats && !descriptorStats.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message>
-                  <Message.Header>Cache Performance</Message.Header>
+                  <Message.Header><LocalizedText source={"Cache Performance"} /></Message.Header>
                   <p>
-                    <strong>Total Retrievals:</strong>{' '}
+                    <strong><LocalizedText source={"Total Retrievals:"} /></strong>{' '}
                     {descriptorStats.totalRetrievals}
                     <br />
-                    <strong>Cache Hits:</strong> {descriptorStats.cacheHits}
+                    <strong><LocalizedText source={"Cache Hits:"} /></strong> {descriptorStats.cacheHits}
                     <br />
-                    <strong>Cache Misses:</strong>{' '}
+                    <strong><LocalizedText source={"Cache Misses:"} /></strong>{' '}
                     {descriptorStats.cacheMisses}
                     <br />
-                    <strong>Hit Ratio:</strong>{' '}
+                    <strong><LocalizedText source={"Hit Ratio:"} /></strong>{' '}
                     {(descriptorStats.cacheHitRatio * 100).toFixed(1)}%
                     <br />
-                    <strong>Avg Retrieval Time:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Retrieval Time:"} /></strong>{' '}
                     {descriptorStats.averageRetrievalTime?.totalMilliseconds.toFixed(
                       0,
                     )}{' '}
-                    ms
-                    <br />
-                    <strong>Active Cache Entries:</strong>{' '}
+                    <LocalizedText source={"ms"} /><br />
+                    <strong><LocalizedText source={"Active Cache Entries:"} /></strong>{' '}
                     {descriptorStats.activeCacheEntries}
                     <br />
-                    <strong>Cache Size:</strong>{' '}
+                    <strong><LocalizedText source={"Cache Size:"} /></strong>{' '}
                     {(descriptorStats.cacheSizeBytes / 1_024).toFixed(1)} KB
                   </p>
                 </Message>
@@ -522,11 +505,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="magic" />
-              Fuzzy Matching
-            </Card.Header>
+              <LocalizedText source={"Fuzzy Matching"} /></Card.Header>
             <Card.Description>
-              Similarity detection and accuracy metrics
-            </Card.Description>
+              <LocalizedText source={"Similarity detection and accuracy metrics"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -536,35 +517,33 @@ const MediaCoreStats = () => {
               onClick={handleLoadFuzzyMatchingStats}
               tooltip="Load fuzzy-match totals, success rate, and accuracy metrics."
             >
-              Load Fuzzy Stats
-            </TooltipButton>
+              <LocalizedText source={"Load Fuzzy Stats"} /></TooltipButton>
 
             {fuzzyMatchingStats && !fuzzyMatchingStats.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message>
-                  <Message.Header>Matching Performance</Message.Header>
+                  <Message.Header><LocalizedText source={"Matching Performance"} /></Message.Header>
                   <p>
-                    <strong>Total Matches:</strong>{' '}
+                    <strong><LocalizedText source={"Total Matches:"} /></strong>{' '}
                     {fuzzyMatchingStats.totalMatches}
                     <br />
-                    <strong>Success Rate:</strong>{' '}
+                    <strong><LocalizedText source={"Success Rate:"} /></strong>{' '}
                     {(fuzzyMatchingStats.successRate * 100).toFixed(1)}%
                     <br />
-                    <strong>Avg Confidence:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Confidence:"} /></strong>{' '}
                     {(fuzzyMatchingStats.averageConfidenceScore * 100).toFixed(1)}
                     %
                     <br />
-                    <strong>Avg Match Time:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Match Time:"} /></strong>{' '}
                     {fuzzyMatchingStats.averageMatchingTime?.totalMilliseconds.toFixed(
                       0,
                     )}{' '}
-                    ms
-                  </p>
+                    <LocalizedText source={"ms"} /></p>
                   {fuzzyMatchingStats.accuracyByAlgorithm &&
                     Object.keys(fuzzyMatchingStats.accuracyByAlgorithm)
                       .length > 0 && (
                       <div style={{ marginTop: '0.5em' }}>
-                        <strong>Algorithm Accuracy:</strong>
+                        <strong><LocalizedText source={"Algorithm Accuracy:"} /></strong>
                         {Object.entries(
                           fuzzyMatchingStats.accuracyByAlgorithm,
                         ).map(([algorithm, stats]) => (
@@ -573,8 +552,7 @@ const MediaCoreStats = () => {
                             style={{ margin: '0.2em 0' }}
                           >
                             <small>
-                              {algorithm}: F1={stats.f1Score.toFixed(2)},
-                              Precision={stats.precision.toFixed(2)}
+                              {algorithm}<LocalizedText source={": F1="} />{stats.f1Score.toFixed(2)}<LocalizedText source={", Precision="} />{stats.precision.toFixed(2)}
                             </small>
                           </div>
                         ))}
@@ -601,11 +579,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="hashtag" />
-              Perceptual Hashing
-            </Card.Header>
+              <LocalizedText source={"Perceptual Hashing"} /></Card.Header>
             <Card.Description>
-              Hash computation performance and accuracy
-            </Card.Description>
+              <LocalizedText source={"Hash computation performance and accuracy"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -615,34 +591,32 @@ const MediaCoreStats = () => {
               onClick={handleLoadPerceptualHashingStats}
               tooltip="Load perceptual-hash computation and accuracy metrics."
             >
-              Load Hashing Stats
-            </TooltipButton>
+              <LocalizedText source={"Load Hashing Stats"} /></TooltipButton>
 
             {perceptualHashingStats && !perceptualHashingStats.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message>
-                  <Message.Header>Hashing Performance</Message.Header>
+                  <Message.Header><LocalizedText source={"Hashing Performance"} /></Message.Header>
                   <p>
-                    <strong>Total Hashes:</strong>{' '}
+                    <strong><LocalizedText source={"Total Hashes:"} /></strong>{' '}
                     {perceptualHashingStats.totalHashesComputed}
                     <br />
-                    <strong>Avg Computation Time:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Computation Time:"} /></strong>{' '}
                     {perceptualHashingStats.averageComputationTime?.totalMilliseconds.toFixed(
                       0,
                     )}{' '}
-                    ms
-                    <br />
-                    <strong>Overall Accuracy:</strong>{' '}
+                    <LocalizedText source={"ms"} /><br />
+                    <strong><LocalizedText source={"Overall Accuracy:"} /></strong>{' '}
                     {(perceptualHashingStats.overallAccuracy * 100).toFixed(1)}%
                     <br />
-                    <strong>Duplicates Detected:</strong>{' '}
+                    <strong><LocalizedText source={"Duplicates Detected:"} /></strong>{' '}
                     {perceptualHashingStats.duplicateHashesDetected}
                   </p>
                   {perceptualHashingStats.statsByAlgorithm &&
                     Object.keys(perceptualHashingStats.statsByAlgorithm)
                       .length > 0 && (
                       <div style={{ marginTop: '0.5em' }}>
-                        <strong>Algorithm Breakdown:</strong>
+                        <strong><LocalizedText source={"Algorithm Breakdown:"} /></strong>
                         {Object.entries(
                           perceptualHashingStats.statsByAlgorithm,
                         ).map(([algorithm, stats]) => (
@@ -651,10 +625,8 @@ const MediaCoreStats = () => {
                             style={{ margin: '0.2em 0' }}
                           >
                             <small>
-                              {algorithm}: {stats.hashesComputed} hashes,{' '}
-                              {stats.averageTime.totalMilliseconds.toFixed(0)}ms
-                              avg, {stats.accuracy.toFixed(2)} accuracy
-                            </small>
+                              {algorithm}: {stats.hashesComputed} <LocalizedText source={"hashes,"} />{' '}
+                              {stats.averageTime.totalMilliseconds.toFixed(0)}<LocalizedText source={"ms avg,"} />{" "}{stats.accuracy.toFixed(2)} <LocalizedText source={"accuracy"} /></small>
                           </div>
                         ))}
                       </div>
@@ -680,11 +652,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="sitemap" />
-              IPLD Mapping
-            </Card.Header>
+              <LocalizedText source={"IPLD Mapping"} /></Card.Header>
             <Card.Description>
-              Graph structure and link statistics
-            </Card.Description>
+              <LocalizedText source={"Graph structure and link statistics"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -694,33 +664,31 @@ const MediaCoreStats = () => {
               onClick={handleLoadIpldMappingStats}
               tooltip="Load IPLD node, link, and mapping statistics."
             >
-              Load IPLD Stats
-            </TooltipButton>
+              <LocalizedText source={"Load IPLD Stats"} /></TooltipButton>
 
             {ipldMappingStats && !ipldMappingStats.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message>
-                  <Message.Header>Graph Statistics</Message.Header>
+                  <Message.Header><LocalizedText source={"Graph Statistics"} /></Message.Header>
                   <p>
-                    <strong>Total Links:</strong> {ipldMappingStats.totalLinks}
+                    <strong><LocalizedText source={"Total Links:"} /></strong> {ipldMappingStats.totalLinks}
                     <br />
-                    <strong>Total Nodes:</strong> {ipldMappingStats.totalNodes}
+                    <strong><LocalizedText source={"Total Nodes:"} /></strong> {ipldMappingStats.totalNodes}
                     <br />
-                    <strong>Total Graphs:</strong> {ipldMappingStats.totalGraphs}
+                    <strong><LocalizedText source={"Total Graphs:"} /></strong> {ipldMappingStats.totalGraphs}
                     <br />
-                    <strong>Connectivity Ratio:</strong>{' '}
+                    <strong><LocalizedText source={"Connectivity Ratio:"} /></strong>{' '}
                     {(ipldMappingStats.graphConnectivityRatio * 100).toFixed(1)}
                     %
                     <br />
-                    <strong>Broken Links:</strong>{' '}
+                    <strong><LocalizedText source={"Broken Links:"} /></strong>{' '}
                     {ipldMappingStats.brokenLinksDetected}
                     <br />
-                    <strong>Avg Traversal Time:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Traversal Time:"} /></strong>{' '}
                     {ipldMappingStats.averageTraversalTime?.totalMilliseconds.toFixed(
                       0,
                     )}{' '}
-                    ms
-                  </p>
+                    <LocalizedText source={"ms"} /></p>
                 </Message>
               </div>
             )}
@@ -742,11 +710,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="exchange" />
-              Metadata Portability
-            </Card.Header>
+              <LocalizedText source={"Metadata Portability"} /></Card.Header>
             <Card.Description>
-              Export/import operations and conflict resolution
-            </Card.Description>
+              <LocalizedText source={"Export/import operations and conflict resolution"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -756,44 +722,41 @@ const MediaCoreStats = () => {
               onClick={handleLoadMetadataPortabilityStats}
               tooltip="Load metadata export, import, and conflict-resolution metrics."
             >
-              Load Portability Stats
-            </TooltipButton>
+              <LocalizedText source={"Load Portability Stats"} /></TooltipButton>
 
             {metadataPortabilityStats && !metadataPortabilityStats.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message>
-                  <Message.Header>Portability Metrics</Message.Header>
+                  <Message.Header><LocalizedText source={"Portability Metrics"} /></Message.Header>
                   <p>
-                    <strong>Total Exports:</strong>{' '}
+                    <strong><LocalizedText source={"Total Exports:"} /></strong>{' '}
                     {metadataPortabilityStats.totalExports}
                     <br />
-                    <strong>Total Imports:</strong>{' '}
+                    <strong><LocalizedText source={"Total Imports:"} /></strong>{' '}
                     {metadataPortabilityStats.totalImports}
                     <br />
-                    <strong>Import Success Rate:</strong>{' '}
+                    <strong><LocalizedText source={"Import Success Rate:"} /></strong>{' '}
                     {(metadataPortabilityStats.importSuccessRate * 100).toFixed(
                       1,
                     )}
                     %
                     <br />
-                    <strong>Data Transferred:</strong>{' '}
+                    <strong><LocalizedText source={"Data Transferred:"} /></strong>{' '}
                     {(metadataPortabilityStats.totalDataTransferred / 1_024).toFixed(
                       1,
                     )}{' '}
                     KB
                     <br />
-                    <strong>Avg Export Time:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Export Time:"} /></strong>{' '}
                     {metadataPortabilityStats.averageExportTime?.totalMilliseconds.toFixed(
                       0,
                     )}{' '}
-                    ms
-                    <br />
-                    <strong>Avg Import Time:</strong>{' '}
+                    <LocalizedText source={"ms"} /><br />
+                    <strong><LocalizedText source={"Avg Import Time:"} /></strong>{' '}
                     {metadataPortabilityStats.averageImportTime?.totalMilliseconds.toFixed(
                       0,
                     )}{' '}
-                    ms
-                  </p>
+                    <LocalizedText source={"ms"} /></p>
                 </Message>
               </div>
             )}
@@ -815,11 +778,9 @@ const MediaCoreStats = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="cloud upload" />
-              Content Publishing
-            </Card.Header>
+              <LocalizedText source={"Content Publishing"} /></Card.Header>
             <Card.Description>
-              DHT publishing performance and publication management
-            </Card.Description>
+              <LocalizedText source={"DHT publishing performance and publication management"} /></Card.Description>
           </Card.Content>
           <Card.Content>
             <TooltipButton
@@ -829,41 +790,39 @@ const MediaCoreStats = () => {
               onClick={handleLoadContentPublishingStats}
               tooltip="Load Content Publishing and DHT publication performance metrics."
             >
-              Load Publishing Stats
-            </TooltipButton>
+              <LocalizedText source={"Load Publishing Stats"} /></TooltipButton>
 
             {contentPublishingStats && !contentPublishingStats.error && (
               <div style={{ marginTop: '1em' }}>
                 <Message>
-                  <Message.Header>Publishing Overview</Message.Header>
+                  <Message.Header><LocalizedText source={"Publishing Overview"} /></Message.Header>
                   <p>
-                    <strong>Total Published:</strong>{' '}
+                    <strong><LocalizedText source={"Total Published:"} /></strong>{' '}
                     {contentPublishingStats.totalPublished}
                     <br />
-                    <strong>Active Publications:</strong>{' '}
+                    <strong><LocalizedText source={"Active Publications:"} /></strong>{' '}
                     {contentPublishingStats.activePublications}
                     <br />
-                    <strong>Expired Publications:</strong>{' '}
+                    <strong><LocalizedText source={"Expired Publications:"} /></strong>{' '}
                     {contentPublishingStats.expiredPublications}
                     <br />
-                    <strong>Success Rate:</strong>{' '}
+                    <strong><LocalizedText source={"Success Rate:"} /></strong>{' '}
                     {(contentPublishingStats.publicationSuccessRate * 100).toFixed(
                       1,
                     )}
                     %
                     <br />
-                    <strong>Republished:</strong>{' '}
+                    <strong><LocalizedText source={"Republished:"} /></strong>{' '}
                     {contentPublishingStats.republishedDescriptors}
                     <br />
-                    <strong>Failed:</strong>{' '}
+                    <strong><LocalizedText source={"Failed:"} /></strong>{' '}
                     {contentPublishingStats.failedPublications}
                     <br />
-                    <strong>Avg Publish Time:</strong>{' '}
+                    <strong><LocalizedText source={"Avg Publish Time:"} /></strong>{' '}
                     {contentPublishingStats.averagePublishTime?.totalMilliseconds.toFixed(
                       0,
                     )}{' '}
-                    ms
-                  </p>
+                    <LocalizedText source={"ms"} /></p>
                 </Message>
               </div>
             )}

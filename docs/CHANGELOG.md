@@ -30,6 +30,22 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - CI validation artifacts now include only receipts and task logs, leaving
   temporary task environments and dependency caches on the runners.
 
+### Localization
+
+- Chat, player/radio, search, pod, system integration, transfer, and wishlist
+  copy now follow the selected language. All twelve catalogs share 5,691 keys,
+  with source-reference and placeholder-parity coverage checks.
+- The Network dashboard regionalizes peer and sequence counts, relative times,
+  security-threshold alerts, and backfill progress; the Network statistic cards
+  now translate their labels and descriptions, including zero-byte database
+  sizes.
+- Reviewed app-owned error displays across browsing, collections, contacts,
+  transfers, search, messaging, player, Lidarr, and system tools now use stable
+  error codes when available and translated fallback text otherwise. The
+  twelve locale catalogs include the added success summaries and player status
+  messages.
+- System metrics now use the shared translated request-error fallback.
+
 ## [2026101321-slskdn.351] — 2026-10-13
 
 ### Added

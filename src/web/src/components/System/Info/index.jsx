@@ -1,3 +1,5 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getVersion, restart, shutdown } from '../../../lib/application';
 import DiagnosticBundleModal from './DiagnosticBundleModal';
 import SetupHealthCheckModal from './SetupHealthCheckModal';
@@ -24,6 +26,7 @@ const ConfirmApplicationAction = ({
   triggerColor,
   triggerNegative,
 }) => {
+  useInterfaceLanguage();
   const [open, setOpen] = useState(false);
 
   const confirm = () => {
@@ -52,26 +55,25 @@ const ConfirmApplicationAction = ({
       >
         <Modal.Header>
           <Icon name={icon} />
-          Confirm {actionLabel}
+          <LocalizedText source={"Confirm"} />{" "}{actionLabel}
         </Modal.Header>
         <Modal.Content>{prompt}</Modal.Content>
         <Modal.Actions>
           <Popup
-            content="Close this prompt without changing the application state."
+            content={interfaceText("Close this prompt without changing the application state.")}
             trigger={(
               <Button onClick={() => setOpen(false)}>
-                Cancel
-              </Button>
+                <LocalizedText source={"Cancel"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Close this prompt without changing the application state.")}/>
           <Popup
-            content={`${actionLabel} the application.`}
+            content={interfaceText("{actionLabel} the application.", { "actionLabel": (actionLabel) })}
             trigger={(
               <Button negative onClick={confirm}>
                 {actionLabel}
               </Button>
             )}
-          />
+           {...interfaceTextProps("{actionLabel} the application.")}/>
         </Modal.Actions>
       </Modal>
     </>
@@ -79,6 +81,7 @@ const ConfirmApplicationAction = ({
 };
 
 const Info = ({ options, state, theme }) => {
+  useInterfaceLanguage();
   const [contents, setContents] = useState();
 
   useEffect(() => {
@@ -111,8 +114,7 @@ const Info = ({ options, state, theme }) => {
             primary
             tooltip="Check GitHub for the latest slskdN release."
           >
-            Check for Updates
-          </ShrinkableButton>
+            <LocalizedText source={"Check for Updates"} /></ShrinkableButton>
           {/* Neutral, not amber — this is an optional external upsell from
               Soulseek itself, not an app action that needs to alarm anyone. */}
           <ShrinkableButton
@@ -127,8 +129,7 @@ const Info = ({ options, state, theme }) => {
             }
             tooltip="Review Soulseek privilege options for this account."
           >
-            Get Privileges
-          </ShrinkableButton>
+            <LocalizedText source={"Get Privileges"} /></ShrinkableButton>
           <DiagnosticBundleModal
             options={options}
             state={state}
@@ -144,22 +145,22 @@ const Info = ({ options, state, theme }) => {
           mediaQuery="(max-width: 686px)"
           onConfirm={shutdown}
           prompt="Shutting down stops the application. You'll need to start it manually to use it again."
-          title="Shut down the application. Use this when you need to stop the server completely."
-        />
+          title={interfaceText("Shut down the application. Use this when you need to stop the server completely.")}
+         {...interfaceTextProps("Shut down the application. Use this when you need to stop the server completely.")}/>
         <ConfirmApplicationAction
           actionLabel="Restart"
           icon="redo"
           mediaQuery="(max-width: 686px)"
           onConfirm={restart}
           prompt="Restarting briefly interrupts the web app and Soulseek connections."
-          title="Restart slskdN to apply pending changes or recover the application."
+          title={interfaceText("Restart slskdN to apply pending changes or recover the application.")}
           triggerColor={pendingRestart ? 'yellow' : undefined}
           triggerNegative={!pendingRestart}
-        />
+         {...interfaceTextProps("Restart slskdN to apply pending changes or recover the application.")}/>
       </div>
       <Divider />
       <details className="system-state-details">
-        <summary>Application state (advanced)</summary>
+        <summary><LocalizedText source={"Application state (advanced)"} /></summary>
         <Switch loading={!contents && <LoaderSegment />}>
           <CodeEditor
             basicSetup={false}

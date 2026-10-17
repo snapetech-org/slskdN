@@ -116,7 +116,7 @@ describe('System Files Explorer', () => {
     );
 
     expect(await screen.findByRole('alert')).toHaveTextContent(
-      'temporary directory failure',
+      'Unable to load this directory.',
     );
     await user.click(screen.getByRole('button', { name: 'Try Again' }));
 
@@ -224,7 +224,7 @@ describe('System Files Explorer', () => {
 
     await user.click(confirmDelete);
     expect(await screen.findByRole('alert')).toHaveTextContent(
-      'temporary delete failure',
+      'Unable to delete this file.',
     );
     expect(screen.getByText(
       "Are you sure you want to permanently delete 'sample.flac'?",

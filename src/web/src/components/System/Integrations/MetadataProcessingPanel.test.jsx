@@ -33,8 +33,8 @@ test('shows active and completed metadata provider stages', async () => {
 
   render(<MetadataProcessingPanel />);
 
-  await waitFor(() => expect(screen.getByText('acoustid')).toBeInTheDocument());
-  expect(screen.getByText('musicbrainz')).toBeInTheDocument();
+  await waitFor(() => expect(screen.getByText('AcoustID')).toBeInTheDocument());
+  expect(screen.getByText('MusicBrainz')).toBeInTheDocument();
   expect(screen.getByText('Recording metadata found')).toBeInTheDocument();
   expect(getMetadataProcessingStatus).toHaveBeenCalledWith(50);
 });

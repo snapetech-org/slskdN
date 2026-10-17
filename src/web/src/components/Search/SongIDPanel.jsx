@@ -1,8 +1,14 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+
+
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import * as jobs from '../../lib/jobs';
 import * as musicBrainz from '../../lib/musicBrainz';
 import * as searches from '../../lib/searches';
 import * as songId from '../../lib/songid';
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+
 import DiscoveryGraphCanvas from './DiscoveryGraphCanvas';
 import DiscoveryGraphModal from './DiscoveryGraphModal';
 import FeatureGateNotice from '../Shared/FeatureGateNotice';
@@ -221,6 +227,7 @@ const detailSummaryStyle = {
 };
 
 const SongIDPanel = ({ disabled }) => {
+  const { t } = useInterfaceLanguage();
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const songIdEnabled = featureGatesReady && isFeatureEnabled(featureGates, 'songId');
   const [source, setSource] = useState('');
@@ -292,7 +299,7 @@ const SongIDPanel = ({ disabled }) => {
   const handleAnalyze = async () => {
     const trimmed = source.trim();
     if (!trimmed) {
-      toast.error('Provide a URL, server-side file path, or text query');
+      toast.error(t('Provide a URL, server-side file path, or text query'));
       return;
     }
 
@@ -301,12 +308,10 @@ const SongIDPanel = ({ disabled }) => {
       const result = await songId.createRun(trimmed);
       setRun(result);
       setRuns((currentRuns) => [result, ...currentRuns.filter((item) => item.id !== result.id)].slice(0, 25));
-      toast.success('SongID analysis queued');
+      toast.success(t('SongID analysis queued'));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'SongID analysis failed',
-      );
+      toast.error(getApiErrorMessage(error, { t }, 'SongID analysis failed'));
     } finally {
       setLoading(false);
     }
@@ -318,12 +323,10 @@ const SongIDPanel = ({ disabled }) => {
         id: uuidv4(),
         searchText: candidate.searchText,
       });
-      toast.success(`Started search for ${candidate.artist} - ${candidate.title}`);
+      toast.success(interfaceText("Started search for {artist} - {title}", { "artist": (candidate.artist), "title": (candidate.title) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ?? error?.message ?? 'Failed to start song search',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -332,26 +335,22 @@ const SongIDPanel = ({ disabled }) => {
       ? queries.map((query) => (query || '').trim()).filter(Boolean)
       : [];
     if (validQueries.length === 0) {
-      toast.error('No candidate searches were available');
+      toast.error(interfaceText("No candidate searches were available"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries: validQueries });
-      toast.success(`Started ${count} candidate searches`);
+      toast.success(interfaceText("Started {count} candidate searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to start candidate searches',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
   const handleMixSearch = async (mix) => {
     if (!mix?.searchText) {
-      toast.error('No mix queries were available');
+      toast.error(interfaceText("No mix queries were available"));
       return;
     }
 
@@ -360,34 +359,26 @@ const SongIDPanel = ({ disabled }) => {
       .map((value) => (value || '').trim())
       .filter(Boolean);
     if (queries.length === 0) {
-      toast.error('No mix queries were available');
+      toast.error(interfaceText("No mix queries were available"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries });
-      toast.success(`Started ${count} mix search(es) for ${mix.segmentCount} segments`);
+      toast.success(interfaceText("Started {count} mix search(es) for {segmentCount} segments", { "count": (count), "segmentCount": (mix.segmentCount) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to start mix searches',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
   const handleAlbumPrepare = async (candidate) => {
     try {
       await musicBrainz.resolveTarget({ releaseId: candidate.releaseId });
-      toast.success(`Prepared album target for ${candidate.title}`);
+      toast.success(interfaceText("Prepared album target for {title}", { "title": (candidate.title) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to prepare album target',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -398,19 +389,15 @@ const SongIDPanel = ({ disabled }) => {
         profile: candidate.recommendedProfile || 'CoreDiscography',
         targetDirectory: targetDirectory.trim(),
       });
-      toast.success(`Planned discography job ${response?.job_id}`);
+      toast.success(interfaceText("Planned discography job {job_id}", { "job_id": (response?.job_id) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to create discography job',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
   if (!featureGatesReady) {
-    return <Message info size="small">Checking SongID availability…</Message>;
+    return <Message info size="small"><LocalizedText source={"Checking SongID availability…"} /></Message>;
   }
 
   if (!songIdEnabled) {
@@ -429,34 +416,26 @@ const SongIDPanel = ({ disabled }) => {
         mbReleaseId: candidate.releaseId,
         targetDir: targetDirectory.trim(),
       });
-      toast.success(`Planned album job ${response?.job_id}`);
+      toast.success(interfaceText("Planned album job {job_id}", { "job_id": (response?.job_id) }));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to create album download job',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
   const copyForensicMatrix = async () => {
     if (!run?.id || !run?.forensicMatrix) {
-      toast.error('No forensic matrix is available for this SongID run');
+      toast.error(interfaceText("No forensic matrix is available for this SongID run"));
       return;
     }
 
     try {
       const matrix = await songId.getForensicMatrix(run.id);
       await navigator.clipboard.writeText(JSON.stringify(matrix, null, 2));
-      toast.success('SongID forensic matrix copied');
+      toast.success(interfaceText("SongID forensic matrix copied"));
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to copy SongID forensic matrix',
-      );
+      toast.error(getApiErrorMessage(error, { t }));
     }
   };
 
@@ -470,11 +449,7 @@ const SongIDPanel = ({ disabled }) => {
       setGraphData(graph);
     } catch (error) {
       console.error(error);
-      toast.error(
-        error?.response?.data ??
-          error?.message ??
-          'Failed to build discovery graph',
-      );
+      toast.error(getApiErrorMessage(error, { t }, 'Failed to build discovery graph'));
       setGraphOpen(false);
     } finally {
       setGraphLoading(false);
@@ -599,15 +574,15 @@ const SongIDPanel = ({ disabled }) => {
 
   const renderScores = (item) => (
     <div style={{ marginTop: '0.35em' }}>
-      <Label size="tiny">Identity {Math.round((item.identityScore || 0) * 100)}</Label>
-      <Label size="tiny">Byzantine {Math.round((item.byzantineScore || 0) * 100)}</Label>
+      <Label size="tiny"><LocalizedText source={"Identity"} />{" "}{Math.round((item.identityScore || 0) * 100)}</Label>
+      <Label size="tiny"><LocalizedText source={"Byzantine"} />{" "}{Math.round((item.byzantineScore || 0) * 100)}</Label>
       {item.canonicalScore ? (
         <Label color="teal" size="tiny">
-          Canonical {Math.round((item.canonicalScore || 0) * 100)}
+          <LocalizedText source={"Canonical"} />{" "}{Math.round((item.canonicalScore || 0) * 100)}
         </Label>
       ) : null}
       <Label color="blue" size="tiny">
-        Action {Math.round((item.actionScore || 0) * 100)}
+        <LocalizedText source={"Action"} />{" "}{Math.round((item.actionScore || 0) * 100)}
       </Label>
     </div>
   );
@@ -615,11 +590,11 @@ const SongIDPanel = ({ disabled }) => {
   const renderOptionScores = (item) => (
     <div style={{ marginTop: '0.35em' }}>
       <Label color="blue" size="tiny">
-        Overall {Math.round((item.overallScore || 0) * 100)}
+        <LocalizedText source={"Overall"} />{" "}{Math.round((item.overallScore || 0) * 100)}
       </Label>
-      <Label size="tiny">Quality {Math.round((item.qualityScore || 0) * 100)}</Label>
-      <Label size="tiny">Byzantine {Math.round((item.byzantineScore || 0) * 100)}</Label>
-      <Label size="tiny">Ready {Math.round((item.readinessScore || 0) * 100)}</Label>
+      <Label size="tiny"><LocalizedText source={"Quality"} />{" "}{Math.round((item.qualityScore || 0) * 100)}</Label>
+      <Label size="tiny"><LocalizedText source={"Byzantine"} />{" "}{Math.round((item.byzantineScore || 0) * 100)}</Label>
+      <Label size="tiny"><LocalizedText source={"Ready"} />{" "}{Math.round((item.readinessScore || 0) * 100)}</Label>
     </div>
   );
 
@@ -632,23 +607,23 @@ const SongIDPanel = ({ disabled }) => {
     return (
       <div style={{ maxWidth: 360 }}>
         <div>
-          Synthetic score {matrix.syntheticScore || 0} · confidence{' '}
-          {matrix.confidenceScore || 0} · family {matrix.familyLabel || 'none'}
+          <LocalizedText source={"Synthetic score"} />{" "}{matrix.syntheticScore || 0} <LocalizedText source={"· confidence"} />{' '}
+          {matrix.confidenceScore || 0} <LocalizedText source={"· family"} />{" "}{matrix.familyLabel || <LocalizedText source={"none"} />}
         </div>
         {Array.isArray(matrix.topEvidenceFor) && matrix.topEvidenceFor.length > 0 ? (
           <div style={{ marginTop: '0.5em' }}>
-            For: {matrix.topEvidenceFor.slice(0, 3).join(' | ')}
+            <LocalizedText source={"For:"} />{" "}{matrix.topEvidenceFor.slice(0, 3).join(' | ')}
           </div>
         ) : null}
         {Array.isArray(matrix.topEvidenceAgainst) &&
         matrix.topEvidenceAgainst.length > 0 ? (
           <div style={{ marginTop: '0.5em' }}>
-            Against: {matrix.topEvidenceAgainst.slice(0, 3).join(' | ')}
+            <LocalizedText source={"Against:"} />{" "}{matrix.topEvidenceAgainst.slice(0, 3).join(' | ')}
           </div>
         ) : null}
         {Array.isArray(matrix.notes) && matrix.notes.length > 0 ? (
           <div style={{ marginTop: '0.5em' }}>
-            Notes: {matrix.notes.slice(0, 4).join(' | ')}
+            <LocalizedText source={"Notes:"} />{" "}{matrix.notes.slice(0, 4).join(' | ')}
           </div>
         ) : null}
       </div>
@@ -670,7 +645,7 @@ const SongIDPanel = ({ disabled }) => {
         key={label}
         content={
           <div style={{ maxWidth: 360 }}>
-            <div>{lane.summary || 'No lane summary.'}</div>
+            <div>{lane.summary || <LocalizedText source={"No lane summary."} />}</div>
             {metricSummary ? (
               <div style={{ marginTop: '0.5em' }}>{metricSummary}</div>
             ) : null}
@@ -694,18 +669,18 @@ const SongIDPanel = ({ disabled }) => {
   const bestArtist = Array.isArray(run?.artists) ? run.artists[0] : null;
   const topActions = getUniqueTopActions([
     bestTrack ? {
-      label: 'Search Best Track',
+      label: interfaceText("Search Best Track"),
       track: bestTrack,
       type: 'track',
     } : null,
     bestAlbum ? {
       album: bestAlbum,
-      label: 'Download Best Album',
+      label: interfaceText("Download Best Album"),
       type: 'album',
     } : null,
     bestArtist ? {
       artist: bestArtist,
-      label: 'Plan Best Artist',
+      label: interfaceText("Plan Best Artist"),
       type: 'artist',
     } : null,
     ...options.slice(0, 4).map((option) => ({
@@ -736,31 +711,28 @@ const SongIDPanel = ({ disabled }) => {
       className="songid-panel"
       raised
     >
-      <Header as="h4">SongID</Header>
+      <Header as="h4"><LocalizedText source={"SongID"} /></Header>
       <p style={{ marginTop: 0 }}>
-        Identify a likely track, album, or artist from a YouTube URL, Spotify
-        URL, server-side file path, or direct text query, then fan the result
-        out into slskdN actions.
-      </p>
+        <LocalizedText source={"Identify a likely track, album, or artist from a YouTube URL, Spotify URL, server-side file path, or direct text query, then fan the result out into slskdN actions."} /></p>
       <Form>
         <Form.Field>
           <Input
             disabled={disabled || loading}
             onChange={(event) => setSource(event.target.value)}
-            placeholder="Paste a source URL, local server path, or text query"
+            placeholder={interfaceText("Paste a source URL, local server path, or text query")}
             value={source}
-          />
+           {...interfaceTextProps("Paste a source URL, local server path, or text query")}/>
         </Form.Field>
         <Form.Field>
           <Input
             disabled={disabled || loading}
             onChange={(event) => setTargetDirectory(event.target.value)}
-            placeholder="Optional target directory for album or discography jobs"
+            placeholder={interfaceText("Optional target directory for album or discography jobs")}
             value={targetDirectory}
-          />
+           {...interfaceTextProps("Optional target directory for album or discography jobs")}/>
         </Form.Field>
         <Popup
-          content="Analyze the source and rank likely track, album, and artist candidates so you can search or plan downloads from the result."
+          content={interfaceText("Analyze the source and rank likely track, album, and artist candidates so you can search or plan downloads from the result.")}
           position="top right"
           trigger={
             <Button
@@ -769,10 +741,9 @@ const SongIDPanel = ({ disabled }) => {
               onClick={handleAnalyze}
               primary
             >
-              Analyze with SongID
-            </Button>
+              <LocalizedText source={"Analyze with SongID"} /></Button>
           }
-        />
+         {...interfaceTextProps("Analyze the source and rank likely track, album, and artist candidates so you can search or plan downloads from the result.")}/>
       </Form>
 
       <Grid stackable columns={2} style={{ marginTop: '1em' }}>
@@ -782,17 +753,16 @@ const SongIDPanel = ({ disabled }) => {
             secondary
           >
             <Header as="h5" style={{ marginTop: 0 }}>
-              Queue
-            </Header>
+              <LocalizedText source={"Queue"} /></Header>
             {runs.length === 0 ? (
-              <p style={{ marginBottom: 0 }}>No SongID runs yet.</p>
+              <p style={{ marginBottom: 0 }}><LocalizedText source={"No SongID runs yet."} /></p>
             ) : (
               <List divided relaxed>
                 {runs.map((item) => (
                   <List.Item key={item.id}>
                     <List.Content floated="right">
                       <Popup
-                        content="Open this SongID run and follow its queue position, evidence, and download options."
+                        content={interfaceText("Open this SongID run and follow its queue position, evidence, and download options.")}
                         position="top center"
                         trigger={
                           <Button
@@ -800,12 +770,11 @@ const SongIDPanel = ({ disabled }) => {
                             onClick={() => setRun(item)}
                             primary={run?.id === item.id}
                           >
-                            View
-                          </Button>
+                            <LocalizedText source={"View"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Open this SongID run and follow its queue position, evidence, and download options.")}/>
                       <Popup
-                        content="Open the Discovery Graph centered on this SongID run so you can inspect its neighborhood without leaving the queue."
+                        content={interfaceText("Open the Discovery Graph centered on this SongID run so you can inspect its neighborhood without leaving the queue.")}
                         position="top center"
                         trigger={
                           <Button
@@ -819,10 +788,9 @@ const SongIDPanel = ({ disabled }) => {
                             size="mini"
                             style={{ marginLeft: '0.5em' }}
                           >
-                            Graph
-                          </Button>
+                            <LocalizedText source={"Graph"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Open the Discovery Graph centered on this SongID run so you can inspect its neighborhood without leaving the queue.")}/>
                     </List.Content>
                     <List.Content>
                       <List.Header>{getRunTitle(item)}</List.Header>
@@ -831,9 +799,9 @@ const SongIDPanel = ({ disabled }) => {
                           color={getStatusColor(item.status)}
                           size="tiny"
                         >
-                          {item.status || 'unknown'}
+                          {item.status || <LocalizedText source={"unknown"} />}
                         </Label>
-                        <Label size="tiny">{item.sourceType || 'unknown'}</Label>
+                        <Label size="tiny">{item.sourceType || <LocalizedText source={"unknown"} />}</Label>
                         {item.percentComplete ? (
                           <Label size="tiny">
                             {formatPercent(item.percentComplete)}%
@@ -843,11 +811,11 @@ const SongIDPanel = ({ disabled }) => {
                       <List.Description style={{ marginTop: '0.35em' }}>
                         {item.queuePosition !== null &&
                         item.queuePosition !== undefined ? (
-                          <Label size="tiny">Queue {item.queuePosition}</Label>
+                          <Label size="tiny"><LocalizedText source={"Queue"} />{" "}{item.queuePosition}</Label>
                         ) : null}
                         {item.workerSlot !== null &&
                         item.workerSlot !== undefined ? (
-                          <Label size="tiny">Worker {item.workerSlot}</Label>
+                          <Label size="tiny"><LocalizedText source={"Worker"} />{" "}{item.workerSlot}</Label>
                         ) : null}
                         {item.currentStage ? (
                           <Label size="tiny">{item.currentStage}</Label>
@@ -872,11 +840,10 @@ const SongIDPanel = ({ disabled }) => {
               secondary
             >
           <Header as="h5" style={{ marginTop: 0 }}>
-            Result
-          </Header>
+            <LocalizedText source={"Result"} /></Header>
           <div style={{ marginBottom: '1em' }}>
             <Popup
-              content="Open the Discovery Graph for this SongID run and move sideways through nearby tracks, albums, artists, and decomposed segments."
+              content={interfaceText("Open the Discovery Graph for this SongID run and move sideways through nearby tracks, albums, artists, and decomposed segments.")}
               position="top center"
               trigger={
                 <Button
@@ -889,34 +856,33 @@ const SongIDPanel = ({ disabled }) => {
                   }
                   size="small"
                 >
-                  Open Discovery Graph
-                </Button>
+                  <LocalizedText source={"Open Discovery Graph"} /></Button>
               }
-            />
+             {...interfaceTextProps("Open the Discovery Graph for this SongID run and move sideways through nearby tracks, albums, artists, and decomposed segments.")}/>
           </div>
                   <Segment className="songid-result-summary">
             <Header as="h4" style={{ marginTop: 0 }}>
               {bestTrack
-                ? `${bestTrack.artist} - ${bestTrack.title}`
+                ? <LocalizedText source={"{artist} - {title}"} values={{ "artist": (bestTrack.artist), "title": (bestTrack.title) }} />
                 : getRunTitle(run)}
             </Header>
             <div style={{ marginBottom: '0.75em' }}>
               <Label color={getStatusColor(run.status)} size="small">
-                {run.status || 'unknown'}
+                {run.status || <LocalizedText source={"unknown"} />}
               </Label>
-              <Label size="small">{run.currentStage || 'queued'}</Label>
-              <Label size="small">{run.sourceType || 'unknown'}</Label>
+              <Label size="small">{run.currentStage || <LocalizedText source={"queued"} />}</Label>
+              <Label size="small">{run.sourceType || <LocalizedText source={"unknown"} />}</Label>
               {run.workerSlot !== null && run.workerSlot !== undefined ? (
-                <Label size="small">Worker {run.workerSlot}</Label>
+                <Label size="small"><LocalizedText source={"Worker"} />{" "}{run.workerSlot}</Label>
               ) : null}
               {run.queuePosition !== null && run.queuePosition !== undefined ? (
-                <Label size="small">Queue {run.queuePosition}</Label>
+                <Label size="small"><LocalizedText source={"Queue"} />{" "}{run.queuePosition}</Label>
               ) : null}
             </div>
             {run.summary ? <p>{run.summary}</p> : null}
             {run.query ? (
               <p style={{ marginBottom: 0 }}>
-                <strong>Query:</strong> {run.query}
+                <strong><LocalizedText source={"Query:"} /></strong> {run.query}
               </p>
             ) : null}
           </Segment>
@@ -927,11 +893,11 @@ const SongIDPanel = ({ disabled }) => {
             progress
             size="small"
           >
-            {run.currentStage || 'queued'}
+            {run.currentStage || <LocalizedText source={"queued"} />}
           </Progress>
           {topActions.length > 0 ? (
             <>
-              <Header as="h5">Best Next Actions</Header>
+              <Header as="h5"><LocalizedText source={"Best Next Actions"} /></Header>
               <div style={{ marginBottom: '1em' }}>
                 {topActions.map((action, index) => {
                   const content = {
@@ -982,7 +948,7 @@ const SongIDPanel = ({ disabled }) => {
           {graphData && graphRequest?.songIdRunId === run?.id ? (
             <>
               <Divider />
-              <Header as="h5">Mini-Map</Header>
+              <Header as="h5"><LocalizedText source={"Mini-map"} /></Header>
               <Segment secondary>
                 <DiscoveryGraphCanvas
                   graph={graphData}
@@ -996,35 +962,34 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.mixGroups) && run.mixGroups.length > 0 ? (
             <>
-              <Header as="h5">Mix Clusters</Header>
+              <Header as="h5"><LocalizedText source={"Mix Clusters"} /></Header>
               <List divided relaxed>
                 {run.mixGroups.map((mix) => (
                   <List.Item key={mix.mixId}>
                     <List.Content floated="right">
                       <Popup
-                        content="Queue the mix cluster segments as a batch of SongID searches."
+                        content={interfaceText("Queue the mix cluster segments as a batch of SongID searches.")}
                         position="top center"
                         trigger={
                           <Button
                             onClick={() => handleMixSearch(mix)}
                             size="small"
                           >
-                            Search Mix
-                          </Button>
+                            <LocalizedText source={"Search Mix"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Queue the mix cluster segments as a batch of SongID searches.")}/>
                     </List.Content>
                     <List.Content>
                       <List.Header>{mix.label}</List.Header>
                       <List.Description>
-                        {mix.segmentCount} segments · confidence {Math.round((mix.confidence || 0) * 100)}
+                        {mix.segmentCount} <LocalizedText source={"segments · confidence"} />{" "}{Math.round((mix.confidence || 0) * 100)}
                       </List.Description>
                       <List.Description>
-                        Identity {Math.round((mix.identityScore || 0) * 100)} · Byzantine {Math.round((mix.byzantineScore || 0) * 100)}
+                        <LocalizedText source={"Identity"} />{" "}{Math.round((mix.identityScore || 0) * 100)} <LocalizedText source={"· Byzantine"} />{" "}{Math.round((mix.byzantineScore || 0) * 100)}
                       </List.Description>
                       {mix.searchText ? (
                         <List.Description>
-                          Query: {mix.searchText}
+                          <LocalizedText source={"Query:"} />{" "}{mix.searchText}
                         </List.Description>
                       ) : null}
                     </List.Content>
@@ -1036,26 +1001,26 @@ const SongIDPanel = ({ disabled }) => {
 
           {showIdentity ? (
             <>
-              <Header as="h5">Identity</Header>
+              <Header as="h5"><LocalizedText source={"Identity"} /></Header>
               <p>
-                <strong>Verdict:</strong>{' '}
+                <strong><LocalizedText source={"Verdict:"} /></strong>{' '}
                 <Label
                   color={getIdentityVerdictColor(identityVerdict)}
                   size="tiny"
                 >
-                  {identityVerdict || 'unclassified'}
+                  {identityVerdict || <LocalizedText source={"unclassified"} />}
                 </Label>
                 <br />
-                <strong>Confidence:</strong> {formatPercent(identityConfidence)}
+                <strong><LocalizedText source={"Confidence:"} /></strong> {formatPercent(identityConfidence)}
                 <br />
-                <strong>Reasoning:</strong> {identitySummary || 'None'}
+                <strong><LocalizedText source={"Reasoning:"} /></strong> {identitySummary || <LocalizedText source={"None"} />}
               </p>
             </>
           ) : null}
 
           {showSynthetic ? (
             <>
-              <Header as="h5">Synthetic Signals</Header>
+              <Header as="h5"><LocalizedText source={"Synthetic Signals"} /></Header>
               <div style={{ marginBottom: '1em' }}>
                 <Popup
                   content={renderSyntheticPopupContent()}
@@ -1067,41 +1032,41 @@ const SongIDPanel = ({ disabled }) => {
                       )}
                       size="tiny"
                     >
-                      Synthetic {run.syntheticAssessment?.verdict || 'unknown'}
+                      <LocalizedText source={"Synthetic"} />{" "}{run.syntheticAssessment?.verdict || 'unknown'}
                     </Label>
                   }
                 />
                 <Popup
-                  content="Confidence applies to the synthetic-likelihood readout only. It does not control download decisions when identity is strong."
+                  content={interfaceText("Confidence applies to the synthetic-likelihood readout only. It does not control download decisions when identity is strong.")}
                   position="top left"
                   trigger={
                     <Label size="tiny">
-                      Confidence{' '}
+                      <LocalizedText source={"Confidence"} />{' '}
                       {run.forensicMatrix?.confidenceScore ||
                         run.syntheticAssessment?.confidence ||
                         'low'}
                     </Label>
                   }
-                />
+                 {...interfaceTextProps("Confidence applies to the synthetic-likelihood readout only. It does not control download decisions when identity is strong.")}/>
                 {run.forensicMatrix?.familyLabel ? (
                   <Popup
                     content={`Known-family score ${run.forensicMatrix.knownFamilyScore || 0}. This is a hint lane, not a download-control signal.`}
                     position="top left"
                     trigger={
                       <Label size="tiny">
-                        Family {run.forensicMatrix.familyLabel}
+                        <LocalizedText source={"Family"} />{" "}{run.forensicMatrix.familyLabel}
                       </Label>
                     }
                   />
                 ) : null}
                 {run.forensicMatrix?.qualityClass ? (
                   <Label size="tiny">
-                    Quality {run.forensicMatrix.qualityClass}
+                    <LocalizedText source={"Quality"} />{" "}{run.forensicMatrix.qualityClass}
                   </Label>
                 ) : null}
                 {run.forensicMatrix?.perturbationStability !== undefined ? (
                   <Label size="tiny">
-                    Stability{' '}
+                    <LocalizedText source={"Stability"} />{' '}
                     {Math.round(
                       (run.forensicMatrix.perturbationStability || 0) * 100,
                     )}
@@ -1126,42 +1091,42 @@ const SongIDPanel = ({ disabled }) => {
 
           {hasScorecardSignal(run.scorecard) ? (
             <details style={detailStyle}>
-              <summary style={detailSummaryStyle}>Scorecard</summary>
+              <summary style={detailSummaryStyle}><LocalizedText source={"Scorecard"} /></summary>
               <div style={{ marginBottom: '1em' }}>
-                <Label size="tiny">Audio {run.scorecard.analysisAudioSource || 'none'}</Label>
-                <Label size="tiny">Clips {run.scorecard.clipCount || 0}</Label>
-                <Label size="tiny">AcoustID {run.scorecard.acoustIdHitCount || 0}</Label>
-                <Label size="tiny">AcoustID Raw {run.scorecard.rawAcoustIdHitCount || 0}</Label>
-                <Label size="tiny">SongRec {run.scorecard.songRecHitCount || 0}</Label>
-                <Label size="tiny">SongRec Distinct {run.scorecard.songRecDistinctMatchCount || 0}</Label>
-                <Label size="tiny">Transcript {run.scorecard.transcriptCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Audio"} />{" "}{run.scorecard.analysisAudioSource || <LocalizedText source={"none"} />}</Label>
+                <Label size="tiny"><LocalizedText source={"Clips"} />{" "}{run.scorecard.clipCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"AcoustID"} />{" "}{run.scorecard.acoustIdHitCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"AcoustID Raw"} />{" "}{run.scorecard.rawAcoustIdHitCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"SongRec"} />{" "}{run.scorecard.songRecHitCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"SongRec Distinct"} />{" "}{run.scorecard.songRecDistinctMatchCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Transcript"} />{" "}{run.scorecard.transcriptCount || 0}</Label>
                 <Label size="tiny">OCR {run.scorecard.ocrCount || 0}</Label>
-                <Label size="tiny">Comments {run.scorecard.commentFindingCount || 0}</Label>
-                <Label size="tiny">Timestamps {run.scorecard.timestampHintCount || 0}</Label>
-                <Label size="tiny">Chapters {run.scorecard.chapterHintCount || 0}</Label>
-                <Label size="tiny">Playlist Requests {run.scorecard.playlistRequestCount || 0}</Label>
-                <Label size="tiny">AI Mentions {run.scorecard.aiCommentMentionCount || 0}</Label>
-                <Label size="tiny">Panako {run.scorecard.panakoHitCount || 0}</Label>
-                <Label size="tiny">Audfprint {run.scorecard.audfprintHitCount || 0}</Label>
-                <Label size="tiny">Corpus {run.scorecard.corpusMatchCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Comments"} />{" "}{run.scorecard.commentFindingCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Timestamps"} />{" "}{run.scorecard.timestampHintCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Chapters"} />{" "}{run.scorecard.chapterHintCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Playlist Requests"} />{" "}{run.scorecard.playlistRequestCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"AI Mentions"} />{" "}{run.scorecard.aiCommentMentionCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Panako"} />{" "}{run.scorecard.panakoHitCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Audfprint"} />{" "}{run.scorecard.audfprintHitCount || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Corpus"} />{" "}{run.scorecard.corpusMatchCount || 0}</Label>
                 <Label size="tiny">
-                  Provenance {run.scorecard.provenanceSignalCount || 0}
+                  <LocalizedText source={"Provenance"} />{" "}{run.scorecard.provenanceSignalCount || 0}
                 </Label>
                 <Label size="tiny">
-                  AI Heuristics {run.scorecard.aiArtifactClipCount || 0}
+                  <LocalizedText source={"AI Heuristics"} />{" "}{run.scorecard.aiArtifactClipCount || 0}
                 </Label>
               </div>
               {Array.isArray(run.scorecard.embeddedMetadataKeys) &&
               run.scorecard.embeddedMetadataKeys.length > 0 ? (
                 <div style={{ marginBottom: '1em' }}>
-                  <strong>Metadata Keys:</strong>{' '}
+                  <strong><LocalizedText source={"Metadata Keys:"} /></strong>{' '}
                   {run.scorecard.embeddedMetadataKeys.join(', ')}
                 </div>
               ) : null}
               {Array.isArray(run.scorecard.provenanceSignals) &&
               run.scorecard.provenanceSignals.length > 0 ? (
                 <div style={{ marginBottom: '1em' }}>
-                  <strong>Provenance Signals:</strong>{' '}
+                  <strong><LocalizedText source={"Provenance Signals:"} /></strong>{' '}
                   {run.scorecard.provenanceSignals.join(', ')}
                 </div>
               ) : null}
@@ -1170,36 +1135,34 @@ const SongIDPanel = ({ disabled }) => {
 
           {run.fullSourceFingerprint ? (
             <details style={detailStyle}>
-              <summary style={detailSummaryStyle}>Full-Source Fingerprint</summary>
+              <summary style={detailSummaryStyle}><LocalizedText source={"Full-Source Fingerprint"} /></summary>
               <p>
-                <strong>Duration:</strong>{' '}
-                {Math.round(run.fullSourceFingerprint.durationSeconds || 0)}s
-                <br />
-                <strong>Fingerprint Length:</strong>{' '}
+                <strong><LocalizedText source={"Duration:"} /></strong>{' '}
+                {Math.round(run.fullSourceFingerprint.durationSeconds || 0)}<LocalizedText source={"s"} /><br />
+                <strong><LocalizedText source={"Fingerprint Length:"} /></strong>{' '}
                 {run.fullSourceFingerprint.fingerprintLength || 0}
                 <br />
-                <strong>Path:</strong> {run.fullSourceFingerprint.path}
+                <strong><LocalizedText source={"Path:"} /></strong> {run.fullSourceFingerprint.path}
               </p>
             </details>
           ) : null}
 
           {run.provenance && run.provenance.signalCount > 0 ? (
             <>
-              <Header as="h5">Provenance</Header>
+              <Header as="h5"><LocalizedText source={"Provenance"} /></Header>
               <div style={{ marginBottom: '0.75em' }}>
                 <Label size="tiny">
-                  Tool {run.provenance.toolAvailable ? 'available' : 'unavailable'}
+                  <LocalizedText source={"Tool"} />{" "}{run.provenance.toolAvailable ? <LocalizedText source={"available"} /> : <LocalizedText source={"unavailable"} />}
                 </Label>
                 <Label size="tiny">
-                  Manifest {run.provenance.manifestHint ? 'hinted' : 'none'}
+                  <LocalizedText source={"Manifest"} />{" "}{run.provenance.manifestHint ? <LocalizedText source={"hinted"} /> : <LocalizedText source={"none"} />}
                 </Label>
                 <Label size="tiny">
-                  Validation {run.provenance.validationState || 'unknown'}
+                  <LocalizedText source={"Validation"} />{" "}{run.provenance.validationState || <LocalizedText source={"unknown"} />}
                 </Label>
                 {run.provenance.verified ? (
                   <Label color="green" size="tiny">
-                    verified
-                  </Label>
+                    <LocalizedText source={"verified"} /></Label>
                 ) : null}
               </div>
               <List bulleted>
@@ -1212,27 +1175,27 @@ const SongIDPanel = ({ disabled }) => {
 
           {run.aiHeuristics ? (
             <details style={detailStyle}>
-              <summary style={detailSummaryStyle}>AI Audio Heuristics</summary>
+              <summary style={detailSummaryStyle}><LocalizedText source={"AI Audio Heuristics"} /></summary>
               <div style={{ marginBottom: '1em' }}>
                 <Label size="tiny">
-                  Score {Math.round((run.aiHeuristics.artifactScore || 0) * 100)}
+                  <LocalizedText source={"Score"} />{" "}{Math.round((run.aiHeuristics.artifactScore || 0) * 100)}
                 </Label>
-                <Label size="tiny">{run.aiHeuristics.artifactLabel || 'unknown'}</Label>
+                <Label size="tiny">{run.aiHeuristics.artifactLabel || <LocalizedText source={"unknown"} />}</Label>
                 <Label size="tiny">
-                  Peaks {run.aiHeuristics.peakCount || 0}
+                  <LocalizedText source={"Peaks"} />{" "}{run.aiHeuristics.peakCount || 0}
                 </Label>
                 <Label size="tiny">
-                  Periodicity{' '}
+                  <LocalizedText source={"Periodicity"} />{' '}
                   {Math.round((run.aiHeuristics.periodicityStrength || 0) * 100)}
                 </Label>
                 <Label size="tiny">
-                  Centroid {Math.round(run.aiHeuristics.spectralCentroid || 0)}
+                  <LocalizedText source={"Centroid"} />{" "}{Math.round(run.aiHeuristics.spectralCentroid || 0)}
                 </Label>
                 <Label size="tiny">
-                  Flux {Math.round((run.aiHeuristics.spectralFlux || 0) * 1000)}
+                  <LocalizedText source={"Flux"} />{" "}{Math.round((run.aiHeuristics.spectralFlux || 0) * 1000)}
                 </Label>
                 <Label size="tiny">
-                  Pitch {Math.round((run.aiHeuristics.pitchSalience || 0) * 100)}
+                  <LocalizedText source={"Pitch"} />{" "}{Math.round((run.aiHeuristics.pitchSalience || 0) * 100)}
                 </Label>
               </div>
             </details>
@@ -1241,7 +1204,7 @@ const SongIDPanel = ({ disabled }) => {
           {Array.isArray(run.perturbations) && run.perturbations.length > 0 ? (
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}>
-                Perturbation Stability ({run.perturbations.length})
+                <LocalizedText source={"Perturbation Stability ("} />{run.perturbations.length})
               </summary>
               <List divided relaxed>
                 {run.perturbations.map((item) => (
@@ -1249,12 +1212,12 @@ const SongIDPanel = ({ disabled }) => {
                     <List.Content>
                       <List.Header>{item.label}</List.Header>
                       <List.Description>
-                        Delta {Math.round((item.baselineDelta || 0) * 100)}
+                        <LocalizedText source={"Delta"} />{" "}{Math.round((item.baselineDelta || 0) * 100)}
                       </List.Description>
                       {item.heuristics ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Score {Math.round((item.heuristics.artifactScore || 0) * 100)} ·
-                          {` `}Label {item.heuristics.artifactLabel || 'unknown'}
+                          <LocalizedText source={"Score"} />{" "}{Math.round((item.heuristics.artifactScore || 0) * 100)} ·
+                          {` `}<LocalizedText source={"Label"} />{" "}{item.heuristics.artifactLabel || <LocalizedText source={"unknown"} />}
                         </List.Description>
                       ) : null}
                     </List.Content>
@@ -1266,14 +1229,14 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.corpusMatches) && run.corpusMatches.length > 0 ? (
             <>
-              <Header as="h5">Corpus Matches</Header>
+              <Header as="h5"><LocalizedText source={"Corpus Matches"} /></Header>
               <List divided relaxed>
                 {run.corpusMatches.map((match) => (
                   <List.Item key={match.matchId}>
                     <List.Content>
                       <List.Header>{match.label || match.source}</List.Header>
                       <List.Description>
-                        Similarity {Math.round((match.similarityScore || 0) * 100)}
+                        <LocalizedText source={"Similarity"} />{" "}{Math.round((match.similarityScore || 0) * 100)}
                       </List.Description>
                       {match.artist || match.title ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
@@ -1282,7 +1245,7 @@ const SongIDPanel = ({ disabled }) => {
                       ) : null}
                       {match.recordingId ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Recording: {match.recordingId}
+                          <LocalizedText source={"Recording:"} />{" "}{match.recordingId}
                         </List.Description>
                       ) : null}
                     </List.Content>
@@ -1294,7 +1257,7 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.stems) && run.stems.length > 0 ? (
             <>
-              <Header as="h5">Demucs Stems</Header>
+              <Header as="h5"><LocalizedText source={"Demucs Stems"} /></Header>
               <List bulleted>
                 {run.stems.map((stem) => (
                   <List.Item key={stem.artifactId}>
@@ -1308,7 +1271,7 @@ const SongIDPanel = ({ disabled }) => {
           {Array.isArray(run.evidence) && run.evidence.length > 0 ? (
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}>
-                Evidence ({run.evidence.length})
+                <LocalizedText source={"Evidence ("} />{run.evidence.length})
               </summary>
               <List bulleted>
                 {run.evidence.map((item) => (
@@ -1320,7 +1283,7 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.segments) && run.segments.length > 0 ? (
             <>
-              <Header as="h5">Segment Decomposition</Header>
+              <Header as="h5"><LocalizedText source={"Segment Decomposition"} /></Header>
               <List divided relaxed>
                 {run.segments.map((segment) => (
                   <List.Item key={segment.segmentId}>
@@ -1335,7 +1298,7 @@ const SongIDPanel = ({ disabled }) => {
                         {segment.decompositionLabel || segment.sourceLabel}
                       </List.Description>
                       <List.Description style={{ marginTop: '0.35em' }}>
-                        Search: <code>{segment.query}</code>
+                        <LocalizedText source={"Search:"} />{" "}<code>{segment.query}</code>
                       </List.Description>
                       {Array.isArray(segment.candidates) &&
                       segment.candidates.length > 0 ? (
@@ -1351,7 +1314,7 @@ const SongIDPanel = ({ disabled }) => {
                         {Array.isArray(segment.options) &&
                         segment.options.length > 0 ? (
                           <Popup
-                            content="Run the best segment-level SongID action for this decomposed portion of the source."
+                            content={interfaceText("Run the best segment-level SongID action for this decomposed portion of the source.")}
                             position="top center"
                             trigger={
                               <Button
@@ -1361,10 +1324,10 @@ const SongIDPanel = ({ disabled }) => {
                                 {segment.options[0].actionLabel}
                               </Button>
                             }
-                          />
+                           {...interfaceTextProps("Run the best segment-level SongID action for this decomposed portion of the source.")}/>
                         ) : (
                           <Popup
-                            content="Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue."
+                            content={interfaceText("Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue.")}
                             position="top center"
                             trigger={
                               <Button
@@ -1373,10 +1336,9 @@ const SongIDPanel = ({ disabled }) => {
                                 }
                                 size="mini"
                               >
-                                Search Segment
-                              </Button>
+                                <LocalizedText source={"Search Segment"} /></Button>
                             }
-                          />
+                           {...interfaceTextProps("Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue.")}/>
                         )}
                       </div>
                     </List.Content>
@@ -1389,14 +1351,14 @@ const SongIDPanel = ({ disabled }) => {
           {options.length > 0 ? (
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}>
-                Ranked Download Options ({options.length})
+                <LocalizedText source={"Ranked Download Options ("} />{options.length})
               </summary>
               <List divided relaxed>
                 {options.map((option) => (
                   <List.Item key={option.optionId}>
                     <List.Content floated="right">
                       <Popup
-                        content="Run this SongID acquisition option using the scored track, album, or discography path shown here."
+                        content={interfaceText("Run this SongID acquisition option using the scored track, album, or discography path shown here.")}
                         position="top center"
                         trigger={
                           <Button
@@ -1406,7 +1368,7 @@ const SongIDPanel = ({ disabled }) => {
                             {option.actionLabel}
                           </Button>
                         }
-                      />
+                       {...interfaceTextProps("Run this SongID acquisition option using the scored track, album, or discography path shown here.")}/>
                     </List.Content>
                     <List.Content>
                       <List.Header>
@@ -1415,25 +1377,24 @@ const SongIDPanel = ({ disabled }) => {
                         <Label size="tiny">{option.mode}</Label>
                         {option.duplicateCount > 1 ? (
                           <Label color="grey" size="tiny">
-                            {option.duplicateCount} matches
-                          </Label>
+                            {option.duplicateCount} <LocalizedText source={"matches"} /></Label>
                         ) : null}
                       </List.Header>
                       <List.Description>{option.description}</List.Description>
                       {option.searchText ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Search: <code>{option.searchText}</code>
+                          <LocalizedText source={"Search:"} />{" "}<code>{option.searchText}</code>
                         </List.Description>
                       ) : null}
                       {Array.isArray(option.searchTexts) &&
                       option.searchTexts.length > 0 ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Searches: <code>{option.searchTexts.join(' | ')}</code>
+                          <LocalizedText source={"Searches:"} />{" "}<code>{option.searchTexts.join(' | ')}</code>
                         </List.Description>
                       ) : null}
                       {option.profile ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Profile: {option.profile}
+                          <LocalizedText source={"Profile:"} />{" "}{option.profile}
                         </List.Description>
                       ) : null}
                       {renderOptionScores(option)}
@@ -1447,41 +1408,39 @@ const SongIDPanel = ({ disabled }) => {
           {Array.isArray(run.clips) && run.clips.length > 0 ? (
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}>
-                Clip Findings ({run.clips.length})
+                <LocalizedText source={"Clip Findings ("} />{run.clips.length})
               </summary>
               <List divided relaxed>
                 {run.clips.map((clip) => (
                   <List.Item key={clip.clipId}>
                     <List.Content>
                       <List.Header>
-                        {clip.profile} @ {clip.startSeconds}s
-                      </List.Header>
+                        {clip.profile} @ {clip.startSeconds}<LocalizedText source={"s"} /></List.Header>
                       <List.Description>
-                        {clip.durationSeconds}s clip
-                      </List.Description>
+                        {clip.durationSeconds}<LocalizedText source={"s clip"} /></List.Description>
                       {clip.acoustId ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          AcoustID: {clip.acoustId.artist} - {clip.acoustId.title}
+                          <LocalizedText source={"AcoustID:"} />{" "}{clip.acoustId.artist} - {clip.acoustId.title}
                         </List.Description>
                       ) : null}
                       {clip.songRec ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          SongRec: {clip.songRec.artist} - {clip.songRec.title}
+                          <LocalizedText source={"SongRec:"} />{" "}{clip.songRec.artist} - {clip.songRec.title}
                         </List.Description>
                       ) : null}
                       {clip.panako ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Panako: {clip.panako.title || clip.panako.sourcePath}
+                          <LocalizedText source={"Panako:"} />{" "}{clip.panako.title || clip.panako.sourcePath}
                         </List.Description>
                       ) : null}
                       {clip.audfprint ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Audfprint: {clip.audfprint.title}
+                          <LocalizedText source={"Audfprint:"} />{" "}{clip.audfprint.title}
                         </List.Description>
                       ) : null}
                       {clip.aiHeuristics ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          AI Heuristics: {clip.aiHeuristics.artifactLabel} (
+                          <LocalizedText source={"AI Heuristics:"} />{" "}{clip.aiHeuristics.artifactLabel} (
                           {Math.round((clip.aiHeuristics.artifactScore || 0) * 100)})
                         </List.Description>
                       ) : null}
@@ -1495,7 +1454,7 @@ const SongIDPanel = ({ disabled }) => {
           {Array.isArray(run.transcripts) && run.transcripts.length > 0 ? (
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}>
-                Transcripts ({run.transcripts.length})
+                <LocalizedText source={"Transcripts ("} />{run.transcripts.length})
               </summary>
               <List divided relaxed>
                 {run.transcripts.map((transcript) => (
@@ -1504,15 +1463,14 @@ const SongIDPanel = ({ disabled }) => {
                       <List.Header>{transcript.source}</List.Header>
                       <List.Description>{transcript.text}</List.Description>
                       <List.Description style={{ marginTop: '0.35em' }}>
-                        Segments: {transcript.segmentCount || 0} · Language:{' '}
-                        {transcript.language || 'unknown'} · Excerpt:{' '}
-                        {transcript.excerptStartSeconds || 0}s /{' '}
-                        {transcript.excerptDurationSeconds || 0}s
-                      </List.Description>
+                        <LocalizedText source={"Segments:"} />{" "}{transcript.segmentCount || 0} <LocalizedText source={"· Language:"} />{' '}
+                        {transcript.language || <LocalizedText source={"unknown"} />} <LocalizedText source={"· Excerpt:"} />{' '}
+                        {transcript.excerptStartSeconds || 0}<LocalizedText source={"s /"} />{' '}
+                        {transcript.excerptDurationSeconds || 0}<LocalizedText source={"s"} /></List.Description>
                       {Array.isArray(transcript.musicBrainzQueries) &&
                       transcript.musicBrainzQueries.length > 0 ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Queries: {transcript.musicBrainzQueries.join(' | ')}
+                          <LocalizedText source={"Queries:"} />{" "}{transcript.musicBrainzQueries.join(' | ')}
                         </List.Description>
                       ) : null}
                     </List.Content>
@@ -1524,7 +1482,7 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.ocr) && run.ocr.length > 0 ? (
             <details style={detailStyle}>
-              <summary style={detailSummaryStyle}>OCR ({run.ocr.length})</summary>
+              <summary style={detailSummaryStyle}><LocalizedText source={"OCR ("} />{run.ocr.length})</summary>
               <List bulleted>
                 {run.ocr.map((item) => (
                   <List.Item key={item.ocrId}>
@@ -1538,16 +1496,16 @@ const SongIDPanel = ({ disabled }) => {
           {Array.isArray(run.comments) && run.comments.length > 0 ? (
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}>
-                Comments ({run.comments.length})
+                <LocalizedText source={"Comments ("} />{run.comments.length})
               </summary>
               <List bulleted>
                 {run.comments.map((comment) => (
                   <List.Item key={comment.commentId}>
-                    {comment.author ? `${comment.author}: ` : ''}
+                    {comment.author ? <LocalizedText source={"{author}:"} values={{ "author": (comment.author) }} /> : ''}
                     {comment.text}
                     {comment.timestampSeconds !== null &&
                     comment.timestampSeconds !== undefined
-                      ? ` (${comment.timestampSeconds}s)`
+                      ? <LocalizedText source={"({timestampSeconds}s)"} values={{ "timestampSeconds": (comment.timestampSeconds) }} />
                       : ''}
                   </List.Item>
                 ))}
@@ -1557,14 +1515,14 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.chapters) && run.chapters.length > 0 ? (
             <>
-              <Header as="h5">Chapters</Header>
+              <Header as="h5"><LocalizedText source={"Chapters"} /></Header>
               <List bulleted>
                 {run.chapters.map((chapter) => (
                   <List.Item key={chapter.chapterId}>
-                    {chapter.startSeconds}s: {chapter.title || 'untitled chapter'}
+                    {chapter.startSeconds}s: {chapter.title || <LocalizedText source={"untitled chapter"} />}
                     {chapter.endSeconds !== null &&
                     chapter.endSeconds !== undefined
-                      ? ` -> ${chapter.endSeconds}s`
+                      ? <LocalizedText source={"-> {endSeconds}s"} values={{ "endSeconds": (chapter.endSeconds) }} />
                       : ''}
                   </List.Item>
                 ))}
@@ -1574,31 +1532,31 @@ const SongIDPanel = ({ disabled }) => {
 
           {run.forensicMatrix ? (
             <details style={detailStyle}>
-              <summary style={detailSummaryStyle}>Forensic Matrix</summary>
+              <summary style={detailSummaryStyle}><LocalizedText source={"Forensic Matrix"} /></summary>
               <div style={{ marginBottom: '1em' }}>
                 <Popup
-                  content="Copy the complete forensic matrix JSON for this SongID run without changing ranking, downloads, or local files."
+                  content={interfaceText("Copy the complete forensic matrix JSON for this SongID run without changing ranking, downloads, or local files.")}
                   position="top left"
                   trigger={
                     <Button
-                      aria-label="Copy SongID forensic matrix JSON"
+                      aria-label={interfaceText("Copy SongID forensic matrix JSON")}
                       icon="copy"
                       onClick={copyForensicMatrix}
                       size="mini"
-                    />
+                     {...interfaceTextProps("Copy SongID forensic matrix JSON")}/>
                   }
-                />
+                 {...interfaceTextProps("Copy the complete forensic matrix JSON for this SongID run without changing ranking, downloads, or local files.")}/>
               </div>
               <div style={{ marginBottom: '1em' }}>
-                <Label size="tiny">Identity {run.forensicMatrix.identityScore || 0}</Label>
+                <Label size="tiny"><LocalizedText source={"Identity"} />{" "}{run.forensicMatrix.identityScore || 0}</Label>
                 <Label size="tiny">
-                  Synthetic {run.forensicMatrix.syntheticScore || 0}
+                  <LocalizedText source={"Synthetic"} />{" "}{run.forensicMatrix.syntheticScore || 0}
                 </Label>
                 <Label size="tiny">
-                  Confidence {run.forensicMatrix.confidenceScore || 0}
+                  <LocalizedText source={"Confidence"} />{" "}{run.forensicMatrix.confidenceScore || 0}
                 </Label>
                 <Label size="tiny">
-                  Family Score {run.forensicMatrix.knownFamilyScore || 0}
+                  <LocalizedText source={"Family Score"} />{" "}{run.forensicMatrix.knownFamilyScore || 0}
                 </Label>
               </div>
               <div style={{ marginBottom: '1em' }}>
@@ -1608,7 +1566,7 @@ const SongIDPanel = ({ disabled }) => {
                     position="top left"
                     trigger={
                       <Label size="tiny">
-                        Identity Lane {Math.round((run.forensicMatrix.identityLane.score || 0) * 100)}
+                        <LocalizedText source={"Identity Lane"} />{" "}{Math.round((run.forensicMatrix.identityLane.score || 0) * 100)}
                       </Label>
                     }
                   />
@@ -1619,7 +1577,7 @@ const SongIDPanel = ({ disabled }) => {
                     position="top left"
                     trigger={
                       <Label size="tiny">
-                        Confidence Lane {Math.round((run.forensicMatrix.confidenceLane.score || 0) * 100)}
+                        <LocalizedText source={"Confidence Lane"} />{" "}{Math.round((run.forensicMatrix.confidenceLane.score || 0) * 100)}
                       </Label>
                     }
                   />
@@ -1630,7 +1588,7 @@ const SongIDPanel = ({ disabled }) => {
                     position="top left"
                     trigger={
                       <Label size="tiny">
-                        Spectral {Math.round((run.forensicMatrix.spectralArtifactLane.score || 0) * 100)}
+                        <LocalizedText source={"Spectral"} />{" "}{Math.round((run.forensicMatrix.spectralArtifactLane.score || 0) * 100)}
                       </Label>
                     }
                   />
@@ -1641,7 +1599,7 @@ const SongIDPanel = ({ disabled }) => {
                     position="top left"
                     trigger={
                       <Label size="tiny">
-                        Lyrics {Math.round((run.forensicMatrix.lyricsSpeechLane.score || 0) * 100)}
+                        <LocalizedText source={"Lyrics"} />{" "}{Math.round((run.forensicMatrix.lyricsSpeechLane.score || 0) * 100)}
                       </Label>
                     }
                   />
@@ -1652,7 +1610,7 @@ const SongIDPanel = ({ disabled }) => {
                     position="top left"
                     trigger={
                       <Label size="tiny">
-                        Structure {Math.round((run.forensicMatrix.structuralLane.score || 0) * 100)}
+                        <LocalizedText source={"Structure"} />{" "}{Math.round((run.forensicMatrix.structuralLane.score || 0) * 100)}
                       </Label>
                     }
                   />
@@ -1663,7 +1621,7 @@ const SongIDPanel = ({ disabled }) => {
                     position="top left"
                     trigger={
                       <Label size="tiny">
-                        Provenance {Math.round((run.forensicMatrix.provenanceLane.score || 0) * 100)}
+                        <LocalizedText source={"Provenance"} />{" "}{Math.round((run.forensicMatrix.provenanceLane.score || 0) * 100)}
                       </Label>
                     }
                   />
@@ -1672,20 +1630,20 @@ const SongIDPanel = ({ disabled }) => {
               {Array.isArray(run.forensicMatrix.topEvidenceFor) &&
               run.forensicMatrix.topEvidenceFor.length > 0 ? (
                 <div style={{ marginBottom: '0.75em' }}>
-                  <strong>For:</strong> {run.forensicMatrix.topEvidenceFor.join(' | ')}
+                  <strong><LocalizedText source={"For:"} /></strong> {run.forensicMatrix.topEvidenceFor.join(' | ')}
                 </div>
               ) : null}
               {Array.isArray(run.forensicMatrix.topEvidenceAgainst) &&
               run.forensicMatrix.topEvidenceAgainst.length > 0 ? (
                 <div style={{ marginBottom: '0.75em' }}>
-                  <strong>Against:</strong>{' '}
+                  <strong><LocalizedText source={"Against:"} /></strong>{' '}
                   {run.forensicMatrix.topEvidenceAgainst.join(' | ')}
                 </div>
               ) : null}
               {Array.isArray(run.forensicMatrix.notes) &&
               run.forensicMatrix.notes.length > 0 ? (
                 <div style={{ marginBottom: '0.75em' }}>
-                  <strong>Notes:</strong> {run.forensicMatrix.notes.join(' | ')}
+                  <strong><LocalizedText source={"Notes:"} /></strong> {run.forensicMatrix.notes.join(' | ')}
                 </div>
               ) : null}
             </details>
@@ -1694,14 +1652,14 @@ const SongIDPanel = ({ disabled }) => {
           {plans.length > 0 ? (
             <details style={detailStyle}>
               <summary style={detailSummaryStyle}>
-                Ranked Plans ({plans.length})
+                <LocalizedText source={"Ranked Plans ("} />{plans.length})
               </summary>
               <List divided relaxed>
                 {plans.map((plan) => (
                   <List.Item key={plan.planId}>
                     <List.Content floated="right">
                       <Popup
-                        content="Run the highest-value SongID action path for this candidate using the current scored plan."
+                        content={interfaceText("Run the highest-value SongID action path for this candidate using the current scored plan.")}
                         position="top center"
                         trigger={
                           <Button
@@ -1711,15 +1669,14 @@ const SongIDPanel = ({ disabled }) => {
                             {plan.actionLabel}
                           </Button>
                         }
-                      />
+                       {...interfaceTextProps("Run the highest-value SongID action path for this candidate using the current scored plan.")}/>
                     </List.Content>
                     <List.Content>
                       <List.Header>
                         {plan.title}{' '}
                         {plan.duplicateCount > 1 ? (
                           <Label color="grey" size="tiny">
-                            {plan.duplicateCount} matches
-                          </Label>
+                            {plan.duplicateCount} <LocalizedText source={"matches"} /></Label>
                         ) : null}
                       </List.Header>
                       <List.Description>{plan.subtitle}</List.Description>
@@ -1733,25 +1690,24 @@ const SongIDPanel = ({ disabled }) => {
 
           {tracks.length > 0 ? (
             <>
-              <Header as="h5">Tracks</Header>
+              <Header as="h5"><LocalizedText source={"Tracks"} /></Header>
               <List divided relaxed>
                 {tracks.map((candidate) => (
                   <List.Item key={candidate.candidateId}>
                     <List.Content floated="right">
                       <Popup
-                        content="Start a regular slskdN search using this SongID track candidate so you can inspect sources and begin downloading."
+                        content={interfaceText("Start a regular slskdN search using this SongID track candidate so you can inspect sources and begin downloading.")}
                         position="top center"
                         trigger={
                           <Button
                             onClick={() => handleTrackSearch(candidate)}
                             size="small"
                           >
-                            Search Song
-                          </Button>
+                            <LocalizedText source={"Search Song"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Start a regular slskdN search using this SongID track candidate so you can inspect sources and begin downloading.")}/>
                       <Popup
-                        content="Open the Discovery Graph around this track candidate and explore nearby identities, ambiguity branches, and adjacent context."
+                        content={interfaceText("Open the Discovery Graph around this track candidate and explore nearby identities, ambiguity branches, and adjacent context.")}
                         position="top center"
                         trigger={
                           <Button
@@ -1767,30 +1723,27 @@ const SongIDPanel = ({ disabled }) => {
                             size="small"
                             style={{ marginLeft: '0.5em' }}
                           >
-                            Graph
-                          </Button>
+                            <LocalizedText source={"Graph"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Open the Discovery Graph around this track candidate and explore nearby identities, ambiguity branches, and adjacent context.")}/>
                     </List.Content>
                     <List.Content>
                       <List.Header>
                         {candidate.artist} - {candidate.title}{' '}
                         {candidate.isExact ? (
                           <Label color="green" size="tiny">
-                            exact
-                          </Label>
+                            <LocalizedText source={"exact"} /></Label>
                         ) : null}
                         {candidate.duplicateCount > 1 ? (
                           <Label color="grey" size="tiny">
-                            {candidate.duplicateCount} matches
-                          </Label>
+                            {candidate.duplicateCount} <LocalizedText source={"matches"} /></Label>
                         ) : null}
                       </List.Header>
                       <List.Description>{candidate.recordingId}</List.Description>
                       {candidate.canonicalVariantCount ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Canonical variants: {candidate.canonicalVariantCount}
-                          {candidate.hasLosslessCanonical ? ' · lossless available' : ''}
+                          <LocalizedText source={"Canonical variants:"} />{" "}{candidate.canonicalVariantCount}
+                          {candidate.hasLosslessCanonical ? <LocalizedText source={"· lossless available"} /> : ''}
                         </List.Description>
                       ) : null}
                       {renderScores(candidate)}
@@ -1803,32 +1756,30 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.albums) && run.albums.length > 0 ? (
             <>
-              <Header as="h5">Albums</Header>
+              <Header as="h5"><LocalizedText source={"Albums"} /></Header>
               <List divided relaxed>
                 {run.albums.map((candidate) => (
                   <List.Item key={candidate.candidateId}>
                     <List.Content floated="right">
                       <Button.Group size="small">
                         <Popup
-                          content="Resolve and cache this MusicBrainz release in slskdN so album completion and downstream download workflows can use it."
+                          content={interfaceText("Resolve and cache this MusicBrainz release in slskdN so album completion and downstream download workflows can use it.")}
                           position="top center"
                           trigger={
                             <Button onClick={() => handleAlbumPrepare(candidate)}>
-                              Prepare Album
-                            </Button>
+                              <LocalizedText source={"Prepare Album"} /></Button>
                           }
-                        />
+                         {...interfaceTextProps("Resolve and cache this MusicBrainz release in slskdN so album completion and downstream download workflows can use it.")}/>
                         <Popup
-                          content="Create a single-release job from this SongID album candidate so slskdN can plan album acquisition directly."
+                          content={interfaceText("Create a single-release job from this SongID album candidate so slskdN can plan album acquisition directly.")}
                           position="top center"
                           trigger={
                             <Button onClick={() => handleMbReleaseJob(candidate)}>
-                              Download Album
-                            </Button>
+                              <LocalizedText source={"Download Album"} /></Button>
                           }
-                        />
+                         {...interfaceTextProps("Create a single-release job from this SongID album candidate so slskdN can plan album acquisition directly.")}/>
                         <Popup
-                          content="Open the Discovery Graph around this album candidate to explore adjacent tracks, artist context, and nearby branches."
+                          content={interfaceText("Open the Discovery Graph around this album candidate to explore adjacent tracks, artist context, and nearby branches.")}
                           position="top center"
                           trigger={
                             <Button
@@ -1842,10 +1793,9 @@ const SongIDPanel = ({ disabled }) => {
                                 })
                               }
                             >
-                              Graph
-                            </Button>
+                              <LocalizedText source={"Graph"} /></Button>
                           }
-                        />
+                         {...interfaceTextProps("Open the Discovery Graph around this album candidate to explore adjacent tracks, artist context, and nearby branches.")}/>
                       </Button.Group>
                     </List.Content>
                     <List.Content>
@@ -1853,17 +1803,15 @@ const SongIDPanel = ({ disabled }) => {
                         {candidate.artist} - {candidate.title}{' '}
                         {candidate.isExact ? (
                           <Label color="green" size="tiny">
-                            exact
-                          </Label>
+                            <LocalizedText source={"exact"} /></Label>
                         ) : null}
                       </List.Header>
                       <List.Description>
-                        {candidate.trackCount} track(s) · {candidate.releaseId}
+                        {candidate.trackCount} <LocalizedText source={"track(s) ·"} />{" "}{candidate.releaseId}
                       </List.Description>
                       {candidate.canonicalSupportCount ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Canonical support from {candidate.canonicalSupportCount} track candidate(s)
-                        </List.Description>
+                          <LocalizedText source={"Canonical support from"} />{" "}{candidate.canonicalSupportCount} <LocalizedText source={"track candidate(s)"} /></List.Description>
                       ) : null}
                       {renderScores(candidate)}
                     </List.Content>
@@ -1875,25 +1823,24 @@ const SongIDPanel = ({ disabled }) => {
 
           {Array.isArray(run.artists) && run.artists.length > 0 ? (
             <>
-              <Header as="h5">Artists</Header>
+              <Header as="h5"><LocalizedText source={"Artists"} /></Header>
               <List divided relaxed>
                 {run.artists.map((candidate) => (
                   <List.Item key={candidate.candidateId}>
                     <List.Content floated="right">
                       <Popup
-                        content="Create a discography job from this SongID artist candidate so slskdN can plan a catalog-scale acquisition workflow."
+                        content={interfaceText("Create a discography job from this SongID artist candidate so slskdN can plan a catalog-scale acquisition workflow.")}
                         position="top center"
                         trigger={
                           <Button
                             onClick={() => handleDiscography(candidate)}
                             size="small"
                           >
-                            Plan Discography
-                          </Button>
+                            <LocalizedText source={"Plan Discography"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Create a discography job from this SongID artist candidate so slskdN can plan a catalog-scale acquisition workflow.")}/>
                       <Popup
-                        content="Open the Discovery Graph around this artist candidate and branch into nearby artists, releases, and SongID context."
+                        content={interfaceText("Open the Discovery Graph around this artist candidate and branch into nearby artists, releases, and SongID context.")}
                         position="top center"
                         trigger={
                           <Button
@@ -1908,21 +1855,19 @@ const SongIDPanel = ({ disabled }) => {
                             size="small"
                             style={{ marginLeft: '0.5em' }}
                           >
-                            Graph
-                          </Button>
+                            <LocalizedText source={"Graph"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Open the Discovery Graph around this artist candidate and branch into nearby artists, releases, and SongID context.")}/>
                     </List.Content>
                     <List.Content>
                       <List.Header>{candidate.name}</List.Header>
                       <List.Description>
-                        {candidate.releaseGroupCount} release group(s) ·{' '}
+                        {candidate.releaseGroupCount} <LocalizedText source={"release group(s) ·"} />{' '}
                         {candidate.artistId}
                       </List.Description>
                       {candidate.canonicalSupportCount ? (
                         <List.Description style={{ marginTop: '0.35em' }}>
-                          Canonical support from {candidate.canonicalSupportCount} track candidate(s)
-                        </List.Description>
+                          <LocalizedText source={"Canonical support from"} />{" "}{candidate.canonicalSupportCount} <LocalizedText source={"track candidate(s)"} /></List.Description>
                       ) : null}
                       {renderScores(candidate)}
                     </List.Content>

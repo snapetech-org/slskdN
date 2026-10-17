@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="ServarrReadinessPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -53,6 +56,7 @@ const valueOrDash = (value) =>
   value === undefined || value === null || value === '' ? '-' : value;
 
 const ServarrReadinessPanel = ({ options }) => {
+  useInterfaceLanguage();
   const lidarrOptions = getLidarrOptions(options);
   const [copyStatus, setCopyStatus] = useState('');
   const [running, setRunning] = useState(false);
@@ -96,15 +100,15 @@ const ServarrReadinessPanel = ({ options }) => {
   const copyCompatibilityReport = async () => {
     const report = formatServarrCompatibilityReport(compatibility);
     if (!navigator.clipboard?.writeText) {
-      setCopyStatus('Clipboard unavailable; copy the Servarr review manually.');
+      setCopyStatus(interfaceText('Clipboard unavailable; copy the Servarr review manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(report);
-      setCopyStatus('Servarr compatibility review copied.');
+      setCopyStatus(interfaceText('Servarr compatibility review copied.'));
     } catch {
-      setCopyStatus('Unable to copy Servarr compatibility review.');
+      setCopyStatus(interfaceText('Unable to copy Servarr compatibility review.'));
     }
   };
 
@@ -114,23 +118,21 @@ const ServarrReadinessPanel = ({ options }) => {
 
     try {
       if (!compatibility.supportsWantedPull) {
-        setCopyStatus('Wanted pull is not ready; no Servarr action was run.');
+        setCopyStatus(interfaceText('Wanted pull is not ready; no Servarr action was run.'));
         return;
       }
 
       const result = await lidarrAPI.syncWanted();
-      setCopyStatus(
-        `Wanted sync ran: ${result.createdCount ?? result.CreatedCount ?? 0} created, ${
-          result.duplicateCount ?? result.DuplicateCount ?? 0
-        } duplicates, ${result.skippedCount ?? result.SkippedCount ?? 0} skipped.`,
-      );
+      setCopyStatus(interfaceText(
+        'Wanted sync ran: {created} created, {duplicates} duplicates, {skipped} skipped.',
+        {
+          created: result.createdCount ?? result.CreatedCount ?? 0,
+          duplicates: result.duplicateCount ?? result.DuplicateCount ?? 0,
+          skipped: result.skippedCount ?? result.SkippedCount ?? 0,
+        },
+      ));
     } catch (error) {
-      setCopyStatus(
-        error?.response?.data ||
-          error?.response?.statusText ||
-          error?.message ||
-          'Servarr action failed.',
-      );
+      setCopyStatus(getApiErrorMessage(error, { t: interfaceText }, 'Servarr action failed.'));
     } finally {
       setRunning(false);
     }
@@ -141,63 +143,57 @@ const ServarrReadinessPanel = ({ options }) => {
       <Card.Content>
         <Card.Header>
           <Icon name="settings" />
-          Servarr Setup
-        </Card.Header>
+          <LocalizedText source={"Servarr Setup"} /></Card.Header>
         <Card.Meta>
-          Local readiness checklist for indexer/download-client style integration.
-        </Card.Meta>
+          <LocalizedText source={"Local readiness checklist for indexer/download-client style integration."} /></Card.Meta>
       </Card.Content>
       <Card.Content>
         <div className="integration-section-header">
           <Header as="h4">
             <Icon name="clipboard check" />
-            Compatibility Review
-          </Header>
+            <LocalizedText source={"Compatibility Review"} /></Header>
           <Popup
-            content="Copy the local Servarr compatibility review. This does not call Lidarr, create download clients, pull wanted items, or trigger imports."
+            content={interfaceText("Copy the local Servarr compatibility review. This does not call Lidarr, create download clients, pull wanted items, or trigger imports.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Copy Servarr compatibility review"
+                aria-label={interfaceText("Copy Servarr compatibility review")}
                 onClick={copyCompatibilityReport}
                 size="small"
-              >
+               {...interfaceTextProps("Copy Servarr compatibility review")}>
                 <Icon name="copy" />
-                Copy Review
-              </Button>
+                <LocalizedText source={"Copy Review"} /></Button>
               }
-            />
+             {...interfaceTextProps("Copy the local Servarr compatibility review. This does not call Lidarr, create download clients, pull wanted items, or trigger imports.")}/>
           <Popup
-            content="Run ready Servarr actions now. Currently this calls the configured Lidarr wanted-sync endpoint when wanted pull is ready; imports still require an explicit directory in the Lidarr panel."
+            content={interfaceText("Run ready Servarr actions now. Currently this calls the configured Lidarr wanted-sync endpoint when wanted pull is ready; imports still require an explicit directory in the Lidarr panel.")}
             position="top center"
             trigger={
               <Button
-                aria-label="Run ready Servarr actions"
+                aria-label={interfaceText("Run ready Servarr actions")}
                 disabled={!compatibility.supportsWantedPull}
                 loading={running}
                 onClick={runReadyActions}
                 primary
                 size="small"
-              >
+               {...interfaceTextProps("Run ready Servarr actions")}>
                 <Icon name="play" />
-                Run Ready
-              </Button>
+                <LocalizedText source={"Run Ready"} /></Button>
             }
-          />
+           {...interfaceTextProps("Run ready Servarr actions now. Currently this calls the configured Lidarr wanted-sync endpoint when wanted pull is ready; imports still require an explicit directory in the Lidarr panel.")}/>
         </div>
         <div className="integration-status-row">
           <Label color={summary.status === 'Ready' ? 'green' : 'orange'}>
             <Icon name={summary.status === 'Ready' ? 'check circle' : 'warning sign'} />
-            {summary.status}
+            <LocalizedText source={summary.status} />
           </Label>
           <Label>
-            {summary.ready}/{summary.total} checks ready
-          </Label>
+            {summary.ready}/{summary.total} <LocalizedText source={"checks ready"} /></Label>
           <Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}>
-            Wanted Pull {compatibility.supportsWantedPull ? 'Ready' : 'Not Ready'}
+            <LocalizedText source={"Wanted Pull"} />{" "}{compatibility.supportsWantedPull ? <LocalizedText source={"Ready"} /> : <LocalizedText source={"Not Ready"} />}
           </Label>
           <Label color={compatibility.supportsCompletedImport ? 'green' : 'grey'}>
-            Import {compatibility.supportsCompletedImport ? 'Ready' : 'Not Ready'}
+            <LocalizedText source={"Import"} />{" "}{compatibility.supportsCompletedImport ? <LocalizedText source={"Ready"} /> : <LocalizedText source={"Not Ready"} />}
           </Label>
         </div>
         <Table
@@ -206,19 +202,19 @@ const ServarrReadinessPanel = ({ options }) => {
         >
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Check</Table.HeaderCell>
-              <Table.HeaderCell>Status</Table.HeaderCell>
-              <Table.HeaderCell>Why it matters</Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Check"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Status"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Why it matters"} /></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {checks.map((check) => (
               <Table.Row key={check.id}>
-                <Table.Cell>{check.title}</Table.Cell>
+                <Table.Cell><LocalizedText source={check.title} /></Table.Cell>
                 <Table.Cell>
                   {boolLabel(check.ready, 'Ready', 'Needs Setup')}
                 </Table.Cell>
-                <Table.Cell>{check.description}</Table.Cell>
+                <Table.Cell><LocalizedText source={check.description} /></Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
@@ -227,15 +223,13 @@ const ServarrReadinessPanel = ({ options }) => {
           info
           size="small"
         >
-          This checklist is diagnostic only. It does not register indexers,
-          create download clients, pull wanted items, or trigger imports.
-        </Message>
+          <LocalizedText source={"This checklist is diagnostic only. It does not register indexers, create download clients, pull wanted items, or trigger imports."} /></Message>
         {compatibility.actions.length > 0 && (
           <Message
             size="small"
             warning
           >
-            <Message.Header>Compatibility Actions</Message.Header>
+            <Message.Header><LocalizedText source={"Compatibility Actions"} /></Message.Header>
             <ul>
               {compatibility.actions.map((action) => (
                 <li key={action}>{action}</li>

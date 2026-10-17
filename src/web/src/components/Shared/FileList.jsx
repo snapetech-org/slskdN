@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import {
   formatAttributes,
   formatBytes,
@@ -6,6 +7,7 @@ import {
 } from '../../lib/util';
 import React, { useMemo, useState } from 'react';
 import TooltipButton from './TooltipButton';
+
 import { Checkbox, Header, Icon, List, Table } from 'semantic-ui-react';
 
 const FileList = ({
@@ -17,6 +19,12 @@ const FileList = ({
   onClose,
   onSelectionChange,
 }) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source, parameters) => (
+    <span lang={languageFor(source)} dir={directionFor(source)}>
+      {t(source, parameters)}
+    </span>
+  );
   const [folded, setFolded] = useState(false);
   const [lastSelectedIndex, setLastSelectedIndex] = useState(null);
   const sortedFiles = useMemo(
@@ -58,19 +66,26 @@ const FileList = ({
         <div className="filelist-title">
           <TooltipButton
             aria-label={locked
-              ? `${directoryName} is locked`
-              : `${folded ? 'Expand' : 'Collapse'} ${directoryName}`}
+              ? '{directory} is locked'
+              : folded ? 'Expand {directory}' : 'Collapse {directory}'}
             basic
             className="filelist-action-button"
             compact
             disabled={locked}
             icon
+            parameters={{ directory: directoryName }}
+            lang={languageFor(locked
+              ? '{directory} is locked'
+              : folded ? 'Expand {directory}' : 'Collapse {directory}')}
+            dir={directionFor(locked
+              ? '{directory} is locked'
+              : folded ? 'Expand {directory}' : 'Collapse {directory}')}
             onClick={() => setFolded(!folded)}
             tooltip={locked
-              ? `${directoryName} is locked by the peer and cannot be expanded.`
+              ? 'Directory {directory} is locked by the peer and cannot be expanded.'
               : folded
-                ? `Show the files inside ${directoryName}.`
-                : `Hide the files inside ${directoryName} while keeping this result open.`}
+                ? 'Show the files inside {directory}.'
+                : 'Hide the files inside {directory} while keeping this result open.'}
           >
             <Icon
               name={locked ? 'lock' : folded ? 'folder' : 'folder open'}
@@ -81,13 +96,17 @@ const FileList = ({
 
           {Boolean(onClose) && (
             <TooltipButton
-              aria-label={`Close ${directoryName} file list`}
+              aria-label={t('Close {directory} file list', { directory: directoryName })}
               basic
               className="close-button"
               compact
               icon
+              parameters={{ directory: directoryName }}
               onClick={() => onClose()}
-              tooltip={`Close the ${directoryName} file list and return to the surrounding search results.`}
+              tooltip="Close the {directory} file list and return to the surrounding search results."
+              lang={languageFor('Close the {directory} file list and return to the surrounding search results.')}
+              dir={directionFor('Close the {directory} file list and return to the surrounding search results.')}
+              title={t('Close the {directory} file list and return to the surrounding search results.', { directory: directoryName })}
             >
               <Icon color="red" name="close" />
             </TooltipButton>
@@ -102,7 +121,9 @@ const FileList = ({
                 <Table.Row>
                   <Table.HeaderCell className="filelist-selector">
                     <Checkbox
-                      aria-label={`Select all files in ${directoryName}`}
+                      aria-label={t('Select all files in {directory}', { directory: directoryName })}
+                      lang={languageFor('Select all files in {directory}')}
+                      dir={directionFor('Select all files in {directory}')}
                       checked={allSelected}
                       disabled={disabled}
                       fitted
@@ -112,16 +133,16 @@ const FileList = ({
                     />
                   </Table.HeaderCell>
                   <Table.HeaderCell className="filelist-filename">
-                    File
+                    {localized('File')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="filelist-size">
-                    Size
+                    {localized('Size')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="filelist-attributes">
-                    Attributes
+                    {localized('Attributes')}
                   </Table.HeaderCell>
                   <Table.HeaderCell className="filelist-length">
-                    Length
+                    {localized('Length')}
                   </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
@@ -130,7 +151,9 @@ const FileList = ({
                   <Table.Row key={f.filename}>
                     <Table.Cell className="filelist-selector">
                       <Checkbox
-                        aria-label={`Select ${f.filename}`}
+                        aria-label={t('Select {filename}', { filename: f.filename })}
+                        lang={languageFor('Select {filename}')}
+                        dir={directionFor('Select {filename}')}
                         checked={f.selected}
                         disabled={disabled}
                         fitted

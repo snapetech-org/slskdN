@@ -2,6 +2,13 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Button, Icon, Popup } from 'semantic-ui-react';
 
+const getText = (value) => {
+  if (typeof value === 'string' || typeof value === 'number') return String(value);
+  if (Array.isArray(value)) return value.map(getText).filter(Boolean).join(' ').trim();
+  if (React.isValidElement(value)) return getText(value.props.children);
+  return '';
+};
+
 const ShrinkableButton = ({
   children,
   icon,
@@ -12,7 +19,7 @@ const ShrinkableButton = ({
   ...rest
 }) => {
   const shouldShrink = useMediaQuery({ query: mediaQuery });
-  const textLabel = typeof children === 'string' ? children.trim() : undefined;
+  const textLabel = getText(children);
   const accessibleLabel = ariaLabel || textLabel ||
     (typeof tooltip === 'string' ? tooltip : undefined);
   const button = (

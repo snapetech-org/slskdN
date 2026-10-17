@@ -1,3 +1,5 @@
+import LocalizedText from "./Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
 import { THEME_PALETTES, applyPalette } from '../lib/themes';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -7,6 +9,8 @@ import * as rooms from '../lib/rooms';
 import * as session from '../lib/session';
 import { getLocalStorageItem, setLocalStorageItem } from '../lib/storage';
 import { isPassthroughEnabled } from '../lib/token';
+import { useExperiencePreference } from '../lib/experiencePreferences';
+
 import AppContext from './AppContext';
 import AppRoutes from './AppRoutes';
 import ApplicationActions from './ApplicationActions';
@@ -537,10 +541,12 @@ class App extends Component {
           <ErrorSegment
             caption={
               <>
-                <span>Lost connection to slskdN</span>
+                <span>{this.props.localized ? this.props.localized('Lost connection to slskdN') : <LocalizedText source={"Lost connection to slskdN"} />}</span>
                 <br />
                 <span>
-                  {retriesExhausted ? 'Refresh to reconnect' : 'Retrying...'}
+                  {this.props.localized
+                    ? this.props.localized(retriesExhausted ? 'Refresh to reconnect' : 'Retrying...')
+                    : retriesExhausted ? 'Refresh to reconnect' : <LocalizedText source={"Retrying..."} />}
                 </span>
               </>
             }
@@ -596,7 +602,7 @@ class App extends Component {
             }}
           >
             <Icon name="attention" />
-            Lost connection to slskdN. {retriesExhausted ? 'Refresh to reconnect.' : 'Retrying...'}
+            <LocalizedText source={"Lost connection to slskdN."} />{" "}{retriesExhausted ? <LocalizedText source={"Refresh to reconnect."} /> : <LocalizedText source={"Retrying..."} />}
           </Segment>
         )}
         <PlayerProvider>
@@ -644,26 +650,25 @@ class App extends Component {
               />
               {(pendingReconnect || pendingRestart || pendingShareRescan) && (
                 <Popup
-                  content="Open System Info to review pending actions."
+                  content={interfaceText("Open System Info to review pending actions.")}
                   trigger={(
                     <NavLink to="/system/info">
                       <Menu.Item
-                        aria-label="Open System Info to review pending actions."
+                        aria-label={interfaceText("Open System Info to review pending actions.")}
                         data-testid="nav-pending-action"
                         position="right"
-                        title="Open System Info to review pending actions."
-                      >
+                        title={interfaceText("Open System Info to review pending actions.")}
+                       {...interfaceTextProps("Open System Info to review pending actions.")}>
                         <Icon.Group className="menu-icon-group">
                           <Icon
                             color="yellow"
                             name="exclamation circle"
                           />
                         </Icon.Group>
-                        Pending Action
-                      </Menu.Item>
+                        <LocalizedText source={"Pending Action"} /></Menu.Item>
                     </NavLink>
                   )}
-                />
+                 {...interfaceTextProps("Open System Info to review pending actions.")}/>
               )}
               <ApplicationActions
                 current={current}
@@ -675,8 +680,7 @@ class App extends Component {
                 <NavLink to="/system">
                   <Menu.Item data-testid="nav-system">
                     <Icon name="cogs" />
-                    System
-                  </Menu.Item>
+                    <LocalizedText source={"System"} /></Menu.Item>
                 </NavLink>
               </ApplicationActions>
             </Menu>
@@ -739,10 +743,17 @@ class App extends Component {
 
 const AppWithLocation = (props) => {
   const location = useLocation();
+  const regionalFormat = useExperiencePreference('regionalFormat', 'system');
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>{t(source)}</span>
+  );
   return (
     <App
       {...props}
       location={location}
+      localized={localized}
+      regionalFormat={regionalFormat}
     />
   );
 };

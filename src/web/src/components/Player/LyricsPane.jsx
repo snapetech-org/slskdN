@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { interfaceText } from '../../lib/interfaceLocale';
 
 const parseTimestamp = (value) => {
   const match = value.match(/^(\d+):(\d+(?:\.\d+)?)$/);
@@ -92,7 +93,7 @@ const LyricsPane = ({ audioElement, current, visible }) => {
     const lookup = getLyricsLookup(current);
     if (!lookup) {
       setLyrics([]);
-      setStatus('Lyrics need artist and title metadata');
+      setStatus(interfaceText('Lyrics need artist and title metadata'));
       return undefined;
     }
 
@@ -103,7 +104,7 @@ const LyricsPane = ({ audioElement, current, visible }) => {
     });
 
     setLyrics([]);
-    setStatus('Loading lyrics');
+    setStatus(interfaceText('Loading lyrics'));
     fetch(`https://lrclib.net/api/get?${params.toString()}`, {
       signal: controller.signal,
     })
@@ -121,12 +122,12 @@ const LyricsPane = ({ audioElement, current, visible }) => {
         if (controller.signal.aborted) return;
         const parsed = lyricsFromResponse(data);
         setLyrics(parsed);
-        setStatus(parsed.length ? '' : 'No lyrics found');
+        setStatus(parsed.length ? '' : interfaceText('No lyrics found'));
       })
       .catch(() => {
         if (!controller.signal.aborted) {
           setLyrics([]);
-          setStatus('Lyrics unavailable');
+          setStatus(interfaceText('Lyrics unavailable'));
         }
       });
 

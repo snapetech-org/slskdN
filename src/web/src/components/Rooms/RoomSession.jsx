@@ -1,3 +1,5 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import * as rooms from '../../lib/rooms';
 import React, { Component, createRef } from 'react';
 import UserCard from '../Shared/UserCard';
@@ -374,41 +376,38 @@ class RoomSession extends Component {
           }}
         >
           <Popup
-            content="Quote this room message in the composer."
+            content={interfaceText("Quote this room message in the composer.")}
             trigger={
               <Button
                 className="ui compact button popup-option"
                 onClick={this.handleReply}
-                title="Reply to this message"
-              >
-                Reply
-              </Button>
+                title={interfaceText("Reply to this message")}
+               {...interfaceTextProps("Reply to this message")}>
+                <LocalizedText source={"Reply"} /></Button>
             }
-          />
+           {...interfaceTextProps("Quote this room message in the composer.")}/>
           <Popup
-            content="Open this user's profile page."
+            content={interfaceText("Open this user's profile page.")}
             trigger={
               <Button
                 className="ui compact button popup-option"
                 onClick={this.handleUserProfile}
-                title="Open user profile"
-              >
-                User Profile
-              </Button>
+                title={interfaceText("Open user profile")}
+               {...interfaceTextProps("Open user profile")}>
+                <LocalizedText source={"User Profile"} /></Button>
             }
-          />
+           {...interfaceTextProps("Open this user's profile page.")}/>
           <Popup
-            content="Browse this user's shared files."
+            content={interfaceText("Browse this user's shared files.")}
             trigger={
               <Button
                 className="ui compact button popup-option"
                 onClick={this.handleBrowseShares}
-                title="Browse user shares"
-              >
-                Browse Shares
-              </Button>
+                title={interfaceText("Browse user shares")}
+               {...interfaceTextProps("Browse user shares")}>
+                <LocalizedText source={"Browse Shares"} /></Button>
             }
-          />
+           {...interfaceTextProps("Browse this user's shared files.")}/>
         </div>
       </Portal>
     );
@@ -427,7 +426,7 @@ class RoomSession extends Component {
               name="comments"
               size="big"
             />
-            <p>Select a room to start chatting</p>
+            <p><LocalizedText source={"Select a room to start chatting"} /></p>
           </Segment>
         </div>
       );
@@ -445,14 +444,14 @@ class RoomSession extends Component {
                 />
                 {roomName}
                 <TooltipButton
-                  aria-label={`Leave ${roomName}`}
+                  aria-label={interfaceText("Leave {roomName}", { "roomName": (roomName) })}
                   basic
                   className="close-button"
                   compact
                   icon
                   onClick={() => onLeaveRoom && onLeaveRoom(roomName)}
-                  tooltip={`Send a leave request for ${roomName} to the Soulseek server and close this room view.`}
-                >
+                  tooltip={interfaceText('Send a leave request for {roomName} to the Soulseek server and close this room view.', { roomName })}
+                 {...interfaceTextProps("Leave {roomName}")}>
                   <Icon color="red" name="close" />
                 </TooltipButton>
               </Card.Header>
@@ -476,14 +475,14 @@ class RoomSession extends Component {
               />
               {roomName}
               <TooltipButton
-                aria-label={`Leave ${roomName}`}
+                aria-label={interfaceText("Leave {roomName}", { "roomName": (roomName) })}
                 basic
                 className="close-button"
                 compact
                 icon
                 onClick={() => onLeaveRoom && onLeaveRoom(roomName)}
-                tooltip={`Send a leave request for ${roomName} to the Soulseek server and close this room view.`}
-              >
+                tooltip={interfaceText('Send a leave request for {roomName} to the Soulseek server and close this room view.', { roomName })}
+               {...interfaceTextProps("Leave {roomName}")}>
                 <Icon color="red" name="close" />
               </TooltipButton>
             </Card.Header>
@@ -531,7 +530,7 @@ class RoomSession extends Component {
                     <Segment className="room-input">
                       <Input
                         action={{
-                          'aria-label': 'Send room message',
+                          'aria-label': interfaceText("Send room message"),
                           className: 'room-message-button',
                           disabled: !this.validInput(),
                           icon: (
@@ -541,7 +540,7 @@ class RoomSession extends Component {
                             />
                           ),
                           onClick: this.sendMessage,
-                          title: 'Send message to this room',
+                          title: interfaceText("Send message to this room"),
                         }}
                         fluid
                         input={
@@ -569,7 +568,7 @@ class RoomSession extends Component {
                   <Segment className="room-users">
                     <div className="room-users-header">
                       <Icon name="users" />
-                      Users ({room.users.length})
+                      <LocalizedText source={"Users ("} />{room.users.length})
                     </div>
                     <List
                       divided
@@ -580,7 +579,7 @@ class RoomSession extends Component {
                           <List.Content>
                             <List.Header><UserCard username={user.username}>{user.username}</UserCard></List.Header>
                             <List.Description>
-                              {user.status === 1 ? 'Away' : 'Online'}
+                              {user.status === 1 ? <LocalizedText source={"Away"} /> : <LocalizedText source={"Online"} />}
                             </List.Description>
                           </List.Content>
                         </List.Item>

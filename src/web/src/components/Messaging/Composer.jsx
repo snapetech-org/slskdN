@@ -1,17 +1,13 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Popup } from 'semantic-ui-react';
 
 const ME_PREFIX = '/me ';
 
-const getSendErrorMessage = (error) => {
-  const data = error?.response?.data;
-  if (typeof data === 'string') return data;
-  if (data && typeof data === 'object') {
-    return data.detail || data.message || data.title || JSON.stringify(data);
-  }
-
-  return error?.message || 'The message could not be sent.';
-};
+const getSendErrorMessage = (error) =>
+  getApiErrorMessage(error, { t: interfaceText }, 'The message could not be sent.');
 
 const matchSuggestions = (draft, commands) => {
   if (!draft.startsWith('/') || draft.startsWith('/ ')) return [];
@@ -38,6 +34,7 @@ const Composer = ({
   placeholder,
   value,
 }) => {
+  useInterfaceLanguage();
   const [busy, setBusy] = useState(false);
   const [cursor, setCursor] = useState(0);
   const [sendError, setSendError] = useState('');
@@ -138,10 +135,10 @@ const Composer = ({
     <div className="msgv2-composer-wrap">
       {suggestions.length > 0 && (
         <div
-          aria-label="Command suggestions"
+          aria-label={interfaceText("Command suggestions")}
           className="msgv2-composer-suggestions"
           role="listbox"
-        >
+         {...interfaceTextProps("Command suggestions")}>
           {suggestions.map((command, index) => (
             <Popup
               content={`${command.description} Select to insert ${command.syntax || `/${command.name}`} in the composer.`}
@@ -173,34 +170,32 @@ const Composer = ({
       )}
       <div className="msgv2-composer">
         <textarea
-          aria-label={label || 'Message composer'}
+          aria-label={label || interfaceText('Message composer')}
           className="msgv2-composer-input"
           disabled={isDisabled}
           onChange={(event) => setValue(event.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={
-            isDisabled
-              ? 'Open a tab to start typing'
-              : placeholder || 'Type a message — Enter sends, Shift+Enter newline'
-          }
+          placeholder={isDisabled
+            ? interfaceText('Open a tab to start typing')
+            : placeholder || interfaceText('Type a message — Enter sends, Shift+Enter newline')}
           ref={ref}
           rows={1}
           value={draft}
         />
         <Popup
-          content={isDisabled || draft.trim().length === 0 || busy
+          content={interfaceText(isDisabled || draft.trim().length === 0 || busy
             ? 'Enter a message in the active conversation before sending.'
-            : 'Send this message to the active conversation. Press Enter to send; Shift+Enter adds a line break.'}
+            : 'Send this message to the active conversation. Press Enter to send; Shift+Enter adds a line break.')}
           trigger={(
             <span>
               <button
-                aria-label="Send"
+                aria-label={interfaceText("Send")}
                 className="msgv2-composer-send"
                 disabled={isDisabled || draft.trim().length === 0 || busy}
                 onClick={submit}
-                title="Send (Enter)"
+                title={interfaceText("Send (Enter)")}
                 type="button"
-              >
+               {...interfaceTextProps("Send")}>
                 {busy ? '…' : '▶'}
               </button>
             </span>
@@ -214,8 +209,7 @@ const Composer = ({
           data-testid="message-send-error"
           role="alert"
         >
-          {sendError} Your draft is still here; try Send again.
-        </div>
+          {sendError} <LocalizedText source={"Your draft is still here; try Send again."} /></div>
       )}
     </div>
   );

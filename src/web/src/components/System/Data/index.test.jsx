@@ -57,7 +57,7 @@ describe('System Transfer Data', () => {
     await user.click(downloadAction);
 
     expect(await screen.findByRole('alert')).toHaveTextContent(
-      'Downloads: Transfer history is unavailable.',
+      'Downloads: The request failed. Try again.',
     );
     expect(downloadAction).toBeEnabled();
     await user.click(downloadAction);

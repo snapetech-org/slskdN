@@ -1,3 +1,7 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Lidarr.css';
 import * as lidarrAPI from '../../lib/lidarr';
 import * as wishlistAPI from '../../lib/wishlist';
@@ -19,7 +23,7 @@ import {
 
 const formatDate = (iso) => {
   if (!iso) return '—';
-  return new Date(iso).toLocaleString();
+  return new Date(iso).toLocaleString(getRegionalLocale());
 };
 
 const formatRelative = (iso) => {
@@ -35,6 +39,7 @@ const formatRelative = (iso) => {
 // ─── Status bar ──────────────────────────────────────────────────────────────
 
 const StatusBar = ({ status, syncState, onSync, syncing }) => {
+  useInterfaceLanguage();
   const connected = !!status?.version;
 
   return (
@@ -43,11 +48,10 @@ const StatusBar = ({ status, syncState, onSync, syncing }) => {
         <Header as="h3">
           <Icon name="music" />
           <Header.Content>
-            Lidarr
-            <Header.Subheader>
+            <LocalizedText source={"Lidarr"} /><Header.Subheader>
               {connected
-                ? `${status.appName} ${status.version}`
-                : 'Not connected'}
+                ? <LocalizedText source={"{appName} {version}"} values={{ "appName": (status.appName), "version": (status.version) }} />
+                : <LocalizedText source={"Not connected"} />}
             </Header.Subheader>
           </Header.Content>
         </Header>
@@ -55,38 +59,37 @@ const StatusBar = ({ status, syncState, onSync, syncing }) => {
           disabled={syncing || !connected}
           icon="sync"
           loading={syncing}
-          content="Sync Wanted Now"
+          content={interfaceText("Sync Wanted Now")}
           onClick={onSync}
           primary
           size="small"
           tooltip="Fetch Lidarr's missing albums and add new ones to the slskdN wishlist."
-        />
+         {...interfaceTextProps("Sync Wanted Now")}/>
       </div>
 
       <div className="lidarr-status-cards">
         <Label color={connected ? 'green' : 'red'} size="large">
           <Icon name={connected ? 'check circle' : 'times circle'} />
-          {connected ? 'Connected' : 'Disconnected'}
+          {connected ? <LocalizedText source={"Connected"} /> : <LocalizedText source={"Disconnected"} />}
         </Label>
 
         {syncState?.isSyncing && (
           <Label color="yellow" size="large">
             <Icon name="spinner" loading />
-            Syncing…
-          </Label>
+            <LocalizedText source={"Syncing…"} /></Label>
         )}
 
         {syncState?.lastSyncAt && (
           <Label size="large" color="grey">
             <Icon name="clock" />
-            Last sync: {formatDate(syncState.lastSyncAt)}
+            <LocalizedText source={"Last sync:"} />{" "}{formatDate(syncState.lastSyncAt)}
           </Label>
         )}
 
         {syncState?.nextSyncAt && !syncState?.isSyncing && (
           <Label size="large" color="grey">
             <Icon name="time" />
-            Next sync: {formatRelative(syncState.nextSyncAt)}
+            <LocalizedText source={"Next sync:"} />{" "}{formatRelative(syncState.nextSyncAt)}
           </Label>
         )}
 
@@ -94,23 +97,20 @@ const StatusBar = ({ status, syncState, onSync, syncing }) => {
           <>
             <Label color="green" size="large">
               <Icon name="plus" />
-              {syncState.lastResult.createdCount ?? 0} added
-            </Label>
+              {syncState.lastResult.createdCount ?? 0} <LocalizedText source={"added"} /></Label>
             <Label color="olive" size="large">
               <Icon name="copy" />
-              {syncState.lastResult.duplicateCount ?? 0} duplicates
-            </Label>
+              {syncState.lastResult.duplicateCount ?? 0} <LocalizedText source={"duplicates"} /></Label>
             <Label color="grey" size="large">
               <Icon name="forward" />
-              {syncState.lastResult.wantedCount ?? 0} total wanted
-            </Label>
+              {syncState.lastResult.wantedCount ?? 0} <LocalizedText source={"total wanted"} /></Label>
           </>
         )}
 
         {syncState?.lastError && (
           <Label color="red" size="large">
             <Icon name="warning sign" />
-            {syncState.lastError}
+            {interfaceText('The request failed. Try again.')}
           </Label>
         )}
       </div>
@@ -141,6 +141,7 @@ export const areLidarrSyncStatesEqual = (left, right) =>
     left?.lastResult?.skippedCount === right?.lastResult?.skippedCount);
 
 const WantedSection = ({ connected }) => {
+  useInterfaceLanguage();
   const [wanted, setWanted] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -155,7 +156,7 @@ const WantedSection = ({ connected }) => {
       setTotal(data.totalRecords ?? 0);
       setPage(p);
     } catch (err) {
-      toast.error(`Failed to load wanted: ${err.message}`);
+      toast.error(interfaceText("Failed to load wanted: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -173,29 +174,28 @@ const WantedSection = ({ connected }) => {
         <Header as="h4">
           <Icon name="list" />
           <Header.Content>
-            Wanted / Missing
-            {total > 0 && (
-              <Header.Subheader>{total.toLocaleString()} albums</Header.Subheader>
+            <LocalizedText source={"Wanted / Missing"} />{total > 0 && (
+              <Header.Subheader>{total.toLocaleString(getRegionalLocale())} <LocalizedText source={"albums"} /></Header.Subheader>
             )}
           </Header.Content>
         </Header>
       </div>
 
       {!connected ? (
-        <div className="lidarr-empty">Connect Lidarr to see wanted albums.</div>
+        <div className="lidarr-empty"><LocalizedText source={"Connect Lidarr to see wanted albums."} /></div>
       ) : loading ? (
         <Segment basic padded><Loader active inline="centered" /></Segment>
       ) : wanted.length === 0 ? (
-        <div className="lidarr-empty">No wanted albums — Lidarr is satisfied!</div>
+        <div className="lidarr-empty"><LocalizedText source={"No wanted albums — Lidarr is satisfied!"} /></div>
       ) : (
         <>
           <Table celled compact size="small" unstackable>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Artist</Table.HeaderCell>
-                <Table.HeaderCell>Album</Table.HeaderCell>
-                <Table.HeaderCell>Type</Table.HeaderCell>
-                <Table.HeaderCell>Released</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Artist"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Album"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Type"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Released"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -206,7 +206,7 @@ const WantedSection = ({ connected }) => {
                   <Table.Cell>{album.albumType ?? '—'}</Table.Cell>
                   <Table.Cell>
                     {album.releaseDate
-                      ? new Date(album.releaseDate).toLocaleDateString()
+                      ? new Date(album.releaseDate).toLocaleDateString(getRegionalLocale())
                       : '—'}
                   </Table.Cell>
                 </Table.Row>
@@ -216,38 +216,38 @@ const WantedSection = ({ connected }) => {
 
           <div className="lidarr-pagination">
             <span className="lidarr-pagination-info">
-              {start}–{end} of {total.toLocaleString()}
+              {start}–{end} <LocalizedText source={"of"} />{" "}{total.toLocaleString(getRegionalLocale())}
             </span>
             <Popup
-              content="Load the previous page of Lidarr albums."
+              content={interfaceText("Load the previous page of Lidarr albums.")}
               position="top center"
               trigger={
                 <span>
                   <SemanticButton
-                    aria-label="Previous Lidarr album page"
+                    aria-label={interfaceText("Previous Lidarr album page")}
                     disabled={page <= 1}
                     icon="chevron left"
                     onClick={() => load(page - 1)}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Previous Lidarr album page")}/>
                 </span>
               }
-            />
+             {...interfaceTextProps("Load the previous page of Lidarr albums.")}/>
             <Popup
-              content="Load the next page of Lidarr albums."
+              content={interfaceText("Load the next page of Lidarr albums.")}
               position="top center"
               trigger={
                 <span>
                   <SemanticButton
-                    aria-label="Next Lidarr album page"
+                    aria-label={interfaceText("Next Lidarr album page")}
                     disabled={page >= totalPages}
                     icon="chevron right"
                     onClick={() => load(page + 1)}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Next Lidarr album page")}/>
                 </span>
               }
-            />
+             {...interfaceTextProps("Load the next page of Lidarr albums.")}/>
           </div>
         </>
       )}
@@ -258,6 +258,7 @@ const WantedSection = ({ connected }) => {
 // ─── Lidarr-seeded wishlist items ─────────────────────────────────────────────
 
 const WishlistSection = () => {
+  useInterfaceLanguage();
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -270,7 +271,7 @@ const WishlistSection = () => {
       setItems(all.filter((i) => i.autoDownload && i.filter));
       setPage(1);
     } catch (err) {
-      toast.error(`Failed to load wishlist: ${err.message}`);
+      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -291,43 +292,41 @@ const WishlistSection = () => {
         <Header as="h4">
           <Icon name="star" />
           <Header.Content>
-            Wishlist (Lidarr-seeded)
-            {!loading && (
-              <Header.Subheader>{items.length} searches</Header.Subheader>
+            <LocalizedText source={"Wishlist (Lidarr-seeded)"} />{!loading && (
+              <Header.Subheader>{items.length} <LocalizedText source={"searches"} /></Header.Subheader>
             )}
           </Header.Content>
         </Header>
         <Popup
-          content="Refresh Lidarr-seeded wishlist items from the local database."
+          content={interfaceText("Refresh Lidarr-seeded wishlist items from the local database.")}
           position="top center"
           trigger={
             <Button
-              aria-label="Refresh Lidarr wishlist items"
+              aria-label={interfaceText("Refresh Lidarr wishlist items")}
               icon="refresh"
               loading={loading}
               onClick={load}
               size="mini"
-            />
+             {...interfaceTextProps("Refresh Lidarr wishlist items")}/>
           }
-        />
+         {...interfaceTextProps("Refresh Lidarr-seeded wishlist items from the local database.")}/>
       </div>
 
       {loading ? (
         <Segment basic padded><Loader active inline="centered" /></Segment>
       ) : items.length === 0 ? (
         <div className="lidarr-empty">
-          No Lidarr-seeded wishlist items yet. Run a sync to populate.
-        </div>
+          <LocalizedText source={"No Lidarr-seeded wishlist items yet. Run a sync to populate."} /></div>
       ) : (
         <>
           <Table celled compact size="small" unstackable>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Search</Table.HeaderCell>
-                <Table.HeaderCell>Filter</Table.HeaderCell>
-                <Table.HeaderCell>Auto-DL</Table.HeaderCell>
-                <Table.HeaderCell>Last Searched</Table.HeaderCell>
-                <Table.HeaderCell>Matches</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Search"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Filter"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Auto-download"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Last Searched"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Matches"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -362,38 +361,38 @@ const WishlistSection = () => {
 
           <div className="lidarr-pagination">
             <span className="lidarr-pagination-info">
-              {pageStart}–{pageEnd} of {items.length.toLocaleString()}
+              {pageStart}–{pageEnd} <LocalizedText source={"of"} />{" "}{items.length.toLocaleString(getRegionalLocale())}
             </span>
             <Popup
-              content="Go to the previous page of Lidarr-seeded wishlist items."
+              content={interfaceText("Go to the previous page of Lidarr-seeded wishlist items.")}
               position="top center"
               trigger={
                 <span>
                   <Button
-                    aria-label="Previous Lidarr wishlist page"
+                    aria-label={interfaceText("Previous Lidarr wishlist page")}
                     disabled={currentPage <= 1}
                     icon="chevron left"
                     onClick={() => setPage(currentPage - 1)}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Previous Lidarr wishlist page")}/>
                 </span>
               }
-            />
+             {...interfaceTextProps("Go to the previous page of Lidarr-seeded wishlist items.")}/>
             <Popup
-              content="Go to the next page of Lidarr-seeded wishlist items."
+              content={interfaceText("Go to the next page of Lidarr-seeded wishlist items.")}
               position="top center"
               trigger={
                 <span>
                   <Button
-                    aria-label="Next Lidarr wishlist page"
+                    aria-label={interfaceText("Next Lidarr wishlist page")}
                     disabled={currentPage >= totalPages}
                     icon="chevron right"
                     onClick={() => setPage(currentPage + 1)}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Next Lidarr wishlist page")}/>
                 </span>
               }
-            />
+             {...interfaceTextProps("Go to the next page of Lidarr-seeded wishlist items.")}/>
           </div>
         </>
       )}
@@ -404,6 +403,7 @@ const WishlistSection = () => {
 // ─── Manual import ────────────────────────────────────────────────────────────
 
 const ImportSection = ({ connected, onHistoryChanged }) => {
+  useInterfaceLanguage();
   const [directory, setDirectory] = useState('');
   const [importing, setImporting] = useState(false);
 
@@ -414,16 +414,13 @@ const ImportSection = ({ connected, onHistoryChanged }) => {
       const result = await lidarrAPI.importCompletedDirectory({ directory: directory.trim() });
       const safeCandidates = result?.safeCandidateCount ?? 0;
       if (result?.commandId) {
-        toast.success(`Lidarr import queued: ${safeCandidates} file(s)`);
+        toast.success(interfaceText("Lidarr import queued: {safeCandidates} file(s)", { "safeCandidates": (safeCandidates) }));
         setDirectory('');
       } else {
-        toast.error(
-          result?.skippedReason ||
-          `Lidarr found ${result?.candidateCount ?? 0} candidate(s), but none were safe to import automatically`,
-        );
+        toast.error(interfaceText('The request failed. Try again.'));
       }
     } catch (err) {
-      toast.error(`Import failed: ${err.message}`);
+      toast.error(interfaceText("Import failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setImporting(false);
       onHistoryChanged?.();
@@ -435,32 +432,28 @@ const ImportSection = ({ connected, onHistoryChanged }) => {
       <div className="lidarr-section-header">
         <Header as="h4">
           <Icon name="upload" />
-          <Header.Content>Manual Import</Header.Content>
+          <Header.Content><LocalizedText source={"Manual Import"} /></Header.Content>
         </Header>
       </div>
 
       <p style={{ color: '#aaa', marginBottom: '0.75em' }}>
-        Run Lidarr&apos;s manual-import scan for a completed download directory.
-        This works even when automatic import is disabled and can be retried
-        immediately. Only cleanly-matched files (artist + album + tracks
-        resolved, no rejections) are submitted automatically.
-      </p>
+        <LocalizedText source={"Run Lidarr&apos;s manual-import scan for a completed download directory. This works even when automatic import is disabled and can be retried immediately. Only cleanly-matched files (artist + album + tracks resolved, no rejections) are submitted automatically."} /></p>
 
       <Input
         action={
           <Popup
-            content="Ask Lidarr to scan this directory now. Automatic-import settings and the normal retry debounce do not block this manual action."
+            content={interfaceText("Ask Lidarr to scan this directory now. Automatic-import settings and the normal retry debounce do not block this manual action.")}
             position="top center"
             trigger={
               <Button
                 color="blue"
-                content="Run Manual Import"
+                content={interfaceText("Run Manual Import")}
                 disabled={!connected || !directory.trim() || importing}
                 loading={importing}
                 onClick={handleImport}
-              />
+               {...interfaceTextProps("Run Manual Import")}/>
             }
-          />
+           {...interfaceTextProps("Ask Lidarr to scan this directory now. Automatic-import settings and the normal retry debounce do not block this manual action.")}/>
         }
         disabled={!connected}
         fluid
@@ -484,6 +477,7 @@ const importStatusColor = {
 };
 
 const ImportHistorySection = ({ connected, refreshKey }) => {
+  useInterfaceLanguage();
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [retryingId, setRetryingId] = useState(null);
@@ -495,7 +489,7 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
       const data = await lidarrAPI.getImportHistory({ limit: 50 });
       setHistory(Array.isArray(data) ? data : []);
     } catch (err) {
-      toast.error(`Failed to load Lidarr import history: ${err.message}`);
+      toast.error(interfaceText("Failed to load Lidarr import history: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -537,16 +531,15 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
     try {
       const result = await lidarrAPI.retryImport(historyId);
       if (result?.commandId) {
-        toast.success(`Lidarr import retry queued: ${result.safeCandidateCount ?? 0} file(s)`);
+        toast.success(interfaceText('Lidarr import queued: {safeCandidates} file(s)', {
+          safeCandidates: result.safeCandidateCount ?? 0,
+        }));
       } else {
-        toast.error(
-          result?.skippedReason ||
-          'Lidarr could not find a safe file to import on retry',
-        );
+        toast.error(interfaceText('The request failed. Try again.'));
       }
       await load();
     } catch (err) {
-      toast.error(`Import retry failed: ${err.message}`);
+      toast.error(interfaceText("Import retry failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setRetryingId(null);
     }
@@ -558,58 +551,60 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
         <Header as="h4">
           <Icon name="history" />
           <Header.Content>
-            Import History
-            {!loading && (
-              <Header.Subheader>{history.length} recent attempts</Header.Subheader>
+            <LocalizedText source={"Import History"} />{!loading && (
+              <Header.Subheader>{history.length} <LocalizedText source={"recent attempts"} /></Header.Subheader>
             )}
           </Header.Content>
         </Header>
         <Popup
-          content="Refresh the recent Lidarr import attempts and their latest command status."
+          content={interfaceText("Refresh the recent Lidarr import attempts and their latest command status.")}
           position="top center"
           trigger={
             <Button
-              aria-label="Refresh Lidarr import history"
+              aria-label={interfaceText("Refresh Lidarr import history")}
               icon="refresh"
               loading={loading}
               onClick={load}
               size="mini"
-            />
+             {...interfaceTextProps("Refresh Lidarr import history")}/>
           }
-        />
+         {...interfaceTextProps("Refresh the recent Lidarr import attempts and their latest command status.")}/>
       </div>
 
       {!connected ? (
-        <div className="lidarr-empty">Connect Lidarr to see import history.</div>
+        <div className="lidarr-empty"><LocalizedText source={"Connect Lidarr to see import history."} /></div>
       ) : loading && history.length === 0 ? (
         <Segment basic padded><Loader active inline="centered" /></Segment>
       ) : history.length === 0 ? (
         <div className="lidarr-empty">
-          No Lidarr imports recorded yet. Run a manual import to start tracking attempts.
-        </div>
+          <LocalizedText source={"No Lidarr imports recorded yet. Run a manual import to start tracking attempts."} /></div>
       ) : (
         <Table celled compact size="small" unstackable>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Status</Table.HeaderCell>
-              <Table.HeaderCell>Directory</Table.HeaderCell>
-              <Table.HeaderCell>Files</Table.HeaderCell>
-              <Table.HeaderCell>Started</Table.HeaderCell>
-              <Table.HeaderCell>Finished</Table.HeaderCell>
-              <Table.HeaderCell>Details</Table.HeaderCell>
-              <Table.HeaderCell>Actions</Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Status"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Directory"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Files"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Started"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Finished"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Details"} /></Table.HeaderCell>
+              <Table.HeaderCell><LocalizedText source={"Actions"} /></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {history.map((entry) => {
               const status = entry.status || 'Queued';
               const canRetry = status === 'Failed' || status === 'Skipped';
-              const details = entry.errorMessage || entry.skippedReason || '—';
+              const details = entry.errorMessage || entry.skippedReason
+                ? interfaceText('The request failed. Try again.')
+                : '—';
               return (
                 <Table.Row key={entry.id}>
                   <Table.Cell>
                     <Label color={importStatusColor[status] || 'grey'} size="tiny">
-                      {status}
+                      {Object.hasOwn(importStatusColor, status)
+                        ? <LocalizedText source={status} />
+                        : status}
                     </Label>
                   </Table.Cell>
                   <Table.Cell className="lidarr-import-directory" title={entry.directory}>
@@ -628,19 +623,19 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
                   <Table.Cell textAlign="center">
                     {canRetry && (
                       <Popup
-                        content="Run this directory through Lidarr again and record a new import attempt."
+                        content={interfaceText("Run this directory through Lidarr again and record a new import attempt.")}
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={`Retry Lidarr import for ${entry.directory}`}
+                            aria-label={interfaceText("Retry Lidarr import for {directory}", { "directory": (entry.directory) })}
                             disabled={retryingId !== null}
                             icon="redo"
                             loading={retryingId === entry.id}
                             onClick={() => handleRetry(entry.id)}
                             size="mini"
-                          />
+                           {...interfaceTextProps("Retry Lidarr import for {directory}")}/>
                         }
-                      />
+                       {...interfaceTextProps("Run this directory through Lidarr again and record a new import attempt.")}/>
                     )}
                   </Table.Cell>
                 </Table.Row>
@@ -656,6 +651,7 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
 const Lidarr = () => {
+  useInterfaceLanguage();
   const [status, setStatus] = useState(null);
   const [syncState, setSyncState] = useState(null);
   const [syncing, setSyncing] = useState(false);
@@ -733,7 +729,7 @@ const Lidarr = () => {
       );
       await loadStatus();
     } catch (err) {
-      toast.error(`Sync failed: ${err.message}`);
+      toast.error(interfaceText("Sync failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
     } finally {
       setSyncing(false);
     }
@@ -749,8 +745,7 @@ const Lidarr = () => {
       <Header as="h2" className="lidarr-header">
         <Icon name="music" />
         <Header.Content>
-          Lidarr
-          <Header.Subheader>Music acquisition via Lidarr</Header.Subheader>
+          <LocalizedText source={"Lidarr"} /><Header.Subheader><LocalizedText source={"Music acquisition via Lidarr"} /></Header.Subheader>
         </Header.Content>
       </Header>
 

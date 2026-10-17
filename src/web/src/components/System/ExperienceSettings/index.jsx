@@ -1,3 +1,6 @@
+import { interfaceText, interfaceTextProps, INTERFACE_LANGUAGE_OPTIONS, resetInterfaceLanguage, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { REGIONAL_FORMAT_OPTIONS } from '../../../lib/regionalFormat';
+
 import React, { useEffect, useState } from 'react';
 import {
   Button,
@@ -13,11 +16,13 @@ import {
 import {
   EXPERIENCE_PREFERENCES_STORAGE_KEY,
   notifyExperiencePreferencesChanged,
+  setExperiencePreferencesSnapshot,
 } from '../../../lib/experiencePreferences';
 
 const storageKey = EXPERIENCE_PREFERENCES_STORAGE_KEY;
 
 const defaults = {
+  regionalFormat: 'system',
   playerVisible: true,
   searchAlbumCandidatesVisible: true,
 };
@@ -40,6 +45,9 @@ const normalizeStoredPreferences = (stored) => {
   }
 
   return {
+    regionalFormat: typeof stored.regionalFormat === 'string' && REGIONAL_FORMAT_OPTIONS.some((option) => option.value === stored.regionalFormat)
+      ? stored.regionalFormat
+      : defaults.regionalFormat,
     playerVisible: typeof stored.playerVisible === 'boolean'
       ? stored.playerVisible
       : defaults.playerVisible,
@@ -55,23 +63,20 @@ const readStoredPreferences = () =>
 const buildReport = (form) =>
   [
     'slskdN browser experience preferences',
+    `Regional format: ${form.regionalFormat}`,
     `Search: album_candidates=${form.searchAlbumCandidatesVisible}`,
     `Player: visible=${form.playerVisible}`,
   ].join('\n');
 
-const getPreferenceActionError = (error, fallback) => {
-  const data = error?.response?.data;
-  if (typeof data === 'string') return data;
-  if (data && typeof data === 'object') {
-    return data.detail || data.message || data.title || JSON.stringify(data);
-  }
-
-  return error?.message || fallback;
-};
-
 const ExperienceSettings = () => {
   const [form, setForm] = useState(defaults);
   const [feedback, setFeedback] = useState(null);
+  const { language, setLanguage, t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {t(source)}
+    </span>
+  );
 
   useEffect(() => {
     setForm(readStoredPreferences());
@@ -83,6 +88,7 @@ const ExperienceSettings = () => {
   };
 
   const save = () => {
+    setExperiencePreferencesSnapshot(form);
     try {
       localStorage.setItem(
         storageKey,
@@ -90,29 +96,34 @@ const ExperienceSettings = () => {
       );
       notifyExperiencePreferencesChanged();
       setFeedback({
-        message: 'Experience preferences saved locally in this browser.',
+        message: interfaceText("Experience preferences saved locally in this browser."),
         type: 'success',
       });
-    } catch (error) {
+    } catch {
+      notifyExperiencePreferencesChanged();
       setFeedback({
-        message: getPreferenceActionError(error, 'Could not save browser preferences.'),
+        message: interfaceText("Could not save browser preferences."),
         type: 'error',
       });
     }
   };
 
   const reset = () => {
+    setExperiencePreferencesSnapshot(defaults);
+    resetInterfaceLanguage();
     try {
       localStorage.removeItem(storageKey);
       setForm(defaults);
       notifyExperiencePreferencesChanged();
       setFeedback({
-        message: 'Experience preferences reset to defaults.',
+        message: interfaceText("Experience preferences reset to defaults."),
         type: 'success',
       });
-    } catch (error) {
+    } catch {
+      setForm(defaults);
+      notifyExperiencePreferencesChanged();
       setFeedback({
-        message: getPreferenceActionError(error, 'Could not reset browser preferences.'),
+        message: interfaceText("Could not reset browser preferences."),
         type: 'error',
       });
     }
@@ -120,18 +131,16 @@ const ExperienceSettings = () => {
 
   const copyReport = async () => {
     try {
-      if (typeof navigator.clipboard?.writeText !== 'function') {
-        throw new Error('Clipboard access is not available in this browser.');
-      }
+      if (typeof navigator.clipboard?.writeText !== 'function') throw new Error();
 
       await navigator.clipboard.writeText(buildReport(form));
       setFeedback({
-        message: 'Experience preference report copied.',
+        message: interfaceText("Experience preference report copied."),
         type: 'success',
       });
-    } catch (error) {
+    } catch {
       setFeedback({
-        message: getPreferenceActionError(error, 'Could not copy the preference report.'),
+        message: interfaceText("Could not copy the preference report."),
         type: 'error',
       });
     }
@@ -142,12 +151,10 @@ const ExperienceSettings = () => {
       <Segment>
         <Header as="h3">
           <Icon name="compass" />
-          Experience Preferences
+          {localized('Experience Preferences')}
         </Header>
         <p>
-          These choices are stored in this browser and do not change server
-          configuration or start new searches or downloads. Hiding the player
-          stops current playback and clears its local queue.
+          {localized('These choices are stored in this browser and do not change server configuration or start new searches or downloads. Hiding the player stops current playback and clears its local queue.')}
         </p>
       </Segment>
 
@@ -157,7 +164,7 @@ const ExperienceSettings = () => {
           positive={feedback.type === 'success'}
           size="small"
         >
-          {feedback.message}
+          {localized(feedback.message)}
         </Message>
       )}
 
@@ -167,21 +174,64 @@ const ExperienceSettings = () => {
       >
         <Card fluid>
           <Card.Content>
+            <Card.Header><Icon name="language" /> {localized('Interface language')}</Card.Header>
+            <Card.Meta>{localized('Choose the language used for the interface.')} {localized('Other parts of the interface are still being localized.')}</Card.Meta>
+          </Card.Content>
+          <Card.Content>
+            <Form>
+              <Form.Select
+                dir={directionFor('Interface language')}
+                aria-label={t('Interface language')}
+                label={localized('Interface language')}
+                lang={languageFor('Interface language')}
+                onChange={(_, { value }) => setLanguage(value)}
+                options={INTERFACE_LANGUAGE_OPTIONS}
+                value={language}
+              />
+            </Form>
+          </Card.Content>
+        </Card>
+        <Card fluid>
+          <Card.Content>
+            <Card.Header>
+              <Icon name="globe" />
+              {localized('Regional format')}
+            </Card.Header>
+            <Card.Meta>{localized('Choose how dates, times, and numbers are displayed. This setting is separate from interface language.')}</Card.Meta>
+          </Card.Content>
+          <Card.Content>
+            <Form>
+              <Form.Select
+                dir={directionFor('Regional format')}
+                aria-label={t('Regional format')}
+                label={localized('Date, time, and number format')}
+                lang={languageFor('Regional format')}
+                onChange={(_, { value }) => update('regionalFormat', value)}
+                options={REGIONAL_FORMAT_OPTIONS}
+                value={form.regionalFormat}
+              />
+            </Form>
+          </Card.Content>
+        </Card>
+        <Card fluid>
+          <Card.Content>
             <Card.Header>
               <Icon name="search" />
-              Search
+              {localized('Search')}
             </Card.Header>
-            <Card.Meta>Control the local review panel shown with song search results.</Card.Meta>
+            <Card.Meta>{localized('Control the local review panel shown with song search results.')}</Card.Meta>
           </Card.Content>
           <Card.Content>
             <Form>
               <Popup
-                content="Show the album-candidate review panel below song searches. It only organizes results already received and does not start another search or contact more peers."
+                content={localized('Show the album-candidate review panel below song searches. It only organizes results already received and does not start another search or contact more peers.')}
                 trigger={
                   <Checkbox
-                    aria-label="Show album candidates preference"
+                    aria-label={t('Show album candidates preference')}
+                    dir={directionFor('Show album candidates preference')}
+                    lang={languageFor('Show album candidates preference')}
                     checked={form.searchAlbumCandidatesVisible}
-                    label="Show album candidates"
+                    label={localized('Show album candidates')}
                     onChange={(_, { checked }) =>
                       update('searchAlbumCandidatesVisible', Boolean(checked))
                     }
@@ -197,19 +247,21 @@ const ExperienceSettings = () => {
           <Card.Content>
             <Card.Header>
               <Icon name="play circle" />
-              Player
+              {localized('Player')}
             </Card.Header>
-            <Card.Meta>Show or hide the persistent music player across the Web UI.</Card.Meta>
+            <Card.Meta>{localized('Show or hide the persistent music player across the Web UI.')}</Card.Meta>
           </Card.Content>
           <Card.Content>
             <Form>
               <Popup
-                content="Hide the player across the Web UI. Current playback stops and the browser player queue is cleared; the Show player control stays available at the bottom of the page."
+                content={localized('Hide the player across the Web UI. Current playback stops and the browser player queue is cleared; the Show player control stays available at the bottom of the page.')}
                 trigger={
                   <Checkbox
-                    aria-label="Show browser player preference"
+                    aria-label={t('Show browser player preference')}
+                    dir={directionFor('Show browser player preference')}
+                    lang={languageFor('Show browser player preference')}
                     checked={form.playerVisible}
-                    label="Show browser player"
+                    label={localized('Show browser player')}
                     onChange={(_, { checked }) =>
                       update('playerVisible', Boolean(checked))
                     }
@@ -224,42 +276,48 @@ const ExperienceSettings = () => {
 
       <div className="integration-actions">
         <Popup
-          content="Save these choices to this browser. This does not edit server configuration or start a search or download. Hiding the player stops current playback and clears its local queue."
+          content={localized('Save these choices to this browser. This does not edit server configuration or start a search or download. Hiding the player stops current playback and clears its local queue.')}
           trigger={
             <Button
+              dir={directionFor('Save Local Preferences')}
+              lang={languageFor('Save Local Preferences')}
               icon
               labelPosition="left"
               onClick={save}
               primary
             >
               <Icon name="save" />
-              Save Local Preferences
+              {localized('Save Local Preferences')}
             </Button>
           }
         />
         <Popup
-          content="Clear browser-local experience preferences and restore the supported defaults."
+          content={localized('Clear browser-local experience preferences and restore the supported defaults.')}
           trigger={
             <Button
+              dir={directionFor('Reset')}
+              lang={languageFor('Reset')}
               icon
               labelPosition="left"
               onClick={reset}
             >
               <Icon name="undo" />
-              Reset
+              {localized('Reset')}
             </Button>
           }
         />
         <Popup
-          content="Copy a short report of these browser-local choices to include with a support request."
+          content={localized('Copy a short report of these browser-local choices to include with a support request.')}
           trigger={
             <Button
+              dir={directionFor('Copy Report')}
+              lang={languageFor('Copy Report')}
               icon
               labelPosition="left"
               onClick={copyReport}
             >
               <Icon name="copy" />
-              Copy Report
+              {localized('Copy Report')}
             </Button>
           }
         />

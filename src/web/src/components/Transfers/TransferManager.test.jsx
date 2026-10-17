@@ -51,7 +51,7 @@ vi.mock('../../lib/transfers', () => ({
 }));
 
 vi.mock('../Shared', () => ({
-  PlaceholderSegment: ({ children }) => <div>{children}</div>,
+  PlaceholderSegment: ({ caption, children }) => <div>{caption}{children}</div>,
 }));
 
 vi.mock('./TransferTable', () => ({
@@ -161,6 +161,31 @@ describe('TransferManager reconciliation', () => {
 
     expect(mocks.getChanges).toHaveBeenCalledTimes(3);
     expect(mocks.getChanges).toHaveBeenNthCalledWith(3, { since: 99 });
+  });
+
+  it('renders empty and populated transfer states with localized metadata helpers', async () => {
+    const { unmount } = render(<TransferManager direction="download" />);
+    await flush();
+
+    expect(screen.getByText('No downloads to display')).toBeInTheDocument();
+    unmount();
+
+    mocks.getChanges.mockResolvedValue({
+      counts: { download: 1, upload: 0 },
+      cursor: 100,
+      transfers: [{
+        direction: 'Download',
+        filename: 'Music\\queued.flac',
+        id: 'queued-1',
+        state: 'Queued',
+        username: 'listener',
+      }],
+    });
+    render(<TransferManager direction="download" />);
+    await flush();
+
+    expect(screen.getByRole('button', { name: 'Queued (1)' })).toBeInTheDocument();
+    expect(screen.getByTestId('transfer-table')).toHaveTextContent('1');
   });
 
   it('does not overlap a slow reconciliation request', async () => {

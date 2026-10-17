@@ -45,7 +45,7 @@ describe('MusicBrainzLookup', () => {
 
     await waitFor(() =>
       expect(toast.error).toHaveBeenCalledWith(
-        'MusicBrainz target response did not include a target',
+        'The request failed. Try again.',
       ),
     );
 

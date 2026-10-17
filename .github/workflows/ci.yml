@@ -9,15 +9,6 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-    inputs:
-      runner:
-        description: Runner for the manual validation run
-        required: true
-        default: configured
-        type: choice
-        options:
-          - configured
-          - github-hosted
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
@@ -33,10 +24,7 @@ permissions:
 jobs:
   build:
     name: Build and Test
-    # All pull requests and non-main manual runs use hosted runners. Main
-    # dispatches may opt into hosted; trusted tag pushes and main dispatches
-    # otherwise follow repository runner policy.
-    runs-on: ${{ (github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && (github.ref != 'refs/heads/main' || inputs.runner == 'github-hosted'))) && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 120
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -69,7 +57,6 @@ jobs:
           fetch-depth: 0
 
       - name: Install validation tools
-        if: runner.environment == 'github-hosted'
         run: sudo apt-get update && sudo apt-get install -y jq ripgrep
 
       - name: Set up .NET
@@ -100,7 +87,6 @@ jobs:
         run: pnpm --filter @slskdn/web check:bundle
 
       - name: Setup Soulfind (Docker)
-        if: ${{ runner.environment == 'github-hosted' }}
         run: |
           # Pull Soulfind Docker image for protocol contract tests
           # Image: ghcr.io/soulfind-dev/soulfind (official Soulseek server simulator)
@@ -188,10 +174,11 @@ jobs:
   
   publish:
     name: Publish
-    runs-on: ${{ github.event_name == 'workflow_dispatch' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     needs: build
     if: startsWith(github.ref, 'refs/tags/')
     strategy:
+      fail-fast: false
       matrix:
         runtime:
           - "win-x64"
@@ -258,7 +245,7 @@ jobs:
   
   docker:
     name: Build Docker Image
-    runs-on: ${{ github.event_name == 'workflow_dispatch' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     needs: build
     if: startsWith(github.ref, 'refs/tags/')
     env:
@@ -392,7 +379,7 @@ jobs:
 
   release:
     name: Create Release
-    runs-on: ${{ github.event_name == 'workflow_dispatch' && 'ubuntu-latest' || vars.PREFER_SELF_HOSTED != 'false' && fromJSON('["self-hosted","Linux","X64","slskdn"]') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     needs: [build, publish, docker]
     if: startsWith(github.ref, 'refs/tags/')
     permissions:

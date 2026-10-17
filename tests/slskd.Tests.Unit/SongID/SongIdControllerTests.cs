@@ -4,6 +4,7 @@
 namespace slskd.Tests.Unit.SongID;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Moq;
 using slskd.SongID;
 using slskd.SongID.API;
@@ -58,6 +59,7 @@ public sealed class SongIdControllerTests
 
         var badRequest = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal("SongID source is required.", badRequest.Value);
+        Assert.Equal("songid.source-required", controller.Response.Headers["X-Slskd-Error-Code"]);
     }
 
     [Fact]
@@ -104,6 +106,7 @@ public sealed class SongIdControllerTests
 
         var badRequest = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal("SongID request is invalid.", badRequest.Value);
+        Assert.Equal("songid.request-invalid", controller.Response.Headers["X-Slskd-Error-Code"]);
     }
 
     [Fact]
@@ -120,6 +123,7 @@ public sealed class SongIdControllerTests
 
         var badRequest = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal("SongID analysis could not be queued.", badRequest.Value);
+        Assert.Equal("songid.analysis-queue-failed", controller.Response.Headers["X-Slskd-Error-Code"]);
     }
 
     [Fact]
@@ -332,6 +336,12 @@ public sealed class SongIdControllerTests
             .Setup(instance => instance.GetCapabilitiesAsync(It.IsAny<CancellationToken>()))
             .ReturnsAsync(Array.Empty<SongIdCapability>());
 
-        return new SongIdController(service, capabilityReporter.Object);
+        return new SongIdController(service, capabilityReporter.Object)
+        {
+            ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext(),
+            },
+        };
     }
 }

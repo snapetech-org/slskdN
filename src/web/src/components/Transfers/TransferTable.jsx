@@ -1,3 +1,6 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getRegionalLocale, useRegionalLocale } from '../../lib/regionalFormat';
 import {
   formatTransferState,
   getFailureReason,
@@ -58,7 +61,7 @@ const formatEta = (transfer) => {
 const formatClock = (value) => {
   if (!value) return '-';
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? '-' : date.toLocaleTimeString();
+  return Number.isNaN(date.getTime()) ? '-' : date.toLocaleTimeString(getRegionalLocale());
 };
 
 const formatElapsed = (ms) => {
@@ -108,14 +111,14 @@ function cellContent(transfer, key) {
       return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.bytesRemaining != null ? formatBytes(transfer.bytesRemaining) : '-'}</span>;
     case 'requested': {
       const requestedAt = transfer.requestedAt || transfer.enqueuedAt || transfer.startTime || transfer.endTime;
-      return <span>{requestedAt ? new Date(requestedAt).toLocaleString() : '-'}</span>;
+      return <span>{requestedAt ? new Date(requestedAt).toLocaleString(getRegionalLocale()) : '-'}</span>;
     }
     case 'started':
-      return <span style={{ fontSize: '0.85em' }}>{transfer.startTime ? new Date(transfer.startTime).toLocaleString() : '-'}</span>;
+      return <span style={{ fontSize: '0.85em' }}>{transfer.startTime ? new Date(transfer.startTime).toLocaleString(getRegionalLocale()) : '-'}</span>;
     case 'completed':
-      return <span style={{ fontSize: '0.85em' }}>{transfer.endTime ? new Date(transfer.endTime).toLocaleString() : '-'}</span>;
+      return <span style={{ fontSize: '0.85em' }}>{transfer.endTime ? new Date(transfer.endTime).toLocaleString(getRegionalLocale()) : '-'}</span>;
     case 'bitrate':
-      return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.bitRate ? `${transfer.bitRate} kbps` : '-'}</span>;
+      return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.bitRate ? <LocalizedText source={"{bitRate} kbps"} values={{ "bitRate": (transfer.bitRate) }} /> : '-'}</span>;
     case 'samplerate':
       return <span style={{ fontVariantNumeric: 'tabular-nums' }}>{transfer.sampleRate ? `${(transfer.sampleRate / 1000).toFixed(1)} kHz` : '-'}</span>;
     case 'length':
@@ -126,6 +129,7 @@ function cellContent(transfer, key) {
 }
 
 const Row = React.memo(({ index, style, ...data }) => {
+  useInterfaceLanguage();
   const {
     onCancel, onRemove, onRetry, onOpenRequest,
     onSelectionChange, selectedKeys, transfers,
@@ -198,18 +202,18 @@ const Row = React.memo(({ index, style, ...data }) => {
             <div className="transfer-cell-peer">
               <span className="transfer-peer-name">{transfer.username}</span>
               <Popup
-                content="Open this peer's shared files in the Browse view."
+                content={interfaceText("Open this peer's shared files in the Browse view.")}
                 position="top center"
                 trigger={
                   <Button
-                    aria-label={`Browse ${transfer.username} files`}
+                    aria-label={interfaceText("Browse {username} files", { "username": (transfer.username) })}
                     as={Link} compact icon="folder open" size="mini"
                     state={{ user: transfer.username }}
                     style={{ fontSize: '0.65rem', padding: '2px 4px' }}
                     to={`/browse?user=${encodeURIComponent(transfer.username)}`}
-                  />
+                   {...interfaceTextProps("Browse {username} files")}/>
                 }
-              />
+               {...interfaceTextProps("Open this peer's shared files in the Browse view.")}/>
             </div>
           )}
           {k === 'size' && <span>{formatSize(transfer)}</span>}
@@ -228,8 +232,8 @@ const Row = React.memo(({ index, style, ...data }) => {
               inverted position="top left"
               trigger={
                 <span className={`transfer-state-pill transfer-state-${color}`}>
-                  {formatTransferState(transfer.state, transfer.exception)}
-                  {transfer.placeInQueue ? ` (#${transfer.placeInQueue})` : ''}
+                  <LocalizedTransferState state={transfer.state} exception={transfer.exception} />
+                  {transfer.placeInQueue ? <LocalizedText source={"(#{placeInQueue})"} values={{ "placeInQueue": (transfer.placeInQueue) }} /> : ''}
                 </span>
               }
             />
@@ -239,7 +243,7 @@ const Row = React.memo(({ index, style, ...data }) => {
           {k === 'state' && (
             <div className="transfer-cell-state">
               <span className={`transfer-state-pill transfer-state-${color}`}>
-                {formatTransferState(transfer.state, transfer.exception)}
+                <LocalizedTransferState state={transfer.state} exception={transfer.exception} />
               </span>
               {attempts > 1 && (
                 <span className="transfer-retry-badge">
@@ -247,7 +251,7 @@ const Row = React.memo(({ index, style, ...data }) => {
                 </span>
               )}
               {nextAttempt && transfer.nextAttemptAt && !retryable && (
-                <span className="transfer-next-attempt">{`↻ ${nextAttempt}`}</span>
+                <span className="transfer-next-attempt">{interfaceText("↻ {nextAttempt}", { "nextAttempt": (nextAttempt) })}</span>
               )}
             </div>
           )}
@@ -257,45 +261,52 @@ const Row = React.memo(({ index, style, ...data }) => {
       <div className="transfer-cell transfer-cell-actions" role="gridcell">
         {transfer.requestId && onOpenRequest && (
           <Popup
-            content="Open the originating request to review its name and history."
+            content={interfaceText("Open the originating request to review its name and history.")}
             position="top center"
             trigger={
-              <Button aria-label="Open originating request" icon="info" onClick={() => onOpenRequest(transfer.requestId)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }} />
+              <Button aria-label={interfaceText("Open originating request")} icon="info" onClick={() => onOpenRequest(transfer.requestId)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }}  {...interfaceTextProps("Open originating request")}/>
             }
-          />
+           {...interfaceTextProps("Open the originating request to review its name and history.")}/>
         )}
         {retryable && (
           <Popup
-            content="Retry this failed transfer."
+            content={interfaceText("Retry this failed transfer.")}
             position="top center"
             trigger={
-              <Button aria-label="Retry transfer" color="green" icon="redo" onClick={() => onRetry(transfer)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }} />
+              <Button aria-label={interfaceText("Retry transfer")} color="green" icon="redo" onClick={() => onRetry(transfer)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }}  {...interfaceTextProps("Retry transfer")}/>
             }
-          />
+           {...interfaceTextProps("Retry this failed transfer.")}/>
         )}
         {cancellable && (
           <Popup
-            content="Cancel this transfer while it is in progress or queued."
+            content={interfaceText("Cancel this transfer while it is in progress or queued.")}
             position="top center"
             trigger={
-              <Button aria-label="Cancel transfer" color="red" icon="x" onClick={() => onCancel(transfer)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }} />
+              <Button aria-label={interfaceText("Cancel transfer")} color="red" icon="x" onClick={() => onCancel(transfer)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }}  {...interfaceTextProps("Cancel transfer")}/>
             }
-          />
+           {...interfaceTextProps("Cancel this transfer while it is in progress or queued.")}/>
         )}
         {removable && (
           <Popup
-            content="Remove this transfer from the list without changing the source file."
+            content={interfaceText("Remove this transfer from the list without changing the source file.")}
             position="top center"
             trigger={
-              <Button aria-label="Remove transfer" icon="trash alternate" onClick={() => onRemove(transfer)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }} />
+              <Button aria-label={interfaceText("Remove transfer")} icon="trash alternate" onClick={() => onRemove(transfer)} size="mini" style={{ fontSize: '0.65rem', padding: '2px 6px' }}  {...interfaceTextProps("Remove transfer")}/>
             }
-          />
+           {...interfaceTextProps("Remove this transfer from the list without changing the source file.")}/>
         )}
       </div>
     </div>
   );
 });
 Row.displayName = 'TransferTableRow';
+
+const LocalizedTransferState = ({ state, exception }) => {
+  const source = formatTransferState(state, exception);
+  const rejectedMatch = source.match(/^Rejected \((.*)\)$/);
+  if (rejectedMatch) return <LocalizedText source="Rejected ({reason})" values={{ reason: rejectedMatch[1] }} />;
+  return <LocalizedText source={source} />;
+};
 
 const TransferTable = ({
   direction,
@@ -310,6 +321,8 @@ const TransferTable = ({
   sort: controlledSort,
   onSortChange,
 }) => {
+  useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
   const [colState, setColState] = useState(() => loadColumnState(direction));
   const [localSort, setLocalSort] = useState({ direction: 'descending', key: 'requested' });
 
@@ -445,8 +458,9 @@ const TransferTable = ({
     onSelectionChange, selectedKeys,
     transfers: sorted,
     direction,
+    regionalLocale,
     cols: keys, widths: colState.widths,
-  }), [onCancel, onRemove, onRetry, onOpenRequest, onSelectionChange, selectedKeys, sorted, direction, keys, colState.widths]);
+  }), [onCancel, onRemove, onRetry, onOpenRequest, onSelectionChange, selectedKeys, sorted, direction, regionalLocale, keys, colState.widths]);
 
   const gridRef = useRef(null);
   const [gridHeight, setGridHeight] = useState(400);
@@ -487,7 +501,7 @@ const TransferTable = ({
     .filter((c) => !c.fixed)
     .map((c) => ({
       key: c.key,
-      text: c.label,
+      text: interfaceText(c.label),
       icon: colState.visible[c.key] ? 'checkmark' : undefined,
       onClick: () => toggleVisible(c.key),
     }));
@@ -496,7 +510,7 @@ const TransferTable = ({
 
   return (
     <div
-      aria-label="Transfer table. Use the Left and Right Arrow keys to view all columns."
+      aria-label={interfaceText("Transfer table. Use the Left and Right Arrow keys to view all columns.")}
       className="transfer-table-wrapper"
       onKeyDown={(event) => {
         if (event.target !== event.currentTarget) return;
@@ -510,41 +524,41 @@ const TransferTable = ({
       }}
       role="region"
       tabIndex={0}
-    >
+     {...interfaceTextProps("Transfer table. Use the Left and Right Arrow keys to view all columns.")}>
       {hasSelection && (
         <div className="transfer-bulk-bar">
-          <span>{`${selectedFiles.length} selected`}</span>
+          <span>{interfaceText("{length} selected", { "length": (selectedFiles.length) })}</span>
           <Button.Group size="small">
             {direction === 'download' && (
               <Popup
-                content={`Retry all ${selectedFiles.length} selected transfers.`}
+                content={interfaceText("Retry all {length} selected transfers.", { "length": (selectedFiles.length) })}
                 position="top center"
-                trigger={<Button color="green" content="Retry" icon="redo" onClick={onRetrySelected} />}
-              />
+                trigger={<Button color="green" content={interfaceText("Retry")} icon="redo" onClick={onRetrySelected}  {...interfaceTextProps("Retry")}/>}
+               {...interfaceTextProps("Retry all {length} selected transfers.")}/>
             )}
             <Popup
-              content={`Cancel all ${selectedFiles.length} selected transfers.`}
+              content={interfaceText("Cancel all {length} selected transfers.", { "length": (selectedFiles.length) })}
               position="top center"
-              trigger={<Button color="red" content="Cancel" icon="x" onClick={onCancelSelected} />}
-            />
+              trigger={<Button color="red" content={interfaceText("Cancel")} icon="x" onClick={onCancelSelected}  {...interfaceTextProps("Cancel")}/>}
+             {...interfaceTextProps("Cancel all {length} selected transfers.")}/>
             <Popup
-              content={`Remove all ${selectedFiles.length} selected transfers from the list.`}
+              content={interfaceText("Remove all {length} selected transfers from the list.", { "length": (selectedFiles.length) })}
               position="top center"
-              trigger={<Button content="Remove" icon="trash alternate" onClick={onRemoveSelected} />}
-            />
+              trigger={<Button content={interfaceText("Remove")} icon="trash alternate" onClick={onRemoveSelected}  {...interfaceTextProps("Remove")}/>}
+             {...interfaceTextProps("Remove all {length} selected transfers from the list.")}/>
           </Button.Group>
         </div>
       )}
-      <div aria-label="Transfers" aria-rowcount={sorted.length} className="transfer-grid" ref={gridRef} role="grid">
+      <div aria-label={interfaceText("Transfers")} aria-rowcount={sorted.length} className="transfer-grid" ref={gridRef} role="grid" {...interfaceTextProps("Transfers")}>
         <div className="transfer-header-row" role="row" style={{ gridTemplateColumns: headerTemplate, display: 'grid' }}>
           <div className="transfer-cell transfer-cell-check" role="columnheader">
             <Checkbox
-              aria-label="Select all transfers"
+              aria-label={interfaceText("Select all transfers")}
               checked={allSelected}
               fitted
               onChange={(_, d) => onSelectAll(sorted, d.checked)}
               style={{ transform: 'scale(0.85)' }}
-            />
+             {...interfaceTextProps("Select all transfers")}/>
           </div>
           {visibleCols.map((col) => {
             const isSorted = sort.key === col.key;
@@ -563,11 +577,11 @@ const TransferTable = ({
                 onDrop={handleDrop}
               >
                 <span style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  {col.label}
+                  <LocalizedText source={col.label} />
                   {isSorted && <Icon name={sort.direction === 'ascending' ? 'caret up' : 'caret down'} />}
                 </span>
                 <div
-                  aria-label={`Resize ${col.label || col.key} column`}
+                  aria-label={interfaceText("Resize {label} column", { "label": interfaceText(col.label || col.key) })}
                   className="resize-handle"
                   role="separator"
                   style={{
@@ -583,35 +597,35 @@ const TransferTable = ({
           })}
           <div className="transfer-cell transfer-column-tools" role="columnheader">
             <Popup
-              content="Reset all transfer column widths to their defaults."
+              content={interfaceText("Reset all transfer column widths to their defaults.")}
               position="top center"
               trigger={
                 <Button
-                  aria-label="Reset transfer column widths"
+                  aria-label={interfaceText("Reset transfer column widths")}
                   compact
                   icon="undo"
                   onClick={resetWidths}
                   size="mini"
                   style={{ fontSize: '0.65rem', margin: 0, padding: '2px 4px' }}
                   type="button"
-                />
+                 {...interfaceTextProps("Reset transfer column widths")}/>
               }
-            />
+             {...interfaceTextProps("Reset all transfer column widths to their defaults.")}/>
             <Popup
-              content="Choose which transfer columns are visible; your order and widths remain saved for this direction."
+              content={interfaceText("Choose which transfer columns are visible; your order and widths remain saved for this direction.")}
               trigger={
                 <Button
-                  aria-label="Choose transfer table columns"
+                  aria-label={interfaceText("Choose transfer table columns")}
                   compact
                   icon="columns"
                   size="mini"
                   style={{ fontSize: '0.65rem', margin: 0, padding: '2px 4px' }}
-                />
+                 {...interfaceTextProps("Choose transfer table columns")}/>
               }
               flowing
               on="click"
               pinned
-            >
+             {...interfaceTextProps("Choose which transfer columns are visible; your order and widths remain saved for this direction.")}>
               <Popup.Content>
                 <Dropdown.Menu style={{ maxHeight: 300, overflowY: 'auto' }}>
                   {chooserOptions.map((opt) => (

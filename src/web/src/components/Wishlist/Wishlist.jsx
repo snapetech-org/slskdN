@@ -1,3 +1,9 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+
+
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Wishlist.css';
 import { urlBase } from '../../config';
 import {
@@ -32,10 +38,10 @@ import {
 } from 'semantic-ui-react';
 
 const formatDate = (dateString) => {
-  if (!dateString) return 'Never';
+  if (!dateString) return interfaceText('Never');
   const date = new Date(dateString);
-  if (Number.isNaN(date.getTime())) return 'Never';
-  return date.toLocaleString();
+  if (Number.isNaN(date.getTime())) return interfaceText('Never');
+  return date.toLocaleString(getRegionalLocale());
 };
 
 const getVisibleHitCount = (item) => item.lastVisibleHitCount ?? item.lastMatchCount ?? 0;
@@ -85,6 +91,7 @@ const WishlistItemRow = ({
   onSelect,
   blockedUsers,
 }) => {
+  useInterfaceLanguage();
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [running, setRunning] = useState(false);
   const [showSearches, setShowSearches] = useState(false);
@@ -104,9 +111,9 @@ const WishlistItemRow = ({
     setRunning(true);
     try {
       const result = await onRunSearch(item.id);
-      toast.success(`Search completed with ${result.responseCount} results`);
+      toast.success(interfaceText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
     } catch (error) {
-      toast.error(`Search failed: ${error.message}`);
+      toast.error(interfaceText("Search failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setRunning(false);
     }
@@ -121,7 +128,7 @@ const WishlistItemRow = ({
         const searches = await wishlistAPI.getSearches(item.id);
         setRelatedSearches(searches);
       } catch (error) {
-        toast.error(`Failed to load searches: ${error.message}`);
+        toast.error(interfaceText("Failed to load searches: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       } finally {
         setLoadingSearches(false);
       }
@@ -130,7 +137,7 @@ const WishlistItemRow = ({
 
   const handleMarkViewedClick = async () => {
     await onMarkViewed(item.id);
-    toast.info(`Marked "${item.searchText}" as viewed`);
+    toast.info(interfaceText("Marked \"{searchText}\" as viewed", { "searchText": (item.searchText) }));
   };
 
   const handleToggleResults = async (searchId) => {
@@ -145,7 +152,7 @@ const WishlistItemRow = ({
       const results = await searchesAPI.getResponses({ id: searchId });
       setExpandedSearchResults(results);
     } catch (error) {
-      toast.error(`Failed to load results: ${error.message}`);
+      toast.error(interfaceText("Failed to load results: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       setExpandedSearchResults([]);
     } finally {
       setLoadingResults(false);
@@ -157,16 +164,16 @@ const WishlistItemRow = ({
       <Table.Row>
         <Table.Cell>
           <Popup
-            content="Select for bulk actions"
+            content={interfaceText("Select for bulk actions")}
             position="top center"
             trigger={
               <Checkbox
-                aria-label={`Select ${item.searchText} for bulk actions`}
+                aria-label={interfaceText("Select {searchText} for bulk actions", { "searchText": (item.searchText) })}
                 checked={selected}
                 onChange={(_, { checked }) => onSelect(item.id, checked)}
-              />
+               {...interfaceTextProps("Select {searchText} for bulk actions")}/>
             }
-          />
+           {...interfaceTextProps("Select for bulk actions")}/>
         </Table.Cell>
         <Table.Cell>
           <Icon
@@ -176,19 +183,19 @@ const WishlistItemRow = ({
           />
           <strong>{item.searchText}</strong>
           {item.filter && (
-            <div className="wishlist-filter">Filter: {item.filter}</div>
+            <div className="wishlist-filter"><LocalizedText source={"Filter:"} />{" "}{item.filter}</div>
           )}
         </Table.Cell>
         <Table.Cell textAlign="center">
           <Popup
-            content="Auto-download best matches"
+            content={interfaceText("Auto-download best matches")}
             trigger={
               <Icon
                 color={item.autoDownload ? 'green' : 'grey'}
                 name={item.autoDownload ? 'download' : 'download'}
               />
             }
-          />
+           {...interfaceTextProps("Auto-download best matches")}/>
         </Table.Cell>
         <Table.Cell>{formatDate(item.lastSearchedAt)}</Table.Cell>
         <Table.Cell textAlign="center">
@@ -203,12 +210,12 @@ const WishlistItemRow = ({
                 {getVisibleHitCount(item)}
                 {(item.lastHiddenLockedHitCount ?? 0) > 0 && (
                   <span className="wishlist-locked-count" style={{ color: '#999', marginLeft: '0.25em' }}>
-                    {`(+${item.lastHiddenLockedHitCount} locked)`}
+                    {interfaceText("(+{lastHiddenLockedHitCount} locked)", { "lastHiddenLockedHitCount": (item.lastHiddenLockedHitCount) })}
                   </span>
                 )}
                 {(item.lastBlockedHitCount ?? 0) > 0 && (
                   <span className="wishlist-blocked-count" style={{ color: '#999', marginLeft: '0.25em' }}>
-                    {`(+${item.lastBlockedHitCount} blocked)`}
+                    {interfaceText("(+{lastBlockedHitCount} blocked)", { "lastBlockedHitCount": (item.lastBlockedHitCount) })}
                   </span>
                 )}
               </span>
@@ -216,27 +223,26 @@ const WishlistItemRow = ({
           />
           {unseenCount > 0 && (
             <Popup
-              content={`${unseenCount} new result(s) since you last viewed this item`}
+              content={interfaceText("{unseenCount} new result(s) since you last viewed this item", { "unseenCount": (unseenCount) })}
               trigger={
                 <Label
                   color="red"
                   size="mini"
                   style={{ marginLeft: '0.5em' }}
                 >
-                  {unseenCount} new
-                </Label>
+                  {unseenCount} <LocalizedText source={"new"} /></Label>
               }
-            />
+             {...interfaceTextProps("{unseenCount} new result(s) since you last viewed this item")}/>
           )}
         </Table.Cell>
         <Table.Cell textAlign="center">{item.totalSearchCount}</Table.Cell>
         <Table.Cell>
           <Popup
-            content={requestState.summary}
+            content={<LocalizedText source={requestState.summary} />}
             position="top center"
             trigger={
               <Label color={requestState.color}>
-                {requestState.label}
+                <LocalizedText source={requestState.label} />
               </Label>
             }
           />
@@ -248,52 +254,54 @@ const WishlistItemRow = ({
             >
               <Popup
                 content={item.filter
-                  ? 'View the latest search results with this wishlist filter already applied.'
-                  : 'View the latest search results for this wishlist item.'}
+                  ? interfaceText('View the latest search results with this wishlist filter already applied.')
+                  : interfaceText('View the latest search results for this wishlist item.')}
                 position="top center"
                 trigger={
                   <Button
-                    aria-label={`View latest search results for ${item.searchText}`}
+                    aria-label={interfaceText("View latest search results for {searchText}", { "searchText": (item.searchText) })}
                     compact
                     icon="search"
                     size="tiny"
-                    title="View last search results"
-                  />
+                    title={interfaceText("View last search results")}
+                   {...interfaceTextProps("View latest search results for {searchText}")}/>
                 }
               />
             </Link>
           )}
           {unseenCount > 0 && (
             <Popup
-              content="Clear this item's new-results badge without opening its search history."
+              content={interfaceText("Clear this item's new-results badge without opening its search history.")}
               position="top center"
               trigger={
                   <Button
-                    aria-label={`Mark ${item.searchText} results as viewed`}
+                    aria-label={interfaceText("Mark {searchText} results as viewed", { "searchText": (item.searchText) })}
                     compact
                     icon="check"
                   onClick={handleMarkViewedClick}
                   size="tiny"
-                  title="Mark viewed"
-                />
+                  title={interfaceText("Mark viewed")}
+                 {...interfaceTextProps("Mark {searchText} results as viewed")}/>
               }
-            />
+             {...interfaceTextProps("Clear this item's new-results badge without opening its search history.")}/>
           )}
           <TooltipButton
-            aria-label={showSearches
-              ? `Hide ${item.searchText} search history`
-              : `Show ${item.searchText} search history`}
+            aria-label={interfaceText(showSearches
+              ? 'Hide {searchText} search history'
+              : 'Show {searchText} search history', {
+              searchText: item.searchText,
+            })}
             compact
             icon={showSearches ? 'angle up' : 'angle down'}
             loading={loadingSearches}
             onClick={handleToggleSearches}
             size="tiny"
             tooltip={showSearches
-              ? 'Hide earlier searches to return to the wishlist items.'
-              : 'Review this item’s linked search history and past results.'}
+              ? interfaceText('Hide earlier searches to return to the wishlist items.')
+              : interfaceText('Review this item’s linked search history and past results.')}
           />
           <TooltipButton
-            aria-label={`Run ${item.searchText} wishlist search now`}
+            aria-label={interfaceText("Run {searchText} wishlist search now", { "searchText": (item.searchText) })}
             compact
             icon="play"
             loading={running}
@@ -301,40 +309,38 @@ const WishlistItemRow = ({
             primary
             size="tiny"
             tooltip="Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run."
-          />
+           {...interfaceTextProps("Run {searchText} wishlist search now")}/>
           <TooltipButton
-            aria-label={`Edit ${item.searchText} wishlist settings`}
+            aria-label={interfaceText("Edit {searchText} wishlist settings", { "searchText": (item.searchText) })}
             compact
             icon="edit"
             onClick={() => onEdit(item)}
             size="tiny"
             tooltip="Change this item’s search text, filters, result limits, and automation settings."
-          />
+           {...interfaceTextProps("Edit {searchText} wishlist settings")}/>
           <TooltipButton
-            aria-label={`Delete ${item.searchText} from Wishlist`}
+            aria-label={interfaceText("Delete {searchText} from Wishlist", { "searchText": (item.searchText) })}
             color="red"
             compact
             icon="trash"
             onClick={() => setConfirmDelete(true)}
             size="tiny"
             tooltip="Remove this wishlist entry after confirmation when you no longer want its search tracked."
-          />
+           {...interfaceTextProps("Delete {searchText} from Wishlist")}/>
           <Confirm
             cancelButton={(
               <TooltipButton tooltip="Keep this wishlist item and return to the list.">
-                Cancel
-              </TooltipButton>
+                <LocalizedText source={"Cancel"} /></TooltipButton>
             )}
             confirmButton={(
               <TooltipButton
                 color="red"
                 tooltip="Remove this wishlist item and its saved search settings."
               >
-                Delete
-              </TooltipButton>
+                <LocalizedText source={"Delete"} /></TooltipButton>
             )}
-            content={`Delete wishlist item "${item.searchText}"?`}
-            header="Confirm Delete"
+            content={interfaceText("Delete wishlist item \"{searchText}\"?", { "searchText": (item.searchText) })}
+            header={interfaceText("Confirm Delete")}
             onCancel={() => setConfirmDelete(false)}
             onConfirm={() => {
               setConfirmDelete(false);
@@ -342,7 +348,7 @@ const WishlistItemRow = ({
             }}
             open={confirmDelete}
             size="mini"
-          />
+           {...interfaceTextProps("Delete wishlist item \"{searchText}\"?")}/>
         </Table.Cell>
       </Table.Row>
       {showSearches && (
@@ -352,15 +358,13 @@ const WishlistItemRow = ({
               <Icon name="spinner" loading />
             ) : relatedSearches.length === 0 ? (
               <span style={{ color: '#999', fontStyle: 'italic' }}>
-                No linked search history for this item yet.
-                {item.lastSearchId && (
+                <LocalizedText source={"No linked search history for this item yet."} />{item.lastSearchId && (
                   <>
                     {' '}
                     <Link
                       to={getSearchLink(item)}
                     >
-                      Open latest search result.
-                    </Link>
+                      <LocalizedText source={"Open latest search result."} /></Link>
                   </>
                 )}
               </span>
@@ -369,11 +373,11 @@ const WishlistItemRow = ({
                 <Table compact size="small" basic="very">
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>Search</Table.HeaderCell>
-                      <Table.HeaderCell>Source</Table.HeaderCell>
-                      <Table.HeaderCell>Responses</Table.HeaderCell>
-                      <Table.HeaderCell>Files</Table.HeaderCell>
-                      <Table.HeaderCell>Started</Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Search"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Source"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Responses"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Files"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Started"} /></Table.HeaderCell>
                       <Table.HeaderCell />
                     </Table.Row>
                   </Table.Header>
@@ -386,7 +390,7 @@ const WishlistItemRow = ({
                             color={s.source === 'wishlist' ? 'blue' : s.source === 'auto-replace' ? 'orange' : 'grey'}
                             size="mini"
                           >
-                            {s.source || 'manual'}
+                            {s.source || interfaceText('Manual')}
                           </Label>
                         </Table.Cell>
                         <Table.Cell>{s.responseCount}</Table.Cell>
@@ -397,28 +401,30 @@ const WishlistItemRow = ({
                             to={getSearchLink(item, s.id)}
                           >
                             <Popup
-                              content={item.filter
+                              content={interfaceText(item.filter
                                 ? 'View full search page with this wishlist filter already applied.'
-                                : 'View full search page.'}
+                                : 'View full search page.')}
                               position="top center"
                               trigger={
                                 <Button
-                                  aria-label={`Open the full search for ${item.searchText}`}
+                                  aria-label={interfaceText("Open the full search for {searchText}", { "searchText": (item.searchText) })}
                                   compact
                                   icon="external"
                                   size="mini"
-                                />
+                                 {...interfaceTextProps("Open the full search for {searchText}")}/>
                               }
                             />
                           </Link>
                           <Popup
-                            content={expandedSearchId === s.id ? 'Hide results' : 'Show results inline'}
+                            content={interfaceText(expandedSearchId === s.id ? 'Hide results' : 'Show results inline')}
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={expandedSearchId === s.id
-                                  ? `Hide ${item.searchText} results inline`
-                                  : `Show ${item.searchText} results inline`}
+                                aria-label={interfaceText(expandedSearchId === s.id
+                                  ? 'Hide {searchText} results inline'
+                                  : 'Show {searchText} results inline', {
+                                  searchText: item.searchText,
+                                })}
                                 compact
                                 icon={expandedSearchId === s.id ? 'angle up' : 'angle down'}
                                 loading={loadingResults && expandedSearchId === s.id}
@@ -437,19 +443,18 @@ const WishlistItemRow = ({
                     {loadingResults ? (
                       <Icon name="spinner" loading />
                     ) : visibleExpandedSearchResults.length === 0 ? (
-                      <span style={{ color: '#999', fontStyle: 'italic' }}>No results for this search.</span>
+                      <span style={{ color: '#999', fontStyle: 'italic' }}><LocalizedText source={"No results for this search."} /></span>
                     ) : (
                       <>
                         <Header as="h5" style={{ marginBottom: '0.5em' }}>
-                          {visibleExpandedSearchResults.length} result(s)
-                        </Header>
+                          {visibleExpandedSearchResults.length} <LocalizedText source={"result(s)"} /></Header>
                         <Table compact size="small" basic="very" striped>
                           <Table.Header>
                             <Table.Row>
-                              <Table.HeaderCell>Username</Table.HeaderCell>
-                              <Table.HeaderCell>Directory</Table.HeaderCell>
-                              <Table.HeaderCell>Files</Table.HeaderCell>
-                              <Table.HeaderCell>Size</Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Username"} /></Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Directory"} /></Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Files"} /></Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Size"} /></Table.HeaderCell>
                             </Table.Row>
                           </Table.Header>
                           <Table.Body>
@@ -476,7 +481,7 @@ const WishlistItemRow = ({
                         </Table>
                         {visibleExpandedSearchResults.length > 20 && (
                           <span style={{ color: '#999', fontSize: '0.85em' }}>
-                            Showing first 20 of {visibleExpandedSearchResults.length} results.
+                            <LocalizedText source={"Showing the first 20 of {count} results."} values={{ count: visibleExpandedSearchResults.length }} />
                           </span>
                         )}
                       </>
@@ -502,6 +507,7 @@ const WishlistItemCard = ({
   onSelect,
   blockedUsers,
 }) => {
+  useInterfaceLanguage();
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [running, setRunning] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -521,9 +527,9 @@ const WishlistItemCard = ({
     setRunning(true);
     try {
       const result = await onRunSearch(item.id);
-      toast.success(`Search completed with ${result.responseCount} results`);
+      toast.success(interfaceText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
     } catch (error) {
-      toast.error(`Search failed: ${error.message}`);
+      toast.error(interfaceText("Search failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setRunning(false);
     }
@@ -538,7 +544,7 @@ const WishlistItemCard = ({
         const searches = await wishlistAPI.getSearches(item.id);
         setRelatedSearches(searches);
       } catch (error) {
-        toast.error(`Failed to load searches: ${error.message}`);
+        toast.error(interfaceText("Failed to load searches: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       } finally {
         setLoadingSearches(false);
       }
@@ -547,7 +553,7 @@ const WishlistItemCard = ({
 
   const handleMarkViewedClick = async () => {
     await onMarkViewed(item.id);
-    toast.info(`Marked "${item.searchText}" as viewed`);
+    toast.info(interfaceText("Marked \"{searchText}\" as viewed", { "searchText": (item.searchText) }));
   };
 
   const handleToggleResults = async (searchId) => {
@@ -562,7 +568,7 @@ const WishlistItemCard = ({
       const results = await searchesAPI.getResponses({ id: searchId });
       setExpandedSearchResults(results);
     } catch (error) {
-      toast.error(`Failed to load results: ${error.message}`);
+      toast.error(interfaceText("Failed to load results: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       setExpandedSearchResults([]);
     } finally {
       setLoadingResults(false);
@@ -580,11 +586,11 @@ const WishlistItemCard = ({
       >
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75em' }}>
           <Checkbox
-            aria-label={`Select ${item.searchText} for bulk actions`}
+            aria-label={interfaceText("Select {searchText} for bulk actions", { "searchText": (item.searchText) })}
             checked={selected}
             onChange={(_, { checked }) => onSelect(item.id, checked)}
             style={{ marginTop: '0.3em' }}
-          />
+           {...interfaceTextProps("Select {searchText} for bulk actions")}/>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5em', marginBottom: '0.25em' }}>
               <Icon
@@ -599,74 +605,75 @@ const WishlistItemCard = ({
               )}
               {unseenCount > 0 && (
                 <Popup
-                  content={`${unseenCount} new result(s) since you last viewed this item`}
+                  content={interfaceText("{unseenCount} new result(s) since you last viewed this item", { "unseenCount": (unseenCount) })}
                   trigger={
                     <Label color="red" size="mini">
-                      {unseenCount} new
-                    </Label>
+                      {unseenCount} <LocalizedText source={"new"} /></Label>
                   }
-                />
+                 {...interfaceTextProps("{unseenCount} new result(s) since you last viewed this item")}/>
               )}
               <Popup
-                content={requestState.summary}
+                content={<LocalizedText source={requestState.summary} />}
                 position="top center"
                 trigger={
                   <Label color={requestState.color} size="mini">
-                    {requestState.label}
+                    <LocalizedText source={requestState.label} />
                   </Label>
                 }
               />
             </div>
             <div style={{ display: 'flex', gap: '1em', fontSize: '0.85em', color: '#888', flexWrap: 'wrap' }}>
-              <span>Last run: {formatDate(item.lastSearchedAt)}</span>
+              <span><LocalizedText source={"Last run:"} />{" "}{formatDate(item.lastSearchedAt)}</span>
               <span>
-                Hits: {getVisibleHitCount(item)}
+                <LocalizedText source={"Hits:"} />{" "}{getVisibleHitCount(item)}
                 {(item.lastHiddenLockedHitCount ?? 0) > 0 && (
                   <Popup
-                    content="Files matched but the uploader has them locked (not downloadable without sharing access)."
+                    content={interfaceText("Files matched but the uploader has them locked (not downloadable without sharing access).")}
                     position="top center"
                     trigger={
                       <span style={{ color: '#999', marginLeft: '0.25em' }}>
-                        {`(+${item.lastHiddenLockedHitCount} locked)`}
+                        {interfaceText("(+{lastHiddenLockedHitCount} locked)", { "lastHiddenLockedHitCount": (item.lastHiddenLockedHitCount) })}
                       </span>
                     }
-                  />
+                   {...interfaceTextProps("Files matched but the uploader has them locked (not downloadable without sharing access).")}/>
                 )}
                 {(item.lastBlockedHitCount ?? 0) > 0 && (
                   <Popup
-                    content="Matching files from blocked users are excluded from Wishlist hits and automatic downloads."
+                    content={interfaceText("Matching files from blocked users are excluded from Wishlist hits and automatic downloads.")}
                     position="top center"
                     trigger={
                       <span style={{ color: '#999', marginLeft: '0.25em' }}>
-                        {`(+${item.lastBlockedHitCount} blocked)`}
+                        {interfaceText("(+{lastBlockedHitCount} blocked)", { "lastBlockedHitCount": (item.lastBlockedHitCount) })}
                       </span>
                     }
-                  />
+                   {...interfaceTextProps("Matching files from blocked users are excluded from Wishlist hits and automatic downloads.")}/>
                 )}
               </span>
-              <span>Runs: {item.totalSearchCount}</span>
+              <span><LocalizedText source={"Runs:"} />{" "}{item.totalSearchCount}</span>
               <span>
-                Auto-download:{' '}
+                <LocalizedText source={"Auto-download:"} />{' '}
                 <Icon name={item.autoDownload ? 'check' : 'close'} color={item.autoDownload ? 'green' : 'grey'} />
               </span>
               {item.autoDownload && item.maxDownloads && (
                 <span>
-                  Downloads: {item.totalDownloadCount}/{item.maxDownloads}
+                  <LocalizedText source={"Downloads:"} />{" "}{item.totalDownloadCount}/{item.maxDownloads}
                 </span>
               )}
             </div>
           </div>
           <div style={{ display: 'flex', gap: '0.25em' }}>
             <Popup
-              content={expanded
+              content={interfaceText(expanded
                 ? 'Hide this item’s linked searches and result details.'
-                : 'Show this item’s linked searches and past results inline.'}
+                : 'Show this item’s linked searches and past results inline.')}
               position="top center"
               trigger={
                 <Button
-                  aria-label={expanded
-                    ? `Hide ${item.searchText} search history`
-                    : `Show ${item.searchText} search history`}
+                  aria-label={interfaceText(expanded
+                    ? 'Hide {searchText} search history'
+                    : 'Show {searchText} search history', {
+                    searchText: item.searchText,
+                  })}
                   compact
                   icon={expanded ? 'angle up' : 'angle down'}
                   loading={loadingSearches}
@@ -686,72 +693,72 @@ const WishlistItemCard = ({
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={`View latest search results for ${item.searchText}`}
+                      aria-label={interfaceText("View latest search results for {searchText}", { "searchText": (item.searchText) })}
                       compact
                       icon="search"
                       size="mini"
-                    />
+                     {...interfaceTextProps("View latest search results for {searchText}")}/>
                   }
                 />
               </Link>
             )}
             {unseenCount > 0 && (
               <Popup
-                content="Clear this item's new-results badge without opening its search history."
+                content={interfaceText("Clear this item's new-results badge without opening its search history.")}
                 position="top center"
                 trigger={
                   <Button
-                    aria-label={`Mark ${item.searchText} results as viewed`}
+                    aria-label={interfaceText("Mark {searchText} results as viewed", { "searchText": (item.searchText) })}
                     compact
                     icon="check"
                     onClick={handleMarkViewedClick}
                     size="mini"
-                  />
+                   {...interfaceTextProps("Mark {searchText} results as viewed")}/>
                 }
-              />
+               {...interfaceTextProps("Clear this item's new-results badge without opening its search history.")}/>
             )}
             <Popup
-              content="Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run."
+              content={interfaceText("Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run.")}
               position="top center"
               trigger={
                 <Button
-                  aria-label={`Run ${item.searchText} wishlist search now`}
+                  aria-label={interfaceText("Run {searchText} wishlist search now", { "searchText": (item.searchText) })}
                   compact
                   icon="play"
                   loading={running}
                   onClick={handleRunSearch}
                   primary
                   size="mini"
-                />
+                 {...interfaceTextProps("Run {searchText} wishlist search now")}/>
               }
-            />
+             {...interfaceTextProps("Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run.")}/>
             <Popup
-              content="Change this item’s search text, filters, result limits, and automation settings."
+              content={interfaceText("Change this item’s search text, filters, result limits, and automation settings.")}
               position="top center"
               trigger={
                 <Button
-                  aria-label={`Edit ${item.searchText} wishlist settings`}
+                  aria-label={interfaceText("Edit {searchText} wishlist settings", { "searchText": (item.searchText) })}
                   compact
                   icon="edit"
                   onClick={() => onEdit(item)}
                   size="mini"
-                />
+                 {...interfaceTextProps("Edit {searchText} wishlist settings")}/>
               }
-            />
+             {...interfaceTextProps("Change this item’s search text, filters, result limits, and automation settings.")}/>
             <Popup
-              content="Remove this wishlist entry after confirmation when you no longer want its search tracked."
+              content={interfaceText("Remove this wishlist entry after confirmation when you no longer want its search tracked.")}
               position="top center"
               trigger={
                 <Button
-                  aria-label={`Delete ${item.searchText} from Wishlist`}
+                  aria-label={interfaceText("Delete {searchText} from Wishlist", { "searchText": (item.searchText) })}
                   color="red"
                   compact
                   icon="trash"
                   onClick={() => setConfirmDelete(true)}
                   size="mini"
-                />
+                 {...interfaceTextProps("Delete {searchText} from Wishlist")}/>
               }
-            />
+             {...interfaceTextProps("Remove this wishlist entry after confirmation when you no longer want its search tracked.")}/>
           </div>
         </div>
 
@@ -761,15 +768,13 @@ const WishlistItemCard = ({
               <Icon name="spinner" loading />
             ) : relatedSearches.length === 0 ? (
               <span style={{ color: '#999', fontStyle: 'italic' }}>
-                No linked search history for this item yet.
-                {item.lastSearchId && (
+                <LocalizedText source={"No linked search history for this item yet."} />{item.lastSearchId && (
                   <>
                     {' '}
                     <Link
                       to={getSearchLink(item)}
                     >
-                      Open latest search result.
-                    </Link>
+                      <LocalizedText source={"Open latest search result."} /></Link>
                   </>
                 )}
               </span>
@@ -778,10 +783,10 @@ const WishlistItemCard = ({
                 <Table compact size="small" basic="very">
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>Search</Table.HeaderCell>
-                      <Table.HeaderCell>Source</Table.HeaderCell>
-                      <Table.HeaderCell>Responses</Table.HeaderCell>
-                      <Table.HeaderCell>Started</Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Search"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Source"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Responses"} /></Table.HeaderCell>
+                      <Table.HeaderCell><LocalizedText source={"Started"} /></Table.HeaderCell>
                       <Table.HeaderCell />
                     </Table.Row>
                   </Table.Header>
@@ -794,7 +799,7 @@ const WishlistItemCard = ({
                             color={s.source === 'wishlist' ? 'blue' : s.source === 'auto-replace' ? 'orange' : 'grey'}
                             size="mini"
                           >
-                            {s.source || 'manual'}
+                            {s.source || interfaceText('Manual')}
                           </Label>
                         </Table.Cell>
                         <Table.Cell>{s.responseCount}</Table.Cell>
@@ -804,28 +809,30 @@ const WishlistItemCard = ({
                             to={getSearchLink(item, s.id)}
                           >
                             <Popup
-                              content={item.filter
+                              content={interfaceText(item.filter
                                 ? 'View full search page with this wishlist filter already applied.'
-                                : 'View full search page.'}
+                                : 'View full search page.')}
                               position="top center"
                               trigger={
                                 <Button
-                                  aria-label={`Open the full search for ${item.searchText}`}
+                                  aria-label={interfaceText("Open the full search for {searchText}", { "searchText": (item.searchText) })}
                                   compact
                                   icon="external"
                                   size="mini"
-                                />
+                                 {...interfaceTextProps("Open the full search for {searchText}")}/>
                               }
                             />
                           </Link>
                           <Popup
-                            content={expandedSearchId === s.id ? 'Hide results' : 'Show results inline'}
+                            content={interfaceText(expandedSearchId === s.id ? 'Hide results' : 'Show results inline')}
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={expandedSearchId === s.id
-                                  ? `Hide ${item.searchText} results inline`
-                                  : `Show ${item.searchText} results inline`}
+                                aria-label={interfaceText(expandedSearchId === s.id
+                                  ? 'Hide {searchText} results inline'
+                                  : 'Show {searchText} results inline', {
+                                  searchText: item.searchText,
+                                })}
                                 compact
                                 icon={expandedSearchId === s.id ? 'angle up' : 'angle down'}
                                 loading={loadingResults && expandedSearchId === s.id}
@@ -844,19 +851,18 @@ const WishlistItemCard = ({
                     {loadingResults ? (
                       <Icon name="spinner" loading />
                     ) : visibleExpandedSearchResults.length === 0 ? (
-                      <span style={{ color: '#999', fontStyle: 'italic' }}>No results for this search.</span>
+                      <span style={{ color: '#999', fontStyle: 'italic' }}><LocalizedText source={"No results for this search."} /></span>
                     ) : (
                       <>
                         <Header as="h5" style={{ marginBottom: '0.5em' }}>
-                          {visibleExpandedSearchResults.length} result(s)
-                        </Header>
+                          {visibleExpandedSearchResults.length} <LocalizedText source={"result(s)"} /></Header>
                         <Table compact size="small" basic="very" striped>
                           <Table.Header>
                             <Table.Row>
-                              <Table.HeaderCell>Username</Table.HeaderCell>
-                              <Table.HeaderCell>Directory</Table.HeaderCell>
-                              <Table.HeaderCell>Files</Table.HeaderCell>
-                              <Table.HeaderCell>Size</Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Username"} /></Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Directory"} /></Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Files"} /></Table.HeaderCell>
+                              <Table.HeaderCell><LocalizedText source={"Size"} /></Table.HeaderCell>
                             </Table.Row>
                           </Table.Header>
                           <Table.Body>
@@ -883,7 +889,7 @@ const WishlistItemCard = ({
                         </Table>
                         {visibleExpandedSearchResults.length > 20 && (
                           <span style={{ color: '#999', fontSize: '0.85em' }}>
-                            Showing first 20 of {visibleExpandedSearchResults.length} results.
+                            <LocalizedText source={"Showing the first 20 of {count} results."} values={{ count: visibleExpandedSearchResults.length }} />
                           </span>
                         )}
                       </>
@@ -898,19 +904,17 @@ const WishlistItemCard = ({
       <Confirm
         cancelButton={(
           <TooltipButton tooltip="Keep this wishlist item and return to the list.">
-            Cancel
-          </TooltipButton>
+            <LocalizedText source={"Cancel"} /></TooltipButton>
         )}
         confirmButton={(
           <TooltipButton
             color="red"
             tooltip="Remove this wishlist item and its saved search settings."
           >
-            Delete
-          </TooltipButton>
+            <LocalizedText source={"Delete"} /></TooltipButton>
         )}
-        content={`Delete wishlist item "${item.searchText}"?`}
-        header="Confirm Delete"
+        content={interfaceText("Delete wishlist item \"{searchText}\"?", { "searchText": (item.searchText) })}
+        header={interfaceText("Confirm Delete")}
         onCancel={() => setConfirmDelete(false)}
         onConfirm={() => {
           setConfirmDelete(false);
@@ -918,31 +922,31 @@ const WishlistItemCard = ({
         }}
         open={confirmDelete}
         size="mini"
-      />
+       {...interfaceTextProps("Delete wishlist item \"{searchText}\"?")}/>
     </>
   );
 };
 
 const FILTER_PRESETS = [
-  { label: 'FLAC', value: 'flac' },
-  { label: 'MP3', value: 'mp3' },
-  { label: 'MP3 320+', value: 'mp3 minbr:320' },
-  { label: 'FLAC + MP3', value: 'flac OR mp3' },
-  { label: 'FLAC + ALAC', value: 'flac OR alac' },
-  { label: 'Lossless', value: 'flac OR alac OR wav OR ape' },
-  { label: 'Any', value: '' },
+  { get label() { return interfaceText("FLAC"); }, value: 'flac' },
+  { get label() { return interfaceText("MP3"); }, value: 'mp3' },
+  { get label() { return interfaceText("MP3 320+"); }, value: 'mp3 minbr:320' },
+  { get label() { return interfaceText("FLAC + MP3"); }, value: 'flac OR mp3' },
+  { get label() { return interfaceText("FLAC + ALAC"); }, value: 'flac OR alac' },
+  { get label() { return interfaceText("Lossless"); }, value: 'flac OR alac OR wav OR ape' },
+  { get label() { return interfaceText("Any"); }, value: '' },
 ];
 
 const WISHLIST_VIEW_KEY = 'slskdn-wishlist-view-state';
 const PAGE_SIZE_OPTIONS = [50, 100, 250, 500];
 
 const SORT_OPTIONS = [
-  { key: 'created-desc', text: 'Newest added', value: 'created-desc' },
+  { key: 'created-desc', get text() { return interfaceText("Newest added"); }, value: 'created-desc' },
   { key: 'az', text: 'A-Z', value: 'az' },
   { key: 'za', text: 'Z-A', value: 'za' },
-  { key: 'last-searched', text: 'Last searched', value: 'last-searched' },
-  { key: 'new-first', text: 'New results first', value: 'new-first' },
-  { key: 'hits-desc', text: 'Most hits', value: 'hits-desc' },
+  { key: 'last-searched', get text() { return interfaceText("Last searched"); }, value: 'last-searched' },
+  { key: 'new-first', get text() { return interfaceText("New results first"); }, value: 'new-first' },
+  { key: 'hits-desc', get text() { return interfaceText("Most hits"); }, value: 'hits-desc' },
 ];
 
 const loadWishlistViewState = () => {
@@ -978,9 +982,9 @@ const validateFilter = (filter) => {
   if (!filter || !filter.trim()) return null;
   const invalid = filter.match(/[^\w.:\-\s"]/);
   if (invalid) {
-    return 'Filter may contain words, quoted phrases, extensions, minbr:/minbitrate: directives, exclusions prefixed with -, and OR';
+    return interfaceText('Filter may contain words, quoted phrases, extensions, minbr:/minbitrate: directives, exclusions prefixed with -, and OR');
   }
-  if ((filter.match(/"/g) || []).length % 2 !== 0) return 'Quoted filter phrases must have a closing quote';
+  if ((filter.match(/"/g) || []).length % 2 !== 0) return interfaceText('Quoted filter phrases must have a closing quote');
   return null;
 };
 
@@ -991,8 +995,8 @@ const FilterPresetButtons = ({ filter, onChange }) => (
         key={preset.value}
         content={
           preset.value
-            ? `Filter to ${preset.label} files`
-            : 'Accept any file format'
+            ? interfaceText("Filter to {format} files", { format: interfaceText(preset.label) })
+            : interfaceText("Accept any file format")
         }
         trigger={
           <Button
@@ -1003,7 +1007,7 @@ const FilterPresetButtons = ({ filter, onChange }) => (
             style={{ marginRight: '0.25em', marginBottom: '0.25em' }}
             toggle={!!preset.value}
           >
-            {preset.label}
+            {interfaceText(preset.label)}
           </Button>
         }
       />
@@ -1012,6 +1016,7 @@ const FilterPresetButtons = ({ filter, onChange }) => (
 );
 
 const WishlistModal = ({ item, onClose, onSave }) => {
+  useInterfaceLanguage();
   const [searchText, setSearchText] = useState(item?.searchText || '');
   const [filter, setFilter] = useState(item?.filter || '');
   const [enabled, setEnabled] = useState(item?.enabled ?? true);
@@ -1036,7 +1041,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
       })
       .catch((error) => {
         console.error(error);
-        if (!cancelled) toast.error('Failed to load ignored wishlist folders');
+        if (!cancelled) toast.error(interfaceText("Failed to load ignored wishlist folders"));
       })
       .finally(() => {
         if (!cancelled) setLoadingIgnoredResults(false);
@@ -1050,10 +1055,10 @@ const WishlistModal = ({ item, onClose, onSave }) => {
     try {
       await wishlistAPI.removeIgnoredResult(item.id, rule.id);
       setIgnoredResults((current) => current.filter((candidate) => candidate.id !== rule.id));
-      toast.info(`Restored ${rule.directory} from ${rule.username}`);
+      toast.info(interfaceText("Restored {directory} from {username}", { "directory": (rule.directory), "username": (rule.username) }));
     } catch (error) {
       console.error(error);
-      toast.error(error?.response?.data ?? error?.message ?? error);
+      toast.error(getApiErrorMessage(error, { t: interfaceText }));
     }
   };
 
@@ -1064,11 +1069,11 @@ const WishlistModal = ({ item, onClose, onSave }) => {
 
   const handleSave = async () => {
     if (!searchText.trim()) {
-      toast.error('Search text is required');
+      toast.error(interfaceText("Search text is required"));
       return;
     }
     if (filterError) {
-      toast.error('Please fix the filter error before saving');
+      toast.error(interfaceText("Please fix the filter error before saving"));
       return;
     }
 
@@ -1085,7 +1090,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
       });
       onClose();
     } catch (error) {
-      toast.error(`Failed to save: ${error.message}`);
+      toast.error(interfaceText("Failed to save: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setSaving(false);
     }
@@ -1099,29 +1104,29 @@ const WishlistModal = ({ item, onClose, onSave }) => {
     >
       <Modal.Header>
         <Icon name="star" />
-        {isEdit ? 'Edit Wishlist Item' : 'Add to Wishlist'}
+        {isEdit ? <LocalizedText source={"Edit Wishlist Item"} /> : <LocalizedText source={"Add to Wishlist"} />}
       </Modal.Header>
       <Modal.Content>
         <Form>
           <Form.Input
-            label="Search Text"
+            label={interfaceText("Search Text")}
             onChange={(event) => setSearchText(event.target.value)}
-            placeholder="Enter search terms..."
+            placeholder={interfaceText("Enter search terms...")}
             required
             value={searchText}
-          />
+           {...interfaceTextProps("Search Text")}/>
           <Form.Field>
-            <label>Filter (optional)</label>
+            <label><LocalizedText source={"Filter (optional)"} /></label>
             <Popup
-              content={'Only accept matching filenames or extensions. Use -word to exclude a word or -"exact phrase" to exclude a specific album or folder name.'}
+              content={interfaceText('Only accept matching filenames or extensions. Use -word to exclude a word or -"exact phrase" to exclude a specific album or folder name.')}
               position="top center"
               trigger={
                 <Form.Input
                   error={!!filterError}
                   onChange={(event) => handleFilterChange(event.target.value)}
-                  placeholder="e.g., flac OR mp3"
+                  placeholder={interfaceText("e.g., flac OR mp3")}
                   value={filter}
-                />
+                 {...interfaceTextProps("e.g., flac OR mp3")}/>
               }
             />
             {filterError && (
@@ -1136,16 +1141,14 @@ const WishlistModal = ({ item, onClose, onSave }) => {
               <Header as="h4">
                 <Icon name="eye slash" />
                 <Header.Content>
-                  Ignored Result Folders
-                  <Header.Subheader>
-                    These peer folders stay hidden only for this wishlist item. Restore one to allow it in future searches and auto-download decisions.
-                  </Header.Subheader>
+                  <LocalizedText source={"Ignored Result Folders"} /><Header.Subheader>
+                    <LocalizedText source={"These peer folders stay hidden only for this wishlist item. Restore one to allow it in future searches and auto-download decisions."} /></Header.Subheader>
                 </Header.Content>
               </Header>
               {loadingIgnoredResults ? (
                 <Icon loading name="spinner" />
               ) : ignoredResults.length === 0 ? (
-                <span>No folders are ignored.</span>
+                <span><LocalizedText source={"No folders are ignored."} /></span>
               ) : (
                 <Table basic="very" compact>
                   <Table.Body>
@@ -1157,17 +1160,17 @@ const WishlistModal = ({ item, onClose, onSave }) => {
                         </Table.Cell>
                         <Table.Cell collapsing>
                           <Popup
-                            content="Allow this peer folder to appear again in future runs of this wishlist item."
+                            content={interfaceText("Allow this peer folder to appear again in future runs of this wishlist item.")}
                             trigger={
                               <Button
-                                aria-label={`Restore ${rule.username} ${rule.directory} to wishlist results`}
+                                aria-label={interfaceText("Restore {username} {directory} to wishlist results", { "username": (rule.username), "directory": (rule.directory) })}
                                 compact
                                 icon="undo"
                                 onClick={() => restoreIgnoredResult(rule)}
                                 size="tiny"
-                              />
+                               {...interfaceTextProps("Restore {username} {directory} to wishlist results")}/>
                             }
-                          />
+                           {...interfaceTextProps("Allow this peer folder to appear again in future runs of this wishlist item.")}/>
                         </Table.Cell>
                       </Table.Row>
                     ))}
@@ -1177,7 +1180,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
             </Segment>
           )}
           <Form.Input
-            label="Max Results"
+            label={interfaceText("Max Results")}
             max={1_000}
             min={10}
             onChange={(event) =>
@@ -1185,41 +1188,40 @@ const WishlistModal = ({ item, onClose, onSave }) => {
             }
             type="number"
             value={maxResults}
-          />
+           {...interfaceTextProps("Max Results")}/>
           <Form.Field>
             <Checkbox
               checked={enabled}
-              label="Enabled (run automatically)"
+              label={interfaceText("Enabled (run automatically)")}
               onChange={(_, data) => setEnabled(data.checked)}
               toggle
-            />
+             {...interfaceTextProps("Enabled (run automatically)")}/>
           </Form.Field>
           <Form.Field>
             <Checkbox
               checked={autoDownload}
-              label="Auto-download best matches"
+              label={interfaceText("Auto-download best matches")}
               onChange={(_, data) => setAutoDownload(data.checked)}
               toggle
-            />
+             {...interfaceTextProps("Auto-download best matches")}/>
           </Form.Field>
           <Form.Field>
             <Popup
-              content="Automatically disable this item after N successful downloads. Leave blank to disable after the first download."
+              content={interfaceText("Automatically disable this item after N successful downloads. Leave blank to disable after the first download.")}
               position="top center"
               trigger={
                 <label>
-                  Auto-disable after downloads
-                </label>
+                  <LocalizedText source={"Auto-disable after downloads"} /></label>
               }
-            />
+             {...interfaceTextProps("Automatically disable this item after N successful downloads. Leave blank to disable after the first download.")}/>
             <Form.Input
-              label="Leave blank = disable after first download"
+              label={interfaceText("Leave blank = disable after first download")}
               min={1}
               onChange={(event) => setMaxDownloads(event.target.value)}
-              placeholder="e.g., 5 for album parts"
+              placeholder={interfaceText("e.g., 5 for album parts")}
               type="number"
               value={maxDownloads}
-            />
+             {...interfaceTextProps("Leave blank = disable after first download")}/>
           </Form.Field>
         </Form>
       </Modal.Content>
@@ -1228,17 +1230,16 @@ const WishlistModal = ({ item, onClose, onSave }) => {
           onClick={onClose}
           tooltip="Close this form and discard unsaved wishlist changes."
         >
-          Cancel
-        </TooltipButton>
+          <LocalizedText source={"Cancel"} /></TooltipButton>
         <TooltipButton
           loading={saving}
           onClick={handleSave}
           primary
           tooltip={isEdit
-            ? 'Save the updated search, filter, and automation settings for this wishlist item.'
-            : 'Add this search to the wishlist with the filter and automation settings below.'}
+            ? interfaceText('Save the updated search, filter, and automation settings for this wishlist item.')
+            : interfaceText('Add this search to the wishlist with the filter and automation settings below.')}
         >
-          {isEdit ? 'Save' : 'Add'}
+          {isEdit ? <LocalizedText source={"Save"} /> : <LocalizedText source={"Add"} />}
         </TooltipButton>
       </Modal.Actions>
     </Modal>
@@ -1246,6 +1247,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
 };
 
 const BulkFilterModal = ({ count, onClose, onSave }) => {
+  useInterfaceLanguage();
   const [filter, setFilter] = useState('');
   const [filterError, setFilterError] = useState(null);
   const [saving, setSaving] = useState(false);
@@ -1257,7 +1259,7 @@ const BulkFilterModal = ({ count, onClose, onSave }) => {
 
   const handleSave = async () => {
     if (filterError) {
-      toast.error('Please fix the filter error before saving');
+      toast.error(interfaceText("Please fix the filter error before saving"));
       return;
     }
 
@@ -1266,7 +1268,7 @@ const BulkFilterModal = ({ count, onClose, onSave }) => {
       await onSave(filter.trim());
       onClose();
     } catch (error) {
-      toast.error(`Failed to update filters: ${error.message}`);
+      toast.error(interfaceText("Failed to update filters: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setSaving(false);
     }
@@ -1276,29 +1278,29 @@ const BulkFilterModal = ({ count, onClose, onSave }) => {
     <Modal onClose={onClose} open size="small">
       <Modal.Header>
         <Icon name="filter" />
-        Edit Filter for {count} Wishlist Item{count === 1 ? '' : 's'}
+        <LocalizedText
+          source={count === 1 ? 'Edit Filter for {count} Wishlist Item' : 'Edit Filter for {count} Wishlist Items'}
+          values={{ count }}
+        />
       </Modal.Header>
       <Modal.Content>
         <p>
-          Apply one filter to every selected item. Leave it blank to clear
-          existing filters. Lidarr-synced filters may be refreshed by the next
-          Lidarr wanted sync.
-        </p>
+          <LocalizedText source={"Apply one filter to every selected item. Leave it blank to clear existing filters. Lidarr-synced filters may be refreshed by the next Lidarr wanted sync."} /></p>
         <Form>
           <Form.Field>
-            <label>Filter (optional)</label>
+            <label><LocalizedText source={"Filter (optional)"} /></label>
             <Popup
-              content="Use extensions or terms such as flac, mp3, or mp3 minbr:320. Prefix a term with - to exclude it."
+              content={interfaceText("Use extensions or terms such as flac, mp3, or mp3 minbr:320. Prefix a term with - to exclude it.")}
               position="top center"
               trigger={
                 <Form.Input
                   error={!!filterError}
                   onChange={(event) => handleFilterChange(event.target.value)}
-                  placeholder="e.g., mp3 minbr:320"
+                  placeholder={interfaceText("e.g., mp3 minbr:320")}
                   value={filter}
-                />
+                 {...interfaceTextProps("e.g., mp3 minbr:320")}/>
               }
-            />
+             {...interfaceTextProps("Use extensions or terms such as flac, mp3, or mp3 minbr:320. Prefix a term with - to exclude it.")}/>
             {filterError && (
               <Label basic color="red" pointing>
                 {filterError}
@@ -1313,22 +1315,24 @@ const BulkFilterModal = ({ count, onClose, onSave }) => {
           onClick={onClose}
           tooltip="Close without changing filters on the selected wishlist items."
         >
-          Cancel
-        </TooltipButton>
+          <LocalizedText source={"Cancel"} /></TooltipButton>
         <TooltipButton
           loading={saving}
           onClick={handleSave}
           primary
-          tooltip={`Apply this filter to ${count} selected wishlist ${count === 1 ? 'item' : 'items'} in one step.`}
+          parameters={{ count }}
+          tooltip={count === 1
+            ? 'Apply this filter to {count} selected wishlist item in one step.'
+            : 'Apply this filter to {count} selected wishlist items in one step.'}
         >
-          Apply Filter
-        </TooltipButton>
+          <LocalizedText source={"Apply Filter"} /></TooltipButton>
       </Modal.Actions>
     </Modal>
   );
 };
 
 const CsvImportModal = ({ onClose, onImport }) => {
+  useInterfaceLanguage();
   const [csvText, setCsvText] = useState('');
   const [filter, setFilter] = useState('');
   const [enabled, setEnabled] = useState(true);
@@ -1345,7 +1349,7 @@ const CsvImportModal = ({ onClose, onImport }) => {
 
   const handleImport = async () => {
     if (!csvText.trim()) {
-      toast.error('CSV text is required');
+      toast.error(interfaceText("CSV text is required"));
       return;
     }
 
@@ -1361,7 +1365,7 @@ const CsvImportModal = ({ onClose, onImport }) => {
       });
       onClose();
     } catch (error) {
-      toast.error(`CSV import failed: ${error.message}`);
+      toast.error(interfaceText("CSV import failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setImporting(false);
     }
@@ -1375,31 +1379,30 @@ const CsvImportModal = ({ onClose, onImport }) => {
     >
       <Modal.Header>
         <Icon name="file alternate outline" />
-        Import CSV Playlist
-      </Modal.Header>
+        <LocalizedText source={"Import CSV Playlist"} /></Modal.Header>
       <Modal.Content>
         <Form>
           <Form.Input
             accept=".csv,text/csv"
-            label="CSV File"
+            label={interfaceText("CSV File")}
             onChange={handleFile}
             type="file"
-          />
+           {...interfaceTextProps("CSV File")}/>
           <Form.TextArea
-            label="CSV Text"
+            label={interfaceText("CSV Text")}
             onChange={(event) => setCsvText(event.target.value)}
-            placeholder="Track name,Artist name,Album name"
+            placeholder={interfaceText("Track name,Artist name,Album name")}
             rows={8}
             value={csvText}
-          />
+           {...interfaceTextProps("CSV Text")}/>
           <Form.Input
-            label="Filter (optional)"
+            label={interfaceText("Filter (optional)")}
             onChange={(event) => setFilter(event.target.value)}
-            placeholder="e.g., flac OR mp3"
+            placeholder={interfaceText("e.g., flac OR mp3")}
             value={filter}
-          />
+           {...interfaceTextProps("Filter (optional)")}/>
           <Form.Input
-            label="Max Results"
+            label={interfaceText("Max Results")}
             max={1_000}
             min={1}
             onChange={(event) =>
@@ -1407,58 +1410,58 @@ const CsvImportModal = ({ onClose, onImport }) => {
             }
             type="number"
             value={maxResults}
-          />
+           {...interfaceTextProps("Max Results")}/>
           <Form.Group widths="equal">
             <Form.Field>
               <Checkbox
                 checked={enabled}
-                label="Enabled"
+                label={interfaceText("Enabled")}
                 onChange={(_, data) => setEnabled(data.checked)}
                 toggle
-              />
+               {...interfaceTextProps("Enabled")}/>
             </Form.Field>
             <Form.Field>
               <Checkbox
                 checked={autoDownload}
-                label="Auto-download matches"
+                label={interfaceText("Auto-download matches")}
                 onChange={(_, data) => setAutoDownload(data.checked)}
                 toggle
-              />
+               {...interfaceTextProps("Auto-download matches")}/>
             </Form.Field>
             <Form.Field>
               <Checkbox
                 checked={includeAlbum}
-                label="Include album"
+                label={interfaceText("Include album")}
                 onChange={(_, data) => setIncludeAlbum(data.checked)}
                 toggle
-              />
+               {...interfaceTextProps("Include album")}/>
             </Form.Field>
           </Form.Group>
         </Form>
       </Modal.Content>
       <Modal.Actions>
         <Popup
-          content="Close the CSV importer without adding any wishlist searches."
-          trigger={<Button onClick={onClose}>Cancel</Button>}
-        />
+          content={interfaceText("Close the CSV importer without adding any wishlist searches.")}
+          trigger={<Button onClick={onClose}><LocalizedText source={"Cancel"} /></Button>}
+         {...interfaceTextProps("Close the CSV importer without adding any wishlist searches.")}/>
         <Popup
-          content="Create wishlist searches from the parsed CSV rows using the selected options."
+          content={interfaceText("Create wishlist searches from the parsed CSV rows using the selected options.")}
           trigger={
             <Button
               loading={importing}
               onClick={handleImport}
               primary
             >
-              Import
-            </Button>
+              <LocalizedText source={"Import"} /></Button>
           }
-        />
+         {...interfaceTextProps("Create wishlist searches from the parsed CSV rows using the selected options.")}/>
       </Modal.Actions>
     </Modal>
   );
 };
 
 const Wishlist = () => {
+  useInterfaceLanguage();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalItem, setModalItem] = useState(null);
@@ -1562,15 +1565,15 @@ const Wishlist = () => {
     const report = formatWishlistRequestReviewPacket(packet);
 
     if (!navigator.clipboard?.writeText) {
-      setRequestCopyStatus('Clipboard unavailable; copy the request summary manually.');
+      setRequestCopyStatus(interfaceText('Clipboard unavailable; copy the request summary manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(report);
-      setRequestCopyStatus('Wishlist request review copied.');
+      setRequestCopyStatus(interfaceText('Wishlist request review copied.'));
     } catch {
-      setRequestCopyStatus('Unable to copy Wishlist request review.');
+      setRequestCopyStatus(interfaceText('Unable to copy Wishlist request review.'));
     }
   };
 
@@ -1589,7 +1592,7 @@ const Wishlist = () => {
           });
         } catch (error) {
           results.push({
-            error: error.message || 'Search failed',
+            error: getApiErrorMessage(error, { t: interfaceText }, 'Search failed'),
             id: item.id,
             status: 'failed',
           });
@@ -1598,11 +1601,9 @@ const Wishlist = () => {
 
       const ran = results.filter((result) => result.status === 'ran').length;
       const failed = results.filter((result) => result.status === 'failed').length;
-      setRequestCopyStatus(
-        `Ran ${ran} enabled Wishlist search${ran === 1 ? '' : 'es'}${
-          failed ? `; ${failed} failed` : ''
-        }. Downloads still require normal result selection and policy.`,
-      );
+      setRequestCopyStatus(failed > 0
+        ? interfaceText('Ran {ran} enabled Wishlist searches; failed: {failed}. Downloads still require normal result selection and policy.', { ran, failed })
+        : interfaceText('Ran {ran} enabled Wishlist searches. Downloads still require normal result selection and policy.', { ran }));
       await loadItems();
     } finally {
       setBulkRunning(false);
@@ -1626,9 +1627,9 @@ const Wishlist = () => {
     try {
       await optionsAPI.applyOverlay({ wishlist: { enabled: checked } });
       setAutoSearchEnabled(checked);
-      toast.success(checked ? 'Auto-search enabled' : 'Auto-search paused');
+      toast.success(interfaceText(checked ? 'Auto-search enabled' : 'Auto-search paused'));
     } catch (error) {
-      toast.error(`Failed to update: ${error.message}`);
+      toast.error(interfaceText("Failed to update: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setTogglingAutoSearch(false);
     }
@@ -1639,7 +1640,7 @@ const Wishlist = () => {
       const data = await wishlistAPI.getAll();
       setItems(Array.isArray(data) ? data : []);
     } catch (error) {
-      toast.error(`Failed to load wishlist: ${error.message}`);
+      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -1684,10 +1685,10 @@ const Wishlist = () => {
   const handleSave = async (item) => {
     if (item.id) {
       await wishlistAPI.update(item.id, item);
-      toast.success('Wishlist item updated');
+      toast.success(interfaceText("Wishlist item updated"));
     } else {
       await wishlistAPI.create(item);
-      toast.success('Added to wishlist');
+      toast.success(interfaceText("Added to wishlist"));
     }
 
     await loadItems();
@@ -1696,10 +1697,10 @@ const Wishlist = () => {
   const handleDelete = async (id) => {
     try {
       await wishlistAPI.remove(id);
-      toast.success('Wishlist item deleted');
+      toast.success(interfaceText("Wishlist item deleted"));
       await loadItems();
     } catch (error) {
-      toast.error(`Failed to delete: ${error.message}`);
+      toast.error(interfaceText("Failed to delete: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 
@@ -1741,7 +1742,7 @@ const Wishlist = () => {
     for (const id of selectedIds) {
       await wishlistAPI.update(id, { ...items.find((i) => i.id === id), enabled: true });
     }
-    toast.success(`Enabled ${selectedIds.size} item(s)`);
+    toast.success(interfaceText("Enabled {size} item(s)", { "size": (selectedIds.size) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1750,7 +1751,7 @@ const Wishlist = () => {
     for (const id of selectedIds) {
       await wishlistAPI.update(id, { ...items.find((i) => i.id === id), enabled: false });
     }
-    toast.success(`Disabled ${selectedIds.size} item(s)`);
+    toast.success(interfaceText("Disabled {size} item(s)", { "size": (selectedIds.size) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1759,7 +1760,7 @@ const Wishlist = () => {
     const ids = [...selectedIds];
     const result = await wishlistAPI.updateFilters(ids, filter);
     const updatedCount = result?.updatedCount ?? result?.UpdatedCount ?? ids.length;
-    toast.success(`Updated filters for ${updatedCount} item(s)`);
+    toast.success(interfaceText("Updated filters for {updatedCount} item(s)", { "updatedCount": (updatedCount) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1768,7 +1769,7 @@ const Wishlist = () => {
     for (const id of selectedIds) {
       await wishlistAPI.remove(id);
     }
-    toast.success(`Deleted ${selectedIds.size} item(s)`);
+    toast.success(interfaceText("Deleted {size} item(s)", { "size": (selectedIds.size) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1776,7 +1777,7 @@ const Wishlist = () => {
   const handleImport = async (request) => {
     const result = await wishlistAPI.importCsv(request);
     toast.success(
-      `Imported ${result.createdCount} searches (${result.duplicateCount} duplicates, ${result.skippedCount} skipped)`,
+      interfaceText("Imported {createdCount} searches ({duplicateCount} duplicates, {skippedCount} skipped)", { "createdCount": (result.createdCount), "duplicateCount": (result.duplicateCount), "skippedCount": (result.skippedCount) }),
     );
     await loadItems();
   };
@@ -1793,30 +1794,28 @@ const Wishlist = () => {
         >
           <Icon name="star" />
           <Header.Content>
-            Wishlist
-            <Header.Subheader>
-              Saved searches that run automatically
-            </Header.Subheader>
+            <LocalizedText source={"Wishlist"} /><Header.Subheader>
+              <LocalizedText source={"Saved searches that run automatically"} /></Header.Subheader>
           </Header.Content>
         </Header>
         <Popup
-          content={autoSearchEnabled
+          content={interfaceText(autoSearchEnabled
             ? 'Auto-search is on — enabled items are searched automatically in the background.'
-            : 'Auto-search is paused — items will not be searched until you turn it back on.'}
+            : 'Auto-search is paused — items will not be searched until you turn it back on.')}
           trigger={
             <Checkbox
               checked={autoSearchEnabled}
               className="wishlist-autosearch-toggle"
               disabled={togglingAutoSearch}
               floated="right"
-              label={autoSearchEnabled ? 'Auto-search on' : 'Auto-search off'}
+              label={interfaceText(autoSearchEnabled ? 'Auto-search on' : 'Auto-search off')}
               onChange={handleToggleAutoSearch}
               toggle
             />
           }
         />
         <Popup
-          content="Add one saved search to the wishlist. Enabled wishlist entries run later using the normal conservative scheduler."
+          content={interfaceText("Add one saved search to the wishlist. Enabled wishlist entries run later using the normal conservative scheduler.")}
           trigger={
             <Button
               floated="right"
@@ -1826,12 +1825,11 @@ const Wishlist = () => {
               primary
             >
               <Icon name="plus" />
-              Add Search
-            </Button>
+              <LocalizedText source={"Add Search"} /></Button>
           }
-        />
+         {...interfaceTextProps("Add one saved search to the wishlist. Enabled wishlist entries run later using the normal conservative scheduler.")}/>
         <Popup
-          content="Import a playlist CSV, such as a TuneMyMusic export, into wishlist searches without starting a large search burst immediately."
+          content={interfaceText("Import a playlist CSV, such as a TuneMyMusic export, into wishlist searches without starting a large search burst immediately.")}
           trigger={
             <Button
               floated="right"
@@ -1840,10 +1838,9 @@ const Wishlist = () => {
               onClick={handleImportClick}
             >
               <Icon name="file alternate outline" />
-              Import CSV
-            </Button>
+              <LocalizedText source={"Import CSV"} /></Button>
           }
-        />
+         {...interfaceTextProps("Import a playlist CSV, such as a TuneMyMusic export, into wishlist searches without starting a large search burst immediately.")}/>
       </Segment>
 
       {!loading && (
@@ -1851,87 +1848,80 @@ const Wishlist = () => {
           <div className="wishlist-request-summary-header">
             <Header as="h3">
               <Icon name="clipboard check" />
-              Request Portal Summary
-              <Header.Subheader>
-                Operator view of wanted music before acquisition jobs are wired.
-              </Header.Subheader>
+              <LocalizedText source={"Request Portal Summary"} /><Header.Subheader>
+                <LocalizedText source={"Operator view of wanted music before acquisition jobs are wired."} /></Header.Subheader>
             </Header>
             <Popup
-              content="Copy the current Wishlist request review packet. This does not start searches, peer browsing, downloads, or automation."
+              content={interfaceText("Copy the current Wishlist request review packet. This does not start searches, peer browsing, downloads, or automation.")}
               position="top center"
               trigger={
                 <Button
-                  aria-label="Copy Wishlist request review"
+                  aria-label={interfaceText("Copy Wishlist request review")}
                   onClick={copyRequestReviewPacket}
                   size="small"
-                >
+                 {...interfaceTextProps("Copy Wishlist request review")}>
                   <Icon name="copy" />
-                  Copy Review
-                </Button>
+                  <LocalizedText source={"Copy Review"} /></Button>
               }
-            />
+             {...interfaceTextProps("Copy the current Wishlist request review packet. This does not start searches, peer browsing, downloads, or automation.")}/>
             <Popup
-              content="Run up to three enabled Wishlist searches now through the backend. This starts search jobs only; downloads still require the normal result selection and policy."
+              content={interfaceText("Run up to three enabled Wishlist searches now through the backend. This starts search jobs only; downloads still require the normal result selection and policy.")}
               position="top center"
               trigger={
                 <Button
-                  aria-label="Run enabled Wishlist searches"
+                  aria-label={interfaceText("Run enabled Wishlist searches")}
                   disabled={runnableRequests.length === 0}
                   loading={bulkRunning}
                   onClick={runEnabledSearches}
                   primary
                   size="small"
-                >
+                 {...interfaceTextProps("Run enabled Wishlist searches")}>
                   <Icon name="play" />
-                  Run Enabled
-                </Button>
+                  <LocalizedText source={"Run Enabled"} /></Button>
               }
-            />
+             {...interfaceTextProps("Run up to three enabled Wishlist searches now through the backend. This starts search jobs only; downloads still require the normal result selection and policy.")}/>
             <Popup
-              content="Clear all unseen results badges across your wishlist. This marks every item as viewed."
+              content={interfaceText("Clear all unseen results badges across your wishlist. This marks every item as viewed.")}
               position="top center"
               trigger={
                 <Button
-                  aria-label="Mark all wishlist items as viewed"
+                  aria-label={interfaceText("Mark all wishlist items as viewed")}
                   icon="checkmark"
                   onClick={async () => {
                     try {
                       await wishlistAPI.markAllViewed();
                       await loadItems();
-                      toast.success('All wishlist items marked as viewed');
+                      toast.success(interfaceText("All wishlist items marked as viewed"));
                     } catch (error) {
-                      toast.error(`Failed: ${error.message}`);
+                      toast.error(interfaceText("Failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
                     }
                   }}
                   size="small"
-                >
-                  Mark All Viewed
-                </Button>
+                 {...interfaceTextProps("Mark all wishlist items as viewed")}>
+                  <LocalizedText source={"Mark All Viewed"} /></Button>
               }
-            />
+             {...interfaceTextProps("Clear all unseen results badges across your wishlist. This marks every item as viewed.")}/>
           </div>
           <div className="wishlist-request-summary-grid">
             {/* Plain counts get a neutral pill; color is reserved for the two
                 pills below that actually report a state worth noticing. */}
             <Label basic>
-              Requests
-              <Label.Detail>{requestSummary.total}</Label.Detail>
+              <LocalizedText source={"Requests"} /><Label.Detail>{requestSummary.total}</Label.Detail>
             </Label>
             <Label basic>
-              Enabled
-              <Label.Detail>{requestSummary.enabled}</Label.Detail>
+              <LocalizedText source={"Enabled"} /><Label.Detail>{requestSummary.enabled}</Label.Detail>
             </Label>
             <Label basic>
-              Automatic
-              <Label.Detail>{requestSummary.automatic}</Label.Detail>
+              <LocalizedText source={"Automatic"} /><Label.Detail>{requestSummary.automatic}</Label.Detail>
             </Label>
             <Label color={requestSummary.reviewCount > 0 ? 'yellow' : 'grey'}>
-              Needs Review
-              <Label.Detail>{requestSummary.reviewCount}</Label.Detail>
+              <LocalizedText source={"Needs Review"} /><Label.Detail>{requestSummary.reviewCount}</Label.Detail>
             </Label>
             <Label color={requestSummary.quotaStatus === 'Within quota' ? 'green' : 'orange'}>
-              {requestSummary.quotaStatus}
-              <Label.Detail>{requestSummary.quotaRemaining} left</Label.Detail>
+              <LocalizedText source={requestSummary.quotaStatus} />
+              <Label.Detail>
+                <LocalizedText source="{count} left" values={{ count: requestSummary.quotaRemaining }} />
+              </Label.Detail>
             </Label>
           </div>
           {requestCopyStatus && (
@@ -1957,117 +1947,112 @@ const Wishlist = () => {
             inverted
           >
             <Icon name="star outline" />
-            No wishlist items yet
-          </Header>
+            <LocalizedText source={"No wishlist items yet"} /></Header>
           <p>
-            Add searches to your wishlist and they&apos;ll run automatically.
-          </p>
+            <LocalizedText source={"Add searches to your wishlist and they&apos;ll run automatically."} /></p>
           <TooltipButton
             onClick={handleAdd}
             primary
             tooltip="Add a search to your wishlist so you can track it manually or automate it with the options you choose."
           >
-            Add Your First Search
-          </TooltipButton>
+            <LocalizedText source={"Add Your First Search"} /></TooltipButton>
         </Segment>
       ) : (
         <>
           {selectedIds.size > 0 && (
             <Segment secondary compact style={{ marginBottom: '1em' }}>
               <span style={{ marginRight: '1em' }}>
-                {selectedIds.size} item(s) selected
-              </span>
+                {selectedIds.size} <LocalizedText source={"item(s) selected"} /></span>
               <Popup
-                content="Apply one filter to every selected wishlist item, or clear their filters."
+                content={interfaceText("Apply one filter to every selected wishlist item, or clear their filters.")}
                 trigger={
                   <Button
-                    aria-label="Edit filters for selected wishlist items"
+                    aria-label={interfaceText("Edit filters for selected wishlist items")}
                     compact
                     icon="filter"
                     onClick={() => setShowBulkFilterModal(true)}
                     size="small"
-                  />
+                   {...interfaceTextProps("Edit filters for selected wishlist items")}/>
                 }
-              />
+               {...interfaceTextProps("Apply one filter to every selected wishlist item, or clear their filters.")}/>
               <Popup
-                content="Enable the selected wishlist searches so scheduled runs can check them again."
+                content={interfaceText("Enable the selected wishlist searches so scheduled runs can check them again.")}
                 trigger={
                   <Button
-                    aria-label="Enable selected wishlist searches"
+                    aria-label={interfaceText("Enable selected wishlist searches")}
                     compact
                     icon="play"
                     onClick={handleBulkEnable}
                     size="small"
-                  />
+                   {...interfaceTextProps("Enable selected wishlist searches")}/>
                 }
-              />
+               {...interfaceTextProps("Enable the selected wishlist searches so scheduled runs can check them again.")}/>
               <Popup
-                content="Pause scheduled runs for all selected wishlist searches."
+                content={interfaceText("Pause scheduled runs for all selected wishlist searches.")}
                 trigger={
                   <Button
-                    aria-label="Pause selected wishlist searches"
+                    aria-label={interfaceText("Pause selected wishlist searches")}
                     compact
                     icon="pause"
                     onClick={handleBulkDisable}
                     size="small"
-                  />
+                   {...interfaceTextProps("Pause selected wishlist searches")}/>
                 }
-              />
+               {...interfaceTextProps("Pause scheduled runs for all selected wishlist searches.")}/>
               <Popup
-                content="Delete selected wishlist searches after confirmation when they are no longer needed."
+                content={interfaceText("Delete selected wishlist searches after confirmation when they are no longer needed.")}
                 trigger={
                   <Button
-                    aria-label="Delete selected wishlist searches"
+                    aria-label={interfaceText("Delete selected wishlist searches")}
                     compact
                     color="red"
                     icon="trash"
                     onClick={handleBulkDelete}
                     size="small"
-                  />
+                   {...interfaceTextProps("Delete selected wishlist searches")}/>
                 }
-              />
+               {...interfaceTextProps("Delete selected wishlist searches after confirmation when they are no longer needed.")}/>
               <TooltipButton
                 compact
                 onClick={() => setSelectedIds(new Set())}
                 size="small"
                 tooltip="Clear the selection so bulk actions no longer affect these wishlist items."
               >
-                Clear
-              </TooltipButton>
+                <LocalizedText source={"Clear"} /></TooltipButton>
             </Segment>
           )}
           <div style={{ marginBottom: '0.75em', display: 'flex', gap: '0.5em', alignItems: 'center', flexWrap: 'wrap' }}>
             <Button.Group size="mini">
               <Popup
-                content="Show wishlist as a table with columns"
+                content={interfaceText("Show wishlist as a table with columns")}
                 trigger={
                   <Button
                     active={viewMode === 'table'}
-                    aria-label="Show wishlist as a table"
+                    aria-label={interfaceText("Show wishlist as a table")}
                     icon="table"
                     onClick={() => setViewMode('table')}
-                  />
+                   {...interfaceTextProps("Show wishlist as a table")}/>
                 }
-              />
+               {...interfaceTextProps("Show wishlist as a table with columns")}/>
               <Popup
-                content="Show wishlist as expandable cards with inline results"
+                content={interfaceText("Show wishlist as expandable cards with inline results")}
                 trigger={
                   <Button
                     active={viewMode === 'cards'}
-                    aria-label="Show wishlist as cards"
+                    aria-label={interfaceText("Show wishlist as cards")}
                     icon="th"
                     onClick={() => setViewMode('cards')}
-                  />
+                   {...interfaceTextProps("Show wishlist as cards")}/>
                 }
-              />
+               {...interfaceTextProps("Show wishlist as expandable cards with inline results")}/>
             </Button.Group>
             <Input
               icon="search"
               onChange={(event) => updateViewState({ query: event.target.value })}
-              placeholder="Filter wishlist..."
+              placeholder={interfaceText("Filter wishlist...")}
               size="mini"
               value={viewState.query}
-            />
+             {...interfaceTextProps("Filter wishlist...")}/>
             <Dropdown
               compact
               onChange={(_, { value }) => updateViewState({ sort: value })}
@@ -2090,72 +2075,71 @@ const Wishlist = () => {
             />
             <Checkbox
               checked={viewState.newOnly}
-              label="New results"
+              label={interfaceText("New results")}
               onChange={(_, { checked }) => updateViewState({ newOnly: checked })}
-            />
+             {...interfaceTextProps("New results")}/>
             <Checkbox
               checked={viewState.enabledOnly}
-              label="Enabled"
+              label={interfaceText("Enabled")}
               onChange={(_, { checked }) => updateViewState({ enabledOnly: checked })}
-            />
+             {...interfaceTextProps("Enabled")}/>
             <Checkbox
               checked={viewState.autoOnly}
-              label="Auto"
+              label={interfaceText("Auto")}
               onChange={(_, { checked }) => updateViewState({ autoOnly: checked })}
-            />
+             {...interfaceTextProps("Auto")}/>
             <Checkbox
               checked={viewState.hasResultsOnly}
-              label="Has results"
+              label={interfaceText("Has results")}
               onChange={(_, { checked }) => updateViewState({ hasResultsOnly: checked })}
-            />
+             {...interfaceTextProps("Has results")}/>
             <Label basic>
-              Showing
-              <Label.Detail>
+              <LocalizedText source={"Showing"} /><Label.Detail>
                 {visibleItems.length === 0
-                  ? `0/${items.length}`
+                  ? <LocalizedText source={"0/{length}"} values={{ "length": (items.length) }} />
                   : `${pageStart + 1}-${pageEnd}/${visibleItems.length} of ${items.length}`}
               </Label.Detail>
             </Label>
             {pageCount > 1 && (
               <Button.Group size="mini">
                 <Popup
-                  content="Go to the previous page of wishlist items."
+                  content={interfaceText("Go to the previous page of wishlist items.")}
                   position="top center"
                   trigger={
                     <Button
-                      aria-label="Previous wishlist page"
+                      aria-label={interfaceText("Previous wishlist page")}
                       disabled={currentPage <= 1}
                       icon="angle left"
                       onClick={() => setPage((value) => Math.max(1, value - 1))}
-                    />
+                     {...interfaceTextProps("Previous wishlist page")}/>
                   }
-                />
+                 {...interfaceTextProps("Go to the previous page of wishlist items.")}/>
                 <Popup
-                  content="Shows your current wishlist page. Use the arrow buttons to move between pages."
+                  content={interfaceText("Shows your current wishlist page. Use the arrow buttons to move between pages.")}
                   position="top center"
                   trigger={(
                     <span
-                      aria-label={`Page ${currentPage} of ${pageCount}`}
+                      aria-label={interfaceText("Page {currentPage} of {pageCount}", { "currentPage": (currentPage), "pageCount": (pageCount) })}
                       className="ui basic button"
                       role="status"
                       tabIndex={0}
-                    >
+                     {...interfaceTextProps("Page {currentPage} of {pageCount}")}>
                       {currentPage}/{pageCount}
                     </span>
                   )}
-                />
+                 {...interfaceTextProps("Shows your current wishlist page. Use the arrow buttons to move between pages.")}/>
                 <Popup
-                  content="Go to the next page of wishlist items."
+                  content={interfaceText("Go to the next page of wishlist items.")}
                   position="top center"
                   trigger={
                     <Button
-                      aria-label="Next wishlist page"
+                      aria-label={interfaceText("Next wishlist page")}
                       disabled={currentPage >= pageCount}
                       icon="angle right"
                       onClick={() => setPage((value) => Math.min(pageCount, value + 1))}
-                    />
+                     {...interfaceTextProps("Next wishlist page")}/>
                   }
-                />
+                 {...interfaceTextProps("Go to the next page of wishlist items.")}/>
               </Button.Group>
             )}
           </div>
@@ -2168,44 +2152,42 @@ const Wishlist = () => {
                 <Table.Row>
                   <Table.HeaderCell width={1}>
                     <Popup
-                      content="Select all items on this page for bulk actions"
+                      content={interfaceText("Select all items on this page for bulk actions")}
                       position="top center"
                       trigger={
                         <Checkbox
-                          aria-label="Select all wishlist items on this page for bulk actions"
+                          aria-label={interfaceText("Select all wishlist items on this page for bulk actions")}
                           checked={pageItems.length > 0 && pageItems.every((item) => selectedIds.has(item.id))}
                           indeterminate={pageItems.some((item) => selectedIds.has(item.id)) && !pageItems.every((item) => selectedIds.has(item.id))}
                           onChange={(_, { checked }) => handleSelectAll(checked)}
-                        />
+                         {...interfaceTextProps("Select all wishlist items on this page for bulk actions")}/>
                       }
-                    />
+                     {...interfaceTextProps("Select all items on this page for bulk actions")}/>
                   </Table.HeaderCell>
-                  <Table.HeaderCell>Search</Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Search"} /></Table.HeaderCell>
                   <Table.HeaderCell
                     textAlign="center"
                     width={1}
                   >
-                    Auto
-                  </Table.HeaderCell>
-                  <Table.HeaderCell width={3}>Last Run</Table.HeaderCell>
+                    <LocalizedText source={"Auto"} /></Table.HeaderCell>
+                  <Table.HeaderCell width={3}><LocalizedText source={"Last Run"} /></Table.HeaderCell>
                   <Table.HeaderCell
                     textAlign="center"
                     width={1}
                   >
                     <Popup
-                      content="Hits matched by the search. Locked hits are shown separately because the uploader has restricted access — they aren't directly downloadable."
+                      content={interfaceText("Hits matched by the search. Locked hits are shown separately because the uploader has restricted access — they aren't directly downloadable.")}
                       position="top center"
-                      trigger={<span>Hits</span>}
-                    />
+                      trigger={<span><LocalizedText source={"Hits"} /></span>}
+                     {...interfaceTextProps("Hits matched by the search. Locked hits are shown separately because the uploader has restricted access — they aren't directly downloadable.")}/>
                   </Table.HeaderCell>
                   <Table.HeaderCell
                     textAlign="center"
                     width={1}
                   >
-                    Runs
-                  </Table.HeaderCell>
-                  <Table.HeaderCell width={2}>Request State</Table.HeaderCell>
-                  <Table.HeaderCell width={3}>Actions</Table.HeaderCell>
+                    <LocalizedText source={"Runs"} /></Table.HeaderCell>
+                  <Table.HeaderCell width={2}><LocalizedText source={"Request State"} /></Table.HeaderCell>
+                  <Table.HeaderCell width={3}><LocalizedText source={"Actions"} /></Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>

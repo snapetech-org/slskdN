@@ -54,109 +54,38 @@ if ! rg -q "^  DOTNET_VERSION: '${target_major}\.0\.[0-9]+'$" "$repo_root/$workf
 fi
 expect_literal "$workflow" 'dotnet-version: ${{ env.DOTNET_VERSION }}'
 
-expect_linux_self_hosted_job_temp_dir() {
+expect_hosted_workflows() {
   local workflow_directory="$repo_root/.github/workflows"
+  local allowed_workflow="$workflow_directory/feature-coherence-validation.yml"
+  local expected_workflow_sha256="994a0beab251e1f19488493e0bc4e70ea4bf8ba063df34f728cc3128e379a3b0"
+  local actual_workflow_sha256
+  local policy_pattern='^[[:space:]]*(runs-on|labels):.*self-hosted|TRUSTED_MAIN_RUNNERS_ENABLED|PREFER_SELF_HOSTED|inputs\.runner'
+  local matches
+  local disallowed_matches
 
-  if ! python3 - "$workflow_directory" <<'PYTHON'
-import re
-import sys
-from pathlib import Path
-
-directory = Path(sys.argv[1])
-workflow_paths = sorted(directory.glob("*.yml")) + sorted(directory.glob("*.yaml"))
-eligible_jobs = 0
-failed = False
-
-for path in workflow_paths:
-    text = path.read_text()
-    jobs_heading = re.search(r"(?m)^jobs:\s*$", text)
-    if not jobs_heading:
-        continue
-
-    jobs_text = text[jobs_heading.end():]
-    headers = list(re.finditer(r"(?m)^  ([A-Za-z0-9_-]+):\s*$", jobs_text))
-    for number, header in enumerate(headers):
-        end = headers[number + 1].start() if number + 1 < len(headers) else len(jobs_text)
-        job_name = header.group(1)
-        job = jobs_text[header.end():end]
-        runs_on = re.search(r"(?m)^    runs-on:\s*(.*)$", job)
-        if not runs_on:
-            continue
-
-        runner = runs_on.group(1)
-        if "self-hosted" not in runner or "Linux" not in runner:
-            continue
-        eligible_jobs += 1
-        steps_heading = re.search(r"(?m)^    steps:\s*$", job)
-        if not steps_heading:
-            print(f"{path.name}:{job_name} has no steps", file=sys.stderr)
-            failed = True
-            continue
-
-        steps_text = job[steps_heading.end():]
-        step_headers = list(re.finditer(r"(?m)^      - ", steps_text))
-        if not step_headers:
-            print(f"{path.name}:{job_name} has no steps", file=sys.stderr)
-            failed = True
-            continue
-
-        first_end = step_headers[1].start() if len(step_headers) > 1 else len(steps_text)
-        first_step = steps_text[step_headers[0].start():first_end]
-        name = re.search(r"(?m)^      - name:\s*(.+)$", first_step)
-        if not name or name.group(1).strip() != "Configure runner temporary storage":
-            print(
-                f"{path.name}:{job_name} must configure runner temporary storage in its first step",
-                file=sys.stderr,
-            )
-            failed = True
-            continue
-
-        remaining_steps = steps_text[first_end:]
-        if re.search(r"(?<![A-Za-z0-9_])/(?:tmp|var/tmp)(?:/|\b)", remaining_steps):
-            print(
-                f"{path.name}:{job_name} uses a shared temporary path after configuring TMPDIR",
-                file=sys.stderr,
-            )
-            failed = True
-
-        required = (
-            "shell: bash",
-            "set -euo pipefail",
-            '[[ -z "${RUNNER_TEMP:-}"',
-            '"$RUNNER_TEMP" != /*',
-            '! -d "$RUNNER_TEMP"',
-            '! -r "$RUNNER_TEMP"',
-            '! -w "$RUNNER_TEMP"',
-            '! -x "$RUNNER_TEMP"',
-            'pwd -P',
-            '/|/tmp|/tmp/*|/var/tmp|/var/tmp/*',
-            'GITHUB_ENV:?GITHUB_ENV is required',
-            r"printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n'",
-            '>> "$GITHUB_ENV"',
-        )
-        missing = [fragment for fragment in required if fragment not in first_step]
-        if missing:
-            print(
-                f"{path.name}:{job_name} runner-temp setup is missing required checks: "
-                + ", ".join(missing),
-                file=sys.stderr,
-            )
-            failed = True
-
-if eligible_jobs == 0:
-    print("no Linux self-hosted workflow jobs were found to validate", file=sys.stderr)
-    raise SystemExit(1)
-if failed:
-    raise SystemExit(1)
-print(f"all {eligible_jobs} Linux self-hosted workflow jobs fail closed on runner.temp")
-PYTHON
-  then
+  if [[ ! -f "$allowed_workflow" || -L "$allowed_workflow" ]]; then
+    printf 'the audited public-fork validation workflow is missing or not a regular file\n' >&2
     failed=1
+  else
+    actual_workflow_sha256="$(sha256sum -- "$allowed_workflow" | awk '{print $1}')"
+    if [[ "$actual_workflow_sha256" != "$expected_workflow_sha256" ]]; then
+      printf 'the public-fork runner exception does not match its reviewed workflow contents\n' >&2
+      failed=1
+    fi
+  fi
+
+  matches="$(rg -n "$policy_pattern" "$workflow_directory" 2>&1 || true)"
+  if [[ -n "$matches" ]]; then
+    disallowed_matches="$(printf '%s\n' "$matches" | awk -F: -v allowed="$allowed_workflow" '$1 != allowed { print }')"
+    if [[ -n "$disallowed_matches" ]]; then
+      printf '%s\n' "$disallowed_matches" >&2
+      printf 'only the exact audited public-fork validation workflow may select a private runner\n' >&2
+      failed=1
+    fi
   fi
 }
 
-expect_linux_self_hosted_job_temp_dir
-
+expect_hosted_workflows
 
 if rg -n '\.NET 8\.0|\.NET 8|aspnetcore-runtime-8\.0|dotnet-runtime-8\.0|dotnet-version: .8\.0\.x.' \
   "$repo_root/packaging/flatpak" \

@@ -1,3 +1,6 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { createLogsHubConnection } from '../../../lib/hubFactory';
 import { downloadLogFile, getLogFile, getLogFiles } from '../../../lib/logs';
@@ -19,35 +22,35 @@ const maxLogs = 500;
 const filters = [
   {
     accessibleName: 'Show all severities',
-    description: 'Show every severity so you can inspect the full live log feed.',
-    label: 'All',
+    get description() { return interfaceText("Show every severity so you can inspect the full live log feed."); },
+    get label() { return interfaceText("All"); },
     level: 'all',
   },
   {
     accessibleName: 'Show information logs',
     color: 'blue',
-    description: 'Show informational records to follow normal application activity.',
-    label: 'Info',
+    get description() { return interfaceText("Show informational records to follow normal application activity."); },
+    get label() { return interfaceText("Info"); },
     level: 'Information',
   },
   {
     accessibleName: 'Show warning logs',
     color: 'yellow',
-    description: 'Show warnings to review conditions that may need attention.',
-    label: 'Warn',
+    get description() { return interfaceText("Show warnings to review conditions that may need attention."); },
+    get label() { return interfaceText("Warn"); },
     level: 'Warning',
   },
   {
     accessibleName: 'Show error logs',
     color: 'red',
-    description: 'Show errors to focus on failed operations and their causes.',
-    label: 'Error',
+    get description() { return interfaceText("Show errors to focus on failed operations and their causes."); },
+    get label() { return interfaceText("Error"); },
     level: 'Error',
   },
   {
     accessibleName: 'Show debug logs',
-    description: 'Show debug records when investigating detailed application behavior.',
-    label: 'Debug',
+    get description() { return interfaceText("Show debug records when investigating detailed application behavior."); },
+    get label() { return interfaceText("Debug"); },
     level: 'Debug',
   },
 ];
@@ -60,7 +63,7 @@ const levels = {
 };
 
 const getErrorMessage = (error, fallback) =>
-  error?.message || fallback;
+  getApiErrorMessage(error, { t: interfaceText }, fallback);
 
 const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);
@@ -68,6 +71,7 @@ const formatTimestamp = (timestamp) => {
 };
 
 const Logs = () => {
+  useInterfaceLanguage();
   const [logs, setLogs] = useState([]);
   const [filterLevel, setFilterLevel] = useState('all');
   const [connectionStatus, setConnectionStatus] = useState('connecting');
@@ -237,20 +241,22 @@ const Logs = () => {
   const connectionMessage = {
     connected: null,
     connecting: {
-      content: 'Recent log entries will appear here as they arrive.',
-      header: 'Connecting to live logs',
+      content: interfaceText("Recent log entries will appear here as they arrive."),
+      header: interfaceText("Connecting to live logs"),
       info: true,
     },
     disconnected: {
       content: connectionError,
-      header: 'Live logs are disconnected',
+      header: interfaceText("Live logs are disconnected"),
       warning: true,
     },
     reconnecting: {
       content: connectionError
-        ? `${connectionError} Buffered entries remain available while the connection recovers.`
-        : 'Buffered entries remain available while the connection recovers.',
-      header: 'Reconnecting to live logs',
+        ? interfaceText('{message} Buffered entries remain available while the connection recovers.', {
+          message: connectionError,
+        })
+        : interfaceText('Buffered entries remain available while the connection recovers.'),
+      header: interfaceText("Reconnecting to live logs"),
       warning: true,
     },
   }[connectionStatus];
@@ -258,22 +264,22 @@ const Logs = () => {
   return (
     <div className="logs">
       <Header as="h2">
-        <Header.Content>System Logs</Header.Content>
+        <Header.Content><LocalizedText source={"System Logs"} /></Header.Content>
         <Header.Subheader>
           {view === 'live'
-            ? 'Monitor the most recent application records as they arrive.'
-            : 'Browse and download retained daily application logs.'}
+            ? <LocalizedText source={"Monitor the most recent application records as they arrive."} />
+            : <LocalizedText source={"Browse and download retained daily application logs."} />}
         </Header.Subheader>
       </Header>
 
       <div className="logs-controls">
         <ButtonGroup
-          aria-label="Choose system log view"
+          aria-label={interfaceText("Choose system log view")}
           className="logs-view-buttons"
           role="group"
-        >
+         {...interfaceTextProps("Choose system log view")}>
           <Popup
-            content="Monitor recent application records as they arrive."
+            content={interfaceText("Monitor recent application records as they arrive.")}
             on={['hover', 'focus']}
             position="top center"
             trigger={(
@@ -288,12 +294,11 @@ const Logs = () => {
                 }}
                 toggle
               >
-                Live
-              </Button>
+                <LocalizedText source={"Live"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Monitor recent application records as they arrive.")}/>
           <Popup
-            content="Browse, inspect, and download retained daily log files."
+            content={interfaceText("Browse, inspect, and download retained daily log files.")}
             on={['hover', 'focus']}
             position="top center"
             trigger={(
@@ -303,19 +308,18 @@ const Logs = () => {
                 onClick={selectHistory}
                 toggle
               >
-                History
-              </Button>
+                <LocalizedText source={"History"} /></Button>
             )}
-          />
+           {...interfaceTextProps("Browse, inspect, and download retained daily log files.")}/>
         </ButtonGroup>
 
         {view === 'live' ? (
           <>
             <ButtonGroup
-              aria-label="Filter log entries by severity"
+              aria-label={interfaceText("Filter log entries by severity")}
               className="logs-filter-buttons"
               role="group"
-            >
+             {...interfaceTextProps("Filter log entries by severity")}>
               {filters.map(({ accessibleName, color, description, label, level }) => {
                 const active = filterLevel === level;
                 return (
@@ -327,11 +331,12 @@ const Logs = () => {
                     trigger={(
                       <Button
                         active={active}
-                        aria-label={accessibleName}
+                        aria-label={interfaceText(accessibleName)}
                         aria-pressed={active}
                         color={active ? color : undefined}
                         onClick={() => setFilterLevel(level)}
                         toggle
+                       {...interfaceTextProps(accessibleName)}
                       >
                         {label}
                       </Button>
@@ -346,31 +351,33 @@ const Logs = () => {
               className="logs-count"
             >
               {connectionStatus === 'connected'
-                ? `Showing ${filteredLogs.length} of ${logs.length} logs`
-                : `Showing ${filteredLogs.length} of ${logs.length} buffered logs`}
+                ? <LocalizedText source={"Showing {filteredCount} of {totalCount} logs"} values={{ "filteredCount": (filteredLogs.length), "totalCount": (logs.length) }} />
+                : <LocalizedText source={"Showing {filteredCount} of {totalCount} buffered logs"} values={{ "filteredCount": (filteredLogs.length), "totalCount": (logs.length) }} />}
             </span>
           </>
         ) : (
           <div className="logs-history-actions">
             <span aria-live="polite" className="logs-count">
-              {historyLoading ? 'Loading retained logs…' : `${history.length} retained log${history.length === 1 ? '' : 's'}`}
+              {historyLoading ? <LocalizedText source={"Loading retained logs…"} /> : history.length === 1
+                ? interfaceText('{count} retained log', { count: history.length })
+                : interfaceText('{count} retained logs', { count: history.length })}
             </span>
             <Popup
-              content="Refresh the list of retained log files."
+              content={interfaceText("Refresh the list of retained log files.")}
               on={['hover', 'focus']}
               position="top center"
               trigger={(
                 <Button
-                  aria-label="Refresh retained logs"
+                  aria-label={interfaceText("Refresh retained logs")}
                   disabled={historyLoading}
                   icon
                   onClick={refreshHistory}
                   size="small"
-                >
+                 {...interfaceTextProps("Refresh retained logs")}>
                   <Icon name="refresh" />
                 </Button>
               )}
-            />
+             {...interfaceTextProps("Refresh the list of retained log files.")}/>
           </div>
         )}
       </div>
@@ -385,20 +392,19 @@ const Logs = () => {
           <p>{connectionMessage.content}</p>
           {connectionStatus === 'disconnected' && (
             <Popup
-              content="Retry the live log connection to receive new records."
+              content={interfaceText("Retry the live log connection to receive new records.")}
               on={['hover', 'focus']}
               position="top center"
               trigger={(
                 <Button
-                  aria-label="Retry live log connection"
+                  aria-label={interfaceText("Retry live log connection")}
                   className="logs-retry"
                   onClick={retryConnection}
                   size="small"
-                >
-                  Retry
-                </Button>
+                 {...interfaceTextProps("Retry live log connection")}>
+                  <LocalizedText source={"Retry"} /></Button>
               )}
-            />
+             {...interfaceTextProps("Retry the live log connection to receive new records.")}/>
           )}
         </Message>
       )}
@@ -409,25 +415,25 @@ const Logs = () => {
             <Message content={historyError} error role="alert" />
           ) : null}
           <div
-            aria-label="Retained system log files"
+            aria-label={interfaceText("Retained system log files")}
             className="logs-table-scroll"
             role="region"
             tabIndex={0}
-          >
-            <Table aria-label="Retained system log files" className="logs-table" compact="very" unstackable>
+           {...interfaceTextProps("Retained system log files")}>
+            <Table aria-label={interfaceText("Retained system log files")} className="logs-table" compact="very" unstackable {...interfaceTextProps("Retained system log files")}>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>File</Table.HeaderCell>
-                  <Table.HeaderCell>Last modified</Table.HeaderCell>
-                  <Table.HeaderCell>Size</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right">Actions</Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"File"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Last modified"} /></Table.HeaderCell>
+                  <Table.HeaderCell><LocalizedText source={"Size"} /></Table.HeaderCell>
+                  <Table.HeaderCell textAlign="right"><LocalizedText source={"Actions"} /></Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body className="logs-table-body">
                 {history.length === 0 ? (
                   <Table.Row>
                     <Table.Cell colSpan="4" textAlign="center">
-                      {historyLoading ? 'Loading retained log files…' : 'No retained log files'}
+                      {historyLoading ? <LocalizedText source={"Loading retained log files…"} /> : <LocalizedText source={"No retained log files"} />}
                     </Table.Cell>
                   </Table.Row>
                 ) : history.map((file) => (
@@ -438,35 +444,35 @@ const Logs = () => {
                     <Table.Cell textAlign="right">
                       <div className="logs-history-row-actions">
                         <Popup
-                          content={`Open ${file.name} to inspect its contents.`}
+                          content={interfaceText("Open {name} to inspect its contents.", { "name": (file.name) })}
                           on={['hover', 'focus']}
                           position="top center"
                           trigger={(
                             <Button
-                              aria-label={`View ${file.name}`}
+                              aria-label={interfaceText("View {name}", { "name": (file.name) })}
                               icon
                               onClick={() => openPreview(file)}
                               size="small"
-                            >
+                             {...interfaceTextProps("View {name}")}>
                               <Icon name="eye" />
                             </Button>
                           )}
-                        />
+                         {...interfaceTextProps("Open {name} to inspect its contents.")}/>
                         <Popup
-                          content={`Download ${file.name} for offline review.`}
+                          content={interfaceText("Download {name} for offline review.", { "name": (file.name) })}
                           on={['hover', 'focus']}
                           position="top center"
                           trigger={(
                             <Button
-                              aria-label={`Download ${file.name}`}
+                              aria-label={interfaceText("Download {name}", { "name": (file.name) })}
                               icon
                               onClick={() => download(file)}
                               size="small"
-                            >
+                             {...interfaceTextProps("Download {name}")}>
                               <Icon name="download" />
                             </Button>
                           )}
-                        />
+                         {...interfaceTextProps("Download {name} for offline review.")}/>
                       </div>
                     </Table.Cell>
                   </Table.Row>
@@ -481,25 +487,24 @@ const Logs = () => {
           >
             <Modal.Header>
               <Icon name="file alternate outline" />
-              {preview?.file.name || 'Log file'}
+              {preview?.file.name || <LocalizedText source={"Log file"} />}
             </Modal.Header>
             <Modal.Content scrolling>
               {previewError ? <Message content={previewError} error role="alert" /> : null}
-              {previewLoading ? <Message info content="Loading log file…" /> : null}
+              {previewLoading ? <Message info content={interfaceText("Loading log file…")}  {...interfaceTextProps("Loading log file…")}/> : null}
               {!previewLoading && !previewError ? (
                 <pre className="logs-history-preview">{preview?.content}</pre>
               ) : null}
             </Modal.Content>
             <Modal.Actions>
               <Popup
-                content="Close this log preview and return to the retained files."
+                content={interfaceText("Close this log preview and return to the retained files.")}
                 on={['hover', 'focus']}
                 trigger={(
                   <Button onClick={closePreview}>
-                    Close
-                  </Button>
+                    <LocalizedText source={"Close"} /></Button>
                 )}
-              />
+               {...interfaceTextProps("Close this log preview and return to the retained files.")}/>
             </Modal.Actions>
           </Modal>
         </>
@@ -507,22 +512,22 @@ const Logs = () => {
 
       {view === 'live' && (
         <div
-          aria-label="System log entries"
+          aria-label={interfaceText("System log entries")}
           className="logs-table-scroll"
           role="region"
           tabIndex={0}
-        >
+         {...interfaceTextProps("System log entries")}>
           <Table
-            aria-label="System log entries"
+            aria-label={interfaceText("System log entries")}
             className="logs-table"
             compact="very"
             unstackable
-          >
+           {...interfaceTextProps("System log entries")}>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Timestamp</Table.HeaderCell>
-                <Table.HeaderCell>Level</Table.HeaderCell>
-                <Table.HeaderCell>Message</Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Timestamp"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Level"} /></Table.HeaderCell>
+                <Table.HeaderCell><LocalizedText source={"Message"} /></Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body className="logs-table-body">
@@ -533,8 +538,8 @@ const Logs = () => {
                     textAlign="center"
                   >
                     {connectionStatus === 'connected'
-                      ? 'No logs match the selected filter'
-                      : 'No buffered log entries'}
+                      ? <LocalizedText source={"No logs match the selected filter"} />
+                      : <LocalizedText source={"No buffered log entries"} />}
                   </Table.Cell>
                 </Table.Row>
               ) : (

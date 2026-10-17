@@ -1,3 +1,8 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+
+
 import './PlaylistIntake.css';
 import * as collectionsAPI from '../../lib/collections';
 import {
@@ -33,6 +38,7 @@ import {
 const trackStateColor = (state) => (state === 'Matched' ? 'green' : 'orange');
 
 const PlaylistIntake = () => {
+  useInterfaceLanguage();
   const [items, setItems] = useState(() => getPlaylistIntakes());
   const [name, setName] = useState('');
   const [source, setSource] = useState('');
@@ -105,7 +111,7 @@ const PlaylistIntake = () => {
       getOrganizationInput(playlist),
     );
     setItems(nextItems);
-    setStatus(`Prepared tag and organization dry run for ${playlist.name}`);
+    setStatus(interfaceText("Prepared tag and organization dry run for {playlistName}", { playlistName: playlist.name }));
   };
 
   const copyTagOrganizationReport = (playlist) => {
@@ -113,17 +119,17 @@ const PlaylistIntake = () => {
     if (navigator.clipboard?.writeText) {
       navigator.clipboard.writeText(report).catch(() => {});
     }
-    setStatus(`Prepared tag and organization report for ${playlist.name}`);
+    setStatus(interfaceText("Prepared tag and organization report for {playlistName}", { playlistName: playlist.name }));
   };
 
   const approveTagOrganizationSnapshot = (playlist) => {
     setItems(approvePlaylistTagOrganizationPlan(playlist.id));
-    setStatus(`Approved tag and organization snapshot for ${playlist.name}`);
+    setStatus(interfaceText("Approved tag and organization snapshot for {playlistName}", { playlistName: playlist.name }));
   };
 
   const clearTagOrganizationSnapshot = (playlist) => {
     setItems(clearPlaylistTagOrganizationApproval(playlist.id));
-    setStatus(`Cleared tag and organization snapshot for ${playlist.name}`);
+    setStatus(interfaceText("Cleared tag and organization snapshot for {playlistName}", { playlistName: playlist.name }));
   };
 
   const setTrackState = (playlist, track, state) => {
@@ -133,7 +139,7 @@ const PlaylistIntake = () => {
   const createSlskdPlaylist = async (playlist) => {
     const itemsToCreate = buildPlaylistCollectionItems(playlist);
     if (itemsToCreate.length === 0) {
-      setStatus(`No matched rows are ready for ${playlist.name}`);
+      setStatus(interfaceText("No matched rows are ready for {playlistName}", { playlistName: playlist.name }));
       return;
     }
 
@@ -156,10 +162,10 @@ const PlaylistIntake = () => {
       }
       setItems(markPlaylistCollectionCreated(playlist.id, collectionId));
       setStatus(
-        `Created playlist collection for ${playlist.name} with ${itemsToCreate.length} planned rows`,
+        interfaceText("Created playlist collection for {playlistName} with {count} planned rows", { playlistName: playlist.name, count: itemsToCreate.length }),
       );
     } catch (error) {
-      setStatus(`Playlist creation failed for ${playlist.name}: ${error.message}`);
+      setStatus(interfaceText("Playlist creation failed for {playlistName}: {message}", { playlistName: playlist.name, message: getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setBusyPlaylistId('');
     }
@@ -174,10 +180,8 @@ const PlaylistIntake = () => {
         <Header as="h2">
           <Icon name="list alternate outline" />
           <Header.Content>
-            Playlist Intake
-            <Header.Subheader>
-              Import playlist text for review before any provider or network activity.
-            </Header.Subheader>
+            <LocalizedText source={"Playlist Intake"} /><Header.Subheader>
+              <LocalizedText source={"Import playlist text for review before any provider or network activity."} /></Header.Subheader>
           </Header.Content>
         </Header>
       </div>
@@ -185,62 +189,58 @@ const PlaylistIntake = () => {
       <Form className="playlist-intake-form">
         <Form.Group widths="equal">
           <Form.Input
-            aria-label="Playlist name"
-            label="Name"
+            aria-label={interfaceText("Playlist name")}
+            label={<LocalizedText source="Name" />}
             onChange={(event) => setName(event.target.value)}
-            placeholder="Road trip, label sampler, friend recs"
+            placeholder={interfaceText("Road trip, label sampler, friend recs")}
             value={name}
-          />
+           {...interfaceTextProps("Playlist name")}/>
           <Form.Input
-            aria-label="Playlist source"
-            label="Source"
+            aria-label={interfaceText("Playlist source")}
+            label={<LocalizedText source="Source" />}
             onChange={(event) => setSource(event.target.value)}
-            placeholder="Local file name or provider URL"
+            placeholder={interfaceText("Local file name or provider URL")}
             value={source}
-          />
+           {...interfaceTextProps("Playlist source")}/>
         </Form.Group>
         <Form.Field>
-          <label>Playlist rows</label>
+          <label><LocalizedText source={"Playlist rows"} /></label>
           <TextArea
-            aria-label="Playlist rows"
+            aria-label={interfaceText("Playlist rows")}
             onChange={(event) => setContent(event.target.value)}
-            placeholder="Artist - Title, one row per track, or simple CSV artist,title"
+            placeholder={interfaceText("Artist - Title, one row per track, or simple CSV artist,title")}
             rows={6}
             value={content}
-          />
+           {...interfaceTextProps("Playlist rows")}/>
         </Form.Field>
         <Popup
-          content="Import these playlist rows for matching and playlist creation. This does not search Soulseek, browse peers, download, or track provider playlists."
+          content={interfaceText("Import these playlist rows for matching and playlist creation. This does not search Soulseek, browse peers, download, or track provider playlists.")}
           position="top center"
           trigger={
             <Button
-              aria-label="Import playlist for review"
+              aria-label={interfaceText("Import playlist for review")}
               disabled={!content.trim()}
               onClick={importPlaylist}
               primary
               type="button"
-            >
+             {...interfaceTextProps("Import playlist for review")}>
               <Icon name="plus" />
-              Import Playlist
-            </Button>
+              <LocalizedText source={"Import Playlist"} /></Button>
           }
-        />
+         {...interfaceTextProps("Import these playlist rows for matching and playlist creation. This does not search Soulseek, browse peers, download, or track provider playlists.")}/>
       </Form>
 
       <div className="playlist-intake-summary">
         <Label basic>
-          Playlists
-          <Label.Detail>{summary.total}</Label.Detail>
+          <LocalizedText source={"Playlists"} /><Label.Detail>{summary.total}</Label.Detail>
         </Label>
         <Label basic>
-          Tracks
-          <Label.Detail>{summary.tracks}</Label.Detail>
+          <LocalizedText source={"Tracks"} /><Label.Detail>{summary.tracks}</Label.Detail>
         </Label>
         {/* Orange only once there's actually something unmatched to fix —
             not on a fresh, expected zero. */}
         <Label color={summary.unmatched > 0 ? 'orange' : 'grey'}>
-          Unmatched
-          <Label.Detail>{summary.unmatched}</Label.Detail>
+          <LocalizedText source={"Unmatched"} /><Label.Detail>{summary.unmatched}</Label.Detail>
         </Label>
       </div>
       {status && <div className="playlist-intake-status">{status}</div>}
@@ -270,69 +270,67 @@ const PlaylistIntake = () => {
                       <div className="playlist-intake-summary">
                         <Label basic>
                           <Icon name="check" />
-                          Matched {completion.Matched}
+                          <LocalizedText source={"Matched"} />{" "}{completion.Matched}
                         </Label>
                         <Label basic>
                           <Icon name="question circle outline" />
-                          Unmatched {completion.Unmatched}
+                          <LocalizedText source={"Unmatched"} />{" "}{completion.Unmatched}
                         </Label>
                         <Label basic>
                           <Icon name="ban" />
-                          Rejected {completion.Rejected}
+                          <LocalizedText source={"Rejected"} />{" "}{completion.Rejected}
                         </Label>
                         <Label
                           basic
                           color={completion.Unmatched > 0 ? 'orange' : 'green'}
                         >
                           {completion.Unmatched > 0
-                            ? 'Partial completion allowed'
-                            : 'Ready for review'}
+                            ? <LocalizedText source={"Partial completion allowed"} />
+                            : <LocalizedText source={"Ready for review"} />}
                         </Label>
                       </div>
                     </div>
                     <Label color="grey">
-                      {playlist.state}
+                      <LocalizedText source={playlist.state} />
                     </Label>
                   </div>
                   <div className="playlist-intake-actions">
                     <Popup
-                      content="Preview the matched rows that will be used for a slskdN playlist Collection."
+                      content={interfaceText("Preview the matched rows that will be used for a slskdN playlist Collection.")}
                       position="top center"
                       trigger={
                         <Button
-                          aria-label={`Preview slskdN playlist for ${playlist.name}`}
+                          aria-label={interfaceText("Preview slskdN playlist for {name}", { "name": (playlist.name) })}
                           icon
                           onClick={() => previewSlskdPlaylist(playlist)}
                           size="small"
                           type="button"
-                        >
+                         {...interfaceTextProps("Preview slskdN playlist for {name}")}>
                           <Icon name="file alternate outline" />
-                          Preview Playlist
-                        </Button>
+                          <LocalizedText source={"Preview Playlist"} /></Button>
                       }
-                    />
+                     {...interfaceTextProps("Preview the matched rows that will be used for a slskdN playlist Collection.")}/>
                     <Popup
-                      content="Create a slskdN Playlist collection from matched rows. This writes local collection metadata only and does not search, browse, or download."
+                      content={interfaceText("Create a slskdN Playlist collection from matched rows. This writes local collection metadata only and does not search, browse, or download.")}
                       position="top center"
                       trigger={
                         <Button
-                          aria-label={`Create slskdN playlist for ${playlist.name}`}
+                          aria-label={interfaceText("Create slskdN playlist for {name}", { "name": (playlist.name) })}
                           icon
                           loading={busyPlaylistId === playlist.id}
                           onClick={() => createSlskdPlaylist(playlist)}
                           size="small"
                           type="button"
-                        >
+                         {...interfaceTextProps("Create slskdN playlist for {name}")}>
                           <Icon name="save" />
-                          Create Playlist
-                        </Button>
+                          <LocalizedText source={"Create Playlist"} /></Button>
                       }
-                    />
+                     {...interfaceTextProps("Create a slskdN Playlist collection from matched rows. This writes local collection metadata only and does not search, browse, or download.")}/>
                   </div>
                   {playlistPreviews[playlist.id] && (
                     <div className="playlist-intake-preview">
                       <div className="playlist-intake-meta">
-                        {playlistPreviews[playlist.id].networkImpact}
+                        <LocalizedText source={playlistPreviews[playlist.id].networkImpact} />
                       </div>
                       <pre>{playlistPreviews[playlist.id].text}</pre>
                     </div>
@@ -340,17 +338,14 @@ const PlaylistIntake = () => {
                   <Segment className="playlist-intake-organization">
                     <Header as="h4">
                       <Icon name="tags" />
-                      Tag and Organization Preview
-                      <Header.Subheader>
-                        Dry-run tag, cover-art, ReplayGain, and path decisions
-                        before any file write.
-                      </Header.Subheader>
+                      <LocalizedText source={"Tag and Organization Preview"} /><Header.Subheader>
+                        <LocalizedText source={"Dry-run tag, cover-art, ReplayGain, and path decisions before any file write."} /></Header.Subheader>
                     </Header>
                     <Form>
                       <Form.Group widths="equal">
                         <Form.Input
-                          aria-label={`Organization album title for ${playlist.name}`}
-                          label="Album title"
+                          aria-label={interfaceText("Organization album title for {name}", { "name": (playlist.name) })}
+                          label={<LocalizedText source="Album title" />}
                           onChange={(event) =>
                             setOrganizationInput(
                               playlist,
@@ -359,21 +354,21 @@ const PlaylistIntake = () => {
                             )
                           }
                           value={organizationInput.albumTitle}
-                        />
+                         {...interfaceTextProps("Organization album title for {name}")}/>
                         <Form.Select
-                          aria-label={`Organization path template for ${playlist.name}`}
-                          label="Path template"
+                          aria-label={interfaceText("Organization path template for {name}", { "name": (playlist.name) })}
+                          label={<LocalizedText source="Path template" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'pathTemplate', data.value)
                           }
-                          options={organizationPathTemplates}
+                          options={organizationPathTemplates.map((option) => ({ ...option, text: interfaceText(option.text) }))}
                           value={organizationInput.pathTemplate}
-                        />
+                         {...interfaceTextProps("Organization path template for {name}")}/>
                       </Form.Group>
                       <Form.Group widths="equal">
                         <Form.Select
-                          aria-label={`Multi-artist tag policy for ${playlist.name}`}
-                          label="Multi-artist"
+                          aria-label={interfaceText("Multi-artist tag policy for {name}", { "name": (playlist.name) })}
+                          label={<LocalizedText source="Multi-artist" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(
                               playlist,
@@ -381,121 +376,114 @@ const PlaylistIntake = () => {
                               data.value,
                             )
                           }
-                          options={multiArtistTagPolicies}
+                          options={multiArtistTagPolicies.map((option) => ({ ...option, text: interfaceText(option.text) }))}
                           value={organizationInput.multiArtistPolicy}
-                        />
+                         {...interfaceTextProps("Multi-artist")}/>
                         <Form.Select
-                          aria-label={`Cover art policy for ${playlist.name}`}
-                          label="Cover art"
+                          aria-label={interfaceText("Cover art policy for {name}", { "name": (playlist.name) })}
+                          label={<LocalizedText source="Cover art" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'coverArtPolicy', data.value)
                           }
-                          options={coverArtPolicies}
+                          options={coverArtPolicies.map((option) => ({ ...option, text: interfaceText(option.text) }))}
                           value={organizationInput.coverArtPolicy}
-                        />
+                         {...interfaceTextProps("Cover art policy for {name}")}/>
                         <Form.Select
-                          aria-label={`ReplayGain policy for ${playlist.name}`}
-                          label="ReplayGain"
+                          aria-label={interfaceText("ReplayGain policy for {name}", { "name": (playlist.name) })}
+                          label={<LocalizedText source="ReplayGain" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'replayGainPolicy', data.value)
                           }
-                          options={replayGainPolicies}
+                          options={replayGainPolicies.map((option) => ({ ...option, text: interfaceText(option.text) }))}
                           value={organizationInput.replayGainPolicy}
-                        />
+                         {...interfaceTextProps("ReplayGain policy for {name}")}/>
                       </Form.Group>
                       <Popup
-                        content="Preview tag fields, cover-art policy, ReplayGain policy, and organized destination paths. This does not write tags, move files, run ReplayGain, or contact providers."
+                        content={interfaceText("Preview tag fields, cover-art policy, ReplayGain policy, and organized destination paths. This does not write tags, move files, run ReplayGain, or contact providers.")}
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={`Preview tag organization for ${playlist.name}`}
+                            aria-label={interfaceText("Preview tag organization for {name}", { "name": (playlist.name) })}
                             disabled={completion.Matched === 0}
                             icon
                             onClick={() => previewTagOrganization(playlist)}
                             size="small"
                             type="button"
-                          >
+                           {...interfaceTextProps("Preview tag organization for {name}")}>
                             <Icon name="magic" />
-                            Preview Organization
-                          </Button>
+                            <LocalizedText source={"Preview Organization"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Preview tag fields, cover-art policy, ReplayGain policy, and organized destination paths. This does not write tags, move files, run ReplayGain, or contact providers.")}/>
                       <Popup
-                        content="Copy a text report of the current tag and organization dry run. This does not write tags, move files, run ReplayGain, or contact providers."
+                        content={interfaceText("Copy a text report of the current tag and organization dry run. This does not write tags, move files, run ReplayGain, or contact providers.")}
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={`Copy tag organization report for ${playlist.name}`}
+                            aria-label={interfaceText("Copy tag organization report for {name}", { "name": (playlist.name) })}
                             disabled={!playlist.organizationPlan}
                             icon
                             onClick={() => copyTagOrganizationReport(playlist)}
                             size="small"
                             type="button"
-                          >
+                           {...interfaceTextProps("Copy tag organization report for {name}")}>
                             <Icon name="copy outline" />
-                            Copy Report
-                          </Button>
+                            <LocalizedText source={"Copy Report"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Copy a text report of the current tag and organization dry run. This does not write tags, move files, run ReplayGain, or contact providers.")}/>
                       <Popup
-                        content="Approve this dry-run snapshot for later import review. This records source/proposed metadata only and does not write tags or move files."
+                        content={interfaceText("Approve this dry-run snapshot for later import review. This records source/proposed metadata only and does not write tags or move files.")}
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={`Approve tag organization snapshot for ${playlist.name}`}
+                            aria-label={interfaceText("Approve tag organization snapshot for {name}", { "name": (playlist.name) })}
                             disabled={!playlist.organizationPlan}
                             icon
                             onClick={() => approveTagOrganizationSnapshot(playlist)}
                             size="small"
                             type="button"
-                          >
+                           {...interfaceTextProps("Approve tag organization snapshot for {name}")}>
                             <Icon name="check circle outline" />
-                            Approve Snapshot
-                          </Button>
+                            <LocalizedText source={"Approve Snapshot"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Approve this dry-run snapshot for later import review. This records source/proposed metadata only and does not write tags or move files.")}/>
                       <Popup
-                        content="Clear the approved snapshot while keeping the dry-run preview available for more edits."
+                        content={interfaceText("Clear the approved snapshot while keeping the dry-run preview available for more edits.")}
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={`Clear tag organization snapshot for ${playlist.name}`}
+                            aria-label={interfaceText("Clear tag organization snapshot for {name}", { "name": (playlist.name) })}
                             disabled={!playlist.organizationApproval}
                             icon
                             onClick={() => clearTagOrganizationSnapshot(playlist)}
                             size="small"
                             type="button"
-                          >
+                           {...interfaceTextProps("Clear tag organization snapshot for {name}")}>
                             <Icon name="undo" />
-                            Clear Snapshot
-                          </Button>
+                            <LocalizedText source={"Clear Snapshot"} /></Button>
                         }
-                      />
+                       {...interfaceTextProps("Clear the approved snapshot while keeping the dry-run preview available for more edits.")}/>
                     </Form>
                     {playlist.organizationPlan && (
                       <div className="playlist-intake-organization-plan">
                         <div className="playlist-intake-summary">
                           <Label color="green">
-                            Matched
-                            <Label.Detail>
+                            <LocalizedText source={"Matched"} /><Label.Detail>
                               {playlist.organizationPlan.summary.matched}
                             </Label.Detail>
                           </Label>
                           <Label color="orange">
-                            Skipped
-                            <Label.Detail>
+                            <LocalizedText source={"Skipped"} /><Label.Detail>
                               {playlist.organizationPlan.summary.skipped}
                             </Label.Detail>
                           </Label>
                           <Label color="blue">
-                            Changed fields
-                            <Label.Detail>
+                            <LocalizedText source={"Changed fields"} /><Label.Detail>
                               {playlist.organizationPlan.summary.changedFieldCount}
                             </Label.Detail>
                           </Label>
                         </div>
                         <div className="playlist-intake-impact">
-                          {playlist.organizationPlan.networkImpact}
+                          <LocalizedText source={playlist.organizationPlan.networkImpact} />
                         </div>
                         <div className="playlist-intake-impact">
                           {playlist.organizationPlan.coverArtAction}
@@ -516,14 +504,14 @@ const PlaylistIntake = () => {
                                 </div>
                               </div>
                               <Label basic>
-                                Line {preview.lineNumber}
+                                <LocalizedText source={"Line"} />{" "}{preview.lineNumber}
                               </Label>
                             </div>
                           ))}
                         </div>
                         {playlist.organizationPlan.skippedTracks.length > 0 && (
                           <div className="playlist-intake-impact">
-                            Skipped:{' '}
+                            <LocalizedText source={"Skipped:"} />{' '}
                             {playlist.organizationPlan.skippedTracks
                               .map((track) => track.title)
                               .join(', ')}
@@ -533,17 +521,14 @@ const PlaylistIntake = () => {
                           <div className="playlist-intake-organization-approval">
                             <Label color="green">
                               <Icon name="check circle outline" />
-                              Snapshot approved
-                            </Label>
+                              <LocalizedText source={"Snapshot approved"} /></Label>
                             <span>
-                              {playlist.organizationApproval.summary.matched} tracks,
-                              {' '}
+                              {playlist.organizationApproval.summary.matched} <LocalizedText source={"tracks,"} />{' '}
                               {
                                 playlist.organizationApproval.summary
                                   .changedFieldCount
                               }{' '}
-                              changed fields
-                            </span>
+                              <LocalizedText source={"changed fields"} /></span>
                             <div className="playlist-intake-impact">
                               {playlist.organizationApproval.impact}
                             </div>
@@ -565,7 +550,7 @@ const PlaylistIntake = () => {
                           </strong>
                           <div className="playlist-intake-meta">
                             <Icon name="list ol" />
-                            Line {track.lineNumber}
+                            <LocalizedText source={"Line"} />{" "}{track.lineNumber}
                             <span> - </span>
                             <Icon name="quote right" />
                             {track.sourceLine}
@@ -573,50 +558,50 @@ const PlaylistIntake = () => {
                         </div>
                         <div className="playlist-intake-track-actions">
                           <Label color={trackStateColor(track.state)}>
-                            {track.state}
+                            <LocalizedText source={track.state} />
                           </Label>
                           <Popup
-                            content="Mark this row as matched for partial playlist completion review. This does not search or download it."
+                            content={interfaceText("Mark this row as matched for partial playlist completion review. This does not search or download it.")}
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={`Mark ${track.title} matched`}
+                                aria-label={interfaceText("Mark {title} matched", { "title": (track.title) })}
                                 disabled={track.state === 'Matched'}
                                 icon="check"
                                 onClick={() => setTrackState(playlist, track, 'Matched')}
                                 size="small"
-                              />
+                               {...interfaceTextProps("Mark {title} matched")}/>
                             }
-                          />
+                           {...interfaceTextProps("Mark this row as matched for partial playlist completion review. This does not search or download it.")}/>
                           <Popup
-                            content="Mark this row unmatched so it can be reviewed or rematched later without losing source identity."
+                            content={interfaceText("Mark this row unmatched so it can be reviewed or rematched later without losing source identity.")}
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={`Mark ${track.title} unmatched`}
+                                aria-label={interfaceText("Mark {title} unmatched", { "title": (track.title) })}
                                 disabled={track.state === 'Unmatched'}
                                 icon="question circle outline"
                                 onClick={() =>
                                   setTrackState(playlist, track, 'Unmatched')
                                 }
                                 size="small"
-                              />
+                               {...interfaceTextProps("Mark {title} unmatched")}/>
                             }
-                          />
+                           {...interfaceTextProps("Mark this row unmatched so it can be reviewed or rematched later without losing source identity.")}/>
                           <Popup
-                            content="Reject this row from playlist completion while keeping it in the imported source evidence."
+                            content={interfaceText("Reject this row from playlist completion while keeping it in the imported source evidence.")}
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={`Reject playlist row ${track.title}`}
+                                aria-label={interfaceText("Reject playlist row {title}", { "title": (track.title) })}
                                 disabled={track.state === 'Rejected'}
                                 icon="ban"
                                 negative
                                 onClick={() => setTrackState(playlist, track, 'Rejected')}
                                 size="small"
-                              />
+                               {...interfaceTextProps("Reject playlist row {title}")}/>
                             }
-                          />
+                           {...interfaceTextProps("Reject this row from playlist completion while keeping it in the imported source evidence.")}/>
                         </div>
                       </div>
                     ))}

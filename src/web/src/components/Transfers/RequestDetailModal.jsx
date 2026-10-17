@@ -1,3 +1,7 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getRegionalLocale } from '../../lib/regionalFormat';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Header, Icon, Input, Label, Modal, Table } from 'semantic-ui-react';
 import { toast } from 'react-toastify';
@@ -7,12 +11,13 @@ import TooltipButton from '../Shared/TooltipButton';
 const formatTime = (value) => {
   if (!value) return '—';
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString();
+  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString(getRegionalLocale());
 };
 
 const formatState = (state) => state ?? '—';
 
 const RequestDetailModal = ({ open, requestId, onClose }) => {
+  useInterfaceLanguage();
   const [loading, setLoading] = useState(false);
   const [detail, setDetail] = useState(null);
   const [nameDraft, setNameDraft] = useState('');
@@ -26,7 +31,7 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
       setDetail(data);
       setNameDraft(data?.request?.name ?? '');
     } catch (error) {
-      toast.error(`Failed to load request: ${error.message}`);
+      toast.error(interfaceText("Failed to load request: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
       setDetail(null);
     } finally {
       setLoading(false);
@@ -50,9 +55,9 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
     try {
       const updated = await downloadRequests.rename(requestId, nameDraft.trim());
       setDetail((prev) => (prev ? { ...prev, request: updated } : prev));
-      toast.success('Renamed');
+      toast.success(interfaceText("Renamed"));
     } catch (error) {
-      toast.error(`Rename failed: ${error.message}`);
+      toast.error(interfaceText("Rename failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     } finally {
       setRenaming(false);
     }
@@ -62,10 +67,10 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
     if (!requestId) return;
     try {
       await downloadRequests.cancel(requestId);
-      toast.success('Request cancelled');
+      toast.success(interfaceText("Request cancelled"));
       await load();
     } catch (error) {
-      toast.error(`Cancel failed: ${error.message}`);
+      toast.error(interfaceText("Cancel failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
     }
   };
 
@@ -76,21 +81,20 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
     <Modal onClose={onClose} open={open} size="small">
       <Modal.Header>
         <Icon name="folder open" />
-        Download request
-      </Modal.Header>
+        <LocalizedText source={"Download request"} /></Modal.Header>
       <Modal.Content scrolling>
         {loading && <Icon loading name="spinner" />}
-        {!loading && !request && <p>Request not found.</p>}
+        {!loading && !request && <p><LocalizedText source={"Request not found."} /></p>}
         {!loading && request && (
           <>
-            <Header as="h5" style={{ marginBottom: '0.25em' }}>Name</Header>
+            <Header as="h5" style={{ marginBottom: '0.25em' }}><LocalizedText source={"Name"} /></Header>
             <div style={{ display: 'flex', gap: '0.5em', marginBottom: '1em' }}>
               <Input
                 fluid
                 onChange={(_, { value }) => setNameDraft(value)}
-                placeholder="Display label"
+                placeholder={interfaceText("Display label")}
                 value={nameDraft}
-              />
+               {...interfaceTextProps("Display label")}/>
               <TooltipButton
                 disabled={!nameDraft.trim() || nameDraft.trim() === request.name}
                 loading={renaming}
@@ -99,34 +103,33 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
                 size="small"
                 tooltip="Save the changed display label for this request."
               >
-                Save
-              </TooltipButton>
+                <LocalizedText source={"Save"} /></TooltipButton>
             </div>
 
-            <Header as="h5" style={{ marginBottom: '0.25em' }}>Status</Header>
+            <Header as="h5" style={{ marginBottom: '0.25em' }}><LocalizedText source={"Status"} /></Header>
             <div style={{ marginBottom: '1em' }}>
               <Label color={request.state === 'Completed' ? 'green' : request.state === 'Cancelled' ? 'grey' : request.state === 'Failed' ? 'red' : 'blue'}>
-                {formatState(request.state)}
+                <LocalizedText source={formatState(request.state)} />
               </Label>
               <span style={{ marginLeft: '0.5em', fontSize: '0.85em', opacity: 0.8 }}>
-                Created {formatTime(request.createdAt)}
+                <LocalizedText source={"Created"} />{" "}{formatTime(request.createdAt)}
                 {request.completedAt && ` • Completed ${formatTime(request.completedAt)}`}
               </span>
             </div>
 
             <Header as="h5" style={{ marginBottom: '0.25em' }}>
-              Attempts <Label circular>{attempts.length}</Label>
+              <LocalizedText source={"Attempts"} />{" "}<Label circular>{attempts.length}</Label>
             </Header>
             {attempts.length === 0 ? (
-              <p style={{ color: '#999', fontStyle: 'italic' }}>No attempts recorded.</p>
+              <p style={{ color: '#999', fontStyle: 'italic' }}><LocalizedText source={"No attempts recorded."} /></p>
             ) : (
               <Table basic="very" compact size="small">
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>When</Table.HeaderCell>
-                    <Table.HeaderCell>Source</Table.HeaderCell>
-                    <Table.HeaderCell>State</Table.HeaderCell>
-                    <Table.HeaderCell>Filename</Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"When"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Source"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"State"} /></Table.HeaderCell>
+                    <Table.HeaderCell><LocalizedText source={"Filename"} /></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -135,7 +138,7 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
                       <Table.Cell>{formatTime(attempt.requestedAt)}</Table.Cell>
                       <Table.Cell>{attempt.username}</Table.Cell>
                       <Table.Cell>
-                        {attempt.removed ? <Label color="grey" size="mini">removed</Label> : <span>{formatState(attempt.state)}</span>}
+                        {attempt.removed ? <Label color="grey" size="mini"><LocalizedText source={"removed"} /></Label> : <span><LocalizedText source={formatState(attempt.state)} /></span>}
                       </Table.Cell>
                       <Table.Cell className="truncate-cell" title={attempt.filename}>
                         {attempt.filename}
@@ -155,15 +158,13 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
             onClick={handleCancel}
             tooltip="Cancel the current attempt and mark this request cancelled."
           >
-            Cancel request
-          </TooltipButton>
+            <LocalizedText source={"Cancel request"} /></TooltipButton>
         )}
         <TooltipButton
           onClick={onClose}
           tooltip="Close these request details and return to transfers."
         >
-          Close
-        </TooltipButton>
+          <LocalizedText source={"Close"} /></TooltipButton>
       </Modal.Actions>
     </Modal>
   );

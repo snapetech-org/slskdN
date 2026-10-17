@@ -240,7 +240,7 @@ web:
 
     const save = screen.getByRole('button', { name: 'Save YAML' });
     await user.click(save);
-    expect(await screen.findByText('Configuration was rejected.')).toBeInTheDocument();
+    expect(await screen.findByText('The request failed. Try again.')).toBeInTheDocument();
     expect(save).toBeEnabled();
 
     await user.click(save);

@@ -1,6 +1,10 @@
 import './Dashboard.css';
 import { getTransferSummary } from '../../lib/reports';
+import LocalizedText from '../Shared/LocalizedText';
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { formatBytes } from '../../lib/util';
+import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import ErrorSegment from '../Shared/ErrorSegment';
 import PlaceholderSegment from '../Shared/PlaceholderSegment';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -30,6 +34,8 @@ const getSuccessfulSummary = (summary, direction) => {
 };
 
 const TransferStream = ({ direction, summary }) => {
+  useInterfaceLanguage();
+  const regionalLocale = useRegionalLocale();
   const isDownload = direction === 'download';
   const stats = getSuccessfulSummary(summary, isDownload ? 'Download' : 'Upload');
   const label = isDownload ? 'Downloads' : 'Uploads';
@@ -38,16 +44,19 @@ const TransferStream = ({ direction, summary }) => {
     <section className={`dashboard-stream dashboard-stream-${direction}`}>
       <h2 className="dashboard-stream-title">
         <Icon name={isDownload ? 'download' : 'upload'} />
-        {label}
+        <LocalizedText source={label} />
       </h2>
       <div className="dashboard-stream-bytes" data-testid={`${direction}-bytes`}>
         {formatBytes(stats.bytes)}
       </div>
       <p className="dashboard-stream-count" data-testid={`${direction}-count`}>
-        {stats.count.toLocaleString()} successful {stats.count === 1 ? 'file' : 'files'}
+        <LocalizedText
+          source={stats.count === 1 ? '{count} successful file' : '{count} successful files'}
+          values={{ count: formatRegionalNumber(stats.count, undefined, regionalLocale) }}
+        />
       </p>
       <Link className="dashboard-stream-link" to={`/${direction}s`}>
-        Open {direction} list
+        <LocalizedText source={isDownload ? 'Open download list' : 'Open upload list'} />
       </Link>
     </section>
   );
@@ -64,11 +73,7 @@ const Dashboard = () => {
     try {
       setSummary(await getTransferSummary());
     } catch (requestError) {
-      setError(
-        requestError?.response?.data ??
-          requestError?.message ??
-          'Transfer totals could not be loaded.',
-      );
+      setError(getApiErrorMessage(requestError, { t: interfaceText }, 'Transfer totals could not be loaded.'));
     } finally {
       setLoading(false);
     }
@@ -84,18 +89,19 @@ const Dashboard = () => {
         <header className="dashboard-heading">
           <div>
             <Header as="h1" className="dashboard-title">
-              Transfer overview
+              <LocalizedText source="Transfer overview" />
             </Header>
             <p className="dashboard-intro">
-              Successful files moved in the last seven days.
+              <LocalizedText source="Successful files moved in the last seven days." />
             </p>
           </div>
           <Popup
-            content="Refresh the seven-day totals from the transfer history."
+            content={<LocalizedText source="Refresh the seven-day totals from the transfer history." />}
             position="top center"
             trigger={(
               <Button
-                aria-label="Refresh transfer overview"
+                aria-label={interfaceText('Refresh transfer overview')}
+                {...interfaceTextProps('Refresh transfer overview')}
                 disabled={loading}
                 icon="refresh"
                 loading={loading}
@@ -117,7 +123,7 @@ const Dashboard = () => {
               <TransferStream direction="upload" summary={summary} />
             </div>
             <p className="dashboard-footnote">
-              Totals use bytes actually transferred and count successful transfers only.
+              <LocalizedText source="Totals use bytes actually transferred and count successful transfers only." />
             </p>
           </>
         )}

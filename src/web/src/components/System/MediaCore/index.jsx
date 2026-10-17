@@ -1,4 +1,10 @@
+import LocalizedText from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+
+
+import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
+import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
 import Button from './MediaCoreButton';
@@ -55,6 +61,7 @@ export const areContentIdStatsEqual = (left, right) => {
 };
 
 const MediaCore = () => {
+  useInterfaceLanguage();
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const podsEnabled = featureGatesReady && isFeatureEnabled(featureGates, 'pods');
   const mountedRef = useRef(false);
@@ -192,7 +199,7 @@ const MediaCore = () => {
     } catch (error_) {
       if (!mountedRef.current) return;
       if (document.hidden) return;
-      setError(error_.message);
+      setError(getApiErrorMessage(error_, { t: interfaceText }));
     } finally {
       statsInFlightRef.current = false;
       if (mountedRef.current && !document.hidden) {
@@ -254,7 +261,7 @@ const MediaCore = () => {
       const data = await mediacore.getContentIdStats();
       setStats(data);
     } catch (error_) {
-      setError(`Failed to register: ${error_.message}`);
+      setError(interfaceText("Failed to register: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
     } finally {
       setRegistering(false);
     }
@@ -269,7 +276,7 @@ const MediaCore = () => {
       const result = await mediacore.resolveContentId(resolveId.trim());
       setResolvedContent(result);
     } catch (error_) {
-      setResolvedContent({ error: error_.message });
+      setResolvedContent({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setResolving(false);
     }
@@ -286,7 +293,7 @@ const MediaCore = () => {
       );
       setValidatedContent(result);
     } catch (error_) {
-      setValidatedContent({ error: error_.message });
+      setValidatedContent({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setValidating(false);
     }
@@ -306,7 +313,7 @@ const MediaCore = () => {
         : await mediacore.findContentIdsByDomain(domain.trim());
       setDomainResults(result);
     } catch (error_) {
-      setDomainResults({ error: error_.message });
+      setDomainResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setSearchingDomain(false);
     }
@@ -334,7 +341,7 @@ const MediaCore = () => {
       );
       setTraversalResults(result);
     } catch (error_) {
-      setTraversalResults({ error: error_.message });
+      setTraversalResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setTraversing(false);
     }
@@ -349,7 +356,7 @@ const MediaCore = () => {
       const result = await mediacore.getContentGraph(graphContentId.trim());
       setGraphResults(result);
     } catch (error_) {
-      setGraphResults({ error: error_.message });
+      setGraphResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setGettingGraph(false);
     }
@@ -364,7 +371,7 @@ const MediaCore = () => {
       const result = await mediacore.findInboundLinks(inboundTargetId.trim());
       setInboundResults(result);
     } catch (error_) {
-      setInboundResults({ error: error_.message });
+      setInboundResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setFindingInbound(false);
     }
@@ -393,7 +400,7 @@ const MediaCore = () => {
         .filter((n) => !isNaN(n));
 
       if (samples.length === 0) {
-        throw new Error('No valid audio samples provided');
+        throw new Error(interfaceText("No valid audio samples provided"));
       }
 
       const result = await mediacore.computeAudioHash(
@@ -403,7 +410,7 @@ const MediaCore = () => {
       );
       setAudioHashResult(result);
     } catch (error_) {
-      setAudioHashResult({ error: error_.message });
+      setAudioHashResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingAudioHash(false);
     }
@@ -423,7 +430,7 @@ const MediaCore = () => {
         .filter((n) => !isNaN(n) && n >= 0 && n <= 255);
 
       if (pixels.length === 0) {
-        throw new Error('No valid pixel data provided');
+        throw new Error(interfaceText("No valid pixel data provided"));
       }
 
       const result = await mediacore.computeImageHash(
@@ -434,7 +441,7 @@ const MediaCore = () => {
       );
       setImageHashResult(result);
     } catch (error_) {
-      setImageHashResult({ error: error_.message });
+      setImageHashResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingImageHash(false);
     }
@@ -453,7 +460,7 @@ const MediaCore = () => {
       );
       setSimilarityResult(result);
     } catch (error_) {
-      setSimilarityResult({ error: error_.message });
+      setSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingSimilarity(false);
     }
@@ -472,7 +479,7 @@ const MediaCore = () => {
       );
       setPerceptualSimilarityResult(result);
     } catch (error_) {
-      setPerceptualSimilarityResult({ error: error_.message });
+      setPerceptualSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingPerceptualSimilarity(false);
     }
@@ -493,7 +500,7 @@ const MediaCore = () => {
       );
       setFindSimilarResult(result);
     } catch (error_) {
-      setFindSimilarResult({ error: error_.message });
+      setFindSimilarResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setFindingSimilarContent(false);
     }
@@ -511,7 +518,7 @@ const MediaCore = () => {
       );
       setTextSimilarityResult(result);
     } catch (error_) {
-      setTextSimilarityResult({ error: error_.message });
+      setTextSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setComputingTextSimilarity(false);
     }
@@ -530,7 +537,7 @@ const MediaCore = () => {
       const result = await mediacore.exportMetadata(contentIds, includeLinks);
       setExportResult(result);
     } catch (error_) {
-      setExportResult({ error: error_.message });
+      setExportResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setExportingMetadata(false);
     }
@@ -547,7 +554,7 @@ const MediaCore = () => {
       try {
         packageData = JSON.parse(importPackage.trim());
       } catch {
-        throw new Error('Invalid JSON format for metadata package');
+        throw new Error(interfaceText("Invalid JSON format for metadata package"));
       }
 
       const result = await mediacore.importMetadata(
@@ -557,7 +564,7 @@ const MediaCore = () => {
       );
       setImportResult(result);
     } catch (error_) {
-      setImportResult({ error: error_.message });
+      setImportResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setImportingMetadata(false);
     }
@@ -574,13 +581,13 @@ const MediaCore = () => {
       try {
         packageData = JSON.parse(importPackage.trim());
       } catch {
-        throw new Error('Invalid JSON format for metadata package');
+        throw new Error(interfaceText("Invalid JSON format for metadata package"));
       }
 
       const result = await mediacore.analyzeMetadataConflicts(packageData);
       setConflictAnalysis(result);
     } catch (error_) {
-      setConflictAnalysis({ error: error_.message });
+      setConflictAnalysis({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setAnalyzingConflicts(false);
     }
@@ -603,7 +610,7 @@ const MediaCore = () => {
       const result = await mediacore.publishContentDescriptor(descriptor);
       setPublishResult(result);
     } catch (error_) {
-      setPublishResult({ error: error_.message });
+      setPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setPublishingDescriptor(false);
     }
@@ -634,7 +641,7 @@ const MediaCore = () => {
         await mediacore.publishContentDescriptorsBatch(descriptors);
       setBatchPublishResult(result);
     } catch (error_) {
-      setBatchPublishResult({ error: error_.message });
+      setBatchPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setPublishingBatch(false);
     }
@@ -654,7 +661,7 @@ const MediaCore = () => {
         updates.newConfidence = Number.parseFloat(updateConfidence);
 
       if (Object.keys(updates).length === 0) {
-        throw new Error('At least one update field is required');
+        throw new Error(interfaceText("At least one update field is required"));
       }
 
       const result = await mediacore.updateContentDescriptor(
@@ -663,7 +670,7 @@ const MediaCore = () => {
       );
       setUpdateResult(result);
     } catch (error_) {
-      setUpdateResult({ error: error_.message });
+      setUpdateResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setUpdatingDescriptor(false);
     }
@@ -676,7 +683,7 @@ const MediaCore = () => {
       const result = await mediacore.republishExpiringDescriptors();
       setRepublishResult(result);
     } catch (error_) {
-      setRepublishResult({ error: error_.message });
+      setRepublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRepublishing(false);
     }
@@ -689,7 +696,7 @@ const MediaCore = () => {
       const result = await mediacore.getPublishingStats();
       setPublishingStats(result);
     } catch (error_) {
-      setPublishingStats({ error: error_.message });
+      setPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setLoadingStats(false);
     }
@@ -707,7 +714,7 @@ const MediaCore = () => {
       );
       setRetrievalResult(result);
     } catch (error_) {
-      setRetrievalResult({ error: error_.message });
+      setRetrievalResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRetrievingDescriptor(false);
     }
@@ -727,7 +734,7 @@ const MediaCore = () => {
         await mediacore.retrieveContentDescriptorsBatch(contentIds);
       setBatchRetrievalResult(result);
     } catch (error_) {
-      setBatchRetrievalResult({ error: error_.message });
+      setBatchRetrievalResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setRetrievingBatch(false);
     }
@@ -746,7 +753,7 @@ const MediaCore = () => {
       );
       setQueryResult(result);
     } catch (error_) {
-      setQueryResult({ error: error_.message });
+      setQueryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setQueryingDescriptors(false);
     }
@@ -763,13 +770,13 @@ const MediaCore = () => {
       try {
         descriptor = JSON.parse(verifyDescriptor.trim());
       } catch {
-        throw new Error('Invalid JSON format for descriptor');
+        throw new Error(interfaceText("Invalid JSON format for descriptor"));
       }
 
       const result = await mediacore.verifyContentDescriptor(descriptor);
       setDescriptorVerificationResult(result);
     } catch (error_) {
-      setDescriptorVerificationResult({ error: error_.message });
+      setDescriptorVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
     } finally {
       setVerifyingDescriptor(false);
     }
@@ -804,8 +811,7 @@ const MediaCore = () => {
           active
           inline="centered"
         >
-          Loading MediaCore statistics...
-        </Loader>
+          <LocalizedText source={"Loading MediaCore statistics..."} /></Loader>
       </Segment>
     );
   }
@@ -813,7 +819,7 @@ const MediaCore = () => {
   if (error && !stats) {
     return (
       <Message error>
-        <Message.Header>Failed to load MediaCore statistics</Message.Header>
+        <Message.Header><LocalizedText source={"Failed to load MediaCore statistics"} /></Message.Header>
         <p>{error}</p>
       </Message>
     );
@@ -823,31 +829,25 @@ const MediaCore = () => {
     <div>
       <Header as="h2">
         <Icon name="database" />
-        MediaCore ContentID Registry
-      </Header>
+        <LocalizedText source={"MediaCore ContentID Registry"} /></Header>
 
       {podsEnabled ? (
         <Segment>
           <Header as="h3">
             <Icon name="sitemap" />
-            Pod Workflow Index
-        </Header>
+            <LocalizedText source={"Pod Workflow Index"} /></Header>
         <Message warning>
-          Pod workflows mix read-only diagnostics with operations that publish
-          metadata, membership records, messages, opinions, or key material.
-          Use this index to jump to the intended workflow before running an
-          action.
-        </Message>
+          <LocalizedText source={"Pod workflows mix read-only diagnostics with operations that publish metadata, membership records, messages, opinions, or key material. Use this index to jump to the intended workflow before running an action."} /></Message>
         <Form>
           <Form.Field>
-            <label>Workflow focus</label>
+            <label><LocalizedText source={"Workflow focus"} /></label>
             <Dropdown
-              aria-label="Pod workflow focus"
+              aria-label={interfaceText("Pod workflow focus")}
               onChange={(_, { value }) => setPodWorkflowFilter(value)}
               options={podWorkflowFilterOptions}
               selection
               value={podWorkflowFilter}
-            />
+             {...interfaceTextProps("Pod workflow focus")}/>
           </Form.Field>
         </Form>
         {podWorkflowFilter !== 'all' && (
@@ -856,19 +856,19 @@ const MediaCore = () => {
             size="small"
           >
             <Message.Content>
-              <Message.Header>Focused pod workflow</Message.Header>
-              Showing {selectedPodWorkflow?.label || 'one pod workflow'}. Choose
-              "Show all pod workflows" or use the reset action to return to the
-              complete MediaCore pod surface.
-              <div style={{ marginTop: '0.75em' }}>
+              <Message.Header><LocalizedText source={"Focused pod workflow"} /></Message.Header>
+              <LocalizedText
+                source={"Showing {workflow}"}
+                values={{ workflow: selectedPodWorkflow?.label || 'one pod workflow' }}
+              />{' '}
+              <LocalizedText source={". Choose \"Show all pod workflows\" or use the reset action to return to the complete MediaCore pod surface."} /><div style={{ marginTop: '0.75em' }}>
                 <Button
-                  tooltip="Show every Pod workflow card so you can browse the full set of available tasks."
+                  tooltip={interfaceText("Show every Pod workflow card so you can browse the full set of available tasks.")}
                   basic
                   onClick={() => setPodWorkflowFilter('all')}
                   size="tiny"
                 >
-                  Show all pod workflows
-                </Button>
+                  <LocalizedText source={"Show all pod workflows"} /></Button>
               </div>
             </Message.Content>
           </Message>
@@ -901,7 +901,7 @@ const MediaCore = () => {
               featureName="Pods"
             />
           ) : (
-            <Message info>Checking PodCore availability…</Message>
+            <Message info><LocalizedText source={"Checking PodCore availability…"} /></Message>
           )}
         </Segment>
       )}
@@ -910,21 +910,21 @@ const MediaCore = () => {
         {/* Statistics Overview */}
         <Grid.Column width={16}>
           <Segment>
-            <Header as="h3">Registry Statistics</Header>
+            <Header as="h3"><LocalizedText source={"Registry Statistics"} /></Header>
             <Statistic.Group size="small">
               <Statistic>
                 <Statistic.Value>{stats?.totalMappings || 0}</Statistic.Value>
-                <Statistic.Label>Total Mappings</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"Total Mappings"} /></Statistic.Label>
               </Statistic>
               <Statistic>
                 <Statistic.Value>{stats?.totalDomains || 0}</Statistic.Value>
-                <Statistic.Label>Domains</Statistic.Label>
+                <Statistic.Label><LocalizedText source={"Domains"} /></Statistic.Label>
               </Statistic>
             </Statistic.Group>
 
             {Object.keys(asObject(stats?.mappingsByDomain)).length > 0 && (
                 <div style={{ marginTop: '1em' }}>
-                  <Header as="h4">Mappings by Domain</Header>
+                  <Header as="h4"><LocalizedText source={"Mappings by Domain"} /></Header>
                   <List horizontal>
                     {Object.entries(asObject(stats?.mappingsByDomain)).map(
                       ([domain, count]) => (
@@ -948,39 +948,34 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="plus" />
-                Register ContentID Mapping
-              </Card.Header>
+                <LocalizedText source={"Register ContentID Mapping"} /></Card.Header>
               <Card.Description>
-                Map an external identifier to an internal ContentID
-              </Card.Description>
+                <LocalizedText source={"Map an external identifier to an internal ContentID"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Resolve and validate existing identifiers first. Registering a
-                mapping changes the local ContentID registry and is grouped as
-                an advanced operation.
-              </Message>
+                <LocalizedText source={"Resolve and validate existing identifiers first. Registering a mapping changes the local ContentID registry and is grouped as an advanced operation."} /></Message>
               <details>
-                <summary>Advanced ContentID registration controls</summary>
+                <summary><LocalizedText source={"Advanced ContentID registration controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Field>
-                    <label>External ID</label>
+                    <label><LocalizedText source={"External ID"} /></label>
                     <Input
                       onChange={(e) => setExternalId(e.target.value)}
-                      placeholder="e.g., mb:recording:12345-6789-..."
+                      placeholder={interfaceText("e.g., mb:recording:12345-6789-...")}
                       value={externalId}
-                    />
+                     {...interfaceTextProps("e.g., mb:recording:12345-6789-...")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>Content ID</label>
+                    <label><LocalizedText source={"Content ID"} /></label>
                     <Input
                       onChange={(e) => setDescriptorContentId(e.target.value)}
-                      placeholder="e.g., content:mb:recording:12345-6789-..."
+                      placeholder={interfaceText("e.g., content:mb:recording:12345-6789-...")}
                       value={descriptorContentId}
-                    />
+                     {...interfaceTextProps("e.g., content:mb:recording:12345-6789-...")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Add this external-ID-to-ContentID mapping to the local registry so later lookups can resolve it."
+                    tooltip={interfaceText("Add this external-ID-to-ContentID mapping to the local registry so later lookups can resolve it.")}
                     disabled={
                       !externalId.trim() ||
                       !descriptorContentId.trim() ||
@@ -990,8 +985,7 @@ const MediaCore = () => {
                     onClick={handleRegister}
                     primary
                   >
-                    Register Mapping
-                  </Button>
+                    <LocalizedText source={"Register Mapping"} /></Button>
                 </Form>
               </details>
             </Card.Content>
@@ -1004,32 +998,29 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="search" />
-                Resolve External ID
-              </Card.Header>
+                <LocalizedText source={"Resolve External ID"} /></Card.Header>
               <Card.Description>
-                Find the ContentID for an external identifier
-              </Card.Description>
+                <LocalizedText source={"Find the ContentID for an external identifier"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Field>
-                  <label>External ID to Resolve</label>
+                  <label><LocalizedText source={"External ID to Resolve"} /></label>
                   <Input
                     action={
                       <Button
-                        tooltip="Look up this external ID in the local registry to find its associated ContentID."
+                        tooltip={interfaceText("Look up this external ID in the local registry to find its associated ContentID.")}
                         disabled={!resolveId.trim() || resolving}
                         loading={resolving}
                         onClick={handleResolve}
                         primary
                       >
-                        Resolve
-                      </Button>
+                        <LocalizedText source={"Resolve"} /></Button>
                     }
                     onChange={(e) => setResolveId(e.target.value)}
-                    placeholder="Enter external ID to resolve..."
+                    placeholder={interfaceText("Enter external ID to resolve...")}
                     value={resolveId}
-                  />
+                   {...interfaceTextProps("Enter external ID to resolve...")}/>
                 </Form.Field>
               </Form>
 
@@ -1041,12 +1032,12 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Resolved Successfully</Message.Header>
+                      <Message.Header><LocalizedText source={"Resolved Successfully"} /></Message.Header>
                       <p>
-                        <strong>External ID:</strong>{' '}
+                        <strong><LocalizedText source={"External ID:"} /></strong>{' '}
                         {resolvedContent.externalId}
                         <br />
-                        <strong>Content ID:</strong> {resolvedContent.contentId}
+                        <strong><LocalizedText source={"Content ID:"} /></strong> {resolvedContent.contentId}
                       </p>
                     </Message>
                   )}
@@ -1062,32 +1053,29 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="check circle" />
-                ContentID Validation
-              </Card.Header>
+                <LocalizedText source={"ContentID Validation"} /></Card.Header>
               <Card.Description>
-                Validate ContentID format and extract components
-              </Card.Description>
+                <LocalizedText source={"Validate ContentID format and extract components"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Field>
-                  <label>ContentID to Validate</label>
+                  <label><LocalizedText source={"ContentID to Validate"} /></label>
                   <Input
                     action={
                       <Button
-                        tooltip="Check the ContentID format and extract its components before using it in another workflow."
+                        tooltip={interfaceText("Check the ContentID format and extract its components before using it in another workflow.")}
                         disabled={!validateContentIdInput.trim() || validating}
                         loading={validating}
                         onClick={handleValidate}
                         primary
                       >
-                        Validate
-                      </Button>
+                        <LocalizedText source={"Validate"} /></Button>
                     }
                     onChange={(e) => setValidateContentIdInput(e.target.value)}
-                    placeholder="e.g., content:audio:track:mb-12345"
+                    placeholder={interfaceText("e.g., content:audio:track:mb-12345")}
                     value={validateContentIdInput}
-                  />
+                   {...interfaceTextProps("e.g., content:audio:track:mb-12345")}/>
                 </Form.Field>
               </Form>
 
@@ -1099,20 +1087,20 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Valid ContentID</Message.Header>
+                      <Message.Header><LocalizedText source={"Valid ContentID"} /></Message.Header>
                       <p>
-                        <strong>Domain:</strong> {validatedContent.domain}
+                        <strong><LocalizedText source={"Domain:"} /></strong> {validatedContent.domain}
                         <br />
-                        <strong>Type:</strong> {validatedContent.type}
+                        <strong><LocalizedText source={"Type:"} /></strong> {validatedContent.type}
                         <br />
                         <strong>ID:</strong> {validatedContent.id}
                         <br />
-                        <strong>Audio:</strong>{' '}
-                        {validatedContent.isAudio ? 'Yes' : 'No'} |
-                        <strong>Video:</strong>{' '}
-                        {validatedContent.isVideo ? 'Yes' : 'No'} |
-                        <strong>Image:</strong>{' '}
-                        {validatedContent.isImage ? 'Yes' : 'No'}
+                        <strong><LocalizedText source={"Audio:"} /></strong>{' '}
+                        {validatedContent.isAudio ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />} |
+                        <strong><LocalizedText source={"Video:"} /></strong>{' '}
+                        {validatedContent.isVideo ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />} |
+                        <strong><LocalizedText source={"Image:"} /></strong>{' '}
+                        {validatedContent.isImage ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                       </p>
                     </Message>
                   )}
@@ -1128,41 +1116,38 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="search plus" />
-                Domain Search
-              </Card.Header>
+                <LocalizedText source={"Domain Search"} /></Card.Header>
               <Card.Description>
-                Find ContentIDs by domain and optional type
-              </Card.Description>
+                <LocalizedText source={"Find ContentIDs by domain and optional type"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>Domain</label>
+                    <label><LocalizedText source={"Domain"} /></label>
                     <Input
                       onChange={(e) => setDomain(e.target.value)}
-                      placeholder="e.g., audio, video, image"
+                      placeholder={interfaceText("e.g., audio, video, image")}
                       value={domain}
-                    />
+                     {...interfaceTextProps("e.g., audio, video, image")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>Type (optional)</label>
+                    <label><LocalizedText source={"Type (optional)"} /></label>
                     <Input
                       onChange={(e) => setType(e.target.value)}
-                      placeholder="e.g., track, movie, photo"
+                      placeholder={interfaceText("e.g., track, movie, photo")}
                       value={type}
-                    />
+                     {...interfaceTextProps("e.g., track, movie, photo")}/>
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Search the local registry for ContentIDs in this domain and optional type so you can find registered items."
+                  tooltip={interfaceText("Search the local registry for ContentIDs in this domain and optional type so you can find registered items.")}
                   disabled={!domain.trim() || searchingDomain}
                   loading={searchingDomain}
                   onClick={handleDomainSearch}
                   primary
                 >
-                  Search Domain
-                </Button>
+                  <LocalizedText source={"Search Domain"} /></Button>
               </Form>
 
               {domainResults && (
@@ -1175,9 +1160,10 @@ const MediaCore = () => {
                     <div>
                       <p>
                         <strong>
-                          Found {asArray(domainResults.contentIds).length}{' '}
-                          ContentIDs
-                        </strong>
+                          <LocalizedText
+                            source="Found {count} content IDs"
+                            values={{ count: asArray(domainResults.contentIds).length }}
+                          /></strong>
                       </p>
                       {asArray(domainResults.contentIds).length > 0 && (
                         <List
@@ -1207,17 +1193,14 @@ const MediaCore = () => {
           <Segment>
             <Header as="h3">
               <Icon name="lightbulb" />
-              ContentID Examples
-            </Header>
+              <LocalizedText source={"ContentID Examples"} /></Header>
             <p>
-              Click any example to fill the read-only resolve and validation
-              fields, plus the advanced registration fields.
-            </p>
+              <LocalizedText source={"Click any example to fill the read-only resolve and validation fields, plus the advanced registration fields."} /></p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5em' }}>
               {Object.entries(contentExamples).map(([domainName, types]) =>
                 Object.entries(types).map(([typeName, example]) => (
                   <Button
-                    tooltip="Fill the related fields with this sample ID pair so you can try resolve, validation, and registration without typing example values."
+                    tooltip={interfaceText("Fill the related fields with this sample ID pair so you can try resolve, validation, and registration without typing example values.")}
                     key={`${domainName}-${typeName}`}
                     onClick={() => fillExample(domainName, typeName)}
                     size="small"
@@ -1236,34 +1219,32 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="sitemap" />
-                IPLD Graph Traversal
-              </Card.Header>
+                <LocalizedText source={"IPLD Graph Traversal"} /></Card.Header>
               <Card.Description>
-                Traverse content relationships following specific link types
-              </Card.Description>
+                <LocalizedText source={"Traverse content relationships following specific link types"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>Start ContentID</label>
+                    <label><LocalizedText source={"Start ContentID"} /></label>
                     <Input
                       onChange={(e) => setTraverseContentId(e.target.value)}
-                      placeholder="e.g., content:audio:track:mb-12345"
+                      placeholder={interfaceText("e.g., content:audio:track:mb-12345")}
                       value={traverseContentId}
-                    />
+                     {...interfaceTextProps("e.g., content:audio:track:mb-12345")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>Link Type</label>
+                    <label><LocalizedText source={"Link Type"} /></label>
                     <Input
                       onChange={(e) => setTraverseLinkName(e.target.value)}
-                      placeholder="e.g., album, artist, artwork"
+                      placeholder={interfaceText("e.g., album, artist, artwork")}
                       value={traverseLinkName}
-                    />
+                     {...interfaceTextProps("e.g., album, artist, artwork")}/>
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Follow the selected link type from this ContentID to inspect connected content records."
+                  tooltip={interfaceText("Follow the selected link type from this ContentID to inspect connected content records.")}
                   disabled={
                     !traverseContentId.trim() ||
                     !traverseLinkName.trim() ||
@@ -1273,8 +1254,7 @@ const MediaCore = () => {
                   onClick={handleTraverse}
                   primary
                 >
-                  Traverse Graph
-                </Button>
+                  <LocalizedText source={"Traverse Graph"} /></Button>
               </Form>
 
               {traversalResults && (
@@ -1286,14 +1266,13 @@ const MediaCore = () => {
                   ) : (
                     <div>
                       <p>
-                        <strong>Traversal completed:</strong>{' '}
-                        {traversalResults.completedTraversal ? 'Yes' : 'No'}
+                        <strong><LocalizedText source={"Traversal completed:"} /></strong>{' '}
+                        {traversalResults.completedTraversal ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                       </p>
                       <p>
                         <strong>
-                          Visited {asArray(traversalResults.visitedNodes).length}{' '}
-                          nodes
-                        </strong>
+                          <LocalizedText source={"Visited"} />{" "}{asArray(traversalResults.visitedNodes).length}{' '}
+                          <LocalizedText source={"nodes"} /></strong>
                       </p>
                       {asArray(traversalResults.visitedNodes).length > 0 && (
                         <List
@@ -1306,9 +1285,7 @@ const MediaCore = () => {
                               <List.Content>
                                 <List.Header>{node.contentId}</List.Header>
                                 <List.Description>
-                                  {node.outgoingLinks?.length || 0} outgoing
-                                  links
-                                </List.Description>
+                                  {node.outgoingLinks?.length || 0} <LocalizedText source={"outgoing links"} /></List.Description>
                               </List.Content>
                             </List.Item>
                           ))}
@@ -1328,32 +1305,29 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="share alternate" />
-                Content Graph
-              </Card.Header>
+                <LocalizedText source={"Content Graph"} /></Card.Header>
               <Card.Description>
-                Get the complete relationship graph for a ContentID
-              </Card.Description>
+                <LocalizedText source={"Get the complete relationship graph for a ContentID"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Field>
-                  <label>ContentID</label>
+                  <label><LocalizedText source={"ContentID"} /></label>
                   <Input
                     action={
                       <Button
-                        tooltip="Load the known relationship graph for this ContentID so you can review its linked records."
+                        tooltip={interfaceText("Load the known relationship graph for this ContentID so you can review its linked records.")}
                         disabled={!graphContentId.trim() || gettingGraph}
                         loading={gettingGraph}
                         onClick={handleGetGraph}
                         primary
                       >
-                        Get Graph
-                      </Button>
+                        <LocalizedText source={"Get Graph"} /></Button>
                     }
                     onChange={(e) => setGraphContentId(e.target.value)}
-                    placeholder="Enter ContentID to get its graph"
+                    placeholder={interfaceText("Enter ContentID to get its graph")}
                     value={graphContentId}
-                  />
+                   {...interfaceTextProps("Enter ContentID to get its graph")}/>
                 </Form.Field>
               </Form>
 
@@ -1366,14 +1340,14 @@ const MediaCore = () => {
                   ) : (
                     <div>
                       <p>
-                        <strong>Root:</strong> {graphResults.rootContentId}
+                        <strong><LocalizedText source={"Root:"} /></strong> {graphResults.rootContentId}
                       </p>
                       <p>
-                        <strong>Nodes:</strong>{' '}
+                        <strong><LocalizedText source={"Nodes:"} /></strong>{' '}
                         {asArray(graphResults.nodes).length}
                       </p>
                       <p>
-                        <strong>Paths:</strong>{' '}
+                        <strong><LocalizedText source={"Paths:"} /></strong>{' '}
                         {graphResults.paths?.length || 0}
                       </p>
                       {asArray(graphResults.nodes).length > 0 && (
@@ -1389,9 +1363,8 @@ const MediaCore = () => {
                                   {node.contentId}
                                 </List.Header>
                                 <List.Description style={{ fontSize: '0.8em' }}>
-                                  {node.outgoingLinks?.length || 0} outgoing,{' '}
-                                  {node.incomingLinks?.length || 0} incoming
-                                </List.Description>
+                                  {node.outgoingLinks?.length || 0} <LocalizedText source={"outgoing,"} />{' '}
+                                  {node.incomingLinks?.length || 0} <LocalizedText source={"incoming"} /></List.Description>
                               </List.Content>
                             </List.Item>
                           ))}
@@ -1399,9 +1372,7 @@ const MediaCore = () => {
                             <List.Item>
                               <List.Content>
                                 <em>
-                                  ... and {graphResults.nodes.length - 5} more
-                                  nodes
-                                </em>
+                                  <LocalizedText source={"... and"} />{" "}{graphResults.nodes.length - 5} <LocalizedText source={"more nodes"} /></em>
                               </List.Content>
                             </List.Item>
                           )}
@@ -1421,32 +1392,29 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="arrow left" />
-                Inbound Links
-              </Card.Header>
+                <LocalizedText source={"Inbound Links"} /></Card.Header>
               <Card.Description>
-                Find all content that links to a specific ContentID
-              </Card.Description>
+                <LocalizedText source={"Find all content that links to a specific ContentID"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Field>
-                  <label>Target ContentID</label>
+                  <label><LocalizedText source={"Target ContentID"} /></label>
                   <Input
                     action={
                       <Button
-                        tooltip="Find records that link to this ContentID so you can see where the item is referenced."
+                        tooltip={interfaceText("Find records that link to this ContentID so you can see where the item is referenced.")}
                         disabled={!inboundTargetId.trim() || findingInbound}
                         loading={findingInbound}
                         onClick={handleFindInbound}
                         primary
                       >
-                        Find Links
-                      </Button>
+                        <LocalizedText source={"Find Links"} /></Button>
                     }
                     onChange={(e) => setInboundTargetId(e.target.value)}
-                    placeholder="Find content that links to this ID"
+                    placeholder={interfaceText("Find content that links to this ID")}
                     value={inboundTargetId}
-                  />
+                   {...interfaceTextProps("Find content that links to this ID")}/>
                 </Form.Field>
               </Form>
 
@@ -1460,9 +1428,10 @@ const MediaCore = () => {
                     <div>
                       <p>
                         <strong>
-                          Found {asArray(inboundResults.inboundLinks).length}{' '}
-                          inbound links
-                        </strong>
+                          <LocalizedText
+                            source="Found {count} inbound links"
+                            values={{ count: asArray(inboundResults.inboundLinks).length }}
+                          /></strong>
                       </p>
                       {asArray(inboundResults.inboundLinks).length > 0 && (
                         <List
@@ -1495,24 +1464,19 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="sound" />
-                Audio Perceptual Hash
-              </Card.Header>
+                <LocalizedText source={"Audio Perceptual Hash"} /></Card.Header>
               <Card.Description>
-                Compute perceptual hash for audio similarity detection
-              </Card.Description>
+                <LocalizedText source={"Compute perceptual hash for audio similarity detection"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Similarity review and hashing statistics are the default path.
-                Raw sample hashing is a diagnostic operation for prepared sample
-                arrays.
-              </Message>
+                <LocalizedText source={"Similarity review and hashing statistics are the default path. Raw sample hashing is a diagnostic operation for prepared sample arrays."} /></Message>
               <details>
-                <summary>Advanced raw audio hash controls</summary>
+                <summary><LocalizedText source={"Advanced raw audio hash controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Group widths="equal">
                     <Form.Field>
-                      <label>Algorithm</label>
+                      <label><LocalizedText source={"Algorithm"} /></label>
                       <Dropdown
                         onChange={(e, { value }) => setAudioAlgorithm(value)}
                         options={
@@ -1527,7 +1491,7 @@ const MediaCore = () => {
                       />
                     </Form.Field>
                     <Form.Field>
-                      <label>Sample Rate (Hz)</label>
+                      <label><LocalizedText source={"Sample Rate (Hz)"} /></label>
                       <Input
                         onChange={(e) => setSampleRate(e.target.value)}
                         type="number"
@@ -1536,23 +1500,22 @@ const MediaCore = () => {
                     </Form.Field>
                   </Form.Group>
                   <Form.Field>
-                    <label>Audio Samples (comma-separated floats)</label>
+                    <label><LocalizedText source={"Audio Samples (comma-separated floats)"} /></label>
                     <TextArea
                       onChange={(e) => setAudioSamples(e.target.value)}
-                      placeholder="0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)"
+                      placeholder={interfaceText("0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)")}
                       rows={3}
                       value={audioSamples}
-                    />
+                     {...interfaceTextProps("0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Compute the selected audio fingerprint from the supplied sample data so you can compare or identify audio."
+                    tooltip={interfaceText("Compute the selected audio fingerprint from the supplied sample data so you can compare or identify audio.")}
                     disabled={!audioSamples.trim() || computingAudioHash}
                     loading={computingAudioHash}
                     onClick={handleComputeAudioHash}
                     primary
                   >
-                    Compute Audio Hash
-                  </Button>
+                    <LocalizedText source={"Compute Audio Hash"} /></Button>
                 </Form>
               </details>
 
@@ -1564,13 +1527,13 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Audio Hash Computed</Message.Header>
+                      <Message.Header><LocalizedText source={"Audio Hash Computed"} /></Message.Header>
                       <p>
-                        <strong>Algorithm:</strong> {audioHashResult.algorithm}
+                        <strong><LocalizedText source={"Algorithm:"} /></strong> {audioHashResult.algorithm}
                         <br />
-                        <strong>Hex Hash:</strong> {audioHashResult.hex}
+                        <strong><LocalizedText source={"Hex Hash:"} /></strong> {audioHashResult.hex}
                         <br />
-                        <strong>Sample Count:</strong>{' '}
+                        <strong><LocalizedText source={"Sample Count:"} /></strong>{' '}
                         {audioSamples.split(',').filter((s) => s.trim()).length}
                       </p>
                     </Message>
@@ -1587,24 +1550,19 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="image" />
-                Image Perceptual Hash
-              </Card.Header>
+                <LocalizedText source={"Image Perceptual Hash"} /></Card.Header>
               <Card.Description>
-                Compute perceptual hash for image similarity detection
-              </Card.Description>
+                <LocalizedText source={"Compute perceptual hash for image similarity detection"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Similarity review and hashing statistics are the default path.
-                Raw pixel hashing is a diagnostic operation for prepared image
-                buffers.
-              </Message>
+                <LocalizedText source={"Similarity review and hashing statistics are the default path. Raw pixel hashing is a diagnostic operation for prepared image buffers."} /></Message>
               <details>
-                <summary>Advanced raw image hash controls</summary>
+                <summary><LocalizedText source={"Advanced raw image hash controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Group widths="equal">
                     <Form.Field>
-                      <label>Algorithm</label>
+                      <label><LocalizedText source={"Algorithm"} /></label>
                       <Dropdown
                         onChange={(e, { value }) => setImageAlgorithm(value)}
                         options={
@@ -1621,7 +1579,7 @@ const MediaCore = () => {
                       />
                     </Form.Field>
                     <Form.Field>
-                      <label>Dimensions</label>
+                      <label><LocalizedText source={"Dimensions"} /></label>
                       <Input
                         onChange={(e) => {
                           const [w, h] = e.target.value
@@ -1630,29 +1588,28 @@ const MediaCore = () => {
                           if (!isNaN(w)) setImageWidth(w);
                           if (!isNaN(h)) setImageHeight(h);
                         }}
-                        placeholder="Width x Height"
+                        placeholder={interfaceText("Width x Height")}
                         value={`${imageWidth}x${imageHeight}`}
-                      />
+                       {...interfaceTextProps("Width x Height")}/>
                     </Form.Field>
                   </Form.Group>
                   <Form.Field>
-                    <label>Pixel Data (comma-separated bytes 0-255)</label>
+                    <label><LocalizedText source={"Pixel Data (comma-separated bytes 0-255)"} /></label>
                     <TextArea
                       onChange={(e) => setImagePixels(e.target.value)}
-                      placeholder="255, 128, 64, ... (RGBA pixel data)"
+                      placeholder={interfaceText("255, 128, 64, ... (RGBA pixel data)")}
                       rows={3}
                       value={imagePixels}
-                    />
+                     {...interfaceTextProps("255, 128, 64, ... (RGBA pixel data)")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Compute the selected image fingerprint from the supplied pixel data so you can compare images."
+                    tooltip={interfaceText("Compute the selected image fingerprint from the supplied pixel data so you can compare images.")}
                     disabled={!imagePixels.trim() || computingImageHash}
                     loading={computingImageHash}
                     onClick={handleComputeImageHash}
                     primary
                   >
-                    Compute Image Hash
-                  </Button>
+                    <LocalizedText source={"Compute Image Hash"} /></Button>
                 </Form>
               </details>
 
@@ -1664,13 +1621,13 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Image Hash Computed</Message.Header>
+                      <Message.Header><LocalizedText source={"Image Hash Computed"} /></Message.Header>
                       <p>
-                        <strong>Algorithm:</strong> {imageHashResult.algorithm}
+                        <strong><LocalizedText source={"Algorithm:"} /></strong> {imageHashResult.algorithm}
                         <br />
-                        <strong>Hex Hash:</strong> {imageHashResult.hex}
+                        <strong><LocalizedText source={"Hex Hash:"} /></strong> {imageHashResult.hex}
                         <br />
-                        <strong>Dimensions:</strong> {imageWidth}x{imageHeight}
+                        <strong><LocalizedText source={"Dimensions:"} /></strong> {imageWidth} × {imageHeight}
                       </p>
                     </Message>
                   )}
@@ -1686,33 +1643,31 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="balance scale" />
-                Hash Similarity Analysis
-              </Card.Header>
+                <LocalizedText source={"Hash Similarity Analysis"} /></Card.Header>
               <Card.Description>
-                Compare perceptual hashes to determine content similarity
-              </Card.Description>
+                <LocalizedText source={"Compare perceptual hashes to determine content similarity"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>Hash A (hex)</label>
+                    <label><LocalizedText source={"Hash A (hex)"} /></label>
                     <Input
                       onChange={(e) => setHashA(e.target.value)}
-                      placeholder="First hash value (hexadecimal)"
+                      placeholder={interfaceText("First hash value (hexadecimal)")}
                       value={hashA}
-                    />
+                     {...interfaceTextProps("First hash value (hexadecimal)")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>Hash B (hex)</label>
+                    <label><LocalizedText source={"Hash B (hex)"} /></label>
                     <Input
                       onChange={(e) => setHashB(e.target.value)}
-                      placeholder="Second hash value (hexadecimal)"
+                      placeholder={interfaceText("Second hash value (hexadecimal)")}
                       value={hashB}
-                    />
+                     {...interfaceTextProps("Second hash value (hexadecimal)")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>Similarity Threshold</label>
+                    <label><LocalizedText source={"Similarity Threshold"} /></label>
                     <Input
                       max="1"
                       min="0"
@@ -1724,7 +1679,7 @@ const MediaCore = () => {
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Compare these two hashes against the chosen threshold to see whether they are a likely match."
+                  tooltip={interfaceText("Compare these two hashes against the chosen threshold to see whether they are a likely match.")}
                   disabled={
                     !hashA.trim() || !hashB.trim() || computingSimilarity
                   }
@@ -1732,8 +1687,7 @@ const MediaCore = () => {
                   onClick={handleComputeSimilarity}
                   primary
                 >
-                  Analyze Similarity
-                </Button>
+                  <LocalizedText source={"Analyze Similarity"} /></Button>
               </Form>
 
               {similarityResult && (
@@ -1745,16 +1699,14 @@ const MediaCore = () => {
                   ) : (
                     <Message info>
                       <Message.Header>
-                        Similarity Analysis Results
-                      </Message.Header>
+                        <LocalizedText source={"Similarity Analysis Results"} /></Message.Header>
                       <p>
-                        <strong>Hamming Distance:</strong>{' '}
-                        {similarityResult.hammingDistance} bits
-                        <br />
-                        <strong>Similarity Score:</strong>{' '}
+                        <strong><LocalizedText source={"Hamming Distance:"} /></strong>{' '}
+                        {similarityResult.hammingDistance} <LocalizedText source={"bits"} /><br />
+                        <strong><LocalizedText source={"Similarity Score:"} /></strong>{' '}
                         {(similarityResult.similarity * 100).toFixed(1)}%<br />
-                        <strong>Are Similar:</strong>{' '}
-                        {similarityResult.areSimilar ? 'Yes' : 'No'} (threshold:{' '}
+                        <strong><LocalizedText source={"Are Similar:"} /></strong>{' '}
+                        {similarityResult.areSimilar ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />} <LocalizedText source={"(threshold:"} />{' '}
                         {(similarityResult.threshold * 100).toFixed(1)}%)
                       </p>
                     </Message>
@@ -1771,32 +1723,27 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="magic" />
-                Fuzzy Content Matching
-              </Card.Header>
+                <LocalizedText source={"Fuzzy Content Matching"} /></Card.Header>
               <Card.Description>
-                Find similar content using perceptual hashes and text analysis
-              </Card.Description>
+                <LocalizedText source={"Find similar content using perceptual hashes and text analysis"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Pairwise perceptual and text similarity are the default review
-                paths. Candidate search can scan registry entries, so it is
-                grouped as an advanced similarity search.
-              </Message>
+                <LocalizedText source={"Pairwise perceptual and text similarity are the default review paths. Candidate search can scan registry entries, so it is grouped as an advanced similarity search."} /></Message>
               <details>
-                <summary>Advanced similarity candidate search controls</summary>
+                <summary><LocalizedText source={"Advanced similarity candidate search controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Field>
-                    <label>Target ContentID</label>
+                    <label><LocalizedText source={"Target ContentID"} /></label>
                     <Input
                       onChange={(e) => setFindSimilarContentId(e.target.value)}
-                      placeholder="ContentID to find matches for"
+                      placeholder={interfaceText("ContentID to find matches for")}
                       value={findSimilarContentId}
-                    />
+                     {...interfaceTextProps("ContentID to find matches for")}/>
                   </Form.Field>
                   <Form.Group widths="equal">
                     <Form.Field>
-                      <label>Min Confidence</label>
+                      <label><LocalizedText source={"Min Confidence"} /></label>
                       <Input
                         max="1"
                         min="0"
@@ -1809,7 +1756,7 @@ const MediaCore = () => {
                       />
                     </Form.Field>
                     <Form.Field>
-                      <label>Max Results</label>
+                      <label><LocalizedText source={"Max Results"} /></label>
                       <Input
                         max="50"
                         min="1"
@@ -1822,7 +1769,7 @@ const MediaCore = () => {
                     </Form.Field>
                   </Form.Group>
                   <Button
-                    tooltip="Search for content similar to this ID using the selected confidence and result limits."
+                    tooltip={interfaceText("Search for content similar to this ID using the selected confidence and result limits.")}
                     disabled={
                       !findSimilarContentId.trim() || findingSimilarContent
                     }
@@ -1830,8 +1777,7 @@ const MediaCore = () => {
                     onClick={handleFindSimilarContent}
                     primary
                   >
-                    Find Similar Content
-                  </Button>
+                    <LocalizedText source={"Find Similar Content"} /></Button>
                 </Form>
               </details>
 
@@ -1844,19 +1790,20 @@ const MediaCore = () => {
                   ) : (
                     <div>
                       <p>
-                        <strong>Target:</strong>{' '}
+                        <strong><LocalizedText source={"Target:"} /></strong>{' '}
                         {findSimilarResult.targetContentId}
                       </p>
                       <p>
                         <strong>
-                          Searched {findSimilarResult.totalCandidates}{' '}
-                          candidates
-                        </strong>
+                          <LocalizedText source={"Searched"} />{" "}{findSimilarResult.totalCandidates}{' '}
+                          <LocalizedText source={"candidates"} /></strong>
                       </p>
                       <p>
                         <strong>
-                          Found {asArray(findSimilarResult.matches).length} matches
-                        </strong>
+                          <LocalizedText
+                            source="Found {count} matches"
+                            values={{ count: asArray(findSimilarResult.matches).length }}
+                          /></strong>
                       </p>
                       {asArray(findSimilarResult.matches).length > 0 && (
                         <List
@@ -1871,9 +1818,8 @@ const MediaCore = () => {
                                   {match.candidateContentId}
                                 </List.Header>
                                 <List.Description>
-                                  Confidence:{' '}
-                                  {(match.confidence * 100).toFixed(1)}% |
-                                  Reason: {match.reason}
+                                  <LocalizedText source={"Confidence:"} />{' '}
+                                  {(match.confidence * 100).toFixed(1)}<LocalizedText source={"% | Reason:"} />{" "}{match.reason}
                                 </List.Description>
                               </List.Content>
                             </List.Item>
@@ -1894,34 +1840,32 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="chart bar" />
-                Perceptual Similarity
-              </Card.Header>
+                <LocalizedText source={"Perceptual Similarity"} /></Card.Header>
               <Card.Description>
-                Compare perceptual similarity between two ContentIDs
-              </Card.Description>
+                <LocalizedText source={"Compare perceptual similarity between two ContentIDs"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>ContentID A</label>
+                    <label><LocalizedText source={"ContentID A"} /></label>
                     <Input
                       onChange={(e) => setPerceptualContentIdA(e.target.value)}
-                      placeholder="First ContentID"
+                      placeholder={interfaceText("First ContentID")}
                       value={perceptualContentIdA}
-                    />
+                     {...interfaceTextProps("First ContentID")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>ContentID B</label>
+                    <label><LocalizedText source={"ContentID B"} /></label>
                     <Input
                       onChange={(e) => setPerceptualContentIdB(e.target.value)}
-                      placeholder="Second ContentID"
+                      placeholder={interfaceText("Second ContentID")}
                       value={perceptualContentIdB}
-                    />
+                     {...interfaceTextProps("Second ContentID")}/>
                   </Form.Field>
                 </Form.Group>
                 <Form.Field>
-                  <label>Similarity Threshold</label>
+                  <label><LocalizedText source={"Similarity Threshold"} /></label>
                   <Input
                     max="1"
                     min="0"
@@ -1932,7 +1876,7 @@ const MediaCore = () => {
                   />
                 </Form.Field>
                 <Button
-                  tooltip="Compare these content IDs using their perceptual signatures and threshold to find similar media."
+                  tooltip={interfaceText("Compare these content IDs using their perceptual signatures and threshold to find similar media.")}
                   disabled={
                     !perceptualContentIdA.trim() ||
                     !perceptualContentIdB.trim() ||
@@ -1942,8 +1886,7 @@ const MediaCore = () => {
                   onClick={handleComputePerceptualSimilarity}
                   primary
                 >
-                  Compute Similarity
-                </Button>
+                  <LocalizedText source={"Compute Similarity"} /></Button>
               </Form>
 
               {perceptualSimilarityResult && (
@@ -1954,22 +1897,22 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message info>
-                      <Message.Header>Similarity Analysis</Message.Header>
+                      <Message.Header><LocalizedText source={"Similarity Analysis"} /></Message.Header>
                       <p>
-                        <strong>Content A:</strong>{' '}
+                        <strong><LocalizedText source={"Content A:"} /></strong>{' '}
                         {perceptualSimilarityResult.contentIdA}
                         <br />
-                        <strong>Content B:</strong>{' '}
+                        <strong><LocalizedText source={"Content B:"} /></strong>{' '}
                         {perceptualSimilarityResult.contentIdB}
                         <br />
-                        <strong>Similarity:</strong>{' '}
+                        <strong><LocalizedText source={"Similarity:"} /></strong>{' '}
                         {(perceptualSimilarityResult.similarity * 100).toFixed(
                           1,
                         )}
                         %<br />
-                        <strong>Are Similar:</strong>{' '}
-                        {perceptualSimilarityResult.isSimilar ? 'Yes' : 'No'}{' '}
-                        (threshold:{' '}
+                        <strong><LocalizedText source={"Are Similar:"} /></strong>{' '}
+                        {perceptualSimilarityResult.isSimilar ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}{' '}
+                        <LocalizedText source={"(threshold:"} />{' '}
                         {(perceptualSimilarityResult.threshold * 100).toFixed(
                           1,
                         )}
@@ -1989,35 +1932,32 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="font" />
-                Text Similarity Analysis
-              </Card.Header>
+                <LocalizedText source={"Text Similarity Analysis"} /></Card.Header>
               <Card.Description>
-                Compare text strings using Levenshtein distance and phonetic
-                matching
-              </Card.Description>
+                <LocalizedText source={"Compare text strings using Levenshtein distance and phonetic matching"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>Text A</label>
+                    <label><LocalizedText source={"Text A"} /></label>
                     <Input
                       onChange={(e) => setTextSimilarityA(e.target.value)}
-                      placeholder="First text string"
+                      placeholder={interfaceText("First text string")}
                       value={textSimilarityA}
-                    />
+                     {...interfaceTextProps("First text string")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>Text B</label>
+                    <label><LocalizedText source={"Text B"} /></label>
                     <Input
                       onChange={(e) => setTextSimilarityB(e.target.value)}
-                      placeholder="Second text string"
+                      placeholder={interfaceText("Second text string")}
                       value={textSimilarityB}
-                    />
+                     {...interfaceTextProps("Second text string")}/>
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Compare the supplied text values to measure how closely their content matches."
+                  tooltip={interfaceText("Compare the supplied text values to measure how closely their content matches.")}
                   disabled={
                     !textSimilarityA.trim() ||
                     !textSimilarityB.trim() ||
@@ -2027,8 +1967,7 @@ const MediaCore = () => {
                   onClick={handleComputeTextSimilarity}
                   primary
                 >
-                  Analyze Text Similarity
-                </Button>
+                  <LocalizedText source={"Analyze Text Similarity"} /></Button>
               </Form>
 
               {textSimilarityResult && (
@@ -2039,23 +1978,23 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Text Similarity Results</Message.Header>
+                      <Message.Header><LocalizedText source={"Text Similarity Results"} /></Message.Header>
                       <p>
-                        <strong>Text A:</strong> "{textSimilarityResult.textA}"
+                        <strong><LocalizedText source={"Text A:"} /></strong> "{textSimilarityResult.textA}"
                         <br />
-                        <strong>Text B:</strong> "{textSimilarityResult.textB}"
+                        <strong><LocalizedText source={"Text B:"} /></strong> "{textSimilarityResult.textB}"
                         <br />
-                        <strong>Levenshtein Similarity:</strong>{' '}
+                        <strong><LocalizedText source={"Levenshtein Similarity:"} /></strong>{' '}
                         {(
                           textSimilarityResult.levenshteinSimilarity * 100
                         ).toFixed(1)}
                         %<br />
-                        <strong>Phonetic Similarity:</strong>{' '}
+                        <strong><LocalizedText source={"Phonetic Similarity:"} /></strong>{' '}
                         {(
                           textSimilarityResult.phoneticSimilarity * 100
                         ).toFixed(1)}
                         %<br />
-                        <strong>Combined Similarity:</strong>{' '}
+                        <strong><LocalizedText source={"Combined Similarity:"} /></strong>{' '}
                         {(
                           textSimilarityResult.combinedSimilarity * 100
                         ).toFixed(1)}
@@ -2075,39 +2014,36 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="download" />
-                Export Metadata
-              </Card.Header>
+                <LocalizedText source={"Export Metadata"} /></Card.Header>
               <Card.Description>
-                Export metadata for ContentIDs to a portable package
-              </Card.Description>
+                <LocalizedText source={"Export metadata for ContentIDs to a portable package"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Field>
-                  <label>ContentIDs (one per line)</label>
+                  <label><LocalizedText source={"ContentIDs (one per line)"} /></label>
                   <TextArea
                     onChange={(e) => setExportContentIds(e.target.value)}
-                    placeholder="content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;..."
+                    placeholder={interfaceText("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}
                     rows={4}
                     value={exportContentIds}
-                  />
+                   {...interfaceTextProps("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}/>
                 </Form.Field>
                 <Form.Field>
                   <Checkbox
                     checked={includeLinks}
-                    label="Include IPLD links"
+                    label={interfaceText("Include IPLD links")}
                     onChange={(e, { checked }) => setIncludeLinks(checked)}
-                  />
+                   {...interfaceTextProps("Include IPLD links")}/>
                 </Form.Field>
                 <Button
-                  tooltip="Build a metadata package for the selected ContentIDs and optional links so you can back it up or review it. This does not publish the package."
+                  tooltip={interfaceText("Build a metadata package for the selected ContentIDs and optional links so you can back it up or review it. This does not publish the package.")}
                   disabled={!exportContentIds.trim() || exportingMetadata}
                   loading={exportingMetadata}
                   onClick={handleExportMetadata}
                   primary
                 >
-                  Export Metadata
-                </Button>
+                  <LocalizedText source={"Export Metadata"} /></Button>
               </Form>
 
               {exportResult && (
@@ -2118,21 +2054,21 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Export Successful</Message.Header>
+                      <Message.Header><LocalizedText source={"Export Successful"} /></Message.Header>
                       <p>
-                        <strong>Version:</strong> {exportResult.version}
+                        <strong><LocalizedText source={"Version:"} /></strong> {exportResult.version}
                         <br />
-                        <strong>Entries:</strong>{' '}
+                        <strong><LocalizedText source={"Entries:"} /></strong>{' '}
                         {exportResult.metadata?.totalEntries || 0}
                         <br />
-                        <strong>Links:</strong>{' '}
+                        <strong><LocalizedText source={"Links:"} /></strong>{' '}
                         {exportResult.metadata?.totalLinks || 0}
                         <br />
-                        <strong>Checksum:</strong>{' '}
+                        <strong><LocalizedText source={"Checksum:"} /></strong>{' '}
                         {exportResult.metadata?.checksum?.slice(0, 16)}...
                       </p>
                       <details>
-                        <summary>View Package JSON</summary>
+                        <summary><LocalizedText source={"View Package JSON"} /></summary>
                         <pre
                           style={{
                             fontSize: '0.8em',
@@ -2157,16 +2093,14 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="upload" />
-                Import Metadata
-              </Card.Header>
+                <LocalizedText source={"Import Metadata"} /></Card.Header>
               <Card.Description>
-                Import metadata from a portable package with conflict resolution
-              </Card.Description>
+                <LocalizedText source={"Import metadata from a portable package with conflict resolution"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Field>
-                  <label>Conflict Resolution Strategy</label>
+                  <label><LocalizedText source={"Conflict Resolution Strategy"} /></label>
                   <Dropdown
                     onChange={(e, { value }) => setConflictStrategy(value)}
                       options={
@@ -2184,53 +2118,48 @@ const MediaCore = () => {
                 <Form.Field>
                   <Checkbox
                     checked={dryRun}
-                    label="Dry run (preview changes without applying)"
+                    label={interfaceText("Dry run (preview changes without applying)")}
                     onChange={(e, { checked }) => setDryRun(checked)}
-                  />
+                   {...interfaceTextProps("Dry run (preview changes without applying)")}/>
                 </Form.Field>
                 <Button
-                  tooltip="Preview conflicts between this package and the local registry without importing changes; use this before choosing an import strategy."
+                  tooltip={interfaceText("Preview conflicts between this package and the local registry without importing changes; use this before choosing an import strategy.")}
                   disabled={!importPackage.trim() || analyzingConflicts}
                   loading={analyzingConflicts}
                   onClick={handleAnalyzeConflicts}
                   secondary
                 >
-                  Analyze Conflicts
-                </Button>
+                  <LocalizedText source={"Analyze Conflicts"} /></Button>
               </Form>
 
               {/* Import Package Input */}
               <Form style={{ marginTop: '1em' }}>
                 <Form.Field>
-                  <label>Metadata Package (JSON)</label>
+                  <label><LocalizedText source={"Metadata Package (JSON)"} /></label>
                   <TextArea
                     onChange={(e) => setImportPackage(e.target.value)}
-                    placeholder="Paste exported metadata package JSON here..."
+                    placeholder={interfaceText("Paste exported metadata package JSON here...")}
                     rows={6}
                     value={importPackage}
-                  />
+                   {...interfaceTextProps("Paste exported metadata package JSON here...")}/>
                 </Form.Field>
               </Form>
               <details style={{ marginTop: '1em' }}>
-                <summary>Advanced metadata import controls</summary>
+                <summary><LocalizedText source={"Advanced metadata import controls"} /></summary>
                 <Message warning size="small">
-                  Importing applies package metadata to the local registry. Run
-                  conflict analysis first, then import only when the selected
-                  strategy is intentional.
-                </Message>
+                  <LocalizedText source={"Importing applies package metadata to the local registry. Run conflict analysis first, then import only when the selected strategy is intentional."} /></Message>
                 <Button
                   tooltip={
                     dryRun
-                      ? 'Preview the changes this package would make to the local registry without applying them.'
-                      : 'Import this package and apply its changes to the local registry. Review the conflict strategy before applying.'
+                      ? interfaceText("Preview the changes this package would make to the local registry without applying them.")
+                      : interfaceText("Import this package and apply its changes to the local registry. Review the conflict strategy before applying.")
                   }
                   disabled={!importPackage.trim() || importingMetadata}
                   loading={importingMetadata}
                   onClick={handleImportMetadata}
                   primary
                 >
-                  Import Metadata
-                </Button>
+                  <LocalizedText source={"Import Metadata"} /></Button>
               </details>
 
               {/* Results */}
@@ -2242,20 +2171,20 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message info>
-                      <Message.Header>Conflict Analysis</Message.Header>
+                      <Message.Header><LocalizedText source={"Conflict Analysis"} /></Message.Header>
                       <p>
-                        <strong>Total Entries:</strong>{' '}
+                        <strong><LocalizedText source={"Total Entries:"} /></strong>{' '}
                         {conflictAnalysis.totalEntries}
                         <br />
-                        <strong>Conflicting:</strong>{' '}
+                        <strong><LocalizedText source={"Conflicting:"} /></strong>{' '}
                         {conflictAnalysis.conflictingEntries}
                         <br />
-                        <strong>Clean:</strong> {conflictAnalysis.cleanEntries}
+                        <strong><LocalizedText source={"Clean:"} /></strong> {conflictAnalysis.cleanEntries}
                         <br />
-                        <strong>Recommended Strategy:</strong>{' '}
+                        <strong><LocalizedText source={"Recommended Strategy:"} /></strong>{' '}
                         {Object.entries(
                           conflictAnalysis.recommendedStrategies || {},
-                        ).sort(([, a], [, b]) => b - a)[0]?.[0] || 'Merge'}
+                        ).sort(([, a], [, b]) => b - a)[0]?.[0] || <LocalizedText source={"Merge"} />}
                       </p>
                     </Message>
                   )}
@@ -2271,30 +2200,29 @@ const MediaCore = () => {
                   ) : (
                     <Message success>
                       <Message.Header>
-                        Import{' '}
+                        <LocalizedText source={"Import"} />{' '}
                         {importResult.success
-                          ? 'Successful'
-                          : 'Completed with Issues'}
+                          ? <LocalizedText source={"Successful"} />
+                          : <LocalizedText source={"Completed with Issues"} />}
                       </Message.Header>
                       <p>
-                        <strong>Processed:</strong>{' '}
+                        <strong><LocalizedText source={"Processed:"} /></strong>{' '}
                         {importResult.entriesProcessed}
                         <br />
-                        <strong>Imported:</strong>{' '}
+                        <strong><LocalizedText source={"Imported:"} /></strong>{' '}
                         {importResult.entriesImported}
                         <br />
-                        <strong>Skipped:</strong> {importResult.entriesSkipped}
+                        <strong><LocalizedText source={"Skipped:"} /></strong> {importResult.entriesSkipped}
                         <br />
-                        <strong>Conflicts Resolved:</strong>{' '}
+                        <strong><LocalizedText source={"Conflicts Resolved:"} /></strong>{' '}
                         {importResult.conflictsResolved}
                         <br />
-                        <strong>Duration:</strong>{' '}
-                        {importResult.duration?.TotalSeconds.toFixed(2)}s
-                      </p>
+                        <strong><LocalizedText source={"Duration:"} /></strong>{' '}
+                        {importResult.duration?.TotalSeconds.toFixed(2)}<LocalizedText source={"s"} /></p>
                       {asArray(importResult.errors).length > 0 && (
                         <details>
                           <summary>
-                            Errors ({asArray(importResult.errors).length})
+                            <LocalizedText source={"Errors ("} />{asArray(importResult.errors).length})
                           </summary>
                           <List bulleted>
                             {asArray(importResult.errors).map((error, index) => (
@@ -2317,23 +2245,18 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="cloud upload" />
-                Publish Content Descriptor
-              </Card.Header>
+                <LocalizedText source={"Publish Content Descriptor"} /></Card.Header>
               <Card.Description>
-                Publish a content descriptor to the DHT with versioning support
-              </Card.Description>
+                <LocalizedText source={"Publish a content descriptor to the DHT with versioning support"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Descriptor publishing changes DHT-visible metadata. Retrieval
-                and stats are the default workflow; publishing controls are
-                grouped as advanced operations.
-              </Message>
+                <LocalizedText source={"Descriptor publishing changes DHT-visible metadata. Retrieval and stats are the default workflow; publishing controls are grouped as advanced operations."} /></Message>
               <details>
-                <summary>Advanced descriptor publishing controls</summary>
+                <summary><LocalizedText source={"Advanced descriptor publishing controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Field>
-                    <label>ContentID</label>
+                    <label><LocalizedText source={"ContentID"} /></label>
                     <Input
                       onChange={(e) => setPublishContentId(e.target.value)}
                       placeholder="content:audio:track:mb-12345"
@@ -2342,15 +2265,15 @@ const MediaCore = () => {
                   </Form.Field>
                   <Form.Group widths="equal">
                     <Form.Field>
-                      <label>Codec</label>
+                      <label><LocalizedText source={"Codec"} /></label>
                       <Input
                         onChange={(e) => setPublishCodec(e.target.value)}
-                        placeholder="mp3, flac, etc."
+                        placeholder={interfaceText("mp3, flac, etc.")}
                         value={publishCodec}
-                      />
+                       {...interfaceTextProps("mp3, flac, etc.")}/>
                     </Form.Field>
                     <Form.Field>
-                      <label>Size (bytes)</label>
+                      <label><LocalizedText source={"Size (bytes)"} /></label>
                       <Input
                         onChange={(e) => setPublishSize(e.target.value)}
                         type="number"
@@ -2359,14 +2282,13 @@ const MediaCore = () => {
                     </Form.Field>
                   </Form.Group>
                   <Button
-                    tooltip="Publish a descriptor for this ContentID to the DHT so other participants can discover it. Review the supplied metadata before publishing."
+                    tooltip={interfaceText("Publish a descriptor for this ContentID to the DHT so other participants can discover it. Review the supplied metadata before publishing.")}
                     disabled={!publishContentId.trim() || publishingDescriptor}
                     loading={publishingDescriptor}
                     onClick={handlePublishDescriptor}
                     primary
                   >
-                    Publish Descriptor
-                  </Button>
+                    <LocalizedText source={"Publish Descriptor"} /></Button>
                 </Form>
               </details>
 
@@ -2378,17 +2300,16 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Published Successfully</Message.Header>
+                      <Message.Header><LocalizedText source={"Published Successfully"} /></Message.Header>
                       <p>
-                        <strong>ContentID:</strong> {publishResult.contentId}
+                        <strong><LocalizedText source={"ContentID:"} /></strong> {publishResult.contentId}
                         <br />
-                        <strong>Version:</strong> {publishResult.version}
+                        <strong><LocalizedText source={"Version:"} /></strong> {publishResult.version}
                         <br />
                         <strong>TTL:</strong> {publishResult.ttl?.totalMinutes}{' '}
-                        minutes
-                        <br />
-                        <strong>Was Updated:</strong>{' '}
-                        {publishResult.wasUpdated ? 'Yes' : 'No'}
+                        <LocalizedText source={"minutes"} /><br />
+                        <strong><LocalizedText source={"Was Updated:"} /></strong>{' '}
+                        {publishResult.wasUpdated ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                       </p>
                     </Message>
                   )}
@@ -2404,39 +2325,33 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="list" />
-                Batch Publish Descriptors
-              </Card.Header>
+                <LocalizedText source={"Batch Publish Descriptors"} /></Card.Header>
               <Card.Description>
-                Publish multiple content descriptors simultaneously
-              </Card.Description>
+                <LocalizedText source={"Publish multiple content descriptors simultaneously"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Batch publishing can expose multiple descriptors at once. Keep
-                retrieval and stats as the default path; use this only after
-                checking each ContentID.
-              </Message>
+                <LocalizedText source={"Batch publishing can expose multiple descriptors at once. Keep retrieval and stats as the default path; use this only after checking each ContentID."} /></Message>
               <details>
-                <summary>Advanced batch publishing controls</summary>
+                <summary><LocalizedText source={"Advanced batch publishing controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Field>
-                    <label>ContentIDs (one per line)</label>
+                    <label><LocalizedText source={"ContentIDs (one per line)"} /></label>
                     <TextArea
                       onChange={(e) => setBatchContentIds(e.target.value)}
-                      placeholder="content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;..."
+                      placeholder={interfaceText("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}
                       rows={6}
                       value={batchContentIds}
-                    />
+                     {...interfaceTextProps("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Publish one descriptor for each listed ContentID to the DHT. Review the full list because each entry creates a network write."
+                    tooltip={interfaceText("Publish one descriptor for each listed ContentID to the DHT. Review the full list because each entry creates a network write.")}
                     disabled={!batchContentIds.trim() || publishingBatch}
                     loading={publishingBatch}
                     onClick={handlePublishBatch}
                     primary
                   >
-                    Publish Batch
-                  </Button>
+                    <LocalizedText source={"Publish Batch"} /></Button>
                 </Form>
               </details>
 
@@ -2448,25 +2363,24 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message info>
-                      <Message.Header>Batch Publish Results</Message.Header>
+                      <Message.Header><LocalizedText source={"Batch Publish Results"} /></Message.Header>
                       <p>
-                        <strong>Total Requested:</strong>{' '}
+                        <strong><LocalizedText source={"Total Requested:"} /></strong>{' '}
                         {batchPublishResult.totalRequested}
                         <br />
-                        <strong>Successfully Published:</strong>{' '}
+                        <strong><LocalizedText source={"Successfully Published:"} /></strong>{' '}
                         {batchPublishResult.successfullyPublished}
                         <br />
-                        <strong>Failed:</strong>{' '}
+                        <strong><LocalizedText source={"Failed:"} /></strong>{' '}
                         {batchPublishResult.failedToPublish}
                         <br />
-                        <strong>Skipped:</strong> {batchPublishResult.skipped}
+                        <strong><LocalizedText source={"Skipped:"} /></strong> {batchPublishResult.skipped}
                         <br />
-                        <strong>Duration:</strong>{' '}
+                        <strong><LocalizedText source={"Duration:"} /></strong>{' '}
                         {batchPublishResult.totalDuration?.totalSeconds.toFixed(
                           2,
                         )}
-                        s
-                      </p>
+                        <LocalizedText source={"s"} /></p>
                     </Message>
                   )}
                 </div>
@@ -2481,64 +2395,58 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="edit" />
-                Update Descriptor
-              </Card.Header>
+                <LocalizedText source={"Update Descriptor"} /></Card.Header>
               <Card.Description>
-                Update metadata for an existing published descriptor
-              </Card.Description>
+                <LocalizedText source={"Update metadata for an existing published descriptor"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Descriptor updates alter an existing publication. Retrieve and
-                verify the descriptor first, then use this advanced path only
-                for deliberate metadata corrections.
-              </Message>
+                <LocalizedText source={"Descriptor updates alter an existing publication. Retrieve and verify the descriptor first, then use this advanced path only for deliberate metadata corrections."} /></Message>
               <details>
-                <summary>Advanced descriptor update controls</summary>
+                <summary><LocalizedText source={"Advanced descriptor update controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Field>
-                    <label>Target ContentID</label>
+                    <label><LocalizedText source={"Target ContentID"} /></label>
                     <Input
                       onChange={(e) => setUpdateTargetId(e.target.value)}
-                      placeholder="ContentID to update"
+                      placeholder={interfaceText("ContentID to update")}
                       value={updateTargetId}
-                    />
+                     {...interfaceTextProps("ContentID to update")}/>
                   </Form.Field>
                   <Form.Group widths="equal">
                     <Form.Field>
-                      <label>New Codec</label>
+                      <label><LocalizedText source={"New Codec"} /></label>
                       <Input
                         onChange={(e) => setUpdateCodec(e.target.value)}
-                        placeholder="Leave empty to keep current"
+                        placeholder={interfaceText("Leave empty to keep current")}
                         value={updateCodec}
-                      />
+                       {...interfaceTextProps("Leave empty to keep current")}/>
                     </Form.Field>
                     <Form.Field>
-                      <label>New Size (bytes)</label>
+                      <label><LocalizedText source={"New Size (bytes)"} /></label>
                       <Input
                         onChange={(e) => setUpdateSize(e.target.value)}
-                        placeholder="Leave empty to keep current"
+                        placeholder={interfaceText("Leave empty to keep current")}
                         value={updateSize}
-                      />
+                       {...interfaceTextProps("Leave empty to keep current")}/>
                     </Form.Field>
                   </Form.Group>
                   <Form.Field>
-                    <label>New Confidence (0.0-1.0)</label>
+                    <label><LocalizedText source={"New Confidence (0.0-1.0)"} /></label>
                     <Input
                       onChange={(e) => setUpdateConfidence(e.target.value)}
-                      placeholder="Leave empty to keep current"
+                      placeholder={interfaceText("Leave empty to keep current")}
                       value={updateConfidence}
-                    />
+                     {...interfaceTextProps("Leave empty to keep current")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Update the selected descriptor in the DHT so participants see the new values. Verify the ContentID and fields before applying."
+                    tooltip={interfaceText("Update the selected descriptor in the DHT so participants see the new values. Verify the ContentID and fields before applying.")}
                     disabled={!updateTargetId.trim() || updatingDescriptor}
                     loading={updatingDescriptor}
                     onClick={handleUpdateDescriptor}
                     primary
                   >
-                    Update Descriptor
-                  </Button>
+                    <LocalizedText source={"Update Descriptor"} /></Button>
                 </Form>
               </details>
 
@@ -2550,15 +2458,15 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Update Successful</Message.Header>
+                      <Message.Header><LocalizedText source={"Update Successful"} /></Message.Header>
                       <p>
-                        <strong>ContentID:</strong> {updateResult.contentId}
+                        <strong><LocalizedText source={"ContentID:"} /></strong> {updateResult.contentId}
                         <br />
-                        <strong>Version:</strong> {updateResult.previousVersion}{' '}
+                        <strong><LocalizedText source={"Version:"} /></strong> {updateResult.previousVersion}{' '}
                         → {updateResult.newVersion}
                         <br />
-                        <strong>Updates Applied:</strong>{' '}
-                        {updateResult.appliedUpdates?.join(', ') || 'none'}
+                        <strong><LocalizedText source={"Updates Applied:"} /></strong>{' '}
+                        {updateResult.appliedUpdates?.join(', ') || <LocalizedText source={"none"} />}
                       </p>
                     </Message>
                   )}
@@ -2574,38 +2482,31 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="cogs" />
-                Publishing Management
-              </Card.Header>
+                <LocalizedText source={"Publishing Management"} /></Card.Header>
               <Card.Description>
-                Manage published descriptors and monitor publishing status
-              </Card.Description>
+                <LocalizedText source={"Manage published descriptors and monitor publishing status"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Button.Group fluid>
                 <Button
-                  tooltip="Load local descriptor publication counts and timings so you can review recent publishing activity."
+                  tooltip={interfaceText("Load local descriptor publication counts and timings so you can review recent publishing activity.")}
                   disabled={loadingStats}
                   loading={loadingStats}
                   onClick={handleLoadPublishingStats}
                 >
-                  Load Stats
-                </Button>
+                  <LocalizedText source={"Load Stats"} /></Button>
               </Button.Group>
               <details style={{ marginTop: '1em' }}>
-                <summary>Advanced descriptor republishing controls</summary>
+                <summary><LocalizedText source={"Advanced descriptor republishing controls"} /></summary>
                 <Message warning size="small">
-                  Republish only after reviewing publishing statistics. This
-                  refreshes DHT-visible descriptor records that are close to
-                  expiry.
-                </Message>
+                  <LocalizedText source={"Republish only after reviewing publishing statistics. This refreshes DHT-visible descriptor records that are close to expiry."} /></Message>
                 <Button
-                  tooltip="Republish descriptors nearing expiry so they remain discoverable. This performs DHT writes; run it when renewal is needed."
+                  tooltip={interfaceText("Republish descriptors nearing expiry so they remain discoverable. This performs DHT writes; run it when renewal is needed.")}
                   disabled={republishing}
                   loading={republishing}
                   onClick={handleRepublishExpiring}
                 >
-                  Republish Expiring
-                </Button>
+                  <LocalizedText source={"Republish Expiring"} /></Button>
               </details>
 
               {/* Republish Results */}
@@ -2617,21 +2518,20 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message info>
-                      <Message.Header>Republish Results</Message.Header>
+                      <Message.Header><LocalizedText source={"Republish Results"} /></Message.Header>
                       <p>
-                        <strong>Checked:</strong> {republishResult.totalChecked}
+                        <strong><LocalizedText source={"Checked:"} /></strong> {republishResult.totalChecked}
                         <br />
-                        <strong>Republished:</strong>{' '}
+                        <strong><LocalizedText source={"Republished:"} /></strong>{' '}
                         {republishResult.republished}
                         <br />
-                        <strong>Failed:</strong> {republishResult.failed}
+                        <strong><LocalizedText source={"Failed:"} /></strong> {republishResult.failed}
                         <br />
-                        <strong>Still Valid:</strong>{' '}
+                        <strong><LocalizedText source={"Still Valid:"} /></strong>{' '}
                         {republishResult.stillValid}
                         <br />
-                        <strong>Duration:</strong>{' '}
-                        {republishResult.duration?.totalSeconds.toFixed(2)}s
-                      </p>
+                        <strong><LocalizedText source={"Duration:"} /></strong>{' '}
+                        {republishResult.duration?.totalSeconds.toFixed(2)}<LocalizedText source={"s"} /></p>
                     </Message>
                   )}
                 </div>
@@ -2646,21 +2546,20 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message>
-                      <Message.Header>Publishing Statistics</Message.Header>
+                      <Message.Header><LocalizedText source={"Publishing Statistics"} /></Message.Header>
                       <p>
-                        <strong>Total Published:</strong>{' '}
+                        <strong><LocalizedText source={"Total Published:"} /></strong>{' '}
                         {publishingStats.totalPublishedDescriptors}
                         <br />
-                        <strong>Active Publications:</strong>{' '}
+                        <strong><LocalizedText source={"Active Publications:"} /></strong>{' '}
                         {publishingStats.activePublications}
                         <br />
-                        <strong>Expiring Soon:</strong>{' '}
+                        <strong><LocalizedText source={"Expiring Soon:"} /></strong>{' '}
                         {publishingStats.expiringSoon}
                         <br />
-                        <strong>Average TTL:</strong>{' '}
-                        {publishingStats.averageTtlHours?.toFixed(1)} hours
-                        <br />
-                        <strong>Total Storage:</strong>{' '}
+                        <strong><LocalizedText source={"Average TTL:"} /></strong>{' '}
+                        {publishingStats.averageTtlHours?.toFixed(1)} <LocalizedText source={"hours"} /><br />
+                        <strong><LocalizedText source={"Total Storage:"} /></strong>{' '}
                         {(
                           publishingStats.totalStorageBytes /
                           1_024 /
@@ -2672,7 +2571,7 @@ const MediaCore = () => {
                         Object.keys(publishingStats.publicationsByDomain)
                           .length > 0 && (
                           <div style={{ marginTop: '0.5em' }}>
-                            <strong>By Domain:</strong>
+                            <strong><LocalizedText source={"By Domain:"} /></strong>
                             {Object.entries(
                               publishingStats.publicationsByDomain,
                             ).map(([domain, count]) => (
@@ -2700,21 +2599,16 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="search" />
-                Retrieve Content Descriptor
-              </Card.Header>
+                <LocalizedText source={"Retrieve Content Descriptor"} /></Card.Header>
               <Card.Description>
-                Retrieve content descriptors from the DHT by ContentID
-              </Card.Description>
+                <LocalizedText source={"Retrieve content descriptors from the DHT by ContentID"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Cached single-descriptor retrieval is the default path. Force a
-                fresh lookup only when cache state is suspect because it can
-                trigger additional DHT traffic.
-              </Message>
+                <LocalizedText source={"Cached single-descriptor retrieval is the default path. Force a fresh lookup only when cache state is suspect because it can trigger additional DHT traffic."} /></Message>
               <Form>
                 <Form.Field>
-                  <label>ContentID</label>
+                  <label><LocalizedText source={"ContentID"} /></label>
                   <Input
                     onChange={(e) => setRetrieveContentId(e.target.value)}
                     placeholder="content:audio:track:mb-12345"
@@ -2722,24 +2616,23 @@ const MediaCore = () => {
                   />
                 </Form.Field>
                 <Button
-                  tooltip="Run one manual DHT lookup for this ContentID to inspect its published descriptor. Use the cache-bypass option only when a fresh read is needed."
+                  tooltip={interfaceText("Run one manual DHT lookup for this ContentID to inspect its published descriptor. Use the cache-bypass option only when a fresh read is needed.")}
                   disabled={!retrieveContentId.trim() || retrievingDescriptor}
                   loading={retrievingDescriptor}
                   onClick={handleRetrieveDescriptor}
                   primary
                 >
-                  Retrieve Descriptor
-                </Button>
+                  <LocalizedText source={"Retrieve Descriptor"} /></Button>
               </Form>
               <details style={{ marginTop: '1em' }}>
-                <summary>Advanced fresh DHT retrieval controls</summary>
+                <summary><LocalizedText source={"Advanced fresh DHT retrieval controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Field>
                     <Checkbox
                       checked={bypassCache}
-                      label="Bypass cache (force fresh retrieval)"
+                      label={interfaceText("Bypass cache (force fresh retrieval)")}
                       onChange={(e, { checked }) => setBypassCache(checked)}
-                    />
+                     {...interfaceTextProps("Bypass cache (force fresh retrieval)")}/>
                   </Form.Field>
                 </Form>
               </details>
@@ -2753,37 +2646,36 @@ const MediaCore = () => {
                   ) : !retrievalResult.found ? (
                     <Message warning>
                       <p>
-                        Content descriptor not found for:{' '}
+                        <LocalizedText source={"Content descriptor not found for:"} />{' '}
                         {retrievalResult.contentId || retrieveContentId}
                       </p>
                     </Message>
                   ) : (
                     <Message success>
-                      <Message.Header>Descriptor Retrieved</Message.Header>
+                      <Message.Header><LocalizedText source={"Descriptor Retrieved"} /></Message.Header>
                       <p>
-                        <strong>ContentID:</strong>{' '}
+                        <strong><LocalizedText source={"ContentID:"} /></strong>{' '}
                         {retrievalResult.descriptor?.contentId}
                         <br />
-                        <strong>From Cache:</strong>{' '}
-                        {retrievalResult.fromCache ? 'Yes' : 'No'}
+                        <strong><LocalizedText source={"From Cache:"} /></strong>{' '}
+                        {retrievalResult.fromCache ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                         <br />
-                        <strong>Retrieved:</strong>{' '}
-                        {new Date(retrievalResult.retrievedAt).toLocaleString()}
+                        <strong><LocalizedText source={"Retrieved:"} /></strong>{' '}
+                        {new Date(retrievalResult.retrievedAt).toLocaleString(getRegionalLocale())}
                         <br />
-                        <strong>Duration:</strong>{' '}
+                        <strong><LocalizedText source={"Duration:"} /></strong>{' '}
                         {retrievalResult.retrievalDuration?.totalMilliseconds.toFixed(
                           0,
                         )}
-                        ms
-                        <br />
-                        <strong>Verified:</strong>{' '}
-                        {retrievalResult.verification?.isValid ? 'Yes' : 'No'}
+                        <LocalizedText source={"ms"} /><br />
+                        <strong><LocalizedText source={"Verified:"} /></strong>{' '}
+                        {retrievalResult.verification?.isValid ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                         {asArray(retrievalResult.verification?.warnings).length > 0 && (
-                          <span> (with warnings)</span>
+                          <span> <LocalizedText source={"(with warnings)"} /></span>
                         )}
                       </p>
                       <details>
-                        <summary>View Descriptor JSON</summary>
+                        <summary><LocalizedText source={"View Descriptor JSON"} /></summary>
                         <pre
                           style={{
                             fontSize: '0.8em',
@@ -2808,41 +2700,35 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="list alternate" />
-                Batch Descriptor Retrieval
-              </Card.Header>
+                <LocalizedText source={"Batch Descriptor Retrieval"} /></Card.Header>
               <Card.Description>
-                Retrieve multiple content descriptors simultaneously
-              </Card.Description>
+                <LocalizedText source={"Retrieve multiple content descriptors simultaneously"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Message info size="small">
-                Use single-descriptor retrieval first. Batch retrieval can fan
-                out across multiple descriptors and is grouped as an advanced
-                DHT retrieval operation.
-              </Message>
+                <LocalizedText source={"Use single-descriptor retrieval first. Batch retrieval can fan out across multiple descriptors and is grouped as an advanced DHT retrieval operation."} /></Message>
               <details>
-                <summary>Advanced batch DHT retrieval controls</summary>
+                <summary><LocalizedText source={"Advanced batch DHT retrieval controls"} /></summary>
                 <Form style={{ marginTop: '1em' }}>
                   <Form.Field>
-                    <label>ContentIDs (one per line)</label>
+                    <label><LocalizedText source={"ContentIDs (one per line)"} /></label>
                     <TextArea
                       onChange={(e) =>
                         setBatchRetrieveContentIds(e.target.value)
                       }
-                      placeholder="content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;..."
+                      placeholder={interfaceText("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}
                       rows={6}
                       value={batchRetrieveContentIds}
-                    />
+                     {...interfaceTextProps("content:audio:track:mb-12345&#10;content:video:movie:imdb-tt0111161&#10;...")}/>
                   </Form.Field>
                   <Button
-                    tooltip="Run a DHT lookup for each listed ContentID to inspect their descriptors. Keep the batch bounded because every ID adds network traffic."
+                    tooltip={interfaceText("Run a DHT lookup for each listed ContentID to inspect their descriptors. Keep the batch bounded because every ID adds network traffic.")}
                     disabled={!batchRetrieveContentIds.trim() || retrievingBatch}
                     loading={retrievingBatch}
                     onClick={handleRetrieveBatch}
                     primary
                   >
-                    Retrieve Batch
-                  </Button>
+                    <LocalizedText source={"Retrieve Batch"} /></Button>
                 </Form>
               </details>
 
@@ -2854,21 +2740,20 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message info>
-                      <Message.Header>Batch Retrieval Results</Message.Header>
+                      <Message.Header><LocalizedText source={"Batch Retrieval Results"} /></Message.Header>
                       <p>
-                        <strong>Requested:</strong>{' '}
+                        <strong><LocalizedText source={"Requested:"} /></strong>{' '}
                         {batchRetrievalResult.requested}
                         <br />
-                        <strong>Found:</strong> {batchRetrievalResult.found}
+                        <strong><LocalizedText source={"Found:"} /></strong> {batchRetrievalResult.found}
                         <br />
-                        <strong>Failed:</strong> {batchRetrievalResult.failed}
+                        <strong><LocalizedText source={"Failed:"} /></strong> {batchRetrievalResult.failed}
                         <br />
-                        <strong>Duration:</strong>{' '}
+                        <strong><LocalizedText source={"Duration:"} /></strong>{' '}
                         {batchRetrievalResult.totalDuration?.totalSeconds.toFixed(
                           2,
                         )}
-                        s
-                      </p>
+                        <LocalizedText source={"s"} /></p>
                     </Message>
                   )}
                 </div>
@@ -2883,27 +2768,25 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="filter" />
-                Query by Domain
-              </Card.Header>
+                <LocalizedText source={"Query by Domain"} /></Card.Header>
               <Card.Description>
-                Query content descriptors by domain and optional type
-              </Card.Description>
+                <LocalizedText source={"Query content descriptors by domain and optional type"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Group widths="equal">
                   <Form.Field>
-                    <label>Domain</label>
+                    <label><LocalizedText source={"Domain"} /></label>
                     <Dropdown
                       onChange={(e, { value }) => setQueryDomain(value)}
                       options={[
-                        { key: 'audio', text: 'Audio', value: 'audio' },
-                        { key: 'video', text: 'Video', value: 'video' },
-                        { key: 'image', text: 'Image', value: 'image' },
-                        { key: 'text', text: 'Text', value: 'text' },
+                        { key: 'audio', text: interfaceText("Audio"), value: 'audio' },
+                        { key: 'video', text: interfaceText("Video"), value: 'video' },
+                        { key: 'image', text: interfaceText("Image"), value: 'image' },
+                        { key: 'text', text: interfaceText("Text"), value: 'text' },
                         {
                           key: 'application',
-                          text: 'Application',
+                          text: interfaceText("Application"),
                           value: 'application',
                         },
                       ]}
@@ -2912,15 +2795,15 @@ const MediaCore = () => {
                     />
                   </Form.Field>
                   <Form.Field>
-                    <label>Type (optional)</label>
+                    <label><LocalizedText source={"Type (optional)"} /></label>
                     <Input
                       onChange={(e) => setQueryType(e.target.value)}
-                      placeholder="track, album, movie, etc."
+                      placeholder={interfaceText("track, album, movie, etc.")}
                       value={queryType}
-                    />
+                     {...interfaceTextProps("track, album, movie, etc.")}/>
                   </Form.Field>
                   <Form.Field>
-                    <label>Max Results</label>
+                    <label><LocalizedText source={"Max Results"} /></label>
                     <Input
                       max="1000"
                       min="1"
@@ -2931,14 +2814,13 @@ const MediaCore = () => {
                   </Form.Field>
                 </Form.Group>
                 <Button
-                  tooltip="Search published descriptors by domain and type, up to the selected result limit. This is a manual DHT query."
+                  tooltip={interfaceText("Search published descriptors by domain and type, up to the selected result limit. This is a manual DHT query.")}
                   disabled={!queryDomain.trim() || queryingDescriptors}
                   loading={queryingDescriptors}
                   onClick={handleQueryDescriptors}
                   primary
                 >
-                  Query Domain
-                </Button>
+                  <LocalizedText source={"Query Domain"} /></Button>
               </Form>
 
               {queryResult && (
@@ -2949,26 +2831,25 @@ const MediaCore = () => {
                     </Message>
                   ) : (
                     <Message>
-                      <Message.Header>Query Results</Message.Header>
+                      <Message.Header><LocalizedText source={"Query Results"} /></Message.Header>
                       <p>
-                        <strong>Domain:</strong> {queryResult.domain}
+                        <strong><LocalizedText source={"Domain:"} /></strong> {queryResult.domain}
                         {queryResult.type && (
                           <span>
                             {' '}
-                            | <strong>Type:</strong> {queryResult.type}
+                            | <strong><LocalizedText source={"Type:"} /></strong> {queryResult.type}
                           </span>
                         )}
                         <br />
-                        <strong>Found:</strong> {queryResult.totalFound}
+                        <strong><LocalizedText source={"Found:"} /></strong> {queryResult.totalFound}
                         <br />
-                        <strong>Query Time:</strong>{' '}
+                        <strong><LocalizedText source={"Query Time:"} /></strong>{' '}
                         {queryResult.queryDuration?.totalMilliseconds.toFixed(
                           0,
                         )}
-                        ms
-                        <br />
-                        <strong>Has More:</strong>{' '}
-                        {queryResult.hasMoreResults ? 'Yes' : 'No'}
+                        <LocalizedText source={"ms"} /><br />
+                        <strong><LocalizedText source={"Has More:"} /></strong>{' '}
+                        {queryResult.hasMoreResults ? <LocalizedText source={"Yes"} /> : <LocalizedText source={"No"} />}
                       </p>
                     </Message>
                   )}
@@ -2984,32 +2865,29 @@ const MediaCore = () => {
             <Card.Content>
               <Card.Header>
                 <Icon name="shield" />
-                Descriptor Verification
-              </Card.Header>
+                <LocalizedText source={"Descriptor Verification"} /></Card.Header>
               <Card.Description>
-                Verify descriptor signature and freshness
-              </Card.Description>
+                <LocalizedText source={"Verify descriptor signature and freshness"} /></Card.Description>
             </Card.Content>
             <Card.Content>
               <Form>
                 <Form.Field>
-                  <label>Descriptor JSON</label>
+                  <label><LocalizedText source={"Descriptor JSON"} /></label>
                   <TextArea
                     onChange={(e) => setVerifyDescriptor(e.target.value)}
-                    placeholder="Paste descriptor JSON to verify..."
+                    placeholder={interfaceText("Paste descriptor JSON to verify...")}
                     rows={8}
                     value={verifyDescriptor}
-                  />
+                   {...interfaceTextProps("Paste descriptor JSON to verify...")}/>
                 </Form.Field>
                 <Button
-                  tooltip="Check this descriptor’s signature and validity before importing or trusting its metadata."
+                  tooltip={interfaceText("Check this descriptor’s signature and validity before importing or trusting its metadata.")}
                   disabled={!verifyDescriptor.trim() || verifyingDescriptor}
                   loading={verifyingDescriptor}
                   onClick={handleVerifyDescriptor}
                   primary
                 >
-                  Verify Descriptor
-                </Button>
+                  <LocalizedText source={"Verify Descriptor"} /></Button>
               </Form>
 
               {descriptorVerificationResult && (
@@ -3024,31 +2902,30 @@ const MediaCore = () => {
                       warning={!descriptorVerificationResult.isValid}
                     >
                       <Message.Header>
-                        Verification Result:{' '}
+                        <LocalizedText source={"Verification Result:"} />{' '}
                         {descriptorVerificationResult.isValid
-                          ? 'Valid'
-                          : 'Invalid'}
+                          ? <LocalizedText source={"Valid"} />
+                          : <LocalizedText source={"Invalid"} />}
                       </Message.Header>
                       <p>
-                        <strong>Signature Valid:</strong>{' '}
+                        <strong><LocalizedText source={"Signature Valid:"} /></strong>{' '}
                         {descriptorVerificationResult.signatureValid
-                          ? 'Yes'
-                          : 'No'}
+                          ? <LocalizedText source={"Yes"} />
+                          : <LocalizedText source={"No"} />}
                         <br />
-                        <strong>Freshness Valid:</strong>{' '}
+                        <strong><LocalizedText source={"Freshness Valid:"} /></strong>{' '}
                         {descriptorVerificationResult.freshnessValid
-                          ? 'Yes'
-                          : 'No'}
+                          ? <LocalizedText source={"Yes"} />
+                          : <LocalizedText source={"No"} />}
                         <br />
-                        <strong>Age:</strong>{' '}
+                        <strong><LocalizedText source={"Age:"} /></strong>{' '}
                         {descriptorVerificationResult.age?.totalMinutes.toFixed(
                           1,
                         )}{' '}
-                        minutes
-                      </p>
+                        <LocalizedText source={"minutes"} /></p>
                       {asArray(descriptorVerificationResult.warnings).length > 0 && (
                         <div>
-                          <strong>Warnings:</strong>
+                          <strong><LocalizedText source={"Warnings:"} /></strong>
                           <List bulleted>
                             {asArray(descriptorVerificationResult.warnings).map(
                               (warning, index) => (

@@ -1,4 +1,7 @@
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import * as listeningParty from '../../lib/listeningParty';
+import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { usePlayer } from './PlayerContext';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Button, Checkbox, Icon, Label, List, Popup, Segment } from 'semantic-ui-react';
@@ -26,6 +29,7 @@ const sameDirectory = (previous, next) =>
   );
 
 const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
+  useInterfaceLanguage();
   const player = usePlayer();
   const settingsId = useId();
   const canBroadcastCurrent = Boolean(
@@ -147,8 +151,8 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
     }).catch((error) => {
       if (error?.name === 'AbortError' || error?.code === 'ERR_CANCELED') return;
       if (mountedRef.current && requestId === publishRequestRef.current) {
-        setPublishError(error?.message === 'Stop the active broadcast before starting another room.'
-          ? error.message
+        setPublishError(interfaceText(error?.message === 'Stop the active broadcast before starting another room.'
+          ? 'Stop the active broadcast before starting another room.'
           : error?.response?.status === 429
           ? 'Room updates are at capacity. Retry later.'
           : error?.response?.status === 409 && error?.response?.data?.code === 'party_id_in_use'
@@ -165,7 +169,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           ? 'Could not stop the room broadcast. Try again.'
           : updatingSettings
             ? 'Could not confirm broadcast settings. Retry to apply the requested settings.'
-            : 'Could not start the room broadcast. Try again.');
+            : getApiErrorMessage(error, { t: interfaceText }, 'Could not start the room broadcast. Try again.')));
       }
     });
   };
@@ -189,15 +193,15 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
   const visiblePublishError = publishError || (ownBroadcast ? player.broadcastStatus.error : '');
   const broadcastFeedback = <>
     {hosting && player.broadcastStatus.stopping
-      ? <div className="pod-listen-along-state" role="status">Stopping room broadcast…</div> : null}
+      ? <div className="pod-listen-along-state" role="status"><LocalizedText source={"Stopping room broadcast…"} /></div> : null}
     {hosting && player.broadcastStatus.settingsPending
-      ? <div className="pod-listen-along-state" role="status">Applying broadcast settings…</div> : null}
-    {visiblePublishError ? <div className="pod-listen-along-error" role="alert">{visiblePublishError}</div> : null}
+      ? <div className="pod-listen-along-state" role="status"><LocalizedText source={"Applying broadcast settings…"} /></div> : null}
+    {visiblePublishError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={visiblePublishError} /></div> : null}
     {hosting && player.broadcastStatus.error ? <Popup
-      content="Retry the failed room update using the current playback state. Failed Stop requests are retried as Stop."
-      trigger={<Button aria-label="Retry room broadcast update" className="pod-listen-along-retry" disabled={player.broadcastStatus.pending || player.broadcastStatus.stopping}
-        icon="refresh" onClick={() => { setPublishError(''); player.retryBroadcast().catch(() => {}); }} size="mini" />}
-    /> : null}
+      content={interfaceText("Retry the failed room update using the current playback state. Failed Stop requests are retried as Stop.")}
+      trigger={<Button aria-label={interfaceText("Retry room broadcast update")} className="pod-listen-along-retry" disabled={player.broadcastStatus.pending || player.broadcastStatus.stopping}
+        icon="refresh" onClick={() => { setPublishError(''); player.retryBroadcast().catch(() => {}); }} size="mini"  {...interfaceTextProps("Retry room broadcast update")}/>}
+     {...interfaceTextProps("Retry the failed room update using the current playback state. Failed Stop requests are retried as Stop.")}/> : null}
   </>;
 
   const joinListedParty = (party) => {
@@ -230,18 +234,18 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
 
   const retryConnection = !connected || connectionError ? (
     <Popup
-      content="Reconnect to this room and refresh the host's current state after a connection or refresh failure."
+      content={interfaceText("Reconnect to this room and refresh the host's current state after a connection or refresh failure.")}
       trigger={
         <Button
-          aria-label="Retry listen-along connection"
+          aria-label={interfaceText("Retry listen-along connection")}
           disabled={connectionPending || !podId || !channelId}
           icon="refresh"
           loading={connectionPending}
           onClick={() => player.retryPartyRoom(podId, channelId)}
           size="mini"
-        />
+         {...interfaceTextProps("Retry listen-along connection")}/>
       }
-    />
+     {...interfaceTextProps("Reconnect to this room and refresh the host's current state after a connection or refresh failure.")}/>
   ) : null;
 
   if (compact) {
@@ -251,112 +255,118 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           <Popup
             content={
               partyState
-                ? `${partyState.hostPeerId} ${partyState.action}: ${partyState.title || partyState.contentId}`
-                : 'No active room broadcast'
+                ? interfaceText('{hostPeerId} {action}: {title}', {
+                  action: partyState.action,
+                  hostPeerId: partyState.hostPeerId,
+                  title: partyState.title || partyState.contentId,
+                })
+                : interfaceText('No active room broadcast')
             }
             trigger={
               <span
-                aria-label={connected ? 'Listen Along live' : connectionPending ? 'Listen Along connecting' : 'Listen Along offline'}
                 className={`pod-listen-along-orb ${connected ? 'pod-listen-along-orb-live' : ''}`}
                 role="status"
-                title={connected ? 'Listen Along live' : connectionPending ? 'Listen Along connecting' : 'Listen Along offline'}
+               {...interfaceTextProps(connected ? 'Listen Along live' : connectionPending ? 'Listen Along connecting' : 'Listen Along offline')}
               />
             }
           />
           <span className="pod-listen-along-compact-copy">
-            {partyState ? partyState.title || partyState.contentId : 'Room broadcast'}
+            {partyState ? partyState.title || partyState.contentId : <LocalizedText source={"Room broadcast"} />}
           </span>
         </div>
         <div className="pod-listen-along-compact-actions">
           {retryConnection}
           <Popup
             content={player.playerVisible === false
+              ? interfaceText('Show the browser player before following this room.')
+              : interfaceText("Follow this room's broadcast using your own stream access.")}
+            {...interfaceTextProps(player.playerVisible === false
               ? 'Show the browser player before following this room.'
-              : "Follow this room's broadcast using your own stream access."}
+              : "Follow this room's broadcast using your own stream access.")}
             trigger={
               <Button
                 active={following}
-                aria-label="Follow room broadcast"
+                aria-label={interfaceText("Follow room broadcast")}
                 disabled={player.playerVisible === false}
                 icon
                 onClick={() => player.followParty(following ? null : { podId, channelId })}
                 size="mini"
-                title="Follow room broadcast"
+                title={interfaceText("Follow room broadcast")}
                 toggle
-              >
+               {...interfaceTextProps("Follow room broadcast")}>
                 <Icon name={following ? 'volume up' : 'volume off'} />
               </Button>
             }
           />
           <Popup
-            content="Broadcast the current server-backed track to this room. Browser-only files cannot be streamed to other listeners."
+            content={interfaceText("Broadcast the current server-backed track to this room. Browser-only files cannot be streamed to other listeners.")}
             trigger={
               <Button
-                aria-label="Broadcast current track to room"
+                aria-label={interfaceText("Broadcast current track to room")}
                 disabled={!canBroadcastCurrent || Boolean(settingsBusy)}
                 icon
                 onClick={() => publish('play')}
                 size="mini"
-                title="Broadcast current track to room"
-              >
+                title={interfaceText("Broadcast current track to room")}
+               {...interfaceTextProps("Broadcast current track to room")}>
                 <Icon name="bullhorn" />
               </Button>
             }
-          />
+           {...interfaceTextProps("Broadcast the current server-backed track to this room. Browser-only files cannot be streamed to other listeners.")}/>
           <Popup
-            content="Choose whether listeners can discover this broadcast. Changes apply immediately while you host; otherwise click Broadcast to apply."
+            content={interfaceText("Choose whether listeners can discover this broadcast. Changes apply immediately while you host; otherwise click Broadcast to apply.")}
             trigger={
               <Button
                 active={listed}
-                aria-label="List room broadcast in mesh directory"
+                aria-label={interfaceText("List room broadcast in mesh directory")}
                 aria-busy={Boolean(settingsBusy)}
                 disabled={Boolean(settingsBusy)}
                 icon
                 onClick={() => changeSettings('globalRadio', !listed)}
                 size="mini"
-                title="List room broadcast in mesh directory"
+                title={interfaceText("List room broadcast in mesh directory")}
                 toggle
-              >
+               {...interfaceTextProps("List room broadcast in mesh directory")}>
                 <Icon name="globe" />
               </Button>
             }
-          />
+           {...interfaceTextProps("Choose whether listeners can discover this broadcast. Changes apply immediately while you host; otherwise click Broadcast to apply.")}/>
           <Popup
-            content="Allow directory listeners to stream from this node. Changes apply immediately while you host; unlisting also turns streaming off."
+            content={interfaceText("Allow directory listeners to stream from this node. Changes apply immediately while you host; unlisting also turns streaming off.")}
             trigger={
               <Button
                 active={streaming}
-                aria-label="Allow mesh streaming for broadcast"
+                aria-label={interfaceText("Allow mesh streaming for broadcast")}
                 aria-busy={Boolean(settingsBusy)}
                 disabled={!listed || Boolean(settingsBusy)}
                 icon
                 onClick={() => changeSettings('meshStreaming', !streaming)}
                 size="mini"
-                title="Allow mesh streaming for broadcast"
+                title={interfaceText("Allow mesh streaming for broadcast")}
                 toggle
-              >
+               {...interfaceTextProps("Allow mesh streaming for broadcast")}>
                 <Icon name="wifi" />
               </Button>
             }
-          />
+           {...interfaceTextProps("Allow directory listeners to stream from this node. Changes apply immediately while you host; unlisting also turns streaming off.")}/>
           <Popup
-            content="Stop broadcasting listen-along metadata for this room."
+            content={interfaceText("Stop broadcasting listen-along metadata for this room.")}
             trigger={
               <Button
-                aria-label="Stop room broadcast"
+                aria-label={interfaceText("Stop room broadcast")}
                 disabled={Boolean(hosting && player.broadcastStatus.stopping)}
                 loading={Boolean(hosting && player.broadcastStatus.stopping)}
                 icon
                 onClick={() => publish('stop')}
                 size="mini"
-                title="Stop room broadcast"
-              >
+                title={interfaceText("Stop room broadcast")}
+               {...interfaceTextProps("Stop room broadcast")}>
                 <Icon name="stop" />
               </Button>
             }
-          />
+           {...interfaceTextProps("Stop broadcasting listen-along metadata for this room.")}/>
         </div>
-        {connectionError ? <div className="pod-listen-along-error" role="alert">{connectionError}</div> : null}
+        {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
         {broadcastFeedback}
       </Segment>
     );
@@ -366,105 +376,116 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
     <Segment className="pod-listen-along">
       <div className="pod-listen-along-main">
         <div>
-          <strong>Listen Along</strong>
+          <strong><LocalizedText source={"Listen Along"} /></strong>
           <div className="pod-listen-along-state">
             {partyState
-              ? `${partyState.hostPeerId} ${partyState.action}: ${partyState.title || partyState.contentId}`
-              : 'No active party'}
+              ? interfaceText('{hostPeerId} {action}: {title}', {
+                action: partyState.action,
+                hostPeerId: partyState.hostPeerId,
+                title: partyState.title || partyState.contentId,
+              })
+              : <LocalizedText source={"No active party"} />}
           </div>
         </div>
         <Label color={connected ? 'green' : 'grey'}>
-          {connected ? 'Live' : connectionPending ? 'Connecting' : 'Offline'}
+          {connected
+            ? <LocalizedText source={"Live"} />
+            : connectionPending
+              ? <LocalizedText source={"Connecting"} />
+              : <LocalizedText source={"Offline"} />}
         </Label>
         {retryConnection}
       </div>
       <div className="pod-listen-along-toggles">
         <Popup
-          content="Choose whether listeners can discover this broadcast. Changes apply immediately while you host; otherwise click Broadcast to apply."
+          content={interfaceText("Choose whether listeners can discover this broadcast. Changes apply immediately while you host; otherwise click Broadcast to apply.")}
           trigger={
             <Checkbox
               aria-busy={Boolean(settingsBusy)}
               checked={listed}
               disabled={Boolean(settingsBusy)}
               id={`${settingsId}-listed`}
-              label="List globally"
+              label={interfaceText("List globally")}
               onChange={(event, data) => changeSettings('globalRadio', data.checked)}
               toggle
-            />
+             {...interfaceTextProps("List globally")}/>
           }
-        />
+         {...interfaceTextProps("Choose whether listeners can discover this broadcast. Changes apply immediately while you host; otherwise click Broadcast to apply.")}/>
         <Popup
-          content="Allow directory listeners to stream from this node. Changes apply immediately while you host; unlisting also turns streaming off."
+          content={interfaceText("Allow directory listeners to stream from this node. Changes apply immediately while you host; unlisting also turns streaming off.")}
           trigger={
             <Checkbox
               aria-busy={Boolean(settingsBusy)}
               checked={streaming}
               id={`${settingsId}-streaming`}
               disabled={!listed || Boolean(settingsBusy)}
-              label="Mesh streaming"
+              label={interfaceText("Mesh streaming")}
               onChange={(event, data) => changeSettings('meshStreaming', data.checked)}
               toggle
-            />
+             {...interfaceTextProps("Mesh streaming")}/>
           }
-        />
+         {...interfaceTextProps("Allow directory listeners to stream from this node. Changes apply immediately while you host; unlisting also turns streaming off.")}/>
       </div>
       <Button.Group size="small">
         <Popup
           content={player.playerVisible === false
+            ? interfaceText('Show the browser player before following this pod.')
+            : interfaceText("Follow this pod's host playback using your own stream access.")}
+          {...interfaceTextProps(player.playerVisible === false
             ? 'Show the browser player before following this pod.'
-            : "Follow this pod's host playback using your own stream access."}
+            : "Follow this pod's host playback using your own stream access.")}
           trigger={
             <Button
               active={following}
-              aria-label="Follow pod broadcast"
+              aria-label={interfaceText("Follow pod broadcast")}
               toggle
               disabled={player.playerVisible === false}
               icon
               onClick={() => player.followParty(following ? null : { podId, channelId })}
-            >
+             {...interfaceTextProps("Follow pod broadcast")}>
               <Icon name={following ? 'volume up' : 'volume off'} />
             </Button>
           }
         />
         <Popup
-          content="Publish the current server-backed track as the pod listen-along host. Browser-only files cannot be streamed to other listeners."
+          content={interfaceText("Publish the current server-backed track as the pod listen-along host. Browser-only files cannot be streamed to other listeners.")}
           trigger={
             <Button
-              aria-label="Broadcast current track to pod"
+              aria-label={interfaceText("Broadcast current track to pod")}
               disabled={!canBroadcastCurrent || Boolean(settingsBusy)}
               icon
               onClick={() => publish('play')}
-            >
+             {...interfaceTextProps("Broadcast current track to pod")}>
               <Icon name="bullhorn" />
             </Button>
           }
-        />
+         {...interfaceTextProps("Publish the current server-backed track as the pod listen-along host. Browser-only files cannot be streamed to other listeners.")}/>
         <Popup
-          content="Stop hosting listen-along metadata for this pod."
+          content={interfaceText("Stop hosting listen-along metadata for this pod.")}
           trigger={
             <Button
-              aria-label="Stop pod broadcast"
+              aria-label={interfaceText("Stop pod broadcast")}
               disabled={Boolean(hosting && player.broadcastStatus.stopping)}
               loading={Boolean(hosting && player.broadcastStatus.stopping)}
               icon
               onClick={() => publish('stop')}
-            >
+             {...interfaceTextProps("Stop pod broadcast")}>
               <Icon name="stop" />
             </Button>
           }
-        />
+         {...interfaceTextProps("Stop hosting listen-along metadata for this pod.")}/>
       </Button.Group>
-      {connectionError ? <div className="pod-listen-along-error" role="alert">{connectionError}</div> : null}
+      {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
       {broadcastFeedback}
       {directory.length > 0 && (
         <div className="pod-listen-along-directory">
-          <strong>Listed radio</strong>
+          <strong><LocalizedText source={"Listed radio"} /></strong>
           <List divided relaxed>
             {directory.slice(0, 6).map((party) => (
               <List.Item key={party.partyId}>
                 <List.Content floated="right">
                   <Popup
-                    content="Play this listed radio snapshot through the host's stream endpoint. Rejoin for later track changes."
+                    content={interfaceText("Play this listed radio snapshot through the host's stream endpoint. Rejoin for later track changes.")}
                     trigger={
                       <Button
                         aria-label={`Play ${party.title || party.contentId} from listed radio`}
@@ -476,13 +497,13 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
                         <Icon name="play" />
                       </Button>
                     }
-                  />
+                   {...interfaceTextProps("Play this listed radio snapshot through the host's stream endpoint. Rejoin for later track changes.")}/>
                 </List.Content>
                 <List.Content>
                   <List.Header>{party.title || party.contentId}</List.Header>
                   <List.Description>
                     {party.hostPeerId}
-                    {party.allowMeshStreaming ? ' | streamable' : ' | metadata only'}
+                    {party.allowMeshStreaming ? <LocalizedText source={"| streamable"} /> : <LocalizedText source={"| metadata only"} />}
                   </List.Description>
                 </List.Content>
               </List.Item>

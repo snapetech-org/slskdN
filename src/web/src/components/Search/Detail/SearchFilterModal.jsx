@@ -1,3 +1,4 @@
+import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import {
   parseFiltersFromString,
   serializeFiltersToString,
@@ -6,11 +7,17 @@ import React, { useEffect, useState } from 'react';
 import { Form, Header, Icon, Modal, Segment } from 'semantic-ui-react';
 import TooltipButton from '../../Shared/TooltipButton';
 
+
 const Button = TooltipButton;
 
 const asArray = (value) => (Array.isArray(value) ? value : []);
 
 const SearchFilterModal = ({ filterString, onChange, trigger }) => {
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
+  const localized = (source) => (
+    <span dir={directionFor(source)} lang={languageFor(source)}>{t(source)}</span>
+  );
+  const inputLanguage = (source) => ({ dir: directionFor(source), lang: languageFor(source) });
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState({});
 
@@ -39,16 +46,17 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
       trigger={trigger}
     >
       <Header
-        content="Advanced Search Filters"
+        content={localized('Advanced Search Filters')}
         icon="filter"
       />
       <Modal.Content>
         <Form>
           <Segment>
-            <Header size="tiny">Audio Properties</Header>
+            <Header size="tiny">{localized('Audio Properties')}</Header>
             <Form.Group widths="equal">
               <Form.Input
-                label="Min Bitrate (kbps)"
+                {...inputLanguage('Min Bitrate (kbps)')}
+                label={localized('Min Bitrate (kbps)')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -56,12 +64,13 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     Number.parseInt(event.target.value, 10) || 0,
                   )
                 }
-                placeholder="e.g. 320"
+                placeholder={t('e.g. 320')}
                 type="number"
                 value={filters.minBitRate || ''}
               />
               <Form.Input
-                label="Min Bit Depth"
+                {...inputLanguage('Min Bit Depth')}
+                label={localized('Min Bit Depth')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -69,12 +78,13 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     Number.parseInt(event.target.value, 10) || 0,
                   )
                 }
-                placeholder="e.g. 16 or 24"
+                placeholder={t('e.g. 16 or 24')}
                 type="number"
                 value={filters.minBitDepth || ''}
               />
               <Form.Input
-                label="Min Sample Rate (Hz)"
+                {...inputLanguage('Min Sample Rate (Hz)')}
+                label={localized('Min Sample Rate (Hz)')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -82,7 +92,7 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     Number.parseInt(event.target.value, 10) || 0,
                   )
                 }
-                placeholder="e.g. 44100"
+                placeholder={t('e.g. 44100')}
                 type="number"
                 value={filters.minSampleRate || ''}
               />
@@ -90,30 +100,34 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
             <Form.Group inline>
               <Form.Checkbox
                 checked={filters.isCBR || false}
-                label="CBR"
+                {...inputLanguage('CBR')}
+                label={localized('CBR')}
                 onChange={(_, { checked }) => handleChange('isCBR', checked)}
               />
               <Form.Checkbox
                 checked={filters.isVBR || false}
-                label="VBR"
+                {...inputLanguage('VBR')}
+                label={localized('VBR')}
                 onChange={(_, { checked }) => handleChange('isVBR', checked)}
               />
               <Form.Checkbox
                 checked={filters.isLossless || false}
-                label="Lossless"
+                {...inputLanguage('Lossless')}
+                label={localized('Lossless')}
                 onChange={(_, { checked }) =>
                   handleChange('isLossless', checked)
                 }
               />
               <Form.Checkbox
                 checked={filters.isLossy || false}
-                label="Lossy"
+                {...inputLanguage('Lossy')}
+                label={localized('Lossy')}
                 onChange={(_, { checked }) => handleChange('isLossy', checked)}
               />
             </Form.Group>
             <Form.Group>
               <Form.Field>
-                <label>Quality Presets</label>
+                <label>{localized('Quality Presets')}</label>
                 <Button.Group>
                   <Button
                     compact
@@ -127,7 +141,7 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     tooltip="Set a 320 kbps minimum and prefer lossy results for a high-bitrate match."
                   >
                     <Icon name="music" />
-                    High Quality (320kbps+)
+                    {localized('High Quality (320kbps+)')}
                   </Button>
                   <Button
                     compact
@@ -142,7 +156,7 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     tooltip="Require lossless files with at least 16-bit, 44.1 kHz audio."
                   >
                     <Icon name="star" />
-                    Lossless Only
+                    {localized('Lossless Only')}
                   </Button>
                   <Button
                     compact
@@ -158,7 +172,7 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     tooltip="Clear the bitrate, lossless, bit-depth, and sample-rate filters."
                   >
                     <Icon name="eraser" />
-                    Clear Quality
+                    {localized('Clear Quality')}
                   </Button>
                 </Button.Group>
               </Form.Field>
@@ -166,10 +180,11 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
           </Segment>
 
           <Segment>
-            <Header size="tiny">File Properties</Header>
+            <Header size="tiny">{localized('File Properties')}</Header>
             <Form.Group widths="equal">
               <Form.Input
-                label="Min Size (bytes)"
+                {...inputLanguage('Min Size (bytes)')}
+                label={localized('Min Size (bytes)')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -177,12 +192,13 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     Number.parseInt(event.target.value, 10) || 0,
                   )
                 }
-                placeholder="e.g. 1048576 (1MB)"
+                placeholder={t('e.g. 1048576 (1MB)')}
                 type="number"
                 value={filters.minFileSize || ''}
               />
               <Form.Input
-                label="Max Size (bytes)"
+                {...inputLanguage('Max Size (bytes)')}
+                label={localized('Max Size (bytes)')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -192,7 +208,7 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                       : Number.MAX_SAFE_INTEGER,
                   )
                 }
-                placeholder="e.g. 104857600 (100MB)"
+                placeholder={t('e.g. 104857600 (100MB)')}
                 type="number"
                 value={
                   filters.maxFileSize === Number.MAX_SAFE_INTEGER
@@ -203,7 +219,8 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
-                label="Min Duration (seconds)"
+                {...inputLanguage('Min Duration (seconds)')}
+                label={localized('Min Duration (seconds)')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -211,12 +228,13 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     Number.parseInt(event.target.value, 10) || 0,
                   )
                 }
-                placeholder="e.g. 180 (3 min)"
+                placeholder={t('e.g. 180 (3 min)')}
                 type="number"
                 value={filters.minLength || ''}
               />
               <Form.Input
-                label="Min Files in Folder"
+                {...inputLanguage('Min Files in Folder')}
+                label={localized('Min Files in Folder')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -224,7 +242,7 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     Number.parseInt(event.target.value, 10) || 0,
                   )
                 }
-                placeholder="e.g. 8"
+                placeholder={t('e.g. 8')}
                 type="number"
                 value={filters.minFilesInFolder || ''}
               />
@@ -232,36 +250,38 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
           </Segment>
 
           <Segment>
-            <Header size="tiny">Keywords</Header>
+            <Header size="tiny">{localized('Keywords')}</Header>
             <Form.Input
-              label="Must Include (space separated)"
+              {...inputLanguage('Must Include (space separated)')}
+              label={localized('Must Include (space separated)')}
               onChange={(event) =>
                 handleChange(
                   'include',
                   event.target.value.split(' ').filter((t) => t.trim()),
                 )
               }
-              placeholder="remix instrumental"
+              placeholder={interfaceText("remix instrumental")}
               value={asArray(filters.include).join(' ')}
-            />
+             {...interfaceTextProps("remix instrumental")}/>
             <Form.Input
-              label="Must Exclude (space separated)"
+              {...inputLanguage('Must Exclude (space separated)')}
+              label={localized('Must Exclude (space separated)')}
               onChange={(event) =>
                 handleChange(
                   'exclude',
                   event.target.value.split(' ').filter((t) => t.trim()),
                 )
               }
-              placeholder="live demo"
+              placeholder={interfaceText("live demo")}
               value={asArray(filters.exclude).join(' ')}
-            />
+             {...interfaceTextProps("live demo")}/>
           </Segment>
 
           <Segment>
-            <Header size="tiny">Format/Codec</Header>
+            <Header size="tiny">{localized('Format/Codec')}</Header>
             <Form.Group>
               <Form.Field>
-                <label>File Extensions (space separated)</label>
+                <label>{localized('File Extensions (space separated)')}</label>
                 <Form.Input
                   onChange={(event) =>
                     handleChange(
@@ -272,21 +292,23 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                         .map((t) => t.toLowerCase().replace(/^\./, '')),
                     )
                   }
-                  placeholder="flac mp3 wav"
+                  {...inputLanguage('File Extensions (space separated)')}
+                  placeholder={interfaceText("flac mp3 wav")}
                   value={asArray(filters.extensions).join(' ')}
-                />
+                 {...interfaceTextProps("flac mp3 wav")}/>
                 <label style={{ fontSize: '0.9em', opacity: 0.8 }}>
-                  Filter by file extension (e.g., flac, mp3, wav, m4a)
+                  {localized('Filter by file extension (e.g., flac, mp3, wav, m4a)')}
                 </label>
               </Form.Field>
             </Form.Group>
           </Segment>
 
           <Segment>
-            <Header size="tiny">Ranking Preferences</Header>
+            <Header size="tiny">{localized('Ranking Preferences')}</Header>
             <Form.Group widths="equal">
               <Form.Input
-                label="Prefer Extensions"
+                {...inputLanguage('Prefer Extensions')}
+                label={localized('Prefer Extensions')}
                 onChange={(event) =>
                   handleChange(
                     'preferExtensions',
@@ -296,11 +318,12 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                       .map((t) => t.toLowerCase().replace(/^\./, '')),
                   )
                 }
-                placeholder="flac wav"
+                placeholder={interfaceText("flac wav")}
                 value={asArray(filters.preferExtensions).join(' ')}
-              />
+               {...interfaceTextProps("flac wav")}/>
               <Form.Input
-                label="Prefer Min Bitrate (kbps)"
+                {...inputLanguage('Prefer Min Bitrate (kbps)')}
+                label={localized('Prefer Min Bitrate (kbps)')}
                 min={0}
                 onChange={(event) =>
                   handleChange(
@@ -308,14 +331,15 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
                     Number.parseInt(event.target.value, 10) || 0,
                   )
                 }
-                placeholder="e.g. 320"
+                placeholder={t('e.g. 320')}
                 type="number"
                 value={filters.preferMinBitRate || ''}
               />
             </Form.Group>
             <Form.Checkbox
               checked={filters.preferLossless || false}
-              label="Prefer lossless without hiding lossy fallback candidates"
+                {...inputLanguage('Prefer lossless without hiding lossy fallback candidates')}
+                label={localized('Prefer lossless without hiding lossy fallback candidates')}
               onChange={(_, { checked }) =>
                 handleChange('preferLossless', checked)
               }
@@ -328,14 +352,14 @@ const SearchFilterModal = ({ filterString, onChange, trigger }) => {
           onClick={() => setOpen(false)}
           tooltip="Close without applying these search filters."
         >
-          Cancel
+          {localized('Cancel')}
         </Button>
         <Button
           onClick={handleSave}
           primary
           tooltip="Apply these filters to the current search."
         >
-          Apply Filters
+          {localized('Apply Filters')}
         </Button>
       </Modal.Actions>
     </Modal>
