@@ -162,6 +162,12 @@ namespace slskd.LibraryHealth
         public List<string> FileExtensions { get; set; } = new() { ".flac", ".mp3", ".m4a", ".ogg" };
         public bool SkipPreviouslyScanned { get; set; } = false;
         public int MaxConcurrentFiles { get; set; } = 4;
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether lossless files are decoded with ffmpeg to measure their
+        ///     spectral lowpass shelf. Requires audio.spectral_analysis.enabled; slower than a tag-only scan.
+        /// </summary>
+        public bool IncludeSpectralAnalysis { get; set; } = false;
     }
 
     public class LibraryHealthIssueFilter

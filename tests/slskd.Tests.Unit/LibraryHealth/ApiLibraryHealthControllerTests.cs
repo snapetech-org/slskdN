@@ -47,6 +47,22 @@ public class ApiLibraryHealthControllerTests
     }
 
     [Fact]
+    public async Task StartScan_WhenSpectralAnalysisIsDisabled_ReturnsBadRequestWithTheSetting()
+    {
+        var healthService = new Mock<ILibraryHealthService>();
+        healthService.Setup(service => service.StartScanAsync(It.IsAny<LibraryHealthScanRequest>(), default))
+            .ThrowsAsync(new SpectralAnalysisUnavailableException());
+        var controller = new ApiLibraryHealthController(
+            healthService.Object,
+            NullLogger<ApiLibraryHealthController>.Instance);
+
+        var result = await controller.StartScan(new LibraryHealthScanRequest { IncludeSpectralAnalysis = true }, default);
+
+        var badRequest = Assert.IsType<BadRequestObjectResult>(result.Result);
+        Assert.Contains("audio.spectral_analysis.enabled", badRequest.Value?.ToString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task GetScanStatus_WhenScanMissing_ReturnsSanitizedNotFound()
     {
         var healthService = new Mock<ILibraryHealthService>();

@@ -63,6 +63,10 @@ namespace slskd.LibraryHealth.API
             {
                 return Conflict(new { message = "A library health scan is already running", scan_id = ex.ScanId });
             }
+            catch (SpectralAnalysisUnavailableException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
 
             return Ok(new StartScanResponse
             {

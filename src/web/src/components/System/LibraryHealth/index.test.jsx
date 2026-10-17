@@ -389,6 +389,35 @@ describe('LibraryHealth', () => {
     expect(libraryHealth.getScanStatus).not.toHaveBeenCalled();
   });
 
+  it('leaves the spectral transcode check off unless it is selected', async () => {
+    render(<LibraryHealth />);
+
+    fireEvent.change(pathInput(), {
+      target: { value: '/fixture/music' },
+    });
+    fireEvent.click(screen.getByLabelText('Start a recursive Library Health scan for this path'));
+
+    await waitFor(() => expect(libraryHealth.startScan).toHaveBeenCalledWith(
+      '/fixture/music',
+      { includeSpectralAnalysis: false },
+    ));
+  });
+
+  it('requests the spectral transcode check when it is selected', async () => {
+    render(<LibraryHealth />);
+
+    fireEvent.change(pathInput(), {
+      target: { value: '/fixture/music' },
+    });
+    fireEvent.click(screen.getByLabelText('Spectral transcode check (slower)'));
+    fireEvent.click(screen.getByLabelText('Start a recursive Library Health scan for this path'));
+
+    await waitFor(() => expect(libraryHealth.startScan).toHaveBeenCalledWith(
+      '/fixture/music',
+      { includeSpectralAnalysis: true },
+    ));
+  });
+
   it('cleans scan polling timers when unmounted', async () => {
     vi.useFakeTimers();
     const { unmount } = render(<LibraryHealth />);

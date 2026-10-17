@@ -1464,6 +1464,45 @@ are bounded at 50 unique track names; duplicate suffixes such as `(1)` and
 `(2)` are treated as the same track, and larger candidates are left for manual
 review.
 
+### Spectral transcode detection
+
+Spectral analysis is opt-in and does nothing until it is enabled and then
+requested. It decodes local lossless files (FLAC, ALAC, WAV, AIFF) with the
+`ffmpeg` configured under `integrations.chromaprint.ffmpeg_path` and measures
+where the high frequencies stop. Every common lossy encoder removes everything
+above a fixed cutoff, and converting the result to FLAC cannot bring it back,
+so a FLAC made from an MP3 shows a sharp wall around 16.6 kHz (128 kbps) to
+20 kHz (320 kbps) with nothing above it.
+
+```yaml
+audio:
+  spectral_analysis:
+    enabled: true
+    analyze_completed_downloads: false
+    max_frames: 600
+    max_concurrent_analyses: 1
+```
+
+With `enabled: true`, the Library Health page shows a **Spectral transcode
+check** option for each scan. Files with a lossy shelf become High-severity
+`SuspectedTranscode` issues. Shelves between 19.8 and 20.9 kHz (320 kbps MP3,
+Opus, or an early-digital mastering filter) and hi-res files that stop at a
+CD-rate bandwidth are reported at Low severity, because they can also come
+from genuine masters. A scan that requests the check while it is disabled is
+rejected with a message naming this setting.
+
+`analyze_completed_downloads: true` also analyzes each completed lossless
+download and records the result in HashDb (`effective_bandwidth_hz`,
+`hf_energy_ratio`, and the transcode flag and reason) without creating
+Library Health issues. Analysis takes about half a second per file, mostly
+spent in ffmpeg, so leave this off unless you want every download measured.
+
+Encoders that apply no lowpass leave no shelf to find, and material with
+little high-frequency content gives no evidence either way; both are reported
+as genuine, never as lossy. Files without a MusicBrainz recording ID are still
+checked for transcodes; they are also reported as missing metadata, and the
+canonical-variant and release-completeness checks are skipped for them.
+
 ### Lidarr
 
 Lidarr is a first-class slskdN integration for music acquisition. slskdN uses

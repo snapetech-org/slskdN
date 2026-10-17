@@ -80,6 +80,44 @@ public class YamlConfigurationSourceTests
     }
 
     [Fact]
+    public void AddYamlFile_BindsAudioSpectralAnalysisOptions()
+    {
+        var options = ReadOptions("""
+            audio:
+              spectral_analysis:
+                enabled: true
+                analyze_completed_downloads: true
+                max_frames: 300
+                max_concurrent_analyses: 2
+            """);
+
+        Assert.True(options.Audio.SpectralAnalysis.Enabled);
+        Assert.True(options.Audio.SpectralAnalysis.AnalyzeCompletedDownloads);
+        Assert.Equal(300, options.Audio.SpectralAnalysis.MaxFrames);
+        Assert.Equal(2, options.Audio.SpectralAnalysis.MaxConcurrentAnalyses);
+    }
+
+    [Fact]
+    public void ShippedExample_UncommentedAudioSectionBindsItsDefaults()
+    {
+        var examplePath = FindRepositoryFile("config", "slskd.example.yml");
+        var lines = File.ReadAllLines(examplePath).ToList();
+        var start = lines.IndexOf("#audio:");
+        Assert.True(start >= 0, "config/slskd.example.yml should document the audio section");
+        for (var i = start; i < lines.Count && (i == start || lines[i].StartsWith("#  ", StringComparison.Ordinal)); i++)
+        {
+            lines[i] = lines[i][1..];
+        }
+
+        var options = ReadOptions(string.Join('\n', lines));
+
+        Assert.False(options.Audio.SpectralAnalysis.Enabled);
+        Assert.False(options.Audio.SpectralAnalysis.AnalyzeCompletedDownloads);
+        Assert.Equal(600, options.Audio.SpectralAnalysis.MaxFrames);
+        Assert.Equal(1, options.Audio.SpectralAnalysis.MaxConcurrentAnalyses);
+    }
+
+    [Fact]
     public void AddYamlFile_BindsLanDiscoveryAdvertisingSetting()
     {
         var options = ReadOptions("""

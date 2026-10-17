@@ -45,4 +45,12 @@ namespace slskd.LibraryHealth
 
         public string ScanId { get; }
     }
+
+    public sealed class SpectralAnalysisUnavailableException : InvalidOperationException
+    {
+        public SpectralAnalysisUnavailableException()
+            : base("Spectral analysis is disabled. Set audio.spectral_analysis.enabled to true to request it in a scan.")
+        {
+        }
+    }
 }

@@ -410,6 +410,12 @@ namespace slskd
         public SongIdOptions SongId { get; init; } = new SongIdOptions();
 
         /// <summary>
+        ///     Gets options for optional local audio analysis.
+        /// </summary>
+        [Validate]
+        public AudioOptions Audio { get; init; } = new AudioOptions();
+
+        /// <summary>
         ///     Gets web player options.
         /// </summary>
         [Validate]
@@ -2109,6 +2115,68 @@ namespace slskd
                 if (MaxConcurrentRuns < 1)
                 {
                     yield return new ValidationResult("SongId.MaxConcurrentRuns must be at least 1.", new[] { nameof(MaxConcurrentRuns) });
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Local audio analysis options.
+        /// </summary>
+        public class AudioOptions
+        {
+            /// <summary>
+            ///     Gets spectral transcode-detection options.
+            /// </summary>
+            [Validate]
+            public SpectralAnalysisOptions SpectralAnalysis { get; init; } = new SpectralAnalysisOptions();
+
+            /// <summary>
+            ///     Spectral transcode detection: decodes lossless files with ffmpeg
+            ///     (integrations.chromaprint.ffmpeg_path) and measures the lowpass shelf a lossy source leaves behind.
+            ///     Off by default; nothing is decoded unless it is enabled and then requested.
+            /// </summary>
+            public class SpectralAnalysisOptions : IValidatableObject
+            {
+                /// <summary>
+                ///     Gets a value indicating whether spectral analysis is available. When enabled, a Library Health
+                ///     scan can request it; completed downloads are analyzed only if
+                ///     <see cref="AnalyzeCompletedDownloads"/> is also set.
+                /// </summary>
+                public bool Enabled { get; init; }
+
+                /// <summary>
+                ///     Gets a value indicating whether completed lossless downloads are analyzed and the result is
+                ///     recorded in HashDb.
+                /// </summary>
+                public bool AnalyzeCompletedDownloads { get; init; }
+
+                /// <summary>
+                ///     Gets the number of non-silent 8192-sample frames averaged per file (600 is about 110 seconds of
+                ///     44.1 kHz audio). Higher is steadier and slower.
+                /// </summary>
+                public int MaxFrames { get; init; } = 600;
+
+                /// <summary>
+                ///     Gets the maximum number of files decoded at the same time.
+                /// </summary>
+                public int MaxConcurrentAnalyses { get; init; } = 1;
+
+                /// <inheritdoc />
+                public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+                {
+                    if (MaxFrames < global::slskd.Audio.SpectralClassifier.MinFrames || MaxFrames > 10000)
+                    {
+                        yield return new ValidationResult(
+                            $"Audio.SpectralAnalysis.MaxFrames must be between {(global::slskd.Audio.SpectralClassifier.MinFrames)} and 10000.",
+                            new[] { nameof(MaxFrames) });
+                    }
+
+                    if (MaxConcurrentAnalyses < 1 || MaxConcurrentAnalyses > 8)
+                    {
+                        yield return new ValidationResult(
+                            "Audio.SpectralAnalysis.MaxConcurrentAnalyses must be between 1 and 8.",
+                            new[] { nameof(MaxConcurrentAnalyses) });
+                    }
                 }
             }
         }

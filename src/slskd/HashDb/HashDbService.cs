@@ -72,6 +72,7 @@ namespace slskd.HashDb
         private readonly IMusicBrainzClient? musicBrainzClient;
         private readonly IOptionsMonitor<slskdOptions>? optionsMonitor;
         private readonly AudioSketchService? audioSketchService;
+        private readonly ISpectralAnalyzer? spectralAnalyzer;
         private readonly QualityScorer qualityScorer = new();
         private readonly TranscodeDetector transcodeDetector = new();
         private readonly FlacAnalyzer flacAnalyzer = new();
@@ -99,6 +100,7 @@ namespace slskd.HashDb
         /// <param name="musicBrainzClient">MusicBrainz client (optional).</param>
         /// <param name="optionsMonitor">Options monitor for feature-dependent behavior (optional).</param>
         /// <param name="hashCache">Hash lookup cache (optional).</param>
+        /// <param name="spectralAnalyzer">Spectral transcode detection for completed lossless downloads (optional; idle unless enabled).</param>
         public HashDbService(
             string appDirectory,
             EventBus? eventBus = null,
@@ -108,8 +110,10 @@ namespace slskd.HashDb
             IAutoTaggingService? autoTaggingService = null,
             IMusicBrainzClient? musicBrainzClient = null,
             IOptionsMonitor<slskdOptions>? optionsMonitor = null,
-            IMemoryCache? hashCache = null)
+            IMemoryCache? hashCache = null,
+            ISpectralAnalyzer? spectralAnalyzer = null)
         {
+            this.spectralAnalyzer = spectralAnalyzer;
             this.serviceProvider = serviceProvider;
             this.fingerprintExtractionService = fingerprintExtractionService;
             this.acoustIdClient = acoustIdClient;
@@ -306,6 +310,7 @@ namespace slskd.HashDb
                 try
                 {
                     var variant = BuildVariantFromFile(localFilename, flacKey, fileSize);
+                    await ApplySpectralAnalysisAsync(variant, localFilename).ConfigureAwait(false);
                     await UpdateVariantMetadataAsync(flacKey, variant).ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -438,6 +443,39 @@ namespace slskd.HashDb
 
         /// <inheritdoc/>
         public long CurrentSeqId => currentSeqId;
+
+        /// <summary>
+        ///     Measures a completed lossless download's spectral shelf when audio.spectral_analysis enables it for
+        ///     downloads, recording the result on <paramref name="variant"/>. A failed analysis leaves the variant as built.
+        /// </summary>
+        internal async Task ApplySpectralAnalysisAsync(AudioVariant variant, string filePath)
+        {
+            if (spectralAnalyzer is null || !spectralAnalyzer.AnalyzeCompletedDownloads || !TranscodeDetector.IsLosslessCodec(variant.Codec))
+            {
+                return;
+            }
+
+            try
+            {
+                var result = await spectralAnalyzer
+                    .AnalyzeAsync(filePath, variant.SampleRateHz, variant.DurationMs / 1000.0)
+                    .ConfigureAwait(false);
+                if (result is null)
+                {
+                    return;
+                }
+
+                result.ApplyTo(variant);
+                if (result.Verdict is SpectralVerdict.Lossy or SpectralVerdict.Suspect or SpectralVerdict.Upsampled)
+                {
+                    log.Information("[HashDb] {Description} for {Filename}", result.Describe(), LoggingSanitizer.SanitizeFilePath(filePath));
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Warning(ex, "[HashDb] Spectral analysis failed for {Filename}", LoggingSanitizer.SanitizeFilePath(filePath));
+            }
+        }
 
         private AudioVariant BuildVariantFromFile(string filePath, string flacKey, long fileSize)
         {

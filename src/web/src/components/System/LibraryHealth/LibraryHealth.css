@@ -17,6 +17,10 @@
   font-weight: 600;
 }
 
+.library-health-spectral-option.ui.checkbox {
+  margin: 0.75rem 0 0.25rem;
+}
+
 .library-health-actions {
   display: grid;
   gap: 0.5rem;

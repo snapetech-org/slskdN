@@ -1,7 +1,8 @@
 import api from './api';
 
-export const startScan = (libraryPath) =>
+export const startScan = (libraryPath, { includeSpectralAnalysis = false } = {}) =>
   api.post('/library/health/scans', {
+    includeSpectralAnalysis,
     includeSubdirectories: true,
     libraryPath,
   });

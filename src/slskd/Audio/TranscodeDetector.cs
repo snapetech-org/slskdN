@@ -48,7 +48,28 @@ namespace slskd.Audio
                 }
             }
 
-            // Rule 4: Spectral analysis (approximation)
+            // Rule 4a: Measured spectral shelf (lossless files analyzed by SpectralAnalyzer). A shelf was found only
+            // when HfEnergyRatio is set; the verdict is re-derived exactly as SpectralClassifier reached it.
+            if (IsLosslessCodec(variant.Codec))
+            {
+                if (variant.EffectiveBandwidthHz is double cutoffHz &&
+                    variant.HfEnergyRatio.HasValue &&
+                    variant.SampleRateHz > 0 &&
+                    SpectralClassifier.VerdictForShelf(cutoffHz, variant.SampleRateHz / 2.0) == SpectralVerdict.Lossy)
+                {
+                    var measured = new SpectralAnalysisResult
+                    {
+                        Verdict = SpectralVerdict.Lossy,
+                        CutoffHz = cutoffHz,
+                        EstimatedSource = SpectralClassifier.EstimateLossySource(cutoffHz),
+                    };
+                    return (true, measured.Describe());
+                }
+
+                return (false, string.Empty);
+            }
+
+            // Rule 4b: Spectral bandwidth approximation for lossy codecs (estimated from bitrate, not measured)
             if (variant.BitrateKbps > 0)
             {
                 var effectiveBandwidth = EstimateSpectralBandwidth(variant);
@@ -94,7 +115,7 @@ namespace slskd.Audio
             return (int)(raw * 0.5);
         }
 
-        private static bool IsLosslessCodec(string codec)
+        internal static bool IsLosslessCodec(string codec)
         {
             return codec switch
             {

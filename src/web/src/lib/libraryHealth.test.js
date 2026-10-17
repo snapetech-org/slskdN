@@ -25,6 +25,19 @@ describe('libraryHealth', () => {
     await libraryHealth.startScan('/music');
 
     expect(api.post).toHaveBeenCalledWith('/library/health/scans', {
+      includeSpectralAnalysis: false,
+      includeSubdirectories: true,
+      libraryPath: '/music',
+    });
+  });
+
+  it('requests spectral analysis only when asked', async () => {
+    api.post.mockResolvedValue({ data: { scanId: 'scan-1' } });
+
+    await libraryHealth.startScan('/music', { includeSpectralAnalysis: true });
+
+    expect(api.post).toHaveBeenCalledWith('/library/health/scans', {
+      includeSpectralAnalysis: true,
       includeSubdirectories: true,
       libraryPath: '/music',
     });

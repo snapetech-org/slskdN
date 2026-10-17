@@ -326,6 +326,12 @@
 #  advertise: false              # Advertise identity on the local network at startup (default: false)
 #song_id:
 #  max_concurrent_runs: 2        # Process SongID jobs in the background with a fixed worker pool while allowing unbounded queueing
+#audio:
+#  spectral_analysis:
+#    enabled: false              # Allow decoding lossless files with ffmpeg (integrations.chromaprint.ffmpeg_path) to find the lowpass shelf a lossy source leaves; requested per Library Health scan
+#    analyze_completed_downloads: false  # Also analyze each completed lossless download and record the result in HashDb
+#    max_frames: 600             # Non-silent 8192-sample frames averaged per file (600 is about 110 s at 44.1 kHz)
+#    max_concurrent_analyses: 1  # Files decoded at the same time (restart to apply)
 #player:
 #  external_visualizer:
 #    enabled: false              # Enable authenticated API launch of a locally configured external visualizer helper

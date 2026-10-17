@@ -56,6 +56,9 @@ namespace slskd.AudioCore
             services.AddSingleton<IChromaprintService, ChromaprintService>();
             services.AddSingleton<IFingerprintExtractionService, FingerprintExtractionService>();
 
+            // Spectral transcode detection (opt-in via audio.spectral_analysis; idle unless enabled and requested)
+            services.AddSingleton<ISpectralAnalyzer, SpectralAnalyzer>();
+
             // HashDb and MediaVariant store (Music)
             services.AddSingleton<IHashDbService>(sp => new HashDbService(
                 appDirectory,
@@ -66,7 +69,8 @@ namespace slskd.AudioCore
                 sp.GetRequiredService<IAutoTaggingService>(),
                 sp.GetRequiredService<IMusicBrainzClient>(),
                 sp.GetRequiredService<IOptionsMonitor<slskdOptions>>(),
-                sp.GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>()));
+                sp.GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>(),
+                sp.GetRequiredService<ISpectralAnalyzer>()));
             services.AddSingleton<IMediaVariantStore, HashDbMediaVariantStore>();
 
             // HashDb optimization service
@@ -99,7 +103,8 @@ namespace slskd.AudioCore
                 sp.GetRequiredService<ICanonicalStatsService>(),
                 sp.GetRequiredService<IMusicBrainzClient>(),
                 sp.GetRequiredService<IOptionsMonitor<slskd.Options>>(),
-                sp.GetRequiredService<ILogger<LibraryHealth.LibraryHealthService>>()));
+                sp.GetRequiredService<ILogger<LibraryHealth.LibraryHealthService>>(),
+                sp.GetRequiredService<ISpectralAnalyzer>()));
             services.AddSingleton<ILibraryHealthRemediationService, LibraryHealthRemediationService>();
 
             // Music domain provider
