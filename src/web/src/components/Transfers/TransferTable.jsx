@@ -260,8 +260,8 @@ const Row = React.memo(({ index, style, ...data }) => {
               ? (
                 <span
                   className="transfer-speed-final"
-                  title={interfaceText("Average speed of the completed transfer")}
-                  {...interfaceTextProps("Average speed of the completed transfer")}
+                  title={interfaceText("Avg Speed")}
+                  {...interfaceTextProps("Avg Speed")}
                 >
                   {speedText}
                 </span>

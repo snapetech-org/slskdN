@@ -49,7 +49,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 ### Fixed
 
 - Downloads and Uploads tables now align values with their headers. Completed
-  transfers show a full progress bar and their recorded average speed.
+  transfers show a full progress bar and their recorded average speed, with a
+  localized speed hint.
 
 ## [2026101321-slskdn.351] — 2026-10-13
 
