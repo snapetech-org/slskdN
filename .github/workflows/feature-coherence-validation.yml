@@ -6,8 +6,13 @@ permissions:
 jobs:
   audit:
     name: Feature coherence audit
-    if: github.event_name == 'pull_request' && github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN'
-    runs-on: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true && fromJSON('["self-hosted", "linux", "x64", "public-pr-slskdn"]') || 'ubuntu-latest' }}
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.fork == true &&
+      github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
+      github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN' &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true && github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name && github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN' && github.event.pull_request.base.ref == 'main' && fromJSON('["self-hosted", "linux", "x64", "public-pr-slskdn"]') || 'ubuntu-latest' }}
     timeout-minutes: 15
     permissions:
       contents: read
