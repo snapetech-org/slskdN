@@ -192,4 +192,84 @@ describe('TransferTable', () => {
     expect(rowKeys).toEqual(['peer', 'name', 'size']);
     expect(headerKeys).not.toContain('actions');
   });
+
+  const completedTransfer = {
+    averageSpeed: 2_097_152,
+    direction: 'Upload',
+    filename: 'Music/Artist/Album/01. Track.flac',
+    id: 'transfer-done',
+    percentComplete: 99,
+    size: 8_600_000,
+    state: 'Completed, Succeeded',
+    username: 'peer-one',
+  };
+
+  it('gives the header row the same grid spacing class as the data rows', () => {
+    const { container } = renderTable([completedTransfer]);
+
+    const header = container.querySelector('.transfer-header-row');
+    const row = container.querySelector('.transfer-row:not(.transfer-header-row)');
+
+    // .transfer-row carries column-gap and padding; without it the header drifts left of the rows column by column
+    expect(header.classList.contains('transfer-row')).toBe(true);
+    expect(header.style.gridTemplateColumns).toBe(row.style.gridTemplateColumns);
+  });
+
+  it('aligns numeric headers the same way as their cells', () => {
+    const { container } = renderTable([completedTransfer]);
+
+    const numericHeaders = [...container.querySelectorAll('.transfer-header-cell.transfer-cell-num')]
+      .map((element) => element.dataset.colkey);
+    const numericCells = [...container.querySelectorAll('.transfer-row:not(.transfer-header-row) .transfer-cell-num')]
+      .map((element) => element.dataset.colkey);
+
+    expect(numericHeaders).toEqual(expect.arrayContaining(['size', 'progress', 'speed']));
+    expect(numericHeaders).toEqual(numericCells);
+    expect(numericHeaders).not.toContain('name');
+  });
+
+  it('shows a full progress bar and the average speed for a completed transfer', () => {
+    const { container } = renderTable([completedTransfer]);
+    const row = container.querySelector('.transfer-row:not(.transfer-header-row)');
+
+    const progress = row.querySelector('[data-colkey="progress"]');
+    expect(progress.querySelector('.transfer-progress-fill').style.width).toBe('100%');
+    expect(progress.querySelector('.transfer-state-pill')).toBeNull();
+
+    const speed = row.querySelector('[data-colkey="speed"] .transfer-speed-final');
+    expect(speed).not.toBeNull();
+    expect(speed.textContent).toMatch(/\/s$/);
+  });
+
+  it('shows a recorded zero average speed for a completed transfer', () => {
+    const { container } = renderTable([{ ...completedTransfer, averageSpeed: 0 }]);
+    const speed = container.querySelector('.transfer-row:not(.transfer-header-row) [data-colkey="speed"]');
+
+    expect(speed.querySelector('.transfer-speed-final').textContent).toMatch(/\/s$/);
+  });
+
+  it('keeps the state pill in the progress column for transfers that are not finished', () => {
+    const { container } = renderTable([{ ...completedTransfer, averageSpeed: 0, percentComplete: 0, state: 'Queued, Remotely' }]);
+    const row = container.querySelector('.transfer-row:not(.transfer-header-row)');
+
+    expect(row.querySelector('[data-colkey="progress"] .transfer-state-pill')).not.toBeNull();
+    expect(row.querySelector('[data-colkey="speed"]').textContent).toBe('-');
+  });
+
+  it('clamps live progress to a valid percentage for malformed values', () => {
+    const values = [150, -15, Number.NaN];
+    const transfers = values.map((percentComplete, index) => ({
+      ...completedTransfer,
+      id: `transfer-progress-${index}`,
+      percentComplete,
+      state: 'InProgress',
+    }));
+    const { container } = renderTable(transfers);
+    const rows = [...container.querySelectorAll('.transfer-row:not(.transfer-header-row)')];
+
+    expect(rows.map((row) => row.querySelector('.transfer-progress-fill').style.width))
+      .toEqual(['100%', '0%', '0%']);
+    expect(rows.map((row) => row.querySelector('.transfer-progress-label').textContent))
+      .toEqual(['100%', '0%', '0%']);
+  });
 });

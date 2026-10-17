@@ -7,28 +7,34 @@ export const ALL_COLUMNS = [
   { key: 'name',       label: 'Name',       sortable: true,  defaultWidth: 200, defaultVisible: true,  fixed: false },
   { key: 'peer',       label: 'Peer',       sortable: true,  defaultWidth: 90,  defaultVisible: true,  fixed: false },
   { key: 'extension',  label: 'Type',       sortable: true,  defaultWidth: 56,  defaultVisible: false, fixed: false },
-  { key: 'size',       label: 'Size',       sortable: true,  defaultWidth: 120, defaultVisible: true,  fixed: false },
-  { key: 'progress',   label: 'Progress',   sortable: true,  defaultWidth: 160, defaultVisible: true,  fixed: false },
-  { key: 'speed',      label: 'Speed',      sortable: true,  defaultWidth: 90,  defaultVisible: true,  fixed: false },
-  { key: 'bitrate',    label: 'Bitrate',   sortable: true,  defaultWidth: 60,  defaultVisible: true,  fixed: false },
-  { key: 'samplerate', label: 'SampleRate',sortable: true,  defaultWidth: 70,  defaultVisible: false, fixed: false },
-  { key: 'length',     label: 'Length',    sortable: true,  defaultWidth: 60,  defaultVisible: true,  fixed: false },
-  { key: 'eta',        label: 'ETA',        sortable: true,  defaultWidth: 72,  defaultVisible: true,  fixed: false },
+  { key: 'size',       label: 'Size',       sortable: true,  defaultWidth: 120, defaultVisible: true,  fixed: false, numeric: true },
+  { key: 'progress',   label: 'Progress',   sortable: true,  defaultWidth: 160, defaultVisible: true,  fixed: false, numeric: true },
+  { key: 'speed',      label: 'Speed',      sortable: true,  defaultWidth: 90,  defaultVisible: true,  fixed: false, numeric: true },
+  { key: 'bitrate',    label: 'Bitrate',   sortable: true,  defaultWidth: 60,  defaultVisible: true,  fixed: false, numeric: true },
+  { key: 'samplerate', label: 'SampleRate',sortable: true,  defaultWidth: 70,  defaultVisible: false, fixed: false, numeric: true },
+  { key: 'length',     label: 'Length',    sortable: true,  defaultWidth: 60,  defaultVisible: true,  fixed: false, numeric: true },
+  { key: 'eta',        label: 'ETA',        sortable: true,  defaultWidth: 72,  defaultVisible: true,  fixed: false, numeric: true },
   { key: 'state',      label: 'State',      sortable: true,  defaultWidth: 90,  defaultVisible: true,  fixed: false },
   { key: 'directory',  label: 'Remote Folder', sortable: true, defaultWidth: 160, defaultVisible: true, fixed: false },
   { key: 'local',      label: 'Local File',  sortable: true,  defaultWidth: 180, defaultVisible: false, fixed: false },
   { key: 'artist',     label: 'Artist',     sortable: true,  defaultWidth: 120, defaultVisible: false, fixed: false },
   { key: 'album',      label: 'Album',      sortable: true,  defaultWidth: 140, defaultVisible: false, fixed: false },
   { key: 'title',      label: 'Title',      sortable: true,  defaultWidth: 140, defaultVisible: false, fixed: false },
-  { key: 'track',      label: 'Track',      sortable: true,  defaultWidth: 55,  defaultVisible: false, fixed: false },
-  { key: 'year',       label: 'Year',       sortable: true,  defaultWidth: 55,  defaultVisible: false, fixed: false },
-  { key: 'elapsed',    label: 'Elapsed',    sortable: true,  defaultWidth: 70,  defaultVisible: false, fixed: false },
-  { key: 'remaining',  label: 'Remaining',  sortable: true,  defaultWidth: 90,  defaultVisible: false, fixed: false },
+  { key: 'track',      label: 'Track',      sortable: true,  defaultWidth: 55,  defaultVisible: false, fixed: false, numeric: true },
+  { key: 'year',       label: 'Year',       sortable: true,  defaultWidth: 55,  defaultVisible: false, fixed: false, numeric: true },
+  { key: 'elapsed',    label: 'Elapsed',    sortable: true,  defaultWidth: 70,  defaultVisible: false, fixed: false, numeric: true },
+  { key: 'remaining',  label: 'Remaining',  sortable: true,  defaultWidth: 90,  defaultVisible: false, fixed: false, numeric: true },
   { key: 'started',    label: 'Added',      sortable: true,  defaultWidth: 110, defaultVisible: false, fixed: false },
   { key: 'requested',  label: 'Requested',  sortable: true,  defaultWidth: 150, defaultVisible: true,  fixed: false },
   { key: 'completed',  label: 'Done',       sortable: true,  defaultWidth: 110, defaultVisible: false, fixed: false },
   { key: 'actions',    label: '',           sortable: false, defaultWidth: 90,  defaultVisible: true,  fixed: true },
 ];
+
+const NUMERIC_COLUMN_KEYS = new Set(
+  ALL_COLUMNS.filter((column) => column.numeric).map((column) => column.key),
+);
+
+export const isNumericColumn = (key) => NUMERIC_COLUMN_KEYS.has(key);
 
 // Immutable columns always shown at fixed positions
 const FIXED_LEFT = ['checkbox'];
