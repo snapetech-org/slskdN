@@ -56,32 +56,35 @@ expect_literal "$workflow" 'dotnet-version: ${{ env.DOTNET_VERSION }}'
 
 expect_hosted_workflows() {
   local workflow_directory="$repo_root/.github/workflows"
-  local allowed_workflow="$workflow_directory/feature-coherence-validation.yml"
-  local expected_workflow_sha256="994a0beab251e1f19488493e0bc4e70ea4bf8ba063df34f728cc3128e379a3b0"
-  local actual_workflow_sha256
+  local audited_workflow="$workflow_directory/feature-coherence-validation.yml"
   local policy_pattern='^[[:space:]]*(runs-on|labels):.*self-hosted|TRUSTED_MAIN_RUNNERS_ENABLED|PREFER_SELF_HOSTED|inputs\.runner'
   local matches
-  local disallowed_matches
 
-  if [[ ! -f "$allowed_workflow" || -L "$allowed_workflow" ]]; then
+  if [[ ! -f "$audited_workflow" || -L "$audited_workflow" ]]; then
     printf 'the audited public-fork validation workflow is missing or not a regular file\n' >&2
     failed=1
   else
-    actual_workflow_sha256="$(sha256sum -- "$allowed_workflow" | awk '{print $1}')"
-    if [[ "$actual_workflow_sha256" != "$expected_workflow_sha256" ]]; then
-      printf 'the public-fork runner exception does not match its reviewed workflow contents\n' >&2
+    if ! rg -q '^    runs-on: ubuntu-latest$' "$audited_workflow"; then
+      printf 'the public-fork validation workflow must use a fresh GitHub-hosted runner\n' >&2
+      failed=1
+    fi
+    if ! rg -q '^permissions:$' "$audited_workflow" ||
+      ! rg -q '^  contents: read$' "$audited_workflow" ||
+      ! rg -q '^      contents: read$' "$audited_workflow"; then
+      printf 'the public-fork validation workflow must keep contents access read-only\n' >&2
+      failed=1
+    fi
+    if ! rg -q '^[[:space:]]+persist-credentials: false$' "$audited_workflow"; then
+      printf 'the public-fork validation checkout must not persist credentials\n' >&2
       failed=1
     fi
   fi
 
   matches="$(rg -n "$policy_pattern" "$workflow_directory" 2>&1 || true)"
   if [[ -n "$matches" ]]; then
-    disallowed_matches="$(printf '%s\n' "$matches" | awk -F: -v allowed="$allowed_workflow" '$1 != allowed { print }')"
-    if [[ -n "$disallowed_matches" ]]; then
-      printf '%s\n' "$disallowed_matches" >&2
-      printf 'only the exact audited public-fork validation workflow may select a private runner\n' >&2
-      failed=1
-    fi
+    printf '%s\n' "$matches" >&2
+    printf 'GitHub workflows must not select private runners or manual runner overrides\n' >&2
+    failed=1
   fi
 }
 
