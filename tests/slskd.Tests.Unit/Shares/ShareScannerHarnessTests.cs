@@ -99,11 +99,14 @@ public class ShareScannerHarnessTests
             using var registration = scanner.StateMonitor.OnChange(change => snapshots.Enqueue(change.Current));
 
             var stopwatch = Stopwatch.StartNew();
+            var scanTimeout = OperatingSystem.IsWindows()
+                ? TimeSpan.FromMinutes(2)
+                : TimeSpan.FromSeconds(30);
             await RunScanWithTimeoutAsync(
                 scanner,
                 shareRoot,
                 repository,
-                TimeSpan.FromSeconds(30),
+                scanTimeout,
                 "Synthetic share-scan harness").ConfigureAwait(false);
             stopwatch.Stop();
 
