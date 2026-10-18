@@ -37,7 +37,7 @@ describe('setupHealthCheck', () => {
 
     expect(summary.readiness).toBe('Ready');
     expect(summary.score).toBe(100);
-    expect(summary.totals).toEqual({ fail: 0, pass: 12, warn: 0 });
+    expect(summary.totals).toEqual({ fail: 0, info: 0, pass: 12, warn: 0 });
     expect(summary.checks.map((item) => item.area)).toContain('Web mounting');
     expect(summary.groups).toEqual(
       expect.objectContaining({
@@ -114,8 +114,8 @@ describe('setupHealthCheck', () => {
       summary: 'API key configured',
     });
     expect(summary.checks.find((item) => item.area === 'Provider credentials')).toMatchObject({
-      status: 'warn',
-      summary: 'Provider credential gaps',
+      status: 'info',
+      summary: 'Optional provider credential gaps',
     });
   });
 
@@ -174,8 +174,8 @@ describe('setupHealthCheck', () => {
       summary: 'Authentication disabled',
     });
     expect(summary.checks.find((item) => item.area === 'Provider credentials')).toMatchObject({
-      status: 'warn',
-      summary: 'Provider credential gaps',
+      status: 'info',
+      summary: 'Optional provider credential gaps',
     });
     expect(summary.checks.find((item) => item.area === 'Queue pressure')).toMatchObject({
       status: 'warn',
