@@ -790,6 +790,10 @@
   border-left-color: #db2828;
 }
 
+.setup-health-card-info {
+  border-left-color: var(--slskd-color-subtle, #8b8b8b);
+}
+
 .setup-health-card-head {
   align-items: center;
   display: flex;

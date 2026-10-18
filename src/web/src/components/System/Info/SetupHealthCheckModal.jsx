@@ -1,5 +1,6 @@
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { urlBase } from "../../../config";
 import {
   buildSetupHealthChecks,
   formatSetupHealthReport,
@@ -20,12 +21,14 @@ import {
 
 const statusColors = {
   fail: 'red',
+  info: 'grey',
   pass: 'green',
   warn: 'yellow',
 };
 
 const statusIcons = {
   fail: 'warning sign',
+  info: 'info circle',
   pass: 'check circle',
   warn: 'exclamation triangle',
 };
@@ -61,10 +64,27 @@ const LocalizedSetupHealthEvidence = ({ source }) => {
   return <LocalizedText source={source} />;
 };
 
-const LocalizedSetupHealthAction = ({ source }) => {
+const LocalizedSetupHealthAction = ({ source, destination, onNavigate }) => {
   const providerMatch = source.match(/^Add credentials or disable: (.*)\.$/);
-  if (providerMatch) return <LocalizedText source="Add credentials or disable: {providers}." values={{ providers: providerMatch[1] }} />;
-  return <LocalizedText source={source} />;
+  const action = providerMatch
+    ? <LocalizedText source="Add credentials or disable: {providers}." values={{ providers: providerMatch[1] }} />
+    : <LocalizedText source={source} />;
+  if (!destination) return action;
+  return (
+    <>
+      {action}{' '}
+      <Button
+        as="a"
+        basic
+        href={`${urlBase}${destination.path}`}
+        onClick={onNavigate}
+        size="mini"
+      >
+        <LocalizedText source="Open" />{' '}
+        <LocalizedText source={destination.label} />
+      </Button>
+    </>
+  );
 };
 
 const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
@@ -157,6 +177,10 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
               <Statistic.Value>{summary.totals.fail}</Statistic.Value>
               <Statistic.Label><LocalizedText source={"Fail"} /></Statistic.Label>
             </Statistic>
+            <Statistic color="grey">
+              <Statistic.Value>{summary.totals.info}</Statistic.Value>
+              <Statistic.Label><LocalizedText source={"Optional"} /></Statistic.Label>
+            </Statistic>
           </Statistic.Group>
           {summary.nextSteps.length > 0 && (
             <Message warning>
@@ -164,7 +188,12 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
               <List bulleted>
                 {summary.nextSteps.map((item) => (
                   <List.Item key={`${item.group}-${item.area}`}>
-                    <strong><LocalizedText source={item.area} />:</strong> <LocalizedSetupHealthAction source={item.action} />
+                    <strong><LocalizedText source={item.area} />:</strong>{' '}
+                    <LocalizedSetupHealthAction
+                      destination={item.destination}
+                      onNavigate={() => setOpen(false)}
+                      source={item.action}
+                    />
                   </List.Item>
                 ))}
               </List>
@@ -176,14 +205,14 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
               const label =
                 group === 'All'
                   ? `${summary.checks.length}`
-                  : `${groupSummary.fail}/${groupSummary.warn}/${groupSummary.pass}`;
+                  : `${groupSummary.fail}/${groupSummary.warn}/${groupSummary.pass}/${groupSummary.info}`;
 
               return (
                 <Popup
                   content={
                     group === 'All'
                       ? interfaceText("Show every diagnostic check.")
-                      : interfaceText("Show {group} checks. Label is fail/warn/pass.", { group: interfaceText(group) })
+                      : interfaceText("Show {group} checks. Label is fail/warn/pass/optional.", { group: interfaceText(group) })
                   }
                   key={group}
                   position="top center"
@@ -217,13 +246,19 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
                     <Header.Content><LocalizedText source={item.area} /></Header.Content>
                   </Header>
                   <Label color={statusColors[item.status]}>
-                    <LocalizedText source={item.status.toUpperCase()} />
+                    <LocalizedText source={item.status === 'info' ? 'Optional' : item.status.toUpperCase()} />
                   </Label>
                 </div>
                 <p className="setup-health-card-summary"><LocalizedText source={item.summary} /></p>
                 <p className="setup-health-card-group"><LocalizedText source={item.group} /></p>
                 <p className="setup-health-card-evidence"><LocalizedSetupHealthEvidence source={item.evidence} /></p>
-                <p className="setup-health-card-action"><LocalizedSetupHealthAction source={item.action} /></p>
+                <p className="setup-health-card-action">
+                  <LocalizedSetupHealthAction
+                    destination={item.destination}
+                    onNavigate={() => setOpen(false)}
+                    source={item.action}
+                  />
+                </p>
               </section>
             ))}
           </div>

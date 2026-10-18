@@ -28,6 +28,12 @@ For dev or build tags, use the same logical version string embedded in the tag.
   organization-owned `ghcr.io/snapetech-org/slskdn` image. Publisher recovery can
   retry the omnibus image independently or alongside the main image.
 
+### Changed
+
+- Setup Health now marks missing shares, unused API keys, and unused provider
+  credentials as optional. Core connection and download requirements remain
+  separate, and repair actions open their existing System settings.
+
 ## [2026101723-slskdn.351] — 2026-10-17
 
 ### Security

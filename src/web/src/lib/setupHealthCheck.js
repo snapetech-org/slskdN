@@ -23,9 +23,10 @@ const hasValue = (value) => {
   return value !== undefined && value !== null && value !== false;
 };
 
-const check = ({ action, area, evidence, group, status, summary }) => ({
+const check = ({ action, area, destination, evidence, group, status, summary }) => ({
   action,
   area,
+  destination,
   evidence,
   group,
   status,
@@ -157,6 +158,7 @@ export const buildSetupHealthChecks = ({ options = {}, state = {} } = {}) => {
         ? 'No action needed.'
         : 'Verify credentials and network reachability before starting searches or transfers.',
       area: 'Soulseek session',
+      destination: soulseekConnected ? undefined : { label: 'Options', path: '/system/options' },
       evidence: soulseekConnected ? 'Connected state is true.' : 'Connected state is not true.',
       group: 'Network',
       status: soulseekConnected ? 'pass' : 'fail',
@@ -177,7 +179,10 @@ export const buildSetupHealthChecks = ({ options = {}, state = {} } = {}) => {
         ? 'Enable authentication before exposing this Web UI outside a trusted local network.'
         : apiKeyConfigured
           ? 'No action needed.'
-          : 'Configure an API key before relying on mutating API clients or automation integrations.',
+          : 'Optional: configure an API key only when using mutating API clients or automation integrations.',
+      destination: authDisabled || !apiKeyConfigured
+        ? { label: 'Policies', path: '/system/policies' }
+        : undefined,
       area: 'API access',
       evidence: authDisabled
         ? 'Web authentication is disabled.'
@@ -185,24 +190,30 @@ export const buildSetupHealthChecks = ({ options = {}, state = {} } = {}) => {
           ? 'An API key is visible in options.'
           : 'No API key is visible in options.',
       group: 'Access',
-      status: authDisabled ? 'fail' : apiKeyConfigured ? 'pass' : 'warn',
-      summary: authDisabled ? 'Authentication disabled' : apiKeyConfigured ? 'API key configured' : 'API key missing',
+      status: authDisabled ? 'fail' : apiKeyConfigured ? 'pass' : 'info',
+      summary: authDisabled
+        ? 'Authentication disabled'
+        : apiKeyConfigured
+          ? 'API key configured'
+          : 'Optional: API key not configured',
     }),
     check({
       action: shares.length
         ? 'Review share paths if peers cannot browse your library.'
-        : 'Add at least one shared folder before expecting uploads or public browse results.',
+        : 'Sharing is optional. Add a share root only when you want other peers to browse selected folders.',
       area: 'Shares',
+      destination: { label: 'Shares', path: '/system/shares' },
       evidence: `${shares.length} share ${shares.length === 1 ? 'entry' : 'entries'} visible in options.`,
       group: 'Storage',
-      status: shares.length ? 'pass' : 'warn',
-      summary: shares.length ? 'Shares configured' : 'No shares configured',
+      status: shares.length ? 'pass' : 'info',
+      summary: shares.length ? 'Shares configured' : 'Optional: no shares configured',
     }),
     check({
       action: hasValue(downloads)
         ? 'No action needed.'
         : 'Configure a download folder before starting acquisition workflows.',
       area: 'Downloads',
+      destination: hasValue(downloads) ? undefined : { label: 'Options', path: '/system/options' },
       evidence: hasValue(downloads) ? 'A download path is configured.' : 'No download path is visible in options.',
       group: 'Storage',
       status: hasValue(downloads) ? 'pass' : 'fail',
@@ -245,12 +256,13 @@ export const buildSetupHealthChecks = ({ options = {}, state = {} } = {}) => {
         ? `Add credentials or disable: ${enabledProviderGaps.join(', ')}.`
         : 'No action needed.',
       area: 'Provider credentials',
+      destination: enabledProviderGaps.length ? { label: 'Options', path: '/system/options' } : undefined,
       evidence: enabledProviderGaps.length
         ? `${enabledProviderGaps.length} enabled provider credential ${enabledProviderGaps.length === 1 ? 'gap' : 'gaps'} found.`
         : 'No enabled provider credential gaps were detected in loaded options.',
       group: 'Operations',
-      status: enabledProviderGaps.length ? 'warn' : 'pass',
-      summary: enabledProviderGaps.length ? 'Provider credential gaps' : 'Provider credentials clear',
+      status: enabledProviderGaps.length ? 'info' : 'pass',
+      summary: enabledProviderGaps.length ? 'Optional provider credential gaps' : 'Provider credentials clear',
     }),
     check({
       action: queueDepth > 25
@@ -289,7 +301,7 @@ export const buildSetupHealthChecks = ({ options = {}, state = {} } = {}) => {
       ...result,
       [item.status]: result[item.status] + 1,
     }),
-    { fail: 0, pass: 0, warn: 0 },
+    { fail: 0, info: 0, pass: 0, warn: 0 },
   );
 
   const score = Math.max(
@@ -297,16 +309,17 @@ export const buildSetupHealthChecks = ({ options = {}, state = {} } = {}) => {
     Math.min(100, 100 - (totals.fail * 22) - (totals.warn * 9)),
   );
   const nextSteps = checks
-    .filter((item) => item.status !== 'pass')
+    .filter((item) => item.status === 'fail' || item.status === 'warn')
     .map((item) => ({
       action: item.action,
       area: item.area,
+      destination: item.destination,
       group: item.group,
       severity: item.status,
     }))
     .slice(0, 5);
   const groups = checks.reduce((result, item) => {
-    const existing = result[item.group] || { fail: 0, pass: 0, total: 0, warn: 0 };
+    const existing = result[item.group] || { fail: 0, info: 0, pass: 0, total: 0, warn: 0 };
     return {
       ...result,
       [item.group]: {

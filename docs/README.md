@@ -36,6 +36,7 @@ completed workstream notes, and incident reports live under
 - [Solid Integration User Guide](SOLID_USER_GUIDE.md) - Using Solid WebID and Solid-OIDC integration
 
 ## 📖 Design Documents
+- [Setup experience contract](design/setup-experience-contract.md) - evolve current login and System settings for Soulseek credentials, downloads, and opt-in sharing.
 
 ### Core Features
 - [DHT and Mesh Architecture](DHT_MESH_ARCHITECTURE.md) - Current terminology, discovery layers, overlay transport, and file-transfer boundaries

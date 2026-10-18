@@ -144,22 +144,37 @@ Lease renewal refreshes the mapping without rebuilding the live ingress path.
 Use **System -> Policies** or edit `web.authentication` in YAML. If remote
 configuration is disabled, edit the configuration file directly and restart.
 
-#### 2. Configure Download Directory
+#### 2. Configure Soulseek Credentials
+
+Set `soulseek.username` and `soulseek.password` in YAML, then restart or
+reconnect as indicated by the System status page. These are your Soulseek
+account credentials; they are separate from the Web UI login password.
+
+#### 3. Configure Download Directory
 
 Use **System -> Options** for raw YAML or edit `directories.downloads`,
 `directories.incomplete`, and `destinations.folders`. Destination folders must
 exist, be writable, and be mounted into the container when using Docker. Set
 `default: true` on one destination to make it the daemon-wide default.
 
-#### 3. Configure Share Directories
+#### 4. Search and Download
 
-Use **System -> Shares** for scan/status work and `shares.directories` in YAML
-for roots you want to share.
+Open Search, enter a query, and download a result. These core steps do not
+require share roots, an API key, Lidarr, DHT, or mesh.
 
-#### 4. Configure Soulseek Credentials
+### Optional: Share files with peers
 
-Set `soulseek.username` and `soulseek.password` in YAML, then restart or
-reconnect as indicated by the System status page.
+Only add share roots if you want other Soulseek peers to browse those
+directories. Choose exact directories in `shares.directories` in YAML, then use
+**System -> Shares** for scan and status work. Shared roots expose their files
+to peers; they are separate from your download destination.
+
+### Optional: Add integrations and network features
+
+An API key is only needed by the mutating API clients or automation that use
+it. Configure Lidarr, wishlist, DHT, mesh, VPN, or other extensions only when
+you need them. Review the [feature inventory](../FEATURE_INVENTORY.md) for
+current maturity and defaults before enabling experimental features.
 
 ### Configuration File
 
