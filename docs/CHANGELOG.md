@@ -22,6 +22,10 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Authentication: browser sign-in can use a server-configured OpenID Connect
+  provider. Authorization-code callbacks retain the existing JWT session,
+  require explicit verified-email admission, and keep local/API-key login
+  available. Provider hints add local branding and official setup links only.
 - Packaging: stable container releases publish matching `:main`, `:master`, and `:latest` aliases to GHCR and Docker Hub. Docker Hub credentials gate stable publication; main-branch canaries stay on development tags.
 
 - Docs: the taste recommendation API and its capabilities probe are listed under Soulseek Native Discovery in `docs/FEATURES.md`, including their use by SeerrNG Collector Picks.

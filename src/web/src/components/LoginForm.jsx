@@ -3,6 +3,8 @@ import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/
 import { getApiErrorMessage } from '../lib/apiErrorMessages';
 import Footer from './Shared/Footer';
 import TooltipButton from './Shared/TooltipButton';
+import * as session from '../lib/session';
+import { getOidcProviderPresentation } from '../lib/oidcProvider';
 import brandLogo from '../assets/brand/slskdn-logo-lockup.png';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -41,6 +43,9 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
   const usernameInput = useRef();
   const [state, setState] = useState(initialState);
   const [ready, setReady] = useState(false);
+  const [oidcEnabled, setOidcEnabled] = useState(false);
+  const [oidcProvider, setOidcProvider] = useState('generic');
+  const oidcFailed = new URLSearchParams(window.location.search).get('oidcFailed') === 'true';
   const httpsUrl = useMemo(() => {
     if (typeof window === 'undefined') {
       return null;
@@ -61,6 +66,26 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
     usernameInput.current?.focus();
   }, [loading]);
 
+  useEffect(() => {
+    let active = true;
+    session.getOidcEnabled()
+      .then((status) => {
+        if (active) {
+          setOidcEnabled(status?.enabled === true);
+          setOidcProvider(status?.provider || 'generic');
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setOidcEnabled(false);
+          setOidcProvider('generic');
+        }
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const handleChange = (field, value) => {
     setState({
       ...state,
@@ -69,6 +94,7 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
   };
 
   const { password, rememberMe, username } = state;
+  const oidcPresentation = getOidcProviderPresentation(oidcProvider);
 
   return (
     <>
@@ -136,6 +162,34 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
             >
               <Icon name="sign in" />
               <LocalizedText source={"Login"} /></TooltipButton>
+            {oidcEnabled && (
+              <TooltipButton
+                className="oidc-login-button"
+                fluid
+                onClick={() => session.loginWithOidc()}
+                primary
+                size="large"
+                tooltip="Sign in with your configured identity provider."
+                type="button"
+              >
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" style={{ marginRight: 8, verticalAlign: 'middle' }}>
+                  <use href={`/oidc-provider-icons.svg#oidc-${oidcPresentation.icon}`} />
+                </svg>
+                <LocalizedText source="Continue with {provider}" values={{ provider: oidcPresentation.label }} />
+              </TooltipButton>
+            )}
+            {oidcEnabled && (
+              <a href={oidcPresentation.setupUrl} target="_blank" rel="noopener noreferrer"
+                style={{ display: 'block', marginTop: 8, textAlign: 'center', fontSize: 12 }}>
+                <LocalizedText source="Provider setup guide" />
+              </a>
+            )}
+            {oidcFailed && (
+              <Message className="oidc-login-failure" floating negative>
+                <Icon name="x" />
+                <LocalizedText source="Identity provider sign-in failed. Check the provider and account admission settings." />
+              </Message>
+            )}
             {error && (
               <Message
                 className="login-failure"

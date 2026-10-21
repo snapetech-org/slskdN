@@ -23,6 +23,7 @@ using Microsoft.Extensions.Options;
 namespace slskd.Core.API
 {
     using Asp.Versioning;
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Serilog;
@@ -94,10 +95,65 @@ namespace slskd.Core.API
         }
 
         /// <summary>
+        ///     Checks whether OIDC browser sign-in is configured.
+        /// </summary>
+        [HttpGet]
+        [Route("oidc/enabled")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(object), 200)]
+        public IActionResult OidcEnabled()
+        {
+            var oidc = OptionsAtStartup.Web.Authentication.Oidc;
+            var enabled = !OptionsAtStartup.Headless && !OptionsAtStartup.Web.Authentication.Disabled &&
+                !string.IsNullOrWhiteSpace(oidc.IssuerUrl) &&
+                !string.IsNullOrWhiteSpace(oidc.ClientId) &&
+                !string.IsNullOrWhiteSpace(oidc.ClientSecret) &&
+                !string.IsNullOrWhiteSpace(oidc.RedirectUri);
+            return Ok(new { enabled, provider = oidc.Provider });
+        }
+
+        /// <summary>
+        ///     Starts the OpenID Connect authorization-code sign-in flow.
+        /// </summary>
+        [HttpGet]
+        [Route("oidc")]
+        [AllowAnonymous]
+        [ProducesResponseType(302)]
+        public IActionResult OidcLogin([FromQuery] string? returnUrl = null)
+        {
+            var oidc = OptionsAtStartup.Web.Authentication.Oidc;
+            if (OptionsAtStartup.Headless || OptionsAtStartup.Web.Authentication.Disabled ||
+                string.IsNullOrWhiteSpace(oidc.IssuerUrl) ||
+                string.IsNullOrWhiteSpace(oidc.ClientId) ||
+                string.IsNullOrWhiteSpace(oidc.ClientSecret) ||
+                string.IsNullOrWhiteSpace(oidc.RedirectUri))
+            {
+                return NotFound();
+            }
+
+            var pathBase = Request.PathBase.Value ?? string.Empty;
+            var fallback = $"{pathBase}/";
+            var candidate = returnUrl?.Trim();
+            var isLocalPath = !string.IsNullOrWhiteSpace(candidate) &&
+                              candidate.StartsWith("/", StringComparison.Ordinal) &&
+                              !candidate.StartsWith("//", StringComparison.Ordinal) &&
+                              Url.IsLocalUrl(candidate);
+            var isWithinPathBase = string.IsNullOrEmpty(pathBase) ||
+                                   candidate == pathBase ||
+                                   candidate?.StartsWith(pathBase + "/", StringComparison.Ordinal) == true;
+            var safeReturnUrl = isLocalPath && isWithinPathBase ? candidate! : fallback;
+
+            return Challenge(
+                new AuthenticationProperties { RedirectUri = safeReturnUrl },
+                slskd.Bootstrap.WebServiceCollectionExtensions.OidcAuthenticationScheme);
+        }
+
+        /// <summary>
         ///     Logs out, revoking the current JWT.
         /// </summary>
         /// <returns></returns>
         /// <response code="204">Logout successful.</response>
+        // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- DELETE is non-simple; cookie auth is covered by ValidateCsrfForCookiesOnly.
         [HttpDelete]
         [Route("")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
@@ -125,6 +181,7 @@ namespace slskd.Core.API
         /// <response code="200">Login was successful.</response>
         /// <response code="400">Bad request.</response>
         /// <response code="401">Login failed.</response>
+        // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- Controller-level Consumes(application/json) and ValidateCsrfForCookiesOnly block simple cross-site form login.
         [HttpPost]
         [Route("")]
         [AllowAnonymous]

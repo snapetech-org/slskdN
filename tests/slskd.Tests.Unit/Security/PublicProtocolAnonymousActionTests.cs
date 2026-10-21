@@ -22,7 +22,9 @@ public class PublicProtocolAnonymousActionTests
         AssertAnonymousActions(
             typeof(SessionController),
             nameof(SessionController.Enabled),
-            nameof(SessionController.Login));
+            nameof(SessionController.Login),
+            nameof(SessionController.OidcEnabled),
+            nameof(SessionController.OidcLogin));
     }
 
     [Fact]

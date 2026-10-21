@@ -264,6 +264,17 @@
 #    jwt:
 #      key: ~
 #      ttl: 604800000
+#    oidc:
+#      provider: keycloak
+#      issuer_url: https://id.example.com/realms/slskdn
+#      client_id: slskdn
+#      client_secret: replace-with-client-secret
+#      redirect_uri: https://music.example.com/signin-oidc
+#      allowed_emails: operator@example.com
+#      allowed_email_domains: ~
+#      scopes: openid profile email
+#      allow_any_verified_user: false
+#      allow_private_issuer: false
 #    api_keys:
 #      my_api_key:
 #        key: <some example string between 16 and 255 characters>

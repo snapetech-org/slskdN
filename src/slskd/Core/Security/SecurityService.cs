@@ -34,7 +34,12 @@ namespace slskd
 
     public interface ISecurityService
     {
-        JwtSecurityToken GenerateJwt(string username, Role role, int? ttl = null, string[]? scopes = null);
+        JwtSecurityToken GenerateJwt(
+            string username,
+            Role role,
+            int? ttl = null,
+            string[]? scopes = null,
+            IEnumerable<Claim>? additionalClaims = null);
         bool AuthenticateAdminCredentials(string username, string password);
         (string Name, Role Role, string[] Scopes) AuthenticateWithApiKey(string key, IPAddress callerIpAddress);
         void RevokeToken(string jti, DateTimeOffset expiresAt);
@@ -159,7 +164,12 @@ namespace slskd
             return _revocationStore.IsRevoked(jti);
         }
 
-        public JwtSecurityToken GenerateJwt(string username, Role role, int? ttl = null, string[]? scopes = null)
+        public JwtSecurityToken GenerateJwt(
+            string username,
+            Role role,
+            int? ttl = null,
+            string[]? scopes = null,
+            IEnumerable<Claim>? additionalClaims = null)
         {
             var issuedUtc = DateTime.UtcNow;
             var expiresUtc = DateTime.UtcNow.AddMilliseconds(ttl ?? OptionsAtStartup.Web.Authentication.Jwt.Ttl);
@@ -184,6 +194,11 @@ namespace slskd
             foreach (var scope in effectiveScopes)
             {
                 claims.Add(new Claim(SlskdClaims.ScopeClaim, scope));
+            }
+
+            if (additionalClaims != null)
+            {
+                claims.AddRange(additionalClaims);
             }
 
             var credentials = new SigningCredentials(JwtSigningKey, SecurityAlgorithms.HmacSha256);
