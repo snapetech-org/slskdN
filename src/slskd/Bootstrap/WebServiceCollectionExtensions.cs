@@ -176,7 +176,7 @@ public static class WebServiceCollectionExtensions
         // T-FED01: Register Social Federation services
         if (optionsAtStartup.SocialFederation.Enabled)
         {
-            services.AddSocialFederation();
+            services.AddSocialFederation(configuration);
         }
 
         if (!optionsAtStartup.Web.Authentication.Disabled)

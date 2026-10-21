@@ -2759,6 +2759,43 @@ namespace slskd.HashDb
             await cmd.ExecuteNonQueryAsync(cancellationToken);
         }
 
+        private static int GetAudioDurationSeconds(string filePath, int fallbackSeconds)
+        {
+            try
+            {
+                using var process = new System.Diagnostics.Process();
+                process.StartInfo.FileName = "ffprobe";
+                process.StartInfo.ArgumentList.Add("-v");
+                process.StartInfo.ArgumentList.Add("error");
+                process.StartInfo.ArgumentList.Add("-show_entries");
+                process.StartInfo.ArgumentList.Add("format=duration");
+                process.StartInfo.ArgumentList.Add("-of");
+                process.StartInfo.ArgumentList.Add("default=noprint_wrappers=1:nokey=1");
+                process.StartInfo.ArgumentList.Add(filePath);
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
+                process.StartInfo.UseShellExecute = false;
+                process.Start();
+                var output = process.StandardOutput.ReadToEnd();
+                if (!process.WaitForExit(5000))
+                {
+                    try { process.Kill(); } catch { }
+                    return fallbackSeconds;
+                }
+
+                if (double.TryParse(output.Trim(), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var duration) && duration > 1)
+                {
+                    return (int)Math.Round(duration);
+                }
+            }
+            catch
+            {
+                // fall through to fallback
+            }
+
+            return fallbackSeconds;
+        }
+
         private async Task TryResolveAcoustIdAsync(string filePath, string flacKey, string fingerprint, CancellationToken cancellationToken = default)
         {
             var filename = Path.GetFileName(filePath);
@@ -2782,7 +2819,8 @@ namespace slskd.HashDb
             try
             {
                 var chromaOptions = optionsMonitor.CurrentValue.Integration.Chromaprint;
-                var result = await acoustIdClient.LookupAsync(fingerprint, chromaOptions.SampleRate, chromaOptions.DurationSeconds, cancellationToken).ConfigureAwait(false);
+                var durationSeconds = GetAudioDurationSeconds(filePath, chromaOptions.DurationSeconds);
+                var result = await acoustIdClient.LookupAsync(fingerprint, chromaOptions.SampleRate, durationSeconds, cancellationToken).ConfigureAwait(false);
 
                 var recordingId = result?.Recordings?.FirstOrDefault()?.Id;
 
