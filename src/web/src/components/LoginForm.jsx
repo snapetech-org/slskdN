@@ -180,12 +180,16 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
             )}
             {oidcEnabled && (
               <a href={oidcPresentation.setupUrl} target="_blank" rel="noopener noreferrer"
+                aria-label={interfaceText(
+                  "{provider} identity provider setup guide (opens in a new tab)",
+                  { provider: oidcPresentation.label },
+                )}
                 style={{ display: 'block', marginTop: 8, textAlign: 'center', fontSize: 12 }}>
-                <LocalizedText source="Provider setup guide" />
+                <LocalizedText source="Provider setup guide" /> <span aria-hidden="true">↗</span>
               </a>
             )}
             {oidcFailed && (
-              <Message className="oidc-login-failure" floating negative>
+              <Message className="oidc-login-failure" floating negative role="alert" aria-live="assertive">
                 <Icon name="x" />
                 <LocalizedText source="Identity provider sign-in failed. Check the provider and account admission settings." />
               </Message>
@@ -195,6 +199,8 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
                 className="login-failure"
                 floating
                 negative
+                role="alert"
+                aria-live="assertive"
               >
                 <Icon name="x" />
                 {getApiErrorMessage(error, { t: interfaceText })}

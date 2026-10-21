@@ -22,6 +22,10 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- OIDC login provider guidance now uses the corrected Okta Authorization Code
+  with PKCE documentation link, localized accessible help labels, and a clear
+  new-tab affordance. Missing login-help strings are present in all twelve
+  supported locale catalogs.
 - Authentication: browser sign-in can use a server-configured OpenID Connect
   provider. Authorization-code callbacks retain the existing JWT session,
   require explicit verified-email admission, and keep local/API-key login

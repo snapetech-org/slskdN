@@ -6,7 +6,7 @@ const GENERIC_PROVIDER = {
 const PROVIDERS = {
   google: { label: 'Google', icon: 'google', setupUrl: 'https://developers.google.com/identity/openid-connect/openid-connect' },
   'microsoft-entra': { label: 'Microsoft Entra ID', icon: 'microsoft', setupUrl: 'https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc' },
-  okta: { label: 'Okta', icon: 'okta', setupUrl: 'https://developer.okta.com/docs/guides/implement-grant-type/-/main/' },
+  okta: { label: 'Okta', icon: 'okta', setupUrl: 'https://developer.okta.com/docs/guides/implement-grant-type/authcodepkce/main/' },
   auth0: { label: 'Auth0', icon: 'auth0', setupUrl: 'https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow' },
   keycloak: { label: 'Keycloak', icon: 'keycloak', setupUrl: 'https://www.keycloak.org/docs/latest/server_admin/' },
   authentik: { label: 'authentik', icon: 'authentik', setupUrl: 'https://docs.goauthentik.io/add-secure-apps/providers/oauth2/create-oauth2-provider/' },
