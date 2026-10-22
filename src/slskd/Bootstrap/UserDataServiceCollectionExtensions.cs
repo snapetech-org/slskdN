@@ -118,7 +118,8 @@ public static class UserDataServiceCollectionExtensions
         try
         {
             using var schemaCommand = connection.CreateCommand();
-            schemaCommand.CommandText = $"PRAGMA table_info(\"{tableName.Replace("\"", "\"\"", StringComparison.Ordinal)}\")"; // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName is selected from fixed internal migrations and quoted as a SQLite identifier.
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName is selected from fixed internal migrations and quoted as a SQLite identifier.
+            schemaCommand.CommandText = $"PRAGMA table_info(\"{tableName.Replace("\"", "\"\"", StringComparison.Ordinal)}\")";
             using var reader = schemaCommand.ExecuteReader();
             var columnExists = false;
             while (reader.Read())
@@ -134,7 +135,8 @@ public static class UserDataServiceCollectionExtensions
             if (!columnExists)
             {
                 using var migrationCommand = connection.CreateCommand();
-                migrationCommand.CommandText = $"ALTER TABLE \"{tableName.Replace("\"", "\"\"", StringComparison.Ordinal)}\" ADD COLUMN \"{columnName.Replace("\"", "\"\"", StringComparison.Ordinal)}\" {columnType}"; // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName and columnName are allowlisted, columnType is fixed to TEXT, and identifiers are quoted.
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName and columnName are allowlisted, columnType is fixed to TEXT, and identifiers are quoted.
+                migrationCommand.CommandText = $"ALTER TABLE \"{tableName.Replace("\"", "\"\"", StringComparison.Ordinal)}\" ADD COLUMN \"{columnName.Replace("\"", "\"\"", StringComparison.Ordinal)}\" {columnType}";
                 migrationCommand.ExecuteNonQuery();
             }
         }

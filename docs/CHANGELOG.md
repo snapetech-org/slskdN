@@ -22,6 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Security review documents the container entrypoint's privilege drop, generated filesystem probe, and allowlisted SQLite schema statements beside their scan annotations.
 - Security: OIDC callbacks now reject external redirects, remote WebSocket endpoints require TLS, and fixture/certificate paths are constrained to trusted local targets.
 - Consensus session eviction now uses a bounded insertion-order queue instead of allocating a dictionary snapshot when the session limit is reached.
 - Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated.

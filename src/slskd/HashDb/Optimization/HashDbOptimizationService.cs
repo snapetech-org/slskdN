@@ -289,7 +289,8 @@ public class HashDbOptimizationService : IHashDbOptimizationService
                 }
 
                 using var countCmd = conn.CreateCommand();
-                countCmd.CommandText = $"SELECT COUNT(*) FROM \"{tableName}\""; // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName is checked against a fixed allowlist and quoted as a SQLite identifier.
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName is checked against a fixed allowlist and quoted as a SQLite identifier.
+                countCmd.CommandText = $"SELECT COUNT(*) FROM \"{tableName}\"";
                 var count = (long)(await countCmd.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false) ?? 0L);
                 tableStats[tableName] = count;
             }
