@@ -15,15 +15,17 @@ permissions:
 
 jobs:
   local-identity-leaks:
-    runs-on: ubuntu-latest
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
-      - name: Install scanner dependencies
-        run: sudo apt-get update && sudo apt-get install -y jq ripgrep
+      - name: Verify scanner dependencies
+        run: |
+          command -v jq
+          command -v rg
 
       - name: Check release-facing text
         env:

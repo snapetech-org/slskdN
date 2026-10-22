@@ -19,10 +19,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   use SDK 10.0.402, and vulnerability checks inspect every first-party project.
 - CI validation artifacts now include only receipts and task logs, leaving
   temporary task environments and dependency caches on the runners.
-- Public pull-request workflows now run on GitHub-hosted runners. Persistent
-  self-hosted runners are reserved for trusted workflows. Manual runs from
-  refs outside `main` also use hosted runners, and release jobs receive only
-  the token permissions they need.
+- Public pull-request workflows and manual runs outside `main` use
+  GitHub-hosted runners. Trusted main jobs use only the workflow-restricted
+  shared JIT runners, and release jobs receive only the token permissions they
+  need. CI verifies scanner tools from the runner image instead of racing
+  Ubuntu package locks.
 
 ### Changed
 

@@ -25,7 +25,7 @@ permissions:
 jobs:
   build:
     name: Build and Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     timeout-minutes: 120
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -57,8 +57,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install validation tools
-        run: sudo apt-get update && sudo apt-get install -y jq ripgrep
+      - name: Verify validation tools
+        run: |
+          command -v jq
+          command -v rg
 
       - name: Set up .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
@@ -161,7 +163,7 @@ jobs:
 
   nix-smoke:
     name: Nix Package Smoke
-    runs-on: ubuntu-latest
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
