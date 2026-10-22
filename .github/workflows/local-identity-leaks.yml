@@ -3,6 +3,7 @@ name: Local Identity Leak Check
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.run_id }}
@@ -13,7 +14,8 @@ permissions:
 
 jobs:
   local-identity-leaks:
-    runs-on: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    if: github.ref == 'refs/heads/main'
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

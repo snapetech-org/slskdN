@@ -120,9 +120,16 @@ reject_line .github/workflows/windows-smoke.yml 'uses:[[:space:]]+(pnpm/setup|ac
 expect_literal .github/workflows/windows-smoke.yml 'run: dotnet test slskd.sln --configuration Release --no-build'
 for workflow in \
     .github/workflows/build-on-tag.yml \
-    .github/workflows/ci.yml \
     .github/workflows/e2e-tests.yml; do
     expect_literal "$workflow" 'sudo apt-get install -y jq ripgrep'
+done
+for workflow in \
+    .github/workflows/ci.yml \
+    .github/workflows/local-identity-leaks.yml; do
+    expect_literal "$workflow" 'if ! command -v rg >/dev/null 2>&1; then'
+    expect_literal "$workflow" 'sudo apt-get install --yes ripgrep'
+    expect_literal "$workflow" 'command -v jq'
+    expect_literal "$workflow" 'command -v rg'
 done
 expect_literal packaging/scripts/run-release-gate.sh 'exec node scripts/validate-development.mjs'
 expect_literal scripts/validation-engine/config.mjs "'.github/workflows/build-on-tag.yml'"
@@ -397,7 +404,7 @@ expect_literal .github/workflows/release-ppa.yml 'scripts/wait-for-launchpad-ppa
 test -x scripts/wait-for-launchpad-ppa-publication.sh || fail 'scripts/wait-for-launchpad-ppa-publication.sh must be executable'
 expect_literal .github/workflows/release-linux.yml 'dotnet publish src/slskdN.VpnAgent/slskdN-vpn-agent.csproj'
 expect_literal .github/workflows/release-linux.yml 'publish-linux-${{ matrix.arch }}/vpn-agent'
-expect_literal .github/workflows/release-linux.yml 'test -x publish-linux-${{ matrix.arch }}/vpn-agent/slskdN-vpn-agent'
+expect_literal .github/workflows/release-linux.yml 'test -x "publish-linux-${ARCH}/vpn-agent/slskdN-vpn-agent"'
 expect_literal .github/workflows/release-copr.yml 'dotnet publish src/slskdN.VpnAgent/slskdN-vpn-agent.csproj'
 expect_literal .github/workflows/release-copr.yml 'publish-linux-x64/vpn-agent'
 expect_literal .github/workflows/release-copr.yml 'test -x publish-linux-x64/vpn-agent/slskdN-vpn-agent'
@@ -405,7 +412,8 @@ expect_literal packaging/homebrew/Formula/slskdn.rb 'slskdN-vpn-agent'
 expect_literal packaging/scripts/update-stable-release-metadata.sh 'slskdN-vpn-agent'
 expect_literal packaging/chocolatey/tools/chocolateyinstall.ps1 'Install-BinFile -Name "slskdN-vpn-agent"'
 
-expect_line .github/workflows/release-packages.yml '\$\{\{ steps\.version\.outputs\.tag \}\}-linux-x64\.zip'
+expect_literal .github/workflows/release-packages.yml 'RELEASE_TAG: ${{ steps.version.outputs.tag }}'
+expect_literal .github/workflows/release-packages.yml 'slskdn-${RELEASE_TAG}-linux-x64.zip'
 
 expect_literal Dockerfile 'gosu'
 expect_literal Dockerfile 'ffmpeg'

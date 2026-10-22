@@ -28,7 +28,10 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Verification session eviction now uses the same bounded FIFO approach, preventing capacity-filling requests from scanning the full session table.
 - Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated. Main build and scan jobs verify scanner tools from the runner image instead of racing Ubuntu package locks.
 - Hosted security workflows install ripgrep when the runner image does not include it, so identity-scanner validation can complete reliably.
-- The local identity denylist scan runs only on trusted `main` pushes, so pull-request workflows never receive its secret.
+- CI validation now checks the conditional ripgrep installation used by hosted scanners while confirming jq and ripgrep are available before scanning.
+- Packaging validation now checks the release workflow's architecture-specific executable path.
+- Release package validation now follows the workflow's tag-based asset selection.
+- The local identity denylist scan runs only on trusted `main` pushes or manual dispatches on `main`, so pull requests never receive its secret.
 - Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
 - Trusted main-branch builds and security scans now use the capacity-guarded shared Linux runner pool; fork pull requests remain on isolated runners.
 - CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.
