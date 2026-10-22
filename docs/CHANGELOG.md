@@ -22,6 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Fix the Apple Sign In temporary cookie setup so the server builds with the required cross-site callback policy.
 - AcoustID lookups use each track's measured duration, improving matches for longer recordings while keeping metadata processing responsive when ffprobe stalls.
 
 ## [2026102116-slskdn.353] — 2026-10-21

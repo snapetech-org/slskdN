@@ -85,23 +85,30 @@ public class CallbackInfrastructureTests
             BindingFlags.Instance | BindingFlags.NonPublic)
             ?? throw new InvalidOperationException("RateLimiter.Timer_Elapsed method was not found.");
 
-        var firstTask = Task.Run(() => rateLimiter.Invoke(() =>
-        {
-            EnterCallback();
-            firstStarted.Set();
-            try
+        // The callback intentionally blocks. Use a dedicated thread so thread
+        // pool starvation in the parallel test suite cannot make the gate
+        // assertion time out before the callback starts.
+        var firstTask = Task.Factory.StartNew(
+            () => rateLimiter.Invoke(() =>
             {
-                releaseFirst.Wait();
-            }
-            finally
-            {
-                Interlocked.Decrement(ref activeCallbacks);
-            }
-        }));
+                EnterCallback();
+                firstStarted.Set();
+                try
+                {
+                    releaseFirst.Wait();
+                }
+                finally
+                {
+                    Interlocked.Decrement(ref activeCallbacks);
+                }
+            }),
+            CancellationToken.None,
+            TaskCreationOptions.LongRunning,
+            TaskScheduler.Default);
 
         try
         {
-            Assert.True(firstStarted.Wait(TimeSpan.FromSeconds(2)));
+            Assert.True(firstStarted.Wait(TimeSpan.FromSeconds(10)));
             rateLimiter.Invoke(() =>
             {
                 EnterCallback();
@@ -124,7 +131,7 @@ public class CallbackInfrastructureTests
             releaseFirst.Set();
         }
 
-        Assert.True(firstTask.Wait(TimeSpan.FromSeconds(2)));
+        Assert.True(firstTask.Wait(TimeSpan.FromSeconds(10)));
         elapsedMethod.Invoke(rateLimiter, [null, EventArgs.Empty]);
 
         Assert.True(secondStarted.Wait(TimeSpan.FromSeconds(5)));
