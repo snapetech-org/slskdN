@@ -1,6 +1,6 @@
 # slskNet.Runtime source-of-truth revision for the vendored build.
 # Keep this full SHA aligned with the named branch or release tag.
 repository=https://github.com/snapetech-org/slskNet.Runtime.git
-ref=refs/tags/v10.0.3
+ref=refs/heads/main
 commit=ca58fd2054822ea09b33201be84a638543e45d75
 local_patch=vendor/slskNet.Runtime.patches/0001-slskdN-local-runtime-delta.patch
