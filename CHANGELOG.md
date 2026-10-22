@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Security
 
+- Frontend dependency installs keep the seven-day release quarantine and
+  publisher-trust checks enabled. Two compatible transitive releases are
+  pinned outside the quarantine window, and trust exceptions name only the
+  exact legacy versions required by older consumers.
 - .NET dependency graphs and bundled runtimes now use the 10.0.13 servicing
   release for the SignalR denial-of-service fix. Hosted .NET build workflows
   use SDK 10.0.402, and vulnerability checks inspect every first-party project.
