@@ -47,5 +47,31 @@ namespace slskd.Tests.Unit.Audio
             Assert.True(isSuspect);
             Assert.Contains("bitrate", reason, System.StringComparison.OrdinalIgnoreCase);
         }
+
+        [Fact]
+        public void TranscodeDetector_UsesMeasuredBandwidthInsteadOfBitrateEstimate()
+        {
+            var detector = new TranscodeDetector();
+            var measured = new AudioVariant
+            {
+                Codec = "MP3",
+                SampleRateHz = 44100,
+                BitrateKbps = 320,
+                EffectiveBandwidthHz = 16600,
+            };
+            var unmeasured = new AudioVariant
+            {
+                Codec = "MP3",
+                SampleRateHz = 44100,
+                BitrateKbps = 128,
+            };
+
+            var (measuredIsSuspect, measuredReason) = detector.DetectTranscode(measured);
+            var (unmeasuredIsSuspect, _) = detector.DetectTranscode(unmeasured);
+
+            Assert.True(measuredIsSuspect);
+            Assert.Contains("spectral bandwidth", measuredReason, System.StringComparison.OrdinalIgnoreCase);
+            Assert.False(unmeasuredIsSuspect);
+        }
     }
 }

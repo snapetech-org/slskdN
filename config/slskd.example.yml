@@ -533,6 +533,8 @@
 #  chromaprint:
 #    enabled: false
 #    ffmpeg_path: ffmpeg          # executable used to decode audio for fingerprints
+#    spectral_transcode_detection_enabled: false # opt in to local FLAC low-pass analysis; uses ffmpeg_path
+#    spectral_transcode_detection_frame_budget: 600 # max 8192-sample FFT windows per file
 #    sample_rate: 44100
 #    channels: 2
 #    duration_seconds: 120

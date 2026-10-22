@@ -181,6 +181,20 @@ public class YamlConfigurationSourceTests
     }
 
     [Fact]
+    public void AddYamlFile_BindsOptInSpectralTranscodeOptions()
+    {
+        var options = ReadOptions("""
+            integrations:
+              chromaprint:
+                spectral_transcode_detection_enabled: true
+                spectral_transcode_detection_frame_budget: 240
+            """);
+
+        Assert.True(options.Integration.Chromaprint.SpectralTranscodeDetectionEnabled);
+        Assert.Equal(240, options.Integration.Chromaprint.SpectralTranscodeDetectionFrameBudget);
+    }
+
+    [Fact]
     public void AddYamlFile_BindsGroupLimitsNestedUnderUpload()
     {
         var options = ReadOptions("""

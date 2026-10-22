@@ -1434,6 +1434,8 @@ integrations:
   chromaprint:
     enabled: true
     ffmpeg_path: ffmpeg
+    spectral_transcode_detection_enabled: false
+    spectral_transcode_detection_frame_budget: 600
     sample_rate: 44100
     channels: 2
     duration_seconds: 120
@@ -1447,6 +1449,14 @@ path. In Docker, the standard image includes `ffmpeg` and the native
 Chromaprint library. The System -> Integrations metadata-processing panel
 shows each fingerprint attempt and preserves the failure detail, including
 ffmpeg's diagnostic output when decoding fails.
+
+Local FLAC spectral transcode detection is a separate, opt-in use of the same
+`ffmpeg_path`; it does not require Chromaprint fingerprinting to be enabled. It
+decodes up to `spectral_transcode_detection_frame_budget` 8192-sample windows
+after skipping the first 30 seconds of long tracks. Clear low-pass evidence is
+recorded as a transcode warning, while borderline mastering cutoffs remain
+review-only. Existing HashDb rows are not decoded by the startup analyzer
+migration, so spectral fields are populated when a local file is analyzed again.
 
 When both the built-in HTTP and HTTPS listeners are enabled, slskdN marks
 antiforgery cookies as `Secure` on HTTPS and does not mint them from HTTP.

@@ -48,13 +48,17 @@ namespace slskd.Audio
                 }
             }
 
-            // Rule 4: Spectral analysis (approximation)
-            if (variant.BitrateKbps > 0)
+            // Rule 4: use measured spectral bandwidth when a local analyzer supplied it.
+            if (variant.EffectiveBandwidthHz is double effectiveBandwidth && variant.SampleRateHz > 0)
             {
-                var effectiveBandwidth = EstimateSpectralBandwidth(variant);
-                var expectedBandwidth = variant.SampleRateHz / 2.0;
+                var nyquistHz = variant.SampleRateHz / 2.0;
+                if (nyquistHz > 30000 && effectiveBandwidth is >= 19500 and <= 24000)
+                {
+                    return (true, $"High-resolution audio has a measured {effectiveBandwidth / 1000:F1}kHz cutoff consistent with upsampling from 44.1/48kHz audio");
+                }
 
-                if (effectiveBandwidth < expectedBandwidth * 0.6)
+                var lossyCutoffThreshold = Math.Min(19800, nyquistHz * 0.9);
+                if (effectiveBandwidth < lossyCutoffThreshold)
                 {
                     return (true, $"Spectral bandwidth {effectiveBandwidth / 1000:F1}kHz suggests {EstimateOriginalLossyBitrate(effectiveBandwidth)}kbps lossy source");
                 }
@@ -63,27 +67,11 @@ namespace slskd.Audio
             return (false, string.Empty);
         }
 
-        private double EstimateSpectralBandwidth(AudioVariant variant)
-        {
-            // Placeholder: estimate from bitrate for lossy codecs
-            return variant.Codec switch
-            {
-                "MP3" => variant.BitrateKbps switch
-                {
-                    >= 320 => 20000,
-                    >= 192 => 18000,
-                    >= 128 => 16000,
-                    _ => 14000,
-                },
-                _ => variant.SampleRateHz / 2.0,  // Nyquist frequency
-            };
-        }
-
         private int EstimateOriginalLossyBitrate(double bandwidth)
         {
-            if (bandwidth >= 19000) return 320;
-            if (bandwidth >= 17000) return 192;
-            if (bandwidth >= 15000) return 160;
+            if (bandwidth >= 19750) return 320;
+            if (bandwidth >= 19200) return 256;
+            if (bandwidth >= 17800) return 192;
             return 128;
         }
 

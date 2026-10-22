@@ -27,7 +27,7 @@ public static class ApplicationStartupTaskExtensions
         {
             Log.Information("[AudioReanalyze] Running analyzer migration (force={Force})...", optionsAtStartup.Flags.AudioReanalyzeForce);
             var migrationService = app.Services.GetRequiredService<IAnalyzerMigrationService>();
-            var n = migrationService.MigrateAsync("audioqa-1", optionsAtStartup.Flags.AudioReanalyzeForce, default).GetAwaiter().GetResult();
+            var n = migrationService.MigrateAsync("audioqa-2", optionsAtStartup.Flags.AudioReanalyzeForce, default).GetAwaiter().GetResult();
             Log.Information("[AudioReanalyze] Updated {Count} variants", n);
         }
 

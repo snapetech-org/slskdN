@@ -5062,6 +5062,18 @@ namespace slskd
                 [NotNullOrWhiteSpace]
                 public string FfmpegPath { get; init; } = "ffmpeg";
 
+                /// <summary>
+                ///     Gets a value indicating whether local FLAC spectral transcode analysis is enabled.
+                /// </summary>
+                [YamlMember(Alias = "spectral_transcode_detection_enabled")]
+                public bool SpectralTranscodeDetectionEnabled { get; init; } = false;
+
+                /// <summary>
+                ///     Gets the maximum number of FFT windows decoded per local FLAC file.
+                /// </summary>
+                [YamlMember(Alias = "spectral_transcode_detection_frame_budget")]
+                public int SpectralTranscodeDetectionFrameBudget { get; init; } = 600;
+
                 public int SampleRate { get; init; } = 44100;
 
                 public int Channels { get; init; } = 2;
@@ -5070,6 +5082,11 @@ namespace slskd
 
                 public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
                 {
+                    if (SpectralTranscodeDetectionFrameBudget is < 1 or > 6000)
+                    {
+                        yield return new ValidationResult("Spectral transcode detection frame budget must be between 1 and 6000", new[] { nameof(SpectralTranscodeDetectionFrameBudget) });
+                    }
+
                     if (Enabled && (int)Algorithm <= 0)
                     {
                         yield return new ValidationResult("Chromaprint algorithm must be a positive value", new[] { nameof(Algorithm) });

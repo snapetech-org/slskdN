@@ -75,6 +75,7 @@ namespace slskd.HashDb
         private readonly QualityScorer qualityScorer = new();
         private readonly TranscodeDetector transcodeDetector = new();
         private readonly FlacAnalyzer flacAnalyzer = new();
+        private readonly SpectralAnalyzer spectralAnalyzer = new();
         private readonly Mp3Analyzer mp3Analyzer = new();
         private readonly OpusAnalyzer opusAnalyzer = new();
         private readonly AacAnalyzer aacAnalyzer = new();
@@ -305,7 +306,7 @@ namespace slskd.HashDb
                 // Derive variant metadata + quality score
                 try
                 {
-                    var variant = BuildVariantFromFile(localFilename, flacKey, fileSize);
+                    var variant = await BuildVariantFromFileAsync(localFilename, flacKey, fileSize).ConfigureAwait(false);
                     await UpdateVariantMetadataAsync(flacKey, variant).ConfigureAwait(false);
                 }
                 catch (Exception ex)
@@ -439,7 +440,7 @@ namespace slskd.HashDb
         /// <inheritdoc/>
         public long CurrentSeqId => currentSeqId;
 
-        private AudioVariant BuildVariantFromFile(string filePath, string flacKey, long fileSize)
+        private async Task<AudioVariant> BuildVariantFromFileAsync(string filePath, string flacKey, long fileSize)
         {
             using var tagFile = TagLib.File.Create(filePath);
             var props = tagFile.Properties;
@@ -498,6 +499,34 @@ namespace slskd.HashDb
                     variant.QualityScore = flacResult.QualityScore;
                     variant.TranscodeSuspect = flacResult.TranscodeSuspect;
                     variant.TranscodeReason = flacResult.TranscodeReason;
+
+                    var chromaprintOptions = optionsMonitor?.CurrentValue.Integration.Chromaprint;
+                    if (chromaprintOptions?.SpectralTranscodeDetectionEnabled == true)
+                    {
+                        var spectralResult = await spectralAnalyzer.AnalyzeFileAsync(
+                            filePath,
+                            chromaprintOptions.FfmpegPath,
+                            variant.SampleRateHz,
+                            variant.DurationMs,
+                            chromaprintOptions.SpectralTranscodeDetectionFrameBudget).ConfigureAwait(false);
+
+                        variant.EffectiveBandwidthHz = spectralResult.EffectiveBandwidthHz;
+                        variant.NominalLowpassHz = spectralResult.NominalLowpassHz;
+                        variant.HfEnergyRatio = spectralResult.HfEnergyRatio;
+
+                        if (spectralResult.Verdict is SpectralVerdict.Lossy or SpectralVerdict.Upsampled)
+                        {
+                            variant.TranscodeSuspect = true;
+                            variant.QualityScore = Math.Min(variant.QualityScore, 0.6);
+                            variant.TranscodeReason = string.IsNullOrWhiteSpace(variant.TranscodeReason)
+                                ? spectralResult.Reason
+                                : $"{variant.TranscodeReason}; {spectralResult.Reason}";
+                        }
+                        else if (spectralResult.Verdict == SpectralVerdict.Suspect && !variant.TranscodeSuspect)
+                        {
+                            variant.TranscodeReason = spectralResult.Reason;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -15,7 +15,7 @@ namespace slskd.Audio.Analyzers
     /// </summary>
     public class AacAnalyzer
     {
-        private const string AnalyzerVersion = "audioqa-1";
+        private const string AnalyzerVersion = "audioqa-2";
 
         /// <summary>
         ///     Analyze an AAC file and derive codec-specific fingerprints plus quality heuristics.

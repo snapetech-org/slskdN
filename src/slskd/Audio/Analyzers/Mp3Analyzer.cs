@@ -14,7 +14,7 @@ namespace slskd.Audio.Analyzers
     /// </summary>
     public class Mp3Analyzer
     {
-        private const string AnalyzerVersion = "audioqa-1";
+        private const string AnalyzerVersion = "audioqa-2";
 
         /// <summary>
         ///     Analyze an MP3 file and derive codec-specific fingerprints plus quality heuristics.

@@ -14,7 +14,7 @@ namespace slskd.Audio.Analyzers
     /// </summary>
     public class FlacAnalyzer
     {
-        private const string AnalyzerVersion = "audioqa-1";
+        private const string AnalyzerVersion = "audioqa-2";
 
         /// <summary>
         ///     Analyze a FLAC file and derive codec-specific fingerprints plus quality heuristics.
