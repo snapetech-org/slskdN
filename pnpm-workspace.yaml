@@ -5,6 +5,8 @@ packages:
 trustPolicy: no-downgrade
 # Keep trust downgrade checks active for recent releases while allowing legacy lock entries that predate provenance.
 trustPolicyIgnoreAfter: 525600
+minimumReleaseAge: 10080
+blockExoticSubdeps: true
 
 onlyBuiltDependencies:
   - core-js
