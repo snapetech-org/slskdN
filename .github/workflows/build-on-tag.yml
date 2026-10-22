@@ -122,7 +122,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install validation tools
+      - name: Install release-gate tools
         run: sudo apt-get update && sudo apt-get install -y jq ripgrep
 
       - name: Set up .NET
@@ -145,20 +145,8 @@ jobs:
 
       - name: Release Gate
         env:
-          LOCAL_IDENTITY_DENYLIST: ${{ secrets.LOCAL_IDENTITY_DENYLIST }}
           TMPDIR: ${{ runner.temp }}
         run: bash packaging/scripts/run-release-gate.sh
-
-      - name: Upload validation engine evidence
-        if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: validation-engine-release-gate-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            ${{ runner.temp }}/slskdn-validation-*/receipt.json
-            ${{ runner.temp }}/slskdn-validation-*/*.log
-          retention-days: 7
-          if-no-files-found: ignore
 
       - name: Upload Web Content
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

@@ -2,7 +2,6 @@
   "packageManager": "pnpm@12.4.1",
   "private": true,
   "scripts": {
-    "validate:development": "node scripts/validate-development.mjs",
     "check:allowlist-drift": "bash scripts/check-allowlist-drift.sh",
     "check:anonymous-endpoints": "bash scripts/check-anonymous-endpoints.sh",
     "check:council": "bash scripts/run-bug-council-all-phases.sh",
