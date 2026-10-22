@@ -25,24 +25,24 @@ public class MultiSourceDownloadServiceSanitizationTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions options,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var bytes = new byte[] { 1, 2, 3, 4 };
                 var stream = await outputStreamFactory().ConfigureAwait(false);
-                await stream.WriteAsync(bytes, 0, bytes.Length, cancellationToken ?? CancellationToken.None).ConfigureAwait(false);
+                await stream.WriteAsync(bytes, 0, bytes.Length, cancellationToken).ConfigureAwait(false);
 
                 return new Transfer(
                     TransferDirection.Download,
@@ -50,7 +50,7 @@ public class MultiSourceDownloadServiceSanitizationTests
                     remoteFilename,
                     token ?? 1,
                     TransferStates.Completed | TransferStates.Succeeded,
-                    size ?? bytes.Length,
+                    size,
                     startOffset,
                     bytes.Length);
             });
@@ -94,11 +94,11 @@ public class MultiSourceDownloadServiceSanitizationTests
                     "mesh-peer",
                     It.IsAny<string>(),
                     It.IsAny<Func<Task<Stream>>>(),
-                    It.IsAny<long?>(),
+                    It.IsAny<long>(),
                     It.IsAny<long>(),
                     It.IsAny<int?>(),
                     It.IsAny<TransferOptions>(),
-                    It.IsAny<CancellationToken?>()),
+                    It.IsAny<CancellationToken>()),
                 Times.Never);
             client.Verify(
                 c => c.DownloadAsync(
@@ -109,7 +109,7 @@ public class MultiSourceDownloadServiceSanitizationTests
                     0,
                     It.IsAny<int?>(),
                     It.IsAny<TransferOptions>(),
-                    It.IsAny<CancellationToken?>()),
+                    It.IsAny<CancellationToken>()),
                 Times.Once);
         }
         finally
@@ -180,7 +180,7 @@ public class MultiSourceDownloadServiceSanitizationTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()),
+                It.IsAny<CancellationToken>()),
             Times.Never);
     }
 
@@ -261,17 +261,17 @@ public class MultiSourceDownloadServiceSanitizationTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 SearchQuery _,
                 Action<SearchResponse> _,
                 SearchScope _,
                 int? _,
                 SearchOptions _,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 searchStarted.TrySetResult();
-                await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, cancellationToken);
                 return null!;
             });
         var service = new MultiSourceDownloadService(
@@ -297,30 +297,30 @@ public class MultiSourceDownloadServiceSanitizationTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 downloadStarted.TrySetResult();
-                await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, cancellationToken);
                 return new Transfer(
                     TransferDirection.Download,
                     username,
                     remoteFilename,
                     token ?? 1,
                     TransferStates.Completed | TransferStates.Succeeded,
-                    size ?? 512,
+                    size,
                     startOffset,
                     512);
             });
@@ -379,30 +379,30 @@ public class MultiSourceDownloadServiceSanitizationTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var stream = await outputStreamFactory().ConfigureAwait(false);
-                await stream.WriteAsync(bytes, 0, bytes.Length, cancellationToken ?? CancellationToken.None).ConfigureAwait(false);
+                await stream.WriteAsync(bytes, 0, bytes.Length, cancellationToken).ConfigureAwait(false);
                 return new Transfer(
                     TransferDirection.Download,
                     username,
                     remoteFilename,
                     token ?? 1,
                     TransferStates.Completed | TransferStates.Succeeded,
-                    size ?? bytes.Length,
+                    size,
                     startOffset,
                     bytes.Length);
             });

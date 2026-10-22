@@ -3,6 +3,7 @@
 // </copyright>
 namespace slskd.Tests.Unit.Messaging;
 
+using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -30,7 +31,7 @@ public class RoomsControllerTests
         var result = await controller.SendMessage(" room-1 ", " hello ");
 
         Assert.IsType<StatusCodeResult>(result);
-        client.Verify(x => x.SendRoomMessageAsync("room-1", "hello", null), Times.Once);
+        client.Verify(x => x.SendRoomMessageAsync("room-1", "hello", It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -257,7 +258,7 @@ public class RoomsControllerTests
         var ok = Assert.IsType<OkObjectResult>(result);
         var rooms = Assert.IsAssignableFrom<IEnumerable<RoomInfoResponse>>(ok.Value);
         Assert.Empty(rooms);
-        client.Verify(x => x.GetRoomListAsync(null), Times.Never);
+        client.Verify(x => x.GetRoomListAsync(It.IsAny<CancellationToken>()), Times.Never);
     }
 
     [Fact]
@@ -267,7 +268,7 @@ public class RoomsControllerTests
         var client = new Mock<ISoulseekClient>();
         client.SetupGet(x => x.State).Returns(SoulseekClientStates.LoggedIn);
         client
-            .Setup(x => x.GetRoomListAsync(null))
+            .Setup(x => x.GetRoomListAsync(It.IsAny<CancellationToken>()))
             .ThrowsAsync(new TimeoutException());
         var controller = CreateController(client: client.Object);
 
@@ -285,7 +286,7 @@ public class RoomsControllerTests
         var client = new Mock<ISoulseekClient>();
         client.SetupGet(x => x.State).Returns(SoulseekClientStates.LoggedIn);
         client
-            .SetupSequence(x => x.GetRoomListAsync(null))
+            .SetupSequence(x => x.GetRoomListAsync(It.IsAny<CancellationToken>()))
             .ReturnsAsync(new RoomList(
                 new[] { new RoomInfo("ambient", 12) },
                 Array.Empty<RoomInfo>(),

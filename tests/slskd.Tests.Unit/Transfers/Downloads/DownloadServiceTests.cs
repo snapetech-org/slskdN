@@ -428,11 +428,11 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()), Times.Never);
+                It.IsAny<CancellationToken>()), Times.Never);
 
             await using var context = new TransfersDbContext(options);
             Assert.Empty(context.Transfers);
@@ -488,11 +488,11 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()), Times.Never);
+                It.IsAny<CancellationToken>()), Times.Never);
         }
         finally
         {
@@ -597,23 +597,23 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 downloadStarted.TrySetResult();
-                await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, cancellationToken);
                 return null!;
             });
 
@@ -638,7 +638,7 @@ public class DownloadServiceTests
                 0,
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()), Times.Once);
+                It.IsAny<CancellationToken>()), Times.Once);
             Assert.True(service.TryCancel(enqueued.Single().Id));
         }
         finally
@@ -760,11 +760,11 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("synthetic enqueue failure"));
 
         var service = CreateDownloadService(options, soulseekClient);
@@ -833,20 +833,20 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string filename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 using var output = await outputStreamFactory();
                 output.WriteByte(1);
@@ -937,27 +937,27 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var payload = remoteFilename.EndsWith(".flac", StringComparison.OrdinalIgnoreCase)
                     ? mismatchedHeader
                     : executableHeader;
                 await using (var output = await outputStreamFactory())
                 {
-                    await output.WriteAsync(payload, cancellationToken ?? CancellationToken.None);
+                    await output.WriteAsync(payload, cancellationToken);
                 }
 
                 var completed = new Soulseek.Transfer(
@@ -1311,11 +1311,11 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new AggregateException(new TimeoutException("The wait timed out after 15000 milliseconds")));
 
         var service = CreateDownloadService(options, soulseekClient);
@@ -1373,11 +1373,11 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new AggregateException(CreateExpectedRemoteFailure(failureKind)));
 
         var service = CreateDownloadService(options, soulseekClient);
@@ -1427,11 +1427,11 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new AggregateException(CreateExpectedRemoteFailure("rejected")));
 
         var service = CreateDownloadService(options, soulseekClient);
@@ -2005,34 +2005,34 @@ public class DownloadServiceTests
             .Setup(client => client.ConnectToUserAsync(
                 It.IsAny<string>(),
                 It.IsAny<bool>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("peer preflight should not run"));
         soulseekClient
             .Setup(client => client.GetUserEndPointAsync(
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("endpoint preflight should not run"));
         soulseekClient
             .Setup(client => client.DownloadAsync(
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
-                await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, cancellationToken);
                 return null!;
             });
 
@@ -2060,10 +2060,10 @@ public class DownloadServiceTests
             soulseekClient.Verify(client => client.ConnectToUserAsync(
                 It.IsAny<string>(),
                 It.IsAny<bool>(),
-                It.IsAny<CancellationToken?>()), Times.Never);
+                It.IsAny<CancellationToken>()), Times.Never);
             soulseekClient.Verify(client => client.GetUserEndPointAsync(
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken?>()), Times.Never);
+                It.IsAny<CancellationToken>()), Times.Never);
         }
         finally
         {
@@ -2094,23 +2094,23 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 downloadStarted.TrySetResult();
-                await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, cancellationToken);
                 return null!;
             });
 
@@ -2178,22 +2178,22 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
-                await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, cancellationToken);
                 return null!;
             });
 
@@ -2262,25 +2262,25 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 try
                 {
                     downloadStarted.TrySetResult();
-                    await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                    await Task.Delay(Timeout.Infinite, cancellationToken);
                     return null!;
                 }
                 catch (OperationCanceledException)
@@ -2775,22 +2775,22 @@ public class DownloadServiceTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
-                await Task.Delay(Timeout.Infinite, cancellationToken ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, cancellationToken);
                 return null!;
             });
 

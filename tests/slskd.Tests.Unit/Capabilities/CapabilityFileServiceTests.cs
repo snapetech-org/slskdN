@@ -139,8 +139,8 @@ public sealed class CapabilityFileServiceTests
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Returns(async (string username, string remoteFilename, Func<Task<Stream>> outputStreamFactory, long size, long startOffset, int? token, TransferOptions options, CancellationToken? cancellationToken) =>
+                It.IsAny<CancellationToken>()))
+            .Returns(async (string username, string remoteFilename, Func<Task<Stream>> outputStreamFactory, long size, long startOffset, int? token, TransferOptions options, CancellationToken cancellationToken) =>
             {
                 capturedRemoteFilename = remoteFilename;
                 await using var stream = await outputStreamFactory();
@@ -198,8 +198,8 @@ public sealed class CapabilityFileServiceTests
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Returns(async (string requestedUsername, string requestedFilename, Func<Task<Stream>> outputStreamFactory, long size, long startOffset, int? token, TransferOptions options, CancellationToken? cancellationToken) =>
+                It.IsAny<CancellationToken>()))
+            .Returns(async (string requestedUsername, string requestedFilename, Func<Task<Stream>> outputStreamFactory, long size, long startOffset, int? token, TransferOptions options, CancellationToken cancellationToken) =>
             {
                 capturedUsername = requestedUsername;
                 capturedRemoteFilename = requestedFilename;
@@ -263,8 +263,8 @@ public sealed class CapabilityFileServiceTests
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Returns((string requestedUsername, string requestedFilename, Func<Task<Stream>> outputStreamFactory, long size, long startOffset, int? token, TransferOptions options, CancellationToken? cancellationToken) =>
+                It.IsAny<CancellationToken>()))
+            .Returns((string requestedUsername, string requestedFilename, Func<Task<Stream>> outputStreamFactory, long size, long startOffset, int? token, TransferOptions options, CancellationToken cancellationToken) =>
             {
                 capturedUsername = requestedUsername;
                 capturedRemoteFilename = requestedFilename;
@@ -344,6 +344,6 @@ public sealed class CapabilityFileServiceTests
             It.IsAny<long>(),
             It.IsAny<int?>(),
             It.IsAny<TransferOptions>(),
-            It.IsAny<CancellationToken?>()), Times.Never);
+            It.IsAny<CancellationToken>()), Times.Never);
     }
 }

@@ -50,7 +50,7 @@ internal sealed class FedTcpListener : ICancellableTcpListener
 
     public bool Pending() => _channel.Reader.TryPeek(out _);
 
-    public void Start()
+    public void Start(int backlog = (int)SocketOptionName.MaxConnections)
     {
         // No-op: the real socket is owned externally by SharedMeshTcpListener.
     }

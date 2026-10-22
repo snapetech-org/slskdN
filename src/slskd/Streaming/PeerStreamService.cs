@@ -92,6 +92,7 @@ public sealed class PeerStreamService : IPeerStreamService
         {
             await using var output = writer.AsStream();
             var options = new TransferOptions(
+                sizeMismatchResolver: claims.Size.HasValue ? null : (_, remoteSize) => remoteSize,
                 progressUpdateInterval: 1000,
                 progressUpdateMinimumBytes: 1024 * 1024,
                 seekOutputStreamAutomatically: false,
@@ -101,7 +102,7 @@ public sealed class PeerStreamService : IPeerStreamService
                 username: claims.Username,
                 remoteFilename: claims.Filename,
                 outputStreamFactory: () => Task.FromResult<Stream>(output),
-                size: claims.Size,
+                size: claims.Size ?? 0,
                 startOffset: 0,
                 token: null,
                 options: options,

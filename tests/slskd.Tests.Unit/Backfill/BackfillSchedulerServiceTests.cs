@@ -164,7 +164,7 @@ public class BackfillSchedulerServiceTests
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("sensitive transfer detail"));
 
         var service = new BackfillSchedulerService(
@@ -198,7 +198,7 @@ public class BackfillSchedulerServiceTests
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async () =>
             {
                 Interlocked.Increment(ref downloadsStarted);
@@ -249,7 +249,7 @@ public class BackfillSchedulerServiceTests
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
@@ -258,11 +258,11 @@ public class BackfillSchedulerServiceTests
                 long startOffset,
                 int? token,
                 TransferOptions options,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var stream = await outputStreamFactory();
                 var invalidHeader = new byte[42];
-                await stream.WriteAsync(invalidHeader, cancellationToken ?? CancellationToken.None);
+                await stream.WriteAsync(invalidHeader, cancellationToken);
                 return new Transfer(TransferDirection.Download, username, remoteFilename, token ?? 1, TransferStates.Completed, size, 0, 42);
             });
 

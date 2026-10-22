@@ -33,30 +33,30 @@ public class MultiSourceDownloadServiceContentSafetyTests
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<Func<Task<Stream>>>(),
-                It.IsAny<long?>(),
+                It.IsAny<long>(),
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
                 Func<Task<Stream>> outputStreamFactory,
-                long? size,
+                long size,
                 long startOffset,
                 int? token,
                 TransferOptions transferOptions,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var stream = await outputStreamFactory().ConfigureAwait(false);
-                await stream.WriteAsync(maliciousContent, cancellationToken ?? CancellationToken.None).ConfigureAwait(false);
+                await stream.WriteAsync(maliciousContent, cancellationToken).ConfigureAwait(false);
                 return new Transfer(
                     TransferDirection.Download,
                     username,
                     remoteFilename,
                     token ?? 1,
                     TransferStates.Completed | TransferStates.Succeeded,
-                    size ?? maliciousContent.Length,
+                    size,
                     startOffset,
                     maliciousContent.Length);
             });

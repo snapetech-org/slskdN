@@ -171,7 +171,7 @@ public class UploadServiceLifecycleTests
                 It.IsAny<Func<long, Task<Stream>>>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new IOException("Failed to connect from Soulseek.Network.Tcp.Connection.ConnectAsync: Connection refused"));
 
         var service = new UploadService(
@@ -288,8 +288,8 @@ public class UploadServiceLifecycleTests
                 It.IsAny<Func<long, Task<Stream>>>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Returns((string username, string remoteFilename, long size, Func<long, Task<Stream>> inputStreamFactory, int? token, TransferOptions options, CancellationToken? cancellationToken) => upload(options));
+                It.IsAny<CancellationToken>()))
+            .Returns((string username, string remoteFilename, long size, Func<long, Task<Stream>> inputStreamFactory, int? token, TransferOptions options, CancellationToken cancellationToken) => upload(options));
     }
 
     private static Soulseek.Transfer CreateSoulseekTransfer(long bytesTransferred, TransferStates state) =>

@@ -684,7 +684,7 @@ public class ApplicationLifecycleTests
         soulseekClient
             .Setup(client => client.ReconfigureOptionsAsync(
                 It.IsAny<SoulseekClientOptionsPatch>(),
-                It.IsAny<System.Threading.CancellationToken?>()))
+                It.IsAny<System.Threading.CancellationToken>()))
             .Callback(() => reconfigured.TrySetResult(null))
             .ReturnsAsync(false);
 

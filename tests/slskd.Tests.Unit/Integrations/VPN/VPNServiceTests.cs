@@ -57,7 +57,7 @@ public class VPNServiceTests
             .Returns(new SoulseekClientOptions(listenPort: 50300));
         soulseek.Setup(client => client.ReconfigureOptionsAsync(
                 It.IsAny<SoulseekClientOptionsPatch>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
         var service = new VPNService(
@@ -83,7 +83,7 @@ public class VPNServiceTests
         Assert.Equal(50300, soulseek.Object.Options.ListenPort);
         soulseek.Verify(client => client.ReconfigureOptionsAsync(
             It.Is<SoulseekClientOptionsPatch>(patch => patch.AdvertisedListenPort == 38325),
-            It.IsAny<CancellationToken?>()), Times.Once);
+            It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]

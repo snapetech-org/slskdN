@@ -165,7 +165,7 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string _,
                 string _,
@@ -174,10 +174,10 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 long _,
                 int? _,
                 TransferOptions _,
-                CancellationToken? token) =>
+                CancellationToken token) =>
             {
                 enteredDownload.TrySetResult();
-                await Task.Delay(Timeout.Infinite, token ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, token);
                 throw new InvalidOperationException("The canceled chunk unexpectedly completed.");
             });
         var orchestrator = CreateOrchestrator(soulseekClient.Object, tempRoot: _tempDirectory);
@@ -216,7 +216,7 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
@@ -225,12 +225,12 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 long startOffset,
                 int? token,
                 TransferOptions options,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var stream = await outputStreamFactory();
                 var chunkLength = (int)Math.Min(512 * 1024, size - startOffset);
                 var chunkData = Enumerable.Repeat(startOffset == 0 ? (byte)1 : (byte)2, chunkLength).ToArray();
-                await stream.WriteAsync(chunkData, cancellationToken ?? CancellationToken.None);
+                await stream.WriteAsync(chunkData, cancellationToken);
                 return new Transfer(
                     TransferDirection.Download,
                     username,
@@ -341,7 +341,7 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new IOException("peer unavailable"));
         var scheduler = CreateSuccessfulScheduler();
         var verifier = new Mock<IVerificationEngine>();
@@ -369,7 +369,7 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
@@ -378,10 +378,10 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 long startOffset,
                 int? token,
                 TransferOptions options,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var stream = await outputStreamFactory();
-                await stream.WriteAsync(new byte[512], cancellationToken ?? CancellationToken.None);
+                await stream.WriteAsync(new byte[512], cancellationToken);
                 return new Transfer(
                     TransferDirection.Download,
                     username,
@@ -422,7 +422,7 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
@@ -431,10 +431,10 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
                 long startOffset,
                 int? token,
                 TransferOptions options,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var stream = await outputStreamFactory();
-                await stream.WriteAsync(new byte[512], cancellationToken ?? CancellationToken.None);
+                await stream.WriteAsync(new byte[512], cancellationToken);
                 return new Transfer(
                     TransferDirection.Download,
                     username,
@@ -581,7 +581,7 @@ public sealed class SwarmDownloadOrchestratorTests : IDisposable
             It.IsAny<long>(),
             It.IsAny<int?>(),
             It.IsAny<TransferOptions>(),
-            It.IsAny<CancellationToken?>()), Times.Exactly(expectedVerificationCount == 0 ? 3 : expectedVerificationCount));
+            It.IsAny<CancellationToken>()), Times.Exactly(expectedVerificationCount == 0 ? 3 : expectedVerificationCount));
         verifier.Verify(value => value.VerifyChunkAsync(
             It.IsAny<string>(), It.IsAny<int>(), It.IsAny<byte[]>(), It.IsAny<CancellationToken>()),
             Times.Exactly(expectedVerificationCount));

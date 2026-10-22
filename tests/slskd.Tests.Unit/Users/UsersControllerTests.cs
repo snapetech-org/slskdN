@@ -378,7 +378,7 @@ namespace slskd.Tests.Unit.Users
                     It.IsAny<string>(),
                     It.IsAny<string>(),
                     It.IsAny<int?>(),
-                It.IsAny<CancellationToken?>()),
+                It.IsAny<CancellationToken>()),
                 Times.Never);
         }
 
@@ -392,7 +392,7 @@ namespace slskd.Tests.Unit.Users
                     "testuser",
                     "Music",
                     It.IsAny<int?>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .ThrowsAsync(new SoulseekClientException(
                     "Failed to retrieve directory contents",
                     new ConnectionException("Failed to establish a direct or indirect message connection")));

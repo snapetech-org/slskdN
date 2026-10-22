@@ -33,20 +33,20 @@ public class PeerStreamServiceTests
                 0,
                 null,
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string _,
                 string _,
                 Func<Task<Stream>> outputStreamFactory,
-                long? _,
+                long _,
                 long _,
                 int? _,
                 TransferOptions _,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var output = await outputStreamFactory();
-                await output.WriteAsync(payload, cancellationToken ?? CancellationToken.None);
-                await output.FlushAsync(cancellationToken ?? CancellationToken.None);
+                await output.WriteAsync(payload, cancellationToken);
+                await output.FlushAsync(cancellationToken);
                 return null!;
             });
 
@@ -68,6 +68,51 @@ public class PeerStreamServiceTests
         }
 
         limiter.Verify(x => x.Release("user:alice"), Times.Once);
+    }
+
+    [Fact]
+    public async Task OpenAsync_UnknownSize_UsesRemoteSizeForTransferValidation()
+    {
+        var tickets = new Mock<IPeerStreamTicketService>();
+        var limiter = new Mock<IStreamSessionLimiter>();
+        var client = new Mock<ISoulseekClient>();
+        TransferOptions? transferOptions = null;
+
+        tickets.Setup(x => x.Validate("ticket-1"))
+            .Returns(new PeerStreamTicket("ticket-1", "remote-user", "track.mp3", null, "user:alice", DateTimeOffset.UtcNow.AddMinutes(1), "audio/mpeg"));
+        limiter.Setup(x => x.TryAcquire("user:alice", 1)).Returns(true);
+        client.Setup(x => x.DownloadAsync(
+                "remote-user",
+                "track.mp3",
+                It.IsAny<Func<Task<Stream>>>(),
+                0,
+                0,
+                null,
+                It.IsAny<TransferOptions>(),
+                It.IsAny<CancellationToken>()))
+            .Returns((string _, string _, Func<Task<Stream>> _, long _, long _, int? _, TransferOptions options, CancellationToken _) =>
+            {
+                transferOptions = options;
+                return Task.FromResult<Transfer>(null!);
+            });
+
+        var service = new PeerStreamService(
+            tickets.Object,
+            limiter.Object,
+            client.Object,
+            Mock.Of<ILogger<PeerStreamService>>(),
+            new TestOptionsMonitor(new slskd.Options()));
+
+        var lease = await service.OpenAsync("ticket-1", CancellationToken.None);
+
+        Assert.NotNull(lease);
+        await using (lease.Stream)
+        {
+            Assert.Empty(await ReadAllAsync(lease.Stream));
+        }
+
+        Assert.NotNull(transferOptions?.SizeMismatchResolver);
+        Assert.Equal(123L, transferOptions!.SizeMismatchResolver(null!, 123L));
     }
 
     [Fact]
@@ -93,11 +138,11 @@ public class PeerStreamServiceTests
             It.IsAny<string>(),
             It.IsAny<string>(),
             It.IsAny<Func<Task<Stream>>>(),
-            It.IsAny<long?>(),
+            It.IsAny<long>(),
             It.IsAny<long>(),
             It.IsAny<int?>(),
             It.IsAny<TransferOptions>(),
-            It.IsAny<CancellationToken?>()), Times.Never);
+            It.IsAny<CancellationToken>()), Times.Never);
     }
 
     [Fact]
@@ -135,11 +180,11 @@ public class PeerStreamServiceTests
             It.IsAny<string>(),
             It.IsAny<string>(),
             It.IsAny<Func<Task<Stream>>>(),
-            It.IsAny<long?>(),
+            It.IsAny<long>(),
             It.IsAny<long>(),
             It.IsAny<int?>(),
             It.IsAny<TransferOptions>(),
-            It.IsAny<CancellationToken?>()), Times.Never);
+            It.IsAny<CancellationToken>()), Times.Never);
     }
 
     private static async Task<byte[]> ReadAllAsync(Stream stream)

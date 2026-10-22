@@ -113,7 +113,7 @@ public sealed class ContentVerificationServiceTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string username,
                 string remoteFilename,
@@ -122,7 +122,7 @@ public sealed class ContentVerificationServiceTests : IDisposable
                 long startOffset,
                 int? token,
                 TransferOptions options,
-                CancellationToken? cancellationToken) =>
+                CancellationToken cancellationToken) =>
             {
                 var current = Interlocked.Increment(ref active);
                 try
@@ -138,9 +138,9 @@ public sealed class ContentVerificationServiceTests : IDisposable
                     }
                     while (Interlocked.CompareExchange(ref maxActive, current, observed) != observed);
 
-                    await Task.Delay(50, cancellationToken ?? CancellationToken.None);
+                    await Task.Delay(50, cancellationToken);
                     var stream = await outputStreamFactory();
-                    await stream.WriteAsync(new byte[ContentVerificationService.VerificationChunkSize], cancellationToken ?? CancellationToken.None);
+                    await stream.WriteAsync(new byte[ContentVerificationService.VerificationChunkSize], cancellationToken);
                     return new Transfer(TransferDirection.Download, username, remoteFilename, token ?? 1, TransferStates.Completed, size, 0, ContentVerificationService.VerificationChunkSize);
                 }
                 finally
@@ -181,7 +181,7 @@ public sealed class ContentVerificationServiceTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("sensitive verification detail"));
 
         var service = CreateService(soulseekClient.Object);
@@ -211,7 +211,7 @@ public sealed class ContentVerificationServiceTests : IDisposable
             It.IsAny<long>(),
             It.IsAny<int?>(),
             It.IsAny<TransferOptions>(),
-            It.IsAny<CancellationToken?>()), Times.Once);
+            It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -345,7 +345,7 @@ public sealed class ContentVerificationServiceTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string probeUsername,
                 string remoteFilename,
@@ -354,10 +354,10 @@ public sealed class ContentVerificationServiceTests : IDisposable
                 long startOffset,
                 int? transferToken,
                 TransferOptions transferOptions,
-                CancellationToken? token) =>
+                CancellationToken token) =>
             {
                 var stream = await outputStreamFactory();
-                await stream.WriteAsync(new byte[ContentVerificationService.VerificationChunkSize], token ?? CancellationToken.None);
+                await stream.WriteAsync(new byte[ContentVerificationService.VerificationChunkSize], token);
                 return new Transfer(
                     TransferDirection.Download,
                     probeUsername,
@@ -398,7 +398,7 @@ public sealed class ContentVerificationServiceTests : IDisposable
                 It.IsAny<long>(),
                 It.IsAny<int?>(),
                 It.IsAny<TransferOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns(async (
                 string _,
                 string _,
@@ -407,10 +407,10 @@ public sealed class ContentVerificationServiceTests : IDisposable
                 long _,
                 int? _,
                 TransferOptions _,
-                CancellationToken? token) =>
+                CancellationToken token) =>
             {
                 enteredDownload.TrySetResult();
-                await Task.Delay(Timeout.Infinite, token ?? CancellationToken.None);
+                await Task.Delay(Timeout.Infinite, token);
                 throw new InvalidOperationException("The cancelled download unexpectedly completed.");
             });
         var service = CreateService(soulseekClient.Object);

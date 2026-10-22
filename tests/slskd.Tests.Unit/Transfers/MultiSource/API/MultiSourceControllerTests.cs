@@ -44,7 +44,7 @@ public class MultiSourceControllerTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()),
+                It.IsAny<CancellationToken>()),
             Times.Never);
     }
 
@@ -60,8 +60,8 @@ public class MultiSourceControllerTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>((query, _, _, _, _, _) => capturedQuery = query)
+                It.IsAny<CancellationToken>()))
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken>((query, _, _, _, _, _) => capturedQuery = query)
             .ReturnsAsync((Search)null);
 
         var controller = new MultiSourceController(
@@ -121,8 +121,8 @@ public class MultiSourceControllerTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>((query, _, _, _, _, _) => capturedQuery = query)
+                It.IsAny<CancellationToken>()))
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken>((query, _, _, _, _, _) => capturedQuery = query)
             .ReturnsAsync((Search)null);
 
         var controller = new MultiSourceController(
@@ -301,8 +301,8 @@ public class MultiSourceControllerTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>((_, handler, _, _, _, _) =>
+                It.IsAny<CancellationToken>()))
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken>((_, handler, _, _, _, _) =>
             {
                 handler(new SearchResponse(
                     "alice",
@@ -346,7 +346,7 @@ public class MultiSourceControllerTests
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
                 It.IsAny<CancellationToken>()))
-            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>((_, handler, _, _, _, _) =>
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken>((_, handler, _, _, _, _) =>
             {
                 handler(new SearchResponse(
                     "alice",

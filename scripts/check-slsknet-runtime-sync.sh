@@ -144,11 +144,12 @@ if ! git -C "$temp_root/composed" apply --check --allow-empty "$patch_file"; the
 fi
 git -C "$temp_root/composed" apply --allow-empty "$patch_file"
 
-git -C "$source_repository" ls-tree -r --name-only "$expected_commit" | LC_ALL=C sort > "$temp_root/source-paths"
+git -C "$temp_root/composed" add -f -A -- vendor/slskNet.Runtime
+git -C "$temp_root/composed" ls-files -- vendor/slskNet.Runtime | sed 's#^vendor/slskNet.Runtime/##' | LC_ALL=C sort > "$temp_root/composed-paths"
 git -C "$repo_root" ls-files vendor/slskNet.Runtime | sed 's#^vendor/slskNet.Runtime/##' | LC_ALL=C sort > "$temp_root/vendor-paths"
 
-if ! diff -u "$temp_root/source-paths" "$temp_root/vendor-paths"; then
-    printf 'Vendored runtime file set differs from the declared source revision.\n' >&2
+if ! diff -u "$temp_root/composed-paths" "$temp_root/vendor-paths"; then
+    printf 'Vendored runtime file set differs from the declared source revision and local patch.\n' >&2
     exit 1
 fi
 
@@ -164,7 +165,7 @@ while IFS= read -r relative_path; do
         printf 'Runtime content drift: %s\n' "$relative_path" >&2
         failed=1
     fi
-done < "$temp_root/source-paths"
+done < "$temp_root/composed-paths"
 
 untracked="$(git -C "$repo_root" ls-files --others --exclude-standard -- vendor/slskNet.Runtime)"
 if [[ -n "$untracked" ]]; then

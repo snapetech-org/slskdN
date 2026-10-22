@@ -25,13 +25,13 @@ namespace slskd.Tests.Unit.Users
             const string username = "peer";
             var (service, mocks) = GetFixture();
             mocks.SoulseekClient
-                .Setup(client => client.WatchUserAsync(username, It.IsAny<CancellationToken?>()))
+                .Setup(client => client.WatchUserAsync(username, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new UserData(username, UserPresence.Online, 0, 0, 0, 0, string.Empty));
             mocks.SoulseekClient
-                .Setup(client => client.GetUserStatusAsync(username, It.IsAny<CancellationToken?>()))
+                .Setup(client => client.GetUserStatusAsync(username, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new UserStatus(username, UserPresence.Online, isPrivileged: false));
             mocks.SoulseekClient
-                .Setup(client => client.GetUserStatisticsAsync(username, It.IsAny<CancellationToken?>()))
+                .Setup(client => client.GetUserStatisticsAsync(username, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new UserStatistics(username, 0, 0, 0, 0));
 
             var wasWatchedWhenPublished = false;

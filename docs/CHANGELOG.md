@@ -25,7 +25,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.
 - Fix the Apple Sign In temporary cookie setup so the server builds with the required cross-site callback policy.
 - AcoustID lookups use each track's measured duration, improving matches for longer recordings while keeping metadata processing responsive when ffprobe stalls.
-- Runtime integration: federated TCP listeners now cancel pending accept reads when the runtime listener stops, preventing a stranded read during reconfiguration.
+- Runtime integration: federated TCP listeners now cancel pending accept reads when the runtime listener stops, preventing a stranded read during reconfiguration, and implement the updated backlog-aware listener contract.
+- Peer preview streams now retain support for tickets without a known size by using the peer's announced size with the updated runtime API.
 - Runtime sync validation now distinguishes truly untracked vendor files from tracked changes when checking the generated mirror.
 - Runtime sync: rebase the slskdN patch against the audited slskNet.Runtime 10.0.3 source and keep strict validation for obfuscated peer ports.
 - Runtime vendor: sync the mirror to slskNet.Runtime 10.0.3, retaining slskdN-specific behavior in the declared patch set.

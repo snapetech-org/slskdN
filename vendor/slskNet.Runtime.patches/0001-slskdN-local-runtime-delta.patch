@@ -1,5 +1,5 @@
 diff --git a/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj b/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj
-index 1b04567..5cf2e3f 100644
+index 1b045678..5cf2e3fa 100644
 --- a/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj
 +++ b/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj
 @@ -36,11 +36,11 @@
@@ -18,7 +18,7 @@ index 1b04567..5cf2e3f 100644
  
    <ItemGroup>
 diff --git a/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs b/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs
-index eff98b2..88b8a52 100644
+index eff98b21..88b8a529 100644
 --- a/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs
 +++ b/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs
 @@ -104,13 +104,13 @@ namespace Soulseek.Messaging.Handlers
@@ -59,7 +59,7 @@ index eff98b2..88b8a52 100644
  
                          break;
 diff --git a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs
-index 5e6f442..8d4422e 100644
+index 5e6f442a..8d4422e0 100644
 --- a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs
 +++ b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs
 @@ -122,6 +122,49 @@ namespace Soulseek.Messaging.Messages
@@ -163,7 +163,7 @@ index 5e6f442..8d4422e 100644
  
                  zStream.finish();
 diff --git a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs
-index cf88140..4fd85ba 100644
+index cf88140e..4fd85ba4 100644
 --- a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs
 +++ b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs
 @@ -25,8 +25,11 @@
@@ -280,7 +280,7 @@ index cf88140..4fd85ba 100644
          ///     Constructs a <see cref="byte"/> array from this message.
          /// </summary>
 diff --git a/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs b/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs
-index 55a3391..6e1e0e9 100644
+index 55a3391a..6e1e0e9b 100644
 --- a/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs
 +++ b/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs
 @@ -22,6 +22,7 @@
@@ -433,7 +433,7 @@ index 55a3391..6e1e0e9 100644
      }
  }
 diff --git a/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs b/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs
-index 5b6f66a..17796b1 100644
+index 5b6f66a2..17796b1d 100644
 --- a/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs
 +++ b/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs
 @@ -45,6 +45,14 @@ namespace Soulseek.Network
@@ -460,8 +460,55 @@ index 5b6f66a..17796b1 100644
              {
                  throw new MessageReadException($"Invalid {frameName} length: {length}");
              }
+diff --git a/vendor/slskNet.Runtime/src/Network/Tcp/ICancellableTcpListener.cs b/vendor/slskNet.Runtime/src/Network/Tcp/ICancellableTcpListener.cs
+new file mode 100644
+index 00000000..952c0a39
+--- /dev/null
++++ b/vendor/slskNet.Runtime/src/Network/Tcp/ICancellableTcpListener.cs
+@@ -0,0 +1,41 @@
++// <copyright file="ICancellableTcpListener.cs" company="JP Dillingham">
++//     This program is free software: you can redistribute it and/or modify
++//     it under the terms of the GNU General Public License as published by
++//     the Free Software Foundation, version 3.
++//
++//     This program is distributed in the hope that it will be useful,
++//     but WITHOUT ANY WARRANTY; without even the implied warranty of
++//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++//     GNU General Public License for more details.
++//
++//     You should have received a copy of the GNU General Public License
++//     along with this program.  If not, see https://www.gnu.org/licenses/.
++//
++//     This program is distributed with Additional Terms pursuant to Section 7
++//     of the GPLv3.  See the LICENSE file in the root directory of this
++//     project for the complete terms and conditions.
++//
++//     SPDX-FileCopyrightText: JP Dillingham
++//     SPDX-FileCopyrightText: slskdN Team
++//     SPDX-License-Identifier: GPL-3.0-only
++// </copyright>
++
++namespace Soulseek.Network.Tcp
++{
++    using System.Net.Sockets;
++    using System.Threading;
++    using System.Threading.Tasks;
++
++    /// <summary>
++    ///     An injected TCP listener that can cancel a pending accept without closing its shared socket or queue.
++    /// </summary>
++    internal interface ICancellableTcpListener : ITcpListener
++    {
++        /// <summary>
++        ///     Accepts a pending connection request and cancels the wait when <paramref name="cancellationToken"/> is canceled.
++        /// </summary>
++        /// <param name="cancellationToken">The token that cancels the pending accept.</param>
++        /// <returns>The operation context, including the new connection client.</returns>
++        Task<TcpClient> AcceptTcpClientAsync(CancellationToken cancellationToken);
++    }
++}
 diff --git a/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs b/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs
-index b52b7d8..5439237 100644
+index b52b7d8a..54392375 100644
 --- a/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs
 +++ b/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs
 @@ -22,6 +22,7 @@
@@ -488,7 +535,7 @@ index b52b7d8..5439237 100644
          ///     Gets the port of the listener.
          /// </summary>
 diff --git a/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs b/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs
-index 6f6fbeb..a9e0c1e 100644
+index 6f6fbeb7..a9e0c1ee 100644
 --- a/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs
 +++ b/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs
 @@ -21,7 +21,8 @@
@@ -763,7 +810,7 @@ index 6f6fbeb..a9e0c1e 100644
      }
  }
 diff --git a/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs b/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs
-index 4805f63..b679897 100644
+index 4805f639..b679897a 100644
 --- a/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs
 +++ b/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs
 @@ -3,6 +3,8 @@
@@ -811,7 +858,7 @@ index 4805f63..b679897 100644
          public int ListenPort { get; }
  
 diff --git a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs
-index d593630..16430ab 100644
+index d593630e..16430ab9 100644
 --- a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs
 +++ b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs
 @@ -109,6 +109,11 @@ namespace Soulseek
@@ -906,7 +953,7 @@ index d593630..16430ab 100644
      }
  }
 diff --git a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs
-index 56e75d5..ddbf602 100644
+index 56e75d55..ddbf6029 100644
 --- a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs
 +++ b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs
 @@ -85,6 +85,10 @@ namespace Soulseek
@@ -958,7 +1005,7 @@ index 56e75d5..ddbf602 100644
          ///     Gets the total maximum allowable download speed, in kibibytes per second.
          /// </summary>
 diff --git a/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs b/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs
-index ecfe5d7..2245153 100644
+index ecfe5d76..22451531 100644
 --- a/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs
 +++ b/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs
 @@ -25,4 +25,5 @@ using System.Runtime.CompilerServices;
@@ -971,7 +1018,7 @@ index ecfe5d7..2245153 100644
 +[assembly: InternalsVisibleTo("slskd")] // slskdN Team: lets slskd supply a shared ITcpListener (see SoulseekClient.PrimaryListenerTcpListenerOverride)
 \ No newline at end of file
 diff --git a/vendor/slskNet.Runtime/src/SearchInternal.cs b/vendor/slskNet.Runtime/src/SearchInternal.cs
-index 870d18d..a290c7b 100644
+index 870d18d1..a290c7bd 100644
 --- a/vendor/slskNet.Runtime/src/SearchInternal.cs
 +++ b/vendor/slskNet.Runtime/src/SearchInternal.cs
 @@ -120,10 +120,20 @@ namespace Soulseek
@@ -1057,7 +1104,7 @@ index 870d18d..a290c7b 100644
                  State = state;
  
 diff --git a/vendor/slskNet.Runtime/src/SoulseekClient.cs b/vendor/slskNet.Runtime/src/SoulseekClient.cs
-index 063ac63..eb11af4 100644
+index 063ac63c..eb11af4a 100644
 --- a/vendor/slskNet.Runtime/src/SoulseekClient.cs
 +++ b/vendor/slskNet.Runtime/src/SoulseekClient.cs
 @@ -621,6 +621,15 @@ namespace Soulseek
@@ -1296,7 +1343,7 @@ index 063ac63..eb11af4 100644
                  disconnectedTaskCancellationSource.Task.Forget();
  
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs
-index 85d9f2d..de5b82e 100644
+index 85d9f2d0..de5b82e6 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs
 @@ -346,6 +346,57 @@ namespace Soulseek.Tests.Unit.Client
@@ -1358,7 +1405,7 @@ index 85d9f2d..de5b82e 100644
          [Fact(DisplayName = "Sets state to Connected | LoggedIn on success")]
          public async Task Sets_State_To_Connected_LoggedIn_On_Success()
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs
-index b2dd80f..97c1417 100644
+index b2dd80fa..97c14178 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs
 @@ -82,6 +82,57 @@ namespace Soulseek.Tests.Unit.Client
@@ -1516,7 +1563,7 @@ index b2dd80f..97c1417 100644
          [Fact(DisplayName = "Reconfigures listener if ListenIPAddress changed")]
          public async Task Reconfigures_Listener_If_ListenIPAddress_Changed()
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs
-index dc04dd3..7e2a6bb 100644
+index dc04dd3e..7e2a6bb9 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs
 @@ -391,6 +391,26 @@ namespace Soulseek.Tests.Unit.Messaging.Handlers
@@ -1547,7 +1594,7 @@ index dc04dd3..7e2a6bb 100644
          [Theory(DisplayName = "Throws TransferRequest wait on PeerUploadDenied"), AutoData]
          public void Throws_TransferRequest_Wait_On_PeerUploadDenied(string username, IPEndPoint endpoint, string filename, string message)
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs
-index a27bf36..ce2f145 100644
+index a27bf36a..ce2f1459 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs
 @@ -462,6 +462,60 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
@@ -1612,7 +1659,7 @@ index a27bf36..ce2f145 100644
          [Fact(DisplayName = "ToByteArray returns the expected data when only locked files given")]
          public void ToByteArray_Returns_Expected_Data_When_Only_Locked_Files_Given()
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs
-index 67f40cc..390e50a 100644
+index 67f40ccc..390e50a9 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs
 @@ -27,6 +27,37 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
@@ -1654,7 +1701,7 @@ index 67f40cc..390e50a 100644
          [Fact(DisplayName = "Parse throws MessageException on code mismatch")]
          public void Parse_Throws_MessageException_On_Code_Mismatch()
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs
-index 8736202..3602dc7 100644
+index 8736202c..3602dc78 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs
 @@ -23,6 +23,8 @@ namespace Soulseek.Tests.Unit.Network
@@ -1810,7 +1857,7 @@ index 8736202..3602dc7 100644
          [Theory(DisplayName = "Completes solicited distributed connection on distributed PierceFirewall"), AutoData]
          public void Completes_Solicited_Distributed_Connection_On_Distributed_PierceFirewall(IPEndPoint endpoint, string username, int token)
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs
-index 14e1919..3a461d8 100644
+index 14e19198..3a461d80 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs
 @@ -1,4 +1,4 @@
@@ -1935,7 +1982,7 @@ index 14e1919..3a461d8 100644
      }
  }
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs
-index 6acb766..04e00f3 100644
+index 6acb766b..04e00f34 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs
 @@ -26,5 +26,22 @@ namespace Soulseek.Tests.Unit.Options
@@ -1962,7 +2009,7 @@ index 6acb766..04e00f3 100644
      }
  }
 diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs
-index 22d3c36..8c9604a 100644
+index 22d3c364..8c9604a0 100644
 --- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs
 +++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs
 @@ -75,6 +75,34 @@ namespace Soulseek.Tests.Unit

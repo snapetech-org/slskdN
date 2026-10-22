@@ -544,7 +544,7 @@ public class SearchServiceLifecycleTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Throws(new InvalidOperationException("search launch failed"));
         var safetyLimiter = new Mock<ISoulseekSafetyLimiter>();
         safetyLimiter.Setup(limiter => limiter.TryConsumeSearch("wishlist")).Returns(true);
@@ -595,8 +595,8 @@ public class SearchServiceLifecycleTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>(
+                It.IsAny<CancellationToken>()))
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken>(
                 (_, handler, _, _, searchOptions, _) =>
                 {
                     responseHandler = handler;
@@ -715,8 +715,8 @@ public class SearchServiceLifecycleTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
-            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken?>(
+                It.IsAny<CancellationToken>()))
+            .Callback<SearchQuery, Action<SearchResponse>, SearchScope, int?, SearchOptions, CancellationToken>(
                 (_, _, _, _, searchOptions, cancellationToken) =>
                 {
                     capturedSearchOptions = searchOptions;
@@ -814,14 +814,14 @@ public class SearchServiceLifecycleTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns((
                 SearchQuery searchQuery,
                 Action<SearchResponse> responseHandler,
                 SearchScope searchScope,
                 int? token,
                 SearchOptions searchOptions,
-                CancellationToken? _) =>
+                CancellationToken _) =>
             {
                 queries.Add(searchQuery.SearchText);
                 timeouts.Add(searchOptions.SearchTimeout);
@@ -926,14 +926,14 @@ public class SearchServiceLifecycleTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns((
                 SearchQuery searchQuery,
                 Action<SearchResponse> _,
                 SearchScope searchScope,
                 int? token,
                 SearchOptions searchOptions,
-                CancellationToken? _) =>
+                CancellationToken _) =>
             {
                 if (searchQuery.SearchText == "Linkin Park Meteora")
                 {

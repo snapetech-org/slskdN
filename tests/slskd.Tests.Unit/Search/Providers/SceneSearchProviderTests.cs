@@ -58,14 +58,14 @@ public sealed class SceneSearchProviderTests
                 It.IsAny<SearchScope>(),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()))
+                It.IsAny<CancellationToken>()))
             .Returns((
                 SearchQuery searchQuery,
                 Action<SearchResponse> responseHandler,
                 SearchScope searchScope,
                 int? token,
                 SearchOptions searchOptions,
-                CancellationToken? _) =>
+                CancellationToken _) =>
             {
                 queries.Add(searchQuery.SearchText);
                 timeouts.Add(searchOptions.SearchTimeout);

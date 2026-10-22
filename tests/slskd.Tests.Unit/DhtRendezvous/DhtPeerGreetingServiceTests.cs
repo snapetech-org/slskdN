@@ -23,7 +23,7 @@ public class DhtPeerGreetingServiceTests
         var soulseekClient = new Mock<ISoulseekClient>();
         soulseekClient.SetupGet(client => client.State).Returns(SoulseekClientStates.Connected);
         soulseekClient
-            .Setup(client => client.SendPrivateMessageAsync("peer-1", It.IsAny<string>(), It.IsAny<CancellationToken?>()))
+            .Setup(client => client.SendPrivateMessageAsync("peer-1", It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("remote detail\r\nforged log"));
         var logger = new CapturingLogger<DhtPeerGreetingService>();
         var service = new DhtPeerGreetingService(logger, registry, soulseekClient.Object);
@@ -90,7 +90,7 @@ public class DhtPeerGreetingServiceTests
 
         soulseekClient.SetupGet(client => client.State).Returns(SoulseekClientStates.Connected);
         soulseekClient
-            .Setup(client => client.SendPrivateMessageAsync("peer-1", It.IsAny<string>(), It.IsAny<CancellationToken?>()))
+            .Setup(client => client.SendPrivateMessageAsync("peer-1", It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .Returns(async () =>
             {
                 Interlocked.Increment(ref sendCount);

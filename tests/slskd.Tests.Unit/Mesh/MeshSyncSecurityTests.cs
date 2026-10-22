@@ -455,7 +455,7 @@ namespace slskd.Tests.Unit.Mesh
             Assert.True(result.Success);
             Assert.Equal("ZGF0YQ==", result.DataBase64);
             mockSoulseekClient.Verify(
-                soulseekClient => soulseekClient.SendPrivateMessageAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken?>()),
+                soulseekClient => soulseekClient.SendPrivateMessageAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()),
                 Times.Never);
         }
 
@@ -467,7 +467,7 @@ namespace slskd.Tests.Unit.Mesh
                 .Setup(client => client.SendPrivateMessageAsync(
                     It.IsAny<string>(),
                     It.IsAny<string>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Callback(() => sendStarted.TrySetResult())
                 .Returns(Task.CompletedTask);
 
@@ -499,7 +499,7 @@ namespace slskd.Tests.Unit.Mesh
                 .Setup(client => client.SendPrivateMessageAsync(
                     It.IsAny<string>(),
                     It.IsAny<string>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Callback(() => sendStarted.TrySetResult())
                 .Returns(Task.CompletedTask);
 
