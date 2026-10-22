@@ -1,4 +1,5 @@
 import { getCommunityQualitySummary } from './communityQualitySignals';
+import { inferAlbumTrackConsensus } from './searchAlbumConsensus';
 
 const losslessExtensions = new Set(['aif', 'aiff', 'alac', 'ape', 'flac', 'wav', 'wv']);
 const lossyExtensions = new Set(['aac', 'm4a', 'mp3', 'ogg', 'opus', 'wma']);
@@ -325,12 +326,15 @@ export const rankSearchResponses = ({
   responses = [],
   searchText = '',
   userStats = {},
-} = {}) =>
-  responses.map((response) => {
+} = {}) => {
+  const albumConsensus = inferAlbumTrackConsensus(responses);
+
+  return responses.map((response, responseIndex) => {
     const communityQualitySummary =
       communityQualityByUser[response.username] ||
       getCommunityQualitySummary(response.username);
     const downloadStats = userStats[response.username];
+    const consensus = albumConsensus[responseIndex];
     const candidateRank = rankSearchCandidate({
       acquisitionProfile,
       communityQualitySummary,
@@ -339,12 +343,29 @@ export const rankSearchResponses = ({
       response,
       searchText,
     });
+    const consensusReason = consensus
+      ? [`album track consensus ${consensus.score}/100 across ${consensus.peers} sources`]
+      : [];
+    const smartScore = consensus
+      ? Math.round((candidateRank.score * 0.8) + (consensus.score * 0.2))
+      : candidateRank.score;
+    const rankedCandidate = {
+      ...candidateRank,
+      albumConsensusScore: consensus?.score ?? null,
+      albumConsensusPeers: consensus?.peers ?? 0,
+      canonicalTrackTitles: consensus?.canonicalTrackTitles ?? [],
+      canonicalTrackCount: consensus?.canonicalTrackCount ?? 0,
+      reasons: unique([...consensusReason, ...candidateRank.reasons]).slice(0, 9),
+      score: smartScore,
+    };
 
     return {
       ...response,
-      candidateRank,
+      albumConsensusScore: consensus?.score ?? null,
+      candidateRank: rankedCandidate,
       communityQualitySummary,
       downloadStats,
-      smartScore: candidateRank.score,
+      smartScore,
     };
   });
+};

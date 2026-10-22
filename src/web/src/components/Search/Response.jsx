@@ -751,6 +751,12 @@ class Response extends Component {
       userNote,
     } = this.props;
     const free = response.hasFreeUploadSlot;
+    const canonicalTrackTitles = asArray(candidateRank?.canonicalTrackTitles);
+    const visibleTrackTitles = canonicalTrackTitles.slice(0, 8).join(' · ');
+    const remainingTrackCount = canonicalTrackTitles.length - 8;
+    const trackListPreview = remainingTrackCount > 0
+      ? `${visibleTrackTitles} … (+${this.formatNumber(remainingTrackCount)})`
+      : visibleTrackTitles;
 
     const {
       downloadError,
@@ -873,6 +879,28 @@ class Response extends Component {
                     }
                   />
                 )}
+                {candidateRank?.albumConsensusScore !== null &&
+                  candidateRank?.albumConsensusScore !== undefined && (
+                    <Popup
+                      content="Album track consensus: {score}/100 across {sources} similar sources, using {tracks} canonical tracks. Inferred tracks: {trackList}."
+                      parameters={{
+                        score: this.formatNumber(candidateRank.albumConsensusScore),
+                        sources: this.formatNumber(candidateRank.albumConsensusPeers),
+                        tracks: this.formatNumber(candidateRank.canonicalTrackCount),
+                        trackList: trackListPreview,
+                      }}
+                      position="top center"
+                      trigger={(
+                        <Label
+                          color="teal"
+                          size="tiny"
+                        >
+                          <Icon name="list ol" />
+                          {this.formatNumber(candidateRank.albumConsensusScore)}
+                        </Label>
+                      )}
+                    />
+                  )}
                 {response.duplicateGroup?.foldedCount > 0 && (
                   <Popup
                     content={interfaceText("Hidden duplicate results: {count}. Sources: {providers}. Use the Fold Duplicates search option to inspect each source.")}

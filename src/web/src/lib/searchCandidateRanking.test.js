@@ -249,4 +249,51 @@ describe('rankSearchResponses', () => {
     expect(ranked.communityQualitySummary.score).toBe(-6);
     expect(ranked.candidateRank.reasons).toContain('local caution signals');
   });
+
+  it('adds a separate peer album-consensus score to each matching response', () => {
+    const tracks = ['First Song', 'Second Song', 'Third Song', 'Fourth Song'];
+    const responses = ['peer-a', 'peer-b'].map((username) => ({
+      files: tracks.map((title, index) => ({
+        filename: `Artist/Great Album/${String(index + 1).padStart(2, '0')} - ${title}.flac`,
+        length: 180 + index,
+        size: 24_000_000,
+      })),
+      username,
+    }));
+
+    const ranked = rankSearchResponses({ responses, searchText: 'great album' });
+    const baseline = rankSearchCandidate({ response: responses[0], searchText: 'great album' });
+
+    expect(ranked.map((response) => response.albumConsensusScore)).toEqual([100, 100]);
+    expect(ranked[0].candidateRank.albumConsensusScore).toBe(100);
+    expect(ranked[0].candidateRank.canonicalTrackTitles).toEqual(tracks);
+    expect(ranked[0].smartScore).toBe(Math.round((baseline.score * 0.8) + 20));
+    expect(ranked[0].candidateRank.score).toBe(ranked[0].smartScore);
+    expect(ranked[0].candidateRank.reasons).toContain(
+      'album track consensus 100/100 across 2 sources',
+    );
+  });
+
+  it('uses the inferred full track list to boost more complete peers in smart ranking', () => {
+    const tracks = ['First Song', 'Second Song', 'Third Song', 'Fourth Song', 'Last Song'];
+    const createResponse = (username, responseTracks) => ({
+      files: responseTracks.map((title, index) => ({
+        filename: `Artist/Great Album/${String(index + 1).padStart(2, '0')} - ${title}.flac`,
+        length: 180 + index,
+        size: 24_000_000,
+      })),
+      username,
+    });
+    const [complete, partial] = rankSearchResponses({
+      responses: [
+        createResponse('complete-peer', tracks),
+        createResponse('partial-peer', tracks.slice(0, 3)),
+      ],
+      searchText: 'great album',
+    });
+
+    expect(complete.albumConsensusScore).toBe(100);
+    expect(partial.albumConsensusScore).toBeLessThan(complete.albumConsensusScore);
+    expect(complete.smartScore).toBeGreaterThan(partial.smartScore);
+  });
 });
