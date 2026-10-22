@@ -1,6 +1,6 @@
 # Current API surface inventory
 
-Generated: 2026-10-22T14:48:01Z
+Generated: 2026-10-22T15:14:22Z
 
 This inventory is generated from controller attributes. It is intended for parity/security review, not as a replacement for Swagger or integration tests.
 

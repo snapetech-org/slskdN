@@ -2313,6 +2313,27 @@ public class HashDbServiceTests : IDisposable
         Assert.Equal(3, found.UseCount); // Initial 1 + 2 increments
     }
 
+    [Theory]
+    [InlineData("335.49", 335)]
+    [InlineData("335.5", 336)]
+    [InlineData(" 120.0\n", 120)]
+    public void ParseAudioDurationSeconds_UsesFinitePositiveInvariantDuration(string output, int expected)
+    {
+        Assert.Equal(expected, HashDbService.ParseAudioDurationSeconds(output, 180));
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("not a duration")]
+    [InlineData("NaN")]
+    [InlineData("Infinity")]
+    [InlineData("1")]
+    [InlineData("2147483648")]
+    public void ParseAudioDurationSeconds_UsesFallbackForInvalidDuration(string output)
+    {
+        Assert.Equal(180, HashDbService.ParseAudioDurationSeconds(output, 180));
+    }
+
     private async Task InvokeDownloadCompleteAsync(DownloadFileCompleteEvent evt)
     {
         var method = typeof(HashDbService).GetMethod(

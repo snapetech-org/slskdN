@@ -101,7 +101,7 @@ public static class ExperimentalMeshServiceCollectionExtensions
 
         // Social federation services (required by bridges)
         Log.Debug("[DI] Configuring Social Federation services...");
-        services.AddSocialFederation();
+        services.AddSocialFederation(configuration);
         services.AddBridgeServices();
 
         // Governance and Gossip services (T-REALM-03)

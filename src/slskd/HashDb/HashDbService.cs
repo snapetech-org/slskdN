@@ -2759,6 +2759,120 @@ namespace slskd.HashDb
             await cmd.ExecuteNonQueryAsync(cancellationToken);
         }
 
+        private static async Task<int> GetAudioDurationSecondsAsync(
+            string filePath,
+            int fallbackSeconds,
+            CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            using var process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = "ffprobe";
+            process.StartInfo.ArgumentList.Add("-v");
+            process.StartInfo.ArgumentList.Add("error");
+            process.StartInfo.ArgumentList.Add("-show_entries");
+            process.StartInfo.ArgumentList.Add("format=duration");
+            process.StartInfo.ArgumentList.Add("-of");
+            process.StartInfo.ArgumentList.Add("default=noprint_wrappers=1:nokey=1");
+            process.StartInfo.ArgumentList.Add(filePath);
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+
+            try
+            {
+                if (!process.Start())
+                {
+                    return fallbackSeconds;
+                }
+            }
+            catch
+            {
+                return fallbackSeconds;
+            }
+
+            using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            timeout.CancelAfter(TimeSpan.FromSeconds(5));
+            var outputTask = process.StandardOutput.ReadToEndAsync(timeout.Token);
+            try
+            {
+                // Drain stdout concurrently: waiting for EOF before applying the
+                // timeout lets a stuck ffprobe block this worker indefinitely.
+                await process.WaitForExitAsync(timeout.Token).ConfigureAwait(false);
+                var output = await outputTask.ConfigureAwait(false);
+                if (process.ExitCode == 0)
+                {
+                    return ParseAudioDurationSeconds(output, fallbackSeconds);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                await StopFfprobeAsync(process, outputTask).ConfigureAwait(false);
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    throw;
+                }
+
+                return fallbackSeconds;
+            }
+            catch
+            {
+                await StopFfprobeAsync(process, outputTask).ConfigureAwait(false);
+                return fallbackSeconds;
+            }
+
+            return fallbackSeconds;
+        }
+
+        internal static int ParseAudioDurationSeconds(string output, int fallbackSeconds)
+        {
+            if (double.TryParse(
+                    output.Trim(),
+                    System.Globalization.NumberStyles.Float,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out var duration) &&
+                double.IsFinite(duration) && duration > 1 && duration <= int.MaxValue)
+            {
+                return (int)Math.Round(duration, MidpointRounding.AwayFromZero);
+            }
+
+            return fallbackSeconds;
+        }
+
+        private static async Task StopFfprobeAsync(
+            System.Diagnostics.Process process,
+            Task<string> outputTask)
+        {
+            try
+            {
+                if (!process.HasExited)
+                {
+                    process.Kill(entireProcessTree: true);
+                }
+            }
+            catch
+            {
+                // The process may have exited between checking and killing it.
+            }
+
+            try
+            {
+                await process.WaitForExitAsync().WaitAsync(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
+            }
+            catch
+            {
+                // A broken or unavailable ffprobe must not stall metadata processing.
+            }
+
+            try
+            {
+                await outputTask.WaitAsync(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
+            }
+            catch
+            {
+                // The process may close stdout while it is being stopped.
+            }
+        }
+
         private async Task TryResolveAcoustIdAsync(string filePath, string flacKey, string fingerprint, CancellationToken cancellationToken = default)
         {
             var filename = Path.GetFileName(filePath);
@@ -2782,7 +2896,11 @@ namespace slskd.HashDb
             try
             {
                 var chromaOptions = optionsMonitor.CurrentValue.Integration.Chromaprint;
-                var result = await acoustIdClient.LookupAsync(fingerprint, chromaOptions.SampleRate, chromaOptions.DurationSeconds, cancellationToken).ConfigureAwait(false);
+                var durationSeconds = await GetAudioDurationSecondsAsync(
+                    filePath,
+                    chromaOptions.DurationSeconds,
+                    cancellationToken).ConfigureAwait(false);
+                var result = await acoustIdClient.LookupAsync(fingerprint, chromaOptions.SampleRate, durationSeconds, cancellationToken).ConfigureAwait(false);
 
                 var recordingId = result?.Recordings?.FirstOrDefault()?.Id;
 

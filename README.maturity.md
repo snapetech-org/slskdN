@@ -17,12 +17,15 @@ maturity.
 > Experimental features are not guaranteed stable, and feature gates have
 > feature-specific defaults.
 
+For local MCP access, see the [SnapeTech MCP integration guide](docs/integrations/snapetech-mcp.md). This is separate from slskdN's Moderation / Control Plane (MCP) documentation.
+
 ## Get started
 
 - [Install and configure slskdN](docs/getting-started.md)
 - [Configuration reference](docs/config.md)
 - [Docker deployment](docs/docker.md)
 - [Troubleshooting](docs/troubleshooting.md)
+- [OIDC authentication setup and recovery](docs/oidc-authentication.md) · [shared provider catalog](https://github.com/snapetech-org/seerrng/blob/main/docs/maintainers/oidc-provider-catalog.md)
 - [Build from source](docs/build.md)
 
 For first use, follow the setup guide to install the daemon, open its Web UI,
@@ -104,3 +107,7 @@ compatibility claims.
 ## License
 
 GNU Affero General Public License v3.0. See [LICENSE](LICENSE).
+
+## Local security scanning
+
+Run `./scripts/security-scan-local.sh` for local Semgrep CE and the Trivy scanners that fit this repository. The installed pre-commit hook runs Semgrep on staged source/config files only; Trivy runs on demand or in CI. This public repository also runs Semgrep CE in GitHub Actions on changes and weekly. See [security-scanning.md](docs/security-scanning.md). Use `./scripts/update-security-tools.sh` to refresh local scanner data and the Trivy database.

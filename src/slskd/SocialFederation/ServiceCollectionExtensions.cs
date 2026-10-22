@@ -20,10 +20,12 @@ namespace slskd.SocialFederation
         /// </summary>
         /// <param name="services">The service collection.</param>
         /// <returns>The service collection.</returns>
-        public static IServiceCollection AddSocialFederation(this IServiceCollection services)
+        public static IServiceCollection AddSocialFederation(this IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
         {
             // Register configuration options
             services.AddOptions<FederationPublishingOptions>();
+            services.AddOptions<SocialFederationOptions>()
+                .Bind(configuration.GetSection($"{Program.AppName}:SocialFederation"));
 
             services.AddSingleton<IEd25519KeyPairGenerator, NsecEd25519KeyPairGenerator>();
 

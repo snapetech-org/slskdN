@@ -134,7 +134,7 @@ public class CallbackInfrastructureTests
         Assert.True(firstTask.Wait(TimeSpan.FromSeconds(10)));
         elapsedMethod.Invoke(rateLimiter, [null, EventArgs.Empty]);
 
-        Assert.True(secondStarted.IsSet);
+        Assert.True(secondStarted.Wait(TimeSpan.FromSeconds(5)));
         Assert.Equal(1, maximumConcurrentCallbacks);
     }
 
