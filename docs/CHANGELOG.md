@@ -24,6 +24,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 - Security review documents the container entrypoint's privilege drop, generated filesystem probe, and allowlisted SQLite schema statements beside their scan annotations.
 - Security: OIDC callbacks now reject external redirects, remote WebSocket endpoints require TLS, and fixture/certificate paths are constrained to trusted local targets.
+- CI: Remove the custom validation engine and run the native release-gate and Playwright commands directly.
 - Consensus session eviction now uses a bounded insertion-order queue instead of allocating a dictionary snapshot when the session limit is reached.
 - Verification session eviction now uses the same bounded FIFO approach, preventing capacity-filling requests from scanning the full session table.
 - Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated. Main build and scan jobs verify scanner tools from the runner image instead of racing Ubuntu package locks.

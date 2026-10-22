@@ -118,9 +118,7 @@ for workflow in \
 done
 reject_line .github/workflows/windows-smoke.yml 'uses:[[:space:]]+(pnpm/setup|actions/setup-node)@'
 expect_literal .github/workflows/windows-smoke.yml 'run: dotnet test slskd.sln --configuration Release --no-build'
-for workflow in \
-    .github/workflows/build-on-tag.yml \
-    .github/workflows/e2e-tests.yml; do
+for workflow in .github/workflows/build-on-tag.yml; do
     expect_literal "$workflow" 'sudo apt-get install -y jq ripgrep'
 done
 for workflow in \
@@ -131,35 +129,22 @@ for workflow in \
     expect_literal "$workflow" 'command -v jq'
     expect_literal "$workflow" 'command -v rg'
 done
-expect_literal packaging/scripts/run-release-gate.sh 'exec node scripts/validate-development.mjs'
-expect_literal scripts/validation-engine/config.mjs "'.github/workflows/build-on-tag.yml'"
-for task_id in \
-    release-branch-sync \
-    packaging-metadata \
-    release-note-tests \
-    engine-contract-tests \
-    web-install \
-    web-tests \
-    backend-unit-tests \
-    backend-regression-tests \
-    backend-integration-smoke \
-    web-build \
-    bundle-budget \
-    built-web-output \
-    subpath-web-smoke; do
-    expect_literal scripts/validation-engine/config.mjs "id: '$task_id'"
+expect_literal packaging/scripts/run-release-gate.sh 'bash scripts/check-release-branch-sync.sh'
+expect_literal packaging/scripts/run-release-gate.sh 'bash packaging/scripts/validate-packaging-metadata.sh'
+expect_literal packaging/scripts/run-release-gate.sh 'python3 scripts/test_release_notes.py'
+expect_literal packaging/scripts/run-release-gate.sh 'pnpm --filter @slskdn/web test'
+expect_literal packaging/scripts/run-release-gate.sh 'dotnet test tests/slskd.Tests.Unit/slskd.Tests.Unit.csproj'
+expect_literal packaging/scripts/run-release-gate.sh 'dotnet test tests/slskd.Tests/slskd.Tests.csproj'
+expect_literal packaging/scripts/run-release-gate.sh 'bash packaging/scripts/run-release-integration-smoke.sh'
+expect_literal packaging/scripts/run-release-gate.sh 'pnpm --filter @slskdn/web build'
+for workflow in .github/workflows/ci.yml .github/workflows/e2e-tests.yml .github/workflows/build-on-tag.yml; do
+    reject_literal "$workflow" 'validation-engine'
+    reject_literal "$workflow" 'scripts/validate-development.mjs'
 done
 reject_literal packaging/scripts/run-release-gate.sh 'timeout --preserve-status'
 # Validate the job-wide, fail-closed runner-temp setup instead of requiring a
 # step-scoped TMPDIR value that cannot reach later build and test steps.
 bash scripts/check-dotnet-runtime-matrix.sh
-# Keep the evidence uploads limited to the same paths enforced by the YAML contract.
-for workflow in .github/workflows/ci.yml .github/workflows/e2e-tests.yml .github/workflows/build-on-tag.yml; do
-    expect_literal "$workflow" '${{ runner.temp }}/slskdn-validation-*/receipt.json'
-    expect_literal "$workflow" '${{ runner.temp }}/slskdn-validation-*/*.log'
-done
-reject_literal .github/workflows/ci.yml 'path: /tmp/slskdn-validation-*/'
-reject_literal .github/workflows/e2e-tests.yml 'path: /tmp/slskdn-validation-*/'
 expect_literal scripts/verify-release-artifacts.sh 'SHA256SUMS.txt'
 expect_literal scripts/verify-release-artifacts.sh 'vpn-agent/slskdN-vpn-agent'
 expect_literal scripts/verify-release-artifacts.sh 'slskdn-footer-session-total'
