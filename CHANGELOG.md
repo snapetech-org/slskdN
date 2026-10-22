@@ -19,6 +19,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   use SDK 10.0.402, and vulnerability checks inspect every first-party project.
 - CI validation artifacts now include only receipts and task logs, leaving
   temporary task environments and dependency caches on the runners.
+- The local identity denylist scan runs only on trusted `main` pushes, so
+  pull-request workflows never receive its secret.
 - Public pull-request workflows and manual runs outside `main` use
   GitHub-hosted runners. Trusted main jobs use only the workflow-restricted
   shared JIT runners, and release jobs receive only the token permissions they
