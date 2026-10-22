@@ -28,10 +28,6 @@ The helper accepts only a completed successful workflow dispatch for the exact
 current `main` commit and the repository's `ci.yml` workflow. The hosted
 workflow must include the full release gate.
 
-`node scripts/validate-development.mjs --plan` can preview discovery, runtime versions, and
-selected work. It is read-only discovery evidence; only executing the release
-gate produces test and build results.
-
 If the release claims to fix a reported bug, also run the reproduce-first workflow in [bugfix-verification-checklist.md](bugfix-verification-checklist.md). Green generic validation is not enough on its own.
 
 The release gate now covers:
@@ -39,7 +35,7 @@ The release gate now covers:
 - branch sync with the tracked upstream before tagging
 - vendored `slskNet.Runtime` revision and local-patch composition
 - packaging metadata validation
-- validation-engine contract tests and release-note tooling tests
+- release-note, hosted release-gate, and GitHub-target helper tests
 - frontend unit tests
 - frontend production build
 - built-web output verification
@@ -53,11 +49,9 @@ The release gate now covers:
   - `CanonicalSelectionTests`
   - `LibraryHealthTests`
 
-The release gate writes a source-bound receipt and per-task logs to a private
-temporary directory. GitHub engine jobs set `TMPDIR` to the job's runner temp
-directory and upload only evidence from that directory for seven days. This
-receipt does not combine results from the separate Nix job or prove that
-publishing and platform installer workflows succeeded.
+GitHub Actions retains the direct release-gate output in its workflow logs.
+Playwright workflows upload their reports and failure artifacts. The release
+gate does not prove that publishing or platform installer workflows succeeded.
 
 ## What green local validation proves
 

@@ -53,91 +53,18 @@ transitive packages and fails on any reported severity. CI runs the same check;
 scanning only the application project can miss vulnerable packages resolved by
 test or tooling projects.
 
-#### Validation engine entry points
+#### Native test commands
 
-The release gate is driven by the repository-specific validation engine. From
-the repository root:
-
-```bash
-node scripts/validate-development.mjs --plan
-node scripts/validate-development.mjs --tests-only
-node scripts/validate-development.mjs
-node scripts/validate-development.mjs --task browser-e2e
-node scripts/validate-development.mjs --task web-browser-e2e
-```
-
-Local execution of test tasks requires the trusted Linux bubblewrap launcher.
-When evaluating an unreviewed branch, copy `trusted-test-launcher.mjs` and
-`trusted-test-sandbox-policy.mjs` from the same reviewed revision to a location
-outside the checkout, keeping them together. The launcher snapshots only paths
-in the Git index, hides the original checkout and common host configuration and
-data roots, and runs candidate code offline. Credential files are excluded
-even when extensionless or stored in credential-named folders, while token-like
-source files remain in the snapshot. Stage new candidate files first.
-The launcher opens each workspace, run-data, dependency, cache, and marker
-source before masking host paths, then binds those pinned sources through
-inherited file descriptors.
+Run the release gate from the repository root:
 
 ```bash
-node /path/to/trusted-test-launcher.mjs "$PWD" -- node scripts/validate-development.mjs --tests-only
+bash packaging/scripts/run-release-gate.sh
 ```
 
-Run planning for an unreviewed candidate through that launcher too, because
-planning imports its validation configuration. GitHub Actions remains
-responsible for hosted validation.
-
-`--plan` discovers test files, records the Git candidate and supported runtime
-versions, and reports command availability. It does not execute tests.
-`--tests-only` runs registered unit, regression, integration-smoke, release-note,
-and engine-contract tests. The default run adds repository checks and the web
-build/output checks. Browser suites remain separately selectable because they
-need more time and platform setup.
-
-During execution, the engine writes cumulative task progress to stderr when a
-task starts and finishes, with a heartbeat every minute for long tasks. The
-summary reports completed, failed, blocked, and pending tasks plus the active
-task and elapsed time. Native test-case totals update when each task finishes;
-GitHub Actions shows these live updates in the step log because rendered job
-summaries are published after the step completes.
-
-Each execution creates a fresh receipt and per-task logs in a private directory
-under the operating system's temporary directory. Each log is capped at 16 MiB
-and carries a marker when output was truncated. Receipts bind the Git commit,
-tree, dirty diff, untracked files, lock/workflow inputs, discovered test-file
-digests, runtime versions, and (on GitHub Actions) the workflow run and attempt.
-Test tasks pass only when their native command succeeds and reports at least
-one active case. No previous result is reused. A task that changes the planned
-source blocks remaining work and fails the run. Sensitive environment values
-are excluded by constructing runtime-probe and child environments from a
-narrow platform and toolchain allowlist. Each task receives private home,
-temporary, XDG, and .NET package directories, plus declared settings. `passEnv`
-allows only variables approved for that task by the engine. The engine forces
-`CI=true`; test tasks use `NODE_ENV=test`. Loader options, proxy settings,
-workflow context, arbitrary variables, and operator configuration paths do not
-reach child commands.
-
-Playwright tasks keep those private home and XDG directories and use the
-job-scoped `slskdn-playwright-browsers` cache under the runner temporary root.
-The E2E workflow installs Chromium into that same cache before the engine runs.
-The registered browser tasks set `SLSKDN_TEST_NO_CONNECT=true` explicitly, so
-the isolated suite does not attempt public Soulseek connections. Use the
-separate loopback journey command when exercising peer protocol behavior.
-For local browser validation, install Chromium into a task-scoped cache and
-pass that directory to the trusted launcher with `--playwright-cache`. The
-launcher mounts it read-only and the engine accepts only the launcher's guest
-mount path, so arbitrary operator cache paths remain isolated. For example:
-
-```bash
-node scripts/validation-engine/trusted-test-launcher.mjs "$PWD" \
-  --playwright-cache "$PLAYWRIGHT_BROWSERS_PATH" -- \
-  node scripts/validate-development.mjs --task web-browser-e2e
-```
-
-See `tests/e2e/README.md` for browser installation details.
-
-GitHub CI uploads the receipt and logs as a seven-day artifact. A passing local
-or hosted engine run does not include the separate Nix packaging job, release
-publishing, or all platform installer smokes.
+The script calls the repository's normal Python, pnpm, and `dotnet test`
+commands directly. Each command stops the gate on failure. GitHub Actions keeps
+the command output in the workflow run; browser workflows also upload their
+Playwright reports and failure artifacts.
 
 ### 2. Focused Regression Tests
 
@@ -157,10 +84,12 @@ Use the existing integration and Playwright layers for broader end-to-end covera
 - `src/web/e2e`
 - `.github/workflows/e2e-tests.yml`
 
-The validation engine tracks the `tests/e2e/specs` Playwright inventory as the
-`browser-e2e` task. `src/web/e2e` is separately inventoried by
-`web-browser-e2e`; select it explicitly when the corresponding browser setup
-is available. Neither browser suite is silently included in `--tests-only`.
+Run the main Playwright suite with
+`SLSKDN_TEST_NO_CONNECT=true pnpm --filter @slskdn/e2e test:e2e:ci`. For the
+Web workspace browser suite, build the Web workspace, run
+`pnpm --filter @slskdn/web check:e2e-types`, then run
+`SLSKDN_TEST_NO_CONNECT=true pnpm --filter @slskdn/web exec playwright test --reporter=line`.
+Both suites need Chromium installed; see `tests/e2e/README.md` for setup.
 
 These are important, but they should complement the release gate rather than replace it.
 
