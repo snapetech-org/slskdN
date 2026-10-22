@@ -1,6 +1,6 @@
 # Current API surface inventory
 
-Generated: 2026-10-13T11:13:25Z
+Generated: 2026-10-22T15:12:21Z
 
 This inventory is generated from controller attributes. It is intended for parity/security review, not as a replacement for Swagger or integration tests.
 
@@ -54,7 +54,7 @@ Route bucket policy: new web-consumed JSON APIs should be versioned. Non-version
 | `src/slskd/Core/API/Controllers/NetworkController.cs` | `"api/v{version:apiVersion}/network"` | versioned | [Authorize(Policy = AuthPolicy.Any)] | yes | no | 1 |
 | `src/slskd/Core/API/Controllers/OptionsController.cs` | `"api/v{version:apiVersion}/[controller]"<br>"startup"<br>"debug"<br>"yaml/location"<br>"yaml"<br>"yaml"<br>"yaml/validate"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.AdministratorOnly)] [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.JwtOnly, Roles = AuthRole.AdministratorOnly)] [Authorize(Policy = AuthPolicy.JwtOnly, Roles = AuthRole.AdministratorOnly)] [Authorize(Policy = AuthPolicy.JwtOnly, Roles = AuthRole.AdministratorOnly)] [Authorize(Policy = AuthPolicy.JwtOnly, Roles = AuthRole.AdministratorOnly)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | no | 8 |
 | `src/slskd/Core/API/Controllers/ServerController.cs` | `"api/v{version:apiVersion}/[controller]"<br>""<br>""<br>""` | versioned | [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any)] | yes | no | 3 |
-| `src/slskd/Core/API/Controllers/SessionController.cs` | `"api/v{version:apiVersion}/[controller]"<br>""<br>"enabled"<br>""<br>""` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | yes | 4 |
+| `src/slskd/Core/API/Controllers/SessionController.cs` | `"api/v{version:apiVersion}/[controller]"<br>""<br>"enabled"<br>"oidc/enabled"<br>"oidc"<br>""<br>""` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | yes | 6 |
 | `src/slskd/Destinations/API/Controllers/DestinationsController.cs` | `"api/v{version:apiVersion}/[controller]"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | no | 3 |
 | `src/slskd/DhtRendezvous/API/DhtRendezvousController.cs` | `"api/v{version:apiVersion}"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Roles = "Administrator")] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.AdministratorOnly)] | yes | no | 12 |
 | `src/slskd/DiscoveryGraph/API/DiscoveryGraphController.cs` | `"api/v{version:apiVersion}/discovery-graph"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | no | 1 |
@@ -111,7 +111,7 @@ Route bucket policy: new web-consumed JSON APIs should be versioned. Non-version
 | `src/slskd/Sharing/API/SharesController.cs` | `"api/v{version:apiVersion}/share-grants"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | no | 10 |
 | `src/slskd/SocialFederation/API/ActivityPubController.cs` | `"actors"` | federation-protocol | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.AdministratorOnly)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | yes | 7 |
 | `src/slskd/SocialFederation/API/FederationDiagnosticsController.cs` | `"api/v{version:apiVersion}/federation/diagnostics"` | versioned | [Authorize(Policy = AuthPolicy.Any)] | yes | no | 1 |
-| `src/slskd/SocialFederation/API/TasteRecommendationsController.cs` | `"api/v{version:apiVersion}/taste-recommendations"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | no | 4 |
+| `src/slskd/SocialFederation/API/TasteRecommendationsController.cs` | `"api/v{version:apiVersion}/taste-recommendations"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | no | 5 |
 | `src/slskd/SocialFederation/API/WebFingerController.cs` | `".well-known"` | federation-protocol | [Authorize(Policy = AuthPolicy.Any)] | yes | yes | 1 |
 | `src/slskd/Solid/API/SolidController.cs` | `"api/v{version:apiVersion}/solid"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)] | yes | no | 2 |
 | `src/slskd/SongID/API/SongIdController.cs` | `"api/v{version:apiVersion}/songid"` | versioned | [Authorize(Policy = AuthPolicy.Any)] [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.AdministratorOnly)] | yes | no | 7 |
@@ -175,12 +175,16 @@ None found.
   - 180:        [HttpPost("dump")]
   - 245:        [HttpPost("loopback")]
 - src/slskd/Core/API/Controllers/SessionController.cs
-  - 72:        [HttpGet]
-  - 87:        [HttpGet]
-  - 89:        [AllowAnonymous]
-  - 101:        [HttpDelete]
-  - 128:        [HttpPost]
-  - 130:        [AllowAnonymous]
+  - 73:        [HttpGet]
+  - 88:        [HttpGet]
+  - 90:        [AllowAnonymous]
+  - 100:        [HttpGet]
+  - 102:        [AllowAnonymous]
+  - 118:        [HttpGet]
+  - 120:        [AllowAnonymous]
+  - 157:        [HttpDelete]
+  - 185:        [HttpPost]
+  - 187:        [AllowAnonymous]
 - src/slskd/Identity/API/ProfileController.cs
   - 40:    [HttpGet("me")]
   - 51:    [HttpPut("me")]
