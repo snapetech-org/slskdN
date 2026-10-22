@@ -49,6 +49,27 @@ read_manifest_value() {
     awk -F= -v key="$key" '$1 == key { print substr($0, index($0, "=") + 1); exit }' "$manifest"
 }
 
+resolve_remote_commit() {
+    local repository="$1"
+    local ref="$2"
+    local remote_refs
+
+    if ! remote_refs="$(GIT_TERMINAL_PROMPT=0 git ls-remote "$repository" "$ref" "${ref}^{}")"; then
+        return 1
+    fi
+
+    # Annotated tags advertise both the tag-object SHA and a peeled commit SHA.
+    # Prefer the peeled commit; branches and lightweight tags only have a direct SHA.
+    printf '%s\n' "$remote_refs" | awk -v ref="$ref" -v peeled="${ref}^{}" '
+        $2 == peeled { peeled_sha = $1 }
+        $2 == ref { direct_sha = $1 }
+        END {
+            if (peeled_sha != "") print peeled_sha
+            else if (direct_sha != "") print direct_sha
+        }
+    '
+}
+
 if [[ ! -f "$manifest" || ! -f "$patch_file" ]]; then
     printf 'Runtime sync manifest or patch is missing.\n' >&2
     exit 1
@@ -80,7 +101,7 @@ if [[ -n "$(git -C "$repo_root" status --porcelain --untracked-files=all -- vend
     exit 1
 fi
 
-remote_commit="$(GIT_TERMINAL_PROMPT=0 git ls-remote "$runtime_repository" "$runtime_ref" | awk 'NR == 1 { print $1; exit }')"
+remote_commit="$(resolve_remote_commit "$runtime_repository" "$runtime_ref")" || remote_commit=""
 if [[ -z "$remote_commit" ]]; then
     printf 'Could not resolve the remote runtime ref.\n' >&2
     exit 1

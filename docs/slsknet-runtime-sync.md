@@ -4,15 +4,17 @@ This repository vendors `slskNet.Runtime` under `vendor/slskNet.Runtime` and con
 
 ## Source and Drift Policy
 
-The vendored runtime is a reproducible mirror of the `main` branch in
-[`snapetech/slskNet.Runtime`](https://github.com/snapetech/slskNet.Runtime),
-with the small slskdN-specific delta recorded in
-`vendor/slskNet.Runtime.patches/0001-slskdN-local-runtime-delta.patch`.
-`vendor/slskNet.Runtime.sync` records the exact fork commit used by builds.
+The vendored runtime is pinned to the release tag and exact commit recorded
+in `vendor/slskNet.Runtime.sync`. The runtime release tag is `v10.0.3` in
+[`snapetech-org/slskNet.Runtime`](https://github.com/snapetech-org/slskNet.Runtime).
+Any slskdN-only delta is recorded in
+`vendor/slskNet.Runtime.patches/0001-slskdN-local-runtime-delta.patch`; that
+patch is empty for `v10.0.3` because the previously maintained listener,
+obfuscation, and protocol-hardening changes are now part of the runtime release.
 
 The sync check performs all of these checks:
 
-- resolves the live fork `main` ref and rejects a stale manifest;
+- resolves the declared fork release tag, including annotated tags, and checks its full commit SHA;
 - exports the declared commit and applies the declared local patch;
 - compares the resulting complete tracked file set and contents with
   `vendor/slskNet.Runtime`; and

@@ -6,3 +6,6 @@
 - Updated the Web API and frontend dependencies, including fixes for CVE-2025-6965, CVE-2026-62900, and the two `follow-redirects` advisories.
 - Updated the Web API container to .NET 8 and configured it to run as the built-in non-root `app` user.
 - Pinned GitHub Actions to immutable commit SHAs and added a seven-day Dependabot cooldown.
+- Added shared-port peer obfuscation, an injectable primary listener, and a separately configurable advertised port.
+- Hardened peer initialization framing and listener cancellation/retry handling; inactive search responses are discarded before parsing file lists.
+- Added bounded streaming serialization for browse responses and a regression test for search teardown races.
