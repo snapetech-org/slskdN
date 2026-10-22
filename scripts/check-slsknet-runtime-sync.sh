@@ -166,7 +166,7 @@ while IFS= read -r relative_path; do
     fi
 done < "$temp_root/source-paths"
 
-untracked="$(git -C "$repo_root" status --short --untracked-files=all -- vendor/slskNet.Runtime)"
+untracked="$(git -C "$repo_root" ls-files --others --exclude-standard -- vendor/slskNet.Runtime)"
 if [[ -n "$untracked" ]]; then
     printf 'Untracked files exist inside the vendored runtime:\n%s\n' "$untracked" >&2
     failed=1
