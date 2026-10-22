@@ -340,6 +340,8 @@ jobs:
 
   container-scanning:
     name: Container Scanning (Trivy)
+    env:
+      TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
