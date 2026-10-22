@@ -27,6 +27,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Consensus session eviction now uses a bounded insertion-order queue instead of allocating a dictionary snapshot when the session limit is reached.
 - Verification session eviction now uses the same bounded FIFO approach, preventing capacity-filling requests from scanning the full session table.
 - Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated. Main build and scan jobs verify scanner tools from the runner image instead of racing Ubuntu package locks.
+- Hosted security workflows install ripgrep when the runner image does not include it, so identity-scanner validation can complete reliably.
 - The local identity denylist scan runs only on trusted `main` pushes, so pull-request workflows never receive its secret.
 - Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
 - Trusted main-branch builds and security scans now use the capacity-guarded shared Linux runner pool; fork pull requests remain on isolated runners.
