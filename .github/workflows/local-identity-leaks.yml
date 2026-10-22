@@ -22,10 +22,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Verify scanner dependencies
-        run: |
-          command -v jq
-          command -v rg
+      - name: Install scanner dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq ripgrep
 
       - name: Check release-facing text
         env:
