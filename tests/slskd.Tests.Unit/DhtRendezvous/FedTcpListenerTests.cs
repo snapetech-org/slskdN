@@ -6,6 +6,7 @@ namespace slskd.Tests.Unit.DhtRendezvous;
 using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using slskd.SoulseekRuntime;
@@ -65,5 +66,17 @@ public class FedTcpListenerTests
         sut.Complete();
 
         await Assert.ThrowsAsync<ChannelClosedException>(() => sut.AcceptTcpClientAsync());
+    }
+
+    [Fact]
+    public async Task AcceptTcpClientAsync_CancelsPendingRead()
+    {
+        var sut = new FedTcpListener();
+        using var cancellationTokenSource = new CancellationTokenSource();
+
+        var acceptTask = sut.AcceptTcpClientAsync(cancellationTokenSource.Token);
+        cancellationTokenSource.Cancel();
+
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => acceptTask);
     }
 }

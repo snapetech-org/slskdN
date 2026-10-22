@@ -4,6 +4,7 @@
 namespace slskd.SoulseekRuntime;
 
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Soulseek.Network.Tcp;
@@ -24,7 +25,7 @@ using Soulseek.Network.Tcp;
 /// Only <see cref="Complete"/>, called by the owning <see cref="slskd.DhtRendezvous.SharedMeshTcpListener"/>
 /// on final shutdown, actually closes it.
 /// </remarks>
-internal sealed class FedTcpListener : ITcpListener
+internal sealed class FedTcpListener : ICancellableTcpListener
 {
     private readonly Channel<TcpClient> _channel = Channel.CreateUnbounded<TcpClient>(new UnboundedChannelOptions
     {
@@ -43,6 +44,9 @@ internal sealed class FedTcpListener : ITcpListener
     public void Complete() => _channel.Writer.TryComplete();
 
     public Task<TcpClient> AcceptTcpClientAsync() => _channel.Reader.ReadAsync().AsTask();
+
+    public Task<TcpClient> AcceptTcpClientAsync(CancellationToken cancellationToken)
+        => _channel.Reader.ReadAsync(cancellationToken).AsTask();
 
     public bool Pending() => _channel.Reader.TryPeek(out _);
 
