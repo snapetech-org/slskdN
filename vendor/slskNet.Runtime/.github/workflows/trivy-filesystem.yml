@@ -1,0 +1,35 @@
+name: Trivy filesystem scan
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "13 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trivy-fs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  trivy:
+    name: Trivy source, dependency, and configuration scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install the latest Trivy release
+        uses: aquasecurity/setup-trivy@e07451d2e059ed86c2870430ea286b3a9e0bf241 # latest
+        with:
+          version: latest
+          token: ${{ github.token }}
+
+      - name: Scan applicable repository files
+        run: ./scripts/security-scan-local.sh --trivy-only --ci

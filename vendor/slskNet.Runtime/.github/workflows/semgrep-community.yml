@@ -1,0 +1,49 @@
+name: Semgrep Community Edition
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "41 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+concurrency:
+  group: semgrep-ce-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  semgrep:
+    name: Semgrep CE (community rules)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Scan with the current Semgrep CE image and p/default rules
+        run: |
+          docker run --rm --user "$(id -u):$(id -g)" -e HOME=/tmp -e EIO_BACKEND=posix \
+            -v "$GITHUB_WORKSPACE:/src" -w /src semgrep/semgrep:latest \
+            semgrep scan --config p/default --metrics=off --jobs 2 \
+              --json-output semgrep.json --sarif-output semgrep.sarif .
+
+      - name: Report finding count
+        if: always() && hashFiles('semgrep.json') != ''
+        run: |
+          jq -r '"Semgrep CE reported \(.results | length) finding(s). Review semgrep.sarif and the scan log."' semgrep.json
+
+      - name: Upload findings to GitHub code scanning
+        if: >-
+          always() && hashFiles('semgrep.sarif') != '' &&
+          (github.event_name != 'pull_request' ||
+          github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep-ce-community
