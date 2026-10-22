@@ -12,7 +12,8 @@ usage() {
     cat <<'EOF'
 Usage: scripts/sync-slsknet-runtime.sh --apply
 
-Fetch refs/heads/main from snapetech/slskNet.Runtime, apply the declared
+Fetch the declared branch or release tag from
+snapetech-org/slskNet.Runtime, apply the declared
 slskdN-local patch set, refresh the vendored mirror, and update the manifest.
 
 The command refuses to modify a dirty vendored runtime or a dirty sync
@@ -56,10 +57,21 @@ fi
 runtime_repository="$(read_manifest_value repository)"
 runtime_ref="$(read_manifest_value ref)"
 current_commit="$(read_manifest_value commit)"
-runtime_branch="${runtime_ref#refs/heads/}"
+case "$runtime_ref" in
+    refs/heads/*)
+        runtime_ref_name="${runtime_ref#refs/heads/}"
+        ;;
+    refs/tags/*)
+        runtime_ref_name="${runtime_ref#refs/tags/}"
+        ;;
+    *)
+        printf 'Runtime sync manifest ref must be a branch or tag ref.\n' >&2
+        exit 1
+        ;;
+esac
 
-if [[ "$runtime_repository" != "https://github.com/snapetech/slskNet.Runtime.git" || "$runtime_ref" != refs/heads/* ]]; then
-    printf 'Runtime sync manifest must target the slskNet.Runtime main branch.\n' >&2
+if [[ "$runtime_repository" != "https://github.com/snapetech-org/slskNet.Runtime.git" ]]; then
+    printf 'Runtime sync manifest must target snapetech-org/slskNet.Runtime.\n' >&2
     exit 1
 fi
 
@@ -83,18 +95,18 @@ temp_root="$(mktemp -d)"
 trap 'rm -rf -- "$temp_root"' EXIT
 
 source_repository="$temp_root/source"
-GIT_TERMINAL_PROMPT=0 git clone --quiet --no-tags --depth 1 --branch "$runtime_branch" "$runtime_repository" "$source_repository"
+GIT_TERMINAL_PROMPT=0 git clone --quiet --no-tags --depth 1 --branch "$runtime_ref_name" "$runtime_repository" "$source_repository"
 
 mkdir -p "$temp_root/composed/vendor/slskNet.Runtime"
 git -C "$source_repository" archive --format=tar "$remote_commit" | tar -x -C "$temp_root/composed/vendor/slskNet.Runtime"
 git -C "$temp_root/composed" init --quiet
 
-if ! git -C "$temp_root/composed" apply --check "$patch_file"; then
+if ! git -C "$temp_root/composed" apply --check --allow-empty "$patch_file"; then
     printf 'The existing slskdN runtime patch does not apply to %s.\n' "$remote_commit" >&2
     printf 'Reconcile or upstream the local runtime changes before updating.\n' >&2
     exit 1
 fi
-git -C "$temp_root/composed" apply "$patch_file"
+git -C "$temp_root/composed" apply --allow-empty "$patch_file"
 
 git -C "$source_repository" ls-tree -r --name-only "$remote_commit" | LC_ALL=C sort > "$temp_root/source-paths"
 git -C "$repo_root" ls-files vendor/slskNet.Runtime | sed 's#^vendor/slskNet.Runtime/##' | LC_ALL=C sort > "$temp_root/vendor-paths"

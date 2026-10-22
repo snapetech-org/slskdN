@@ -61,15 +61,23 @@ expected_commit="$(read_manifest_value commit)"
 patch_rel="$(read_manifest_value local_patch)"
 patch_file="$repo_root/$patch_rel"
 
-if [[ "$runtime_repository" != "https://github.com/snapetech/slskNet.Runtime.git" ]]; then
-    printf 'Runtime sync manifest must target snapetech/slskNet.Runtime, got: %s\n' "$runtime_repository" >&2
+if [[ "$runtime_repository" != "https://github.com/snapetech-org/slskNet.Runtime.git" ]]; then
+    printf 'Runtime sync manifest must target snapetech-org/slskNet.Runtime, got: %s\n' "$runtime_repository" >&2
     exit 1
 fi
 
-if [[ "$runtime_ref" != refs/heads/* ]]; then
-    printf 'Runtime sync manifest ref must be a branch ref, got: %s\n' "$runtime_ref" >&2
-    exit 1
-fi
+case "$runtime_ref" in
+    refs/heads/*)
+        runtime_ref_name="${runtime_ref#refs/heads/}"
+        ;;
+    refs/tags/*)
+        runtime_ref_name="${runtime_ref#refs/tags/}"
+        ;;
+    *)
+        printf 'Runtime sync manifest ref must be a branch or tag ref, got: %s\n' "$runtime_ref" >&2
+        exit 1
+        ;;
+esac
 
 if [[ ! "$expected_commit" =~ ^[0-9a-f]{40}$ ]]; then
     printf 'Runtime sync manifest commit must be a full lowercase SHA-1: %s\n' "$expected_commit" >&2
@@ -117,8 +125,7 @@ if [[ -n "$source_override" ]]; then
     fi
 else
     source_repository="$temp_root/source"
-    branch="${runtime_ref#refs/heads/}"
-    GIT_TERMINAL_PROMPT=0 git clone --quiet --no-tags --depth 1 --branch "$branch" "$runtime_repository" "$source_repository"
+    GIT_TERMINAL_PROMPT=0 git clone --quiet --no-tags --depth 1 --branch "$runtime_ref_name" "$runtime_repository" "$source_repository"
 fi
 
 if ! git -C "$source_repository" cat-file -e "${expected_commit}^{commit}" 2>/dev/null; then
@@ -130,12 +137,12 @@ mkdir -p "$temp_root/composed/vendor/slskNet.Runtime"
 git -C "$source_repository" archive --format=tar "$expected_commit" | tar -x -C "$temp_root/composed/vendor/slskNet.Runtime"
 git -C "$temp_root/composed" init --quiet
 
-if ! git -C "$temp_root/composed" apply --check "$patch_file"; then
+if ! git -C "$temp_root/composed" apply --check --allow-empty "$patch_file"; then
     printf 'Declared slskdN runtime patch no longer applies to %s.\n' "$expected_commit" >&2
     printf 'Reconcile the local runtime changes before updating the baseline.\n' >&2
     exit 1
 fi
-git -C "$temp_root/composed" apply "$patch_file"
+git -C "$temp_root/composed" apply --allow-empty "$patch_file"
 
 git -C "$source_repository" ls-tree -r --name-only "$expected_commit" | LC_ALL=C sort > "$temp_root/source-paths"
 git -C "$repo_root" ls-files vendor/slskNet.Runtime | sed 's#^vendor/slskNet.Runtime/##' | LC_ALL=C sort > "$temp_root/vendor-paths"
