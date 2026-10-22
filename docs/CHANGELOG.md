@@ -23,6 +23,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 ## [Unreleased]
 
 - Search results use peer album-track consensus to improve smart ranking, offer a direct consensus sort, and show the inferred track list when at least two sources agree.
+- The album consensus sort label is now available in all twelve interface languages.
 - Consensus session eviction now uses a bounded insertion-order queue instead of allocating a dictionary snapshot when the session limit is reached.
 - Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated.
 - Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
