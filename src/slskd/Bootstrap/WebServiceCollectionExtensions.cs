@@ -296,6 +296,7 @@ public static class WebServiceCollectionExtensions
                 })
                 .AddCookie(OidcSignInScheme, options =>
                 {
+                    var isAppleIssuer = IsAppleIssuer(optionsAtStartup.Web.Authentication.Oidc.IssuerUrl);
                     options.Cookie.Name = $"{appName.ToLowerInvariant()}-oidc-temporary";
                     options.Cookie.HttpOnly = true;
                     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
