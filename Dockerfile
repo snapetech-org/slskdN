@@ -1,6 +1,6 @@
 # build static web content
 # note: pin this to amd64 to speed it up, it is prohibitively slow under QEMU
-FROM --platform=$BUILDPLATFORM node:20-alpine AS web
+FROM --platform=$BUILDPLATFORM node:22.23.4-alpine AS web
 
 WORKDIR /slskd
 

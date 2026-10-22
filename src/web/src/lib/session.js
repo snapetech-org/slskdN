@@ -1,9 +1,45 @@
-import { tokenPassthroughValue } from '../config';
+import { apiBaseUrl, tokenPassthroughValue } from '../config';
 import api, { getCsrfTokenFromCookieString } from './api';
 import { clearToken, getToken, setToken } from './token';
 
+const consumeOidcTokenFromFragment = () => {
+  if (typeof window === 'undefined' || !window.location.hash) {
+    return;
+  }
+
+  const fragment = new URLSearchParams(window.location.hash.slice(1));
+  const token = fragment.get('oidc_token');
+  if (!token) {
+    return;
+  }
+
+  // The callback fragment carries only slskdN's own JWT, never provider tokens.
+  // Store it in the same tab-scoped session storage used by password login and
+  // immediately remove it from browser history and the address bar.
+  setToken(sessionStorage, token);
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `${window.location.pathname}${window.location.search}`,
+  );
+};
+
+consumeOidcTokenFromFragment();
+
 export const getSecurityEnabled = async () => {
   return (await api.get('/session/enabled')).data;
+};
+
+export const getOidcEnabled = async () => {
+  return (await api.get('/session/oidc/enabled')).data;
+};
+
+export const loginWithOidc = (returnUrl) => {
+  const url = new URL(`${apiBaseUrl}/session/oidc`, window.location.origin);
+  if (returnUrl) {
+    url.searchParams.set('returnUrl', returnUrl);
+  }
+  window.location.assign(url.href);
 };
 
 export const enablePassthrough = () => {

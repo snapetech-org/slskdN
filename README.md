@@ -25,6 +25,7 @@ For local MCP access, see the [SnapeTech MCP integration guide](docs/integration
 - [Configuration reference](docs/config.md)
 - [Docker deployment](docs/docker.md)
 - [Troubleshooting](docs/troubleshooting.md)
+- [OIDC authentication setup and recovery](docs/oidc-authentication.md) · [shared provider catalog](https://github.com/snapetech-org/seerrng/blob/main/docs/maintainers/oidc-provider-catalog.md)
 - [Build from source](docs/build.md)
 
 For first use, follow the setup guide to install the daemon, open its Web UI,

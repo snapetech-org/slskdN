@@ -133,6 +133,31 @@ public static class WebApplicationPipelineExtensions
 
         // The main fix is making HTTP_ADDRESS configurable for proper binding
         app.UseHTMLInjection($"<script>window.urlBase=\"{urlBase}\";window.port={optionsAtStartup.Web.Port}</script>", excludedRoutes: new[] { "/api", "/swagger" });
+
+        // Apple returns authorization responses as a cross-site form POST.
+        // Keep that authentication callback small even when the server accepts
+        // larger uploads elsewhere in the application.
+        app.Use(async (context, next) =>
+        {
+            if (HttpMethods.IsPost(context.Request.Method) &&
+                (context.Request.Path.Value ?? string.Empty).EndsWith("/signin-oidc", StringComparison.OrdinalIgnoreCase))
+            {
+                const long maxCallbackBytes = 16 * 1024;
+                var bodyLimit = context.Features.Get<Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>();
+                if (bodyLimit != null && !bodyLimit.IsReadOnly)
+                {
+                    bodyLimit.MaxRequestBodySize = maxCallbackBytes;
+                }
+                if (context.Request.ContentLength > maxCallbackBytes ||
+                    (context.Request.ContentLength == null && (bodyLimit == null || bodyLimit.IsReadOnly)))
+                {
+                    context.Response.StatusCode = StatusCodes.Status413PayloadTooLarge;
+                    return;
+                }
+            }
+            await next();
+        });
+
         app.UseAuthentication();
 
         // CSRF token middleware - generates tokens for cookie-based auth

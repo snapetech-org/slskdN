@@ -3577,6 +3577,12 @@ namespace slskd
                 public JwtOptions Jwt { get; init; } = new JwtOptions();
 
                 /// <summary>
+                ///     OpenID Connect browser sign-in options.
+                /// </summary>
+                [Validate]
+                public OidcOptions Oidc { get; init; } = new OidcOptions();
+
+                /// <summary>
                 ///     Gets API keys.
                 /// </summary>
                 [Validate]
@@ -3613,6 +3619,124 @@ namespace slskd
                     [Range(3600, int.MaxValue)]
                     [RequiresRestart]
                     public int Ttl { get; init; } = 3600000; // default 1 hour (was 7 days)
+                }
+
+                /// <summary>
+                ///     Server-side OIDC authorization-code sign-in configuration.
+                /// </summary>
+                public sealed class OidcOptions : IValidatableObject
+                {
+                    /// <summary>Gets the optional provider-brand hint used by the login page.</summary>
+                    [EnvironmentVariable("OIDC_PROVIDER")]
+                    [Description("Provider preset ID for login branding; this does not change issuer validation")]
+                    [StringLength(64)]
+                    [RequiresRestart]
+                    public string Provider { get; init; } = "generic";
+
+                    /// <summary>Gets the exact OpenID Provider issuer URL.</summary>
+                    [EnvironmentVariable("OIDC_ISSUER_URL")]
+                    [Description("OpenID Provider issuer URL")]
+                    [StringLength(2048)]
+                    [RequiresRestart]
+                    public string IssuerUrl { get; init; } = string.Empty;
+
+                    /// <summary>Gets the registered client identifier.</summary>
+                    [EnvironmentVariable("OIDC_CLIENT_ID")]
+                    [Description("OpenID Connect client identifier")]
+                    [StringLength(512)]
+                    [RequiresRestart]
+                    public string ClientId { get; init; } = string.Empty;
+
+                    /// <summary>Gets the server-only client secret.</summary>
+                    [EnvironmentVariable("OIDC_CLIENT_SECRET")]
+                    [Description("OpenID Connect client secret")]
+                    [StringLength(2048)]
+                    [Secret]
+                    [RequiresRestart]
+                    public string ClientSecret { get; init; } = string.Empty;
+
+                    /// <summary>Gets the exact public HTTPS callback URI.</summary>
+                    [EnvironmentVariable("OIDC_REDIRECT_URI")]
+                    [Description("Public HTTPS OIDC callback URI ending in /signin-oidc")]
+                    [StringLength(2048)]
+                    [RequiresRestart]
+                    public string RedirectUri { get; init; } = string.Empty;
+
+                    /// <summary>Gets exact verified email addresses admitted as administrators.</summary>
+                    [EnvironmentVariable("OIDC_ALLOWED_EMAILS")]
+                    [Description("Comma or whitespace separated verified email admission list")]
+                    [StringLength(8192)]
+                    [RequiresRestart]
+                    public string AllowedEmails { get; init; } = string.Empty;
+
+                    /// <summary>Gets verified email domains admitted as administrators.</summary>
+                    [EnvironmentVariable("OIDC_ALLOWED_EMAIL_DOMAINS")]
+                    [Description("Comma or whitespace separated verified email domain admission list")]
+                    [StringLength(8192)]
+                    [RequiresRestart]
+                    public string AllowedEmailDomains { get; init; } = string.Empty;
+
+                    /// <summary>Gets additional requested scopes. The openid and email scopes are always included.</summary>
+                    [EnvironmentVariable("OIDC_SCOPES")]
+                    [Description("Additional OpenID Connect scopes; openid and email are always requested")]
+                    [StringLength(2048)]
+                    [RequiresRestart]
+                    public string Scopes { get; init; } = "openid profile email";
+
+                    /// <summary>Gets a value indicating whether verified identities outside the explicit admin list may sign in.</summary>
+                    [EnvironmentVariable("OIDC_ALLOW_ANY_VERIFIED_USER")]
+                    [Description("Allow any verified identity; identities outside the explicit admin list receive readwrite")]
+                    [RequiresRestart]
+                    public bool AllowAnyVerifiedUser { get; init; } = false;
+
+                    /// <summary>Gets a value indicating whether private issuer endpoints, including HTTP, may be used.</summary>
+                    [EnvironmentVariable("OIDC_ALLOW_PRIVATE_ISSUER")]
+                    [Description("Allow a private provider issuer to use HTTP; keep the browser callback on HTTPS")]
+                    [RequiresRestart]
+                    public bool AllowPrivateIssuer { get; init; } = false;
+
+                    /// <summary>Validates the OIDC provider and callback configuration.</summary>
+                    /// <param name="validationContext">The options validation context.</param>
+                    /// <returns>Validation errors for incomplete or unsafe OIDC configuration.</returns>
+                    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+                    {
+                        var configuredValues = new[] { IssuerUrl, ClientId, ClientSecret, RedirectUri };
+                        var configuredCount = configuredValues.Count(value => !string.IsNullOrWhiteSpace(value));
+                        if (configuredCount == 0)
+                        {
+                            yield break;
+                        }
+
+                        if (configuredCount != configuredValues.Length)
+                        {
+                            yield return new ValidationResult(
+                                "OIDC issuer_url, client_id, client_secret, and redirect_uri must be configured together.",
+                                new[] { nameof(IssuerUrl), nameof(ClientId), nameof(ClientSecret), nameof(RedirectUri) });
+                            yield break;
+                        }
+
+                        if (!Uri.TryCreate(IssuerUrl, UriKind.Absolute, out var issuer) ||
+                            string.IsNullOrWhiteSpace(issuer.Host) ||
+                            issuer.UserInfo.Length != 0 || issuer.Query.Length != 0 || issuer.Fragment.Length != 0 ||
+                            (issuer.Scheme != Uri.UriSchemeHttps &&
+                             !(AllowPrivateIssuer && issuer.Scheme == Uri.UriSchemeHttp)))
+                        {
+                            yield return new ValidationResult(
+                                "OIDC issuer_url must be HTTPS without user info, query, or fragment. HTTP requires allow_private_issuer=true.",
+                                new[] { nameof(IssuerUrl) });
+                        }
+
+                        if (!Uri.TryCreate(RedirectUri, UriKind.Absolute, out var redirect) ||
+                            string.IsNullOrWhiteSpace(redirect.Host) ||
+                            redirect.UserInfo.Length != 0 || redirect.Query.Length != 0 || redirect.Fragment.Length != 0 ||
+                            redirect.Scheme != Uri.UriSchemeHttps ||
+                            !redirect.AbsolutePath.EndsWith("/signin-oidc", StringComparison.Ordinal))
+                        {
+                            yield return new ValidationResult(
+                                "OIDC redirect_uri must be an exact public HTTPS callback ending in /signin-oidc, without user info, query, or fragment.",
+                                new[] { nameof(RedirectUri) });
+                        }
+                    }
                 }
 
                 /// <summary>

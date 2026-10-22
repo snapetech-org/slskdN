@@ -4,13 +4,17 @@
 namespace slskd.Bootstrap;
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +28,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Prometheus.DotNetRuntime;
@@ -43,6 +48,8 @@ using Utility.EnvironmentVariables;
 public static class WebServiceCollectionExtensions
 {
     internal const string ApiKeyOrJwtAuthenticationScheme = "ApiKeyOrJwt";
+    internal const string OidcAuthenticationScheme = "Oidc";
+    private const string OidcSignInScheme = "OidcTemporary";
 
     private static class DotNetRuntimeStatsHolder
     {
@@ -285,6 +292,140 @@ public static class WebServiceCollectionExtensions
 
                             return Task.CompletedTask;
                         },
+                    };
+                })
+                .AddCookie(OidcSignInScheme, options =>
+                {
+                    options.Cookie.Name = $"{appName.ToLowerInvariant()}-oidc-temporary";
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.Cookie.SameSite = isAppleIssuer ? SameSiteMode.None : SameSiteMode.Lax;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                    options.SlidingExpiration = false;
+                })
+                .AddOpenIdConnect(OidcAuthenticationScheme, options =>
+                {
+                    var oidc = optionsAtStartup.Web.Authentication.Oidc;
+                    var isAppleIssuer = IsAppleIssuer(oidc.IssuerUrl);
+                    var configured = !string.IsNullOrWhiteSpace(oidc.IssuerUrl) &&
+                                     !string.IsNullOrWhiteSpace(oidc.ClientId) &&
+                                     !string.IsNullOrWhiteSpace(oidc.ClientSecret) &&
+                                     !string.IsNullOrWhiteSpace(oidc.RedirectUri);
+
+                    options.SignInScheme = OidcSignInScheme;
+                    options.Authority = configured ? oidc.IssuerUrl.Trim() : "https://example.invalid";
+                    options.ClientId = configured ? oidc.ClientId.Trim() : "unconfigured";
+                    options.ClientSecret = configured ? oidc.ClientSecret : string.Empty;
+                    options.CallbackPath = "/signin-oidc";
+                    options.ResponseType = OpenIdConnectResponseType.Code;
+                    options.ResponseMode = isAppleIssuer
+                        ? OpenIdConnectResponseMode.FormPost
+                        : OpenIdConnectResponseMode.Query;
+                    options.UsePkce = !isAppleIssuer;
+                    options.SaveTokens = false;
+                    options.GetClaimsFromUserInfoEndpoint = !isAppleIssuer;
+                    options.RequireHttpsMetadata = !oidc.AllowPrivateIssuer;
+                    options.BackchannelHttpHandler = new OidcBackchannelHandler(oidc.AllowPrivateIssuer);
+                    options.BackchannelTimeout = TimeSpan.FromSeconds(15);
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = configured ? oidc.IssuerUrl.Trim() : "https://example.invalid",
+                        ValidateAudience = true,
+                        ValidAudience = configured ? oidc.ClientId.Trim() : "unconfigured",
+                        ValidateLifetime = true,
+                        RequireSignedTokens = true,
+                    };
+                    options.ClaimActions.MapUniqueJsonKey("sub", "sub");
+                    options.ClaimActions.MapUniqueJsonKey("email", "email");
+                    options.ClaimActions.MapUniqueJsonKey("email_verified", "email_verified");
+
+                    options.Scope.Clear();
+                    var scopes = (isAppleIssuer ? "openid email" : (oidc.Scopes ?? "openid profile email"))
+                        .Split(new[] { ',', ';', ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Distinct(StringComparer.OrdinalIgnoreCase)
+                        .ToList();
+                    if (!scopes.Contains("openid", StringComparer.OrdinalIgnoreCase)) scopes.Insert(0, "openid");
+                    if (!scopes.Contains("email", StringComparer.OrdinalIgnoreCase)) scopes.Add("email");
+                    foreach (var scope in scopes) options.Scope.Add(scope);
+
+                    options.CorrelationCookie.SameSite = isAppleIssuer ? SameSiteMode.None : SameSiteMode.Lax;
+                    options.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.NonceCookie.SameSite = isAppleIssuer ? SameSiteMode.None : SameSiteMode.Lax;
+                    options.NonceCookie.SecurePolicy = CookieSecurePolicy.Always;
+
+                    if (configured)
+                    {
+                        options.Events.OnRedirectToIdentityProvider = context =>
+                        {
+                            context.ProtocolMessage.RedirectUri = oidc.RedirectUri.Trim();
+                            if (isAppleIssuer)
+                            {
+                                context.ProtocolMessage.ResponseMode = OpenIdConnectResponseMode.FormPost;
+                            }
+                            return Task.CompletedTask;
+                        };
+                    }
+
+                    options.Events.OnTicketReceived = context =>
+                    {
+                        var principal = context.Principal;
+                        var email = principal?.FindFirst("email")?.Value ??
+                                    principal?.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
+                        var verified = principal?.FindFirst("email_verified")?.Value;
+                        var subject = principal?.FindFirst("sub")?.Value ??
+                                      principal?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                        var normalizedEmail = email?.Trim().ToLowerInvariant() ?? string.Empty;
+                        var at = normalizedEmail.LastIndexOf('@');
+                        var domain = at > 0 && at < normalizedEmail.Length - 1
+                            ? normalizedEmail[(at + 1)..]
+                            : string.Empty;
+                        var allowedEmails = ParseOidcAdmissionSet(oidc.AllowedEmails);
+                        var allowedDomains = ParseOidcAdmissionSet(oidc.AllowedEmailDomains);
+                        var explicitAdministrator = allowedEmails.Contains(normalizedEmail) ||
+                                                    allowedDomains.Contains(domain);
+                        var admitted = oidc.AllowAnyVerifiedUser || explicitAdministrator;
+                        var emailIsVerified = string.Equals(verified, "true", StringComparison.OrdinalIgnoreCase);
+
+                        if (!configured || !emailIsVerified || !admitted ||
+                            string.IsNullOrWhiteSpace(normalizedEmail) || string.IsNullOrWhiteSpace(subject))
+                        {
+                            Log.Warning("OIDC sign-in denied (identity_not_admitted)");
+                            context.HandleResponse();
+                            context.Response.Redirect($"{context.Request.PathBase}/?oidcFailed=true");
+                            return Task.CompletedTask;
+                        }
+
+                        var extraClaims = new[]
+                        {
+                            new System.Security.Claims.Claim("oidc_issuer", oidc.IssuerUrl.Trim()),
+                            new System.Security.Claims.Claim("oidc_subject", subject),
+                            new System.Security.Claims.Claim("email_verified", "true"),
+                        };
+                        var role = explicitAdministrator ? Role.Administrator : Role.ReadWrite;
+                        var token = new TokenResponse(
+                            context.HttpContext.RequestServices
+                                .GetRequiredService<ISecurityService>()
+                                .GenerateJwt(normalizedEmail, role, additionalClaims: extraClaims)).Token;
+                        var returnTo = context.Properties.RedirectUri;
+                        if (string.IsNullOrWhiteSpace(returnTo) || !returnTo.StartsWith("/", StringComparison.Ordinal) || returnTo.StartsWith("//", StringComparison.Ordinal))
+                        {
+                            returnTo = $"{context.Request.PathBase}/";
+                        }
+
+                        context.HandleResponse();
+                        context.Response.Headers["Cache-Control"] = "no-store";
+                        context.Response.Headers["Referrer-Policy"] = "no-referrer";
+                        context.Response.Redirect($"{returnTo}#oidc_token={Uri.EscapeDataString(token)}");
+                        return Task.CompletedTask;
+                    };
+
+                    options.Events.OnRemoteFailure = context =>
+                    {
+                        Log.Warning("OIDC sign-in failed (remote_failure)");
+                        context.HandleResponse();
+                        context.Response.Redirect($"{context.Request.PathBase}/?oidcFailed=true");
+                        return Task.CompletedTask;
                     };
                 })
                 .AddScheme<ApiKeyAuthenticationOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthentication.AuthenticationScheme, (_) => { });
@@ -560,6 +701,11 @@ public static class WebServiceCollectionExtensions
         return services;
     }
 
+    private static bool IsAppleIssuer(string? issuerUrl)
+    {
+        return string.Equals(issuerUrl?.Trim(), "https://appleid.apple.com", StringComparison.Ordinal);
+    }
+
     internal static string PromoteApiKeyToJwt(HttpContext context, string token)
     {
         var service = context.RequestServices.GetRequiredService<ISecurityService>();
@@ -580,5 +726,14 @@ public static class WebServiceCollectionExtensions
         return context.Request.Headers.ContainsKey("X-API-Key")
             ? ApiKeyAuthentication.AuthenticationScheme
             : JwtBearerDefaults.AuthenticationScheme;
+    }
+
+    private static HashSet<string> ParseOidcAdmissionSet(string? raw)
+    {
+        return (raw ?? string.Empty)
+            .Split(new[] { ',', ';', ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(value => value.Trim().ToLowerInvariant())
+            .Where(value => value.Length > 0)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
     }
 }
