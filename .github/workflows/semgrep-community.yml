@@ -31,7 +31,14 @@ jobs:
 
       - name: Scan with the current Semgrep CE image and p/default rules
         run: |
-          docker run --rm --user "$(id -u):$(id -g)" -e HOME=/tmp -e EIO_BACKEND=posix \
+          docker run --rm --network host --user "$(id -u):$(id -g)" \
+            -e HOME=/tmp -e EIO_BACKEND=posix \
+            -e HTTP_PROXY -e HTTPS_PROXY -e http_proxy -e https_proxy \
+            -e NO_PROXY -e no_proxy \
+            -e REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+            -e CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+            -e SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+            -v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro \
             -v "$GITHUB_WORKSPACE:/src" -w /src semgrep/semgrep:latest \
             semgrep scan --config p/default --metrics=off --jobs 2 \
               --json-output semgrep.json --sarif-output semgrep.sarif .
