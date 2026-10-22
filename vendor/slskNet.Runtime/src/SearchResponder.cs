@@ -1,4 +1,4 @@
-﻿// <copyright file="SearchResponder.cs" company="JP Dillingham">
+// <copyright file="SearchResponder.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //

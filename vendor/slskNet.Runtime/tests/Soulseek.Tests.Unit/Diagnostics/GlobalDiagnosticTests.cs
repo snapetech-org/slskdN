@@ -27,6 +27,35 @@ namespace Soulseek.Tests.Unit
     {
         [Trait("Category", "GlobalDiagnostic")]
         [Fact]
+        public void Does_Not_Throw_ArgumentNullException_Given_Null_Factory()
+        {
+            var ex = Record.Exception(() => GlobalDiagnostic.Init(null));
+
+            Assert.Null(ex);
+        }
+
+        [Trait("Category", "GlobalDiagnostic")]
+        [Fact]
+        public void Does_Not_Throw_When_Called_After_Init_With_Null_Factory()
+        {
+            GlobalDiagnostic.Init(null);
+
+            var ex = Record.Exception(() =>
+            {
+                GlobalDiagnostic.Trace("test");
+                GlobalDiagnostic.Trace("test", new Exception("test"));
+                GlobalDiagnostic.Debug("test");
+                GlobalDiagnostic.Debug("test", new Exception("test"));
+                GlobalDiagnostic.Info("test");
+                GlobalDiagnostic.Warning("test");
+                GlobalDiagnostic.Warning("test", new Exception("test"));
+            });
+
+            Assert.Null(ex);
+        }
+
+        [Trait("Category", "GlobalDiagnostic")]
+        [Fact]
         public void Behaves_As_Expected()
         {
             // because this is static and there's no great way to ensure the order

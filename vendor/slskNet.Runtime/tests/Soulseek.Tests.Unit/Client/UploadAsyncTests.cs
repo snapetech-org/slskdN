@@ -1187,9 +1187,9 @@ namespace Soulseek.Tests.Unit.Client
                     .Returns(ConnectionState.Connected);
 
                 var transferConn = new Mock<IConnection>();
-                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
-                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromException<byte[]>(new ConnectionReadException()));
 
                 var connManager = new Mock<IPeerConnectionManager>();
@@ -1231,9 +1231,9 @@ namespace Soulseek.Tests.Unit.Client
                     .Returns(ConnectionState.Connected);
 
                 var transferConn = new Mock<IConnection>();
-                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
-                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(new byte[] { 0x0 }));
 
                 var connManager = new Mock<IPeerConnectionManager>();
@@ -1277,9 +1277,9 @@ namespace Soulseek.Tests.Unit.Client
                     .Returns(ConnectionState.Connected);
 
                 var transferConn = new Mock<IConnection>();
-                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
-                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(new byte[] { 0x0 }));
 
                 var connManager = new Mock<IPeerConnectionManager>();
@@ -1302,6 +1302,124 @@ namespace Soulseek.Tests.Unit.Client
                 }
 
                 diagnostic.Verify(m => m.Warning(It.Is<string>(s => s.ContainsInsensitive("maximum linger time")), null), Times.Once);
+            }
+        }
+
+        [Trait("Category", "UploadFromFileAsync")]
+        [Theory(DisplayName = "UploadFromFileAsync disconnects after MaximumLingerTime when trailing read blocks instead of throwing"), AutoData]
+        public async Task UploadFromFileAsync_Disconnects_After_MaximumLingerTime_When_Trailing_Read_Blocks(string username, IPEndPoint endpoint, string filename, int token, int size)
+        {
+            using (var testFile = new TestFile())
+            {
+                // give the (mocked, and therefore inert) transfer connection a very long inactivity timeout so it's
+                // clear that the disconnect in this test is driven by MaximumLingerTime, not some other timeout
+                var options = new SoulseekClientOptions(messageTimeout: 5, transferConnectionOptions: new ConnectionOptions(inactivityTimeout: int.MaxValue));
+
+                var response = new TransferResponse(token, size);
+                var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+                var waiter = new Mock<IWaiter>();
+                waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(response));
+                waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
+
+                var conn = new Mock<IMessageConnection>();
+                conn.Setup(m => m.State)
+                    .Returns(ConnectionState.Connected);
+
+                var transferConn = new Mock<IConnection>();
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
+
+                // simulate a trailing read that blocks rather than immediately returning or failing. this task is never
+                // completed, so the only way the loop can proceed is by racing it against the delay
+                var readForeverTcs = new TaskCompletionSource<byte[]>();
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken>()))
+                    .Returns(readForeverTcs.Task);
+
+                var connManager = new Mock<IPeerConnectionManager>();
+                connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(conn.Object));
+                connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(transferConn.Object));
+
+                var txOptions = new TransferOptions(maximumLingerTime: 200);
+
+                using (var s = new SoulseekClient(minorVersion: 9999, options: options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+                {
+                    s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                    var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task>("UploadFromFileAsync", username, filename, testFile.Path, token, txOptions, null));
+
+                    Assert.Null(ex);
+                }
+
+                // the blocked read is only attempted once; the loop must not retry it while it is still pending
+                transferConn.Verify(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken>()), Times.Once);
+
+                // the connection is forcibly disconnected once MaximumLingerTime elapses, rather than waiting on the
+                // blocked read indefinitely
+                transferConn.Verify(m => m.Disconnect(It.Is<string>(msg => msg.ContainsInsensitive("maximum linger time")), null), Times.Once);
+            }
+        }
+
+        [Trait("Category", "UploadFromFileAsync")]
+        [Theory(DisplayName = "UploadFromFileAsync throws OperationCanceledException when cancelled during linger"), AutoData]
+        public async Task UploadFromFileAsync_Throws_OperationCanceledException_When_Cancelled_During_Linger(string username, IPEndPoint endpoint, string filename, int token, int size)
+        {
+            using (var testFile = new TestFile())
+            using (var cts = new CancellationTokenSource())
+            {
+                var options = new SoulseekClientOptions(messageTimeout: 5, transferConnectionOptions: new ConnectionOptions(inactivityTimeout: int.MaxValue));
+
+                var response = new TransferResponse(token, size);
+                var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+                var waiter = new Mock<IWaiter>();
+                waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(response));
+                waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
+
+                var conn = new Mock<IMessageConnection>();
+                conn.Setup(m => m.State)
+                    .Returns(ConnectionState.Connected);
+
+                var transferConn = new Mock<IConnection>();
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 8), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
+
+                // simulate a trailing read that blocks rather than immediately returning or failing, and request
+                // cancellation of the caller's token the moment it's attempted, so the linger loop's race between the
+                // read and the Task.Delay() is deterministically won by cancellation rather than relying on a timer
+                var readForeverTcs = new TaskCompletionSource<byte[]>();
+                transferConn.Setup(m => m.ReadAsync(It.Is<long>(l => l == 1), It.IsAny<CancellationToken>()))
+                    .Callback(() => cts.Cancel())
+                    .Returns(readForeverTcs.Task);
+
+                var connManager = new Mock<IPeerConnectionManager>();
+                connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(conn.Object));
+                connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(transferConn.Object));
+
+                // a long linger time ensures the cancellation, and not the linger deadline, is what ends the loop
+                var txOptions = new TransferOptions(maximumLingerTime: 30000);
+
+                using (var s = new SoulseekClient(minorVersion: 9999, options: options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+                {
+                    s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                    var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task>("UploadFromFileAsync", username, filename, testFile.Path, token, txOptions, cts.Token));
+
+                    Assert.NotNull(ex);
+                    Assert.IsType<OperationCanceledException>(ex);
+                }
+
+                // the connection must not be forcibly disconnected due to exceeding the linger time; cancellation should
+                // win the race well before the 30 second linger deadline is reached
+                transferConn.Verify(m => m.Disconnect(It.Is<string>(msg => msg.ContainsInsensitive("maximum linger time")), null), Times.Never);
             }
         }
 
@@ -1552,56 +1670,6 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "UploadFromStreamAsync")]
-        [Theory(DisplayName = "UploadFromStreamAsync does not throw if stream Position getter throws in finally block"), AutoData]
-        public async Task UploadFromStreamAsync_Does_Not_Throw_If_Stream_Position_Getter_Throws(string username, IPEndPoint endpoint, string filename, int token, int size)
-        {
-            var options = new SoulseekClientOptions(messageTimeout: 5);
-
-            var response = new TransferResponse(token, size);
-            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
-
-            var waiter = new Mock<IWaiter>();
-            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(response));
-            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
-
-            var conn = new Mock<IMessageConnection>();
-            conn.Setup(m => m.State)
-                .Returns(ConnectionState.Connected);
-
-            var transferConn = new Mock<IConnection>();
-
-            // reading the start offset
-            transferConn.Setup(m => m.ReadAsync(8L, It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new byte[8]));
-
-            var connManager = new Mock<IPeerConnectionManager>();
-            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(conn.Object));
-            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(transferConn.Object));
-
-            var diagnostic = new Mock<IDiagnosticFactory>();
-
-            // note: this stream is rigged so .Position throws the third time it's called, so we hit the finally block
-            // this is shitty and fragile
-            using (var stream = new UnPositionableStream())
-            using (var s = new SoulseekClient(minorVersion: 9999, options: options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object, diagnosticFactory: diagnostic.Object))
-            {
-                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
-
-                var txoptions = new TransferOptions(disposeInputStreamOnCompletion: false);
-
-                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task>("UploadFromStreamAsync", username, filename, 1, new Func<long, Task<Stream>>((_) => Task.FromResult((Stream)stream)), token, txoptions, null));
-
-                Assert.Null(ex);
-
-                diagnostic.Verify(m => m.Warning(It.Is<string>(str => str.ContainsInsensitive("determine final position")), It.IsAny<Exception>()), Times.Once);
-            }
-        }
-
-        [Trait("Category", "UploadFromStreamAsync")]
         [Theory(DisplayName = "UploadFromStreamAsync seeks stream to offset value"), AutoData]
         public async Task UploadFromStreamAsync_Seeks_Stream_To_Offset_Value(string username, IPEndPoint endpoint, string filename, int token)
         {
@@ -1623,7 +1691,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(offset)));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -1668,7 +1736,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(offset)));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -1713,7 +1781,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(offset)));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -1758,7 +1826,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(offset)));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -1806,7 +1874,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(offset)));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -1854,7 +1922,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(Offset)));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -1902,7 +1970,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(offset)));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -1924,7 +1992,7 @@ namespace Soulseek.Tests.Unit.Client
                 Assert.Equal(offset, stream.Position);
             }
 
-            transferConn.Verify(m => m.WriteAsync(size - offset, It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()));
+            transferConn.Verify(m => m.WriteAsync(size - offset, It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "UploadFromStreamAsync")]
@@ -1947,10 +2015,10 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
-            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     reporter(attempted, granted, actual);
                 });
@@ -2007,10 +2075,10 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
-            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     reporter(attempted, granted, actual);
                 });
@@ -2071,10 +2139,10 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
-            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     reporter(attempted, granted, actual);
                 });
@@ -2121,10 +2189,10 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
-            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>(async (length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>(async (length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     await governor(size, CancellationToken.None);
                 });
@@ -2152,6 +2220,76 @@ namespace Soulseek.Tests.Unit.Client
                 // the lesser of the buffer (default 16k) the transfer size (42) and the user-supplied governor (21) will
                 // be used to take tokens from the bucket.
                 bucket.Verify(m => m.GetAsync(Math.Min(size, 21), It.IsAny<CancellationToken>()), Times.Once);
+            }
+        }
+
+        [Trait("Category", "UploadFromStreamAsync")]
+        [Theory(DisplayName = "UploadFromStreamAsync passes governor CancellationToken to UploadTokenBucket"), AutoData]
+        public async Task UploadFromStreamAsync_Passes_Governor_CancellationToken_To_UploadTokenBucket(string username, IPEndPoint endpoint, string filename, int token)
+        {
+            // fix transfer size to 42.  this is less than the default buffer, so any request to the governor will be strictly 42.
+            var size = 42;
+
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, size);
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            // the connection invokes the governor with the token it was handed, which is not the token given to the
+            // transfer; stand in for it with a distinct token to ensure that's the one passed down to the bucket.
+            using (var governorTokenSource = new CancellationTokenSource())
+            {
+                var governorToken = governorTokenSource.Token;
+
+                var transferConn = new Mock<IConnection>();
+                transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
+                transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                    .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>(async (length, inputStream, governor, reporter, cancellationToken) =>
+                    {
+                        await governor(size, governorToken);
+                    });
+
+                var connManager = new Mock<IPeerConnectionManager>();
+                connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(conn.Object));
+                connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(transferConn.Object));
+
+                var bucket = new Mock<ITokenBucket>();
+
+                using (var stream = new MemoryStream(new byte[size]))
+                using (var s = new SoulseekClient(minorVersion: 9999, options: options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object, uploadTokenBucket: bucket.Object))
+                {
+                    s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                    var tokenPassedToOptionsGovernor = default(CancellationToken);
+
+                    var txoptions = new TransferOptions(disposeInputStreamOnCompletion: false, maximumLingerTime: 0, governor: (tx, a, c) =>
+                    {
+                        tokenPassedToOptionsGovernor = c;
+                        return Task.FromResult(21);
+                    });
+
+                    var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task>("UploadFromStreamAsync", username, filename, size, new Func<long, Task<Stream>>((_) => Task.FromResult((Stream)stream)), token, txoptions, null));
+
+                    Assert.Null(ex);
+
+                    // both the governor supplied in options and the token bucket must be given the token with which the
+                    // governor was invoked, and not the token given to the transfer.
+                    Assert.Equal(governorToken, tokenPassedToOptionsGovernor);
+                    bucket.Verify(m => m.GetAsync(Math.Min(size, 21), governorToken), Times.Once);
+                }
             }
         }
 
@@ -2260,7 +2398,7 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.State)
                 .Returns(ConnectionState.Connected);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
             transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask)
@@ -2324,7 +2462,7 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.State)
                 .Returns(ConnectionState.Connected);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
             transferConn.Setup(m => m.WriteAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
@@ -2478,7 +2616,7 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.State)
                 .Returns(ConnectionState.Connected);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
 
             // fail the upload
@@ -2546,7 +2684,7 @@ namespace Soulseek.Tests.Unit.Client
                 var transferConn = new Mock<IConnection>();
                 transferConn.Setup(m => m.State)
                     .Returns(ConnectionState.Connected);
-                transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(Array.Empty<byte>()));
 
                 var waiter = new Mock<IWaiter>();
@@ -2610,7 +2748,7 @@ namespace Soulseek.Tests.Unit.Client
                 var transferConn = new Mock<IConnection>();
                 transferConn.Setup(m => m.State)
                     .Returns(ConnectionState.Connected);
-                transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
 
                 // fail the upload
@@ -2728,7 +2866,7 @@ namespace Soulseek.Tests.Unit.Client
             }
 
             var expectedBytes = new UploadDenied(filename, "Cancelled").ToByteArray();
-            peerConn.Verify(m => m.WriteAsync(It.Is<IOutgoingMessage>(msg => msg.ToByteArray().Matches(expectedBytes)), It.IsAny<CancellationToken?>()));
+            peerConn.Verify(m => m.WriteAsync(It.Is<IOutgoingMessage>(msg => msg.ToByteArray().Matches(expectedBytes)), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "UploadFromFileAsync")]
@@ -2743,7 +2881,7 @@ namespace Soulseek.Tests.Unit.Client
             var request = new TransferRequest(TransferDirection.Upload, token, filename, size);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromException<byte[]>(new NullReferenceException()));
 
             var waiter = new Mock<IWaiter>();
@@ -2803,7 +2941,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromException<byte[]>(new NullReferenceException()));
             transferConn.Setup(m => m.ReadAsync(1, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromException<byte[]>(new ConnectionReadException("Remote connection closed.", new ConnectionException("Remote connection closed."))));
@@ -2848,7 +2986,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(Array.Empty<byte>()));
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -3155,7 +3293,7 @@ namespace Soulseek.Tests.Unit.Client
             }
 
             var expectedBytes = new UploadFailed(filename).ToByteArray();
-            conn.Verify(m => m.WriteAsync(It.Is<IOutgoingMessage>(msg => msg.ToByteArray().Matches(expectedBytes)), It.IsAny<CancellationToken?>()));
+            conn.Verify(m => m.WriteAsync(It.Is<IOutgoingMessage>(msg => msg.ToByteArray().Matches(expectedBytes)), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "UploadFromFileAsync")]
@@ -3178,7 +3316,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(ConnectionState.Connected);
 
             var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(8, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
             transferConn.Setup(m => m.ReadAsync(1, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromException<byte[]>(new ConnectionReadException("Remote connection closed", new ConnectionException("Remote connection closed"))));
@@ -3439,7 +3577,7 @@ namespace Soulseek.Tests.Unit.Client
                 var transferConn = new Mock<IConnection>();
                 transferConn.Setup(m => m.State)
                     .Returns(ConnectionState.Connected);
-                transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken?>()))
+                transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(BitConverter.GetBytes(0L)));
 
                 // fail the upload
@@ -3523,56 +3661,6 @@ namespace Soulseek.Tests.Unit.Client
             public override void Write(byte[] buffer, int offset, int count)
             {
                 throw new NotImplementedException();
-            }
-        }
-
-        private class UnPositionableStream : Stream
-        {
-            public override bool CanRead => false;
-            public override bool CanWrite => false;
-
-            public override bool CanSeek => false;
-
-            public override long Length => 0;
-
-            private int timesCalled = 0;
-
-            public override long Position
-            {
-                get
-                {
-                    timesCalled++;
-
-                    if (timesCalled == 3)
-                    {
-                        throw new NotImplementedException($"times called: {timesCalled}");
-                    }
-
-                    return 0;
-                }
-                set => throw new NotImplementedException();
-            }
-
-            public override void Flush()
-            {
-            }
-
-            public override int Read(byte[] buffer, int offset, int count)
-            {
-                return count;
-            }
-
-            public override long Seek(long offset, SeekOrigin origin)
-            {
-                return offset;
-            }
-
-            public override void SetLength(long value)
-            {
-            }
-
-            public override void Write(byte[] buffer, int offset, int count)
-            {
             }
         }
 

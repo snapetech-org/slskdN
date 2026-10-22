@@ -579,16 +579,15 @@ namespace Soulseek.Tests.Unit.Messaging
         {
             var msg = new MessageBuilder()
                 .WriteCode(MessageCode.Peer.InfoRequest)
+                .WriteBytes(new byte[] { 0xff, 0xff, 0xff, 0xff })
                 .Build();
 
             var reader = new MessageReader<MessageCode.Peer>(msg);
 
-            var ex = Record.Exception(() => reader.InvokeMethod("Decompress", BindingFlags.NonPublic | BindingFlags.Instance, null, null));
+            var ex = Record.Exception(() => reader.Decompress());
 
             Assert.NotNull(ex);
-            Assert.NotNull(ex.InnerException);
-            Assert.NotNull(ex.InnerException.InnerException);
-            Assert.IsType<MessageCompressionException>(ex.InnerException.InnerException);
+            Assert.IsType<MessageCompressionException>(ex);
         }
 
         [Trait("Category", "Decompress")]

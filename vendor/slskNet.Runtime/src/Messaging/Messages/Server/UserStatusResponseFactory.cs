@@ -53,6 +53,11 @@ namespace Soulseek.Messaging.Messages
 
             var privileged = privilegedByte == 1;
 
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Server.GetStatus)} finalized with {reader.Remaining} unread bytes");
+            }
+
             return new UserStatus(username, presence, privileged);
         }
     }

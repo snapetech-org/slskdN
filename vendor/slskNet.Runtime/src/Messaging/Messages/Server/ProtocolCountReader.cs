@@ -95,7 +95,7 @@ namespace Soulseek.Messaging.Messages
 
             if (count > maximumPossibleCount)
             {
-                throw new MessageException($"Invalid {collectionName} count: {count} exceeds the maximum possible count of {maximumPossibleCount} for the remaining payload");
+                throw new MessageReadException($"Invalid {collectionName} count: {count} exceeds the maximum possible count of {maximumPossibleCount} for the remaining payload");
             }
 
             return count;

@@ -47,8 +47,8 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(peerEndpoint);
 
             byte[] rawMessage = null;
-            senderToReceiverConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()))
-                .Callback<byte[], CancellationToken?>((message, _) => rawMessage = message)
+            senderToReceiverConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Callback<byte[], CancellationToken>((message, _) => rawMessage = message)
                 .Returns(Task.CompletedTask);
 
             var waiter = new Mock<IWaiter>();
@@ -133,10 +133,10 @@ namespace Soulseek.Tests.Unit.Client
 
             waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
-            serverConnection.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
+            serverConnection.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            acknowledgementConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()))
-                .Callback<byte[], CancellationToken?>((message, _) => acknowledgementSent.TrySetResult(message))
+            acknowledgementConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Callback<byte[], CancellationToken>((message, _) => acknowledgementSent.TrySetResult(message))
                 .Returns(Task.CompletedTask);
             peerConnectionManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(acknowledgementConnection.Object));
@@ -187,10 +187,10 @@ namespace Soulseek.Tests.Unit.Client
 
             waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
-            serverConnection.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
+            serverConnection.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            acknowledgementConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()))
-                .Callback<byte[], CancellationToken?>((message, _) => acknowledgementSent.TrySetResult(message))
+            acknowledgementConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Callback<byte[], CancellationToken>((message, _) => acknowledgementSent.TrySetResult(message))
                 .Returns(Task.CompletedTask);
             peerConnectionManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(acknowledgementConnection.Object));

@@ -350,17 +350,32 @@ namespace Soulseek.Messaging
             /// <summary>
             ///     51
             /// </summary>
-            InterestAdd = 51,
+            LikedInterestAdd = 51,
 
             /// <summary>
             ///     52
             /// </summary>
-            InterestRemove = 52,
+            LikedInterestRemove = 52,
+
+            /// <summary>
+            ///     Compatibility alias for the original fork API.
+            /// </summary>
+            InterestAdd = LikedInterestAdd,
+
+            /// <summary>
+            ///     Compatibility alias for the original fork API.
+            /// </summary>
+            InterestRemove = LikedInterestRemove,
 
             /// <summary>
             ///     54
             /// </summary>
-            GetRecommendations = 54,
+            GetPersonalRecommendations = 54,
+
+            /// <summary>
+            ///     Compatibility alias for the original fork API.
+            /// </summary>
+            GetRecommendations = GetPersonalRecommendations,
 
             /// <summary>
             ///     56
@@ -470,17 +485,32 @@ namespace Soulseek.Messaging
             /// <summary>
             ///     110
             /// </summary>
-            GetSimilarUsers = 110,
+            GetPersonalSimilarUsers = 110,
 
             /// <summary>
             ///     111
             /// </summary>
-            GetItemRecommendations = 111,
+            GetInterestRecommendations = 111,
 
             /// <summary>
             ///     112
             /// </summary>
-            GetItemSimilarUsers = 112,
+            GetInterestSimilarUsers = 112,
+
+            /// <summary>
+            ///     Compatibility alias for the original fork API.
+            /// </summary>
+            GetSimilarUsers = GetPersonalSimilarUsers,
+
+            /// <summary>
+            ///     Compatibility alias for the original fork API.
+            /// </summary>
+            GetItemRecommendations = GetInterestRecommendations,
+
+            /// <summary>
+            ///     Compatibility alias for the original fork API.
+            /// </summary>
+            GetItemSimilarUsers = GetInterestSimilarUsers,
 
             /// <summary>
             ///     113

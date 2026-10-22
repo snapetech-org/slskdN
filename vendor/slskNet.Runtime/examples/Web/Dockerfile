@@ -1,14 +1,16 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
-COPY api/bin/Release/net5.0/publish app/
+WORKDIR /app
+COPY --chown=app:app api/bin/Release/net8.0/publish/ ./
 
-RUN mkdir /var/slsk
-RUN mkdir /var/slsk/shared
-RUN mkdir /var/slsk/download
+RUN mkdir -p /var/slsk/shared /var/slsk/download \
+    && chown -R app:app /var/slsk
 
 ENV SLSK_OUTPUT_DIR=/var/slsk/download
 ENV SLSK_SHARED_DIR=/var/slsk/shared
 
 ENV ASPNETCORE_URLS=http://+:5000
 
-ENTRYPOINT ["dotnet", "app/WebAPI.dll"]
+USER app
+
+ENTRYPOINT ["dotnet", "WebAPI.dll"]

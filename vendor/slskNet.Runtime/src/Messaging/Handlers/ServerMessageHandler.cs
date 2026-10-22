@@ -236,33 +236,6 @@ namespace Soulseek.Messaging.Handlers
                         SoulseekClient.Waiter.Complete(new WaitKey(code), IntegerResponse.FromByteArray<MessageCode.Server>(message));
                         break;
 
-                    case MessageCode.Server.GetRecommendations:
-                        SoulseekClient.Waiter.Complete(new WaitKey(code), RecommendationsResponse.FromByteArray(message));
-                        break;
-
-                    case MessageCode.Server.GetGlobalRecommendations:
-                        SoulseekClient.Waiter.Complete(new WaitKey(code), RecommendationsResponse.FromByteArray(message));
-                        break;
-
-                    case MessageCode.Server.GetUserInterests:
-                        var userInterests = UserInterestsResponse.FromByteArray(message);
-                        SoulseekClient.Waiter.Complete(new WaitKey(code, WaitKeyNormalizer.Normalize(userInterests.Username)), userInterests);
-                        break;
-
-                    case MessageCode.Server.GetSimilarUsers:
-                        SoulseekClient.Waiter.Complete(new WaitKey(code), SimilarUsersResponse.FromByteArray(message));
-                        break;
-
-                    case MessageCode.Server.GetItemRecommendations:
-                        var itemRecommendations = ItemRecommendationsResponse.FromByteArray(message);
-                        SoulseekClient.Waiter.Complete(new WaitKey(code, WaitKeyNormalizer.Normalize(itemRecommendations.Item)), itemRecommendations);
-                        break;
-
-                    case MessageCode.Server.GetItemSimilarUsers:
-                        var itemSimilarUsers = ItemSimilarUsersResponse.FromByteArray(message);
-                        SoulseekClient.Waiter.Complete(new WaitKey(code, WaitKeyNormalizer.Normalize(itemSimilarUsers.Item)), itemSimilarUsers);
-                        break;
-
                     case MessageCode.Server.PrivateRoomAdded:
                         RaiseEventHandler(nameof(PrivateRoomMembershipAdded), () => PrivateRoomMembershipAdded?.Invoke(this, StringResponse.FromByteArray<MessageCode.Server>(message)));
                         break;
@@ -486,6 +459,36 @@ namespace Soulseek.Messaging.Handlers
                         var stats = UserStatisticsResponseFactory.FromByteArray(message);
                         SoulseekClient.Waiter.Complete(new WaitKey(code, stats.Username), stats);
                         RaiseEventHandler(nameof(UserStatisticsChanged), () => UserStatisticsChanged?.Invoke(this, stats));
+                        break;
+
+                    case MessageCode.Server.GetUserInterests:
+                        var interests = UserInterestsResponse.FromByteArray(message);
+                        SoulseekClient.Waiter.Complete(new WaitKey(code, WaitKeyNormalizer.Normalize(interests.Username)), interests);
+                        break;
+
+                    case MessageCode.Server.GetPersonalSimilarUsers:
+                        var personalSimilarUsers = PersonalSimilarUsersResponse.FromByteArray(message);
+                        SoulseekClient.Waiter.Complete(new WaitKey(code), personalSimilarUsers);
+                        break;
+
+                    case MessageCode.Server.GetInterestSimilarUsers:
+                        var interestSimilarUsers = InterestSimilarUsersResponse.FromByteArray(message);
+                        SoulseekClient.Waiter.Complete(new WaitKey(code, interestSimilarUsers.Interest), interestSimilarUsers);
+                        break;
+
+                    case MessageCode.Server.GetPersonalRecommendations:
+                        var personalRecommendations = PersonalRecommendationsResponse.FromByteArray(message);
+                        SoulseekClient.Waiter.Complete(new WaitKey(code), personalRecommendations);
+                        break;
+
+                    case MessageCode.Server.GetGlobalRecommendations:
+                        var globalRecommendations = GlobalRecommendationsResponse.FromByteArray(message);
+                        SoulseekClient.Waiter.Complete(new WaitKey(code), globalRecommendations);
+                        break;
+
+                    case MessageCode.Server.GetInterestRecommendations:
+                        var interestRecommendations = InterestRecommendationsResponse.FromByteArray(message);
+                        SoulseekClient.Waiter.Complete(new WaitKey(code, interestRecommendations.Interest), interestRecommendations);
                         break;
 
                     case MessageCode.Server.PrivateMessage:

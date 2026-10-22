@@ -64,6 +64,11 @@ namespace Soulseek.Messaging.Messages
             var level = reader.ReadInteger();
             ProtocolValueValidator.ValidateNonNegative(level, "branch level");
 
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Distributed.BranchLevel)} finalized with {reader.Remaining} unread bytes");
+            }
+
             return new DistributedBranchLevel(level);
         }
 

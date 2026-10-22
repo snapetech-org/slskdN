@@ -356,3 +356,5 @@ examples/Web/web/src/data.js
 
 # Local private denylist/config
 /.local/
+
+**/coverage/*

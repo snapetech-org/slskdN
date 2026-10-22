@@ -1,4 +1,4 @@
-﻿// <copyright file="DistributedConnectionManager.cs" company="JP Dillingham">
+// <copyright file="DistributedConnectionManager.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -211,6 +211,7 @@ namespace Soulseek.Network
         private IConnectionFactory ConnectionFactory { get; }
         private IDiagnosticFactory Diagnostic { get; }
         private bool Disposed { get; set; }
+        private bool Disposing { get; set; }
         private bool Enabled => SoulseekClient.Options.EnableDistributedNetwork;
         private string LastStatus { get; set; }
         private DateTime LastStatusTimestamp { get; set; }
@@ -239,6 +240,11 @@ namespace Soulseek.Network
         /// <returns>The operation context.</returns>
         public async Task AddOrUpdateChildConnectionAsync(string username, IConnection incomingConnection)
         {
+            if (Disposing || Disposed)
+            {
+                throw new ObjectDisposedException(nameof(DistributedConnectionManager));
+            }
+
             var c = incomingConnection;
 
             if (!CanAcceptChildren)
@@ -414,7 +420,7 @@ namespace Soulseek.Network
                 {
                     Diagnostic.Debug($"Successfully established {successfulConnections.Count} connections.");
 
-                    (ParentConnection, ParentBranchLevel, ParentBranchRoot) = successfulConnections.First();
+                    (ParentConnection, ParentBranchLevel, ParentBranchRoot) = successfulConnections[0];
                     Diagnostic.Debug($"Selected {ParentConnection.Username} as the best connection; branch root: {ParentBranchRoot}, branch level: {ParentBranchLevel}");
 
                     ParentConnection.Disconnected += ParentConnection_Disconnected;
@@ -466,11 +472,9 @@ namespace Soulseek.Network
         /// <param name="bytes">The bytes to write.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
         /// <returns>The operation context.</returns>
-        public async Task BroadcastMessageAsync(byte[] bytes, CancellationToken? cancellationToken = null)
+        public async Task BroadcastMessageAsync(byte[] bytes, CancellationToken cancellationToken = default)
         {
-            cancellationToken ??= CancellationToken.None;
-
-            static async Task Write(KeyValuePair<string, Lazy<Task<IMessageConnection>>> child, byte[] bytes, CancellationToken? cancellationToken)
+            static async Task Write(KeyValuePair<string, Lazy<Task<IMessageConnection>>> child, byte[] bytes, CancellationToken cancellationToken)
             {
                 IMessageConnection connection = default;
 
@@ -550,6 +554,11 @@ namespace Soulseek.Network
         /// <returns>The operation context.</returns>
         public async Task GetOrAddChildConnectionAsync(ConnectToPeerResponse connectToPeerResponse)
         {
+            if (Disposing || Disposed)
+            {
+                throw new ObjectDisposedException(nameof(DistributedConnectionManager));
+            }
+
             bool cached = true;
             var r = connectToPeerResponse;
 
@@ -766,14 +775,14 @@ namespace Soulseek.Network
         /// </summary>
         /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
         /// <returns>The operation context.</returns>
-        public async Task UpdateStatusAsync(CancellationToken? cancellationToken = null)
+        public async Task UpdateStatusAsync(CancellationToken cancellationToken = default)
         {
             if (!SoulseekClient.State.HasFlag(SoulseekClientStates.Connected) || (!SoulseekClient.State.HasFlag(SoulseekClientStates.LoggedIn)))
             {
                 return;
             }
 
-            await StatusSyncRoot.WaitAsync(cancellationToken ?? CancellationToken.None).ConfigureAwait(false);
+            await StatusSyncRoot.WaitAsync(cancellationToken).ConfigureAwait(false);
 
             try
             {
@@ -895,6 +904,8 @@ namespace Soulseek.Network
             {
                 if (disposing)
                 {
+                    Disposing = true;
+
                     WatchdogTimer.Dispose();
                     StatusDebounceTimer.Dispose();
 

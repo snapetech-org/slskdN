@@ -42,9 +42,11 @@ namespace Soulseek.Messaging.Handlers
                 throw new ArgumentNullException(nameof(connection));
             }
 
+            var token = cancellationToken ?? CancellationToken.None;
+
             if (!connection.Obfuscated)
             {
-                await connection.WriteAsync(length, stream, cancellationToken: cancellationToken).ConfigureAwait(false);
+                await connection.WriteAsync(length, stream, cancellationToken: token).ConfigureAwait(false);
                 return;
             }
 
@@ -56,7 +58,7 @@ namespace Soulseek.Messaging.Handlers
             var obfuscatedStream = new RotatedObfuscationEncodingStream(stream);
             try
             {
-                await connection.WriteAsync(length + sizeof(uint), obfuscatedStream, cancellationToken: cancellationToken).ConfigureAwait(false);
+                await connection.WriteAsync(length + sizeof(uint), obfuscatedStream, cancellationToken: token).ConfigureAwait(false);
             }
             finally
             {

@@ -370,7 +370,7 @@ namespace Soulseek.Tests.Unit
         {
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -384,7 +384,7 @@ namespace Soulseek.Tests.Unit
 
             Assert.True(responded);
 
-            conn.Verify(m => m.WriteAsync(It.Is<byte[]>(b => b.Matches(searchResponse.ToByteArray())), It.IsAny<CancellationToken?>()), Times.Once);
+            conn.Verify(m => m.WriteAsync(It.Is<byte[]>(b => b.Matches(searchResponse.ToByteArray())), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Trait("Category", "TryRespondAsync")]
@@ -393,7 +393,7 @@ namespace Soulseek.Tests.Unit
         {
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -423,7 +423,7 @@ namespace Soulseek.Tests.Unit
         {
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -442,7 +442,7 @@ namespace Soulseek.Tests.Unit
 
             Assert.True(responded);
             Assert.False(failed);
-            conn.Verify(m => m.WriteAsync(It.Is<byte[]>(b => b.Matches(searchResponse.ToByteArray())), It.IsAny<CancellationToken?>()), Times.Once);
+            conn.Verify(m => m.WriteAsync(It.Is<byte[]>(b => b.Matches(searchResponse.ToByteArray())), It.IsAny<CancellationToken>()), Times.Once);
             mocks.Diagnostic.Verify(m => m.Warning(It.Is<string>(s => s.ContainsInsensitive("Unhandled exception in ResponseDelivered event handler")), expectedEx), Times.Once);
         }
 
@@ -452,7 +452,7 @@ namespace Soulseek.Tests.Unit
         {
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -475,7 +475,7 @@ namespace Soulseek.Tests.Unit
         {
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -493,12 +493,121 @@ namespace Soulseek.Tests.Unit
         }
 
         [Trait("Category", "TryRespondAsync")]
+        [Theory(DisplayName = "TryRespondAsync sends RawSearchResponse even when FileCount and LockedFileCount are zero"), AutoData]
+        public async Task TryRespondAsync_Sends_RawSearchResponse_Even_When_FileCount_And_LockedFileCount_Are_Zero(string username, int token, string query, IPEndPoint endpoint, int responseToken)
+        {
+            using (var stream = new System.IO.MemoryStream(new byte[] { 1, 2, 3 }))
+            {
+                var rawResponse = new RawSearchResponse(stream.Length, stream);
+
+                // a RawSearchResponse is opaque, pre-serialized bytes-- it never carries a parsed file list, so these
+                // are always zero. TryRespondAsync must not treat that as "no results" for a raw response.
+                Assert.Equal(0, rawResponse.FileCount);
+                Assert.Equal(0, rawResponse.LockedFileCount);
+
+                var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult<SearchResponse>(rawResponse)));
+
+                mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(endpoint));
+                mocks.Client.Setup(m => m.GetNextToken())
+                    .Returns(responseToken);
+
+                var conn = new Mock<IMessageConnection>();
+
+                mocks.PeerConnectionManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, responseToken, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(conn.Object));
+
+                var responded = await responder.TryRespondAsync(username, token, query);
+
+                Assert.True(responded);
+            }
+        }
+
+        [Trait("Category", "TryRespondAsync")]
+        [Theory(DisplayName = "TryRespondAsync writes RawSearchResponse directly instead of serializing"), AutoData]
+        public async Task TryRespondAsync_Writes_RawSearchResponse_Directly_Instead_Of_Serializing(string username, int token, string query, IPEndPoint endpoint, int responseToken)
+        {
+            using (var stream = new System.IO.MemoryStream(new byte[] { 1, 2, 3 }))
+            {
+                var rawResponse = new RawSearchResponse(stream.Length, stream);
+
+                var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult<SearchResponse>(rawResponse)));
+
+                mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(endpoint));
+                mocks.Client.Setup(m => m.GetNextToken())
+                    .Returns(responseToken);
+
+                var conn = new Mock<IMessageConnection>();
+
+                mocks.PeerConnectionManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, responseToken, It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(conn.Object));
+
+                var responded = await responder.TryRespondAsync(username, token, query);
+
+                Assert.True(responded);
+
+                conn.Verify(m => m.WriteAsync(rawResponse.Length, rawResponse.Stream, It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()), Times.Once);
+                conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()), Times.Never);
+            }
+        }
+
+        [Trait("Category", "TryRespondAsync")]
+        [Theory(DisplayName = "TryRespondAsync disposes RawSearchResponse stream after write"), AutoData]
+        public async Task TryRespondAsync_Disposes_RawSearchResponse_Stream_After_Write(string username, int token, string query, IPEndPoint endpoint, int responseToken)
+        {
+            var stream = new TrackingDisposeStream(new byte[] { 1, 2, 3 });
+            var rawResponse = new RawSearchResponse(stream.Length, stream);
+
+            var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult<SearchResponse>(rawResponse)));
+
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(endpoint));
+            mocks.Client.Setup(m => m.GetNextToken())
+                .Returns(responseToken);
+
+            var conn = new Mock<IMessageConnection>();
+
+            mocks.PeerConnectionManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, responseToken, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+
+            var responded = await responder.TryRespondAsync(username, token, query);
+
+            Assert.True(responded);
+            Assert.True(stream.WasDisposed);
+        }
+
+        [Trait("Category", "TryRespondAsync")]
+        [Theory(DisplayName = "TryRespondAsync does not throw when disposing RawSearchResponse stream fails"), AutoData]
+        public async Task TryRespondAsync_Does_Not_Throw_When_Disposing_RawSearchResponse_Stream_Fails(string username, int token, string query, IPEndPoint endpoint, int responseToken)
+        {
+            var stream = new FaultyDisposeStream(new byte[] { 1, 2, 3 });
+            var rawResponse = new RawSearchResponse(stream.Length, stream);
+
+            var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult<SearchResponse>(rawResponse)));
+
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(endpoint));
+            mocks.Client.Setup(m => m.GetNextToken())
+                .Returns(responseToken);
+
+            var conn = new Mock<IMessageConnection>();
+
+            mocks.PeerConnectionManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, responseToken, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+
+            var ex = await Record.ExceptionAsync(() => responder.TryRespondAsync(username, token, query));
+
+            Assert.Null(ex);
+        }
+
+        [Trait("Category", "TryRespondAsync")]
         [Theory(DisplayName = "TryRespondAsync returns false on failure"), AutoData]
         public async Task TryRespondAsync_Returns_False_On_Failure(string username, int token, string query, SearchResponse searchResponse, IPEndPoint endpoint, int responseToken)
         {
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -523,7 +632,7 @@ namespace Soulseek.Tests.Unit
                 searchResponseCache: cache.Object,
                 searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -550,7 +659,7 @@ namespace Soulseek.Tests.Unit
 
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult<SearchResponse>(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -563,8 +672,8 @@ namespace Soulseek.Tests.Unit
 
             Assert.True(responded);
             Assert.False(stream.CanRead);
-            conn.Verify(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken?>()), Times.Once);
-            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()), Times.Never);
+            conn.Verify(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken>()), Times.Once);
+            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Trait("Category", "TryRespondAsync")]
@@ -576,13 +685,13 @@ namespace Soulseek.Tests.Unit
 
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult<SearchResponse>(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
 
             var conn = new Mock<IMessageConnection>();
-            conn.Setup(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken?>()))
+            conn.Setup(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromException(new ConnectionWriteException("failed")));
 
             mocks.PeerConnectionManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, responseToken, It.IsAny<CancellationToken>()))
@@ -620,7 +729,7 @@ namespace Soulseek.Tests.Unit
                 searchResponseCache: cache.Object,
                 searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -643,7 +752,7 @@ namespace Soulseek.Tests.Unit
         {
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseResolver: (u, t, q) => Task.FromResult(searchResponse)));
 
-            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken?>()))
+            mocks.Client.Setup(m => m.GetUserEndPointAsync(username, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(endpoint));
             mocks.Client.Setup(m => m.GetNextToken())
                 .Returns(responseToken);
@@ -746,7 +855,7 @@ namespace Soulseek.Tests.Unit
 
             Assert.True(responded);
 
-            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()), Times.Once);
+            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Trait("Category", "TryRespondAsync")]
@@ -771,8 +880,8 @@ namespace Soulseek.Tests.Unit
 
             Assert.True(responded);
             Assert.False(stream.CanRead);
-            conn.Verify(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken?>()), Times.Once);
-            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()), Times.Never);
+            conn.Verify(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken>()), Times.Once);
+            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Trait("Category", "TryRespondAsync")]
@@ -790,7 +899,7 @@ namespace Soulseek.Tests.Unit
             var (responder, mocks) = GetFixture(new SoulseekClientOptions(searchResponseCache: cache.Object));
 
             var conn = new Mock<IMessageConnection>();
-            conn.Setup(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken?>()))
+            conn.Setup(m => m.WriteAsync(searchResponse.Length, stream, null, null, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromException(new ConnectionWriteException("failed")));
 
             mocks.PeerConnectionManager.Setup(m => m.GetCachedMessageConnectionAsync(username))
@@ -904,7 +1013,7 @@ namespace Soulseek.Tests.Unit
 
             Assert.True(responded);
             Assert.False(failed);
-            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()), Times.Once);
+            conn.Verify(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()), Times.Once);
             mocks.Diagnostic.Verify(m => m.Warning(It.Is<string>(s => s.ContainsInsensitive("Unhandled exception in ResponseDelivered event handler")), expectedEx), Times.Once);
         }
 
@@ -1028,6 +1137,35 @@ namespace Soulseek.Tests.Unit
             var ex = Record.Exception(() => diag.Info("test"));
 
             Assert.Null(ex);
+        }
+
+        private class TrackingDisposeStream : System.IO.MemoryStream
+        {
+            public TrackingDisposeStream(byte[] buffer)
+                : base(buffer)
+            {
+            }
+
+            public bool WasDisposed { get; private set; }
+
+            protected override void Dispose(bool disposing)
+            {
+                WasDisposed = true;
+                base.Dispose(disposing);
+            }
+        }
+
+        private class FaultyDisposeStream : System.IO.MemoryStream
+        {
+            public FaultyDisposeStream(byte[] buffer)
+                : base(buffer)
+            {
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                throw new Exception("Dispose failed");
+            }
         }
 
         private static (SearchResponder SearchResponder, Mocks Mocks) GetFixture(SoulseekClientOptions options = null)

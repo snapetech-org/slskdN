@@ -67,7 +67,7 @@ namespace Soulseek
         public async Task<MeshRendezvousResult> DiscoverAsync(CancellationToken? cancellationToken = null)
         {
             var token = cancellationToken ?? CancellationToken.None;
-            var users = await client.GetSimilarUsersAsync(token).ConfigureAwait(false);
+            var users = await client.GetSimilarUsersAsync((CancellationToken?)token).ConfigureAwait(false);
 
             if (options.ProbePeerCapabilities && client.PeerCapabilityDescriptor != null)
             {

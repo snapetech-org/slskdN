@@ -1,4 +1,5 @@
-﻿// <copyright file="UserInterestsResponse.cs" company="slskdN Team">
+// <copyright file="UserInterestsResponse.cs" company="JP Dillingham">
+//     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
 //     This program is free software: you can redistribute it and/or modify
@@ -17,25 +18,74 @@
 //     of the GPLv3.  See the LICENSE file in the root directory of this
 //     project for the complete terms and conditions.
 //
+//     SPDX-FileCopyrightText: JP Dillingham
 //     SPDX-FileCopyrightText: slskdN Team
 //     SPDX-License-Identifier: GPL-3.0-only
 // </copyright>
 
 namespace Soulseek.Messaging.Messages
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
-    ///     A response containing a user's interests.
+    ///     The response to a request for a user's interests.
     /// </summary>
     internal sealed class UserInterestsResponse : IIncomingMessage
     {
         /// <summary>
-        ///     Creates a new instance of <see cref="UserInterests"/> from the specified <paramref name="bytes"/>.
+        ///     Initializes a new instance of the <see cref="UserInterestsResponse"/> class.
+        /// </summary>
+        /// <param name="username">The username of the user.</param>
+        /// <param name="likes">The list of things the user likes.</param>
+        /// <param name="hates">The list of things the user hates.</param>
+        public UserInterestsResponse(string username, IEnumerable<string> likes, IEnumerable<string> hates)
+        {
+            var liked = likes?.ToList() ?? new List<string>();
+            var hated = hates?.ToList() ?? new List<string>();
+
+            if (liked.Any(interest => interest == null) || hated.Any(interest => interest == null))
+            {
+                throw new ArgumentException("Interest lists must not contain null entries");
+            }
+
+            Username = username;
+            Likes = liked.AsReadOnly();
+            Hates = hated.AsReadOnly();
+        }
+
+        /// <summary>
+        ///     Gets the list of things the user hates.
+        /// </summary>
+        public IReadOnlyCollection<string> Hates { get; }
+
+        /// <summary>
+        ///     Gets the hated interests (fork API alias).
+        /// </summary>
+        public IReadOnlyCollection<string> Hated => Hates;
+
+        /// <summary>
+        ///     Gets the list of things the user likes.
+        /// </summary>
+        public IReadOnlyCollection<string> Likes { get; }
+
+        /// <summary>
+        ///     Gets the liked interests (fork API alias).
+        /// </summary>
+        public IReadOnlyCollection<string> Liked => Likes;
+
+        /// <summary>
+        ///     Gets the username of the user.
+        /// </summary>
+        public string Username { get; }
+
+        /// <summary>
+        ///     Creates a new instance of <see cref="UserInterestsResponse"/> from the specified <paramref name="bytes"/>.
         /// </summary>
         /// <param name="bytes">The byte array from which to parse.</param>
         /// <returns>The created instance.</returns>
-        public static UserInterests FromByteArray(byte[] bytes)
+        public static UserInterestsResponse FromByteArray(byte[] bytes)
         {
             var reader = new MessageReader<MessageCode.Server>(bytes);
             var code = reader.ReadCode();
@@ -46,23 +96,29 @@ namespace Soulseek.Messaging.Messages
             }
 
             var username = reader.ReadString();
-            var liked = ReadStrings(reader);
-            var hated = ReadStrings(reader);
 
-            return new UserInterests(username, liked, hated);
-        }
+            var likeCount = ProtocolCountReader.ReadCount(reader, "liked interest", minimumBytesPerItem: 4);
+            var likes = new List<string>();
 
-        private static IReadOnlyCollection<string> ReadStrings(MessageReader<MessageCode.Server> reader)
-        {
-            var count = ProtocolCountReader.ReadCount(reader, "interest", minimumBytesPerItem: 4);
-            var values = new List<string>();
-
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < likeCount; i++)
             {
-                values.Add(reader.ReadString());
+                likes.Add(reader.ReadString());
             }
 
-            return values.AsReadOnly();
+            var hateCount = ProtocolCountReader.ReadCount(reader, "hated interest", minimumBytesPerItem: 4);
+            var hates = new List<string>();
+
+            for (int i = 0; i < hateCount; i++)
+            {
+                hates.Add(reader.ReadString());
+            }
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Server.GetUserInterests)} finalized with {reader.Remaining} unread bytes");
+            }
+
+            return new UserInterestsResponse(username, likes, hates);
         }
     }
 }

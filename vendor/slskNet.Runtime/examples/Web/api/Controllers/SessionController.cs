@@ -67,6 +67,7 @@
         /// <response code="401">Login failed.</response>
         [HttpPost]
         [Route("")]
+        [Consumes("application/json")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(TokenResponse), 200)]
         [ProducesResponseType(400)]

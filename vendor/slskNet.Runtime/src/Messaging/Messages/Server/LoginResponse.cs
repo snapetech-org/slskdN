@@ -72,7 +72,7 @@ namespace Soulseek.Messaging.Messages
         public bool IsSupporter { get; }
 
         /// <summary>
-        ///     Gets the reason for a login failure.
+        ///     Gets the MOTD if <see cref="Succeeded"/> is true, or the reason for a login failure if it is false.
         /// </summary>
         public string Message { get; }
 
@@ -116,6 +116,16 @@ namespace Soulseek.Messaging.Messages
                 var isSupporterByte = reader.ReadByte();
                 ProtocolValueValidator.ValidateBooleanFlag(isSupporterByte, "login supporter flag");
                 isSupporter = isSupporterByte == 1;
+            }
+            else if (reader.HasMoreData)
+            {
+                var detail = reader.ReadString();
+                msg += string.IsNullOrWhiteSpace(detail) ? string.Empty : ": " + detail;
+            }
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Server.Login)} finalized with {reader.Remaining} unread bytes");
             }
 
             return new LoginResponse(succeeded, msg, ipAddress, hash, isSupporter);

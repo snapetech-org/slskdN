@@ -2,5 +2,5 @@
 # Keep this full SHA aligned with the named branch or release tag.
 repository=https://github.com/snapetech-org/slskNet.Runtime.git
 ref=refs/heads/main
-commit=f086bbbe588853d1cccc3859410ba54496b1cf19
+commit=edbf01707b9bad6b5c32a27830b5e7592398638c
 local_patch=vendor/slskNet.Runtime.patches/0001-slskdN-local-runtime-delta.patch

@@ -30,6 +30,7 @@
         /// <param name="message"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Consumes("application/json")]
         [Authorize]
         public IActionResult Disconnect([FromBody]string message)
         {

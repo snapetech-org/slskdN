@@ -85,7 +85,10 @@ namespace Soulseek.Network
                 // if Username is empty, this is a server connection. begin reading continuously, and throw on exception.
                 if (IsServerConnection)
                 {
-                    Task.Run(() => ReadContinuouslyAsync()).ForgetButThrowWhenFaulted<ConnectionException>();
+                    Task.Run(() => ReadContinuouslyAsync())
+                        .ContinueWith(
+                            continuationAction: t => throw new ConnectionException(t.Exception.Message, t.Exception),
+                            continuationOptions: TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.RunContinuationsAsynchronously);
                 }
                 else
                 {
@@ -177,7 +180,7 @@ namespace Soulseek.Network
         ///     Thrown when an error is encountered while converting the message to a byte array.
         /// </exception>
         /// <exception cref="ConnectionWriteException">Thrown when an unexpected error occurs.</exception>
-        public Task WriteAsync(IOutgoingMessage message, CancellationToken? cancellationToken = null)
+        public Task WriteAsync(IOutgoingMessage message, CancellationToken cancellationToken = default)
         {
             if (message == default)
             {
@@ -195,7 +198,7 @@ namespace Soulseek.Network
                 throw new MessageException("Failed to convert the message to a byte array", ex);
             }
 
-            return WriteMessageInternalAsync(bytes, cancellationToken ?? CancellationToken.None);
+            return WriteMessageInternalAsync(bytes, cancellationToken);
         }
 
         private async Task ReadContinuouslyAsync()

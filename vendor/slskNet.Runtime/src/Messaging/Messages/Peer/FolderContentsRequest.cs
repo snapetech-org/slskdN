@@ -1,4 +1,4 @@
-﻿// <copyright file="FolderContentsRequest.cs" company="JP Dillingham">
+// <copyright file="FolderContentsRequest.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -74,6 +74,11 @@ namespace Soulseek.Messaging.Messages
 
             var token = reader.ReadInteger();
             var (directoryName, directoryNameEncoding) = reader.ReadStringAndEncoding();
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Peer.FolderContentsRequest)} finalized with {reader.Remaining} unread bytes");
+            }
 
             return new FolderContentsRequest(token, directoryName, directoryNameEncoding);
         }

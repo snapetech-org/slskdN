@@ -95,6 +95,25 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "Connect")]
+        [Theory(DisplayName = "Assigns a handler to Listener.Error when EnableListener is true"), AutoData]
+        public async Task Assigns_A_Handler_To_Listener_Error_When_EnableListener_Is_True(string username, string password)
+        {
+            var (client, mocks) = GetFixture(new SoulseekClientOptions(enableListener: true, listenPort: GetAvailablePort()));
+
+            using (client)
+            {
+                await client.ConnectAsync(username, password);
+
+                Assert.NotNull(client.Listener);
+
+                var raisedException = new Exception("error raised for test");
+                client.Listener.RaiseEvent(typeof(Listener), "Error", raisedException);
+
+                mocks.ListenerHandler.Verify(m => m.HandleError(client.Listener, raisedException), Times.Once);
+            }
+        }
+
+        [Trait("Category", "Connect")]
         [Theory(DisplayName = "Address throws ArgumentOutOfRangeException on bad port")]
         [InlineData(-1)]
         [InlineData(65536)]
@@ -238,7 +257,7 @@ namespace Soulseek.Tests.Unit.Client
             var (client, mocks) = GetFixture();
 
             mocks.ServerConnection
-                .Setup(m => m.ConnectAsync(It.IsAny<CancellationToken?>())).Throws(new ConnectionException());
+                .Setup(m => m.ConnectAsync(It.IsAny<CancellationToken>())).Throws(new ConnectionException());
 
             using (client)
             {
@@ -324,7 +343,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Concat(new SetListenPortCommand(client.Options.ListenPort).ToByteArray())
                 .ToArray();
 
-            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken?>()));
+            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "Connect")]
@@ -350,7 +369,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Concat(new SetListenPortCommand(12345, 1, 12345).ToByteArray())
                 .ToArray();
 
-            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken?>()));
+            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "Connect")]
@@ -375,7 +394,7 @@ namespace Soulseek.Tests.Unit.Client
 
             Assert.Equal(12345, client.Options.ListenPort);
             Assert.Equal(45678, client.Options.AdvertisedListenPort);
-            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken?>()));
+            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "Connect")]
@@ -401,7 +420,7 @@ namespace Soulseek.Tests.Unit.Client
             var (client, mocks) = GetFixture();
 
             mocks.ServerConnection
-                .Setup(m => m.ConnectAsync(It.IsAny<CancellationToken?>()))
+                .Setup(m => m.ConnectAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask)
                 .Callback(() => client.InvokeMethod("ChangeState", SoulseekClientStates.Connected, "Connected", null));
 
@@ -426,7 +445,7 @@ namespace Soulseek.Tests.Unit.Client
             var (client, mocks) = GetFixture();
 
             mocks.ServerConnection
-                .Setup(m => m.ConnectAsync(It.IsAny<CancellationToken?>()))
+                .Setup(m => m.ConnectAsync(It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask)
                 .Callback(() => client.InvokeMethod("ChangeState", SoulseekClientStates.Connected, "Connected", null));
 
@@ -554,7 +573,7 @@ namespace Soulseek.Tests.Unit.Client
                 Assert.Equal(user, client.Username);
             }
 
-            mocks.ServerConnection.Verify(m => m.WriteAsync(It.IsAny<SetListenPortCommand>(), It.IsAny<CancellationToken?>()));
+            mocks.ServerConnection.Verify(m => m.WriteAsync(It.IsAny<SetListenPortCommand>(), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "Connect")]
@@ -568,7 +587,7 @@ namespace Soulseek.Tests.Unit.Client
                 await client.ConnectAsync(user, password);
             }
 
-            mocks.DistributedConnectionManager.Verify(m => m.UpdateStatusAsync(It.IsAny<CancellationToken?>()));
+            mocks.DistributedConnectionManager.Verify(m => m.UpdateStatusAsync(It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "Connect")]
@@ -582,7 +601,7 @@ namespace Soulseek.Tests.Unit.Client
                 await client.ConnectAsync(user, password);
             }
 
-            mocks.ServerConnection.Verify(m => m.WriteAsync(It.IsAny<PrivateRoomToggle>(), It.IsAny<CancellationToken?>()));
+            mocks.ServerConnection.Verify(m => m.WriteAsync(It.IsAny<PrivateRoomToggle>(), It.IsAny<CancellationToken>()));
         }
 
         [Trait("Category", "Connect")]
@@ -663,7 +682,7 @@ namespace Soulseek.Tests.Unit.Client
                     Assert.Equal(waitKey, key);
                     loginWait.TrySetException(ex);
                 });
-            mocks.ServerConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()))
+            mocks.ServerConnection.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Callback(() => mocks.ServerConnection.Raise(m => m.Disconnected += null, new ConnectionDisconnectedEventArgs("closed")))
                 .Returns(Task.CompletedTask);
 
@@ -707,6 +726,7 @@ namespace Soulseek.Tests.Unit.Client
                 distributedConnectionManager: mocks.DistributedConnectionManager.Object,
                 connectionFactory: mocks.ConnectionFactory.Object,
                 waiter: mocks.Waiter.Object,
+                listenerHandler: mocks.ListenerHandler.Object,
                 options: clientOptions ?? new SoulseekClientOptions(enableListener: false));
 
             return (client, mocks);
@@ -754,6 +774,7 @@ namespace Soulseek.Tests.Unit.Client
             public Mock<IWaiter> Waiter { get; } = new Mock<IWaiter>();
             public Mock<IConnectionFactory> ConnectionFactory { get; }
             public Mock<IDistributedConnectionManager> DistributedConnectionManager { get; }
+            public Mock<IListenerHandler> ListenerHandler { get; } = new Mock<IListenerHandler>();
         }
     }
 }

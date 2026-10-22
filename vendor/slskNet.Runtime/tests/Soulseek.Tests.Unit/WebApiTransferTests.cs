@@ -155,8 +155,8 @@ namespace Soulseek.Tests.Unit
                         0,
                         null,
                         It.IsAny<TransferOptions>(),
-                        It.IsAny<CancellationToken?>()))
-                    .Callback<string, string, Func<Task<Stream>>, long?, long, int?, TransferOptions, CancellationToken?>((callbackUsername, callbackFilename, streamFactory, size, startOffset, token, options, cancellationToken) =>
+                        It.IsAny<CancellationToken>()))
+                    .Callback<string, string, Func<Task<Stream>>, long?, long, int?, TransferOptions, CancellationToken>((callbackUsername, callbackFilename, streamFactory, size, startOffset, token, options, cancellationToken) =>
                     {
                         capturedStreamFactory = streamFactory;
                         var transfer = new Soulseek.Transfer(TransferDirection.Download, "user", remoteFilename, 1, TransferStates.Queued, 1, 0);
@@ -195,14 +195,14 @@ namespace Soulseek.Tests.Unit
                     It.IsAny<string>(),
                     It.IsAny<string>(),
                     It.IsAny<Func<Task<Stream>>>(),
-                    It.IsAny<long?>(),
+                    It.IsAny<long>(),
                     It.IsAny<long>(),
                     It.IsAny<int?>(),
                     It.IsAny<TransferOptions>(),
-                    It.IsAny<CancellationToken?>()))
-                .Callback<string, string, Func<Task<Stream>>, long?, long, int?, TransferOptions, CancellationToken?>((username, filename, streamFactory, size, startOffset, token, options, cancellationToken) =>
+                    It.IsAny<CancellationToken>()))
+                .Callback<string, string, Func<Task<Stream>>, long, long, int?, TransferOptions, CancellationToken>((username, filename, streamFactory, size, startOffset, token, options, cancellationToken) =>
                 {
-                    capturedCancellationToken = cancellationToken.Value;
+                    capturedCancellationToken = cancellationToken;
                 })
                 .Returns(Task.FromException<Soulseek.Transfer>(new InvalidOperationException("boom")));
 

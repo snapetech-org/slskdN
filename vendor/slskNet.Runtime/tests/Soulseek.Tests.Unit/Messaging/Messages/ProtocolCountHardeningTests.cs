@@ -26,7 +26,7 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
                 .Compress()
                 .Build();
 
-            Assert.Throws<MessageException>(() => SearchResponseFactory.FromByteArray(bytes));
+            Assert.Throws<MessageReadException>(() => SearchResponseFactory.FromByteArray(bytes));
         }
 
         [Fact(DisplayName = "Search response accepts negative file size from the wire")]
@@ -125,7 +125,7 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
                 .Compress()
                 .Build();
 
-            Assert.Throws<MessageException>(() => BrowseResponseFactory.FromByteArray(bytes));
+            Assert.Throws<MessageReadException>(() => BrowseResponseFactory.FromByteArray(bytes));
         }
 
         [Fact(DisplayName = "Message reader rejects negative string length")]
@@ -171,7 +171,7 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
                 .WriteString("room")
                 .Build();
 
-            Assert.Throws<MessageException>(() => RoomListResponseFactory.FromByteArray(bytes));
+            Assert.Throws<MessageReadException>(() => RoomListResponseFactory.FromByteArray(bytes));
         }
 
         [Fact(DisplayName = "Room list rejects negative room user count")]

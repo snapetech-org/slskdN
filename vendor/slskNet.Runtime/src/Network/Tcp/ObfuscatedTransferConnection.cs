@@ -105,7 +105,7 @@ namespace Soulseek.Network.Tcp
         {
         }
 
-        public Task ConnectAsync(CancellationToken? cancellationToken = null)
+        public Task ConnectAsync(CancellationToken cancellationToken = default)
             => innerConnection.ConnectAsync(cancellationToken);
 
         public void Disconnect(string message = null, Exception exception = null)
@@ -117,7 +117,7 @@ namespace Soulseek.Network.Tcp
         public ITcpClient HandoffTcpClient()
             => innerConnection.HandoffTcpClient();
 
-        public async Task<byte[]> ReadAsync(long length, CancellationToken? cancellationToken = null)
+        public async Task<byte[]> ReadAsync(long length, CancellationToken cancellationToken = default)
         {
             if (length < 0)
             {
@@ -141,7 +141,7 @@ namespace Soulseek.Network.Tcp
             {
                 if (decodedBuffer.Count == 0)
                 {
-                    await ReadNextFrameAsync(cancellationToken ?? CancellationToken.None).ConfigureAwait(false);
+                    await ReadNextFrameAsync(cancellationToken).ConfigureAwait(false);
                 }
 
                 while (decodedBuffer.Count > 0 && offset < output.Length)
@@ -153,7 +153,7 @@ namespace Soulseek.Network.Tcp
             return output;
         }
 
-        public async Task ReadAsync(long length, Stream outputStream, Func<int, CancellationToken, Task<int>> governor, Action<int, int, int> reporter = null, CancellationToken? cancellationToken = null)
+        public async Task ReadAsync(long length, Stream outputStream, Func<int, CancellationToken, Task<int>> governor, Action<int, int, int> reporter = null, CancellationToken cancellationToken = default)
         {
             if (length < 0)
             {
@@ -171,7 +171,7 @@ namespace Soulseek.Network.Tcp
             }
 
             governor ??= (s, t) => Task.FromResult(int.MaxValue);
-            var token = cancellationToken ?? CancellationToken.None;
+            var token = cancellationToken;
             long totalBytesRead = 0;
 
             while (totalBytesRead < length)
@@ -205,10 +205,10 @@ namespace Soulseek.Network.Tcp
             await outputStream.FlushAsync(token).ConfigureAwait(false);
         }
 
-        public Task<string> WaitForDisconnect(CancellationToken? cancellationToken = null)
+        public Task<string> WaitForDisconnect(CancellationToken cancellationToken = default)
             => innerConnection.WaitForDisconnect(cancellationToken);
 
-        public Task WriteAsync(byte[] bytes, CancellationToken? cancellationToken = null)
+        public Task WriteAsync(byte[] bytes, CancellationToken cancellationToken = default)
         {
             if (bytes == null || bytes.Length == 0)
             {
@@ -218,7 +218,7 @@ namespace Soulseek.Network.Tcp
             return innerConnection.WriteAsync(EncodeFrame(bytes), cancellationToken);
         }
 
-        public async Task WriteAsync(long length, Stream inputStream, Func<int, CancellationToken, Task<int>> governor = null, Action<int, int, int> reporter = null, CancellationToken? cancellationToken = null)
+        public async Task WriteAsync(long length, Stream inputStream, Func<int, CancellationToken, Task<int>> governor = null, Action<int, int, int> reporter = null, CancellationToken cancellationToken = default)
         {
             if (length <= 0)
             {
@@ -236,7 +236,7 @@ namespace Soulseek.Network.Tcp
             }
 
             governor ??= (s, t) => Task.FromResult(int.MaxValue);
-            var token = cancellationToken ?? CancellationToken.None;
+            var token = cancellationToken;
             var maxPayloadLength = Math.Min(Options.WriteBufferSize, RotatedObfuscation.MaxMessageLength - FrameLengthBytes);
             var buffer = new byte[maxPayloadLength];
             long totalBytesWritten = 0;

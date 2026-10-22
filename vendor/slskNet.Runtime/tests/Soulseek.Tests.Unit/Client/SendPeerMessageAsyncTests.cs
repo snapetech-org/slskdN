@@ -100,13 +100,13 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
 
             var serverConn = new Mock<IMessageConnection>();
-            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
+            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             byte[] sentMessage = null;
             var peerConn = new Mock<IMessageConnection>();
-            peerConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()))
-                .Callback<byte[], CancellationToken?>((message, token) => sentMessage = message)
+            peerConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Callback<byte[], CancellationToken>((message, token) => sentMessage = message)
                 .Returns(Task.CompletedTask);
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -141,7 +141,7 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
 
             var serverConn = new Mock<IMessageConnection>();
-            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
+            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             var peerConn = new Mock<IMessageConnection>();
@@ -173,17 +173,17 @@ namespace Soulseek.Tests.Unit.Client
             var endpoint = new IPEndPoint(IPAddress.Loopback, 1234);
 
             var waiter = new Mock<IWaiter>();
-            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken?>()))
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new UserAddressResponse(username, endpoint.Address, endpoint.Port)));
 
             var serverConn = new Mock<IMessageConnection>();
-            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
+            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             var peerConn = new Mock<IMessageConnection>();
-            CancellationToken? writeToken = null;
-            peerConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken?>()))
-                .Callback<byte[], CancellationToken?>((message, token) => writeToken = token)
+            CancellationToken writeToken = default;
+            peerConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Callback<byte[], CancellationToken>((message, token) => writeToken = token)
                 .Returns(Task.CompletedTask);
 
             var connManager = new Mock<IPeerConnectionManager>();
@@ -198,7 +198,7 @@ namespace Soulseek.Tests.Unit.Client
             }
 
             waiter.Verify(
-                m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken?>()),
+                m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken>()),
                 Times.Once);
             connManager.Verify(m => m.GetOrAddMessageConnectionAsync(username, endpoint, cancellationToken), Times.Once);
             Assert.Equal(cancellationToken, writeToken);

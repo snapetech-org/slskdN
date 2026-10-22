@@ -1,4 +1,4 @@
-﻿// <copyright file="PeerInit.cs" company="JP Dillingham">
+// <copyright file="PeerInit.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -85,6 +85,11 @@ namespace Soulseek.Messaging.Messages
 
                 if (reader.HasMoreData)
                 {
+                    if (SoulseekClient.ReportUnreadMessageData)
+                    {
+                        Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Initialization.PeerInit)} finalized with {reader.Remaining} unread bytes");
+                    }
+
                     return false;
                 }
 

@@ -28,6 +28,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Runtime integration: federated TCP listeners now cancel pending accept reads when the runtime listener stops, preventing a stranded read during reconfiguration.
 - Runtime sync validation now distinguishes truly untracked vendor files from tracked changes when checking the generated mirror.
 - Runtime sync: rebase the slskdN patch against the audited slskNet.Runtime 10.0.3 source and keep strict validation for obfuscated peer ports.
+- Runtime vendor: sync the mirror to slskNet.Runtime 10.0.3, retaining slskdN-specific behavior in the declared patch set.
 
 ## [2026102116-slskdn.353] — 2026-10-21
 

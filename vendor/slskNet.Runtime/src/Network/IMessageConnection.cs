@@ -112,6 +112,14 @@ namespace Soulseek.Network
         ///     Thrown when an error is encountered while converting the message to a byte array.
         /// </exception>
         /// <exception cref="ConnectionWriteException">Thrown when an unexpected error occurs.</exception>
-        Task WriteAsync(IOutgoingMessage message, CancellationToken? cancellationToken = null);
+        Task WriteAsync(IOutgoingMessage message, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        ///     Asynchronously writes the specified bytes to the connection.
+        /// </summary>
+        /// <param name="bytes">The bytes to write.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        new Task WriteAsync(byte[] bytes, CancellationToken cancellationToken = default);
     }
 }

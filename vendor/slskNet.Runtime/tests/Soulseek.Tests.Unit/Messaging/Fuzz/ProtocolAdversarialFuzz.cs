@@ -12,11 +12,10 @@ namespace Soulseek.Tests.Unit.Messaging.Fuzz
     /// <summary>
     ///     Adversarial fuzz: feed random bytes into selected parsers and assert that only documented
     ///     exception types escape. Anything else (NullReferenceException, OverflowException,
-    ///     IndexOutOfRangeException, OutOfMemoryException, AccessViolationException) is a council
-    ///     finding: the parser failed to enforce its validation contract on hostile input.
+    ///     IndexOutOfRangeException, OutOfMemoryException, AccessViolationException) is a validation
+    ///     failure: the parser failed to enforce its validation contract on hostile input.
     ///
-    ///     This is the protocol-fuzz counterpart of CSL0001: the analyzer catches the structural shape
-    ///     of an unprotected allocation, this test catches the runtime behavior on adversarial bytes.
+    ///     This test checks the parser's runtime behavior on adversarial bytes.
     /// </summary>
     [Trait("Category", "Fuzz")]
     public class ProtocolAdversarialFuzz

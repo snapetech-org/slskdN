@@ -1,4 +1,4 @@
-﻿// <copyright file="ListenerHandler.cs" company="JP Dillingham">
+// <copyright file="ListenerHandler.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //
 //     This program is free software: you can redistribute it and/or modify
@@ -70,6 +70,11 @@ namespace Soulseek.Network
         // malformed peer frame cannot surface later as an unobserved task exception.
         public void HandleConnection(object sender, IConnection connection)
             => HandleConnectionAsync(sender, connection).Forget();
+
+        public void HandleError(object sender, Exception exception)
+        {
+            Diagnostic.Warning($"Failed to establish an incoming connection: {exception.Message}", exception);
+        }
 
         internal async System.Threading.Tasks.Task HandleConnectionAsync(object sender, IConnection connection)
         {

@@ -1,4 +1,4 @@
-﻿// <copyright file="TransferOptionsTests.cs" company="JP Dillingham">
+// <copyright file="TransferOptionsTests.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham. All rights reserved.
 //     Copyright (c) slskdN Team.
 //
@@ -40,6 +40,7 @@ namespace Soulseek.Tests.Unit.Options
             Func<Transfer, CancellationToken, Task> acquireSlot,
             Action<Transfer, int, int, int> reporter,
             Action<Transfer> slotReleased,
+            Func<Transfer, long, long> sizeMismatchResolver,
             int progressUpdateInterval,
             long progressUpdateMinimumBytes)
         {
@@ -54,6 +55,7 @@ namespace Soulseek.Tests.Unit.Options
                 acquireSlot,
                 slotReleased,
                 reporter,
+                sizeMismatchResolver,
                 maximumLingerTime,
                 seekInput,
                 seekOutput,
@@ -75,6 +77,7 @@ namespace Soulseek.Tests.Unit.Options
             Assert.Equal(acquireSlot, o.SlotAwaiter);
             Assert.Equal(slotReleased, o.SlotReleased);
             Assert.Equal(reporter, o.Reporter);
+            Assert.Equal(sizeMismatchResolver, o.SizeMismatchResolver);
         }
 
         [Trait("Category", "Instantiation")]
@@ -139,6 +142,7 @@ namespace Soulseek.Tests.Unit.Options
             bool seekInput,
             bool disposeInput,
             bool disposeOutput,
+            Func<Transfer, long, long> sizeMismatchResolver,
             Func<Transfer, int, CancellationToken, Task<int>> governor,
             Action<(TransferStates PreviousState, Transfer Transfer)> stateChanged,
             int maximumLingerTime,
@@ -163,7 +167,8 @@ namespace Soulseek.Tests.Unit.Options
                 progressUpdateMinimumBytes: progressUpdateMinimumBytes,
                 seekInputStreamAutomatically: seekInput,
                 disposeInputStreamOnCompletion: disposeInput,
-                disposeOutputStreamOnCompletion: disposeOutput);
+                disposeOutputStreamOnCompletion: disposeOutput,
+                sizeMismatchResolver: sizeMismatchResolver);
 
             var o = n.WithAdditionalStateChanged(null);
 
@@ -177,6 +182,7 @@ namespace Soulseek.Tests.Unit.Options
             Assert.Equal(progressUpdateMinimumBytes, o.ProgressUpdateMinimumBytes);
             Assert.Equal(acquireSlot, o.SlotAwaiter);
             Assert.Equal(slotReleased, o.SlotReleased);
+            Assert.Equal(sizeMismatchResolver, o.SizeMismatchResolver);
 
             Assert.NotEqual(stateChanged, o.StateChanged);
         }
@@ -217,6 +223,7 @@ namespace Soulseek.Tests.Unit.Options
             bool seekInput,
             bool disposeInput,
             bool disposeOutput,
+            Func<Transfer, long, long> sizeMismatchResolver,
             Func<Transfer, int, CancellationToken, Task<int>> governor,
             Action<(TransferStates PreviousState, Transfer Transfer)> stateChanged,
             int maximumLingerTime,
@@ -241,7 +248,8 @@ namespace Soulseek.Tests.Unit.Options
                 progressUpdateMinimumBytes: progressUpdateMinimumBytes,
                 seekInputStreamAutomatically: seekInput,
                 disposeInputStreamOnCompletion: disposeInput,
-                disposeOutputStreamOnCompletion: disposeOutput);
+                disposeOutputStreamOnCompletion: disposeOutput,
+                sizeMismatchResolver: sizeMismatchResolver);
 
             var o = n.WithDisposalOptions();
 
@@ -256,6 +264,7 @@ namespace Soulseek.Tests.Unit.Options
             Assert.Equal(seekInput, o.SeekInputStreamAutomatically);
             Assert.Equal(disposeInput, o.DisposeInputStreamOnCompletion);
             Assert.Equal(disposeOutput, o.DisposeOutputStreamOnCompletion);
+            Assert.Equal(sizeMismatchResolver, o.SizeMismatchResolver);
         }
 
         [Trait("Category", "WithDisposalOptions")]
@@ -264,6 +273,7 @@ namespace Soulseek.Tests.Unit.Options
             bool seekInput,
             bool disposeInput,
             bool disposeOutput,
+            Func<Transfer, long, long> sizeMismatchResolver,
             Func<Transfer, int, CancellationToken, Task<int>> governor,
             Action<(TransferStates PreviousState, Transfer Transfer)> stateChanged,
             int maximumLingerTime,
@@ -288,7 +298,8 @@ namespace Soulseek.Tests.Unit.Options
                 progressUpdateMinimumBytes: progressUpdateMinimumBytes,
                 seekInputStreamAutomatically: seekInput,
                 disposeInputStreamOnCompletion: !disposeInput,
-                disposeOutputStreamOnCompletion: !disposeOutput);
+                disposeOutputStreamOnCompletion: !disposeOutput,
+                sizeMismatchResolver: sizeMismatchResolver);
 
             var o = n.WithDisposalOptions(
                 disposeInputStreamOnCompletion: disposeInput,
@@ -305,6 +316,7 @@ namespace Soulseek.Tests.Unit.Options
             Assert.Equal(seekInput, o.SeekInputStreamAutomatically);
             Assert.Equal(disposeInput, o.DisposeInputStreamOnCompletion);
             Assert.Equal(disposeOutput, o.DisposeOutputStreamOnCompletion);
+            Assert.Equal(sizeMismatchResolver, o.SizeMismatchResolver);
         }
     }
 }

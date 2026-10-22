@@ -37,8 +37,8 @@ namespace Soulseek.Tests.Unit.Client
         {
             var serverConn = new Mock<IMessageConnection>();
             IOutgoingMessage interestMessage = null;
-            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
-                .Callback<IOutgoingMessage, CancellationToken?>( (m, _) => interestMessage = m)
+            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
+                .Callback<IOutgoingMessage, CancellationToken>( (m, _) => interestMessage = m)
                 .Returns(Task.CompletedTask);
 
             using (var s = new SoulseekClient(
@@ -64,8 +64,8 @@ namespace Soulseek.Tests.Unit.Client
         {
             var serverConn = new Mock<IMessageConnection>();
             IOutgoingMessage interestMessage = null;
-            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
-                .Callback<IOutgoingMessage, CancellationToken?>( (m, _) => interestMessage = m)
+            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
+                .Callback<IOutgoingMessage, CancellationToken>( (m, _) => interestMessage = m)
                 .Returns(Task.CompletedTask);
 
             using (var s = new SoulseekClient(
@@ -96,13 +96,13 @@ namespace Soulseek.Tests.Unit.Client
             };
 
             var waiter = new Mock<IWaiter>();
-            waiter.Setup(m => m.Wait<IReadOnlyCollection<SimilarUser>>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult<IReadOnlyCollection<SimilarUser>>(expectedUsers));
+            waiter.Setup(m => m.Wait<PersonalSimilarUsersResponse>(It.IsAny<WaitKey>(), null, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new PersonalSimilarUsersResponse(expectedUsers.Select(user => (user.Username, user.Rating)))));
 
             var serverConn = new Mock<IMessageConnection>();
             IOutgoingMessage similarUsersMessage = null;
-            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken?>()))
-                .Callback<IOutgoingMessage, CancellationToken?>( (m, _) => similarUsersMessage = m)
+            serverConn.Setup(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), It.IsAny<CancellationToken>()))
+                .Callback<IOutgoingMessage, CancellationToken>( (m, _) => similarUsersMessage = m)
                 .Returns(Task.CompletedTask);
 
             using (var s = new SoulseekClient(
@@ -114,7 +114,9 @@ namespace Soulseek.Tests.Unit.Client
 
                 var actual = await s.GetMeshRendezvousUsersAsync();
 
-                Assert.Equal(expectedUsers, actual.ToList());
+                Assert.Equal(
+                    expectedUsers.Select(user => (user.Username, user.Rating)),
+                    actual.Select(user => (user.Username, user.Rating)));
             }
 
             Assert.NotNull(similarUsersMessage);

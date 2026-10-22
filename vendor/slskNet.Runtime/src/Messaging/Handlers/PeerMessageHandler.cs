@@ -1,4 +1,4 @@
-﻿// <copyright file="PeerMessageHandler.cs" company="JP Dillingham">
+// <copyright file="PeerMessageHandler.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //

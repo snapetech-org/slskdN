@@ -1,4 +1,4 @@
-﻿// <copyright file="Listener.cs" company="JP Dillingham">
+// <copyright file="Listener.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //
 //     This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,11 @@
 //     project for the complete terms and conditions.
 //
 //     SPDX-FileCopyrightText: JP Dillingham
+//     SPDX-FileCopyrightText: slskdN Team
 //     SPDX-License-Identifier: GPL-3.0-only
 //
-//     Modified by slskdN Team.
-//     Modified: Added obfuscated listener identity.
-//     Modified: Added per-connection obfuscation sniffing for shared single-port listeners.
+//     Modified by slskdN Team to support obfuscated listeners, IP snapshots, and per-connection
+//     obfuscation sniffing for shared single-port listeners.
 // </copyright>
 
 namespace Soulseek.Network.Tcp
@@ -37,9 +37,15 @@ namespace Soulseek.Network.Tcp
     /// <summary>
     ///     Listens for client connections for TCP network services.
     /// </summary>
+    /// <remarks>
+    ///     Excluded from code coverage due to the inability to test the accepted code block; You can't instantiate TcpClient with
+    ///     an ip and port without it connecting immediately, so the test either must create a new connection to *something*, or a
+    ///     bunch of hoops need to be jumped through to handle TcpClients coming from the listener not connected/without an
+    ///     endpoint, both of which will and SHOULD throw exceptions and die.
+    /// </remarks>
     internal sealed class Listener : IListener
     {
-        private const int InitialAcceptRetryDelayMilliseconds = 100;
+        private const int InitialAcceptRetryDelayMilliseconds = 1000;
         private const int MaximumAcceptRetryDelayMilliseconds = 5000;
 
         private readonly IPAddress ipAddress;
@@ -54,7 +60,7 @@ namespace Soulseek.Network.Tcp
         /// <param name="port">The port of the listener.</param>
         /// <param name="connectionOptions">The optional options to use when creating <see cref="IConnection"/> instances.</param>
         /// <param name="tcpListener">The optional TcpClient instance to use.</param>
-        /// <param name="obfuscated">A value indicating whether accepted peer-message handshakes use type-1 obfuscation.</param>
+        /// <param name="obfuscated">Whether accepted peer init frames use type-1 obfuscation.</param>
         /// <param name="obfuscationSniffingEnabled">
         ///     A value indicating whether plain-vs-obfuscated status should be determined per accepted connection by
         ///     inspecting the first bytes read from the socket, rather than assuming the static <paramref name="obfuscated"/>
@@ -71,7 +77,6 @@ namespace Soulseek.Network.Tcp
             IDiagnosticFactory diagnosticFactory = null)
         {
             var address = ipAddress.Snapshot();
-
             this.ipAddress = address;
             Port = port;
             ConnectionOptions = connectionOptions ?? new ConnectionOptions();
@@ -87,6 +92,11 @@ namespace Soulseek.Network.Tcp
         public event EventHandler<IConnection> Accepted;
 
         /// <summary>
+        ///     Occurs when the listener encounters an exception while accepting a connection.
+        /// </summary>
+        public event EventHandler<Exception> Error;
+
+        /// <summary>
         ///     Gets the options used when creating new <see cref="IConnection"/> instances.
         /// </summary>
         public ConnectionOptions ConnectionOptions { get; }
@@ -99,11 +109,13 @@ namespace Soulseek.Network.Tcp
         /// <summary>
         ///     Gets a value indicating whether the listener is listening for connections.
         /// </summary>
-        public bool Listening => listening;
+        public bool Listening
+        {
+            get => listening;
+            private set => listening = value;
+        }
 
-        /// <summary>
-        ///     Gets a value indicating whether accepted init frames are type-1 obfuscated.
-        /// </summary>
+        /// <summary>Gets whether accepted connections use type-1 obfuscation.</summary>
         public bool Obfuscated { get; }
 
         /// <summary>
@@ -117,18 +129,41 @@ namespace Soulseek.Network.Tcp
         /// </summary>
         public int Port { get; }
 
+        private object SyncRoot { get; } = new object();
         private ITcpListener TcpListener { get; set; }
+        private long MaxConsecutiveErrors { get; } = 20;
+        private long ConsecutiveErrors { get; set; }
 
         /// <summary>
         ///     Starts the listener.
         /// </summary>
-        public void Start()
+        /// <param name="backlog">The maximum number of pending connections the OS will queue for this listener.</param>
+        public void Start(int backlog = (int)SocketOptionName.MaxConnections)
         {
-            TcpListener.Start();
-            var cancellation = new CancellationTokenSource();
-            listenCancellation = cancellation;
-            listening = true;
-            Task.Run(() => ListenContinuouslyAsync(cancellation.Token)).Forget();
+            lock (SyncRoot)
+            {
+                if (Listening)
+                {
+                    return;
+                }
+
+                var cancellation = new CancellationTokenSource();
+                try
+                {
+                    TcpListener.Start(backlog);
+                    listenCancellation = cancellation;
+                    Listening = true;
+                    Task.Run(() => ListenContinuouslyAsync()).Forget();
+                }
+                catch
+                {
+                    Listening = false;
+                    cancellation.Cancel();
+                    cancellation.Dispose();
+                    TcpListener.Stop();
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -136,75 +171,115 @@ namespace Soulseek.Network.Tcp
         /// </summary>
         public void Stop()
         {
-            listening = false;
-            var cancellation = listenCancellation;
-            listenCancellation = null;
-            cancellation?.Cancel();
+            lock (SyncRoot)
+            {
+                if (!Listening)
+                {
+                    return;
+                }
 
-            try
-            {
-                TcpListener.Stop();
-            }
-            finally
-            {
-                cancellation?.Dispose();
+                Listening = false;
+                var cancellation = listenCancellation;
+                listenCancellation = null;
+                cancellation?.Cancel();
+
+                try
+                {
+                    TcpListener.Stop(); // unblocks AcceptTcpClientAsync()
+                }
+                finally
+                {
+                    cancellation?.Dispose();
+                }
             }
         }
 
-        private async Task ListenContinuouslyAsync(CancellationToken cancellationToken)
+        private async Task ListenContinuouslyAsync()
         {
+            var cancellationToken = listenCancellation?.Token ?? CancellationToken.None;
             var retryDelayMilliseconds = InitialAcceptRetryDelayMilliseconds;
 
             while (Listening && !cancellationToken.IsCancellationRequested)
             {
-                TcpClient client;
+                TcpClient client = null;
+                Connection connection = null;
+
                 try
                 {
-                    client = await TcpListener.AcceptTcpClientAsync().ConfigureAwait(false);
+                    client = await AcceptTcpClientAsync(cancellationToken).ConfigureAwait(false);
+
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        client?.TryDispose();
+                        return;
+                    }
+
+                    var endPoint = (IPEndPoint)client.Client.RemoteEndPoint;
+                    connection = new Connection(endPoint, ConnectionOptions, new TcpClientAdapter(client), Obfuscated);
+
+                    if (connection.State != ConnectionState.Connected)
+                    {
+                        throw new ConnectionException($"The remote client disconnected before the connection could be accepted");
+                    }
+
+                    ConsecutiveErrors = 0;
+                    retryDelayMilliseconds = InitialAcceptRetryDelayMilliseconds;
+
+                    _ = Task
+                        .Run(() => Accepted?.Invoke(this, connection))
+                        .ContinueWith(task => _ = task.Exception, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.RunContinuationsAsynchronously);
                 }
-                catch (SocketException ex) when (Listening && !cancellationToken.IsCancellationRequested)
+                catch (OperationCanceledException) when (!Listening || cancellationToken.IsCancellationRequested)
                 {
-                    diagnosticFactory?.Warning("A TCP listener accept failed; retrying with bounded backoff.", ex);
+                    client?.TryDispose();
+                    connection?.TryDispose();
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    client?.TryDispose();
+                    connection?.TryDispose();
+
+                    if (!Listening || cancellationToken.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    ConsecutiveErrors++;
 
                     try
                     {
-                        await Task.Delay(retryDelayMilliseconds, cancellationToken).ConfigureAwait(false);
+                        Error?.Invoke(this, ex);
                     }
-                    catch (OperationCanceledException) when (!Listening || cancellationToken.IsCancellationRequested)
+                    catch
                     {
-                        break;
+                        // A listener error handler must not terminate the accept loop.
                     }
 
-                    retryDelayMilliseconds = Math.Min(retryDelayMilliseconds * 2, MaximumAcceptRetryDelayMilliseconds);
-                    continue;
-                }
-                catch (InvalidOperationException) when (!Listening)
-                {
-                    break;
-                }
-                catch (ObjectDisposedException) when (!Listening)
-                {
-                    break;
-                }
-                catch (SocketException) when (!Listening)
-                {
-                    break;
-                }
-                catch (OperationCanceledException) when (!Listening)
-                {
-                    break;
-                }
+                    diagnosticFactory?.Warning("A TCP listener accept failed; retrying with bounded backoff.", ex);
 
-                retryDelayMilliseconds = InitialAcceptRetryDelayMilliseconds;
+                    if (ConsecutiveErrors >= MaxConsecutiveErrors)
+                    {
+                        try
+                        {
+                            await Task.Delay(retryDelayMilliseconds, cancellationToken).ConfigureAwait(false);
+                        }
+                        catch (OperationCanceledException) when (!Listening || cancellationToken.IsCancellationRequested)
+                        {
+                            return;
+                        }
 
-                Task.Run(() =>
-                {
-                    var endPoint = (IPEndPoint)client.Client.RemoteEndPoint;
-                    var eventArgs = new Connection(endPoint, ConnectionOptions, new TcpClientAdapter(client), Obfuscated);
-
-                    Accepted?.Invoke(this, eventArgs);
-                }, CancellationToken.None).Forget();
+                        retryDelayMilliseconds = Math.Min(retryDelayMilliseconds * 2, MaximumAcceptRetryDelayMilliseconds);
+                    }
+                }
             }
+        }
+
+        private Task<TcpClient> AcceptTcpClientAsync(CancellationToken cancellationToken)
+        {
+            return TcpListener is ICancellableTcpListener cancellableListener
+                ? cancellableListener.AcceptTcpClientAsync(cancellationToken)
+                : TcpListener.AcceptTcpClientAsync();
         }
     }
 }

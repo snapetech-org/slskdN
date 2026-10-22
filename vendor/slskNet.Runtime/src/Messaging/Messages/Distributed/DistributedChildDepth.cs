@@ -64,6 +64,11 @@ namespace Soulseek.Messaging.Messages
             var depth = reader.ReadInteger();
             ProtocolValueValidator.ValidateNonNegative(depth, "child depth");
 
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Distributed.ChildDepth)} finalized with {reader.Remaining} unread bytes");
+            }
+
             return new DistributedChildDepth(depth);
         }
 

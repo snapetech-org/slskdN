@@ -1,4 +1,4 @@
-﻿// <copyright file="UserInfoResponseFactory.cs" company="JP Dillingham">
+// <copyright file="UserInfoResponseFactory.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -23,7 +23,7 @@
 //     SPDX-License-Identifier: GPL-3.0-only
 // </copyright>
 
-namespace Soulseek
+namespace Soulseek.Messaging.Messages
 {
     using Soulseek.Messaging;
     using Soulseek.Messaging.Messages;
@@ -85,6 +85,11 @@ namespace Soulseek
 
             ProtocolValueValidator.ValidateNonNegative(uploadSlots, "upload slot count");
             ProtocolValueValidator.ValidateNonNegative(queueLength, "queue length");
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Peer.InfoResponse)} finalized with {reader.Remaining} unread bytes");
+            }
 
             return new UserInfo(description, uploadSlots, queueLength, hasFreeUploadSlot, picture);
         }

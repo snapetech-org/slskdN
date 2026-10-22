@@ -1,4 +1,4 @@
-﻿// <copyright file="UserStatisticsResponseFactory.cs" company="JP Dillingham">
+// <copyright file="UserStatisticsResponseFactory.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -55,6 +55,11 @@ namespace Soulseek.Messaging.Messages
             ProtocolValueValidator.ValidateNonNegative(uploadCount, "upload count");
             ProtocolValueValidator.ValidateNonNegative(fileCount, "file count");
             ProtocolValueValidator.ValidateNonNegative(directoryCount, "directory count");
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Server.GetUserStats)} finalized with {reader.Remaining} unread bytes");
+            }
 
             return new UserStatistics(username, averageSpeed, uploadCount, fileCount, directoryCount);
         }

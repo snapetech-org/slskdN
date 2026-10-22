@@ -29,6 +29,7 @@ namespace Soulseek.Network.Tcp
 {
     using System;
     using System.Net;
+    using System.Net.Sockets;
 
     /// <summary>
     ///     Listens for client connections for TCP network services.
@@ -39,6 +40,11 @@ namespace Soulseek.Network.Tcp
         ///     Occurs when a new connection is accepted.
         /// </summary>
         event EventHandler<IConnection> Accepted;
+
+        /// <summary>
+        ///     Occurs when the listener encounters an exception while accepting a connection.
+        /// </summary>
+        event EventHandler<Exception> Error;
 
         /// <summary>
         ///     Gets the options used when creating new <see cref="IConnection"/> instances.
@@ -76,7 +82,8 @@ namespace Soulseek.Network.Tcp
         /// <summary>
         ///     Starts the listener.
         /// </summary>
-        void Start();
+        /// <param name="backlog">The maximum number of pending connections the OS will queue for this listener.</param>
+        void Start(int backlog = (int)SocketOptionName.MaxConnections);
 
         /// <summary>
         ///     Stops the listener.

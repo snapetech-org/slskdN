@@ -105,7 +105,7 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
             var ex = Record.Exception(() => RecommendationsResponse.FromByteArray(msg));
 
             Assert.NotNull(ex);
-            Assert.IsType<MessageException>(ex);
+            Assert.IsAssignableFrom<MessageException>(ex);
         }
 
         [Trait("Category", "Parse")]

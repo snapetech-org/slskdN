@@ -1,4 +1,4 @@
-﻿// <copyright file="SoulseekClientOptionsPatchTests.cs" company="JP Dillingham">
+// <copyright file="SoulseekClientOptionsPatchTests.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham. All rights reserved.
 //     Copyright (c) slskdN Team.
 //
@@ -63,11 +63,13 @@ namespace Soulseek.Tests.Unit.Options
             var rnd = new Random();
             var listenAddress = IPAddress.Parse(string.Join(".", rnd.Next(0, 254).ToString(), rnd.Next(0, 254).ToString(), rnd.Next(0, 254).ToString(), rnd.Next(0, 254).ToString()));
             var listenPort = rnd.Next(1024, 65535);
+            var listenBacklog = rnd.Next(128, int.MaxValue);
 
             var o = new SoulseekClientOptionsPatch(
                 enableListener,
                 listenAddress,
                 listenPort,
+                listenBacklog: listenBacklog,
                 enableDistributedNetwork: enableDistributedNetwork,
                 acceptDistributedChildren: acceptDistributedChildren,
                 distributedChildLimit: distributedChildLimit,
@@ -94,6 +96,7 @@ namespace Soulseek.Tests.Unit.Options
             Assert.Equal(enableListener, o.EnableListener);
             Assert.Equal(listenAddress, o.ListenIPAddress);
             Assert.Equal(listenPort, o.ListenPort);
+            Assert.Equal(listenBacklog, o.ListenBacklog);
             Assert.Equal(enableDistributedNetwork, o.EnableDistributedNetwork);
             Assert.Equal(acceptDistributedChildren, o.AcceptDistributedChildren);
             Assert.Equal(distributedChildLimit, o.DistributedChildLimit);

@@ -1,0 +1,35 @@
+name: Build and test
+
+on:
+  push:
+    branches: [main, master]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up .NET SDKs
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Restore
+        run: dotnet restore slskNet.Runtime.sln
+
+      - name: Build
+        run: dotnet build slskNet.Runtime.sln --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test tests/Soulseek.Tests.Unit/Soulseek.Tests.Unit.csproj --configuration Release --no-build --no-restore

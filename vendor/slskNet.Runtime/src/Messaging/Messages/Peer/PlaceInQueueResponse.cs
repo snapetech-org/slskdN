@@ -1,4 +1,4 @@
-﻿// <copyright file="PlaceInQueueResponse.cs" company="JP Dillingham">
+// <copyright file="PlaceInQueueResponse.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -72,6 +72,11 @@ namespace Soulseek.Messaging.Messages
             var placeInQueue = reader.ReadInteger();
 
             ProtocolValueValidator.ValidateNonNegative(placeInQueue, "place in queue");
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Peer.PlaceInQueueResponse)} finalized with {reader.Remaining} unread bytes");
+            }
 
             return new PlaceInQueueResponse(filename, placeInQueue);
         }

@@ -1,4 +1,4 @@
-﻿// <copyright file="UserAddressResponse.cs" company="JP Dillingham">
+// <copyright file="UserAddressResponse.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //
 //     This program is free software: you can redistribute it and/or modify
@@ -143,11 +143,15 @@ namespace Soulseek.Messaging.Messages
                 // GetPeerAddress uses a 16-bit obfuscated port, unlike ConnectToPeer's 32-bit port field.
                 obfuscatedPort = BinaryPrimitives.ReadUInt16LittleEndian(reader.ReadBytes(2));
 
-                if (obfuscationType == 1 && obfuscatedPort == IPEndPoint.MinPort)
+                if (obfuscationType == 1)
                 {
-                    obfuscationType = 0;
-                    obfuscatedPort = 0;
+                    ProtocolValueValidator.ValidateAdvertisedPort(obfuscatedPort, "peer address obfuscated");
                 }
+            }
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Server.GetPeerAddress)} finalized with {reader.Remaining} unread bytes");
             }
 
             return new UserAddressResponse(username, ipAddress, port, obfuscationType, obfuscatedPort);

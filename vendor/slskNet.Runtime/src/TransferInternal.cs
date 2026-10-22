@@ -1,4 +1,4 @@
-﻿// <copyright file="TransferInternal.cs" company="JP Dillingham">
+// <copyright file="TransferInternal.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -71,7 +71,7 @@ namespace Soulseek
         /// <summary>
         ///     Gets the number of remaining bytes to be transferred.
         /// </summary>
-        public long BytesRemaining => Math.Max(0, (Size ?? 0) - BytesTransferred);
+        public long BytesRemaining => Math.Max(0, Size - BytesTransferred);
 
         /// <summary>
         ///     Gets the total number of bytes transferred.
@@ -125,7 +125,7 @@ namespace Soulseek
         /// <summary>
         ///     Gets the current progress in percent.
         /// </summary>
-        public double PercentComplete => ProgressMetrics.GetPercentComplete(BytesTransferred, Size ?? 0);
+        public double PercentComplete => ProgressMetrics.GetPercentComplete(BytesTransferred, Size);
 
         /// <summary>
         ///     Gets the projected remaining duration of the transfer.
@@ -140,7 +140,7 @@ namespace Soulseek
         /// <summary>
         ///     Gets or sets the size of the file to be transferred, in bytes.
         /// </summary>
-        public long? Size { get; set; }
+        public long Size { get; set; }
 
         /// <summary>
         ///     Gets or sets the start offset of the transfer, in bytes.
@@ -260,7 +260,7 @@ namespace Soulseek
 
             // if we've transferred all of the data but not yet transitioned into Completed, we won't have an EndTime
             // yet, so we'll have to use the current time; the transition to Completed will happen soon!
-            if (Size.HasValue && BytesTransferred >= Size.Value)
+            if (BytesTransferred >= Size)
             {
                 var duration = Math.Max(1, (DateTime.UtcNow - StartTime.Value).TotalMilliseconds) / 1000d;
                 var totalSpeed = (BytesTransferred - StartOffset) / duration;

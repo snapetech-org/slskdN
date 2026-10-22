@@ -1,4 +1,4 @@
-﻿// <copyright file="RawSearchResponse.cs" company="JP Dillingham">
+// <copyright file="RawSearchResponse.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //
 //     This program is free software: you can redistribute it and/or modify

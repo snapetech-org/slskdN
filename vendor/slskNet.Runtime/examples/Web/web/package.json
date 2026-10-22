@@ -11,7 +11,7 @@
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",
     "signalr": "^2.4.3",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.3"
   },
   "scripts": {
     "start": "vite --host 0.0.0.0",
@@ -33,8 +33,8 @@
   },
   "devDependencies": {
     "@semantic-ui-react/css-patch": "^1.1.3",
-    "@vitejs/plugin-react": "^6.0.2",
-    "esbuild": "^0.28.1",
+    "@vitejs/plugin-react": "^6.1.2",
+    "esbuild": "^0.28.2",
     "vite": "^8.3.4"
   }
 }

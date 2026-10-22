@@ -1,4 +1,5 @@
-﻿// <copyright file="UserInterestsRequest.cs" company="slskdN Team">
+﻿// <copyright file="UserInterestsRequest.cs" company="JP Dillingham; slskdN Team">
+//     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
 //     This program is free software: you can redistribute it and/or modify
@@ -17,6 +18,7 @@
 //     of the GPLv3.  See the LICENSE file in the root directory of this
 //     project for the complete terms and conditions.
 //
+//     SPDX-FileCopyrightText: JP Dillingham
 //     SPDX-FileCopyrightText: slskdN Team
 //     SPDX-License-Identifier: GPL-3.0-only
 // </copyright>

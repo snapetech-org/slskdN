@@ -45,7 +45,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", outputStreamFactory: null));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", outputStreamFactory: null, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentNullException>(ex);
@@ -60,7 +60,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", "local", token: -1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", "local", size: 0, token: -1));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentOutOfRangeException>(ex);
@@ -77,7 +77,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), token: -1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), size: 0, token: -1));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentOutOfRangeException>(ex);
@@ -96,7 +96,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, "filename", Guid.NewGuid().ToString()));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, "filename", Guid.NewGuid().ToString(), size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentException>(ex);
@@ -113,7 +113,7 @@ namespace Soulseek.Tests.Unit.Client
             using (var stream = new MemoryStream())
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, "filename", () => Task.FromResult((Stream)stream)));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, "filename", () => Task.FromResult((Stream)stream), size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentException>(ex);
@@ -129,7 +129,7 @@ namespace Soulseek.Tests.Unit.Client
         {
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, Guid.NewGuid().ToString()));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, Guid.NewGuid().ToString(), size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentException>(ex);
@@ -145,7 +145,7 @@ namespace Soulseek.Tests.Unit.Client
         {
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "remote", filename));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "remote", filename, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentException>(ex);
@@ -162,7 +162,7 @@ namespace Soulseek.Tests.Unit.Client
             using (var stream = new MemoryStream())
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, () => Task.FromResult((Stream)stream)));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, () => Task.FromResult((Stream)stream), size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentException>(ex);
@@ -191,7 +191,7 @@ namespace Soulseek.Tests.Unit.Client
             using (var stream = new MemoryStream())
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "foo", () => Task.FromResult((Stream)stream), startOffset: -1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "foo", () => Task.FromResult((Stream)stream), startOffset: -1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentOutOfRangeException>(ex);
@@ -200,17 +200,17 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "DownloadAsync")]
-        [Fact(DisplayName = "DownloadAsync stream throws ArgumentNullException given startOffset and no size")]
-        public async Task DownloadAsync_Stream_Throws_ArgumentNullException_Given_StartOffset_And_No_Size()
+        [Fact(DisplayName = "DownloadAsync stream throws ArgumentOutOfRangeException given startOffset greater than size 1")]
+        public async Task DownloadAsync_Stream_Throws_ArgumentOutOfRangeException_Given_StartOffset_Greater_Than_Size_One()
         {
             using (var stream = new MemoryStream())
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "foo", () => Task.FromResult((Stream)stream), startOffset: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "foo", () => Task.FromResult((Stream)stream), size: 10, startOffset: 11));
 
                 Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
-                Assert.Equal("size", ((ArgumentNullException)ex).ParamName);
+                Assert.IsType<ArgumentOutOfRangeException>(ex);
+                Assert.Equal("startOffset", ((ArgumentOutOfRangeException)ex).ParamName);
             }
         }
 
@@ -249,7 +249,7 @@ namespace Soulseek.Tests.Unit.Client
         {
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "remote", localFilename, startOffset: -1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "remote", localFilename, startOffset: -1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<ArgumentOutOfRangeException>(ex);
@@ -258,17 +258,16 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "DownloadAsync")]
-        [Theory(DisplayName = "DownloadAsync throws ArgumentNullException given startOffset and no size"), AutoData]
-        public async Task DownloadAsync_Throws_ArgumentNullException_Given_StartOffset_And_No_Size(string localFilename)
+        [Theory(DisplayName = "DownloadAsync throws ArgumentOutOfRangeException given startOffset greater than size 1"), AutoData]
+        public async Task DownloadAsync_Throws_ArgumentOutOfRangeException_Given_StartOffset_Greater_Than_Size_One(string localFilename)
         {
-            using (var stream = new MemoryStream())
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "remote", localFilename, startOffset: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "remote", localFilename, size: 10, startOffset: 11));
 
                 Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
-                Assert.Equal("size", ((ArgumentNullException)ex).ParamName);
+                Assert.IsType<ArgumentOutOfRangeException>(ex);
+                Assert.Equal("startOffset", ((ArgumentOutOfRangeException)ex).ParamName);
             }
         }
 
@@ -292,7 +291,7 @@ namespace Soulseek.Tests.Unit.Client
         {
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<InvalidOperationException>(ex);
@@ -307,7 +306,7 @@ namespace Soulseek.Tests.Unit.Client
             using (var stream = new MemoryStream())
             using (var s = new SoulseekClient(minorVersion: 9999))
             {
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream)));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<InvalidOperationException>(ex);
@@ -323,7 +322,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<InvalidOperationException>(ex);
@@ -340,7 +339,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream)));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<InvalidOperationException>(ex);
@@ -361,7 +360,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("DownloadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename, token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename, token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTokenException>(ex);
@@ -382,7 +381,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("UploadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename, token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", localFilename, token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTokenException>(ex);
@@ -404,7 +403,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("DownloadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTokenException>(ex);
@@ -426,7 +425,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("UploadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", "filename", () => Task.FromResult((Stream)stream), token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTokenException>(ex);
@@ -451,7 +450,7 @@ namespace Soulseek.Tests.Unit.Client
                 s.SetProperty("DownloadDictionary", queued);
                 s.SetProperty("UniqueKeyDictionary", tracked);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTransferException>(ex);
@@ -472,7 +471,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("UniqueKeyDictionary", tracked);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTransferException>(ex);
@@ -493,7 +492,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("DownloadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsNotType<DuplicateTransferException>(ex);
@@ -513,7 +512,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("DownloadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsNotType<DuplicateTransferException>(ex);
@@ -538,7 +537,7 @@ namespace Soulseek.Tests.Unit.Client
                 s.SetProperty("DownloadDictionary", queued);
                 s.SetProperty("UniqueKeyDictionary", tracked);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTransferException>(ex);
@@ -560,7 +559,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("UniqueKeyDictionary", tracked);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<DuplicateTransferException>(ex);
@@ -582,7 +581,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("DownloadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsNotType<DuplicateTransferException>(ex);
@@ -603,7 +602,7 @@ namespace Soulseek.Tests.Unit.Client
 
                 s.SetProperty("DownloadDictionary", queued);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), token: 1, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsNotType<DuplicateTransferException>(ex);
@@ -621,7 +620,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream)));
+                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), size: 42));
             }
 
             conn.Verify(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), CancellationToken.None), Times.Once);
@@ -639,7 +638,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), cancellationToken: cancellationToken));
+                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, () => Task.FromResult((Stream)stream), cancellationToken: cancellationToken, size: 42));
             }
 
             conn.Verify(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), cancellationToken), Times.Once);
@@ -655,7 +654,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename));
+                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, size: 42));
             }
 
             conn.Verify(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), CancellationToken.None), Times.Once);
@@ -672,7 +671,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, cancellationToken: cancellationToken));
+                await Record.ExceptionAsync(() => s.DownloadAsync(username, filename, localFilename, cancellationToken: cancellationToken, size: 42));
             }
 
             conn.Verify(m => m.WriteAsync(It.IsAny<IOutgoingMessage>(), cancellationToken), Times.Once);
@@ -698,7 +697,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, localFilename));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, localFilename, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<UserOfflineException>(ex);
@@ -727,7 +726,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, localFilename));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, localFilename, size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<TimeoutException>(ex);
@@ -757,7 +756,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, () => Task.FromResult((Stream)stream)));
+                var ex = await Record.ExceptionAsync(() => s.DownloadAsync("username", filename, () => Task.FromResult((Stream)stream), size: 42));
 
                 Assert.NotNull(ex);
                 Assert.IsType<TimeoutException>(ex);
@@ -1167,7 +1166,7 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             var waiter = new Mock<IWaiter>();
@@ -1254,12 +1253,12 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "DownloadToFileAsync")]
-        [Theory(DisplayName = "DownloadToFileAsync uses size from TransferResponse given null size when skipping queue"), AutoData]
-        public async Task DownloadToFileAsync_Uses_Size_From_TransferResponse_Given_Null_Size_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
+        [Theory(DisplayName = "DownloadToFileAsync does not throw when local size matches remote size when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Does_Not_Throw_When_Local_Size_Matches_Remote_Size_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
         {
             var options = new SoulseekClientOptions(messageTimeout: 5);
 
-            var response = new TransferResponse(token, size); // allowed, will start download immediately
+            var response = new TransferResponse(token, size); // allowed, will start download immediately; FileSize matches the given size
             var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
 
             var request = new TransferRequest(TransferDirection.Download, token, filename, size);
@@ -1294,14 +1293,9 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var events = new List<TransferStateChangedEventArgs>();
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
 
-                s.TransferStateChanged += (sender, e) =>
-                {
-                    events.Add(e);
-                };
-
-                await s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, null, 0, token, new TransferOptions(), null);
+                Assert.Null(ex);
             }
 
             transferConn.Verify(
@@ -1310,13 +1304,126 @@ namespace Soulseek.Tests.Unit.Client
                     It.IsAny<Stream>(),
                     It.IsAny<Func<int, CancellationToken, Task<int>>>(),
                     It.IsAny<Action<int, int, int>>(),
-                    It.IsAny<CancellationToken?>()),
+                    It.IsAny<CancellationToken>()),
                 Times.Once);
         }
 
         [Trait("Category", "DownloadToFileAsync")]
-        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException on size mismatch when skipping queue"), AutoData]
-        public async Task DownloadToFileAsync_Throws_On_Size_Mismatch_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        [Theory(DisplayName = "DownloadToFileAsync does not invoke SizeMismatchResolver when sizes match when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Does_Not_Invoke_SizeMismatchResolver_When_Sizes_Match_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, size); // allowed, will start download immediately; FileSize matches the given size
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var resolverInvoked = false;
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSize) =>
+            {
+                resolverInvoked = true;
+                return remoteSize;
+            });
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.Null(ex);
+            }
+
+            Assert.False(resolverInvoked);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync does not throw when local and remote size are both zero when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Does_Not_Throw_When_Local_And_Remote_Size_Are_Both_Zero_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, 0); // allowed, will start download immediately; FileSize matches the given size of zero
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, 0);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, 0L, 0, token, new TransferOptions(), null));
+
+                Assert.Null(ex);
+            }
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    0L,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException on mismatch when skipping queue and no resolver is configured"), AutoData]
+        public async Task DownloadToFileAsync_Throws_On_Mismatch_When_Skipping_Queue_And_No_Resolver_Is_Configured(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
         {
             var options = new SoulseekClientOptions(messageTimeout: 5);
 
@@ -1355,14 +1462,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var events = new List<TransferStateChangedEventArgs>();
-
-                s.TransferStateChanged += (sender, e) =>
-                {
-                    events.Add(e);
-                };
-
-                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, (long?)size, 0, token, new TransferOptions(), null));
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
 
                 Assert.NotNull(ex);
                 Assert.IsType<TransferSizeMismatchException>(ex);
@@ -1372,8 +1472,8 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "DownloadToFileAsync")]
-        [Theory(DisplayName = "DownloadToFileAsync sets state to Aborted on size mismatch"), AutoData]
-        public async Task DownloadToFileAsync_Sets_State_To_Aborted_On_Size_Mismatch(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        [Theory(DisplayName = "DownloadToFileAsync sets state to Aborted on mismatch when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Sets_State_To_Aborted_On_Mismatch_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
         {
             var options = new SoulseekClientOptions(messageTimeout: 5);
 
@@ -1419,8 +1519,549 @@ namespace Soulseek.Tests.Unit.Client
                     events.Add(e);
                 };
 
-                _ = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, (long?)size, 0, token, new TransferOptions(), null));
+                _ = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
 
+                Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync discards remote size and keeps local size on apparent integer overflow when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Discards_Remote_Size_On_Apparent_Overflow_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            long size = (long)int.MaxValue + 1; // over 2gb; large enough that a 32-bit remote client could overflow
+
+            var response = new TransferResponse(token, 0); // allowed, will start download immediately; FileSize is 0, as if the remote client overflowed
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
+
+                Assert.Null(ex);
+            }
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    size,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync discards remote size and keeps local size when local size is exactly int.MaxValue when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Discards_Remote_Size_When_Local_Size_Is_Exactly_IntMaxValue_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            long size = int.MaxValue; // exactly at the boundary; the overflow check is inclusive (>=), so this counts as an apparent overflow
+
+            var response = new TransferResponse(token, 0); // allowed, will start download immediately; FileSize is 0, as if the remote client overflowed
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
+
+                Assert.Null(ex);
+            }
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    size,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws when remote size is zero and local size is well under int.MaxValue when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_Remote_Size_Is_Zero_And_Local_Size_Is_Well_Under_IntMaxValue_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, 0); // allowed, will start download immediately; FileSize is 0, but local size is well under int.MaxValue, so this is not an apparent overflow
+
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(0, ((TransferSizeMismatchException)ex).RemoteSize);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws when local size is just under int.MaxValue and remote size is zero when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_Local_Size_Is_Just_Under_IntMaxValue_And_Remote_Size_Is_Zero_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            long size = (long)int.MaxValue - 1; // just under the (inclusive) boundary, so this is not treated as an apparent overflow
+
+            var response = new TransferResponse(token, 0); // allowed, will start download immediately; FileSize is 0
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(0, ((TransferSizeMismatchException)ex).RemoteSize);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync invokes SizeMismatchResolver instead of the automatic overflow carve-out when a resolver is configured when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Invokes_SizeMismatchResolver_Instead_Of_Overflow_CarveOut_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, long resolvedSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            long size = (long)int.MaxValue + 1; // over 2gb; this would normally trigger the automatic overflow carve-out
+
+            var response = new TransferResponse(token, 0); // allowed, will start download immediately; FileSize is 0, as if the remote client overflowed
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            long? capturedRemoteSize = null;
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSize) =>
+            {
+                capturedRemoteSize = remoteSize;
+                return resolvedSize;
+            });
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.Null(ex);
+            }
+
+            Assert.Equal(0L, capturedRemoteSize);
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    resolvedSize,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync sets local size to the value returned by SizeMismatchResolver on mismatch when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Sets_Local_Size_To_Resolver_Return_Value_On_Mismatch_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize, long resolvedSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, remoteSize); // allowed, will start download immediately; remoteSize != size
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            Transfer capturedTransfer = null;
+            long? capturedRemoteSize = null;
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) =>
+            {
+                capturedTransfer = transfer;
+                capturedRemoteSize = remoteSizeArg;
+                return resolvedSize;
+            });
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.Null(ex);
+            }
+
+            Assert.Equal(size, capturedTransfer.Size);
+            Assert.Equal(remoteSize, capturedRemoteSize);
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    resolvedSize,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync wraps exception thrown by SizeMismatchResolver in TransferSizeMismatchException when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Wraps_Exception_Thrown_By_SizeMismatchResolver_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, remoteSize); // allowed, will start download immediately; remoteSize != size
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var thrown = new InvalidOperationException("resolver refused to resolve the size mismatch");
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) => throw thrown);
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var events = new List<TransferStateChangedEventArgs>();
+
+                s.TransferStateChanged += (sender, e) =>
+                {
+                    events.Add(e);
+                };
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(thrown, ex.InnerException);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(remoteSize, ((TransferSizeMismatchException)ex).RemoteSize);
+                Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException when SizeMismatchResolver returns a negative size when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_SizeMismatchResolver_Returns_Negative_Size_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, remoteSize); // allowed, will start download immediately; remoteSize != size
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) => -1L);
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var events = new List<TransferStateChangedEventArgs>();
+
+                s.TransferStateChanged += (sender, e) =>
+                {
+                    events.Add(e);
+                };
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(remoteSize, ((TransferSizeMismatchException)ex).RemoteSize);
+                Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException when SizeMismatchResolver returns a size less than the start offset when skipping queue"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_SizeMismatchResolver_Returns_Size_Less_Than_StartOffset_When_Skipping_Queue(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var startOffset = 50L;
+
+            var response = new TransferResponse(token, remoteSize); // allowed, will start download immediately; remoteSize != size
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) => startOffset - 1);
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var events = new List<TransferStateChangedEventArgs>();
+
+                s.TransferStateChanged += (sender, e) =>
+                {
+                    events.Add(e);
+                };
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, startOffset, token, resolverOptions, null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(remoteSize, ((TransferSizeMismatchException)ex).RemoteSize);
                 Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
             }
         }
@@ -1468,60 +2109,6 @@ namespace Soulseek.Tests.Unit.Client
             }
 
             transferConn.Verify(m => m.WriteAsync(It.Is<byte[]>(b => BitConverter.ToInt64(b, 0) == offset), It.IsAny<CancellationToken>()));
-        }
-
-        [Trait("Category", "DownloadToStreamAsync")]
-        [Theory(DisplayName = "DownloadToStreamAsync does not throw if stream Position getter throws in finally block"), AutoData]
-        public async Task DownloadToStreamAsync_Does_Not_Throw_If_Stream_Position_Getter_Throws_In_Finally_Block(string username, IPEndPoint endpoint, string filename, int token, int size)
-        {
-            var options = new SoulseekClientOptions(messageTimeout: 5);
-
-            var response = new TransferResponse(token, size); // allowed, will start download immediately
-            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
-
-            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
-
-            var transferConn = new Mock<IConnection>();
-            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.CompletedTask);
-
-            var waiter = new Mock<IWaiter>();
-            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(response));
-            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(request));
-            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.CompletedTask);
-            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(transferConn.Object));
-            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
-
-            var conn = new Mock<IMessageConnection>();
-            conn.Setup(m => m.State)
-                .Returns(ConnectionState.Connected);
-
-            var connManager = new Mock<IPeerConnectionManager>();
-            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(conn.Object));
-            connManager.Setup(m => m.GetTransferConnectionAsync(username, endpoint, token, It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(transferConn.Object));
-
-            var diagnostic = new Mock<IDiagnosticFactory>();
-
-            // note: this stream is rigged so that .Position throws after the third call, so we hit the finally block
-            using (var stream = new UnPositionableStream())
-            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object, diagnosticFactory: diagnostic.Object))
-            {
-                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
-
-                var txoptions = new TransferOptions(disposeOutputStreamOnCompletion: true);
-                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task>("DownloadToStreamAsync", username, filename, new Func<Task<Stream>>(() => Task.FromResult((Stream)stream)), (long?)size, 0, token, txoptions, null));
-
-                Assert.Null(ex);
-
-                diagnostic.Verify(m => m.Warning(It.Is<string>(str => str.ContainsInsensitive("determine final position")), It.IsAny<Exception>()), Times.Once);
-            }
         }
 
         [Trait("Category", "DownloadToFileAsync")]
@@ -1892,8 +2479,8 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     reporter(attempted, granted, actual);
                 });
@@ -1962,8 +2549,8 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     reporter(attempted, granted, actual);
                 });
@@ -2036,8 +2623,8 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     reporter(attempted, granted, actual);
                 });
@@ -2098,8 +2685,8 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>(async (length, inputStream, governor, reporter, cancellationToken) =>
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>(async (length, inputStream, governor, reporter, cancellationToken) =>
                 {
                     await governor(size, CancellationToken.None);
                 });
@@ -2254,13 +2841,13 @@ namespace Soulseek.Tests.Unit.Client
             var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
 
             // capture the cancellation token passed to read so we can ensure it is cancelled
-            CancellationToken? capturedToken = default;
+            CancellationToken capturedToken = default;
 
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
-                    capturedToken = cancellationToken.GetValueOrDefault();
+                    capturedToken = cancellationToken;
                 })
                 .Returns(tcs.Task); // this will hang the read indefinitely until it is cancelled when disconnected.  if this test hangs, this is why
 
@@ -2318,13 +2905,13 @@ namespace Soulseek.Tests.Unit.Client
             var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
 
             // capture the cancellation token passed to read so we can ensure it is cancelled
-            CancellationToken? capturedToken = default;
+            CancellationToken capturedToken = default;
 
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
-                    capturedToken = cancellationToken.GetValueOrDefault();
+                    capturedToken = cancellationToken;
                 })
                 .Returns(tcs.Task); // this will hang the read indefinitely until it is cancelled when disconnected.  if this test hangs, this is why
 
@@ -2367,7 +2954,7 @@ namespace Soulseek.Tests.Unit.Client
                 Assert.Equal("Operation cancelled", ex.Message);
 
                 // make sure the read is cancelled (this would hang if not, but still)
-                Assert.True(capturedToken.Value.IsCancellationRequested);
+                Assert.True(capturedToken.IsCancellationRequested);
             }
         }
 
@@ -2386,13 +2973,13 @@ namespace Soulseek.Tests.Unit.Client
             var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
 
             // capture the cancellation token passed to read so we can ensure it is cancelled
-            CancellationToken? capturedToken = default;
+            CancellationToken capturedToken = default;
 
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
-                    capturedToken = cancellationToken.GetValueOrDefault();
+                    capturedToken = cancellationToken;
                 })
                 .Returns(tcs.Task); // this will hang the read indefinitely until it is cancelled when disconnected.  if this test hangs, this is why
 
@@ -2441,7 +3028,7 @@ namespace Soulseek.Tests.Unit.Client
                 Assert.Equal(thrownEx, ex.InnerException.InnerException);
 
                 // make sure the read is cancelled (this would hang if not, but still)
-                Assert.True(capturedToken.Value.IsCancellationRequested);
+                Assert.True(capturedToken.IsCancellationRequested);
             }
         }
 
@@ -2460,13 +3047,13 @@ namespace Soulseek.Tests.Unit.Client
             var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
 
             // capture the cancellation token passed to read so we can ensure it is cancelled
-            CancellationToken? capturedToken = default;
+            CancellationToken capturedToken = default;
 
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
-                    capturedToken = cancellationToken.GetValueOrDefault();
+                    capturedToken = cancellationToken;
                 })
                 .Returns(tcs.Task); // this will hang the read indefinitely until it is cancelled when disconnected.  if this test hangs, this is why
 
@@ -2516,7 +3103,7 @@ namespace Soulseek.Tests.Unit.Client
                 Assert.Equal("Download reported as failed by remote client", ex.InnerException.Message);
 
                 // make sure the read is cancelled (this would hang if not, but still)
-                Assert.True(capturedToken.Value.IsCancellationRequested);
+                Assert.True(capturedToken.IsCancellationRequested);
             }
         }
 
@@ -2535,13 +3122,13 @@ namespace Soulseek.Tests.Unit.Client
             var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
 
             // capture the cancellation token passed to read so we can ensure it is cancelled
-            CancellationToken? capturedToken = default;
+            CancellationToken capturedToken = default;
 
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>((length, inputStream, governor, reporter, cancellationToken) =>
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>((length, inputStream, governor, reporter, cancellationToken) =>
                 {
-                    capturedToken = cancellationToken.GetValueOrDefault();
+                    capturedToken = cancellationToken;
                 })
                 .Returns(tcs.Task); // this will hang the read indefinitely until it is cancelled when disconnected.  if this test hangs, this is why
 
@@ -2589,7 +3176,7 @@ namespace Soulseek.Tests.Unit.Client
                 Assert.Equal(denialMessage, ex.Message);
 
                 // make sure the read is cancelled (this would hang if not, but still)
-                Assert.True(capturedToken.Value.IsCancellationRequested);
+                Assert.True(capturedToken.IsCancellationRequested);
             }
         }
 
@@ -2651,15 +3238,15 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "DownloadToFileAsync")]
-        [Theory(DisplayName = "DownloadToFileAsync uses size from TransferResponse given null size when queued"), AutoData]
-        public async Task DownloadToFileAsync_Uses_Size_From_TransferResponse_When_Queued(string username, IPEndPoint endpoint, string remoteFilename, string localFilename, int token, int size)
+        [Theory(DisplayName = "DownloadToFileAsync does not throw when local size matches remote size when queued"), AutoData]
+        public async Task DownloadToFileAsync_Does_Not_Throw_When_Local_Size_Matches_Remote_Size_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
         {
             var options = new SoulseekClientOptions(messageTimeout: 5);
 
             var response = new TransferResponse(token, "Queued");
             var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
 
-            var request = new TransferRequest(TransferDirection.Download, token, remoteFilename, size);
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size); // FileSize matches the given size
 
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
@@ -2684,21 +3271,16 @@ namespace Soulseek.Tests.Unit.Client
             var connManager = new Mock<IPeerConnectionManager>();
             connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(conn.Object));
-            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, remoteFilename, token, It.IsAny<CancellationToken>()))
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(transferConn.Object));
 
             using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var events = new List<TransferStateChangedEventArgs>();
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
 
-                s.TransferStateChanged += (sender, e) =>
-                {
-                    events.Add(e);
-                };
-
-                await s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, remoteFilename, localFilename, null, 0, token, new TransferOptions(), null);
+                Assert.Null(ex);
             }
 
             transferConn.Verify(
@@ -2707,13 +3289,126 @@ namespace Soulseek.Tests.Unit.Client
                     It.IsAny<Stream>(),
                     It.IsAny<Func<int, CancellationToken, Task<int>>>(),
                     It.IsAny<Action<int, int, int>>(),
-                    It.IsAny<CancellationToken?>()),
+                    It.IsAny<CancellationToken>()),
                 Times.Once);
         }
 
         [Trait("Category", "DownloadToFileAsync")]
-        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException on mismatch when queued"), AutoData]
-        public async Task DownloadToFileAsync_Throws_TransferSizeMismatchException_On_Mismatch_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        [Theory(DisplayName = "DownloadToFileAsync does not invoke SizeMismatchResolver when sizes match when queued"), AutoData]
+        public async Task DownloadToFileAsync_Does_Not_Invoke_SizeMismatchResolver_When_Sizes_Match_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, size); // FileSize matches the given size
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var resolverInvoked = false;
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSize) =>
+            {
+                resolverInvoked = true;
+                return remoteSize;
+            });
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.Null(ex);
+            }
+
+            Assert.False(resolverInvoked);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync does not throw when local and remote size are both zero when queued"), AutoData]
+        public async Task DownloadToFileAsync_Does_Not_Throw_When_Local_And_Remote_Size_Are_Both_Zero_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, 0); // FileSize matches the given size of zero
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, 0L, 0, token, new TransferOptions(), null));
+
+                Assert.Null(ex);
+            }
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    0L,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException on mismatch when queued and no resolver is configured"), AutoData]
+        public async Task DownloadToFileAsync_Throws_On_Mismatch_When_Queued_And_No_Resolver_Is_Configured(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
         {
             var options = new SoulseekClientOptions(messageTimeout: 5);
 
@@ -2752,14 +3447,7 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var events = new List<TransferStateChangedEventArgs>();
-
-                s.TransferStateChanged += (sender, e) =>
-                {
-                    events.Add(e);
-                };
-
-                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, (long?)size, 0, token, new TransferOptions(), null));
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
 
                 Assert.NotNull(ex);
                 Assert.IsType<TransferSizeMismatchException>(ex);
@@ -2769,8 +3457,8 @@ namespace Soulseek.Tests.Unit.Client
         }
 
         [Trait("Category", "DownloadToFileAsync")]
-        [Theory(DisplayName = "DownloadToFileAsync sets transfer state to Aborted on mismatch when queued"), AutoData]
-        public async Task DownloadToFileAsync_Sets_Transfer_State_To_On_Mismatch_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        [Theory(DisplayName = "DownloadToFileAsync sets state to Aborted on mismatch when queued"), AutoData]
+        public async Task DownloadToFileAsync_Sets_State_To_Aborted_On_Mismatch_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
         {
             var options = new SoulseekClientOptions(messageTimeout: 5);
 
@@ -2816,22 +3504,24 @@ namespace Soulseek.Tests.Unit.Client
                     events.Add(e);
                 };
 
-                _ = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, (long?)size, 0, token, new TransferOptions(), null));
+                _ = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
 
                 Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
             }
         }
 
         [Trait("Category", "DownloadToFileAsync")]
-        [Theory(DisplayName = "DownloadToFileAsync uses given size when queued"), AutoData]
-        public async Task DownloadToFileAsync_Uses_Given_Size_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
+        [Theory(DisplayName = "DownloadToFileAsync discards remote size and keeps local size on apparent integer overflow when queued"), AutoData]
+        public async Task DownloadToFileAsync_Discards_Remote_Size_On_Apparent_Overflow_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
         {
             var options = new SoulseekClientOptions(messageTimeout: 5);
 
-            var queueResponse = new TransferResponse(token, "Queued");
+            long size = (long)int.MaxValue + 1; // over 2gb; large enough that a 32-bit remote client could overflow
+
+            var response = new TransferResponse(token, "Queued");
             var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
 
-            var request = new TransferRequest(TransferDirection.Download, token, filename, size);
+            var request = new TransferRequest(TransferDirection.Download, token, filename, 0); // FileSize is 0, as if the remote client overflowed
 
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
@@ -2839,7 +3529,7 @@ namespace Soulseek.Tests.Unit.Client
 
             var waiter = new Mock<IWaiter>();
             waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(queueResponse));
+                .Returns(Task.FromResult(response));
             waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(request));
             waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
@@ -2863,14 +3553,9 @@ namespace Soulseek.Tests.Unit.Client
             {
                 s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
 
-                var events = new List<TransferStateChangedEventArgs>();
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
 
-                s.TransferStateChanged += (sender, e) =>
-                {
-                    events.Add(e);
-                };
-
-                await s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, null, 0, token, new TransferOptions(), null);
+                Assert.Null(ex);
             }
 
             transferConn.Verify(
@@ -2879,8 +3564,490 @@ namespace Soulseek.Tests.Unit.Client
                     It.IsAny<Stream>(),
                     It.IsAny<Func<int, CancellationToken, Task<int>>>(),
                     It.IsAny<Action<int, int, int>>(),
-                    It.IsAny<CancellationToken?>()),
+                    It.IsAny<CancellationToken>()),
                 Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync discards remote size and keeps local size when local size is exactly int.MaxValue when queued"), AutoData]
+        public async Task DownloadToFileAsync_Discards_Remote_Size_When_Local_Size_Is_Exactly_IntMaxValue_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            long size = int.MaxValue; // exactly at the boundary; the overflow check is inclusive (>=), so this counts as an apparent overflow
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, 0); // FileSize is 0, as if the remote client overflowed
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
+
+                Assert.Null(ex);
+            }
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    size,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws when remote size is zero and local size is well under int.MaxValue when queued"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_Remote_Size_Is_Zero_And_Local_Size_Is_Well_Under_IntMaxValue_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, 0); // FileSize is 0, but local size is well under int.MaxValue, so this is not an apparent overflow
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(0, ((TransferSizeMismatchException)ex).RemoteSize);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws when local size is just under int.MaxValue and remote size is zero when queued"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_Local_Size_Is_Just_Under_IntMaxValue_And_Remote_Size_Is_Zero_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            long size = (long)int.MaxValue - 1; // just under the (inclusive) boundary, so this is not treated as an apparent overflow
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, 0); // FileSize is 0
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, new TransferOptions(), null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(0, ((TransferSizeMismatchException)ex).RemoteSize);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync invokes SizeMismatchResolver instead of the automatic overflow carve-out when a resolver is configured when queued"), AutoData]
+        public async Task DownloadToFileAsync_Invokes_SizeMismatchResolver_Instead_Of_Overflow_CarveOut_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, long resolvedSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            long size = (long)int.MaxValue + 1; // over 2gb; this would normally trigger the automatic overflow carve-out
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, 0); // FileSize is 0, as if the remote client overflowed
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            long? capturedRemoteSize = null;
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSize) =>
+            {
+                capturedRemoteSize = remoteSize;
+                return resolvedSize;
+            });
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.Null(ex);
+            }
+
+            Assert.Equal(0L, capturedRemoteSize);
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    resolvedSize,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync sets local size to the value returned by SizeMismatchResolver on mismatch when queued"), AutoData]
+        public async Task DownloadToFileAsync_Sets_Local_Size_To_Resolver_Return_Value_On_Mismatch_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize, long resolvedSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, remoteSize); // remoteSize != size
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            Transfer capturedTransfer = null;
+            long? capturedRemoteSize = null;
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) =>
+            {
+                capturedTransfer = transfer;
+                capturedRemoteSize = remoteSizeArg;
+                return resolvedSize;
+            });
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.Null(ex);
+            }
+
+            Assert.Equal(size, capturedTransfer.Size);
+            Assert.Equal(remoteSize, capturedRemoteSize);
+
+            transferConn.Verify(
+                m => m.ReadAsync(
+                    resolvedSize,
+                    It.IsAny<Stream>(),
+                    It.IsAny<Func<int, CancellationToken, Task<int>>>(),
+                    It.IsAny<Action<int, int, int>>(),
+                    It.IsAny<CancellationToken>()),
+                Times.Once);
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync wraps exception thrown by SizeMismatchResolver in TransferSizeMismatchException when queued"), AutoData]
+        public async Task DownloadToFileAsync_Wraps_Exception_Thrown_By_SizeMismatchResolver_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, remoteSize); // remoteSize != size
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var thrown = new InvalidOperationException("resolver refused to resolve the size mismatch");
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) => throw thrown);
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var events = new List<TransferStateChangedEventArgs>();
+
+                s.TransferStateChanged += (sender, e) =>
+                {
+                    events.Add(e);
+                };
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(thrown, ex.InnerException);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(remoteSize, ((TransferSizeMismatchException)ex).RemoteSize);
+                Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException when SizeMismatchResolver returns a negative size when queued"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_SizeMismatchResolver_Returns_Negative_Size_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, remoteSize); // remoteSize != size
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) => -1L);
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var events = new List<TransferStateChangedEventArgs>();
+
+                s.TransferStateChanged += (sender, e) =>
+                {
+                    events.Add(e);
+                };
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, 0, token, resolverOptions, null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(remoteSize, ((TransferSizeMismatchException)ex).RemoteSize);
+                Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
+            }
+        }
+
+        [Trait("Category", "DownloadToFileAsync")]
+        [Theory(DisplayName = "DownloadToFileAsync throws TransferSizeMismatchException when SizeMismatchResolver returns a size less than the start offset when queued"), AutoData]
+        public async Task DownloadToFileAsync_Throws_When_SizeMismatchResolver_Returns_Size_Less_Than_StartOffset_When_Queued(string username, IPEndPoint endpoint, string filename, string localFilename, int token, int size, int remoteSize)
+        {
+            var options = new SoulseekClientOptions(messageTimeout: 5);
+
+            var startOffset = 50L;
+
+            var response = new TransferResponse(token, "Queued");
+            var responseWaitKey = new WaitKey(MessageCode.Peer.TransferResponse, username, token);
+
+            var request = new TransferRequest(TransferDirection.Download, token, filename, remoteSize); // remoteSize != size
+
+            var transferConn = new Mock<IConnection>();
+            transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+
+            var waiter = new Mock<IWaiter>();
+            waiter.Setup(m => m.Wait<TransferResponse>(It.Is<WaitKey>(w => w.Equals(responseWaitKey)), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(response));
+            waiter.Setup(m => m.WaitIndefinitely<TransferRequest>(It.IsAny<WaitKey>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(request));
+            waiter.Setup(m => m.Wait(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.CompletedTask);
+            waiter.Setup(m => m.Wait<IConnection>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+            waiter.Setup(m => m.Wait<UserAddressResponse>(It.IsAny<WaitKey>(), It.IsAny<int?>(), It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(new UserAddressResponse(username, endpoint)));
+
+            var conn = new Mock<IMessageConnection>();
+            conn.Setup(m => m.State)
+                .Returns(ConnectionState.Connected);
+
+            var connManager = new Mock<IPeerConnectionManager>();
+            connManager.Setup(m => m.GetOrAddMessageConnectionAsync(username, endpoint, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(conn.Object));
+            connManager.Setup(m => m.AwaitTransferConnectionAsync(username, filename, token, It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(transferConn.Object));
+
+            var resolverOptions = new TransferOptions(sizeMismatchResolver: (transfer, remoteSizeArg) => startOffset - 1);
+
+            using (var s = new SoulseekClient(minorVersion: 9999, options, waiter: waiter.Object, serverConnection: conn.Object, peerConnectionManager: connManager.Object))
+            {
+                s.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+
+                var events = new List<TransferStateChangedEventArgs>();
+
+                s.TransferStateChanged += (sender, e) =>
+                {
+                    events.Add(e);
+                };
+
+                var ex = await Record.ExceptionAsync(() => s.InvokeMethod<Task<Transfer>>("DownloadToFileAsync", username, filename, localFilename, size, startOffset, token, resolverOptions, null));
+
+                Assert.NotNull(ex);
+                Assert.IsType<TransferSizeMismatchException>(ex);
+                Assert.Equal(size, ((TransferSizeMismatchException)ex).LocalSize);
+                Assert.Equal(remoteSize, ((TransferSizeMismatchException)ex).RemoteSize);
+                Assert.Equal(TransferStates.Completed | TransferStates.Aborted, events[events.Count - 1].Transfer.State);
+            }
         }
 
         [Trait("Category", "DownloadToFileAsync")]
@@ -3751,8 +4918,8 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>(
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>(
                     (length, outputStream, governor, reporter, ct) => outputStream.Seek(size, SeekOrigin.Begin))
                 .Returns(Task.CompletedTask);
 
@@ -3820,8 +4987,8 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(Task.CompletedTask);
 
             // simulate ReadAsync writing (size - startOffset) bytes: seek the stream from startOffset to size
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>(
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>(
                     (length, outputStream, governor, reporter, ct) => outputStream.Seek(size, SeekOrigin.Begin))
                 .Returns(Task.CompletedTask);
 
@@ -3891,8 +5058,8 @@ namespace Soulseek.Tests.Unit.Client
                 .Returns(Task.CompletedTask);
 
             // simulate reading bytesReceivedBeforeFailure bytes before timing out
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
-                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken?>(
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
+                .Callback<long, Stream, Func<int, CancellationToken, Task<int>>, Action<int, int, int>, CancellationToken>(
                     (length, outputStream, governor, reporter, ct) => outputStream.Seek(startOffset + bytesReceivedBeforeFailure, SeekOrigin.Begin))
                 .Returns(Task.FromException(new TimeoutException()));
 
@@ -4010,7 +5177,7 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             var waiter = new Mock<IWaiter>();
@@ -4067,7 +5234,7 @@ namespace Soulseek.Tests.Unit.Client
             var transferConn = new Mock<IConnection>();
             transferConn.Setup(m => m.WriteAsync(It.IsAny<byte[]>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
-            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken?>()))
+            transferConn.Setup(m => m.ReadAsync(It.IsAny<long>(), It.IsAny<Stream>(), It.IsAny<Func<int, CancellationToken, Task<int>>>(), It.IsAny<Action<int, int, int>>(), It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             var waiter = new Mock<IWaiter>();
@@ -4104,56 +5271,6 @@ namespace Soulseek.Tests.Unit.Client
                 Assert.Null(ex);
                 stream.VerifyGet(m => m.CanSeek, Times.Never);
                 stream.Verify(m => m.Seek(startOffset, SeekOrigin.Begin), Times.Never);
-            }
-        }
-
-        private class UnPositionableStream : Stream
-        {
-            public override bool CanRead => false;
-            public override bool CanWrite => false;
-
-            public override bool CanSeek => false;
-
-            public override long Length => 0;
-
-            private int timesCalled = 0;
-
-            public override long Position
-            {
-                get
-                {
-                    timesCalled++;
-
-                    if (timesCalled == 3)
-                    {
-                        throw new NotImplementedException($"times called: {timesCalled}");
-                    }
-
-                    return 0;
-                }
-                set => throw new NotImplementedException();
-            }
-
-            public override void Flush()
-            {
-            }
-
-            public override int Read(byte[] buffer, int offset, int count)
-            {
-                return count;
-            }
-
-            public override long Seek(long offset, SeekOrigin origin)
-            {
-                return offset;
-            }
-
-            public override void SetLength(long value)
-            {
-            }
-
-            public override void Write(byte[] buffer, int offset, int count)
-            {
             }
         }
 

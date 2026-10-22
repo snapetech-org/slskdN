@@ -1,4 +1,4 @@
-﻿// <copyright file="Extensions.cs" company="JP Dillingham">
+// <copyright file="Extensions.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -59,8 +59,13 @@ namespace Soulseek
         /// <summary>
         ///     Continue a task and swallow any Exceptions.
         /// </summary>
+        /// <remarks>
+        ///     The continuation touches the Task <see cref="Task.Exception"/> (if one exists)
+        ///     to avoid an <see cref="TaskScheduler.UnobservedTaskException"/>.
+        /// </remarks>
         /// <param name="task">The task to continue.</param>
-        public static void Forget(this Task task)
+        /// <param name="options">Optional continuation options.</param>
+        public static void Forget(this Task task, TaskContinuationOptions? options = null)
         {
             task.ContinueWith(t =>
             {
@@ -138,7 +143,11 @@ namespace Soulseek
         /// <returns>The MD5 hash of the input string.</returns>
         public static string ToMD5Hash(this string str)
         {
+#pragma warning disable S4790 // Weak hashing algorithms should not be used
+
             using MD5 md5Hash = MD5.Create();
+#pragma warning restore S4790 // Weak hashing algorithms should not be used
+
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(str));
 
             StringBuilder sBuilder = new StringBuilder();
@@ -149,6 +158,24 @@ namespace Soulseek
             }
 
             return sBuilder.ToString();
+        }
+
+        /// <summary>
+        ///     Safely disposes an <see cref="IDisposable"/> instance.
+        /// </summary>
+        /// <param name="obj">The IDisposable instance to dispose.</param>
+        /// <returns>A value indicating whether the disposal succeeded.</returns>
+        public static bool TryDispose(this IDisposable obj)
+        {
+            try
+            {
+                obj.Dispose();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

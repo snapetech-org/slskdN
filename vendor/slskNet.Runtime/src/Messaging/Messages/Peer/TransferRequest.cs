@@ -1,4 +1,4 @@
-﻿// <copyright file="TransferRequest.cs" company="JP Dillingham">
+// <copyright file="TransferRequest.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -98,6 +98,11 @@ namespace Soulseek.Messaging.Messages
             if (reader.HasMoreData)
             {
                 fileSize = reader.ReadLong();
+            }
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Peer.TransferRequest)} finalized with {reader.Remaining} unread bytes");
             }
 
             return new TransferRequest(direction, token, filename, fileSize, filenameEncoding);

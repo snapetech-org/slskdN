@@ -29,7 +29,7 @@ namespace Soulseek.Tests.Unit
                     It.IsAny<SearchScope>(),
                     It.IsAny<int?>(),
                     It.IsAny<SearchOptions>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Callback(() => callCount++)
                 .Returns(Task.FromResult((new Search(SearchQuery.FromText("x"), SearchScope.Wishlist, 1, SearchStates.Completed, 0, 0, 0), (IReadOnlyCollection<SearchResponse>)new List<SearchResponse>())));
 
@@ -59,7 +59,7 @@ namespace Soulseek.Tests.Unit
                 It.Is<SearchScope>(s => s.Type == SearchScopeType.Wishlist),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()),
+                It.IsAny<CancellationToken>()),
                 Times.Exactly(2));
         }
 
@@ -74,7 +74,7 @@ namespace Soulseek.Tests.Unit
                     It.IsAny<SearchScope>(),
                     It.IsAny<int?>(),
                     It.IsAny<SearchOptions>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Callback(() => callCount++)
                 .Returns(Task.FromResult((new Search(SearchQuery.FromText("x"), SearchScope.Wishlist, 1, SearchStates.Completed, 0, 0, 0), (IReadOnlyCollection<SearchResponse>)new List<SearchResponse>())));
 
@@ -100,7 +100,7 @@ namespace Soulseek.Tests.Unit
                 It.Is<SearchScope>(s => s.Type == SearchScopeType.Wishlist),
                 It.IsAny<int?>(),
                 It.IsAny<SearchOptions>(),
-                It.IsAny<CancellationToken?>()),
+                It.IsAny<CancellationToken>()),
                 Times.Exactly(2));
         }
 
@@ -119,7 +119,7 @@ namespace Soulseek.Tests.Unit
                     It.IsAny<SearchScope>(),
                     It.IsAny<int?>(),
                     It.IsAny<SearchOptions>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Returns(() =>
                 {
                     var current = Interlocked.Increment(ref callCount);
@@ -169,7 +169,7 @@ namespace Soulseek.Tests.Unit
                     It.IsAny<SearchScope>(),
                     It.IsAny<int?>(),
                     It.IsAny<SearchOptions>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Returns(() =>
                 {
                     firstSearchStarted.TrySetResult(true);
@@ -222,7 +222,7 @@ namespace Soulseek.Tests.Unit
                     It.IsAny<SearchScope>(),
                     It.IsAny<int?>(),
                     It.IsAny<SearchOptions>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult((new Search(SearchQuery.FromText("x"), SearchScope.Wishlist, 1, SearchStates.Completed, 0, 0, 0), (IReadOnlyCollection<SearchResponse>)new List<SearchResponse>())));
 
             using (var scheduler = new WishlistSearchScheduler(client.Object, new[] { "alpha" }))
@@ -253,7 +253,7 @@ namespace Soulseek.Tests.Unit
                     It.IsAny<SearchScope>(),
                     It.IsAny<int?>(),
                     It.IsAny<SearchOptions>(),
-                    It.IsAny<CancellationToken?>()))
+                    It.IsAny<CancellationToken>()))
                 .Callback(() => callCount++)
                 .Returns(Task.FromResult((new Search(SearchQuery.FromText("x"), SearchScope.Wishlist, 1, SearchStates.Completed, 0, 0, 0), (IReadOnlyCollection<SearchResponse>)new List<SearchResponse>())));
 

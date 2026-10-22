@@ -1,4 +1,4 @@
-﻿// <copyright file="FolderContentsResponse.cs" company="JP Dillingham">
+// <copyright file="FolderContentsResponse.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham.
 //     Copyright (c) slskdN Team.
 //
@@ -113,6 +113,11 @@ namespace Soulseek.Messaging.Messages
             for (int i = 0; i < directoryCount; i++)
             {
                 directoryList.Add(reader.ReadDirectory());
+            }
+
+            if (SoulseekClient.ReportUnreadMessageData && reader.HasMoreData)
+            {
+                Diagnostics.GlobalDiagnostic.Warning($"Message reader for {nameof(MessageCode.Peer.FolderContentsResponse)} finalized with {reader.Remaining} unread bytes");
             }
 
             return new FolderContentsResponse(token, rootDirectory, directoryList, rootDirectoryEncoding);

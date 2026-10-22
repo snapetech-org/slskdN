@@ -1,4 +1,4 @@
-﻿// <copyright file="Settings.cs" company="JP Dillingham">
+// <copyright file="Settings.cs" company="JP Dillingham">
 //     Copyright (c) JP Dillingham. All rights reserved.
 //
 //     This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ namespace Soulseek.Tests.Integration
         /// <summary>
         ///     Gets the username to use when logging in.
         /// </summary>
-        public static string Username => Environment.GetEnvironmentVariable("SLSK_INTEGRATION_USERNAME");
+        public static string Username => GetRequiredEnvironmentVariable("SLSK_INTEGRATION_USERNAME");
 
         /// <summary>
         ///     Gets the password to use when logging in.
@@ -43,5 +43,14 @@ namespace Soulseek.Tests.Integration
         ///     Gets the peer password to use when running multi-client tests.
         /// </summary>
         public static string PeerPassword => Environment.GetEnvironmentVariable("SLSK_INTEGRATION_PEER_PASSWORD");
+
+        private static string GetRequiredEnvironmentVariable(string name)
+        {
+            var value = Environment.GetEnvironmentVariable(name);
+
+            return string.IsNullOrWhiteSpace(value)
+                ? throw new InvalidOperationException($"Required environment variable '{name}' is not set.")
+                : value;
+        }
     }
 }
