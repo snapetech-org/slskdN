@@ -285,6 +285,29 @@ public class SecurityStatsAggregationTests
         Assert.True(allocatedBytes < 2_048, $"Verification overflow allocated {allocatedBytes:N0} bytes.");
     }
 
+    [Fact]
+    public void SecuritySessions_ConcurrentCreationRemainsBounded()
+    {
+        using var consensus = new ByzantineConsensus(NullLogger<ByzantineConsensus>.Instance);
+        var sessionIds = new string[ByzantineConsensus.MaxSessions + 100];
+
+        System.Threading.Tasks.Parallel.For(
+            0,
+            sessionIds.Length,
+            index => sessionIds[index] = consensus.StartSession($"parallel-{index}.flac"));
+
+        var retainedSessions = 0;
+        foreach (var sessionId in sessionIds)
+        {
+            if (consensus.GetSession(sessionId) != null)
+            {
+                retainedSessions++;
+            }
+        }
+
+        Assert.Equal(ByzantineConsensus.MaxSessions, retainedSessions);
+    }
+
     private static SecurityEvent CreateEvent(
         SecuritySeverity severity,
         string? ipAddress,

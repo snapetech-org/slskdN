@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Consensus session eviction now uses a bounded insertion-order queue instead of allocating a dictionary snapshot when the session limit is reached.
+- Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated.
 - Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
 - Trusted main-branch builds and security scans now use the capacity-guarded shared Linux runner pool; fork pull requests remain on isolated runners.
 - CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.

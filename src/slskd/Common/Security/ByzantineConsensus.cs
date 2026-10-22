@@ -18,6 +18,9 @@ public sealed class ByzantineConsensus : IDisposable
 {
     private readonly ILogger<ByzantineConsensus> _logger;
     private readonly ConcurrentDictionary<string, ConsensusSession> _sessions = new();
+
+    // All queue access is locked; it preserves insertion order for bounded eviction.
+    private readonly Queue<string> _sessionOrder = new(MaxSessions);
     private readonly Timer _cleanupTimer;
 
     /// <summary>
@@ -62,36 +65,36 @@ public sealed class ByzantineConsensus : IDisposable
     public string StartSession(string filename, string? expectedHash = null)
     {
         var sessionId = Guid.NewGuid().ToString("N")[..16];
+        ConsensusSession session;
 
-        var session = new ConsensusSession
+        lock (_sessionOrder)
         {
-            Id = sessionId,
-            Filename = filename,
-            ExpectedHash = expectedHash,
-            CreatedAt = DateTimeOffset.UtcNow,
-            ExpiresAt = DateTimeOffset.UtcNow.Add(SessionTtl),
-            State = ConsensusState.Collecting,
-        };
 
-        // Enforce max size
-        if (_sessions.Count >= MaxSessions)
-        {
-            ConsensusSession? oldest = null;
-            foreach (var pair in _sessions)
+            // Serialize insertion and eviction so concurrent starts cannot exceed capacity.
+            while (_sessions.Count >= MaxSessions && _sessionOrder.TryDequeue(out var oldestSessionId))
             {
-                if (oldest == null || pair.Value.CreatedAt < oldest.CreatedAt)
-                {
-                    oldest = pair.Value;
-                }
+                _sessions.TryRemove(oldestSessionId, out _);
             }
 
-            if (oldest != null)
+            while (_sessions.ContainsKey(sessionId))
             {
-                _sessions.TryRemove(oldest.Id, out _);
+                sessionId = Guid.NewGuid().ToString("N")[..16];
             }
+
+            var createdAt = DateTimeOffset.UtcNow;
+            session = new ConsensusSession
+            {
+                Id = sessionId,
+                Filename = filename,
+                ExpectedHash = expectedHash,
+                CreatedAt = createdAt,
+                ExpiresAt = createdAt.Add(SessionTtl),
+                State = ConsensusState.Collecting,
+            };
+
+            _sessions[sessionId] = session;
+            _sessionOrder.Enqueue(sessionId);
         }
-
-        _sessions[sessionId] = session;
 
         _logger.LogDebug("Started consensus session {Id} for {File}", sessionId, LoggingSanitizer.SanitizeFilePath(filename));
 
@@ -376,15 +379,28 @@ public sealed class ByzantineConsensus : IDisposable
 
     private void CleanupExpired(object? state)
     {
-        var now = DateTimeOffset.UtcNow;
-        var toRemove = _sessions
-            .Where(kvp => kvp.Value.ExpiresAt < now)
-            .Select(kvp => kvp.Key)
-            .ToList();
-
-        foreach (var id in toRemove)
+        lock (_sessionOrder)
         {
-            _sessions.TryRemove(id, out _);
+            var now = DateTimeOffset.UtcNow;
+            var queuedSessions = _sessionOrder.Count;
+
+            // Remove expired entries and compact the queue without allocating a snapshot.
+            for (var index = 0; index < queuedSessions; index++)
+            {
+                var sessionId = _sessionOrder.Dequeue();
+                if (!_sessions.TryGetValue(sessionId, out var session))
+                {
+                    continue;
+                }
+
+                if (session.ExpiresAt < now)
+                {
+                    _sessions.TryRemove(sessionId, out _);
+                    continue;
+                }
+
+                _sessionOrder.Enqueue(sessionId);
+            }
         }
     }
 
