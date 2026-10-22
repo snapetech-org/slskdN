@@ -67,6 +67,9 @@ for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
     for job in build nix-smoke; do
       job_block="$(sed -n "/^  $job:/,/^  [A-Za-z0-9_-]*:/p" "$workflow")"
       if [[ "$job_block" != *"ng-shared-main-jit"* ||
+            "$job_block" != *"ng-shared-main-slskdn"* ||
+            "$job_block" != *"ng-main-run-{0}"* ||
+            "$job_block" != *"github.run_id"* ||
             "$job_block" != *"github.event_name == 'push'"* ||
             "$job_block" != *"github.event_name == 'workflow_dispatch'"* ||
             "$job_block" != *"github.ref == 'refs/heads/main'"* ||

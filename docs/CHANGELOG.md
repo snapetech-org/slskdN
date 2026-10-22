@@ -22,6 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
 - Trusted main-branch builds and security scans now use the capacity-guarded shared Linux runner pool; fork pull requests remain on isolated runners.
 - CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.
 - Fix the Apple Sign In temporary cookie setup so the server builds with the required cross-site callback policy.
