@@ -121,14 +121,15 @@ expect_literal .github/workflows/windows-smoke.yml 'run: dotnet test slskd.sln -
 for workflow in .github/workflows/build-on-tag.yml; do
     expect_literal "$workflow" 'sudo apt-get install -y jq ripgrep'
 done
-for workflow in \
-    .github/workflows/ci.yml \
-    .github/workflows/local-identity-leaks.yml; do
+for workflow in .github/workflows/ci.yml; do
     expect_literal "$workflow" 'if ! command -v rg >/dev/null 2>&1; then'
     expect_literal "$workflow" 'sudo apt-get install --yes ripgrep'
     expect_literal "$workflow" 'command -v jq'
     expect_literal "$workflow" 'command -v rg'
 done
+expect_literal .github/workflows/local-identity-leaks.yml 'run: command -v python3'
+expect_literal .github/workflows/local-identity-leaks.yml 'run: bash scripts/check-local-identity-leaks.sh'
+reject_literal .github/workflows/local-identity-leaks.yml 'sudo apt-get install'
 expect_literal packaging/scripts/run-release-gate.sh 'bash scripts/check-release-branch-sync.sh'
 expect_literal packaging/scripts/run-release-gate.sh 'bash packaging/scripts/validate-packaging-metadata.sh'
 expect_literal packaging/scripts/run-release-gate.sh 'python3 scripts/test_release_notes.py'
