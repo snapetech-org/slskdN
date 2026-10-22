@@ -22,6 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.
 - Fix the Apple Sign In temporary cookie setup so the server builds with the required cross-site callback policy.
 - AcoustID lookups use each track's measured duration, improving matches for longer recordings while keeping metadata processing responsive when ffprobe stalls.
 

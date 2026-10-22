@@ -1,8 +1,9 @@
 name: CI
 on:
   push:
-    # Only build on version tags, not on every push to main
-    # build-main-* tags are handled by build-on-tag.yml
+    branches: [ main ]
+    # Version tags trigger release builds; build-main-* tags are handled by
+    # build-on-tag.yml.
     tags:
       - "[0-9]*.[0-9]*.[0-9]*"
       - "[0-9]*.[0-9]*.[0-9]*-slskdn.*"
@@ -11,8 +12,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: ${{ github.workflow }}-${{ github.run_id }}-${{ github.run_attempt }}
+  cancel-in-progress: false
 
 env:
   DOTNET_VERSION: '10.0.402'
@@ -126,11 +127,14 @@ jobs:
 
       - name: Changelog Discipline Check
         if: github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_SHA: ${{ github.sha }}
         run: |
           bash scripts/validate-changelog-entry.sh \
             range \
-            "origin/${{ github.base_ref }}" \
-            "${{ github.sha }}"
+            "origin/${BASE_REF}" \
+            "${HEAD_SHA}"
 
       - name: Release Gate
         env:
