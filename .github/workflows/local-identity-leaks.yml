@@ -1,32 +1,74 @@
 name: Local Identity Leak Check
 
 on:
+  pull_request:
   push:
     branches: [main]
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.run_id }}
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
 
 jobs:
-  local-identity-leaks:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+  pull-request-scan:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - name: Checkout
+      - name: Checkout pull request content
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: source
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Checkout trusted scanner
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: scanner
+          sparse-checkout: |
+            scripts/check-local-identity-leaks.sh
+            scripts/install-scanner-tools.sh
+          persist-credentials: false
+
+      - name: Install trusted scanner tools
+        run: bash scanner/scripts/install-scanner-tools.sh
+
+      - name: Check pull request content with trusted scanner
+        env:
+          LOCAL_IDENTITY_DENYLIST: ${{ secrets.LOCAL_IDENTITY_DENYLIST }}
+          LOCAL_IDENTITY_SCAN_ROOT: ${{ github.workspace }}/source
+          LOCAL_IDENTITY_SCAN_COMMITS: "1"
+          LOCAL_IDENTITY_SCAN_COMMIT_COUNT: ${{ github.event.pull_request.commits }}
+        run: bash scanner/scripts/check-local-identity-leaks.sh
+
+  trusted-ref-scan:
+    if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')) }}
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) || 'ubuntu-latest' }}
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout trusted ref
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Verify scanner runtime
         run: command -v python3
 
-      - name: Check release-facing text
+      - name: Check release-facing text on trusted refs
         env:
           LOCAL_IDENTITY_DENYLIST: ${{ secrets.LOCAL_IDENTITY_DENYLIST }}
           LOCAL_IDENTITY_SCAN_COMMITS: "1"
+          LOCAL_IDENTITY_SCAN_BASE: ${{ github.event_name == 'push' && github.event.before || '' }}
+          LOCAL_IDENTITY_SCAN_COMMIT_COUNT: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
         run: bash scripts/check-local-identity-leaks.sh
