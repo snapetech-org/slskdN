@@ -22,6 +22,7 @@ public sealed class ProbabilisticVerification : IDisposable
 {
     private readonly ILogger<ProbabilisticVerification> _logger;
     private readonly ConcurrentDictionary<string, VerificationSession> _sessions = new();
+    private readonly Queue<string> _sessionOrder = new(MaxSessions);
     private readonly Timer _cleanupTimer;
 
     /// <summary>
@@ -99,25 +100,18 @@ public sealed class ProbabilisticVerification : IDisposable
             ExpiresAt = DateTimeOffset.UtcNow.Add(SessionTtl),
         };
 
-        // Enforce max size
-        if (_sessions.Count >= MaxSessions)
+        // Keep eviction O(1) and serialize the count check with insertion so
+        // concurrent starts cannot exceed the session cap.
+        lock (_sessionOrder)
         {
-            VerificationSession? oldest = null;
-            foreach (var pair in _sessions)
+            while (_sessions.Count >= MaxSessions && _sessionOrder.TryDequeue(out var oldestSessionId))
             {
-                if (oldest == null || pair.Value.CreatedAt < oldest.CreatedAt)
-                {
-                    oldest = pair.Value;
-                }
+                _sessions.TryRemove(oldestSessionId, out _);
             }
 
-            if (oldest != null)
-            {
-                _sessions.TryRemove(oldest.Id, out _);
-            }
+            _sessions[sessionId] = session;
+            _sessionOrder.Enqueue(sessionId);
         }
-
-        _sessions[sessionId] = session;
 
         _logger.LogDebug(
             "Started verification session {Id}: {Selected}/{Total} chunks selected ({Rate:P0})",
@@ -428,14 +422,24 @@ public sealed class ProbabilisticVerification : IDisposable
     private void CleanupExpired(object? state)
     {
         var now = DateTimeOffset.UtcNow;
-        var toRemove = _sessions
-            .Where(kvp => kvp.Value.ExpiresAt < now)
-            .Select(kvp => kvp.Key)
-            .ToList();
-
-        foreach (var id in toRemove)
+        lock (_sessionOrder)
         {
-            _sessions.TryRemove(id, out _);
+            while (_sessionOrder.TryPeek(out var id))
+            {
+                if (!_sessions.TryGetValue(id, out var session))
+                {
+                    _sessionOrder.Dequeue();
+                    continue;
+                }
+
+                if (session.ExpiresAt >= now)
+                {
+                    break;
+                }
+
+                _sessionOrder.Dequeue();
+                _sessions.TryRemove(id, out _);
+            }
         }
     }
 
