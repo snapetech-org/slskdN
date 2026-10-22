@@ -10,7 +10,6 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-  WINGETCREATE_GITHUB_TOKEN: ${{ secrets.WINGETCREATE_GITHUB_TOKEN }}
 
 permissions:
   contents: read
@@ -24,11 +23,14 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Require Winget token
-        if: ${{ env.WINGETCREATE_GITHUB_TOKEN == '' }}
+        env:
+          WINGETCREATE_GITHUB_TOKEN: ${{ secrets.WINGETCREATE_GITHUB_TOKEN }}
         shell: pwsh
         run: |
-          Write-Error "WINGETCREATE_GITHUB_TOKEN is not configured; Winget submission cannot open a PR against microsoft/winget-pkgs"
-          exit 1
+          if ([string]::IsNullOrWhiteSpace($env:WINGETCREATE_GITHUB_TOKEN)) {
+            Write-Error "WINGETCREATE_GITHUB_TOKEN is not configured; Winget submission cannot open a PR against microsoft/winget-pkgs"
+            exit 1
+          }
 
       - name: Download wingetcreate
         shell: pwsh
@@ -40,24 +42,33 @@ jobs:
       - name: Download release artifact
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ inputs.version }}
+          REPOSITORY: ${{ github.repository }}
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          gh release download "${{ inputs.version }}" `
-            --repo ${{ github.repository }} `
+          gh release download "$env:RELEASE_VERSION" `
+            --repo "$env:REPOSITORY" `
             --pattern "slskdn-main-win-x64.zip"
 
       - name: Prepare stable manifests
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+          REPOSITORY: ${{ github.repository }}
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $ReleaseVersion = "${{ inputs.version }}"
+          $ReleaseVersion = $env:RELEASE_VERSION
+          if ($ReleaseVersion -notmatch '^\d{10}-slskdn\.\d+$') {
+            Write-Error "Expected stable release version like 2026042900-slskdn.202"
+            exit 1
+          }
           if ($ReleaseVersion -match '^(\d{10})-slskdn\.(\d+)$') {
             $WingetVersion = "$($Matches[1]).$($Matches[2])"
           } else {
             $WingetVersion = $ReleaseVersion.Replace('-', '.')
           }
-          $InstallerUrl = "https://github.com/${{ github.repository }}/releases/download/$ReleaseVersion/slskdn-main-win-x64.zip"
+          $InstallerUrl = "https://github.com/$env:REPOSITORY/releases/download/$ReleaseVersion/slskdn-main-win-x64.zip"
           $InstallerSha = (Get-FileHash slskdn-main-win-x64.zip -Algorithm SHA256).Hash.ToLowerInvariant()
 
           bash packaging/scripts/update-winget-manifests.sh `
@@ -75,10 +86,14 @@ jobs:
           "WINGET_SUBMIT_PATH=$WingetSubmitPath" | Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Submit manifests to winget-pkgs
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+          REPOSITORY: ${{ github.repository }}
+          WINGETCREATE_GITHUB_TOKEN: ${{ secrets.WINGETCREATE_GITHUB_TOKEN }}
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $ReleaseVersion = "${{ inputs.version }}"
+          $ReleaseVersion = $env:RELEASE_VERSION
           if ($ReleaseVersion -notmatch '^\d{10}-slskdn\.\d+$') {
             Write-Error "Expected stable release version like 2026042900-slskdn.202, got '$ReleaseVersion'"
             exit 1
@@ -89,7 +104,7 @@ jobs:
           } else {
             $WingetVersion = $ReleaseVersion.Replace('-', '.')
           }
-          $InstallerUrl = "https://github.com/${{ github.repository }}/releases/download/$ReleaseVersion/slskdn-main-win-x64.zip"
+          $InstallerUrl = "https://github.com/$env:REPOSITORY/releases/download/$ReleaseVersion/slskdn-main-win-x64.zip"
 
           Write-Host "Submitting Winget update for snapetech.slskdn"
           Write-Host "Release version: $ReleaseVersion"

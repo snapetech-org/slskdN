@@ -858,6 +858,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@release{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers are interpolated; release values are bound below.
                 cmd.CommandText = $"""
                     SELECT release_id, track_position, recording_id, title, artist, duration_ms, isrc
                     FROM AlbumTargetTracks
@@ -985,6 +987,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@release{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     SELECT release_id, discogs_release_id, title, artist, metadata_release_date, metadata_country, metadata_label, metadata_status, created_at
                     FROM AlbumTargets
@@ -1054,6 +1058,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@recording{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     SELECT *
                     FROM HashDb
@@ -1096,6 +1102,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@recording{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     SELECT TRIM(musicbrainz_id)
                     FROM HashDb
@@ -1234,6 +1242,8 @@ namespace slskd.HashDb
                 using var trackCmd = conn.CreateCommand();
                 var values = batch.Select((_, index) =>
                     $"(@release_id, @track_position{index}, @recording_id{index}, @title{index}, @artist{index}, @duration_ms{index}, @isrc{index})");
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 trackCmd.CommandText = $"""
                     INSERT INTO AlbumTargetTracks (
                         release_id,
@@ -1508,6 +1518,8 @@ namespace slskd.HashDb
                 using var cmd = connection.CreateCommand();
                 cmd.Transaction = transaction;
                 var values = batch.Select((_, index) => $"(@peer_id{index}, @last_seen)");
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     INSERT OR IGNORE INTO Peers (peer_id, last_seen)
                     VALUES {string.Join(", ", values)}
@@ -1535,6 +1547,8 @@ namespace slskd.HashDb
             cmd.Transaction = transaction;
             var values = batch.Select((_, index) =>
                 $"(@file_id{index}, @peer_id{index}, @path{index}, @size{index}, @discovered_at{index}, @hash_status{index}, @hash_value{index}, @hash_source{index}, @flac_audio_md5{index}, @sample_rate{index}, @channels{index}, @bit_depth{index}, @duration_samples{index})");
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $"""
                 INSERT INTO FlacInventory
                     (file_id, peer_id, path, size, discovered_at, hash_status, hash_value, hash_source, flac_audio_md5, sample_rate, channels, bit_depth, duration_samples)
@@ -1800,6 +1814,8 @@ namespace slskd.HashDb
             {
                 using var command = connection.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@flac_key{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 command.CommandText = $"""
                     SELECT *
                     FROM HashDb
@@ -2058,6 +2074,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@issue{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"SELECT * FROM LibraryHealthIssues WHERE issue_id IN ({string.Join(", ", parameters)})";
                 for (var index = 0; index < batch.Length; index++)
                 {
@@ -2150,6 +2168,7 @@ namespace slskd.HashDb
                 cmd.Parameters.AddWithValue("@path", $"{libraryPath}%");
             }
 
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $@"
                 SELECT
                     COUNT(*),
@@ -2182,6 +2201,7 @@ namespace slskd.HashDb
                 cmd.Parameters.AddWithValue("@path", $"{libraryPath}%");
             }
 
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $@"
                 SELECT type, severity, COUNT(*)
                 FROM LibraryHealthIssues{where}
@@ -2331,6 +2351,7 @@ namespace slskd.HashDb
                 cmd.Parameters.AddWithValue("@path", $"{libraryPath}%");
             }
 
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $@"
                 WITH normalized AS (
                     SELECT
@@ -2384,6 +2405,8 @@ namespace slskd.HashDb
             }
 
             cmd.Parameters.AddWithValue("@artistLimit", Math.Clamp(artistLimit, 1, 100));
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $@"
                 WITH filtered AS MATERIALIZED (
                     SELECT type, severity, status, artist
@@ -2683,6 +2706,8 @@ namespace slskd.HashDb
                 using var cmd = conn.CreateCommand();
                 cmd.Transaction = transaction;
                 var parameters = batch.Select((_, index) => $"@issue{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     UPDATE LibraryHealthIssues
                     SET status = @status,
@@ -3181,6 +3206,8 @@ namespace slskd.HashDb
                 command.Transaction = transaction;
                 var values = batch.Select((_, index) =>
                     $"(@flac_key{index}, @quality_score{index}, @transcode_suspect{index}, @transcode_reason{index}, @analyzer_version{index}, @last_updated_at)");
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 command.CommandText = $"""
                     WITH updates (
                         flac_key,
@@ -3230,6 +3257,8 @@ namespace slskd.HashDb
             var list = new List<AudioVariant>();
             using var conn = GetConnection();
             using var cmd = conn.CreateCommand();
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $"""
                 WITH source AS (
                     SELECT
@@ -3331,6 +3360,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@recording{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     WITH source AS (
                         SELECT
@@ -3543,6 +3574,8 @@ namespace slskd.HashDb
                 "matches_codec_profile",
                 CodecProfile.MatchesKey);
             using var cmd = conn.CreateCommand();
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $"""
                 WITH matching_profiles AS (
                     SELECT codec, sample_rate_hz, bit_depth, channels
@@ -3683,6 +3716,8 @@ namespace slskd.HashDb
                  @canonicality_score{index},
                  @last_updated{index})
                 """);
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $"""
                 INSERT INTO CanonicalStats (
                     id,
@@ -4068,6 +4103,8 @@ namespace slskd.HashDb
             var unionSql = string.Join(" UNION ALL ", selects);
             using var conn = GetConnection();
             using var countCommand = conn.CreateCommand();
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             countCommand.CommandText = $"SELECT COUNT(*) FROM ({unionSql})";
             if (knownStatus)
             {
@@ -4091,6 +4128,8 @@ namespace slskd.HashDb
             };
 
             using var pageCommand = conn.CreateCommand();
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             pageCommand.CommandText = $"""
                 SELECT
                     job_id,
@@ -4458,6 +4497,8 @@ namespace slskd.HashDb
                 using var cmd = connection.CreateCommand();
                 cmd.Transaction = transaction;
                 var values = batch.Select((_, index) => $"(@content_id{index}, @hits{index}, @now)");
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     INSERT INTO WarmCachePopularity (content_id, hits, last_updated)
                     VALUES {string.Join(", ", values)}
@@ -4941,16 +4982,27 @@ namespace slskd.HashDb
             IReadOnlyList<DiscographyReleaseJobStatus> releases,
             CancellationToken cancellationToken)
         {
+            var validIdentifierPair =
+                (tableName == "DiscographyReleaseJobs" && jobIdColumn == "discography_job_id") ||
+                (tableName == "LabelCrateReleaseJobs" && jobIdColumn == "label_crate_job_id");
+            if (!validIdentifierPair)
+            {
+                throw new ArgumentException("Unsupported release-job table identifiers.", nameof(tableName));
+            }
+
+            var quotedTableName = QuoteSqliteIdentifier(tableName);
+            var quotedJobIdColumn = QuoteSqliteIdentifier(jobIdColumn);
             var commandCount = 0;
             foreach (var batch in releases.Chunk(ReleaseJobUpsertBatchSize))
             {
                 using var cmd = connection.CreateCommand();
                 cmd.Transaction = transaction;
                 var values = batch.Select((_, index) => $"(@job_id, @release_id{index}, @status{index})");
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- identifiers are restricted to two internal call-site pairs and quoted; row data is bound.
                 cmd.CommandText = $"""
-                    INSERT INTO {tableName} ({jobIdColumn}, release_id, status)
+                    INSERT INTO {quotedTableName} ({quotedJobIdColumn}, release_id, status)
                     VALUES {string.Join(", ", values)}
-                    ON CONFLICT({jobIdColumn}, release_id) DO UPDATE SET
+                    ON CONFLICT({quotedJobIdColumn}, release_id) DO UPDATE SET
                         status = excluded.status
                     """;
                 cmd.Parameters.AddWithValue("@job_id", jobId);
@@ -4966,6 +5018,9 @@ namespace slskd.HashDb
 
             return commandCount;
         }
+
+        private static string QuoteSqliteIdentifier(string identifier)
+            => "\"" + identifier.Replace("\"", "\"\"", StringComparison.Ordinal) + "\"";
 
         /// <inheritdoc/>
         public Task SetLabelCrateReleaseJobStatusAsync(string jobId, string releaseId, JobStatus status, CancellationToken cancellationToken = default)
@@ -5147,6 +5202,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@key{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"""
                     SELECT flac_key, variant_id, byte_hash, use_count, last_updated_at
                     FROM HashDb
@@ -5240,6 +5297,8 @@ namespace slskd.HashDb
                     cmd.Transaction = transaction;
                     var values = batch.Select((_, index) =>
                         $"(@flac_key{index}, @byte_hash{index}, @size{index}, @meta_flags{index}, @now, @now, @seq_id{index}, 1)");
+
+                    // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                     cmd.CommandText = $"""
                         INSERT INTO HashDb
                             (flac_key, byte_hash, size, meta_flags, first_seen_at, last_updated_at, seq_id, use_count)
@@ -5417,6 +5476,8 @@ namespace slskd.HashDb
             using var conn = GetConnection();
             using var cmd = conn.CreateCommand();
             var parameters = normalizedPeerIds.Select((_, index) => $"@peer_id_{index}").ToArray();
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
             cmd.CommandText = $@"
                 SELECT peer_id,
                        CASE WHEN backfill_reset_date = @today THEN backfills_today ELSE 0 END
@@ -6027,6 +6088,8 @@ namespace slskd.HashDb
             {
                 using var cmd = conn.CreateCommand();
                 var parameters = batch.Select((_, index) => $"@peer_id{index}").ToArray();
+
+                // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated parameter markers or fixed internal SQL fragments are interpolated; runtime values are bound.
                 cmd.CommandText = $"SELECT * FROM PeerMetrics WHERE peer_id IN ({string.Join(", ", parameters)})";
                 for (var index = 0; index < batch.Length; index++)
                 {

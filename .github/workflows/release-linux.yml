@@ -84,23 +84,33 @@ jobs:
           cp -r src/web/build/* publish-linux-${{ matrix.arch }}/wwwroot/
 
       - name: Verify Publish Output
+        env:
+          ARCH: ${{ matrix.arch }}
         run: |
-          test -x publish-linux-${{ matrix.arch }}/slskd || { echo 'missing slskd apphost'; exit 1; }
-          test -x publish-linux-${{ matrix.arch }}/vpn-agent/slskdN-vpn-agent || { echo 'missing VPN helper'; exit 1; }
-          test -f publish-linux-${{ matrix.arch }}/vpn-agent/systemd/slskdN-vpn-ingress.service || { echo 'missing VPN helper systemd units'; exit 1; }
-          find publish-linux-${{ matrix.arch }} -name 'libcoreclrtraceptprovider.so' -print || true
+          test -x "publish-linux-${ARCH}/slskd" || { echo 'missing slskd apphost'; exit 1; }
+          test -x "publish-linux-${ARCH}/vpn-agent/slskdN-vpn-agent" || { echo 'missing VPN helper'; exit 1; }
+          test -f "publish-linux-${ARCH}/vpn-agent/systemd/slskdN-vpn-ingress.service" || { echo 'missing VPN helper systemd units'; exit 1; }
+          find "publish-linux-${ARCH}" -name 'libcoreclrtraceptprovider.so' -print || true
 
       - name: Get Version
         id: version
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          TAG=${{ github.event.inputs.tag || github.ref_name }}
-          echo "tag=${TAG}" >> $GITHUB_OUTPUT
-          echo "version=${TAG}" >> $GITHUB_OUTPUT
+          TAG="${INPUT_TAG:-$REF_NAME}"
+          if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
+            echo "Invalid release tag" >&2
+            exit 1
+          fi
+          printf 'tag=%s\nversion=%s\n' "$TAG" "$TAG" >> "$GITHUB_OUTPUT"
 
       - name: Create Zip
+        env:
+          ARCH: ${{ matrix.arch }}
         run: |
-          cd publish-linux-${{ matrix.arch }}
-          zip -r ../slskdn-main-linux-glibc-${{ matrix.arch }}.zip .
+          cd "publish-linux-${ARCH}"
+          zip -r "../slskdn-main-linux-glibc-${ARCH}.zip" .
 
       - name: Upload to Release
         if: github.event_name == 'release'
@@ -128,18 +138,25 @@ jobs:
 
       - name: Get Version
         id: version
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
           # Get tag from either workflow_dispatch input or release ref
-          TAG=${{ github.event.inputs.tag || github.ref_name }}
+          TAG="${INPUT_TAG:-$REF_NAME}"
+          if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
+            echo "Invalid release tag" >&2
+            exit 1
+          fi
           # Convert 0.24.1-slskdn.3 to 0.24.1.slskdn.3 for PKGBUILD
-          PKGVER=$(echo $TAG | sed 's/-slskdn/.slskdn/')
-          echo "tag=${TAG}" >> $GITHUB_OUTPUT
-          echo "pkgver=${PKGVER}" >> $GITHUB_OUTPUT
+          PKGVER="${TAG//-slskdn/.slskdn}"
+          printf 'tag=%s\npkgver=%s\n' "$TAG" "$PKGVER" >> "$GITHUB_OUTPUT"
 
       - name: Wait for Linux Release Asset
         id: wait_for_linux_asset
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           CURL_AUTH_ARGS=()
           if [ -n "$GH_TOKEN" ]; then
@@ -149,12 +166,12 @@ jobs:
           ASSET_NAMES=(
             "slskdn-main-linux-glibc-x64.zip"
             "slskdn-main-linux-x64.zip"
-            "slskdn-${{ steps.version.outputs.tag }}-linux-x64.zip"
+            "slskdn-${RELEASE_TAG}-linux-x64.zip"
           )
 
           for attempt in {1..20}; do
             for ASSET_NAME in "${ASSET_NAMES[@]}"; do
-              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
+              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${RELEASE_TAG}/${ASSET_NAME}"
               echo "Attempt $attempt: checking ${ASSET_NAME}..."
 
               if curl -fsSL "${CURL_AUTH_ARGS[@]}" -H "Accept: application/octet-stream" "$ASSET_URL" -o release-linux-x64.zip; then
@@ -173,6 +190,8 @@ jobs:
           done
 
       - name: Update PKGBUILDs
+        env:
+          PKGVER: ${{ steps.version.outputs.pkgver }}
         run: |
           cd packaging/aur
           # Compute hashes for static files (these never change between releases)
@@ -187,12 +206,12 @@ jobs:
 
           # Update binary package PKGBUILD
           # source=() order: zip slskd.service slskd.yml slskd.sysusers slskd.tmpfiles
-          sed -i "s/^pkgver=.*/pkgver=${{ steps.version.outputs.pkgver }}/" PKGBUILD-bin
+          sed -i "s/^pkgver=.*/pkgver=${PKGVER}/" PKGBUILD-bin
           # keep binary archive hash on SKIP since release assets are mutable and can be replaced in-place
           sed -i "s/^sha256sums=.*/sha256sums=('SKIP' '$SVC_SUM' '$YML_SUM' '$SYS_SUM' '$TMP_SUM')/" PKGBUILD-bin
 
           # Update source package PKGBUILD (tarball is SKIP, static file hashes are the same)
-          sed -i "s/^pkgver=.*/pkgver=${{ steps.version.outputs.pkgver }}/" PKGBUILD
+          sed -i "s/^pkgver=.*/pkgver=${PKGVER}/" PKGBUILD
           sed -i "s/^sha256sums=.*/sha256sums=('SKIP' '$SVC_SUM' '$YML_SUM' '$SYS_SUM' '$TMP_SUM')/" PKGBUILD
 
           bash ../scripts/validate-aur-pkgbuild-hashes.sh PKGBUILD PKGBUILD-bin
@@ -200,6 +219,7 @@ jobs:
       - name: Setup and Push to AUR
         env:
           AUR_SSH_KEY: ${{ secrets.AUR_SSH_KEY }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           if [ -z "$AUR_SSH_KEY" ]; then
             echo "⚠️ AUR_SSH_KEY not configured. Skipping AUR push."
@@ -254,7 +274,7 @@ jobs:
           cp ../packaging/aur/slskd.install .
           generate_srcinfo PKGBUILD > .SRCINFO
           git add -A
-          bash ../packaging/scripts/push-aur-repo.sh . slskdn-bin "Update to ${{ steps.version.outputs.tag }}"
+          bash ../packaging/scripts/push-aur-repo.sh . slskdn-bin "Update to ${RELEASE_TAG}"
           cd ..
           
           # Clone and update AUR repo (slskdn source)
@@ -268,4 +288,4 @@ jobs:
           cp ../packaging/aur/slskd.install .
           generate_srcinfo PKGBUILD > .SRCINFO
           git add -A
-          bash ../packaging/scripts/push-aur-repo.sh . slskdn "Update to ${{ steps.version.outputs.tag }}"
+          bash ../packaging/scripts/push-aur-repo.sh . slskdn "Update to ${RELEASE_TAG}"

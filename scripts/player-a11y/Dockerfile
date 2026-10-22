@@ -20,4 +20,6 @@ RUN apt-get update \
     x11-xkb-utils \
     && rm -rf /var/lib/apt/lists/*
 
+USER pwuser
+
 CMD ["sleep", "infinity"]

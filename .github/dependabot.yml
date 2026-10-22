@@ -9,6 +9,8 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 10
     groups:
       npm-nonbreaking:
@@ -30,6 +32,8 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 10
     groups:
       nuget-nonbreaking:
@@ -54,6 +58,8 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 5
     exclude-paths:
       - ".github/workflows/check-upstream-access.yml"

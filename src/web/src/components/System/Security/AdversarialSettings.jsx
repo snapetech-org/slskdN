@@ -149,92 +149,107 @@ const AdversarialSettings = () => {
   };
 
   const FORBIDDEN_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+  const getSafePathSegments = (path) => {
+    if (typeof path !== 'string' || path.length === 0 || path.length > 256) return null;
+
+    const keys = path.split('.');
+    if (
+      keys.some(
+        (key) =>
+          key.length === 0 ||
+          key.length > 64 ||
+          !/^[A-Za-z0-9_-]+$/.test(key) ||
+          FORBIDDEN_KEYS.has(key)
+      )
+    ) {
+      return null;
+    }
+
+    return keys;
+  };
+
+  const cloneSettingsPath = (previous, keys) => {
+    if (!previous || typeof previous !== 'object' || Array.isArray(previous)) return null;
+
+    const root = { ...previous };
+    let source = previous;
+    let parent = root;
+
+    for (let index = 0; index < keys.length - 1; index++) {
+      const key = keys[index];
+      const existing = Object.hasOwn(source, key) ? source[key] : undefined;
+      const child =
+        existing && typeof existing === 'object' && !Array.isArray(existing)
+          ? { ...existing }
+          : {};
+      parent[key] = child;
+      source = existing && typeof existing === 'object' && !Array.isArray(existing) ? existing : {};
+      parent = child;
+    }
+
+    return { root, parent };
+  };
 
   const updateSetting = (path, value) => {
+    const keys = getSafePathSegments(path);
+    if (!keys) return;
+
     setSettings((previous) => {
-      const newSettings = { ...previous };
-      const keys = path.split('.');
-
-      if (keys.some((k) => FORBIDDEN_KEYS.has(k))) return newSettings;
-
-      let current = newSettings;
-
-      for (let index = 0; index < keys.length - 1; index++) {
-        if (!Object.hasOwn(current, keys[index]) || typeof current[keys[index]] !== 'object') {
-          current[keys[index]] = {};
-        }
-        current = current[keys[index]];
-      }
-
-      current[keys[keys.length - 1]] = value;
-      return newSettings;
+      const cloned = cloneSettingsPath(previous, keys);
+      if (!cloned) return previous;
+      cloned.parent[keys[keys.length - 1]] = value;
+      return cloned.root;
     });
     setHasChanges(true);
   };
 
   const updateArray = (path, index, value) => {
+    const keys = getSafePathSegments(path);
+    if (!keys || !Number.isSafeInteger(index) || index < 0) return;
+
     setSettings((previous) => {
-      const newSettings = { ...previous };
-      const keys = path.split('.');
-
-      if (keys.some((k) => FORBIDDEN_KEYS.has(k))) return newSettings;
-
-      let current = newSettings;
-
-      for (let index_ = 0; index_ < keys.length - 1; index_++) {
-        if (!Object.hasOwn(current, keys[index_]) || typeof current[keys[index_]] !== 'object') {
-          current[keys[index_]] = {};
-        }
-        current = current[keys[index_]];
-      }
-
-      if (!Array.isArray(current[keys[keys.length - 1]])) {
-        current[keys[keys.length - 1]] = [];
-      }
-
-      current[keys[keys.length - 1]][index] = value;
-      return newSettings;
+      const cloned = cloneSettingsPath(previous, keys);
+      if (!cloned) return previous;
+      const key = keys[keys.length - 1];
+      const values = Array.isArray(cloned.parent[key]) ? [...cloned.parent[key]] : [];
+      values[index] = value;
+      cloned.parent[key] = values;
+      return cloned.root;
     });
     setHasChanges(true);
   };
 
   const addArrayItem = (path) => {
+    const keys = getSafePathSegments(path);
+    if (!keys) return;
+
     setSettings((previous) => {
-      const newSettings = { ...previous };
-      const keys = path.split('.');
-      let current = newSettings;
-
-      for (let index = 0; index < keys.length - 1; index++) {
-        if (!current[keys[index]]) current[keys[index]] = {};
-        current = current[keys[index]];
-      }
-
-      if (!Array.isArray(current[keys[keys.length - 1]])) {
-        current[keys[keys.length - 1]] = [];
-      }
-
-      current[keys[keys.length - 1]].push('');
-      return newSettings;
+      const cloned = cloneSettingsPath(previous, keys);
+      if (!cloned) return previous;
+      const key = keys[keys.length - 1];
+      const values = Array.isArray(cloned.parent[key]) ? [...cloned.parent[key]] : [];
+      values.push('');
+      cloned.parent[key] = values;
+      return cloned.root;
     });
     setHasChanges(true);
   };
 
   const removeArrayItem = (path, index) => {
+    const keys = getSafePathSegments(path);
+    if (!keys || !Number.isSafeInteger(index) || index < 0) return;
+
     setSettings((previous) => {
-      const newSettings = { ...previous };
-      const keys = path.split('.');
-      let current = newSettings;
-
-      for (let index_ = 0; index_ < keys.length - 1; index_++) {
-        if (!current[keys[index_]]) current[keys[index_]] = {};
-        current = current[keys[index_]];
+      const cloned = cloneSettingsPath(previous, keys);
+      if (!cloned) return previous;
+      const key = keys[keys.length - 1];
+      if (!Array.isArray(cloned.parent[key]) || index >= cloned.parent[key].length) {
+        return cloned.root;
       }
-
-      if (Array.isArray(current[keys[keys.length - 1]])) {
-        current[keys[keys.length - 1]].splice(index, 1);
-      }
-
-      return newSettings;
+      const values = [...cloned.parent[key]];
+      values.splice(index, 1);
+      cloned.parent[key] = values;
+      return cloned.root;
     });
     setHasChanges(true);
   };

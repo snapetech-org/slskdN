@@ -272,12 +272,24 @@ public class HashDbOptimizationService : IHashDbOptimizationService
                 WHERE type='table' AND name IN ('HashDb', 'FlacInventory', 'Peers')";
 
             var tableStats = new Dictionary<string, long>();
+            var knownTables = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "HashDb",
+                "FlacInventory",
+                "Peers",
+            };
+
             await using var sizeReader = await sizeCmd.ExecuteReaderAsync(cancellationToken).ConfigureAwait(false);
             while (await sizeReader.ReadAsync(cancellationToken).ConfigureAwait(false))
             {
                 var tableName = sizeReader.GetString(0);
+                if (!knownTables.Contains(tableName))
+                {
+                    continue;
+                }
+
                 using var countCmd = conn.CreateCommand();
-                countCmd.CommandText = $"SELECT COUNT(*) FROM {tableName}";
+                countCmd.CommandText = $"SELECT COUNT(*) FROM \"{tableName}\""; // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName is checked against a fixed allowlist and quoted as a SQLite identifier.
                 var count = (long)(await countCmd.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false) ?? 0L);
                 tableStats[tableName] = count;
             }

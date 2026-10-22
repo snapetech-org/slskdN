@@ -66,7 +66,7 @@ Next, generate two secrets with length between 16 and 255 characters; one to use
 ./slskd --generate-secret 32
 ```
 
-For this example we'll use `9tWy5c3NrmekKVWLQXBztz0hY7rNGlj1tGMfvHKmU1q` for the API key, and `BgI04SuVtsAYipxPHDpdxJsnVoPEeq4tKJeorWxr3Pj` for the shared secret.
+For this example, use `<API_KEY>` for the API key and `<RELAY_SECRET>` for the shared secret; replace both with freshly generated values.
 
 > Note: DO NOT copy/paste these values into your configuration! Use your own values, or you're opening yourself up to an attack!
 

@@ -17,6 +17,29 @@ using Xunit;
 
 public class WebServiceCollectionExtensionsTests
 {
+    [Theory]
+    [InlineData("/library")]
+    [InlineData("/library?next=/settings")]
+    [InlineData("/")]
+    public void IsSafeLocalRedirectUrl_accepts_local_paths(string url)
+    {
+        Assert.True(WebServiceCollectionExtensions.IsSafeLocalRedirectUrl(url));
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("relative/path")]
+    [InlineData("https://attacker.example")]
+    [InlineData("//attacker.example")]
+    [InlineData("/\\\\attacker.example")]
+    [InlineData("/safe\\\\..\\\\attacker.example")]
+    [InlineData("/safe\r\nLocation: https://attacker.example")]
+    public void IsSafeLocalRedirectUrl_rejects_external_or_malformed_paths(string? url)
+    {
+        Assert.False(WebServiceCollectionExtensions.IsSafeLocalRedirectUrl(url));
+    }
+
     [Fact]
     public void SelectAuthenticationScheme_uses_api_key_scheme_for_api_key_header()
     {

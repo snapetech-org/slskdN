@@ -49,4 +49,31 @@ public sealed class StartupFileSystemTests : IDisposable
                 File.GetUnixFileMode(result.Filename));
         }
     }
+
+    [Theory]
+    [InlineData("../outside.pfx")]
+    [InlineData("nested/certificate.pfx")]
+    [InlineData("nested\\certificate.pfx")]
+    public void GenerateX509Certificate_RejectsPathsOutsideApplicationDirectory(string filename)
+    {
+        Assert.Throws<ArgumentException>(() => StartupFileSystem.GenerateX509Certificate(
+            "slskdn-test",
+            _tempDir,
+            "EXAMPLE_CERTIFICATE_PASSWORD",
+            filename,
+            Log.Logger));
+    }
+
+    [Fact]
+    public void GenerateX509Certificate_RejectsRootedOutputPath()
+    {
+        var rootedPath = Path.Combine(Path.GetTempPath(), "outside-certificate.pfx");
+
+        Assert.Throws<ArgumentException>(() => StartupFileSystem.GenerateX509Certificate(
+            "slskdn-test",
+            _tempDir,
+            "EXAMPLE_CERTIFICATE_PASSWORD",
+            rootedPath,
+            Log.Logger));
+    }
 }

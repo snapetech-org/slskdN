@@ -96,6 +96,18 @@ public static class UserDataServiceCollectionExtensions
 
     private static void EnsureColumnExists(DbContext context, string tableName, string columnName, string columnType)
     {
+        var allowedColumns = tableName switch
+        {
+            "ShareGrants" => new[] { "OwnerEndpoint", "ShareToken" },
+            "CollectionItems" => new[] { "FileName", "Title", "Artist", "Album" },
+            _ => Array.Empty<string>(),
+        };
+
+        if (!allowedColumns.Contains(columnName, StringComparer.Ordinal) || columnType != "TEXT")
+        {
+            throw new ArgumentException("The requested user-data schema change is not supported.");
+        }
+
         var connection = context.Database.GetDbConnection();
         var closeConnection = connection.State != ConnectionState.Open;
         if (closeConnection)
@@ -106,7 +118,7 @@ public static class UserDataServiceCollectionExtensions
         try
         {
             using var schemaCommand = connection.CreateCommand();
-            schemaCommand.CommandText = $"PRAGMA table_info(\"{tableName}\")";
+            schemaCommand.CommandText = $"PRAGMA table_info(\"{tableName.Replace("\"", "\"\"", StringComparison.Ordinal)}\")"; // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName is selected from fixed internal migrations and quoted as a SQLite identifier.
             using var reader = schemaCommand.ExecuteReader();
             var columnExists = false;
             while (reader.Read())
@@ -122,7 +134,7 @@ public static class UserDataServiceCollectionExtensions
             if (!columnExists)
             {
                 using var migrationCommand = connection.CreateCommand();
-                migrationCommand.CommandText = $"ALTER TABLE \"{tableName}\" ADD COLUMN \"{columnName}\" {columnType}";
+                migrationCommand.CommandText = $"ALTER TABLE \"{tableName.Replace("\"", "\"\"", StringComparison.Ordinal)}\" ADD COLUMN \"{columnName.Replace("\"", "\"\"", StringComparison.Ordinal)}\" {columnType}"; // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- tableName and columnName are allowlisted, columnType is fixed to TEXT, and identifiers are quoted.
                 migrationCommand.ExecuteNonQuery();
             }
         }

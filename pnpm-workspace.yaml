@@ -2,6 +2,12 @@ packages:
   - 'src/web'
   - 'tests/e2e'
 
+# Delay newly published packages while registries and scanners surface
+# compromised releases, and reject releases with weaker publisher trust.
+minimumReleaseAge: 10080
+trustPolicy: no-downgrade
+blockExoticSubdeps: true
+
 onlyBuiltDependencies:
   - core-js
   - esbuild

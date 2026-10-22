@@ -393,7 +393,10 @@ public static class WebServiceCollectionExtensions
                         {
                             Log.Warning("OIDC sign-in denied (identity_not_admitted)");
                             context.HandleResponse();
-                            context.Response.Redirect($"{context.Request.PathBase}/?oidcFailed=true");
+                            var pathBase = GetSafeLocalPathBase(context.HttpContext);
+
+                            // codeql[cs/web/unvalidated-url-redirection] PathBase is validated as a local path above.
+                            context.Response.Redirect($"{pathBase}/?oidcFailed=true");
                             return Task.CompletedTask;
                         }
 
@@ -408,15 +411,19 @@ public static class WebServiceCollectionExtensions
                             context.HttpContext.RequestServices
                                 .GetRequiredService<ISecurityService>()
                                 .GenerateJwt(normalizedEmail, role, additionalClaims: extraClaims)).Token;
-                        var returnTo = context.Properties.RedirectUri;
-                        if (string.IsNullOrWhiteSpace(returnTo) || !returnTo.StartsWith("/", StringComparison.Ordinal) || returnTo.StartsWith("//", StringComparison.Ordinal))
+                        var pathBaseForFallback = GetSafeLocalPathBase(context.HttpContext);
+                        var fallbackRedirect = $"{pathBaseForFallback}/";
+                        var returnTo = context.Properties?.RedirectUri ?? string.Empty;
+                        if (!IsSafeLocalRedirectUrl(returnTo))
                         {
-                            returnTo = $"{context.Request.PathBase}/";
+                            returnTo = fallbackRedirect;
                         }
 
                         context.HandleResponse();
                         context.Response.Headers["Cache-Control"] = "no-store";
                         context.Response.Headers["Referrer-Policy"] = "no-referrer";
+
+                        // codeql[cs/web/unvalidated-url-redirection] returnTo is accepted only after IsSafeLocalRedirectUrl validation.
                         context.Response.Redirect($"{returnTo}#oidc_token={Uri.EscapeDataString(token)}");
                         return Task.CompletedTask;
                     };
@@ -425,7 +432,10 @@ public static class WebServiceCollectionExtensions
                     {
                         Log.Warning("OIDC sign-in failed (remote_failure)");
                         context.HandleResponse();
-                        context.Response.Redirect($"{context.Request.PathBase}/?oidcFailed=true");
+                        var pathBase = GetSafeLocalPathBase(context.HttpContext);
+
+                        // codeql[cs/web/unvalidated-url-redirection] PathBase is validated as a local path above.
+                        context.Response.Redirect($"{pathBase}/?oidcFailed=true");
                         return Task.CompletedTask;
                     };
                 })
@@ -705,6 +715,23 @@ public static class WebServiceCollectionExtensions
     private static bool IsAppleIssuer(string? issuerUrl)
     {
         return string.Equals(issuerUrl?.Trim(), "https://appleid.apple.com", StringComparison.Ordinal);
+    }
+
+    internal static bool IsSafeLocalRedirectUrl(string? url)
+    {
+        return !string.IsNullOrEmpty(url) &&
+               url[0] == '/' &&
+               (url.Length == 1 || (url[1] != '/' && url[1] != '\\')) &&
+               !url.Contains('\\') &&
+               !url.Any(char.IsControl);
+    }
+
+    private static string GetSafeLocalPathBase(HttpContext context)
+    {
+        var pathBase = context.Request.PathBase.Value;
+        return IsSafeLocalRedirectUrl(pathBase)
+            ? pathBase!.TrimEnd('/')
+            : string.Empty;
     }
 
     internal static string PromoteApiKeyToJwt(HttpContext context, string token)
