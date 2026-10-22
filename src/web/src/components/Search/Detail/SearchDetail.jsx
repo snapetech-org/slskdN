@@ -73,6 +73,11 @@ const sortDropdownOptions = [
     value: 'smart',
   },
   {
+    key: 'albumConsensus',
+    get text() { return interfaceText("Album Track Consensus (Most to Least)"); },
+    value: 'albumConsensus',
+  },
+  {
     key: 'uploadSpeed',
     get text() { return interfaceText("Upload Speed (Fastest to Slowest)"); },
     value: 'uploadSpeed',
@@ -436,6 +441,7 @@ const SearchDetail = ({
   const rankedAndFilteredResults = useMemo(() => {
     const sortOptions = {
       fileCount: { field: 'fileCount', order: 'desc' },
+      albumConsensus: { field: 'albumConsensusScore', order: 'desc' },
       queueLength: { field: 'queueLength', order: 'asc' },
       smart: { field: 'smartScore', order: 'desc' },
       uploadSpeed: { field: 'uploadSpeed', order: 'desc' },
@@ -445,7 +451,7 @@ const SearchDetail = ({
 
     const filters = parseFiltersFromString(resultFilters);
 
-    return results
+    const filteredResults = results
       .filter((r) => !hiddenResults.includes(r.username))
       .filter((r) => !(hideBlockedUsers && includesUsername(blockedUsers, r.username)))
       .map((response) => {
@@ -473,26 +479,24 @@ const SearchDetail = ({
       })
       .map((response) => filterResponse({ filters, response }))
       .filter((r) => r.fileCount + r.lockedFileCount > 0)
-      .filter((r) => !(hideNoFreeSlots && !r.hasFreeUploadSlot))
-      .map((r) =>
-        rankSearchResponses({
-          acquisitionProfile,
-          preferredConditions: filters,
-          responses: [r],
-          searchText: search.searchText,
-          userStats,
-        })[0],
-      )
-      .sort((a, b) => {
-        const left = a[field] ?? 0;
-        const right = b[field] ?? 0;
+      .filter((r) => !(hideNoFreeSlots && !r.hasFreeUploadSlot));
 
-        if (order === 'asc') {
-          return left - right;
-        }
+    return rankSearchResponses({
+      acquisitionProfile,
+      preferredConditions: filters,
+      responses: filteredResults,
+      searchText: search.searchText,
+      userStats,
+    }).sort((a, b) => {
+      const left = a[field] ?? 0;
+      const right = b[field] ?? 0;
 
-        return right - left;
-      });
+      if (order === 'asc') {
+        return left - right;
+      }
+
+      return right - left;
+    });
   }, [
     acquisitionProfile,
     blockedUsers,
