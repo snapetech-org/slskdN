@@ -16,7 +16,7 @@ permissions:
   pull-requests: write
 jobs:
   check-access:
-    runs-on: ubuntu-latest
+    runs-on: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && fromJSON('{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main"]}') || 'ubuntu-latest' }}
     # This workflow has write access and must run only from the scheduled default-branch ref.
     if: github.event_name == 'schedule'
     steps:

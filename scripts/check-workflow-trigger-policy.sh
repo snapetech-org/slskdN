@@ -58,15 +58,37 @@ done < <(find "$repo_root/.github/workflows" -maxdepth 1 -type f \( -name '*.yml
 ci_workflow="$repo_root/.github/workflows/ci.yml"
 ci_enhancements_workflow="$repo_root/.github/workflows/ci-enhancements.yml"
 for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
-  if rg -n 'self-hosted|PREFER_SELF_HOSTED|inputs\.runner' "$workflow"; then
-    printf '%s must not select a private runner
-' "${workflow#"$repo_root"/}" >&2
-    failed=1
-  fi
-  if ! rg -q '^    runs-on: ubuntu-latest$' "$workflow"; then
-    printf '%s must keep CI jobs on GitHub-hosted Linux runners
-' "${workflow#"$repo_root"/}" >&2
-    failed=1
+  workflow_name="$(basename "$workflow")"
+  if [[ "$workflow" == "$ci_workflow" ]]; then
+    if rg -n 'PREFER_SELF_HOSTED|inputs\.runner|private-[a-z-]+-jit|TRUSTED_MAIN_RUNNERS_ENABLED' "$workflow"; then
+      printf '%s must not select a private runner\n' "$workflow_name" >&2
+      failed=1
+    fi
+    for job in build nix-smoke; do
+      job_block="$(sed -n "/^  $job:/,/^  [A-Za-z0-9_-]*:/p" "$workflow")"
+      if [[ "$job_block" != *"ng-shared-main-jit"* ||
+            "$job_block" != *"github.event_name == 'push'"* ||
+            "$job_block" != *"github.event_name == 'workflow_dispatch'"* ||
+            "$job_block" != *"github.ref == 'refs/heads/main'"* ||
+            "$job_block" != *"|| 'ubuntu-latest'"* ]]; then
+        printf '%s job %s must route only main validation to the shared pool\n' "$workflow_name" "$job" >&2
+        failed=1
+      fi
+    done
+    route_count="$(rg -n -F 'ng-shared-main-jit' "$workflow" | wc -l)"
+    if [[ "$route_count" -ne 2 ]]; then
+      printf '%s has an unexpected shared runner route count\n' "$workflow_name" >&2
+      failed=1
+    fi
+  else
+    if rg -n 'self-hosted|PREFER_SELF_HOSTED|inputs\.runner' "$workflow"; then
+      printf '%s must stay on GitHub-hosted runners\n' "$workflow_name" >&2
+      failed=1
+    fi
+    if ! rg -q '^    runs-on: ubuntu-latest$' "$workflow"; then
+      printf '%s must keep CI jobs on GitHub-hosted Linux runners\n' "$workflow_name" >&2
+      failed=1
+    fi
   fi
 done
 
@@ -86,8 +108,12 @@ text = Path(sys.argv[1]).read_text()
 push = re.search(r"(?ms)^  push:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", text)
 if not push or not re.search(r"(?m)^    tags:\n", push.group(1)):
     raise SystemExit("CI must preserve its release tag triggers")
-if re.search(r"(?m)^    branches(?:-ignore)?:", push.group(1)):
-    raise SystemExit("CI builds must not be added to branch pushes")
+branches = [
+    value.strip()
+    for value in re.findall(r"(?m)^    branches:\s*\[([^\]]*)\]\s*$", push.group(1))
+]
+if branches != ["main"]:
+    raise SystemExit("CI validation pushes must stay restricted to main")
 PYTHON
 then
   printf '.github/workflows/ci.yml must keep builds tag-triggered\n' >&2
