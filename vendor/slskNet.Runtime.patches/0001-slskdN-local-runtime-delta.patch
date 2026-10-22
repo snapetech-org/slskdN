@@ -1,0 +1,2049 @@
+diff --git a/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj b/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj
+index 1b045678..5cf2e3fa 100644
+--- a/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj
++++ b/vendor/slskNet.Runtime/examples/Web/api/WebAPI.csproj
+@@ -36,11 +36,11 @@
+   <ItemGroup>
+     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.32" />
+     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+-    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.9" />
+-    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.14" />
++    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.10" />
+     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
++    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.4" />
+     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.3.0" />
+-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.19.1" />
++    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.19.2" />
+   </ItemGroup>
+ 
+   <ItemGroup>
+diff --git a/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs b/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs
+index eff98b21..88b8a529 100644
+--- a/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs
++++ b/vendor/slskNet.Runtime/src/Messaging/Handlers/PeerMessageHandler.cs
+@@ -104,13 +104,13 @@ namespace Soulseek.Messaging.Handlers
+                 var codeInt = BitConverter.ToInt32(message, 4);
+                 var isKnownCode = Enum.IsDefined(typeof(MessageCode.Peer), codeInt);
+                 var code = isKnownCode ? (MessageCode.Peer)codeInt : default;
+-                var payload = message.Skip(8).ToArray();
+                 displayCode = isKnownCode ? code.ToString() : codeInt.ToString();
+ 
+                 Diagnostic.Debug($"Peer message received: {displayCode} from {connection.Username} ({connection.IPEndPoint}) (id: {connection.Id})");
+ 
+                 if (!isKnownCode && CustomPeerMessageHandlers.TryGetValue(codeInt, out var handler))
+                 {
++                    var payload = message.Skip(8).ToArray();
+                     await handler(connection, payload).ConfigureAwait(false);
+                     return;
+                 }
+@@ -118,12 +118,17 @@ namespace Soulseek.Messaging.Handlers
+                 switch (code)
+                 {
+                     case MessageCode.Peer.SearchResponse:
+-                        var searchResponse = SearchResponseFactory.FromByteArray(message);
+-                        SoulseekClient.RememberRemotePathEncodings(searchResponse.Username, searchResponse);
++                        var token = SearchResponseFactory.ReadToken(message);
+ 
+-                        if (SoulseekClient.Searches.TryGetValue(searchResponse.Token, out var search))
++                        if (SoulseekClient.Searches.TryGetValue(token, out var search))
+                         {
+-                            search.TryAddResponse(searchResponse);
++                            var searchResponse = SearchResponseFactory.FromByteArray(message);
++
++                            if (SoulseekClient.Searches.TryGetValue(token, out var currentSearch) && ReferenceEquals(search, currentSearch))
++                            {
++                                SoulseekClient.RememberRemotePathEncodings(searchResponse.Username, searchResponse);
++                                currentSearch.TryAddResponse(searchResponse);
++                            }
+                         }
+ 
+                         break;
+diff --git a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs
+index 5e6f442a..8d4422e0 100644
+--- a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs
++++ b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/BrowseResponseFactory.cs
+@@ -122,6 +122,49 @@ namespace Soulseek.Messaging.Messages
+                 throw new ArgumentNullException(nameof(browseResponse));
+             }
+ 
++            WriteToStream(
++                browseResponse.DirectoryCount,
++                browseResponse.Directories,
++                browseResponse.LockedDirectoryCount,
++                browseResponse.LockedDirectories,
++                stream);
++        }
++
++        /// <summary>
++        ///     Writes a browse message from streaming directory sequences without first creating a collection-backed response.
++        /// </summary>
++        /// <param name="directoryCount">The number of unlocked directories.</param>
++        /// <param name="directories">The unlocked directories in wire order.</param>
++        /// <param name="lockedDirectoryCount">The number of locked directories.</param>
++        /// <param name="lockedDirectories">The locked directories in wire order.</param>
++        /// <param name="stream">The seekable stream to which the message is written.</param>
++        public static void WriteToStream(
++            int directoryCount,
++            IEnumerable<Soulseek.Directory> directories,
++            int lockedDirectoryCount,
++            IEnumerable<Soulseek.Directory> lockedDirectories,
++            Stream stream)
++        {
++            if (directoryCount < 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(directoryCount));
++            }
++
++            if (directories == null)
++            {
++                throw new ArgumentNullException(nameof(directories));
++            }
++
++            if (lockedDirectoryCount < 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(lockedDirectoryCount));
++            }
++
++            if (lockedDirectories == null)
++            {
++                throw new ArgumentNullException(nameof(lockedDirectories));
++            }
++
+             if (stream == null)
+             {
+                 throw new ArgumentNullException(nameof(stream));
+@@ -147,19 +190,45 @@ namespace Soulseek.Messaging.Messages
+ 
+             try
+             {
+-                WriteInteger(zStream, browseResponse.DirectoryCount);
++                WriteInteger(zStream, directoryCount);
++
++                var writtenDirectories = 0;
+ 
+-                foreach (var directory in browseResponse.Directories)
++                foreach (var directory in directories)
+                 {
++                    if (writtenDirectories == directoryCount)
++                    {
++                        throw new MessageException("Browse response directory count does not match the streamed entries");
++                    }
++
+                     WriteDirectory(zStream, directory);
++                    writtenDirectories++;
++                }
++
++                if (writtenDirectories != directoryCount)
++                {
++                    throw new MessageException("Browse response directory count does not match the streamed entries");
+                 }
+ 
+                 WriteInteger(zStream, 0);
+-                WriteInteger(zStream, browseResponse.LockedDirectoryCount);
++                WriteInteger(zStream, lockedDirectoryCount);
+ 
+-                foreach (var directory in browseResponse.LockedDirectories)
++                var writtenLockedDirectories = 0;
++
++                foreach (var directory in lockedDirectories)
+                 {
++                    if (writtenLockedDirectories == lockedDirectoryCount)
++                    {
++                        throw new MessageException("Browse response locked directory count does not match the streamed entries");
++                    }
++
+                     WriteDirectory(zStream, directory);
++                    writtenLockedDirectories++;
++                }
++
++                if (writtenLockedDirectories != lockedDirectoryCount)
++                {
++                    throw new MessageException("Browse response locked directory count does not match the streamed entries");
+                 }
+ 
+                 zStream.finish();
+diff --git a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs
+index cf88140e..4fd85ba4 100644
+--- a/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs
++++ b/vendor/slskNet.Runtime/src/Messaging/Messages/Peer/SearchResponseFactory.cs
+@@ -25,8 +25,11 @@
+ 
+ namespace Soulseek.Messaging.Messages
+ {
++    using System;
++    using System.Buffers.Binary;
+     using System.Collections.Generic;
+     using System.Linq;
++    using Soulseek.Messaging.Compression;
+ 
+     /// <summary>
+     ///     Factory for search response messages. This class helps keep message abstractions from leaking into the public API via
+@@ -34,6 +37,69 @@ namespace Soulseek.Messaging.Messages
+     /// </summary>
+     internal static class SearchResponseFactory
+     {
++        /// <summary>
++        ///     Reads only the token from a compressed search response, without inflating its file list.
++        /// </summary>
++        /// <param name="bytes">The message bytes from which to read.</param>
++        /// <returns>The search token.</returns>
++        public static int ReadToken(byte[] bytes)
++        {
++            var reader = new MessageReader<MessageCode.Peer>(bytes);
++            var code = reader.ReadCode();
++
++            if (code != MessageCode.Peer.SearchResponse)
++            {
++                throw new MessageException($"Message Code mismatch creating {nameof(SearchResponse)} (expected: {(int)MessageCode.Peer.SearchResponse}, received: {(int)code}");
++            }
++
++            if (reader.Payload.Length == 0)
++            {
++                throw new MessageCompressionException("Unable to decompress an empty message");
++            }
++
++            try
++            {
++                using var compressedPayload = new System.IO.MemoryStream(bytes, 8, bytes.Length - 8, writable: false);
++                using var decompressedPayload = new ZInputStream(compressedPayload);
++                var integerBytes = new byte[sizeof(int)];
++                var decompressedLength = 0;
++
++                ReadExactly(decompressedPayload, integerBytes, sizeof(int), ref decompressedLength, "username length");
++                var usernameLength = BinaryPrimitives.ReadInt32LittleEndian(integerBytes);
++
++                if (usernameLength < 0)
++                {
++                    throw new MessageReadException($"Invalid string length: {usernameLength}");
++                }
++
++                if (usernameLength > MessageReader<MessageCode.Peer>.MaximumDecompressedPayloadLength - (sizeof(int) * 2))
++                {
++                    throw new MessageCompressionException($"Decompressed message payload exceeds the maximum allowed length of {MessageReader<MessageCode.Peer>.MaximumDecompressedPayloadLength} bytes");
++                }
++
++                var skipBuffer = new byte[8192];
++                var remainingUsernameBytes = usernameLength;
++
++                while (remainingUsernameBytes > 0)
++                {
++                    var bytesToSkip = Math.Min(remainingUsernameBytes, skipBuffer.Length);
++                    ReadExactly(decompressedPayload, skipBuffer, bytesToSkip, ref decompressedLength, "username");
++                    remainingUsernameBytes -= bytesToSkip;
++                }
++
++                ReadExactly(decompressedPayload, integerBytes, sizeof(int), ref decompressedLength, "search token");
++                return BinaryPrimitives.ReadInt32LittleEndian(integerBytes);
++            }
++            catch (MessageException)
++            {
++                throw;
++            }
++            catch (Exception ex)
++            {
++                throw new MessageCompressionException("Failed to read the compressed search response prefix", ex);
++            }
++        }
++
+         /// <summary>
+         ///     Creates a new instance of <see cref="SearchResponse"/> from the specified <paramref name="bytes"/>.
+         /// </summary>
+@@ -86,6 +152,30 @@ namespace Soulseek.Messaging.Messages
+             return new SearchResponse(username, token, hasFreeUploadSlot: freeUploadSlots > 0, uploadSpeed, queueLength, fileList, lockedFileList);
+         }
+ 
++        private static void ReadExactly(ZInputStream reader, byte[] buffer, int count, ref int decompressedLength, string field)
++        {
++            var offset = 0;
++
++            while (offset < count)
++            {
++                var read = reader.read(buffer, offset, count - offset);
++
++                if (read < 0)
++                {
++                    throw new MessageReadException($"Failed to read search response {field}");
++                }
++
++                decompressedLength += read;
++
++                if (decompressedLength > MessageReader<MessageCode.Peer>.MaximumDecompressedPayloadLength)
++                {
++                    throw new MessageCompressionException($"Decompressed message payload exceeds the maximum allowed length of {MessageReader<MessageCode.Peer>.MaximumDecompressedPayloadLength} bytes");
++                }
++
++                offset += read;
++            }
++        }
++
+         /// <summary>
+         ///     Constructs a <see cref="byte"/> array from this message.
+         /// </summary>
+diff --git a/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs b/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs
+index 55a3391a..6e1e0e9b 100644
+--- a/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs
++++ b/vendor/slskNet.Runtime/src/Network/ListenerHandler.cs
+@@ -22,6 +22,7 @@
+ //
+ //     Modified by slskdN Team.
+ //     Modified: Added type-1 obfuscated peer-message init handling.
++//     Modified: Added per-connection obfuscation sniffing for shared single-port listeners.
+ // </copyright>
+ 
+ namespace Soulseek.Network
+@@ -65,8 +66,10 @@ namespace Soulseek.Network
+         /// </summary>
+         /// <param name="sender">The originating <see cref="IListener"/> instance.</param>
+         /// <param name="connection">The accepted connection.</param>
+-        public async void HandleConnection(object sender, IConnection connection)
+-            => await HandleConnectionAsync(sender, connection).ConfigureAwait(false);
++        // EventHandler cannot await this asynchronous path; explicitly observe the task so a
++        // malformed peer frame cannot surface later as an unobserved task exception.
++        public void HandleConnection(object sender, IConnection connection)
++            => HandleConnectionAsync(sender, connection).Forget();
+ 
+         public void HandleError(object sender, Exception exception)
+         {
+@@ -85,7 +88,8 @@ namespace Soulseek.Network
+                 var listener = sender as IListener;
+                 var listenerPort = listener?.Port ?? SoulseekClient.Listener?.Port ?? 0;
+                 var listenerAddress = listener?.IPAddress ?? SoulseekClient.Listener?.IPAddress;
+-                var obfuscated = listener?.Obfuscated == true;
++                var sniffObfuscation = listener?.ObfuscationSniffingEnabled == true;
++                var obfuscated = !sniffObfuscation && listener?.Obfuscated == true;
+                 if (obfuscated)
+                 {
+                     connection.MarkObfuscated();
+@@ -95,12 +99,60 @@ namespace Soulseek.Network
+ 
+                 byte[] message;
+ 
+-                if (obfuscated)
++                if (sniffObfuscation)
++                {
++                    // this listener's single bound port is shared by plain and type-1 obfuscated connections. peek at the
++                    // frame by reading the first four bytes once (IConnection.ReadAsync only supports forward reads, so these
++                    // bytes cannot be "put back") and testing whether they form a plausible plain init frame length. if so,
++                    // treat the connection as plain and reuse those bytes as the length prefix; otherwise, treat them as the
++                    // first four bytes of the eight-byte obfuscated header and read the remaining four to complete it.
++                    var firstFour = await connection.ReadAsync(4).ConfigureAwait(false);
++                    var candidateLength = BitConverter.ToInt32(firstFour, 0);
++
++                    if (MessageFrameValidator.IsValidInitMessageLength(candidateLength))
++                    {
++                        obfuscated = false;
++
++                        var bodyBytes = await connection.ReadAsync(candidateLength).ConfigureAwait(false);
++                        message = firstFour.Concat(bodyBytes).ToArray();
++                    }
++                    else
++                    {
++                        obfuscated = true;
++                        connection.MarkObfuscated();
++
++                        var remainingHeaderBytes = await connection.ReadAsync(4).ConfigureAwait(false);
++                        var firstBlock = firstFour.Concat(remainingHeaderBytes).ToArray();
++                        var decodedFirstBlock = RotatedObfuscation.Decode(firstBlock);
++                        var length = BinaryPrimitives.ReadInt32LittleEndian(decodedFirstBlock);
++                        if (!MessageFrameValidator.IsValidInitMessageLength(length))
++                        {
++                            RejectConnection(connection, CreateInvalidInitMessageException(length, "obfuscated initialization message"));
++                            return;
++                        }
++
++                        var obfuscatedMessage = new byte[8 + length];
++                        Buffer.BlockCopy(firstBlock, 0, obfuscatedMessage, 0, firstBlock.Length);
++
++                        if (length > 0)
++                        {
++                            var remainingBytes = await connection.ReadAsync(length).ConfigureAwait(false);
++                            Buffer.BlockCopy(remainingBytes, 0, obfuscatedMessage, 8, remainingBytes.Length);
++                        }
++
++                        message = RotatedObfuscation.Decode(obfuscatedMessage);
++                    }
++                }
++                else if (obfuscated)
+                 {
+                     var firstBlock = await connection.ReadAsync(8).ConfigureAwait(false);
+                     var decodedFirstBlock = RotatedObfuscation.Decode(firstBlock);
+                     var length = BinaryPrimitives.ReadInt32LittleEndian(decodedFirstBlock);
+-                    ValidateObfuscatedMessageLength(length);
++                    if (!MessageFrameValidator.IsValidInitMessageLength(length))
++                    {
++                        RejectConnection(connection, CreateInvalidInitMessageException(length, "obfuscated initialization message"));
++                        return;
++                    }
+ 
+                     var obfuscatedMessage = new byte[8 + length];
+                     Buffer.BlockCopy(firstBlock, 0, obfuscatedMessage, 0, firstBlock.Length);
+@@ -117,7 +169,11 @@ namespace Soulseek.Network
+                 {
+                     var lengthBytes = await connection.ReadAsync(4).ConfigureAwait(false);
+                     var length = BitConverter.ToInt32(lengthBytes, 0);
+-                    MessageFrameValidator.ValidateInitMessageLength(length);
++                    if (!MessageFrameValidator.IsValidInitMessageLength(length))
++                    {
++                        RejectConnection(connection, CreateInvalidInitMessageException(length, "initialization message"));
++                        return;
++                    }
+ 
+                     var bodyBytes = await connection.ReadAsync(length).ConfigureAwait(false);
+                     message = lengthBytes.Concat(bodyBytes).ToArray();
+@@ -247,11 +303,16 @@ namespace Soulseek.Network
+             }
+             catch (Exception ex)
+             {
+-                Diagnostic.Debug($"Failed to initialize direct connection from {GetConnectionDescription(connection)}: {ex.Message}");
+-                DisconnectAndDispose(connection, ex);
++                RejectConnection(connection, ex);
+             }
+         }
+ 
++        private void RejectConnection(IConnection connection, Exception exception)
++        {
++            Diagnostic.Debug($"Failed to initialize direct connection from {GetConnectionDescription(connection)}: {exception.Message}");
++            DisconnectAndDispose(connection, exception);
++        }
++
+         private static void DisconnectAndDispose(IConnection connection, Exception exception)
+         {
+             if (connection == null)
+@@ -261,7 +322,9 @@ namespace Soulseek.Network
+ 
+             try
+             {
+-                connection.Disconnect(exception: exception);
++                // Incoming listener connections are unsolicited and have no caller awaiting
++                // WaitForDisconnect; preserve the reason without faulting that completion source.
++                connection.Disconnect(message: exception?.Message);
+             }
+             catch (Exception)
+             {
+@@ -295,9 +358,7 @@ namespace Soulseek.Network
+             }
+         }
+ 
+-        private static void ValidateObfuscatedMessageLength(int length)
+-        {
+-            MessageFrameValidator.ValidateInitMessageLength(length, "obfuscated initialization message");
+-        }
++        private static MessageReadException CreateInvalidInitMessageException(int length, string frameName)
++            => new MessageReadException($"Invalid {frameName} length: {length}");
+     }
+ }
+diff --git a/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs b/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs
+index 5b6f66a2..17796b1d 100644
+--- a/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs
++++ b/vendor/slskNet.Runtime/src/Network/MessageFrameValidator.cs
+@@ -45,6 +45,14 @@ namespace Soulseek.Network
+             }
+         }
+ 
++        /// <summary>
++        ///     Determines whether an initialization frame length is within the protocol bounds.
++        /// </summary>
++        /// <param name="length">The declared initialization body length, including the message code.</param>
++        /// <returns>true when the length is valid; otherwise, false.</returns>
++        public static bool IsValidInitMessageLength(int length)
++            => length >= 4 && length <= RotatedObfuscation.MaxInitMessageLength;
++
+         /// <summary>
+         ///     Validates an initialization frame length.
+         /// </summary>
+@@ -52,7 +60,7 @@ namespace Soulseek.Network
+         /// <param name="frameName">The diagnostic frame name.</param>
+         public static void ValidateInitMessageLength(int length, string frameName = "initialization message")
+         {
+-            if (length < 4 || length > RotatedObfuscation.MaxInitMessageLength)
++            if (!IsValidInitMessageLength(length))
+             {
+                 throw new MessageReadException($"Invalid {frameName} length: {length}");
+             }
+diff --git a/vendor/slskNet.Runtime/src/Network/Tcp/ICancellableTcpListener.cs b/vendor/slskNet.Runtime/src/Network/Tcp/ICancellableTcpListener.cs
+new file mode 100644
+index 00000000..952c0a39
+--- /dev/null
++++ b/vendor/slskNet.Runtime/src/Network/Tcp/ICancellableTcpListener.cs
+@@ -0,0 +1,41 @@
++// <copyright file="ICancellableTcpListener.cs" company="JP Dillingham">
++//     This program is free software: you can redistribute it and/or modify
++//     it under the terms of the GNU General Public License as published by
++//     the Free Software Foundation, version 3.
++//
++//     This program is distributed in the hope that it will be useful,
++//     but WITHOUT ANY WARRANTY; without even the implied warranty of
++//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++//     GNU General Public License for more details.
++//
++//     You should have received a copy of the GNU General Public License
++//     along with this program.  If not, see https://www.gnu.org/licenses/.
++//
++//     This program is distributed with Additional Terms pursuant to Section 7
++//     of the GPLv3.  See the LICENSE file in the root directory of this
++//     project for the complete terms and conditions.
++//
++//     SPDX-FileCopyrightText: JP Dillingham
++//     SPDX-FileCopyrightText: slskdN Team
++//     SPDX-License-Identifier: GPL-3.0-only
++// </copyright>
++
++namespace Soulseek.Network.Tcp
++{
++    using System.Net.Sockets;
++    using System.Threading;
++    using System.Threading.Tasks;
++
++    /// <summary>
++    ///     An injected TCP listener that can cancel a pending accept without closing its shared socket or queue.
++    /// </summary>
++    internal interface ICancellableTcpListener : ITcpListener
++    {
++        /// <summary>
++        ///     Accepts a pending connection request and cancels the wait when <paramref name="cancellationToken"/> is canceled.
++        /// </summary>
++        /// <param name="cancellationToken">The token that cancels the pending accept.</param>
++        /// <returns>The operation context, including the new connection client.</returns>
++        Task<TcpClient> AcceptTcpClientAsync(CancellationToken cancellationToken);
++    }
++}
+diff --git a/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs b/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs
+index b52b7d8a..54392375 100644
+--- a/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs
++++ b/vendor/slskNet.Runtime/src/Network/Tcp/IListener.cs
+@@ -22,6 +22,7 @@
+ //
+ //     Modified by slskdN Team.
+ //     Modified: Added obfuscated listener identity.
++//     Modified: Added per-connection obfuscation sniffing flag for shared single-port listeners.
+ // </copyright>
+ 
+ namespace Soulseek.Network.Tcp
+@@ -65,6 +66,14 @@ namespace Soulseek.Network.Tcp
+         /// </summary>
+         bool Obfuscated { get; }
+ 
++        /// <summary>
++        ///     Gets a value indicating whether this listener determines, per accepted connection, whether the init frame is
++        ///     type-1 obfuscated by inspecting the first bytes read from the socket, rather than relying on a static,
++        ///     per-listener <see cref="Obfuscated"/> flag. This is used when plain and obfuscated peer connections share a
++        ///     single bound port.
++        /// </summary>
++        bool ObfuscationSniffingEnabled { get; }
++
+         /// <summary>
+         ///     Gets the port of the listener.
+         /// </summary>
+diff --git a/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs b/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs
+index 6f6fbeb7..a9e0c1ee 100644
+--- a/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs
++++ b/vendor/slskNet.Runtime/src/Network/Tcp/Listener.cs
+@@ -21,7 +21,8 @@
+ //     SPDX-FileCopyrightText: slskdN Team
+ //     SPDX-License-Identifier: GPL-3.0-only
+ //
+-//     Modified by slskdN Team to support obfuscated listeners and IP snapshots.
++//     Modified by slskdN Team to support obfuscated listeners, IP snapshots, and per-connection
++//     obfuscation sniffing for shared single-port listeners.
+ // </copyright>
+ 
+ namespace Soulseek.Network.Tcp
+@@ -29,7 +30,9 @@ namespace Soulseek.Network.Tcp
+     using System;
+     using System.Net;
+     using System.Net.Sockets;
++    using System.Threading;
+     using System.Threading.Tasks;
++    using Soulseek.Diagnostics;
+ 
+     /// <summary>
+     ///     Listens for client connections for TCP network services.
+@@ -42,7 +45,14 @@ namespace Soulseek.Network.Tcp
+     /// </remarks>
+     internal sealed class Listener : IListener
+     {
++        private const int InitialAcceptRetryDelayMilliseconds = 1000;
++        private const int MaximumAcceptRetryDelayMilliseconds = 5000;
++
+         private readonly IPAddress ipAddress;
++        private readonly IDiagnosticFactory diagnosticFactory;
++        private volatile bool listening;
++        private CancellationTokenSource listenCancellation;
++
+         /// <summary>
+         ///     Initializes a new instance of the <see cref="Listener"/> class.
+         /// </summary>
+@@ -51,7 +61,20 @@ namespace Soulseek.Network.Tcp
+         /// <param name="connectionOptions">The optional options to use when creating <see cref="IConnection"/> instances.</param>
+         /// <param name="tcpListener">The optional TcpClient instance to use.</param>
+         /// <param name="obfuscated">Whether accepted peer init frames use type-1 obfuscation.</param>
+-        public Listener(IPAddress ipAddress, int port, ConnectionOptions connectionOptions, ITcpListener tcpListener = null, bool obfuscated = false)
++        /// <param name="obfuscationSniffingEnabled">
++        ///     A value indicating whether plain-vs-obfuscated status should be determined per accepted connection by
++        ///     inspecting the first bytes read from the socket, rather than assuming the static <paramref name="obfuscated"/>
++        ///     value. Used when plain and obfuscated peer connections share this listener's single bound port.
++        /// </param>
++        /// <param name="diagnosticFactory">The optional diagnostic factory used to report listener recovery.</param>
++        public Listener(
++            IPAddress ipAddress,
++            int port,
++            ConnectionOptions connectionOptions,
++            ITcpListener tcpListener = null,
++            bool obfuscated = false,
++            bool obfuscationSniffingEnabled = false,
++            IDiagnosticFactory diagnosticFactory = null)
+         {
+             var address = ipAddress.Snapshot();
+             this.ipAddress = address;
+@@ -59,6 +82,8 @@ namespace Soulseek.Network.Tcp
+             ConnectionOptions = connectionOptions ?? new ConnectionOptions();
+             TcpListener = tcpListener ?? new TcpListenerAdapter(new TcpListener(address, port));
+             Obfuscated = obfuscated;
++            ObfuscationSniffingEnabled = obfuscationSniffingEnabled;
++            this.diagnosticFactory = diagnosticFactory;
+         }
+ 
+         /// <summary>
+@@ -84,11 +109,21 @@ namespace Soulseek.Network.Tcp
+         /// <summary>
+         ///     Gets a value indicating whether the listener is listening for connections.
+         /// </summary>
+-        public bool Listening { get; private set; } = false;
++        public bool Listening
++        {
++            get => listening;
++            private set => listening = value;
++        }
+ 
+         /// <summary>Gets whether accepted connections use type-1 obfuscation.</summary>
+         public bool Obfuscated { get; }
+ 
++        /// <summary>
++        ///     Gets a value indicating whether this listener determines, per accepted connection, whether the init frame is
++        ///     type-1 obfuscated by inspecting the first bytes read from the socket.
++        /// </summary>
++        public bool ObfuscationSniffingEnabled { get; }
++
+         /// <summary>
+         ///     Gets the port of the listener.
+         /// </summary>
+@@ -97,7 +132,7 @@ namespace Soulseek.Network.Tcp
+         private object SyncRoot { get; } = new object();
+         private ITcpListener TcpListener { get; set; }
+         private long MaxConsecutiveErrors { get; } = 20;
+-        private long ConsecutiveErrors { get; set; } // overflows after ~29 billion years
++        private long ConsecutiveErrors { get; set; }
+ 
+         /// <summary>
+         ///     Starts the listener.
+@@ -112,16 +147,20 @@ namespace Soulseek.Network.Tcp
+                     return;
+                 }
+ 
++                var cancellation = new CancellationTokenSource();
+                 try
+                 {
+                     TcpListener.Start(backlog);
++                    listenCancellation = cancellation;
+                     Listening = true;
+                     Task.Run(() => ListenContinuouslyAsync()).Forget();
+                 }
+-                catch (Exception)
++                catch
+                 {
+                     Listening = false;
+-                    TcpListener.Stop(); // unblocks AcceptTcpClientAsync()
++                    cancellation.Cancel();
++                    cancellation.Dispose();
++                    TcpListener.Stop();
+                     throw;
+                 }
+             }
+@@ -140,59 +179,68 @@ namespace Soulseek.Network.Tcp
+                 }
+ 
+                 Listening = false;
+-                TcpListener.Stop(); // unblocks AcceptTcpClientAsync()
++                var cancellation = listenCancellation;
++                listenCancellation = null;
++                cancellation?.Cancel();
++
++                try
++                {
++                    TcpListener.Stop(); // unblocks AcceptTcpClientAsync()
++                }
++                finally
++                {
++                    cancellation?.Dispose();
++                }
+             }
+         }
+ 
+         private async Task ListenContinuouslyAsync()
+         {
+-            while (Listening)
++            var cancellationToken = listenCancellation?.Token ?? CancellationToken.None;
++            var retryDelayMilliseconds = InitialAcceptRetryDelayMilliseconds;
++
++            while (Listening && !cancellationToken.IsCancellationRequested)
+             {
++                TcpClient client = null;
++                Connection connection = null;
++
+                 try
+                 {
+-                    /*
+-                        throws if:
++                    client = await AcceptTcpClientAsync(cancellationToken).ConfigureAwait(false);
+ 
+-                        * the accept() call offloaded to the OS errors for whatever reason (exhaustion, other side hung up)
+-                        * the accept() call is being awaited and the Stop() method is invoked (the BCL cleans this up in the socket's finalizer)
+-                          in addition to purging any connections that may have been waiting to be accepted
+-                        * the Stop() method was invoked prior to this method's invocation (the underlying Socket has been disposed/nulled)
+-                    */
+-                    var client = await TcpListener.AcceptTcpClientAsync().ConfigureAwait(false);
+-
+-                    Connection connection = default;
+-
+-                    try
++                    if (cancellationToken.IsCancellationRequested)
+                     {
+-                        var endPoint = (IPEndPoint)client.Client.RemoteEndPoint;
+-                        connection = new Connection(endPoint, ConnectionOptions, new TcpClientAdapter(client), Obfuscated);
+-
+-                        if (connection.State != ConnectionState.Connected)
+-                        {
+-                            // the remote client disconnected between the OS accepting the socket and construction of
+-                            // the Connection instance completing; treat this the same as any other accept failure
+-                            throw new ConnectionException($"The remote client disconnected before the connection could be accepted");
+-                        }
++                        client?.TryDispose();
++                        return;
++                    }
+ 
+-                        ConsecutiveErrors = 0; // reset on success
++                    var endPoint = (IPEndPoint)client.Client.RemoteEndPoint;
++                    connection = new Connection(endPoint, ConnectionOptions, new TcpClientAdapter(client), Obfuscated);
+ 
+-                        _ = Task
+-                            .Run(() => Accepted?.Invoke(this, connection))
+-                            .ContinueWith(task => _ = task.Exception, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.RunContinuationsAsynchronously);
+-                    }
+-                    catch
++                    if (connection.State != ConnectionState.Connected)
+                     {
+-                        client?.TryDispose();
+-                        connection?.TryDispose();
+-
+-                        throw;
++                        throw new ConnectionException($"The remote client disconnected before the connection could be accepted");
+                     }
++
++                    ConsecutiveErrors = 0;
++                    retryDelayMilliseconds = InitialAcceptRetryDelayMilliseconds;
++
++                    _ = Task
++                        .Run(() => Accepted?.Invoke(this, connection))
++                        .ContinueWith(task => _ = task.Exception, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.RunContinuationsAsynchronously);
++                }
++                catch (OperationCanceledException) when (!Listening || cancellationToken.IsCancellationRequested)
++                {
++                    client?.TryDispose();
++                    connection?.TryDispose();
++                    return;
+                 }
+                 catch (Exception ex)
+                 {
+-                    // if Listening has dropped, Stop() was called and we should exit. the exception isn't interesting here
+-                    // because Stop() will cause any waiting AcceptTcpClientAsync() call to throw when it's called
+-                    if (!Listening)
++                    client?.TryDispose();
++                    connection?.TryDispose();
++
++                    if (!Listening || cancellationToken.IsCancellationRequested)
+                     {
+                         return;
+                     }
+@@ -205,24 +253,33 @@ namespace Soulseek.Network.Tcp
+                     }
+                     catch
+                     {
+-                        // noop
++                        // A listener error handler must not terminate the accept loop.
+                     }
+-                    finally
++
++                    diagnosticFactory?.Warning("A TCP listener accept failed; retrying with bounded backoff.", ex);
++
++                    if (ConsecutiveErrors >= MaxConsecutiveErrors)
+                     {
+-                        /*
+-                            if AcceptTcpClientAsync() threw because of a non-transient issue, allowing the loop to come
+-                            back around and call it immediately will put this in a continuous, fast loop and peg the CPU.
+-                            once we have hit our MaxConsecutiveErrors, begin waiting a generous amount of time before looping again.
+-                            this spares the pegged CPU while also allowing the listener to recover automatically if/when whatever
+-                            condition that's causing the exceptions is resolved (outside of the application)
+-                        */
+-                        if (ConsecutiveErrors >= MaxConsecutiveErrors)
++                        try
+                         {
+-                            await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
++                            await Task.Delay(retryDelayMilliseconds, cancellationToken).ConfigureAwait(false);
+                         }
++                        catch (OperationCanceledException) when (!Listening || cancellationToken.IsCancellationRequested)
++                        {
++                            return;
++                        }
++
++                        retryDelayMilliseconds = Math.Min(retryDelayMilliseconds * 2, MaximumAcceptRetryDelayMilliseconds);
+                     }
+                 }
+             }
+         }
++
++        private Task<TcpClient> AcceptTcpClientAsync(CancellationToken cancellationToken)
++        {
++            return TcpListener is ICancellableTcpListener cancellableListener
++                ? cancellableListener.AcceptTcpClientAsync(cancellationToken)
++                : TcpListener.AcceptTcpClientAsync();
++        }
+     }
+ }
+diff --git a/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs b/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs
+index 4805f639..b679897a 100644
+--- a/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs
++++ b/vendor/slskNet.Runtime/src/Options/PeerObfuscationOptions.cs
+@@ -3,6 +3,8 @@
+ //
+ //     This file is part of slskNet.Runtime, a modified version of Soulseek.NET.
+ //     Modified: Added type-1 peer-message obfuscation runtime options.
++//     Modified: listenPort 0 while enabled now means "share the regular listen port via per-connection sniffing"
++//     instead of being rejected.
+ //
+ //     This program is free software: you can redistribute it and/or modify
+ //     it under the terms of the GNU General Public License as published by
+@@ -38,7 +40,11 @@ namespace Soulseek
+         ///     Initializes a new instance of the <see cref="PeerObfuscationOptions"/> class.
+         /// </summary>
+         /// <param name="enabled">A value indicating whether to advertise and accept obfuscated peer-message connections.</param>
+-        /// <param name="listenPort">The dedicated obfuscated peer-message listener port.</param>
++        /// <param name="listenPort">
++        ///     The dedicated obfuscated peer-message listener port, or 0 to share the regular peer-message listener's single
++        ///     bound port. When shared, plain and obfuscated init frames are distinguished per-connection by inspecting the
++        ///     first bytes read from the socket instead of relying on a dedicated listener.
++        /// </param>
+         /// <param name="type">The obfuscation type to advertise. Type 1 is the rotated Soulseek peer-message transform.</param>
+         /// <param name="advertiseRegularPort">A value indicating whether to advertise the regular peer-message port.</param>
+         /// <param name="preferOutbound">A value indicating whether outbound peer-message dials should prefer compatible obfuscated endpoints.</param>
+@@ -54,11 +60,6 @@ namespace Soulseek
+                 throw new ArgumentOutOfRangeException(nameof(type), "Only type 1 peer-message obfuscation is supported");
+             }
+ 
+-            if (enabled && listenPort == 0)
+-            {
+-                throw new ArgumentOutOfRangeException(nameof(listenPort), "Must be specified when peer obfuscation is enabled");
+-            }
+-
+             if (listenPort != 0 && (listenPort < 1024 || listenPort > IPEndPoint.MaxPort))
+             {
+                 throw new ArgumentOutOfRangeException(nameof(listenPort), $"Must be zero or between 1024 and {IPEndPoint.MaxPort}");
+@@ -82,7 +83,8 @@ namespace Soulseek
+         public bool Enabled { get; }
+ 
+         /// <summary>
+-        ///     Gets the dedicated obfuscated peer-message listener port.
++        ///     Gets the dedicated obfuscated peer-message listener port, or 0 when the regular peer-message listener's single
++        ///     bound port is shared via per-connection obfuscation sniffing.
+         /// </summary>
+         public int ListenPort { get; }
+ 
+diff --git a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs
+index d593630e..16430ab9 100644
+--- a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs
++++ b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptions.cs
+@@ -109,6 +109,11 @@ namespace Soulseek
+         ///     The delegate used to resolve the <see cref="int"/> response for an incoming request.
+         /// </param>
+         /// <param name="raiseEventsAsynchronously">(Experimental!) Raise events asynchronously to improve parallelism.</param>
++        /// <param name="advertisedListenPort">
++        ///     The port to advertise to the Soulseek server, or <see langword="null"/> to advertise
++        ///     <paramref name="listenPort"/>. This is useful when a transparent NAT or VPN forward
++        ///     maps a public port to a different local listener port.
++        /// </param>
+         /// <exception cref="ArgumentOutOfRangeException">
+         ///     Thrown when the value supplied for <paramref name="listenPort"/> is not between 1024 and 65535.
+         /// </exception>
+@@ -149,7 +154,8 @@ namespace Soulseek
+             Func<string, IPEndPoint, Task<UserInfo>> userInfoResolver = null,
+             Func<string, IPEndPoint, string, Task> enqueueDownload = null,
+             Func<string, IPEndPoint, string, Task<int?>> placeInQueueResolver = null,
+-            bool raiseEventsAsynchronously = false)
++            bool raiseEventsAsynchronously = false,
++            int? advertisedListenPort = null)
+         {
+             EnableListener = enableListener;
+             this.listenIPAddress = (listenIPAddress ?? IPAddress.Any).Snapshot();
+@@ -168,6 +174,13 @@ namespace Soulseek
+                 throw new ArgumentOutOfRangeException(nameof(listenBacklog), $"Must be greater than or equal to 128");
+             }
+ 
++            AdvertisedListenPort = advertisedListenPort;
++
++            if (AdvertisedListenPort is < 1024 or > IPEndPoint.MaxPort)
++            {
++                throw new ArgumentOutOfRangeException(nameof(advertisedListenPort), $"Must be between 1024 and {IPEndPoint.MaxPort}");
++            }
++
+             EnableDistributedNetwork = enableDistributedNetwork;
+             AcceptDistributedChildren = acceptDistributedChildren;
+             DistributedChildLimit = distributedChildLimit;
+@@ -341,6 +354,13 @@ namespace Soulseek
+         /// </summary>
+         public int ListenPort { get; }
+ 
++        /// <summary>
++        ///     Gets the port advertised to the Soulseek server, or <see langword="null"/> when the
++        ///     local <see cref="ListenPort"/> is advertised. The local listener is not rebound when
++        ///     this value differs.
++        /// </summary>
++        public int? AdvertisedListenPort { get; }
++
+         /// <summary>
+         ///     Gets the number of allowed concurrent downloads. (Default = int.MaxValue).
+         /// </summary>
+@@ -480,7 +500,8 @@ namespace Soulseek
+                 directoryContentsResolver: patch.DirectoryContentsResolver,
+                 userInfoResolver: patch.UserInfoResolver,
+                 enqueueDownload: patch.EnqueueDownload,
+-                placeInQueueResolver: patch.PlaceInQueueResolver);
++                placeInQueueResolver: patch.PlaceInQueueResolver,
++                advertisedListenPort: patch.AdvertisedListenPort);
+         }
+ 
+         /// <summary>
+@@ -529,6 +550,10 @@ namespace Soulseek
+         /// <param name="placeInQueueResolver">
+         ///     The delegate used to resolve the <see cref="int"/> response for an incoming request.
+         /// </param>
++        /// <param name="advertisedListenPort">
++        ///     The port to advertise to the Soulseek server, or <see langword="null"/> to retain the
++        ///     current advertised port.
++        /// </param>
+         /// <returns>The cloned instance.</returns>
+         internal SoulseekClientOptions With(
+             bool? enableListener = null,
+@@ -557,7 +582,8 @@ namespace Soulseek
+             Func<string, IPEndPoint, int, string, Task<IEnumerable<Directory>>> directoryContentsResolver = null,
+             Func<string, IPEndPoint, Task<UserInfo>> userInfoResolver = null,
+             Func<string, IPEndPoint, string, Task> enqueueDownload = null,
+-            Func<string, IPEndPoint, string, Task<int?>> placeInQueueResolver = null)
++            Func<string, IPEndPoint, string, Task<int?>> placeInQueueResolver = null,
++            int? advertisedListenPort = null)
+         {
+             return new SoulseekClientOptions(
+                 enableListener: enableListener ?? EnableListener,
+@@ -593,7 +619,8 @@ namespace Soulseek
+                 userInfoResolver: userInfoResolver ?? UserInfoResolver,
+                 enqueueDownload: enqueueDownload ?? EnqueueDownload,
+                 placeInQueueResolver: placeInQueueResolver ?? PlaceInQueueResolver,
+-                raiseEventsAsynchronously: RaiseEventsAsynchronously);
++                raiseEventsAsynchronously: RaiseEventsAsynchronously,
++                advertisedListenPort: advertisedListenPort ?? AdvertisedListenPort);
+         }
+     }
+ }
+diff --git a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs
+index 56e75d55..ddbf6029 100644
+--- a/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs
++++ b/vendor/slskNet.Runtime/src/Options/SoulseekClientOptionsPatch.cs
+@@ -85,6 +85,10 @@ namespace Soulseek
+         /// <param name="placeInQueueResolver">
+         ///     The delegate used to resolve the <see cref="int"/> response for an incoming request.
+         /// </param>
++        /// <param name="advertisedListenPort">
++        ///     The port to advertise to the Soulseek server, or <see langword="null"/> to leave the
++        ///     existing advertised port unchanged. This does not rebind the local listener.
++        /// </param>
+         /// <exception cref="ArgumentOutOfRangeException">
+         ///     Thrown when the value supplied for <paramref name="listenPort"/> is not between 1024 and 65535.
+         /// </exception>
+@@ -118,7 +122,8 @@ namespace Soulseek
+             Func<string, IPEndPoint, int, string, Task<IEnumerable<Directory>>> directoryContentsResolver = null,
+             Func<string, IPEndPoint, Task<UserInfo>> userInfoResolver = null,
+             Func<string, IPEndPoint, string, Task> enqueueDownload = null,
+-            Func<string, IPEndPoint, string, Task<int?>> placeInQueueResolver = null)
++            Func<string, IPEndPoint, string, Task<int?>> placeInQueueResolver = null,
++            int? advertisedListenPort = null)
+         {
+             EnableListener = enableListener;
+             this.listenIPAddress = listenIPAddress.Snapshot();
+@@ -137,6 +142,13 @@ namespace Soulseek
+                 throw new ArgumentOutOfRangeException(nameof(listenBacklog), $"Must be greater than or equal to 128");
+             }
+ 
++            AdvertisedListenPort = advertisedListenPort;
++
++            if (AdvertisedListenPort is < 1024 or > IPEndPoint.MaxPort)
++            {
++                throw new ArgumentOutOfRangeException(nameof(advertisedListenPort), "Must be between 1024 and 65535");
++            }
++
+             EnableDistributedNetwork = enableDistributedNetwork;
+             AcceptDistributedChildren = acceptDistributedChildren;
+             DistributedChildLimit = distributedChildLimit;
+@@ -270,6 +282,12 @@ namespace Soulseek
+         /// </summary>
+         public int? ListenPort { get; }
+ 
++        /// <summary>
++        ///     Gets the port to advertise to the Soulseek server, or <see langword="null"/> when no
++        ///     advertisement change was requested. This does not rebind the local listener.
++        /// </summary>
++        public int? AdvertisedListenPort { get; }
++
+         /// <summary>
+         ///     Gets the total maximum allowable download speed, in kibibytes per second.
+         /// </summary>
+diff --git a/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs b/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs
+index ecfe5d76..22451531 100644
+--- a/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs
++++ b/vendor/slskNet.Runtime/src/Properties/AssemblyInfo.cs
+@@ -25,4 +25,5 @@ using System.Runtime.CompilerServices;
+ 
+ [assembly: InternalsVisibleTo("Soulseek.Tests.Unit")]
+ [assembly: InternalsVisibleTo("Soulseek.Tests.Integration")]
+-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] // Moq
+\ No newline at end of file
++[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] // Moq
++[assembly: InternalsVisibleTo("slskd")] // slskdN Team: lets slskd supply a shared ITcpListener (see SoulseekClient.PrimaryListenerTcpListenerOverride)
+\ No newline at end of file
+diff --git a/vendor/slskNet.Runtime/src/SearchInternal.cs b/vendor/slskNet.Runtime/src/SearchInternal.cs
+index 870d18d1..a290c7bd 100644
+--- a/vendor/slskNet.Runtime/src/SearchInternal.cs
++++ b/vendor/slskNet.Runtime/src/SearchInternal.cs
+@@ -120,10 +120,20 @@ namespace Soulseek
+         /// </summary>
+         public void Cancel()
+         {
++            if (Disposed)
++            {
++                return;
++            }
++
+             ReaderWriterLock.EnterWriteLock();
+ 
+             try
+             {
++                if (Disposed)
++                {
++                    return;
++                }
++
+                 SearchTimeoutTimer.Stop();
+                 State = SearchStates.Completed | SearchStates.Cancelled;
+                 TaskCompletionSource.TrySetException(new OperationCanceledException());
+@@ -140,10 +150,20 @@ namespace Soulseek
+         /// <param name="state">The terminal state of the search.</param>
+         public void Complete(SearchStates state)
+         {
++            if (Disposed)
++            {
++                return;
++            }
++
+             ReaderWriterLock.EnterWriteLock();
+ 
+             try
+             {
++                if (Disposed)
++                {
++                    return;
++                }
++
+                 SearchTimeoutTimer.Stop();
+                 State = SearchStates.Completed | state;
+                 TaskCompletionSource.TrySetResult(0);
+@@ -171,13 +191,15 @@ namespace Soulseek
+         {
+             if (!Disposed)
+             {
++                Disposed = true;
++
+                 if (disposing)
+                 {
+                     SearchTimeoutTimer.Dispose();
+-                    ReaderWriterLock.Dispose();
+-                }
+ 
+-                Disposed = true;
++                    // Late peer search responses can still be inside the read lock during teardown.
++                    // Disposing ReaderWriterLockSlim here races those callbacks and throws at runtime.
++                }
+             }
+         }
+ 
+@@ -187,10 +209,20 @@ namespace Soulseek
+         /// <param name="state">The state to which the Search is to be set.</param>
+         public void SetState(SearchStates state)
+         {
++            if (Disposed)
++            {
++                return;
++            }
++
+             ReaderWriterLock.EnterWriteLock();
+ 
+             try
+             {
++                if (Disposed)
++                {
++                    return;
++                }
++
+                 var previousState = State;
+                 State = state;
+ 
+diff --git a/vendor/slskNet.Runtime/src/SoulseekClient.cs b/vendor/slskNet.Runtime/src/SoulseekClient.cs
+index 063ac63c..eb11af4a 100644
+--- a/vendor/slskNet.Runtime/src/SoulseekClient.cs
++++ b/vendor/slskNet.Runtime/src/SoulseekClient.cs
+@@ -621,6 +621,15 @@ namespace Soulseek
+         internal virtual ConcurrentDictionary<int, TransferInternal> DownloadDictionary { get; set; } = new ConcurrentDictionary<int, TransferInternal>();
+         internal virtual IListener Listener { get; private set; }
+         internal virtual IListener ObfuscatedListener { get; private set; }
++
++        /// <summary>
++        ///     Gets or sets the <see cref="ITcpListener"/> override for the primary listener. When set (by an
++        ///     internals-visible caller, e.g. slskd) before the primary listener is constructed, the primary
++        ///     <see cref="Listener"/> uses this <see cref="ITcpListener"/> instead of binding its own socket. Used to let the
++        ///     Soulseek peer listener share a single public TCP port with other application-level protocols via an
++        ///     externally-owned accept loop that classifies and feeds connections in.
++        /// </summary>
++        internal ITcpListener PrimaryListenerTcpListenerOverride { get; set; }
+         internal virtual IListenerHandler ListenerHandler { get; }
+         internal virtual IPeerConnectionManager PeerConnectionManager { get; }
+         internal virtual IPeerMessageHandler PeerMessageHandler { get; }
+@@ -1000,19 +1009,33 @@ namespace Soulseek
+                 Listener obfuscatedListener = null;
+ 
+                 // probe to see if we can listen on the configured port and address. if this throws, something is either already
+-                // listening on this port, or the user has specified a bad interface IP
++                // listening on this port, or the user has specified a bad interface IP. when PrimaryListenerTcpListenerOverride
++                // is set, the real public socket is owned externally (e.g. a shared TCP demux), so this probe is a no-op by
++                // construction rather than a real bind attempt.
+                 try
+                 {
+-                    listener = new Listener(Options.ListenIPAddress, Options.ListenPort, Options.IncomingConnectionOptions);
+-                    listener.Start(Options.ListenBacklog);
++                    if (PrimaryListenerTcpListenerOverride == null)
++                    {
++                        var sharedObfuscation = Options.PeerObfuscationOptions.Enabled && Options.PeerObfuscationOptions.ListenPort == 0;
++                        listener = new Listener(
++                            Options.ListenIPAddress,
++                            Options.ListenPort,
++                            Options.IncomingConnectionOptions,
++                            obfuscationSniffingEnabled: sharedObfuscation,
++                            diagnosticFactory: Diagnostic);
++                        listener.Start(Options.ListenBacklog);
++                    }
+ 
+-                    if (Options.PeerObfuscationOptions.Enabled)
++                    // a dedicated obfuscation listen port of 0 means obfuscated connections share the regular listener's
++                    // single bound port (distinguished per-connection instead), so there is no second port to probe here.
++                    if (Options.PeerObfuscationOptions.Enabled && Options.PeerObfuscationOptions.ListenPort != 0)
+                     {
+                         obfuscatedListener = new Listener(
+                             Options.ListenIPAddress,
+                             Options.PeerObfuscationOptions.ListenPort,
+                             Options.IncomingConnectionOptions,
+-                            obfuscated: true);
++                            obfuscated: true,
++                            diagnosticFactory: Diagnostic);
+                         obfuscatedListener.Start(Options.ListenBacklog);
+                     }
+                 }
+@@ -2486,7 +2509,9 @@ namespace Soulseek
+ 
+             // if the listen address or port is changing, probe to see if we can listen on the new address/port if not, reject the
+             // reconfigure attempt
+-            if ((patch.ListenIPAddress != null && !patch.ListenIPAddress.Equals(Options.ListenIPAddress)) || (patch.ListenPort.HasValue && patch.ListenPort != Options.ListenPort))
++            if (PrimaryListenerTcpListenerOverride == null &&
++                ((patch.ListenIPAddress != null && !patch.ListenIPAddress.Equals(Options.ListenIPAddress)) ||
++                 (patch.ListenPort.HasValue && patch.ListenPort != Options.ListenPort)))
+             {
+                 Listener listener = null;
+                 var newAddress = patch.ListenIPAddress ?? Options.ListenIPAddress;
+@@ -2494,7 +2519,7 @@ namespace Soulseek
+ 
+                 try
+                 {
+-                    listener = new Listener(newAddress, newPort, Options.IncomingConnectionOptions);
++                    listener = new Listener(newAddress, newPort, Options.IncomingConnectionOptions, diagnosticFactory: Diagnostic);
+                     listener.Start();
+                 }
+                 catch (Exception)
+@@ -3788,18 +3813,30 @@ namespace Soulseek
+ 
+                     if (Options.EnableListener)
+                     {
+-                        Listener = new Listener(Options.ListenIPAddress, Options.ListenPort, connectionOptions: Options.IncomingConnectionOptions);
++                        // a dedicated obfuscation listen port of 0 means obfuscated connections share the regular
++                        // listener's single bound port; the shared listener determines plain-vs-obfuscated per
++                        // connection instead of a second listener with a static obfuscated flag.
++                        var sharedObfuscation = Options.PeerObfuscationOptions.Enabled && Options.PeerObfuscationOptions.ListenPort == 0;
++
++                        Listener = new Listener(
++                            Options.ListenIPAddress,
++                            Options.ListenPort,
++                            connectionOptions: Options.IncomingConnectionOptions,
++                            tcpListener: PrimaryListenerTcpListenerOverride,
++                            obfuscationSniffingEnabled: sharedObfuscation,
++                            diagnosticFactory: Diagnostic);
+                         Listener.Accepted += ListenerHandler.HandleConnection;
+                         Listener.Error += ListenerHandler.HandleError;
+                         Listener.Start(Options.ListenBacklog);
+ 
+-                        if (Options.PeerObfuscationOptions.Enabled)
++                        if (Options.PeerObfuscationOptions.Enabled && Options.PeerObfuscationOptions.ListenPort != 0)
+                         {
+                             ObfuscatedListener = new Listener(
+                                 Options.ListenIPAddress,
+                                 Options.PeerObfuscationOptions.ListenPort,
+                                 Options.IncomingConnectionOptions,
+-                                obfuscated: true);
++                                obfuscated: true,
++                                diagnosticFactory: Diagnostic);
+                             ObfuscatedListener.Accepted += ListenerHandler.HandleConnection;
+                             ObfuscatedListener.Error += ListenerHandler.HandleError;
+                             ObfuscatedListener.Start(Options.ListenBacklog);
+@@ -4242,7 +4279,8 @@ namespace Soulseek
+                     },
+                     cancellationToken: linkedCancellationToken);
+ 
+-                // ensure the losing tasks don't raise an unbserved exception by attaching a continuation that will observe them with Forget()
++                // Any participant can fault after another task wins the race. Keep every
++                // participant observed while preserving exceptions for the explicit awaits below.
+                 readTask.Forget();
+                 disconnectedTaskCancellationSource.Task.Forget();
+                 download.RemoteTaskCompletionSource.Task.Forget();
+@@ -4988,8 +5026,17 @@ namespace Soulseek
+                 var listenPortChanged = patch.ListenPort.HasValue && patch.ListenPort.Value != Options.ListenPort;
+                 var listenBacklogChanged = patch.ListenBacklog.HasValue && patch.ListenBacklog.Value != Options.ListenBacklog;
+                 var incomingConnectionOptionsChanged = patch.IncomingConnectionOptions != null && patch.IncomingConnectionOptions != Options.IncomingConnectionOptions;
+-
+-                if (enableListenerChanged || listenAddressChanged || listenPortChanged || listenBacklogChanged || incomingConnectionOptionsChanged)
++                var peerObfuscationOptionsChanged = patch.PeerObfuscationOptions != null &&
++                    (patch.PeerObfuscationOptions.Enabled != Options.PeerObfuscationOptions.Enabled ||
++                     patch.PeerObfuscationOptions.ListenPort != Options.PeerObfuscationOptions.ListenPort ||
++                     patch.PeerObfuscationOptions.Type != Options.PeerObfuscationOptions.Type ||
++                     patch.PeerObfuscationOptions.AdvertiseRegularPort != Options.PeerObfuscationOptions.AdvertiseRegularPort ||
++                     patch.PeerObfuscationOptions.PreferOutbound != Options.PeerObfuscationOptions.PreferOutbound);
++                var peerObfuscationListenerChanged = peerObfuscationOptionsChanged &&
++                    (patch.PeerObfuscationOptions.Enabled != Options.PeerObfuscationOptions.Enabled ||
++                     patch.PeerObfuscationOptions.ListenPort != Options.PeerObfuscationOptions.ListenPort);
++
++                if (enableListenerChanged || listenAddressChanged || listenPortChanged || listenBacklogChanged || incomingConnectionOptionsChanged || peerObfuscationListenerChanged)
+                 {
+                     var wasListening = Listener?.Listening ?? false;
+ 
+@@ -5003,22 +5050,35 @@ namespace Soulseek
+                         listenIPAddress: patch.ListenIPAddress,
+                         listenPort: patch.ListenPort,
+                         listenBacklog: patch.ListenBacklog,
+-                        incomingConnectionOptions: patch.IncomingConnectionOptions);
++                        incomingConnectionOptions: patch.IncomingConnectionOptions,
++                        peerObfuscationOptions: patch.PeerObfuscationOptions);
+ 
+                     if (wasListening && Options.EnableListener)
+                     {
+-                        Listener = new Listener(Options.ListenIPAddress, Options.ListenPort, Options.IncomingConnectionOptions);
++                        // a dedicated obfuscation listen port of 0 means obfuscated connections share the regular
++                        // listener's single bound port; the shared listener determines plain-vs-obfuscated per
++                        // connection instead of a second listener with a static obfuscated flag.
++                        var sharedObfuscation = Options.PeerObfuscationOptions.Enabled && Options.PeerObfuscationOptions.ListenPort == 0;
++
++                        Listener = new Listener(
++                            Options.ListenIPAddress,
++                            Options.ListenPort,
++                            Options.IncomingConnectionOptions,
++                            tcpListener: PrimaryListenerTcpListenerOverride,
++                            obfuscationSniffingEnabled: sharedObfuscation,
++                            diagnosticFactory: Diagnostic);
+                         Listener.Accepted += ListenerHandler.HandleConnection;
+                         Listener.Error += ListenerHandler.HandleError;
+                         Listener.Start(Options.ListenBacklog);
+ 
+-                        if (Options.PeerObfuscationOptions.Enabled)
++                        if (Options.PeerObfuscationOptions.Enabled && Options.PeerObfuscationOptions.ListenPort != 0)
+                         {
+                             ObfuscatedListener = new Listener(
+                                 Options.ListenIPAddress,
+                                 Options.PeerObfuscationOptions.ListenPort,
+                                 Options.IncomingConnectionOptions,
+-                                obfuscated: true);
++                                obfuscated: true,
++                                diagnosticFactory: Diagnostic);
+                             ObfuscatedListener.Accepted += ListenerHandler.HandleConnection;
+                             ObfuscatedListener.Error += ListenerHandler.HandleError;
+                             ObfuscatedListener.Start(Options.ListenBacklog);
+@@ -5043,6 +5103,7 @@ namespace Soulseek
+                     peerConnectionOptions: patch.PeerConnectionOptions,
+                     transferConnectionOptions: patch.TransferConnectionOptions,
+                     incomingConnectionOptions: patch.IncomingConnectionOptions,
++                    peerObfuscationOptions: patch.PeerObfuscationOptions,
+                     distributedConnectionOptions: patch.DistributedConnectionOptions,
+                     userEndPointCache: patch.UserEndPointCache,
+                     searchResponseResolver: patch.SearchResponseResolver,
+@@ -5051,7 +5112,8 @@ namespace Soulseek
+                     directoryContentsResolver: patch.DirectoryContentsResolver,
+                     userInfoResolver: patch.UserInfoResolver,
+                     enqueueDownload: patch.EnqueueDownload,
+-                    placeInQueueResolver: patch.PlaceInQueueResolver);
++                    placeInQueueResolver: patch.PlaceInQueueResolver,
++                    advertisedListenPort: patch.AdvertisedListenPort);
+ 
+                 if (maximumUploadSpeedChanged)
+                 {
+@@ -5537,15 +5599,24 @@ namespace Soulseek
+ 
+         private SetListenPortCommand CreateSetListenPortCommand()
+         {
++            var advertisedListenPort = Options.AdvertisedListenPort ?? Options.ListenPort;
++
+             if (!Options.PeerObfuscationOptions.Enabled)
+             {
+-                return new SetListenPortCommand(Options.ListenPort);
++                return new SetListenPortCommand(advertisedListenPort);
+             }
+ 
++            // A configured obfuscation listen port of 0 means obfuscated connections share the
++            // regular listen port (see PeerObfuscationOptions remarks); the server needs the
++            // actual reachable port number to advertise to other peers, not the sentinel.
++            var obfuscatedPort = Options.PeerObfuscationOptions.ListenPort == 0
++                ? advertisedListenPort
++                : Options.PeerObfuscationOptions.ListenPort;
++
+             return new SetListenPortCommand(
+-                Options.ListenPort,
++                advertisedListenPort,
+                 Options.PeerObfuscationOptions.Type,
+-                Options.PeerObfuscationOptions.ListenPort);
++                obfuscatedPort);
+         }
+ 
+         private async Task SendRoomMessageInternalAsync(string roomName, string message, CancellationToken cancellationToken)
+@@ -5850,7 +5921,8 @@ namespace Soulseek
+                     writeTask = Task.CompletedTask;
+                 }
+ 
+-                // ensure the losing tasks don't raise an unobserved exception by attaching a continuation that will observe them with Forget()
++                // The disconnect path can win while the canceled socket write faults later.
++                // Observe both participants without changing which exception is propagated.
+                 writeTask.Forget();
+                 disconnectedTaskCancellationSource.Task.Forget();
+ 
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs
+index 85d9f2d0..de5b82e6 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ConnectAsyncTests.cs
+@@ -346,6 +346,57 @@ namespace Soulseek.Tests.Unit.Client
+             mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken>()));
+         }
+ 
++        [Trait("Category", "Connect")]
++        [Theory(DisplayName = "Advertises the regular listen port as the obfuscated port to the server when obfuscation shares it"), AutoData]
++        public async Task Advertises_Regular_Port_As_Obfuscated_Port_When_Shared(string username, string password)
++        {
++            // ListenPort 0 means obfuscated connections share the regular listen port (see
++            // PeerObfuscationOptions remarks). The server still needs a concrete, in-range port
++            // number to advertise to other peers -- it must never see the raw 0 sentinel, which
++            // SetListenPortCommand itself rejects as out of range.
++            var options = new SoulseekClientOptions(
++                enableListener: false,
++                listenPort: 12345,
++                peerObfuscationOptions: new PeerObfuscationOptions(enabled: true, listenPort: 0));
++            var (client, mocks) = GetFixture(options);
++
++            using (client)
++            {
++                await client.ConnectAsync(username, password);
++            }
++
++            var expectedBytes = new LoginRequest(minorVersion: 9999, username, password).ToByteArray()
++                .Concat(new SetListenPortCommand(12345, 1, 12345).ToByteArray())
++                .ToArray();
++
++            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken>()));
++        }
++
++        [Trait("Category", "Connect")]
++        [Theory(DisplayName = "Advertises the forwarded public port without rebinding the local listener"), AutoData]
++        public async Task Advertises_Forwarded_Public_Port_Without_Rebinding_Listener(string username, string password)
++        {
++            var options = new SoulseekClientOptions(
++                enableListener: false,
++                listenPort: 12345,
++                advertisedListenPort: 45678,
++                peerObfuscationOptions: new PeerObfuscationOptions(enabled: true, listenPort: 0));
++            var (client, mocks) = GetFixture(options);
++
++            using (client)
++            {
++                await client.ConnectAsync(username, password);
++            }
++
++            var expectedBytes = new LoginRequest(minorVersion: 9999, username, password).ToByteArray()
++                .Concat(new SetListenPortCommand(45678, 1, 45678).ToByteArray())
++                .ToArray();
++
++            Assert.Equal(12345, client.Options.ListenPort);
++            Assert.Equal(45678, client.Options.AdvertisedListenPort);
++            mocks.ServerConnection.Verify(m => m.WriteAsync(It.Is<byte[]>(msg => msg.Matches(expectedBytes)), It.IsAny<CancellationToken>()));
++        }
++
+         [Trait("Category", "Connect")]
+         [Fact(DisplayName = "Sets state to Connected | LoggedIn on success")]
+         public async Task Sets_State_To_Connected_LoggedIn_On_Success()
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs
+index b2dd80fa..97c14178 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Client/ReconfigureOptionsAsyncTests.cs
+@@ -82,6 +82,57 @@ namespace Soulseek.Tests.Unit.Client
+             }
+         }
+ 
++        [Trait("Category", "ReconfigureOptions")]
++        [Fact(DisplayName = "Uses PrimaryListenerTcpListenerOverride instead of binding a real socket when set")]
++        public async Task Uses_PrimaryListenerTcpListenerOverride_Instead_Of_Binding_A_Real_Socket_When_Set()
++        {
++            var port = GetAvailablePort();
++
++            // Change something that forces the listener to be rebuilt (peer obfuscation options)
++            // WITHOUT changing the listen address or port, so the earlier, un-overridden real-port
++            // probe in ReconfigureOptionsAsync (which only runs when the address/port changes) is
++            // not exercised -- this isolates the internal reconstruction path that
++            // PrimaryListenerTcpListenerOverride actually affects.
++            var (client, mocks) = GetFixture(new SoulseekClientOptions(
++                enableListener: true,
++                listenPort: port,
++                peerObfuscationOptions: new PeerObfuscationOptions(enabled: false)));
++
++            mocks.Listener.Setup(m => m.Listening).Returns(true);
++
++            var patch = new SoulseekClientOptionsPatch(
++                peerObfuscationOptions: new PeerObfuscationOptions(enabled: true, listenPort: 0));
++
++            Listener occupyingListener = null;
++
++            try
++            {
++                // Occupy the port for real. Without the override, rebuilding the listener on this
++                // port throws ListenException (see the preceding test's scenario); with it, the
++                // vendored Listener never attempts a real bind, so no conflict occurs.
++                occupyingListener = new Listener(IPAddress.Any, port, new ConnectionOptions());
++                occupyingListener.Start();
++
++                var overrideTcpListener = new Mock<ITcpListener>();
++                overrideTcpListener.Setup(m => m.AcceptTcpClientAsync()).Returns(new TaskCompletionSource<TcpClient>().Task);
++                client.PrimaryListenerTcpListenerOverride = overrideTcpListener.Object;
++
++                using (client)
++                {
++                    var ex = await Record.ExceptionAsync(() => client.ReconfigureOptionsAsync(patch));
++
++                    Assert.Null(ex);
++                    Assert.Equal(port, client.Listener.Port);
++                }
++
++                overrideTcpListener.Verify(m => m.Start(It.IsAny<int>()), Times.AtLeastOnce);
++            }
++            finally
++            {
++                occupyingListener?.Stop();
++            }
++        }
++
+         [Trait("Category", "ReconfigureOptions")]
+         [Fact(DisplayName = "Does not throw given empty patch")]
+         public async Task Does_Not_Throw_Given_Empty_Patch()
+@@ -331,12 +382,12 @@ namespace Soulseek.Tests.Unit.Client
+             using (client)
+             {
+                 client.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+-                var ogListener = client.Listener;
++                var originalListener = client.Listener;
+ 
+                 await client.ReconfigureOptionsAsync(patch);
+ 
+                 Assert.Equal(patch.ListenBacklog, client.Options.ListenBacklog);
+-                Assert.NotEqual(ogListener, client.Listener);
++                Assert.NotEqual(originalListener, client.Listener);
+             }
+         }
+ 
+@@ -357,7 +408,6 @@ namespace Soulseek.Tests.Unit.Client
+                 await client.ReconfigureOptionsAsync(patch);
+ 
+                 Assert.Equal(mocks.Listener.Object, client.Listener);
+-
+                 mocks.Listener.Verify(m => m.Start(It.IsAny<int>()), Times.Never);
+             }
+         }
+@@ -367,26 +417,67 @@ namespace Soulseek.Tests.Unit.Client
+         public async Task Assigns_A_Handler_To_Listener_Error_When_A_New_Listener_Is_Created()
+         {
+             var (client, mocks) = GetFixture(new SoulseekClientOptions(listenPort: GetAvailablePort()));
+-
+             mocks.Listener.Setup(m => m.Listening).Returns(true);
+-
+             var patch = new SoulseekClientOptionsPatch(listenPort: GetAvailablePort());
+ 
+             using (client)
+             {
+                 client.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
+-
+                 await client.ReconfigureOptionsAsync(patch);
+ 
+                 Assert.NotNull(client.Listener);
+-
+                 var raisedException = new Exception("error raised for test");
+                 client.Listener.RaiseEvent(typeof(Listener), "Error", raisedException);
+-
+                 mocks.ListenerHandler.Verify(m => m.HandleError(client.Listener, raisedException), Times.Once);
+             }
+         }
+ 
++        [Trait("Category", "ReconfigureOptions")]
++        [Fact(DisplayName = "Reconfigures obfuscated listener and metadata if listen ports changed")]
++        public async Task Reconfigures_Obfuscated_Listener_And_Metadata_If_Listen_Ports_Changed()
++        {
++            var regularPort = GetAvailablePort();
++            var oldObfuscatedPort = GetAvailablePort();
++            while (oldObfuscatedPort == regularPort)
++            {
++                oldObfuscatedPort = GetAvailablePort();
++            }
++
++            var newRegularPort = GetAvailablePort();
++            while (newRegularPort == regularPort || newRegularPort == oldObfuscatedPort)
++            {
++                newRegularPort = GetAvailablePort();
++            }
++
++            var newObfuscatedPort = GetAvailablePort();
++            while (newObfuscatedPort == regularPort || newObfuscatedPort == oldObfuscatedPort || newObfuscatedPort == newRegularPort)
++            {
++                newObfuscatedPort = GetAvailablePort();
++            }
++
++            var oldObfuscation = new PeerObfuscationOptions(enabled: true, listenPort: oldObfuscatedPort);
++            var newObfuscation = new PeerObfuscationOptions(enabled: true, listenPort: newObfuscatedPort, preferOutbound: true);
++            var (client, mocks) = GetFixture(new SoulseekClientOptions(
++                listenPort: regularPort,
++                peerObfuscationOptions: oldObfuscation));
++
++            mocks.Listener.Setup(m => m.Listening).Returns(true);
++            var patch = new SoulseekClientOptionsPatch(
++                listenPort: newRegularPort,
++                peerObfuscationOptions: newObfuscation);
++
++            using (client)
++            {
++                client.SetProperty("State", SoulseekClientStates.Connected | SoulseekClientStates.LoggedIn);
++                await client.ReconfigureOptionsAsync(patch);
++
++                Assert.Equal(newRegularPort, client.Listener.Port);
++                Assert.NotNull(client.ObfuscatedListener);
++                Assert.Equal(newObfuscatedPort, client.ObfuscatedListener.Port);
++                Assert.Same(newObfuscation, client.Options.PeerObfuscationOptions);
++            }
++        }
++
+         [Trait("Category", "ReconfigureOptions")]
+         [Fact(DisplayName = "Reconfigures listener if ListenIPAddress changed")]
+         public async Task Reconfigures_Listener_If_ListenIPAddress_Changed()
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs
+index dc04dd3e..7e2a6bb9 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Handlers/PeerMessageHandlerTests.cs
+@@ -391,6 +391,26 @@ namespace Soulseek.Tests.Unit.Messaging.Handlers
+             Assert.Null(ex);
+         }
+ 
++        [Trait("Category", "Message")]
++        [Theory(DisplayName = "Drops inactive search response before parsing file list"), AutoData]
++        public void Drops_Inactive_Search_Response_Before_Parsing_File_List(string username, IPEndPoint endpoint, int token)
++        {
++            var (handler, mocks) = GetFixture(username, endpoint);
++
++            var msg = new MessageBuilder()
++                .WriteCode(MessageCode.Peer.SearchResponse)
++                .WriteString(username)
++                .WriteInteger(token)
++                .WriteInteger(-1) // invalid file count; inactive responses must be dropped before parsing this field
++                .Compress()
++                .Build();
++
++            var ex = Record.Exception(() => handler.HandleMessageRead(mocks.PeerConnection.Object, msg));
++
++            Assert.Null(ex);
++            mocks.Diagnostic.Verify(m => m.Warning(It.IsAny<string>(), It.IsAny<Exception>()), Times.Never);
++        }
++
+         [Trait("Category", "Message")]
+         [Theory(DisplayName = "Throws TransferRequest wait on PeerUploadDenied"), AutoData]
+         public void Throws_TransferRequest_Wait_On_PeerUploadDenied(string username, IPEndPoint endpoint, string filename, string message)
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs
+index a27bf36a..ce2f1459 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/BrowseResponseFactoryTests.cs
+@@ -462,6 +462,60 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
+             }
+         }
+ 
++        [Trait("Category", "WriteTo")]
++        [Fact(DisplayName = "WriteToStream serializes a single pass of directory entries")]
++        public void WriteToStream_Serializes_A_Single_Pass_Of_Directory_Entries()
++        {
++            var directories = new[]
++            {
++                new Directory("dir1", new[] { new File(1, "one.mp3", 10, "mp3") }),
++                new Directory("dir2", Array.Empty<File>()),
++            };
++            var enumerations = 0;
++
++            IEnumerable<Directory> EnumerateDirectories()
++            {
++                enumerations++;
++                foreach (var directory in directories)
++                {
++                    yield return directory;
++                }
++            }
++
++            using (var stream = new System.IO.MemoryStream())
++            {
++                BrowseResponseFactory.WriteToStream(
++                    directories.Length,
++                    EnumerateDirectories(),
++                    0,
++                    Array.Empty<Directory>(),
++                    stream);
++
++                var parsed = BrowseResponseFactory.FromByteArray(stream.ToArray());
++
++                Assert.Equal(1, enumerations);
++                Assert.Equal(directories.Select(directory => directory.Name), parsed.Directories.Select(directory => directory.Name));
++                Assert.Equal(directories.Sum(directory => directory.FileCount), parsed.Directories.Sum(directory => directory.FileCount));
++            }
++        }
++
++        [Trait("Category", "WriteTo")]
++        [Fact(DisplayName = "WriteToStream rejects a directory count that changed during streaming")]
++        public void WriteToStream_Rejects_A_Directory_Count_Mismatch()
++        {
++            using (var stream = new System.IO.MemoryStream())
++            {
++                var exception = Assert.Throws<MessageException>(() => BrowseResponseFactory.WriteToStream(
++                    2,
++                    new[] { new Directory("dir1") },
++                    0,
++                    Array.Empty<Directory>(),
++                    stream));
++
++                Assert.Contains("directory count", exception.Message, StringComparison.OrdinalIgnoreCase);
++            }
++        }
++
+         [Trait("Category", "ToByteArray")]
+         [Fact(DisplayName = "ToByteArray returns the expected data when only locked files given")]
+         public void ToByteArray_Returns_Expected_Data_When_Only_Locked_Files_Given()
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs
+index 67f40ccc..390e50a9 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Messaging/Messages/Peer/SearchResponseFactoryTests.cs
+@@ -27,6 +27,37 @@ namespace Soulseek.Tests.Unit.Messaging.Messages
+ 
+     public class SearchResponseFactoryTests
+     {
++        [Trait("Category", "Parse")]
++        [Theory(DisplayName = "ReadToken reads the search token without parsing the file list"), AutoData]
++        public void ReadToken_Reads_Token_Without_Parsing_File_List(string username, int token)
++        {
++            var msg = new MessageBuilder()
++                .WriteCode(MessageCode.Peer.SearchResponse)
++                .WriteString(username)
++                .WriteInteger(token)
++                .WriteInteger(-1) // invalid file count is beyond the prefix needed to identify the search
++                .Compress()
++                .Build();
++
++            Assert.Equal(token, SearchResponseFactory.ReadToken(msg));
++        }
++
++        [Trait("Category", "Parse")]
++        [Fact(DisplayName = "ReadToken throws MessageReadException when the token is missing")]
++        public void ReadToken_Throws_MessageReadException_When_Token_Is_Missing()
++        {
++            var msg = new MessageBuilder()
++                .WriteCode(MessageCode.Peer.SearchResponse)
++                .WriteString("foo")
++                .Compress()
++                .Build();
++
++            var ex = Record.Exception(() => SearchResponseFactory.ReadToken(msg));
++
++            Assert.NotNull(ex);
++            Assert.IsType<MessageReadException>(ex);
++        }
++
+         [Trait("Category", "Parse")]
+         [Fact(DisplayName = "Parse throws MessageException on code mismatch")]
+         public void Parse_Throws_MessageException_On_Code_Mismatch()
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs
+index 8736202c..3602dc78 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/ListenerHandlerTests.cs
+@@ -23,6 +23,8 @@ namespace Soulseek.Tests.Unit.Network
+     using System.Collections.Concurrent;
+     using System.Collections.Generic;
+     using System.Net;
++    using System.Reflection;
++    using System.Runtime.CompilerServices;
+     using System.Threading;
+     using System.Threading.Tasks;
+     using AutoFixture.Xunit2;
+@@ -95,6 +97,17 @@ namespace Soulseek.Tests.Unit.Network
+             }
+         }
+ 
++        [Trait("Category", "Diagnostic")]
++        [Fact(DisplayName = "Dispatches connection handling without an async-void boundary")]
++        public void Dispatches_Connection_Handling_Without_An_Async_Void_Boundary()
++        {
++            var method = typeof(ListenerHandler).GetMethod(nameof(ListenerHandler.HandleConnection), BindingFlags.Public | BindingFlags.Instance);
++
++            Assert.NotNull(method);
++            Assert.Equal(typeof(void), method.ReturnType);
++            Assert.Empty(method.GetCustomAttributes(typeof(AsyncStateMachineAttribute), inherit: false));
++        }
++
+         [Trait("Category", "Diagnostic")]
+         [Theory(DisplayName = "Creates diagnostic on connection"), AutoData]
+         public void Creates_Diagnostic_On_Connection(IPEndPoint endpoint)
+@@ -178,7 +191,7 @@ namespace Soulseek.Tests.Unit.Network
+ 
+             var compare = StringComparison.InvariantCultureIgnoreCase;
+             mocks.Diagnostic.Verify(m => m.Debug(It.Is<string>(s => s.Contains("failed to initialize", compare) && s.Contains("mark failed", compare))), Times.Once);
+-            mocks.Connection.Verify(m => m.Disconnect(null, It.IsAny<InvalidOperationException>()), Times.Once);
++            mocks.Connection.Verify(m => m.Disconnect(It.Is<string>(s => s.Contains("mark failed", StringComparison.InvariantCultureIgnoreCase)), null), Times.Once);
+             mocks.Connection.Verify(m => m.Dispose(), Times.Once);
+         }
+ 
+@@ -190,7 +203,7 @@ namespace Soulseek.Tests.Unit.Network
+ 
+             mocks.Connection.Setup(m => m.ReadAsync(4, It.IsAny<CancellationToken>()))
+                 .Throws(new InvalidOperationException("read failed"));
+-            mocks.Connection.Setup(m => m.Disconnect(It.IsAny<string>(), It.IsAny<Exception>()))
++            mocks.Connection.Setup(m => m.Disconnect(It.IsAny<string>(), null))
+                 .Throws(new InvalidOperationException("disconnect failed"));
+             mocks.Connection.Setup(m => m.Dispose())
+                 .Throws(new InvalidOperationException("dispose failed"));
+@@ -607,6 +620,106 @@ namespace Soulseek.Tests.Unit.Network
+             mocks.Diagnostic.Verify(m => m.Debug(It.Is<string>(s => s.Contains("Invalid obfuscated initialization message length", StringComparison.InvariantCultureIgnoreCase))), Times.Once);
+         }
+ 
++        [Trait("Category", "Message")]
++        [Theory(DisplayName = "Rejects oversized plain init without faulting the listener task"), AutoData]
++        public async Task Rejects_Oversized_Plain_Init_Without_Faulting_The_Listener_Task(IPEndPoint endpoint)
++        {
++            var (handler, mocks) = GetFixture(endpoint);
++
++            var invalidLength = RotatedObfuscation.MaxInitMessageLength + 1;
++            mocks.Connection.Setup(m => m.ReadAsync(4, It.IsAny<CancellationToken>()))
++                .Returns(Task.FromResult(BitConverter.GetBytes(invalidLength)));
++            mocks.Diagnostic.Setup(m => m.Debug(It.IsAny<string>()));
++
++            var exception = await Record.ExceptionAsync(() => handler.HandleConnectionAsync(null, mocks.Connection.Object));
++
++            Assert.Null(exception);
++            mocks.Connection.Verify(m => m.ReadAsync(invalidLength, It.IsAny<CancellationToken>()), Times.Never);
++            mocks.Diagnostic.Verify(m => m.Debug(It.Is<string>(s => s.Contains("Invalid initialization message length", StringComparison.InvariantCultureIgnoreCase))), Times.Once);
++            mocks.Connection.Verify(m => m.Disconnect(It.Is<string>(s => s.Contains("Invalid initialization message length", StringComparison.InvariantCultureIgnoreCase)), null), Times.Once);
++        }
++
++        [Trait("Category", "SharedObfuscationSniffing")]
++        [Theory(DisplayName = "Shared listener classifies plain PeerInit connection as plain"), AutoData]
++        public async Task Shared_Listener_Classifies_Plain_PeerInit_Connection_As_Plain(IPEndPoint endpoint, string username, int token)
++        {
++            var (handler, mocks) = GetFixture(endpoint);
++
++            var message = new PeerInit(username, Constants.ConnectionType.Peer, token);
++            var messageBytes = message.ToByteArray().AsSpan().Slice(4).ToArray();
++
++            mocks.Listener.Setup(m => m.ObfuscationSniffingEnabled).Returns(true);
++
++            // the plain length prefix (well within the [4, MaxInitMessageLength] bound) is read once as the
++            // "sniffed" first four bytes and is not re-read from the socket.
++            mocks.Connection.Setup(m => m.ReadAsync(4, It.IsAny<CancellationToken>()))
++                .Returns(Task.FromResult(BitConverter.GetBytes(messageBytes.Length)));
++
++            mocks.Connection.Setup(m => m.ReadAsync(messageBytes.Length, It.IsAny<CancellationToken>()))
++                .Returns(Task.FromResult(messageBytes));
++
++            await handler.HandleConnectionAsync(mocks.Listener.Object, mocks.Connection.Object);
++
++            mocks.Connection.Verify(m => m.MarkObfuscated(), Times.Never);
++            mocks.Connection.Verify(m => m.ReadAsync(8, It.IsAny<CancellationToken>()), Times.Never);
++            mocks.PeerConnectionManager.Verify(m => m.AddOrUpdateMessageConnectionAsync(username, mocks.Connection.Object), Times.Once);
++            mocks.PeerConnectionManager.Verify(m => m.AddOrUpdateObfuscatedMessageConnectionAsync(username, mocks.Connection.Object), Times.Never);
++        }
++
++        [Trait("Category", "SharedObfuscationSniffing")]
++        [Theory(DisplayName = "Shared listener classifies obfuscated PeerInit connection as obfuscated"), AutoData]
++        public async Task Shared_Listener_Classifies_Obfuscated_PeerInit_Connection_As_Obfuscated(IPEndPoint endpoint, string username, int token)
++        {
++            var (handler, mocks) = GetFixture(endpoint);
++
++            var message = new PeerInit(username, Constants.ConnectionType.Peer, token).ToByteArray();
++
++            // the key (0x1020_3040), read raw as the first four bytes of the obfuscated header, decodes to a
++            // candidate length far outside the plain [4, MaxInitMessageLength] bound, so sniffing correctly falls
++            // through to the obfuscated interpretation.
++            var obfuscatedMessage = RotatedObfuscation.Encode(message, 0x1020_3040);
++
++            mocks.Listener.Setup(m => m.ObfuscationSniffingEnabled).Returns(true);
++
++            mocks.Connection.SetupSequence(m => m.ReadAsync(4, It.IsAny<CancellationToken>()))
++                .Returns(Task.FromResult(obfuscatedMessage.AsSpan().Slice(0, 4).ToArray()))
++                .Returns(Task.FromResult(obfuscatedMessage.AsSpan().Slice(4, 4).ToArray()));
++
++            mocks.Connection.Setup(m => m.ReadAsync(message.Length - 4, It.IsAny<CancellationToken>()))
++                .Returns(Task.FromResult(obfuscatedMessage.AsSpan().Slice(8).ToArray()));
++
++            await handler.HandleConnectionAsync(mocks.Listener.Object, mocks.Connection.Object);
++
++            mocks.Connection.Verify(m => m.MarkObfuscated(), Times.Once);
++            mocks.PeerConnectionManager.Verify(m => m.AddOrUpdateObfuscatedMessageConnectionAsync(username, mocks.Connection.Object), Times.Once);
++            mocks.PeerConnectionManager.Verify(m => m.AddOrUpdateMessageConnectionAsync(username, mocks.Connection.Object), Times.Never);
++        }
++
++        [Trait("Category", "SharedObfuscationSniffing")]
++        [Theory(DisplayName = "Shared listener disconnects when sniffed obfuscated frame fails validation"), AutoData]
++        public async Task Shared_Listener_Disconnects_When_Sniffed_Obfuscated_Frame_Fails_Validation(IPEndPoint endpoint)
++        {
++            var (handler, mocks) = GetFixture(endpoint);
++
++            var lengthBytes = new byte[4];
++            BinaryPrimitives.WriteInt32LittleEndian(lengthBytes, RotatedObfuscation.MaxInitMessageLength + 1);
++            var obfuscatedHeader = RotatedObfuscation.Encode(lengthBytes, 0x1020_3040);
++
++            mocks.Listener.Setup(m => m.ObfuscationSniffingEnabled).Returns(true);
++
++            mocks.Connection.SetupSequence(m => m.ReadAsync(4, It.IsAny<CancellationToken>()))
++                .Returns(Task.FromResult(obfuscatedHeader.AsSpan().Slice(0, 4).ToArray()))
++                .Returns(Task.FromResult(obfuscatedHeader.AsSpan().Slice(4, 4).ToArray()));
++
++            mocks.Diagnostic.Setup(m => m.Debug(It.IsAny<string>()));
++
++            await handler.HandleConnectionAsync(mocks.Listener.Object, mocks.Connection.Object);
++
++            var compare = StringComparison.InvariantCultureIgnoreCase;
++            mocks.Diagnostic.Verify(m => m.Debug(It.Is<string>(s => s.Contains("failed to initialize", compare) && s.Contains("Invalid obfuscated initialization message length", compare))), Times.Once);
++            mocks.Connection.Verify(m => m.Disconnect(It.Is<string>(s => s.Contains("Invalid obfuscated initialization message length", StringComparison.InvariantCultureIgnoreCase)), null), Times.Once);
++        }
++
+         [Trait("Category", "PierceFirewall")]
+         [Theory(DisplayName = "Completes solicited distributed connection on distributed PierceFirewall"), AutoData]
+         public void Completes_Solicited_Distributed_Connection_On_Distributed_PierceFirewall(IPEndPoint endpoint, string username, int token)
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs
+index 14e19198..3a461d80 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Network/Tcp/ListenerTests.cs
+@@ -1,4 +1,4 @@
+-﻿// <copyright file="ListenerTests.cs" company="JP Dillingham">
++// <copyright file="ListenerTests.cs" company="JP Dillingham">
+ //     Copyright (c) JP Dillingham. All rights reserved.
+ //
+ //     This program is free software: you can redistribute it and/or modify
+@@ -24,6 +24,7 @@ namespace Soulseek.Tests.Unit.Network.Tcp
+     using System.Threading;
+     using System.Threading.Tasks;
+     using Moq;
++    using Soulseek.Diagnostics;
+     using Soulseek.Network.Tcp;
+     using Xunit;
+ 
+@@ -51,6 +52,21 @@ namespace Soulseek.Tests.Unit.Network.Tcp
+             Assert.Equal(options, l.ConnectionOptions);
+ 
+             Assert.False(l.Listening);
++            Assert.False(l.Obfuscated);
++            Assert.False(l.ObfuscationSniffingEnabled);
++        }
++
++        [Trait("Category", "Instantiation")]
++        [Fact(DisplayName = "Instantiates with obfuscation sniffing enabled")]
++        public void Instantiates_With_Obfuscation_Sniffing_Enabled()
++        {
++            var options = new ConnectionOptions();
++            var port = 0;
++
++            var l = new Listener(IPAddress.Loopback, port, options, obfuscationSniffingEnabled: true);
++
++            Assert.True(l.ObfuscationSniffingEnabled);
++            Assert.False(l.Obfuscated);
+         }
+ 
+         [Trait("Category", "Instantiation")]
+@@ -736,5 +752,84 @@ namespace Soulseek.Tests.Unit.Network.Tcp
+                 base.Dispose(disposing);
+             }
+         }
++
++        [Trait("Category", "Accept")]
++        [Fact(DisplayName = "Transient accept failure retries and accepts the next connection")]
++        public async Task Start_RetriesTransientAcceptFailure()
++        {
++            var socketListener = new System.Net.Sockets.TcpListener(IPAddress.Loopback, 0);
++            socketListener.Start();
++
++            var remoteClient = new TcpClient();
++            TcpClient acceptedClient = null;
++            Listener listener = null;
++            IConnection acceptedConnection = null;
++
++            try
++            {
++                var endpoint = (IPEndPoint)socketListener.LocalEndpoint;
++                var connectTask = remoteClient.ConnectAsync(endpoint.Address, endpoint.Port);
++                acceptedClient = await socketListener.AcceptTcpClientAsync();
++                await connectTask;
++
++                var pendingAccept = new TaskCompletionSource<TcpClient>(TaskCreationOptions.RunContinuationsAsynchronously);
++                var retrying = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
++                var accepted = new TaskCompletionSource<IConnection>(TaskCreationOptions.RunContinuationsAsynchronously);
++                var warning = new TaskCompletionSource<string>(TaskCreationOptions.RunContinuationsAsynchronously);
++                var acceptCount = 0;
++
++                var tcpListener = new Mock<ITcpListener>();
++                tcpListener.Setup(m => m.AcceptTcpClientAsync()).Returns(() =>
++                {
++                    var current = Interlocked.Increment(ref acceptCount);
++
++                    if (current == 1)
++                    {
++                        return Task.FromException<TcpClient>(new SocketException((int)SocketError.Interrupted));
++                    }
++
++                    if (current == 2)
++                    {
++                        return Task.FromResult(acceptedClient);
++                    }
++
++                    retrying.TrySetResult(true);
++                    return pendingAccept.Task;
++                });
++                tcpListener.Setup(m => m.Stop()).Callback(() => pendingAccept.TrySetException(new SocketException((int)SocketError.OperationAborted)));
++
++                var diagnosticFactory = new Mock<IDiagnosticFactory>();
++                diagnosticFactory
++                    .Setup(m => m.Warning(It.IsAny<string>(), It.IsAny<Exception>()))
++                    .Callback<string, Exception>((message, _) => warning.TrySetResult(message));
++
++                listener = new Listener(
++                    IPAddress.Loopback,
++                    0,
++                    new ConnectionOptions(),
++                    tcpListener.Object,
++                    diagnosticFactory: diagnosticFactory.Object);
++                listener.Accepted += (_, connection) => accepted.TrySetResult(connection);
++                listener.Start();
++
++                acceptedConnection = await accepted.Task.WaitAsync(TimeSpan.FromSeconds(5));
++                var warningMessage = await warning.Task.WaitAsync(TimeSpan.FromSeconds(5));
++                await retrying.Task.WaitAsync(TimeSpan.FromSeconds(5));
++
++                Assert.True(listener.Listening);
++                Assert.Equal("A TCP listener accept failed; retrying with bounded backoff.", warningMessage);
++                Assert.Equal(3, Volatile.Read(ref acceptCount));
++                Assert.NotNull(acceptedConnection.IPEndPoint);
++                diagnosticFactory.Verify(m => m.Warning(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
++            }
++            finally
++            {
++                listener?.Stop();
++                acceptedConnection?.Dispose();
++                acceptedClient?.Dispose();
++                remoteClient.Dispose();
++                socketListener.Stop();
++            }
++        }
+     }
+ }
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs
+index 6acb766b..04e00f34 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/Options/PeerObfuscationOptionsTests.cs
+@@ -26,5 +26,22 @@ namespace Soulseek.Tests.Unit.Options
+             Assert.NotNull(ex);
+             Assert.IsType<ArgumentException>(ex);
+         }
++
++        [Fact(DisplayName = "Instantiation does not throw if enabled with a zero (shared) listen port")]
++        public void Instantiation_Does_Not_Throw_If_Enabled_With_Zero_Listen_Port()
++        {
++            var ex = Record.Exception(() => new PeerObfuscationOptions(enabled: true, listenPort: 0));
++
++            Assert.Null(ex);
++        }
++
++        [Fact(DisplayName = "A zero listen port is retained as zero (shared) when enabled")]
++        public void Zero_Listen_Port_Is_Retained_When_Enabled()
++        {
++            var options = new PeerObfuscationOptions(enabled: true, listenPort: 0);
++
++            Assert.True(options.Enabled);
++            Assert.Equal(0, options.ListenPort);
++        }
+     }
+ }
+diff --git a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs
+index 22d3c364..8c9604a0 100644
+--- a/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs
++++ b/vendor/slskNet.Runtime/tests/Soulseek.Tests.Unit/SearchInternalTests.cs
+@@ -75,6 +75,34 @@ namespace Soulseek.Tests.Unit
+             Assert.Null(ex);
+         }
+ 
++        [Trait("Category", "Dispose")]
++        [Fact(DisplayName = "Dispose does not throw when response callback is in flight")]
++        public async Task Dispose_Does_Not_Throw_When_Response_Callback_Is_In_Flight()
++        {
++            var s = new SearchInternal(new SearchQuery("foo"), SearchScope.Network, 42);
++            var responseStarted = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
++            var releaseResponse = new ManualResetEventSlim(false);
++
++            s.SetState(SearchStates.InProgress);
++            s.ResponseReceived = (r) =>
++            {
++                responseStarted.TrySetResult(0);
++                releaseResponse.Wait(TimeSpan.FromSeconds(5));
++            };
++
++            var files = new List<File> { new File(1, "song.flac", 1234, "flac") };
++            var addTask = Task.Run(() => s.TryAddResponse(new SearchResponse("bar", 42, true, 1, 1, files)));
++            var completed = await Task.WhenAny(responseStarted.Task, Task.Delay(TimeSpan.FromSeconds(5)));
++
++            Assert.Same(responseStarted.Task, completed);
++
++            var ex = Record.Exception(() => s.Dispose());
++            releaseResponse.Set();
++            await addTask;
++
++            Assert.Null(ex);
++        }
++
+         [Trait("Category", "Complete")]
+         [Fact(DisplayName = "Complete is idempotent")]
+         public void Complete_Is_Idempotent()

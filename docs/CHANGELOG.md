@@ -27,6 +27,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - AcoustID lookups use each track's measured duration, improving matches for longer recordings while keeping metadata processing responsive when ffprobe stalls.
 - Runtime integration: federated TCP listeners now cancel pending accept reads when the runtime listener stops, preventing a stranded read during reconfiguration.
 - Runtime sync validation now distinguishes truly untracked vendor files from tracked changes when checking the generated mirror.
+- Runtime sync: rebase the slskdN patch against the audited slskNet.Runtime 10.0.3 source and keep strict validation for obfuscated peer ports.
 
 ## [2026102116-slskdn.353] — 2026-10-21
 
