@@ -119,16 +119,27 @@ internal class StaticOptionsSnapshot : IOptionsSnapshot<slskd.Options>
 
 internal class StubSecurityService : ISecurityService
 {
-    public JwtSecurityToken GenerateJwt(string username, Role role, int? ttl = null, string[] scopes = null) =>
-        new JwtSecurityToken(
+    public JwtSecurityToken GenerateJwt(
+        string username,
+        Role role,
+        int? ttl = null,
+        string[]? scopes = null,
+        IEnumerable<Claim>? additionalClaims = null)
+    {
+        var claims = new List<Claim>(additionalClaims ?? Array.Empty<Claim>());
+        var effectiveScopes = scopes is { Length: > 0 } ? scopes : new[] { SlskdClaims.ScopeAll };
+        claims.AddRange(effectiveScopes.Select(scope => new Claim(SlskdClaims.ScopeClaim, scope)));
+
+        return new JwtSecurityToken(
             issuer: "test",
             audience: "test",
-            claims: Array.Empty<Claim>(),
+            claims: claims,
             notBefore: DateTime.UtcNow,
-            expires: DateTime.UtcNow.AddHours(1),
+            expires: DateTime.UtcNow.AddMilliseconds(ttl ?? TimeSpan.FromHours(1).TotalMilliseconds),
             signingCredentials: new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes("test-key-must-be-32-bytes!!!!!!!")),
                 "HS256"));
+    }
 
     public bool AuthenticateAdminCredentials(string username, string password) => true;
 
