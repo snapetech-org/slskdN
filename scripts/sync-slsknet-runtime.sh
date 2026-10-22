@@ -114,7 +114,7 @@ git -C "$repo_root" ls-files vendor/slskNet.Runtime | sed 's#^vendor/slskNet.Run
 while IFS= read -r tracked_path; do
     relative_path="${tracked_path#vendor/slskNet.Runtime/}"
     if ! rg -q --fixed-strings --line-regexp "$relative_path" "$temp_root/source-paths"; then
-        rm -- "$repo_root/$tracked_path"
+        rm -- "$vendor_root/$relative_path"
     fi
 done < "$temp_root/vendor-paths"
 
