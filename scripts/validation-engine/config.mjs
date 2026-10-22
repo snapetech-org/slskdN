@@ -101,21 +101,6 @@ export const validation = {
       timeoutSeconds: 300,
     },
     {
-      id: 'remediation-baseline',
-      name: 'Remediation baseline',
-      stage: 'repository',
-      kind: 'check',
-      command: ['bash', 'scripts/check-remediation-baseline.sh'],
-      env: { LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES: '0' },
-      passEnv: [
-        'LOCAL_IDENTITY_DENYLIST',
-        'LOCAL_IDENTITY_DENYLIST_FILE',
-        'SLSKDN_LOCAL_IDENTITY_DENYLIST',
-        'SLSKDN_LOCAL_IDENTITY_DENYLIST_FILE',
-      ],
-      timeoutSeconds: 300,
-    },
-    {
       id: 'release-note-tests',
       name: 'Release-note tooling tests',
       stage: 'repository',

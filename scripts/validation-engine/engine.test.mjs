@@ -363,13 +363,6 @@ test('child environments hide sensitive values unless a task explicitly needs th
 
     config.tasks[0].passEnv = [key];
     assert.throws(() => fixturePlan(root, config), /unapproved inherited environment variable/);
-    config.tasks[0].id = 'remediation-baseline';
-    config.tasks[0].passEnv = ['LOCAL_IDENTITY_DENYLIST'];
-    config.tasks[0].command = [process.execPath, '-e', "process.stdout.write(process.env.LOCAL_IDENTITY_DENYLIST ?? '')"];
-    result = await executePlan(root, config, fixturePlan(root, config));
-    log = path.join(result.runRoot, result.receipt.tasks[0].logFile);
-    assert.equal(readFileSync(log, 'utf8'), 'synthetic-local-identity-list');
-    assert.deepEqual(result.receipt.tasks[0].envKeys, ['LOCAL_IDENTITY_DENYLIST']);
   } finally {
     for (const [name, value] of previous) {
       if (value === undefined) delete process.env[name];
@@ -437,24 +430,6 @@ test('Playwright tasks use the job cache and keep standard runs offline', () => 
   assert.throws(
     () => isolatedTaskEnvironment({ ...task, browserCache: '/operator/cache' }, runRoot, {}),
     /unsupported browser cache/,
-  );
-});
-
-test('remediation baseline ignores synthetic runtime identities in its isolated task', () => {
-  const runRoot = makeRoot({ 'package.json': '{}\n' });
-  const task = validation.tasks.find((candidate) => candidate.id === 'remediation-baseline');
-
-  assert.ok(task);
-  assert.equal(task.env?.LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES, '0');
-  const environment = isolatedTaskEnvironment(task, runRoot, {
-    HOME: '/operator/home',
-    USER: 'operator',
-  });
-
-  assert.equal(environment.LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES, '0');
-  assert.equal(
-    environment.HOME,
-    path.join(runRoot, 'remediation-baseline-environment', 'home'),
   );
 });
 

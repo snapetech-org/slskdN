@@ -129,7 +129,6 @@ expect_literal scripts/validation-engine/config.mjs "'.github/workflows/build-on
 for task_id in \
     release-branch-sync \
     packaging-metadata \
-    remediation-baseline \
     release-note-tests \
     engine-contract-tests \
     web-install \

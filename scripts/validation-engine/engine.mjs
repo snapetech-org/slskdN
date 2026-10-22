@@ -50,15 +50,6 @@ const INHERITED_ENVIRONMENT_KEYS = new Set([
   'MISE_HOME', 'NVM_DIR', 'PATH', 'PATHEXT', 'VOLTA_HOME', 'SYSTEMROOT',
   'TZ', 'WINDIR',
 ]);
-const APPROVED_TASK_PASS_ENVIRONMENT = new Map([
-  ['remediation-baseline', new Set([
-    'LOCAL_IDENTITY_DENYLIST',
-    'LOCAL_IDENTITY_DENYLIST_FILE',
-    'SLSKDN_LOCAL_IDENTITY_DENYLIST',
-    'SLSKDN_LOCAL_IDENTITY_DENYLIST_FILE',
-  ])],
-]);
-
 function fail(message) {
   throw new Error(message);
 }
@@ -324,8 +315,10 @@ function validateConfig(config) {
     if (!Array.isArray(task.passEnv ?? [])) {
       fail('Explicitly inherited environment variables must be listed by task: ' + task.id);
     }
-    if ((task.passEnv ?? []).some((name) => typeof name !== 'string' ||
-        !APPROVED_TASK_PASS_ENVIRONMENT.get(task.id)?.has(name))) {
+    if ((task.passEnv ?? []).some((name) => typeof name !== 'string')) {
+      fail('Explicitly inherited environment variables must be names: ' + task.id);
+    }
+    if ((task.passEnv ?? []).length > 0) {
       fail('Task requests an unapproved inherited environment variable: ' + task.id);
     }
   }
@@ -458,7 +451,6 @@ export function createPlan(root, config, options = {}) {
       browserCache: task.browserCache ?? null,
       envKeys: [...new Set([
         ...Object.keys(task.env ?? {}),
-        ...(task.passEnv ?? []),
         ...(task.browserCache === 'playwright' ? ['PLAYWRIGHT_BROWSERS_PATH'] : []),
       ])].sort(),
       inventoryLanes: task.inventoryLanes ?? [],
@@ -476,15 +468,12 @@ export function isolatedTaskEnvironment(task, runRoot, inherited = process.env) 
     fail('Validation task requests an unsupported browser cache: ' + task.id);
   }
   const env = inheritedToolchainEnvironment(inherited);
-  const approvedPassEnv = APPROVED_TASK_PASS_ENVIRONMENT.get(task.id) ?? new Set();
   const passEnv = task.passEnv ?? [];
-  if (!Array.isArray(passEnv) || passEnv.some((name) =>
-    typeof name !== 'string' || !approvedPassEnv.has(name))) {
-    fail('Task requests an unapproved inherited environment variable: ' + task.id);
+  if (!Array.isArray(passEnv) || passEnv.some((name) => typeof name !== 'string')) {
+    fail('Explicitly inherited environment variables must be names: ' + task.id);
   }
-  for (const name of passEnv) {
-    const match = Object.entries(inherited).find(([key]) => key.toUpperCase() === name.toUpperCase());
-    if (match && typeof match[1] === 'string') env[name] = match[1];
+  if (passEnv.length > 0) {
+    fail('Task requests an unapproved inherited environment variable: ' + task.id);
   }
   for (const [key, value] of Object.entries(task.env ?? {})) {
     if (typeof value === 'string') env[key] = value;
