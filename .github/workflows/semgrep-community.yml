@@ -48,16 +48,24 @@ jobs:
         run: |
           jq -r '"Semgrep CE reported \(.results | length) finding(s). Review semgrep.sarif and the scan log."' semgrep.json
 
-      # Semgrep marks precise in-source nosemgrep suppressions as accepted; omit those from active GitHub alerts.
+      # Semgrep's SARIF uses suppression.status; omit accepted in-source suppressions from active GitHub alerts.
       - name: Filter inline-suppressed SARIF results
         if: always() && hashFiles('semgrep.sarif') != ''
         run: |
+          accepted_count="$(jq '[.runs[].results[]? | select(((.suppressions // []) | any(.status == "accepted")))] | length' semgrep.sarif)"
           jq '
             .runs |= map(
-              .results |= map(select(((.suppressions // []) | any(.state == "accepted")) | not))
+              .results |= map(select(((.suppressions // []) | any(.status == "accepted")) | not))
             )
           ' semgrep.sarif > semgrep-upload.sarif
-          jq -r '[.runs[].results[]?] | length' semgrep-upload.sarif
+          remaining_accepted="$(jq '[.runs[].results[]? | select(((.suppressions // []) | any(.status == "accepted")))] | length' semgrep-upload.sarif)"
+          if [[ "$remaining_accepted" != "0" ]]; then
+            printf 'SARIF upload still contains %s accepted inline suppression(s).\n' "$remaining_accepted" >&2
+            exit 1
+          fi
+          printf 'Filtered %s accepted inline suppression(s); uploading %s active finding(s).\n' \
+            "$accepted_count" \
+            "$(jq '[.runs[].results[]?] | length' semgrep-upload.sarif)"
 
       - name: Upload findings to GitHub code scanning
         if: >-
