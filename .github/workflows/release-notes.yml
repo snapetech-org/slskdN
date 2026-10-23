@@ -5,8 +5,8 @@ on:
     types: [opened, edited, reopened, synchronize]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request_target' }}
+  group: ng-release-notes-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
 
 permissions:
   contents: read
@@ -43,3 +43,4 @@ jobs:
             --head "$HEAD_SHA" \
             --pr-body-env PR_BODY \
             --summary-file "$GITHUB_STEP_SUMMARY"
+
