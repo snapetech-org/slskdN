@@ -48,12 +48,23 @@ jobs:
         run: |
           jq -r '"Semgrep CE reported \(.results | length) finding(s). Review semgrep.sarif and the scan log."' semgrep.json
 
+      # Semgrep marks precise in-source nosemgrep suppressions as accepted; omit those from active GitHub alerts.
+      - name: Filter inline-suppressed SARIF results
+        if: always() && hashFiles('semgrep.sarif') != ''
+        run: |
+          jq '
+            .runs |= map(
+              .results |= map(select(((.suppressions // []) | any(.state == "accepted")) | not))
+            )
+          ' semgrep.sarif > semgrep-upload.sarif
+          jq -r '[.runs[].results[]?] | length' semgrep-upload.sarif
+
       - name: Upload findings to GitHub code scanning
         if: >-
-          always() && hashFiles('semgrep.sarif') != '' &&
+          always() && hashFiles('semgrep-upload.sarif') != '' &&
           (github.event_name != 'pull_request' ||
           github.event.pull_request.head.repo.full_name == github.repository)
         uses: github/codeql-action/upload-sarif@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
         with:
-          sarif_file: semgrep.sarif
+          sarif_file: semgrep-upload.sarif
           category: semgrep-ce-community
