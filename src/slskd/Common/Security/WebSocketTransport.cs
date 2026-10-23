@@ -330,7 +330,15 @@ public sealed class WebSocketTransport : IAnonymityTransport, IDisposable
         if (!string.Equals(uri.Scheme, "ws", StringComparison.OrdinalIgnoreCase) &&
             !string.Equals(uri.Scheme, "wss", StringComparison.OrdinalIgnoreCase))
         {
-            validationError = "WebSocket server URL must use ws:// or wss://";
+            validationError = "WebSocket server URL must use a supported WebSocket scheme.";
+            return false;
+        }
+
+        // Cleartext WebSockets are safe only for same-host local development. Remote
+        // tunnels can carry user traffic, so they must use TLS to prevent interception.
+        if (string.Equals(uri.Scheme, "ws", StringComparison.OrdinalIgnoreCase) && !uri.IsLoopback)
+        {
+            validationError = "Unencrypted WebSocket server URLs must target loopback; use wss:// for remote servers";
             return false;
         }
 

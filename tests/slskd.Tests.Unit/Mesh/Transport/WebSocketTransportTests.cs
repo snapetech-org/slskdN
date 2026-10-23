@@ -163,8 +163,8 @@ public class WebSocketTransportTests : IDisposable
 
         var ex = await Assert.ThrowsAsync<InvalidOperationException>(() => transport.ConnectAsync("example.com", 80));
 
-        Assert.Equal("WebSocket server URL must use ws:// or wss://", ex.Message);
-        Assert.Equal("WebSocket server URL must use ws:// or wss://", transport.GetStatus().LastError);
+        Assert.Equal("WebSocket server URL must use a supported WebSocket scheme.", ex.Message);
+        Assert.Equal("WebSocket server URL must use a supported WebSocket scheme.", transport.GetStatus().LastError);
     }
 
     [Theory]

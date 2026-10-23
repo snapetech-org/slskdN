@@ -41,6 +41,8 @@ public class Z07152026_PrivateMessageTimelineIndexMigration : IMigration
             }
 
             using var indexCommand = connection.CreateCommand();
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- the index name comes from private migration constants; SQLite PRAGMA identifiers cannot be bound as values.
             indexCommand.CommandText = $"PRAGMA index_info('{IndexName}')";
             using var reader = indexCommand.ExecuteReader();
 

@@ -22,9 +22,18 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.
+- Security review documents the container entrypoint's privilege drop, generated filesystem probe, and allowlisted SQLite schema statements beside their scan annotations.
+- Security: OIDC callbacks now reject external redirects, remote WebSocket endpoints require TLS, and fixture/certificate paths are constrained to trusted local targets.
 - CI: Remove the custom validation engine and run the native release-gate and Playwright commands directly.
 - Consensus session eviction now uses a bounded insertion-order queue instead of allocating a dictionary snapshot when the session limit is reached.
-- Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated.
+- Verification session eviction now uses the same bounded FIFO approach, preventing capacity-filling requests from scanning the full session table.
+- Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated. Main build and scan jobs verify scanner tools from the runner image instead of racing Ubuntu package locks.
+- Hosted security workflows install ripgrep when the runner image does not include it, so identity-scanner validation can complete reliably.
+- CI validation now checks the conditional ripgrep installation used by hosted scanners while confirming jq and ripgrep are available before scanning.
+- Packaging validation now checks the release workflow's architecture-specific executable path.
+- Release package validation now follows the workflow's tag-based asset selection.
+- The local identity denylist scan runs only on trusted `main` pushes or manual dispatches on `main`, so pull requests never receive its secret.
 - Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
 - Trusted main-branch builds and security scans now use the capacity-guarded shared Linux runner pool; fork pull requests remain on isolated runners.
 - CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.

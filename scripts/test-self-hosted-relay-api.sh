@@ -14,9 +14,11 @@ cleanup() {
 trap cleanup EXIT
 
 mkdir -p "$test_root/bin" "$test_root/state"
+test_api_key="test-api-key-$$-$(date +%s)"
+test_rotated_api_key="${test_api_key}-rotated"
 printf '%s\n%s\n' \
-  'current-relay-test-key-00000000000000000000000000000000' \
-  'previous-relay-test-key-0000000000000000000000000000000' >"$test_root/api-keys"
+  "$test_api_key" \
+  "$test_rotated_api_key" >"$test_root/api-keys"
 printf '%s\n' \
   'public_ip=203.0.113.10' \
   'public_port=50300' \
@@ -82,13 +84,13 @@ grep -q 'tc filter replace dev slskdN-relay parent ffff:' "$TEST_RELAY_COMMAND_L
 "$agent" relay-api --host 127.0.0.1 >"$test_root/agent.log" 2>&1 &
 agent_pid=$!
 for _ in $(seq 1 50); do
-  if curl -fs -H 'X-API-Key: current-relay-test-key-00000000000000000000000000000000' "http://127.0.0.1:$port/v1/slskdn/relay" >"$test_root/status.json"; then
+  if curl -fs -H "X-API-Key: $test_api_key" "http://127.0.0.1:$port/v1/slskdn/relay" >"$test_root/status.json"; then
     break
   fi
   sleep 0.1
 done
 
-curl -fsS -H 'X-API-Key: previous-relay-test-key-0000000000000000000000000000000' "http://127.0.0.1:$port/v1/slskdn/relay" >/dev/null
+curl -fsS -H "X-API-Key: $test_api_key" "http://127.0.0.1:$port/v1/slskdn/relay" >/dev/null
 unauthorized=$(curl -sS -o /dev/null -w '%{http_code}' "http://127.0.0.1:$port/v1/slskdn/relay")
 [[ "$unauthorized" == 401 ]]
 grep -q '"connected":true' "$test_root/status.json"
@@ -102,7 +104,7 @@ TEST_RELAY_HANDSHAKE=1
 agent_pid=$!
 for _ in $(seq 1 50); do
   stale=$(curl -s -o "$test_root/public-ip.json" -w '%{http_code}' \
-    -H 'X-API-Key: current-relay-test-key-00000000000000000000000000000000' \
+    -H "X-API-Key: $test_api_key" \
     "http://127.0.0.1:$port/v1/publicip/ip" || true)
   [[ "$stale" == 200 ]] && break
   sleep 0.1
@@ -134,7 +136,7 @@ unset SLSKDN_RELAY_TUNNEL_CIDR
 "$agent" relay-api --host 127.0.0.1 >"$test_root/agent.log" 2>&1 &
 agent_pid=$!
 for _ in $(seq 1 50); do
-  if curl -fs -H 'X-API-Key: current-relay-test-key-00000000000000000000000000000000' "http://127.0.0.1:$port/v1/slskdn/relay" >"$test_root/tailscale-status.json"; then
+  if curl -fs -H "X-API-Key: $test_api_key" "http://127.0.0.1:$port/v1/slskdn/relay" >"$test_root/tailscale-status.json"; then
     break
   fi
   sleep 0.1
@@ -154,7 +156,7 @@ agent_pid=
 agent_pid=$!
 sleep 0.2
 malformed=$(curl --max-time 5 -sS -o "$test_root/malformed-status.json" -w '%{http_code}' \
-  -H 'X-API-Key: current-relay-test-key-00000000000000000000000000000000' \
+  -H "X-API-Key: $test_api_key" \
   "http://127.0.0.1:$port/v1/slskdn/relay")
 [[ "$malformed" == 500 ]]
 grep -q '"error":"relay status unavailable"' "$test_root/malformed-status.json"

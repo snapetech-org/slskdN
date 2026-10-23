@@ -127,5 +127,7 @@ COPY packaging/docker/slskdn-container-start /usr/local/bin/slskdn-container-sta
 COPY packaging/docker/install-optional-media-tools /usr/local/bin/install-optional-media-tools
 RUN chmod +x /usr/local/bin/slskdn-container-start /usr/local/bin/install-optional-media-tools
 
+# nosemgrep: dockerfile.security.missing-user-entrypoint.missing-user-entrypoint -- Privilege dropping and ownership setup are enforced by slskdn-container-start.
 ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/slskdn-container-start"]
+# nosemgrep: dockerfile.security.missing-user.missing-user -- The entrypoint needs root briefly to set mounted-volume ownership and honor PUID/PGID, then drops to slskdn with gosu before starting the app.
 CMD ["./slskd"]

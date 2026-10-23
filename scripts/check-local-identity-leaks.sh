@@ -4,13 +4,8 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
-if ! command -v rg >/dev/null 2>&1; then
-  echo "check-local-identity-leaks: ripgrep (rg) is required." >&2
-  exit 127
-fi
-
-if ! command -v jq >/dev/null 2>&1; then
-  echo "check-local-identity-leaks: jq is required." >&2
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "check-local-identity-leaks: Python 3 is required." >&2
   exit 127
 fi
 
@@ -89,18 +84,18 @@ check_file() {
   local display_path="${3:-$path}"
   local whole_words="${4:-0}"
   local matches=""
-  local -a rg_args=(--json --fixed-strings --ignore-case --file "$tmp_tokens")
+  local -a scanner_args=(
+    --tokens-file "$tmp_tokens"
+    --label "$label"
+    --display-path "$display_path"
+  )
 
   if [[ "$whole_words" == "1" ]]; then
-    rg_args+=(--word-regexp)
+    scanner_args+=(--whole-words)
   fi
 
   [[ -f "$path" ]] || return 0
-  matches="$(
-    rg "${rg_args[@]}" "$path" |
-      jq -r --arg label "$label" --arg display_path "$display_path" 'select(.type == "match") | "\($label): \($display_path):\(.data.line_number)"' |
-      sort -u || true
-  )"
+  matches="$(python3 "$repo_root/scripts/scan-local-identity-file.py" "${scanner_args[@]}" "$path")"
 
   if [[ -n "$matches" ]]; then
     printf '%s\n' "$matches" >&2

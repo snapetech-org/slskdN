@@ -66,7 +66,7 @@ Next, generate two secrets with length between 16 and 255 characters; one to use
 ./slskd --generate-secret 32
 ```
 
-For this example we'll use `9tWy5c3NrmekKVWLQXBztz0hY7rNGlj1tGMfvHKmU1q` for the API key, and `BgI04SuVtsAYipxPHDpdxJsnVoPEeq4tKJeorWxr3Pj` for the shared secret.
+For this example, use `<API_KEY>` for the API key and `<RELAY_SECRET>` for the shared secret; replace both with freshly generated values.
 
 > Note: DO NOT copy/paste these values into your configuration! Use your own values, or you're opening yourself up to an attack!
 
@@ -86,13 +86,13 @@ relay:
   agents:
     example:
       instance_name: example_agent
-      secret: BgI04SuVtsAYipxPHDpdxJsnVoPEeq4tKJeorWxr3Pj
+      secret: REPLACE_WITH_A_UNIQUE_RELAY_SECRET
       cidr: 192.168.1.0/24
 web:
   authentication:
     api_keys:
       example_api_key:
-        key: 9tWy5c3NrmekKVWLQXBztz0hY7rNGlj1tGMfvHKmU1q
+        key: REPLACE_WITH_A_UNIQUE_API_KEY
         role: readwrite
         cidr: 192.168.1.0/24
 soulseek:
@@ -128,8 +128,8 @@ relay:
   controller:
     address: https://192.168.1.241:5031
     ignore_certificate_errors: true
-    api_key: 9tWy5c3NrmekKVWLQXBztz0hY7rNGlj1tGMfvHKmU1q
-    secret: BgI04SuVtsAYipxPHDpdxJsnVoPEeq4tKJeorWxr3Pj
+    api_key: REPLACE_WITH_A_UNIQUE_API_KEY
+    secret: REPLACE_WITH_A_UNIQUE_RELAY_SECRET
     downloads: true
 shares:
   directories:

@@ -132,6 +132,7 @@ public sealed class SongIdRunStore : ISongIdRunStore
                 })
                 .ToArray();
 
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- only generated @statusN placeholders are interpolated; every status value and the limit are bound parameters.
             command.CommandText = $"""
                 SELECT payload_json
                 FROM songid_runs

@@ -22,7 +22,9 @@ using System.Threading.Tasks;
 /// </summary>
 public class SlskdnFullInstanceRunner : IAsyncDisposable
 {
-    private static readonly TimeSpan ApiStartupTimeout = TimeSpan.FromSeconds(60);
+    // Cold database migrations can take longer than a minute on the Windows
+    // smoke runner when the full test suite is starting several instances.
+    private static readonly TimeSpan ApiStartupTimeout = TimeSpan.FromSeconds(120);
     private static readonly TimeSpan ApiStartupProbeDelay = TimeSpan.FromMilliseconds(500);
     private static readonly object TcpPortReservationLock = new();
     private static readonly HashSet<int> ReservedTcpPorts = new();

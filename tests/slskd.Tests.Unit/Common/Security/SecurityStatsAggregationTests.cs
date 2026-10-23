@@ -286,6 +286,29 @@ public class SecurityStatsAggregationTests
     }
 
     [Fact]
+    public void VerificationSessions_ConcurrentCreationRemainsBounded()
+    {
+        using var verification = new ProbabilisticVerification(NullLogger<ProbabilisticVerification>.Instance);
+        var sessionIds = new string[ProbabilisticVerification.MaxSessions + 100];
+
+        System.Threading.Tasks.Parallel.For(
+            0,
+            sessionIds.Length,
+            index => sessionIds[index] = verification.StartSession($"parallel-{index}.flac", 1, 1).Id);
+
+        var retainedSessions = 0;
+        foreach (var sessionId in sessionIds)
+        {
+            if (verification.GetSession(sessionId) != null)
+            {
+                retainedSessions++;
+            }
+        }
+
+        Assert.Equal(ProbabilisticVerification.MaxSessions, retainedSessions);
+    }
+
+    [Fact]
     public void SecuritySessions_ConcurrentCreationRemainsBounded()
     {
         using var consensus = new ByzantineConsensus(NullLogger<ByzantineConsensus>.Instance);

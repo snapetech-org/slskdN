@@ -116,7 +116,8 @@ trivy_run() {
     return 0
   fi
   local scanner_list
-  scanner_list="$(IFS=,; echo "${scanners[*]}")"
+  printf -v scanner_list '%s,' "${scanners[@]}"
+  scanner_list="${scanner_list%,}"
   args+=(fs --scanners "$scanner_list" --timeout "${TRIVY_TIMEOUT:-20m}" --severity HIGH,CRITICAL --ignore-unfixed --exit-code "${TRIVY_EXIT_CODE:-0}")
   for dir in .git node_modules vendor target dist build coverage .venv; do args+=(--skip-dirs "$dir"); done
   if (( ci_mode )); then args+=(--config= --ignorefile= --secret-config=); fi

@@ -85,7 +85,13 @@ public sealed class Z08162026_LidarrEditionMatchingMigration
 
         using var command = connection.CreateCommand();
         command.Transaction = transaction;
-        command.CommandText = $"ALTER TABLE WishlistItems ADD COLUMN {columnName} {columnType}";
+        command.CommandText = (columnName, columnType) switch
+        {
+            ("LidarrTrackCount", "INTEGER") => "ALTER TABLE WishlistItems ADD COLUMN LidarrTrackCount INTEGER",
+            ("LidarrDurationSeconds", "INTEGER") => "ALTER TABLE WishlistItems ADD COLUMN LidarrDurationSeconds INTEGER",
+            ("LidarrReleaseDisambiguation", "TEXT") => "ALTER TABLE WishlistItems ADD COLUMN LidarrReleaseDisambiguation TEXT",
+            _ => throw new ArgumentException("Unsupported WishlistItems column migration."),
+        };
         command.ExecuteNonQuery();
         columns.Add(columnName);
     }

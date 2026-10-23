@@ -57,8 +57,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install release-gate tools
-        run: sudo apt-get update && sudo apt-get install -y jq ripgrep
+      - name: Install ripgrep when unavailable
+        run: |
+          if ! command -v rg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install --yes ripgrep
+          fi
+
+      - name: Verify validation tools
+        run: |
+          command -v jq
+          command -v rg
 
       - name: Set up .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0

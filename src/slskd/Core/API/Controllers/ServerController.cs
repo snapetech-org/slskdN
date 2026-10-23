@@ -61,7 +61,7 @@ namespace slskd.Core.API
         ///     Connects the client.
         /// </summary>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPut] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Route("")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(200)]
@@ -97,7 +97,7 @@ namespace slskd.Core.API
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Route("")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(204)]

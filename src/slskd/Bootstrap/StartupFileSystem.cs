@@ -43,6 +43,8 @@ public static class StartupFileSystem
             {
                 var file = Guid.NewGuid().ToString();
                 var probe = Path.Combine(directory, file);
+
+                // nosemgrep: csharp.lang.security.filesystem.unsafe-path-combine.unsafe-path-combine -- probe name is a generated GUID; the directory is the configured, operator-owned app path.
                 File.WriteAllText(probe, string.Empty);
                 File.Delete(probe);
             }
@@ -88,7 +90,26 @@ public static class StartupFileSystem
         string filename,
         ILogger log)
     {
-        filename = Path.Combine(baseDirectory, filename);
+        if (string.IsNullOrWhiteSpace(filename)
+            || Path.IsPathRooted(filename)
+            || !string.Equals(filename, Path.GetFileName(filename), StringComparison.Ordinal)
+            || filename.Contains('/')
+            || filename.Contains('\\'))
+        {
+            throw new ArgumentException("Certificate filename must be a single path segment.", nameof(filename));
+        }
+
+        var canonicalBaseDirectory = Path.GetFullPath(baseDirectory);
+        filename = Path.GetFullPath(Path.Combine(canonicalBaseDirectory, filename));
+        var baseDirectoryPrefix = canonicalBaseDirectory.EndsWith(Path.DirectorySeparatorChar)
+            ? canonicalBaseDirectory
+            : canonicalBaseDirectory + Path.DirectorySeparatorChar;
+        if (!filename.StartsWith(baseDirectoryPrefix, OperatingSystem.IsWindows()
+                ? StringComparison.OrdinalIgnoreCase
+                : StringComparison.Ordinal))
+        {
+            throw new ArgumentException("Certificate path must remain inside the application directory.", nameof(filename));
+        }
 
         using var cert = X509.Generate(subject: appName, password, X509KeyStorageFlags.Exportable);
         AtomicFileWriter.WriteAllBytes(

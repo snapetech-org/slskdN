@@ -109,9 +109,8 @@ describe('System Info', () => {
     render(<Info options={{}} state={{}} theme="light" />);
 
     const trigger = await screen.findByRole('button', { name: actionLabel });
-    expect(trigger).toHaveAttribute(
-      'title',
-      expect.stringMatching(new RegExp(actionLabel, 'iu')),
+    expect(trigger.getAttribute('title')?.toLocaleLowerCase()).toContain(
+      actionLabel.toLocaleLowerCase(),
     );
     fireEvent.click(trigger);
 

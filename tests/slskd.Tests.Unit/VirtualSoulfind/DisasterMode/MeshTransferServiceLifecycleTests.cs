@@ -31,7 +31,10 @@ public class MeshTransferServiceLifecycleTests
         while (DateTimeOffset.UtcNow < deadline)
         {
             var status = await service.GetTransferStatusAsync(transferId, CancellationToken.None);
-            if (status is { State: MeshTransferState.Completed or MeshTransferState.Failed or MeshTransferState.Cancelled })
+            var isTerminal = status is { State: MeshTransferState.Completed or MeshTransferState.Failed or MeshTransferState.Cancelled };
+            var resourcesRetired = !GetCancellationSources(service).ContainsKey(transferId)
+                && !GetProgressSubjects(service).ContainsKey(transferId);
+            if (isTerminal && resourcesRetired)
             {
                 break;
             }

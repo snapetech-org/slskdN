@@ -22,15 +22,22 @@ jobs:
 
       - name: Get Version
         id: version
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            TAG="${{ github.event.inputs.tag }}"
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG="$INPUT_TAG"
           else
-            TAG="${{ github.ref_name }}"
+            TAG="$REF_NAME"
           fi
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
-          VERSION=$(echo "$TAG" | sed 's/-slskdn/.slskdn/')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
+            echo "Invalid release tag" >&2
+            exit 1
+          fi
+          VERSION="${TAG//-slskdn/.slskdn}"
+          printf 'tag=%s\nversion=%s\n' "$TAG" "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Setup .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
@@ -98,9 +105,11 @@ jobs:
           find publish-linux-x64 -name 'libcoreclrtraceptprovider.so' -print || true
 
       - name: Create Zip
+        env:
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           cd publish-linux-x64
-          zip -r ../slskdn-${{ steps.version.outputs.tag }}-linux-x64.zip .
+          zip -r "../slskdn-${RELEASE_TAG}-linux-x64.zip" .
           cd ..
 
       - name: Install Dependencies
@@ -193,17 +202,23 @@ jobs:
           fi
 
       - name: Update spec version
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
-          sed -i "s/^Version:.*/Version:        ${{ steps.version.outputs.version }}/" packaging/rpm/slskdn.spec
+          sed -i "s/^Version:.*/Version:        ${RELEASE_VERSION}/" packaging/rpm/slskdn.spec
           # Use local filename (not URL) so SRPM includes the file
-          sed -i "s|^Source0:.*|Source0:        slskdn-${{ steps.version.outputs.tag }}-linux-x64.zip|" packaging/rpm/slskdn.spec
+          sed -i "s|^Source0:.*|Source0:        slskdn-${RELEASE_TAG}-linux-x64.zip|" packaging/rpm/slskdn.spec
           cat packaging/rpm/slskdn.spec | head -20
 
       - name: Build SRPM
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           set -euo pipefail
-          version="${{ steps.version.outputs.version }}"
-          tag="${{ steps.version.outputs.tag }}"
+          version="$RELEASE_VERSION"
+          tag="$RELEASE_TAG"
           rpm_top="$(mktemp -d "/tmp/slskdn-rpmbuild-${version}.XXXXXX")"
           mkdir -p "$rpm_top"/{SOURCES,SPECS,SRPMS}
           

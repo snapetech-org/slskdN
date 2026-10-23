@@ -97,6 +97,8 @@ public class Z10112026_TransferLookupIndexesMigration : IMigration
     {
         using (var command = connection.CreateCommand())
         {
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- the index name comes from private migration constants; SQLite PRAGMA identifiers cannot be bound as values.
             command.CommandText = $"PRAGMA index_info('{indexName}')";
             using var reader = command.ExecuteReader();
             var columns = new List<string>();

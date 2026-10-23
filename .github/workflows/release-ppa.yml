@@ -29,16 +29,23 @@ jobs:
 
       - name: Get Version
         id: version
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            TAG="${{ github.event.inputs.tag }}"
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG="$INPUT_TAG"
           else
-            TAG="${{ github.ref_name }}"
+            TAG="$REF_NAME"
           fi
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
+            echo "Invalid release tag" >&2
+            exit 1
+          fi
           # Convert 0.24.1-slskdn.7 to 0.24.1.slskdn.7 for debian version
-          VERSION=$(echo "$TAG" | sed 's/-slskdn/.slskdn/')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          VERSION="${TAG//-slskdn/.slskdn}"
+          printf 'tag=%s\nversion=%s\n' "$TAG" "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Setup .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
@@ -117,8 +124,10 @@ jobs:
         run: scripts/import-ppa-signing-key.sh
 
       - name: Prepare Source Structure
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          SRC_DIR="slskdn-${{ steps.version.outputs.version }}"
+          SRC_DIR="slskdn-${RELEASE_VERSION}"
           # Create proper directory structure for debian packaging
           mkdir -p "$SRC_DIR/usr/lib/slskd"
           mkdir -p "$SRC_DIR/lib/systemd/system"
@@ -137,11 +146,15 @@ jobs:
 
       - name: Prepare Source Package
         id: ppa-package
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+          UBUNTU_SERIES: ${{ matrix.ubuntu_series }}
         run: |
-          SRC_DIR="slskdn-${{ steps.version.outputs.version }}"
-          SERIES="${{ matrix.ubuntu_series }}"
+          SRC_DIR="slskdn-${RELEASE_VERSION}"
+          SERIES="$UBUNTU_SERIES"
           # Create tarball for orig source
-          tar -czvf "slskdn_${{ steps.version.outputs.version }}.orig.tar.gz" "$SRC_DIR"
+          tar -czvf "slskdn_${RELEASE_VERSION}.orig.tar.gz" "$SRC_DIR"
           
           # Copy debian directory
           cp -r packaging/debian "$SRC_DIR/"
@@ -151,7 +164,7 @@ jobs:
           
           # Use timestamp-based PPA revision to avoid conflicts on rebuilds
           PPA_REV=$(date +%Y%m%d%H%M)
-          PPA_VERSION="${{ steps.version.outputs.version }}-1ppa${PPA_REV}~${SERIES}"
+          PPA_VERSION="${RELEASE_VERSION}-1ppa${PPA_REV}~${SERIES}"
           echo "version=$PPA_VERSION" >> "$GITHUB_OUTPUT"
           
           # Update changelog
@@ -159,14 +172,16 @@ jobs:
           cat > debian/changelog << EOF
           slskdn (${PPA_VERSION}) ${SERIES}; urgency=medium
           
-            * Release ${{ steps.version.outputs.tag }}
+            * Release ${RELEASE_TAG}
           
            -- slskdn <slskdn@proton.me>  $(date -R)
           EOF
 
       - name: Preflight Binary Package Build
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          cd "slskdn-${{ steps.version.outputs.version }}"
+          cd "slskdn-${RELEASE_VERSION}"
           dpkg-buildpackage -us -uc -b -d
           dh clean
           rm -f ../*.deb ../*.buildinfo ../*_*.changes
@@ -175,8 +190,9 @@ jobs:
         if: steps.ppa-signing-key.outputs.fingerprint != ''
         env:
           GPG_SIGNING_FINGERPRINT: ${{ steps.ppa-signing-key.outputs.fingerprint }}
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
         run: |
-          cd "slskdn-${{ steps.version.outputs.version }}"
+          cd "slskdn-${RELEASE_VERSION}"
           debuild -S -sa -d -k"$GPG_SIGNING_FINGERPRINT"
 
       - name: Preflight Launchpad PPA Upload
@@ -325,7 +341,10 @@ jobs:
           echo "✅ Uploaded to PPA: slskdn"
 
       - name: Wait for PPA Publication
+        env:
+          PPA_VERSION: ${{ steps.ppa-package.outputs.version }}
+          UBUNTU_SERIES: ${{ matrix.ubuntu_series }}
         run: |
           scripts/wait-for-launchpad-ppa-publication.sh \
-            "${{ steps.ppa-package.outputs.version }}" \
-            "${{ matrix.ubuntu_series }}"
+            "$PPA_VERSION" \
+            "$UBUNTU_SERIES"

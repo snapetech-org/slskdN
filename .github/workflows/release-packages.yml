@@ -20,20 +20,28 @@ jobs:
 
       - name: Get Version
         id: version
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            TAG="${{ github.event.inputs.tag }}"
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG="$INPUT_TAG"
           else
-            TAG="${{ github.ref_name }}"
+            TAG="$REF_NAME"
           fi
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
+            echo "Invalid release tag" >&2
+            exit 1
+          fi
           # Convert 0.24.1-slskdn.7 to 0.24.1.slskdn.7
-          VERSION=$(echo "$TAG" | sed 's/-slskdn/.slskdn/')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          VERSION="${TAG//-slskdn/.slskdn}"
+          printf 'tag=%s\nversion=%s\n' "$TAG" "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Wait for Release Asset
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           # Wait up to 10 minutes for CI to upload the asset
           CURL_AUTH_ARGS=()
@@ -44,12 +52,12 @@ jobs:
           ASSET_NAMES=(
             "slskdn-main-linux-glibc-x64.zip"
             "slskdn-main-linux-x64.zip"
-            "slskdn-${{ steps.version.outputs.tag }}-linux-x64.zip"
+            "slskdn-${RELEASE_TAG}-linux-x64.zip"
           )
 
           for i in {1..20}; do
             for ASSET_NAME in "${ASSET_NAMES[@]}"; do
-              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
+              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${RELEASE_TAG}/${ASSET_NAME}"
               echo "Attempt $i: Checking ${ASSET_NAME}..."
               if curl -fsSL "${CURL_AUTH_ARGS[@]}" -H "Accept: application/octet-stream" "$ASSET_URL" -o slskdn.zip; then
                 echo "Asset downloaded successfully"
@@ -90,13 +98,15 @@ jobs:
           cp -r packaging/debian pkg/
 
       - name: Build .deb Package
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
         run: |
           cd pkg
           # Update changelog version
-          sed -i -E "0,/^slskdn \\([^\\)]*\\)/ s/^slskdn \\([^\\)]*\\)/slskdn (${{ steps.version.outputs.version }})/" debian/changelog
+          sed -i -E "0,/^slskdn \\([^\\)]*\\)/ s/^slskdn \\([^\\)]*\\)/slskdn (${RELEASE_VERSION})/" debian/changelog
           dpkg-buildpackage -us -uc -b
           cd ..
-          mv *.deb slskdn_${{ steps.version.outputs.version }}_amd64.deb
+          mv *.deb "slskdn_${RELEASE_VERSION}_amd64.deb"
 
       - name: Upload .deb to Release
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
@@ -115,15 +125,22 @@ jobs:
 
       - name: Get Version
         id: version
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            TAG="${{ github.event.inputs.tag }}"
+          if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG="$INPUT_TAG"
           else
-            TAG="${{ github.ref_name }}"
+            TAG="$REF_NAME"
           fi
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
-          VERSION=$(echo "$TAG" | sed 's/-slskdn/.slskdn/')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
+            echo "Invalid release tag" >&2
+            exit 1
+          fi
+          VERSION="${TAG//-slskdn/.slskdn}"
+          printf 'tag=%s\nversion=%s\n' "$TAG" "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Install Build Dependencies
         run: |
@@ -135,6 +152,7 @@ jobs:
       - name: Wait for Release Asset and Setup Sources
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
         run: |
           # Wait up to 10 minutes for CI to upload the asset
           CURL_AUTH_ARGS=()
@@ -145,12 +163,12 @@ jobs:
           ASSET_NAMES=(
             "slskdn-main-linux-glibc-x64.zip"
             "slskdn-main-linux-x64.zip"
-            "slskdn-${{ steps.version.outputs.tag }}-linux-x64.zip"
+            "slskdn-${RELEASE_TAG}-linux-x64.zip"
           )
 
           for i in {1..20}; do
             for ASSET_NAME in "${ASSET_NAMES[@]}"; do
-              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${{ steps.version.outputs.tag }}/${ASSET_NAME}"
+              ASSET_URL="https://github.com/snapetech/slskdn/releases/download/${RELEASE_TAG}/${ASSET_NAME}"
               echo "Attempt $i: Checking ${ASSET_NAME}..."
               if curl -fsSL "${CURL_AUTH_ARGS[@]}" -H "Accept: application/octet-stream" "$ASSET_URL" -o ~/rpmbuild/SOURCES/slskdn-main-linux-glibc-x64.zip; then
                 echo "Asset downloaded successfully"
@@ -173,9 +191,11 @@ jobs:
           cp packaging/aur/slskd.tmpfiles ~/rpmbuild/SOURCES/
 
       - name: Update Spec Version and Build
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
         run: |
           # Update version in spec (use dot format for RPM version)
-          sed -i "s/^Version:.*/Version:        ${{ steps.version.outputs.version }}/" packaging/rpm/slskdn.spec
+          sed -i "s/^Version:.*/Version:        ${RELEASE_VERSION}/" packaging/rpm/slskdn.spec
           
           # Fix Source0 to use exact tag-format filename
           sed -i "s|^Source0:.*|Source0:        slskdn-main-linux-glibc-x64.zip|" packaging/rpm/slskdn.spec

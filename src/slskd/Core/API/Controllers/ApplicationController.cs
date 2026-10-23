@@ -79,7 +79,7 @@ namespace slskd.Core.API
         ///     Stops the application.
         /// </summary>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Authorize(Policy = AuthPolicy.JwtOnly, Roles = AuthRole.AdministratorOnly)]
         public IActionResult Shutdown()
         {
@@ -101,7 +101,7 @@ namespace slskd.Core.API
         ///     Restarts the application.
         /// </summary>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPut] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Authorize(Policy = AuthPolicy.JwtOnly, Roles = AuthRole.AdministratorOnly)]
         public IActionResult Restart()
         {

@@ -43,7 +43,7 @@ public class NowPlayingController : ControllerBase
     ///     Sets the currently playing track (generic JSON).
     ///     Body: { "artist": "...", "title": "...", "album": "..." }
     /// </summary>
-    [HttpPut]
+    [HttpPut] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
     [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
     public IActionResult Put([FromBody] NowPlayingRequest request)
     {
@@ -68,7 +68,7 @@ public class NowPlayingController : ControllerBase
     /// <summary>
     ///     Clears the currently playing track.
     /// </summary>
-    [HttpDelete]
+    [HttpDelete] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
     [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
     public IActionResult Delete()
     {

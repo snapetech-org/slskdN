@@ -4,8 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile.relay
     network_mode: host
+    cap_drop:
+      - ALL
     cap_add:
       - NET_ADMIN
+    security_opt:
+      - no-new-privileges:true
     env_file:
       - /etc/slskdN-relay/relay.env
     volumes:

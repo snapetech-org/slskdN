@@ -13,7 +13,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parent.parent
 SCANNER = REPOSITORY_ROOT / "scripts" / "check-local-identity-leaks.sh"
 
 
-@unittest.skipUnless(shutil.which("rg") and shutil.which("jq"), "rg and jq are required")
+@unittest.skipUnless(shutil.which("python3"), "Python 3 is required")
 class LocalIdentityScannerTests(unittest.TestCase):
     def setUp(self):
         self.temporary_directory = tempfile.TemporaryDirectory(prefix="identity-scan-contract-")
@@ -21,6 +21,10 @@ class LocalIdentityScannerTests(unittest.TestCase):
         (self.root / "scripts").mkdir(parents=True)
         (self.root / "docs").mkdir()
         shutil.copyfile(SCANNER, self.root / "scripts" / "check-local-identity-leaks.sh")
+        shutil.copyfile(
+            REPOSITORY_ROOT / "scripts" / "scan-local-identity-file.py",
+            self.root / "scripts" / "scan-local-identity-file.py",
+        )
         self.fake_bin = Path(self.temporary_directory.name) / "bin"
         self.fake_bin.mkdir()
         self._write_executable("hostname", "#!/bin/sh\nprintf '%s\\n' 'synthetic-host'\n")
@@ -28,6 +32,8 @@ class LocalIdentityScannerTests(unittest.TestCase):
             "id",
             "#!/bin/sh\nif [ \"${1:-}\" = '-un' ]; then printf '%s\\n' 'synthetic-user'; fi\n",
         )
+        self._write_executable("rg", "#!/bin/sh\necho 'rg must not be called' >&2\nexit 99\n")
+        self._write_executable("jq", "#!/bin/sh\necho 'jq must not be called' >&2\nexit 99\n")
 
     def tearDown(self):
         self.temporary_directory.cleanup()
@@ -125,6 +131,43 @@ class LocalIdentityScannerTests(unittest.TestCase):
 
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("docs/CHANGELOG.md Unreleased", result.stderr)
+
+    def test_case_insensitive_match_reports_only_label_path_and_line(self):
+        changelog = (
+            "## [Unreleased]\n\n"
+            "Synthetic-User must not appear in published release notes.\n\n"
+            "## [1.0.0]\n"
+        )
+        self._initialize_repository(changelog)
+
+        result = self._run_scanner(
+            LOCAL_IDENTITY_DENYLIST="synthetic-user",
+            LOCAL_IDENTITY_SCAN_COMMITS="0",
+            LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES="0",
+        )
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("docs/CHANGELOG.md Unreleased: docs/CHANGELOG.md#Unreleased:2", result.stderr)
+        self.assertNotIn("Synthetic-User", result.stderr)
+        self.assertNotIn("rg must not be called", result.stderr)
+        self.assertNotIn("jq must not be called", result.stderr)
+
+    def test_oversized_scan_file_fails_closed(self):
+        changelog = "## [Unreleased]\n\nNo release text.\n\n## [1.0.0]\n"
+        self._initialize_repository(changelog)
+        (self.root / "docs" / "CHANGELOG.md").write_text(
+            "## [Unreleased]\n\n" + ("x" * (16 * 1024 * 1024 + 1)) + "\n## [1.0.0]\n",
+            encoding="utf-8",
+        )
+
+        result = self._run_scanner(
+            LOCAL_IDENTITY_DENYLIST="synthetic-user",
+            LOCAL_IDENTITY_SCAN_COMMITS="0",
+            LOCAL_IDENTITY_SCAN_RUNTIME_IDENTITIES="0",
+        )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("exceeds the 16777216-byte scan limit", result.stderr)
 
     def test_signed_off_by_trailer_is_metadata_but_commit_body_is_scanned(self):
         changelog = "## [Unreleased]\n\nNo release text.\n\n## [1.0.0]\n"
