@@ -12,6 +12,7 @@ on:
     paths:
       - 'src/**/*.cs'
       - 'src/**/*.csproj'
+  workflow_dispatch:
   schedule:
     - cron: '0 6 * * 1'  # Weekly on Monday
 
