@@ -27,7 +27,7 @@ permissions:
 
 env:
   DOTNET_VERSION: '10.0.402'
-  DOTNET_INSTALL_DIR: ${{ github.workspace }}/.dotnet
+  DOTNET_INSTALL_DIR: ${{ runner.temp }}/.dotnet
 
 jobs:
   analyze:
@@ -46,6 +46,8 @@ jobs:
           # turns maintainability heuristics into thousands of repo alerts.
           queries: security-extended
           config: |
+            paths-ignore:
+              - '.dotnet/**'
             query-filters:
               - exclude:
                   id: cs/log-forging

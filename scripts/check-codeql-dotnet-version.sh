@@ -37,13 +37,22 @@ if [ "$workflow_sdk_version" != "$ci_sdk_version" ]; then
   failed=1
 fi
 
-expected_install_dir='${{ github.workspace }}/.dotnet'
-for candidate_workflow in "$ci_workflow" "$workflow"; do
-  if ! rg -Fq "  DOTNET_INSTALL_DIR: $expected_install_dir" "$candidate_workflow"; then
-    printf '%s must install .NET into the workspace-local .dotnet directory\n' "${candidate_workflow#"$repo_root/"}" >&2
-    failed=1
-  fi
-done
+expected_ci_install_dir='${{ github.workspace }}/.dotnet'
+if ! rg -Fq "  DOTNET_INSTALL_DIR: $expected_ci_install_dir" "$ci_workflow"; then
+  printf '.github/workflows/ci.yml must install .NET into the workspace-local .dotnet directory\n' >&2
+  failed=1
+fi
+
+expected_codeql_install_dir='${{ runner.temp }}/.dotnet'
+if ! rg -Fq "  DOTNET_INSTALL_DIR: $expected_codeql_install_dir" "$workflow"; then
+  printf 'CodeQL must install .NET outside the source workspace in runner.temp\n' >&2
+  failed=1
+fi
+
+if ! rg -Fq "              - '.dotnet/**'" "$workflow"; then
+  printf 'CodeQL must exclude any workspace-local generated .dotnet SDK files\n' >&2
+  failed=1
+fi
 
 if ! rg -q 'dotnet-version: \$\{\{ env\.DOTNET_VERSION \}\}' "$workflow"; then
   printf 'CodeQL workflow must use env.DOTNET_VERSION for setup-dotnet\n' >&2
@@ -55,7 +64,7 @@ codeql_init_line="$(rg -n -m 1 -F 'name: Initialize CodeQL' "$workflow" | cut -d
 restore_line="$(rg -n -m 1 -F 'run: dotnet restore src/slskd/slskd.csproj' "$workflow" | cut -d: -f1 || true)"
 build_line="$(rg -n -m 1 -F 'run: dotnet build src/slskd/slskd.csproj' "$workflow" | cut -d: -f1 || true)"
 if [[ -z "$setup_dotnet_line" || -z "$codeql_init_line" || "$codeql_init_line" -ge "$setup_dotnet_line" ]]; then
-  printf 'CodeQL must initialize before installing the workspace-local SDK so SDK configuration files are not analyzed as repository code\n' >&2
+  printf 'CodeQL must initialize before installing the SDK outside the source workspace\n' >&2
   failed=1
 fi
 
@@ -73,4 +82,4 @@ if [ "$failed" -ne 0 ]; then
   exit 1
 fi
 
-printf 'CodeQL and CI use the same stable .NET SDK pin and workspace-local install directory.\n'
+printf 'CodeQL and CI use the same stable .NET SDK pin; the CodeQL SDK stays outside the source workspace.\n'
