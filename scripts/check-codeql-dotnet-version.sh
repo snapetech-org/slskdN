@@ -37,6 +37,14 @@ if [ "$workflow_sdk_version" != "$ci_sdk_version" ]; then
   failed=1
 fi
 
+expected_install_dir='${{ github.workspace }}/.dotnet'
+for candidate_workflow in "$ci_workflow" "$workflow"; do
+  if ! rg -Fq "  DOTNET_INSTALL_DIR: $expected_install_dir" "$candidate_workflow"; then
+    printf '%s must install .NET into the workspace-local .dotnet directory\n' "${candidate_workflow#"$repo_root/"}" >&2
+    failed=1
+  fi
+done
+
 if ! rg -q 'dotnet-version: \$\{\{ env\.DOTNET_VERSION \}\}' "$workflow"; then
   printf 'CodeQL workflow must use env.DOTNET_VERSION for setup-dotnet\n' >&2
   failed=1
@@ -51,4 +59,4 @@ if [ "$failed" -ne 0 ]; then
   exit 1
 fi
 
-printf 'CodeQL and CI use the same stable .NET SDK pin for the application target framework.\n'
+printf 'CodeQL and CI use the same stable .NET SDK pin and workspace-local install directory.\n'
