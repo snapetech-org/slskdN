@@ -50,6 +50,13 @@ if ! rg -q 'dotnet-version: \$\{\{ env\.DOTNET_VERSION \}\}' "$workflow"; then
   failed=1
 fi
 
+setup_dotnet_line="$(rg -n -m 1 -F 'uses: actions/setup-dotnet@' "$workflow" | cut -d: -f1 || true)"
+codeql_init_line="$(rg -n -m 1 -F 'name: Initialize CodeQL' "$workflow" | cut -d: -f1 || true)"
+if [[ -z "$setup_dotnet_line" || -z "$codeql_init_line" || "$setup_dotnet_line" -ge "$codeql_init_line" ]]; then
+  printf 'CodeQL workflow must install the SDK before initializing CodeQL\n' >&2
+  failed=1
+fi
+
 if rg -n "dotnet-version: '[0-9]+'" "$workflow" >&2; then
   printf 'CodeQL workflow must not pin a divergent hard-coded dotnet-version\n' >&2
   failed=1
