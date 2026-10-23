@@ -312,9 +312,9 @@ describe('PlayerBar', () => {
         <PlayerBar />
       </PlayerContext.Provider>
     )}</PlayerContext.Consumer></MemoryRouter>);
-    expect(document.querySelector('.player-subtitle')).toHaveTextContent(
-      new RegExp(`Following host-a.*${message}`),
-    );
+    const subtitle = document.querySelector('.player-subtitle');
+    expect(subtitle).toHaveTextContent('Following host-a');
+    expect(subtitle).toHaveTextContent(message);
   });
 
   it('collapses by default when no preference has ever been stored', () => {

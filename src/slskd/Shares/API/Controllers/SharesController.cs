@@ -153,7 +153,7 @@ namespace slskd.Shares.API
         /// <returns></returns>
         /// <response code="204">The request completed successfully.</response>
         /// <response code="409">A share scan is already in progress.</response>
-        [HttpPut]
+        [HttpPut] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Route("")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(204)]
@@ -194,7 +194,7 @@ namespace slskd.Shares.API
         /// <returns></returns>
         /// <response code="204">The request completed successfully.</response>
         /// <response code="409">A share scan was not in progress.</response>
-        [HttpDelete]
+        [HttpDelete] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Route("")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(204)]

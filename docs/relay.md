@@ -86,13 +86,13 @@ relay:
   agents:
     example:
       instance_name: example_agent
-      secret: BgI04SuVtsAYipxPHDpdxJsnVoPEeq4tKJeorWxr3Pj
+      secret: REPLACE_WITH_A_UNIQUE_RELAY_SECRET
       cidr: 192.168.1.0/24
 web:
   authentication:
     api_keys:
       example_api_key:
-        key: 9tWy5c3NrmekKVWLQXBztz0hY7rNGlj1tGMfvHKmU1q
+        key: REPLACE_WITH_A_UNIQUE_API_KEY
         role: readwrite
         cidr: 192.168.1.0/24
 soulseek:
@@ -128,8 +128,8 @@ relay:
   controller:
     address: https://192.168.1.241:5031
     ignore_certificate_errors: true
-    api_key: 9tWy5c3NrmekKVWLQXBztz0hY7rNGlj1tGMfvHKmU1q
-    secret: BgI04SuVtsAYipxPHDpdxJsnVoPEeq4tKJeorWxr3Pj
+    api_key: REPLACE_WITH_A_UNIQUE_API_KEY
+    secret: REPLACE_WITH_A_UNIQUE_RELAY_SECRET
     downloads: true
 shares:
   directories:

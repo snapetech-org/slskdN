@@ -43,6 +43,7 @@ public static class StartupFileSystem
             {
                 var file = Guid.NewGuid().ToString();
                 var probe = Path.Combine(directory, file);
+
                 // nosemgrep: csharp.lang.security.filesystem.unsafe-path-combine.unsafe-path-combine -- probe name is a generated GUID; the directory is the configured, operator-owned app path.
                 File.WriteAllText(probe, string.Empty);
                 File.Delete(probe);

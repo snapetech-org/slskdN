@@ -503,6 +503,8 @@ namespace slskd.Transfers.MultiSource.Discovery
             cmd.Transaction = transaction;
             var values = Enumerable.Range(0, batch.Count)
                 .Select(index => $"(@username{index}, @filename{index}, @size{index}, @speed{index}, @now{index}, @now{index})");
+
+            // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- the interpolated VALUES list contains generated parameter markers only; row values are bound below.
             cmd.CommandText = $"""
                 INSERT INTO DiscoveredFiles (Username, Filename, Size, UploadSpeed, FirstSeenUnix, LastSeenUnix)
                 VALUES {string.Join(", ", values)}

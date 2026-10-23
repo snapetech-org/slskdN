@@ -153,8 +153,7 @@ namespace slskd.Core.API
         /// </summary>
         /// <returns></returns>
         /// <response code="204">Logout successful.</response>
-        // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- DELETE is non-simple; cookie auth is covered by ValidateCsrfForCookiesOnly.
-        [HttpDelete]
+        [HttpDelete] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- DELETE is non-simple; cookie auth is covered by ValidateCsrfForCookiesOnly.
         [Route("")]
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [ProducesResponseType(204)]
@@ -181,8 +180,7 @@ namespace slskd.Core.API
         /// <response code="200">Login was successful.</response>
         /// <response code="400">Bad request.</response>
         /// <response code="401">Login failed.</response>
-        // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- Controller-level Consumes(application/json) and ValidateCsrfForCookiesOnly block simple cross-site form login.
-        [HttpPost]
+        [HttpPost] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- Controller-level Consumes(application/json) and ValidateCsrfForCookiesOnly block simple cross-site form login.
         [Route("")]
         [AllowAnonymous]
         [ProducesResponseType(typeof(TokenResponse), 200)]

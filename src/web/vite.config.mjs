@@ -5,6 +5,16 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const nodeModulesDirectory = fs.realpathSync(path.resolve(__dirname, 'node_modules'));
+const repositoryRoot = fs.realpathSync(path.resolve(__dirname, '../..'));
+
+const isWithinDirectory = (directory, candidate) => {
+  const relative = path.relative(directory, candidate);
+  return (
+    relative === '' ||
+    (!path.isAbsolute(relative) && relative !== '..' && !relative.startsWith(`..${path.sep}`))
+  );
+};
 
 // Custom Less plugin to handle semantic-ui-less webpack-style aliases.
 // @semantic-ui-react/craco-less previously provided these via webpack Less loader.
@@ -28,9 +38,17 @@ class SemanticUILessFileManager {
           return Promise.resolve({ filename: themeConfigPath, contents });
         }
         if (filename.startsWith('~')) {
-          const resolved = path.resolve(__dirname, 'node_modules', filename.slice(1));
-          const contents = fs.readFileSync(resolved, 'utf-8');
-          return Promise.resolve({ filename: resolved, contents });
+          // nosemgrep: javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal -- the normalized alias is checked lexically and after realpath before it is read.
+          const resolved = path.resolve(nodeModulesDirectory, filename.slice(1));
+          if (!isWithinDirectory(nodeModulesDirectory, resolved)) {
+            return Promise.reject(new Error('Less package imports must stay inside node_modules.'));
+          }
+          const canonicalResolved = fs.realpathSync(resolved);
+          if (!isWithinDirectory(repositoryRoot, canonicalResolved)) {
+            return Promise.reject(new Error('Less package imports must stay inside the repository.'));
+          }
+          const contents = fs.readFileSync(canonicalResolved, 'utf-8');
+          return Promise.resolve({ filename: canonicalResolved, contents });
         }
         return super.loadFile(filename, _currentDirectory, options, environment);
       }

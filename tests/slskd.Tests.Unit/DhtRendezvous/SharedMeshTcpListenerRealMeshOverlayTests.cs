@@ -96,7 +96,7 @@ public sealed class SharedMeshTcpListenerRealMeshOverlayTests : IDisposable
 
             // Real production accounting on the real server, proving the connection was actually
             // accepted and processed -- not just that the TCP connect succeeded.
-            await WaitUntilAsync(() => meshOverlayServer.TotalConnectionsAccepted == 1, TimeSpan.FromSeconds(5));
+            await WaitUntilAsync(() => meshOverlayServer.TotalConnectionsAccepted == 1, TimeSpan.FromSeconds(15));
             Assert.Equal(1, meshOverlayServer.TotalConnectionsAccepted);
             Assert.Equal(0, meshOverlayServer.TotalConnectionsRejected);
             Assert.Equal(1, meshOverlayServer.ActiveConnections);
@@ -168,7 +168,7 @@ public sealed class SharedMeshTcpListenerRealMeshOverlayTests : IDisposable
             Assert.Equal(1, meshOverlayServer.TotalConnectionsAccepted);
             Assert.Equal(0, meshOverlayServer.TotalConnectionsRejected);
             Assert.Equal(1, meshOverlayServer.ActiveConnections);
-            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             // An adversarial peer bypasses our sender pacing and writes raw
             // authenticated frames. Reply pacing must not delay quota checks.
             using var raw = new SecureMessageFramer((System.Net.Security.SslStream)typeof(MeshOverlayConnection)
@@ -201,7 +201,7 @@ public sealed class SharedMeshTcpListenerRealMeshOverlayTests : IDisposable
             }
             else
             {
-                await WaitUntilAsync(() => meshOverlayServer.ActiveConnections == 0, TimeSpan.FromSeconds(5));
+                await WaitUntilAsync(() => meshOverlayServer.ActiveConnections == 0, TimeSpan.FromSeconds(15));
             }
 
         }

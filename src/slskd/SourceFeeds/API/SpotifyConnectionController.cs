@@ -87,7 +87,7 @@ public sealed class SpotifyConnectionController : ControllerBase
         }
     }
 
-    [HttpDelete]
+    [HttpDelete] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
     [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
     public IActionResult Disconnect()
     {

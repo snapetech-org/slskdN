@@ -86,7 +86,7 @@ namespace slskd.Core.API
         /// </summary>
         /// <param name="overlay">The overlay to apply.</param>
         /// <returns></returns>
-        [HttpPatch]
+        [HttpPatch] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.AdministratorOnly)]
         [ProducesResponseType(typeof(OptionsOverlay), 200)]
         public IActionResult ApplyOverlay([FromBody] OptionsOverlay overlay)
@@ -188,7 +188,7 @@ namespace slskd.Core.API
             return Ok(yaml);
         }
 
-        [HttpPut]
+        [HttpPut] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Authorize(Policy = AuthPolicy.JwtOnly, Roles = AuthRole.AdministratorOnly)]
         [Route("yaml")]
         public IActionResult UpdateYamlFile([FromBody] string yaml)
@@ -237,7 +237,7 @@ namespace slskd.Core.API
             }
         }
 
-        [HttpPost]
+        [HttpPost] // nosemgrep: csharp.dotnet.security.mvc-missing-antiforgery.mvc-missing-antiforgery -- the controller-level ValidateCsrfForCookiesOnly filter validates unsafe cookie-authenticated requests.
         [Authorize(Policy = AuthPolicy.Any, Roles = AuthRole.ReadWriteOrAdministrator)]
         [Route("yaml/validate")]
         public IActionResult ValidateYamlFile([FromBody] string yaml)

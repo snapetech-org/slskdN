@@ -26,6 +26,7 @@ public sealed class ExternalProcessStarter : IExternalProcessStarter
 {
     public int Start(ProcessStartInfo startInfo)
     {
+        // nosemgrep: csharp.lang.security.injections.os-command.os-command-injection -- this starts an administrator-configured executable with UseShellExecute=false and the caller-populated ArgumentList.
         using var process = Process.Start(startInfo);
         return process?.Id ?? 0;
     }

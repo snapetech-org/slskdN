@@ -4998,6 +4998,7 @@ namespace slskd.HashDb
                 using var cmd = connection.CreateCommand();
                 cmd.Transaction = transaction;
                 var values = batch.Select((_, index) => $"(@job_id, @release_id{index}, @status{index})");
+
                 // nosemgrep: csharp.lang.security.sqli.csharp-sqli.csharp-sqli -- identifiers are restricted to two internal call-site pairs and quoted; row data is bound.
                 cmd.CommandText = $"""
                     INSERT INTO {quotedTableName} ({quotedJobIdColumn}, release_id, status)
