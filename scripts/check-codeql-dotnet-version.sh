@@ -52,8 +52,15 @@ fi
 
 setup_dotnet_line="$(rg -n -m 1 -F 'uses: actions/setup-dotnet@' "$workflow" | cut -d: -f1 || true)"
 codeql_init_line="$(rg -n -m 1 -F 'name: Initialize CodeQL' "$workflow" | cut -d: -f1 || true)"
-if [[ -z "$setup_dotnet_line" || -z "$codeql_init_line" || "$setup_dotnet_line" -ge "$codeql_init_line" ]]; then
-  printf 'CodeQL workflow must install the SDK before initializing CodeQL\n' >&2
+restore_line="$(rg -n -m 1 -F 'run: dotnet restore src/slskd/slskd.csproj' "$workflow" | cut -d: -f1 || true)"
+build_line="$(rg -n -m 1 -F 'run: dotnet build src/slskd/slskd.csproj' "$workflow" | cut -d: -f1 || true)"
+if [[ -z "$setup_dotnet_line" || -z "$codeql_init_line" || "$codeql_init_line" -ge "$setup_dotnet_line" ]]; then
+  printf 'CodeQL must initialize before installing the workspace-local SDK so SDK configuration files are not analyzed as repository code\n' >&2
+  failed=1
+fi
+
+if [[ -z "$restore_line" || -z "$build_line" || "$setup_dotnet_line" -ge "$restore_line" || "$setup_dotnet_line" -ge "$build_line" ]]; then
+  printf 'CodeQL workflow must install the SDK before restoring or building the application\n' >&2
   failed=1
 fi
 
