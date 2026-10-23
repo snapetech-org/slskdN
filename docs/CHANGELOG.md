@@ -26,6 +26,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
   separate, while publisher recovery can still target an existing legacy release.
 
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.
+- Security: state-changing API requests no longer treat HTTP Basic credentials as a CSRF exemption, preventing ambient browser credentials from authorizing cross-origin actions.
 - Security review documents the container entrypoint's privilege drop, generated filesystem probe, and allowlisted SQLite schema statements beside their scan annotations.
 - Security: OIDC callbacks now reject external redirects, remote WebSocket endpoints require TLS, and fixture/certificate paths are constrained to trusted local targets.
 - CI: Remove the custom validation engine and run the native release-gate and Playwright commands directly.
