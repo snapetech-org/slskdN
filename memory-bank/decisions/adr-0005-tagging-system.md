@@ -1,13 +1,30 @@
 # ADR-0005: Tag-Based Build and Release System
 
-**Status:** Active
+**Status:** Superseded for new releases on 2026-10-23
 **Date:** 2025-12-13
-**Updated:** 2026-05-12
+**Updated:** 2026-10-23
 **Context:** Multi-channel CI/CD for dev and stable releases
 
 ---
 
-## ⚠️ CRITICAL: Builds Only on Tags
+## Current policy (supersedes the legacy tag format below)
+
+All new stable releases use `v<version>`, matching the other application
+repositories. Pull requests and `main` pushes run validation; release binaries,
+container images, GitHub Releases, and downstream packages are produced only
+from a pushed `v<version>` tag. Existing `build-main-*` tags and unprefixed
+GitHub Releases remain intact for historical downloads and targeted publisher
+recovery. `build-dev-*` is no longer a release trigger.
+
+Create new tags with `scripts/create-release-tag.sh v<version>`. Do not use the
+legacy channel prefixes below for new releases.
+
+## Historical design (retained for context)
+
+The policy below describes the former channel-prefixed release scheme. It is
+not the current release procedure.
+
+### Legacy tag-trigger behavior
 
 **The CI workflow does NOT run on code pushes to master. Builds ONLY happen when you create a tag.**
 
@@ -20,7 +37,7 @@
 
 ---
 
-## Decision
+### Legacy decision
 
 We use **explicit build tags** to trigger CI/CD builds and control which channels packages are published to.
 

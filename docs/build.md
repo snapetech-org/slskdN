@@ -69,74 +69,32 @@ If your platform is missing, review the automated build configuration in the `.g
 
 ---
 
-## CI/CD Build Process
+## CI and release builds
 
-**IMPORTANT:** Builds only happen on tags, not on code pushes.
+Pull requests and pushes to `main` run validation. Release builds and package
+publishing run only from a release tag, using the same `v<version>` format as
+the other application repositories. Existing `build-main-*` and unprefixed
+release tags remain unchanged; `build-dev-*` tags no longer start release
+builds.
 
-### Build Triggers
-
-The CI workflow (`ci.yml`) is configured to:
-- ✅ **Run on tags**: Version tags, `build-main-*`, and `build-dev-*`
-- ✅ **Run on pull requests**: For testing (does not publish)
-- ✅ **Run on manual dispatch**: `workflow_dispatch`
-- ❌ **NOT run on pushes to main**: Prevents unwanted builds on documentation/code updates
-
-### Triggering a Build
-
-To trigger a build, create and push a tag:
+Create and push a stable release tag through the guarded helper:
 
 ```bash
-# Main/stable release
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
-
-# Dev release
-scripts/create-release-tag.sh build-dev-0.24.1.dev.20260512.180000
+scripts/create-release-tag.sh v2026051218-slskdn.240
 ```
 
-See `memory-bank/decisions/adr-0005-tagging-system.md` for complete tag format details.
-
----
-
-## Automated Builds (CI/CD)
-
-### ⚠️ Important: Builds Only Happen on Tags
-
-**The CI workflow does NOT automatically build on code pushes. Builds ONLY happen when you create a tag.**
-
-### How to Trigger a Build
-
-**For stable releases:**
-```bash
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
-```
-
-**For dev releases:**
-```bash
-scripts/create-release-tag.sh build-dev-0.24.1.dev.20260512.180000
-```
-
-The helper verifies the GitHub target, refuses dirty or unsynced branches, runs
-the full release gate, checks for duplicate tags, and only then pushes the
-release tag. After GitHub publishes the release, verify the actual uploaded
-assets with:
+The helper verifies the GitHub target, refuses dirty or unsynced branches,
+runs the full release gate, checks for duplicate tags, and only then pushes the
+tag. After GitHub publishes the release, verify the actual uploaded assets:
 
 ```bash
-scripts/verify-release-artifacts.sh <tag>
+scripts/verify-release-artifacts.sh v2026051218-slskdn.240
 ```
 
-### Build Workflows
-
-- **CI Workflow** (`ci.yml`): Runs on tags only (not on code pushes)
-- **Build on Tag** (`build-on-tag.yml`): Full release with packages for `build-main-*` and `build-dev-*`
-
-If a stable release already exists but one or more package publishers failed,
-maintainers can manually run **Build on Tag** on the current default branch,
-provide the original `build-main-*` tag, and select only the failed publisher
-targets. This recovery path reuses the published release assets and skips
-rebuilding binaries, creating another release, repeating announcements, and
-republishing successful targets.
-
-See `memory-bank/decisions/adr-0005-tagging-system.md` for historical tag format details.
+If a publisher fails after a release exists, **Build on Tag** supports a
+targeted manual retry using the published `v<version>` tag. Historical
+`build-main-*` tags are accepted only for recovery; no binaries are rebuilt,
+and successful publishers are not repeated.
 
 ## Hard Way
 

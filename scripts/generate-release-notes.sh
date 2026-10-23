@@ -151,12 +151,14 @@ is_release_hygiene_subject() {
 }
 
 logical_is_release_version() {
-  [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+-slskdn\.[0-9]+$ ]] ||
-    [[ "$1" =~ ^[0-9]{8,10}-slskdn\.[0-9]+$ ]]
+  local version="${1#v}"
+  [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-slskdn\.[0-9]+$ ]] ||
+    [[ "$version" =~ ^[0-9]{8,10}-slskdn\.[0-9]+$ ]]
 }
 
 strip_build_prefix() {
   local tag="$1"
+  tag="${tag#v}"
   tag="${tag#build-main-}"
   tag="${tag#build-dev-}"
   printf '%s\n' "$tag"
@@ -173,6 +175,7 @@ resolve_current_source_tag() {
   fi
 
   for candidate in \
+    "v${logical}" \
     "build-main-${logical}" \
     "build-dev-${logical}" \
     "${logical}"
@@ -208,7 +211,7 @@ find_previous_tag() {
 
   if logical_is_release_version "$current_tag"; then
     git tag --sort=-v:refname |
-      grep -E '^([0-9]+\.[0-9]+\.[0-9]+|[0-9]{8,10})-slskdn\.[0-9]+$' |
+      grep -E '^v?([0-9]+\.[0-9]+\.[0-9]+|[0-9]{8,10})-slskdn\.[0-9]+$' |
       awk -v cur="$current_tag" '$0 != cur { print; exit }' || true
     return 0
   fi
@@ -227,6 +230,7 @@ find_previous_published_release_version() {
   [[ -n "$repo_slug" ]] || return 0
 
   while IFS= read -r tag; do
+    tag="${tag#v}"
     logical_is_release_version "$tag" || continue
     if [[ "$tag" == "$logical" ]]; then
       break
@@ -237,7 +241,7 @@ find_previous_published_release_version() {
       --repo "$repo_slug" \
       --limit 100 \
       --json tagName \
-      --jq '.[].tagName' 2>/dev/null | sort -V
+      --jq '.[].tagName' 2>/dev/null | sed 's/^v//' | sort -V
   )
 
   printf '%s\n' "$prev"
@@ -285,6 +289,7 @@ PREV_DISPLAY_TAG=""
 if [[ -n "$PREV_RELEASE_VERSION" ]]; then
   PREV_DISPLAY_TAG="$PREV_RELEASE_VERSION"
   for candidate in \
+    "v${PREV_RELEASE_VERSION}" \
     "build-main-${PREV_RELEASE_VERSION}" \
     "build-dev-${PREV_RELEASE_VERSION}" \
     "${PREV_RELEASE_VERSION}"

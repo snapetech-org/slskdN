@@ -90,13 +90,13 @@ reject_line flake.nix 'releases/download/dev/'
 reject_literal flake.nix 'slskdn-dev'
 
 test -x scripts/create-release-tag.sh || fail 'scripts/create-release-tag.sh must be executable'
+expect_literal scripts/create-release-tag.sh 'if [[ ! "$tag" =~ ^v([0-9]+\.[0-9]+\.[0-9]+|[0-9]{10}-slskdn\.[0-9]+)$ ]]; then'
 expect_literal scripts/create-release-tag.sh 'bash packaging/scripts/run-release-gate.sh'
 expect_literal scripts/create-release-tag.sh './scripts/verify-github-target.sh'
 expect_literal scripts/create-release-tag.sh 'bash scripts/check-release-branch-sync.sh'
 expect_literal scripts/create-release-tag.sh 'git status --porcelain'
 expect_literal scripts/create-release-tag.sh 'git ls-remote --exit-code --tags origin "refs/tags/$tag"'
 expect_literal scripts/create-release-tag.sh 'git push origin "$tag"'
-expect_literal scripts/create-release-tag.sh '^build-(main|dev)-'
 expect_literal package.json '"packageManager": "pnpm@12.4.1"'
 expect_literal pnpm-workspace.yaml "- 'src/web'"
 expect_literal pnpm-workspace.yaml "- 'tests/e2e'"
@@ -224,7 +224,6 @@ expect_literal packaging/cloudron/Dockerfile 'mkdir -p \"$SLSKD_DOWNLOADS_DIR\" 
 
 reject_literal docs/build.md 'git tag build-main-'
 reject_literal docs/dev/release-checklist.md 'git tag build-main-'
-reject_literal memory-bank/decisions/adr-0005-tagging-system.md 'git tag "build-main-${VERSION}"'
 reject_literal memory-bank/QUICK_REFERENCE.md 'git tag build-main-'
 
 expect_line ca_profile.xml '^<CommunityApplications>$'

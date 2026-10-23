@@ -96,7 +96,7 @@ expect_hosted_workflows() {
     fi
 
     case "$(basename "$workflow_file")" in
-      check-upstream-access.yml|ci.yml|codeql.yml|gvisor-runner-smoke.yml|local-identity-leaks.yml|semgrep-community.yml|trivy-filesystem.yml)
+      build-on-tag.yml|check-upstream-access.yml|ci.yml|codeql.yml|gvisor-runner-smoke.yml|local-identity-leaks.yml|semgrep-community.yml|trivy-filesystem.yml)
         ;;
       *)
         printf '%s selects a non-hosted runner outside the approved main-only shared route\n' \
@@ -109,6 +109,7 @@ expect_hosted_workflows() {
   local shared_main_workflow
   local expected_routes
   for shared_main_workflow in \
+    build-on-tag.yml \
     check-upstream-access.yml \
     ci.yml \
     codeql.yml \
@@ -124,7 +125,10 @@ expect_hosted_workflows() {
     fi
 
     expected_routes=1
-    [[ "$shared_main_workflow" != "ci.yml" ]] || expected_routes=2
+    case "$shared_main_workflow" in
+      ci.yml) expected_routes=2 ;;
+      build-on-tag.yml) expected_routes=9 ;;
+    esac
     local route_count
     route_count="$(rg -F -c 'ng-shared-main-jit' "$workflow_file" || true)"
     if [[ "$route_count" != "$expected_routes" ]]; then
@@ -135,15 +139,15 @@ expect_hosted_workflows() {
 
     local required_route_text
     for required_route_text in \
-      'github.event_name == '\''push'\''' \
-      'github.event_name == '\''workflow_dispatch'\''' \
-      'github.ref == '\''refs/heads/main'\''' \
+      'vars.NG_HOSTED_FIRST' \
+      'vars.NG_FORCE_JIT' \
+      'github.run_attempt > 1' \
       'github.run_id' \
       '"group":"ng-shared-main-jit"' \
       '"labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]' \
       "|| 'ubuntu-latest'"; do
       if ! rg -Fq -- "$required_route_text" "$workflow_file"; then
-        printf '%s is missing the main-only shared-runner condition: %s\n' \
+        printf '%s is missing the restricted shared-runner condition: %s\n' \
           "$shared_main_workflow" "$required_route_text" >&2
         failed=1
       fi
@@ -180,6 +184,7 @@ from pathlib import Path
 
 workflow_directory = Path(sys.argv[1])
 shared_main_workflows = {
+    "build-on-tag.yml": 9,
     "check-upstream-access.yml": 1,
     "ci.yml": 2,
     "codeql.yml": 1,
@@ -187,18 +192,37 @@ shared_main_workflows = {
     "semgrep-community.yml": 1,
     "trivy-filesystem.yml": 1,
 }
-shared_main_route = (
-    "${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' "
-    "|| github.event_name == 'schedule') && github.ref == 'refs/heads/main' && "
-    "fromJSON(format('{{\"group\":\"ng-shared-main-jit\",\"labels\":["
-    "\"self-hosted\",\"linux\",\"x64\",\"ng-shared-main-slskdn\","
-    "\"ng-main-run-{0}\"]}}', github.run_id)) || 'ubuntu-latest' }}"
+trusted_main_events = (
+    "(github.event_name == 'push' || github.event_name == 'workflow_dispatch' "
+    "|| github.event_name == 'schedule') && github.ref == 'refs/heads/main'"
 )
-ci_shared_main_route = shared_main_route.replace(
-    " || github.event_name == 'schedule'", ""
+trusted_release_events = (
+    "contains(fromJSON('[\"push\",\"workflow_dispatch\",\"schedule\",\"release\",\"repository_dispatch\"]'), github.event_name) "
+    "&& (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))"
+)
+runner_common = (
+    "vars.NG_HOSTED_FIRST != 'true'",
+    "vars.NG_FORCE_JIT == 'true'",
+    "github.run_attempt > 1",
+    '"group":"ng-shared-main-jit"',
+    '"labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]',
+    "github.run_id",
+    "|| 'ubuntu-latest'",
 )
 hosted_runner = re.compile(r"(?:ubuntu|windows|macos)-[A-Za-z0-9._-]+")
 errors = []
+
+def approved_shared_route(value):
+    return (
+        value.startswith("${{ ")
+        and value.endswith(" }}")
+        and all(token in value for token in runner_common)
+        and (
+            trusted_main_events in value
+            or trusted_release_events in value
+        )
+        and "pull_request" not in value
+    )
 
 for workflow in sorted((*workflow_directory.glob("*.yml"), *workflow_directory.glob("*.yaml"))):
     lines = workflow.read_text().splitlines()
@@ -212,10 +236,7 @@ for workflow in sorted((*workflow_directory.glob("*.yml"), *workflow_directory.g
         if value:
             if hosted_runner.fullmatch(value):
                 continue
-            expected_shared_route = (
-                ci_shared_main_route if workflow.name == "ci.yml" else shared_main_route
-            )
-            if workflow.name in shared_main_workflows and value == expected_shared_route:
+            if workflow.name in shared_main_workflows and approved_shared_route(value):
                 shared_route_count += 1
                 continue
             errors.append(f"{workflow.name}:{index + 1} uses an unapproved runner selector")
@@ -244,7 +265,7 @@ for workflow in sorted((*workflow_directory.glob("*.yml"), *workflow_directory.g
         expected_route_count = shared_main_workflows[workflow.name]
         if shared_route_count != expected_route_count:
             errors.append(
-                f"{workflow.name} has {shared_route_count} exact main-only shared routes; "
+                f"{workflow.name} has {shared_route_count} restricted shared routes; "
                 f"expected {expected_route_count}"
             )
 

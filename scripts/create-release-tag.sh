@@ -8,7 +8,7 @@ cd "$ROOT"
 usage() {
     cat >&2 <<'USAGE'
 Usage:
-  scripts/create-release-tag.sh [--hosted-ci-run <run-id>] <build-main-*|build-dev-*>
+  scripts/create-release-tag.sh [--hosted-ci-run <run-id>] <v<version>>
 
 Runs the release gate against the exact pushed branch head, then creates and
 pushes the release tag. A successful manual CI run may be supplied when local
@@ -54,23 +54,10 @@ if [[ "$tag" =~ [[:space:]] ]]; then
     fail "Release tag must not contain whitespace."
 fi
 
-if [[ ! "$tag" =~ ^build-(main|dev)-[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
-    fail "Release tag must start with build-main- or build-dev- and contain only letters, numbers, dots, underscores, and hyphens."
+if [[ ! "$tag" =~ ^v([0-9]+\.[0-9]+\.[0-9]+|[0-9]{10}-slskdn\.[0-9]+)$ ]]; then
+    fail "Release tags must use vMAJOR.MINOR.PATCH or vYYYYMMDDHH-slskdn.N."
 fi
-
-if [[ "$tag" =~ ^build-main- ]]; then
-    version="${tag#build-main-}"
-    if [[ ! "$version" =~ ^([0-9]+\.[0-9]+\.[0-9]+|[0-9]{10}-slskdn\.[0-9]+)$ ]]; then
-        fail "Main release tags must use MAJOR.MINOR.PATCH or YYYYMMDDHH-slskdn.N after build-main-."
-    fi
-fi
-
-if [[ "$tag" =~ ^build-dev- ]]; then
-    version="${tag#build-dev-}"
-    if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.dev\.[0-9]{8}\.[0-9]{6}$ ]]; then
-        fail "Dev release tags must use MAJOR.MINOR.PATCH.dev.YYYYMMDD.HHMMSS after build-dev-."
-    fi
-fi
+version="${tag#v}"
 
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || fail "Not inside a git worktree."
 
