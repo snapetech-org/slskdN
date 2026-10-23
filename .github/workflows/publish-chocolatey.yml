@@ -142,4 +142,3 @@ jobs:
 
           Write-Error "Chocolatey push failed after $maxRetries attempts; exact package endpoint was not published"
           exit 1
-        shell: pwsh
