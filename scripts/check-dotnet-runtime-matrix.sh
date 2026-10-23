@@ -188,8 +188,10 @@ shared_main_workflows = {
     "trivy-filesystem.yml": 1,
 }
 shared_main_route = (
-    "${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' "
-    "|| github.event_name == 'schedule') && github.ref == 'refs/heads/main' && "
+    "${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' "
+    "|| github.run_attempt > 1) && (github.event_name == 'push' "
+    "|| github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') "
+    "&& github.ref == 'refs/heads/main' && "
     "fromJSON(format('{{\"group\":\"ng-shared-main-jit\",\"labels\":["
     "\"self-hosted\",\"linux\",\"x64\",\"ng-shared-main-slskdn\","
     "\"ng-main-run-{0}\"]}}', github.run_id)) || 'ubuntu-latest' }}"

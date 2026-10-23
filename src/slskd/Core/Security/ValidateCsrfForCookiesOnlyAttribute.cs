@@ -66,7 +66,7 @@ public class ValidateCsrfForCookiesOnlyAttribute : Attribute, IAsyncAuthorizatio
             return; // Anonymous endpoint - no CSRF needed (e.g., login)
         }
 
-        // 3. Exempt requests with Authorization header (JWT/Bearer tokens or Basic Auth)
+        // 3. Exempt requests authenticated with non-ambient bearer tokens.
         if (request.Headers.ContainsKey("Authorization"))
         {
             var authHeader = request.Headers["Authorization"].ToString();
@@ -74,12 +74,6 @@ public class ValidateCsrfForCookiesOnlyAttribute : Attribute, IAsyncAuthorizatio
             {
                 Log.Verbose("[CSRF] Skipping validation for JWT Bearer token");
                 return; // JWT auth - no CSRF needed
-            }
-
-            if (authHeader.StartsWith("Basic ", StringComparison.OrdinalIgnoreCase))
-            {
-                Log.Verbose("[CSRF] Skipping validation for Basic Auth");
-                return; // Basic Auth - no CSRF needed
             }
         }
 
@@ -90,9 +84,14 @@ public class ValidateCsrfForCookiesOnlyAttribute : Attribute, IAsyncAuthorizatio
             return; // API key auth - no CSRF needed
         }
 
+        // Basic credentials are ambient in browsers and may accompany cross-origin requests.
+        // Require antiforgery validation for them even when the request has no cookies.
+        var hasBasicAuthorization = request.Headers.TryGetValue("Authorization", out var authorization)
+            && authorization.ToString().StartsWith("Basic ", StringComparison.OrdinalIgnoreCase);
+
         // 5. Check if request has any authentication cookies
         var hasCookies = request.Cookies.Any();
-        if (!hasCookies)
+        if (!hasCookies && !hasBasicAuthorization)
         {
             Log.Verbose("[CSRF] Skipping validation - no cookies present (pure API client)");
             return; // No cookies - pure API client, no CSRF needed

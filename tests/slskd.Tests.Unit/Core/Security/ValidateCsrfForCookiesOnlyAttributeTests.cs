@@ -42,4 +42,32 @@ public class ValidateCsrfForCookiesOnlyAttributeTests
         antiforgery.Verify(mock => mock.ValidateRequestAsync(httpContext), Times.Once);
         Assert.Null(filterContext.Result);
     }
+
+    [Fact]
+    public async Task OnAuthorizationAsync_WithBasicAuthorizationWithoutCookies_StillValidatesAntiforgery()
+    {
+        var antiforgery = new Mock<IAntiforgery>();
+        antiforgery
+            .Setup(mock => mock.ValidateRequestAsync(It.IsAny<HttpContext>()))
+            .ThrowsAsync(new AntiforgeryValidationException("A request token is required."));
+        var services = new ServiceCollection()
+            .AddSingleton(antiforgery.Object)
+            .BuildServiceProvider();
+        var httpContext = new DefaultHttpContext
+        {
+            RequestServices = services
+        };
+        httpContext.Request.Method = "POST";
+        httpContext.Request.Path = "/api/v0/test";
+        httpContext.Request.Headers.Authorization = "Basic dXNlcjpwYXNz";
+
+        var actionContext = new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
+        var filterContext = new AuthorizationFilterContext(actionContext, Array.Empty<IFilterMetadata>());
+
+        await new ValidateCsrfForCookiesOnlyAttribute().OnAuthorizationAsync(filterContext);
+
+        antiforgery.Verify(mock => mock.ValidateRequestAsync(httpContext), Times.Once);
+        var result = Assert.IsType<BadRequestObjectResult>(filterContext.Result);
+        Assert.Equal(StatusCodes.Status400BadRequest, result.StatusCode);
+    }
 }
