@@ -1,0 +1,74 @@
+name: Sync Unraid GHCR compatibility aliases
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Build on Tag
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+concurrency:
+  group: slskdn-unraid-ghcr-aliases
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: >-
+      github.repository == 'snapetech-org/slskdN' &&
+      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+       (github.event_name == 'workflow_run' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_repository.full_name == github.repository &&
+        startsWith(github.event.workflow_run.head_branch, 'build-main-')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+
+      - name: Log in to the personal GHCR package
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: snapetech
+          password: ${{ secrets.GHCR_LEGACY_TOKEN }}
+
+      - name: Align legacy stable tags to the organization image
+        shell: bash
+        env:
+          SOURCE_IMAGE: ghcr.io/snapetech-org/slskdn
+          TARGET_IMAGE: ghcr.io/snapetech/slskdn
+          SOURCE_TAG: latest
+          ALIASES: latest main master
+        run: |
+          set -euo pipefail
+          digest_for() {
+            docker buildx imagetools inspect "$1" |
+              awk '$1 == "Digest:" { print $2; exit }'
+          }
+
+          source_ref="${SOURCE_IMAGE}:${SOURCE_TAG}"
+          expected_digest="$(digest_for "$source_ref")"
+          if [[ ! "$expected_digest" =~ ^sha256:[a-f0-9]{64}$ ]]; then
+            echo "Could not resolve the published stable image $source_ref." >&2
+            exit 1
+          fi
+
+          for alias in $ALIASES; do
+            target_ref="${TARGET_IMAGE}:${alias}"
+            docker buildx imagetools create --tag "$target_ref" "$source_ref"
+            actual_digest="$(digest_for "$target_ref")"
+            if [[ "$actual_digest" != "$expected_digest" ]]; then
+              echo "$target_ref points to $actual_digest; expected $expected_digest." >&2
+              exit 1
+            fi
+          done
+          echo "Mirrored the verified stable manifest to $TARGET_IMAGE ($expected_digest)." >> "$GITHUB_STEP_SUMMARY"
