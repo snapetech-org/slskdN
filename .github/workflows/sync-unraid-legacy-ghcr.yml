@@ -51,21 +51,35 @@ jobs:
         run: |
           set -euo pipefail
           digest_for() {
-            docker buildx imagetools inspect "$1" |
-              awk '$1 == "Digest:" { print $2; exit }'
+            local image="$1" output digest
+            if ! output="$(docker buildx imagetools inspect "$image" 2>&1)"; then
+              printf 'Could not inspect %s:\n%s\n' "$image" "$output" >&2
+              return 1
+            fi
+            digest="$(awk '$1 == "Digest:" { print $2; exit }' <<< "$output")"
+            if [[ ! "$digest" =~ ^sha256:[a-f0-9]{64}$ ]]; then
+              printf 'No valid manifest digest in inspect output for %s:\n%s\n' "$image" "$output" >&2
+              return 1
+            fi
+            printf '%s\n' "$digest"
           }
 
           source_ref="${SOURCE_IMAGE}:${SOURCE_TAG}"
-          expected_digest="$(digest_for "$source_ref")"
-          if [[ ! "$expected_digest" =~ ^sha256:[a-f0-9]{64}$ ]]; then
+          if ! expected_digest="$(digest_for "$source_ref")"; then
             echo "Could not resolve the published stable image $source_ref." >&2
             exit 1
           fi
 
           for alias in $ALIASES; do
             target_ref="${TARGET_IMAGE}:${alias}"
-            docker buildx imagetools create --tag "$target_ref" "$source_ref"
-            actual_digest="$(digest_for "$target_ref")"
+            if ! create_output="$(docker buildx imagetools create --tag "$target_ref" "$source_ref" 2>&1)"; then
+              printf 'Could not copy %s to %s:\n%s\n' "$source_ref" "$target_ref" "$create_output" >&2
+              exit 1
+            fi
+            if ! actual_digest="$(digest_for "$target_ref")"; then
+              printf 'Could not verify destination image %s.\n' "$target_ref" >&2
+              exit 1
+            fi
             if [[ "$actual_digest" != "$expected_digest" ]]; then
               echo "$target_ref points to $actual_digest; expected $expected_digest." >&2
               exit 1
