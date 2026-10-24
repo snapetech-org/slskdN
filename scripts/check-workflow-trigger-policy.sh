@@ -18,18 +18,25 @@ for workflow in "${release_workflows[@]}"; do
   fi
 done
 
-if ! rg -q "build-main-\*" "$repo_root/.github/workflows/build-on-tag.yml"; then
-  printf '.github/workflows/build-on-tag.yml must trigger on build-main-* tags\n' >&2
+if ! rg -q "'v\*'" "$repo_root/.github/workflows/build-on-tag.yml"; then
+  printf '.github/workflows/build-on-tag.yml must trigger on v<version> tags\n' >&2
   failed=1
 fi
 
-if ! rg -q "build-dev-\*" "$repo_root/.github/workflows/build-on-tag.yml"; then
-  printf '.github/workflows/build-on-tag.yml must trigger on build-dev-* tags\n' >&2
+if rg -q "build-dev-\*" "$repo_root/.github/workflows/build-on-tag.yml"; then
+  printf '.github/workflows/build-on-tag.yml must not start release builds from dev tags\n' >&2
   failed=1
 fi
 
-if ! rg -q "build-dev-\*" "$repo_root/docs/build.md"; then
-  printf 'docs/build.md must document build-dev-* tag builds\n' >&2
+if ! rg -q 'v<version>' "$repo_root/docs/build.md"; then
+  printf 'docs/build.md must document v<version> release tags\n' >&2
+  failed=1
+fi
+
+canonical_semver_pattern='^v([0-9]{8,10})\.0\.0\+slskdn\.([0-9]+)$'
+if ! rg -Fq "$canonical_semver_pattern" "$repo_root/scripts/release_tag_policy.py" ||
+  ! rg -Fq 'policy/scripts/release_tag_policy.py' "$repo_root/.github/workflows/build-on-tag.yml"; then
+  printf 'release creation and tag parsing must use the same canonical SemVer form\n' >&2
   failed=1
 fi
 
@@ -43,8 +50,8 @@ if rg -n 'branches:\s*\[.*(master|main).*\]' "$repo_root/.github/workflows/build
   failed=1
 fi
 
-if ! rg -q 'build-dev-\*|build-main-\*|[0-9]\{8,10\}-slskdn' "$repo_root/.github/workflows/ci.yml"; then
-  printf '.github/workflows/ci.yml must keep release builds tag-addressable\n' >&2
+if rg -q 'build-dev-\*|build-main-\*|"\[0-9\]' "$repo_root/.github/workflows/ci.yml"; then
+  printf '.github/workflows/ci.yml must not trigger release builds from legacy or unprefixed tags\n' >&2
   failed=1
 fi
 
@@ -62,6 +69,8 @@ done < <(find "$repo_root/.github/workflows" -maxdepth 1 -type f \( -name '*.yml
 
 ci_workflow="$repo_root/.github/workflows/ci.yml"
 ci_enhancements_workflow="$repo_root/.github/workflows/ci-enhancements.yml"
+approved_events='["push","workflow_dispatch","schedule","release","repository_dispatch"]'
+event_gate="contains(fromJSON('$approved_events'), github.event_name)"
 for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
   workflow_name="$(basename "$workflow")"
   if [[ "$workflow" == "$ci_workflow" ]]; then
@@ -75,16 +84,17 @@ for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
             "$job_block" != *"ng-shared-main-slskdn"* ||
             "$job_block" != *"ng-main-run-{0}"* ||
             "$job_block" != *"github.run_id"* ||
-            "$job_block" != *"github.event_name == 'push'"* ||
-            "$job_block" != *"github.event_name == 'workflow_dispatch'"* ||
+            "$job_block" != *"$event_gate"* ||
             "$job_block" != *"github.ref == 'refs/heads/main'"* ||
+            "$job_block" != *"github.ref_type == 'tag' && startsWith(github.ref_name, 'v')"* ||
+            "$job_block" != *"github.run_attempt > 1"* ||
             "$job_block" != *"|| 'ubuntu-latest'"* ]]; then
         printf '%s job %s must route only main validation to the shared pool\n' "$workflow_name" "$job" >&2
         failed=1
       fi
     done
     route_count="$(rg -n -F 'ng-shared-main-jit' "$workflow" | wc -l)"
-    if [[ "$route_count" -ne 2 ]]; then
+    if [[ "$route_count" -ne 4 ]]; then
       printf '%s has an unexpected shared runner route count\n' "$workflow_name" >&2
       failed=1
     fi
@@ -114,8 +124,8 @@ from pathlib import Path
 
 text = Path(sys.argv[1]).read_text()
 push = re.search(r"(?ms)^  push:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", text)
-if not push or not re.search(r"(?m)^    tags:\n", push.group(1)):
-    raise SystemExit("CI must preserve its release tag triggers")
+if not push or re.search(r"(?m)^    tags:\n", push.group(1)):
+    raise SystemExit("CI must leave release tag triggers to build-on-tag.yml")
 branches = [
     value.strip()
     for value in re.findall(r"(?m)^    branches:\s*\[([^\]]*)\]\s*$", push.group(1))
@@ -124,7 +134,7 @@ if branches != ["main"]:
     raise SystemExit("CI validation pushes must stay restricted to main")
 PYTHON
 then
-  printf '.github/workflows/ci.yml must keep builds tag-triggered\n' >&2
+  printf '.github/workflows/ci.yml must keep release builds separate from validation triggers\n' >&2
   failed=1
 fi
 
@@ -204,14 +214,16 @@ def job_block(workflow, job):
     return match.group(1)
 
 parse_job = job_block(tag_workflow, "parse")
-if "Manual publisher recovery requires an existing build-main-* tag" not in parse_job:
-    raise SystemExit("manual publisher recovery must accept only stable build tags")
+if "Manual publisher recovery requires an existing v<version> release tag" not in parse_job:
+    raise SystemExit("manual publisher recovery must require an existing release tag")
 if not re.search(r"(?m)^    permissions:\n      contents: read$", parse_job):
     raise SystemExit("manual publisher recovery must use a read-only token to verify the release")
 if "GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}" not in parse_job:
     raise SystemExit("manual publisher recovery must authenticate its release lookup")
-if 'gh release view "$VERSION" --repo "$GITHUB_REPOSITORY"' not in parse_job:
+if 'gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"' not in parse_job:
     raise SystemExit("manual publisher recovery must verify the existing release before publishing")
+if 'release_tag: ${{ steps.parse.outputs.release_tag }}' not in tag_workflow:
+    raise SystemExit("Build on Tag must carry the GitHub Release tag separately from package version")
 if "Select at least one publisher to retry" not in parse_job:
     raise SystemExit("manual publisher recovery must require an explicit target")
 
@@ -253,13 +265,8 @@ then
 fi
 
 for release_job in publish docker release; do
-  if ! awk -v job="$release_job" '
-    $0 == "  " job ":" { in_job = 1; next }
-    in_job && /^  [A-Za-z0-9_-]+:$/ { exit }
-    in_job && index($0, "if: startsWith(github.ref, '\''refs/tags/'\'')") > 0 { found = 1 }
-    END { exit !found }
-  ' "$ci_workflow"; then
-    printf '.github/workflows/ci.yml job %s must stay tag-gated\n' "$release_job" >&2
+  if rg -q "^  ${release_job}:$" "$ci_workflow"; then
+    printf '.github/workflows/ci.yml must leave release job %s to build-on-tag.yml\n' "$release_job" >&2
     failed=1
   fi
 done

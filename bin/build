@@ -61,7 +61,9 @@ if [ -z "$version" ]; then
   tag=$(git describe --tags --abbrev=0)
   sha=$(git rev-parse --short HEAD)
   # .NET/NuGet version: no "build-*" prefix, use hyphen prerelease (e.g. 0.24.1-dev-123), no "+" metadata
-  if [[ "$tag" == build-dev-* ]]; then
+  if [[ "$tag" == v* ]]; then
+    version="${tag#v}"
+  elif [[ "$tag" == build-dev-* ]]; then
     version="${tag#build-dev-}"
     version="${version//.dev./-dev-}"
   elif [[ "$tag" == build-main-* ]]; then

@@ -22,6 +22,14 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- CI: trusted same-repository owner pull requests can validate through the
+  main-pinned, no-secret private JIT route when hosted execution is blocked.
+
+- Release builds now start from pushed strict v<SemVer> tags. Timestamped
+  slskdN versions use `vYYYYMMDDHH.0.0+slskdn.N`; the workflow maps that tag
+  back to the existing package version. CI validation stays separate, and
+  publisher recovery can still target an existing legacy release.
+
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.
 - Security: state-changing API requests no longer treat HTTP Basic credentials as a CSRF exemption, preventing ambient browser credentials from authorizing cross-origin actions.
 - Security review documents the container entrypoint's privilege drop, generated filesystem probe, and allowlisted SQLite schema statements beside their scan annotations.
@@ -35,7 +43,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Packaging validation now checks the release workflow's architecture-specific executable path.
 - Release package validation now follows the workflow's tag-based asset selection.
 - The local identity denylist scan runs only on trusted `main` pushes or manual dispatches on `main`, so pull requests never receive its secret.
-- Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
+- Shared Linux runner jobs use project-, run-, and workflow-job-scoped labels so JIT dispatch cannot pull work from a different project or assign a guest to the wrong job.
 - Trusted main-branch builds and security scans now use the capacity-guarded shared Linux runner pool; fork pull requests remain on isolated runners.
 - CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.
 - Fix the Apple Sign In temporary cookie setup so the server builds with the required cross-site callback policy.

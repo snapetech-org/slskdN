@@ -1,0 +1,8 @@
+diff --git a/vendor/slskNet.Runtime/scripts/check-local-identity-leaks.sh b/vendor/slskNet.Runtime/scripts/check-local-identity-leaks.sh
+--- a/vendor/slskNet.Runtime/scripts/check-local-identity-leaks.sh
++++ b/vendor/slskNet.Runtime/scripts/check-local-identity-leaks.sh
+@@ -105,3 +105,3 @@
+ if [[ "${LOCAL_IDENTITY_SCAN_COMMITS:-0}" == "1" ]]; then
+-  latest_tag="$(git tag --sort=-creatordate --list 'build-main-*' | head -n 1 || true)"
++  latest_tag="$(git tag --sort=-creatordate --list 'v*' --list 'build-main-*' | head -n 1 || true)"
+   if [[ -z "$latest_tag" ]]; then
