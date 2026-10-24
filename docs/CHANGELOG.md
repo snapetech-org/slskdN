@@ -22,6 +22,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- CI: trusted same-repository owner pull requests can validate through the
+  main-pinned, no-secret private JIT route when hosted execution is blocked.
+
 - Release builds now start from pushed v<version> tags. CI validation stays
   separate, while publisher recovery can still target an existing legacy release.
 
