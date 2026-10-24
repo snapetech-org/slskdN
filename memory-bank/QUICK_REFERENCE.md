@@ -196,19 +196,15 @@ export const getAll = async () => {
 - ✅ **DO** wait for explicit user instruction before creating tags
 
 ### CI Workflow Triggers
-- ✅ Tags: `build-main-*`, `build-dev-*`, version tags
-- ✅ Pull requests: For testing (does not publish)
+- ✅ Pull requests and `main` pushes: Validation
+- ✅ Release builds and publishers: pushed `v<version>` tags only
+- ✅ Historical `build-main-*` releases: targeted publisher recovery only
 - ✅ Manual dispatch: `workflow_dispatch`
-- ❌ **NOT on pushes to master**: Intentionally disabled
 
 ### To Trigger a Build (Only if User Requests)
 ```bash
-# Main/stable release
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
-
-# Dev release
-VERSION="0.24.1.dev.$(date -u +%Y%m%d.%H%M%S)"
-scripts/create-release-tag.sh "build-dev-${VERSION}"
+# Stable release
+scripts/create-release-tag.sh v2026051218-slskdn.240
 ```
 
 See `memory-bank/decisions/adr-0005-tagging-system.md` for complete details.

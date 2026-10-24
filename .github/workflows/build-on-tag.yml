@@ -1,20 +1,21 @@
+# ng-runner-policy: hosted-first-v1
 name: Build on Tag
 
-# Trigger: push tag matching build-main-* or build-dev-*
+# Trigger: push a v<semver> release tag. Timestamped package versions use the
+# same SemVer form as the other repositories and are normalized below.
 #
 # Examples:
-#   git tag build-main-0.24.3-slskdn.44 && git push origin $_
-#   git tag build-dev-0.24.3-dev.20260505 && git push origin $_
+#   git tag v0.24.3-slskdn.44 && git push origin $_
+#   git tag v2026101818.0.0+slskdn.352 && git push origin $_
 
 on:
   push:
     tags:
-      - 'build-main-*'
-      - 'build-dev-*'
+      - 'v*'
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing build-main tag whose GitHub release assets are already published.
+        description: Existing v<semver> tag for publisher recovery (historical build-main tags are also accepted).
         required: true
         type: string
       retry_aur:
@@ -32,16 +33,6 @@ on:
         required: false
         default: false
         type: boolean
-      retry_docker:
-        description: Retry the main Docker publisher
-        required: false
-        default: false
-        type: boolean
-      retry_docker_omnibus:
-        description: Retry the omnibus Docker publisher (requires the versioned main image to exist, or select retry_docker too)
-        required: false
-        default: false
-        type: boolean
       retry_nix:
         description: Retry the Nix metadata publisher
         required: false
@@ -56,13 +47,21 @@ permissions: {}
 jobs:
   parse:
     name: Parse Tag
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-parse"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
     outputs:
       channel: ${{ steps.parse.outputs.channel }}
       version: ${{ steps.parse.outputs.version }}
+      release_tag: ${{ steps.parse.outputs.release_tag }}
     steps:
+      - name: Checkout release tag policy from main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: policy
+          fetch-depth: 1
+          persist-credentials: false
       - name: Parse Tag
         id: parse
         env:
@@ -70,8 +69,6 @@ jobs:
           RETRY_AUR: ${{ inputs.retry_aur }}
           RETRY_COPR: ${{ inputs.retry_copr }}
           RETRY_PPA: ${{ inputs.retry_ppa }}
-          RETRY_DOCKER: ${{ inputs.retry_docker }}
-          RETRY_DOCKER_OMNIBUS: ${{ inputs.retry_docker_omnibus }}
           RETRY_NIX: ${{ inputs.retry_nix }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -79,42 +76,61 @@ jobs:
           echo "Tag: $TAG"
 
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
-              echo "::error::Manual publisher recovery requires an existing build-main-* tag"
+            if [[ ! "$TAG" =~ ^v[A-Za-z0-9][A-Za-z0-9._+-]*$ && ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
+              echo "::error::Manual publisher recovery requires an existing v<version> release tag"
               exit 1
             fi
-            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
+            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_NIX" != true ]]; then
               echo "::error::Select at least one publisher to retry"
               exit 1
             fi
           fi
           
-          # Extract channel and version from tag
-          # Format: build-main-<version> or build-dev-<version>
-          if [[ "$TAG" =~ ^build-(main|dev)-(.+)$ ]]; then
-            CHANNEL="${BASH_REMATCH[1]}"
-            VERSION="${BASH_REMATCH[2]}"
+          # Timestamped package versions carry their existing identity in a
+          # valid SemVer core/build-metadata tag; ordinary SemVer tags pass
+          # through unchanged.
+          if [[ "$TAG" =~ ^v([0-9]{8,10})\.0\.0\+slskdn\.([0-9]+)$ ]]; then
+            CHANNEL="main"
+            VERSION="${BASH_REMATCH[1]}-slskdn.${BASH_REMATCH[2]}"
+            RELEASE_TAG="$TAG"
+          elif [[ "$TAG" == v* ]] && VERSION="$(python3 policy/scripts/release_tag_policy.py "$TAG")"; then
+            CHANNEL="main"
+            RELEASE_TAG="$TAG"
+          elif [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" && "$TAG" =~ ^v(.+)$ ]]; then
+            CHANNEL="main"
+            VERSION="${BASH_REMATCH[1]}"
+            RELEASE_TAG="$TAG"
+          elif [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" && "$TAG" =~ ^build-main-(.+)$ ]]; then
+            CHANNEL="main"
+            VERSION="${BASH_REMATCH[1]}"
+            RELEASE_TAG="$VERSION"
           else
-            echo "::error::Invalid tag format. Expected: build-main-<version> or build-dev-<version>"
+            echo "::error::New releases must use a v<semver> tag"
+            exit 1
+          fi
+
+          if [[ ! "$VERSION" =~ ^([0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.+-]+)?|[0-9]{8,10}-slskdn\.[0-9]+)$ || "$VERSION" == *..* ]]; then
+            echo "::error::Unsupported release version: $VERSION"
             exit 1
           fi
           
           echo "Channel: $CHANNEL"
           echo "Version: $VERSION"
 
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && ! gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null; then
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null; then
             echo "::error::Manual publisher recovery requires an existing published release for $TAG"
             exit 1
           fi
           
           echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release_tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
 
   build:
     name: Build
     needs: parse
     if: github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) || 'ubuntu-latest' }}
     timeout-minutes: 120
     steps:
       - name: Checkout
@@ -159,7 +175,7 @@ jobs:
     name: Publish ${{ matrix.runtime }}
     needs: [parse, build]
     if: github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-publish"]}}', github.run_id, strategy.job-index)) || 'ubuntu-latest' }}
     strategy:
       fail-fast: false
       matrix:
@@ -263,7 +279,7 @@ jobs:
     name: Create Main Release
     needs: [parse, publish]
     if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-release-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: write
     outputs:
@@ -307,12 +323,11 @@ jobs:
             release/RELEASE_NOTES.md
           cat release/RELEASE_NOTES.md
 
-      # Creates release under VERSION tag (e.g., 0.24.1-slskdn.35) for backward compatibility
-      # Build was triggered by build-main-VERSION tag, but release uses traditional format
+      # Release, source tag, and publisher assets all use the same v<version> ref.
       - name: Create Main Release
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
-          tag_name: ${{ needs.parse.outputs.version }}
+          tag_name: ${{ needs.parse.outputs.release_tag }}
           name: "🔋 slskdN ${{ needs.parse.outputs.version }} - The Batteries-Included Fork"
           body_path: release/RELEASE_NOTES.md
           prerelease: false
@@ -342,12 +357,12 @@ jobs:
     name: Announce Main Release to Discord
     needs: [parse, release-main]
     if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-announce-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - name: Post Discord announcement
         env:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
-          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.version }}
+          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}
           VERSION: ${{ needs.parse.outputs.version }}
           TRIGGER_TAG: ${{ github.ref_name }}
           RELEASE_BODY: ${{ needs.release-main.outputs.release_body }}
@@ -401,7 +416,7 @@ jobs:
           MATRIX_BASE_URL: https://matrix.timeways.net
           MATRIX_ROOM_ID: '!feVqoCPCPPaCQmTCEE:timeways.net'
           MATRIX_PROJECT_KEY: slskdn-main
-          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.version }}
+          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}
           VERSION: ${{ needs.parse.outputs.version }}
           TRIGGER_TAG: ${{ github.ref_name }}
         run: |
@@ -497,7 +512,7 @@ jobs:
     name: Publish to AUR (Main - Source & Binary)
     needs: [parse, release-main]
     if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-aur-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     outputs:
       short_sha: ${{ steps.info.outputs.short_sha }}
     steps:
@@ -517,7 +532,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Download binary for slskdn-bin package
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
 
@@ -530,17 +545,13 @@ jobs:
             exit 0
           fi
           
-          mkdir -p ~/.ssh
-          echo "$AUR_SSH_KEY" > ~/.ssh/aur
-          chmod 600 ~/.ssh/aur
-          
-          cat >> ~/.ssh/config << EOF
-          Host aur.archlinux.org
-            IdentityFile ~/.ssh/aur
-            User aur
-          EOF
-          
-          ssh-keyscan -H aur.archlinux.org >> ~/.ssh/known_hosts
+          key_file="$(mktemp)"
+          trap 'rm -f "$key_file"' EXIT
+          printf '%s\n' "$AUR_SSH_KEY" > "$key_file"
+          git fetch --no-tags origin '+refs/heads/main:refs/remotes/origin/main'
+          git show origin/main:packaging/scripts/setup-aur-ssh.sh > "$RUNNER_TEMP/setup-aur-ssh.sh"
+          chmod 0700 "$RUNNER_TEMP/setup-aur-ssh.sh"
+          bash "$RUNNER_TEMP/setup-aur-ssh.sh" "$key_file"
 
       # Publish slskdn (source package)
       - name: Clone AUR Package (Source)
@@ -678,7 +689,7 @@ jobs:
     needs: [parse, release-main]
     if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     continue-on-error: true
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-copr-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -689,7 +700,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
 
@@ -866,7 +877,7 @@ jobs:
     needs: [parse, release-main]
     if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
     continue-on-error: true
-    runs-on: ubuntu-latest
+    runs-on: ${{ contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v'))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-ppa-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     concurrency:
       group: slskdn-ppa-jammy
       cancel-in-progress: false
@@ -880,7 +891,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
           unzip slskdn-main-linux-glibc-x64.zip -d publish-linux-x64
@@ -958,59 +969,15 @@ jobs:
           cd slskdn-${VERSION}
           debuild -S -sa -d -k"$GPG_SIGNING_FINGERPRINT"
 
-      - name: Preflight Launchpad PPA Upload
+      - name: Preflight pinned Launchpad SFTP upload
         env:
           LAUNCHPAD_SFTP_KEY: ${{ secrets.LAUNCHPAD_SFTP_KEY }}
         run: |
-          if [ -n "$LAUNCHPAD_SFTP_KEY" ]; then
-            LAUNCHPAD_PPA_SFTP_IPV4=$(getent ahostsv4 ppa.launchpad.net | awk '$2 == "STREAM" { print $1; exit }')
-            if [ -z "$LAUNCHPAD_PPA_SFTP_IPV4" ]; then
-              echo "::warning::Unable to resolve an IPv4 address for ppa.launchpad.net SFTP; trying FTP fallback"
-              getent ahosts ppa.launchpad.net || true
-            else
-
-              echo "Pinning ppa.launchpad.net to IPv4 ${LAUNCHPAD_PPA_SFTP_IPV4} for PPA SFTP upload"
-              echo "${LAUNCHPAD_PPA_SFTP_IPV4} ppa.launchpad.net" | sudo tee -a /etc/hosts
-              getent ahosts ppa.launchpad.net
-
-              if python3 - <<'PY'
-          import socket
-
-          with socket.create_connection(("ppa.launchpad.net", 22), timeout=120) as sock:
-              print(f"Connected to {sock.getpeername()[0]}:{sock.getpeername()[1]} over SSH")
-          PY
-              then
-                echo "SLSKDN_PPA_UPLOAD_METHOD=sftp" >> "$GITHUB_ENV"
-                exit 0
-              fi
-
-              echo "::warning::Launchpad PPA SFTP endpoint is not reachable; trying FTP fallback"
-            fi
-          fi
-
-          LAUNCHPAD_PPA_FTP_IPV4=$(getent ahostsv4 ppa.launchpad.net | awk '$2 == "STREAM" { print $1; exit }')
-          if [ -z "$LAUNCHPAD_PPA_FTP_IPV4" ]; then
-            echo "::error::Unable to resolve an IPv4 address for ppa.launchpad.net"
-            getent ahosts ppa.launchpad.net || true
+          set -euo pipefail
+          if [[ -z "${LAUNCHPAD_SFTP_KEY:-}" ]]; then
+            echo "::error::LAUNCHPAD_SFTP_KEY is required; anonymous FTP fallback is disabled."
             exit 1
           fi
-
-          echo "Pinning ppa.launchpad.net to IPv4 ${LAUNCHPAD_PPA_FTP_IPV4} for PPA FTP upload"
-          echo "${LAUNCHPAD_PPA_FTP_IPV4} ppa.launchpad.net" | sudo tee -a /etc/hosts
-          getent ahosts ppa.launchpad.net
-
-          if ! python3 - <<'PY'
-          import socket
-
-          with socket.create_connection(("ppa.launchpad.net", 21), timeout=120) as sock:
-              print(f"Connected to {sock.getpeername()[0]}:{sock.getpeername()[1]}")
-          PY
-          then
-            echo "::error::Launchpad PPA FTP endpoint is not reachable over IPv4"
-            exit 1
-          fi
-          echo "SLSKDN_PPA_UPLOAD_METHOD=ftp" >> "$GITHUB_ENV"
-
       - name: Upload to PPA
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -1047,61 +1014,55 @@ jobs:
             exit 1
           fi
 
-          uploaded=0
-          if [ "${SLSKDN_PPA_UPLOAD_METHOD:-ftp}" = "sftp" ] && [ -n "$LAUNCHPAD_SFTP_KEY" ]; then
-            mkdir -p ~/.ssh
-            printf '%s\n' "$LAUNCHPAD_SFTP_KEY" > ~/.ssh/launchpad_ppa
-            chmod 600 ~/.ssh/launchpad_ppa
-            ssh-keyscan -T 30 -t rsa,ecdsa,ed25519 ppa.launchpad.net >> ~/.ssh/known_hosts 2>/dev/null || true
-            cat >> ~/.ssh/config << EOF
+          if [ -z "${LAUNCHPAD_SFTP_KEY:-}" ]; then
+            echo "::error::LAUNCHPAD_SFTP_KEY is required; refusing insecure PPA upload."
+            exit 1
+          fi
+          LAUNCHPAD_SFTP_USER="${LAUNCHPAD_SFTP_USER:-keefshape}"
+          if [[ ! "$LAUNCHPAD_SFTP_USER" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$ ]]; then
+            echo 'Invalid Launchpad SFTP username.' >&2
+            exit 1
+          fi
+          install -d -m 0700 ~/.ssh
+          printf '%s\n' "$LAUNCHPAD_SFTP_KEY" > ~/.ssh/launchpad_ppa
+          chmod 0600 ~/.ssh/launchpad_ppa
+          cat > ~/.ssh/known_hosts <<'EOF'
+          ppa.launchpad.net ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0aKz5UTUndYgIGG7dQBV+HaeuEZJ2xPHo2DS2iSKvUL4xNMSAY4UguNW+pX56nAQmZKIZZ8MaEvSj6zMEDiq6HFfn5JcTlM80UwlnyKe8B8p7Nk06PPQLrnmQt5fh0HmEcZx+JU9TZsfCHPnX7MNz4ELfZE6cFsclClrKim3BHUIGq//t93DllB+h4O9LHjEUsQ1Sr63irDLSutkLJD6RXchjROXkNirlcNVHH/jwLWR5RcYilNX7S5bIkK8NlWPjsn/8Ua5O7I9/YoE97PpO6i73DTGLh5H9JN/SITwCKBkgSDWUt61uPK3Y11Gty7o2lWsBjhBUm2Y38CBsoGmBw==
+          EOF
+          expected_fingerprint='SHA256:MGq+4hxD7RduVTcfwlwwboZnsgJC6SL/NltM8ye+gNg'
+          actual_fingerprint="$(ssh-keygen -lf ~/.ssh/known_hosts -E sha256 | awk '{print $2}')"
+          [[ "$actual_fingerprint" == "$expected_fingerprint" ]] || {
+            echo 'Pinned Launchpad SSH host key fingerprint mismatch.' >&2
+            exit 1
+          }
+          cat > ~/.ssh/config <<EOF
           Host ppa.launchpad.net
             HostName ppa.launchpad.net
-            User ${LAUNCHPAD_SFTP_USER}
+            User $LAUNCHPAD_SFTP_USER
             IdentityFile ~/.ssh/launchpad_ppa
             IdentitiesOnly yes
             BatchMode yes
             PasswordAuthentication no
             KbdInteractiveAuthentication no
-            NumberOfPasswordPrompts 0
-            StrictHostKeyChecking accept-new
+            StrictHostKeyChecking yes
+            UserKnownHostsFile ~/.ssh/known_hosts
+            GlobalKnownHostsFile /dev/null
+            ProxyCommand nc -X connect -x 10.0.2.100:3128 %h %p
             ConnectTimeout 60
             ServerAliveInterval 30
             ServerAliveCountMax 4
           EOF
-
-            cat > ~/.dput.cf << EOF
+          chmod 0600 ~/.ssh/config ~/.ssh/known_hosts
+          cat > ~/.dput.cf <<EOF
           [slskdn-ppa-sftp]
           fqdn = ppa.launchpad.net
           method = sftp
           incoming = ~keefshape/ubuntu/slskdn/
-          login = ${LAUNCHPAD_SFTP_USER}
+          login = $LAUNCHPAD_SFTP_USER
           allow_unsigned_uploads = 0
           EOF
-
-            echo "Uploading $(basename "$CHANGES_FILE") to Launchpad PPA over SFTP"
-            if timeout --preserve-status 1800 dput --config ~/.dput.cf slskdn-ppa-sftp "$CHANGES_FILE"; then
-              uploaded=1
-            else
-              echo "::warning::Launchpad SFTP upload failed; trying anonymous FTP fallback"
-            fi
-          fi
-
-          if [ "$uploaded" -ne 1 ]; then
-            cat > ~/.dput.cf << 'EOF'
-          [slskdn-ppa-ftp]
-          fqdn = ppa.launchpad.net
-          method = ftp
-          incoming = ~keefshape/ubuntu/slskdn/
-          passive_ftp = 1
-          login = anonymous
-          allow_unsigned_uploads = 0
-          EOF
-
-            echo "Uploading $(basename "$CHANGES_FILE") to Launchpad PPA over anonymous FTP"
-            timeout --preserve-status 1800 dput --config ~/.dput.cf slskdn-ppa-ftp "$CHANGES_FILE"
-          fi
-
-          echo "✅ Uploaded to PPA: slskdn"
+          echo "Uploading $(basename "$CHANGES_FILE") to Launchpad PPA over pinned SFTP"
+          timeout --preserve-status 1800 dput --config ~/.dput.cf slskdn-ppa-sftp "$CHANGES_FILE"
 
       - name: Wait for PPA Publication
         env:
@@ -1117,8 +1078,12 @@ jobs:
   docker-main:
     name: Build and Push Docker (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
-    runs-on: ubuntu-latest
+    if: >-
+      always() &&
+      needs.parse.outputs.channel == 'main' &&
+      github.event_name != 'workflow_dispatch' &&
+      needs.release-main.result == 'success'
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
       HAS_DOCKERHUB: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}
@@ -1129,13 +1094,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ github.ref }}
 
       - name: Download from Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
 
@@ -1223,11 +1188,10 @@ jobs:
     needs: [parse, release-main, docker-main]
     if: >-
       always() && needs.parse.outputs.channel == 'main' &&
-      ((github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success' && needs.docker-main.result == 'success') ||
-       (github.event_name == 'workflow_dispatch' && inputs.retry_docker_omnibus &&
-        ((inputs.retry_docker && needs.docker-main.result == 'success') ||
-         (!inputs.retry_docker && needs.docker-main.result == 'skipped'))))
-    runs-on: ubuntu-latest
+      github.event_name != 'workflow_dispatch' &&
+      needs.release-main.result == 'success' &&
+      needs.docker-main.result == 'success'
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-omnibus"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
       packages: write
@@ -1284,7 +1248,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" `
+          gh release download "${{ needs.parse.outputs.release_tag }}" `
             --repo ${{ github.repository }} `
             --pattern "slskdn-main-win-x64.zip"
 
@@ -1304,10 +1268,10 @@ jobs:
             Write-Error "Chocolatey package version is not numeric: $PackageVersion"
             exit 1
           }
-          $Url = "https://github.com/${{ github.repository }}/releases/download/${{ needs.parse.outputs.version }}/slskdn-main-win-x64.zip"
+          $Url = "https://github.com/${{ github.repository }}/releases/download/${{ needs.parse.outputs.release_tag }}/slskdn-main-win-x64.zip"
           $Checksum = (Get-FileHash slskdn-main-win-x64.zip -Algorithm SHA256).Hash
           (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<version>.*</version>', "<version>$PackageVersion</version>" | Set-Content packaging/chocolatey/slskdn.nuspec
-          (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>https://github.com/${{ github.repository }}/releases/tag/$Version</releaseNotes>" | Set-Content packaging/chocolatey/slskdn.nuspec
+          (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>https://github.com/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}</releaseNotes>" | Set-Content packaging/chocolatey/slskdn.nuspec
           (Get-Content packaging/chocolatey/tools/chocolateyinstall.ps1) -replace '\$url\s*=\s*".*"', "`$url = `"$Url`"" | Set-Content packaging/chocolatey/tools/chocolateyinstall.ps1
           (Get-Content packaging/chocolatey/tools/chocolateyinstall.ps1) -replace '\$checksum\s*=\s*".*"', "`$checksum = `"$Checksum`"" | Set-Content packaging/chocolatey/tools/chocolateyinstall.ps1
           cd packaging/chocolatey
@@ -1397,7 +1361,7 @@ jobs:
     name: Update Nix/Main Release Metadata
     needs: [parse, release-main]
     if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: write
     steps:
@@ -1416,7 +1380,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-*.zip"
           
@@ -1521,7 +1485,7 @@ jobs:
     name: Update Homebrew Tap (Main)
     needs: [parse, release-main]
     if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-homebrew-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: write
     steps:
@@ -1529,7 +1493,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-*.zip"
 
@@ -1542,7 +1506,7 @@ jobs:
           SHA_MAC_ARM=$(sha256sum slskdn-main-osx-arm64.zip | cut -d' ' -f1)
           SHA_LINUX=$(sha256sum slskdn-main-linux-glibc-x64.zip | cut -d' ' -f1)
           VERSION="${{ needs.parse.outputs.version }}"
-          TAG="${{ needs.parse.outputs.version }}"
+          TAG="${{ needs.parse.outputs.release_tag }}"
           
           git clone https://x-access-token:${GH_TOKEN}@github.com/snapetech/homebrew-slskdn.git tap
           cd tap

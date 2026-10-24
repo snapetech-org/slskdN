@@ -3,18 +3,18 @@
 # markers, and run the Linux binary for version output.
 # Usage:
 #   ./scripts/verify-release-artifacts.sh [TAG]
-#   TAG defaults to latest dev tag (build-dev-*). Use e.g. build-dev-0.24.1.dev.91769607746
+#   TAG defaults to the latest canonical v<version> release.
 set -euo pipefail
 
 REPO="${REPO:-snapetech/slskdn}"
 TAG="${1:-}"
 
 if [ -z "$TAG" ]; then
-  echo "Fetching latest dev release tag..."
+  echo "Fetching latest v release tag..."
   # gh release list columns: title, type, tag, date (tab-separated)
-  TAG=$(gh release list --repo "$REPO" --limit 20 | awk -F'\t' '$3 ~ /^build-dev-/ {print $3; exit}')
+  TAG=$(gh release list --repo "$REPO" --limit 100 | awk -F'\t' '$3 ~ /^v[0-9]/ {print $3; exit}')
   if [ -z "$TAG" ]; then
-    echo "No build-dev-* release found. Pass TAG explicitly, e.g. build-dev-0.24.1.dev.91769607746"
+    echo "No v<version> release found. Pass a historical release tag explicitly."
     exit 1
   fi
   echo "Using tag: $TAG"
@@ -68,7 +68,7 @@ for required_asset in \
   slskdn-main-linux-musl-x64.zip \
   slskdn-main-osx-x64.zip \
   slskdn-main-osx-arm64.zip; do
-  if [[ ("$TAG" == build-main-* || "$TAG" =~ -slskdn\.[0-9]+$) && ! -f "$required_asset" ]]; then
+  if [[ ("$TAG" == v* || "$TAG" == build-main-* || "$TAG" =~ -slskdn\.[0-9]+$) && ! -f "$required_asset" ]]; then
     fail "Missing required main release asset: $required_asset"
   fi
 done

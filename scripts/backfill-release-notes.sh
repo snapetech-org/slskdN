@@ -30,8 +30,9 @@ count=0
 while IFS=$'\t' read -r version published_at; do
   [[ -n "$version" ]] || continue
   tag_ref="$version"
+  logical_version="${version#v}"
   if ! git rev-parse -q --verify "refs/tags/$tag_ref" >/dev/null 2>&1; then
-    tag_ref="build-main-$version"
+    tag_ref="build-main-$logical_version"
   fi
   git rev-parse -q --verify "refs/tags/$tag_ref" >/dev/null || {
     echo "Missing local tag for published release $version" >&2
@@ -42,7 +43,7 @@ while IFS=$'\t' read -r version published_at; do
   RELEASE_NOTES_PREVIOUS_VERSION="$previous" \
     RELEASE_NOTES_SYNTHETIC_COMMIT_LIMIT=100000 \
     RELEASE_NOTES_ALLOW_EMPTY=1 \
-    ./scripts/generate-release-notes.sh "$version" "$notes" "$tag_ref" >/dev/null
+    ./scripts/generate-release-notes.sh "$logical_version" "$notes" "$tag_ref" >/dev/null
 
   if grep -Eqi 'No recorded changes|Add release notes here' "$notes"; then
     echo "Generated weak notes for $version" >&2

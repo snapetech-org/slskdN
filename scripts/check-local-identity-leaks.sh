@@ -115,7 +115,7 @@ if [[ -f docs/CHANGELOG.md ]]; then
 fi
 
 if [[ "${LOCAL_IDENTITY_SCAN_COMMITS:-0}" == "1" ]]; then
-  latest_tag="$(git tag --sort=-creatordate --list 'build-main-*' | head -n 1 || true)"
+  latest_tag="$(git tag --sort=-creatordate --list 'v*' --list 'build-main-*' | head -n 1 || true)"
   if [[ -z "$latest_tag" ]]; then
     latest_tag="$(git describe --tags --abbrev=0 2>/dev/null || true)"
   fi
