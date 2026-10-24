@@ -7,6 +7,7 @@ failed=0
 release_workflows=(
   "$repo_root/.github/workflows/build-on-tag.yml"
   "$repo_root/.github/workflows/ci.yml"
+  "$repo_root/.github/workflows/release-linux.yml"
 )
 
 for workflow in "${release_workflows[@]}"; do
@@ -42,6 +43,19 @@ fi
 
 if ! rg -q '^  workflow_dispatch:' "$repo_root/.github/workflows/codeql.yml"; then
   printf '.github/workflows/codeql.yml must support an exact-main validation dispatch\n' >&2
+  failed=1
+fi
+
+release_linux_workflow="$repo_root/.github/workflows/release-linux.yml"
+if rg -q '^  workflow_dispatch:' "$release_linux_workflow"; then
+  printf '.github/workflows/release-linux.yml must not rebuild release assets from a manual source checkout\n' >&2
+  failed=1
+fi
+if ! rg -Fq 'types: [published]' "$release_linux_workflow" ||
+  ! rg -Fq "github.event_name == 'release'" "$release_linux_workflow" ||
+  ! rg -Fq 'gha-{0}-{1}-build-linux' "$release_linux_workflow" ||
+  ! rg -Fq "|| 'ubuntu-latest'" "$release_linux_workflow"; then
+  printf '.github/workflows/release-linux.yml must build published v tags with an exact JIT route and hosted fallback\n' >&2
   failed=1
 fi
 
@@ -231,7 +245,6 @@ for job, retry_input in {
     "aur-main": "retry_aur",
     "copr-main": "retry_copr",
     "ppa-main": "retry_ppa",
-    "docker-main": "retry_docker",
     "nix-main": "retry_nix",
 }.items():
     block = job_block(tag_workflow, job)
@@ -244,6 +257,15 @@ for job in ("build", "publish", "release-main", "announce-main", "docker-omnibus
     block = job_block(tag_workflow, job)
     if "github.event_name != 'workflow_dispatch'" not in block:
         raise SystemExit(f"{job} must be skipped during selected publisher recovery")
+
+for job in ("docker-main", "docker-omnibus"):
+    block = job_block(tag_workflow, job)
+    if "github.event_name != 'workflow_dispatch'" not in block:
+        raise SystemExit(f"{job} must never rebuild product images during manual recovery")
+    if "retry_docker" in block or "retry_docker_omnibus" in block:
+        raise SystemExit(f"{job} must not expose a manual source-rebuild input")
+if "retry_docker" in tag_workflow or "retry_docker_omnibus" in tag_workflow:
+    raise SystemExit("manual publisher recovery must not expose Docker source rebuild inputs")
 
 for job in ("performance-regression", "dependency-scanning", "container-scanning"):
     match = re.search(rf"(?ms)^  {re.escape(job)}:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", enhancements)

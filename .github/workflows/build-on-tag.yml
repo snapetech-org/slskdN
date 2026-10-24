@@ -33,16 +33,6 @@ on:
         required: false
         default: false
         type: boolean
-      retry_docker:
-        description: Retry the main Docker publisher
-        required: false
-        default: false
-        type: boolean
-      retry_docker_omnibus:
-        description: Retry the omnibus Docker publisher (requires the versioned main image to exist, or select retry_docker too)
-        required: false
-        default: false
-        type: boolean
       retry_nix:
         description: Retry the Nix metadata publisher
         required: false
@@ -79,8 +69,6 @@ jobs:
           RETRY_AUR: ${{ inputs.retry_aur }}
           RETRY_COPR: ${{ inputs.retry_copr }}
           RETRY_PPA: ${{ inputs.retry_ppa }}
-          RETRY_DOCKER: ${{ inputs.retry_docker }}
-          RETRY_DOCKER_OMNIBUS: ${{ inputs.retry_docker_omnibus }}
           RETRY_NIX: ${{ inputs.retry_nix }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -92,7 +80,7 @@ jobs:
               echo "::error::Manual publisher recovery requires an existing v<version> release tag"
               exit 1
             fi
-            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
+            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_NIX" != true ]]; then
               echo "::error::Select at least one publisher to retry"
               exit 1
             fi
@@ -1090,7 +1078,11 @@ jobs:
   docker-main:
     name: Build and Push Docker (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      always() &&
+      needs.parse.outputs.channel == 'main' &&
+      github.event_name != 'workflow_dispatch' &&
+      needs.release-main.result == 'success'
     runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-main"]}}', github.run_id)) || 'ubuntu-latest' }}
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
@@ -1102,7 +1094,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ github.ref }}
 
       - name: Download from Release
         env:
@@ -1196,10 +1188,9 @@ jobs:
     needs: [parse, release-main, docker-main]
     if: >-
       always() && needs.parse.outputs.channel == 'main' &&
-      ((github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success' && needs.docker-main.result == 'success') ||
-       (github.event_name == 'workflow_dispatch' && inputs.retry_docker_omnibus &&
-        ((inputs.retry_docker && needs.docker-main.result == 'success') ||
-         (!inputs.retry_docker && needs.docker-main.result == 'skipped'))))
+      github.event_name != 'workflow_dispatch' &&
+      needs.release-main.result == 'success' &&
+      needs.docker-main.result == 'success'
     runs-on: ${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' || github.run_attempt > 1) && (contains(fromJSON('["push","workflow_dispatch","schedule","release","repository_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || (github.ref_type == 'tag' && startsWith(github.ref_name, 'v')))) && fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-omnibus"]}}', github.run_id)) || 'ubuntu-latest' }}
     permissions:
       contents: read
