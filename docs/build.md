@@ -80,15 +80,19 @@ builds.
 Create and push a stable release tag through the guarded helper:
 
 ```bash
-scripts/create-release-tag.sh v2026051218-slskdn.240
+scripts/create-release-tag.sh v2026051218.0.0+slskdn.240
 ```
+
+The SemVer tag carries the existing timestamp/build identifier in build
+metadata; the release workflow maps it back to the package version
+`2026051218-slskdn.240`.
 
 The helper verifies the GitHub target, refuses dirty or unsynced branches,
 runs the full release gate, checks for duplicate tags, and only then pushes the
 tag. After GitHub publishes the release, verify the actual uploaded assets:
 
 ```bash
-scripts/verify-release-artifacts.sh v2026051218-slskdn.240
+scripts/verify-release-artifacts.sh v2026051218.0.0+slskdn.240
 ```
 
 If a publisher fails after a release exists, **Build on Tag** supports a

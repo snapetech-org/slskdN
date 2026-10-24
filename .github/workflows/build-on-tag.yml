@@ -1,11 +1,12 @@
 # ng-runner-policy: hosted-first-v1
 name: Build on Tag
 
-# Trigger: push a v<version> release tag
+# Trigger: push a v<semver> release tag. Timestamped package versions use the
+# same SemVer form as the other repositories and are normalized below.
 #
 # Examples:
 #   git tag v0.24.3-slskdn.44 && git push origin $_
-#   git tag v2026101818-slskdn.352 && git push origin $_
+#   git tag v2026101818.0.0+slskdn.352 && git push origin $_
 
 on:
   push:
@@ -14,7 +15,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing v<version> tag for publisher recovery (historical build-main tags are also accepted).
+        description: Existing v<semver> tag for publisher recovery (historical build-main tags are also accepted).
         required: true
         type: string
       retry_aur:
@@ -64,6 +65,13 @@ jobs:
       version: ${{ steps.parse.outputs.version }}
       release_tag: ${{ steps.parse.outputs.release_tag }}
     steps:
+      - name: Checkout release tag policy from main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          path: policy
+          fetch-depth: 1
+          persist-credentials: false
       - name: Parse Tag
         id: parse
         env:
@@ -80,7 +88,7 @@ jobs:
           echo "Tag: $TAG"
 
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            if [[ ! "$TAG" =~ ^v[A-Za-z0-9][A-Za-z0-9._-]*$ && ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
+            if [[ ! "$TAG" =~ ^v[A-Za-z0-9][A-Za-z0-9._+-]*$ && ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
               echo "::error::Manual publisher recovery requires an existing v<version> release tag"
               exit 1
             fi
@@ -90,23 +98,30 @@ jobs:
             fi
           fi
           
-          # New stable releases use v<version>. Keep manual recovery for
-          # published legacy build-main tags, whose GitHub Release tag was the
-          # unprefixed version. Development tags no longer run release builds.
-          if [[ "$TAG" =~ ^v(.+)$ ]]; then
+          # Timestamped package versions carry their existing identity in a
+          # valid SemVer core/build-metadata tag; ordinary SemVer tags pass
+          # through unchanged.
+          if [[ "$TAG" =~ ^v([0-9]{8,10})\.0\.0\+slskdn\.([0-9]+)$ ]]; then
+            CHANNEL="main"
+            VERSION="${BASH_REMATCH[1]}-slskdn.${BASH_REMATCH[2]}"
+            RELEASE_TAG="$TAG"
+          elif [[ "$TAG" == v* ]] && VERSION="$(python3 policy/scripts/release_tag_policy.py "$TAG")"; then
+            CHANNEL="main"
+            RELEASE_TAG="$TAG"
+          elif [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" && "$TAG" =~ ^v(.+)$ ]]; then
             CHANNEL="main"
             VERSION="${BASH_REMATCH[1]}"
             RELEASE_TAG="$TAG"
-          elif [[ "$TAG" =~ ^build-main-(.+)$ ]]; then
+          elif [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" && "$TAG" =~ ^build-main-(.+)$ ]]; then
             CHANNEL="main"
             VERSION="${BASH_REMATCH[1]}"
             RELEASE_TAG="$VERSION"
           else
-            echo "::error::Invalid release tag. New releases must use v<version>"
+            echo "::error::New releases must use a v<semver> tag"
             exit 1
           fi
 
-          if [[ ! "$VERSION" =~ ^([0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?|[0-9]{8,10}-slskdn\.[0-9]+)$ || "$VERSION" == *..* ]]; then
+          if [[ ! "$VERSION" =~ ^([0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.+-]+)?|[0-9]{8,10}-slskdn\.[0-9]+)$ || "$VERSION" == *..* ]]; then
             echo "::error::Unsupported release version: $VERSION"
             exit 1
           fi

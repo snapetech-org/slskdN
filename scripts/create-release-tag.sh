@@ -54,10 +54,9 @@ if [[ "$tag" =~ [[:space:]] ]]; then
     fail "Release tag must not contain whitespace."
 fi
 
-if [[ ! "$tag" =~ ^v([0-9]+\.[0-9]+\.[0-9]+|[0-9]{10}-slskdn\.[0-9]+)$ ]]; then
-    fail "Release tags must use vMAJOR.MINOR.PATCH or vYYYYMMDDHH-slskdn.N."
+if ! version="$(python3 scripts/release_tag_policy.py "$tag")"; then
+    fail "Release tags must use strict v<SemVer> form; timestamped package versions use vYYYYMMDDHH.0.0+slskdn.N."
 fi
-version="${tag#v}"
 
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || fail "Not inside a git worktree."
 

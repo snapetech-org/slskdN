@@ -87,8 +87,8 @@ gate does not prove that publishing or platform installer workflows succeeded.
    - `scripts/validate-release-notes.sh <version> /tmp/release-notes.md`
 5. Push the code branch normally if needed.
 6. Only trigger build/release by running the guarded tag helper when explicitly desired:
-   - `scripts/create-release-tag.sh vYYYYMMDDHH-slskdn.N`
-   - `scripts/create-release-tag.sh --hosted-ci-run <run-id> vYYYYMMDDHH-slskdn.N`
+   - `scripts/create-release-tag.sh vYYYYMMDDHH.0.0+slskdn.N`
+   - `scripts/create-release-tag.sh --hosted-ci-run <run-id> vYYYYMMDDHH.0.0+slskdn.N`
 7. After GitHub publishes the release, verify the actual assets:
    - `scripts/verify-release-artifacts.sh <tag>`
 8. After a stable container image is published, confirm its Docker Hub manifest

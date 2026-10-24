@@ -137,8 +137,8 @@ jobs:
       - name: Set Environment Variables
         id: version
         run: |
-          # Normalize canonical v<version> tags while retaining old published tags.
-          LATEST_TAG=$(git tag | sed 's/^v//' | grep -E '^([0-9]+\.[0-9]+\.[0-9]+|[0-9]{8,10})-slskdn\.[0-9]+$' | sort -V | tail -n1)
+          # Map the canonical SemVer tag back to the existing package version.
+          LATEST_TAG=$(git tag | sed -E 's/^v([0-9]{8,10})\.0\.0\+slskdn\.([0-9]+)$/\1-slskdn.\2/' | sed 's/^v//' | grep -E '^([0-9]+\.[0-9]+\.[0-9]+(-slskdn\.[0-9]+)?|[0-9]{8,10}-slskdn\.[0-9]+)$' | sort -V | tail -n1)
           if [ -z "$LATEST_TAG" ]; then
             LATEST_TAG=$(sed -n 's#.*<version>\(.*\)</version>#\1#p' packaging/chocolatey/slskdn.nuspec | head -n1)
           fi

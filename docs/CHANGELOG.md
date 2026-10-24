@@ -25,8 +25,10 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - CI: trusted same-repository owner pull requests can validate through the
   main-pinned, no-secret private JIT route when hosted execution is blocked.
 
-- Release builds now start from pushed v<version> tags. CI validation stays
-  separate, while publisher recovery can still target an existing legacy release.
+- Release builds now start from pushed strict v<SemVer> tags. Timestamped
+  slskdN versions use `vYYYYMMDDHH.0.0+slskdn.N`; the workflow maps that tag
+  back to the existing package version. CI validation stays separate, and
+  publisher recovery can still target an existing legacy release.
 
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.
 - Security: state-changing API requests no longer treat HTTP Basic credentials as a CSRF exemption, preventing ambient browser credentials from authorizing cross-origin actions.

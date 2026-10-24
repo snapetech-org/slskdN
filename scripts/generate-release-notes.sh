@@ -150,18 +150,27 @@ is_release_hygiene_subject() {
   return 1
 }
 
+normalize_release_version() {
+  local version="$1"
+  version="${version#v}"
+  version="${version#build-main-}"
+  version="${version#build-dev-}"
+  if [[ "$version" =~ ^([0-9]{8,10})\.0\.0\+slskdn\.([0-9]+)$ ]]; then
+    version="${BASH_REMATCH[1]}-slskdn.${BASH_REMATCH[2]}"
+  fi
+  printf '%s\n' "$version"
+}
+
 logical_is_release_version() {
-  local version="${1#v}"
+  local version
+  version="$(normalize_release_version "$1")"
   [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-slskdn\.[0-9]+$ ]] ||
+    [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]] ||
     [[ "$version" =~ ^[0-9]{8,10}-slskdn\.[0-9]+$ ]]
 }
 
 strip_build_prefix() {
-  local tag="$1"
-  tag="${tag#v}"
-  tag="${tag#build-main-}"
-  tag="${tag#build-dev-}"
-  printf '%s\n' "$tag"
+  normalize_release_version "$1"
 }
 
 resolve_current_source_tag() {
@@ -172,6 +181,14 @@ resolve_current_source_tag() {
   if [[ -n "$explicit_ref" ]] && git rev-parse -q --verify "refs/tags/${explicit_ref}" >/dev/null 2>&1; then
     printf '%s\n' "$explicit_ref"
     return 0
+  fi
+
+  if [[ "$logical" =~ ^([0-9]{8,10})-slskdn\.([0-9]+)$ ]]; then
+    candidate="v${BASH_REMATCH[1]}.0.0+slskdn.${BASH_REMATCH[2]}"
+    if git rev-parse -q --verify "refs/tags/${candidate}" >/dev/null 2>&1; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
   fi
 
   for candidate in \
@@ -211,7 +228,7 @@ find_previous_tag() {
 
   if logical_is_release_version "$current_tag"; then
     git tag --sort=-v:refname |
-      grep -E '^v?([0-9]+\.[0-9]+\.[0-9]+|[0-9]{8,10})-slskdn\.[0-9]+$' |
+      grep -E '^(v[0-9]{8,10}\.0\.0\+slskdn\.[0-9]+|v?([0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?|[0-9]{8,10}-slskdn\.[0-9]+))$' |
       awk -v cur="$current_tag" '$0 != cur { print; exit }' || true
     return 0
   fi
@@ -230,7 +247,7 @@ find_previous_published_release_version() {
   [[ -n "$repo_slug" ]] || return 0
 
   while IFS= read -r tag; do
-    tag="${tag#v}"
+    tag="$(normalize_release_version "$tag")"
     logical_is_release_version "$tag" || continue
     if [[ "$tag" == "$logical" ]]; then
       break
@@ -241,7 +258,7 @@ find_previous_published_release_version() {
       --repo "$repo_slug" \
       --limit 100 \
       --json tagName \
-      --jq '.[].tagName' 2>/dev/null | sed 's/^v//' | sort -V
+      --jq '.[].tagName' 2>/dev/null | sort -V
   )
 
   printf '%s\n' "$prev"
@@ -288,17 +305,25 @@ PREV_DISPLAY_TAG=""
 
 if [[ -n "$PREV_RELEASE_VERSION" ]]; then
   PREV_DISPLAY_TAG="$PREV_RELEASE_VERSION"
-  for candidate in \
-    "v${PREV_RELEASE_VERSION}" \
-    "build-main-${PREV_RELEASE_VERSION}" \
-    "build-dev-${PREV_RELEASE_VERSION}" \
-    "${PREV_RELEASE_VERSION}"
-  do
+  if [[ "$PREV_RELEASE_VERSION" =~ ^([0-9]{8,10})-slskdn\.([0-9]+)$ ]]; then
+    candidate="v${BASH_REMATCH[1]}.0.0+slskdn.${BASH_REMATCH[2]}"
     if git rev-parse -q --verify "refs/tags/${candidate}" >/dev/null 2>&1; then
       PREV_TAG="$candidate"
-      break
     fi
-  done
+  fi
+  if [[ -z "$PREV_TAG" ]]; then
+    for candidate in \
+      "v${PREV_RELEASE_VERSION}" \
+      "build-main-${PREV_RELEASE_VERSION}" \
+      "build-dev-${PREV_RELEASE_VERSION}" \
+      "${PREV_RELEASE_VERSION}"
+    do
+      if git rev-parse -q --verify "refs/tags/${candidate}" >/dev/null 2>&1; then
+        PREV_TAG="$candidate"
+        break
+      fi
+    done
+  fi
 fi
 
 if [[ -z "$PREV_TAG" && -z "${RELEASE_NOTES_PREVIOUS_VERSION+x}" ]]; then

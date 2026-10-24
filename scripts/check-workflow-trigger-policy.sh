@@ -33,6 +33,13 @@ if ! rg -q 'v<version>' "$repo_root/docs/build.md"; then
   failed=1
 fi
 
+canonical_semver_pattern='^v([0-9]{8,10})\.0\.0\+slskdn\.([0-9]+)$'
+if ! rg -Fq "$canonical_semver_pattern" "$repo_root/scripts/release_tag_policy.py" ||
+  ! rg -Fq 'policy/scripts/release_tag_policy.py' "$repo_root/.github/workflows/build-on-tag.yml"; then
+  printf 'release creation and tag parsing must use the same canonical SemVer form\n' >&2
+  failed=1
+fi
+
 if ! rg -q '^  workflow_dispatch:' "$repo_root/.github/workflows/codeql.yml"; then
   printf '.github/workflows/codeql.yml must support an exact-main validation dispatch\n' >&2
   failed=1
@@ -87,7 +94,7 @@ for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
       fi
     done
     route_count="$(rg -n -F 'ng-shared-main-jit' "$workflow" | wc -l)"
-    if [[ "$route_count" -ne 2 ]]; then
+    if [[ "$route_count" -ne 4 ]]; then
       printf '%s has an unexpected shared runner route count\n' "$workflow_name" >&2
       failed=1
     fi
