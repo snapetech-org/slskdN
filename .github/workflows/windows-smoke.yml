@@ -2,16 +2,12 @@ name: Windows Smoke
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches: [main]
-    paths:
-      - "src/**"
-      - "*.sln"
-      - ".github/workflows/windows-smoke.yml"
-
+  push:
+    tags:
+      - '**'
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: false
 
 permissions:
   contents: read

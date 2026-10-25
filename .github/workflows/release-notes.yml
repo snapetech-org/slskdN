@@ -1,12 +1,10 @@
 name: Release-note contract
 
 on:
-  pull_request_target:
-    types: [opened, edited, reopened, synchronize]
-
+  workflow_dispatch: {}
 concurrency:
   group: ng-release-notes-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -15,7 +13,7 @@ permissions:
 jobs:
   release-notes:
     name: Validate release-note fragment or explicit opt-out
-    if: github.event.pull_request.user.type != 'Bot'
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
     runs-on: ubuntu-latest
     steps:
       # nosemgrep: yaml.github-actions.security.pull-request-target-code-checkout.pull-request-target-code-checkout -- this checks out only the trusted base SHA; the PR head is fetched as data and never executed.

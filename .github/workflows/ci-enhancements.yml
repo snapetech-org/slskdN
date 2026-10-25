@@ -1,20 +1,15 @@
 name: CI Enhancements
 
 on:
-  pull_request:
-    branches: [ main ]
   push:
     tags:
       - "[0-9]*.[0-9]*.[0-9]*"
       - "[0-9]*.[0-9]*.[0-9]*-slskdn.*"
-  schedule:
-    # Run weekly on Sundays at 2 AM UTC
-    - cron: '0 2 * * 0'
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: false
 
 env:
   DOTNET_VERSION: '10.0.402'

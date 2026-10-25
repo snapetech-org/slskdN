@@ -1,38 +1,12 @@
 name: Feature coherence audit
 
 on:
-  pull_request:
-    paths:
-      - README.md
-      - README.maturity.md
-      - FEATURE_INVENTORY.md
-      - docs/status.md
-      - docs/security/**
-      - docs/dependencies.md
-      - docs/analyzer-suppressions.md
-      - scripts/audit-feature-coherence.sh
-      - scripts/audit-readme-maturity-draft.sh
-      - scripts/audit-roadmap-claims.sh
-      - src/slskd/slskd.csproj
   push:
-    branches:
-      - chore/feature-coherence-audit
-    paths:
-      - README.md
-      - README.maturity.md
-      - FEATURE_INVENTORY.md
-      - docs/status.md
-      - docs/security/**
-      - docs/dependencies.md
-      - docs/analyzer-suppressions.md
-      - scripts/audit-feature-coherence.sh
-      - scripts/audit-readme-maturity-draft.sh
-      - scripts/audit-roadmap-claims.sh
-      - src/slskd/slskd.csproj
-
+    tags:
+      - '**'
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
