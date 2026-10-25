@@ -2,19 +2,14 @@
 name: CI
 on:
   push:
-    branches: [ main ]
-    # Version tags trigger release builds; build-main-* tags are handled by
-    # build-on-tag.yml.
     tags:
       - "[0-9]*.[0-9]*.[0-9]*"
       - "[0-9]*.[0-9]*.[0-9]*-slskdn.*"
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 concurrency:
   group: ng-ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
+  cancel-in-progress: false
 
 env:
   DOTNET_VERSION: '10.0.402'

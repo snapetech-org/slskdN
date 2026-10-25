@@ -1,23 +1,13 @@
 name: slskNet.Runtime Sync
 
 on:
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'vendor/slskNet.Runtime/**'
-      - 'vendor/slskNet.Runtime.sync'
-      - 'vendor/slskNet.Runtime.patches/**'
-      - 'scripts/check-slsknet-runtime-sync.sh'
-      - 'scripts/sync-slsknet-runtime.sh'
-      - 'docs/slsknet-runtime-sync.md'
-      - '.github/workflows/runtime-sync.yml'
   schedule:
     - cron: '17 3 * * *'
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: false
 
 permissions:
   contents: read

@@ -3,23 +3,12 @@ name: CodeQL (C#)
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'src/**/*.cs'
-      - 'src/**/*.csproj'
-      - '.github/workflows/codeql.yml'
-  pull_request:
-    branches: [main]
-    paths:
-      - 'src/**/*.cs'
-      - 'src/**/*.csproj'
+    tags:
+      - '**'
   workflow_dispatch:
-  schedule:
-    - cron: '0 6 * * 1'  # Weekly on Monday
-
 concurrency:
   group: ng-scan-codeql-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: read

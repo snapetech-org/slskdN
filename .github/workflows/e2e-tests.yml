@@ -1,15 +1,14 @@
 name: E2E Tests
 
 on:
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 2 * * *'  # Nightly at 2 AM
   workflow_dispatch:
 
+  push:
+    tags:
+      - '**'
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: false
 
 env:
   DOTNET_VERSION: '10.0.402'

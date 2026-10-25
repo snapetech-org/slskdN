@@ -1,13 +1,11 @@
 name: slskdN fork PR validation
 on:
-  pull_request:
-    branches: [main]
-    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch: {}
 permissions:
   contents: read
 concurrency:
   group: public-fork-pr-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   validate:
     name: Run disposable fork validation

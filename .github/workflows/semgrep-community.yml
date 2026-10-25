@@ -3,10 +3,8 @@ name: Semgrep Community Edition
 
 on:
   push:
-    branches: [main]
-  pull_request:
-  schedule:
-    - cron: "41 8 * * 1"
+    tags:
+      - '**'
   workflow_dispatch:
 
 permissions:
@@ -15,7 +13,7 @@ permissions:
 
 concurrency:
   group: ng-scan-semgrep-community-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   semgrep:

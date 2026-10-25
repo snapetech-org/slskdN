@@ -116,12 +116,10 @@ text = Path(sys.argv[1]).read_text()
 push = re.search(r"(?ms)^  push:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", text)
 if not push or not re.search(r"(?m)^    tags:\n", push.group(1)):
     raise SystemExit("CI must preserve its release tag triggers")
-branches = [
-    value.strip()
-    for value in re.findall(r"(?m)^    branches:\s*\[([^\]]*)\]\s*$", push.group(1))
-]
-if branches != ["main"]:
-    raise SystemExit("CI validation pushes must stay restricted to main")
+if re.search(r"(?m)^    branches:", push.group(1)):
+    raise SystemExit("CI push validation must not run on branches")
+if re.search(r"(?m)^  pull_request(?:_target)?:", text):
+    raise SystemExit("CI must not run automatically for pull requests")
 PYTHON
 then
   printf '.github/workflows/ci.yml must keep builds tag-triggered\n' >&2
