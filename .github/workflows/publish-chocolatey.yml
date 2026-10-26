@@ -1,4 +1,5 @@
 # ng-runner-policy: private-jit-only-v1
+# packer-windows-jit-v1
 name: Publish Chocolatey
 
 on:
@@ -18,7 +19,7 @@ permissions:
 jobs:
   publish:
     name: Publish Chocolatey Stable
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-publish"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-publish"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
