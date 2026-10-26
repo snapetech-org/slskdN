@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: CI Enhancements
 
 on:
@@ -23,7 +24,7 @@ jobs:
   performance-regression:
     name: Performance Regression Testing
     # All pull requests and manual dispatches outside main use hosted runners.
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-performance-regression"]}}', github.run_id)) }}
     timeout-minutes: 30
     steps:
       - name: Configure runner temporary storage
@@ -101,7 +102,7 @@ jobs:
   load-testing:
     name: Load Testing
     # Keep the load harness on an isolated hosted runner after SIGBUS on a local runner.
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-load-testing"]}}', github.run_id)) }}
     timeout-minutes: 20
     steps:
       - name: Configure runner temporary storage
@@ -268,7 +269,7 @@ jobs:
 
   dependency-scanning:
     name: Dependency Scanning
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-dependency-scanning"]}}', github.run_id)) }}
     timeout-minutes: 15
     steps:
       - name: Configure runner temporary storage
@@ -337,7 +338,7 @@ jobs:
     name: Container Scanning (Trivy)
     env:
       TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-container-scanning"]}}', github.run_id)) }}
     timeout-minutes: 20
     steps:
       - name: Configure runner temporary storage

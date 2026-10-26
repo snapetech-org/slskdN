@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: Upload to COPR
 
 on:
@@ -13,7 +14,7 @@ permissions:
   contents: read
 jobs:
   build-and-upload:
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build-and-upload"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

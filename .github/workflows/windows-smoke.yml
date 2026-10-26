@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: Windows Smoke
 
 on:
@@ -14,7 +15,7 @@ permissions:
 
 jobs:
   dotnet:
-    runs-on: windows-latest
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-dotnet"]}}', github.run_id)) }}
     env:
       DOTNET_VERSION: "10.0.x"
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"

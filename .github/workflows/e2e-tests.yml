@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: E2E Tests
 
 on:
@@ -20,7 +21,7 @@ permissions:
 jobs:
   e2e:
     name: E2E Tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-e2e"]}}', github.run_id)) }}
     timeout-minutes: 30
 
     steps:

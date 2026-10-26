@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: Sync Unraid GHCR compatibility aliases
 
 on:
@@ -25,7 +26,7 @@ jobs:
         github.event.workflow_run.event == 'push' &&
         github.event.workflow_run.head_repository.full_name == github.repository &&
         startsWith(github.event.workflow_run.head_branch, 'build-main-')))
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-sync"]}}', github.run_id)) }}
     timeout-minutes: 10
     permissions:
       contents: read

@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: slskdN feature coherence validation
 on:
   workflow_call:
@@ -12,8 +13,8 @@ jobs:
       github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
       github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN' &&
       github.event.pull_request.base.ref == 'main'
-    # Fork code is checked out below, so keep it on a fresh GitHub-hosted VM.
-    runs-on: ubuntu-latest
+    # Fork code runs only in the isolated disposable private fork group.
+    runs-on: ${{ fromJSON('{"group":"public-fork-jit","labels":["self-hosted","linux","x64","public-pr-slskdn"]}') }}
     timeout-minutes: 15
     permissions:
       contents: read

@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: Release-note contract
 
 on:
@@ -14,7 +15,7 @@ jobs:
   release-notes:
     name: Validate release-note fragment or explicit opt-out
     if: github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-release-notes"]}}', github.run_id)) }}
     steps:
       # nosemgrep: yaml.github-actions.security.pull-request-target-code-checkout.pull-request-target-code-checkout -- this checks out only the trusted base SHA; the PR head is fetched as data and never executed.
       - name: Check out the pull-request base

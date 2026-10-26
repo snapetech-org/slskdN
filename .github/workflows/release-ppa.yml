@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: Upload to PPA
 
 on:
@@ -13,7 +14,7 @@ permissions:
   contents: read
 jobs:
   build-and-upload:
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-build-and-upload"]}}', github.run_id, strategy.job-index)) }}
     concurrency:
       group: slskdn-ppa-${{ matrix.ubuntu_series }}
       cancel-in-progress: false

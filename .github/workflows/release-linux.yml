@@ -1,3 +1,4 @@
+# ng-runner-policy: private-jit-only-v1
 name: Release Linux Packages
 
 on:
@@ -13,7 +14,7 @@ permissions:
   contents: write
 jobs:
   build-linux:
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-build-linux"]}}', github.run_id, strategy.job-index)) }}
     strategy:
       fail-fast: false
       matrix:
@@ -129,7 +130,7 @@ jobs:
 
   update-aur:
     needs: build-linux
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-update-aur"]}}', github.run_id)) }}
     # Run on both release events and workflow_dispatch (triggered by CI after release)
     
     steps:
