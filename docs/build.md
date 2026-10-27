@@ -76,7 +76,7 @@ If your platform is missing, review the automated build configuration in the `.g
 ### Build Triggers
 
 The CI workflow (`ci.yml`) is configured to:
-- ✅ **Run on tags**: Version tags, `build-main-*`, and `build-dev-*`
+- ✅ **Run on tags**: `v*` stable release tags plus legacy `build-main-*` and `build-dev-*` tags
 - ✅ **Run on pull requests**: For testing (does not publish)
 - ✅ **Run on manual dispatch**: `workflow_dispatch`
 - ❌ **NOT run on pushes to main**: Prevents unwanted builds on documentation/code updates
@@ -87,7 +87,7 @@ To trigger a build, create and push a tag:
 
 ```bash
 # Main/stable release
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
+scripts/create-release-tag.sh v2026051218-slskdn.240
 
 # Dev release
 scripts/create-release-tag.sh build-dev-0.24.1.dev.20260512.180000
@@ -107,7 +107,7 @@ See `memory-bank/decisions/adr-0005-tagging-system.md` for complete tag format d
 
 **For stable releases:**
 ```bash
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
+scripts/create-release-tag.sh v2026051218-slskdn.240
 ```
 
 **For dev releases:**
@@ -127,11 +127,11 @@ scripts/verify-release-artifacts.sh <tag>
 ### Build Workflows
 
 - **CI Workflow** (`ci.yml`): Runs on tags only (not on code pushes)
-- **Build on Tag** (`build-on-tag.yml`): Full release with packages for `build-main-*` and `build-dev-*`
+- **Build on Tag** (`build-on-tag.yml`): Full release with packages for `v*`, plus legacy `build-main-*` and `build-dev-*` tags
 
 If a stable release already exists but one or more package publishers failed,
 maintainers can manually run **Build on Tag** on the current default branch,
-provide the original `build-main-*` tag, and select only the failed publisher
+provide the original `v*` or `build-main-*` tag, and select only the failed publisher
 targets. This recovery path reuses the published release assets and skips
 rebuilding binaries, creating another release, repeating announcements, and
 republishing successful targets.

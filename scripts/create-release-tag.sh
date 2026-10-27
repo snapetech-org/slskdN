@@ -8,7 +8,7 @@ cd "$ROOT"
 usage() {
     cat >&2 <<'USAGE'
 Usage:
-  scripts/create-release-tag.sh [--hosted-ci-run <run-id>] <build-main-*|build-dev-*>
+  scripts/create-release-tag.sh [--hosted-ci-run <run-id>] <v<stable-version>|build-main-*|build-dev-*>
 
 Runs the release gate against the exact pushed branch head, then creates and
 pushes the release tag. A successful manual CI run may be supplied when local
@@ -54,8 +54,15 @@ if [[ "$tag" =~ [[:space:]] ]]; then
     fail "Release tag must not contain whitespace."
 fi
 
-if [[ ! "$tag" =~ ^build-(main|dev)-[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
-    fail "Release tag must start with build-main- or build-dev- and contain only letters, numbers, dots, underscores, and hyphens."
+if [[ "$tag" =~ ^v(.+)$ ]]; then
+    version="${BASH_REMATCH[1]}"
+    if [[ ! "$version" =~ ^(([0-9]+\.[0-9]+\.[0-9]+)|([0-9]{8,10}))-slskdn\.[0-9]+$ ]]; then
+        fail "Stable v tags must use vMAJOR.MINOR.PATCH-slskdn.N or vYYYYMMDDHH-slskdn.N."
+    fi
+elif [[ "$tag" =~ ^build-(main|dev)-[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+    :
+else
+    fail "Release tag must be v<stable-version>, build-main-<version>, or build-dev-<version>."
 fi
 
 if [[ "$tag" =~ ^build-main- ]]; then

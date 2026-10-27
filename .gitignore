@@ -107,9 +107,6 @@ SECURITY-AUDIT*.md
 /docs/dev/feature-expansion-prd-story-map.md
 .aider*
 
-# Council bughunt working scratch (large, local-only; do not track)
-.council/
-
 # Python bytecode cache from running scripts/*.py locally
 __pycache__/
 *.pyc

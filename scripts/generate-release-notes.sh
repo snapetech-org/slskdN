@@ -11,7 +11,7 @@
 #   ## [<logical-version>] — YYYY-MM-DD   or   ## [<logical-version>]
 #
 # <git-ref> defaults to the release source tag when available (for example
-# build-main-<logical-version> / build-dev-<logical-version>), otherwise
+# v<logical-version>, build-main-<logical-version>, or build-dev-<logical-version>), otherwise
 # refs/tags/<logical-version>, GITHUB_SHA, or HEAD.
 
 set -euo pipefail
@@ -173,6 +173,7 @@ resolve_current_source_tag() {
   fi
 
   for candidate in \
+    "v${logical}" \
     "build-main-${logical}" \
     "build-dev-${logical}" \
     "${logical}"
@@ -227,6 +228,7 @@ find_previous_published_release_version() {
   [[ -n "$repo_slug" ]] || return 0
 
   while IFS= read -r tag; do
+    tag="${tag#v}"
     logical_is_release_version "$tag" || continue
     if [[ "$tag" == "$logical" ]]; then
       break
@@ -285,12 +287,14 @@ PREV_DISPLAY_TAG=""
 if [[ -n "$PREV_RELEASE_VERSION" ]]; then
   PREV_DISPLAY_TAG="$PREV_RELEASE_VERSION"
   for candidate in \
+    "v${PREV_RELEASE_VERSION}" \
     "build-main-${PREV_RELEASE_VERSION}" \
     "build-dev-${PREV_RELEASE_VERSION}" \
     "${PREV_RELEASE_VERSION}"
   do
     if git rev-parse -q --verify "refs/tags/${candidate}" >/dev/null 2>&1; then
       PREV_TAG="$candidate"
+      PREV_DISPLAY_TAG="$candidate"
       break
     fi
   done
@@ -314,7 +318,7 @@ fi
 
 if [[ -n "$PREV_TAG" ]]; then
   RANGE="${PREV_TAG}..${GIT_REF}"
-  COMPARE_URL="$REPO_URL/compare/${PREV_DISPLAY_TAG}...${LOGICAL_VERSION}"
+  COMPARE_URL="$REPO_URL/compare/${PREV_DISPLAY_TAG}...${CURRENT_SOURCE_TAG}"
 else
   RANGE="${GIT_REF}^!"
   COMPARE_URL=""

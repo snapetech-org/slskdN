@@ -66,8 +66,6 @@ LOCAL_IDENTITY_SCAN_COMMITS="${LOCAL_IDENTITY_SCAN_COMMITS:-1}" "$repo_root/scri
 "$repo_root/scripts/check-release-branch-sync.sh"
 "$repo_root/scripts/check-remediation-script-registry.sh"
 "$repo_root/scripts/check-remediation-doc-commands.sh"
-"$repo_root/scripts/check-council-active-backlog.sh"
-"$repo_root/scripts/check-council-sweep-counts.sh"
 "$repo_root/scripts/check-council-negative-space.sh"
 "$repo_root/scripts/check-bug-council-all-phases.sh"
 

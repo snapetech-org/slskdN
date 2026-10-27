@@ -1,3 +1,11 @@
+## Current directive — Council scan retirement — 2026-10-26
+
+Semgrep and Trivy own broad source, dependency, secret, and configuration
+scans. The Council candidate scanner, generated active-bughunt reports, and
+candidate backlog/count gates are retired. Keep the focused remediation,
+boundary, and behavior-regression checks for confirmed findings. Older backlog
+and scanner notes below are historical records, not current work instructions.
+
 ## Current state — Localization PR #360 — 2026-10-15
 
 PR #360 contains the 12-locale UI coverage and Arabic rendering fixes. The

@@ -68,7 +68,7 @@ for required_asset in \
   slskdn-main-linux-musl-x64.zip \
   slskdn-main-osx-x64.zip \
   slskdn-main-osx-arm64.zip; do
-  if [[ ("$TAG" == build-main-* || "$TAG" =~ -slskdn\.[0-9]+$) && ! -f "$required_asset" ]]; then
+  if [[ ("$TAG" == build-main-* || "$TAG" =~ -slskdn\.[0-9]+$ || "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+) && ! -f "$required_asset" ]]; then
     fail "Missing required main release asset: $required_asset"
   fi
 done
