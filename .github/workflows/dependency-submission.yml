@@ -1,0 +1,56 @@
+# ng-runner-policy: private-jit-only-v1
+name: Private Dependency Submission
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.csproj'
+      - '**/*.sln'
+      - '**/packages.lock.json'
+      - '**/packages.config'
+      - '**/NuGet.Config'
+      - '**/nuget.config'
+      - '**/Directory.Packages.props'
+      - '**/Directory.Build.props'
+      - '**/Directory.Build.targets'
+      - '**/Directory.Packages.targets'
+      - '**/global.json'
+      - '**/package.json'
+      - '**/package-lock.json'
+      - '**/pnpm-lock.yaml'
+      - '**/yarn.lock'
+      - '**/npm-shrinkwrap.json'
+      - '.github/workflows/dependency-submission.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  submit-dependencies:
+    if: github.ref == 'refs/heads/main'
+    name: Submit NuGet and npm dependencies
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) }}
+    timeout-minutes: 30
+
+    steps:
+      - name: Audit outbound calls
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+
+      - name: Check out the trusted main revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Submit NuGet and npm dependency snapshots
+        uses: advanced-security/component-detection-dependency-submission-action@a02aeda7a175ad4dd38a13c4d3ff2df9da8f2cf0 # v0.2.0
+        with:
+          filePath: .
+          detectorsCategories: NuGet,Npm
+          snapshot-sha: ${{ github.sha }}
+          snapshot-ref: ${{ github.ref }}
