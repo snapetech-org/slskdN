@@ -18,7 +18,7 @@ concurrency:
 jobs:
   semgrep:
     name: Semgrep CE (community rules)
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-semgrep"]}}', github.run_id)) }}
     timeout-minutes: 30
     steps:
       - name: Checkout
