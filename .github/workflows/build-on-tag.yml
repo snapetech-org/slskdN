@@ -80,21 +80,15 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${REQUESTED_TAG:-$GITHUB_REF_NAME}"
-          echo "Tag: $TAG"
-
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ && ! "$TAG" =~ ^v[0-9].*$ ]]; then
-              echo "::error::Manual publisher recovery requires an existing v* or build-main-* tag"
-              exit 1
-            fi
-            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
-              echo "::error::Select at least one publisher to retry"
-              exit 1
-            fi
+          export LC_ALL=C
+          if (( ${#TAG} > 128 )); then
+            echo "::error::Release tag exceeds the supported length"
+            exit 1
           fi
-          
-          # Extract channel, logical version, and published release tag.
-          if [[ "$TAG" =~ ^build-(main|dev)-(.+)$ ]]; then
+
+          # These outputs are interpolated into downstream shell commands. Keep
+          # the version shell-safe before logging it or writing workflow outputs.
+          if [[ "$TAG" =~ ^build-(main|dev)-([A-Za-z0-9][A-Za-z0-9._-]*)$ ]]; then
             CHANNEL="${BASH_REMATCH[1]}"
             VERSION="${BASH_REMATCH[2]}"
             RELEASE_TAG="$VERSION"
@@ -106,7 +100,23 @@ jobs:
             echo "::error::Invalid tag format. Expected v<stable-version>, build-main-<version>, or build-dev-<version>."
             exit 1
           fi
+
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+              echo "::error::Manual publisher recovery must use the main-branch workflow"
+              exit 1
+            fi
+            if [[ "$CHANNEL" != "main" ]]; then
+              echo "::error::Manual publisher recovery requires an existing v* or build-main-* tag"
+              exit 1
+            fi
+            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
+              echo "::error::Select at least one publisher to retry"
+              exit 1
+            fi
+          fi
           
+          echo "Tag: $TAG"
           echo "Channel: $CHANNEL"
           echo "Version: $VERSION"
 

@@ -213,10 +213,42 @@ if not re.search(r"(?m)^    permissions:\n      contents: read$", parse_job):
     raise SystemExit("manual publisher recovery must use a read-only token to verify the release")
 if "GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}" not in parse_job:
     raise SystemExit("manual publisher recovery must authenticate its release lookup")
-if 'gh release view "$VERSION" --repo "$GITHUB_REPOSITORY"' not in parse_job:
+if 'gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"' not in parse_job:
     raise SystemExit("manual publisher recovery must verify the existing release before publishing")
 if "Select at least one publisher to retry" not in parse_job:
     raise SystemExit("manual publisher recovery must require an explicit target")
+if 'if [[ "$GITHUB_REF" != "refs/heads/main" ]]' not in parse_job:
+    raise SystemExit("manual publisher recovery must use the protected main workflow")
+
+build_tag_pattern = r"^build-(main|dev)-([A-Za-z0-9][A-Za-z0-9._-]*)$"
+if build_tag_pattern not in parse_job:
+    raise SystemExit("build tags must restrict versions to shell-safe ASCII characters")
+if "if (( ${#TAG} > 128 )); then" not in parse_job:
+    raise SystemExit("release tags must be length-bounded before parsing or logging")
+tag_validation = parse_job.find(build_tag_pattern)
+tag_log = parse_job.find('echo "Tag: $TAG"')
+if tag_log < 0 or tag_validation < 0 or tag_log < tag_validation:
+    raise SystemExit("release tags must be validated before being logged")
+
+shell_safe_version = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*\Z")
+for version in (
+    "2026101818-slskdn.352",
+    "0.24.3-slskdn.44",
+    "0.24.3-dev.20260505",
+    "0.24.1.dev.20251213.203634",
+):
+    if not shell_safe_version.fullmatch(version):
+        raise SystemExit(f"valid release version rejected by shell-safe tag policy: {version}")
+for version in (
+    "0.24.3-$(id)",
+    "0.24.3;id",
+    "0.24.3-`id`",
+    "0.24.3 with-space",
+    "0.24.3/extra",
+    "0.24.3\n::warning::injected",
+):
+    if shell_safe_version.fullmatch(version):
+        raise SystemExit("unsafe release version accepted by shell-safe tag policy")
 
 for job, retry_input in {
     "aur-main": "retry_aur",
