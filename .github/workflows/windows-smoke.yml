@@ -1,26 +1,47 @@
 # ng-runner-policy: private-jit-only-v1
+# packer-windows-jit-v1
 name: Windows Smoke
+
+run-name: ${{ inputs.release_tag != '' && format('action:{0}:pool:{1}:tag:{2}', inputs.action_tag, inputs.runner_pool_tag, inputs.release_tag) || format('action:{0}:pool:{1}', inputs.action_tag, inputs.runner_pool_tag) }}
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - '**'
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
-  cancel-in-progress: false
-
+    inputs:
+      action_tag:
+        description: Action to run
+        required: true
+        type: choice
+        options: [ci, release]
+      runner_pool_tag:
+        description: Runner pool
+        required: true
+        type: choice
+        options: [private]
+      release_tag:
+        description: Published release tag to smoke test
+        required: false
+        type: string
 permissions:
   contents: read
 
 jobs:
   dotnet:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      inputs.runner_pool_tag == 'private' &&
+      github.actor == 'snapetech' &&
+      github.ref == 'refs/heads/main' &&
+      ((inputs.action_tag == 'ci' && inputs.release_tag == '') ||
+       (inputs.action_tag == 'release' && inputs.release_tag != ''))
     runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-dotnet"]}}', github.run_id)) }}
     env:
       DOTNET_VERSION: "10.0.x"
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.release_tag != '' && inputs.release_tag || github.sha }}
+          persist-credentials: false
 
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
