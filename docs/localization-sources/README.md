@@ -2,8 +2,8 @@
 
 `20261031-ui-outbound-copy.json` records 56 newly wired app-authored English
 sources and their current caller/file fingerprints. The 12 catalogs are
-unchanged: all 672 new target cells remain pending. This ledger is an
-uncommitted working-tree checkpoint, not a semantic or native-speaker signoff.
+unchanged: all 672 new target cells remain pending. This committed source
+checkpoint is not a semantic or native-speaker signoff.
 The existing strict catalog/source coverage test remains strict and will report
 the new missing client values until translation generation and review finish.
 
