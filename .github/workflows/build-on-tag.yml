@@ -103,7 +103,7 @@ jobs:
 
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
             if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
-              echo "::error::Manual publisher recovery must use the protected main workflow"
+              echo "::error::Manual publisher recovery must use the main-branch workflow"
               exit 1
             fi
             if [[ "$CHANNEL" != "main" ]]; then
