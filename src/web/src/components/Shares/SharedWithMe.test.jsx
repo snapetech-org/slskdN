@@ -130,7 +130,7 @@ describe('SharedWithMe', () => {
     await user.click(screen.getByTestId('incoming-backfill'));
 
     await waitFor(() => {
-      expect(toast.success).toHaveBeenCalledWith('Queued for download — count: 3');
+      expect(toast.success).toHaveBeenCalledWith('Collection backfill finished — successful: 3');
     });
   });
 
@@ -163,7 +163,7 @@ describe('SharedWithMe', () => {
     await user.click(screen.getByTestId('incoming-backfill'));
     await waitFor(() => {
       expect(toast.warning).toHaveBeenCalledWith(
-        'Download queue results — queued: 2; failed: 1',
+        'Collection backfill results — successful: 2; failed: 1',
       );
     });
   });

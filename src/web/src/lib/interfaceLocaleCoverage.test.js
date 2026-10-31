@@ -80,8 +80,8 @@ const fixedServerMessageSources = [
   'Failed to sync with peer',
   'Sync failed',
   'No items to download.',
-  'Queued for download — count: {count}',
-  'Download queue results — queued: {queued}; failed: {failed}',
+  'Collection backfill finished — successful: {count}',
+  'Collection backfill results — successful: {successful}; failed: {failed}',
 ];
 
 const collectLocalizationReferences = () => {

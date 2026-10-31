@@ -258,14 +258,14 @@ export default class SharedWithMe extends Component {
         toast.success(
           backfillResult.total === 0 && backfillResult.enqueued === 0
             ? interfaceText('No items to download.')
-            : interfaceText('Queued for download — count: {count}', {
+            : interfaceText('Collection backfill finished — successful: {count}', {
                 count: formatRegionalNumber(backfillResult.enqueued),
               }),
         );
       } else {
         toast.warning(
-          interfaceText('Download queue results — queued: {queued}; failed: {failed}', {
-            queued: formatRegionalNumber(backfillResult.enqueued),
+          interfaceText('Collection backfill results — successful: {successful}; failed: {failed}', {
+            successful: formatRegionalNumber(backfillResult.enqueued),
             failed: formatRegionalNumber(backfillResult.failed),
           }),
         );
