@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: correct 110 mixed service labels, day-window controls, French punctuation, and Portuguese transfer labels after a bounded 1,460-cell contextual review across all twelve locales.
+
 - Localization: translate the Automation Center execute action in Brazilian Portuguese.
 - Localization: translate the MusicBrainz base URL field in Brazilian Portuguese.
 - Localization: fixed Content ID and mesh-sync errors plus collection backfill
