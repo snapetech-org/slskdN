@@ -69,6 +69,20 @@ const isTrueAttribute = (attributes, name) => {
   return ts.isJsxExpression(attribute.initializer) && attribute.initializer.expression?.kind === ts.SyntaxKind.TrueKeyword;
 };
 const localizedTags = new Set(['LocalizedText', 'LocalizedPopup', 'LocalizedPluralText', 'PlaceholderSegment']);
+const catalogDisplayAttributes = new Set([
+  'aria-label', 'title', 'alt', 'label', 'tooltip', 'caption', 'content', 'description',
+]);
+const fixedServerMessageSources = [
+  'Content ID cannot be empty',
+  'Invalid content ID format. Expected: content:<domain>:<type>:<id>',
+  'Content not found or inaccessible',
+  'Validation failed',
+  'Failed to sync with peer',
+  'Sync failed',
+  'No items to download.',
+  'Collection backfill finished — successful: {count}',
+  'Collection backfill results — successful: {successful}; failed: {failed}',
+];
 
 const collectLocalizationReferences = () => {
   const references = [];
@@ -90,7 +104,7 @@ const collectLocalizationReferences = () => {
     collectValues(sourceFile);
 
     const add = (node, value) => {
-      if (typeof value !== 'string' || !value.trim()) return;
+      if (typeof value !== 'string' || !value.trim() || !/\p{L}/u.test(value)) return;
       references.push({
         source: value,
         file: relativeFile,
@@ -115,6 +129,12 @@ const collectLocalizationReferences = () => {
         const localized = localizedAncestor || localizedTags.has(tag) || (
           tag === 'ErrorSegment' && isTrueAttribute(attrs, 'translateCaption')
         );
+        for (const attribute of attrs) {
+          if (!ts.isJsxAttribute(attribute) || !catalogDisplayAttributes.has(attribute.name.getText())) continue;
+          const value = attribute.initializer && attributeValue(attribute);
+          if (typeof value === 'string') add(attribute, value);
+          else staticStrings(value, values).forEach((source) => add(attribute, source));
+        }
         const attributeNames = tag === 'LocalizedText'
           ? ['source']
           : tag === 'LocalizedPopup'
@@ -131,6 +151,12 @@ const collectLocalizationReferences = () => {
           const value = attribute && attributeValue(attribute);
           if (typeof value === 'string') add(attribute, value);
           else staticStrings(value, values).forEach((source) => add(attribute, source));
+        }
+        const tooltip = attrs.find((item) => ts.isJsxAttribute(item) && item.name.getText() === 'tooltip');
+        if (tooltip) {
+          const value = attributeValue(tooltip);
+          if (typeof value === 'string') add(tooltip, value);
+          else staticStrings(value, values).forEach((source) => add(tooltip, source));
         }
         if (ts.isJsxOpeningElement(node)) {
           ts.forEachChild(node, (child) => visit(child, localized));
@@ -194,6 +220,13 @@ describe('interface locale coverage', () => {
       .flatMap(({ source, file, line }) => localeIds
         .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
         .map((locale) => `${locale}:${file}:${line}: ${source}`));
+    expect(missing).toEqual([]);
+  });
+
+  it('translates fixed server result messages in every locale', () => {
+    const missing = fixedServerMessageSources.flatMap((source) => localeIds
+      .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
+      .map((locale) => `${locale}:server:${source}`));
     expect(missing).toEqual([]);
   });
 

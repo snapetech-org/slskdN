@@ -820,7 +820,7 @@ const MediaCore = () => {
     return (
       <Message error>
         <Message.Header><LocalizedText source={"Failed to load MediaCore statistics"} /></Message.Header>
-        <p>{error}</p>
+        <p><LocalizedText source={error} /></p>
       </Message>
     );
   }
@@ -1028,7 +1028,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {resolvedContent.error ? (
                     <Message error>
-                      <p>{resolvedContent.error}</p>
+                      <p><LocalizedText source={resolvedContent.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1083,7 +1083,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {validatedContent.error ? (
                     <Message error>
-                      <p>{validatedContent.error}</p>
+                      <p><LocalizedText source={validatedContent.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1154,7 +1154,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {domainResults.error ? (
                     <Message error>
-                      <p>{domainResults.error}</p>
+                      <p><LocalizedText source={domainResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1261,7 +1261,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {traversalResults.error ? (
                     <Message error>
-                      <p>{traversalResults.error}</p>
+                      <p><LocalizedText source={traversalResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1335,7 +1335,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {graphResults.error ? (
                     <Message error>
-                      <p>{graphResults.error}</p>
+                      <p><LocalizedText source={graphResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1422,7 +1422,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {inboundResults.error ? (
                     <Message error>
-                      <p>{inboundResults.error}</p>
+                      <p><LocalizedText source={inboundResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1523,7 +1523,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {audioHashResult.error ? (
                     <Message error>
-                      <p>{audioHashResult.error}</p>
+                      <p><LocalizedText source={audioHashResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1617,7 +1617,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {imageHashResult.error ? (
                     <Message error>
-                      <p>{imageHashResult.error}</p>
+                      <p><LocalizedText source={imageHashResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1694,7 +1694,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {similarityResult.error ? (
                     <Message error>
-                      <p>{similarityResult.error}</p>
+                      <p><LocalizedText source={similarityResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -1785,7 +1785,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {findSimilarResult.error ? (
                     <Message error>
-                      <p>{findSimilarResult.error}</p>
+                      <p><LocalizedText source={findSimilarResult.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1893,7 +1893,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {perceptualSimilarityResult.error ? (
                     <Message error>
-                      <p>{perceptualSimilarityResult.error}</p>
+                      <p><LocalizedText source={perceptualSimilarityResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -1974,7 +1974,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {textSimilarityResult.error ? (
                     <Message error>
-                      <p>{textSimilarityResult.error}</p>
+                      <p><LocalizedText source={textSimilarityResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2050,7 +2050,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {exportResult.error ? (
                     <Message error>
-                      <p>{exportResult.error}</p>
+                      <p><LocalizedText source={exportResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2167,7 +2167,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {conflictAnalysis.error ? (
                     <Message error>
-                      <p>{conflictAnalysis.error}</p>
+                      <p><LocalizedText source={conflictAnalysis.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2195,7 +2195,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {importResult.error ? (
                     <Message error>
-                      <p>{importResult.error}</p>
+                      <p><LocalizedText source={importResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2226,7 +2226,7 @@ const MediaCore = () => {
                           </summary>
                           <List bulleted>
                             {asArray(importResult.errors).map((error, index) => (
-                              <List.Item key={index}>{error}</List.Item>
+                              <List.Item key={index}><LocalizedText source={error} /></List.Item>
                             ))}
                           </List>
                         </details>
@@ -2296,7 +2296,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {publishResult.error ? (
                     <Message error>
-                      <p>{publishResult.error}</p>
+                      <p><LocalizedText source={publishResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2359,7 +2359,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {batchPublishResult.error ? (
                     <Message error>
-                      <p>{batchPublishResult.error}</p>
+                      <p><LocalizedText source={batchPublishResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2454,7 +2454,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {updateResult.error ? (
                     <Message error>
-                      <p>{updateResult.error}</p>
+                      <p><LocalizedText source={updateResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2514,7 +2514,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {republishResult.error ? (
                     <Message error>
-                      <p>{republishResult.error}</p>
+                      <p><LocalizedText source={republishResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2542,7 +2542,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {publishingStats.error ? (
                     <Message error>
-                      <p>{publishingStats.error}</p>
+                      <p><LocalizedText source={publishingStats.error} /></p>
                     </Message>
                   ) : (
                     <Message>
@@ -2641,7 +2641,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {retrievalResult.error ? (
                     <Message error>
-                      <p>{retrievalResult.error}</p>
+                      <p><LocalizedText source={retrievalResult.error} /></p>
                     </Message>
                   ) : !retrievalResult.found ? (
                     <Message warning>
@@ -2736,7 +2736,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {batchRetrievalResult.error ? (
                     <Message error>
-                      <p>{batchRetrievalResult.error}</p>
+                      <p><LocalizedText source={batchRetrievalResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2827,7 +2827,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {queryResult.error ? (
                     <Message error>
-                      <p>{queryResult.error}</p>
+                      <p><LocalizedText source={queryResult.error} /></p>
                     </Message>
                   ) : (
                     <Message>
@@ -2894,7 +2894,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {descriptorVerificationResult.error ? (
                     <Message error>
-                      <p>{descriptorVerificationResult.error}</p>
+                      <p><LocalizedText source={descriptorVerificationResult.error} /></p>
                     </Message>
                   ) : (
                     <Message

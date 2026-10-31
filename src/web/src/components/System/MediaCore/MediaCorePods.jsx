@@ -1584,7 +1584,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   {podMetadataResult.error ? (
                     <Message error>
                       <p>
-                        <LocalizedText source={"Failed to retrieve metadata:"} />{" "}{podMetadataResult.error}
+                        <LocalizedText source={"Failed to retrieve metadata:"} />{" "}<LocalizedText source={podMetadataResult.error} />
                       </p>
                     </Message>
                   ) : podMetadataResult.found ? (
@@ -1655,7 +1655,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {podPublishingResult.error ? (
                         <Message error>
                           <p>
-                            <LocalizedText source={"Failed to publish pod:"} />{" "}{podPublishingResult.error}
+                            <LocalizedText source={"Failed to publish pod:"} />{" "}<LocalizedText source={podPublishingResult.error} />
                           </p>
                         </Message>
                       ) : (
@@ -1712,7 +1712,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {podUnpublishResult.error ? (
                         <Message error>
                           <p>
-                            <LocalizedText source={"Failed to unpublish pod:"} />{" "}{podUnpublishResult.error}
+                            <LocalizedText source={"Failed to unpublish pod:"} />{" "}<LocalizedText source={podUnpublishResult.error} />
                           </p>
                         </Message>
                       ) : (
@@ -1798,7 +1798,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 >
                   <p>
                     <LocalizedText source={"Failed to load pod publishing stats:"} />{' '}
-                    {podPublishingStats.error}
+                    <LocalizedText source={podPublishingStats.error} />
                   </p>
                 </Message>
               )}
@@ -1874,7 +1874,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {membershipResult.error ? (
                         <Message error>
                           <p>
-                            <LocalizedText source={"Failed to get membership:"} />{" "}{membershipResult.error}
+                            <LocalizedText source={"Failed to get membership:"} />{" "}<LocalizedText source={membershipResult.error} />
                           </p>
                         </Message>
                       ) : membershipResult.found ? (
@@ -1919,7 +1919,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <Message error>
                           <p>
                             <LocalizedText source={"Failed to verify membership:"} />{' '}
-                            {membershipVerification.error}
+                            <LocalizedText source={membershipVerification.error} />
                           </p>
                         </Message>
                       ) : (
@@ -2056,7 +2056,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       <Message error>
                         <p>
                           <LocalizedText source={"Failed to publish membership:"} />{' '}
-                          {membershipPublishResult.error}
+                          <LocalizedText source={membershipPublishResult.error} />
                         </p>
                       </Message>
                     ) : (
@@ -2167,7 +2167,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   style={{ marginTop: '1em' }}
                 >
                   <p>
-                    <LocalizedText source={"Failed to load membership stats:"} />{" "}{membershipStats.error}
+                    <LocalizedText source={"Failed to load membership stats:"} />{" "}<LocalizedText source={membershipStats.error} />
                   </p>
                 </Message>
               )}
@@ -2230,7 +2230,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     <Message error>
                       <p>
                         <LocalizedText source={"Failed to verify membership:"} />{' '}
-                        {membershipVerificationResult.error}
+                        <LocalizedText source={membershipVerificationResult.error} />
                       </p>
                     </Message>
                   ) : (
@@ -2284,7 +2284,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <Message error>
                           <p>
                             <LocalizedText source={"Failed to verify message:"} />{' '}
-                            {messageVerificationResult.error}
+                            <LocalizedText source={messageVerificationResult.error} />
                           </p>
                         </Message>
                       ) : (
@@ -2362,7 +2362,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     <div style={{ marginTop: '1em' }}>
                       {roleCheckResult.error ? (
                         <Message error>
-                          <p><LocalizedText source={"Failed to check role:"} />{" "}{roleCheckResult.error}</p>
+                          <p><LocalizedText source={"Failed to check role:"} />{" "}<LocalizedText source={roleCheckResult.error} /></p>
                         </Message>
                       ) : (
                         <Message>
@@ -2431,7 +2431,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   style={{ marginTop: '1em' }}
                 >
                   <p>
-                    <LocalizedText source={"Failed to load verification stats:"} />{" "}{verificationStats.error}
+                    <LocalizedText source={"Failed to load verification stats:"} />{" "}<LocalizedText source={verificationStats.error} />
                   </p>
                 </Message>
               )}
@@ -2493,7 +2493,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p>{nameDiscoveryResult.error}</p>
+                          <p><LocalizedText source={nameDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2533,7 +2533,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p>{tagDiscoveryResult.error}</p>
+                          <p><LocalizedText source={tagDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2573,7 +2573,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p>{tagsDiscoveryResult.error}</p>
+                          <p><LocalizedText source={tagsDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2618,7 +2618,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p>{allDiscoveryResult.error}</p>
+                          <p><LocalizedText source={allDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2664,7 +2664,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p>{contentDiscoveryResult.error}</p>
+                          <p><LocalizedText source={contentDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2725,7 +2725,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       size="tiny"
                       style={{ marginTop: '0.5em' }}
                     >
-                      <p>{discoveryStats.error}</p>
+                      <p><LocalizedText source={discoveryStats.error} /></p>
                     </Message>
                   )}
                 </Grid.Column>
@@ -2768,7 +2768,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to register pod:"} />{' '}
-                              {podRegistrationResult.error}
+                              <LocalizedText source={podRegistrationResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -2823,7 +2823,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to unregister pod:"} />{' '}
-                              {podUnregistrationResult.error}
+                              <LocalizedText source={podUnregistrationResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -2940,7 +2940,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to submit join request:"} />{' '}
-                              {joinRequestResult.error}
+                              <LocalizedText source={joinRequestResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -2991,7 +2991,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p>{acceptanceResult.error}</p>
+                            <p><LocalizedText source={acceptanceResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3031,7 +3031,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p>{leaveRequestResult.error}</p>
+                            <p><LocalizedText source={leaveRequestResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3073,7 +3073,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p>{leaveAcceptanceResult.error}</p>
+                            <p><LocalizedText source={leaveAcceptanceResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3150,7 +3150,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p>{messageSeenResult.error}</p>
+                          <p><LocalizedText source={messageSeenResult.error} /></p>
                         </Message>
                       ) : (
                         <Message size="tiny">
@@ -3223,7 +3223,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       error
                       style={{ marginTop: '1em' }}
                     >
-                      <p><LocalizedText source={"Failed to load routing stats:"} />{" "}{routingStats.error}</p>
+                      <p><LocalizedText source={"Failed to load routing stats:"} />{" "}<LocalizedText source={routingStats.error} /></p>
                     </Message>
                   )}
                 </Grid.Column>
@@ -3260,7 +3260,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       <div style={{ marginTop: '1em' }}>
                         {routingResult.error ? (
                           <Message error>
-                            <p><LocalizedText source={"Failed to route message:"} />{" "}{routingResult.error}</p>
+                            <p><LocalizedText source={"Failed to route message:"} />{" "}<LocalizedText source={routingResult.error} /></p>
                           </Message>
                         ) : (
                           <Message success>
@@ -3329,7 +3329,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p>{routingToPeersResult.error}</p>
+                            <p><LocalizedText source={routingToPeersResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3945,7 +3945,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </Message.Header>
                   {!contentValidation.isValid &&
                     contentValidation.errorMessage && (
-                      <p>{contentValidation.errorMessage}</p>
+                      <p><LocalizedText source={contentValidation.errorMessage} /></p>
                     )}
                 </Message>
               )}
@@ -4444,7 +4444,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p>{verificationResult.error}</p>
+                          <p><LocalizedText source={verificationResult.error} /></p>
                         </Message>
                       ) : (
                         <Message size="tiny">
@@ -4500,7 +4500,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       size="tiny"
                       style={{ marginTop: '0.5em' }}
                     >
-                      <p>{signingStats.error}</p>
+                      <p><LocalizedText source={signingStats.error} /></p>
                     </Message>
                   )}
                 </Grid.Column>
@@ -4550,7 +4550,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to sign message:"} />{' '}
-                              {signedMessageResult.error}
+                              <LocalizedText source={signedMessageResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -4593,7 +4593,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p>{generatedKeyPair.error}</p>
+                            <p><LocalizedText source={generatedKeyPair.error} /></p>
                           </Message>
                         ) : (
                           <Message

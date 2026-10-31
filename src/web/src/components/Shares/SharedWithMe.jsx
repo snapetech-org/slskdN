@@ -4,6 +4,7 @@ import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
 import { createRemoteShareStreamUrl } from '../../lib/streaming';
+import { formatRegionalNumber } from '../../lib/regionalFormat';
 import ErrorSegment from '../Shared/ErrorSegment';
 import LoaderSegment from '../Shared/LoaderSegment';
 import TooltipButton from '../Shared/TooltipButton';
@@ -36,9 +37,9 @@ const normalizeBackfillResult = (data) =>
     ? {
         enqueued: Number.isFinite(Number(data.enqueued)) ? Number(data.enqueued) : 0,
         failed: Number.isFinite(Number(data.failed)) ? Number(data.failed) : 0,
-        message: typeof data.message === 'string' ? data.message : '',
+        total: Number.isFinite(Number(data.total)) ? Number(data.total) : 0,
       }
-    : { enqueued: 0, failed: 0, message: '' };
+    : { enqueued: 0, failed: 0, total: 0 };
 
 export default class SharedWithMe extends Component {
   state = {
@@ -254,10 +255,19 @@ export default class SharedWithMe extends Component {
       });
 
       if (backfillResult.failed === 0) {
-        toast.success(backfillResult.message || interfaceText('Backfill started successfully'));
+        toast.success(
+          backfillResult.total === 0 && backfillResult.enqueued === 0
+            ? interfaceText('No items to download.')
+            : interfaceText('Collection backfill finished — successful: {count}', {
+                count: formatRegionalNumber(backfillResult.enqueued),
+              }),
+        );
       } else {
         toast.warning(
-          backfillResult.message || interfaceText('Backfill started with some failures'),
+          interfaceText('Collection backfill results — successful: {successful}; failed: {failed}', {
+            successful: formatRegionalNumber(backfillResult.enqueued),
+            failed: formatRegionalNumber(backfillResult.failed),
+          }),
         );
       }
     } catch (error) {
