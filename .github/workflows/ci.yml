@@ -1,6 +1,6 @@
 # ng-runner-policy: private-jit-only-v1
 name: CI
-run-name: ${{ github.event_name == 'pull_request' && 'action:ci:pool:private' || (github.event_name == 'workflow_dispatch' && format('action:{0}:pool:{1}', inputs.action_tag, inputs.runner_pool_tag)) || github.workflow }}
+run-name: ${{ (github.event_name == 'workflow_dispatch' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && format('owner-pr:{0}:{1}:{2}:action:{3}:pool:{4}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id, inputs.action_tag, inputs.runner_pool_tag)) || (github.event_name == 'pull_request_target' && 'owner-pr-label-event') || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && format('action:ci:pool:private:tag:{0}', github.ref_name)) || (github.event_name == 'workflow_dispatch' && format('action:{0}:pool:{1}', inputs.action_tag, inputs.runner_pool_tag)) || github.workflow }}
 on:
   push:
     tags:
@@ -42,7 +42,7 @@ on:
         description: Pull request head branch from the metadata event
         required: false
         type: string
-  pull_request:
+  pull_request_target:
     branches: [main]
     types: [labeled]
 
@@ -77,11 +77,10 @@ jobs:
            inputs.target_run_id != '' && inputs.pr_author == 'snapetech' &&
            inputs.pr_repository == github.repository &&
            inputs.pr_branch != '' &&
-           github.ref == format('refs/heads/{0}', inputs.pr_branch) &&
-           github.sha == inputs.pr_sha)
+           github.ref == 'refs/heads/main')
         )
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
     timeout-minutes: 120
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -193,10 +192,13 @@ jobs:
             packaging/aur/PKGBUILD-bin
 
       - name: Changelog Discipline Check
-        if: github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
+        if: >-
+          github.event_name == 'workflow_dispatch' &&
+          inputs.pr_number != '' &&
+          inputs.pr_sha != ''
         env:
-          BASE_REF: ${{ github.base_ref }}
-          HEAD_SHA: ${{ github.sha }}
+          BASE_REF: main
+          HEAD_SHA: ${{ inputs.pr_sha }}
         run: |
           bash scripts/validate-changelog-entry.sh \
             range \
@@ -232,11 +234,10 @@ jobs:
            inputs.target_run_id != '' && inputs.pr_author == 'snapetech' &&
            inputs.pr_repository == github.repository &&
            inputs.pr_branch != '' &&
-           github.ref == format('refs/heads/{0}', inputs.pr_branch) &&
-           github.sha == inputs.pr_sha)
+           github.ref == 'refs/heads/main')
         )
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-smoke"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -559,7 +560,7 @@ jobs:
   dispatch-owner-pr:
     name: Dispatch trusted owner PR validation
     if: >-
-      github.event_name == 'pull_request' &&
+      github.event_name == 'pull_request_target' &&
       github.event.action == 'labeled' &&
       (github.event.label.name == 'action:ci' || github.event.label.name == 'pool:private') &&
       contains(github.event.pull_request.labels.*.name, 'action:ci') &&
@@ -574,7 +575,7 @@ jobs:
       actions: write
       contents: none
     steps:
-      - name: Dispatch exact pull request head
+      - name: Dispatch the requested action from main
         env:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -604,7 +605,7 @@ jobs:
                   or subprocess.run(["git","check-ref-format","--branch",branch],
                                     stdout=subprocess.DEVNULL,check=False).returncode != 0):
               raise SystemExit("invalid trusted owner PR metadata")
-          payload = json.dumps({"ref":branch,"inputs":{
+          payload = json.dumps({"ref": "main", "inputs": {
               "action_tag":"ci","runner_pool_tag":"private","pr_number":number,
               "pr_sha":sha,"target_run_id":target,"pr_author":author,
               "pr_repository":head_repo,"pr_branch":branch}}).encode()
@@ -632,7 +633,7 @@ jobs:
       inputs.target_run_id != '' && inputs.pr_author == 'snapetech' &&
       inputs.pr_repository == github.repository &&
       inputs.pr_branch != '' &&
-      github.ref == format('refs/heads/{0}', inputs.pr_branch)
+      github.ref == 'refs/heads/main'
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-owner-pr-reporter"]}}', github.run_id)) }}
     permissions:
       checks: write
@@ -684,7 +685,7 @@ jobs:
                      and head_repo.lower() == repo.lower()
                      and pr.get("head",{}).get("ref") == branch
                      and pr.get("head",{}).get("sha","").lower() == sha
-                     and os.environ["GITHUB_SHA"].lower() == sha)
+                     )
           success = current and all(v == "success" for v in results.values())
           cancelled = any(v == "cancelled" for v in results.values())
           conclusion = "success" if success else ("cancelled" if cancelled else "failure")
