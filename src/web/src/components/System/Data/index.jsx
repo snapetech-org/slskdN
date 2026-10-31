@@ -12,7 +12,9 @@ const clear = async ({ direction, setError, setLoading }) => {
 
   try {
     await clearCompleted({ direction });
-    toast.success(interfaceText("Completed {direction}s cleared!", { "direction": (direction) }));
+    toast.success(interfaceText(direction === 'upload'
+      ? 'Completed upload records cleared.'
+      : 'Completed download records cleared.'));
   } catch (error) {
     setError(getApiErrorMessage(error, { t: interfaceText }));
   } finally {

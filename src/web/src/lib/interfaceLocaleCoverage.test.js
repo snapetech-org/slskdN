@@ -72,6 +72,25 @@ const localizedTags = new Set(['LocalizedText', 'LocalizedRichText', 'LocalizedP
 const catalogDisplayAttributes = new Set([
   'aria-label', 'title', 'alt', 'label', 'tooltip', 'caption', 'content', 'description',
 ]);
+const fixedTransferCleanupMessages = [
+  'Completed upload records cleared.',
+  'Completed download records cleared.',
+];
+
+const frenchUploadDownloadPairs = [
+  ['Clear All Completed Uploads', 'Clear All Completed Downloads', 'Effacer tous les envois terminés'],
+  ['Upload KiB/s', 'Download KiB/s', 'Débit d’envoi (KiB/s)'],
+  ['Upload cancelled retention minutes', 'Download cancelled retention minutes', 'Minutes de conservation des envois annulés'],
+  ['Upload succeeded retention minutes', 'Download succeeded retention minutes', 'Minutes de conservation des envois réussis'],
+  ['Uploads Active', 'Downloads Active', 'Envois actifs'],
+  ['Uploads Queued', 'Downloads Queued', 'Envois en file d’attente'],
+  ['Uploads Total', 'Downloads Total', 'Total des envois'],
+  ['Enable upload schedules', 'Enable download schedules', 'Activer les planifications d’envoi'],
+  ['Enable scheduled upload speed limits under global upload policy.', 'Enable scheduled download speed limits under global download policy.', 'Activez les limites de débit d’envoi planifiées selon la politique globale d’envoi.'],
+  ['Global upload slots', 'Global download slots', 'Emplacements d’envoi globaux'],
+  ['Global upload speed limit', 'Global download speed limit', 'Limite globale de débit d’envoi'],
+];
+
 const fixedServerMessageSources = [
   'Content ID cannot be empty',
   'Invalid content ID format. Expected: content:<domain>:<type>:<id>',
@@ -231,6 +250,20 @@ describe('interface locale coverage', () => {
         .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
         .map((locale) => `${locale}:${file}:${line}: ${source}`));
     expect(missing).toEqual([]);
+  });
+
+  it('translates fixed transfer cleanup success messages in every locale', () => {
+    const missing = fixedTransferCleanupMessages.flatMap((source) => localeIds
+      .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
+      .map((locale) => `${locale}:transfer-cleanup:${source}`));
+    expect(missing).toEqual([]);
+  });
+
+  it('keeps French upload and download settings distinct', () => {
+    for (const [uploadSource, downloadSource, uploadTarget] of frenchUploadDownloadPairs) {
+      expect(localeCatalogs.fr[uploadSource]).toBe(uploadTarget);
+      expect(localeCatalogs.fr[uploadSource]).not.toBe(localeCatalogs.fr[downloadSource]);
+    }
   });
 
   it('translates fixed server result messages in every locale', () => {

@@ -3,7 +3,7 @@
 `20261031-interface-copy-inventory.json` is the current source ledger. It
 records 444 missing browser-interface, generated-report, and fixed server-status
 sources, plus two background notification titles, for 446 app-owned strings
-and 5,352 target cells across the 12 agreed locales. This includes nine fixed
+and 5,352 target cells across the 12 agreed locales. The refreshed source-reference counts are 10,257 references across 5,639 unique source strings; two newly fixed transfer-cleanup success messages are translated in all locales and do not add pending cells. This includes nine fixed
 Quarantine Jury status/error messages and the Library Health scan failure.
 Caller lines and file hashes make the source inventory reproducible. All listed
 target values still fall back to English and need translation, semantic review,

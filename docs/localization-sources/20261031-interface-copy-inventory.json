@@ -16,8 +16,8 @@
     "vi",
     "id"
   ],
-  "sourceReferenceCount": 10256,
-  "uniqueSourceCount": 5638,
+  "sourceReferenceCount": 10257,
+  "uniqueSourceCount": 5639,
   "pendingSourceCount": 446,
   "pendingTargetCells": 5352,
   "records": [
@@ -14536,5 +14536,31 @@
         }
       ]
     }
-  ]
+  ],
+  "sourceCountRefresh": {
+    "basedOnHead": "419ff1d11813efa40f89f9bd008c6f8d99b1a233",
+    "retiredSourceReferences": [
+      {
+        "source": "Completed {direction}s cleared!",
+        "references": 1
+      }
+    ],
+    "addedFullyTranslatedSourceReferences": [
+      {
+        "source": "Completed upload records cleared.",
+        "references": 1,
+        "targetLocales": 12
+      },
+      {
+        "source": "Completed download records cleared.",
+        "references": 1,
+        "targetLocales": 12
+      }
+    ],
+    "netSourceReferenceDelta": 1,
+    "netUniqueSourceDelta": 1,
+    "pendingSourceDelta": 0,
+    "pendingTargetCellDelta": 0,
+    "note": "Both new fixed success messages have values in all twelve catalogs and are checked by interface locale coverage; pending records are unchanged."
+  }
 }
