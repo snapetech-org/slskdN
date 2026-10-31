@@ -1,6 +1,13 @@
 name: slskdN fork PR validation
 on:
-  workflow_dispatch: {}
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
 permissions:
   contents: read
 concurrency:
@@ -16,5 +23,5 @@ jobs:
       github.event.pull_request.base.ref == 'main'
     permissions:
       contents: read
-    uses: snapetech-org/slskdN/.github/workflows/feature-coherence-validation.yml@8ab4af04fd8e8d05bff696055c5aa16d7beb1273
+    uses: snapetech-org/slskdN/.github/workflows/feature-coherence-validation.yml@9453aedd5fab679313e134a4f78013335dacd69d
 
