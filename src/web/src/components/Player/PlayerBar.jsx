@@ -6,7 +6,7 @@ import {
   clearDiscoveryShelf,
   exportDiscoveryShelfPolicyReport,
   getDiscoveryShelf,
-  getDiscoveryShelfActionLabel,
+  localizeDiscoveryShelfActionLabel,
   getDiscoveryShelfPolicyPreview,
   getDiscoveryShelfSummary,
   removeDiscoveryShelfItem,
@@ -37,6 +37,7 @@ import {
   buildPlayerRadioSearchPath,
   getPlayerRadioQueries,
   getPlayerRadioCopyText,
+  getPlayerRadioReasonSource,
 } from '../../lib/playerRadio';
 import {
   buildSimilarQueueCandidates,
@@ -420,7 +421,11 @@ const PlayerRadioModal = ({ current, onClose, onOpenSearch, open }) => {
         <div className="player-radio-seed" data-testid="player-radio-seed">
           <Icon name="random" />
           <div>
-            <strong>{plan.seedLabel}</strong>
+            <strong>
+              {plan.seedLabel === 'Untitled seed'
+                ? <LocalizedText source="Untitled seed" />
+                : plan.seedLabel}
+            </strong>
             <div>
               {plan.basis.length > 0 ? plan.basis.join(' | ') : <LocalizedText source={"Pick a track first."} />}
             </div>
@@ -431,7 +436,7 @@ const PlayerRadioModal = ({ current, onClose, onOpenSearch, open }) => {
             <div className="player-radio-query" key={item.id}>
               <div>
                 <Label color="violet" size="mini">
-                  {item.reason}
+                  <LocalizedText source={getPlayerRadioReasonSource(item.reason)} />
                 </Label>
                 <code>{item.query}</code>
               </div>
@@ -942,7 +947,7 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
 
   const previewAction = (item) => {
     setMessage(
-      interfaceText("{action} prepared for {title}. No files were moved or deleted.", { action: interfaceText(getDiscoveryShelfActionLabel(item.action)), title: item.title }),
+      interfaceText("{action} prepared for {title}. No files were moved or deleted.", { action: localizeDiscoveryShelfActionLabel(item.action), title: item.title }),
     );
   };
 
@@ -1068,7 +1073,7 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
                 </span>
               </div>
               <Label size="mini">
-                {interfaceText(getDiscoveryShelfActionLabel(item.action))}
+                {localizeDiscoveryShelfActionLabel(item.action)}
               </Label>
               <Popup
                 content={<LocalizedText source={"Preview the shelf action. This does not move, delete, share, download, or publish anything."} />}

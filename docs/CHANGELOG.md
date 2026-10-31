@@ -22,6 +22,10 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: route additional discovery, health, acquisition, media-server,
+  playlist, and playback copy through catalog keys; preserve unknown provider
+  and API values, and record the remaining twelve-locale translation inventory.
+
 - Localization: route additional chat, playback, mesh, confirmation, count,
   report, and background notification copy through the twelve-locale source
   path; target translations and review remain pending.

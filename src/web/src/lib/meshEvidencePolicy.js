@@ -285,21 +285,34 @@ export const parseMeshEvidenceReviewInput = (value) => {
 export const formatMeshEvidenceReviewReport = (review) => {
   const lines = [
     interfaceText("slskdN mesh evidence review"),
-    `Total: ${review.summary.total}`,
-    `Accepted: ${review.summary.accepted}`,
-    `Rejected: ${review.summary.rejected}`,
+    interfaceText('Total: {count}', { count: formatRegionalNumber(review.summary.total) }),
+    interfaceText('Accepted: {count}', { count: formatRegionalNumber(review.summary.accepted) }),
+    interfaceText('Rejected: {count}', { count: formatRegionalNumber(review.summary.rejected) }),
     '',
   ];
 
   review.results.forEach((entry) => {
     lines.push(
-      `[${entry.accepted ? 'ACCEPT' : 'REJECT'}] ${entry.type} ${entry.subject}`,
+      interfaceText('[{status}] {type} {subject}', {
+        status: interfaceText(entry.accepted ? 'ACCEPT' : 'REJECT'),
+        type: entry.type,
+        subject: entry.subject,
+      }),
     );
-    lines.push(`Confidence: ${entry.confidence}`);
-    lines.push(`Witnesses: ${entry.witnessCount}`);
-    lines.push(`Provenance: ${entry.provenance.trustTier} ${entry.provenance.peerId}`);
+    lines.push(interfaceText('Confidence: {confidence}', {
+      confidence: formatRegionalNumber(entry.confidence),
+    }));
+    lines.push(interfaceText('Witnesses: {count}', {
+      count: formatRegionalNumber(entry.witnessCount),
+    }));
+    lines.push(interfaceText('Provenance: {tier} {peerId}', {
+      tier: entry.provenance.trustTier,
+      peerId: entry.provenance.peerId,
+    }));
     if (entry.reasons.length > 0) {
-      lines.push(`Reasons: ${entry.reasons.map(formatMeshEvidenceReason).join('; ')}`);
+      lines.push(interfaceText('Reasons: {reasons}', {
+        reasons: entry.reasons.map(formatMeshEvidenceReason).join('; '),
+      }));
     }
     lines.push('');
   });

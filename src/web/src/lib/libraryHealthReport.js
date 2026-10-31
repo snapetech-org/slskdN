@@ -1,4 +1,8 @@
+import { interfaceText } from './interfaceLocale';
+import { formatRegionalNumber } from './regionalFormat';
+
 const normalizeText = (value = '') => String(value).trim();
+const parseDiagnosticNumber = (value) => Number(String(value).replace(',', '.'));
 
 const getIssueTypeLabel = (type) => {
   switch (type) {
@@ -23,7 +27,157 @@ const getIssueTypeLabel = (type) => {
   }
 };
 
-const formatCountLine = (label, value) => `${label}: ${Number(value || 0)}`;
+export { getIssueTypeLabel as getLibraryHealthIssueTypeLabel };
+
+export const getLibraryHealthSeveritySource = (severity) => {
+  switch (severity) {
+    case 'Critical':
+    case 'High':
+    case 'Medium':
+    case 'Low':
+    case 'Info':
+      return severity;
+    default:
+      return '';
+  }
+};
+
+export const getLibraryHealthStatusSource = (status) => {
+  switch (status) {
+    case 'Detected':
+    case 'Fixing':
+    case 'Resolved':
+    case 'Failed':
+      return status;
+    default:
+      return '';
+  }
+};
+
+const formatCountLine = (label, value) => interfaceText('{label}: {count}', {
+  count: formatRegionalNumber(Number(value || 0)),
+  label: interfaceText(label),
+});
+
+const localizeIssueType = (type) => {
+  switch (type) {
+    case 'SuspectedTranscode':
+      return interfaceText('Suspected Transcode');
+    case 'NonCanonicalVariant':
+      return interfaceText('Non-Canonical Variant');
+    case 'TrackNotInTaggedRelease':
+      return interfaceText('Track Not in Tagged Release');
+    case 'MissingTrackInRelease':
+      return interfaceText('Missing Track in Release');
+    case 'CorruptedFile':
+      return interfaceText('Corrupted File');
+    case 'MissingMetadata':
+      return interfaceText('Missing Metadata');
+    case 'MultipleVariants':
+      return interfaceText('Multiple Variants');
+    case 'WrongDuration':
+      return interfaceText('Wrong Duration');
+    default:
+      return getIssueTypeLabel(type);
+  }
+};
+
+const localizeSeverity = (severity) => {
+  switch (severity) {
+    case 'Critical':
+      return interfaceText('Critical');
+    case 'High':
+      return interfaceText('High');
+    case 'Medium':
+      return interfaceText('Medium');
+    case 'Low':
+      return interfaceText('Low');
+    case 'Info':
+      return interfaceText('Info');
+    default:
+      return normalizeText(severity) || interfaceText('Unknown');
+  }
+};
+
+export const formatLibraryHealthStatus = (status) => {
+  switch (status) {
+    case 'Detected':
+      return interfaceText('Detected');
+    case 'Fixing':
+      return interfaceText('Fixing');
+    case 'Resolved':
+      return interfaceText('Resolved');
+    case 'Failed':
+      return interfaceText('Failed');
+    default:
+      return normalizeText(status);
+  }
+};
+
+export const formatLibraryHealthReason = (reason) => {
+  if (typeof reason !== 'string' || !reason) return reason || '';
+
+  switch (reason) {
+    case 'Unable to resolve MusicBrainz Recording ID via fingerprint or tags':
+      return interfaceText('Unable to resolve MusicBrainz Recording ID via fingerprint or tags');
+    case 'File cannot be read':
+      return interfaceText('File cannot be read');
+    case 'File scan failed':
+      return interfaceText('File scan failed');
+    case 'Lossy encoder signature in lossless file':
+      return interfaceText('Lossy encoder signature in lossless file');
+  }
+
+  let match = /^Canonical variant available with quality score ([\d.,]+) vs current ([\d.,]+)$/.exec(reason);
+  if (match) {
+    return interfaceText('Canonical variant available with quality score {canonical} vs current {current}', {
+      canonical: formatRegionalNumber(parseDiagnosticNumber(match[1])),
+      current: formatRegionalNumber(parseDiagnosticNumber(match[2])),
+    });
+  }
+
+  match = /^Album incomplete: (\d+)\/(\d+) tracks missing$/.exec(reason);
+  if (match) {
+    return interfaceText('Album incomplete: {missing}/{total} tracks missing', {
+      missing: formatRegionalNumber(Number(match[1])),
+      total: formatRegionalNumber(Number(match[2])),
+    });
+  }
+
+  match = /^FLAC bitrate ([\d.,]+)kbps too low for ([\d.,]+)Hz\/(\d+)bit \(expected ≥([\d.,]+)kbps\)$/.exec(reason);
+  if (match) {
+    return interfaceText('FLAC bitrate {bitrate}kbps too low for {sampleRate}Hz/{bitDepth}bit (expected ≥{minimum}kbps)', {
+      bitDepth: formatRegionalNumber(Number(match[3])),
+      bitrate: formatRegionalNumber(parseDiagnosticNumber(match[1])),
+      minimum: formatRegionalNumber(parseDiagnosticNumber(match[4])),
+      sampleRate: formatRegionalNumber(parseDiagnosticNumber(match[2])),
+    });
+  }
+
+  match = /^Lossless file with DR=([\d.,]+) suggests lossy source$/.exec(reason);
+  if (match) {
+    return interfaceText('Lossless file with DR={range} suggests lossy source', {
+      range: formatRegionalNumber(parseDiagnosticNumber(match[1])),
+    });
+  }
+
+  match = /^High-resolution audio has a measured ([\d.,]+)kHz cutoff consistent with upsampling from 44\.1\/48kHz audio$/.exec(reason);
+  if (match) {
+    return interfaceText('High-resolution audio has a measured {bandwidth}kHz cutoff consistent with upsampling from 44.1/48kHz audio', {
+      bandwidth: formatRegionalNumber(parseDiagnosticNumber(match[1])),
+    });
+  }
+
+  match = /^Spectral bandwidth ([\d.,]+)kHz suggests (\d+)kbps lossy source$/.exec(reason);
+  if (match) {
+    return interfaceText('Spectral bandwidth {bandwidth}kHz suggests {bitrate}kbps lossy source', {
+      bandwidth: formatRegionalNumber(parseDiagnosticNumber(match[1])),
+      bitrate: formatRegionalNumber(Number(match[2])),
+    });
+  }
+
+  return reason;
+};
 
 const replacementIssueTypes = new Set([
   'CorruptedFile',
@@ -120,37 +274,50 @@ export const buildLibraryHealthReport = ({
   libraryPath = '',
   summary = {},
 } = {}) => [
-  'Library Health Report',
-  `Generated: ${generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt}`,
-  `Library: ${normalizeText(libraryPath) || 'unspecified'}`,
+  interfaceText('Library Health Report'),
+  interfaceText('Generated: {timestamp}', {
+    timestamp: generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt,
+  }),
+  interfaceText('Library: {path}', {
+    path: normalizeText(libraryPath) || interfaceText('unspecified'),
+  }),
   '',
-  'Summary:',
+  interfaceText('Summary:'),
   formatCountLine('Total issues', summary.totalIssues),
   formatCountLine('Open issues', summary.issuesOpen),
   formatCountLine('Resolved issues', summary.issuesResolved),
   '',
-  'Issues by type:',
+  interfaceText('Issues by type:'),
   ...(issuesByType.length > 0
     ? issuesByType.map((group) =>
-      `- ${getIssueTypeLabel(group.type)}: ${Number(group.count || 0)}`)
-    : ['- none']),
+      interfaceText('- {type}: {count}', {
+        count: formatRegionalNumber(Number(group.count || 0)),
+        type: localizeIssueType(group.type),
+      }))
+    : [interfaceText('- none')]),
   '',
-  'Top artists:',
+  interfaceText('Top artists:'),
   ...(issuesByArtist.length > 0
     ? issuesByArtist.map((group) =>
-      `- ${normalizeText(group.artist) || 'Unknown artist'}: ${Number(group.count || 0)}`)
-    : ['- none']),
+      interfaceText('- {artist}: {count}', {
+        artist: normalizeText(group.artist) || interfaceText('Unknown artist'),
+        count: formatRegionalNumber(Number(group.count || 0)),
+      }))
+    : [interfaceText('- none')]),
   '',
-  'Issue sample:',
+  interfaceText('Issue sample:'),
   ...(issues.length > 0
     ? issues.slice(0, 50).map((issue) => [
-      `- ${issue.severity || 'Unknown'} ${getIssueTypeLabel(issue.type)}`,
-      issue.artist ? ` | ${issue.artist}` : '',
-      issue.title ? ` - ${issue.title}` : '',
-      issue.reason ? ` | ${issue.reason}` : '',
-      issue.canAutoFix ? ' | safe fix available' : ' | review only',
+      interfaceText('- {severity} {type}', {
+        severity: localizeSeverity(issue.severity || 'Unknown'),
+        type: localizeIssueType(issue.type),
+      }),
+      issue.artist ? interfaceText(' | Artist: {artist}', { artist: issue.artist }) : '',
+      issue.title ? interfaceText(' | Title: {title}', { title: issue.title }) : '',
+      issue.reason ? interfaceText(' | Reason: {reason}', { reason: formatLibraryHealthReason(issue.reason) }) : '',
+      interfaceText(issue.canAutoFix ? ' | safe fix available' : ' | review only'),
     ].join(''))
-    : ['- none']),
+    : [interfaceText('- none')]),
 ].join('\n');
 
 export const buildLibraryHealthActionPlan = ({
@@ -163,27 +330,35 @@ export const buildLibraryHealthActionPlan = ({
   const quarantineReviews = getQuarantineReviewIssues(issues);
 
   return [
-    'Library Health Action Plan',
-    `Generated: ${generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt}`,
-    `Library: ${normalizeText(libraryPath) || 'unspecified'}`,
-    `Selected issues: ${issues.length}`,
-    `Safe fix previews: ${safeFixes.length}`,
-    `Replacement search previews: ${replacementSearches.length}`,
-    `Quarantine review previews: ${quarantineReviews.length}`,
+    interfaceText('Library Health Action Plan'),
+    interfaceText('Generated: {timestamp}', {
+      timestamp: generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt,
+    }),
+    interfaceText('Library: {path}', {
+      path: normalizeText(libraryPath) || interfaceText('unspecified'),
+    }),
+    interfaceText('Selected issues: {count}', { count: formatRegionalNumber(issues.length) }),
+    interfaceText('Safe fix previews: {count}', { count: formatRegionalNumber(safeFixes.length) }),
+    interfaceText('Replacement search previews: {count}', { count: formatRegionalNumber(replacementSearches.length) }),
+    interfaceText('Quarantine review previews: {count}', { count: formatRegionalNumber(quarantineReviews.length) }),
     '',
-    'Selected issue plan:',
+    interfaceText('Selected issue plan:'),
     ...(issues.length > 0
       ? issues.map((issue) => [
-        `- ${issue.issueId || 'unknown'}: ${issue.severity || 'Unknown'} ${getIssueTypeLabel(issue.type)}`,
-        issue.artist ? ` | ${issue.artist}` : '',
-        issue.title ? ` - ${issue.title}` : '',
-        issue.canAutoFix ? ' | safe fix preview' : ' | manual review',
-        replacementIssueTypes.has(issue.type) ? ' | replacement search candidate' : '',
-        quarantineReviews.includes(issue) ? ' | quarantine review candidate' : '',
+        interfaceText('- {id}: {severity} {type}', {
+          id: issue.issueId || interfaceText('unknown'),
+          severity: localizeSeverity(issue.severity || 'Unknown'),
+          type: localizeIssueType(issue.type),
+        }),
+        issue.artist ? interfaceText(' | Artist: {artist}', { artist: issue.artist }) : '',
+        issue.title ? interfaceText(' | Title: {title}', { title: issue.title }) : '',
+        interfaceText(issue.canAutoFix ? ' | safe fix preview' : ' | manual review'),
+        replacementIssueTypes.has(issue.type) ? interfaceText(' | replacement search candidate') : '',
+        quarantineReviews.includes(issue) ? interfaceText(' | quarantine review candidate') : '',
       ].join(''))
-      : ['- none']),
+      : [interfaceText('- none')]),
     '',
-    'No remediation, replacement search, quarantine, or file mutation was started by this report.',
+    interfaceText('No remediation, replacement search, quarantine, or file mutation was started by this report.'),
   ].join('\n');
 };
 
@@ -195,27 +370,35 @@ export const buildLibraryHealthSafeFixManifest = ({
   const safeFixIssues = getSafeFixIssues(issues);
 
   return [
-    'Library Health Safe Fix Manifest',
-    `Generated: ${generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt}`,
-    `Library: ${normalizeText(libraryPath) || 'unspecified'}`,
-    `Selected issues: ${issues.length}`,
-    `Safe fix candidates: ${safeFixIssues.length}`,
+    interfaceText('Library Health Safe Fix Manifest'),
+    interfaceText('Generated: {timestamp}', {
+      timestamp: generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt,
+    }),
+    interfaceText('Library: {path}', {
+      path: normalizeText(libraryPath) || interfaceText('unspecified'),
+    }),
+    interfaceText('Selected issues: {count}', { count: formatRegionalNumber(issues.length) }),
+    interfaceText('Safe fix candidates: {count}', { count: formatRegionalNumber(safeFixIssues.length) }),
     '',
-    'Safe fix candidates:',
+    interfaceText('Safe fix candidates:'),
     ...(safeFixIssues.length > 0
       ? safeFixIssues.map((issue) => [
-        `- ${issue.issueId || 'unknown'}: ${issue.severity || 'Unknown'} ${getIssueTypeLabel(issue.type)}`,
-        issue.artist ? ` | ${issue.artist}` : '',
-        issue.album ? ` | ${issue.album}` : '',
-        issue.title ? ` - ${issue.title}` : '',
-        issue.reason ? ` | ${issue.reason}` : '',
+        interfaceText('- {id}: {severity} {type}', {
+          id: issue.issueId || interfaceText('unknown'),
+          severity: localizeSeverity(issue.severity || 'Unknown'),
+          type: localizeIssueType(issue.type),
+        }),
+        issue.artist ? interfaceText(' | Artist: {artist}', { artist: issue.artist }) : '',
+        issue.album ? interfaceText(' | Album: {album}', { album: issue.album }) : '',
+        issue.title ? interfaceText(' | Title: {title}', { title: issue.title }) : '',
+        issue.reason ? interfaceText(' | Reason: {reason}', { reason: formatLibraryHealthReason(issue.reason) }) : '',
         issue.path || issue.filePath || issue.filename
-          ? ` | target: ${normalizeText(issue.path || issue.filePath || issue.filename)}`
+          ? interfaceText(' | Target: {path}', { path: normalizeText(issue.path || issue.filePath || issue.filename) })
           : '',
       ].join(''))
-      : ['- none']),
+      : [interfaceText('- none')]),
     '',
-    'No remediation job, safe-fix execution, quarantine state change, search, download, or file mutation was started by this manifest.',
+    interfaceText('No remediation job, safe-fix execution, quarantine state change, search, download, or file mutation was started by this manifest.'),
   ].join('\n');
 };
 
@@ -234,23 +417,27 @@ export const buildLibraryHealthSearchSeeds = ({
   }));
 
   return [
-    'Library Health Replacement Search Seeds',
-    `Generated: ${generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt}`,
-    `Library: ${normalizeText(libraryPath) || 'unspecified'}`,
-    `Selected issues: ${issues.length}`,
-    `Replacement candidates: ${dedupedCandidates.length}`,
+    interfaceText('Library Health Replacement Search Seeds'),
+    interfaceText('Generated: {timestamp}', {
+      timestamp: generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt,
+    }),
+    interfaceText('Library: {path}', {
+      path: normalizeText(libraryPath) || interfaceText('unspecified'),
+    }),
+    interfaceText('Selected issues: {count}', { count: formatRegionalNumber(issues.length) }),
+    interfaceText('Replacement candidates: {count}', { count: formatRegionalNumber(dedupedCandidates.length) }),
     '',
-    'Search seeds:',
+    interfaceText('Search seeds:'),
     ...(dedupedCandidates.length > 0
       ? dedupedCandidates.map(({ issue, query }) => [
-        `- ${query}`,
-        issue.issueId ? ` | issue ${issue.issueId}` : '',
-        issue.severity ? ` | ${issue.severity}` : '',
-        issue.type ? ` | ${getIssueTypeLabel(issue.type)}` : '',
+        interfaceText('- {query}', { query }),
+        issue.issueId ? interfaceText(' | Issue {id}', { id: issue.issueId }) : '',
+        issue.severity ? interfaceText(' | {severity}', { severity: localizeSeverity(issue.severity) }) : '',
+        issue.type ? interfaceText(' | {type}', { type: localizeIssueType(issue.type) }) : '',
       ].join(''))
-      : ['- none']),
+      : [interfaceText('- none')]),
     '',
-    'No search, peer browse, download, quarantine, or file mutation was started by this export.',
+    interfaceText('No search, peer browse, download, quarantine, or file mutation was started by this export.'),
   ].join('\n');
 };
 
@@ -262,28 +449,36 @@ export const buildLibraryHealthQuarantinePacket = ({
   const reviewIssues = getQuarantineReviewIssues(issues);
 
   return [
-    'Library Health Quarantine Review Packet',
-    `Generated: ${generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt}`,
-    `Library: ${normalizeText(libraryPath) || 'unspecified'}`,
-    `Selected issues: ${issues.length}`,
-    `Quarantine review candidates: ${reviewIssues.length}`,
+    interfaceText('Library Health Quarantine Review Packet'),
+    interfaceText('Generated: {timestamp}', {
+      timestamp: generatedAt instanceof Date ? generatedAt.toISOString() : generatedAt,
+    }),
+    interfaceText('Library: {path}', {
+      path: normalizeText(libraryPath) || interfaceText('unspecified'),
+    }),
+    interfaceText('Selected issues: {count}', { count: formatRegionalNumber(issues.length) }),
+    interfaceText('Quarantine review candidates: {count}', { count: formatRegionalNumber(reviewIssues.length) }),
     '',
-    'Review checklist:',
+    interfaceText('Review checklist:'),
     ...(reviewIssues.length > 0
       ? reviewIssues.map((issue) => [
-        `- ${issue.issueId || 'unknown'}: ${issue.severity || 'Unknown'} ${getIssueTypeLabel(issue.type)}`,
-        issue.artist ? ` | ${issue.artist}` : '',
-        issue.album ? ` | ${issue.album}` : '',
-        issue.title ? ` - ${issue.title}` : '',
-        issue.reason ? ` | ${issue.reason}` : '',
+        interfaceText('- {id}: {severity} {type}', {
+          id: issue.issueId || interfaceText('unknown'),
+          severity: localizeSeverity(issue.severity || 'Unknown'),
+          type: localizeIssueType(issue.type),
+        }),
+        issue.artist ? interfaceText(' | Artist: {artist}', { artist: issue.artist }) : '',
+        issue.album ? interfaceText(' | Album: {album}', { album: issue.album }) : '',
+        issue.title ? interfaceText(' | Title: {title}', { title: issue.title }) : '',
+        issue.reason ? interfaceText(' | Reason: {reason}', { reason: formatLibraryHealthReason(issue.reason) }) : '',
         issue.path || issue.filePath || issue.filename
-          ? ` | local evidence: ${normalizeText(issue.path || issue.filePath || issue.filename)}`
+          ? interfaceText(' | Local evidence: {path}', { path: normalizeText(issue.path || issue.filePath || issue.filename) })
           : '',
-        issue.canAutoFix ? ' | safe fix preview also available' : ' | manual review required',
+        interfaceText(issue.canAutoFix ? ' | safe fix preview also available' : ' | manual review required'),
       ].join(''))
-      : ['- none']),
+      : [interfaceText('- none')]),
     '',
-    'No quarantine state, file movement, peer message, remediation job, search, download, or file mutation was started by this packet.',
+    interfaceText('No quarantine state, file movement, peer message, remediation job, search, download, or file mutation was started by this packet.'),
   ].join('\n');
 };
 

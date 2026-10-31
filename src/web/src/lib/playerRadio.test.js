@@ -4,6 +4,7 @@ import {
   buildPlayerRadioSearchPath,
   getPlayerRadioQueries,
   getPlayerRadioCopyText,
+  getPlayerRadioReasonSource,
 } from './playerRadio';
 
 describe('playerRadio', () => {
@@ -91,6 +92,32 @@ describe('playerRadio', () => {
         searchText: 'Fixture Artist',
       }),
     ]);
+  });
+
+  it('maps generated reason labels through fixed catalog sources and preserves unknown values', () => {
+    const reasons = [
+      'Similar track seed',
+      'Album neighborhood',
+      'Artist and genre seed',
+      'Artist radio seed',
+    ];
+
+    expect(reasons.map(getPlayerRadioReasonSource)).toEqual(reasons);
+    expect(getPlayerRadioReasonSource('adapter supplied reason')).toBe(
+      'adapter supplied reason',
+    );
+    expect(getPlayerRadioCopyText({
+      queries: [{ query: 'Fixture Query', reason: 'adapter supplied reason' }],
+      ready: true,
+      seedLabel: 'Fixture Seed',
+    })).toContain('adapter supplied reason: "Fixture Query"');
+  });
+
+  it('localizes the reachable untitled seed for album-only metadata', () => {
+    const plan = buildPlayerRadioPlan({ album: 'Fixture Album' });
+
+    expect(plan.ready).toBe(true);
+    expect(getPlayerRadioCopyText(plan)).toContain('Smart radio seed: Untitled seed');
   });
 
   it('ignores malformed persisted radio query lists', () => {

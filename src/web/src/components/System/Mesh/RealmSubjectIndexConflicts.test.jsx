@@ -63,6 +63,9 @@ describe('RealmSubjectIndexConflicts', () => {
     );
 
     expect(await screen.findByText('musicbrainz:recording')).toBeInTheDocument();
+    expect(
+      screen.getByText("Subject 'subject-1' has conflicting external id values for 'musicbrainz:recording'."),
+    ).toBeInTheDocument();
     expect(screen.getByText('mbid-a')).toBeInTheDocument();
     expect(
       screen.getByText('realm:scene-realm:subject-index:index-b:r2'),
@@ -83,7 +86,7 @@ describe('RealmSubjectIndexConflicts', () => {
 
     await waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-        expect.stringContaining('DISABLED scene-realm:index-b:r2: mbid-b'),
+        expect.stringContaining('Disabled scene-realm:index-b:r2: mbid-b'),
       );
     });
   });

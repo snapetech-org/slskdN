@@ -1,4 +1,5 @@
 import { interfaceText } from './interfaceLocale';
+import { formatRegionalNumber } from './regionalFormat';
 export const mediaServerAdapters = [
   {
     capabilities: ['Library scan', 'Playlist sync', 'Play history import', 'Rating sync'],
@@ -271,25 +272,132 @@ export const buildMediaServerExecutionContract = ({
   };
 };
 
+const localizeMediaServerSourceText = (value) => {
+  switch (value) {
+    case 'Incomplete':
+      return interfaceText('Incomplete');
+    case 'Aligned':
+      return interfaceText('Aligned');
+    case 'Mapped':
+      return interfaceText('Mapped');
+    case 'Mapping Mismatch':
+      return interfaceText('Mapping Mismatch');
+    case 'Needs Mapping':
+      return interfaceText('Needs Mapping');
+    case 'Ready for live adapter':
+      return interfaceText('Ready for live adapter');
+    case 'Needs setup':
+      return interfaceText('Needs setup');
+    case 'Execution contract ready':
+      return interfaceText('Execution contract ready');
+    case 'Execution contract blocked':
+      return interfaceText('Execution contract blocked');
+    case 'Enter both paths to check whether slskdN and the media server agree.':
+      return interfaceText('Enter both paths to check whether slskdN and the media server agree.');
+    case 'Paths match exactly. A media-server scan can reference the same completed files.':
+      return interfaceText('Paths match exactly. A media-server scan can reference the same completed files.');
+    case 'Remote path mapping translates the slskdN path to the media-server path.':
+      return interfaceText('Remote path mapping translates the slskdN path to the media-server path.');
+    case 'Remote path mapping applies, but the translated path does not match the media-server path.':
+      return interfaceText('Remote path mapping applies, but the translated path does not match the media-server path.');
+    case 'Paths differ and no matching remote path map was provided.':
+      return interfaceText('Paths differ and no matching remote path map was provided.');
+    case 'Base URL configured':
+      return interfaceText('Base URL configured');
+    case 'Token configured':
+      return interfaceText('Token configured');
+    case 'Path mapping ready':
+      return interfaceText('Path mapping ready');
+    case 'Adapter readiness':
+      return interfaceText('Adapter readiness');
+    case 'User mapping configured':
+      return interfaceText('User mapping configured');
+    case 'Confirmation gates required':
+      return interfaceText('Confirmation gates required');
+    case 'Rate limit configured':
+      return interfaceText('Rate limit configured');
+    case 'Dedupe window configured':
+      return interfaceText('Dedupe window configured');
+    case 'Configure the media-server base URL before enabling live scans.':
+      return interfaceText('Configure the media-server base URL before enabling live scans.');
+    case 'Store an API token or app token before any live media-server call.':
+      return interfaceText('Store an API token or app token before any live media-server call.');
+    case 'Add a remote path map or align completed-download and library paths.':
+      return interfaceText('Add a remote path map or align completed-download and library paths.');
+    case 'Complete base URL, token, and path-map readiness before live execution.':
+      return interfaceText('Complete base URL, token, and path-map readiness before live execution.');
+    case 'Configure an explicit media-server user mapping before importing or exporting user-scoped activity.':
+      return interfaceText('Configure an explicit media-server user mapping before importing or exporting user-scoped activity.');
+    case 'Keep confirmation gates enabled before download, scan, scrobble, or file actions execute.':
+      return interfaceText('Keep confirmation gates enabled before download, scan, scrobble, or file actions execute.');
+    case 'Set a positive per-minute limit so media-server calls stay bounded.':
+      return interfaceText('Set a positive per-minute limit so media-server calls stay bounded.');
+    case 'Set a dedupe window so repeated play-history and file-action attempts collapse.':
+      return interfaceText('Set a dedupe window so repeated play-history and file-action attempts collapse.');
+    case 'Play history import':
+      return interfaceText('Play history import');
+    case 'Scrobble and rating export':
+      return interfaceText('Scrobble and rating export');
+    case 'Acquisition queue handoff':
+      return interfaceText('Acquisition queue handoff');
+    case 'Completed file scan':
+      return interfaceText('Completed file scan');
+    case 'Confirmed file actions':
+      return interfaceText('Confirmed file actions');
+    case 'Pull recent plays from the selected media server into browser/server listening intelligence.':
+      return interfaceText('Pull recent plays from the selected media server into browser/server listening intelligence.');
+    case 'Export confirmed local plays or ratings back to the selected media server profile.':
+      return interfaceText('Export confirmed local plays or ratings back to the selected media server profile.');
+    case 'Turn approved listening-intelligence gaps into acquisition queue candidates.':
+      return interfaceText('Turn approved listening-intelligence gaps into acquisition queue candidates.');
+    case 'Ask the selected media server to scan confirmed completed-download paths.':
+      return interfaceText('Ask the selected media server to scan confirmed completed-download paths.');
+    case 'Apply confirmed post-acquisition file actions after media-server visibility is verified.':
+      return interfaceText('Apply confirmed post-acquisition file actions after media-server visibility is verified.');
+    case 'Adapter is not ready.':
+      return interfaceText('Adapter is not ready.');
+    case 'User mapping is required.':
+      return interfaceText('User mapping is required.');
+    case 'Confirmation gate is required.':
+      return interfaceText('Confirmation gate is required.');
+    case 'Rate limit must be positive.':
+      return interfaceText('Rate limit must be positive.');
+    case 'Dedupe window must be positive.':
+      return interfaceText('Dedupe window must be positive.');
+    default:
+      return value;
+  }
+};
+
 export const formatMediaServerSyncReport = (preview) => {
   const lines = [
     interfaceText("slskdN media-server sync review"),
-    `Adapter: ${preview.adapter.label}`,
-    `Status: ${preview.status}`,
-    `Checks: ${preview.readyCount}/${preview.total}`,
-    `Path status: ${preview.pathDiagnostic.status}`,
-    `Path message: ${preview.pathDiagnostic.message}`,
+    interfaceText('Adapter: {name}', { name: preview.adapter.label }),
+    interfaceText('Status: {status}', { status: localizeMediaServerSourceText(preview.status) }),
+    interfaceText('Checks: {ready}/{total}', {
+      ready: formatRegionalNumber(preview.readyCount),
+      total: formatRegionalNumber(preview.total),
+    }),
+    interfaceText('Path status: {status}', {
+      status: localizeMediaServerSourceText(preview.pathDiagnostic.status),
+    }),
+    interfaceText('Path message: {message}', {
+      message: localizeMediaServerSourceText(preview.pathDiagnostic.message),
+    }),
   ];
 
   if (preview.pathDiagnostic.mappedPath) {
-    lines.push(`Mapped path: ${preview.pathDiagnostic.mappedPath}`);
+    lines.push(interfaceText('Mapped path: {path}', { path: preview.pathDiagnostic.mappedPath }));
   }
 
-  lines.push('', 'Checks:');
+  lines.push('', interfaceText('Checks:'));
   preview.checks.forEach((check) => {
-    lines.push(`- ${check.ready ? 'READY' : 'PENDING'}: ${check.label}`);
+    lines.push(interfaceText('- {status}: {label}', {
+      status: interfaceText(check.ready ? 'Ready' : 'Pending'),
+      label: localizeMediaServerSourceText(check.label),
+    }));
     if (!check.ready) {
-      lines.push(`  Action: ${check.action}`);
+      lines.push(interfaceText('  Action: {action}', { action: localizeMediaServerSourceText(check.action) }));
     }
   });
 
@@ -299,33 +407,50 @@ export const formatMediaServerSyncReport = (preview) => {
 export const formatMediaServerExecutionContractReport = (contract) => {
   const lines = [
     interfaceText("slskdN media-server execution contract"),
-    `Adapter: ${contract.adapter?.label || 'Unknown'}`,
-    `Status: ${contract.status}`,
-    `Checks: ${contract.readyCount}/${contract.total}`,
-    `Rate limit: ${contract.rateLimitPerMinute} calls/minute`,
-    `Dedupe window: ${contract.dedupeWindowHours} hours`,
-    `Enabled automations ready: ${contract.enabledReadyCount}/${contract.enabledCount}`,
+    interfaceText('Adapter: {name}', { name: contract.adapter?.label || interfaceText('Unknown') }),
+    interfaceText('Status: {status}', { status: localizeMediaServerSourceText(contract.status) }),
+    interfaceText('Checks: {ready}/{total}', {
+      ready: formatRegionalNumber(contract.readyCount),
+      total: formatRegionalNumber(contract.total),
+    }),
+    interfaceText('Rate limit: {count} calls/minute', {
+      count: formatRegionalNumber(contract.rateLimitPerMinute),
+    }),
+    interfaceText('Dedupe window: {count} hours', {
+      count: formatRegionalNumber(contract.dedupeWindowHours),
+    }),
+    interfaceText('Enabled automations ready: {ready}/{enabled}', {
+      ready: formatRegionalNumber(contract.enabledReadyCount),
+      enabled: formatRegionalNumber(contract.enabledCount),
+    }),
     '',
-    'Contract checks:',
+    interfaceText('Contract checks:'),
   ];
 
   contract.checks.forEach((check) => {
-    lines.push(`- ${check.ready ? 'READY' : 'BLOCKED'}: ${check.label}`);
+    lines.push(interfaceText('- {status}: {label}', {
+      status: interfaceText(check.ready ? 'Ready' : 'Needs attention'),
+      label: localizeMediaServerSourceText(check.label),
+    }));
     if (!check.ready) {
-      lines.push(`  Action: ${check.action}`);
+      lines.push(interfaceText('  Action: {action}', { action: localizeMediaServerSourceText(check.action) }));
     }
   });
 
-  lines.push('', 'Automations:');
+  lines.push('', interfaceText('Automations:'));
   contract.automations.forEach((automation) => {
     lines.push(
-      `- ${automation.enabled ? 'ENABLED' : 'DISABLED'} / ${
-        automation.ready ? 'READY' : 'BLOCKED'
-      }: ${automation.label}`,
+      interfaceText('- {enabled} / {status}: {label}', {
+        enabled: interfaceText(automation.enabled ? 'Enabled' : 'Disabled'),
+        status: interfaceText(automation.ready ? 'Ready' : 'Needs attention'),
+        label: localizeMediaServerSourceText(automation.label),
+      }),
     );
-    lines.push(`  ${automation.description}`);
+    lines.push(interfaceText('  {description}', {
+      description: localizeMediaServerSourceText(automation.description),
+    }));
     automation.blockedReasons.forEach((reason) => {
-      lines.push(`  Blocker: ${reason}`);
+      lines.push(interfaceText('  Blocker: {reason}', { reason: localizeMediaServerSourceText(reason) }));
     });
   });
 

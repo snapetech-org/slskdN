@@ -12,6 +12,10 @@ import {
   formatRealmSubjectIndexConflictReport,
   summarizeRealmSubjectIndexConflicts,
 } from '../../../lib/realmSubjectIndexes';
+import {
+  getRealmSubjectIndexConflictDescriptionPresentation,
+  getRealmSubjectIndexConflictTypePresentation,
+} from '../../../lib/appGeneratedReasonText';
 import React, { useMemo, useState } from 'react';
 import {
   Button,
@@ -206,17 +210,27 @@ const RealmSubjectIndexConflicts = () => {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {conflicts.map((conflict) => (
+                {conflicts.map((conflict) => {
+                  const typeCopy = getRealmSubjectIndexConflictTypePresentation(
+                    get(conflict, 'type', 'Type', 'unknown'),
+                  );
+                  const descriptionCopy = getRealmSubjectIndexConflictDescriptionPresentation(conflict);
+
+                  return (
                   <Table.Row key={get(conflict, 'id', 'Id', get(conflict, 'key', 'Key'))}>
                     <Table.Cell>
                       <Label color="orange">
-                        {get(conflict, 'type', 'Type', 'unknown')}
+                        {typeCopy.source
+                          ? <LocalizedText source={typeCopy.source} values={typeCopy.values} />
+                          : typeCopy.text}
                       </Label>
                       <div>
                         <strong>{get(conflict, 'key', 'Key', '-')}</strong>
                       </div>
                       <div className="integration-muted-copy">
-                        {get(conflict, 'description', 'Description', '-')}
+                        {descriptionCopy.source
+                          ? <LocalizedText source={descriptionCopy.source} values={descriptionCopy.values} />
+                          : descriptionCopy.text}
                       </div>
                     </Table.Cell>
                     <Table.Cell>
@@ -270,7 +284,8 @@ const RealmSubjectIndexConflicts = () => {
                       })}
                     </Table.Cell>
                   </Table.Row>
-                ))}
+                  );
+                })}
               </Table.Body>
             </Table>
           )}

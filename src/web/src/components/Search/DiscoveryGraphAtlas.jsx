@@ -1,5 +1,7 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { localizeDiscoveryGraphNodeType } from '../../lib/discoveryGraphLocale';
+import { formatRegionalNumber } from '../../lib/regionalFormat';
 import React from 'react';
 import { Header, Label, Segment } from 'semantic-ui-react';
 import DiscoveryGraphCanvas from './DiscoveryGraphCanvas';
@@ -45,10 +47,10 @@ const DiscoveryGraphAtlas = ({
       <div style={{ marginBottom: '0.75em' }}>
         {Object.entries(typeCounts).map(([type, count]) => (
           <Label key={type} size="tiny">
-            {type} {count}
+            {localizeDiscoveryGraphNodeType(type)} {formatRegionalNumber(count)}
           </Label>
         ))}
-        <Label size="tiny"><LocalizedText source={"Edges"} />{" "}{visibleEdges.length}</Label>
+        <Label size="tiny"><LocalizedText source={"Edges"} />{" "}{formatRegionalNumber(visibleEdges.length)}</Label>
       </div>
       {sparse ? (
         <p className="discovery-graph-sparse-note">

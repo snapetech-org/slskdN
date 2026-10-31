@@ -138,7 +138,7 @@ describe('discoveryShelf', () => {
     expect(report).toContain('Discovery Shelf Policy Preview');
     expect(report).toContain('Promote candidates: 1');
     expect(report).toContain('Consensus required for destructive actions: yes');
-    expect(report).toContain('Promote preview: Report Track by Fixture Artist (Fixture Album) [rating 5]');
+    expect(report).toContain('- Promote preview: Report Track\n  Artist: Fixture Artist\n  Album: Fixture Album\n  Rating: 5');
   });
 
   it('builds bounded Discovery Inbox promote handoffs', () => {

@@ -1,3 +1,5 @@
+import { interfaceText } from './interfaceLocale';
+
 const normalizeText = (value = '') => String(value).trim();
 
 const unique = (values) => [...new Set(values.filter(Boolean))];
@@ -77,6 +79,36 @@ export const buildPlayerRadioSearchPath = (query) => {
   return normalized ? `/searches?q=${encodeURIComponent(normalized)}` : '/searches';
 };
 
+export const getPlayerRadioReasonSource = (value) => {
+  switch (value) {
+    case 'Similar track seed':
+      return 'Similar track seed';
+    case 'Album neighborhood':
+      return 'Album neighborhood';
+    case 'Artist and genre seed':
+      return 'Artist and genre seed';
+    case 'Artist radio seed':
+      return 'Artist radio seed';
+    default:
+      return value;
+  }
+};
+
+const localizePlayerRadioReason = (value) => {
+  switch (value) {
+    case 'Similar track seed':
+      return interfaceText('Similar track seed');
+    case 'Album neighborhood':
+      return interfaceText('Album neighborhood');
+    case 'Artist and genre seed':
+      return interfaceText('Artist and genre seed');
+    case 'Artist radio seed':
+      return interfaceText('Artist radio seed');
+    default:
+      return value;
+  }
+};
+
 export const getPlayerRadioQueries = (plan = {}, { limit = 3 } = {}) =>
   asArray(plan.queries)
     .map((item) => item.query)
@@ -105,8 +137,14 @@ export const buildPlayerRadioDiscoveryItems = (
 export const getPlayerRadioCopyText = (plan) => {
   if (!plan?.ready) return '';
 
+  const seed = plan.seedLabel === 'Untitled seed'
+    ? interfaceText('Untitled seed')
+    : plan.seedLabel;
   return [
-    `Smart radio seed: ${plan.seedLabel}`,
-    ...asArray(plan.queries).map((item) => `${item.reason}: ${quoteIfNeeded(item.query)}`),
+    interfaceText('Smart radio seed: {seed}', { seed }),
+    ...asArray(plan.queries).map((item) => interfaceText('{reason}: {query}', {
+      query: quoteIfNeeded(item.query),
+      reason: localizePlayerRadioReason(item.reason),
+    })),
   ].join('\n');
 };

@@ -2,6 +2,8 @@ import {
   addDiscoveryInboxItem,
   getDiscoveryInboxItems,
 } from './discoveryInbox';
+import { interfaceText } from './interfaceLocale';
+import { formatRegionalNumber } from './regionalFormat';
 
 export const acquisitionRequestStates = {
   approved: {
@@ -54,6 +56,57 @@ export const acquisitionRequestStates = {
     label: 'Wanted',
     summary: 'Enabled wishlist request with manual download approval.',
   },
+};
+
+const localizeWishlistRequestCopy = (source) => {
+  switch (source) {
+    case 'Approved':
+      return interfaceText('Approved');
+    case 'Automatic':
+      return interfaceText('Automatic');
+    case 'Disabled':
+      return interfaceText('Disabled');
+    case 'Failed':
+      return interfaceText('Failed');
+    case 'Imported':
+      return interfaceText('Imported');
+    case 'Rejected':
+      return interfaceText('Rejected');
+    case 'Review':
+      return interfaceText('Review');
+    case 'Snoozed':
+      return interfaceText('Snoozed');
+    case 'Staged':
+      return interfaceText('Staged');
+    case 'Wanted':
+      return interfaceText('Wanted');
+    case 'Approved in Discovery Inbox for the next acquisition step.':
+      return interfaceText('Approved in Discovery Inbox for the next acquisition step.');
+    case 'Enabled and allowed to auto-download through Wishlist policy.':
+      return interfaceText('Enabled and allowed to auto-download through Wishlist policy.');
+    case 'Saved but not eligible for scheduled wishlist processing.':
+      return interfaceText('Saved but not eligible for scheduled wishlist processing.');
+    case 'A previous acquisition/import attempt failed and needs review.':
+      return interfaceText('A previous acquisition/import attempt failed and needs review.');
+    case 'The request has been imported into the library.':
+      return interfaceText('The request has been imported into the library.');
+    case 'Rejected in Discovery Inbox and suppressed for the same evidence.':
+      return interfaceText('Rejected in Discovery Inbox and suppressed for the same evidence.');
+    case 'Waiting in Discovery Inbox for approval or rejection.':
+      return interfaceText('Waiting in Discovery Inbox for approval or rejection.');
+    case 'Snoozed in Discovery Inbox until later review.':
+      return interfaceText('Snoozed in Discovery Inbox until later review.');
+    case 'Downloaded or prepared for import review.':
+      return interfaceText('Downloaded or prepared for import review.');
+    case 'Enabled wishlist request with manual download approval.':
+      return interfaceText('Enabled wishlist request with manual download approval.');
+    case 'Over quota':
+      return interfaceText('Over quota');
+    case 'Within quota':
+      return interfaceText('Within quota');
+    default:
+      return source;
+  }
 };
 
 const normalizeText = (value) => `${value || ''}`.trim().toLowerCase();
@@ -180,21 +233,27 @@ export const buildWishlistRequestReviewPacket = ({
 
 export const formatWishlistRequestReviewPacket = (packet) => {
   const lines = [
-    'slskdN Wishlist request review',
-    `Generated: ${packet.generatedAt}`,
-    `Requests: ${packet.summary.total}`,
-    `Enabled: ${packet.summary.enabled}`,
-    `Automatic: ${packet.summary.automatic}`,
-    `Needs review: ${packet.summary.reviewCount}`,
-    `Quota: ${packet.summary.quotaStatus} (${packet.summary.quotaRemaining} remaining)`,
+    interfaceText('slskdN Wishlist request review'),
+    interfaceText('Generated: {timestamp}', { timestamp: packet.generatedAt }),
+    interfaceText('Requests: {count}', { count: formatRegionalNumber(packet.summary.total) }),
+    interfaceText('Enabled: {count}', { count: formatRegionalNumber(packet.summary.enabled) }),
+    interfaceText('Automatic: {count}', { count: formatRegionalNumber(packet.summary.automatic) }),
+    interfaceText('Needs review: {count}', { count: formatRegionalNumber(packet.summary.reviewCount) }),
+    interfaceText('Quota: {status} ({count} remaining)', {
+      count: formatRegionalNumber(packet.summary.quotaRemaining),
+      status: localizeWishlistRequestCopy(packet.summary.quotaStatus),
+    }),
     '',
-    'Requests:',
+    interfaceText('Requests:'),
   ];
 
   packet.rows.forEach((row) => {
-    lines.push(
-      `- [${row.state}] ${row.searchText} (${row.enabled ? 'enabled' : 'disabled'}, ${row.autoDownload ? 'automatic' : 'manual'})`,
-    );
+    lines.push(interfaceText('- [{state}] {searchText} ({enabled}, {downloadMode})', {
+      downloadMode: interfaceText(row.autoDownload ? 'Automatic' : 'Manual'),
+      enabled: interfaceText(row.enabled ? 'Enabled' : 'Disabled'),
+      searchText: row.searchText,
+      state: localizeWishlistRequestCopy(row.state),
+    }));
   });
 
   return lines.join('\n');

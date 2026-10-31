@@ -1,6 +1,7 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getTasteRecommendationReasonPresentation } from '../../lib/appGeneratedReasonText';
 // <copyright file="FederatedTasteRecommendationsPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -251,9 +252,16 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                 <List.Description>
                   {recommendation.trustedSourceCount} <LocalizedText source={"trusted sources · score"} />{" "}{Math.round((recommendation.score || 0) * 100)}%
                 </List.Description>
-                {asArray(recommendation.reasons).map((reason) => (
-                  <Label basic key={reason}>{reason}</Label>
-                ))}
+                {asArray(recommendation.reasons).map((reason) => {
+                  const reasonCopy = getTasteRecommendationReasonPresentation(reason);
+                  return (
+                    <Label basic key={reason}>
+                      {reasonCopy.source
+                        ? <LocalizedText source={reasonCopy.source} values={reasonCopy.values} />
+                        : reasonCopy.text}
+                    </Label>
+                  );
+                })}
                 {includeSourceActors && asArray(recommendation.sourceActors).length > 0 && (
                   <div className="search-acquisition-profile-summary">
                     {asArray(recommendation.sourceActors).join(', ')}

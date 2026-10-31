@@ -1,6 +1,14 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import {
+  localizeDiscoveryGraphEvidenceLaneLabel,
+  localizeDiscoveryGraphEdgeType,
+  localizeDiscoveryGraphNodeType,
+  localizeDiscoveryGraphReason,
+  localizeDiscoveryGraphSummary,
+} from '../../lib/discoveryGraphLocale';
 import * as discoveryGraph from '../../lib/discoveryGraph';
+import { formatRegionalNumber } from '../../lib/regionalFormat';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -123,7 +131,7 @@ const DiscoveryGraphModal = ({
             <p style={{ marginTop: 0 }}>
               <strong>{graph.title}</strong>
               <br />
-              {graph.summary}
+              {localizeDiscoveryGraphSummary(graph.summary)}
             </p>
             {availableEdgeTypes.length > 0 ? (
               <div style={{ marginBottom: '1em' }}>
@@ -135,7 +143,7 @@ const DiscoveryGraphModal = ({
                     onClick={() => toggleEdgeType(edgeType)}
                     size="tiny"
                   >
-                    {edgeType}
+                    {localizeDiscoveryGraphEdgeType(edgeType)}
                   </Label>
                 ))}
               </div>
@@ -296,7 +304,7 @@ const DiscoveryGraphModal = ({
             <div style={{ marginBottom: '1em' }}>
               {nodes.map((node) => (
                 <Label key={node.nodeId} size="tiny">
-                  {node.nodeType} {Math.round((node.weight || 0) * 100)}
+                  {localizeDiscoveryGraphNodeType(node.nodeType)}{' '}{formatRegionalNumber(Math.round((node.weight || 0) * 100))}
                 </Label>
               ))}
             </div>
@@ -360,7 +368,7 @@ const DiscoveryGraphModal = ({
                       {(nodeMap[edge.targetNodeId]?.label || edge.targetNodeId)}
                     </List.Header>
                     <List.Description>
-                      {edge.edgeType} · {edge.reason}
+                      {localizeDiscoveryGraphEdgeType(edge.edgeType)} · {localizeDiscoveryGraphReason(edge.reason)}
                       {edge.provenance ? <LocalizedText source={"· {provenance}"} values={{ "provenance": (edge.provenance) }} /> : ''}
                     </List.Description>
                     {edge.scoreComponents &&
@@ -369,7 +377,7 @@ const DiscoveryGraphModal = ({
                         {Object.entries(edge.scoreComponents)
                           .map(
                             ([key, value]) =>
-                              `${key} ${Math.round((value || 0) * 100)}`,
+                              `${localizeDiscoveryGraphEvidenceLaneLabel(key)} ${formatRegionalNumber(Math.round((value || 0) * 100))}`,
                           )
                           .join(' | ')}
                       </List.Description>

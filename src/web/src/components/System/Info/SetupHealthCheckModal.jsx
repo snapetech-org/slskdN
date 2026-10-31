@@ -99,7 +99,7 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
       }),
     [options, state],
   );
-  const report = useMemo(() => formatSetupHealthReport(summary), [summary]);
+  const report = formatSetupHealthReport(summary);
   const groupNames = useMemo(
     () => ['All', ...Object.keys(summary.groups).sort()],
     [summary.groups],

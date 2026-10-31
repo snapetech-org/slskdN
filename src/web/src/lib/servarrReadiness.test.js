@@ -67,8 +67,9 @@ describe('servarrReadiness', () => {
     );
 
     expect(report).toContain('slskdN Servarr compatibility review');
-    expect(report).toContain('Wanted pull: not ready');
-    expect(report).toContain('Completed import: not ready');
+    expect(report).toContain('Wanted pull: Needs attention');
+    expect(report).toContain('Completed import: Needs attention');
+    expect(report).toContain('- Pending: Base URL configured');
     expect(report).toContain('Enable completed import review');
     expect(report).not.toContain('fixture-key');
   });

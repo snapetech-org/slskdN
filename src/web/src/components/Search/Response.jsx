@@ -9,6 +9,7 @@ import {
   buildSearchActionPreview,
   formatSearchActionPreview,
 } from '../../lib/searchActionPreview';
+import { localizeSearchCandidateRankingReason } from '../../lib/searchCandidateRankingCopy';
 import {
   getCommunityQualityLabel,
   getCommunityQualitySummary,
@@ -860,7 +861,7 @@ class Response extends Component {
                     content={candidateRank.reasons?.length > 0
                       ? 'Candidate score: {score}/100. Reasons: {reasons}'
                       : 'Candidate score: {score}/100'}
-                    parameters={{ score: this.formatNumber(candidateRank.score), reasons: candidateRank.reasons?.join(', ') }}
+                    parameters={{ score: this.formatNumber(candidateRank.score), reasons: candidateRank.reasons?.map(localizeSearchCandidateRankingReason).join(', ') }}
                     position="top center"
                     trigger={
                       <Label

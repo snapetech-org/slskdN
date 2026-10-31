@@ -15,7 +15,11 @@ import {
   clearPlaylistTagOrganizationApproval,
   coverArtPolicies,
   formatPlaylistTagOrganizationReport,
+  getPlaylistChangedFieldSource,
+  getPlaylistCoverArtActionSource,
   getPlaylistIntakes,
+  getPlaylistNetworkImpactSource,
+  getPlaylistReplayGainActionPresentation,
   markPlaylistCollectionCreated,
   multiArtistTagPolicies,
   organizationPathTemplates,
@@ -36,6 +40,12 @@ import {
 } from 'semantic-ui-react';
 
 const trackStateColor = (state) => (state === 'Matched' ? 'green' : 'orange');
+
+const ReplayGainAction = ({ action }) => {
+  const presentation = getPlaylistReplayGainActionPresentation(action);
+  if (!presentation) return action;
+  return <LocalizedText source={presentation.source} values={presentation.values} />;
+};
 
 const PlaylistIntake = () => {
   useInterfaceLanguage();
@@ -483,13 +493,17 @@ const PlaylistIntake = () => {
                           </Label>
                         </div>
                         <div className="playlist-intake-impact">
-                          <LocalizedText source={playlist.organizationPlan.networkImpact} />
+                          {getPlaylistNetworkImpactSource(playlist.organizationPlan.networkImpact)
+                            ? <LocalizedText source={getPlaylistNetworkImpactSource(playlist.organizationPlan.networkImpact)} />
+                            : playlist.organizationPlan.networkImpact}
                         </div>
                         <div className="playlist-intake-impact">
-                          {playlist.organizationPlan.coverArtAction}
+                          {getPlaylistCoverArtActionSource(playlist.organizationPlan.coverArtAction)
+                            ? <LocalizedText source={getPlaylistCoverArtActionSource(playlist.organizationPlan.coverArtAction)} />
+                            : playlist.organizationPlan.coverArtAction}
                         </div>
                         <div className="playlist-intake-impact">
-                          {playlist.organizationPlan.replayGainAction}
+                          <ReplayGainAction action={playlist.organizationPlan.replayGainAction} />
                         </div>
                         <div className="playlist-intake-organization-destinations">
                           {playlist.organizationPlan.trackPreviews.map((preview) => (
@@ -500,7 +514,15 @@ const PlaylistIntake = () => {
                               <div>
                                 <strong>{preview.destinationPath}</strong>
                                 <div className="playlist-intake-meta">
-                                  {preview.changedFields.join(', ')}
+                                  {preview.changedFields.map((field, index) => {
+                                    const source = getPlaylistChangedFieldSource(field);
+                                    return (
+                                      <React.Fragment key={`${field}-${index}`}>
+                                        {index > 0 ? ', ' : ''}
+                                        {source ? <LocalizedText source={source} /> : field}
+                                      </React.Fragment>
+                                    );
+                                  })}
                                 </div>
                               </div>
                               <Label basic>

@@ -121,6 +121,7 @@ const AutomationCenter = () => {
     const response = await libraryHealthAPI.startScan(libraryPath);
     const scanId = response?.data?.scanId || response?.scanId || 'unknown';
     const report = buildAutomationExecutionReport(recipe, {
+      libraryPath,
       scanId,
       started: 1,
       summary: `Started Library Health scan ${scanId} for ${libraryPath}.`,

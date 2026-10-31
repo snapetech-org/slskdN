@@ -5,6 +5,7 @@ import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../.
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
 import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getMediaCoreMatchReasonPresentation } from '../../../lib/appGeneratedReasonText';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
 import Button from './MediaCoreButton';
@@ -1811,7 +1812,9 @@ const MediaCore = () => {
                           relaxed
                           style={{ maxHeight: '200px', overflow: 'auto' }}
                         >
-                          {asArray(findSimilarResult.matches).map((match, index) => (
+                          {asArray(findSimilarResult.matches).map((match, index) => {
+                            const reasonCopy = getMediaCoreMatchReasonPresentation(match.reason);
+                            return (
                             <List.Item key={index}>
                               <List.Content>
                                 <List.Header style={{ fontSize: '0.9em' }}>
@@ -1819,11 +1822,15 @@ const MediaCore = () => {
                                 </List.Header>
                                 <List.Description>
                                   <LocalizedText source={"Confidence:"} />{' '}
-                                  {(match.confidence * 100).toFixed(1)}<LocalizedText source={"% | Reason:"} />{" "}{match.reason}
+                                  {(match.confidence * 100).toFixed(1)}<LocalizedText source={"% | Reason:"} />{" "}
+                                  {reasonCopy.source
+                                    ? <LocalizedText source={reasonCopy.source} values={reasonCopy.values} />
+                                    : reasonCopy.text}
                                 </List.Description>
                               </List.Content>
                             </List.Item>
-                          ))}
+                            );
+                          })}
                         </List>
                       )}
                     </div>

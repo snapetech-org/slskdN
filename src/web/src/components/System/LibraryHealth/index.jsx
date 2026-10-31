@@ -11,6 +11,11 @@ import {
   buildLibraryHealthReport,
   buildLibraryHealthSafeFixManifest,
   buildLibraryHealthSearchSeeds,
+  formatLibraryHealthReason,
+  formatLibraryHealthStatus,
+  getLibraryHealthIssueTypeLabel as getIssueTypeLabel,
+  getLibraryHealthSeveritySource,
+  getLibraryHealthStatusSource,
   getLibraryHealthReplacementSearchQueries,
   getLibraryHealthSafeFixIssueIds,
 } from '../../../lib/libraryHealthReport';
@@ -367,29 +372,6 @@ const LibraryHealth = () => {
         return 'grey';
       default:
         return 'grey';
-    }
-  };
-
-  const getIssueTypeLabel = (type) => {
-    switch (type) {
-      case 'SuspectedTranscode':
-        return 'Suspected Transcode';
-      case 'NonCanonicalVariant':
-        return 'Non-Canonical Variant';
-      case 'TrackNotInTaggedRelease':
-        return 'Track Not in Tagged Release';
-      case 'MissingTrackInRelease':
-        return 'Missing Track in Release';
-      case 'CorruptedFile':
-        return 'Corrupted File';
-      case 'MissingMetadata':
-        return 'Missing Metadata';
-      case 'MultipleVariants':
-        return 'Multiple Variants';
-      case 'WrongDuration':
-        return 'Wrong Duration';
-      default:
-        return type;
     }
   };
 
@@ -1116,16 +1098,18 @@ const LibraryHealth = () => {
                           color={getSeverityColor(issue.severity)}
                           size="small"
                         >
-                          <LocalizedText source={issue.severity} />
+                          {getLibraryHealthSeveritySource(issue.severity)
+                            ? <LocalizedText source={getLibraryHealthSeveritySource(issue.severity)} />
+                            : issue.severity}
                         </Label>
                       </Table.Cell>
                       <Table.Cell>{issue.artist || '-'}</Table.Cell>
                       <Table.Cell>{issue.title || '-'}</Table.Cell>
                       <Table.Cell>
-                        <span title={issue.reason}>
-                          {issue.reason?.length > 50
-                            ? issue.reason.slice(0, 50) + '...'
-                            : issue.reason}
+                        <span title={formatLibraryHealthReason(issue.reason)}>
+                          {formatLibraryHealthReason(issue.reason)?.length > 50
+                            ? `${formatLibraryHealthReason(issue.reason).slice(0, 50)}...`
+                            : formatLibraryHealthReason(issue.reason)}
                         </span>
                       </Table.Cell>
                       <Table.Cell>
@@ -1141,7 +1125,13 @@ const LibraryHealth = () => {
                           }
                           size="mini"
                         >
-                          <LocalizedText source={issue.status} />
+                          {getLibraryHealthStatusSource(issue.status)
+                            ? (
+                              <span {...interfaceTextProps(getLibraryHealthStatusSource(issue.status))}>
+                                {formatLibraryHealthStatus(issue.status)}
+                              </span>
+                            )
+                            : issue.status}
                         </Label>
                       </Table.Cell>
                       <Table.Cell textAlign="center">

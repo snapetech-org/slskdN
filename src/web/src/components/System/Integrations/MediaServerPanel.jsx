@@ -44,9 +44,9 @@ const MediaServerPanel = () => {
   const [enabledAutomations, setEnabledAutomations] = useState(
     () => ({ ...defaultMediaServerAutomations }),
   );
-  const [syncReport, setSyncReport] = useState(null);
+  const [syncPreview, setSyncPreview] = useState(null);
   const [pathDiagnostic, setPathDiagnostic] = useState(null);
-  const [contractReport, setContractReport] = useState(null);
+  const [executionContract, setExecutionContract] = useState(null);
 
   const hasAdapters = mediaServerAdapters.length > 0;
   const hasContracts = mediaServerAutomationContracts.length > 0;
@@ -63,7 +63,7 @@ const MediaServerPanel = () => {
     });
 
   const handlePreviewSync = () => {
-    setSyncReport(formatMediaServerSyncReport(getSyncPreview()));
+    setSyncPreview(getSyncPreview());
   };
 
   const handlePathDiagnostic = () => {
@@ -86,8 +86,13 @@ const MediaServerPanel = () => {
       syncPreview: getSyncPreview(),
       userMappingConfigured,
     });
-    setContractReport(formatMediaServerExecutionContractReport(contract));
+    setExecutionContract(contract);
   };
+
+  const syncReport = syncPreview ? formatMediaServerSyncReport(syncPreview) : null;
+  const contractReport = executionContract
+    ? formatMediaServerExecutionContractReport(executionContract)
+    : null;
 
   const updateAutomation = (automationId, enabled) => {
     setEnabledAutomations((current) => ({
@@ -263,18 +268,23 @@ const MediaServerPanel = () => {
             <Form.Group grouped>
               <Header as="h5">
                 <LocalizedText source={"Include automations in the local readiness review"} /></Header>
-              {mediaServerAutomationContracts.map((automation) => (
-                <Form.Checkbox
-                  aria-label={interfaceText("Include {label} in review", { "label": (automation.label) })}
-                  checked={Boolean(enabledAutomations[automation.id])}
-                  id={`media-server-automation-${automation.id}`}
-                  key={automation.id}
-                  label={interfaceText("{label}: {description}", { "label": (automation.label), "description": (automation.description) })}
-                  onChange={(_event, { checked }) =>
-                    updateAutomation(automation.id, checked)
-                  }
-                 {...interfaceTextProps("Include {label} in review")}/>
-              ))}
+              {mediaServerAutomationContracts.map((automation) => {
+                const label = interfaceText(automation.label);
+                const description = interfaceText(automation.description);
+                return (
+                  <Form.Checkbox
+                    aria-label={interfaceText('Include {label} in review', { label })}
+                    checked={Boolean(enabledAutomations[automation.id])}
+                    id={`media-server-automation-${automation.id}`}
+                    key={automation.id}
+                    label={interfaceText('{label}: {description}', { description, label })}
+                    onChange={(_event, { checked }) =>
+                      updateAutomation(automation.id, checked)
+                    }
+                    {...interfaceTextProps('Include {label} in review', { label })}
+                  />
+                );
+              })}
             </Form.Group>
           </section>
         </Form>

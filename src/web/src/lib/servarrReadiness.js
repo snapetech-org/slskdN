@@ -1,3 +1,6 @@
+import { interfaceText } from './interfaceLocale';
+import { formatRegionalNumber } from './regionalFormat';
+
 const hasValue = (value) =>
   value !== undefined && value !== null && String(value).trim() !== '';
 
@@ -52,6 +55,39 @@ export const summarizeServarrReadiness = (checks) => {
   };
 };
 
+const localizeServarrCopy = (value) => {
+  switch (value) {
+    case 'Ready':
+      return interfaceText('Ready');
+    case 'Needs Setup':
+      return interfaceText('Needs Setup');
+    case 'Base URL configured':
+      return interfaceText('Base URL configured');
+    case 'API key configured':
+      return interfaceText('API key configured');
+    case 'Wanted pull enabled':
+      return interfaceText('Wanted pull enabled');
+    case 'Completed import enabled':
+      return interfaceText('Completed import enabled');
+    case 'Remote path mapping sane':
+      return interfaceText('Remote path mapping sane');
+    case 'Lidarr/Radarr/Sonarr-compatible clients need a reachable slskdN URL.':
+      return interfaceText('Lidarr/Radarr/Sonarr-compatible clients need a reachable slskdN URL.');
+    case 'External Servarr apps should use a scoped API key, not an operator session.':
+      return interfaceText('External Servarr apps should use a scoped API key, not an operator session.');
+    case 'Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.':
+      return interfaceText('Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.');
+    case 'Completed download import can hand files back to the Servarr app after review.':
+      return interfaceText('Completed download import can hand files back to the Servarr app after review.');
+    case 'Remote path mapping prevents container path mismatches during import.':
+      return interfaceText('Remote path mapping prevents container path mismatches during import.');
+    case 'Enable completed import review before using move-style import handoff.':
+      return interfaceText('Enable completed import review before using move-style import handoff.');
+    default:
+      return value;
+  }
+};
+
 export const buildServarrCompatibilityPreview = ({
   apiKey = '',
   autoImportCompleted = false,
@@ -92,25 +128,43 @@ export const buildServarrCompatibilityPreview = ({
 
 export const formatServarrCompatibilityReport = (preview) => {
   const lines = [
-    'slskdN Servarr compatibility review',
-    `Status: ${preview.summary.status}`,
-    `Checks: ${preview.summary.ready}/${preview.summary.total}`,
-    `Wanted pull: ${preview.supportsWantedPull ? 'ready' : 'not ready'}`,
-    `Completed import: ${preview.supportsCompletedImport ? 'ready' : 'not ready'}`,
-    `Import mode: ${preview.importMode}`,
+    interfaceText('slskdN Servarr compatibility review'),
+    interfaceText('Status: {status}', { status: localizeServarrCopy(preview.summary.status) }),
+    interfaceText('Checks: {ready}/{total}', {
+      ready: formatRegionalNumber(preview.summary.ready),
+      total: formatRegionalNumber(preview.summary.total),
+    }),
+    interfaceText('Wanted pull: {status}', {
+      status: interfaceText(preview.supportsWantedPull ? 'Ready' : 'Needs attention'),
+    }),
+    interfaceText('Completed import: {status}', {
+      status: interfaceText(preview.supportsCompletedImport ? 'Ready' : 'Needs attention'),
+    }),
+    interfaceText('Import mode: {mode}', {
+      mode: preview.importMode === 'move'
+        ? interfaceText('Move')
+        : preview.importMode === 'copy'
+          ? interfaceText('Copy')
+          : preview.importMode,
+    }),
     '',
-    'Checks:',
+    interfaceText('Checks:'),
   ];
 
   preview.checks.forEach((check) => {
-    lines.push(`- ${check.ready ? 'READY' : 'PENDING'}: ${check.title}`);
+    lines.push(interfaceText('- {status}: {title}', {
+      status: interfaceText(check.ready ? 'Ready' : 'Pending'),
+      title: localizeServarrCopy(check.title),
+    }));
   });
 
-  lines.push('', 'Actions:');
+  lines.push('', interfaceText('Actions:'));
   if (preview.actions.length === 0) {
-    lines.push('- none');
+    lines.push(interfaceText('- none'));
   } else {
-    preview.actions.forEach((action) => lines.push(`- ${action}`));
+    preview.actions.forEach((action) => lines.push(interfaceText('- {action}', {
+      action: localizeServarrCopy(action),
+    })));
   }
 
   return lines.join('\n');
