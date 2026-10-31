@@ -25,4 +25,4 @@ jobs:
       github.event.pull_request.base.ref == 'main'
     permissions:
       contents: read
-    uses: snapetech-org/slskdN/.github/workflows/feature-coherence-validation.yml@dd3e525b1607d4f35a8bb894d71b08ec8c74caff
+    uses: snapetech-org/slskdN/.github/workflows/feature-coherence-validation.yml@4a0b305c03f0f46ccd9ab4e041ea9f62e4d8b38f
