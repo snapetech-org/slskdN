@@ -633,7 +633,7 @@ const Mesh = () => {
                       <List.Header>{user.username || user.Username}</List.Header>
                       <List.Description>
                         <LocalizedText source={"Similarity rating:"} />{' '}
-                        {user.rating ?? user.Rating ?? 'not reported'}
+                        {user.rating ?? user.Rating ?? <LocalizedText source="not reported" />}
                       </List.Description>
                     </List.Content>
                   </List.Item>
@@ -655,9 +655,9 @@ const Mesh = () => {
                     <List.Content>
                       <List.Header>{record.username}</List.Header>
                       <List.Description>
-                        {record.peerId || 'unsigned peer'}, {' '}
-                        {asArray(record.features).join(', ') || 'no features'}, {' '}
-                        <LocalizedText source={"overlay port"} />{" "}{record.overlayPort || 'not advertised'}
+                        {record.peerId || <LocalizedText source="unsigned peer" />}, {' '}
+                        {asArray(record.features).join(', ') || <LocalizedText source="no features" />}, {' '}
+                        <LocalizedText source={"overlay port"} />{" "}{record.overlayPort || <LocalizedText source="not advertised" />}
                       </List.Description>
                     </List.Content>
                   </List.Item>

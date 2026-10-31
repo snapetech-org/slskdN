@@ -22,6 +22,16 @@ describe('LocalizedText', () => {
     vi.unstubAllGlobals();
   });
 
+  it('keeps inherited-property names as ordinary fallback text in a selected locale', async () => {
+    await act(async () => { await setInterfaceLanguage('es'); });
+    for (const source of ['toString', 'constructor', '__proto__', 'hasOwnProperty']) {
+      expect(interfaceText(source)).toBe(source);
+      const view = render(<LocalizedText source={source} />);
+      expect(view.container.textContent).toBe(source);
+      view.unmount();
+    }
+  });
+
   it('isolates interpolated values in Arabic display without changing plain localized text', async () => {
     const source = 'Hide the files inside {directory} while keeping this result open.';
     const directory = 'Music/Artist - Album (2026)';

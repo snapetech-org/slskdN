@@ -1,4 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
+import { NewMessageCount } from "../Shared/LocalizedCounts";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import './MessageStream.css';
@@ -691,7 +692,7 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
               type="button"
              {...interfaceTextProps("Jump to latest")}>
               {newCount > 0
-                ? `↓ ${newCount} new ${newCount === 1 ? 'message' : 'messages'}`
+                ? <NewMessageCount count={newCount} />
                 : <LocalizedText source={"↓ Jump to latest"} />}
             </button>
           )}

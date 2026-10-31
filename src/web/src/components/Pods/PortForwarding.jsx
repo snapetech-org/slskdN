@@ -1,4 +1,4 @@
-import LocalizedText from "../Shared/LocalizedText";
+import LocalizedText, { LocalizedRichText } from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
@@ -926,7 +926,7 @@ class PortForwarding extends Component {
               loading={creatingForwarding}
               onClick={this.handleCreateForwarding}
               primary
-              tooltip={`Open a loopback-only listener on localhost:${createForm.localPort || 'the selected port'} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service.`}
+              tooltip={<LocalizedRichText source="Open a loopback-only listener on localhost:{port} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service." values={{ port: createForm.localPort || <LocalizedText source="the selected port" /> }} />}
             >
               <LocalizedText source={"Start Forwarding"} /></TooltipButton>
           </Modal.Actions>

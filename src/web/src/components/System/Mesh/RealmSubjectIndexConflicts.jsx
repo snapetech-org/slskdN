@@ -1,5 +1,5 @@
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 // <copyright file="RealmSubjectIndexConflicts.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -246,11 +246,12 @@ const RealmSubjectIndexConflicts = () => {
                               </Label>
                               <Label basic>{authorityKey}</Label>
                               <Popup
-                                content={`${disabled ? 'Re-enable' : 'Disable'} this authority locally for review. This only changes browser review state and does not update realm governance.`}
+                                content={<LocalizedText source={disabled ? "Re-enable this authority locally for review. This only changes browser review state and does not update realm governance." : "Disable this authority locally for review. This only changes browser review state and does not update realm governance."} />}
                                 position="top center"
                                 trigger={
                                   <Button
-                                    aria-label={`${disabled ? 'Enable' : 'Disable'} authority ${authorityKey}`}
+                                    {...interfaceTextProps(disabled ? "Enable authority {authorityKey}" : "Disable authority {authorityKey}")}
+                                    aria-label={interfacePresentationText(disabled ? "Enable authority {authorityKey}" : "Disable authority {authorityKey}", { authorityKey })}
                                     onClick={() => toggleAuthority(authorityKey)}
                                     size="mini"
                                   >

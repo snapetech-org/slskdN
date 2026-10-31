@@ -1,3 +1,4 @@
+import { interfaceText } from './interfaceLocale';
 export const mediaServerAdapters = [
   {
     capabilities: ['Library scan', 'Playlist sync', 'Play history import', 'Rating sync'],
@@ -272,7 +273,7 @@ export const buildMediaServerExecutionContract = ({
 
 export const formatMediaServerSyncReport = (preview) => {
   const lines = [
-    'slskdN media-server sync review',
+    interfaceText("slskdN media-server sync review"),
     `Adapter: ${preview.adapter.label}`,
     `Status: ${preview.status}`,
     `Checks: ${preview.readyCount}/${preview.total}`,
@@ -297,7 +298,7 @@ export const formatMediaServerSyncReport = (preview) => {
 
 export const formatMediaServerExecutionContractReport = (contract) => {
   const lines = [
-    'slskdN media-server execution contract',
+    interfaceText("slskdN media-server execution contract"),
     `Adapter: ${contract.adapter?.label || 'Unknown'}`,
     `Status: ${contract.status}`,
     `Checks: ${contract.readyCount}/${contract.total}`,

@@ -1,4 +1,5 @@
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import LocalizedText from "../Shared/LocalizedText";
+import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { usePlayer } from './PlayerContext';
 import React from 'react';
 import { Button, Icon, Popup } from 'semantic-ui-react';
@@ -11,10 +12,10 @@ const PlayCollectionItemButton = ({ item, size = 'small' }) => {
 
   return (
     <Popup
-      content={interfaceText("Play this item through the local stream endpoint and update your now-playing status.")}
+      content={<LocalizedText source={"Play this item through the local stream endpoint and update your now-playing status."} />}
       trigger={
         <Button
-          aria-label={`Play ${item.title || item.fileName || item.contentId || 'track'} in the browser player`}
+          {...interfaceTextProps("Play {track} in the browser player")} aria-label={interfacePresentationText("Play {track} in the browser player", { track: item.title || item.fileName || item.contentId || interfaceText("Track") })}
           data-testid="player-play-item"
           icon
           onClick={() => playItem(item, { replaceQueue: true })}

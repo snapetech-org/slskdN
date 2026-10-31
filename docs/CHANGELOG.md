@@ -22,6 +22,10 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: route additional chat, playback, mesh, confirmation, count,
+  report, and background notification copy through the twelve-locale source
+  path; target translations and review remain pending.
+
 - Unknown API error codes that match JavaScript object property names now use
   the localized fallback instead of breaking error display.
 

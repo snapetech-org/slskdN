@@ -1,3 +1,4 @@
+import { interfaceText } from './interfaceLocale';
 import {
   getLocalStorageItem,
   removeLocalStorageItem,
@@ -203,7 +204,7 @@ export const formatAutomationRunHistoryReport = (
   history = buildAutomationRunHistory(),
 ) => {
   const lines = [
-    'slskdN automation review history',
+    interfaceText("slskdN automation review history"),
     `Entries: ${history.length}`,
     '',
   ];

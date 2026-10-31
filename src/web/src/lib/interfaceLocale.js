@@ -115,9 +115,16 @@ const activateLanguage = (language, { persist = false } = {}) => {
   });
 };
 
-export const getInterfaceTextLanguage = (source, language) => {
+const translationFor = (source, language) => {
   const catalog = catalogCache.get(language) || (language === activeLanguage ? activeCatalog : null);
-  return language !== 'en' && typeof catalog?.[source] === 'string' && catalog[source]
+  return language !== 'en' && catalog && Object.hasOwn(catalog, source) &&
+    typeof catalog[source] === 'string' && catalog[source]
+    ? catalog[source]
+    : undefined;
+};
+
+export const getInterfaceTextLanguage = (source, language) => {
+  return translationFor(source, language)
     ? language
     : 'en';
 };
@@ -127,7 +134,7 @@ export const getInterfaceTextDirection = (source, language) =>
 
 const formatInterfaceText = (source, parameters = {}) => {
   if (typeof source !== 'string') return source;
-  const translated = activeLanguage === 'en' ? source : activeCatalog?.[source] || source;
+  const translated = translationFor(source, activeLanguage) || source;
   return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
     const value = parameters?.[name];
     return typeof value === 'string' || typeof value === 'number'
@@ -139,8 +146,22 @@ const formatInterfaceText = (source, parameters = {}) => {
 export const interfaceText = (source, parameters = {}) =>
   formatInterfaceText(source, parameters);
 
+// Native attribute/dialog text cannot contain <bdi>. Keep isolates at this
+// presentation boundary; ordinary helpers and stored data remain unchanged.
+export const interfacePresentationText = (source, parameters = {}) => {
+  const values = activeLanguage === 'ar'
+    ? Object.fromEntries(Object.entries(parameters).map(([name, value]) => [
+      name,
+      (typeof value === 'string' || typeof value === 'number') && String(value)
+        ? `\u2068${value}\u2069`
+        : value,
+    ]))
+    : parameters;
+  return formatInterfaceText(source, values);
+};
+
 export const interfaceTextProps = (source, parameters = {}) => {
-  const translated = activeLanguage !== 'en' ? activeCatalog?.[source] : undefined;
+  const translated = translationFor(source, activeLanguage);
   const text = formatInterfaceText(source, parameters);
   const unresolved = typeof text === 'string' && /\{[a-zA-Z][a-zA-Z0-9_]*\}/.test(text);
   const props = {
@@ -183,7 +204,7 @@ export const useInterfaceLanguage = () => {
   );
   const language = activeLanguage;
   const t = useCallback((source, parameters) => {
-    const translated = language === 'en' ? source : activeCatalog?.[source] || source;
+    const translated = translationFor(source, language) || source;
     if (!parameters || typeof translated !== 'string') return translated;
     return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
       const value = parameters[name];

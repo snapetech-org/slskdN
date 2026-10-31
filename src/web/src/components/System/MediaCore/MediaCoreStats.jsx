@@ -1,5 +1,5 @@
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
+import { interfacePresentationText, interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 
 
@@ -80,7 +80,7 @@ const MediaCoreStats = () => {
   const handleResetMediaCoreStats = async () => {
     if (
       !confirm(
-        'Are you sure you want to reset all MediaCore statistics? This cannot be undone.',
+        interfacePresentationText("Are you sure you want to reset all MediaCore statistics? This cannot be undone."),
       )
     ) {
       return;

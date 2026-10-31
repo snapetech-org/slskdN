@@ -1,5 +1,5 @@
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 
 
@@ -271,7 +271,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     }
 
     if (
-      !confirm(`Are you sure you want to unpublish pod "${podToUnpublish}"?`)
+      !confirm(interfacePresentationText('Are you sure you want to unpublish pod "{podToUnpublish}"?', { podToUnpublish }))
     ) {
       return;
     }
@@ -373,7 +373,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
     if (
       !confirm(
-        `Are you sure you want to ban member "${membershipPeerId}" from pod "${membershipPodId}"?`,
+        interfacePresentationText('Are you sure you want to ban member "{membershipPeerId}" from pod "{membershipPodId}"?', { membershipPeerId, membershipPodId }),
       )
     ) {
       return;
@@ -433,7 +433,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCleanupMemberships = async () => {
     if (
-      !confirm('Are you sure you want to cleanup expired membership records?')
+      !confirm(interfacePresentationText("Are you sure you want to cleanup expired membership records?"))
     ) {
       return;
     }
@@ -1188,7 +1188,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   const handleDeleteChannel = async (channelId, channelName) => {
     if (
       !confirm(
-        `Are you sure you want to delete the channel "${channelName}"? This action cannot be undone.`,
+        interfacePresentationText('Are you sure you want to delete the channel "{channelName}"? This action cannot be undone.', { channelName }),
       )
     ) {
       return;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useInterfaceLanguage } from '../../lib/interfaceLocale';
 
 const isolateRtlValues = (template, values) => {
@@ -54,3 +54,22 @@ const LocalizedText = ({ as: Element = 'span', source, values, children, ...prop
 };
 
 export default LocalizedText;
+
+// React-node parameters are app-owned presentation fragments; plain opaque
+// values still get their own bidi boundary. Translation text is never markup.
+export const LocalizedRichText = ({ source, values = {} }) => {
+  const { directionFor, languageFor, t } = useInterfaceLanguage();
+  const parts = t(source).split(/(\{[a-zA-Z][a-zA-Z0-9_]*\})/g);
+  return (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {parts.map((part, index) => {
+        const token = /^\{([a-zA-Z][a-zA-Z0-9_]*)\}$/.exec(part);
+        if (!token || !Object.hasOwn(values, token[1])) return <Fragment key={index}>{part}</Fragment>;
+        const value = values[token[1]];
+        return typeof value === 'string' || typeof value === 'number'
+          ? <bdi dir="auto" key={index}>{String(value)}</bdi>
+          : <Fragment key={index}>{value}</Fragment>;
+      })}
+    </span>
+  );
+};

@@ -1,3 +1,4 @@
+import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 
@@ -227,6 +228,7 @@ const detailSummaryStyle = {
 };
 
 const SongIDPanel = ({ disabled }) => {
+  const regionalLocale = useRegionalLocale();
   const { t } = useInterfaceLanguage();
   const { featureGates, ready: featureGatesReady } = useFeatureGates();
   const songIdEnabled = featureGatesReady && isFeatureEnabled(featureGates, 'songId');
@@ -1044,13 +1046,13 @@ const SongIDPanel = ({ disabled }) => {
                       <LocalizedText source={"Confidence"} />{' '}
                       {run.forensicMatrix?.confidenceScore ||
                         run.syntheticAssessment?.confidence ||
-                        'low'}
+                        <LocalizedText source="low" />}
                     </Label>
                   }
                  {...interfaceTextProps("Confidence applies to the synthetic-likelihood readout only. It does not control download decisions when identity is strong.")}/>
                 {run.forensicMatrix?.familyLabel ? (
                   <Popup
-                    content={`Known-family score ${run.forensicMatrix.knownFamilyScore || 0}. This is a hint lane, not a download-control signal.`}
+                    content={<LocalizedText source="Known-family score {score}. This is a hint lane, not a download-control signal." values={{ score: formatRegionalNumber(run.forensicMatrix.knownFamilyScore || 0, undefined, regionalLocale) }} />}
                     position="top left"
                     trigger={
                       <Label size="tiny">

@@ -1,3 +1,4 @@
+import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../lib/apiErrorMessages';
@@ -1461,6 +1462,7 @@ const CsvImportModal = ({ onClose, onImport }) => {
 };
 
 const Wishlist = () => {
+  const regionalLocale = useRegionalLocale();
   useInterfaceLanguage();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -2097,7 +2099,7 @@ const Wishlist = () => {
               <LocalizedText source={"Showing"} /><Label.Detail>
                 {visibleItems.length === 0
                   ? <LocalizedText source={"0/{length}"} values={{ "length": (items.length) }} />
-                  : `${pageStart + 1}-${pageEnd}/${visibleItems.length} of ${items.length}`}
+                  : <LocalizedText source="{start}-{end}/{visible} of {total}" values={{ start: formatRegionalNumber(pageStart + 1, undefined, regionalLocale), end: formatRegionalNumber(pageEnd, undefined, regionalLocale), visible: formatRegionalNumber(visibleItems.length, undefined, regionalLocale), total: formatRegionalNumber(items.length, undefined, regionalLocale) }} />}
               </Label.Detail>
             </Label>
             {pageCount > 1 && (

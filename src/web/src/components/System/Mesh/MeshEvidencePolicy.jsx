@@ -1,8 +1,12 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import { useRegionalLocale } from '../../../lib/regionalFormat';
+import LocalizedText, { LocalizedRichText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import {
   evaluateMeshEvidenceEntries,
   formatMeshEvidenceReviewReport,
+  formatMeshEvidenceReason,
+  getMeshEvidenceReasonSource,
+  getMeshEvidenceReasonValues,
   getMeshEvidencePolicy,
   getMeshEvidencePolicySummary,
   inboundTrustTiers,
@@ -68,6 +72,12 @@ const sampleEvidence = JSON.stringify(
   2,
 );
 
+const MeshEvidenceReason = ({ reason }) => {
+  const regionalLocale = useRegionalLocale();
+  const source = getMeshEvidenceReasonSource(reason);
+  return source ? <LocalizedText source={source} values={getMeshEvidenceReasonValues(reason, regionalLocale)} /> : formatMeshEvidenceReason(reason);
+};
+
 const MeshEvidencePolicy = () => {
   useInterfaceLanguage();
   const [policy, setPolicy] = useState(getMeshEvidencePolicy);
@@ -84,7 +94,7 @@ const MeshEvidencePolicy = () => {
   const toggleOutbound = (evidenceType, enabled) => {
     setPolicy(setMeshEvidenceOutboundEnabled(evidenceType.id, enabled));
     toast.info(
-      `${evidenceType.label} publication ${enabled ? 'enabled' : 'disabled'}`,
+      <LocalizedRichText source={enabled ? "{label} publication enabled" : "{label} publication disabled"} values={{ label: <LocalizedText source={evidenceType.label} /> }} />,
     );
   };
 
@@ -328,7 +338,7 @@ const MeshEvidencePolicy = () => {
                     <List.Description>
                       <LocalizedText source={"Confidence"} />{" "}{entry.confidence}<LocalizedText source={"; witnesses"} />{" "}{entry.witnessCount}<LocalizedText source={"; provenance"} />{" "}{entry.provenance.trustTier}
                       {entry.reasons.length > 0
-                        ? `; rejected because ${entry.reasons.join(', ')}`
+                        ? <LocalizedRichText source="; rejected because {reasons}" values={{ reasons: entry.reasons.map((reason, index) => <React.Fragment key={index}>{index > 0 ? ", " : null}<MeshEvidenceReason reason={reason} /></React.Fragment>) }} />
                         : <LocalizedText source={"; accepted for local use"} />}
                     </List.Description>
                   </List.Content>

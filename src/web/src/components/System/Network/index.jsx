@@ -702,7 +702,7 @@ const Network = ({ theme }) => {
                           onClick={() => handleSync(peer.username)}
                           primary
                           size="mini"
-                          tooltip={`Sync hash data with ${peer.username}. Use this when its sequence is behind yours.`}
+                          tooltip={<LocalizedText source="Sync hash data with {username}. Use this when its sequence is behind yours." values={{ username: peer.username }} />}
                         >
                           <LocalizedText source={"Sync"} /></ShrinkableButton>
                       </Table.Cell>

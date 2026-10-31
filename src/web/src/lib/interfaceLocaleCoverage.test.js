@@ -68,7 +68,7 @@ const isTrueAttribute = (attributes, name) => {
   if (!attribute.initializer) return true;
   return ts.isJsxExpression(attribute.initializer) && attribute.initializer.expression?.kind === ts.SyntaxKind.TrueKeyword;
 };
-const localizedTags = new Set(['LocalizedText', 'LocalizedPopup', 'LocalizedPluralText', 'PlaceholderSegment']);
+const localizedTags = new Set(['LocalizedText', 'LocalizedRichText', 'LocalizedPopup', 'LocalizedPluralText', 'PlaceholderSegment']);
 const catalogDisplayAttributes = new Set([
   'aria-label', 'title', 'alt', 'label', 'tooltip', 'caption', 'content', 'description',
 ]);
@@ -113,10 +113,13 @@ const collectLocalizationReferences = () => {
     };
 
     const visit = (node, localizedAncestor = false) => {
+      if (ts.isPropertyAssignment(node) && node.name.getText(sourceFile) === 'descriptionSource') {
+        staticStrings(node.initializer, values).forEach((source) => add(node, source));
+      }
       if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) {
         const helper = node.expression.text;
         const sourceCount = ['interfaceTextPlural', 'tPlural', 'tp'].includes(helper) ? 2 : 1;
-        if (['interfaceText', 'interfaceTextProps', 'interfaceTextPlural', 't', 'tp', 'tPlural'].includes(helper)) {
+        if (['interfaceText', 'interfacePresentationText', 'interfaceTextProps', 'interfaceTextPlural', 't', 'tp', 'tPlural'].includes(helper)) {
           node.arguments.slice(0, sourceCount).forEach((argument) => {
             staticStrings(argument, values).forEach((value) => add(argument, value));
           });
@@ -135,7 +138,7 @@ const collectLocalizationReferences = () => {
           if (typeof value === 'string') add(attribute, value);
           else staticStrings(value, values).forEach((source) => add(attribute, source));
         }
-        const attributeNames = tag === 'LocalizedText'
+        const attributeNames = ['LocalizedText', 'LocalizedRichText'].includes(tag)
           ? ['source']
           : tag === 'LocalizedPopup'
             ? ['content']
@@ -186,6 +189,13 @@ const localeCatalogs = Object.fromEntries(localeIds.map((locale) => [
   JSON.parse(fs.readFileSync(path.join(localeRoot, `${locale}.json`), 'utf8')),
 ]));
 const { references, rawJsxText } = collectLocalizationReferences();
+// Stable descriptors are resolved at render/copy time, so include their sources
+// explicitly rather than relying on literal helper-call extraction.
+const reasonSourcePath = path.join(sourceRoot, 'lib/meshEvidenceReasonSources.json');
+const reasonSourceText = fs.readFileSync(reasonSourcePath, 'utf8');
+for (const source of Object.values(JSON.parse(reasonSourceText))) {
+  references.push({ source, file: 'src/lib/meshEvidenceReasonSources.json', line: reasonSourceText.slice(0, reasonSourceText.indexOf(JSON.stringify(source))).split('\n').length });
+}
 
 const formatFailures = () => {
   const failures = [];

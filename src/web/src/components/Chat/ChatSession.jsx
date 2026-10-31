@@ -1,4 +1,5 @@
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import LocalizedText from "../Shared/LocalizedText";
+import { interfacePresentationText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import './Chat.css';
 import * as chat from '../../lib/chat';
 import PlaceholderSegment from '../Shared/PlaceholderSegment';
@@ -315,13 +316,13 @@ class ChatSession extends Component {
               />
               {username}
               <TooltipButton
-                aria-label={interfaceText("Delete saved conversation with {username}", { "username": (username) })}
+                {...interfaceTextProps("Delete saved conversation with {username}")} aria-label={interfacePresentationText("Delete saved conversation with {username}", { "username": (username) })}
                 basic
                 className="close-button"
                 compact
                 icon
                 onClick={this.deleteConversation}
-                tooltip={`Delete the saved direct-message conversation with ${username} and remove it from your chat list.`}
+                tooltip={<LocalizedText source="Delete the saved direct-message conversation with {username} and remove it from your chat list." values={{ username }} />}
                {...interfaceTextProps("Delete saved conversation with {username}")}>
                 <Icon color="red" name="close" />
               </TooltipButton>
@@ -344,13 +345,13 @@ class ChatSession extends Component {
             />
             <UserCard username={username}>{username}</UserCard>
               <TooltipButton
-                aria-label={interfaceText("Delete saved conversation with {username}", { "username": (username) })}
+                {...interfaceTextProps("Delete saved conversation with {username}")} aria-label={interfacePresentationText("Delete saved conversation with {username}", { "username": (username) })}
                 basic
                 className="close-button"
                 compact
                 icon
                 onClick={this.deleteConversation}
-                tooltip={`Delete the saved direct-message conversation with ${username} and remove it from your chat list.`}
+                tooltip={<LocalizedText source="Delete the saved direct-message conversation with {username} and remove it from your chat list." values={{ username }} />}
                {...interfaceTextProps("Delete saved conversation with {username}")}>
                 <Icon color="red" name="close" />
               </TooltipButton>

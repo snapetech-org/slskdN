@@ -141,7 +141,7 @@ const Composer = ({
          {...interfaceTextProps("Command suggestions")}>
           {suggestions.map((command, index) => (
             <Popup
-              content={`${command.description} Select to insert ${command.syntax || `/${command.name}`} in the composer.`}
+              content={<>{command.descriptionSource ? <LocalizedText source={command.descriptionSource} /> : command.description}{" "}<LocalizedText source="Select to insert {syntax} in the composer." values={{ syntax: command.syntax || `/${command.name}` }} /></>}
               key={command.name}
               trigger={(
                 <button
@@ -160,7 +160,7 @@ const Composer = ({
                     {command.syntax || `/${command.name}`}
                   </span>
                   <span className="msgv2-composer-suggestion-desc">
-                    {command.description}
+                    {command.descriptionSource ? <LocalizedText source={command.descriptionSource} /> : command.description}
                   </span>
                 </button>
               )}

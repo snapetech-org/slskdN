@@ -1,3 +1,26 @@
+import { formatRegionalNumber } from './regionalFormat';
+import { interfaceText } from './interfaceLocale';
+import meshEvidenceReasonSources from './meshEvidenceReasonSources.json';
+
+export const getMeshEvidenceReasonSource = (reason) => reason &&
+  typeof reason === 'object' && Object.hasOwn(meshEvidenceReasonSources, reason.id)
+  ? meshEvidenceReasonSources[reason.id]
+  : undefined;
+
+export const getMeshEvidenceReasonValues = (reason, locale) => {
+  const parameters = reason?.parameters || {};
+  return ['low-confidence', 'few-witnesses'].includes(reason?.id)
+    ? { ...parameters, minimum: formatRegionalNumber(parameters.minimum, undefined, locale) }
+    : parameters;
+};
+
+export const formatMeshEvidenceReason = (reason) => {
+  const source = getMeshEvidenceReasonSource(reason);
+  // This formatter is also used in copied review reports. Keep those values
+  // plain; the React presentation path uses LocalizedText and <bdi> instead.
+  if (source) return interfaceText(source, getMeshEvidenceReasonValues(reason));
+  return typeof reason === 'string' ? reason : JSON.stringify(reason);
+};
 import {
   getLocalStorageItem,
   removeLocalStorageItem,
@@ -200,35 +223,35 @@ export const evaluateMeshEvidenceEntries = (
     const reasons = [];
 
     if (sanitizedPolicy.inboundTrustTier === 'disabled') {
-      reasons.push('inbound mesh evidence disabled');
+      reasons.push({ id: 'inbound-disabled', parameters: {} });
     }
 
     if (!entry.provenance.signature || !entry.provenance.peerId) {
-      reasons.push('missing signed provenance');
+      reasons.push({ id: 'missing-provenance', parameters: {} });
     }
 
     if (!trustedTiers.has(entry.provenance.trustTier)) {
-      reasons.push(`untrusted provenance tier: ${entry.provenance.trustTier}`);
+      reasons.push({ id: 'untrusted-tier', parameters: { tier: entry.provenance.trustTier } });
     }
 
     if (entry.confidence < sanitizedPolicy.evidenceReview.minimumConfidence) {
-      reasons.push(`confidence below ${sanitizedPolicy.evidenceReview.minimumConfidence}`);
+      reasons.push({ id: 'low-confidence', parameters: { minimum: sanitizedPolicy.evidenceReview.minimumConfidence } });
     }
 
     if (entry.witnessCount < sanitizedPolicy.evidenceReview.minimumWitnesses) {
-      reasons.push(`witness count below ${sanitizedPolicy.evidenceReview.minimumWitnesses}`);
+      reasons.push({ id: 'few-witnesses', parameters: { minimum: sanitizedPolicy.evidenceReview.minimumWitnesses } });
     }
 
     if (entry.containsPath) {
-      reasons.push('contains raw path data');
+      reasons.push({ id: 'contains-path', parameters: {} });
     }
 
     if (entry.containsExactHoldings) {
-      reasons.push('contains exact local holdings');
+      reasons.push({ id: 'exact-holdings', parameters: {} });
     }
 
     if (entry.containsRawListeningHistory) {
-      reasons.push('contains raw listening history');
+      reasons.push({ id: 'raw-history', parameters: {} });
     }
 
     return {
@@ -261,7 +284,7 @@ export const parseMeshEvidenceReviewInput = (value) => {
 
 export const formatMeshEvidenceReviewReport = (review) => {
   const lines = [
-    'slskdN mesh evidence review',
+    interfaceText("slskdN mesh evidence review"),
     `Total: ${review.summary.total}`,
     `Accepted: ${review.summary.accepted}`,
     `Rejected: ${review.summary.rejected}`,
@@ -276,7 +299,7 @@ export const formatMeshEvidenceReviewReport = (review) => {
     lines.push(`Witnesses: ${entry.witnessCount}`);
     lines.push(`Provenance: ${entry.provenance.trustTier} ${entry.provenance.peerId}`);
     if (entry.reasons.length > 0) {
-      lines.push(`Reasons: ${entry.reasons.join('; ')}`);
+      lines.push(`Reasons: ${entry.reasons.map(formatMeshEvidenceReason).join('; ')}`);
     }
     lines.push('');
   });

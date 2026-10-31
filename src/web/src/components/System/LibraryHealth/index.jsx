@@ -1,4 +1,5 @@
 import LocalizedText from "../../Shared/LocalizedText";
+import { AutoFixableIssueCount } from "../../Shared/LocalizedCounts";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 
@@ -923,7 +924,7 @@ const LibraryHealth = () => {
                       <Icon name="wrench" />
                       {selectedAutoFixableCount > 25
                         ? <LocalizedText source={"Queue fixes for {length} of {selectedAutoFixableCount} auto-fixable issues"} values={{ "length": (selectedFixableIssueIds.length), "selectedAutoFixableCount": (selectedAutoFixableCount) }} />
-                        : `Queue fixes for ${selectedFixableIssueIds.length} auto-fixable issue${selectedFixableIssueIds.length === 1 ? '' : 's'}`}
+                        : <AutoFixableIssueCount count={selectedFixableIssueIds.length} />}
                     </Button>
                   )}
                  {...interfaceTextProps("Queue bounded remediation downloads for up to 25 selected auto-fixable issues. This starts the existing download/remediation workflow; use it when you want slskd to attempt a replacement. The original files are not edited by this control.")}/>

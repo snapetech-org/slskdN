@@ -1,3 +1,4 @@
+import { interfaceText } from './interfaceLocale';
 // <copyright file="realmSubjectIndexes.js" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -43,7 +44,7 @@ export const formatRealmSubjectIndexConflictReport = ({
 } = {}) => {
   const conflicts = getRealmSubjectIndexConflicts(report);
   const lines = [
-    'slskdN realm subject-index conflict review',
+    interfaceText("slskdN realm subject-index conflict review"),
     `Realm: ${report.realmId || report.RealmId || '-'}`,
     `Indexes: ${report.indexCount ?? report.IndexCount ?? 0}`,
     `Entries: ${report.entryCount ?? report.EntryCount ?? 0}`,

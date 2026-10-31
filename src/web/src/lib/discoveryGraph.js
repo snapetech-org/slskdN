@@ -1,3 +1,4 @@
+import { interfaceText } from './interfaceLocale';
 import api from './api';
 
 const asObject = (value) =>
@@ -147,7 +148,7 @@ export const buildDiscoveryGraphBranchPlan = ({
 
 export const formatDiscoveryGraphBranchReport = (plan) => {
   const lines = [
-    'slskdN Discovery Graph branch review',
+    interfaceText("slskdN Discovery Graph branch review"),
     `Graph: ${plan.graphTitle}`,
     `Seed: ${plan.seedNodeId || 'unknown'}`,
     `Visible nodes: ${plan.visibleNodeCount}`,
