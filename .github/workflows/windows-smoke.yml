@@ -33,7 +33,7 @@ jobs:
       github.ref == 'refs/heads/main' &&
       ((inputs.action_tag == 'ci' && inputs.release_tag == '') ||
        (inputs.action_tag == 'release' && inputs.release_tag != ''))
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-dotnet"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-dotnet"]}}', github.run_id)) }}
     env:
       DOTNET_VERSION: "10.0.x"
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"

@@ -32,7 +32,7 @@ jobs:
   submit:
     name: Submit Winget PR
     if: github.event_name == 'workflow_dispatch' && github.actor == 'snapetech' && github.ref == 'refs/heads/main' && inputs.action_tag == 'publish-winget' && inputs.runner_pool_tag == 'private'
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-submit"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-submit"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
