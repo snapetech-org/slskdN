@@ -1,9 +1,20 @@
 name: gVisor runner smoke
 
 
-run-name: action:smoke:pool:private
+run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: Run the gVisor smoke check
+        required: true
+        type: choice
+        options: [smoke]
+      runner_pool:
+        description: Required private ephemeral JIT runner pool
+        required: true
+        type: choice
+        options: [private]
 
 permissions: {}
 
