@@ -1,12 +1,23 @@
 # ng-runner-policy: private-jit-only-v1
 name: Local Identity Leak Check
 
+run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
+
 on:
-  push:
-    tags:
-      - '**'
   workflow_dispatch:
 
+    inputs:
+      action:
+        description: Run the private security scan
+        required: true
+        type: choice
+        options:
+          - scan
+      runner_pool:
+        description: Select the private ephemeral runner pool
+        required: true
+        type: choice
+        options: [private]
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: false
@@ -16,7 +27,18 @@ permissions:
 
 jobs:
   pull-request-scan:
-    if: ${{ github.event_name == 'pull_request' }}
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'scan' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.event_name == 'pull_request'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-pull-request-scan"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -52,8 +74,9 @@ jobs:
         run: bash scanner/scripts/check-local-identity-leaks.sh
 
   trusted-ref-scan:
-    if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')) }}
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) }}
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.action == 'scan' && inputs.runner_pool == 'private' && github.ref == 'refs/heads/main'
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-trusted-ref-scan"]}}', github.run_id)) }}
     permissions:
       contents: read
     steps:

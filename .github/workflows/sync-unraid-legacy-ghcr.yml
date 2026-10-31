@@ -3,6 +3,17 @@ name: Sync Unraid GHCR compatibility aliases
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [publish]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
   workflow_run:
     workflows:
       - Build on Tag
@@ -19,13 +30,17 @@ concurrency:
 jobs:
   sync:
     if: >-
-      github.repository == 'snapetech-org/slskdN' &&
-      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
-       (github.event_name == 'workflow_run' &&
-        github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.event == 'push' &&
-        github.event.workflow_run.head_repository.full_name == github.repository &&
-        startsWith(github.event.workflow_run.head_branch, 'build-main-')))
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.repository == 'snapetech-org/slskdN' && ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository && startsWith(github.event.workflow_run.head_branch, 'build-main-')))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-sync"]}}', github.run_id)) }}
     timeout-minutes: 10
     permissions:

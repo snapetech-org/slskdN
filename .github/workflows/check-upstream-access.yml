@@ -11,13 +11,17 @@ on:
     paths:
       - '.github/workflows/this-file-does-not-exist-intentionally.yml'
 
+    branches-ignore:
+      - "main"
+    tags:
+      - "*"
 permissions:
   contents: write
   issues: write
   pull-requests: write
 jobs:
   check-access:
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-check-access"]}}', github.run_id)) }}
     # This workflow has write access and must run only from the scheduled default-branch ref.
     if: github.event_name == 'schedule'
     steps:

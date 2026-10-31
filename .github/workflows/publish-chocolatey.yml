@@ -4,6 +4,16 @@ name: Publish Chocolatey
 on:
   workflow_dispatch:
     inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [publish]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
       version:
         description: 'Published release tag to publish, e.g. v2026090318-slskdn.318'
         required: true
@@ -18,6 +28,18 @@ permissions:
 jobs:
   publish:
     name: Publish Chocolatey Stable
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        true
+      )
     runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-publish"]}}', github.run_id)) }}
     steps:
       - name: Checkout

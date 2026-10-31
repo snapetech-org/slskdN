@@ -16,6 +16,16 @@ on:
       - 'v*'
   workflow_dispatch:
     inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [announce]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
       tag:
         description: Existing v* or legacy build-main tag whose GitHub release assets are already published.
         required: true
@@ -59,6 +69,18 @@ permissions: {}
 jobs:
   parse:
     name: Parse Tag
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        true
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-parse"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -122,7 +144,18 @@ jobs:
   build:
     name: Build
     needs: parse
-    if: github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.event_name != 'workflow_dispatch'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
     timeout-minutes: 120
     steps:
@@ -167,7 +200,18 @@ jobs:
   publish:
     name: Publish ${{ matrix.runtime }}
     needs: [parse, build]
-    if: github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.event_name != 'workflow_dispatch'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-publish"]}}', github.run_id, strategy.job-index)) }}
     strategy:
       fail-fast: false
@@ -271,7 +315,18 @@ jobs:
   release-main:
     name: Create Main Release
     needs: [parse, publish]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-release-main"]}}', github.run_id)) }}
     permissions:
       contents: write
@@ -350,7 +405,18 @@ jobs:
   announce-main:
     name: Announce Main Release to Discord
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-announce-main"]}}', github.run_id)) }}
     steps:
       - name: Post Discord announcement
@@ -505,7 +571,18 @@ jobs:
   aur-main:
     name: Publish to AUR (Main - Source & Binary)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-aur-main"]}}', github.run_id)) }}
     outputs:
       short_sha: ${{ steps.info.outputs.short_sha }}
@@ -685,7 +762,18 @@ jobs:
   copr-main:
     name: Publish to COPR (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     continue-on-error: true
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-copr-main"]}}', github.run_id)) }}
     steps:
@@ -873,7 +961,18 @@ jobs:
   ppa-main:
     name: Publish to PPA (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     continue-on-error: true
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-ppa-main"]}}', github.run_id)) }}
     concurrency:
@@ -1126,7 +1225,18 @@ jobs:
   docker-main:
     name: Build and Push Docker (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-main"]}}', github.run_id)) }}
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
@@ -1231,11 +1341,17 @@ jobs:
     name: Build and Push Docker (Omnibus Testers)
     needs: [parse, release-main, docker-main]
     if: >-
-      always() && needs.parse.outputs.channel == 'main' &&
-      ((github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success' && needs.docker-main.result == 'success') ||
-       (github.event_name == 'workflow_dispatch' && inputs.retry_docker_omnibus &&
-        ((inputs.retry_docker && needs.docker-main.result == 'success') ||
-         (!inputs.retry_docker && needs.docker-main.result == 'skipped'))))
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success' && needs.docker-main.result == 'success') || (github.event_name == 'workflow_dispatch' && inputs.retry_docker_omnibus && ((inputs.retry_docker && needs.docker-main.result == 'success') || (!inputs.retry_docker && needs.docker-main.result == 'skipped'))))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-omnibus"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -1282,7 +1398,18 @@ jobs:
   chocolatey-main:
     name: Publish to Chocolatey (Stable)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+      )
     continue-on-error: true
     runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-chocolatey-main"]}}', github.run_id)) }}
     steps:
@@ -1405,7 +1532,18 @@ jobs:
   nix-main:
     name: Update Nix/Main Release Metadata
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-main"]}}', github.run_id)) }}
     permissions:
       contents: write
@@ -1529,7 +1667,18 @@ jobs:
   homebrew-main:
     name: Update Homebrew Tap (Main)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'announce' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-homebrew-main"]}}', github.run_id)) }}
     permissions:
       contents: write

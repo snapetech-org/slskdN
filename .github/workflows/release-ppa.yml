@@ -6,6 +6,16 @@ on:
     types: [published]
   workflow_dispatch:
     inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [publish]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
       tag:
         description: 'Release tag to upload to PPA'
         required: true
@@ -14,6 +24,18 @@ permissions:
   contents: read
 jobs:
   build-and-upload:
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        true
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-build-and-upload"]}}', github.run_id, strategy.job-index)) }}
     concurrency:
       group: slskdn-ppa-${{ matrix.ubuntu_series }}

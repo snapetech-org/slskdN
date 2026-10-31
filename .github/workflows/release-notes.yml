@@ -2,7 +2,18 @@
 name: Release-note contract
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [publish]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
 concurrency:
   group: ng-release-notes-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
   cancel-in-progress: false
@@ -14,7 +25,18 @@ permissions:
 jobs:
   release-notes:
     name: Validate release-note fragment or explicit opt-out
-    if: github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-release-notes"]}}', github.run_id)) }}
     steps:
       # nosemgrep: yaml.github-actions.security.pull-request-target-code-checkout.pull-request-target-code-checkout -- this checks out only the trusted base SHA; the PR head is fetched as data and never executed.

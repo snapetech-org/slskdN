@@ -3,6 +3,17 @@ name: Windows Smoke
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [smoke]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
   push:
     tags:
       - '**'
@@ -15,6 +26,18 @@ permissions:
 
 jobs:
   dotnet:
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'smoke' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        true
+      )
     runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-dotnet"]}}', github.run_id)) }}
     env:
       DOTNET_VERSION: "10.0.x"
