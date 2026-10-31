@@ -53,8 +53,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
-- Fixed Content ID validation messages now use the selected interface language
-  instead of appearing in English in the MediaCore workflow.
+- Fixed server-returned Content ID and mesh-sync errors plus collection backfill
+  notices now use the selected interface language and report queued downloads;
+  unmatched diagnostics remain unchanged.
 - Advanced search presets and modal actions, Soulseek Native Discovery
   controls, and album completion refresh now explain their effects before use.
 - Selected transfer actions and request details modal controls now explain

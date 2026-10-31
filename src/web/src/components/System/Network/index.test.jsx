@@ -3,6 +3,8 @@
 // </copyright>
 
 import * as slskdnAPI from '../../../lib/slskdn';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { stubLocaleCatalogFetch } from '../../../test/localeCatalogFetchMock';
 import Network from '.';
 import useFeatureGates from '../../Shared/useFeatureGates';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
@@ -36,7 +38,8 @@ vi.mock('react-toastify', () => ({
 }));
 
 describe('Network', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    stubLocaleCatalogFetch(vi);
     jest.clearAllMocks();
     useFeatureGates.mockReturnValue({ featureGates: {}, ready: true });
     Object.defineProperty(navigator, 'clipboard', {
@@ -46,6 +49,9 @@ describe('Network', () => {
       },
     });
     window.localStorage.clear();
+    await act(async () => {
+      await setInterfaceLanguage('en');
+    });
     slskdnAPI.getSlskdnStats.mockResolvedValue({
       backfill: {
         completedToday: 0,
@@ -71,7 +77,10 @@ describe('Network', () => {
     });
   });
 
-  afterEach(() => {
+  afterEach(async () => {
+    await act(async () => {
+      await resetInterfaceLanguage();
+    });
     vi.useRealTimers();
     Object.defineProperty(document, 'hidden', {
       configurable: true,
@@ -154,7 +163,7 @@ describe('Network', () => {
       swarmJobs: [],
     });
     slskdnAPI.triggerMeshSync.mockResolvedValueOnce({
-      error: 'Peer does not support mesh sync',
+      error: 'Failed to sync with peer',
       success: false,
     });
 
@@ -163,9 +172,34 @@ describe('Network', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Sync' }));
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('Peer does not support mesh sync');
+      expect(toast.error).toHaveBeenCalledWith('Failed to sync with peer');
     });
     expect(toast.success).not.toHaveBeenCalledWith('Sync initiated with mesh-peer');
+  });
+
+  it('translates fixed server mesh-sync errors', async () => {
+    await act(async () => {
+      await setInterfaceLanguage('es');
+    });
+    slskdnAPI.getSlskdnStats.mockResolvedValueOnce({
+      capabilities: { features: [], version: 'slskdN' },
+      dht: {},
+      hashDb: {},
+      mesh: { connectedPeerCount: 1, warnings: [] },
+      meshPeers: [{ username: 'mesh-peer' }],
+      swarmJobs: [],
+    });
+    slskdnAPI.triggerMeshSync.mockResolvedValueOnce({
+      error: 'Failed to sync with peer',
+      success: false,
+    });
+
+    render(<Network theme="light" />);
+    fireEvent.click(await screen.findByRole('button', { name: /sincronizar/i }));
+
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('No se pudo sincronizar con el par');
+    });
   });
 
   it('shows success only when the mesh sync result reports success', async () => {

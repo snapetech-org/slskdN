@@ -77,6 +77,11 @@ const fixedServerMessageSources = [
   'Invalid content ID format. Expected: content:<domain>:<type>:<id>',
   'Content not found or inaccessible',
   'Validation failed',
+  'Failed to sync with peer',
+  'Sync failed',
+  'No items to download.',
+  'Queued for download — count: {count}',
+  'Download queue results — queued: {queued}; failed: {failed}',
 ];
 
 const collectLocalizationReferences = () => {
@@ -218,7 +223,7 @@ describe('interface locale coverage', () => {
     expect(missing).toEqual([]);
   });
 
-  it('translates fixed MediaCore validation messages returned by the server', () => {
+  it('translates fixed server result messages in every locale', () => {
     const missing = fixedServerMessageSources.flatMap((source) => localeIds
       .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
       .map((locale) => `${locale}:server:${source}`));

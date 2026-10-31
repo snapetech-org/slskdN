@@ -222,7 +222,11 @@ const Network = ({ theme }) => {
     try {
       const result = await slskdnAPI.triggerMeshSync(username);
       if (!result?.success) {
-        toast.error(result?.error || interfaceText('Failed to sync with {username}', { username }));
+        toast.error(
+          result?.error
+            ? interfaceText(result.error)
+            : interfaceText('Failed to sync with {username}', { username }),
+        );
         return;
       }
 
