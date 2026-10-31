@@ -5,4 +5,4 @@ area: webui
 action: none
 breaking: false
 ---
-The identity-provider sign-in tooltip now follows the selected interface language.
+Identity-provider sign-in and selected-wishlist filter tooltips now follow the selected interface language. Smart Radio search labels and webhook timeout units use clearer localized wording.
