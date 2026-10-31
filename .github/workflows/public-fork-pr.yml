@@ -1,13 +1,10 @@
 name: slskdN fork PR validation
+run-name: >-
+  action:ci:pool:${{ contains(github.event.pull_request.labels.*.name, 'pool:public') && 'public' || 'hybrid' }}:pr-${{ github.event.pull_request.number }}
 on:
   pull_request:
-    branches:
-      - main
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
+    types: [labeled]
+    branches: [main]
 permissions:
   contents: read
 concurrency:
@@ -17,11 +14,15 @@ jobs:
   validate:
     name: Run disposable fork validation
     if: >-
+      github.event.action == 'labeled' &&
+      github.actor == 'snapetech' &&
+      (startsWith(github.event.label.name, 'action:') || startsWith(github.event.label.name, 'pool:')) &&
+      contains(github.event.pull_request.labels.*.name, 'action:ci') &&
+      (contains(github.event.pull_request.labels.*.name, 'pool:public') || contains(github.event.pull_request.labels.*.name, 'pool:hybrid')) &&
       github.event.pull_request.head.repo.fork == true &&
       github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name &&
       github.event.pull_request.base.repo.full_name == 'snapetech-org/slskdN' &&
       github.event.pull_request.base.ref == 'main'
     permissions:
       contents: read
-    uses: snapetech-org/slskdN/.github/workflows/feature-coherence-validation.yml@9453aedd5fab679313e134a4f78013335dacd69d
-
+    uses: snapetech-org/slskdN/.github/workflows/feature-coherence-validation.yml@dd3e525b1607d4f35a8bb894d71b08ec8c74caff
