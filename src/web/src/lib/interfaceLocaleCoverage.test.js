@@ -132,6 +132,12 @@ const collectLocalizationReferences = () => {
           if (typeof value === 'string') add(attribute, value);
           else staticStrings(value, values).forEach((source) => add(attribute, source));
         }
+        const tooltip = attrs.find((item) => ts.isJsxAttribute(item) && item.name.getText() === 'tooltip');
+        if (tooltip) {
+          const value = attributeValue(tooltip);
+          if (typeof value === 'string') add(tooltip, value);
+          else staticStrings(value, values).forEach((source) => add(tooltip, source));
+        }
         if (ts.isJsxOpeningElement(node)) {
           ts.forEachChild(node, (child) => visit(child, localized));
           return;
