@@ -1,12 +1,23 @@
 # ng-runner-policy: private-jit-only-v1
 name: Upload to COPR
 
+
+run-name: >-
+  ${{ format('action:{0}:pool:{1}:tag:{2}:publish-copr', inputs.action, inputs.runner_pool, inputs.release_tag) }}
 on:
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
-      tag:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [publish]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
+      release_tag:
         description: 'Release tag to upload to COPR'
         required: true
 
@@ -14,19 +25,31 @@ permissions:
   contents: read
 jobs:
   build-and-upload:
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private' && inputs.release_tag != ''
+        )
+      ) &&
+      (
+        true
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build-and-upload"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.inputs.tag || github.ref }}
+          ref: ${{ inputs.release_tag }}
 
       - name: Get Version
         id: version
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          INPUT_TAG: ${{ github.event.inputs.tag }}
-          REF_NAME: ${{ github.ref_name }}
+          EVENT_NAME: workflow_dispatch
+          INPUT_TAG: ${{ inputs.release_tag }}
+          REF_NAME: ${{ inputs.release_tag }}
         run: |
           if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
             TAG="$INPUT_TAG"

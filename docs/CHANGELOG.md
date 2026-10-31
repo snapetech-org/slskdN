@@ -43,6 +43,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Localization: translate Soulseek connect/disconnect tooltips and the download-exclusion label in all twelve catalogs; check fixed display and accessibility attributes and retain language metadata.
 - Localization coverage verifies that connection and download-exclusion labels update immediately when the selected language changes.
 - Localization: translate the identity-provider sign-in and selected-wishlist filter tooltips in all twelve catalogs; clarify Smart Radio search labels and webhook timeout units, and check tooltip copy in the coverage test.
+- Security: release tag validation is bounded and shell-safe, and manual publisher recovery is limited to the main-branch workflow.
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.
 - Security: state-changing API requests no longer treat HTTP Basic credentials as a CSRF exemption, preventing ambient browser credentials from authorizing cross-origin actions.
 - Security review documents the container entrypoint's privilege drop, generated filesystem probe, and allowlisted SQLite schema statements beside their scan annotations.
