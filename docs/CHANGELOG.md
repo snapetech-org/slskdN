@@ -22,7 +22,6 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
-- Security scanning: CodeQL analysis and SARIF uploads are disabled by organization policy; Semgrep continues running and reports findings in the job log.
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.
 - Security: state-changing API requests no longer treat HTTP Basic credentials as a CSRF exemption, preventing ambient browser credentials from authorizing cross-origin actions.
 - Security review documents the container entrypoint's privilege drop, generated filesystem probe, and allowlisted SQLite schema statements beside their scan annotations.

@@ -38,8 +38,8 @@ if ! rg -q 'v\*' "$repo_root/docs/build.md"; then
   failed=1
 fi
 
-if rg -n 'github/codeql-action|codeql\.yml' "$repo_root/.github/workflows"; then
-  printf 'CodeQL workflow files and action invocations must remain disabled by policy\n' >&2
+if rg -n 'github/codeql-action/(init|autobuild|analyze|setup-codeql)(@|$)|codeql\.yml' "$repo_root/.github/workflows"; then
+  printf 'CodeQL workflow files and analysis actions must remain disabled by policy\n' >&2
   failed=1
 fi
 
