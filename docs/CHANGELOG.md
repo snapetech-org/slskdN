@@ -23,6 +23,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 ## [Unreleased]
 
 - Localization: translate the Automation Center execute action in Brazilian Portuguese.
+- Localization: translate the MusicBrainz base URL field in Brazilian Portuguese.
 - Localization: fixed Content ID and mesh-sync errors plus collection backfill
   notices now display in the selected interface language with structured
   success/failure counts; unmatched diagnostics remain unchanged.
