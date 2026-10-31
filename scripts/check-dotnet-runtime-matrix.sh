@@ -96,7 +96,7 @@ expect_hosted_workflows() {
     fi
 
     case "$(basename "$workflow_file")" in
-      check-upstream-access.yml|ci.yml|codeql.yml|gvisor-runner-smoke.yml|local-identity-leaks.yml|semgrep-community.yml|trivy-filesystem.yml)
+      check-upstream-access.yml|ci.yml|gvisor-runner-smoke.yml|local-identity-leaks.yml|semgrep-community.yml|trivy-filesystem.yml)
         ;;
       *)
         printf '%s selects a non-hosted runner outside the approved main-only shared route\n' \
@@ -111,7 +111,6 @@ expect_hosted_workflows() {
   for shared_main_workflow in \
     check-upstream-access.yml \
     ci.yml \
-    codeql.yml \
     local-identity-leaks.yml \
     semgrep-community.yml \
     trivy-filesystem.yml; do
@@ -182,7 +181,6 @@ workflow_directory = Path(sys.argv[1])
 shared_main_workflows = {
     "check-upstream-access.yml": 1,
     "ci.yml": 2,
-    "codeql.yml": 1,
     "local-identity-leaks.yml": 1,
     "semgrep-community.yml": 1,
     "trivy-filesystem.yml": 1,

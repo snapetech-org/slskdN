@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: read
-  security-events: write
 
 concurrency:
   group: ng-scan-semgrep-community-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
@@ -41,43 +40,17 @@ jobs:
             -v /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro \
             -v "$GITHUB_WORKSPACE:/src" -w /src semgrep/semgrep:latest \
             semgrep scan --config p/default --metrics=off --jobs 2 \
-              --json-output semgrep.json --sarif-output semgrep.sarif .
+              --json-output semgrep.json .
 
-      - name: Report finding count
+      - name: Report findings
         if: always() && hashFiles('semgrep.json') != ''
         run: |
-          jq -r '"Semgrep CE reported \(.results | length) finding(s). Review semgrep.sarif and the scan log."' semgrep.json
-
-      # Semgrep may omit suppression.status for in-source nosemgrep suppressions.
-      - name: Filter inline-suppressed SARIF results
-        if: always() && hashFiles('semgrep.sarif') != ''
-        run: |
-          inline_suppression_count="$(jq '[.runs[].results[]? | select(((.suppressions // []) | any(.kind == "inSource" and (.status == null or .status == "accepted"))))] | length' semgrep.sarif)"
-          jq '
-            .runs |= map(
-              .results |= map(select(((.suppressions // []) | any(.kind == "inSource" and (.status == null or .status == "accepted"))) | not))
-            )
-          ' semgrep.sarif > semgrep-upload.sarif
-          remaining_inline_suppressions="$(jq '[.runs[].results[]? | select(((.suppressions // []) | any(.kind == "inSource" and (.status == null or .status == "accepted"))))] | length' semgrep-upload.sarif)"
-          if [[ "$remaining_inline_suppressions" != "0" ]]; then
-            printf 'SARIF upload still contains %s accepted in-source suppression(s).\n' "$remaining_inline_suppressions" >&2
-            exit 1
-          fi
-          printf 'Filtered %s accepted in-source suppression(s); uploading %s active finding(s).\n' \
-            "$inline_suppression_count" \
-            "$(jq '[.runs[].results[]?] | length' semgrep-upload.sarif)"
-
-      - name: Upload findings to GitHub code scanning
-        # Upload only against the default branch or a same-repository PR ref.
-        if: >-
-          always() && hashFiles('semgrep-upload.sarif') != '' &&
-          (
-            (github.event_name == 'pull_request' &&
-            github.event.pull_request.head.repo.full_name == github.repository) ||
-            github.ref == 'refs/heads/main'
-          )
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
-        with:
-          sarif_file: semgrep-upload.sarif
-          category: semgrep-ce-community
-
+          jq -r '
+            "Semgrep CE reported \(.results | length) finding(s).",
+            (.results[]? | [
+              (.extra.severity // "UNKNOWN"),
+              "\(.path):\(.start.line // 0)",
+              .check_id,
+              (.extra.message // "")
+            ] | join(" "))
+          ' semgrep.json
