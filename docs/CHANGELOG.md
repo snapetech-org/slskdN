@@ -22,6 +22,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Unknown API error codes that match JavaScript object property names now use
+  the localized fallback instead of breaking error display.
+
 - Localization: correct 110 mixed service labels, day-window controls, French punctuation, and Portuguese transfer labels after a bounded 1,460-cell contextual review across all twelve locales.
 
 - Localization: translate the Automation Center execute action in Brazilian Portuguese.

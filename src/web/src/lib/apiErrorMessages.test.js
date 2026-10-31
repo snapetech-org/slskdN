@@ -31,4 +31,16 @@ describe('getApiErrorMessage', () => {
     expect(getApiErrorMessage(new Error('socket hang up'), { t }, 'Failed to load searches'))
       .toBe('translated:Failed to load searches');
   });
+
+  it.each(['toString', 'constructor', '__proto__', 'hasOwnProperty'])(
+    'treats inherited object key %s as an unknown API code', (code) => {
+      for (const response of [
+        { data: { code } },
+        { headers: { 'x-slskd-error-code': code } },
+      ]) {
+        expect(getApiErrorMessage({ response }, { t: (source) => source }))
+          .toBe('The request failed. Try again.');
+      }
+    },
+  );
 });

@@ -24,7 +24,9 @@ export const getApiErrorMessage = (error, { t }, fallback) => {
   const data = response?.data;
   const code = response?.headers?.['x-slskd-error-code'] ||
     (data && typeof data === 'object' ? data.code : undefined);
-  const source = API_ERROR_TEXT[code];
+  const source = typeof code === 'string' && Object.hasOwn(API_ERROR_TEXT, code)
+    ? API_ERROR_TEXT[code]
+    : undefined;
   if (source) {
     const parameters = data?.parameters && typeof data.parameters === 'object' && !Array.isArray(data.parameters)
       ? data.parameters
