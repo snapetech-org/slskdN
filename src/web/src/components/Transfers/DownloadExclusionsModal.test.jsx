@@ -3,8 +3,10 @@ import * as optionsApi from '../../lib/options';
 import DownloadExclusionsModal from './DownloadExclusionsModal';
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import YAML from 'yaml';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../../lib/interfaceLocale';
+import { stubLocaleCatalogFetch } from '../../test/localeCatalogFetchMock';
 
 vi.mock('../../lib/options', () => ({
   getYaml: vi.fn(),
@@ -20,6 +22,12 @@ vi.mock('react-toastify', () => ({
 describe('DownloadExclusionsModal', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    stubLocaleCatalogFetch(vi);
+  });
+
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
   });
 
   it('loads and saves filters without dropping unrelated YAML', async () => {
@@ -84,5 +92,22 @@ describe('DownloadExclusionsModal', () => {
     expect(screen.getByText(/Remote configuration is disabled/)).toBeInTheDocument();
     expect(screen.getByLabelText('Global download exclusions')).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Save download filters' })).toBeDisabled();
+  });
+
+  it('localizes the exclusion field label and accessible name in Arabic', async () => {
+    await setInterfaceLanguage('ar');
+    render(
+      <DownloadExclusionsModal
+        onClose={vi.fn()}
+        open
+        options={{ remoteConfiguration: true }}
+      />,
+    );
+
+    const field = screen.getByRole('textbox', { name: 'استثناءات التنزيل العالمية' });
+    expect(field).toHaveAttribute('lang', 'ar');
+    expect(field).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByText('مصطلحات محظورة في أسماء الملفات/المسارات')).toHaveAttribute('lang', 'ar');
+    expect(screen.getByText('مصطلحات محظورة في أسماء الملفات/المسارات')).toHaveAttribute('dir', 'rtl');
   });
 });
