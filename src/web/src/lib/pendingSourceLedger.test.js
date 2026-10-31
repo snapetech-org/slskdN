@@ -35,7 +35,7 @@ describe('localization source inventories', () => {
   it('binds current source strings and caller lines to the checked-in code', () => {
     expect(ledger.pendingSourceCount).toBe(ledger.records.length);
     expect(new Set(ledger.records.map((record) => record.id)).size).toBe(ledger.records.length);
-    expect(ledger.records).toHaveLength(436);
+    expect(ledger.records).toHaveLength(446);
     for (const record of ledger.records) {
       expect(digest(record.source)).toBe(record.sourceSha256);
       expect(record.parameters).toEqual([...record.source.matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)].map((match) => match[1]));

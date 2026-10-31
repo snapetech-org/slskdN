@@ -228,12 +228,13 @@ const LibraryHealth = () => {
           }));
           setScanMessageType('positive');
         } else if (status === 'Failed') {
-          setScanMessage(
-            scanData.errorMessage ||
-              interfaceText('Library Health scan failed after checking {files} files.', {
-                files: filesScanned,
-              }),
-          );
+          const serverErrorMessage = scanData.errorMessage === 'Library health scan failed'
+            ? interfaceText('Library health scan failed')
+            : scanData.errorMessage;
+          const fallbackMessage = interfaceText('Library Health scan failed after checking {files} files.', {
+            files: filesScanned,
+          });
+          setScanMessage(serverErrorMessage || fallbackMessage);
           setScanMessageType('negative');
         } else {
           setScanMessage(interfaceText('Library Health scan was cancelled after checking {files} files.', {

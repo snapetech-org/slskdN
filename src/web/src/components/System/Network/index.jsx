@@ -1,5 +1,5 @@
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import * as slskdnAPI from '../../../lib/slskdn';
@@ -38,6 +38,12 @@ const NETWORK_POLL_INTERVAL_MS = 10_000;
 const asArray = (value) => (Array.isArray(value) ? value : []);
 
 const formatBytes = (bytes) => formatLocalizedBytes(bytes, 1);
+
+const localizeKnownMeshSyncError = (message) => {
+  if (message === 'Failed to sync with peer') return interfaceText('Failed to sync with peer');
+  if (message === 'Sync failed') return interfaceText('Sync failed');
+  return message;
+};
 
 const formatTimeAgo = (dateString, locale) => {
   if (!dateString) return <LocalizedText source="Never" />;
@@ -224,15 +230,15 @@ const Network = ({ theme }) => {
       if (!result?.success) {
         toast.error(
           result?.error
-            ? interfaceText(result.error)
-            : interfaceText('Failed to sync with {username}', { username }),
+            ? localizeKnownMeshSyncError(result.error)
+            : interfacePresentationText('Failed to sync with {username}', { username }),
         );
         return;
       }
 
-      toast.success(interfaceText("Sync initiated with {username}", { "username": (username) }));
+      toast.success(interfacePresentationText("Sync initiated with {username}", { "username": (username) }));
     } catch {
-      toast.error(interfaceText("Failed to sync with {username}", { "username": (username) }));
+      toast.error(interfacePresentationText("Failed to sync with {username}", { "username": (username) }));
     } finally {
       setSyncing((previous) => ({ ...previous, [username]: false }));
     }
@@ -247,7 +253,7 @@ const Network = ({ theme }) => {
       });
 
       if (result.error) {
-        toast.error(interfaceText("Backfill failed: {error}", { "error": (result.error) }));
+        toast.error(interfacePresentationText("Backfill failed: {error}", { "error": (result.error) }));
         setBackfillProgress(null);
       } else {
         setBackfillProgress(result);

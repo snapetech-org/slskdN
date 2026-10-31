@@ -55,6 +55,95 @@ const appOwnedRouteAttemptErrors = new Set([
   'Routing backend is not available.',
 ]);
 
+const localizeKnownQuarantineJuryMessage = (message) => {
+  switch (message) {
+    case 'Request not found.':
+      return interfaceText('Request not found.');
+    case 'Route metadata must be opaque and safe.':
+      return interfaceText('Route metadata must be opaque and safe.');
+    case 'Route targets must be selected safe jurors.':
+      return interfaceText('Route targets must be selected safe jurors.');
+    case 'Routing backend is not available.':
+      return interfaceText('Routing backend is not available.');
+    case 'Accepted-by identifier must be opaque and safe.':
+      return interfaceText('Accepted-by identifier must be opaque and safe.');
+    case 'Acceptance note must be 512 characters or fewer.':
+      return interfaceText('Acceptance note must be 512 characters or fewer.');
+    case 'Release-candidate recommendation has already been accepted.':
+      return interfaceText('Release-candidate recommendation has already been accepted.');
+    case 'Waiting for trusted juror quorum.':
+      return interfaceText('Waiting for trusted juror quorum.');
+    case 'Release-candidate recommendation can be accepted manually.':
+      return interfaceText('Release-candidate recommendation can be accepted manually.');
+    case 'Only a release-candidate supermajority can be accepted.':
+      return interfaceText('Only a release-candidate supermajority can be accepted.');
+    case 'Trusted jurors did not reach a supermajority.':
+      return interfaceText('Trusted jurors did not reach a supermajority.');
+    case 'Trusted jurors reached a supermajority recommendation.':
+      return interfaceText('Trusted jurors reached a supermajority recommendation.');
+    default:
+      return message;
+  }
+};
+
+const getQuarantineJuryErrorMessage = (error, fallback) => {
+  const data = error?.response?.data;
+  const messages = Array.isArray(data?.errors)
+    ? data.errors
+    : typeof data?.errorMessage === 'string'
+      ? [data.errorMessage]
+      : typeof data?.message === 'string'
+        ? [data.message]
+        : typeof data?.title === 'string'
+          ? [data.title]
+          : typeof data === 'string'
+            ? [data]
+            : typeof error?.message === 'string'
+              ? [error.message]
+              : [];
+  const visibleMessages = messages
+    .filter((message) => typeof message === 'string' && message.trim())
+    .map(localizeKnownQuarantineJuryMessage);
+
+  return visibleMessages.length > 0
+    ? visibleMessages.join(' ')
+    : fallback;
+};
+
+const QuarantineJuryStatus = ({ acceptanceReason, aggregate }) => {
+  const message = acceptanceReason || aggregate.reason;
+  if (message === 'Release-candidate recommendation has already been accepted.') {
+    return <LocalizedText source="Release-candidate recommendation has already been accepted." />;
+  }
+  if (message === 'Waiting for trusted juror quorum.') {
+    return <LocalizedText source="Waiting for trusted juror quorum." />;
+  }
+  if (message === 'Release-candidate recommendation can be accepted manually.') {
+    return <LocalizedText source="Release-candidate recommendation can be accepted manually." />;
+  }
+  if (message === 'Only a release-candidate supermajority can be accepted.') {
+    return <LocalizedText source="Only a release-candidate supermajority can be accepted." />;
+  }
+  if (message === 'Trusted jurors did not reach a supermajority.') {
+    return <LocalizedText source="Trusted jurors did not reach a supermajority." />;
+  }
+  if (message === 'Trusted jurors reached a supermajority recommendation.') {
+    return <LocalizedText source="Trusted jurors reached a supermajority recommendation." />;
+  }
+  if (message === `Waiting for trusted juror quorum: ${aggregate.totalVerdicts}/${aggregate.requiredVotes}.`) {
+    return (
+      <LocalizedText
+        source="Waiting for trusted juror quorum: {total}/{required}."
+        values={{
+          total: formatRegionalNumber(aggregate.totalVerdicts),
+          required: formatRegionalNumber(aggregate.requiredVotes),
+        }}
+      />
+    );
+  }
+  return message;
+};
+
 const RouteAttemptError = ({ message }) => appOwnedRouteAttemptErrors.has(message)
   ? <LocalizedText source={message} />
   : message || <LocalizedText source={'Failed'} />;
@@ -222,12 +311,10 @@ const QuarantineJury = () => {
       }));
     } catch (loadError) {
       setReview(null);
-      setError(
-        loadError?.response?.data ||
-          loadError?.response?.statusText ||
-          loadError?.message ||
-          interfaceText('Unable to load Quarantine Jury review'),
-      );
+      setError(getQuarantineJuryErrorMessage(
+        loadError,
+        interfaceText('Unable to load Quarantine Jury review'),
+      ));
     } finally {
       setLoadingReview(false);
     }
@@ -252,12 +339,10 @@ const QuarantineJury = () => {
         setReview(null);
       }
     } catch (loadError) {
-      setError(
-        loadError?.response?.data ||
-          loadError?.response?.statusText ||
-          loadError?.message ||
-          interfaceText('Unable to load Quarantine Jury requests'),
-      );
+      setError(getQuarantineJuryErrorMessage(
+        loadError,
+        interfaceText('Unable to load Quarantine Jury requests'),
+      ));
     } finally {
       setLoadingRequests(false);
     }
@@ -288,12 +373,10 @@ const QuarantineJury = () => {
       setMessage(interfaceText("Quarantine Jury route attempt recorded."));
       await loadReview(selectedId);
     } catch (routeError) {
-      setError(
-        routeError?.response?.data?.errorMessage ||
-          routeError?.response?.data ||
-          routeError?.message ||
-          interfaceText('Unable to route Quarantine Jury request'),
-      );
+      setError(getQuarantineJuryErrorMessage(
+        routeError,
+        interfaceText('Unable to route Quarantine Jury request'),
+      ));
     } finally {
       setSaving(false);
     }
@@ -310,14 +393,10 @@ const QuarantineJury = () => {
       setAcceptOpen(false);
       await loadReview(selectedId);
     } catch (acceptError) {
-      const errors = acceptError?.response?.data?.errors;
-      setError(
-        Array.isArray(errors)
-          ? errors.join(' ')
-          : acceptError?.response?.data ||
-              acceptError?.message ||
-              interfaceText('Unable to accept release-candidate recommendation'),
-      );
+      setError(getQuarantineJuryErrorMessage(
+        acceptError,
+        interfaceText('Unable to accept release-candidate recommendation'),
+      ));
     } finally {
       setSaving(false);
     }
@@ -456,7 +535,10 @@ const QuarantineJury = () => {
                   <Header.Content>
                     <LocalizedText source={"Review"} />{" "}{selectedRequest?.id}
                     <Header.Subheader>
-                      {review.acceptanceReason || aggregate.reason}
+                      <QuarantineJuryStatus
+                        acceptanceReason={review.acceptanceReason}
+                        aggregate={aggregate}
+                      />
                     </Header.Subheader>
                   </Header.Content>
                 </Header>
@@ -643,7 +725,12 @@ const QuarantineJury = () => {
                   <>
                     <Message
                       info
-                      content={review.acceptanceReason}
+                      content={(
+                        <QuarantineJuryStatus
+                          acceptanceReason={review.acceptanceReason}
+                          aggregate={aggregate}
+                        />
+                      )}
                     />
                     <Popup
                       content={interfaceText("Open the confirmation dialog. Accepting records a local decision only when the aggregate recommends Release Candidate.")}

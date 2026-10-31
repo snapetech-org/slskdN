@@ -16,10 +16,10 @@
     "vi",
     "id"
   ],
-  "sourceReferenceCount": 10233,
-  "uniqueSourceCount": 5621,
-  "pendingSourceCount": 436,
-  "pendingTargetCells": 5232,
+  "sourceReferenceCount": 10256,
+  "uniqueSourceCount": 5638,
+  "pendingSourceCount": 446,
+  "pendingTargetCells": 5352,
   "records": [
     {
       "id": "ui-copy.056c3431d4ad",
@@ -2688,6 +2688,66 @@
           "lineText": "        status: interfaceText(entry.accepted ? 'ACCEPT' : 'REJECT'),",
           "lineTextSha256": "9f95ac3cfd156350be8f383aff602d9251ed88c4ea10652e2ec0bb3ebab721fa",
           "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.f6838e9f76c8",
+      "source": "Acceptance note must be 512 characters or fewer.",
+      "sourceSha256": "f6838e9f76c87143f7262fd4aa2715f2eb37595847c75221733031113d2e4b1b",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 71,
+          "lineText": "      return interfaceText('Acceptance note must be 512 characters or fewer.');",
+          "lineTextSha256": "8b24f3498bfa3ba45e92528510858d27f52cdcdce0a226c44cd04c1086721ae4",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.7c6b57e795ef",
+      "source": "Accepted-by identifier must be opaque and safe.",
+      "sourceSha256": "7c6b57e795ef0e55c774305e742ff1a67ca60e673aecc8667e767403cda1f8de",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 69,
+          "lineText": "      return interfaceText('Accepted-by identifier must be opaque and safe.');",
+          "lineTextSha256": "ee38f8901e8095bca6d3cadfc4e2189a61e1a3f4efb7109606433a838f4e5d91",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
         }
       ]
     },
@@ -6719,6 +6779,36 @@
       ]
     },
     {
+      "id": "ui-copy.a5419e205b1d",
+      "source": "Library health scan failed",
+      "sourceSha256": "a5419e205b1dc777f46d93d9db392bc1ffe60d32f6e028bd1f8bb55859e3fbc0",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+          "line": 232,
+          "lineText": "            ? interfaceText('Library health scan failed')",
+          "lineTextSha256": "c986881256be97a864a403946a48d39984d027727a99cb2047d90bb82fed268e",
+          "fileSha256": "4d0f50bc63a86f48d81e42b7c5504f33471085a98a2d3447406cd4d696b152f2"
+        }
+      ]
+    },
+    {
       "id": "ui-copy.f4612ca33d97",
       "source": "Library: {path}",
       "sourceSha256": "f4612ca33d9718165623fa76af99044d925ec47b496c6284263dec86e5b8308a",
@@ -8906,6 +8996,43 @@
       ]
     },
     {
+      "id": "ui-copy.14c2832c16b2",
+      "source": "Only a release-candidate supermajority can be accepted.",
+      "sourceSha256": "14c2832c16b217e9ed02e6148c94c34f93cc69ea0cdacaea0fea9c90819cc4cd",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 79,
+          "lineText": "      return interfaceText('Only a release-candidate supermajority can be accepted.');",
+          "lineTextSha256": "592d9b373238cc8ce1774e6a17aac9fd61379dcac60b6d236a593f450e22bda6",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        },
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 125,
+          "lineText": "    return <LocalizedText source=\"Only a release-candidate supermajority can be accepted.\" />;",
+          "lineTextSha256": "25b965b2592bbef8e647de6c9d90dd6a125b39d0911f26e2b148b5141ef64247",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        }
+      ]
+    },
+    {
       "id": "ui-copy.a51965761dcf",
       "source": "Open a loopback-only listener on localhost:{port} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service.",
       "sourceSha256": "a51965761dcf1f9d7dcc46f8e7ed6b092d19bbabe8eed1939f55b7dc9cc2282d",
@@ -10557,6 +10684,80 @@
           "lineText": "      return interfaceText('Release group from MusicBrainz artist graph.');",
           "lineTextSha256": "6c7c7a2d1f239a2c206d393905499d8ca247561195b3d955a9064262e935d013",
           "fileSha256": "f5bb80915d7d1487db7bc26244e6b2f56f12c43e3a0c6fc75a1b7b85cd8d8ccb"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.16119d47df23",
+      "source": "Release-candidate recommendation can be accepted manually.",
+      "sourceSha256": "16119d47df2376a5136c0e85e7bbf713e4b12ae5851cb2f33b13a8010bc5344f",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 77,
+          "lineText": "      return interfaceText('Release-candidate recommendation can be accepted manually.');",
+          "lineTextSha256": "c4be97f2a611cda5ca9fb566fb72bf19766475d9124574b1b308cb1863478f6d",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        },
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 122,
+          "lineText": "    return <LocalizedText source=\"Release-candidate recommendation can be accepted manually.\" />;",
+          "lineTextSha256": "948a7a2c1a7f4b57d6178ec32757177d45320f94df7d3f6924c4644efdf4c4b7",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.1c11ed473136",
+      "source": "Release-candidate recommendation has already been accepted.",
+      "sourceSha256": "1c11ed473136ccc5fa144c30937822ae5bbc82e0dcb9bf5ff4670ac8975cf2d1",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 73,
+          "lineText": "      return interfaceText('Release-candidate recommendation has already been accepted.');",
+          "lineTextSha256": "e2eacea1cf6b4f1ec5156cffd38c3ceff02dae31b7d5bdc5c7d8387b1bd43d81",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        },
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 116,
+          "lineText": "    return <LocalizedText source=\"Release-candidate recommendation has already been accepted.\" />;",
+          "lineTextSha256": "06663d2df3f847e1f02080de15ca765faf86dbae3be3a55e6375c5be6fdbbd54",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
         }
       ]
     },
@@ -13439,6 +13640,80 @@
       ]
     },
     {
+      "id": "ui-copy.334c8138c260",
+      "source": "Trusted jurors did not reach a supermajority.",
+      "sourceSha256": "334c8138c2606c79bf600fe59bc3a628198c9f1fca8f13625fe623622c64df74",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 81,
+          "lineText": "      return interfaceText('Trusted jurors did not reach a supermajority.');",
+          "lineTextSha256": "c2ba694c922fc04204d9363e20f1e176b0250d9d7aeb842bf4d26ca97652ff5c",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        },
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 128,
+          "lineText": "    return <LocalizedText source=\"Trusted jurors did not reach a supermajority.\" />;",
+          "lineTextSha256": "0932704df1ec4387ed79f389cc12b928fc4082a6cdc928c9c047b0c761fe0732",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.043275f676ad",
+      "source": "Trusted jurors reached a supermajority recommendation.",
+      "sourceSha256": "043275f676ad0f53bd2d3167328a3d1503715734097e7e8e0ee3869daa9d3f5e",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 83,
+          "lineText": "      return interfaceText('Trusted jurors reached a supermajority recommendation.');",
+          "lineTextSha256": "d6f1883662b1734c169d4a22f3b5c3ab8e7bf3ce99184e8b4159468e4c5572b7",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        },
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 131,
+          "lineText": "    return <LocalizedText source=\"Trusted jurors reached a supermajority recommendation.\" />;",
+          "lineTextSha256": "364a86b832ace749640e5854d71cfbb66c47043c82a876df162103cedab1bbb8",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        }
+      ]
+    },
+    {
       "id": "ui-copy.fbc817da937d",
       "source": "turn off the analyzer",
       "sourceSha256": "fbc817da937df7c55a901672402c3a3a7d3f03fabe07eb443cb95f97c3387fbf",
@@ -13928,6 +14203,76 @@
           "lineText": "    interfaceText('Visible nodes: {count}', { count: formatRegionalNumber(plan.visibleNodeCount) }),",
           "lineTextSha256": "764dd970b297d48bf62a0c8cb33e0c7cecde76840710be81e95006329d53c7b7",
           "fileSha256": "622f7cdfbfb2852c9ed14dd2053e5a5d8b018e173fa9327739e767f0dd16ee32"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.8ceefc42a96a",
+      "source": "Waiting for trusted juror quorum: {total}/{required}.",
+      "sourceSha256": "8ceefc42a96ab9a6b0c8b72c575a974b020ccbefcd45bbae883f153c6c8f816d",
+      "parameters": [
+        "total",
+        "required"
+      ],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 136,
+          "lineText": "        source=\"Waiting for trusted juror quorum: {total}/{required}.\"",
+          "lineTextSha256": "c0877d4235e2eefcd60bb196f6a9106b866e8fcf03c9595b273a941600ce1fdd",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.d8b74be3692c",
+      "source": "Waiting for trusted juror quorum.",
+      "sourceSha256": "d8b74be3692ca0b4e59f22419145bfe76573d8598b2fb29b3de82b5a181c1f03",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 75,
+          "lineText": "      return interfaceText('Waiting for trusted juror quorum.');",
+          "lineTextSha256": "695e3a881596ca8729c6512bdc221675c306e78cc4b6f6204e402cb654f1d3ff",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
+        },
+        {
+          "path": "src/web/src/components/System/QuarantineJury/index.jsx",
+          "line": 119,
+          "lineText": "    return <LocalizedText source=\"Waiting for trusted juror quorum.\" />;",
+          "lineTextSha256": "d1fbbde2f49bb70fb1a833cc811a65d6e4db9bb45ff5b75565bdb0ed221f5db7",
+          "fileSha256": "28c1be87cb1bca8f1637e94a15763165391ed76f4b45f93fdfd9beace79676d8"
         }
       ]
     },

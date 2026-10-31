@@ -40,6 +40,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Localization: fixed Content ID and mesh-sync errors plus collection backfill
   notices now display in the selected interface language with structured
   success/failure counts; unmatched diagnostics remain unchanged.
+- Localization: translate exact Quarantine Jury status/error messages and the
+  fixed Library Health scan failure; preserve unknown router/server details
+  and isolate dynamic Arabic presentation values.
 - Localization: translate Soulseek connect/disconnect tooltips and the download-exclusion label in all twelve catalogs; check fixed display and accessibility attributes and retain language metadata.
 - Localization coverage verifies that connection and download-exclusion labels update immediately when the selected language changes.
 - Localization: translate the identity-provider sign-in and selected-wishlist filter tooltips in all twelve catalogs; clarify Smart Radio search labels and webhook timeout units, and check tooltip copy in the coverage test.
