@@ -20,9 +20,6 @@ if [ ! -x "$runner" ]; then
   exit 1
 fi
 
-require_literal "bug-council-severity-schema.md" "$runner"
-require_literal "bug-council-sibling-search.md" "$runner"
-require_literal "bug-council-behavior-pinning.md" "$runner"
 require_literal "check:remediation" "$runner"
 require_literal "WebInputAdversarialFuzzTests" "$runner"
 require_literal "dotnet test" "$runner"

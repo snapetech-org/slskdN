@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version/tag to submit, e.g. 2026042900-slskdn.202'
+        description: 'Published release tag to submit, e.g. v2026042900-slskdn.202'
         required: true
         type: string
 
@@ -44,23 +44,25 @@ jobs:
       - name: Download release artifact
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_TAG: ${{ inputs.version }}
           REPOSITORY: ${{ github.repository }}
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          gh release download "$env:RELEASE_VERSION" `
+          gh release download "$env:RELEASE_TAG" `
             --repo "$env:REPOSITORY" `
             --pattern "slskdn-main-win-x64.zip"
 
       - name: Prepare stable manifests
         env:
           RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_TAG: ${{ inputs.version }}
           REPOSITORY: ${{ github.repository }}
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $ReleaseVersion = $env:RELEASE_VERSION
+          $ReleaseTag = $env:RELEASE_TAG
+          $ReleaseVersion = $ReleaseTag -replace '^v', ''
           if ($ReleaseVersion -notmatch '^\d{10}-slskdn\.\d+$') {
             Write-Error "Expected stable release version like 2026042900-slskdn.202"
             exit 1
@@ -70,7 +72,7 @@ jobs:
           } else {
             $WingetVersion = $ReleaseVersion.Replace('-', '.')
           }
-          $InstallerUrl = "https://github.com/$env:REPOSITORY/releases/download/$ReleaseVersion/slskdn-main-win-x64.zip"
+          $InstallerUrl = "https://github.com/$env:REPOSITORY/releases/download/$ReleaseTag/slskdn-main-win-x64.zip"
           $InstallerSha = (Get-FileHash slskdn-main-win-x64.zip -Algorithm SHA256).Hash.ToLowerInvariant()
 
           bash packaging/scripts/update-winget-manifests.sh `
@@ -95,7 +97,7 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $ReleaseVersion = $env:RELEASE_VERSION
+          $ReleaseVersion = $env:RELEASE_VERSION -replace '^v', ''
           if ($ReleaseVersion -notmatch '^\d{10}-slskdn\.\d+$') {
             Write-Error "Expected stable release version like 2026042900-slskdn.202, got '$ReleaseVersion'"
             exit 1

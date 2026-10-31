@@ -36,7 +36,8 @@ jobs:
             exit 1
           fi
           # Convert 0.24.1-slskdn.7 to 0.24.1.slskdn.7
-          VERSION="${TAG//-slskdn/.slskdn}"
+          BASE_TAG="${TAG#v}"
+          VERSION="${BASE_TAG//-slskdn/.slskdn}"
           printf 'tag=%s\nversion=%s\n' "$TAG" "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Wait for Release Asset
@@ -140,7 +141,8 @@ jobs:
             echo "Invalid release tag" >&2
             exit 1
           fi
-          VERSION="${TAG//-slskdn/.slskdn}"
+          BASE_TAG="${TAG#v}"
+          VERSION="${BASE_TAG//-slskdn/.slskdn}"
           printf 'tag=%s\nversion=%s\n' "$TAG" "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Install Build Dependencies

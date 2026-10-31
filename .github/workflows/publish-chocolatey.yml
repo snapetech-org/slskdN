@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version/tag to publish, e.g. 2026090318-slskdn.318'
+        description: 'Published release tag to publish, e.g. v2026090318-slskdn.318'
         required: true
         type: string
 
@@ -27,11 +27,11 @@ jobs:
       - name: Download from Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_TAG: ${{ inputs.version }}
           REPOSITORY: ${{ github.repository }}
         shell: pwsh
         run: |
-          gh release download "$env:RELEASE_VERSION" `
+          gh release download "$env:RELEASE_TAG" `
             --repo "$env:REPOSITORY" `
             --pattern "slskdn-main-win-x64.zip"
 
@@ -39,6 +39,7 @@ jobs:
         env:
           CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
           RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_TAG: ${{ inputs.version }}
           REPOSITORY: ${{ github.repository }}
         shell: pwsh
         run: |
@@ -48,7 +49,7 @@ jobs:
             exit 1
           }
 
-          $Version = $env:RELEASE_VERSION
+          $Version = $env:RELEASE_VERSION -replace '^v', ''
           if ($Version -notmatch '^(\d{10})-slskdn\.(\d+)$') {
             Write-Error "Unsupported stable release version for Chocolatey: $Version"
             exit 1
@@ -58,10 +59,10 @@ jobs:
             Write-Error "Chocolatey package version is not numeric: $PackageVersion"
             exit 1
           }
-          $Url = "https://github.com/$env:REPOSITORY/releases/download/$Version/slskdn-main-win-x64.zip"
+          $Url = "https://github.com/$env:REPOSITORY/releases/download/$env:RELEASE_TAG/slskdn-main-win-x64.zip"
           $Checksum = (Get-FileHash slskdn-main-win-x64.zip -Algorithm SHA256).Hash
           (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<version>.*</version>', "<version>$PackageVersion</version>" | Set-Content packaging/chocolatey/slskdn.nuspec
-          (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>https://github.com/$env:REPOSITORY/releases/tag/$Version</releaseNotes>" | Set-Content packaging/chocolatey/slskdn.nuspec
+          (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>https://github.com/$env:REPOSITORY/releases/tag/$env:RELEASE_TAG</releaseNotes>" | Set-Content packaging/chocolatey/slskdn.nuspec
           (Get-Content packaging/chocolatey/tools/chocolateyinstall.ps1) -replace '\$url\s*=\s*".*"', "`$url = `"$Url`"" | Set-Content packaging/chocolatey/tools/chocolateyinstall.ps1
           (Get-Content packaging/chocolatey/tools/chocolateyinstall.ps1) -replace '\$checksum\s*=\s*".*"', "`$checksum = `"$Checksum`"" | Set-Content packaging/chocolatey/tools/chocolateyinstall.ps1
 

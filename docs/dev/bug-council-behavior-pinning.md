@@ -50,7 +50,7 @@ If a behavior test cannot exist (e.g. the gate is purely structural — file exi
 
 ## What this pattern does not do
 
-This pattern does not catch every behavior regression. It is a forcing function: every fix has at least one named test that asserts the runtime behavior of the fix. Deeper regression coverage is the job of the protocol fuzz harness (Phase 3) and the Roslyn analyzers (Phase 2), which assert properties across all sites at once.
+This pattern does not catch every behavior regression. It is a forcing function: every fix has at least one named test that asserts the runtime behavior of the fix. Broader source and dependency scanning belongs to Semgrep and Trivy; focused fuzz tests preserve hostile inputs that reproduce known failures.
 
 ## Why this matters
 

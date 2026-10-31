@@ -28,8 +28,13 @@ if ! rg -q "build-dev-\*" "$repo_root/.github/workflows/build-on-tag.yml"; then
   failed=1
 fi
 
-if ! rg -q "build-dev-\*" "$repo_root/docs/build.md"; then
-  printf 'docs/build.md must document build-dev-* tag builds\n' >&2
+if ! rg -q "'v\*'" "$repo_root/.github/workflows/build-on-tag.yml"; then
+  printf '.github/workflows/build-on-tag.yml must trigger on v* release tags\n' >&2
+  failed=1
+fi
+
+if ! rg -q 'v\*' "$repo_root/docs/build.md"; then
+  printf 'docs/build.md must document v* stable release tags\n' >&2
   failed=1
 fi
 
@@ -202,7 +207,7 @@ def job_block(workflow, job):
     return match.group(1)
 
 parse_job = job_block(tag_workflow, "parse")
-if "Manual publisher recovery requires an existing build-main-* tag" not in parse_job:
+if "Manual publisher recovery requires an existing v* or build-main-* tag" not in parse_job:
     raise SystemExit("manual publisher recovery must accept only stable build tags")
 if not re.search(r"(?m)^    permissions:\n      contents: read$", parse_job):
     raise SystemExit("manual publisher recovery must use a read-only token to verify the release")

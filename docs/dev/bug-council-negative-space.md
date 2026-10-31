@@ -2,7 +2,7 @@
 
 This document declares slskd's trust boundaries and the validator each one must run, so a missing validator is itself a CI failure. The gate is enforced by `scripts/check-council-negative-space.sh`.
 
-The candidate scanner finds **call sites that exist**. It cannot find **call sites that should exist but don't** — a new public boundary added without a validator. This list inverts the search: each row names a boundary, and CI asserts the validator is in place.
+Semgrep and Trivy handle broad source, dependency, secret, and configuration scans. This gate serves a narrower purpose: it lists known trust boundaries and asserts that their validators remain wired.
 
 slskd already runs many topic-specific check scripts (`check-controller-csrf.sh`, `check-anonymous-endpoints.sh`, `check-path-containment.sh`, etc). The negative-space gate complements those by recording the **boundaries** themselves as a single declarative list, instead of leaving each guard's existence implicit in a separate script.
 
@@ -25,8 +25,8 @@ slskd already runs many topic-specific check scripts (`check-controller-csrf.sh`
 
 ## Removing a boundary
 
-Removing a row requires a council sweep entry explaining why the boundary no longer exists. The remediation baseline must be updated in the same change.
+Removing a row requires a short rationale explaining why the boundary no longer exists. Update the remediation baseline in the same change.
 
 ## Relationship to slskd's existing checks
 
-The existing topic-specific scripts each enforce one boundary's invariants in detail. The negative-space gate is the **inventory** of boundaries — the master list. If a script disappears or stops being run, the negative-space gate still asserts that the validator symbol is in place at the sink. The two layers protect against different failure modes: scripts catch behavior drift, the negative-space gate catches "I deleted the validator and the script that called it in the same change."
+The existing topic-specific scripts enforce boundary invariants in detail. The negative-space gate records the known boundaries; if a script disappears or stops being run, it still asserts that the validator symbol is present at the sink. These focused checks protect the listed fixes and boundaries. They do not replace broad scanning by Semgrep and Trivy.

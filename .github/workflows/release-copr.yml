@@ -37,7 +37,8 @@ jobs:
             echo "Invalid release tag" >&2
             exit 1
           fi
-          VERSION="${TAG//-slskdn/.slskdn}"
+          BASE_TAG="${TAG#v}"
+          VERSION="${BASE_TAG//-slskdn/.slskdn}"
           printf 'tag=%s\nversion=%s\n' "$TAG" "$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Setup .NET

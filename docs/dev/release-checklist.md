@@ -87,8 +87,9 @@ gate does not prove that publishing or platform installer workflows succeeded.
    - `scripts/validate-release-notes.sh <version> /tmp/release-notes.md`
 5. Push the code branch normally if needed.
 6. Only trigger build/release by running the guarded tag helper when explicitly desired:
-   - `scripts/create-release-tag.sh build-main-YYYYMMDDHH-slskdn.N`
-   - `scripts/create-release-tag.sh --hosted-ci-run <run-id> build-main-YYYYMMDDHH-slskdn.N`
+   - `scripts/create-release-tag.sh vYYYYMMDDHH-slskdn.N`
+   - For an older release, `scripts/create-release-tag.sh build-main-YYYYMMDDHH-slskdn.N`
+   - For an older release with accepted CI evidence, `scripts/create-release-tag.sh --hosted-ci-run <run-id> build-main-YYYYMMDDHH-slskdn.N`
    - `scripts/create-release-tag.sh build-dev-MAJOR.MINOR.PATCH.dev.YYYYMMDD.HHMMSS`
 7. After GitHub publishes the release, verify the actual assets:
    - `scripts/verify-release-artifacts.sh <tag>`
@@ -156,8 +157,8 @@ Do not call a build "release-ready" unless:
 
 ## Orphaned-change guard
 
-The release source of truth is the pushed branch head plus a `build-main-*` or
-`build-dev-*` tag created by `scripts/create-release-tag.sh`. The helper refuses
+The release source of truth is the pushed branch head plus a `v*` stable tag or
+legacy `build-main-*`/`build-dev-*` tag created by `scripts/create-release-tag.sh`. The helper refuses
 dirty trees, local-only commits, stale upstream branches, duplicate local/remote
 tags, and invalid tag names before it runs the full release gate and pushes the
 tag. The post-release artifact verifier then checks the downloaded GitHub assets

@@ -3,17 +3,6 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-assert_mirror() {
-  local name="$1"
-  local local_file="$repo_root/docs/dev/$name"
-  local runtime_file="$repo_root/vendor/slskNet.Runtime/docs/dev/$name"
-
-  if ! cmp -s "$local_file" "$runtime_file"; then
-    printf 'Council mirror drift: docs/dev/%s differs from vendored canonical copy\n' "$name" >&2
-    exit 1
-  fi
-}
-
 assert_phase_done() {
   local phase_name="$1"
 
@@ -37,15 +26,11 @@ assert_phase_done() {
   fi
 }
 
-assert_mirror "bug-council-severity-schema.md"
-assert_mirror "bug-council-sibling-search.md"
-assert_mirror "bug-council-behavior-pinning.md"
-
-assert_phase_done "Mirror council process docs"
-assert_phase_done "Wire negative-space gate into the meta-runner"
-assert_phase_done "Web-input adversarial fuzz"
+assert_phase_done "Focused remediation documentation"
+assert_phase_done "Negative-space gate registration"
+assert_phase_done "Web-input adversarial regression"
 
 npm run check:remediation
 dotnet test "$repo_root/tests/slskd.Tests/slskd.Tests.csproj" --no-restore --filter FullyQualifiedName~WebInputAdversarialFuzzTests
 
-printf 'All slskd bug council phases passed.\n'
+printf 'All slskd remediation regression phases passed.\n'

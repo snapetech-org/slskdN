@@ -1,9 +1,10 @@
 # ng-runner-policy: private-jit-only-v1
 name: Build on Tag
 
-# Trigger: push tag matching build-main-* or build-dev-*
+# Trigger: push a v* stable release tag or a legacy build-main-*/build-dev-* tag.
 #
 # Examples:
+#   git tag v0.24.3-slskdn.44 && git push origin $_
 #   git tag build-main-0.24.3-slskdn.44 && git push origin $_
 #   git tag build-dev-0.24.3-dev.20260505 && git push origin $_
 
@@ -12,10 +13,11 @@ on:
     tags:
       - 'build-main-*'
       - 'build-dev-*'
+      - 'v*'
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing build-main tag whose GitHub release assets are already published.
+        description: Existing v* or legacy build-main tag whose GitHub release assets are already published.
         required: true
         type: string
       retry_aur:
@@ -63,6 +65,7 @@ jobs:
     outputs:
       channel: ${{ steps.parse.outputs.channel }}
       version: ${{ steps.parse.outputs.version }}
+      release_tag: ${{ steps.parse.outputs.release_tag }}
     steps:
       - name: Parse Tag
         id: parse
@@ -80,8 +83,8 @@ jobs:
           echo "Tag: $TAG"
 
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ ]]; then
-              echo "::error::Manual publisher recovery requires an existing build-main-* tag"
+            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ && ! "$TAG" =~ ^v[0-9].*$ ]]; then
+              echo "::error::Manual publisher recovery requires an existing v* or build-main-* tag"
               exit 1
             fi
             if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
@@ -90,26 +93,31 @@ jobs:
             fi
           fi
           
-          # Extract channel and version from tag
-          # Format: build-main-<version> or build-dev-<version>
+          # Extract channel, logical version, and published release tag.
           if [[ "$TAG" =~ ^build-(main|dev)-(.+)$ ]]; then
             CHANNEL="${BASH_REMATCH[1]}"
             VERSION="${BASH_REMATCH[2]}"
+            RELEASE_TAG="$VERSION"
+          elif [[ "$TAG" =~ ^v((([0-9]+\.[0-9]+\.[0-9]+)|([0-9]{8,10}))-slskdn\.[0-9]+)$ ]]; then
+            CHANNEL=main
+            VERSION="${BASH_REMATCH[1]}"
+            RELEASE_TAG="$TAG"
           else
-            echo "::error::Invalid tag format. Expected: build-main-<version> or build-dev-<version>"
+            echo "::error::Invalid tag format. Expected v<stable-version>, build-main-<version>, or build-dev-<version>."
             exit 1
           fi
           
           echo "Channel: $CHANNEL"
           echo "Version: $VERSION"
 
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && ! gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null; then
-            echo "::error::Manual publisher recovery requires an existing published release for $TAG"
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null; then
+            echo "::error::Manual publisher recovery requires an existing published release for $RELEASE_TAG"
             exit 1
           fi
           
           echo "channel=$CHANNEL" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "release_tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
 
   build:
     name: Build
@@ -313,7 +321,7 @@ jobs:
       - name: Create Main Release
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
-          tag_name: ${{ needs.parse.outputs.version }}
+          tag_name: ${{ needs.parse.outputs.release_tag }}
           name: "🔋 slskdN ${{ needs.parse.outputs.version }} - The Batteries-Included Fork"
           body_path: release/RELEASE_NOTES.md
           prerelease: false
@@ -348,7 +356,7 @@ jobs:
       - name: Post Discord announcement
         env:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
-          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.version }}
+          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}
           VERSION: ${{ needs.parse.outputs.version }}
           TRIGGER_TAG: ${{ github.ref_name }}
           RELEASE_BODY: ${{ needs.release-main.outputs.release_body }}
@@ -402,7 +410,7 @@ jobs:
           MATRIX_BASE_URL: https://matrix.timeways.net
           MATRIX_ROOM_ID: '!feVqoCPCPPaCQmTCEE:timeways.net'
           MATRIX_PROJECT_KEY: slskdn-main
-          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.version }}
+          RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}
           VERSION: ${{ needs.parse.outputs.version }}
           TRIGGER_TAG: ${{ github.ref_name }}
         run: |
@@ -518,7 +526,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Download binary for slskdn-bin package
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
 
@@ -690,7 +698,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
 
@@ -881,7 +889,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
           unzip slskdn-main-linux-glibc-x64.zip -d publish-linux-x64
@@ -1136,7 +1144,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-linux-glibc-x64.zip"
 
@@ -1285,7 +1293,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" `
+          gh release download "${{ needs.parse.outputs.release_tag }}" `
             --repo ${{ github.repository }} `
             --pattern "slskdn-main-win-x64.zip"
 
@@ -1417,7 +1425,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-*.zip"
           
@@ -1530,7 +1538,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download "${{ needs.parse.outputs.version }}" \
+          gh release download "${{ needs.parse.outputs.release_tag }}" \
             --repo ${{ github.repository }} \
             --pattern "slskdn-main-*.zip"
 
