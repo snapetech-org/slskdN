@@ -1,6 +1,15 @@
+# packer-windows-jit-v1
 # ng-runner-policy: private-jit-only-v1
 name: Windows Smoke
 
+
+run-name: >-
+  ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:smoke:pool:private:tag:{0}', github.ref_name) ||
+      github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'smoke', inputs.runner_pool || 'private', github.ref_name) ||
+      github.event_name == 'workflow_dispatch' &&
+      format('action:{0}:pool:{1}', inputs.action || 'smoke', inputs.runner_pool || 'private') || format('action:smoke:pool:private') }}
 on:
   workflow_dispatch:
     inputs:
@@ -14,9 +23,7 @@ on:
         type: choice
         options: [private]
         required: true
-  push:
-    tags:
-      - '**'
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: false
@@ -38,7 +45,7 @@ jobs:
       (
         true
       )
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-dotnet"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-dotnet"]}}', github.run_id)) }}
     env:
       DOTNET_VERSION: "10.0.x"
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"

@@ -1,20 +1,15 @@
 # ng-runner-policy: private-jit-only-v1
 name: Check Upstream Access
 
+
+run-name: >-
+  ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:ci:pool:private:tag:{0}', github.ref_name) || format('action:ci:pool:private') }}
 on:
   schedule:
     # Run daily at 9am UTC (polite, not aggressive)
     - cron: '0 9 * * *'
-  push:
-    # Only here to prevent GitHub from showing "failed" on workflow file changes
-    # This path will never match, so push events never actually run
-    paths:
-      - '.github/workflows/this-file-does-not-exist-intentionally.yml'
 
-    branches-ignore:
-      - "main"
-    tags:
-      - "*"
 permissions:
   contents: write
   issues: write
@@ -168,4 +163,3 @@ jobs:
               echo "Time to submit those upstream bug fixes!" >> $GITHUB_STEP_SUMMARY
             fi
           fi
-

@@ -1,6 +1,12 @@
 # ng-runner-policy: private-jit-only-v1
 name: Sync Unraid GHCR compatibility aliases
 
+
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'sync', inputs.runner_pool || 'private', github.ref_name) ||
+      github.event_name == 'workflow_dispatch' &&
+      format('action:{0}:pool:{1}', inputs.action || 'sync', inputs.runner_pool || 'private') || format('action:publish:pool:private') }}
 on:
   workflow_dispatch:
     inputs:

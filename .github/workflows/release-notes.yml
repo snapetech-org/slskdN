@@ -1,6 +1,12 @@
 # ng-runner-policy: private-jit-only-v1
 name: Release-note contract
 
+
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:{0}:pool:{1}:tag:{2}:release-notes', inputs.action || 'release', inputs.runner_pool || 'private', github.ref_name) ||
+      github.event_name == 'workflow_dispatch' &&
+      format('action:{0}:pool:{1}:release-notes', inputs.action || 'release', inputs.runner_pool || 'private') || format('action:publish:pool:private:release-notes') }}
 on:
   workflow_dispatch:
     inputs:
@@ -64,4 +70,3 @@ jobs:
             --head "$HEAD_SHA" \
             --pr-body-env PR_BODY \
             --summary-file "$GITHUB_STEP_SUMMARY"
-

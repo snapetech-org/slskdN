@@ -1,9 +1,10 @@
 # ng-runner-policy: private-jit-only-v1
 name: Release Linux Packages
 
+
+run-name: >-
+  ${{ format('action:{0}:pool:{1}:tag:{2}:publish-linux', inputs.action, inputs.runner_pool, inputs.release_tag) }}
 on:
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
       action:
@@ -16,7 +17,7 @@ on:
         type: choice
         options: [private]
         required: true
-      tag:
+      release_tag:
         description: 'Release tag to build'
         required: true
 
@@ -30,7 +31,7 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'private' && inputs.release_tag != ''
         )
       ) &&
       (
@@ -46,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.inputs.tag || github.ref }}
+          ref: ${{ inputs.release_tag }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
@@ -118,8 +119,8 @@ jobs:
       - name: Get Version
         id: version
         env:
-          INPUT_TAG: ${{ github.event.inputs.tag }}
-          REF_NAME: ${{ github.ref_name }}
+          INPUT_TAG: ${{ inputs.release_tag }}
+          REF_NAME: ${{ inputs.release_tag }}
         run: |
           TAG="${INPUT_TAG:-$REF_NAME}"
           if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
@@ -137,7 +138,7 @@ jobs:
           zip -r "../slskdn-main-linux-glibc-${ARCH}.zip" .
 
       - name: Upload to Release
-        if: github.event_name == 'release'
+        if: github.event_name == 'workflow_dispatch' && inputs.action == 'publish'
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
         with:
           files: |
@@ -159,14 +160,14 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'private' && inputs.release_tag != ''
         )
       ) &&
       (
         true
       )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-update-aur"]}}', github.run_id)) }}
-    # Run on both release events and workflow_dispatch (triggered by CI after release)
+    # Run the exact selected release tag through the private JIT route.
     
     steps:
       - name: Checkout
@@ -175,10 +176,10 @@ jobs:
       - name: Get Version
         id: version
         env:
-          INPUT_TAG: ${{ github.event.inputs.tag }}
-          REF_NAME: ${{ github.ref_name }}
+          INPUT_TAG: ${{ inputs.release_tag }}
+          REF_NAME: ${{ inputs.release_tag }}
         run: |
-          # Get tag from either workflow_dispatch input or release ref
+          # Use the required manually selected release tag.
           TAG="${INPUT_TAG:-$REF_NAME}"
           if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$ ]]; then
             echo "Invalid release tag" >&2

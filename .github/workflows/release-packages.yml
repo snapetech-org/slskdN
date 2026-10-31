@@ -1,9 +1,10 @@
 # ng-runner-policy: private-jit-only-v1
 name: Build Linux Packages
 
+
+run-name: >-
+  ${{ format('action:{0}:pool:{1}:tag:{2}:publish-packages', inputs.action, inputs.runner_pool, inputs.release_tag) }}
 on:
-  release:
-    types: [published]
   workflow_dispatch:
     inputs:
       action:
@@ -16,7 +17,7 @@ on:
         type: choice
         options: [private]
         required: true
-      tag:
+      release_tag:
         description: 'Release tag to build packages for'
         required: true
 
@@ -30,7 +31,7 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'private' && inputs.release_tag != ''
         )
       ) &&
       (
@@ -44,9 +45,9 @@ jobs:
       - name: Get Version
         id: version
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          INPUT_TAG: ${{ github.event.inputs.tag }}
-          REF_NAME: ${{ github.ref_name }}
+          EVENT_NAME: workflow_dispatch
+          INPUT_TAG: ${{ inputs.release_tag }}
+          REF_NAME: ${{ inputs.release_tag }}
         run: |
           if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
             TAG="$INPUT_TAG"
@@ -147,7 +148,7 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'private' && inputs.release_tag != ''
         )
       ) &&
       (
@@ -162,9 +163,9 @@ jobs:
       - name: Get Version
         id: version
         env:
-          EVENT_NAME: ${{ github.event_name }}
-          INPUT_TAG: ${{ github.event.inputs.tag }}
-          REF_NAME: ${{ github.ref_name }}
+          EVENT_NAME: workflow_dispatch
+          INPUT_TAG: ${{ inputs.release_tag }}
+          REF_NAME: ${{ inputs.release_tag }}
         run: |
           if [ "$EVENT_NAME" == "workflow_dispatch" ]; then
             TAG="$INPUT_TAG"

@@ -1,10 +1,22 @@
 # ng-runner-policy: private-jit-only-v1
 name: Feature coherence audit
 
+
+run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
 on:
-  push:
-    tags:
-      - '**'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Required private CI action
+        type: choice
+        options: [ci]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: false
@@ -14,6 +26,7 @@ permissions:
 
 jobs:
   audit:
+    if: github.ref == 'refs/heads/main' && inputs.action == 'ci' && inputs.runner_pool == 'private'
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-audit"]}}', github.run_id)) }}
     steps:
       - name: Checkout

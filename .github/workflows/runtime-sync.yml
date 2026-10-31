@@ -1,6 +1,12 @@
 # ng-runner-policy: private-jit-only-v1
 name: slskNet.Runtime Sync
 
+
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'sync', inputs.runner_pool || 'private', github.ref_name) ||
+      github.event_name == 'workflow_dispatch' &&
+      format('action:{0}:pool:{1}', inputs.action || 'sync', inputs.runner_pool || 'private') || format('action:sync:pool:private') }}
 on:
   schedule:
     - cron: '17 3 * * *'
