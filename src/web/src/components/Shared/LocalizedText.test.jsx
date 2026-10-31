@@ -58,6 +58,20 @@ describe('LocalizedText', () => {
     expect(interfaceText('Overview')).toBe('ملخص');
   });
 
+  it('localizes fixed server errors while preserving unmatched diagnostics', async () => {
+    await setInterfaceLanguage('es');
+    const dynamicDiagnostic = 'Provider returned diagnostic 429 for request abc-123';
+    const { container } = render(
+      <>
+        <LocalizedText source="Validation failed" />
+        <span>|</span>
+        <LocalizedText source={dynamicDiagnostic} />
+      </>,
+    );
+
+    expect(container.textContent).toBe(`La validación falló|${dynamicDiagnostic}`);
+  });
+
   it('ignores an older locale request that finishes after the newer selection', async () => {
     let resolveGerman;
     fetchMock.mockImplementationOnce(() => new Promise((resolve) => { resolveGerman = resolve; }));

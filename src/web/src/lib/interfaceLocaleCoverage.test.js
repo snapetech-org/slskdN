@@ -72,6 +72,12 @@ const localizedTags = new Set(['LocalizedText', 'LocalizedPopup', 'LocalizedPlur
 const catalogDisplayAttributes = new Set([
   'aria-label', 'title', 'alt', 'label', 'tooltip', 'caption', 'content', 'description',
 ]);
+const fixedServerMessageSources = [
+  'Content ID cannot be empty',
+  'Invalid content ID format. Expected: content:<domain>:<type>:<id>',
+  'Content not found or inaccessible',
+  'Validation failed',
+];
 
 const collectLocalizationReferences = () => {
   const references = [];
@@ -209,6 +215,13 @@ describe('interface locale coverage', () => {
       .flatMap(({ source, file, line }) => localeIds
         .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
         .map((locale) => `${locale}:${file}:${line}: ${source}`));
+    expect(missing).toEqual([]);
+  });
+
+  it('translates fixed MediaCore validation messages returned by the server', () => {
+    const missing = fixedServerMessageSources.flatMap((source) => localeIds
+      .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
+      .map((locale) => `${locale}:server:${source}`));
     expect(missing).toEqual([]);
   });
 

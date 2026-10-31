@@ -22,6 +22,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: fixed Content ID validation messages returned by the server now
+  display in the selected interface language; unmatched diagnostics remain
+  unchanged.
 - Localization: translate Soulseek connect/disconnect tooltips and the download-exclusion label in all twelve catalogs; check fixed display and accessibility attributes and retain language metadata.
 - Localization coverage verifies that connection and download-exclusion labels update immediately when the selected language changes.
 - Localization: translate the identity-provider sign-in and selected-wishlist filter tooltips in all twelve catalogs; clarify Smart Radio search labels and webhook timeout units, and check tooltip copy in the coverage test.

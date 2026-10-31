@@ -231,7 +231,7 @@ const MediaCoreStats = () => {
               <div style={{ marginTop: '1em' }}>
                 {retrievalStats.error ? (
                   <Message error>
-                    <p>{retrievalStats.error}</p>
+                    <p><LocalizedText source={retrievalStats.error} /></p>
                   </Message>
                 ) : (
                   <Message>
@@ -364,7 +364,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={"Failed to load dashboard:"} />{" "}{mediaCoreDashboard.error}</p>
+                <p><LocalizedText source={"Failed to load dashboard:"} />{" "}<LocalizedText source={mediaCoreDashboard.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -431,7 +431,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>{contentRegistryStats.error}</p>
+                <p><LocalizedText source={contentRegistryStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -493,7 +493,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>{descriptorStats.error}</p>
+                <p><LocalizedText source={descriptorStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -567,7 +567,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>{fuzzyMatchingStats.error}</p>
+                <p><LocalizedText source={fuzzyMatchingStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -640,7 +640,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>{perceptualHashingStats.error}</p>
+                <p><LocalizedText source={perceptualHashingStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -698,7 +698,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>{ipldMappingStats.error}</p>
+                <p><LocalizedText source={ipldMappingStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -766,7 +766,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>{metadataPortabilityStats.error}</p>
+                <p><LocalizedText source={metadataPortabilityStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -832,7 +832,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p>{contentPublishingStats.error}</p>
+                <p><LocalizedText source={contentPublishingStats.error} /></p>
               </Message>
             )}
           </Card.Content>
