@@ -133,13 +133,14 @@ describe('ConnectionStatusMenuItem', () => {
   });
 
   it('localizes the connect and disconnect labels and popup text in Arabic', async () => {
-    await setInterfaceLanguage('ar');
     const { unmount } = renderMenuItem({
       mode: 'Server',
       server: { isConnected: false },
     });
 
-    const connectAction = screen.getByTitle('الاتصال بخادم Soulseek.');
+    const connectAction = screen.getByTitle('Connect to the Soulseek server.');
+    await setInterfaceLanguage('ar');
+
     expect(connectAction).toHaveAttribute('aria-label', 'الاتصال بخادم Soulseek.');
     expect(connectAction).toHaveAttribute('lang', 'ar');
     expect(connectAction).toHaveAttribute('dir', 'rtl');

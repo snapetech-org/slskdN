@@ -95,7 +95,6 @@ describe('DownloadExclusionsModal', () => {
   });
 
   it('localizes the exclusion field label and accessible name in Arabic', async () => {
-    await setInterfaceLanguage('ar');
     render(
       <DownloadExclusionsModal
         onClose={vi.fn()}
@@ -104,7 +103,9 @@ describe('DownloadExclusionsModal', () => {
       />,
     );
 
-    const field = screen.getByRole('textbox', { name: 'استثناءات التنزيل العالمية' });
+    const field = screen.getByRole('textbox', { name: 'Global download exclusions' });
+    await setInterfaceLanguage('ar');
+
     expect(field).toHaveAttribute('lang', 'ar');
     expect(field).toHaveAttribute('dir', 'rtl');
     expect(screen.getByText('مصطلحات محظورة في أسماء الملفات/المسارات')).toHaveAttribute('lang', 'ar');
