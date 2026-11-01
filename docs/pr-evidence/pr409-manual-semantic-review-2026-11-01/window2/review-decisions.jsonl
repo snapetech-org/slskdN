@@ -1,0 +1,300 @@
+{"id":"es:src_db1d3769d76b7e91","verdict":"keep"}
+{"id":"zh-Hans:src_db1d3769d76b7e91","verdict":"correct","target":"对等方通过搜索和下载发现","confidence":"high","reason":"同行 commonly means colleagues/people in the same profession; this network UI means Soulseek peers."}
+{"id":"hi:src_db1d3769d76b7e91","verdict":"correct","target":"खोज और डाउनलोड के माध्यम से पीयर खोजे जाते हैं","confidence":"high","reason":"This network screen means Soulseek peers; the P2P term avoids the generic 'companions' sense."}
+{"id":"de:src_db1d3769d76b7e91","verdict":"correct","target":"Peers werden durch Suchen und Downloads entdeckt","confidence":"high","reason":"Gleichgesinnte means like-minded people; this network UI means Soulseek peers."}
+{"id":"ja:src_db1d3769d76b7e91","verdict":"keep"}
+{"id":"fr:src_db1d3769d76b7e91","verdict":"keep"}
+{"id":"pt-BR:src_db1d3769d76b7e91","verdict":"keep"}
+{"id":"ar:src_db1d3769d76b7e91","verdict":"keep"}
+{"id":"ko:src_db1d3769d76b7e91","verdict":"keep"}
+{"id":"zh-Hant:src_db1d3769d76b7e91","verdict":"correct","target":"透過搜尋和下載發現對等方","confidence":"high","reason":"同行 commonly means colleagues/people in the same profession; this network UI means Soulseek peers."}
+{"id":"vi:src_db1d3769d76b7e91","verdict":"correct","target":"Các peer được phát hiện qua tìm kiếm và tải xuống","confidence":"high","reason":"Đồng nghiệp means colleagues; this network UI means Soulseek peers."}
+{"id":"id:src_db1d3769d76b7e91","verdict":"correct","target":"Peer ditemukan melalui pencarian dan unduhan","confidence":"high","reason":"Rekan means colleagues/companions; this network UI means Soulseek peers."}
+{"id":"es:src_db27199060c0fc46","verdict":"keep"}
+{"id":"zh-Hans:src_db27199060c0fc46","verdict":"correct","target":"尝试降低中央声道的人声，以实现卡拉 OK 式播放。","confidence":"high","reason":"The source promises vocal reduction; 消除 means eliminate, which overstates the effect."}
+{"id":"hi:src_db27199060c0fc46","verdict":"keep"}
+{"id":"de:src_db27199060c0fc46","verdict":"keep"}
+{"id":"ja:src_db27199060c0fc46","verdict":"keep"}
+{"id":"fr:src_db27199060c0fc46","verdict":"keep"}
+{"id":"pt-BR:src_db27199060c0fc46","verdict":"keep"}
+{"id":"ar:src_db27199060c0fc46","verdict":"keep"}
+{"id":"ko:src_db27199060c0fc46","verdict":"keep"}
+{"id":"zh-Hant:src_db27199060c0fc46","verdict":"keep"}
+{"id":"vi:src_db27199060c0fc46","verdict":"keep"}
+{"id":"id:src_db27199060c0fc46","verdict":"keep"}
+{"id":"es:src_db70268858c6e4bc","verdict":"correct","target":"Revise el aviso sobre la habilitación de la función DHT anterior antes de usar los controles de encuentro público.","confidence":"high","reason":"Feature gate is a software enablement control, not a physical puerta."}
+{"id":"zh-Hans:src_db70268858c6e4bc","verdict":"correct","target":"使用公共会合控件前，请先查看上方的 DHT 功能启用通知。","confidence":"high","reason":"Feature gate is a software enablement control, not a physical gate."}
+{"id":"hi:src_db70268858c6e4bc","verdict":"keep"}
+{"id":"de:src_db70268858c6e4bc","verdict":"keep"}
+{"id":"ja:src_db70268858c6e4bc","verdict":"keep"}
+{"id":"fr:src_db70268858c6e4bc","verdict":"correct","target":"Consultez l’avis d’activation de la fonctionnalité DHT ci-dessus avant d’utiliser les commandes de rendez-vous public.","confidence":"high","reason":"Porte de fonctionnalité means a physical door; this is a software enablement notice."}
+{"id":"pt-BR:src_db70268858c6e4bc","verdict":"keep"}
+{"id":"ar:src_db70268858c6e4bc","verdict":"keep"}
+{"id":"ko:src_db70268858c6e4bc","verdict":"keep"}
+{"id":"zh-Hant:src_db70268858c6e4bc","verdict":"correct","target":"使用公共會合控制前，請先查看上方的 DHT 功能啟用通知。","confidence":"high","reason":"Feature gate is a software enablement control, not a physical gate."}
+{"id":"vi:src_db70268858c6e4bc","verdict":"correct","target":"Xem lại thông báo bật tính năng DHT ở trên trước khi dùng các điều khiển điểm hẹn công khai.","confidence":"high","reason":"Cổng tính năng reads as a physical gate; this is a software enablement notice."}
+{"id":"id:src_db70268858c6e4bc","verdict":"keep"}
+{"id":"es:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"zh-Hans:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"hi:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"de:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"ja:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"fr:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"pt-BR:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"ar:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"ko:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"zh-Hant:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"vi:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"id:src_dbd8c72f1c275cd1","verdict":"keep"}
+{"id":"es:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"zh-Hans:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"hi:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"de:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"ja:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"fr:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"pt-BR:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"ar:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"ko:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"zh-Hant:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"vi:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"id:src_dc1accffeb4f4760","verdict":"uncertain","reason":"The source is a compact status/gate label; the code context does not establish whether configuration modifies the import or successful import is the gate condition."}
+{"id":"es:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"zh-Hans:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"hi:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"de:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"ja:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"fr:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"pt-BR:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"ar:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"ko:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"zh-Hant:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"vi:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"id:src_dc1dd32dc437cbe8","verdict":"keep"}
+{"id":"es:src_dc216f0beacaa3a9","verdict":"keep"}
+{"id":"zh-Hans:src_dc216f0beacaa3a9","verdict":"correct","target":"加载频道","confidence":"high","reason":"负载通道 means load-bearing channels; the button fetches/loads the channel list."}
+{"id":"hi:src_dc216f0beacaa3a9","verdict":"keep"}
+{"id":"de:src_dc216f0beacaa3a9","verdict":"keep"}
+{"id":"ja:src_dc216f0beacaa3a9","verdict":"correct","target":"チャンネルを読み込む","confidence":"high","reason":"The button action loads channel data; a verb phrase is needed."}
+{"id":"fr:src_dc216f0beacaa3a9","verdict":"keep"}
+{"id":"pt-BR:src_dc216f0beacaa3a9","verdict":"keep"}
+{"id":"ar:src_dc216f0beacaa3a9","verdict":"keep"}
+{"id":"ko:src_dc216f0beacaa3a9","verdict":"correct","target":"채널 불러오기","confidence":"high","reason":"The button action loads channel data; the current word order is not a natural action label."}
+{"id":"zh-Hant:src_dc216f0beacaa3a9","verdict":"correct","target":"載入頻道","confidence":"high","reason":"負載通道 means load-bearing channels; the button fetches/loads the channel list."}
+{"id":"vi:src_dc216f0beacaa3a9","verdict":"keep"}
+{"id":"id:src_dc216f0beacaa3a9","verdict":"correct","target":"Muat saluran","confidence":"high","reason":"The button action loads channels; Memuat Saluran describes loading rather than issuing the action."}
+{"id":"es:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"zh-Hans:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"hi:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"de:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"ja:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"fr:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"pt-BR:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"ar:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"ko:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"zh-Hant:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"vi:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"id:src_dc2dc85ec37d9946","verdict":"keep"}
+{"id":"es:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"zh-Hans:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"hi:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"de:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"ja:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"fr:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"pt-BR:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"ar:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"ko:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"zh-Hant:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"vi:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"id:src_dc6f79efe9e557ea","verdict":"uncertain","reason":"Realm subject-index is a compound product term in an input label; no glossary or surrounding implementation establishes how realm/subject-index should be rendered in this locale."}
+{"id":"es:src_dc8659db6d416dc3","verdict":"correct","target":"Intro","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'enter'."}
+{"id":"zh-Hans:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'enter'."}
+{"id":"hi:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'enter'."}
+{"id":"de:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'enter text'."}
+{"id":"ja:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'input'."}
+{"id":"fr:src_dc8659db6d416dc3","verdict":"correct","target":"Entrée","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks; Entrer is the verb."}
+{"id":"pt-BR:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'type'."}
+{"id":"ar:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not a verb."}
+{"id":"ko:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'input'."}
+{"id":"zh-Hant:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'enter'."}
+{"id":"vi:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the phrase 'go in'."}
+{"id":"id:src_dc8659db6d416dc3","verdict":"correct","target":"Enter","confidence":"high","reason":"The source is a keyboard key name inside a kbd element and event.key checks, not the verb 'enter'."}
+{"id":"es:src_dcaa03355b935310","verdict":"keep"}
+{"id":"zh-Hans:src_dcaa03355b935310","verdict":"keep"}
+{"id":"hi:src_dcaa03355b935310","verdict":"keep"}
+{"id":"de:src_dcaa03355b935310","verdict":"keep"}
+{"id":"ja:src_dcaa03355b935310","verdict":"keep"}
+{"id":"fr:src_dcaa03355b935310","verdict":"keep"}
+{"id":"pt-BR:src_dcaa03355b935310","verdict":"keep"}
+{"id":"ar:src_dcaa03355b935310","verdict":"keep"}
+{"id":"ko:src_dcaa03355b935310","verdict":"keep"}
+{"id":"zh-Hant:src_dcaa03355b935310","verdict":"keep"}
+{"id":"vi:src_dcaa03355b935310","verdict":"keep"}
+{"id":"id:src_dcaa03355b935310","verdict":"keep"}
+{"id":"es:src_dcade883c92ea508","verdict":"keep"}
+{"id":"zh-Hans:src_dcade883c92ea508","verdict":"keep"}
+{"id":"hi:src_dcade883c92ea508","verdict":"keep"}
+{"id":"de:src_dcade883c92ea508","verdict":"keep"}
+{"id":"ja:src_dcade883c92ea508","verdict":"keep"}
+{"id":"fr:src_dcade883c92ea508","verdict":"keep"}
+{"id":"pt-BR:src_dcade883c92ea508","verdict":"keep"}
+{"id":"ar:src_dcade883c92ea508","verdict":"keep"}
+{"id":"ko:src_dcade883c92ea508","verdict":"keep"}
+{"id":"zh-Hant:src_dcade883c92ea508","verdict":"keep"}
+{"id":"vi:src_dcade883c92ea508","verdict":"keep"}
+{"id":"id:src_dcade883c92ea508","verdict":"keep"}
+{"id":"es:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"zh-Hans:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"hi:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"de:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"ja:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"fr:src_dcaf05f7af975330","verdict":"correct","target":"Aperçu de la résilience face aux attaques","confidence":"high","reason":"In this security section, adversarial resilience means resilience against attacks; contradictoire means contradictory."}
+{"id":"pt-BR:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"ar:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"ko:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"zh-Hant:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"vi:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"id:src_dcaf05f7af975330","verdict":"keep"}
+{"id":"es:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"zh-Hans:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"hi:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"de:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"ja:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"fr:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"pt-BR:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"ar:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"ko:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"zh-Hant:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"vi:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"id:src_dcb611a91ebb0b73","verdict":"keep"}
+{"id":"es:src_dcc839a4015c4b7d","verdict":"correct","target":"Ver","confidence":"high","reason":"This is a button that opens a SongID run; Vista is the noun 'view', not the action."}
+{"id":"zh-Hans:src_dcc839a4015c4b7d","verdict":"correct","target":"查看","confidence":"high","reason":"This button opens a SongID run; 看法 means opinion/viewpoint, not the action 'view'."}
+{"id":"hi:src_dcc839a4015c4b7d","verdict":"correct","target":"देखें","confidence":"high","reason":"This is a button that opens a SongID run; देखें is the direct action label."}
+{"id":"de:src_dcc839a4015c4b7d","verdict":"correct","target":"Ansehen","confidence":"high","reason":"This is a button that opens a SongID run; Sicht is a noun for sight/view."}
+{"id":"ja:src_dcc839a4015c4b7d","verdict":"correct","target":"表示","confidence":"high","reason":"This is a button that opens a SongID run; ビュー is a noun loan, while 表示 is the action label."}
+{"id":"fr:src_dcc839a4015c4b7d","verdict":"keep"}
+{"id":"pt-BR:src_dcc839a4015c4b7d","verdict":"keep"}
+{"id":"ar:src_dcc839a4015c4b7d","verdict":"correct","target":"عرض","confidence":"high","reason":"This button opens a SongID run; منظر means scenery/view, not the action."}
+{"id":"ko:src_dcc839a4015c4b7d","verdict":"correct","target":"보기","confidence":"high","reason":"This is a button that opens a SongID run; 보기 is the natural action label."}
+{"id":"zh-Hant:src_dcc839a4015c4b7d","verdict":"correct","target":"查看","confidence":"high","reason":"This button opens a SongID run; 看法 means opinion/viewpoint, not the action 'view'."}
+{"id":"vi:src_dcc839a4015c4b7d","verdict":"keep"}
+{"id":"id:src_dcc839a4015c4b7d","verdict":"correct","target":"Lihat","confidence":"high","reason":"This is a button that opens a SongID run; Melihat describes the act of seeing rather than the button action."}
+{"id":"es:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"zh-Hans:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"hi:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"de:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"ja:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"fr:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"pt-BR:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"ar:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"ko:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"zh-Hant:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"vi:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"id:src_dcd0a4d2c65a4996","verdict":"keep"}
+{"id":"es:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"zh-Hans:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"hi:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"de:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"ja:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"fr:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"pt-BR:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"ar:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"ko:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"zh-Hant:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"vi:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"id:src_dcd93bb209fb1238","verdict":"keep"}
+{"id":"es:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"zh-Hans:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"hi:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"de:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"ja:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"fr:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"pt-BR:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"ar:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"ko:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"zh-Hant:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"vi:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"id:src_dcefb7a9f0370679","verdict":"keep"}
+{"id":"es:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"zh-Hans:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"hi:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"de:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"ja:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"fr:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"pt-BR:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"ar:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"ko:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"zh-Hant:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"vi:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"id:src_dcfc722a9c014902","verdict":"keep"}
+{"id":"es:src_dd041121ae19347a","verdict":"correct","target":"No se pudo obtener la información de membresía:","confidence":"high","reason":"This API-result error is about retrieving membership information, not acquiring a membership."}
+{"id":"zh-Hans:src_dd041121ae19347a","verdict":"correct","target":"无法获取成员资格信息：","confidence":"high","reason":"This API-result error is about retrieving membership information, not obtaining a member."}
+{"id":"hi:src_dd041121ae19347a","verdict":"correct","target":"सदस्यता की जानकारी प्राप्त नहीं हो सकी:","confidence":"high","reason":"This API-result error is about retrieving membership information, not acquiring a membership."}
+{"id":"de:src_dd041121ae19347a","verdict":"correct","target":"Mitgliedschaftsinformationen konnten nicht abgerufen werden:","confidence":"high","reason":"This API-result error is about retrieving membership information, not receiving a membership."}
+{"id":"ja:src_dd041121ae19347a","verdict":"correct","target":"メンバーシップ情報を取得できませんでした:","confidence":"high","reason":"This API-result error is about retrieving membership information."}
+{"id":"fr:src_dd041121ae19347a","verdict":"correct","target":"Impossible de récupérer les informations d’adhésion :","confidence":"high","reason":"This API-result error is about retrieving membership information, not acquiring membership."}
+{"id":"pt-BR:src_dd041121ae19347a","verdict":"correct","target":"Não foi possível obter as informações de associação:","confidence":"high","reason":"This API-result error is about retrieving membership information, not acquiring membership."}
+{"id":"ar:src_dd041121ae19347a","verdict":"correct","target":"تعذّر استرجاع معلومات العضوية:","confidence":"high","reason":"This API-result error is about retrieving membership information, not acquiring membership."}
+{"id":"ko:src_dd041121ae19347a","verdict":"correct","target":"멤버십 정보를 불러오지 못했습니다:","confidence":"high","reason":"회원가입 means account sign-up; this API-result error is about retrieving membership information."}
+{"id":"zh-Hant:src_dd041121ae19347a","verdict":"correct","target":"無法取得成員資格資訊：","confidence":"high","reason":"This API-result error is about retrieving membership information, not obtaining a member."}
+{"id":"vi:src_dd041121ae19347a","verdict":"correct","target":"Không thể lấy thông tin thành viên:","confidence":"high","reason":"Trở thành thành viên means becoming a member; this API-result error is about retrieving membership information."}
+{"id":"id:src_dd041121ae19347a","verdict":"correct","target":"Gagal mengambil informasi keanggotaan:","confidence":"high","reason":"This API-result error is about retrieving membership information, not acquiring membership."}
+{"id":"es:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"zh-Hans:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"hi:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"de:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"ja:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"fr:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"pt-BR:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"ar:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"ko:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"zh-Hant:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"vi:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"id:src_dd13818677e0e10b","verdict":"keep"}
+{"id":"es:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"zh-Hans:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"hi:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"de:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"ja:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"fr:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"pt-BR:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"ar:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"ko:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"zh-Hant:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"vi:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"id:src_dd1a581c2853966e","verdict":"keep"}
+{"id":"es:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"zh-Hans:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"hi:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"de:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"ja:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"fr:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"pt-BR:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"ar:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"ko:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"zh-Hant:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"vi:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"id:src_dd1fe312599e5a19","verdict":"keep"}
+{"id":"es:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"zh-Hans:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"hi:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"de:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"ja:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"fr:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"pt-BR:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"ar:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"ko:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"zh-Hant:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"vi:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"id:src_dd2a5aaa423c8cae","verdict":"keep"}
+{"id":"es:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"zh-Hans:src_dd45fdaf77a67582","verdict":"uncertain","reason":"This labels Obfs4 Tor BridgeLines configuration; locale-specific Tor terminology needs domain-aware review."}
+{"id":"hi:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"de:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"ja:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"fr:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"pt-BR:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"ar:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"ko:src_dd45fdaf77a67582","verdict":"keep"}
+{"id":"zh-Hant:src_dd45fdaf77a67582","verdict":"uncertain","reason":"This labels Obfs4 Tor BridgeLines configuration; locale-specific Tor terminology needs domain-aware review."}
+{"id":"vi:src_dd45fdaf77a67582","verdict":"uncertain","reason":"This labels Obfs4 Tor BridgeLines configuration; locale-specific Tor terminology needs domain-aware review."}
+{"id":"id:src_dd45fdaf77a67582","verdict":"uncertain","reason":"This labels Obfs4 Tor BridgeLines configuration; locale-specific Tor terminology needs domain-aware review."}
