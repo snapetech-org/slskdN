@@ -55,10 +55,10 @@ namespace slskd.Integrations.Notifications
         }
 
         internal static string Format(string language, string source, IReadOnlyDictionary<string, string> values) =>
-            Interpolate(TranslateSource(language, source), values, language == "ar");
+            Interpolate(TranslateSource(language, source), values);
 
         // Replace placeholders in the original template only; never rescan inserted user data.
-        internal static string Interpolate(string template, IReadOnlyDictionary<string, string> values, bool isolate) =>
+        internal static string Interpolate(string template, IReadOnlyDictionary<string, string> values) =>
             Regex.Replace(template, @"\{([a-zA-Z][a-zA-Z0-9_]*)\}", match =>
             {
                 if (!values.TryGetValue(match.Groups[1].Value, out var value))
@@ -66,8 +66,27 @@ namespace slskd.Integrations.Notifications
                     return match.Value;
                 }
 
-                return isolate ? $"\u2068{value}\u2069" : value;
+                var safeValue = RemoveBidiFormattingControls(value);
+                return safeValue.Length == 0 ? string.Empty : $"\u2068{safeValue}\u2069";
             });
+
+        private static string RemoveBidiFormattingControls(string value)
+        {
+            var sanitized = new StringBuilder(value.Length);
+            foreach (var character in value)
+            {
+                if (character == '\u061C' || character == '\u200E' || character == '\u200F' ||
+                    character >= '\u202A' && character <= '\u202E' ||
+                    character >= '\u2066' && character <= '\u206F')
+                {
+                    continue;
+                }
+
+                sanitized.Append(character);
+            }
+
+            return sanitized.ToString();
+        }
 
         // ntfy accepts RFC 2047 UTF-8 headers; encode non-ASCII titles for .NET HTTP transport.
         internal static string EncodeNtfyTitle(string title)
