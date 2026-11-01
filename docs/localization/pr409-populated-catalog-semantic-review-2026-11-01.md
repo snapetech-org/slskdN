@@ -4,7 +4,7 @@
 
 - PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Seven independent manual slices cover 175 source keys / 2,100 cells across the 12 direct locales. Combined verdicts: 1,691 keep, 344 high-confidence correction candidates, and 65 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Eight independent manual slices cover 200 source keys / 2,400 cells across the 12 direct locales. Combined verdicts: 1,924 keep, 399 high-confidence correction candidates, and 77 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
 - Qualified native-speaker review remains required.
 
 ## Window 1
@@ -50,3 +50,10 @@ Evidence: [`window6`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/win
 The seventh disjoint 25-key slice covers 300 cells: 228 keep, 60 high-confidence correction candidates, and 12 uncertain. Corrections address security-feature modal wording, juror targets, MusicBrainz release-group terminology, visualizer collapse actions, wanted-item synchronization, quarantine release decisions, remote settings structure, and content-acquisition terminology. “Realm” remains uncertain across all locales because the preferred localized term for the Mesh trust tier needs locale review.
 
 Evidence: [`window7`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/). Manifest SHA-256 `30b193dd2173898e7e5b7af8fa4738d0347af422a11520991f112f3a43e284d0`; input `77197eb0cdb8943910ad35fbedab2ba1c41db7ae36017747b3cdeb87d90ed961`; decisions `18a43c82e2e0fb3df7111970876bce83741094bdf293099e56f8b06211f67a20`. The review was pinned to PR head `ba5d2b6f0d480cd178f9df0dc330b564e1084af2` / tree `e46b6cb479825155390c2e159efed96c3032da9e`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap and zero overlap with the prior six windows, and compared all 1,800 prior input/decision rows.
+
+
+## Window 8
+
+The eighth disjoint 25-key slice covers 300 cells: 233 keep, 55 high-confidence correction candidates, and 12 uncertain. Corrections address sing/plural offline-status agreement, rescue-state wording, the Smart Radio feature, peer terminology, MilkDrop visualizer and decay labels, username wording, Wishlist filter syntax, I2P SAM and Tor SOCKS names, the Load Stats action, resolved options, and sample-rate terminology. The player’s “local discovery review shelf” phrase remains uncertain across all locales pending native UX terminology review.
+
+Evidence: [`window8`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/). Manifest SHA-256 `809339be633ebc36a88453d54a53cdccc51cf700040b23af14e715b7db993e96`; input `73b80fc7fec7e9f9d8044ba78605ee3e675cd256590826ba00267f0332e3e176`; decisions `740126ca575defdc6d070ee92824dba260e62b8ac6cb4bc1136d83cd2ebf6cbd`. The review was pinned to PR head `44d4c95dabf16f203a7a51122a62d5fa2847bfc9` / tree `9ba5a02fb3160badd321cc5497bb75168cb0256d`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap and zero overlap with the seven earlier windows, and compared all 2,100 prior input/decision rows.
