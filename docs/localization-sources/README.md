@@ -8,7 +8,7 @@ and 60 target cells, bringing the missing-key total to 451 IDs and 5,412
 cells. It separately records the existing `Playback stopped.` key, whose 12
 targets are still English-identical. The full follow-up therefore has 72
 translation cells; the overall outstanding total is 5,424. Refreshed
-source-reference counts including the five new keys are 10,262 references
+source-reference counts including the five new keys are 10,263 references
 across 5,644 unique source strings; two fixed transfer-cleanup success messages
 are translated in all locales and do not add pending cells. This includes nine fixed
 Quarantine Jury status/error messages and the Library Health scan failure.
@@ -38,3 +38,10 @@ coverage or semantic quality.
 
 
 The v5 source-fix inventory is `20261101-v5-followup-inventory.json`. It records the two previously missing app outputs (equalizer and file-deletion errors) and three MessagingV2 action templates with opaque room/pod names; their 60 target translations remain pending. It separately records 12 English-identical targets for the existing `Playback stopped.` key, for 72 follow-up translation cells total. The two fixed Network sync errors and four PortForwarding validation strings already exist in every locale catalog.
+
+The v6 boundary follow-up is `20261101-v6-boundary-followup.json`, pinned to
+source head `561725681b8ed2c8d82cd975ab0c7ce02b5977af`. It records one new
+reference to the existing, fully translated `External Visualizer` source; it
+adds no source IDs or translation cells. Unknown launch errors stay opaque,
+and configured visualizer names and paths retain explicit language/direction
+metadata.

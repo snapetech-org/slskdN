@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "561725681b8ed2c8d82cd975ab0c7ce02b5977af",
+  "state": "source-boundary follow-up; existing translations reused",
+  "sourceReferenceCountDelta": 1,
+  "uniqueSourceCountDelta": 0,
+  "catalogDelta": 0,
+  "pendingTargetCellDelta": 0,
+  "reusedSources": [
+    {
+      "source": "External Visualizer",
+      "sourceSha256": "bd9d36ed30d36016e79d36ec157a37bae71aa26f1c0dd246f71cb36818fcb9f4",
+      "translatedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "existing source; all twelve targets are populated and non-English-identical",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2731,
+          "lineText": "        const name = result?.name || externalVisualizerStatus?.name || interfaceTextOutput('External Visualizer');",
+          "lineTextSha256": "37099c0cdece8b6382f4ba46fb60ca8f63262a1e27a66a526ae58430356a4674",
+          "fileSha256": "b89b26a92ec08bc287dea0bceae1855d197e27ecad473962d13056a4ec3c7d6a"
+        }
+      ]
+    }
+  ],
+  "boundaryNotes": [
+    "External-visualizer status notices are retained as source descriptors for render-time locale resolution.",
+    "Unknown launch result.error values remain raw/opaque.",
+    "Configured visualizer names use bdi dir=auto lang=und; paths and their title attribute use dir=ltr lang=und."
+  ]
+}
