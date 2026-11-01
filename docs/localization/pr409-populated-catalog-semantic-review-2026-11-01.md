@@ -4,7 +4,7 @@
 
 - PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Four independent manual slices cover 100 source keys / 1,200 cells across the 12 direct locales. Combined verdicts: 983 keep, 176 high-confidence correction candidates, and 41 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Five independent manual slices cover 125 source keys / 1,500 cells across the 12 direct locales. Combined verdicts: 1,209 keep, 238 high-confidence correction candidates, and 53 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
 - Qualified native-speaker review remains required.
 
 ## Window 1
@@ -32,3 +32,9 @@ No catalogs, source, formal shared ledger, tests, builds, or CI were changed or 
 The fourth disjoint 25-key slice covers 300 cells: 262 keep, 26 high-confidence corrections, and 12 uncertain. Corrections address the native MilkDrop frame-rate limit, caution wording in Chinese, Spanish readiness, rank order in Chinese and Arabic, Arabic directory counts and Webhook policy terminology, an Arabic close-radio instruction, and five modal-dialog tooltips. “Playing” remains uncertain in all 12 locales because the frozen source lacks callsite and surrounding context. The scratch verifier confirmed zero formal overlap and zero overlap with the three earlier manual windows; the PR package omits the sibling-sensitive verifier and records that packaging provenance in its README.
 
 Evidence: [`window4`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/). Manifest SHA-256 `ea5d19ea1afe85ab17be9d559592e38868f3f5f690c9dc0ebc82fd9083c901e2`; input `b1005dd04403787fbc7929dd1bb792fe601e5de462c31e830195c00ffdb70c72`; decisions `cbb9b148015764073c9c3c56fa4fdb0505dbb93238e275a2561431978d3ed143`. The review was pinned to PR head `33a63077e88f0cc02210cfce7bc690640ef132d0` / tree `bfeb081505e87f9ef0b1b8f067cc90d2d1fa9c4d`; later packaging changes are docs-only.
+
+## Window 5
+
+The fifth disjoint 25-key slice covers 300 cells: 226 keep, 62 high-confidence corrections, and 12 uncertain. Corrections address Soulfind as a named service, Pod terminology, read-only status wording, Lidarr music-release directories, the atlas recenter action, connected-client heading tense, rationale labels, Pushbullet casing, Wishlist search-run counts, Arabic interest terminology, approximate content matching, and diagnostic redaction wording. The single-word “Release” tally remains uncertain across all locales because the compact verdict label may be read as an action or a category; locale-idiomatic wording needs native review.
+
+Evidence: [`window5`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/). Manifest SHA-256 `a687c46b9b6ae22be2baaa79ab3ccb0002201d03b77dc2ffc5db22fa77a39979`; input `cb4d4cd094fc666104fdcd88c6f2f3c4e6d63be7df7d5ca47b429cf566eab795`; decisions `35bbda5c1ea44a70744abe134cc62b3ed7e84c914223737b73af80655d09b4cc`. The review was pinned to PR head `ab640fe4b65517a37778f947561513fe33684705` / tree `d201d8a813ec3554d333a28986f2bc529f510f47`; later packaging changes are docs-only.
