@@ -1,6 +1,6 @@
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getTasteRecommendationReasonPresentation } from '../../lib/appGeneratedReasonText';
 // <copyright file="FederatedTasteRecommendationsPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -272,7 +272,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Promote {title} taste recommendation to Wishlist", { "title": (title) })}
+                      aria-label={interfaceAttributeText("Promote {title} taste recommendation to Wishlist", { "title": (title) })}
                       onClick={() => promoteToWishlist(recommendation)}
                       size="mini"
                       type="button"
@@ -286,7 +286,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Subscribe {title} taste recommendation to Release Radar", { "title": (title) })}
+                      aria-label={interfaceAttributeText("Subscribe {title} taste recommendation to Release Radar", { "title": (title) })}
                       onClick={() => subscribeRadar(recommendation)}
                       size="mini"
                       type="button"
@@ -300,7 +300,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Preview {title} taste recommendation graph", { "title": (title) })}
+                      aria-label={interfaceAttributeText("Preview {title} taste recommendation graph", { "title": (title) })}
                       onClick={() => previewGraph(recommendation)}
                       size="mini"
                       type="button"

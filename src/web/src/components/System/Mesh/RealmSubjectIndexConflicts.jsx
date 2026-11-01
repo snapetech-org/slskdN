@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
-import { interfaceTextOutput, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceTextOutput, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="RealmSubjectIndexConflicts.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -265,7 +265,7 @@ const RealmSubjectIndexConflicts = () => {
                                 trigger={
                                   <Button
                                     {...interfaceTextProps(disabled ? "Enable authority {authorityKey}" : "Disable authority {authorityKey}")}
-                                    aria-label={interfacePresentationText(disabled ? "Enable authority {authorityKey}" : "Disable authority {authorityKey}", { authorityKey })}
+                                    aria-label={interfaceAttributeText(disabled ? "Enable authority {authorityKey}" : "Disable authority {authorityKey}", { authorityKey })}
                                     onClick={() => toggleAuthority(authorityKey)}
                                     size="mini"
                                   >

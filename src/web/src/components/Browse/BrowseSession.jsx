@@ -1,5 +1,5 @@
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
-import { interfaceToastText, interfaceText, interfaceTextProps } from '../../lib/interfaceLocale';
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
 /* eslint-disable promise/prefer-await-to-then */
 import './Browse.css';
@@ -629,7 +629,7 @@ class BrowseSession extends Component {
                   trigger={
                     <Button
                       aria-label={
-                        interfaceText(browseState === 'idle'
+                        interfaceAttributeText(browseState === 'idle'
                           ? 'Browse user files'
                           : 'Clear browse result')
                       }
@@ -714,14 +714,14 @@ class BrowseSession extends Component {
                             onClose={() => this.fetchUserNote(username)}
                             trigger={
                               <TooltipButton
-                                aria-label={interfaceText("Edit user note for {username}", { "username": (username) })}
+                                aria-label={interfaceAttributeText("Edit user note for {username}", { "username": (username) })}
                                 basic
                                 compact
                                 icon
                                 size="small"
                                 style={{ marginLeft: '4px', opacity: 0.5 }}
                                 tooltip="Open your local note and color rating for {username}."
-                               {...interfaceTextProps("Edit user note for {username}", { username })}>
+                               {...interfaceAttributeTextProps("Edit user note for {username}", { username })}>
                                 <Icon color="grey" name="pencil alternate" />
                               </TooltipButton>
                             }
@@ -729,13 +729,13 @@ class BrowseSession extends Component {
                           />
                         </span>
                         <TooltipButton
-                          aria-label={interfaceText("Refresh {username}'s shared files", { "username": (username) })}
+                          aria-label={interfaceAttributeText("Refresh {username}'s shared files", { "username": (username) })}
                           basic
                           compact
                           icon
                           onClick={this.handleRefresh}
                           tooltip="Request {username}'s current shared file list from Soulseek and refresh this browse view."
-                         {...interfaceTextProps("Refresh {username}'s shared files", { username })}>
+                         {...interfaceAttributeTextProps("Refresh {username}'s shared files", { username })}>
                           <Icon name="refresh" />
                         </TooltipButton>
                       </Card.Header>

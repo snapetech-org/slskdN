@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedRichText, LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfaceTextOutput, isInterfaceTextOutput, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceTextOutput, isInterfaceTextOutput, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 
 
@@ -512,7 +512,7 @@ class PortForwarding extends Component {
                             content={interfaceText("Stop forwarding on localhost:{localPort} and close this tunnel when you no longer need the local route.", { "localPort": (forwarding.localPort) })}
                             trigger={
                               <Button
-                                aria-label={interfaceText("Stop forwarding on local port {localPort}", { "localPort": (forwarding.localPort) })}
+                                aria-label={interfaceAttributeText("Stop forwarding on local port {localPort}", { "localPort": (forwarding.localPort) })}
                                 color="red"
                                 icon="stop"
                                 loading={stoppingForwarding}

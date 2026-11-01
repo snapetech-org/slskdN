@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
-import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
@@ -1098,7 +1098,7 @@ const AdversarialSettings = () => {
                               position="top center"
                               trigger={(
                                 <Button
-                                  aria-label={interfaceText('Remove Obfs4 bridge line {index}', { index: index + 1 })}
+                                  aria-label={interfaceAttributeText('Remove Obfs4 bridge line {index}', { index: index + 1 })}
                                   icon="minus"
                                   onClick={() =>
                                     removeArrayItem(

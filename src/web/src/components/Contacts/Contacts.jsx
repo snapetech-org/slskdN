@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 
 
@@ -385,7 +385,7 @@ class Contacts extends Component {
                             content={interfaceText("Open a private chat with this contact.")}
                             trigger={
                               <Button
-                                aria-label={interfaceText('Chat with {contact}', {
+                                aria-label={interfaceAttributeText('Chat with {contact}', {
                                   contact: contact.nickname || contact.peerId,
                                 })}
                                 icon="chat"
@@ -397,7 +397,7 @@ class Contacts extends Component {
                             content={interfaceText("Browse this contact's shared files.")}
                             trigger={
                               <Button
-                                aria-label={interfaceText('Browse files shared by {contact}', {
+                                aria-label={interfaceAttributeText('Browse files shared by {contact}', {
                                   contact: contact.nickname || contact.peerId,
                                 })}
                                 icon="folder open"
@@ -409,7 +409,7 @@ class Contacts extends Component {
                             content={interfaceText("Remove this saved contact.")}
                             trigger={
                               <Button
-                                aria-label={interfaceText('Remove {contact} as a contact', {
+                                aria-label={interfaceAttributeText('Remove {contact} as a contact', {
                                   contact: contact.nickname || contact.peerId,
                                 })}
                                 icon="trash"

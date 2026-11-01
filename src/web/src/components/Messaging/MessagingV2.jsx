@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfaceTextOutput, interfaceText, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './MessagingV2.css';
@@ -158,10 +158,10 @@ const InlineLoadError = ({ message, onRetry, retryLabel, testId }) => (
       position="top center"
       trigger={(
         <button
-          aria-label={interfaceText(retryLabel)}
+          aria-label={interfaceAttributeText(retryLabel)}
           className="msgv2-tree-add-go"
           onClick={onRetry}
-          title={interfaceText(retryLabel)}
+          title={interfaceAttributeText(retryLabel)}
           type="button"
         >
           <LocalizedText source={"Retry"} /></button>
@@ -1628,7 +1628,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                       content={interfaceText("Close {label} without closing the other message tabs.", { label: tabLabel(tab) })}
                       trigger={(
                         <button
-                          aria-label={interfaceText("Close {label}", { label: tabLabel(tab) })}
+                          aria-label={interfaceAttributeText("Close {label}", { label: tabLabel(tab) })}
                           className="msgv2-tab-close"
                           onClick={() => closeTab(tab.id)}
                           type="button"
@@ -1659,7 +1659,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                     onClick={() =>
                       setHumanCheckAutoResponse(!humanCheckAutoResponseEnabled)
                     }
-                    title={interfaceText(canApplyHumanCheck
+                    title={interfaceAttributeText(canApplyHumanCheck
                       ? 'Automatically answer private messages that look like human-check or share-gate prompts.'
                       : 'Saved locally. Enable remote configuration to apply this to daemon-side replies.')}
                     type="button"
@@ -1675,11 +1675,11 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                   : 'Show the current room or pod member list.')}
                 trigger={(
                   <button
-                    aria-label={interfaceText(memberRailOpen ? 'Hide members' : 'Show members')}
+                    aria-label={interfaceAttributeText(memberRailOpen ? 'Hide members' : 'Show members')}
                     aria-pressed={memberRailOpen}
                     className={`msgv2-icon-button ${memberRailOpen ? 'is-on' : ''}`}
                     onClick={() => setMemberRailOpen((open) => !open)}
-                    title={interfaceText(memberRailOpen ? 'Hide members' : 'Show members')}
+                    title={interfaceAttributeText(memberRailOpen ? 'Hide members' : 'Show members')}
                     type="button"
                   >
                     ☰
@@ -1943,7 +1943,7 @@ const TreeRow = ({
           className={`msgv2-tree-row ${isActive ? 'is-active' : ''}`}
           data-accent={accent}
           onClick={onActivate}
-          title={interfaceText("{prefix}{target}", { "prefix": (prefix), "target": (target) })}
+          title={interfaceAttributeText("{prefix}{target}", { "prefix": (prefix), "target": (target) })}
           type="button"
          {...interfaceTextProps("{prefix}{target}")}>
           <span className="msgv2-tree-row-prefix">{prefix}</span>
@@ -2066,7 +2066,7 @@ const RoomJoinSearch = ({
           content={canSubmit
             ? interfaceText('Join the matching Soulseek room, or create {query} if it does not exist.', { query })
             : interfaceText('Enter a room name to search the directory and enable joining or creating a Soulseek room.')}
-          {...interfaceTextProps(
+          {...interfaceAttributeTextProps(
             canSubmit
               ? 'Join the matching Soulseek room, or create {query} if it does not exist.'
               : 'Enter a room name to search the directory and enable joining or creating a Soulseek room.',
@@ -2117,7 +2117,7 @@ const RoomJoinSearch = ({
                     ? interfaceText('Open the existing {roomName} conversation.', { roomName })
                     : interfaceText('Join the Soulseek room {roomName} and add it to your workspace.', { roomName })}
                   key={roomName}
-                  {...interfaceTextProps(
+                  {...interfaceAttributeTextProps(
                     status === 'joined'
                       ? 'Open the existing {roomName} conversation.'
                       : 'Join the Soulseek room {roomName} and add it to your workspace.',
@@ -2125,18 +2125,18 @@ const RoomJoinSearch = ({
                   )}
                   trigger={(
                     <button
-                      aria-label={interfaceText(
+                      aria-label={interfaceAttributeText(
                         status === 'joined' ? 'Open {roomName}' : 'Join {roomName}',
                         { roomName },
                       )}
                       className="msgv2-room-search-result"
                       onClick={() => onJoinRoom(roomName)}
-                      title={interfaceText(
+                      title={interfaceAttributeText(
                         status === 'joined' ? 'Open {roomName}' : 'Join {roomName}',
                         { roomName },
                       )}
                       type="button"
-                     {...interfaceTextProps(
+                     {...interfaceAttributeTextProps(
                        status === 'joined' ? 'Open {roomName}' : 'Join {roomName}',
                        { roomName },
                      )}>
@@ -2158,7 +2158,7 @@ const RoomJoinSearch = ({
                 <button
                   className="msgv2-room-search-create"
                   onClick={submit}
-                  title={interfaceText("Join or create {query}", { "query": (query) })}
+                  title={interfaceAttributeText("Join or create {query}", { "query": (query) })}
                   type="button"
                  {...interfaceTextProps("Join or create {query}")}>
                   <LocalizedText source={"Join/Create #"} />{query}
@@ -2275,7 +2275,7 @@ const DensityToggle = ({ onAdjust, onChange, value }) => (
               className={`msgv2-density-pip ${value === level ? 'is-active' : ''}`}
               onClick={() => onChange(level)}
               role="radio"
-              title={interfaceText('Messages UI size {size}', { size: level.toUpperCase() })}
+              title={interfaceAttributeText('Messages UI size {size}', { size: level.toUpperCase() })}
               type="button"
             >
               {level.toUpperCase()}

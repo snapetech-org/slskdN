@@ -236,19 +236,32 @@ export const interfaceText = (source, parameters = {}) => {
   return formatInterfaceText(source, parameters);
 };
 
+const isolateNativePresentationParameters = (parameters = {}) =>
+  Object.fromEntries(Object.entries(parameters).map(([name, value]) => [
+    name,
+    (typeof value === 'string' || typeof value === 'number') && String(value)
+      ? `\u2068${value}\u2069`
+      : value,
+  ]));
+
 // Native attribute/dialog text cannot contain <bdi>. Keep isolates at this
 // presentation boundary; ordinary helpers and stored data remain unchanged.
 export const interfacePresentationText = (source, parameters = {}) => {
   const values = activeLanguage === 'ar'
-    ? Object.fromEntries(Object.entries(parameters).map(([name, value]) => [
-      name,
-      (typeof value === 'string' || typeof value === 'number') && String(value)
-        ? `\u2068${value}\u2069`
-        : value,
-    ]))
+    ? isolateNativePresentationParameters(parameters)
     : parameters;
   return formatInterfaceText(source, values);
 };
+
+// Native aria-label/title strings cannot contain structured <bdi> elements.
+// Isolate interpolated values in every locale without changing stored text.
+export const interfaceAttributeText = (source, parameters = {}) => {
+  return formatInterfaceText(source, isolateNativePresentationParameters(parameters));
+};
+
+// Native confirm dialogs also need all-direction isolation for opaque values.
+export const interfaceDialogText = (source, parameters = {}) =>
+  formatInterfaceText(source, isolateNativePresentationParameters(parameters));
 
 export const interfaceTextProps = (source, parameters = {}) => {
   const textLanguage = getInterfaceTextLanguage(source, activeLanguage);
@@ -264,6 +277,13 @@ export const interfaceTextProps = (source, parameters = {}) => {
   }
   if (parameters && Object.keys(parameters).length > 0) props.parameters = parameters;
   return props;
+};
+
+export const interfaceAttributeTextProps = (source, parameters = {}) => {
+  const props = interfaceTextProps(source, parameters);
+  if (!Object.hasOwn(props, 'aria-label')) return props;
+  const text = interfaceAttributeText(source, parameters);
+  return { ...props, 'aria-label': text, title: text };
 };
 
 activeLanguage = 'en';

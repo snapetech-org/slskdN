@@ -1,5 +1,5 @@
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
-import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
 
 
@@ -721,7 +721,7 @@ export class Pods extends Component {
                             content={interfaceText("Save this pod's details in your local pod list so it is available after restarts. This does not join the pod.")}
                             trigger={
                               <Button
-                                aria-label={interfaceText("Save discovered pod {name} locally", { "name": (name) })}
+                                aria-label={interfaceAttributeText("Save discovered pod {name} locally", { "name": (name) })}
                                 basic
                                 icon="save"
                                 onClick={(event) => {
@@ -819,8 +819,8 @@ export class Pods extends Component {
                     trigger={
                       <Button
                         aria-label={isGoldStarClub
-                          ? interfaceText('Permanently leave Gold Star Club')
-                          : interfaceText('Leave pod {pod}', { pod: podDetail.name || podDetail.podId })}
+                          ? interfaceAttributeText('Permanently leave Gold Star Club')
+                          : interfaceAttributeText('Leave pod {pod}', { pod: podDetail.name || podDetail.podId })}
                         icon
                         labelPosition="left"
                         negative={isGoldStarClub}
@@ -849,7 +849,7 @@ export class Pods extends Component {
                     {podDetail.channels.map((channel, index) => (
                       <TooltipButton
                         active={channel.channelId === activeChannelId}
-                        aria-label={interfaceText('Open {channel} channel', {
+                        aria-label={interfaceAttributeText('Open {channel} channel', {
                           channel: channel.name || channel.channelId,
                         })}
                         icon={channel.kind === 'Direct' ? 'comments' : 'comment alternate'}

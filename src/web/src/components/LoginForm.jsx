@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "./Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../lib/apiErrorMessages';
 import Footer from './Shared/Footer';
 import TooltipButton from './Shared/TooltipButton';
@@ -180,7 +180,7 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
             )}
             {oidcEnabled && (
               <a href={oidcPresentation.setupUrl} target="_blank" rel="noopener noreferrer"
-                aria-label={interfaceText(
+                aria-label={interfaceAttributeText(
                   "{provider} identity provider setup guide (opens in a new tab)",
                   { provider: oidcPresentation.label },
                 )}

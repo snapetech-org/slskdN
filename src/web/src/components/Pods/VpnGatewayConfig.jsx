@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as pods from '../../lib/pods';
 import React, { useEffect, useState } from 'react';
@@ -371,14 +371,14 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   <Table.Cell>{destination.protocol?.toUpperCase()}</Table.Cell>
                   <Table.Cell>
                     <TooltipButton
-                      aria-label={interfaceText("Remove allowed destination {hostPattern}:{port}", { "hostPattern": (destination.hostPattern), "port": (destination.port) })}
+                      aria-label={interfaceAttributeText("Remove allowed destination {hostPattern}:{port}", { "hostPattern": (destination.hostPattern), "port": (destination.port) })}
                       color="red"
                       disabled={!vpnPolicy.enabled}
                       icon="trash"
                       onClick={() => handleRemoveDestination(index)}
                       size="small"
                       tooltip="Remove {hostPattern}:{port} from the draft policy. Save the VPN configuration to stop allowing this route."
-                     {...interfaceTextProps("Remove allowed destination {hostPattern}:{port}", { hostPattern: destination.hostPattern, port: destination.port })}/>
+                     {...interfaceAttributeTextProps("Remove allowed destination {hostPattern}:{port}", { hostPattern: destination.hostPattern, port: destination.port })}/>
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -436,14 +436,14 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
                   </Table.Cell>
                   <Table.Cell>
                     <TooltipButton
-                      aria-label={interfaceText("Remove registered service {name}", { "name": (service.name) })}
+                      aria-label={interfaceAttributeText("Remove registered service {name}", { "name": (service.name) })}
                       color="red"
                       disabled={!vpnPolicy.enabled}
                       icon="trash"
                       onClick={() => handleRemoveService(index)}
                       size="small"
                       tooltip="Remove {name} from the draft service list. Save the VPN configuration to stop advertising this route to pod members."
-                     {...interfaceTextProps("Remove registered service {name}", { name: service.name })}/>
+                     {...interfaceAttributeTextProps("Remove registered service {name}", { name: service.name })}/>
                   </Table.Cell>
                 </Table.Row>
               ))}

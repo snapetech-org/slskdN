@@ -1,4 +1,4 @@
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as transfers from '../../lib/transfers';
 import { formatBytes } from '../../lib/util';
@@ -104,7 +104,7 @@ class Directory extends Component {
           <Card.Content extra>
             <span>
               <Button
-                aria-label={interfaceText(selectedFiles.length === 1
+                aria-label={interfaceAttributeText(selectedFiles.length === 1
                   ? 'Download {count} selected file'
                   : 'Download {count} selected files', { count: selectedFiles.length })}
                 color="green"

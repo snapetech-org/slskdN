@@ -1,6 +1,6 @@
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { AutoFixableIssueCount } from "../../Shared/LocalizedCounts";
-import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 
 
@@ -644,7 +644,7 @@ const LibraryHealth = () => {
       {copyFallback ? (
         <label className="library-health-copy-fallback">
           {copyFallbackLabel} <LocalizedText source={"— select and copy"} /><textarea
-            aria-label={interfaceText("{copyFallbackLabel} text to copy manually", { "copyFallbackLabel": (copyFallbackLabel) })}
+            aria-label={interfaceAttributeText("{copyFallbackLabel} text to copy manually", { "copyFallbackLabel": (copyFallbackLabel) })}
             onFocus={(event) => event.target.select()}
             readOnly
             rows={8}
@@ -918,7 +918,7 @@ const LibraryHealth = () => {
                   content={interfaceText("Queue bounded remediation downloads for up to 25 selected auto-fixable issues. This starts the existing download/remediation workflow; use it when you want slskd to attempt a replacement. The original files are not edited by this control.")}
                   trigger={(
                     <Button
-                      aria-label={interfaceText("Queue fixes for {length} selected auto-fixable issues", { "length": (selectedFixableIssueIds.length) })}
+                      aria-label={interfaceAttributeText("Queue fixes for {length} selected auto-fixable issues", { "length": (selectedFixableIssueIds.length) })}
                       className="library-health-action"
                       data-testid="library-health-fix-selected"
                       disabled={fixing || selectedFixableIssueIds.length === 0}
@@ -1074,7 +1074,7 @@ const LibraryHealth = () => {
                     <Table.HeaderCell collapsing>
                       <label className="library-health-issue-checkbox">
                         <input
-                          aria-label={interfaceText("Select all {length} loaded Library Health issues", { "length": (issues.length) })}
+                          aria-label={interfaceAttributeText("Select all {length} loaded Library Health issues", { "length": (issues.length) })}
                           checked={
                             issues.length > 0 &&
                             issues.every((issue) => selectedIssues.has(issue.issueId))
@@ -1100,7 +1100,7 @@ const LibraryHealth = () => {
                       <Table.Cell collapsing>
                         <label className="library-health-issue-checkbox">
                           <input
-                            aria-label={interfaceText('Select {item}', {
+                            aria-label={interfaceAttributeText('Select {item}', {
                               item: [issue.artist, issue.title].filter(Boolean).join(' — ') || issue.issueId,
                             })}
                             checked={selectedIssues.has(issue.issueId)}
@@ -1165,8 +1165,8 @@ const LibraryHealth = () => {
                             content={interfaceText("Queue a remediation job for this auto-fixable issue. The backend still applies its remediation safeguards.")}
                             trigger={
                               <Button
-                                aria-label={interfaceText('Queue a remediation job for {item}', {
-                                  item: [issue.artist, issue.title].filter(Boolean).join(' — ') || interfaceText('this issue'),
+                                aria-label={interfaceAttributeText('Queue a remediation job for {item}', {
+                                  item: [issue.artist, issue.title].filter(Boolean).join(' — ') || interfaceAttributeText('this issue'),
                                 })}
                                 className="library-health-action"
                                 disabled={fixing}

@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 // <copyright file="RadioDirectory.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -63,7 +63,7 @@ const RadioDirectory = ({ onClose, onPlay }) => {
                       ? interfaceText('This host needs to publish a current snapshot with radio transport support.')
                       : interfaceText('This broadcast shares metadata only; its host has not enabled streaming.')}
                     trigger={
-                    <Button aria-label={interfaceText('Play {track} from listed radio', { track: party.title || party.contentId })} disabled={!playable} icon="play" onClick={() => { onPlay(party); onClose(); }} size="small" />
+                    <Button aria-label={interfaceAttributeText('Play {track} from listed radio', { track: party.title || party.contentId })} disabled={!playable} icon="play" onClick={() => { onPlay(party); onClose(); }} size="small" />
                   } />
                 </List.Content>
                 <List.Content>

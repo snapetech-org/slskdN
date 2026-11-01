@@ -1,4 +1,4 @@
-import { interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { interfaceAttributeText, interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import {
@@ -281,7 +281,7 @@ const AutomationCenter = () => {
                     position="top center"
                     trigger={
                       <Checkbox
-                        aria-label={interfaceText(enabled ? "Disable {title}" : "Enable {title}", { title: interfaceText(recipe.title) })}
+                        aria-label={interfaceAttributeText(enabled ? "Disable {title}" : "Enable {title}", { title: interfaceAttributeText(recipe.title) })}
                         checked={enabled}
                         onChange={(_event, { checked }) =>
                           toggleRecipe(recipe, checked)
@@ -360,12 +360,12 @@ const AutomationCenter = () => {
                     position="top center"
                     trigger={
                       <Button
-                        aria-label={interfaceText("Record dry run for {title}", { title: interfaceText(recipe.title) })}
+                        aria-label={interfaceAttributeText("Record dry run for {title}", { title: interfaceAttributeText(recipe.title) })}
                         basic
                         icon
                         onClick={() => dryRunRecipe(recipe)}
                         size="small"
-                        title={interfaceText("Record dry run for {title}", { title: interfaceText(recipe.title) })}
+                        title={interfaceAttributeText("Record dry run for {title}", { title: interfaceAttributeText(recipe.title) })}
                        {...interfaceTextProps("Record dry run for {title}")}>
                         <Icon name="play circle outline" />
                       </Button>
@@ -387,7 +387,7 @@ const AutomationCenter = () => {
                     trigger={
                       <span>
                         <Button
-                          aria-label={interfaceText("Execute {title}", { title: interfaceText(recipe.title) })}
+                          aria-label={interfaceAttributeText("Execute {title}", { title: interfaceAttributeText(recipe.title) })}
                           disabled={
                             !enabled ||
                             !executable ||
@@ -398,7 +398,7 @@ const AutomationCenter = () => {
                           loading={executing}
                           onClick={() => executeRecipe(recipe)}
                           size="small"
-                          title={interfaceText("Execute {title}", { title: interfaceText(recipe.title) })}
+                          title={interfaceAttributeText("Execute {title}", { title: interfaceAttributeText(recipe.title) })}
                          {...interfaceTextProps("Execute {title}")}>
                           <Icon name="bolt" />
                         </Button>

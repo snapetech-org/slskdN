@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
-import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import { deleteDirectory, deleteFile, deleteItems, list } from '../../../lib/files';
 import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
@@ -15,11 +15,15 @@ const joinPath = (...segments) => segments.filter(Boolean).join('/');
 const getErrorMessage = (error, fallback) =>
   getApiErrorMessageOutput(error, { t: interfaceText }, fallback);
 
-const getDeleteErrorSource = (error) => ({
+const DELETE_ERROR_SOURCES = {
   'access-denied': 'Access was denied',
   'delete-failed': 'The file system could not delete this item',
   'not-found': 'The item no longer exists',
-}[error] || 'The item could not be deleted');
+};
+
+const getDeleteErrorSource = (error) => Object.hasOwn(DELETE_ERROR_SOURCES, error)
+  ? DELETE_ERROR_SOURCES[error]
+  : 'The item could not be deleted';
 
 const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
   useInterfaceLanguage();
@@ -55,7 +59,7 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
         position="top center"
         trigger={(
           <Button
-            aria-label={interfaceText("Delete {itemType} {fullName}", { itemType: itemTypeLabel, fullName })}
+            aria-label={interfaceAttributeText("Delete {itemType} {fullName}", { itemType: itemTypeLabel, fullName })}
             basic
             icon="trash alternate"
             onClick={() => {
@@ -63,9 +67,9 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
               setOpen(true);
             }}
             size="small"
-           {...interfaceTextProps("Delete {itemType} {fullName}", { itemType: itemTypeLabel, fullName })}/>
+           {...interfaceAttributeTextProps("Delete {itemType} {fullName}", { itemType: itemTypeLabel, fullName })}/>
         )}
-       {...interfaceTextProps("Open confirmation to permanently delete {itemType} '{fullName}'.", { itemType: itemTypeLabel, fullName })}/>
+       {...interfaceAttributeTextProps("Open confirmation to permanently delete {itemType} '{fullName}'.", { itemType: itemTypeLabel, fullName })}/>
       <Modal
         onClose={() => !deleting && setOpen(false)}
         open={open}
@@ -108,7 +112,7 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
               >
                 <LocalizedText source={"Delete"} /></Button>
             )}
-           {...interfaceTextProps("Permanently delete this {itemType}. This action cannot be undone.", { itemType: itemTypeLabel })}/>
+           {...interfaceAttributeTextProps("Permanently delete this {itemType}. This action cannot be undone.", { itemType: itemTypeLabel })}/>
         </Modal.Actions>
       </Modal>
     </>
@@ -145,7 +149,7 @@ const FileRow = ({
       {remoteFileManagement ? (
         <Checkbox
           aria-label={selectionLabel}
-          {...interfaceTextProps(selectionSource, { fullName })}
+          {...interfaceAttributeTextProps(selectionSource, { fullName })}
           checked={selected}
           onChange={(_event, { checked }) => onSelectionChange(checked)}
         />
@@ -191,13 +195,13 @@ const DirectoryRow = ({
       <Table.Cell className="explorer-list-name">
         <Popup
           content={description}
-          {...interfaceTextProps(descriptionSource, { name })}
+          {...interfaceAttributeTextProps(descriptionSource, { name })}
           on={['hover', 'focus']}
           position="top left"
           trigger={(
             <Button
               aria-label={description}
-              {...interfaceTextProps(descriptionSource, { name })}
+              {...interfaceAttributeTextProps(descriptionSource, { name })}
               basic
               className="explorer-directory-button"
               onClick={onClick}
@@ -217,8 +221,8 @@ const DirectoryRow = ({
       <Table.Cell className="explorer-list-action">
         {remoteFileManagement && deletable ? (
           <Checkbox
-            aria-label={interfaceText(selectionSource, { fullName })}
-            {...interfaceTextProps(selectionSource, { fullName })}
+            aria-label={interfaceAttributeText(selectionSource, { fullName })}
+            {...interfaceAttributeTextProps(selectionSource, { fullName })}
             checked={selected}
             onChange={(_event, { checked }) => onSelectionChange(checked)}
           />
@@ -496,7 +500,7 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
 
       {remoteFileManagement || directory.directories.length > 0 ? (
         <div
-          aria-label={interfaceText(remoteFileManagement ? 'File management actions' : 'Directory information actions')}
+          aria-label={interfaceAttributeText(remoteFileManagement ? 'File management actions' : 'Directory information actions')}
           className="explorer-actions"
           role="group"
           {...interfaceTextProps(remoteFileManagement ? 'File management actions' : 'Directory information actions')}

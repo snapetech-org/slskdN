@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getRegionalLocale, useRegionalLocale } from '../../lib/regionalFormat';
 import {
   formatTransferState,
@@ -190,7 +190,7 @@ const Row = React.memo(({ index, style, ...data }) => {
     >
       <div className="transfer-cell transfer-cell-check" role="gridcell">
         <Checkbox
-          {...interfaceTextProps("Select {filename}")} aria-label={interfacePresentationText("Select {filename}", { filename: getFileName(transfer.filename) })}
+          {...interfaceTextProps("Select {filename}")} aria-label={interfaceAttributeText("Select {filename}", { filename: getFileName(transfer.filename) })}
           checked={selected}
           fitted
           onChange={(_, d) => onSelectionChange(transfer, d.checked)}
@@ -222,7 +222,7 @@ const Row = React.memo(({ index, style, ...data }) => {
                 position="top center"
                 trigger={
                   <Button
-                    {...interfaceTextProps("Browse {username} files")} aria-label={interfacePresentationText("Browse {username} files", { "username": (transfer.username) })}
+                    {...interfaceTextProps("Browse {username} files")} aria-label={interfaceAttributeText("Browse {username} files", { "username": (transfer.username) })}
                     as={Link} compact icon="folder open" size="mini"
                     state={{ user: transfer.username }}
                     style={{ fontSize: '0.65rem', padding: '2px 4px' }}
@@ -614,7 +614,7 @@ const TransferTable = ({
                   {isSorted && <Icon name={sort.direction === 'ascending' ? 'caret up' : 'caret down'} />}
                 </span>
                 <div
-                  {...interfaceTextProps("Resize {label} column")} aria-label={interfacePresentationText("Resize {label} column", { "label": interfaceText(col.label || col.key) })}
+                  {...interfaceTextProps("Resize {label} column")} aria-label={interfacePresentationText("Resize {label} column", { "label": interfaceAttributeText(col.label || col.key) })}
                   className="resize-handle"
                   role="separator"
                   style={{

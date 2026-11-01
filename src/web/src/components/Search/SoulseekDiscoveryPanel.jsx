@@ -1,4 +1,4 @@
-import { interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { interfaceAttributeText, interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 // <copyright file="SoulseekDiscoveryPanel.jsx" company="slskdN Team">
@@ -236,7 +236,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
           content={interfaceText("Start a normal Soulseek search for this recommendation.")}
           trigger={
             <SemanticButton
-              aria-label={interfaceText("Search {item}", { "item": (recommendation.item) })}
+              aria-label={interfaceAttributeText("Search {item}", { "item": (recommendation.item) })}
               icon="search"
               onClick={() => onSearch?.(recommendation.item)}
               size="mini"
@@ -247,7 +247,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
           content={interfaceText("Save this raw recommendation to Wishlist for manual review.")}
           trigger={
             <SemanticButton
-              aria-label={interfaceText("Add {item} to Wishlist", { "item": (recommendation.item) })}
+              aria-label={interfaceAttributeText("Add {item} to Wishlist", { "item": (recommendation.item) })}
               icon="bookmark outline"
               onClick={() => addToWishlist(recommendation.item)}
               size="mini"
@@ -274,7 +274,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
           content={interfaceText("Load this user's native Soulseek interests.")}
           trigger={
             <SemanticButton
-              aria-label={interfaceText("Load {username} interests", { "username": (user.username) })}
+              aria-label={interfaceAttributeText("Load {username} interests", { "username": (user.username) })}
               icon="heart outline"
               onClick={() => loadUserInterests(user.username)}
               size="mini"

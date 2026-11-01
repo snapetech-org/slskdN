@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfacePresentationText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import './Chat.css';
 import * as chat from '../../lib/chat';
 import PlaceholderSegment from '../Shared/PlaceholderSegment';
@@ -316,7 +316,7 @@ class ChatSession extends Component {
               />
               {username}
               <TooltipButton
-                {...interfaceTextProps("Delete saved conversation with {username}")} aria-label={interfacePresentationText("Delete saved conversation with {username}", { "username": (username) })}
+                {...interfaceTextProps("Delete saved conversation with {username}")} aria-label={interfaceAttributeText("Delete saved conversation with {username}", { "username": (username) })}
                 basic
                 className="close-button"
                 compact
@@ -345,7 +345,7 @@ class ChatSession extends Component {
             />
             <UserCard username={username}>{username}</UserCard>
               <TooltipButton
-                {...interfaceTextProps("Delete saved conversation with {username}")} aria-label={interfacePresentationText("Delete saved conversation with {username}", { "username": (username) })}
+                {...interfaceTextProps("Delete saved conversation with {username}")} aria-label={interfaceAttributeText("Delete saved conversation with {username}", { "username": (username) })}
                 basic
                 className="close-button"
                 compact

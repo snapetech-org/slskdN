@@ -1,5 +1,5 @@
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
-import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Lidarr.css';
@@ -627,7 +627,7 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={interfaceText("Retry Lidarr import for {directory}", { "directory": (entry.directory) })}
+                            aria-label={interfaceAttributeText("Retry Lidarr import for {directory}", { "directory": (entry.directory) })}
                             disabled={retryingId !== null}
                             icon="redo"
                             loading={retryingId === entry.id}

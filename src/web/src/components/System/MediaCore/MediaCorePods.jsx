@@ -1,5 +1,5 @@
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
-import { interfaceToastText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { interfaceDialogText, interfaceToastText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 
 
@@ -271,7 +271,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     }
 
     if (
-      !confirm(interfacePresentationText('Are you sure you want to unpublish pod "{podToUnpublish}"?', { podToUnpublish }))
+      !confirm(interfaceDialogText('Are you sure you want to unpublish pod "{podToUnpublish}"?', { podToUnpublish }))
     ) {
       return;
     }
@@ -373,7 +373,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
     if (
       !confirm(
-        interfacePresentationText('Are you sure you want to ban member "{membershipPeerId}" from pod "{membershipPodId}"?', { membershipPeerId, membershipPodId }),
+        interfaceDialogText('Are you sure you want to ban member "{membershipPeerId}" from pod "{membershipPodId}"?', { membershipPeerId, membershipPodId }),
       )
     ) {
       return;
@@ -1188,7 +1188,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   const handleDeleteChannel = async (channelId, channelName) => {
     if (
       !confirm(
-        interfacePresentationText('Are you sure you want to delete the channel "{channelName}"? This action cannot be undone.', { channelName }),
+        interfaceDialogText('Are you sure you want to delete the channel "{channelName}"? This action cannot be undone.', { channelName }),
       )
     ) {
       return;

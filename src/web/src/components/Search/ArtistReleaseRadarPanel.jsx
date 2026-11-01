@@ -1,4 +1,4 @@
-import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 // <copyright file="ArtistReleaseRadarPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -290,11 +290,11 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText('Route {title} radar hit', { title: localizedTitle })}
+                      aria-label={interfaceAttributeText('Route {title} radar hit', { title: localizedTitle })}
                       onClick={() => routeNotification(notification)}
                       size="mini"
                       type="button"
-                     {...interfaceTextProps('Route {title} radar hit', { title: localizedTitle })}>
+                     {...interfaceAttributeTextProps('Route {title} radar hit', { title: localizedTitle })}>
                       <Icon name="send" />
                       <LocalizedText source={"Route"} /></Button>
                   }

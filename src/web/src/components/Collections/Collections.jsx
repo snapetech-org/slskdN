@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as streaming from '../../lib/streaming';
@@ -536,8 +536,8 @@ export default class Collections extends Component {
                               content={interfaceText("Edit how this item appears in the collection without changing the audio file.")}
                               trigger={
                                 <Button
-                                  aria-label={interfaceText('Edit {item} display metadata', {
-                                    item: item.title || item.fileName || interfaceText('item'),
+                                  aria-label={interfaceAttributeText('Edit {item} display metadata', {
+                                    item: item.title || item.fileName || interfaceAttributeText('item'),
                                   })}
                                   icon="edit"
                                   onClick={() => this.setState({ editFileTags: false, editItem: { ...item } })}
@@ -549,8 +549,8 @@ export default class Collections extends Component {
                               content={interfaceText("Edit the tags in this server audio file. Administrator access and write permission are required.")}
                               trigger={
                                 <Button
-                                  aria-label={interfaceText('Edit {item} audio file tags', {
-                                    item: item.title || item.fileName || interfaceText('item'),
+                                  aria-label={interfaceAttributeText('Edit {item} audio file tags', {
+                                    item: item.title || item.fileName || interfaceAttributeText('item'),
                                   })}
                                   icon="tags"
                                   onClick={() => this.setState({ editFileTags: true, editItem: { ...item } })}

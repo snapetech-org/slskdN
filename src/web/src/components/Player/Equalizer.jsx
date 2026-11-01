@@ -1,5 +1,5 @@
 import { bands, resumeAudioGraph, setEqGains } from './audioGraph';
-import { interfaceText, interfaceTextOutput } from '../../lib/interfaceLocale';
+import { interfaceAttributeText, interfaceText, interfaceTextOutput } from '../../lib/interfaceLocale';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import React, { useEffect, useState } from 'react';
 import { Button, Dropdown, Icon, Popup } from 'semantic-ui-react';
@@ -117,7 +117,7 @@ const Equalizer = ({ audioElement, fadeAudioElement, onAudioError }) => {
         {bands.map((frequency, index) => (
           <label className="player-eq-band" key={frequency}>
             <input
-              aria-label={interfaceText('{frequency} equalizer gain', { frequency: formatBand(frequency) })}
+              aria-label={interfaceAttributeText('{frequency} equalizer gain', { frequency: formatBand(frequency) })}
               aria-orientation="vertical"
               aria-valuetext={`${state.gains[index]} dB`}
               data-testid={`player-eq-slider-${frequency}`}

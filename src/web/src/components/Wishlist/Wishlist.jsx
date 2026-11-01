@@ -1,5 +1,5 @@
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
-import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import { formatRegionalNumber, useRegionalLocale, getRegionalLocale } from '../../lib/regionalFormat';
 import LocalizedText from "../Shared/LocalizedText";
 
@@ -168,7 +168,7 @@ const WishlistItemRow = ({
             position="top center"
             trigger={
               <Checkbox
-                aria-label={interfaceText("Select {searchText} for bulk actions", { "searchText": (item.searchText) })}
+                aria-label={interfaceAttributeText("Select {searchText} for bulk actions", { "searchText": (item.searchText) })}
                 checked={selected}
                 onChange={(_, { checked }) => onSelect(item.id, checked)}
                {...interfaceTextProps("Select {searchText} for bulk actions")}/>
@@ -259,7 +259,7 @@ const WishlistItemRow = ({
                 position="top center"
                 trigger={
                   <Button
-                    aria-label={interfaceText("View latest search results for {searchText}", { "searchText": (item.searchText) })}
+                    aria-label={interfaceAttributeText("View latest search results for {searchText}", { "searchText": (item.searchText) })}
                     compact
                     icon="search"
                     size="tiny"
@@ -275,7 +275,7 @@ const WishlistItemRow = ({
               position="top center"
               trigger={
                   <Button
-                    aria-label={interfaceText("Mark {searchText} results as viewed", { "searchText": (item.searchText) })}
+                    aria-label={interfaceAttributeText("Mark {searchText} results as viewed", { "searchText": (item.searchText) })}
                     compact
                     icon="check"
                   onClick={handleMarkViewedClick}
@@ -286,7 +286,7 @@ const WishlistItemRow = ({
              {...interfaceTextProps("Clear this item's new-results badge without opening its search history.")}/>
           )}
           <TooltipButton
-            aria-label={interfaceText(showSearches
+            aria-label={interfaceAttributeText(showSearches
               ? 'Hide {searchText} search history'
               : 'Show {searchText} search history', {
               searchText: item.searchText,
@@ -301,7 +301,7 @@ const WishlistItemRow = ({
               : interfaceText('Review this item’s linked search history and past results.')}
           />
           <TooltipButton
-            aria-label={interfaceText("Run {searchText} wishlist search now", { "searchText": (item.searchText) })}
+            aria-label={interfaceAttributeText("Run {searchText} wishlist search now", { "searchText": (item.searchText) })}
             compact
             icon="play"
             loading={running}
@@ -311,7 +311,7 @@ const WishlistItemRow = ({
             tooltip="Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run."
            {...interfaceTextProps("Run {searchText} wishlist search now")}/>
           <TooltipButton
-            aria-label={interfaceText("Edit {searchText} wishlist settings", { "searchText": (item.searchText) })}
+            aria-label={interfaceAttributeText("Edit {searchText} wishlist settings", { "searchText": (item.searchText) })}
             compact
             icon="edit"
             onClick={() => onEdit(item)}
@@ -319,7 +319,7 @@ const WishlistItemRow = ({
             tooltip="Change this item’s search text, filters, result limits, and automation settings."
            {...interfaceTextProps("Edit {searchText} wishlist settings")}/>
           <TooltipButton
-            aria-label={interfaceText("Delete {searchText} from Wishlist", { "searchText": (item.searchText) })}
+            aria-label={interfaceAttributeText("Delete {searchText} from Wishlist", { "searchText": (item.searchText) })}
             color="red"
             compact
             icon="trash"
@@ -407,7 +407,7 @@ const WishlistItemRow = ({
                               position="top center"
                               trigger={
                                 <Button
-                                  aria-label={interfaceText("Open the full search for {searchText}", { "searchText": (item.searchText) })}
+                                  aria-label={interfaceAttributeText("Open the full search for {searchText}", { "searchText": (item.searchText) })}
                                   compact
                                   icon="external"
                                   size="mini"
@@ -420,7 +420,7 @@ const WishlistItemRow = ({
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={interfaceText(expandedSearchId === s.id
+                                aria-label={interfaceAttributeText(expandedSearchId === s.id
                                   ? 'Hide {searchText} results inline'
                                   : 'Show {searchText} results inline', {
                                   searchText: item.searchText,
@@ -586,7 +586,7 @@ const WishlistItemCard = ({
       >
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75em' }}>
           <Checkbox
-            aria-label={interfaceText("Select {searchText} for bulk actions", { "searchText": (item.searchText) })}
+            aria-label={interfaceAttributeText("Select {searchText} for bulk actions", { "searchText": (item.searchText) })}
             checked={selected}
             onChange={(_, { checked }) => onSelect(item.id, checked)}
             style={{ marginTop: '0.3em' }}
@@ -669,7 +669,7 @@ const WishlistItemCard = ({
               position="top center"
               trigger={
                 <Button
-                  aria-label={interfaceText(expanded
+                  aria-label={interfaceAttributeText(expanded
                     ? 'Hide {searchText} search history'
                     : 'Show {searchText} search history', {
                     searchText: item.searchText,
@@ -693,7 +693,7 @@ const WishlistItemCard = ({
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("View latest search results for {searchText}", { "searchText": (item.searchText) })}
+                      aria-label={interfaceAttributeText("View latest search results for {searchText}", { "searchText": (item.searchText) })}
                       compact
                       icon="search"
                       size="mini"
@@ -708,7 +708,7 @@ const WishlistItemCard = ({
                 position="top center"
                 trigger={
                   <Button
-                    aria-label={interfaceText("Mark {searchText} results as viewed", { "searchText": (item.searchText) })}
+                    aria-label={interfaceAttributeText("Mark {searchText} results as viewed", { "searchText": (item.searchText) })}
                     compact
                     icon="check"
                     onClick={handleMarkViewedClick}
@@ -722,7 +722,7 @@ const WishlistItemCard = ({
               position="top center"
               trigger={
                 <Button
-                  aria-label={interfaceText("Run {searchText} wishlist search now", { "searchText": (item.searchText) })}
+                  aria-label={interfaceAttributeText("Run {searchText} wishlist search now", { "searchText": (item.searchText) })}
                   compact
                   icon="play"
                   loading={running}
@@ -737,7 +737,7 @@ const WishlistItemCard = ({
               position="top center"
               trigger={
                 <Button
-                  aria-label={interfaceText("Edit {searchText} wishlist settings", { "searchText": (item.searchText) })}
+                  aria-label={interfaceAttributeText("Edit {searchText} wishlist settings", { "searchText": (item.searchText) })}
                   compact
                   icon="edit"
                   onClick={() => onEdit(item)}
@@ -750,7 +750,7 @@ const WishlistItemCard = ({
               position="top center"
               trigger={
                 <Button
-                  aria-label={interfaceText("Delete {searchText} from Wishlist", { "searchText": (item.searchText) })}
+                  aria-label={interfaceAttributeText("Delete {searchText} from Wishlist", { "searchText": (item.searchText) })}
                   color="red"
                   compact
                   icon="trash"
@@ -815,7 +815,7 @@ const WishlistItemCard = ({
                               position="top center"
                               trigger={
                                 <Button
-                                  aria-label={interfaceText("Open the full search for {searchText}", { "searchText": (item.searchText) })}
+                                  aria-label={interfaceAttributeText("Open the full search for {searchText}", { "searchText": (item.searchText) })}
                                   compact
                                   icon="external"
                                   size="mini"
@@ -828,7 +828,7 @@ const WishlistItemCard = ({
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={interfaceText(expandedSearchId === s.id
+                                aria-label={interfaceAttributeText(expandedSearchId === s.id
                                   ? 'Hide {searchText} results inline'
                                   : 'Show {searchText} results inline', {
                                   searchText: item.searchText,
@@ -1163,7 +1163,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
                             content={interfaceText("Allow this peer folder to appear again in future runs of this wishlist item.")}
                             trigger={
                               <Button
-                                aria-label={interfaceText("Restore {username} {directory} to wishlist results", { "username": (rule.username), "directory": (rule.directory) })}
+                                aria-label={interfaceAttributeText("Restore {username} {directory} to wishlist results", { "username": (rule.username), "directory": (rule.directory) })}
                                 compact
                                 icon="undo"
                                 onClick={() => restoreIgnoredResult(rule)}
@@ -2120,7 +2120,7 @@ const Wishlist = () => {
                   position="top center"
                   trigger={(
                     <span
-                      aria-label={interfaceText("Page {currentPage} of {pageCount}", { "currentPage": (currentPage), "pageCount": (pageCount) })}
+                      aria-label={interfaceAttributeText("Page {currentPage} of {pageCount}", { "currentPage": (currentPage), "pageCount": (pageCount) })}
                       className="ui basic button"
                       role="status"
                       tabIndex={0}

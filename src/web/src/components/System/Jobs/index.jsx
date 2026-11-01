@@ -1,6 +1,6 @@
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -401,8 +401,8 @@ const Jobs = () => {
                         position="top center"
                         trigger={(
                           <Button
-                            aria-label={interfaceText('View swarm download details for {file}', {
-                              file: fileName ?? interfaceText('Unknown file'),
+                            aria-label={interfaceAttributeText('View swarm download details for {file}', {
+                              file: fileName ?? interfaceAttributeText('Unknown file'),
                             })}
                             compact
                             onClick={() => {

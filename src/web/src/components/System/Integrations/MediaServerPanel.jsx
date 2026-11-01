@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 // <copyright file="MediaServerPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -133,7 +133,7 @@ const MediaServerPanel = () => {
                 position="top center"
                 trigger={
                   <Button
-                    aria-label={interfaceText("Review {label} sync readiness", { "label": (adapter.label) })}
+                    aria-label={interfaceAttributeText("Review {label} sync readiness", { "label": (adapter.label) })}
                     basic={activeAdapterId !== adapter.id}
                     color={
                       activeAdapterId === adapter.id ? 'purple' : undefined
@@ -273,7 +273,7 @@ const MediaServerPanel = () => {
                 const description = interfaceText(automation.description);
                 return (
                   <Form.Checkbox
-                    aria-label={interfaceText('Include {label} in review', { label })}
+                    aria-label={interfaceAttributeText('Include {label} in review', { label })}
                     checked={Boolean(enabledAutomations[automation.id])}
                     id={`media-server-automation-${automation.id}`}
                     key={automation.id}
@@ -281,7 +281,7 @@ const MediaServerPanel = () => {
                     onChange={(_event, { checked }) =>
                       updateAutomation(automation.id, checked)
                     }
-                    {...interfaceTextProps('Include {label} in review', { label })}
+                    {...interfaceAttributeTextProps('Include {label} in review', { label })}
                   />
                 );
               })}

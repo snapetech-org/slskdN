@@ -1,4 +1,4 @@
-import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import { useRegionalLocale } from '../../../lib/regionalFormat';
 import LocalizedText, { LocalizedRichText } from "../../Shared/LocalizedText";
 import {
@@ -210,8 +210,8 @@ const MeshEvidencePolicy = () => {
                       position="top center"
                       trigger={
                         <Checkbox
-                          aria-label={interfaceText(actionSource, { label })}
-                          {...interfaceTextProps(actionSource, { label })}
+                          aria-label={interfaceAttributeText(actionSource, { label })}
+                          {...interfaceAttributeTextProps(actionSource, { label })}
                           checked={enabled}
                           onChange={(_event, { checked }) =>
                             toggleOutbound(evidenceType, checked)

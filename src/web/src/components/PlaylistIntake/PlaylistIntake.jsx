@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 
 
@@ -310,7 +310,7 @@ const PlaylistIntake = () => {
                       position="top center"
                       trigger={
                         <Button
-                          aria-label={interfaceText("Preview slskdN playlist for {name}", { "name": (playlist.name) })}
+                          aria-label={interfaceAttributeText("Preview slskdN playlist for {name}", { "name": (playlist.name) })}
                           icon
                           onClick={() => previewSlskdPlaylist(playlist)}
                           size="small"
@@ -325,7 +325,7 @@ const PlaylistIntake = () => {
                       position="top center"
                       trigger={
                         <Button
-                          aria-label={interfaceText("Create slskdN playlist for {name}", { "name": (playlist.name) })}
+                          aria-label={interfaceAttributeText("Create slskdN playlist for {name}", { "name": (playlist.name) })}
                           icon
                           loading={busyPlaylistId === playlist.id}
                           onClick={() => createSlskdPlaylist(playlist)}
@@ -354,7 +354,7 @@ const PlaylistIntake = () => {
                     <Form>
                       <Form.Group widths="equal">
                         <Form.Input
-                          aria-label={interfaceText("Organization album title for {name}", { "name": (playlist.name) })}
+                          aria-label={interfaceAttributeText("Organization album title for {name}", { "name": (playlist.name) })}
                           label={<LocalizedText source="Album title" />}
                           onChange={(event) =>
                             setOrganizationInput(
@@ -366,7 +366,7 @@ const PlaylistIntake = () => {
                           value={organizationInput.albumTitle}
                          {...interfaceTextProps("Organization album title for {name}")}/>
                         <Form.Select
-                          aria-label={interfaceText("Organization path template for {name}", { "name": (playlist.name) })}
+                          aria-label={interfaceAttributeText("Organization path template for {name}", { "name": (playlist.name) })}
                           label={<LocalizedText source="Path template" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'pathTemplate', data.value)
@@ -377,7 +377,7 @@ const PlaylistIntake = () => {
                       </Form.Group>
                       <Form.Group widths="equal">
                         <Form.Select
-                          aria-label={interfaceText("Multi-artist tag policy for {name}", { "name": (playlist.name) })}
+                          aria-label={interfaceAttributeText("Multi-artist tag policy for {name}", { "name": (playlist.name) })}
                           label={<LocalizedText source="Multi-artist" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(
@@ -390,7 +390,7 @@ const PlaylistIntake = () => {
                           value={organizationInput.multiArtistPolicy}
                          {...interfaceTextProps("Multi-artist")}/>
                         <Form.Select
-                          aria-label={interfaceText("Cover art policy for {name}", { "name": (playlist.name) })}
+                          aria-label={interfaceAttributeText("Cover art policy for {name}", { "name": (playlist.name) })}
                           label={<LocalizedText source="Cover art" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'coverArtPolicy', data.value)
@@ -399,7 +399,7 @@ const PlaylistIntake = () => {
                           value={organizationInput.coverArtPolicy}
                          {...interfaceTextProps("Cover art policy for {name}")}/>
                         <Form.Select
-                          aria-label={interfaceText("ReplayGain policy for {name}", { "name": (playlist.name) })}
+                          aria-label={interfaceAttributeText("ReplayGain policy for {name}", { "name": (playlist.name) })}
                           label={<LocalizedText source="ReplayGain" />}
                           onChange={(_event, data) =>
                             setOrganizationInput(playlist, 'replayGainPolicy', data.value)
@@ -413,7 +413,7 @@ const PlaylistIntake = () => {
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={interfaceText("Preview tag organization for {name}", { "name": (playlist.name) })}
+                            aria-label={interfaceAttributeText("Preview tag organization for {name}", { "name": (playlist.name) })}
                             disabled={completion.Matched === 0}
                             icon
                             onClick={() => previewTagOrganization(playlist)}
@@ -429,7 +429,7 @@ const PlaylistIntake = () => {
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={interfaceText("Copy tag organization report for {name}", { "name": (playlist.name) })}
+                            aria-label={interfaceAttributeText("Copy tag organization report for {name}", { "name": (playlist.name) })}
                             disabled={!playlist.organizationPlan}
                             icon
                             onClick={() => copyTagOrganizationReport(playlist)}
@@ -445,7 +445,7 @@ const PlaylistIntake = () => {
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={interfaceText("Approve tag organization snapshot for {name}", { "name": (playlist.name) })}
+                            aria-label={interfaceAttributeText("Approve tag organization snapshot for {name}", { "name": (playlist.name) })}
                             disabled={!playlist.organizationPlan}
                             icon
                             onClick={() => approveTagOrganizationSnapshot(playlist)}
@@ -461,7 +461,7 @@ const PlaylistIntake = () => {
                         position="top center"
                         trigger={
                           <Button
-                            aria-label={interfaceText("Clear tag organization snapshot for {name}", { "name": (playlist.name) })}
+                            aria-label={interfaceAttributeText("Clear tag organization snapshot for {name}", { "name": (playlist.name) })}
                             disabled={!playlist.organizationApproval}
                             icon
                             onClick={() => clearTagOrganizationSnapshot(playlist)}
@@ -587,7 +587,7 @@ const PlaylistIntake = () => {
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={interfaceText("Mark {title} matched", { "title": (track.title) })}
+                                aria-label={interfaceAttributeText("Mark {title} matched", { "title": (track.title) })}
                                 disabled={track.state === 'Matched'}
                                 icon="check"
                                 onClick={() => setTrackState(playlist, track, 'Matched')}
@@ -600,7 +600,7 @@ const PlaylistIntake = () => {
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={interfaceText("Mark {title} unmatched", { "title": (track.title) })}
+                                aria-label={interfaceAttributeText("Mark {title} unmatched", { "title": (track.title) })}
                                 disabled={track.state === 'Unmatched'}
                                 icon="question circle outline"
                                 onClick={() =>
@@ -615,7 +615,7 @@ const PlaylistIntake = () => {
                             position="top center"
                             trigger={
                               <Button
-                                aria-label={interfaceText("Reject playlist row {title}", { "title": (track.title) })}
+                                aria-label={interfaceAttributeText("Reject playlist row {title}", { "title": (track.title) })}
                                 disabled={track.state === 'Rejected'}
                                 icon="ban"
                                 negative

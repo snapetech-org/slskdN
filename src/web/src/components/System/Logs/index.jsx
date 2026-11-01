@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { createLogsHubConnection } from '../../../lib/hubFactory';
@@ -331,7 +331,7 @@ const Logs = () => {
                     trigger={(
                       <Button
                         active={active}
-                        aria-label={interfaceText(accessibleName)}
+                        aria-label={interfaceAttributeText(accessibleName)}
                         aria-pressed={active}
                         color={active ? color : undefined}
                         onClick={() => setFilterLevel(level)}
@@ -449,7 +449,7 @@ const Logs = () => {
                           position="top center"
                           trigger={(
                             <Button
-                              aria-label={interfaceText("View {name}", { "name": (file.name) })}
+                              aria-label={interfaceAttributeText("View {name}", { "name": (file.name) })}
                               icon
                               onClick={() => openPreview(file)}
                               size="small"
@@ -464,7 +464,7 @@ const Logs = () => {
                           position="top center"
                           trigger={(
                             <Button
-                              aria-label={interfaceText("Download {name}", { "name": (file.name) })}
+                              aria-label={interfaceAttributeText("Download {name}", { "name": (file.name) })}
                               icon
                               onClick={() => download(file)}
                               size="small"

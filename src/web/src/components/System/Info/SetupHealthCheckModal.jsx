@@ -1,4 +1,4 @@
-import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText from "../../Shared/LocalizedText";
 import { urlBase } from "../../../config";
 import {
@@ -218,7 +218,7 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Show {group} setup health checks", { group: interfaceText(group) })}
+                      aria-label={interfaceAttributeText("Show {group} setup health checks", { group: interfaceAttributeText(group) })}
                       basic={activeGroup !== group}
                       onClick={() => setActiveGroup(group)}
                       size="small"

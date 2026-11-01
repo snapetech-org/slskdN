@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import * as listeningParty from '../../lib/listeningParty';
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { usePlayer } from './PlayerContext';
@@ -488,7 +488,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
                     content={interfaceText("Play this listed radio snapshot through the host's stream endpoint. Rejoin for later track changes.")}
                     trigger={
                       <Button
-                        {...interfaceTextProps("Play {track} from listed radio")} aria-label={interfacePresentationText("Play {track} from listed radio", { track: party.title || party.contentId })}
+                        {...interfaceTextProps("Play {track} from listed radio")} aria-label={interfaceAttributeText("Play {track} from listed radio", { track: party.title || party.contentId })}
                         disabled={!party.allowMeshStreaming || !party.transportUsername || !party.streamTicket}
                         icon
                         onClick={() => joinListedParty(party)}

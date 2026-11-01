@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { list } from '../../../lib/events';
@@ -179,7 +179,7 @@ const Events = () => {
                       position="top left"
                       trigger={(
                         <Button
-                          aria-label={interfaceText("Show identifier for event {id}", { "id": (event.id) })}
+                          aria-label={interfaceAttributeText("Show identifier for event {id}", { "id": (event.id) })}
                           basic
                           icon="info circle"
                           size="small"

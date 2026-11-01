@@ -1,5 +1,5 @@
 import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextOutput, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfacePresentationText, interfaceText, interfaceTextOutput, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Player.css';
 import * as collectionsAPI from '../../lib/collections';
 import {
@@ -310,8 +310,8 @@ const PlayerRatingControls = ({ current, onChange, rating }) => {
             <button
               aria-label={
                 value === rating
-                  ? interfaceText('Clear {rating} star rating', { rating: value })
-                  : interfaceText('Rate {rating} stars', { rating: value })
+                  ? interfaceAttributeText('Clear {rating} star rating', { rating: value })
+                  : interfaceAttributeText('Rate {rating} stars', { rating: value })
               }
               className={[
                 'player-rating-button',
@@ -322,8 +322,8 @@ const PlayerRatingControls = ({ current, onChange, rating }) => {
               onClick={() => onChange(value === rating ? 0 : value)}
               title={
                 value === rating
-                  ? interfaceText('Clear this local rating.')
-                  : interfaceText('Rate this track {rating} out of 5.', { rating: value })
+                  ? interfaceAttributeText('Clear this local rating.')
+                  : interfaceAttributeText('Rate this track {rating} out of 5.', { rating: value })
               }
               type="button"
             >
@@ -825,16 +825,16 @@ const PlayerQueueModal = ({
                       <span>{item.artist || item.album || item.contentId}</span>
                     </div>
                     <Popup content={<LocalizedText source={"Move this track earlier in the queue."} />} trigger={
-                      <Button {...interfaceTextProps("Move {track} up")} aria-label={interfacePresentationText("Move {track} up", { track: getTrackLabel(item) })} disabled={index === 0} icon onClick={() => onMove(index + 1, index)} size="mini" type="button"><Icon name="arrow up" /></Button>
+                      <Button {...interfaceTextProps("Move {track} up")} aria-label={interfaceAttributeText("Move {track} up", { track: getTrackLabel(item) })} disabled={index === 0} icon onClick={() => onMove(index + 1, index)} size="mini" type="button"><Icon name="arrow up" /></Button>
                     }  {...interfaceTextProps("Move this track earlier in the queue.")}/>
                     <Popup content={<LocalizedText source={"Move this track later in the queue."} />} trigger={
-                      <Button {...interfaceTextProps("Move {track} down")} aria-label={interfacePresentationText("Move {track} down", { track: getTrackLabel(item) })} disabled={index === upcoming.length - 1} icon onClick={() => onMove(index + 1, index + 2)} size="mini" type="button"><Icon name="arrow down" /></Button>
+                      <Button {...interfaceTextProps("Move {track} down")} aria-label={interfaceAttributeText("Move {track} down", { track: getTrackLabel(item) })} disabled={index === upcoming.length - 1} icon onClick={() => onMove(index + 1, index + 2)} size="mini" type="button"><Icon name="arrow down" /></Button>
                     }  {...interfaceTextProps("Move this track later in the queue.")}/>
                     <Popup
                       content={<LocalizedText source={"Remove this upcoming item from the local playback queue."} />}
                       trigger={
                         <Button
-                          {...interfaceTextProps("Remove {track} from queue")} aria-label={interfacePresentationText("Remove {track} from queue", { track: getTrackLabel(item) })}
+                          {...interfaceTextProps("Remove {track} from queue")} aria-label={interfaceAttributeText("Remove {track} from queue", { track: getTrackLabel(item) })}
                           data-testid={`player-remove-queue-${item.contentId}`}
                           icon
                           onClick={() => onRemove(index + 1)}
@@ -1079,7 +1079,7 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
                 content={<LocalizedText source={"Preview the shelf action. This does not move, delete, share, download, or publish anything."} />}
                 trigger={
                   <Button
-                    {...interfaceTextProps("Preview {item}")} aria-label={interfacePresentationText("Preview {item}", { item: item.title || item.artist || interfaceText("discovery shelf item") })}
+                    {...interfaceTextProps("Preview {item}")} aria-label={interfaceAttributeText("Preview {item}", { item: item.title || item.artist || interfaceText("discovery shelf item") })}
                     data-testid={`player-shelf-preview-${item.key}`}
                     icon
                     onClick={() => previewAction(item)}
@@ -1094,7 +1094,7 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
                 content={<LocalizedText source={"Remove this local review item from the browser-only shelf."} />}
                 trigger={
                   <Button
-                    {...interfaceTextProps("Remove {item} from the discovery shelf")} aria-label={interfacePresentationText("Remove {item} from the discovery shelf", { item: item.title || item.artist || interfaceText("discovery shelf item") })}
+                    {...interfaceTextProps("Remove {item} from the discovery shelf")} aria-label={interfaceAttributeText("Remove {item} from the discovery shelf", { item: item.title || item.artist || interfaceText("discovery shelf item") })}
                     data-testid={`player-shelf-remove-${item.key}`}
                     icon
                     onClick={() => removeItem(item.key)}
@@ -1347,8 +1347,8 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
                 <Button
                   active={rangeDays === range.value}
                   aria-label={range.value
-                    ? interfaceText('Show last {days} days of listening statistics', { days: range.value })
-                    : interfaceText('Show all listening statistics')}
+                    ? interfaceAttributeText('Show last {days} days of listening statistics', { days: range.value })
+                    : interfaceAttributeText('Show all listening statistics')}
                   data-testid={`player-stats-range-${range.label}`}
                   onClick={() => updateRange(range.value)}
                   size="mini"
@@ -1400,7 +1400,7 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
                       content={interfaceText("Open this local listening seed as a normal Search page query. Network search starts only after you choose to search.")}
                       trigger={
                         <Button
-                          aria-label={interfaceText("Search {label}", { "label": (seed.label) })}
+                          aria-label={interfaceAttributeText("Search {label}", { "label": (seed.label) })}
                           data-testid={`player-stats-search-seed-${seed.query}`}
                           icon
                           onClick={() => onOpenSearch(seed.query)}
@@ -1823,7 +1823,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                             content={interfaceText("Show tracks in {title} so you can choose one to play or queue.", { "title": (collection.title) })}
                             trigger={
                               <button
-                                aria-label={interfaceText("Show tracks in {title}", { "title": (collection.title) })}
+                                aria-label={interfaceAttributeText("Show tracks in {title}", { "title": (collection.title) })}
                                 aria-pressed={selectedCollection?.id === collection.id}
                                 className="player-collection-select"
                                 onClick={(event) => {
@@ -1880,7 +1880,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                             content={<LocalizedText source={"Play this collection item in the browser player."} />}
                             trigger={
                               <Button
-                                {...interfaceTextProps("Play {track} from this collection")} aria-label={interfacePresentationText("Play {track} from this collection", { track: item.title || item.fileName || item.contentId || interfaceText("Track") })}
+                                {...interfaceTextProps("Play {track} from this collection")} aria-label={interfaceAttributeText("Play {track} from this collection", { track: item.title || item.fileName || item.contentId || interfaceText("Track") })}
                                 data-testid={`player-play-collection-item-${item.contentId}`}
                                 icon
                                 onClick={() => playAndClose(item)}
@@ -1891,7 +1891,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                             }
                            {...interfaceTextProps("Play this collection item in the browser player.")}/>
                           <Popup content={<LocalizedText source={"Place this collection item next in the playback queue."} />} trigger={
-                            <Button {...interfaceTextProps("Play {track} next")} aria-label={interfacePresentationText("Play {track} next", { track: item.title || item.fileName || interfaceText("Track") })} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
+                            <Button {...interfaceTextProps("Play {track} next")} aria-label={interfaceAttributeText("Play {track} next", { track: item.title || item.fileName || interfaceText("Track") })} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
                           }  {...interfaceTextProps("Place this collection item next in the playback queue.")}/>
                         </Table.Cell>
                       </Table.Row>
@@ -2064,19 +2064,19 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                               content={<LocalizedText source={"Play this local file in the browser player."} />}
                               trigger={
                                 <Button
-                                  {...interfaceTextProps("Play {track}")} aria-label={interfacePresentationText("Play {track}", { track: item.fileName || item.contentId })}
+                                  {...interfaceTextProps("Play {track}")} aria-label={interfaceAttributeText("Play {track}", { track: item.fileName || item.contentId })}
                                   data-testid={`player-play-file-${item.contentId}`}
                                   icon
                                   onClick={() => playAndClose(item)}
                                   size="small"
-                                  title={interfacePresentationText("Play {track}", { track: item.fileName || item.contentId })}
+                                  title={interfaceAttributeText("Play {track}", { track: item.fileName || item.contentId })}
                                 >
                                   <Icon name="play" />
                                 </Button>
                               }
                              {...interfaceTextProps("Play this local file in the browser player.")}/>
                             <Popup content={<LocalizedText source={"Place this file next in the playback queue."} />} trigger={
-                              <Button {...interfaceTextProps("Play {track} next")} aria-label={interfacePresentationText("Play {track} next", { track: item.fileName || interfaceText("file") })} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
+                              <Button {...interfaceTextProps("Play {track} next")} aria-label={interfaceAttributeText("Play {track} next", { track: item.fileName || interfaceText("file") })} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
                             }  {...interfaceTextProps("Place this file next in the playback queue.")}/>
                           </Table.Cell>
                         </Table.Row>
@@ -2241,11 +2241,11 @@ const PlayerVisualTile = ({
           trigger={
             <div
               aria-label={analyzerMotionSuppressed
-                ? interfaceText(
+                ? interfaceAttributeText(
                   'Show {mode} in player visual tile. Analyzer animation is paused because reduced motion is enabled',
                   { mode: localizedTileModeLabel(nextTileMode) },
                 )
-                : interfaceText('Show {mode} in player visual tile', {
+                : interfaceAttributeText('Show {mode} in player visual tile', {
                   mode: localizedTileModeLabel(nextTileMode),
                 })}
               role="button"
@@ -2334,7 +2334,7 @@ const PlayerVisualTile = ({
             key={option}
             trigger={
               <Button
-                aria-label={interfaceText('Show {mode}', { mode: localizedTileModeLabel(option) })}
+                aria-label={interfaceAttributeText('Show {mode}', { mode: localizedTileModeLabel(option) })}
                 active={effectiveTileMode === option}
                 toggle
                 data-testid={`player-visual-tile-mode-${option}`}
@@ -4139,7 +4139,7 @@ const PlayerBar = () => {
             />
             <PlayerToolButton
               active={repeatMode !== 'off'}
-              aria-label={interfaceText("Repeat {repeatMode}", { "repeatMode": (repeatMode) })}
+              aria-label={interfaceAttributeText("Repeat {repeatMode}", { "repeatMode": (repeatMode) })}
               content={interfaceText("Repeat: {repeatMode}. Click to cycle off, all tracks, and one track.", { "repeatMode": (repeatMode) })}
               icon="repeat"
               onClick={() => setRepeatMode((mode) => mode === 'off' ? 'all' : mode === 'all' ? 'one' : 'off')}
@@ -4599,7 +4599,7 @@ const PlayerBar = () => {
               key={`${item.contentId}-${index}`}
               trigger={
                 <button
-                  aria-label={interfaceText('Remove {track} from queue', {
+                  aria-label={interfaceAttributeText('Remove {track} from queue', {
                     track: item.title || item.fileName || item.contentId,
                   })}
                   className="player-queue-item"
