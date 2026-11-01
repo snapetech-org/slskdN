@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "baseHead": "561725681b8ed2c8d82cd975ab0c7ce02b5977af",
+  "baseHead": "cf99bafc6d8926ed1bd11af47105bd53f069956b",
   "state": "source-boundary follow-up; existing translations reused",
   "sourceReferenceCountDelta": 1,
   "uniqueSourceCountDelta": 0,
@@ -31,7 +31,7 @@
           "line": 2731,
           "lineText": "        const name = result?.name || externalVisualizerStatus?.name || interfaceTextOutput('External Visualizer');",
           "lineTextSha256": "37099c0cdece8b6382f4ba46fb60ca8f63262a1e27a66a526ae58430356a4674",
-          "fileSha256": "b89b26a92ec08bc287dea0bceae1855d197e27ecad473962d13056a4ec3c7d6a"
+          "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446"
         }
       ]
     }
@@ -39,6 +39,38 @@
   "boundaryNotes": [
     "External-visualizer status notices are retained as source descriptors for render-time locale resolution.",
     "Unknown launch result.error values remain raw/opaque.",
-    "Configured visualizer names use bdi dir=auto lang=und; paths and their title attribute use dir=ltr lang=und."
-  ]
+    "Configured visualizer names use bdi dir=auto lang=und; paths and their title attribute use dir=ltr lang=und.",
+    "Dynamic aria-label/title values across Wishlist search text, room names, paths, provider labels, and other app attributes use all-language FSI/PDI isolation; visible content and API/storage values are unchanged.",
+    "The three MediaCore pod/channel confirmation messages isolate dynamic names and IDs for LTR and RTL language selections."
+  ],
+  "attributeBoundaryAudit": {
+    "sourceHead": "cf99bafc6d8926ed1bd11af47105bd53f069956b",
+    "directDynamicAttributeExpressionsUpdated": 125,
+    "filesWithDirectDynamicAttributeUpdates": 36,
+    "parameterizedAttributePropSpreadsUpdated": 19,
+    "filesWithParameterizedAttributePropSpreads": 9,
+    "nativeConfirmationTemplatesIsolated": 3,
+    "newSourceIds": 0,
+    "catalogDelta": 0,
+    "pendingTargetCellDelta": 0,
+    "coverageExtractor": {
+      "path": "src/web/src/lib/interfaceLocaleCoverage.test.js",
+      "recognizedHelpersAdded": [
+        "interfaceAttributeText",
+        "interfaceAttributeTextProps",
+        "interfaceDialogText"
+      ],
+      "fileSha256": "cbedb927a22bc7112db661b641b92403b26f7d379833cc94684a7041423cd69b"
+    },
+    "boundaryNotes": [
+      "Dynamic aria-label, title, and alt interpolations use all-language FSI/PDI isolation; stored/API values and visible text remain unchanged.",
+      "Dynamic interfaceTextProps spreads use the matching all-language attribute-props helper so later prop spreading cannot restore an unisolated label or title.",
+      "Three MediaCore pod/channel confirmation templates isolate their dynamic IDs/names in every UI language.",
+      "The static localization-reference extractor recognizes the three attribute/dialog helpers; no new source IDs or translation cells were introduced."
+    ],
+    "sourceReferenceCount": 10263,
+    "uniqueSourceCount": 5644,
+    "directInterfaceTextAttributeExpressionsUpdated": 122,
+    "rtlOnlyPresentationAttributeExpressionsUpdated": 3
+  }
 }
