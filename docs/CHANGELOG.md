@@ -26,7 +26,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
   isolate configured names/paths while retaining the existing translated
   fallback label.
 - Localization: isolate dynamic aria-label, title, and confirmation values in
-  every UI language, and keep unknown file-delete error codes on the fixed fallback.
+  every UI language, keep unknown file-delete error codes on the fixed fallback,
+  and include the new helpers in source-coverage extraction.
 
 - Localization: extend source-bound rendering across playback, messaging, pods, rooms, network, and library-health interfaces while keeping unknown API values opaque.
 

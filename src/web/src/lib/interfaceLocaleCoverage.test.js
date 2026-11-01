@@ -138,7 +138,11 @@ const collectLocalizationReferences = () => {
       if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) {
         const helper = node.expression.text;
         const sourceCount = ['interfaceTextPlural', 'tPlural', 'tp'].includes(helper) ? 2 : 1;
-        if (['interfaceText', 'interfacePresentationText', 'interfaceTextProps', 'interfaceTextPlural', 't', 'tp', 'tPlural'].includes(helper)) {
+        if ([
+          'interfaceText', 'interfacePresentationText', 'interfaceTextProps',
+          'interfaceAttributeText', 'interfaceAttributeTextProps', 'interfaceDialogText',
+          'interfaceTextPlural', 't', 'tp', 'tPlural',
+        ].includes(helper)) {
           node.arguments.slice(0, sourceCount).forEach((argument) => {
             staticStrings(argument, values).forEach((value) => add(argument, value));
           });

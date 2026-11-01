@@ -2410,7 +2410,7 @@ const PlayerAnalyzerTile = ({ audioElement, mode, onModeChange }) => {
         trigger={
           <div
             {...interfaceTextProps("Click to {nextLabel}.")}
-            aria-label={`${interfacePresentationText("Click to {nextLabel}.", { nextLabel })}${motionSuppressed ? ` ${interfaceText("Animation is paused because reduced motion is enabled")}` : ''}`}
+            aria-label={`${interfaceAttributeText("Click to {nextLabel}.", { nextLabel })}${motionSuppressed ? ` ${interfaceText("Animation is paused because reduced motion is enabled")}` : ''}`}
             className="player-analyzer-tile"
             data-testid="player-analyzer-tile"
             onClick={() => onModeChange(nextMode)}

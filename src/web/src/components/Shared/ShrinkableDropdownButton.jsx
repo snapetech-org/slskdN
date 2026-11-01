@@ -1,5 +1,5 @@
 import ShrinkableButton from './ShrinkableButton';
-import { interfacePresentationText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { interfaceAttributeText, interfacePresentationText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import React from 'react';
 import { Button, Dropdown, Popup } from 'semantic-ui-react';
 
@@ -25,7 +25,7 @@ const ShrinkableDropdownButton = ({
   const menu = (
     <Dropdown
       {...(!menuLabel && typeof children === 'string' ? interfaceTextProps("{label} options") : {})}
-      aria-label={menuLabel || (typeof children === 'string' ? interfacePresentationText("{label} options", { label: children }) : undefined)}
+      aria-label={menuLabel || (typeof children === 'string' ? interfaceAttributeText("{label} options", { label: children }) : undefined)}
       className="button icon"
       disabled={disabled}
       onChange={onChange}

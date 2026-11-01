@@ -614,7 +614,7 @@ const TransferTable = ({
                   {isSorted && <Icon name={sort.direction === 'ascending' ? 'caret up' : 'caret down'} />}
                 </span>
                 <div
-                  {...interfaceTextProps("Resize {label} column")} aria-label={interfacePresentationText("Resize {label} column", { "label": interfaceAttributeText(col.label || col.key) })}
+                  {...interfaceTextProps("Resize {label} column")} aria-label={interfaceAttributeText("Resize {label} column", { "label": interfaceAttributeText(col.label || col.key) })}
                   className="resize-handle"
                   role="separator"
                   style={{
