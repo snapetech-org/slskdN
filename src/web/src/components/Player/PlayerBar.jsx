@@ -187,12 +187,12 @@ const setPlayerHeightVariable = (element) => {
 };
 
 const getExternalVisualizerStatusText = (status, loading) => {
-  if (loading) return interfaceText('Checking external visualizer launcher...');
-  if (!status) return interfaceText('Status unavailable.');
-  if (!status.enabled) return interfaceText('Disabled in slskd.yml.');
-  if (!status.configured) return interfaceText('No launcher path configured.');
-  if (!status.available) return interfaceText('Configured launcher path was not found.');
-  return interfaceText('Ready to launch on the slskdN host.');
+  if (loading) return 'Checking external visualizer launcher...';
+  if (!status) return 'Status unavailable.';
+  if (!status.enabled) return 'Disabled in slskd.yml.';
+  if (!status.configured) return 'No launcher path configured.';
+  if (!status.available) return 'Configured launcher path was not found.';
+  return 'Ready to launch on the slskdN host.';
 };
 
 const getExternalVisualizerError = (error) =>
@@ -2715,7 +2715,7 @@ const PlayerBar = () => {
       })
       .catch(() => {
         setExternalVisualizerStatus(null);
-        setExternalVisualizerMessage(interfaceText('External visualizer status is unavailable.'));
+        setExternalVisualizerMessage(interfaceTextOutput('External visualizer status is unavailable.'));
       })
       .finally(() => {
         setExternalVisualizerLoading(false);
@@ -2728,9 +2728,11 @@ const PlayerBar = () => {
 
     externalVisualizer.launchExternalVisualizer()
       .then((result) => {
-        const name = result?.name || externalVisualizerStatus?.name || 'External visualizer';
+        const name = result?.name || externalVisualizerStatus?.name || interfaceTextOutput('External visualizer');
         setExternalVisualizerMessage(
-          result?.started ? interfaceText('{name} launched.', { name }) : result?.error || interfaceText('External visualizer did not launch.'),
+          result?.started
+            ? interfaceTextOutput('{name} launched.', { name })
+            : result?.error || interfaceTextOutput('External visualizer did not launch.'),
         );
       })
       .catch((error) => {
@@ -4446,20 +4448,26 @@ const PlayerBar = () => {
               />
               <div>
                 <div className="player-external-visualizer-name">
-                  {externalVisualizerStatus?.name || 'MilkDrop3'}
+                  {externalVisualizerStatus?.name ? (
+                    <bdi dir="auto" lang="und">{externalVisualizerStatus.name}</bdi>
+                  ) : (
+                    <bdi dir="auto" lang="und">MilkDrop3</bdi>
+                  )}
                 </div>
                 <div className="player-external-visualizer-status">
-                  {getExternalVisualizerStatusText(
+                  <LocalizedText source={getExternalVisualizerStatusText(
                     externalVisualizerStatus,
                     externalVisualizerLoading,
-                  )}
+                  )} />
                 </div>
                 {externalVisualizerStatus?.path ? (
                   <div
                     className="player-external-visualizer-path"
                     title={externalVisualizerStatus.path}
+                    dir="ltr"
+                    lang="und"
                   >
-                    {externalVisualizerStatus.path}
+                    <bdi dir="ltr" lang="und">{externalVisualizerStatus.path}</bdi>
                   </div>
                 ) : null}
               </div>
