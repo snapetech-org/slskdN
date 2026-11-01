@@ -23,8 +23,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 ## [Unreleased]
 
 - Localization: preserve source identity for external-visualizer messages and
-  isolate configured names/paths; one fallback-label source is awaiting
-  translation in all twelve catalogs.
+  isolate configured names/paths while retaining the existing translated
+  fallback label.
 
 - Localization: extend source-bound rendering across playback, messaging, pods, rooms, network, and library-health interfaces while keeping unknown API values opaque.
 

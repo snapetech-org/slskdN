@@ -2728,7 +2728,7 @@ const PlayerBar = () => {
 
     externalVisualizer.launchExternalVisualizer()
       .then((result) => {
-        const name = result?.name || externalVisualizerStatus?.name || interfaceTextOutput('External visualizer');
+        const name = result?.name || externalVisualizerStatus?.name || interfaceTextOutput('External Visualizer');
         setExternalVisualizerMessage(
           result?.started
             ? interfaceTextOutput('{name} launched.', { name })
