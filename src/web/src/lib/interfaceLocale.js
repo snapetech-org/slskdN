@@ -53,10 +53,10 @@ const readLanguage = () => {
   }
 };
 
-const applyDocumentLanguage = (_language) => {
+const applyDocumentLanguage = (language) => {
   if (typeof document === 'undefined') return;
-  document.documentElement.lang = 'en';
-  document.documentElement.dir = 'ltr';
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
 };
 
 const loadCatalog = (language) => {
