@@ -1,0 +1,300 @@
+{"id":"es:src_e4aebaebd1e5cbce","verdict":"correct","target":"Los datos de huella de audio no están disponibles","confidence":"high","reason":"The metadata-stage callsite is the AcoustID audio-fingerprinting step. These current targets use wording that specifically means a finger/biometric print; the alternatives identify audio fingerprints."}
+{"id":"zh-Hans:src_e4aebaebd1e5cbce","verdict":"keep"}
+{"id":"hi:src_e4aebaebd1e5cbce","verdict":"keep"}
+{"id":"de:src_e4aebaebd1e5cbce","verdict":"keep"}
+{"id":"ja:src_e4aebaebd1e5cbce","verdict":"keep"}
+{"id":"fr:src_e4aebaebd1e5cbce","verdict":"correct","target":"Les données d’empreinte audio ne sont pas disponibles","confidence":"high","reason":"The metadata-stage callsite is the AcoustID audio-fingerprinting step. These current targets use wording that specifically means a finger/biometric print; the alternatives identify audio fingerprints."}
+{"id":"pt-BR:src_e4aebaebd1e5cbce","verdict":"correct","target":"Os dados da impressão digital de áudio não estão disponíveis","confidence":"high","reason":"The metadata-stage callsite is the AcoustID audio-fingerprinting step. These current targets use wording that specifically means a finger/biometric print; the alternatives identify audio fingerprints."}
+{"id":"ar:src_e4aebaebd1e5cbce","verdict":"correct","target":"بيانات البصمة الصوتية غير متاحة","confidence":"high","reason":"The metadata-stage callsite is the AcoustID audio-fingerprinting step. These current targets use wording that specifically means a finger/biometric print; the alternatives identify audio fingerprints."}
+{"id":"ko:src_e4aebaebd1e5cbce","verdict":"keep"}
+{"id":"zh-Hant:src_e4aebaebd1e5cbce","verdict":"keep"}
+{"id":"vi:src_e4aebaebd1e5cbce","verdict":"correct","target":"Dữ liệu dấu vân tay âm thanh hiện không khả dụng","confidence":"high","reason":"The metadata-stage callsite is the AcoustID audio-fingerprinting step. These current targets use wording that specifically means a finger/biometric print; the alternatives identify audio fingerprints."}
+{"id":"id:src_e4aebaebd1e5cbce","verdict":"correct","target":"Data sidik jari audio tidak tersedia","confidence":"high","reason":"The metadata-stage callsite is the AcoustID audio-fingerprinting step. These current targets use wording that specifically means a finger/biometric print; the alternatives identify audio fingerprints."}
+{"id":"es:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"zh-Hans:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"hi:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"de:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"ja:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"fr:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"pt-BR:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"ar:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"ko:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"zh-Hant:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"vi:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"id:src_e4c249c4bfcd8493","verdict":"keep"}
+{"id":"es:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"zh-Hans:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"hi:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"de:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"ja:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"fr:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"pt-BR:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"ar:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"ko:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"zh-Hant:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"vi:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"id:src_e4e0e64d0c7698ae","verdict":"keep"}
+{"id":"es:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"zh-Hans:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"hi:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"de:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"ja:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"fr:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"pt-BR:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"ar:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"ko:src_e4fa7577c8faff4d","verdict":"correct","target":"참여한 채팅방 새로고침","confidence":"high","reason":"The callsite reloads the list of joined application chat rooms. The current Korean `회의실` means meeting room, which changes the room type."}
+{"id":"zh-Hant:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"vi:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"id:src_e4fa7577c8faff4d","verdict":"keep"}
+{"id":"es:src_e504e61521948e34","verdict":"keep"}
+{"id":"zh-Hans:src_e504e61521948e34","verdict":"keep"}
+{"id":"hi:src_e504e61521948e34","verdict":"keep"}
+{"id":"de:src_e504e61521948e34","verdict":"keep"}
+{"id":"ja:src_e504e61521948e34","verdict":"keep"}
+{"id":"fr:src_e504e61521948e34","verdict":"keep"}
+{"id":"pt-BR:src_e504e61521948e34","verdict":"keep"}
+{"id":"ar:src_e504e61521948e34","verdict":"keep"}
+{"id":"ko:src_e504e61521948e34","verdict":"keep"}
+{"id":"zh-Hant:src_e504e61521948e34","verdict":"keep"}
+{"id":"vi:src_e504e61521948e34","verdict":"keep"}
+{"id":"id:src_e504e61521948e34","verdict":"keep"}
+{"id":"es:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"zh-Hans:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"hi:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"de:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"ja:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"fr:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"pt-BR:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"ar:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"ko:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"zh-Hant:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"vi:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"id:src_e51248773b9a3f59","verdict":"uncertain","reason":"The frozen source inventory contains no callsite or context for this generic heading. It could mean administration, management of an object, or a UI section; hold for a locale reviewer with the rendered location."}
+{"id":"es:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"zh-Hans:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"hi:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"de:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"ja:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"fr:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"pt-BR:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"ar:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"ko:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"zh-Hant:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"vi:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"id:src_e51e0f06a253399c","verdict":"keep"}
+{"id":"es:src_e520a082286bb152","verdict":"keep"}
+{"id":"zh-Hans:src_e520a082286bb152","verdict":"keep"}
+{"id":"hi:src_e520a082286bb152","verdict":"keep"}
+{"id":"de:src_e520a082286bb152","verdict":"keep"}
+{"id":"ja:src_e520a082286bb152","verdict":"keep"}
+{"id":"fr:src_e520a082286bb152","verdict":"keep"}
+{"id":"pt-BR:src_e520a082286bb152","verdict":"keep"}
+{"id":"ar:src_e520a082286bb152","verdict":"keep"}
+{"id":"ko:src_e520a082286bb152","verdict":"keep"}
+{"id":"zh-Hant:src_e520a082286bb152","verdict":"keep"}
+{"id":"vi:src_e520a082286bb152","verdict":"keep"}
+{"id":"id:src_e520a082286bb152","verdict":"keep"}
+{"id":"es:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"zh-Hans:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"hi:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"de:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"ja:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"fr:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"pt-BR:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"ar:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"ko:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"zh-Hant:src_e5224c0825ad62cf","verdict":"keep"}
+{"id":"vi:src_e5224c0825ad62cf","verdict":"correct","target":"Bật xử lý tin nhắn theo lô","confidence":"high","reason":"The Privacy.Batching setting has a batch window and max batch size. These current targets read as sending messages in groups/grouping messages; this is timed batch processing."}
+{"id":"id:src_e5224c0825ad62cf","verdict":"correct","target":"Aktifkan pemrosesan pesan secara batch","confidence":"high","reason":"The Privacy.Batching setting has a batch window and max batch size. These current targets read as sending messages in groups/grouping messages; this is timed batch processing."}
+{"id":"es:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"zh-Hans:src_e5344b90422ffa76","verdict":"correct","target":"禁用 Web 身份验证","confidence":"high","reason":"The Admin Policies checkbox controls the web interface authentication setting (`form.noAuth`). These targets say network authentication rather than web authentication."}
+{"id":"hi:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"de:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"ja:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"fr:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"pt-BR:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"ar:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"ko:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"zh-Hant:src_e5344b90422ffa76","verdict":"correct","target":"停用 Web 身分驗證","confidence":"high","reason":"The Admin Policies checkbox controls the web interface authentication setting (`form.noAuth`). These targets say network authentication rather than web authentication."}
+{"id":"vi:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"id:src_e5344b90422ffa76","verdict":"keep"}
+{"id":"es:src_e53863d425d27781","verdict":"keep"}
+{"id":"zh-Hans:src_e53863d425d27781","verdict":"keep"}
+{"id":"hi:src_e53863d425d27781","verdict":"keep"}
+{"id":"de:src_e53863d425d27781","verdict":"keep"}
+{"id":"ja:src_e53863d425d27781","verdict":"keep"}
+{"id":"fr:src_e53863d425d27781","verdict":"correct","target":"Effacez l’instantané approuvé tout en gardant l’aperçu en mode simulation disponible pour d’autres modifications.","confidence":"high","reason":"The Playlist Intake popup describes a dry-run preview. The current French `à sec` reads as physically dry; this is a simulation preview."}
+{"id":"pt-BR:src_e53863d425d27781","verdict":"keep"}
+{"id":"ar:src_e53863d425d27781","verdict":"keep"}
+{"id":"ko:src_e53863d425d27781","verdict":"keep"}
+{"id":"zh-Hant:src_e53863d425d27781","verdict":"keep"}
+{"id":"vi:src_e53863d425d27781","verdict":"keep"}
+{"id":"id:src_e53863d425d27781","verdict":"keep"}
+{"id":"es:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"zh-Hans:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"hi:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"de:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"ja:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"fr:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"pt-BR:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"ar:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"ko:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"zh-Hant:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"vi:src_e55aadd88f15ce83","verdict":"keep"}
+{"id":"id:src_e55aadd88f15ce83","verdict":"correct","target":"Checksum:","confidence":"high","reason":"The value is an exported descriptor checksum. The current Indonesian `Jumlah pemeriksaan` means a number of inspections/checks, not a checksum."}
+{"id":"es:src_e56b37bca3877d38","verdict":"keep"}
+{"id":"zh-Hans:src_e56b37bca3877d38","verdict":"keep"}
+{"id":"hi:src_e56b37bca3877d38","verdict":"keep"}
+{"id":"de:src_e56b37bca3877d38","verdict":"correct","target":"Deskriptor-JSON anzeigen","confidence":"high","reason":"The MediaCore details summary opens the JSON representation of a technical content descriptor. These targets have awkward word order or translate descriptor as a generic description/explainer."}
+{"id":"ja:src_e56b37bca3877d38","verdict":"correct","target":"記述子JSONを表示","confidence":"high","reason":"The MediaCore details summary opens the JSON representation of a technical content descriptor. These targets have awkward word order or translate descriptor as a generic description/explainer."}
+{"id":"fr:src_e56b37bca3877d38","verdict":"keep"}
+{"id":"pt-BR:src_e56b37bca3877d38","verdict":"keep"}
+{"id":"ar:src_e56b37bca3877d38","verdict":"keep"}
+{"id":"ko:src_e56b37bca3877d38","verdict":"correct","target":"디스크립터 JSON 보기","confidence":"high","reason":"The MediaCore details summary opens the JSON representation of a technical content descriptor. These targets have awkward word order or translate descriptor as a generic description/explainer."}
+{"id":"zh-Hant:src_e56b37bca3877d38","verdict":"keep"}
+{"id":"vi:src_e56b37bca3877d38","verdict":"correct","target":"Xem JSON của descriptor","confidence":"high","reason":"The MediaCore details summary opens the JSON representation of a technical content descriptor. These targets have awkward word order or translate descriptor as a generic description/explainer."}
+{"id":"id:src_e56b37bca3877d38","verdict":"correct","target":"Lihat JSON deskriptor","confidence":"high","reason":"The MediaCore details summary opens the JSON representation of a technical content descriptor. These targets have awkward word order or translate descriptor as a generic description/explainer."}
+{"id":"es:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"zh-Hans:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"hi:src_e574c6856ba5c870","verdict":"correct","target":"विश्वसनीय दायरे का उपयोग करके इस कलाकार को Release Radar की सदस्यता दें।","confidence":"high","reason":"The callsite subscribes an artist to the named Release Radar feature. These targets translate “Release Radar” as releasing a radar rather than preserving the destination name."}
+{"id":"de:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"ja:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"fr:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"pt-BR:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"ar:src_e574c6856ba5c870","verdict":"correct","target":"اشترك بهذا الفنان في Release Radar باستخدام النطاق الموثوق به.","confidence":"high","reason":"The callsite subscribes an artist to the named Release Radar feature. These targets translate “Release Radar” as releasing a radar rather than preserving the destination name."}
+{"id":"ko:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"zh-Hant:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"vi:src_e574c6856ba5c870","verdict":"correct","target":"Đăng ký theo dõi nghệ sĩ này trên Release Radar bằng phạm vi đáng tin cậy.","confidence":"high","reason":"The callsite subscribes an artist to the named Release Radar feature. These targets translate “Release Radar” as releasing a radar rather than preserving the destination name."}
+{"id":"id:src_e574c6856ba5c870","verdict":"keep"}
+{"id":"es:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"zh-Hans:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"hi:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"de:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"ja:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"fr:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"pt-BR:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"ar:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"ko:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"zh-Hant:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"vi:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"id:src_e575c3138e9183ca","verdict":"keep"}
+{"id":"es:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"zh-Hans:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"hi:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"de:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"ja:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"fr:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"pt-BR:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"ar:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"ko:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"zh-Hant:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"vi:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"id:src_e59e18662b7b7b77","verdict":"keep"}
+{"id":"es:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"zh-Hans:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"hi:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"de:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"ja:src_e5aca09da6ed5d28","verdict":"correct","target":"取得統計","confidence":"high","reason":"The MediaCore panel loads descriptor-retrieval performance and cache statistics. These targets say search statistics, which suggests user search queries instead of descriptor retrieval."}
+{"id":"fr:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"pt-BR:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"ar:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"ko:src_e5aca09da6ed5d28","verdict":"correct","target":"가져오기 통계","confidence":"high","reason":"The MediaCore panel loads descriptor-retrieval performance and cache statistics. These targets say search statistics, which suggests user search queries instead of descriptor retrieval."}
+{"id":"zh-Hant:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"vi:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"id:src_e5aca09da6ed5d28","verdict":"keep"}
+{"id":"es:src_e5b317d0a907a792","verdict":"correct","target":"Ingrese una ruta de servidor (por ejemplo, /music o C:\\\\Music)","confidence":"high","reason":"The Library Health field asks for an actual server filesystem path. The current Spanish localizes `/music` and `C:\\Music` into translated directory names; preserve the executable example paths."}
+{"id":"zh-Hans:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"hi:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"de:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"ja:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"fr:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"pt-BR:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"ar:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"ko:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"zh-Hant:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"vi:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"id:src_e5b317d0a907a792","verdict":"keep"}
+{"id":"es:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"zh-Hans:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"hi:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"de:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"ja:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"fr:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"pt-BR:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"ar:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"ko:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"zh-Hant:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"vi:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"id:src_e5b7dd14a2d5b2a5","verdict":"keep"}
+{"id":"es:src_e5c9347034fc6fc1","verdict":"keep"}
+{"id":"zh-Hans:src_e5c9347034fc6fc1","verdict":"correct","target":"为已明确预览的导入 Feed URL 启用 YouTube Data API 播放列表展开。","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"hi:src_e5c9347034fc6fc1","verdict":"keep"}
+{"id":"de:src_e5c9347034fc6fc1","verdict":"keep"}
+{"id":"ja:src_e5c9347034fc6fc1","verdict":"correct","target":"明示的にプレビューしたインポート フィード URL で、YouTube Data API のプレイリスト展開を有効にします。","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"fr:src_e5c9347034fc6fc1","verdict":"keep"}
+{"id":"pt-BR:src_e5c9347034fc6fc1","verdict":"correct","target":"Ativa a expansão de playlists pela YouTube Data API para URLs de feeds de importação cuja prévia foi exibida explicitamente.","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"ar:src_e5c9347034fc6fc1","verdict":"correct","target":"يؤدي ذلك إلى تفعيل توسيع قوائم التشغيل عبر YouTube Data API لعناوين URL لخلاصات الاستيراد التي تمت معاينتها صراحةً.","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"ko:src_e5c9347034fc6fc1","verdict":"correct","target":"명시적으로 미리 본 가져오기 피드 URL에 대해 YouTube Data API 재생 목록 확장을 활성화합니다.","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"zh-Hant:src_e5c9347034fc6fc1","verdict":"correct","target":"為已明確預覽的匯入 Feed URL 啟用 YouTube Data API 播放清單展開。","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"vi:src_e5c9347034fc6fc1","verdict":"correct","target":"Bật tính năng mở rộng danh sách phát qua YouTube Data API cho các URL nguồn cấp dữ liệu nhập đã được xem trước rõ ràng.","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"id:src_e5c9347034fc6fc1","verdict":"correct","target":"Mengaktifkan perluasan playlist melalui YouTube Data API untuk URL feed impor yang telah ditinjau pratinjaunya secara eksplisit.","confidence":"high","reason":"Google’s developer documentation names the product “YouTube Data API” and lists playlists among its resources. These targets translated or reordered `Data API`; keep the product name unchanged. https://developers.google.com/youtube/documentation"}
+{"id":"es:src_e5d95c023d274d24","verdict":"correct","target":"La sincronización para recuperar mensajes usa las marcas de tiempo vistas por última vez para solicitar los mensajes perdidos. Confirme el pod de destino antes de sincronizar todos los canales.","confidence":"high","reason":"The MediaCore Pod notice explains a catch-up sync that requests missed messages from last-seen timestamps. The existing “refill/fill” terms are literal backfill translations; Arabic and Vietnamese also turn the application Pod into a capsule or generic group."}
+{"id":"zh-Hans:src_e5d95c023d274d24","verdict":"keep"}
+{"id":"hi:src_e5d95c023d274d24","verdict":"keep"}
+{"id":"de:src_e5d95c023d274d24","verdict":"keep"}
+{"id":"ja:src_e5d95c023d274d24","verdict":"keep"}
+{"id":"fr:src_e5d95c023d274d24","verdict":"correct","target":"La synchronisation de rattrapage utilise les horodatages de dernière présence pour demander les messages manqués. Confirmez le pod cible avant de synchroniser tous les canaux.","confidence":"high","reason":"The MediaCore Pod notice explains a catch-up sync that requests missed messages from last-seen timestamps. The existing “refill/fill” terms are literal backfill translations; Arabic and Vietnamese also turn the application Pod into a capsule or generic group."}
+{"id":"pt-BR:src_e5d95c023d274d24","verdict":"correct","target":"A sincronização para recuperar mensagens usa os carimbos de data/hora vistos pela última vez para solicitar mensagens perdidas. Confirme o pod de destino antes de sincronizar todos os canais.","confidence":"high","reason":"The MediaCore Pod notice explains a catch-up sync that requests missed messages from last-seen timestamps. The existing “refill/fill” terms are literal backfill translations; Arabic and Vietnamese also turn the application Pod into a capsule or generic group."}
+{"id":"ar:src_e5d95c023d274d24","verdict":"correct","target":"تعتمد مزامنة استدراك الرسائل الفائتة على الطوابع الزمنية لآخر ظهور لطلب تلك الرسائل. أكّد Pod المستهدف قبل مزامنة جميع القنوات.","confidence":"high","reason":"The MediaCore Pod notice explains a catch-up sync that requests missed messages from last-seen timestamps. The existing “refill/fill” terms are literal backfill translations; Arabic and Vietnamese also turn the application Pod into a capsule or generic group."}
+{"id":"ko:src_e5d95c023d274d24","verdict":"keep"}
+{"id":"zh-Hant:src_e5d95c023d274d24","verdict":"keep"}
+{"id":"vi:src_e5d95c023d274d24","verdict":"correct","target":"Đồng bộ bù sử dụng dấu thời gian được nhìn thấy lần cuối để yêu cầu tin nhắn bị lỡ. Xác nhận Pod đích trước khi đồng bộ tất cả các kênh.","confidence":"high","reason":"The MediaCore Pod notice explains a catch-up sync that requests missed messages from last-seen timestamps. The existing “refill/fill” terms are literal backfill translations; Arabic and Vietnamese also turn the application Pod into a capsule or generic group."}
+{"id":"id:src_e5d95c023d274d24","verdict":"correct","target":"Sinkronisasi susulan menggunakan stempel waktu terakhir terlihat untuk meminta pesan yang terlewat. Konfirmasikan Pod target sebelum menyinkronkan semua saluran.","confidence":"high","reason":"The MediaCore Pod notice explains a catch-up sync that requests missed messages from last-seen timestamps. The existing “refill/fill” terms are literal backfill translations; Arabic and Vietnamese also turn the application Pod into a capsule or generic group."}
+{"id":"es:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"zh-Hans:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"hi:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"de:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"ja:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"fr:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"pt-BR:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"ar:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"ko:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"zh-Hant:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"vi:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"id:src_e5e3f49f554968a4","verdict":"keep"}
+{"id":"es:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"zh-Hans:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"hi:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"de:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"ja:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"fr:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"pt-BR:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"ar:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"ko:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"zh-Hant:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"vi:src_e61804f60f2392a8","verdict":"correct","target":"Trang trước của bản kê","confidence":"high","reason":"The Shared With Me callsite paginates items in a content manifest. The current Vietnamese `kê khai` means a declaration/filing rather than an item manifest."}
+{"id":"id:src_e61804f60f2392a8","verdict":"keep"}
+{"id":"es:src_e6250d48bdac49f5","verdict":"correct","target":"Consentimiento explícito para publicar evidencias","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"zh-Hans:src_e6250d48bdac49f5","verdict":"correct","target":"明确同意发布证据","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"hi:src_e6250d48bdac49f5","verdict":"keep"}
+{"id":"de:src_e6250d48bdac49f5","verdict":"keep"}
+{"id":"ja:src_e6250d48bdac49f5","verdict":"keep"}
+{"id":"fr:src_e6250d48bdac49f5","verdict":"correct","target":"Consentement explicite à la publication de preuves","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"pt-BR:src_e6250d48bdac49f5","verdict":"correct","target":"Consentimento explícito para publicar evidências","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"ar:src_e6250d48bdac49f5","verdict":"correct","target":"موافقة صريحة على نشر الأدلة","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"ko:src_e6250d48bdac49f5","verdict":"keep"}
+{"id":"zh-Hant:src_e6250d48bdac49f5","verdict":"correct","target":"明確同意發布證據","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"vi:src_e6250d48bdac49f5","verdict":"correct","target":"Đồng ý rõ ràng cho việc xuất bản bằng chứng","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"id:src_e6250d48bdac49f5","verdict":"correct","target":"Persetujuan eksplisit untuk memublikasikan bukti","confidence":"high","reason":"The automation recipe uses this value as an `approvalGate` before evidence publication. These current targets describe an option/participation or make “explicit” modify the evidence, instead of saying publication requires explicit opt-in/consent."}
+{"id":"es:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"zh-Hans:src_e636298b1e3e62aa","verdict":"correct","target":"获取方案","confidence":"high","reason":"The Search panel dropdown selects among strategies such as lossless-exact, rare-hunt, and mesh-preferred. The current targets mean a generic acquisition configuration or an import profile rather than the chosen acquisition profile/strategy."}
+{"id":"hi:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"de:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"ja:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"fr:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"pt-BR:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"ar:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"ko:src_e636298b1e3e62aa","verdict":"correct","target":"획득 프로필","confidence":"high","reason":"The Search panel dropdown selects among strategies such as lossless-exact, rare-hunt, and mesh-preferred. The current targets mean a generic acquisition configuration or an import profile rather than the chosen acquisition profile/strategy."}
+{"id":"zh-Hant:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"vi:src_e636298b1e3e62aa","verdict":"keep"}
+{"id":"id:src_e636298b1e3e62aa","verdict":"keep"}
