@@ -1,12 +1,16 @@
 # Localization source inventory
 
-`20261031-interface-copy-inventory.json` is the current source ledger. It
-records 444 missing browser-interface, generated-report, and fixed server-status
-sources, plus two background notification titles, for 446 app-owned strings
-and 5,352 target cells across the 12 agreed locales. The 2026-11-01 v5 follow-up
-ledger adds five fixed app-output sources and 60 pending target cells, for 451
-app-owned strings and 5,412 pending cells total. The refreshed source-reference
-counts including this delta are 10,262 references across 5,644 unique source strings; two newly fixed transfer-cleanup success messages are translated in all locales and do not add pending cells. This includes nine fixed
+`20261031-interface-copy-inventory.json` is the source ledger for 446
+browser-interface, generated-report, fixed server-status, and notification
+strings. Its untranslated targets account for 5,352 cells across the 12 agreed
+locales. The 2026-11-01 v5 follow-up ledger adds five missing app-output keys
+and 60 target cells, bringing the missing-key total to 451 IDs and 5,412
+cells. It separately records the existing `Playback stopped.` key, whose 12
+targets are still English-identical. The full follow-up therefore has 72
+translation cells; the overall outstanding total is 5,424. Refreshed
+source-reference counts including the five new keys are 10,262 references
+across 5,644 unique source strings; two fixed transfer-cleanup success messages
+are translated in all locales and do not add pending cells. This includes nine fixed
 Quarantine Jury status/error messages and the Library Health scan failure.
 Caller lines and file hashes make the source inventory reproducible. All listed
 target values still fall back to English and need translation, semantic review,
@@ -33,4 +37,4 @@ complete; a passing source-wiring check alone does not establish translation
 coverage or semantic quality.
 
 
-The v5 source-fix inventory is `20261101-v5-followup-inventory.json`. It records the two previously missing app outputs (equalizer and file-deletion errors) and three MessagingV2 action templates with opaque room/pod names. Their 60 target translations remain pending across the twelve locales. The existing `Playback stopped.` translation from the separate successor artifact is included in the v5 patch; the two fixed Network sync errors and four PortForwarding validation strings already exist in every locale catalog.
+The v5 source-fix inventory is `20261101-v5-followup-inventory.json`. It records the two previously missing app outputs (equalizer and file-deletion errors) and three MessagingV2 action templates with opaque room/pod names; their 60 target translations remain pending. It separately records 12 English-identical targets for the existing `Playback stopped.` key, for 72 follow-up translation cells total. The two fixed Network sync errors and four PortForwarding validation strings already exist in every locale catalog.
