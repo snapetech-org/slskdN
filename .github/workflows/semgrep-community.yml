@@ -1,15 +1,25 @@
 # ng-runner-policy: private-jit-only-v1
 name: Semgrep Community Edition
 
+run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
+
 on:
-  push:
-    tags:
-      - '**'
   workflow_dispatch:
 
+    inputs:
+      action:
+        description: Run the private security scan
+        required: true
+        type: choice
+        options:
+          - scan
+      runner_pool:
+        description: Select the private ephemeral runner pool
+        required: true
+        type: choice
+        options: [private]
 permissions:
   contents: read
-  security-events: write
 
 concurrency:
   group: ng-scan-semgrep-community-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
@@ -18,6 +28,8 @@ concurrency:
 jobs:
   semgrep:
     name: Semgrep CE (community rules)
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.action == 'scan' && inputs.runner_pool == 'private' && github.ref == 'refs/heads/main'
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-semgrep"]}}', github.run_id)) }}
     timeout-minutes: 30
     steps:
@@ -67,7 +79,7 @@ jobs:
             "$inline_suppression_count" \
             "$(jq '[.runs[].results[]?] | length' semgrep-upload.sarif)"
 
-      - name: Upload findings to GitHub code scanning
+      - name: Retain scan report (semgrep-upload)
         # Upload only against the default branch or a same-repository PR ref.
         if: >-
           always() && hashFiles('semgrep-upload.sarif') != '' &&
@@ -76,7 +88,10 @@ jobs:
             github.event.pull_request.head.repo.full_name == github.repository) ||
             github.ref == 'refs/heads/main'
           )
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          sarif_file: semgrep-upload.sarif
-          category: semgrep-ce-community
+          name: scan-report-semgrep-upload-${{ github.job }}-${{ strategy.job-index }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            semgrep-upload.sarif
+          if-no-files-found: warn
+          retention-days: 14

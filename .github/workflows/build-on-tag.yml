@@ -1,23 +1,27 @@
+# packer-windows-jit-v1
 # ng-runner-policy: private-jit-only-v1
 name: Build on Tag
 
-# Trigger: push a v* stable release tag or a legacy build-main-*/build-dev-* tag.
-#
-# Examples:
-#   git tag v0.24.3-slskdn.44 && git push origin $_
-#   git tag build-main-0.24.3-slskdn.44 && git push origin $_
-#   git tag build-dev-0.24.3-dev.20260505 && git push origin $_
+# Dispatch from main with an existing v*, build-main-*, or build-dev-* source tag.
 
+
+run-name: ${{ format('action:{0}:pool:{1}:tag:{2}', inputs.action, inputs.runner_pool, inputs.release_tag) }}
 on:
-  push:
-    tags:
-      - 'build-main-*'
-      - 'build-dev-*'
-      - 'v*'
+
   workflow_dispatch:
     inputs:
-      tag:
-        description: Existing v* or legacy build-main tag whose GitHub release assets are already published.
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [release]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
+      release_tag:
+        description: Existing v*, build-main-*, or build-dev-* source tag on the default branch
         required: true
         type: string
       retry_aur:
@@ -59,6 +63,18 @@ permissions: {}
 jobs:
   parse:
     name: Parse Tag
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        true
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-parse"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -67,10 +83,17 @@ jobs:
       version: ${{ steps.parse.outputs.version }}
       release_tag: ${{ steps.parse.outputs.release_tag }}
     steps:
+      - name: Checkout main for source-tag verification
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
       - name: Parse Tag
         id: parse
         env:
-          REQUESTED_TAG: ${{ inputs.tag }}
+          REQUESTED_TAG: ${{ inputs.release_tag }}
           RETRY_AUR: ${{ inputs.retry_aur }}
           RETRY_COPR: ${{ inputs.retry_copr }}
           RETRY_PPA: ${{ inputs.retry_ppa }}
@@ -79,22 +102,17 @@ jobs:
           RETRY_NIX: ${{ inputs.retry_nix }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
           TAG="${REQUESTED_TAG:-$GITHUB_REF_NAME}"
-          echo "Tag: $TAG"
-
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            if [[ ! "$TAG" =~ ^build-main-[A-Za-z0-9._-]+$ && ! "$TAG" =~ ^v[0-9].*$ ]]; then
-              echo "::error::Manual publisher recovery requires an existing v* or build-main-* tag"
-              exit 1
-            fi
-            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
-              echo "::error::Select at least one publisher to retry"
-              exit 1
-            fi
+          export LC_ALL=C
+          if (( ${#TAG} > 128 )); then
+            echo "::error::Release tag exceeds the supported length"
+            exit 1
           fi
-          
-          # Extract channel, logical version, and published release tag.
-          if [[ "$TAG" =~ ^build-(main|dev)-(.+)$ ]]; then
+
+          # These outputs are interpolated into downstream shell commands. Keep
+          # the version shell-safe before logging it or writing workflow outputs.
+          if [[ "$TAG" =~ ^build-(main|dev)-([A-Za-z0-9][A-Za-z0-9._-]*)$ ]]; then
             CHANNEL="${BASH_REMATCH[1]}"
             VERSION="${BASH_REMATCH[2]}"
             RELEASE_TAG="$VERSION"
@@ -106,12 +124,36 @@ jobs:
             echo "::error::Invalid tag format. Expected v<stable-version>, build-main-<version>, or build-dev-<version>."
             exit 1
           fi
+
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+              echo "::error::Manual publisher recovery must use the main-branch workflow"
+              exit 1
+            fi
+            if [[ "$CHANNEL" != "main" ]]; then
+              echo "::error::Manual publisher recovery requires an existing v* or build-main-* tag"
+              exit 1
+            fi
+            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
+              echo "::error::Select at least one publisher to retry"
+              exit 1
+            fi
+            git fetch --no-tags origin main "refs/tags/$TAG:refs/tags/$TAG"
+            tag_commit="$(git rev-parse "refs/tags/$TAG^{commit}")"
+            git merge-base --is-ancestor "$tag_commit" origin/main || {
+              echo "::error::Selected source tag $TAG is not on main."
+              exit 1
+            }
+          fi
           
+          echo "Tag: $TAG"
           echo "Channel: $CHANNEL"
           echo "Version: $VERSION"
 
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null; then
-            echo "::error::Manual publisher recovery requires an existing published release for $RELEASE_TAG"
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && \
+             [[ "$RETRY_AUR" == true || "$RETRY_COPR" == true || "$RETRY_PPA" == true || "$RETRY_DOCKER" == true || "$RETRY_DOCKER_OMNIBUS" == true || "$RETRY_NIX" == true ]] && \
+             ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null; then
+            echo "::error::Publisher recovery requires an existing published release for $RELEASE_TAG"
             exit 1
           fi
           
@@ -122,13 +164,25 @@ jobs:
   build:
     name: Build
     needs: parse
-    if: github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.event_name != 'workflow_dispatch' || (inputs.retry_aur != true && inputs.retry_copr != true && inputs.retry_ppa != true && inputs.retry_docker != true && inputs.retry_docker_omnibus != true && inputs.retry_nix != true)
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
     timeout-minutes: 120
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.release_tag }}
           fetch-depth: 0
 
       - name: Install release-gate tools
@@ -167,7 +221,18 @@ jobs:
   publish:
     name: Publish ${{ matrix.runtime }}
     needs: [parse, build]
-    if: github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        github.event_name != 'workflow_dispatch' || (inputs.retry_aur != true && inputs.retry_copr != true && inputs.retry_ppa != true && inputs.retry_docker != true && inputs.retry_docker_omnibus != true && inputs.retry_nix != true)
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-publish"]}}', github.run_id, strategy.job-index)) }}
     strategy:
       fail-fast: false
@@ -183,6 +248,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.release_tag }}
           fetch-depth: 0
 
       - name: Set up .NET
@@ -271,7 +337,18 @@ jobs:
   release-main:
     name: Create Main Release
     needs: [parse, publish]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.publish.result == 'success')
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-release-main"]}}', github.run_id)) }}
     permissions:
       contents: write
@@ -281,6 +358,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.release_tag }}
           fetch-depth: 0
 
       - name: Download All Artifacts
@@ -310,7 +388,7 @@ jobs:
           ./scripts/generate-release-notes.sh \
             "${{ needs.parse.outputs.version }}" \
             release/RELEASE_NOTES.md \
-            "${{ github.sha }}"
+            "$(git rev-parse HEAD)"
           ./scripts/validate-release-notes.sh \
             "${{ needs.parse.outputs.version }}" \
             release/RELEASE_NOTES.md
@@ -350,7 +428,18 @@ jobs:
   announce-main:
     name: Announce Main Release to Discord
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.release-main.result == 'success')
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-announce-main"]}}', github.run_id)) }}
     steps:
       - name: Post Discord announcement
@@ -358,7 +447,7 @@ jobs:
           DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
           RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}
           VERSION: ${{ needs.parse.outputs.version }}
-          TRIGGER_TAG: ${{ github.ref_name }}
+          TRIGGER_TAG: ${{ inputs.release_tag }}
           RELEASE_BODY: ${{ needs.release-main.outputs.release_body }}
         run: |
           if [ -z "$DISCORD_RELEASE_WEBHOOK" ]; then
@@ -412,7 +501,7 @@ jobs:
           MATRIX_PROJECT_KEY: slskdn-main
           RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}
           VERSION: ${{ needs.parse.outputs.version }}
-          TRIGGER_TAG: ${{ github.ref_name }}
+          TRIGGER_TAG: ${{ inputs.release_tag }}
         run: |
           set -euo pipefail
 
@@ -505,7 +594,18 @@ jobs:
   aur-main:
     name: Publish to AUR (Main - Source & Binary)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_aur) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_aur || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-aur-main"]}}', github.run_id)) }}
     outputs:
       short_sha: ${{ steps.info.outputs.short_sha }}
@@ -513,7 +613,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ inputs.release_tag || github.ref }}
 
       - name: Get commit info
         id: info
@@ -685,14 +785,25 @@ jobs:
   copr-main:
     name: Publish to COPR (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_copr) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_copr || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     continue-on-error: true
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-copr-main"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ inputs.release_tag || github.ref }}
 
       - name: Download from Release
         env:
@@ -873,7 +984,18 @@ jobs:
   ppa-main:
     name: Publish to PPA (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_ppa) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_ppa || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     continue-on-error: true
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-ppa-main"]}}', github.run_id)) }}
     concurrency:
@@ -883,7 +1005,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ inputs.release_tag || github.ref }}
 
       - name: Download from Release
         env:
@@ -1126,7 +1248,18 @@ jobs:
   docker-main:
     name: Build and Push Docker (Main)
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_docker) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_docker || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-main"]}}', github.run_id)) }}
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
@@ -1138,7 +1271,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ inputs.release_tag || github.ref }}
 
       - name: Download from Release
         env:
@@ -1231,11 +1364,17 @@ jobs:
     name: Build and Push Docker (Omnibus Testers)
     needs: [parse, release-main, docker-main]
     if: >-
-      always() && needs.parse.outputs.channel == 'main' &&
-      ((github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success' && needs.docker-main.result == 'success') ||
-       (github.event_name == 'workflow_dispatch' && inputs.retry_docker_omnibus &&
-        ((inputs.retry_docker && needs.docker-main.result == 'success') ||
-         (!inputs.retry_docker && needs.docker-main.result == 'skipped'))))
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((needs.release-main.result == 'success' && needs.docker-main.result == 'success') || (github.event_name == 'workflow_dispatch' && inputs.retry_docker_omnibus && ((inputs.retry_docker && needs.docker-main.result == 'success') || (!inputs.retry_docker && needs.docker-main.result == 'skipped'))))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-omnibus"]}}', github.run_id)) }}
     permissions:
       contents: read
@@ -1243,6 +1382,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.release_tag }}
+          fetch-depth: 0
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
@@ -1282,12 +1424,26 @@ jobs:
   chocolatey-main:
     name: Publish to Chocolatey (Stable)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.release-main.result == 'success')
+      )
     continue-on-error: true
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-chocolatey-main"]}}', github.run_id)) }}
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-chocolatey-main"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.release_tag }}
+          fetch-depth: 0
 
       - name: Download from Release
         env:
@@ -1401,11 +1557,21 @@ jobs:
           Write-Error "Chocolatey push failed after $maxRetries attempts; exact package endpoint was not published"
           exit 1
         shell: pwsh
-
   nix-main:
     name: Update Nix/Main Release Metadata
     needs: [parse, release-main]
-    if: always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && inputs.retry_nix) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_nix || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-main"]}}', github.run_id)) }}
     permissions:
       contents: write
@@ -1413,7 +1579,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.tag || github.ref }}
+          ref: ${{ inputs.release_tag || github.ref }}
           fetch-depth: 0
 
       - name: Install Nix
@@ -1529,7 +1695,18 @@ jobs:
   homebrew-main:
     name: Update Homebrew Tap (Main)
     needs: [parse, release-main]
-    if: needs.parse.outputs.channel == 'main' && github.event_name != 'workflow_dispatch'
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'release' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.release-main.result == 'success')
+      )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-homebrew-main"]}}', github.run_id)) }}
     permissions:
       contents: write

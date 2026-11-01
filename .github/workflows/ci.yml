@@ -1,11 +1,47 @@
 # ng-runner-policy: private-jit-only-v1
 name: CI
+
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
+      format('owner-pr:{0}:{1}:{2}:action:{3}:pool:{4}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id, inputs.action, inputs.runner_pool) ||
+      format('action:{0}:pool:{1}', inputs.action || 'ci', inputs.runner_pool || 'private') }}
+# Release publication is handled by build-on-tag.yml using an existing source tag.
 on:
-  push:
-    tags:
-      - "[0-9]*.[0-9]*.[0-9]*"
-      - "[0-9]*.[0-9]*.[0-9]*-slskdn.*"
+  pull_request_target:
+    types: [labeled]
+    branches: [main]
   workflow_dispatch:
+    inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [ci]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
+      pr_number:
+        description: Trusted owner PR number set by the metadata-only dispatcher
+        type: string
+        required: false
+      pr_sha:
+        description: Exact trusted owner PR head SHA
+        type: string
+        required: false
+      target_run_id:
+        description: Successful metadata-only pull_request_target run ID
+        type: string
+        required: false
+      pr_author:
+        description: PR author copied from the metadata-only event
+        type: string
+        required: false
+      pr_repository:
+        description: PR head repository copied from the metadata-only event
+        type: string
+        required: false
 
 concurrency:
   group: ng-ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
@@ -19,8 +55,101 @@ env:
 permissions:
   contents: read
 jobs:
+  dispatch-owner-pr:
+    name: Dispatch trusted owner PR validation
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.action == 'labeled' &&
+      (github.event.label.name == 'action:ci' || github.event.label.name == 'pool:private') &&
+      contains(github.event.pull_request.labels.*.name, 'action:ci') &&
+      contains(github.event.pull_request.labels.*.name, 'pool:private') &&
+      github.actor == 'snapetech' &&
+      github.event.pull_request.user.login == 'snapetech' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.repo.id == github.repository_id &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-packer","ng-main-run-{0}","gha-{0}-owner-pr-dispatcher"]}}', github.run_id)) }}
+    permissions:
+      actions: write
+      contents: none
+    steps:
+      - name: Dispatch PR-head validation from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          TARGET_RUN_ID: ${{ github.run_id }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_LABELS_JSON: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          from urllib.request import Request, urlopen
+
+          repository = os.environ["GITHUB_REPOSITORY"]
+          number = os.environ["PR_NUMBER"]
+          sha = os.environ["PR_SHA"]
+          pr_repository = os.environ["PR_REPOSITORY"]
+          pr_author = os.environ["PR_AUTHOR"]
+          target_run_id = os.environ["TARGET_RUN_ID"]
+          token = os.environ["GH_TOKEN"]
+          labels = json.loads(os.environ["PR_LABELS_JSON"])
+          action_labels = [label for label in labels if isinstance(label, str) and label.startswith("action:")]
+          pool_labels = [label for label in labels if isinstance(label, str) and label.startswith("pool:")]
+          if action_labels != ["action:ci"] or pool_labels != ["pool:private"]:
+              raise SystemExit("add exactly action:ci and pool:private labels")
+          if repository != "snapetech-org/slskdN":
+              raise SystemExit("unexpected repository")
+          if pr_author != "snapetech" or pr_repository.lower() != repository.lower():
+              raise SystemExit("private validation only accepts the repository owner's pull requests")
+          if not re.fullmatch(r"[1-9][0-9]*", number):
+              raise SystemExit("invalid pull request number")
+          if not re.fullmatch(r"[0-9a-f]{40}", sha):
+              raise SystemExit("invalid pull request head SHA")
+          if not re.fullmatch(r"[1-9][0-9]*", target_run_id):
+              raise SystemExit("invalid metadata run ID")
+
+          payload = json.dumps({
+              "ref": "main",
+              "inputs": {
+                  "action": "ci",
+                  "runner_pool": "private",
+                  "pr_number": number,
+                  "pr_sha": sha,
+                  "target_run_id": target_run_id,
+                  "pr_author": pr_author,
+                  "pr_repository": pr_repository,
+              },
+          }).encode("utf-8")
+          request = Request(
+              "https://api.github.com/repos/snapetech-org/slskdN/actions/workflows/ci.yml/dispatches",
+              data=payload,
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {token}",
+                  "Content-Type": "application/json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+              method="POST",
+          )
+          with urlopen(request, timeout=20) as response:
+              if response.status != 204:
+                  raise SystemExit(f"workflow dispatch returned HTTP {response.status}")
+          PY
+
   build:
     name: Build and Test
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.action == 'ci' &&
+      inputs.runner_pool == 'private' &&
+      ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository))
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
     timeout-minutes: 120
     outputs:
@@ -51,6 +180,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.pr_sha != '' && inputs.pr_sha || github.sha }}
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Install ripgrep when unavailable
@@ -131,10 +262,10 @@ jobs:
             packaging/aur/PKGBUILD-bin
 
       - name: Changelog Discipline Check
-        if: github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
+        if: github.event_name == 'workflow_dispatch' && inputs.pr_number != ''
         env:
-          BASE_REF: ${{ github.base_ref }}
-          HEAD_SHA: ${{ github.sha }}
+          BASE_REF: main
+          HEAD_SHA: ${{ inputs.pr_sha != '' && inputs.pr_sha || github.sha }}
         run: |
           bash scripts/validate-changelog-entry.sh \
             range \
@@ -144,20 +275,23 @@ jobs:
       - name: Release Gate
         run: bash packaging/scripts/run-release-gate.sh
 
-      - name: Upload Static Web Content
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: web-content
-          path: src/web/build
 
   nix-smoke:
     name: Nix Package Smoke
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.action == 'ci' &&
+      inputs.runner_pool == 'private' &&
+      ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository))
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-smoke"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.pr_sha != '' && inputs.pr_sha || github.sha }}
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Install Nix
@@ -167,307 +301,69 @@ jobs:
 
       - name: Run Nix package smoke
         run: bash packaging/scripts/run-nix-package-smoke.sh
-  
-  publish:
-    name: Publish
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-publish"]}}', github.run_id, strategy.job-index)) }}
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/')
-    strategy:
-      fail-fast: false
-      matrix:
-        runtime:
-          - "win-x64"
-          - "win-arm64"
-          - "linux-x64"
-          - "linux-arm"
-          - "linux-arm64"
-          - "linux-musl-x64"
-          - "linux-musl-arm"
-          - "linux-musl-arm64"
-          - "osx-x64"
-          - "osx-arm64"
-    steps:
-      - name: Configure runner temporary storage
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
-            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
-            exit 1
-          fi
-          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
-          case "$runner_temp_resolved" in
-            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
-              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
-              exit 1
-              ;;
-          esac
-          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
-            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
-            exit 1
-          fi
-          : "${GITHUB_ENV:?GITHUB_ENV is required}"
-          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
 
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-
-      - name: Set up .NET
-        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      - name: Set Environment Variables
-        run: |
-          echo "BUILD_VERSION=${{ needs.build.outputs.version }}" >> $GITHUB_ENV
-
-      - name: Download Static Web Content
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
-          name: web-content
-          path: src/slskd/wwwroot
-
-      - name: Build ${{ matrix.runtime }}
-        run: bin/publish --no-prebuild --runtime ${{ matrix.runtime }} --version ${{ env.BUILD_VERSION }}
-
-      - name: Upload Binaries
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: slskdn-${{ env.BUILD_VERSION }}-${{ matrix.runtime }}
-          path: dist/${{ matrix.runtime }}
-  
-  docker:
-    name: Build Docker Image
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker"]}}', github.run_id)) }}
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/')
-    env:
-      DOCKERHUB_IMAGE: snapetech/slskdn
-      HAS_DOCKERHUB: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}
+  report-owner-pr-check:
+    name: Report trusted owner PR validation
+    needs: [build, nix-smoke]
+    if: >-
+      always() && github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' &&
+      inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' &&
+      inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository &&
+      github.actor == 'github-actions[bot]'
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-owner-pr-reporter"]}}', github.run_id)) }}
     permissions:
-      contents: read
-      packages: write
+      checks: write
+      contents: none
     steps:
-      - name: Configure runner temporary storage
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
-            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
-            exit 1
-          fi
-          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
-          case "$runner_temp_resolved" in
-            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
-              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
-              exit 1
-              ;;
-          esac
-          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
-            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
-            exit 1
-          fi
-          : "${GITHUB_ENV:?GITHUB_ENV is required}"
-          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
-
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-
-      # docker tags aren't compatible with semver, therefore + can't be used to delimit the version and SHA
-      # https://github.com/opencontainers/distribution-spec/issues/154
-      # CONTAINER_VERSION is used in Docker tags and must use a hyphen (-) delimiter between the tag and SHA
-      # APP_VERSION is passed as a Docker build arg and used to publish the app and must use a hyphen (-) for NuGet compatibility
-      - name: Set Environment Variables
-        run: |
-          # Get the latest slskdn tag only
-          TAG=$(git tag --sort=-version:refname | grep -E '^([0-9]+\.[0-9]+\.[0-9]+|[0-9]{8,10})-slskdn\.[0-9]+$' | head -n1)
-          if [ -z "$TAG" ]; then
-            TAG=$(sed -n 's#.*<version>\(.*\)</version>#\1#p' packaging/chocolatey/slskdn.nuspec | head -n1)
-          fi
-          if [ -z "$TAG" ]; then
-            TAG='0.24.0-slskdn.1'
-          fi
-          echo "TAG=$TAG" >> $GITHUB_ENV
-          echo "CONTAINER_VERSION=${TAG}.$([[ $GITHUB_REF = refs/tags/* ]] && echo 0 || echo 65534)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          echo "APP_VERSION=${TAG}.$([[ $GITHUB_REF = refs/tags/* ]] && echo 0 || echo 65534)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          echo "REVISION=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-          echo "BUILD_DATE=$(date --iso-8601=s)" >> $GITHUB_ENV
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
-
-      - name: Require Docker Hub publisher credentials for stable releases
+      - name: Attach validation result to the PR head
         env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+          PR_SHA: ${{ inputs.pr_sha }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          NIX_RESULT: ${{ needs.nix-smoke.result }}
+          VALIDATION_RUN_ID: ${{ github.run_id }}
         run: |
-          if [[ -z "$DOCKERHUB_USERNAME" || -z "$DOCKERHUB_TOKEN" ]]; then
-            echo 'Docker Hub publisher credentials are required for stable image aliases.' >&2
-            exit 1
-          fi
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          from urllib.request import Request, urlopen
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Login to Docker Hub
-        if: env.HAS_DOCKERHUB == 'true'
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Prepare Docker Tags
-        id: docker_tags
-        run: |
-          {
-            echo 'canary_tags<<EOF'
-            echo "ghcr.io/snapetech-org/slskdn:${CONTAINER_VERSION}"
-            echo 'ghcr.io/snapetech-org/slskdn:canary'
-            if [ "${HAS_DOCKERHUB}" = "true" ]; then
-              echo "${DOCKERHUB_IMAGE}:${CONTAINER_VERSION}"
-              echo "${DOCKERHUB_IMAGE}:canary"
-            else
-              echo "Docker Hub secrets are not configured; publishing GHCR tags only." >&2
-            fi
-            echo 'EOF'
-            echo 'release_tags<<EOF'
-            echo "ghcr.io/snapetech-org/slskdn:${CONTAINER_VERSION}"
-            echo "ghcr.io/snapetech-org/slskdn:${TAG}"
-            echo 'ghcr.io/snapetech-org/slskdn:canary'
-            echo 'ghcr.io/snapetech-org/slskdn:latest'
-            echo 'ghcr.io/snapetech-org/slskdn:main'
-            echo 'ghcr.io/snapetech-org/slskdn:master'
-            if [ "${HAS_DOCKERHUB}" = "true" ]; then
-              echo "${DOCKERHUB_IMAGE}:${CONTAINER_VERSION}"
-              echo "${DOCKERHUB_IMAGE}:${TAG}"
-              echo "${DOCKERHUB_IMAGE}:canary"
-              echo "${DOCKERHUB_IMAGE}:latest"
-              echo "${DOCKERHUB_IMAGE}:main"
-              echo "${DOCKERHUB_IMAGE}:master"
-            fi
-            echo 'EOF'
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Build and push Canary
-        if: "!startsWith(github.ref, 'refs/tags/')"
-        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
-        with:
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-          labels: |
-            org.opencontainers.image.source=https://github.com/snapetech-org/slskdN
-          build-args: |
-            TAG=${{ env.TAG }}
-            VERSION=${{ env.APP_VERSION }}
-            REVISION=${{ env.REVISION }}
-            BUILD_DATE=${{ env.BUILD_DATE }}
-          tags: ${{ steps.docker_tags.outputs.canary_tags }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Build and push Release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
-        with:
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-          labels: |
-            org.opencontainers.image.source=https://github.com/snapetech-org/slskdN
-          build-args: |
-            VERSION=${{ env.APP_VERSION }}
-          tags: ${{ steps.docker_tags.outputs.release_tags }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-  release:
-    name: Create Release
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-release"]}}', github.run_id)) }}
-    needs: [build, publish, docker]
-    if: startsWith(github.ref, 'refs/tags/')
-    permissions:
-      actions: write
-      contents: write
-    steps:
-      - name: Configure runner temporary storage
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ -z "${RUNNER_TEMP:-}" || "$RUNNER_TEMP" != /* || "$RUNNER_TEMP" == *$'\n'* || "$RUNNER_TEMP" == *$'\r'* || ! -d "$RUNNER_TEMP" || ! -r "$RUNNER_TEMP" || ! -w "$RUNNER_TEMP" || ! -x "$RUNNER_TEMP" ]]; then
-            printf 'RUNNER_TEMP must be an absolute writable directory\n' >&2
-            exit 1
-          fi
-          runner_temp_resolved="$(cd -- "$RUNNER_TEMP" && pwd -P)"
-          case "$runner_temp_resolved" in
-            /|/tmp|/tmp/*|/var/tmp|/var/tmp/*)
-              printf 'RUNNER_TEMP must not resolve under a shared temporary directory\n' >&2
-              exit 1
-              ;;
-          esac
-          if [[ "$runner_temp_resolved" == *$'\n'* || "$runner_temp_resolved" == *$'\r'* ]]; then
-            printf 'RUNNER_TEMP must not contain line breaks\n' >&2
-            exit 1
-          fi
-          : "${GITHUB_ENV:?GITHUB_ENV is required}"
-          printf 'TMPDIR=%s\nTMP=%s\nTEMP=%s\n' "$runner_temp_resolved" "$runner_temp_resolved" "$runner_temp_resolved" >> "$GITHUB_ENV"
-
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-
-      - name: Set Environment Variables
-        run: |
-          echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
-          echo "BUILD_VERSION=${{ needs.build.outputs.version }}" >> $GITHUB_ENV
-
-      - name: Download All Artifacts
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
-          path: artifacts
-          pattern: slskdn-*
-
-      - name: Prepare Release Assets
-        run: |
-          mkdir -p release
-          for dir in artifacts/slskdn-*; do
-            runtime=$(basename "$dir" | sed "s/slskdn-${{ env.BUILD_VERSION }}-//")
-            echo "Processing $runtime..."
-            cd "$dir"
-            if [ -f "slskd" ]; then
-              chmod +x slskd
-            fi
-            zip -r "../../release/slskdn-${{ env.TAG }}-$runtime.zip" .
-            cd ../..
-          done
-          ls -la release/
-
-      - name: Create Release
-        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3
-        with:
-          files: release/*.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Trigger Package Workflows
-        run: |
-          echo "Triggering package builds for ${{ env.TAG }}..."
-          gh workflow run release-linux.yml -f tag=${{ env.TAG }}
-          gh workflow run release-copr.yml -f tag=${{ env.TAG }}
-          gh workflow run release-ppa.yml -f tag=${{ env.TAG }}
-          gh workflow run release-packages.yml -f tag=${{ env.TAG }}
-          echo "All package workflows triggered!"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          sha = os.environ["PR_SHA"]
+          results = [os.environ[key] for key in ("BUILD_RESULT", "NIX_RESULT")]
+          result = (
+              "success" if all(item == "success" for item in results)
+              else "cancelled" if "cancelled" in results
+              else "failure"
+          )
+          if not re.fullmatch(r"[0-9a-f]{40}", sha):
+              raise SystemExit("invalid pull request head SHA")
+          conclusion = "success" if result == "success" else ("cancelled" if result == "cancelled" else "failure")
+          run_id = os.environ["VALIDATION_RUN_ID"]
+          payload = json.dumps({
+              "name": "slskdN owner PR validation",
+              "head_sha": sha,
+              "external_id": run_id,
+              "status": "completed",
+              "conclusion": conclusion,
+              "details_url": f"https://github.com/snapetech-org/slskdN/actions/runs/{run_id}",
+              "output": {
+                  "title": "slskdN validation " + conclusion,
+                  "summary": "See the linked main-pinned workflow run for validation details.",
+              },
+          }).encode("utf-8")
+          request = Request(
+              "https://api.github.com/repos/snapetech-org/slskdN/check-runs",
+              data=payload,
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+                  "Content-Type": "application/json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+              method="POST",
+          )
+          with urlopen(request, timeout=20) as response:
+              if response.status not in {201, 202}:
+                  raise SystemExit(f"check creation returned HTTP {response.status}")
+          PY

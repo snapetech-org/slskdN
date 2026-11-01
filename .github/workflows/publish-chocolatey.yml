@@ -1,9 +1,29 @@
+# packer-windows-jit-v1
 # ng-runner-policy: private-jit-only-v1
 name: Publish Chocolatey
 
+
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
+      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'publish', inputs.runner_pool || 'private', github.ref_name) ||
+      github.event_name == 'workflow_dispatch' &&
+      (inputs.version) != '' &&
+      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'publish', inputs.runner_pool || 'private', inputs.version) ||
+      github.event_name == 'workflow_dispatch' &&
+      format('action:{0}:pool:{1}', inputs.action || 'publish', inputs.runner_pool || 'private') || format('action:publish:pool:private') }}
 on:
   workflow_dispatch:
     inputs:
+      action:
+        description: Required manual workflow action
+        type: choice
+        options: [publish]
+        required: true
+      runner_pool:
+        description: Required private JIT runner pool
+        type: choice
+        options: [private]
+        required: true
       version:
         description: 'Published release tag to publish, e.g. v2026090318-slskdn.318'
         required: true
@@ -18,7 +38,19 @@ permissions:
 jobs:
   publish:
     name: Publish Chocolatey Stable
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","packer-windows","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-publish"]}}', github.run_id)) }}
+    if: >-
+      (
+        github.event_name != 'workflow_dispatch' ||
+        (
+          github.ref == 'refs/heads/main' &&
+          inputs.action == 'publish' &&
+          inputs.runner_pool == 'private'
+        )
+      ) &&
+      (
+        true
+      )
+    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-publish"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

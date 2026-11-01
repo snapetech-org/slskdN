@@ -54,106 +54,89 @@ if ! rg -q "^  DOTNET_VERSION: '${target_major}\.0\.[0-9]+'$" "$repo_root/$workf
 fi
 expect_literal "$workflow" 'dotnet-version: ${{ env.DOTNET_VERSION }}'
 
-expect_hosted_workflows() {
+expect_private_workflows() {
   local workflow_directory="$repo_root/.github/workflows"
-  local audited_workflow="$workflow_directory/feature-coherence-validation.yml"
-  local policy_pattern='TRUSTED_MAIN_RUNNERS_ENABLED|PREFER_SELF_HOSTED|inputs\.runner|private-[[:alnum:]-]+-jit'
-  local matches
+  local fork_workflow="$workflow_directory/feature-coherence-validation.yml"
 
-  if [[ ! -f "$audited_workflow" || -L "$audited_workflow" ]]; then
-    printf 'the audited public-fork validation workflow is missing or not a regular file\n' >&2
-    failed=1
-  else
-    if ! rg -q '^    runs-on: ubuntu-latest$' "$audited_workflow"; then
-      printf 'the public-fork validation workflow must use a fresh GitHub-hosted runner\n' >&2
-      failed=1
-    fi
-    if ! rg -q '^permissions:$' "$audited_workflow" ||
-      ! rg -q '^  contents: read$' "$audited_workflow" ||
-      ! rg -q '^      contents: read$' "$audited_workflow"; then
-      printf 'the public-fork validation workflow must keep contents access read-only\n' >&2
-      failed=1
-    fi
-    if ! rg -q '^[[:space:]]+persist-credentials: false$' "$audited_workflow"; then
-      printf 'the public-fork validation checkout must not persist credentials\n' >&2
-      failed=1
-    fi
-  fi
-
-  matches="$(rg -n "$policy_pattern" "$workflow_directory" 2>&1 || true)"
-  if [[ -n "$matches" ]]; then
-    printf '%s\n' "$matches" >&2
-    printf 'GitHub workflows must not select private runner groups or manual runner overrides\n' >&2
+  if [[ ! -f "$fork_workflow" || -L "$fork_workflow" ]] ||
+    ! rg -q '^      group: public-fork-jit$' "$fork_workflow" ||
+    ! rg -q 'ng-public-run-\$\{\{ github\.run_id \}\}' "$fork_workflow" ||
+    ! rg -q '^permissions:$' "$fork_workflow" ||
+    ! rg -q '^  contents: read$' "$fork_workflow" ||
+    ! rg -q '^      contents: read$' "$fork_workflow" ||
+    ! rg -q '^[[:space:]]+persist-credentials: false$' "$fork_workflow"; then
+    printf 'public-fork validation must use its isolated run-scoped private JIT group, read-only permissions, and credential-free checkout\n' >&2
     failed=1
   fi
 
-  local route_pattern='^[[:space:]]*(runs-on|labels):.*(self-hosted|ng-shared-main-jit|gvisor-sandbox|"group":)'
-  local workflow_file
-  for workflow_file in "$workflow_directory"/*.yml "$workflow_directory"/*.yaml; do
-    [[ -f "$workflow_file" ]] || continue
-    if ! rg -q "$route_pattern" "$workflow_file"; then
-      continue
-    fi
+  if rg -n 'NG_HOSTED_FIRST|NG_FORCE_JIT|ubuntu-latest|windows-latest|macos-latest' "$workflow_directory"; then
+    printf 'workflows must not contain hosted fallback or legacy hosted-first routing\n' >&2
+    failed=1
+  fi
 
-    case "$(basename "$workflow_file")" in
-      check-upstream-access.yml|ci.yml|gvisor-runner-smoke.yml|local-identity-leaks.yml|semgrep-community.yml|trivy-filesystem.yml)
-        ;;
-      *)
-        printf '%s selects a non-hosted runner outside the approved main-only shared route\n' \
-          "${workflow_file#"$repo_root"/}" >&2
-        failed=1
-        ;;
-    esac
-  done
+  if ! python3 - "$workflow_directory" <<'PYTHON'
+import re
+import sys
+from pathlib import Path
 
-  local shared_main_workflow
-  local expected_routes
-  for shared_main_workflow in \
-    check-upstream-access.yml \
-    ci.yml \
-    local-identity-leaks.yml \
-    semgrep-community.yml \
-    trivy-filesystem.yml; do
-    workflow_file="$workflow_directory/$shared_main_workflow"
-    if [[ ! -f "$workflow_file" || -L "$workflow_file" ]]; then
-      printf 'approved shared-runner workflow is missing or not a regular file: %s\n' \
-        "$shared_main_workflow" >&2
-      failed=1
-      continue
-    fi
+workflow_directory = Path(sys.argv[1])
+allowed_groups = {
+    "ng-shared-main-jit",
+    "packer-windows",
+    "gvisor-sandbox",
+    "public-fork-jit",
+}
+hosted_runner = re.compile(r"(?:ubuntu|windows|macos)-[A-Za-z0-9._-]+")
+errors = []
 
-    expected_routes=1
-    [[ "$shared_main_workflow" != "ci.yml" ]] || expected_routes=2
-    local route_count
-    route_count="$(rg -F -c 'ng-shared-main-jit' "$workflow_file" || true)"
-    if [[ "$route_count" != "$expected_routes" ]]; then
-      printf '%s has %s shared-runner routes; expected %s\n' \
-        "$shared_main_workflow" "${route_count:-0}" "$expected_routes" >&2
-      failed=1
-    fi
+for workflow in sorted((*workflow_directory.glob("*.yml"), *workflow_directory.glob("*.yaml"))):
+    lines = workflow.read_text().splitlines()
+    for index, line in enumerate(lines):
+        match = re.match(r"^(?P<indent> *)runs-on:(?P<value>.*)$", line)
+        if match is None:
+            continue
 
-    local required_route_text
-    for required_route_text in \
-      'github.event_name == '\''push'\''' \
-      'github.event_name == '\''workflow_dispatch'\''' \
-      'github.ref == '\''refs/heads/main'\''' \
-      'github.run_id' \
-      '"group":"ng-shared-main-jit"' \
-      '"labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}"]' \
-      "|| 'ubuntu-latest'"; do
-      if ! rg -Fq -- "$required_route_text" "$workflow_file"; then
-        printf '%s is missing the main-only shared-runner condition: %s\n' \
-          "$shared_main_workflow" "$required_route_text" >&2
-        failed=1
-      fi
-    done
-  done
+        block_lines = [line]
+        parent_indent = len(match.group("indent"))
+        for child in lines[index + 1 :]:
+            if child.strip() and len(child) - len(child.lstrip()) <= parent_indent:
+                break
+            block_lines.append(child)
+        block = "\n".join(block_lines)
+        value = match.group("value").strip()
+        if hosted_runner.search(value) or hosted_runner.search(block):
+            errors.append(f"{workflow.name}:{index + 1} selects hosted runner capacity")
+            continue
 
-  local non_shared_groups
-  non_shared_groups="$(rg -n '"group"[[:space:]]*:' "$workflow_directory" | rg -v '"group":"ng-shared-main-jit"' || true)"
-  if [[ -n "$non_shared_groups" ]]; then
-    printf '%s\n' "$non_shared_groups" >&2
-    printf 'Only the repository-scoped ng-shared-main-jit group is allowed for main CI\n' >&2
+        group_match = re.search(r'"group"\s*:\s*"([^\"]+)"', block)
+        if group_match is None:
+            group_match = re.search(r"(?m)^\s+group:\s*([A-Za-z0-9_-]+)\s*$", block)
+        if group_match is None:
+            errors.append(f"{workflow.name}:{index + 1} has no approved private runner group")
+            continue
+        group = group_match.group(1)
+        if group not in allowed_groups:
+            errors.append(f"{workflow.name}:{index + 1} selects unapproved runner group {group}")
+            continue
+
+        if group == "ng-shared-main-jit":
+            required = ('"self-hosted"', '"ng-main-run-{0}"', '"gha-{0}-', 'github.run_id')
+        elif group == "packer-windows":
+            required = ('"self-hosted"', '"gha-{0}-', 'github.run_id')
+        elif group == "public-fork-jit":
+            required = ('"self-hosted"', 'ng-public-run-${{ github.run_id }}')
+        else:
+            required = ('gvisor-sandbox',)
+        missing = [token for token in required if token not in block]
+        if missing:
+            errors.append(f"{workflow.name}:{index + 1} lacks private JIT scope: {', '.join(missing)}")
+
+if errors:
+    print("\n".join(errors), file=sys.stderr)
+    sys.exit(1)
+PYTHON
+  then
+    printf 'workflow runner selectors must use compatible private JIT groups with run-scoped labels; hosted runners and fallbacks are prohibited\n' >&2
     failed=1
   fi
 
@@ -171,94 +154,9 @@ expect_hosted_workflows() {
     printf 'gVisor runner smoke must not run untrusted refs or access repository code/secrets\n' >&2
     failed=1
   fi
-
-  if ! python3 - "$workflow_directory" <<'PYTHON'
-import re
-import sys
-from pathlib import Path
-
-workflow_directory = Path(sys.argv[1])
-shared_main_workflows = {
-    "check-upstream-access.yml": 1,
-    "ci.yml": 2,
-    "local-identity-leaks.yml": 1,
-    "semgrep-community.yml": 1,
-    "trivy-filesystem.yml": 1,
-}
-shared_main_route = (
-    "${{ (vars.NG_HOSTED_FIRST != 'true' || vars.NG_FORCE_JIT == 'true' "
-    "|| github.run_attempt > 1) && (github.event_name == 'push' "
-    "|| github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') "
-    "&& github.ref == 'refs/heads/main' && "
-    "fromJSON(format('{{\"group\":\"ng-shared-main-jit\",\"labels\":["
-    "\"self-hosted\",\"linux\",\"x64\",\"ng-shared-main-slskdn\","
-    "\"ng-main-run-{0}\"]}}', github.run_id)) || 'ubuntu-latest' }}"
-)
-ci_shared_main_route = shared_main_route.replace(
-    " || github.event_name == 'schedule'", ""
-)
-hosted_runner = re.compile(r"(?:ubuntu|windows|macos)-[A-Za-z0-9._-]+")
-errors = []
-
-for workflow in sorted((*workflow_directory.glob("*.yml"), *workflow_directory.glob("*.yaml"))):
-    lines = workflow.read_text().splitlines()
-    shared_route_count = 0
-    for index, line in enumerate(lines):
-        match = re.match(r"^(?P<indent> *)runs-on:(?P<value>.*)$", line)
-        if match is None:
-            continue
-
-        value = match.group("value").strip()
-        if value:
-            if hosted_runner.fullmatch(value):
-                continue
-            expected_shared_route = (
-                ci_shared_main_route if workflow.name == "ci.yml" else shared_main_route
-            )
-            if workflow.name in shared_main_workflows and value == expected_shared_route:
-                shared_route_count += 1
-                continue
-            errors.append(f"{workflow.name}:{index + 1} uses an unapproved runner selector")
-            continue
-
-        parent_indent = len(match.group("indent"))
-        mapping = {}
-        for child in lines[index + 1 :]:
-            if not child.strip():
-                continue
-            child_indent = len(child) - len(child.lstrip())
-            if child_indent <= parent_indent:
-                break
-            child_match = re.match(r"^\s+([A-Za-z][A-Za-z0-9_-]*):\s*(\S+)\s*$", child)
-            if child_match is not None:
-                mapping[child_match.group(1)] = child_match.group(2)
-
-        if workflow.name == "gvisor-runner-smoke.yml" and mapping == {
-            "group": "gvisor-sandbox",
-            "labels": "gvisor-sandbox",
-        }:
-            continue
-        errors.append(f"{workflow.name}:{index + 1} uses an unapproved multiline runner selector")
-
-    if workflow.name in shared_main_workflows:
-        expected_route_count = shared_main_workflows[workflow.name]
-        if shared_route_count != expected_route_count:
-            errors.append(
-                f"{workflow.name} has {shared_route_count} exact main-only shared routes; "
-                f"expected {expected_route_count}"
-            )
-
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-PYTHON
-  then
-    printf 'workflow runner selectors must use GitHub-hosted runners or an approved restricted route\n' >&2
-    failed=1
-  fi
 }
 
-expect_hosted_workflows
+expect_private_workflows
 
 if rg -n '\.NET 8\.0|\.NET 8|aspnetcore-runtime-8\.0|dotnet-runtime-8\.0|dotnet-version: .8\.0\.x.' \
   "$repo_root/packaging/flatpak" \
