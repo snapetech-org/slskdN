@@ -38,6 +38,11 @@ if ! rg -q 'v\*' "$repo_root/docs/build.md"; then
   failed=1
 fi
 
+if rg -n 'github/codeql-action/|codeql\.yml' "$repo_root/.github/workflows"; then
+  printf 'CodeQL workflows and actions must remain disabled by policy\n' >&2
+  failed=1
+fi
+
 if rg -n 'branches:\s*\[.*(master|main).*\]' "$repo_root/.github/workflows/build-on-tag.yml" >&2; then
   printf 'build-on-tag.yml must not run release builds on branch pushes\n' >&2
   failed=1

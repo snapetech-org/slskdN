@@ -1,9 +1,15 @@
 # ng-runner-policy: private-jit-only-v1
 name: CI
 
-run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
+      format('owner-pr:{0}:{1}:{2}:action:{3}:pool:{4}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id, inputs.action, inputs.runner_pool) ||
+      format('action:{0}:pool:{1}', inputs.action || 'ci', inputs.runner_pool || 'private') }}
 # Release publication is handled by build-on-tag.yml using an existing source tag.
 on:
+  pull_request_target:
+    types: [labeled]
+    branches: [main]
   workflow_dispatch:
     inputs:
       action:
@@ -16,6 +22,26 @@ on:
         type: choice
         options: [private]
         required: true
+      pr_number:
+        description: Trusted owner PR number set by the metadata-only dispatcher
+        type: string
+        required: false
+      pr_sha:
+        description: Exact trusted owner PR head SHA
+        type: string
+        required: false
+      target_run_id:
+        description: Successful metadata-only pull_request_target run ID
+        type: string
+        required: false
+      pr_author:
+        description: PR author copied from the metadata-only event
+        type: string
+        required: false
+      pr_repository:
+        description: PR head repository copied from the metadata-only event
+        type: string
+        required: false
 
 concurrency:
   group: ng-ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}-${{ github.event.action == 'edited' && 'metadata' || 'code' }}
@@ -29,20 +55,101 @@ env:
 permissions:
   contents: read
 jobs:
+  dispatch-owner-pr:
+    name: Dispatch trusted owner PR validation
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.action == 'labeled' &&
+      (github.event.label.name == 'action:ci' || github.event.label.name == 'pool:private') &&
+      contains(github.event.pull_request.labels.*.name, 'action:ci') &&
+      contains(github.event.pull_request.labels.*.name, 'pool:private') &&
+      github.actor == 'snapetech' &&
+      github.event.pull_request.user.login == 'snapetech' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.repo.id == github.repository_id &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-packer","ng-main-run-{0}","gha-{0}-owner-pr-dispatcher"]}}', github.run_id)) }}
+    permissions:
+      actions: write
+      contents: none
+    steps:
+      - name: Dispatch PR-head validation from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          TARGET_RUN_ID: ${{ github.run_id }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_LABELS_JSON: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          from urllib.request import Request, urlopen
+
+          repository = os.environ["GITHUB_REPOSITORY"]
+          number = os.environ["PR_NUMBER"]
+          sha = os.environ["PR_SHA"]
+          pr_repository = os.environ["PR_REPOSITORY"]
+          pr_author = os.environ["PR_AUTHOR"]
+          target_run_id = os.environ["TARGET_RUN_ID"]
+          token = os.environ["GH_TOKEN"]
+          labels = json.loads(os.environ["PR_LABELS_JSON"])
+          action_labels = [label for label in labels if isinstance(label, str) and label.startswith("action:")]
+          pool_labels = [label for label in labels if isinstance(label, str) and label.startswith("pool:")]
+          if action_labels != ["action:ci"] or pool_labels != ["pool:private"]:
+              raise SystemExit("add exactly action:ci and pool:private labels")
+          if repository != "snapetech-org/slskdN":
+              raise SystemExit("unexpected repository")
+          if pr_author != "snapetech" or pr_repository.lower() != repository.lower():
+              raise SystemExit("private validation only accepts the repository owner's pull requests")
+          if not re.fullmatch(r"[1-9][0-9]*", number):
+              raise SystemExit("invalid pull request number")
+          if not re.fullmatch(r"[0-9a-f]{40}", sha):
+              raise SystemExit("invalid pull request head SHA")
+          if not re.fullmatch(r"[1-9][0-9]*", target_run_id):
+              raise SystemExit("invalid metadata run ID")
+
+          payload = json.dumps({
+              "ref": "main",
+              "inputs": {
+                  "action": "ci",
+                  "runner_pool": "private",
+                  "pr_number": number,
+                  "pr_sha": sha,
+                  "target_run_id": target_run_id,
+                  "pr_author": pr_author,
+                  "pr_repository": pr_repository,
+              },
+          }).encode("utf-8")
+          request = Request(
+              "https://api.github.com/repos/snapetech-org/slskdN/actions/workflows/ci.yml/dispatches",
+              data=payload,
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {token}",
+                  "Content-Type": "application/json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+              method="POST",
+          )
+          with urlopen(request, timeout=20) as response:
+              if response.status != 204:
+                  raise SystemExit(f"workflow dispatch returned HTTP {response.status}")
+          PY
+
   build:
     name: Build and Test
     if: >-
-      (
-        github.event_name != 'workflow_dispatch' ||
-        (
-          github.ref == 'refs/heads/main' &&
-          inputs.action == 'ci' &&
-          inputs.runner_pool == 'private'
-        )
-      ) &&
-      (
-        true
-      )
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.action == 'ci' &&
+      inputs.runner_pool == 'private' &&
+      ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository))
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
     timeout-minutes: 120
     outputs:
@@ -73,6 +180,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.pr_sha != '' && inputs.pr_sha || github.sha }}
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Install ripgrep when unavailable
@@ -153,10 +262,10 @@ jobs:
             packaging/aur/PKGBUILD-bin
 
       - name: Changelog Discipline Check
-        if: github.event_name == 'pull_request' && github.event.pull_request.user.type != 'Bot'
+        if: github.event_name == 'workflow_dispatch' && inputs.pr_number != ''
         env:
-          BASE_REF: ${{ github.base_ref }}
-          HEAD_SHA: ${{ github.sha }}
+          BASE_REF: main
+          HEAD_SHA: ${{ inputs.pr_sha != '' && inputs.pr_sha || github.sha }}
         run: |
           bash scripts/validate-changelog-entry.sh \
             range \
@@ -170,22 +279,19 @@ jobs:
   nix-smoke:
     name: Nix Package Smoke
     if: >-
-      (
-        github.event_name != 'workflow_dispatch' ||
-        (
-          github.ref == 'refs/heads/main' &&
-          inputs.action == 'ci' &&
-          inputs.runner_pool == 'private'
-        )
-      ) &&
-      (
-        true
-      )
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.action == 'ci' &&
+      inputs.runner_pool == 'private' &&
+      ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository))
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-smoke"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ inputs.pr_sha != '' && inputs.pr_sha || github.sha }}
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Install Nix
@@ -195,3 +301,69 @@ jobs:
 
       - name: Run Nix package smoke
         run: bash packaging/scripts/run-nix-package-smoke.sh
+
+  report-owner-pr-check:
+    name: Report trusted owner PR validation
+    needs: [build, nix-smoke]
+    if: >-
+      always() && github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' &&
+      inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' &&
+      inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository &&
+      github.actor == 'github-actions[bot]'
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-owner-pr-reporter"]}}', github.run_id)) }}
+    permissions:
+      checks: write
+      contents: none
+    steps:
+      - name: Attach validation result to the PR head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_SHA: ${{ inputs.pr_sha }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          NIX_RESULT: ${{ needs.nix-smoke.result }}
+          VALIDATION_RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          from urllib.request import Request, urlopen
+
+          sha = os.environ["PR_SHA"]
+          results = [os.environ[key] for key in ("BUILD_RESULT", "NIX_RESULT")]
+          result = (
+              "success" if all(item == "success" for item in results)
+              else "cancelled" if "cancelled" in results
+              else "failure"
+          )
+          if not re.fullmatch(r"[0-9a-f]{40}", sha):
+              raise SystemExit("invalid pull request head SHA")
+          conclusion = "success" if result == "success" else ("cancelled" if result == "cancelled" else "failure")
+          run_id = os.environ["VALIDATION_RUN_ID"]
+          payload = json.dumps({
+              "name": "slskdN owner PR validation",
+              "head_sha": sha,
+              "external_id": run_id,
+              "status": "completed",
+              "conclusion": conclusion,
+              "details_url": f"https://github.com/snapetech-org/slskdN/actions/runs/{run_id}",
+              "output": {
+                  "title": "slskdN validation " + conclusion,
+                  "summary": "See the linked main-pinned workflow run for validation details.",
+              },
+          }).encode("utf-8")
+          request = Request(
+              "https://api.github.com/repos/snapetech-org/slskdN/check-runs",
+              data=payload,
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+                  "Content-Type": "application/json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+              method="POST",
+          )
+          with urlopen(request, timeout=20) as response:
+              if response.status not in {201, 202}:
+                  raise SystemExit(f"check creation returned HTTP {response.status}")
+          PY
