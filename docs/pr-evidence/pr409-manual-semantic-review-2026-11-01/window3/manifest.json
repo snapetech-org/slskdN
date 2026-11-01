@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-cell semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "124890bf437d5aafda4282f11a15ec329a294832",
+  "tree": "eeba2bed1014814d7d9e4b6ab86cb1e640ec4f10",
+  "generatedUtc": "2026-11-01T23:08:05.285580+00:00",
+  "sourceSnapshot": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-head-review-20261101",
+  "sourceCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreePath": "src",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089",
+    "sourceCatalogTreeUnchanged": true,
+    "sourceCatalogChangedPaths": [],
+    "changedPaths": [
+      "docs/localization/pr409-populated-catalog-semantic-review-2026-11-01.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/review-input.jsonl"
+    ]
+  },
+  "frozenBundle": {
+    "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-populated-review-4c2b-20261101/bundle",
+    "snapshotRepository": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-populated-review-4c2b-20261101/snapshot-repo",
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "manifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+    "batchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111",
+    "populatedCells": 68604,
+    "pendingCells": 67080,
+    "reusedExactCells": 1524
+  },
+  "currentAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCellsCovered": 4800,
+    "invalidSample": []
+  },
+  "priorManualBundles": [
+    {
+      "window": "window1",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-4c2b-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-head-review-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "30bc07c74d23d823c441811a559eb9a4677bc9304e6b5183d4b9cf71a229cb4e",
+      "inputSha256": "11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2",
+      "decisionSha256": "2914f53ec1e807edaeb033deefa81661a5133c1da9b269704971e87c79c1dcb6",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "071f5b20c5bf43c6473720be21aac95a2741743bd207b11e9b5d6517e6381d63",
+        "committedReadmeSha256": "2b61fc9e77e41312039f96fbbcd39b93b191902998c72961e67fd4c09e652606",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "Committed README is the packaging/status copy that records the original scratch verifier passed; scratch README retains the original verification command and review narrative. The copied verifier was omitted from PR evidence because it would treat the committed sibling as a duplicate; the original scratch verifier is retained.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window2",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-4c2b-window2-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-head-review-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "32a567b651ced306e08287b731585f29f1c953e475a3f57da700a929855bb2fa",
+      "inputSha256": "c8507f897140d5c9bbd38cd8b238228407541c971822ff55c55415242fc25af9",
+      "decisionSha256": "965201e7bb42959fd262f22eb1132db8cdb6558c9f1f5e1cea0bb31697677d3d",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "a826af8417e68540b98c20aaf9df0d978f533b7d39920a398522a746a9ec9538",
+        "committedReadmeSha256": "46c900d5b94a29e8cd8dbf3d3fb23ffb851ca49655d8761f53477adde18300f3",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "Committed README is the packaging/status copy that records the original scratch verifier passed; scratch README retains the original verification command and review narrative. The copied verifier was omitted from PR evidence because it would treat the committed sibling as a duplicate; the original scratch verifier is retained.",
+        "committedVerifierIncluded": false
+      }
+    }
+  ],
+  "priorManualCellCount": 600,
+  "priorManualKeyCount": 50,
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_dd50e4fdae3d5f6f",
+      "src_dd63f925421e2c97",
+      "src_dd9bacb7625cc339",
+      "src_dda7019817a3437a",
+      "src_ddb8493fbf2c4f41",
+      "src_ddc0fc6e0c7651c6",
+      "src_ddceb7adfdb8816e",
+      "src_ddd9818abacfde7a",
+      "src_dde95899d1facfb3",
+      "src_ddec0fc313b40614",
+      "src_ddf3d9ee9666f2fe",
+      "src_ddfbe4eb2a4b1067",
+      "src_ddfdaa723c03b4c8",
+      "src_de07cd55dddb526a",
+      "src_de08253a1f50b5af",
+      "src_de0a33019496018b",
+      "src_de1b95b3c9a5e8e9",
+      "src_de35f519c71daa2c",
+      "src_de3d1150a1614a5d",
+      "src_de52404d31af08e1",
+      "src_de653f63dfc49f95",
+      "src_de744fb0f7e08df1",
+      "src_de7a89d52d70aa8a",
+      "src_de7b8cfec8d4483f",
+      "src_de838855e4a6e04e"
+    ],
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "existingResultOverlap": 0,
+    "priorManualOverlap": 0,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 697,
+    "cellIdSetSha256SortedNewline": "8ef748f7bce825cc4d842ed8d7074ae8959a069773ff2eedb9dc908b33ee1771",
+    "selectedSourceIdSetSha256SortedNewline": "0b41990630abcd7efc67535333f1c7dd075012976f69d4f8f59d0ad9d8bf955a"
+  },
+  "decisionCounts": {
+    "keep": 233,
+    "correct": 66,
+    "uncertain": 1
+  },
+  "reviewerMethod": "independent manual semantic review using pinned source context and code callsites; no local translation-model or API call",
+  "overallConfidence": "moderate",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "sharedLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "correctionFindings": [
+    {
+      "sourceId": "src_dda7019817a3437a",
+      "source": "genre, artist, scene, tag",
+      "affectedLocales": [
+        "zh-Hans",
+        "hi",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."
+    },
+    {
+      "sourceId": "src_ddb8493fbf2c4f41",
+      "source": "Soulseek Username (legacy)",
+      "affectedLocales": [
+        "es",
+        "hi",
+        "fr",
+        "pt-BR",
+        "ar",
+        "id"
+      ],
+      "finding": "This is the old Soulseek username field; current wording has unnatural brand order or translates legacy as heritage rather than an older setting."
+    },
+    {
+      "sourceId": "src_ddf3d9ee9666f2fe",
+      "source": "SongID forensic matrix copied",
+      "affectedLocales": [
+        "fr",
+        "ar"
+      ],
+      "finding": "The copied SongID matrix is a technical forensic-analysis artifact; current French and Arabic wording points to forensic medicine rather than digital forensics."
+    },
+    {
+      "sourceId": "src_ddfbe4eb2a4b1067",
+      "source": "Backfill",
+      "affectedLocales": [
+        "es",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "vi",
+        "id"
+      ],
+      "finding": "Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."
+    },
+    {
+      "sourceId": "src_ddfdaa723c03b4c8",
+      "source": "Centroid",
+      "affectedLocales": [
+        "ar",
+        "ko",
+        "vi"
+      ],
+      "finding": "The callsite displays the spectralCentroid audio metric; these targets say midpoint or generic center instead of a spectral centroid."
+    },
+    {
+      "sourceId": "src_de07cd55dddb526a",
+      "source": ". Use advanced channel mutation controls to create the first channel.",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."
+    },
+    {
+      "sourceId": "src_de08253a1f50b5af",
+      "source": "Loading native interests",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."
+    },
+    {
+      "sourceId": "src_de0a33019496018b",
+      "source": "No upcoming tracks.",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "This is the empty state for the player queue; current Chinese wording suggests tracks about to be released rather than tracks queued for playback."
+    },
+    {
+      "sourceId": "src_de1b95b3c9a5e8e9",
+      "source": "• Type:",
+      "affectedLocales": [
+        "fr",
+        "ar"
+      ],
+      "finding": "This is a table heading for a channel kind; current French and Arabic words are verbs rather than the noun “Type”."
+    },
+    {
+      "sourceId": "src_de35f519c71daa2c",
+      "source": "Content search and validation are read-only. Creating a content-linked pod can publish content identifiers and pod metadata depending on visibility settings.",
+      "affectedLocales": [
+        "ar"
+      ],
+      "finding": "The source names the app’s Pod entity; Arabic currently translates it once as a container and once as a portfolio, while this UI preserves the product term Pod."
+    },
+    {
+      "sourceId": "src_de7b8cfec8d4483f",
+      "source": "Paths match exactly. A media-server scan can reference the same completed files.",
+      "affectedLocales": [
+        "es",
+        "vi"
+      ],
+      "finding": "The message concerns filesystem paths and completed downloads; Spanish uses “roads” for paths and Vietnamese says “similar” files instead of the same files."
+    },
+    {
+      "sourceId": "src_de838855e4a6e04e",
+      "source": "Stage",
+      "affectedLocales": [
+        "es",
+        "hi",
+        "de",
+        "fr",
+        "pt-BR",
+        "ar",
+        "vi",
+        "id"
+      ],
+      "finding": "This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."
+    },
+    {
+      "sourceId": "src_ddec0fc313b40614",
+      "source": "Contact name",
+      "affectedLocales": [
+        "ko"
+      ],
+      "finding": "This placeholder labels the contact’s name; current Korean wording means the person responsible or in charge."
+    }
+  ],
+  "uncertaintyFindings": [
+    {
+      "sourceId": "src_ddfbe4eb2a4b1067",
+      "source": "Backfill",
+      "locales": [
+        "hi"
+      ],
+      "reason": "Backfill is used for historical and missed-message catch-up, but the pinned context does not establish a broadly understood Hindi UI term; keep the cell unresolved rather than endorse the transliteration or guess a wording."
+    }
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 2100,
+      "sha256": "0143fa4ae519f1a7fb3d3d77b5e1ee99ac5f68ea3aea30482c6dea9b848c0e46"
+    },
+    "review-input.jsonl": {
+      "bytes": 547531,
+      "sha256": "82c267214443adddd832221240762f4fc3d178ec39639e7d4dce250eca0aeb87",
+      "rows": 300
+    },
+    "review-decisions.jsonl": {
+      "bytes": 31970,
+      "sha256": "4720deeaf0598e20d974701b65e9c9b1712c7740bdd11d8c6d2a452b1fe54d2c",
+      "rows": 300
+    },
+    "verify_evidence.py": {
+      "bytes": 7815,
+      "sha256": "b11f88314193f9c91fd87d08e6f2f80c870f1ab33a0365500d24c15bfff85257"
+    }
+  }
+}
