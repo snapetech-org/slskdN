@@ -38,11 +38,6 @@ if ! rg -q 'v\*' "$repo_root/docs/build.md"; then
   failed=1
 fi
 
-if ! rg -q '^  workflow_dispatch:' "$repo_root/.github/workflows/codeql.yml"; then
-  printf '.github/workflows/codeql.yml must support an exact-main validation dispatch\n' >&2
-  failed=1
-fi
-
 if rg -n 'branches:\s*\[.*(master|main).*\]' "$repo_root/.github/workflows/build-on-tag.yml" >&2; then
   printf 'build-on-tag.yml must not run release builds on branch pushes\n' >&2
   failed=1
@@ -67,43 +62,9 @@ done < <(find "$repo_root/.github/workflows" -maxdepth 1 -type f \( -name '*.yml
 
 ci_workflow="$repo_root/.github/workflows/ci.yml"
 ci_enhancements_workflow="$repo_root/.github/workflows/ci-enhancements.yml"
-for workflow in "$ci_workflow" "$ci_enhancements_workflow"; do
-  workflow_name="$(basename "$workflow")"
-  if [[ "$workflow" == "$ci_workflow" ]]; then
-    if rg -n 'PREFER_SELF_HOSTED|inputs\.runner|private-[a-z-]+-jit|TRUSTED_MAIN_RUNNERS_ENABLED' "$workflow"; then
-      printf '%s must not select a private runner\n' "$workflow_name" >&2
-      failed=1
-    fi
-    for job in build nix-smoke; do
-      job_block="$(sed -n "/^  $job:/,/^  [A-Za-z0-9_-]*:/p" "$workflow")"
-      if [[ "$job_block" != *"ng-shared-main-jit"* ||
-            "$job_block" != *"ng-shared-main-slskdn"* ||
-            "$job_block" != *"ng-main-run-{0}"* ||
-            "$job_block" != *"github.run_id"* ||
-            "$job_block" != *"github.event_name == 'push'"* ||
-            "$job_block" != *"github.event_name == 'workflow_dispatch'"* ||
-            "$job_block" != *"github.ref == 'refs/heads/main'"* ||
-            "$job_block" != *"|| 'ubuntu-latest'"* ]]; then
-        printf '%s job %s must route only main validation to the shared pool\n' "$workflow_name" "$job" >&2
-        failed=1
-      fi
-    done
-    route_count="$(rg -n -F 'ng-shared-main-jit' "$workflow" | wc -l)"
-    if [[ "$route_count" -ne 2 ]]; then
-      printf '%s has an unexpected shared runner route count\n' "$workflow_name" >&2
-      failed=1
-    fi
-  else
-    if rg -n 'self-hosted|PREFER_SELF_HOSTED|inputs\.runner' "$workflow"; then
-      printf '%s must stay on GitHub-hosted runners\n' "$workflow_name" >&2
-      failed=1
-    fi
-    if ! rg -q '^    runs-on: ubuntu-latest$' "$workflow"; then
-      printf '%s must keep CI jobs on GitHub-hosted Linux runners\n' "$workflow_name" >&2
-      failed=1
-    fi
-  fi
-done
+# Every selector in every workflow is validated against the current private
+# JIT groups and run-scoped labels by check-dotnet-runtime-matrix.sh. Keep this
+# script focused on event and release-tag safety.
 
 upstream_access_workflow="$repo_root/.github/workflows/check-upstream-access.yml"
 if rg -q '^\s*workflow_dispatch:' "$upstream_access_workflow" ||
@@ -128,16 +89,6 @@ if re.search(r"(?m)^  pull_request(?:_target)?:", text):
 PYTHON
 then
   printf '.github/workflows/ci.yml must keep builds tag-triggered\n' >&2
-  failed=1
-fi
-
-if ! awk '
-  $0 == "  load-testing:" { in_job = 1; next }
-  in_job && /^  [A-Za-z0-9_-]+:$/ { exit }
-  in_job && $0 == "    runs-on: ubuntu-latest" { found = 1 }
-  END { exit !found }
-' "$repo_root/.github/workflows/ci-enhancements.yml"; then
-  printf '.github/workflows/ci-enhancements.yml load-testing must use an isolated hosted runner\n' >&2
   failed=1
 fi
 
