@@ -48,3 +48,12 @@ prop spreads, and three native confirmation messages in every UI language.
 The source-reference extractor recognizes the new attribute/dialog helpers.
 Unknown launch errors stay opaque, and configured visualizer names and paths
 retain explicit language/direction metadata.
+
+The v7 inline-text boundary follow-up is
+`20261101-v7-inline-bidi-followup.json`. It records source commit
+`cfde13f414b13f71c26585cf061fcd38abd9bd7b`, which wraps every own string or
+number placeholder rendered by `LocalizedText` in `<bdi dir="auto" lang="und">`
+for LTR translations, RTL translations, and English fallback text. Regression
+coverage was added for Spanish- and Arabic-selected English fallback; it was
+not run for this source-only follow-up. No source IDs, catalog values, or
+translation cells were added.
