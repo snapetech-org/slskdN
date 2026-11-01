@@ -20,7 +20,7 @@ const isolateRtlValues = (template, values) => {
 
     parts.push(template.slice(lastIndex, match.index));
     parts.push(
-      <bdi dir="auto" key={`localized-value-${partIndex}`}>
+      <bdi dir="auto" lang="und" key={`localized-value-${partIndex}`}>
         {String(value)}
       </bdi>,
     );
