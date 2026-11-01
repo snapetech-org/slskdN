@@ -1,6 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as streaming from '../../lib/streaming';
 import PlayCollectionItemButton from '../Player/PlayCollectionItemButton';
@@ -34,7 +34,7 @@ const getCollectionTypeLabel = (type) => {
 };
 
 const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
-  getApiErrorMessage(error, { t: interfaceText }, fallback);
+  getApiErrorMessageOutput(error, { t: interfaceText }, fallback);
 
 export default class Collections extends Component {
   constructor(props) {

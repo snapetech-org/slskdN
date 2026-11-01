@@ -1,5 +1,5 @@
+import { interfaceToastText, interfaceTextOutput, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import * as slskdnAPI from '../../../lib/slskdn';
@@ -14,7 +14,7 @@ import {
 import { getLocalStorageItem, setLocalStorageItem } from '../../../lib/storage';
 import { ShrinkableButton } from '../../Shared';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Card,
@@ -38,12 +38,6 @@ const NETWORK_POLL_INTERVAL_MS = 10_000;
 const asArray = (value) => (Array.isArray(value) ? value : []);
 
 const formatBytes = (bytes) => formatLocalizedBytes(bytes, 1);
-
-const localizeKnownMeshSyncError = (message) => {
-  if (message === 'Failed to sync with peer') return interfaceText('Failed to sync with peer');
-  if (message === 'Sync failed') return interfaceText('Sync failed');
-  return message;
-};
 
 const formatTimeAgo = (dateString, locale) => {
   if (!dateString) return <LocalizedText source="Never" />;
@@ -228,17 +222,17 @@ const Network = ({ theme }) => {
     try {
       const result = await slskdnAPI.triggerMeshSync(username);
       if (!result?.success) {
-        toast.error(
-          result?.error
-            ? localizeKnownMeshSyncError(result.error)
-            : interfacePresentationText('Failed to sync with {username}', { username }),
-        );
+        const errorSource = result?.error;
+        const knownError = errorSource === 'Failed to sync with peer' || errorSource === 'Sync failed';
+        toast.error(knownError
+          ? interfaceToastText(errorSource)
+          : errorSource || interfaceToastText('Failed to sync with {username}', { username }));
         return;
       }
 
-      toast.success(interfacePresentationText("Sync initiated with {username}", { "username": (username) }));
+      toast.success(interfaceToastText("Sync initiated with {username}", { "username": (username) }));
     } catch {
-      toast.error(interfacePresentationText("Failed to sync with {username}", { "username": (username) }));
+      toast.error(interfaceToastText("Failed to sync with {username}", { "username": (username) }));
     } finally {
       setSyncing((previous) => ({ ...previous, [username]: false }));
     }
@@ -253,7 +247,7 @@ const Network = ({ theme }) => {
       });
 
       if (result.error) {
-        toast.error(interfacePresentationText("Backfill failed: {error}", { "error": (result.error) }));
+        toast.error(interfaceToastText("Backfill failed: {error}", { "error": (result.error) }));
         setBackfillProgress(null);
       } else {
         setBackfillProgress(result);
@@ -284,7 +278,7 @@ const Network = ({ theme }) => {
         fetchData(); // Refresh stats
       }
     } catch {
-      toast.error(interfaceText("Failed to trigger backfill from search history"));
+      toast.error(interfaceToastText("Failed to trigger backfill from search history"));
       setBackfillProgress(null);
     } finally {
       setBackfilling(false);
@@ -337,14 +331,14 @@ const Network = ({ theme }) => {
     if (navigator.clipboard?.writeText) {
       try {
         await navigator.clipboard.writeText(report);
-        toast.success(interfaceText("Network health report copied"));
+        toast.success(interfaceToastText("Network health report copied"));
       } catch {
-        toast.error(interfaceText("Unable to copy network health report"));
+        toast.error(interfaceToastText("Unable to copy network health report"));
       }
       return;
     }
 
-    toast.info(interfaceText("Clipboard unavailable; select the report text manually"));
+    toast.info(interfaceToastText("Clipboard unavailable; select the report text manually"));
   };
 
   return (

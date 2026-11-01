@@ -1,10 +1,9 @@
-import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import { formatRegionalNumber, useRegionalLocale, getRegionalLocale } from '../../lib/regionalFormat';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
-import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Wishlist.css';
 import { urlBase } from '../../config';
 import {
@@ -21,7 +20,7 @@ import { syncBlockedUsers } from '../../lib/userBlocks';
 import { TooltipButton } from '../Shared';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -112,9 +111,9 @@ const WishlistItemRow = ({
     setRunning(true);
     try {
       const result = await onRunSearch(item.id);
-      toast.success(interfaceText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
+      toast.success(interfaceToastText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
     } catch (error) {
-      toast.error(interfaceText("Search failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Search failed: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setRunning(false);
     }
@@ -129,7 +128,7 @@ const WishlistItemRow = ({
         const searches = await wishlistAPI.getSearches(item.id);
         setRelatedSearches(searches);
       } catch (error) {
-        toast.error(interfaceText("Failed to load searches: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+        toast.error(interfaceToastText("Failed to load searches: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
       } finally {
         setLoadingSearches(false);
       }
@@ -138,7 +137,7 @@ const WishlistItemRow = ({
 
   const handleMarkViewedClick = async () => {
     await onMarkViewed(item.id);
-    toast.info(interfaceText("Marked \"{searchText}\" as viewed", { "searchText": (item.searchText) }));
+    toast.info(interfaceToastText("Marked \"{searchText}\" as viewed", { "searchText": (item.searchText) }));
   };
 
   const handleToggleResults = async (searchId) => {
@@ -153,7 +152,7 @@ const WishlistItemRow = ({
       const results = await searchesAPI.getResponses({ id: searchId });
       setExpandedSearchResults(results);
     } catch (error) {
-      toast.error(interfaceText("Failed to load results: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to load results: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
       setExpandedSearchResults([]);
     } finally {
       setLoadingResults(false);
@@ -528,9 +527,9 @@ const WishlistItemCard = ({
     setRunning(true);
     try {
       const result = await onRunSearch(item.id);
-      toast.success(interfaceText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
+      toast.success(interfaceToastText("Search completed with {responseCount} results", { "responseCount": (result.responseCount) }));
     } catch (error) {
-      toast.error(interfaceText("Search failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Search failed: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setRunning(false);
     }
@@ -545,7 +544,7 @@ const WishlistItemCard = ({
         const searches = await wishlistAPI.getSearches(item.id);
         setRelatedSearches(searches);
       } catch (error) {
-        toast.error(interfaceText("Failed to load searches: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+        toast.error(interfaceToastText("Failed to load searches: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
       } finally {
         setLoadingSearches(false);
       }
@@ -554,7 +553,7 @@ const WishlistItemCard = ({
 
   const handleMarkViewedClick = async () => {
     await onMarkViewed(item.id);
-    toast.info(interfaceText("Marked \"{searchText}\" as viewed", { "searchText": (item.searchText) }));
+    toast.info(interfaceToastText("Marked \"{searchText}\" as viewed", { "searchText": (item.searchText) }));
   };
 
   const handleToggleResults = async (searchId) => {
@@ -569,7 +568,7 @@ const WishlistItemCard = ({
       const results = await searchesAPI.getResponses({ id: searchId });
       setExpandedSearchResults(results);
     } catch (error) {
-      toast.error(interfaceText("Failed to load results: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to load results: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
       setExpandedSearchResults([]);
     } finally {
       setLoadingResults(false);
@@ -1042,7 +1041,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
       })
       .catch((error) => {
         console.error(error);
-        if (!cancelled) toast.error(interfaceText("Failed to load ignored wishlist folders"));
+        if (!cancelled) toast.error(interfaceToastText("Failed to load ignored wishlist folders"));
       })
       .finally(() => {
         if (!cancelled) setLoadingIgnoredResults(false);
@@ -1056,10 +1055,10 @@ const WishlistModal = ({ item, onClose, onSave }) => {
     try {
       await wishlistAPI.removeIgnoredResult(item.id, rule.id);
       setIgnoredResults((current) => current.filter((candidate) => candidate.id !== rule.id));
-      toast.info(interfaceText("Restored {directory} from {username}", { "directory": (rule.directory), "username": (rule.username) }));
+      toast.info(interfaceToastText("Restored {directory} from {username}", { "directory": (rule.directory), "username": (rule.username) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }));
     }
   };
 
@@ -1070,11 +1069,11 @@ const WishlistModal = ({ item, onClose, onSave }) => {
 
   const handleSave = async () => {
     if (!searchText.trim()) {
-      toast.error(interfaceText("Search text is required"));
+      toast.error(interfaceToastText("Search text is required"));
       return;
     }
     if (filterError) {
-      toast.error(interfaceText("Please fix the filter error before saving"));
+      toast.error(interfaceToastText("Please fix the filter error before saving"));
       return;
     }
 
@@ -1091,7 +1090,7 @@ const WishlistModal = ({ item, onClose, onSave }) => {
       });
       onClose();
     } catch (error) {
-      toast.error(interfaceText("Failed to save: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to save: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setSaving(false);
     }
@@ -1260,7 +1259,7 @@ const BulkFilterModal = ({ count, onClose, onSave }) => {
 
   const handleSave = async () => {
     if (filterError) {
-      toast.error(interfaceText("Please fix the filter error before saving"));
+      toast.error(interfaceToastText("Please fix the filter error before saving"));
       return;
     }
 
@@ -1269,7 +1268,7 @@ const BulkFilterModal = ({ count, onClose, onSave }) => {
       await onSave(filter.trim());
       onClose();
     } catch (error) {
-      toast.error(interfaceText("Failed to update filters: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to update filters: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setSaving(false);
     }
@@ -1350,7 +1349,7 @@ const CsvImportModal = ({ onClose, onImport }) => {
 
   const handleImport = async () => {
     if (!csvText.trim()) {
-      toast.error(interfaceText("CSV text is required"));
+      toast.error(interfaceToastText("CSV text is required"));
       return;
     }
 
@@ -1366,7 +1365,7 @@ const CsvImportModal = ({ onClose, onImport }) => {
       });
       onClose();
     } catch (error) {
-      toast.error(interfaceText("CSV import failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("CSV import failed: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setImporting(false);
     }
@@ -1594,7 +1593,7 @@ const Wishlist = () => {
           });
         } catch (error) {
           results.push({
-            error: getApiErrorMessage(error, { t: interfaceText }, 'Search failed'),
+            error: getApiErrorMessageOutput(error, { t: interfaceText }, 'Search failed'),
             id: item.id,
             status: 'failed',
           });
@@ -1629,9 +1628,9 @@ const Wishlist = () => {
     try {
       await optionsAPI.applyOverlay({ wishlist: { enabled: checked } });
       setAutoSearchEnabled(checked);
-      toast.success(interfaceText(checked ? 'Auto-search enabled' : 'Auto-search paused'));
+      toast.success(interfaceToastText(checked ? 'Auto-search enabled' : 'Auto-search paused'));
     } catch (error) {
-      toast.error(interfaceText("Failed to update: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to update: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setTogglingAutoSearch(false);
     }
@@ -1642,7 +1641,7 @@ const Wishlist = () => {
       const data = await wishlistAPI.getAll();
       setItems(Array.isArray(data) ? data : []);
     } catch (error) {
-      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to load wishlist: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -1687,10 +1686,10 @@ const Wishlist = () => {
   const handleSave = async (item) => {
     if (item.id) {
       await wishlistAPI.update(item.id, item);
-      toast.success(interfaceText("Wishlist item updated"));
+      toast.success(interfaceToastText("Wishlist item updated"));
     } else {
       await wishlistAPI.create(item);
-      toast.success(interfaceText("Added to wishlist"));
+      toast.success(interfaceToastText("Added to wishlist"));
     }
 
     await loadItems();
@@ -1699,10 +1698,10 @@ const Wishlist = () => {
   const handleDelete = async (id) => {
     try {
       await wishlistAPI.remove(id);
-      toast.success(interfaceText("Wishlist item deleted"));
+      toast.success(interfaceToastText("Wishlist item deleted"));
       await loadItems();
     } catch (error) {
-      toast.error(interfaceText("Failed to delete: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to delete: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     }
   };
 
@@ -1744,7 +1743,7 @@ const Wishlist = () => {
     for (const id of selectedIds) {
       await wishlistAPI.update(id, { ...items.find((i) => i.id === id), enabled: true });
     }
-    toast.success(interfaceText("Enabled {size} item(s)", { "size": (selectedIds.size) }));
+    toast.success(interfaceToastText("Enabled {size} item(s)", { "size": (selectedIds.size) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1753,7 +1752,7 @@ const Wishlist = () => {
     for (const id of selectedIds) {
       await wishlistAPI.update(id, { ...items.find((i) => i.id === id), enabled: false });
     }
-    toast.success(interfaceText("Disabled {size} item(s)", { "size": (selectedIds.size) }));
+    toast.success(interfaceToastText("Disabled {size} item(s)", { "size": (selectedIds.size) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1762,7 +1761,7 @@ const Wishlist = () => {
     const ids = [...selectedIds];
     const result = await wishlistAPI.updateFilters(ids, filter);
     const updatedCount = result?.updatedCount ?? result?.UpdatedCount ?? ids.length;
-    toast.success(interfaceText("Updated filters for {updatedCount} item(s)", { "updatedCount": (updatedCount) }));
+    toast.success(interfaceToastText("Updated filters for {updatedCount} item(s)", { "updatedCount": (updatedCount) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1771,7 +1770,7 @@ const Wishlist = () => {
     for (const id of selectedIds) {
       await wishlistAPI.remove(id);
     }
-    toast.success(interfaceText("Deleted {size} item(s)", { "size": (selectedIds.size) }));
+    toast.success(interfaceToastText("Deleted {size} item(s)", { "size": (selectedIds.size) }));
     setSelectedIds(new Set());
     await loadItems();
   };
@@ -1779,7 +1778,7 @@ const Wishlist = () => {
   const handleImport = async (request) => {
     const result = await wishlistAPI.importCsv(request);
     toast.success(
-      interfaceText("Imported {createdCount} searches ({duplicateCount} duplicates, {skippedCount} skipped)", { "createdCount": (result.createdCount), "duplicateCount": (result.duplicateCount), "skippedCount": (result.skippedCount) }),
+      interfaceToastText("Imported {createdCount} searches ({duplicateCount} duplicates, {skippedCount} skipped)", { "createdCount": (result.createdCount), "duplicateCount": (result.duplicateCount), "skippedCount": (result.skippedCount) }),
     );
     await loadItems();
   };
@@ -1893,9 +1892,9 @@ const Wishlist = () => {
                     try {
                       await wishlistAPI.markAllViewed();
                       await loadItems();
-                      toast.success(interfaceText("All wishlist items marked as viewed"));
+                      toast.success(interfaceToastText("All wishlist items marked as viewed"));
                     } catch (error) {
-                      toast.error(interfaceText("Failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+                      toast.error(interfaceToastText("Failed: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
                     }
                   }}
                   size="small"

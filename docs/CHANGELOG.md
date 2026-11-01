@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: extend source-bound rendering across playback, messaging, pods, rooms, network, and library-health interfaces while keeping unknown API values opaque.
+
 - Localization: route additional discovery, health, acquisition, media-server,
   playlist, and playback copy through catalog keys; preserve unknown provider
   and API values, and record the remaining twelve-locale translation inventory.

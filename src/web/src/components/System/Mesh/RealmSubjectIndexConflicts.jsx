@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="RealmSubjectIndexConflicts.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -50,7 +50,7 @@ const RealmSubjectIndexConflicts = () => {
   const loadConflicts = async () => {
     const trimmedRealmId = realmId.trim();
     if (!trimmedRealmId) {
-      setError(interfaceText("Enter a realm id before loading subject-index conflicts."));
+      setError(interfaceTextOutput("Enter a realm id before loading subject-index conflicts."));
       return;
     }
 
@@ -63,7 +63,7 @@ const RealmSubjectIndexConflicts = () => {
       });
       setReport(response.data);
     } catch (loadError) {
-      setError(getApiErrorMessage(loadError, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -78,15 +78,15 @@ const RealmSubjectIndexConflicts = () => {
     });
 
     if (!navigator.clipboard?.writeText) {
-      setCopyStatus(interfaceText('Clipboard unavailable; copy the visible conflict report manually.'));
+      setCopyStatus(interfaceTextOutput('Clipboard unavailable; copy the visible conflict report manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(text);
-      setCopyStatus(interfaceText('Realm subject-index conflict report copied.'));
+      setCopyStatus(interfaceTextOutput('Realm subject-index conflict report copied.'));
     } catch {
-      setCopyStatus(interfaceText('Unable to copy realm subject-index conflict report.'));
+      setCopyStatus(interfaceTextOutput('Unable to copy realm subject-index conflict report.'));
     }
   };
 
@@ -151,7 +151,7 @@ const RealmSubjectIndexConflicts = () => {
           error
           size="small"
         >
-          {String(error)}
+          <LocalizedOutputText output={error} />
         </Message>
       )}
       {copyStatus && (
@@ -159,7 +159,7 @@ const RealmSubjectIndexConflicts = () => {
           info
           size="small"
         >
-          {copyStatus}
+          <LocalizedOutputText output={copyStatus} />
         </Message>
       )}
       {report && (

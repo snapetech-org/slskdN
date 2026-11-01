@@ -1,3 +1,9 @@
+import {
+  interfaceTextOutput,
+  isInterfaceOpaqueOutput,
+  isInterfaceTextOutput,
+} from './interfaceLocale';
+
 const API_ERROR_TEXT = {
   'source-feed-import.source-text-required': 'SourceText is required',
   'source-feed-import.limit-must-be-positive': 'Limit must be greater than 0',
@@ -6,15 +12,7 @@ const API_ERROR_TEXT = {
   'songid.analysis-queue-failed': 'SongID analysis could not be queued.',
 };
 
-const interpolateSafeParameters = (message, parameters) =>
-  message.replace(/\{([a-z][a-z0-9]*)\}/giu, (placeholder, name) => {
-    const value = parameters?.[name];
-    return typeof value === 'string' || typeof value === 'number'
-      ? String(value)
-      : placeholder;
-  });
-
-export const getApiErrorMessage = (error, { t }, fallback) => {
+export const getApiErrorMessageOutput = (error, localeOrFallback, legacyFallback) => {
   const response = error?.response || (
     error && typeof error === 'object' &&
     ('data' in error || 'headers' in error)
@@ -28,14 +26,27 @@ export const getApiErrorMessage = (error, { t }, fallback) => {
     ? API_ERROR_TEXT[code]
     : undefined;
   if (source) {
-    const parameters = data?.parameters && typeof data.parameters === 'object' && !Array.isArray(data.parameters)
+    const rawParameters = data?.parameters && typeof data.parameters === 'object' && !Array.isArray(data.parameters)
       ? data.parameters
       : {};
-    return interpolateSafeParameters(t(source), parameters);
+    const values = Object.fromEntries(Object.entries(rawParameters).filter(([, value]) =>
+      typeof value === 'string' || typeof value === 'number'));
+    return interfaceTextOutput(source, values);
   }
 
+  const isOutput = isInterfaceOpaqueOutput(localeOrFallback) || isInterfaceTextOutput(localeOrFallback);
+  const fallback = typeof localeOrFallback === 'string' || isOutput
+    ? localeOrFallback
+    : legacyFallback;
+  if (isInterfaceTextOutput(fallback) || isInterfaceOpaqueOutput(fallback)) return fallback;
   const genericMessage = typeof fallback === 'string' && fallback
     ? fallback
     : 'The request failed. Try again.';
-  return t(genericMessage);
+  return interfaceTextOutput(genericMessage);
+};
+
+export const getApiErrorMessage = (error, { t }, fallback) => {
+  const output = getApiErrorMessageOutput(error, fallback);
+  if (isInterfaceOpaqueOutput(output)) return output.text;
+  return t(output.source, output.values);
 };

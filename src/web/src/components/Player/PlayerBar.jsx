@@ -1,5 +1,5 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfacePresentationText, interfaceText, interfaceTextOutput, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Player.css';
 import * as collectionsAPI from '../../lib/collections';
 import {
@@ -13,7 +13,7 @@ import {
   upsertDiscoveryShelfItem,
 } from '../../lib/discoveryShelf';
 import * as externalVisualizer from '../../lib/externalVisualizer';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { setExperiencePreference } from '../../lib/experiencePreferences';
 import * as listenBrainz from '../../lib/listenBrainz';
 import * as nowPlaying from '../../lib/nowPlaying';
@@ -196,7 +196,7 @@ const getExternalVisualizerStatusText = (status, loading) => {
 };
 
 const getExternalVisualizerError = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'External visualizer did not launch.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'External visualizer did not launch.');
 
 const PlayerToolButton = ({
   active = false,
@@ -2649,7 +2649,7 @@ const PlayerBar = () => {
         const timer = window.setTimeout(() => {
           if (previousAnnouncementItemRef.current === previousItem) {
             previousAnnouncementItemRef.current = null;
-            setPlaybackAnnouncement('Playback stopped.');
+            setPlaybackAnnouncement(interfaceTextOutput('Playback stopped.'));
           }
         }, 200);
         return () => window.clearTimeout(timer);
@@ -2660,18 +2660,18 @@ const PlayerBar = () => {
     previousAnnouncementItemRef.current = current;
     const title = current.title || current.fileName || current.contentId || 'Current track';
     if (previousItem !== current) {
-      const timer = window.setTimeout(() => setPlaybackAnnouncement(interfaceText('Loading: {title}.', { title })), 400);
+      const timer = window.setTimeout(() => setPlaybackAnnouncement(interfaceTextOutput('Loading: {title}.', { title })), 400);
       return () => window.clearTimeout(timer);
     }
     const messages = {
-      buffering: interfaceText('Buffering: {title}.', { title }),
-      ended: interfaceText('Finished: {title}.', { title }),
-      error: interfaceText('Playback error: {title}. {message}', {
+      buffering: interfaceTextOutput('Buffering: {title}.', { title }),
+      ended: interfaceTextOutput('Finished: {title}.', { title }),
+      error: interfaceTextOutput('Playback error: {title}. {message}', {
         title,
-        message: playbackError || interfaceText('Playback could not continue.'),
+        message: playbackError || interfaceTextOutput('Playback could not continue.'),
       }),
-      paused: interfaceText('Paused: {title}.', { title }),
-      playing: interfaceText('Now playing: {title}.', { title }),
+      paused: interfaceTextOutput('Paused: {title}.', { title }),
+      playing: interfaceTextOutput('Now playing: {title}.', { title }),
     };
     const message = messages[playbackStatus];
     if (!message) return undefined;
@@ -2700,7 +2700,7 @@ const PlayerBar = () => {
       data-testid="player-playback-announcement"
       role="status"
     >
-      {playbackAnnouncement}
+      {playbackAnnouncement ? <LocalizedOutputText output={playbackAnnouncement} /> : null}
     </div>
   );
 
@@ -2832,7 +2832,7 @@ const PlayerBar = () => {
     outgoing.pause();
     const graph = getExistingAudioGraph(outgoing);
     if (graph && graph.ctx.state !== 'closed') {
-        suspendAudioGraph(outgoing).catch(() => setPlaybackError(interfaceText('Audio processing could not pause.')));
+        suspendAudioGraph(outgoing).catch(() => setPlaybackError(interfaceTextOutput('Audio processing could not pause.')));
     }
     outgoing.removeAttribute('src');
     outgoing.load();
@@ -2853,7 +2853,7 @@ const PlayerBar = () => {
     });
     Promise.allSettled(elements.map((element) => suspendAudioGraph(element))).then((results) => {
       if (!cancelled && results.some((result) => result.status === 'rejected')) {
-        setPlaybackError(interfaceText('Audio processing could not pause.'));
+        setPlaybackError(interfaceTextOutput('Audio processing could not pause.'));
       }
     });
     return () => { cancelled = true; };
@@ -2934,7 +2934,7 @@ const PlayerBar = () => {
       pendingTranscodeRef.current = false;
       setPlaybackStatus('error');
       failedTranscodeRef.current = seconds;
-      setPlaybackError(interfaceText('Decoding could not start. Press Play to retry. The server may be busy or FFmpeg may be unavailable.'));
+      setPlaybackError(interfaceTextOutput('Decoding could not start. Press Play to retry. The server may be busy or FFmpeg may be unavailable.'));
     }
   }, [current, reportPlaybackEvent, setPlaybackPosition, stopOutgoingFade]);
 
@@ -2979,7 +2979,7 @@ const PlayerBar = () => {
       if (selectedItemRef.current !== current || audioRef.current !== element) return;
       pausePlayback();
       setPlaybackStatus('error');
-      setPlaybackError(interfaceText('Playback could not start. Check the file or try again.'));
+      setPlaybackError(interfaceTextOutput('Playback could not start. Check the file or try again.'));
       reportPlaybackEvent?.('pause', transcodeOffset + element.currentTime);
     });
   }, [current, pausePlayback, playAudio, reportPlaybackEvent, startTranscode, transcodeMode, transcodeOffset]);
@@ -3076,7 +3076,7 @@ const PlayerBar = () => {
   useEffect(() => {
     if (!crossfadeEnabled || !audioRef.current || audioRef.current.paused) return;
     resumeAudioGraph(audioRef.current).catch(() => {
-      setPlaybackError(interfaceText('Could not prepare crossfade audio.'));
+      setPlaybackError(interfaceTextOutput('Could not prepare crossfade audio.'));
     });
   }, [crossfadeEnabled]);
 
@@ -3126,7 +3126,7 @@ const PlayerBar = () => {
         setKaraokeEnabled(element, karaokeEnabled);
         if (!element.paused) {
           resumeAudioGraph(element, false).catch(() => {
-            setPlaybackError(interfaceText('Could not enable vocal reduction for this track.'));
+            setPlaybackError(interfaceTextOutput('Could not enable vocal reduction for this track.'));
           });
         }
       });
@@ -3233,7 +3233,7 @@ const PlayerBar = () => {
         if (!cancelled) {
           setPlaybackStatus('error');
           const status = error?.response?.status;
-          setPlaybackError(interfaceText(error?.response?.data?.code === 'radio_fairness_limited'
+          setPlaybackError(interfaceTextOutput(error?.response?.data?.code === 'radio_fairness_limited'
             ? 'Remote radio is limited by network fairness. Check sharing activity before retrying.'
             : status === 429
               ? 'Radio streaming is at capacity. Retry later.'
@@ -3361,7 +3361,7 @@ const PlayerBar = () => {
         playingRef.current = false;
         setPlaying(false);
         setPlaybackStatus('error');
-        setPlaybackError(interfaceText('The next track could not start.'));
+        setPlaybackError(interfaceTextOutput('The next track could not start.'));
         reportPlaybackEvent?.('pause', transcodeOffset + standby.currentTime);
         nowPlaying.clearNowPlaying().catch(() => {});
       });
@@ -3433,7 +3433,12 @@ const PlayerBar = () => {
     if (!audioRef.current || !window.documentPictureInPicture) return;
 
     closePictureInPicture();
-    setPlaybackError((error) => error.startsWith('Picture-in-Picture could not open.') ? '' : error);
+    setPlaybackError((error) => (
+      isInterfaceTextOutput(error) &&
+      error.source.startsWith('Picture-in-Picture could not open.')
+        ? ''
+        : error
+    ));
     const request = pipRequestRef.current;
     try {
       const graph = await resumeAudioGraph(audioRef.current);
@@ -3507,7 +3512,7 @@ const PlayerBar = () => {
     } catch {
       if (request !== pipRequestRef.current) return;
       closePictureInPicture();
-      setPlaybackError(interfaceText('Picture-in-Picture could not open. Try again from the player tools.'));
+      setPlaybackError(interfaceTextOutput('Picture-in-Picture could not open. Try again from the player tools.'));
     }
   };
 
@@ -3609,14 +3614,14 @@ const PlayerBar = () => {
           .map((element) => resumeAudioGraph(element, false)),
       );
       if (resumeResults.some((result) => result.status === 'rejected')) {
-        setPlaybackError(interfaceText('Audio output changed, but playback could not resume.'));
+        setPlaybackError(interfaceTextOutput('Audio output changed, but playback could not resume.'));
       }
     })();
     outputSwitchPromiseRef.current = switching.catch(() => {});
     try {
       await switching;
     } catch {
-      setPlaybackError(interfaceText('Could not switch audio output device.'));
+      setPlaybackError(interfaceTextOutput('Could not switch audio output device.'));
     } finally {
       outputSwitchingRef.current = false;
       setOutputSwitching(false);
@@ -3636,7 +3641,7 @@ const PlayerBar = () => {
       await switchOutputDevice(device.deviceId);
     } catch (error) {
       if (error?.name !== 'AbortError') {
-        setPlaybackError(interfaceText('Could not choose an audio output device.'));
+        setPlaybackError(interfaceTextOutput('Could not choose an audio output device.'));
       }
     } finally {
       setOutputChoosing(false);
@@ -3742,11 +3747,11 @@ const PlayerBar = () => {
       playingRef.current = false;
       setPlaying(false);
       setPlaybackStatus('error');
-      setPlaybackError(transcodeMode
+      setPlaybackError(interfaceTextOutput(transcodeMode
         ? 'The server could not decode this audio. Press Play to retry.'
         : current.radioPartyId
           ? 'The listed radio stream stopped or changed. Retry playback or refresh listed radio.'
-          : 'This audio could not be decoded or streamed.');
+          : 'This audio could not be decoded or streamed.'));
       reportPlaybackEvent?.('pause', transcodeOffset + failedElement.currentTime);
       if (!transcodeMode && !current.streamUrl && !current.contentId.startsWith('local:')) {
         streaming.getPlaybackInfo(current.contentId).then((response) => {
@@ -4013,7 +4018,7 @@ const PlayerBar = () => {
                 </div>
                 {broadcastStatus ? (
                   <div className="player-broadcast-controls">
-                    {broadcastStatus.error ? <span role="alert"><LocalizedText source={broadcastStatus.error} /></span> : null}
+                    {broadcastStatus.error ? <span role="alert"><LocalizedOutputText output={broadcastStatus.error} /></span> : null}
                     {broadcastStatus.active ? <>
                       {broadcastStatus.error ? <Popup content={interfaceText("Retry publishing this room's current playback state after an update failure.")} trigger={<Button aria-label={interfaceText("Retry room broadcast")} onClick={() => retryBroadcast().catch(() => {})} size="mini" {...interfaceTextProps("Retry room broadcast")}><LocalizedText source={"Retry broadcast"} /></Button>}  {...interfaceTextProps("Retry publishing this room's current playback state after an update failure.")}/> : null}
                       <Popup content={interfaceText("Stop this room broadcast while keeping your own playback available.")} trigger={<Button aria-label={interfaceText("Stop active room broadcast")} onClick={() => stopBroadcast().catch(() => {})} size="mini" {...interfaceTextProps("Stop active room broadcast")}><LocalizedText source={"Stop broadcast"} /></Button>}  {...interfaceTextProps("Stop this room broadcast while keeping your own playback available.")}/>
@@ -4050,7 +4055,7 @@ const PlayerBar = () => {
             </div>
             <PlayerProgress current={current} duration={duration} onSeek={seekTo} position={position} />
             <PlayerRatingControls current={current} onChange={updatePlayerRating} rating={playerRating} />
-            {playbackError ? <Message negative size="mini">{playbackError}</Message> : null}
+            {playbackError ? <Message negative size="mini"><LocalizedOutputText output={playbackError} /></Message> : null}
             {transcodeAvailable && !transcodeMode ? (
               <Popup content={interfaceText("Decode this server library file to MP3 for this playback only. This uses server CPU until playback stops.")} trigger={
                 <Button onClick={() => startTranscode(0)} size="mini" type="button"><LocalizedText source={"Decode for playback"} /></Button>
@@ -4468,7 +4473,7 @@ const PlayerBar = () => {
                 size="tiny"
                 warning={!externalVisualizerStatus?.available}
               >
-                {externalVisualizerMessage}
+                <LocalizedOutputText output={externalVisualizerMessage} />
               </Message>
             ) : null}
             <div className="player-external-visualizer-actions">

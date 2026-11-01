@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getTasteRecommendationReasonPresentation } from '../../lib/appGeneratedReasonText';
 // <copyright file="FederatedTasteRecommendationsPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -16,7 +16,7 @@ import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalForma
 import FeatureGateNotice from '../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../Shared/useFeatureGates';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -69,11 +69,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
       const nextRecommendations = asArray(response.data?.recommendations);
       setSummary(response.data);
       setRecommendations(nextRecommendations);
-      setStatus(interfaceText('Loaded {count} privacy-filtered recommendations.', {
+      setStatus(interfaceTextOutput('Loaded {count} privacy-filtered recommendations.', {
         count: nextRecommendations.length,
       }));
     } catch (loadError) {
-      setError(getApiErrorMessage(
+      setError(getApiErrorMessageOutput(
         loadError,
         { t: interfaceText },
         'Unable to load federated taste recommendations.',
@@ -89,11 +89,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         note: 'Promoted from federated taste recommendation review.',
         workRef: recommendation.workRef,
       });
-      setStatus(interfaceText('Promoted {title} to Wishlist.', {
+      setStatus(interfaceTextOutput('Promoted {title} to Wishlist.', {
         title: getTitle(recommendation.workRef),
       }));
     } catch (promoteError) {
-      toast.error(getApiErrorMessage(promoteError, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(promoteError, { t: interfaceText }));
     }
   };
 
@@ -103,11 +103,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         scope: 'trusted',
         workRef: recommendation.workRef,
       });
-      setStatus(interfaceText('Subscribed {creator} to Release Radar.', {
+      setStatus(interfaceTextOutput('Subscribed {creator} to Release Radar.', {
         creator: getCreator(recommendation.workRef),
       }));
     } catch (subscribeError) {
-      toast.error(getApiErrorMessage(subscribeError, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(subscribeError, { t: interfaceText }));
     }
   };
 
@@ -117,11 +117,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         workRef: recommendation.workRef,
       });
       setGraphPreview(response.data);
-      setStatus(interfaceText('Discovery Graph previewed for {title}.', {
+      setStatus(interfaceTextOutput('Discovery Graph previewed for {title}.', {
         title: getTitle(recommendation.workRef),
       }));
     } catch (previewError) {
-      toast.error(getApiErrorMessage(previewError, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(previewError, { t: interfaceText }));
     }
   };
 
@@ -213,8 +213,8 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
           }
          {...interfaceTextProps("Load privacy-filtered recommendations from followed federated actors. Optionally include raw native Soulseek recommendation seeds.")}/>
       </Form>
-      {status && <Message compact size="mini">{status}</Message>}
-      {error && <Message compact error size="mini">{String(error)}</Message>}
+      {status && <Message compact size="mini"><LocalizedOutputText output={status} /></Message>}
+      {error && <Message compact error size="mini"><LocalizedOutputText output={error} /></Message>}
       {summary && (
         <div className="search-acquisition-profile-strip">
           <Label basic>

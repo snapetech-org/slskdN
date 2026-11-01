@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -124,7 +124,7 @@ const SwarmVisualization = ({ jobId }) => {
       ) {
         return;
       }
-      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to fetch swarm data'));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }, 'Failed to fetch swarm data'));
       console.error('Failed to fetch swarm visualization data:', error_);
     } finally {
       if (statusRequestGenerationRef.current === requestGeneration) {
@@ -313,9 +313,9 @@ const SwarmVisualization = ({ jobId }) => {
           color="red"
         >
           <Icon name="exclamation triangle" />
-          <Header.Content><LocalizedText source={"Error Loading Swarm Data"} /></Header.Content>
+          <Header.Content><LocalizedText source="Error Loading Swarm Data" /></Header.Content>
         </Header>
-        <p>{error}</p>
+        <p><LocalizedOutputText output={error} /></p>
       </Segment>
     );
   }

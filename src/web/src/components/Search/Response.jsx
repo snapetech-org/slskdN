@@ -1,4 +1,4 @@
-import LocalizedText from "../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import api from '../../lib/api';
@@ -17,7 +17,7 @@ import {
 } from '../../lib/communityQualitySignals';
 import { getDirectoryContents } from '../../lib/users';
 import { formatBytes, getDirectoryName, getFileName } from '../../lib/util';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import DiscoveryGraphModal from './DiscoveryGraphModal';
 import FileList from '../Shared/FileList';
@@ -27,7 +27,7 @@ import UserNoteModal from '../Users/UserNoteModal';
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import { Button as SemanticButton, Card, Icon, Label, List, Modal } from 'semantic-ui-react';
 
 const asArray = (value) => (Array.isArray(value) ? value : []);
@@ -193,15 +193,10 @@ class Response extends Component {
   };
 
   localizedError = (error, fallback) =>
-    getApiErrorMessage(error, this.props.locale, fallback);
+    getApiErrorMessageOutput(error, this.props.locale, fallback);
 
   localizedErrorText = (error, fallback) => {
-    const { language } = this.props.locale;
-    return (
-      <span dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language}>
-        {this.localizedError(error, fallback)}
-      </span>
-    );
+    return <LocalizedOutputText output={this.localizedError(error, fallback)} />;
   };
 
   formatNumber = (value) =>

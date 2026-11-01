@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 
 
 import './Rooms.css';
@@ -27,7 +27,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
   const handleCreate = async () => {
     const name = roomName.trim();
     if (!name) {
-      setError(interfaceText("Room name cannot be empty"));
+      setError(interfaceTextOutput("Room name cannot be empty"));
       return;
     }
 
@@ -40,7 +40,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
       setRoomName('');
       setIsPrivate(false);
     } catch (error) {
-      setError(getApiErrorMessage(error, { t: interfaceText }, 'Failed to create room'));
+      setError(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to create room'));
     } finally {
       setLoading(false);
     }
@@ -105,7 +105,7 @@ const RoomCreateModal = ({ onCreateRoom, ...modalOptions }) => {
                     marginTop: '4px',
                   }}
                 >
-                  {error}
+                  <LocalizedOutputText output={error} />
                 </div>
               )}
             </div>

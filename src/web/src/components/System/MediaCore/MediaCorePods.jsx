@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
+import { interfaceToastText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
@@ -11,7 +11,7 @@ import * as mediacore from '../../../lib/mediacore';
 import Button from './MediaCoreButton';
 import PodWorkflowNotice from './PodWorkflowNotice';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Card,
   Form,
@@ -226,7 +226,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // PodCore handlers
   const handlePublishPod = async () => {
     if (!podToPublish.trim()) {
-      toast.warning(interfaceText("Please enter pod JSON data"));
+      toast.warning(interfaceToastText("Please enter pod JSON data"));
       return;
     }
 
@@ -238,7 +238,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodPublishingResult(result);
       setPodToPublish('');
     } catch (error_) {
-      setPodPublishingResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPodPublishingResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setPublishingPod(false);
     }
@@ -246,7 +246,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRetrievePodMetadata = async () => {
     if (!podMetadataToRetrieve.trim()) {
-      toast.warning(interfaceText("Please enter a pod ID"));
+      toast.warning(interfaceToastText("Please enter a pod ID"));
       return;
     }
 
@@ -258,7 +258,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setPodMetadataResult(result);
     } catch (error_) {
-      setPodMetadataResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPodMetadataResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRetrievingPodMetadata(false);
     }
@@ -266,7 +266,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUnpublishPod = async () => {
     if (!podToUnpublish.trim()) {
-      toast.warning(interfaceText("Please enter a pod ID"));
+      toast.warning(interfaceToastText("Please enter a pod ID"));
       return;
     }
 
@@ -283,7 +283,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodUnpublishResult(result);
       setPodToUnpublish('');
     } catch (error_) {
-      setPodUnpublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPodUnpublishResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setUnpublishingPod(false);
     }
@@ -296,7 +296,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getPodPublishingStats();
       setPodPublishingStats(result);
     } catch (error_) {
-      setPodPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPodPublishingStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingPodStats(false);
     }
@@ -305,7 +305,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Membership handlers
   const handlePublishMembership = async () => {
     if (!membershipRecord.trim()) {
-      toast.warning(interfaceText("Please enter membership record JSON data"));
+      toast.warning(interfaceToastText("Please enter membership record JSON data"));
       return;
     }
 
@@ -317,7 +317,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setMembershipPublishResult(result);
       setMembershipRecord('');
     } catch (error_) {
-      setMembershipPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMembershipPublishResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setPublishingMembership(false);
     }
@@ -325,7 +325,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetMembership = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
+      toast.warning(interfaceToastText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -338,7 +338,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMembershipResult(result);
     } catch (error_) {
-      setMembershipResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMembershipResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setGettingMembership(false);
     }
@@ -346,7 +346,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleVerifyMembership = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
+      toast.warning(interfaceToastText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -359,7 +359,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMembershipVerification(result);
     } catch (error_) {
-      setMembershipVerification({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMembershipVerification({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setVerifyingMembership(false);
     }
@@ -367,7 +367,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleBanMember = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
+      toast.warning(interfaceToastText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -390,7 +390,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setBanResult(result);
       setBanReason('');
     } catch (error_) {
-      setBanResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setBanResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setBanningMember(false);
     }
@@ -398,7 +398,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleChangeRole = async () => {
     if (!membershipPodId.trim() || !membershipPeerId.trim()) {
-      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
+      toast.warning(interfaceToastText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -412,7 +412,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setRoleChangeResult(result);
     } catch (error_) {
-      setRoleChangeResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRoleChangeResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setChangingRole(false);
     }
@@ -425,7 +425,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getMembershipStats();
       setMembershipStats(result);
     } catch (error_) {
-      setMembershipStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMembershipStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingMembershipStats(false);
     }
@@ -441,19 +441,19 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       const result = await mediacore.cleanupExpiredMemberships();
       toast.success(
-        interfaceText("Cleanup completed: {recordsCleaned} records cleaned, {errorsEncountered} errors", { "recordsCleaned": (result.recordsCleaned), "errorsEncountered": (result.errorsEncountered) }),
+        interfaceToastText("Cleanup completed: {recordsCleaned} records cleaned, {errorsEncountered} errors", { "recordsCleaned": (result.recordsCleaned), "errorsEncountered": (result.errorsEncountered) }),
       );
       // Reload stats to reflect changes
       await handleLoadMembershipStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to cleanup: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     }
   };
 
   // Pod Membership Verification handlers
   const handleVerifyPodMembership = async () => {
     if (!verifyPodId.trim() || !verifyPeerId.trim()) {
-      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
+      toast.warning(interfaceToastText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -466,7 +466,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMembershipVerificationResult(result);
     } catch (error_) {
-      setMembershipVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMembershipVerificationResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setVerifyingMembership(false);
     }
@@ -474,7 +474,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleVerifyMessage = async () => {
     if (!membershipMessageToVerify.trim()) {
-      toast.warning(interfaceText("Please enter a message JSON"));
+      toast.warning(interfaceToastText("Please enter a message JSON"));
       return;
     }
 
@@ -485,7 +485,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.verifyPodMessage(message);
       setMessageVerificationResult(result);
     } catch (error_) {
-      setMessageVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMessageVerificationResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setVerifyingMessage(false);
     }
@@ -493,7 +493,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCheckRole = async () => {
     if (!roleCheckPodId.trim() || !roleCheckPeerId.trim()) {
-      toast.warning(interfaceText("Please enter both Pod ID and Peer ID"));
+      toast.warning(interfaceToastText("Please enter both Pod ID and Peer ID"));
       return;
     }
 
@@ -507,7 +507,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setRoleCheckResult({ hasRole });
     } catch (error_) {
-      setRoleCheckResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRoleCheckResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setCheckingRole(false);
     }
@@ -520,7 +520,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getVerificationStats();
       setVerificationStats(result);
     } catch (error_) {
-      setVerificationStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setVerificationStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingVerificationStats(false);
     }
@@ -529,7 +529,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Discovery handlers
   const handleRegisterPodForDiscovery = async () => {
     if (!podToRegister.trim()) {
-      toast.warning(interfaceText("Please enter pod JSON data"));
+      toast.warning(interfaceToastText("Please enter pod JSON data"));
       return;
     }
 
@@ -541,7 +541,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodRegistrationResult(result);
       setPodToRegister('');
     } catch (error_) {
-      setPodRegistrationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPodRegistrationResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRegisteringPod(false);
     }
@@ -549,7 +549,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUnregisterPodFromDiscovery = async () => {
     if (!podToUnregister.trim()) {
-      toast.warning(interfaceText("Please enter a pod ID"));
+      toast.warning(interfaceToastText("Please enter a pod ID"));
       return;
     }
 
@@ -561,7 +561,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPodUnregistrationResult(result);
       setPodToUnregister('');
     } catch (error_) {
-      setPodUnregistrationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPodUnregistrationResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setUnregisteringPod(false);
     }
@@ -569,7 +569,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByName = async () => {
     if (!discoverByName.trim()) {
-      toast.warning(interfaceText("Please enter a pod name"));
+      toast.warning(interfaceToastText("Please enter a pod name"));
       return;
     }
 
@@ -579,7 +579,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByName(discoverByName);
       setNameDiscoveryResult(result);
     } catch (error_) {
-      setNameDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setNameDiscoveryResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByName(false);
     }
@@ -587,7 +587,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByTag = async () => {
     if (!discoverByTag.trim()) {
-      toast.warning(interfaceText("Please enter a tag"));
+      toast.warning(interfaceToastText("Please enter a tag"));
       return;
     }
 
@@ -597,7 +597,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByTag(discoverByTag);
       setTagDiscoveryResult(result);
     } catch (error_) {
-      setTagDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setTagDiscoveryResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByTag(false);
     }
@@ -605,7 +605,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByTags = async () => {
     if (!discoverTags.trim()) {
-      toast.warning(interfaceText("Please enter tags (comma-separated)"));
+      toast.warning(interfaceToastText("Please enter tags (comma-separated)"));
       return;
     }
 
@@ -619,7 +619,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByTags(tagList);
       setTagsDiscoveryResult(result);
     } catch (error_) {
-      setTagsDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setTagsDiscoveryResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByTags(false);
     }
@@ -632,7 +632,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverAllPods(discoverLimit);
       setAllDiscoveryResult(result);
     } catch (error_) {
-      setAllDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setAllDiscoveryResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringAll(false);
     }
@@ -640,7 +640,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleDiscoverByContent = async () => {
     if (!discoverByContent.trim()) {
-      toast.warning(interfaceText("Please enter a content ID"));
+      toast.warning(interfaceToastText("Please enter a content ID"));
       return;
     }
 
@@ -650,7 +650,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.discoverPodsByContent(discoverByContent);
       setContentDiscoveryResult(result);
     } catch (error_) {
-      setContentDiscoveryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setContentDiscoveryResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setDiscoveringByContent(false);
     }
@@ -663,7 +663,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getPodDiscoveryStats();
       setDiscoveryStats(result);
     } catch (error_) {
-      setDiscoveryStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setDiscoveryStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingDiscoveryStats(false);
     }
@@ -673,19 +673,19 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       const result = await mediacore.refreshPodDiscovery();
       toast.success(
-        interfaceText("Discovery refresh completed: {entriesRefreshed} refreshed, {entriesExpired} expired", { "entriesRefreshed": (result.entriesRefreshed), "entriesExpired": (result.entriesExpired) }),
+        interfaceToastText("Discovery refresh completed: {entriesRefreshed} refreshed, {entriesExpired} expired", { "entriesRefreshed": (result.entriesRefreshed), "entriesExpired": (result.entriesExpired) }),
       );
       // Reload stats to reflect changes
       await handleLoadDiscoveryStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to refresh discovery: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to refresh discovery: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     }
   };
 
   // Pod Join/Leave handlers
   const handleRequestJoin = async () => {
     if (!joinRequestData.trim()) {
-      toast.warning(interfaceText("Please enter join request JSON data"));
+      toast.warning(interfaceToastText("Please enter join request JSON data"));
       return;
     }
 
@@ -697,7 +697,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setJoinRequestResult(result);
       setJoinRequestData('');
     } catch (error_) {
-      setJoinRequestResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setJoinRequestResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRequestingJoin(false);
     }
@@ -705,7 +705,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleAcceptJoin = async () => {
     if (!acceptanceData.trim()) {
-      toast.warning(interfaceText("Please enter acceptance JSON data"));
+      toast.warning(interfaceToastText("Please enter acceptance JSON data"));
       return;
     }
 
@@ -717,7 +717,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setAcceptanceResult(result);
       setAcceptanceData('');
     } catch (error_) {
-      setAcceptanceResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setAcceptanceResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setAcceptingJoin(false);
     }
@@ -725,7 +725,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRequestLeave = async () => {
     if (!leaveRequestData.trim()) {
-      toast.warning(interfaceText("Please enter leave request JSON data"));
+      toast.warning(interfaceToastText("Please enter leave request JSON data"));
       return;
     }
 
@@ -737,7 +737,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setLeaveRequestResult(result);
       setLeaveRequestData('');
     } catch (error_) {
-      setLeaveRequestResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setLeaveRequestResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRequestingLeave(false);
     }
@@ -745,7 +745,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleAcceptLeave = async () => {
     if (!acceptanceData.trim()) {
-      toast.warning(interfaceText("Please enter leave acceptance JSON data"));
+      toast.warning(interfaceToastText("Please enter leave acceptance JSON data"));
       return;
     }
 
@@ -757,7 +757,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setLeaveAcceptanceResult(result);
       setAcceptanceData('');
     } catch (error_) {
-      setLeaveAcceptanceResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setLeaveAcceptanceResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setAcceptingLeave(false);
     }
@@ -765,7 +765,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleLoadPendingRequests = async () => {
     if (!pendingPodId.trim()) {
-      toast.warning(interfaceText("Please enter a pod ID"));
+      toast.warning(interfaceToastText("Please enter a pod ID"));
       return;
     }
 
@@ -782,8 +782,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setPendingJoinRequests(joinRequests);
       setPendingLeaveRequests(leaveRequests);
     } catch (error_) {
-      setPendingJoinRequests({ error: getApiErrorMessage(error_, { t: interfaceText }) });
-      setPendingLeaveRequests({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPendingJoinRequests({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
+      setPendingLeaveRequests({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingPendingRequests(false);
     }
@@ -792,7 +792,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Message Routing handlers
   const handleRouteMessage = async () => {
     if (!routeMessageData.trim()) {
-      toast.warning(interfaceText("Please enter message JSON data"));
+      toast.warning(interfaceToastText("Please enter message JSON data"));
       return;
     }
 
@@ -804,7 +804,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setRoutingResult(result);
       setRouteMessageData('');
     } catch (error_) {
-      setRoutingResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRoutingResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRoutingMessage(false);
     }
@@ -812,7 +812,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRouteMessageToPeers = async () => {
     if (!routeToPeersMessage.trim() || !routeToPeersIds.trim()) {
-      toast.warning(interfaceText("Please enter message JSON and target peer IDs"));
+      toast.warning(interfaceToastText("Please enter message JSON and target peer IDs"));
       return;
     }
 
@@ -832,7 +832,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setRouteToPeersMessage('');
       setRouteToPeersIds('');
     } catch (error_) {
-      setRoutingToPeersResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRoutingToPeersResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRoutingToPeers(false);
     }
@@ -845,7 +845,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getPodMessageRoutingStats();
       setRoutingStats(result);
     } catch (error_) {
-      setRoutingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRoutingStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingRoutingStats(false);
     }
@@ -853,7 +853,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCheckMessageSeen = async () => {
     if (!checkMessageId.trim() || !checkPodId.trim()) {
-      toast.warning(interfaceText("Please enter both message ID and pod ID"));
+      toast.warning(interfaceToastText("Please enter both message ID and pod ID"));
       return;
     }
 
@@ -866,7 +866,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMessageSeenResult(result);
     } catch (error_) {
-      setMessageSeenResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMessageSeenResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setCheckingMessageSeen(false);
     }
@@ -874,7 +874,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRegisterMessageSeen = async () => {
     if (!checkMessageId.trim() || !checkPodId.trim()) {
-      toast.warning(interfaceText("Please enter both message ID and pod ID"));
+      toast.warning(interfaceToastText("Please enter both message ID and pod ID"));
       return;
     }
 
@@ -884,12 +884,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         checkPodId,
       );
       toast.success(
-        interfaceText('Message registered as seen: {status}', {
-          status: interfaceText(result.wasNewlyRegistered ? 'New' : 'Already known'),
+        interfaceToastText('Message registered as seen: {status}', {
+          status: interfaceToastText(result.wasNewlyRegistered ? 'New' : 'Already known'),
         }),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to register message: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to register message: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     }
   };
 
@@ -897,19 +897,19 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       const result = await mediacore.cleanupSeenMessages();
       toast.success(
-        interfaceText("Cleanup completed: {messagesCleaned} messages cleaned, {messagesRetained} retained", { "messagesCleaned": (result.messagesCleaned), "messagesRetained": (result.messagesRetained) }),
+        interfaceToastText("Cleanup completed: {messagesCleaned} messages cleaned, {messagesRetained} retained", { "messagesCleaned": (result.messagesCleaned), "messagesRetained": (result.messagesRetained) }),
       );
       // Reload stats to reflect changes
       await handleLoadRoutingStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to cleanup: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to cleanup: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     }
   };
 
   // Pod Message Signing handlers
   const handleSignMessage = async () => {
     if (!messageToSign.trim() || !privateKeyForSigning.trim()) {
-      toast.warning(interfaceText("Please enter message JSON and private key"));
+      toast.warning(interfaceToastText("Please enter message JSON and private key"));
       return;
     }
 
@@ -924,7 +924,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setSignedMessageResult(result);
       setMessageToSign('');
     } catch (error_) {
-      setSignedMessageResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setSignedMessageResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setSigningMessage(false);
     }
@@ -932,7 +932,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleVerifySignature = async () => {
     if (!messageToVerify.trim()) {
-      toast.warning(interfaceText("Please enter message JSON to verify"));
+      toast.warning(interfaceToastText("Please enter message JSON to verify"));
       return;
     }
 
@@ -943,7 +943,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.verifyPodMessageSignature(message);
       setVerificationResult(result);
     } catch (error_) {
-      setVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setVerificationResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setVerifyingSignature(false);
     }
@@ -956,7 +956,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.generateMessageKeyPair();
       setGeneratedKeyPair(result);
     } catch (error_) {
-      setGeneratedKeyPair({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setGeneratedKeyPair({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setGeneratingKeyPair(false);
     }
@@ -969,7 +969,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getMessageSigningStats();
       setSigningStats(result);
     } catch (error_) {
-      setSigningStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setSigningStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingSigningStats(false);
     }
@@ -983,8 +983,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getMessageStorageStats();
       setStorageStats(result);
     } catch (error_) {
-      setStorageStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
-      toast.error(interfaceText("Failed to get storage stats: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      setStorageStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
+      toast.error(interfaceToastText("Failed to get storage stats: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setStorageStatsLoading(false);
     }
@@ -995,11 +995,11 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setCleanupLoading(true);
       const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1_000;
       const result = await mediacore.cleanupMessages(thirtyDaysAgo);
-      toast.success(interfaceText("Cleaned up {result} old messages", { "result": (result) }));
+      toast.success(interfaceToastText("Cleaned up {result} old messages", { "result": (result) }));
       // Refresh stats after cleanup
       await handleGetStorageStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to cleanup messages: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to cleanup messages: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setCleanupLoading(false);
     }
@@ -1011,11 +1011,11 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.rebuildSearchIndex();
       toast.success(
         result
-          ? interfaceText('Search index rebuilt successfully')
-          : interfaceText('Search index rebuild failed'),
+          ? interfaceToastText('Search index rebuilt successfully')
+          : interfaceToastText('Search index rebuild failed'),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to rebuild search index: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to rebuild search index: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setRebuildIndexLoading(false);
     }
@@ -1027,11 +1027,11 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.vacuumDatabase();
       toast.success(
         result
-          ? interfaceText('Database vacuum completed successfully')
-          : interfaceText('Database vacuum failed'),
+          ? interfaceToastText('Database vacuum completed successfully')
+          : interfaceToastText('Database vacuum failed'),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to vacuum database: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to vacuum database: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setVacuumLoading(false);
     }
@@ -1052,7 +1052,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setSearchResults(result);
     } catch (error_) {
       setSearchResults([]);
-      toast.error(interfaceText("Failed to search messages: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to search messages: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setSearchLoading(false);
     }
@@ -1066,8 +1066,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getBackfillStats();
       setBackfillStats(result);
     } catch (error_) {
-      setBackfillStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
-      toast.error(interfaceText("Failed to get backfill stats: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      setBackfillStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
+      toast.error(interfaceToastText("Failed to get backfill stats: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setBackfillStatsLoading(false);
     }
@@ -1075,7 +1075,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleSyncPodBackfill = async () => {
     if (!backfillPodId.trim()) {
-      toast.error(interfaceText("Pod ID is required for backfill sync"));
+      toast.error(interfaceToastText("Pod ID is required for backfill sync"));
       return;
     }
 
@@ -1085,12 +1085,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const timestamps = await mediacore.getLastSeenTimestamps(backfillPodId);
       const result = await mediacore.syncPodBackfill(backfillPodId, timestamps);
       toast.success(
-        interfaceText("Backfill sync completed: {totalMessagesReceived} messages received", { "totalMessagesReceived": (result.totalMessagesReceived) }),
+        interfaceToastText("Backfill sync completed: {totalMessagesReceived} messages received", { "totalMessagesReceived": (result.totalMessagesReceived) }),
       );
       // Refresh stats
       await handleGetBackfillStats();
     } catch (error_) {
-      toast.error(interfaceText("Failed to sync pod backfill: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to sync pod backfill: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setSyncBackfillLoading(false);
     }
@@ -1098,7 +1098,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetLastSeenTimestamps = async () => {
     if (!backfillPodId.trim()) {
-      toast.error(interfaceText("Pod ID is required"));
+      toast.error(interfaceToastText("Pod ID is required"));
       return;
     }
 
@@ -1106,7 +1106,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const timestamps = await mediacore.getLastSeenTimestamps(backfillPodId);
       setLastSeenTimestamps(timestamps);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get last seen timestamps: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get last seen timestamps: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setLastSeenTimestamps(null);
     }
   };
@@ -1114,7 +1114,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Channel Management handlers
   const handleGetChannels = async () => {
     if (!channelPodId.trim()) {
-      toast.error(interfaceText("Pod ID is required"));
+      toast.error(interfaceToastText("Pod ID is required"));
       return;
     }
 
@@ -1123,7 +1123,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.getChannels(channelPodId);
       setChannels(asArray(result));
     } catch (error_) {
-      toast.error(interfaceText("Failed to get channels: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get channels: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setChannels([]);
     } finally {
       setChannelsLoading(false);
@@ -1132,12 +1132,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCreateChannel = async () => {
     if (!channelPodId.trim()) {
-      toast.error(interfaceText("Pod ID is required"));
+      toast.error(interfaceToastText("Pod ID is required"));
       return;
     }
 
     if (!newChannelName.trim()) {
-      toast.error(interfaceText("Channel name is required"));
+      toast.error(interfaceToastText("Channel name is required"));
       return;
     }
 
@@ -1148,12 +1148,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         name: newChannelName,
       };
       await mediacore.createChannel(channelPodId, channel);
-      toast.success(interfaceText("Channel \"{newChannelName}\" created successfully", { "newChannelName": (newChannelName) }));
+      toast.success(interfaceToastText("Channel \"{newChannelName}\" created successfully", { "newChannelName": (newChannelName) }));
       setNewChannelName('');
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(interfaceText("Failed to create channel: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to create channel: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setCreateChannelLoading(false);
     }
@@ -1161,7 +1161,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUpdateChannel = async (channelId) => {
     if (!editChannelName.trim()) {
-      toast.error(interfaceText("Channel name is required"));
+      toast.error(interfaceToastText("Channel name is required"));
       return;
     }
 
@@ -1173,13 +1173,13 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         name: editChannelName,
       };
       await mediacore.updateChannel(channelPodId, channelId, updatedChannel);
-      toast.success(interfaceText("Channel updated successfully"));
+      toast.success(interfaceToastText("Channel updated successfully"));
       setEditingChannel(null);
       setEditChannelName('');
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(interfaceText("Failed to update channel: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to update channel: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setUpdateChannelLoading(false);
     }
@@ -1197,11 +1197,11 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
     try {
       setDeleteChannelLoading(true);
       await mediacore.deleteChannel(channelPodId, channelId);
-      toast.success(interfaceText("Channel \"{channelName}\" deleted successfully", { "channelName": (channelName) }));
+      toast.success(interfaceToastText("Channel \"{channelName}\" deleted successfully", { "channelName": (channelName) }));
       // Refresh channels list
       await handleGetChannels();
     } catch (error_) {
-      toast.error(interfaceText("Failed to delete channel: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to delete channel: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setDeleteChannelLoading(false);
     }
@@ -1220,7 +1220,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Content Linking handlers
   const handleValidateContentId = async () => {
     if (!contentId.trim()) {
-      toast.error(interfaceText("Content ID is required"));
+      toast.error(interfaceToastText("Content ID is required"));
       return;
     }
 
@@ -1236,8 +1236,8 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         await handleGetContentMetadata();
       }
     } catch (error_) {
-      setContentValidation({ error: getApiErrorMessage(error_, { t: interfaceText }), isValid: false });
-      toast.error(interfaceText("Failed to validate content ID: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      setContentValidation({ error: getApiErrorMessageOutput(error_, { t: interfaceText }), isValid: false });
+      toast.error(interfaceToastText("Failed to validate content ID: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setContentValidationLoading(false);
     }
@@ -1256,7 +1256,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         setNewPodName(`${metadata.artist} - ${metadata.title}`);
       }
     } catch (error_) {
-      toast.error(interfaceText("Failed to get content metadata: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get content metadata: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setContentMetadata(null);
     } finally {
       setContentMetadataLoading(false);
@@ -1276,7 +1276,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setContentSearchResults(results);
     } catch (error_) {
-      toast.error(interfaceText("Failed to search content: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to search content: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setContentSearchResults([]);
     } finally {
       setContentSearchLoading(false);
@@ -1285,17 +1285,17 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleCreateContentLinkedPod = async () => {
     if (!contentId.trim()) {
-      toast.error(interfaceText("Content ID is required"));
+      toast.error(interfaceToastText("Content ID is required"));
       return;
     }
 
     if (!newPodName.trim()) {
-      toast.error(interfaceText("Pod name is required"));
+      toast.error(interfaceToastText("Pod name is required"));
       return;
     }
 
     if (!contentValidation?.isValid) {
-      toast.error(interfaceText("Please validate the content ID first"));
+      toast.error(interfaceToastText("Please validate the content ID first"));
       return;
     }
 
@@ -1321,7 +1321,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       };
 
       const createdPod = await mediacore.createContentLinkedPod(podRequest);
-      toast.success(interfaceText("Pod \"{name}\" created successfully!", { "name": (createdPod.name) }));
+      toast.success(interfaceToastText("Pod \"{name}\" created successfully!", { "name": (createdPod.name) }));
 
       // Reset form
       setContentId('');
@@ -1331,7 +1331,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       setContentSearchQuery('');
       setContentSearchResults([]);
     } catch (error_) {
-      toast.error(interfaceText("Failed to create pod: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to create pod: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setCreatePodLoading(false);
     }
@@ -1350,12 +1350,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       !opinionContentId.trim() ||
       !opinionVariantHash.trim()
     ) {
-      toast.error(interfaceText("Pod ID, Content ID, and Variant Hash are required"));
+      toast.error(interfaceToastText("Pod ID, Content ID, and Variant Hash are required"));
       return;
     }
 
     if (opinionScore < 0 || opinionScore > 10) {
-      toast.error(interfaceText("Score must be between 0 and 10"));
+      toast.error(interfaceToastText("Score must be between 0 and 10"));
       return;
     }
 
@@ -1370,7 +1370,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       };
 
       await mediacore.publishOpinion(opinionPodId.trim(), opinion);
-      toast.success(interfaceText("Opinion published successfully"));
+      toast.success(interfaceToastText("Opinion published successfully"));
 
       // Reset form
       setOpinionContentId('');
@@ -1383,7 +1383,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
         await handleGetOpinions();
       }
     } catch (error_) {
-      toast.error(interfaceText("Failed to publish opinion: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to publish opinion: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setPublishOpinionLoading(false);
     }
@@ -1391,7 +1391,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetOpinions = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error(interfaceText("Pod ID and Content ID are required"));
+      toast.error(interfaceToastText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1403,7 +1403,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setOpinions(result);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get opinions: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get opinions: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setOpinions([]);
     } finally {
       setGetOpinionsLoading(false);
@@ -1412,7 +1412,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetOpinionStatistics = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error(interfaceText("Pod ID and Content ID are required"));
+      toast.error(interfaceToastText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1424,7 +1424,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setOpinionStatistics(stats);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get opinion statistics: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get opinion statistics: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setOpinionStatistics(null);
     } finally {
       setGetStatsLoading(false);
@@ -1433,21 +1433,21 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleRefreshOpinions = async () => {
     if (!opinionPodId.trim()) {
-      toast.error(interfaceText("Pod ID is required"));
+      toast.error(interfaceToastText("Pod ID is required"));
       return;
     }
 
     try {
       setRefreshOpinionsLoading(true);
       const result = await mediacore.refreshPodOpinions(opinionPodId.trim());
-      toast.success(interfaceText("Refreshed {opinionsRefreshed} opinions", { "opinionsRefreshed": (result.opinionsRefreshed) }));
+      toast.success(interfaceToastText("Refreshed {opinionsRefreshed} opinions", { "opinionsRefreshed": (result.opinionsRefreshed) }));
 
       // Refresh current view
       if (opinionContentId) {
         await Promise.all([handleGetOpinions(), handleGetOpinionStatistics()]);
       }
     } catch (error_) {
-      toast.error(interfaceText("Failed to refresh opinions: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to refresh opinions: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setRefreshOpinionsLoading(false);
     }
@@ -1456,7 +1456,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
   // Pod Opinion Aggregation handlers
   const handleGetAggregatedOpinions = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error(interfaceText("Pod ID and Content ID are required"));
+      toast.error(interfaceToastText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1468,7 +1468,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setAggregatedOpinions(aggregated);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get aggregated opinions: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get aggregated opinions: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setAggregatedOpinions(null);
     } finally {
       setGetAggregatedLoading(false);
@@ -1477,7 +1477,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetMemberAffinities = async () => {
     if (!opinionPodId.trim()) {
-      toast.error(interfaceText("Pod ID is required"));
+      toast.error(interfaceToastText("Pod ID is required"));
       return;
     }
 
@@ -1488,7 +1488,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setMemberAffinities(affinities);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get member affinities: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get member affinities: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setMemberAffinities({});
     } finally {
       setGetAffinitiesLoading(false);
@@ -1497,7 +1497,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleGetConsensusRecommendations = async () => {
     if (!opinionPodId.trim() || !opinionContentId.trim()) {
-      toast.error(interfaceText("Pod ID and Content ID are required"));
+      toast.error(interfaceToastText("Pod ID and Content ID are required"));
       return;
     }
 
@@ -1509,7 +1509,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       );
       setConsensusRecommendations(recommendations);
     } catch (error_) {
-      toast.error(interfaceText("Failed to get consensus recommendations: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to get consensus recommendations: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
       setConsensusRecommendations([]);
     } finally {
       setGetRecommendationsLoading(false);
@@ -1518,7 +1518,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
 
   const handleUpdateMemberAffinities = async () => {
     if (!opinionPodId.trim()) {
-      toast.error(interfaceText("Pod ID is required"));
+      toast.error(interfaceToastText("Pod ID is required"));
       return;
     }
 
@@ -1527,12 +1527,12 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
       const result = await mediacore.updateMemberAffinities(
         opinionPodId.trim(),
       );
-      toast.success(interfaceText("Updated affinities for {membersUpdated} members", { "membersUpdated": (result.membersUpdated) }));
+      toast.success(interfaceToastText("Updated affinities for {membersUpdated} members", { "membersUpdated": (result.membersUpdated) }));
 
       // Refresh affinities display
       await handleGetMemberAffinities();
     } catch (error_) {
-      toast.error(interfaceText("Failed to update member affinities: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to update member affinities: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setUpdateAffinitiesLoading(false);
     }
@@ -1584,7 +1584,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   {podMetadataResult.error ? (
                     <Message error>
                       <p>
-                        <LocalizedText source={"Failed to retrieve metadata:"} />{" "}<LocalizedText source={podMetadataResult.error} />
+                        <LocalizedText source={"Failed to retrieve metadata:"} />{" "}<LocalizedOutputText output={podMetadataResult.error} />
                       </p>
                     </Message>
                   ) : podMetadataResult.found ? (
@@ -1655,7 +1655,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {podPublishingResult.error ? (
                         <Message error>
                           <p>
-                            <LocalizedText source={"Failed to publish pod:"} />{" "}<LocalizedText source={podPublishingResult.error} />
+                            <LocalizedText source={"Failed to publish pod:"} />{" "}<LocalizedOutputText output={podPublishingResult.error} />
                           </p>
                         </Message>
                       ) : (
@@ -1712,7 +1712,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {podUnpublishResult.error ? (
                         <Message error>
                           <p>
-                            <LocalizedText source={"Failed to unpublish pod:"} />{" "}<LocalizedText source={podUnpublishResult.error} />
+                            <LocalizedText source={"Failed to unpublish pod:"} />{" "}<LocalizedOutputText output={podUnpublishResult.error} />
                           </p>
                         </Message>
                       ) : (
@@ -1798,7 +1798,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 >
                   <p>
                     <LocalizedText source={"Failed to load pod publishing stats:"} />{' '}
-                    <LocalizedText source={podPublishingStats.error} />
+                    <LocalizedOutputText output={podPublishingStats.error} />
                   </p>
                 </Message>
               )}
@@ -1874,7 +1874,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       {membershipResult.error ? (
                         <Message error>
                           <p>
-                            <LocalizedText source={"Failed to get membership:"} />{" "}<LocalizedText source={membershipResult.error} />
+                            <LocalizedText source={"Failed to get membership:"} />{" "}<LocalizedOutputText output={membershipResult.error} />
                           </p>
                         </Message>
                       ) : membershipResult.found ? (
@@ -1919,7 +1919,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <Message error>
                           <p>
                             <LocalizedText source={"Failed to verify membership:"} />{' '}
-                            <LocalizedText source={membershipVerification.error} />
+                            <LocalizedOutputText output={membershipVerification.error} />
                           </p>
                         </Message>
                       ) : (
@@ -2056,7 +2056,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       <Message error>
                         <p>
                           <LocalizedText source={"Failed to publish membership:"} />{' '}
-                          <LocalizedText source={membershipPublishResult.error} />
+                          <LocalizedOutputText output={membershipPublishResult.error} />
                         </p>
                       </Message>
                     ) : (
@@ -2167,7 +2167,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   style={{ marginTop: '1em' }}
                 >
                   <p>
-                    <LocalizedText source={"Failed to load membership stats:"} />{" "}<LocalizedText source={membershipStats.error} />
+                    <LocalizedText source={"Failed to load membership stats:"} />{" "}<LocalizedOutputText output={membershipStats.error} />
                   </p>
                 </Message>
               )}
@@ -2230,7 +2230,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     <Message error>
                       <p>
                         <LocalizedText source={"Failed to verify membership:"} />{' '}
-                        <LocalizedText source={membershipVerificationResult.error} />
+                        <LocalizedOutputText output={membershipVerificationResult.error} />
                       </p>
                     </Message>
                   ) : (
@@ -2284,7 +2284,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                         <Message error>
                           <p>
                             <LocalizedText source={"Failed to verify message:"} />{' '}
-                            <LocalizedText source={messageVerificationResult.error} />
+                            <LocalizedOutputText output={messageVerificationResult.error} />
                           </p>
                         </Message>
                       ) : (
@@ -2362,7 +2362,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                     <div style={{ marginTop: '1em' }}>
                       {roleCheckResult.error ? (
                         <Message error>
-                          <p><LocalizedText source={"Failed to check role:"} />{" "}<LocalizedText source={roleCheckResult.error} /></p>
+                          <p><LocalizedText source={"Failed to check role:"} />{" "}<LocalizedOutputText output={roleCheckResult.error} /></p>
                         </Message>
                       ) : (
                         <Message>
@@ -2431,7 +2431,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   style={{ marginTop: '1em' }}
                 >
                   <p>
-                    <LocalizedText source={"Failed to load verification stats:"} />{" "}<LocalizedText source={verificationStats.error} />
+                    <LocalizedText source={"Failed to load verification stats:"} />{" "}<LocalizedOutputText output={verificationStats.error} />
                   </p>
                 </Message>
               )}
@@ -2493,7 +2493,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p><LocalizedText source={nameDiscoveryResult.error} /></p>
+                          <p><LocalizedOutputText output={nameDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2533,7 +2533,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p><LocalizedText source={tagDiscoveryResult.error} /></p>
+                          <p><LocalizedOutputText output={tagDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2573,7 +2573,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p><LocalizedText source={tagsDiscoveryResult.error} /></p>
+                          <p><LocalizedOutputText output={tagsDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2618,7 +2618,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p><LocalizedText source={allDiscoveryResult.error} /></p>
+                          <p><LocalizedOutputText output={allDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2664,7 +2664,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p><LocalizedText source={contentDiscoveryResult.error} /></p>
+                          <p><LocalizedOutputText output={contentDiscoveryResult.error} /></p>
                         </Message>
                       ) : (
                         <Message
@@ -2725,7 +2725,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       size="tiny"
                       style={{ marginTop: '0.5em' }}
                     >
-                      <p><LocalizedText source={discoveryStats.error} /></p>
+                      <p><LocalizedOutputText output={discoveryStats.error} /></p>
                     </Message>
                   )}
                 </Grid.Column>
@@ -2768,7 +2768,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to register pod:"} />{' '}
-                              <LocalizedText source={podRegistrationResult.error} />
+                              <LocalizedOutputText output={podRegistrationResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -2823,7 +2823,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to unregister pod:"} />{' '}
-                              <LocalizedText source={podUnregistrationResult.error} />
+                              <LocalizedOutputText output={podUnregistrationResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -2940,7 +2940,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to submit join request:"} />{' '}
-                              <LocalizedText source={joinRequestResult.error} />
+                              <LocalizedOutputText output={joinRequestResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -2991,7 +2991,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p><LocalizedText source={acceptanceResult.error} /></p>
+                            <p><LocalizedOutputText output={acceptanceResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3031,7 +3031,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p><LocalizedText source={leaveRequestResult.error} /></p>
+                            <p><LocalizedOutputText output={leaveRequestResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3073,7 +3073,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p><LocalizedText source={leaveAcceptanceResult.error} /></p>
+                            <p><LocalizedOutputText output={leaveAcceptanceResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3150,7 +3150,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p><LocalizedText source={messageSeenResult.error} /></p>
+                          <p><LocalizedOutputText output={messageSeenResult.error} /></p>
                         </Message>
                       ) : (
                         <Message size="tiny">
@@ -3223,7 +3223,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       error
                       style={{ marginTop: '1em' }}
                     >
-                      <p><LocalizedText source={"Failed to load routing stats:"} />{" "}<LocalizedText source={routingStats.error} /></p>
+                      <p><LocalizedText source={"Failed to load routing stats:"} />{" "}<LocalizedOutputText output={routingStats.error} /></p>
                     </Message>
                   )}
                 </Grid.Column>
@@ -3260,7 +3260,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       <div style={{ marginTop: '1em' }}>
                         {routingResult.error ? (
                           <Message error>
-                            <p><LocalizedText source={"Failed to route message:"} />{" "}<LocalizedText source={routingResult.error} /></p>
+                            <p><LocalizedText source={"Failed to route message:"} />{" "}<LocalizedOutputText output={routingResult.error} /></p>
                           </Message>
                         ) : (
                           <Message success>
@@ -3329,7 +3329,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p><LocalizedText source={routingToPeersResult.error} /></p>
+                            <p><LocalizedOutputText output={routingToPeersResult.error} /></p>
                           </Message>
                         ) : (
                           <Message
@@ -3945,7 +3945,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                   </Message.Header>
                   {!contentValidation.isValid &&
                     contentValidation.errorMessage && (
-                      <p><LocalizedText source={contentValidation.errorMessage} /></p>
+                      <p><LocalizedOutputText output={contentValidation.errorMessage} /></p>
                     )}
                 </Message>
               )}
@@ -4444,7 +4444,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           error
                           size="tiny"
                         >
-                          <p><LocalizedText source={verificationResult.error} /></p>
+                          <p><LocalizedOutputText output={verificationResult.error} /></p>
                         </Message>
                       ) : (
                         <Message size="tiny">
@@ -4500,7 +4500,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                       size="tiny"
                       style={{ marginTop: '0.5em' }}
                     >
-                      <p><LocalizedText source={signingStats.error} /></p>
+                      <p><LocalizedOutputText output={signingStats.error} /></p>
                     </Message>
                   )}
                 </Grid.Column>
@@ -4550,7 +4550,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                           <Message error>
                             <p>
                               <LocalizedText source={"Failed to sign message:"} />{' '}
-                              <LocalizedText source={signedMessageResult.error} />
+                              <LocalizedOutputText output={signedMessageResult.error} />
                             </p>
                           </Message>
                         ) : (
@@ -4593,7 +4593,7 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                             error
                             size="tiny"
                           >
-                            <p><LocalizedText source={generatedKeyPair.error} /></p>
+                            <p><LocalizedOutputText output={generatedKeyPair.error} /></p>
                           </Message>
                         ) : (
                           <Message

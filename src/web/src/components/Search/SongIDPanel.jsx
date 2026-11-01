@@ -1,6 +1,7 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 
 
 import * as discoveryGraph from '../../lib/discoveryGraph';
@@ -8,14 +9,13 @@ import * as jobs from '../../lib/jobs';
 import * as musicBrainz from '../../lib/musicBrainz';
 import * as searches from '../../lib/searches';
 import * as songId from '../../lib/songid';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 import DiscoveryGraphCanvas from './DiscoveryGraphCanvas';
 import DiscoveryGraphModal from './DiscoveryGraphModal';
 import FeatureGateNotice from '../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../Shared/useFeatureGates';
 import React, { useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Divider,
@@ -301,7 +301,7 @@ const SongIDPanel = ({ disabled }) => {
   const handleAnalyze = async () => {
     const trimmed = source.trim();
     if (!trimmed) {
-      toast.error(t('Provide a URL, server-side file path, or text query'));
+      toast.error(<LocalizedText source="Provide a URL, server-side file path, or text query" />);
       return;
     }
 
@@ -310,10 +310,10 @@ const SongIDPanel = ({ disabled }) => {
       const result = await songId.createRun(trimmed);
       setRun(result);
       setRuns((currentRuns) => [result, ...currentRuns.filter((item) => item.id !== result.id)].slice(0, 25));
-      toast.success(t('SongID analysis queued'));
+      toast.success(<LocalizedText source="SongID analysis queued" />);
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }, 'SongID analysis failed'));
+      toast.error(getApiErrorMessageOutput(error, { t }, 'SongID analysis failed'));
     } finally {
       setLoading(false);
     }
@@ -325,10 +325,10 @@ const SongIDPanel = ({ disabled }) => {
         id: uuidv4(),
         searchText: candidate.searchText,
       });
-      toast.success(interfaceText("Started search for {artist} - {title}", { "artist": (candidate.artist), "title": (candidate.title) }));
+      toast.success(interfaceToastText("Started search for {artist} - {title}", { "artist": (candidate.artist), "title": (candidate.title) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }));
+      toast.error(getApiErrorMessageOutput(error, { t }));
     }
   };
 
@@ -337,22 +337,22 @@ const SongIDPanel = ({ disabled }) => {
       ? queries.map((query) => (query || '').trim()).filter(Boolean)
       : [];
     if (validQueries.length === 0) {
-      toast.error(interfaceText("No candidate searches were available"));
+      toast.error(interfaceToastText("No candidate searches were available"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries: validQueries });
-      toast.success(interfaceText("Started {count} candidate searches", { "count": (count) }));
+      toast.success(interfaceToastText("Started {count} candidate searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }));
+      toast.error(getApiErrorMessageOutput(error, { t }));
     }
   };
 
   const handleMixSearch = async (mix) => {
     if (!mix?.searchText) {
-      toast.error(interfaceText("No mix queries were available"));
+      toast.error(interfaceToastText("No mix queries were available"));
       return;
     }
 
@@ -361,26 +361,26 @@ const SongIDPanel = ({ disabled }) => {
       .map((value) => (value || '').trim())
       .filter(Boolean);
     if (queries.length === 0) {
-      toast.error(interfaceText("No mix queries were available"));
+      toast.error(interfaceToastText("No mix queries were available"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries });
-      toast.success(interfaceText("Started {count} mix search(es) for {segmentCount} segments", { "count": (count), "segmentCount": (mix.segmentCount) }));
+      toast.success(interfaceToastText("Started {count} mix search(es) for {segmentCount} segments", { "count": (count), "segmentCount": (mix.segmentCount) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }));
+      toast.error(getApiErrorMessageOutput(error, { t }));
     }
   };
 
   const handleAlbumPrepare = async (candidate) => {
     try {
       await musicBrainz.resolveTarget({ releaseId: candidate.releaseId });
-      toast.success(interfaceText("Prepared album target for {title}", { "title": (candidate.title) }));
+      toast.success(interfaceToastText("Prepared album target for {title}", { "title": (candidate.title) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }));
+      toast.error(getApiErrorMessageOutput(error, { t }));
     }
   };
 
@@ -391,10 +391,10 @@ const SongIDPanel = ({ disabled }) => {
         profile: candidate.recommendedProfile || 'CoreDiscography',
         targetDirectory: targetDirectory.trim(),
       });
-      toast.success(interfaceText("Planned discography job {job_id}", { "job_id": (response?.job_id) }));
+      toast.success(interfaceToastText("Planned discography job {job_id}", { "job_id": (response?.job_id) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }));
+      toast.error(getApiErrorMessageOutput(error, { t }));
     }
   };
 
@@ -418,26 +418,26 @@ const SongIDPanel = ({ disabled }) => {
         mbReleaseId: candidate.releaseId,
         targetDir: targetDirectory.trim(),
       });
-      toast.success(interfaceText("Planned album job {job_id}", { "job_id": (response?.job_id) }));
+      toast.success(interfaceToastText("Planned album job {job_id}", { "job_id": (response?.job_id) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }));
+      toast.error(getApiErrorMessageOutput(error, { t }));
     }
   };
 
   const copyForensicMatrix = async () => {
     if (!run?.id || !run?.forensicMatrix) {
-      toast.error(interfaceText("No forensic matrix is available for this SongID run"));
+      toast.error(interfaceToastText("No forensic matrix is available for this SongID run"));
       return;
     }
 
     try {
       const matrix = await songId.getForensicMatrix(run.id);
       await navigator.clipboard.writeText(JSON.stringify(matrix, null, 2));
-      toast.success(interfaceText("SongID forensic matrix copied"));
+      toast.success(interfaceToastText("SongID forensic matrix copied"));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }));
+      toast.error(getApiErrorMessageOutput(error, { t }));
     }
   };
 
@@ -451,7 +451,7 @@ const SongIDPanel = ({ disabled }) => {
       setGraphData(graph);
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t }, 'Failed to build discovery graph'));
+      toast.error(getApiErrorMessageOutput(error, { t }, 'Failed to build discovery graph'));
       setGraphOpen(false);
     } finally {
       setGraphLoading(false);

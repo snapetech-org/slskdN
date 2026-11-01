@@ -1,6 +1,6 @@
-import LocalizedText from "./Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "./Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
-import { getApiErrorMessage } from '../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../lib/apiErrorMessages';
 import Footer from './Shared/Footer';
 import TooltipButton from './Shared/TooltipButton';
 import * as session from '../lib/session';
@@ -203,7 +203,7 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
                 aria-live="assertive"
               >
                 <Icon name="x" />
-                {getApiErrorMessage(error, { t: interfaceText })}
+                <LocalizedOutputText output={getApiErrorMessageOutput(error, { t: interfaceText })} />
               </Message>
             )}
             {httpsUrl && (

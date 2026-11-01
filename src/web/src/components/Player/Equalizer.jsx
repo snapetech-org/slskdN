@@ -1,5 +1,5 @@
 import { bands, resumeAudioGraph, setEqGains } from './audioGraph';
-import { interfaceText } from '../../lib/interfaceLocale';
+import { interfaceText, interfaceTextOutput } from '../../lib/interfaceLocale';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import React, { useEffect, useState } from 'react';
 import { Button, Dropdown, Icon, Popup } from 'semantic-ui-react';
@@ -51,7 +51,7 @@ const Equalizer = ({ audioElement, fadeAudioElement, onAudioError }) => {
       setEqGains(element, gains);
       if (!element.paused) {
         resumeAudioGraph(element, false).catch(() => {
-          onAudioError('Could not enable the equalizer for this track.');
+          onAudioError(interfaceTextOutput('Could not enable the equalizer for this track.'));
         });
       }
     });

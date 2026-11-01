@@ -1,12 +1,12 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './Lidarr.css';
 import * as lidarrAPI from '../../lib/lidarr';
 import * as wishlistAPI from '../../lib/wishlist';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import { TooltipButton } from '../Shared';
 import {
   Button,
@@ -156,7 +156,7 @@ const WantedSection = ({ connected }) => {
       setTotal(data.totalRecords ?? 0);
       setPage(p);
     } catch (err) {
-      toast.error(interfaceText("Failed to load wanted: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to load wanted: {message}", { "message": getApiErrorMessageOutput(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -271,7 +271,7 @@ const WishlistSection = () => {
       setItems(all.filter((i) => i.autoDownload && i.filter));
       setPage(1);
     } catch (err) {
-      toast.error(interfaceText("Failed to load wishlist: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to load wishlist: {message}", { "message": getApiErrorMessageOutput(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -414,13 +414,13 @@ const ImportSection = ({ connected, onHistoryChanged }) => {
       const result = await lidarrAPI.importCompletedDirectory({ directory: directory.trim() });
       const safeCandidates = result?.safeCandidateCount ?? 0;
       if (result?.commandId) {
-        toast.success(interfaceText("Lidarr import queued: {safeCandidates} file(s)", { "safeCandidates": (safeCandidates) }));
+        toast.success(interfaceToastText("Lidarr import queued: {safeCandidates} file(s)", { "safeCandidates": (safeCandidates) }));
         setDirectory('');
       } else {
-        toast.error(interfaceText('The request failed. Try again.'));
+        toast.error(interfaceToastText('The request failed. Try again.'));
       }
     } catch (err) {
-      toast.error(interfaceText("Import failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Import failed: {message}", { "message": getApiErrorMessageOutput(err, { t: interfaceText }) }));
     } finally {
       setImporting(false);
       onHistoryChanged?.();
@@ -489,7 +489,7 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
       const data = await lidarrAPI.getImportHistory({ limit: 50 });
       setHistory(Array.isArray(data) ? data : []);
     } catch (err) {
-      toast.error(interfaceText("Failed to load Lidarr import history: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to load Lidarr import history: {message}", { "message": getApiErrorMessageOutput(err, { t: interfaceText }) }));
     } finally {
       setLoading(false);
     }
@@ -531,15 +531,15 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
     try {
       const result = await lidarrAPI.retryImport(historyId);
       if (result?.commandId) {
-        toast.success(interfaceText('Lidarr import queued: {safeCandidates} file(s)', {
+        toast.success(interfaceToastText('Lidarr import queued: {safeCandidates} file(s)', {
           safeCandidates: result.safeCandidateCount ?? 0,
         }));
       } else {
-        toast.error(interfaceText('The request failed. Try again.'));
+        toast.error(interfaceToastText('The request failed. Try again.'));
       }
       await load();
     } catch (err) {
-      toast.error(interfaceText("Import retry failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Import retry failed: {message}", { "message": getApiErrorMessageOutput(err, { t: interfaceText }) }));
     } finally {
       setRetryingId(null);
     }
@@ -604,7 +604,7 @@ const ImportHistorySection = ({ connected, refreshKey }) => {
                     <Label color={importStatusColor[status] || 'grey'} size="tiny">
                       {Object.hasOwn(importStatusColor, status)
                         ? <LocalizedText source={status} />
-                        : status}
+                        : <bdi dir="auto" lang="und">{status}</bdi>}
                     </Label>
                   </Table.Cell>
                   <Table.Cell className="lidarr-import-directory" title={entry.directory}>
@@ -723,13 +723,15 @@ const Lidarr = () => {
     try {
       const result = await lidarrAPI.syncWanted();
       toast.success(
-        `Sync complete — ${result.createdCount ?? 0} added, ` +
-        `${result.duplicateCount ?? 0} duplicates, ` +
-        `${result.wantedCount ?? 0} total wanted`
+        interfaceToastText('Sync complete — {added} added, {duplicates} duplicates, {wanted} total wanted', {
+          added: result.createdCount ?? 0,
+          duplicates: result.duplicateCount ?? 0,
+          wanted: result.wantedCount ?? 0,
+        }),
       );
       await loadStatus();
     } catch (err) {
-      toast.error(interfaceText("Sync failed: {message}", { "message": getApiErrorMessage(err, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Sync failed: {message}", { "message": getApiErrorMessageOutput(err, { t: interfaceText }) }));
     } finally {
       setSyncing(false);
     }

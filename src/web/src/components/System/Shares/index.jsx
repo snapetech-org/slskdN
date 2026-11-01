@@ -1,13 +1,13 @@
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
 import * as sharesLibrary from '../../../lib/shares';
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import { LoaderSegment, ShrinkableButton, Switch } from '../../Shared';
 import ContentsModal from './ContentsModal';
 import ExclusionTable from './ExclusionTable';
 import ShareTable from './ShareTable';
 import React, { useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import { Divider } from 'semantic-ui-react';
 
 const asArray = (value) => (Array.isArray(value) ? value : []);
@@ -74,7 +74,7 @@ const Shares = ({ state = {}, theme } = {}) => {
       setShares(flattened);
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -107,7 +107,7 @@ const Shares = ({ state = {}, theme } = {}) => {
       await sharesLibrary.rescan();
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }));
     } finally {
       setWorking(false);
     }
@@ -119,7 +119,7 @@ const Shares = ({ state = {}, theme } = {}) => {
       await sharesLibrary.cancel();
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to cancel the scan'));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to cancel the scan'));
     } finally {
       setWorking(false);
     }

@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { createLogsHubConnection } from '../../../lib/hubFactory';
 import { downloadLogFile, getLogFile, getLogFiles } from '../../../lib/logs';
@@ -63,7 +63,7 @@ const levels = {
 };
 
 const getErrorMessage = (error, fallback) =>
-  getApiErrorMessage(error, { t: interfaceText }, fallback);
+  getApiErrorMessageOutput(error, { t: interfaceText }, fallback);
 
 const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);
@@ -241,22 +241,22 @@ const Logs = () => {
   const connectionMessage = {
     connected: null,
     connecting: {
-      content: interfaceText("Recent log entries will appear here as they arrive."),
-      header: interfaceText("Connecting to live logs"),
+      content: interfaceTextOutput("Recent log entries will appear here as they arrive."),
+      header: interfaceTextOutput("Connecting to live logs"),
       info: true,
     },
     disconnected: {
       content: connectionError,
-      header: interfaceText("Live logs are disconnected"),
+      header: interfaceTextOutput("Live logs are disconnected"),
       warning: true,
     },
     reconnecting: {
       content: connectionError
-        ? interfaceText('{message} Buffered entries remain available while the connection recovers.', {
+        ? interfaceTextOutput('{message} Buffered entries remain available while the connection recovers.', {
           message: connectionError,
         })
-        : interfaceText('Buffered entries remain available while the connection recovers.'),
-      header: interfaceText("Reconnecting to live logs"),
+        : interfaceTextOutput('Buffered entries remain available while the connection recovers.'),
+      header: interfaceTextOutput("Reconnecting to live logs"),
       warning: true,
     },
   }[connectionStatus];
@@ -388,8 +388,8 @@ const Logs = () => {
           info={connectionMessage.info}
           warning={connectionMessage.warning}
         >
-          <Message.Header>{connectionMessage.header}</Message.Header>
-          <p>{connectionMessage.content}</p>
+          <Message.Header><LocalizedOutputText output={connectionMessage.header} /></Message.Header>
+          <p><LocalizedOutputText output={connectionMessage.content} /></p>
           {connectionStatus === 'disconnected' && (
             <Popup
               content={interfaceText("Retry the live log connection to receive new records.")}
@@ -412,7 +412,7 @@ const Logs = () => {
       {view === 'history' && (
         <>
           {historyError ? (
-            <Message content={historyError} error role="alert" />
+            <Message content={<LocalizedOutputText output={historyError} />} error role="alert" />
           ) : null}
           <div
             aria-label={interfaceText("Retained system log files")}
@@ -490,7 +490,7 @@ const Logs = () => {
               {preview?.file.name || <LocalizedText source={"Log file"} />}
             </Modal.Header>
             <Modal.Content scrolling>
-              {previewError ? <Message content={previewError} error role="alert" /> : null}
+              {previewError ? <Message content={<LocalizedOutputText output={previewError} />} error role="alert" /> : null}
               {previewLoading ? <Message info content={interfaceText("Loading log file…")}  {...interfaceTextProps("Loading log file…")}/> : null}
               {!previewLoading && !previewError ? (
                 <pre className="logs-history-preview">{preview?.content}</pre>

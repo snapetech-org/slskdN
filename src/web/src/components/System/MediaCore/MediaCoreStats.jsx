@@ -1,12 +1,12 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfacePresentationText, interfaceText, interfaceTextProps } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
+import { interfaceToastText, interfacePresentationText, interfaceText, interfaceTextProps } from '../../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import { TooltipButton } from '../../Shared';
 import {
   Card,
@@ -46,7 +46,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getRetrievalStats();
       setRetrievalStats(result);
     } catch (error_) {
-      setRetrievalStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRetrievalStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingRetrievalStats(false);
     }
@@ -57,10 +57,10 @@ const MediaCoreStats = () => {
       const result = await mediacore.clearRetrievalCache();
       await handleLoadRetrievalStats();
       toast.success(
-        interfaceText("Cache cleared: {entriesCleared} entries, {bytesFreed} bytes freed", { "entriesCleared": (result.entriesCleared), "bytesFreed": (result.bytesFreed) }),
+        interfaceToastText("Cache cleared: {entriesCleared} entries, {bytesFreed} bytes freed", { "entriesCleared": (result.entriesCleared), "bytesFreed": (result.bytesFreed) }),
       );
     } catch (error_) {
-      toast.error(interfaceText("Failed to clear cache: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to clear cache: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     }
   };
 
@@ -71,7 +71,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getMediaCoreDashboard();
       setMediaCoreDashboard(result);
     } catch (error_) {
-      setMediaCoreDashboard({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMediaCoreDashboard({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingDashboard(false);
     }
@@ -96,9 +96,9 @@ const MediaCoreStats = () => {
       setPerceptualHashingStats(null);
       setMetadataPortabilityStats(null);
       setContentPublishingStats(null);
-      toast.success(interfaceText("MediaCore statistics have been reset"));
+      toast.success(interfaceToastText("MediaCore statistics have been reset"));
     } catch (error_) {
-      toast.error(interfaceText("Failed to reset stats: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      toast.error(interfaceToastText("Failed to reset stats: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     }
   };
 
@@ -109,7 +109,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getContentRegistryStats();
       setContentRegistryStats(result);
     } catch (error_) {
-      setContentRegistryStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setContentRegistryStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingRegistryStats(false);
     }
@@ -122,7 +122,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getDescriptorStats();
       setDescriptorStats(result);
     } catch (error_) {
-      setDescriptorStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setDescriptorStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingDescriptorStats(false);
     }
@@ -135,7 +135,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getFuzzyMatchingStats();
       setFuzzyMatchingStats(result);
     } catch (error_) {
-      setFuzzyMatchingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setFuzzyMatchingStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingFuzzyStats(false);
     }
@@ -148,7 +148,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getIpldMappingStats();
       setIpldMappingStats(result);
     } catch (error_) {
-      setIpldMappingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setIpldMappingStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingIpldStats(false);
     }
@@ -161,7 +161,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getPerceptualHashingStats();
       setPerceptualHashingStats(result);
     } catch (error_) {
-      setPerceptualHashingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPerceptualHashingStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingPerceptualStats(false);
     }
@@ -174,7 +174,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getMetadataPortabilityStats();
       setMetadataPortabilityStats(result);
     } catch (error_) {
-      setMetadataPortabilityStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setMetadataPortabilityStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingPortabilityStats(false);
     }
@@ -187,7 +187,7 @@ const MediaCoreStats = () => {
       const result = await mediacore.getContentPublishingStats();
       setContentPublishingStats(result);
     } catch (error_) {
-      setContentPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setContentPublishingStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingPublishingStats(false);
     }
@@ -231,7 +231,7 @@ const MediaCoreStats = () => {
               <div style={{ marginTop: '1em' }}>
                 {retrievalStats.error ? (
                   <Message error>
-                    <p><LocalizedText source={retrievalStats.error} /></p>
+                    <p><LocalizedOutputText output={retrievalStats.error} /></p>
                   </Message>
                 ) : (
                   <Message>
@@ -364,7 +364,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={"Failed to load dashboard:"} />{" "}<LocalizedText source={mediaCoreDashboard.error} /></p>
+                <p><LocalizedText source={"Failed to load dashboard:"} />{" "}<LocalizedOutputText output={mediaCoreDashboard.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -431,7 +431,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={contentRegistryStats.error} /></p>
+                <p><LocalizedOutputText output={contentRegistryStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -493,7 +493,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={descriptorStats.error} /></p>
+                <p><LocalizedOutputText output={descriptorStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -567,7 +567,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={fuzzyMatchingStats.error} /></p>
+                <p><LocalizedOutputText output={fuzzyMatchingStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -640,7 +640,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={perceptualHashingStats.error} /></p>
+                <p><LocalizedOutputText output={perceptualHashingStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -698,7 +698,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={ipldMappingStats.error} /></p>
+                <p><LocalizedOutputText output={ipldMappingStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -766,7 +766,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={metadataPortabilityStats.error} /></p>
+                <p><LocalizedOutputText output={metadataPortabilityStats.error} /></p>
               </Message>
             )}
           </Card.Content>
@@ -832,7 +832,7 @@ const MediaCoreStats = () => {
                 error
                 style={{ marginTop: '1em' }}
               >
-                <p><LocalizedText source={contentPublishingStats.error} /></p>
+                <p><LocalizedOutputText output={contentPublishingStats.error} /></p>
               </Message>
             )}
           </Card.Content>

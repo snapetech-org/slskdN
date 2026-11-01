@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="LidarrPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -86,7 +86,7 @@ const LidarrPanel = ({ options }) => {
     try {
       await action();
     } catch (error) {
-      setError(getApiErrorMessage(error, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(error, { t: interfaceText }));
     } finally {
       setLoading('');
     }
@@ -161,7 +161,7 @@ const LidarrPanel = ({ options }) => {
             negative
             size="small"
           >
-            {error}
+            <LocalizedOutputText output={error} />
           </Message>
         )}
         <div className="integration-actions">

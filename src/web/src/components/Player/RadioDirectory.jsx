@@ -1,5 +1,5 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 // <copyright file="RadioDirectory.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -24,7 +24,7 @@ const RadioDirectory = ({ onClose, onPlay }) => {
     listeningParty.getPartyDirectory({ refresh: refresh > 0 }).then((entries) => {
       if (!cancelled) setParties(entries);
     }).catch(() => {
-      if (!cancelled) setError(interfaceText("Listed radio could not load. Refresh to try again."));
+      if (!cancelled) setError(interfaceTextOutput("Listed radio could not load. Refresh to try again."));
     }).finally(() => {
       if (!cancelled) setLoading(false);
     });
@@ -48,7 +48,7 @@ const RadioDirectory = ({ onClose, onPlay }) => {
             <Icon name="refresh" />
             <LocalizedText source={"Refresh"} /></Button>
         }  {...interfaceTextProps("Refresh the listed snapshots to see current host streaming permissions. Playback starts only when you choose a track.")}/>
-        {error ? <Message negative role="alert">{error}</Message> : null}
+        {error ? <Message negative role="alert"><LocalizedOutputText output={error} /></Message> : null}
         {loading ? <Message role="status"><LocalizedText source={"Loading listed radio…"} /></Message> : null}
         {!loading && !error && parties.length === 0 ? <Message role="status"><LocalizedText source={"No radio broadcasts are listed right now."} /></Message> : null}
         <List divided relaxed>

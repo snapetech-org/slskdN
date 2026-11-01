@@ -1,6 +1,6 @@
+import { interfaceToastText, interfaceText, interfaceTextProps } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
 import { createRemoteShareStreamUrl } from '../../lib/streaming';
@@ -9,7 +9,7 @@ import ErrorSegment from '../Shared/ErrorSegment';
 import LoaderSegment from '../Shared/LoaderSegment';
 import TooltipButton from '../Shared/TooltipButton';
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Container,
   Header,
@@ -30,7 +30,7 @@ const SHARE_PAGE_SIZE = 100;
 const MANIFEST_ITEM_PAGE_SIZE = 100;
 
 const getErrorMessage = (error, fallback) =>
-  getApiErrorMessage(error, { t: interfaceText }, fallback);
+  getApiErrorMessageOutput(error, { t: interfaceText }, fallback);
 
 const normalizeBackfillResult = (data) =>
   isObject(data)
@@ -257,21 +257,21 @@ export default class SharedWithMe extends Component {
       if (backfillResult.failed === 0) {
         toast.success(
           backfillResult.total === 0 && backfillResult.enqueued === 0
-            ? interfaceText('No items to download.')
-            : interfaceText('Collection backfill finished — successful: {count}', {
+            ? interfaceToastText('No items to download.')
+            : interfaceToastText('Collection backfill finished — successful: {count}', {
                 count: formatRegionalNumber(backfillResult.enqueued),
               }),
         );
       } else {
         toast.warning(
-          interfaceText('Collection backfill results — successful: {successful}; failed: {failed}', {
+          interfaceToastText('Collection backfill results — successful: {successful}; failed: {failed}', {
             successful: formatRegionalNumber(backfillResult.enqueued),
             failed: formatRegionalNumber(backfillResult.failed),
           }),
         );
       }
     } catch (error) {
-      const errorMessage = getErrorMessage(error, 'Failed to start backfill');
+      const errorMessage = getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to start backfill');
       this.setState({
         backfilling: false,
         backfillResult: null,

@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="ServarrReadinessPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -100,15 +100,15 @@ const ServarrReadinessPanel = ({ options }) => {
   const copyCompatibilityReport = async () => {
     const report = formatServarrCompatibilityReport(compatibility);
     if (!navigator.clipboard?.writeText) {
-      setCopyStatus(interfaceText('Clipboard unavailable; copy the Servarr review manually.'));
+      setCopyStatus(interfaceTextOutput('Clipboard unavailable; copy the Servarr review manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(report);
-      setCopyStatus(interfaceText('Servarr compatibility review copied.'));
+      setCopyStatus(interfaceTextOutput('Servarr compatibility review copied.'));
     } catch {
-      setCopyStatus(interfaceText('Unable to copy Servarr compatibility review.'));
+      setCopyStatus(interfaceTextOutput('Unable to copy Servarr compatibility review.'));
     }
   };
 
@@ -118,12 +118,12 @@ const ServarrReadinessPanel = ({ options }) => {
 
     try {
       if (!compatibility.supportsWantedPull) {
-        setCopyStatus(interfaceText('Wanted pull is not ready; no Servarr action was run.'));
+        setCopyStatus(interfaceTextOutput('Wanted pull is not ready; no Servarr action was run.'));
         return;
       }
 
       const result = await lidarrAPI.syncWanted();
-      setCopyStatus(interfaceText(
+      setCopyStatus(interfaceTextOutput(
         'Wanted sync ran: {created} created, {duplicates} duplicates, {skipped} skipped.',
         {
           created: result.createdCount ?? result.CreatedCount ?? 0,
@@ -132,7 +132,7 @@ const ServarrReadinessPanel = ({ options }) => {
         },
       ));
     } catch (error) {
-      setCopyStatus(getApiErrorMessage(error, { t: interfaceText }, 'Servarr action failed.'));
+      setCopyStatus(getApiErrorMessageOutput(error, { t: interfaceText }, 'Servarr action failed.'));
     } finally {
       setRunning(false);
     }
@@ -242,7 +242,7 @@ const ServarrReadinessPanel = ({ options }) => {
             info
             size="small"
           >
-            {copyStatus}
+            <LocalizedOutputText output={copyStatus} />
           </Message>
         )}
       </Card.Content>

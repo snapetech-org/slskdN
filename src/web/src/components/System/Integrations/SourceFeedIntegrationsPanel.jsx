@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="SourceFeedIntegrationsPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -204,12 +204,12 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: interfaceText("Source-feed integration settings applied for this running daemon."),
+        text: interfaceTextOutput("Source-feed integration settings applied for this running daemon."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text: getApiErrorMessage(error, { t: interfaceText }),
+        text: getApiErrorMessageOutput(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -256,12 +256,12 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: interfaceText("Source-feed integration settings saved to YAML."),
+        text: interfaceTextOutput("Source-feed integration settings saved to YAML."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text: getApiErrorMessage(error, { t: interfaceText }),
+        text: getApiErrorMessageOutput(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -310,7 +310,7 @@ const SourceFeedIntegrationsPanel = ({ options }) => {
             positive={message.positive}
             size="small"
           >
-            {message.text}
+            <LocalizedOutputText output={message.text} />
           </Message>
         )}
         {missingRequiredSettings.length > 0 && (

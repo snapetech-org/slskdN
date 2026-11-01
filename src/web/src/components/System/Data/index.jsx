@@ -1,9 +1,9 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { clearCompleted } from '../../../lib/transfers';
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import { Button, Divider, Header, Icon, Message, Popup } from 'semantic-ui-react';
 
 const clear = async ({ direction, setError, setLoading }) => {
@@ -12,11 +12,11 @@ const clear = async ({ direction, setError, setLoading }) => {
 
   try {
     await clearCompleted({ direction });
-    toast.success(interfaceText(direction === 'upload'
+    toast.success(interfaceToastText(direction === 'upload'
       ? 'Completed upload records cleared.'
       : 'Completed download records cleared.'));
   } catch (error) {
-    setError(getApiErrorMessage(error, { t: interfaceText }));
+    setError(getApiErrorMessageOutput(error, { t: interfaceText }));
   } finally {
     setLoading(false);
   }
@@ -83,14 +83,14 @@ const Data = () => {
         <div aria-live="polite" className="transfer-data-errors">
           {uploadError && (
             <Message
-              content={interfaceText("Uploads: {uploadError}", { "uploadError": (uploadError) })}
+              content={<LocalizedOutputText output={interfaceTextOutput("Uploads: {uploadError}", { "uploadError": (uploadError) })} />}
               negative
               role="alert"
              {...interfaceTextProps("Uploads: {uploadError}")}/>
           )}
           {downloadError && (
             <Message
-              content={interfaceText("Downloads: {downloadError}", { "downloadError": (downloadError) })}
+              content={<LocalizedOutputText output={interfaceTextOutput("Downloads: {downloadError}", { "downloadError": (downloadError) })} />}
               negative
               role="alert"
              {...interfaceTextProps("Downloads: {downloadError}")}/>

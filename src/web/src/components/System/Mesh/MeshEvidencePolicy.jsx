@@ -1,6 +1,6 @@
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import { useRegionalLocale } from '../../../lib/regionalFormat';
 import LocalizedText, { LocalizedRichText } from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import {
   evaluateMeshEvidenceEntries,
   formatMeshEvidenceReviewReport,
@@ -17,7 +17,7 @@ import {
   setMeshEvidenceOutboundEnabled,
 } from '../../../lib/meshEvidencePolicy';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -88,7 +88,7 @@ const MeshEvidencePolicy = () => {
 
   const setInboundTier = (_event, { value }) => {
     setPolicy(setMeshEvidenceInboundTrustTier(value));
-    toast.info(interfaceText("Mesh evidence inbound trust policy updated"));
+    toast.info(interfaceToastText("Mesh evidence inbound trust policy updated"));
   };
 
   const toggleOutbound = (evidenceType, enabled) => {
@@ -100,7 +100,7 @@ const MeshEvidencePolicy = () => {
 
   const resetPolicy = () => {
     setPolicy(resetMeshEvidencePolicy());
-    toast.info(interfaceText("Mesh evidence policy reset to private defaults"));
+    toast.info(interfaceToastText("Mesh evidence policy reset to private defaults"));
   };
 
   const reviewEvidence = () => {
@@ -119,11 +119,11 @@ const MeshEvidencePolicy = () => {
 
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(formatMeshEvidenceReviewReport(review));
-      toast.success(interfaceText("Mesh evidence review copied"));
+      toast.success(interfaceToastText("Mesh evidence review copied"));
       return;
     }
 
-    toast.info(interfaceText("Clipboard unavailable; select the review results manually"));
+    toast.info(interfaceToastText("Clipboard unavailable; select the review results manually"));
   };
 
   return (

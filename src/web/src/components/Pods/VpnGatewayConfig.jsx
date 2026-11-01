@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as pods from '../../lib/pods';
 import React, { useEffect, useState } from 'react';
 import {
@@ -128,10 +128,10 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
       };
 
       await pods.update(podId, updatedPod);
-      setSuccess(interfaceText("VPN policy updated successfully"));
+      setSuccess(interfaceTextOutput("VPN policy updated successfully"));
     } catch (error) {
       console.error('Failed to update VPN policy:', error);
-      setError(getApiErrorMessage(error, { t: interfaceText }, 'Failed to update VPN policy'));
+      setError(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to update VPN policy'));
     } finally {
       setSaving(false);
     }
@@ -603,15 +603,15 @@ const VpnGatewayConfig = ({ podDetail, podId }) => {
     <div>
       {error && (
         <Message error>
-          <Message.Header><LocalizedText source={"Configuration Error"} /></Message.Header>
-          <p>{error}</p>
+          <Message.Header><LocalizedText source="Configuration Error" /></Message.Header>
+          <p><LocalizedOutputText output={error} /></p>
         </Message>
       )}
 
       {success && (
         <Message success>
           <Message.Header><LocalizedText source={"Configuration Updated"} /></Message.Header>
-          <p>{success}</p>
+          <p><LocalizedOutputText output={success} /></p>
         </Message>
       )}
 

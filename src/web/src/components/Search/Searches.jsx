@@ -1,4 +1,5 @@
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from '../Shared/LocalizedText';
 import './Search.css';
 import {
   acquisitionProfiles,
@@ -8,7 +9,7 @@ import {
 } from '../../lib/acquisitionProfiles';
 import { createSearchHubConnection } from '../../lib/hubFactory';
 import { getCapabilities } from '../../lib/slskdn';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 
 import * as library from '../../lib/searches';
@@ -29,7 +30,7 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -124,9 +125,7 @@ const CollapsibleSection = ({
   };
   const localizedTitle = t(title);
   const localized = (source, parameters) => (
-    <span dir={directionFor(source)} lang={languageFor(source)}>
-      {t(source, parameters)}
-    </span>
+    <LocalizedText source={source} values={parameters} />
   );
 
   return (
@@ -296,21 +295,17 @@ const Searches = ({ server } = {}) => {
       updateSearchPageState(key, { loading: false });
       console.error('Failed to load another search page', loadError);
       if (key === 'all' && !current.initialized && Object.keys(searches).length === 0) {
-        setError(getApiErrorMessage(loadError, { t }));
+        setError(getApiErrorMessageOutput(loadError, { t }));
       } else {
-        toast.error(interfaceText('Could not load more searches'));
+        toast.error(interfaceToastText('Could not load more searches'));
       }
       return false;
     }
   };
 
-  const localizedError = (error_, fallback, translator = t, locale = language) => {
-    const message = getApiErrorMessage(error_, { t: translator }, fallback);
-    return (
-      <span dir={locale === 'ar' ? 'rtl' : 'ltr'} lang={locale}>
-        {message}
-      </span>
-    );
+  const localizedError = (error_, fallback, translator = t) => {
+    const message = getApiErrorMessageOutput(error_, { t: translator }, fallback);
+    return <LocalizedOutputText output={message} />;
   };
 
   const location = useLocation();
@@ -379,7 +374,7 @@ const Searches = ({ server } = {}) => {
 
   const onConnectionError = () => {
     setConnecting(false);
-    setError(interfaceText("Search connection failed."));
+    setError(interfaceTextOutput("Search connection failed."));
   };
 
   const onUpdate = (update) => {
@@ -446,7 +441,7 @@ const Searches = ({ server } = {}) => {
         }
       } catch (loadError) {
         console.error(loadError);
-        setError(interfaceText("Searches could not be loaded."));
+        setError(interfaceTextOutput("Searches could not be loaded."));
       } finally {
         setInitialSearchesLoaded(true);
       }
@@ -462,7 +457,6 @@ const Searches = ({ server } = {}) => {
           connectionError,
           'Could not connect to Soulseek.',
           currentLocale.t,
-          currentLocale.language,
         ));
         onConnectionError(connectionError);
         await loadInitialSearches();
@@ -1012,7 +1006,7 @@ const Searches = ({ server } = {}) => {
         title={interfaceText("Search Results")}
        {...interfaceTextProps("Search Results")}>
         {error ? (
-          <ErrorSegment caption={localized(error)} />
+          <ErrorSegment caption={error} />
         ) : Object.keys(searches).length === 0 ? (
           <PlaceholderSegment
             caption={localized(

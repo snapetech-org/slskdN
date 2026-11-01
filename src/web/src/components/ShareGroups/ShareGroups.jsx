@@ -1,6 +1,6 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
@@ -27,7 +27,7 @@ const asArray = (value) => (Array.isArray(value) ? value : []);
 const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
 
 const getErrorMessage = (error, fallback = 'The request failed. Try again.') =>
-  getApiErrorMessage(error, { t: interfaceText }, fallback);
+  getApiErrorMessageOutput(error, { t: interfaceText }, fallback);
 
 export default class ShareGroups extends Component {
   state = {

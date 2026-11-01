@@ -1,5 +1,5 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import {
   automationRecipes,
@@ -18,7 +18,7 @@ import { getRunnableWishlistRequests } from '../../../lib/acquisitionRequests';
 import * as libraryHealthAPI from '../../../lib/libraryHealth';
 import * as wishlistAPI from '../../../lib/wishlist';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Card,
@@ -76,12 +76,12 @@ const AutomationCenter = () => {
 
   const toggleRecipe = (recipe, enabled) => {
     setRecipeState(setAutomationRecipeEnabled(recipe.id, enabled));
-    toast.info(interfaceText(enabled ? "{title} enabled" : "{title} disabled", { title: interfaceText(recipe.title) }));
+    toast.info(interfaceToastText(enabled ? "{title} enabled" : "{title} disabled", { title: interfaceToastText(recipe.title) }));
   };
 
   const dryRunRecipe = (recipe) => {
     setRecipeState(setAutomationRecipeDryRun(recipe.id));
-    toast.info(interfaceText("{title} dry run recorded", { title: interfaceText(recipe.title) }));
+    toast.info(interfaceToastText("{title} dry run recorded", { title: interfaceToastText(recipe.title) }));
   };
 
   const executeWishlistRetry = async (recipe) => {
@@ -106,7 +106,7 @@ const AutomationCenter = () => {
     result.summary = `Ran ${result.started} Wishlist searches; ${result.failed} failed; ${result.skipped} skipped.`;
     const report = buildAutomationExecutionReport(recipe, result);
     setRecipeState(setAutomationRecipeExecution(recipe.id, report, report.generatedAt));
-    const status = interfaceText("{title} ran {started} bounded Wishlist searches; {failed} failed. Downloads still require normal result review.", { title: interfaceText(recipe.title), started: result.started, failed: result.failed });
+    const status = interfaceTextOutput("{title} ran {started} bounded Wishlist searches; {failed} failed. Downloads still require normal result review.", { title: interfaceTextOutput(recipe.title), started: result.started, failed: result.failed });
     setCopyStatus(status);
     toast.info(status);
   };
@@ -114,7 +114,7 @@ const AutomationCenter = () => {
   const executeLibraryHealthScan = async (recipe) => {
     const libraryPath = `${recipeInputs[recipe.id]?.libraryPath || ''}`.trim();
     if (!libraryPath) {
-      setCopyStatus(interfaceText('Enter a Library Health path before starting the scan.'));
+      setCopyStatus(interfaceTextOutput('Enter a Library Health path before starting the scan.'));
       return;
     }
 
@@ -127,15 +127,15 @@ const AutomationCenter = () => {
       summary: `Started Library Health scan ${scanId} for ${libraryPath}.`,
     });
     setRecipeState(setAutomationRecipeExecution(recipe.id, report, report.generatedAt));
-    const status = interfaceText("{title} started scan {scanId} for {libraryPath}.", { title: interfaceText(recipe.title), scanId, libraryPath });
+    const status = interfaceTextOutput("{title} started scan {scanId} for {libraryPath}.", { title: interfaceTextOutput(recipe.title), scanId, libraryPath });
     setCopyStatus(status);
     toast.info(status);
   };
 
   const executeRecipe = async (recipe) => {
     if (!isAutomationRecipeExecutable(recipe)) {
-      setCopyStatus(interfaceText('{title} does not have a live backend action wired yet.', {
-        title: interfaceText(recipe.title),
+      setCopyStatus(interfaceTextOutput('{title} does not have a live backend action wired yet.', {
+        title: interfaceTextOutput(recipe.title),
       }));
       return;
     }
@@ -160,15 +160,15 @@ const AutomationCenter = () => {
   const copyHistoryReport = async () => {
     const report = formatAutomationRunHistoryReport(runHistory);
     if (!navigator.clipboard?.writeText) {
-      setCopyStatus(interfaceText('Clipboard unavailable; copy the automation history manually.'));
+      setCopyStatus(interfaceTextOutput('Clipboard unavailable; copy the automation history manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(report);
-      setCopyStatus(interfaceText('Automation history report copied.'));
+      setCopyStatus(interfaceTextOutput('Automation history report copied.'));
     } catch {
-      setCopyStatus(interfaceText('Unable to copy automation history report.'));
+      setCopyStatus(interfaceTextOutput('Unable to copy automation history report.'));
     }
   };
 
@@ -201,7 +201,7 @@ const AutomationCenter = () => {
           info
           size="small"
         >
-          {copyStatus}
+          <LocalizedOutputText output={copyStatus} />
         </Message>
       )}
 

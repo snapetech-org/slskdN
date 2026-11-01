@@ -1,11 +1,11 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import * as searches from '../../lib/searches';
 import { resolveTarget } from '../../lib/musicBrainz';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Form,
@@ -60,7 +60,7 @@ const MusicBrainzLookup = ({ disabled }) => {
       setGraphData(graph);
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to build discovery graph'));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to build discovery graph'));
       setGraphOpen(false);
     } finally {
       setGraphLoading(false);
@@ -69,7 +69,7 @@ const MusicBrainzLookup = ({ disabled }) => {
 
   const handleLookup = async () => {
     if (!releaseInput && !recordingInput && !discogsInput) {
-      toast.error(interfaceText("Provide at least one MusicBrainz or Discogs identifier"));
+      toast.error(interfaceToastText("Provide at least one MusicBrainz or Discogs identifier"));
       return;
     }
 
@@ -92,12 +92,12 @@ const MusicBrainzLookup = ({ disabled }) => {
 
       toast.success(
         resolvedTarget.album
-          ? interfaceText('Loaded album {title}', { title: resolvedTarget.album.title })
-          : interfaceText('Loaded track {title}', { title: resolvedTarget.track?.title }),
+          ? interfaceToastText('Loaded album {title}', { title: resolvedTarget.album.title })
+          : interfaceToastText('Loaded track {title}', { title: resolvedTarget.track?.title }),
       );
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -202,16 +202,16 @@ const MusicBrainzLookup = ({ disabled }) => {
       .slice(0, 8);
 
     if (queries.length === 0) {
-      toast.error(interfaceText("No nearby track nodes were available to queue"));
+      toast.error(interfaceToastText("No nearby track nodes were available to queue"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries });
-      toast.success(interfaceText("Started {count} nearby graph searches", { "count": (count) }));
+      toast.success(interfaceToastText("Started {count} nearby graph searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }));
     }
   };
 

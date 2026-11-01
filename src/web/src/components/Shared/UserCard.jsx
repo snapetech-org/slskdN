@@ -1,7 +1,7 @@
-import LocalizedText from "./LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "./LocalizedText";
 import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import { interfaceText } from '../../lib/interfaceLocale';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import './UserCard.css';
 import * as opinions from '../../lib/opinions';
 import * as security from '../../lib/security';
@@ -250,7 +250,7 @@ class UserCard extends Component {
       });
     } catch (error) {
       this.setState({
-        interestsError: getApiErrorMessage(error, { t: interfaceText }),
+        interestsError: getApiErrorMessageOutput(error, { t: interfaceText }),
         interestsLoading: false,
       });
     }
@@ -300,7 +300,7 @@ class UserCard extends Component {
     }
 
     if (interestsError) {
-      return <span>{interestsError}</span>;
+      return <span><LocalizedOutputText output={interestsError} /></span>;
     }
 
     const liked = asArray(interests?.liked ?? interests?.Liked);

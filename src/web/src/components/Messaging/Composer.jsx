@@ -1,13 +1,13 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Popup } from 'semantic-ui-react';
 
 const ME_PREFIX = '/me ';
 
 const getSendErrorMessage = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'The message could not be sent.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'The message could not be sent.');
 
 const matchSuggestions = (draft, commands) => {
   if (!draft.startsWith('/') || draft.startsWith('/ ')) return [];

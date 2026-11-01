@@ -1,8 +1,7 @@
-import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
+import { formatRegionalNumber, useRegionalLocale, getRegionalLocale } from '../../lib/regionalFormat';
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { formatTransferState } from '../../lib/transfers';
-import { getRegionalLocale } from '../../lib/regionalFormat';
 import './TrafficTicker.css';
 import { createTransfersHubConnection } from '../../lib/hubFactory';
 import React, { useEffect, useState } from 'react';

@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './MessagingV2.css';
 import * as chat from '../../lib/chat';
@@ -144,7 +144,7 @@ const conversationListSignature = (conversations) =>
 const roomListSignature = (rooms) => rooms.join('\u0001');
 
 const getActionErrorDetail = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'Please try again.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'Please try again.');
 
 const InlineLoadError = ({ message, onRetry, retryLabel, testId }) => (
   <div
@@ -152,7 +152,7 @@ const InlineLoadError = ({ message, onRetry, retryLabel, testId }) => (
     data-testid={testId}
     role="alert"
   >
-    <span>{message}</span>
+    <span><LocalizedOutputText output={message} /></span>
     <Popup
       content={interfaceText(retryLabel)}
       position="top center"
@@ -282,8 +282,8 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
   const podsFeatureEnabled = featureGates?.pods?.enabled !== false;
 
   const reportActionFailure = useCallback((action, error) => {
-    setActionError(interfaceText('{action}: {message}', {
-      action: interfaceText(action),
+    setActionError(interfaceTextOutput('{action}: {message}', {
+      action: isInterfaceTextOutput(action) ? action : interfaceTextOutput(action),
       message: getActionErrorDetail(error),
     }));
   }, []);
@@ -324,7 +324,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       } catch (error) {
         if (mountedRef.current) {
           setMessagingLoadError(
-            interfaceText('Could not load saved conversations and joined rooms: {message}', {
+            interfaceTextOutput('Could not load saved conversations and joined rooms: {message}', {
               message: getActionErrorDetail(error),
             }),
           );
@@ -353,7 +353,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
         } catch (error) {
           if (mountedRef.current) {
             setPodLoadError(
-              interfaceText('Could not load saved pod channels: {message}', {
+              interfaceTextOutput('Could not load saved pod channels: {message}', {
                 message: getActionErrorDetail(error),
               }),
             );
@@ -371,7 +371,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
         } catch (error) {
           if (mountedRef.current) {
             setPodDiscoveryError(
-              interfaceText('Could not refresh discovered pods: {message}', {
+              interfaceTextOutput('Could not refresh discovered pods: {message}', {
                 message: getActionErrorDetail(error),
               }),
             );
@@ -418,7 +418,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       } catch (error) {
         if (mountedRef.current) {
           setPodLoadError(
-            interfaceText('Could not load pod channels: {message}', {
+            interfaceTextOutput('Could not load pod channels: {message}', {
               message: getActionErrorDetail(error),
             }),
           );
@@ -786,7 +786,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
               };
         });
       } catch (error) {
-        reportActionFailure(`Could not leave room ${roomName}`, error);
+        reportActionFailure(interfaceTextOutput('Could not leave room {roomName}', { roomName }), error);
       }
     },
     [refreshMessagingAfterMutation, reportActionFailure, updateWorkspace],
@@ -829,7 +829,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
               };
         });
       } catch (error) {
-        reportActionFailure(`Could not leave pod ${podName}`, error);
+        reportActionFailure(interfaceTextOutput('Could not leave pod {podName}', { podName }), error);
       }
     },
     [refreshPodsAfterMutation, reportActionFailure, state?.user?.username, updateWorkspace],
@@ -854,7 +854,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       openTab('room', trimmed);
       return true;
     } catch (error) {
-      const message = getApiErrorMessage(error, { t: interfaceText }, 'Room join failed. Try again shortly.');
+      const message = getApiErrorMessageOutput(error, { t: interfaceText }, 'Room join failed. Try again shortly.');
       setRoomJoinError(message);
       return false;
     }
@@ -934,7 +934,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       await refreshPodsAfterMutation();
       openTab('pod', channel.target, channelLabel(channel));
     } catch (error) {
-      reportActionFailure(`Could not join discovered pod ${name}`, error);
+      reportActionFailure(interfaceTextOutput('Could not join discovered pod {name}', { name }), error);
     }
   }, [currentUser, openTab, refreshPodsAfterMutation, reportActionFailure]);
 
@@ -1588,7 +1588,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
             data-testid="messaging-action-error"
             role="alert"
           >
-            {actionError}
+            <LocalizedOutputText output={actionError} />
           </div>
         )}
         <header className="msgv2-tabs">
@@ -2171,7 +2171,7 @@ const RoomJoinSearch = ({
           )}
         </>
       )}
-      {error && <div className="msgv2-room-search-error">{error}</div>}
+      {error && <div className="msgv2-room-search-error"><LocalizedOutputText output={error} /></div>}
     </div>
   );
 };

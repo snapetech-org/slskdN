@@ -1,7 +1,7 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { AutoFixableIssueCount } from "../../Shared/LocalizedCounts";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 
 
 import * as libraryHealth from '../../../lib/libraryHealth';
@@ -63,6 +63,7 @@ const LibraryHealth = () => {
   const [copyFallbackLabel, setCopyFallbackLabel] = useState('');
   const [scanMonitoringPaused, setScanMonitoringPaused] = useState(false);
   const [scanMessage, setScanMessage] = useState('');
+  const [scanMessageIsExternal, setScanMessageIsExternal] = useState(false);
   const [scanMessageType, setScanMessageType] = useState('info');
   const [scanProgress, setScanProgress] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -148,7 +149,7 @@ const LibraryHealth = () => {
       }
 
       setDashboardLoadFailed(true);
-      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to load library health data'));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }, 'Failed to load library health data'));
     } finally {
       if (mountedRef.current && dashboardRequestRef.current === requestId) {
         setLoading(false);
@@ -174,7 +175,8 @@ const LibraryHealth = () => {
     scanMonitoringPausedRef.current = true;
     if (mountedRef.current) {
       setScanMonitoringPaused(true);
-      setScanMessage(interfaceText(message));
+      setScanMessage(interfaceTextOutput(message));
+      setScanMessageIsExternal(false);
       setScanMessageType(type);
     }
   };
@@ -192,7 +194,7 @@ const LibraryHealth = () => {
 
     if (Date.now() >= pollDeadlineRef.current) {
       pauseScanMonitoring(
-        interfaceText('Status checks paused after one minute. The server may still be scanning this library; continue monitoring before starting another scan.'),
+        'Status checks paused after one minute. The server may still be scanning this library; continue monitoring before starting another scan.',
       );
       loadSummary(activeScan.libraryPath);
       return;
@@ -222,38 +224,45 @@ const LibraryHealth = () => {
         setScanning(false);
         setScanMonitoringPaused(false);
         if (status === 'Completed') {
-          setScanMessage(interfaceText('Scan complete: {files} files checked; issues found: {issues}.', {
+          setScanMessage(interfaceTextOutput('Scan complete: {files} files checked; issues found: {issues}.', {
             files: filesScanned,
             issues: issuesDetected,
           }));
+          setScanMessageIsExternal(false);
           setScanMessageType('positive');
         } else if (status === 'Failed') {
+          const hasExternalServerError = typeof scanData.errorMessage === 'string' &&
+            scanData.errorMessage.trim() &&
+            scanData.errorMessage !== 'Library health scan failed';
           const serverErrorMessage = scanData.errorMessage === 'Library health scan failed'
-            ? interfaceText('Library health scan failed')
-            : scanData.errorMessage;
-          const fallbackMessage = interfaceText('Library Health scan failed after checking {files} files.', {
+            ? interfaceTextOutput('Library health scan failed')
+            : hasExternalServerError ? scanData.errorMessage : null;
+          const fallbackMessage = interfaceTextOutput('Library Health scan failed after checking {files} files.', {
             files: filesScanned,
           });
           setScanMessage(serverErrorMessage || fallbackMessage);
+          setScanMessageIsExternal(Boolean(serverErrorMessage && hasExternalServerError));
           setScanMessageType('negative');
         } else {
-          setScanMessage(interfaceText('Library Health scan was cancelled after checking {files} files.', {
+          setScanMessage(interfaceTextOutput('Library Health scan was cancelled after checking {files} files.', {
             files: filesScanned,
           }));
+          setScanMessageIsExternal(false);
           setScanMessageType('warning');
         }
         loadSummary(activeScan.libraryPath);
       } else if (status !== 'Running') {
-        setError(interfaceText("The scan status response did not contain a supported status."));
+        setError(interfaceTextOutput("The scan status response did not contain a supported status."));
         pauseAfterRequest = true;
         pauseScanMonitoring(
-          interfaceText('The scan may still be running. Retry status checks before starting another scan.'),
+          'The scan may still be running. Retry status checks before starting another scan.',
         );
       } else {
-        setScanMessage(interfaceText('Scan in progress: {files} files checked; issues found: {issues}.', {
+        setScanMessage(interfaceTextOutput('Scan in progress: {files} files checked; issues found: {issues}.', {
           files: filesScanned,
           issues: issuesDetected,
         }));
+        setScanMessageIsExternal(false);
         setScanMessageType('info');
       }
     } catch (error_) {
@@ -261,10 +270,10 @@ const LibraryHealth = () => {
         return;
       }
 
-      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to poll Library Health scan status'));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }, 'Failed to poll Library Health scan status'));
       pauseAfterRequest = true;
       pauseScanMonitoring(
-        interfaceText('The server may still be scanning. Retry status checks before starting another scan.'),
+        'The server may still be scanning. Retry status checks before starting another scan.',
       );
     } finally {
       if (pollRequestRef.current === activeScan) {
@@ -285,7 +294,7 @@ const LibraryHealth = () => {
 
   const handleStartScan = async () => {
     if (!libraryPath.trim()) {
-      setError(interfaceText("Please enter a library path"));
+      setError(interfaceTextOutput("Please enter a library path"));
       return;
     }
 
@@ -295,7 +304,8 @@ const LibraryHealth = () => {
       setScanning(true);
       setScanMonitoringPaused(false);
       setScanProgress({ filesScanned: 0, issuesDetected: 0 });
-      setScanMessage(interfaceText('Starting a recursive, read-only scan of the entered server-side path.'));
+      setScanMessage(interfaceTextOutput('Starting a recursive, read-only scan of the entered server-side path.'));
+      setScanMessageIsExternal(false);
       setScanMessageType('info');
       setError(null);
       const response = await libraryHealth.startScan(libraryPath);
@@ -311,14 +321,15 @@ const LibraryHealth = () => {
 
       activeScanRef.current = { libraryPath, scanId };
       pollDeadlineRef.current = Date.now() + SCAN_POLL_TIMEOUT_MS;
-      setScanMessage(interfaceText('Scan started. Waiting for the first progress update.'));
+      setScanMessage(interfaceTextOutput('Scan started. Waiting for the first progress update.'));
+      setScanMessageIsExternal(false);
       scheduleScanPoll();
     } catch (error_) {
       resetScanPolling();
       if (mountedRef.current) {
         scanMonitoringPausedRef.current = false;
         setScanMonitoringPaused(false);
-        setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to start scan'));
+        setError(getApiErrorMessageOutput(error_, { t: interfaceText }, 'Failed to start scan'));
         setScanning(false);
       }
     }
@@ -332,7 +343,8 @@ const LibraryHealth = () => {
     setError(null);
     scanMonitoringPausedRef.current = false;
     setScanMonitoringPaused(false);
-    setScanMessage(interfaceText('Checking the current scan status.'));
+    setScanMessage(interfaceTextOutput('Checking the current scan status.'));
+    setScanMessageIsExternal(false);
     setScanMessageType('info');
     pollDeadlineRef.current = Date.now() + SCAN_POLL_TIMEOUT_MS;
     pollScanStatusRef.current?.(true);
@@ -406,7 +418,7 @@ const LibraryHealth = () => {
 
   const handleFixSelected = async () => {
     if (selectedFixableIssueIds.length === 0) {
-      setError(interfaceText("Please select issues to fix"));
+      setError(interfaceTextOutput("Please select issues to fix"));
       return;
     }
 
@@ -420,21 +432,28 @@ const LibraryHealth = () => {
       setSelectedIssues((current) => new Set(
         [...current].filter((issueId) => !issueIds.includes(issueId)),
       ));
-      const queuedMessage = interfaceText(
-        issueIds.length === 1
-          ? 'Queued remediation for 1 auto-fixable issue.'
-          : 'Queued remediation for {count} auto-fixable issues.',
-        { count: issueIds.length },
+      setReportMessage(
+        <>
+          <LocalizedText
+            source={issueIds.length === 1
+              ? 'Queued remediation for 1 auto-fixable issue.'
+              : 'Queued remediation for {count} auto-fixable issues.'}
+            values={{ count: issueIds.length }}
+          />
+          {remainingAutoFixable > 0 ? (
+            <>
+              {' '}
+              <LocalizedText
+                source="{count} remain selected for another batch."
+                values={{ count: remainingAutoFixable }}
+              />
+            </>
+          ) : null}
+        </>,
       );
-      const remainingMessage = remainingAutoFixable > 0
-        ? interfaceText('{count} remain selected for another batch.', {
-          count: remainingAutoFixable,
-        })
-        : '';
-      setReportMessage([queuedMessage, remainingMessage].filter(Boolean).join(' '));
       await loadSummary(dashboardPath, { preserveFeedback: true });
     } catch (error_) {
-      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to create fix job'));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }, 'Failed to create fix job'));
     } finally {
       setFixing(false);
     }
@@ -445,10 +464,10 @@ const LibraryHealth = () => {
       setFixing(true);
       setError(null);
       await libraryHealth.createRemediationJob([issueId]);
-      setReportMessage(interfaceText('Remediation queued for auto-fixable issues: {count}.', { count: 1 }));
+      setReportMessage(interfaceTextOutput('Remediation queued for auto-fixable issues: {count}.', { count: 1 }));
       await loadSummary(dashboardPath, { preserveFeedback: true });
     } catch (error_) {
-      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to create fix job'));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }, 'Failed to create fix job'));
     } finally {
       setFixing(false);
     }
@@ -463,11 +482,11 @@ const LibraryHealth = () => {
       await navigator.clipboard.writeText(text);
       setCopyFallback('');
       setCopyFallbackLabel('');
-      setReportMessage(interfaceText('{label} copied to the clipboard.', { label: interfaceText(label) }));
+      setReportMessage(interfaceTextOutput('{label} copied to the clipboard.', { label: interfaceText(label) }));
     } catch (_error) {
       setCopyFallback(text);
       setCopyFallbackLabel(label);
-      setReportMessage(interfaceText('Clipboard access failed. Select and copy the {label} below.', {
+      setReportMessage(interfaceTextOutput('Clipboard access failed. Select and copy the {label} below.', {
         label: interfaceText(label.toLowerCase()),
       }));
     }
@@ -529,7 +548,7 @@ const LibraryHealth = () => {
     });
 
     if (queries.length === 0) {
-      setError(interfaceText("Selected issues do not have replacement search candidates."));
+      setError(interfaceTextOutput("Selected issues do not have replacement search candidates."));
       return;
     }
 
@@ -537,14 +556,14 @@ const LibraryHealth = () => {
       setSearchingReplacements(true);
       setError(null);
       const count = await searches.createBatch({ queries });
-      setReportMessage(interfaceText(
+      setReportMessage(interfaceTextOutput(
         count === 1
           ? 'Started 1 bounded replacement search for selected Library Health issues.'
           : 'Started {count} bounded replacement searches for selected Library Health issues.',
         { count },
       ));
     } catch (error_) {
-      setError(getApiErrorMessage(error_, { t: interfaceText }, 'Failed to start replacement searches'));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }, 'Failed to start replacement searches'));
     } finally {
       setSearchingReplacements(false);
     }
@@ -556,7 +575,7 @@ const LibraryHealth = () => {
       negative
       role="alert"
     >
-      <Message.Content>{error}</Message.Content>
+      <Message.Content><LocalizedOutputText output={error} /></Message.Content>
       {dashboardLoadFailed && libraryPath ? (
         <Popup
           className="library-health-popup"
@@ -586,7 +605,11 @@ const LibraryHealth = () => {
       role="status"
       warning={scanMessageType === 'warning'}
     >
-      <Message.Content>{scanMessage}</Message.Content>
+      <Message.Content>
+        {scanMessageIsExternal
+          ? <bdi dir="auto" lang="und">{scanMessage}</bdi>
+          : <LocalizedOutputText output={scanMessage} />}
+      </Message.Content>
       {scanProgress && scanning ? (
         <div className="library-health-progress">
           <strong><LocalizedText source={"Progress:"} /></strong> {scanProgress.filesScanned} <LocalizedText source={"files checked;"} />{' '}{scanProgress.issuesDetected} <LocalizedText source={"issues found."} /></div>
@@ -616,7 +639,7 @@ const LibraryHealth = () => {
         data-testid="library-health-report-message"
         size="mini"
       >
-        {reportMessage}
+        <LocalizedOutputText output={reportMessage} />
       </Message>
       {copyFallback ? (
         <label className="library-health-copy-fallback">

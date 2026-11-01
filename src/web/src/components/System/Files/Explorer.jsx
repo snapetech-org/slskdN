@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import { deleteDirectory, deleteFile, deleteItems, list } from '../../../lib/files';
 import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import { formatBytes, formatDate } from '../../../lib/util';
@@ -13,7 +13,7 @@ const itemKey = ({ path, type }) => `${type}:${path}`;
 const joinPath = (...segments) => segments.filter(Boolean).join('/');
 
 const getErrorMessage = (error, fallback) =>
-  getApiErrorMessage(error, { t: interfaceText }, fallback);
+  getApiErrorMessageOutput(error, { t: interfaceText }, fallback);
 
 const getDeleteErrorSource = (error) => ({
   'access-denied': 'Access was denied',
@@ -39,7 +39,9 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
       setOpen(false);
       onDeleted({ name: fullName, type: itemType });
     } catch (error_) {
-      setError(getErrorMessage(error_, `Unable to delete this ${itemType}.`));
+      setError(getErrorMessage(error_, interfaceTextOutput('Unable to delete this {itemType}.', {
+        itemType: interfaceTextOutput(itemType),
+      })));
     } finally {
       setDeleting(false);
     }
@@ -79,7 +81,7 @@ const DeleteControl = ({ fullName, isDirectory, onDeleted, path, root }) => {
             <Message
               error
               role="alert"
-            ><LocalizedText source={error} values={{ itemType: itemTypeLabel }} /></Message>
+            ><LocalizedOutputText output={error} /></Message>
           ) : null}
         </Modal.Content>
         <Modal.Actions>
@@ -315,7 +317,7 @@ const BulkDeleteControl = ({ items, onDeleted, root }) => {
               />
             </p>
           ) : null}
-          {error ? <Message error role="alert"><LocalizedText source={error} /></Message> : null}
+          {error ? <Message error role="alert"><LocalizedOutputText output={error} /></Message> : null}
         </Modal.Content>
         <Modal.Actions>
           <Popup
@@ -583,7 +585,7 @@ const Explorer = ({ active = true, remoteFileManagement, root }) => {
           header={interfaceText("Could not load this directory")}
           role="alert"
          {...interfaceTextProps("Could not load this directory")}>
-          <p><LocalizedText source={error} /></p>
+          <p><LocalizedOutputText output={error} /></p>
           <Popup
             content={interfaceText("Retry loading the current directory after the request error.")}
             on={['hover', 'focus']}

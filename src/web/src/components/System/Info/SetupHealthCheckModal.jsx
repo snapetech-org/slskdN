@@ -1,12 +1,12 @@
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { urlBase } from "../../../config";
 import {
   buildSetupHealthChecks,
   formatSetupHealthReport,
 } from '../../../lib/setupHealthCheck';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Header,
@@ -116,11 +116,11 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
     const copied = await copyToClipboard(report);
 
     if (copied) {
-      toast.success(interfaceText("Setup health report copied"));
+      toast.success(interfaceToastText("Setup health report copied"));
       return;
     }
 
-    toast.info(interfaceText("Select the setup health report text to copy it manually"));
+    toast.info(interfaceToastText("Select the setup health report text to copy it manually"));
   };
 
   return (

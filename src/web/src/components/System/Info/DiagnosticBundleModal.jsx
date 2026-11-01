@@ -1,8 +1,8 @@
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { buildDiagnosticBundle } from '../../../lib/diagnosticBundle';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Header,
@@ -38,11 +38,11 @@ const DiagnosticBundleModal = ({ options = {}, state = {} }) => {
     const copied = await copyToClipboard(bundle);
 
     if (copied) {
-      toast.success(interfaceText("Diagnostic bundle copied"));
+      toast.success(interfaceToastText("Diagnostic bundle copied"));
       return;
     }
 
-    toast.info(interfaceText("Select the diagnostic bundle text to copy it manually"));
+    toast.info(interfaceToastText("Select the diagnostic bundle text to copy it manually"));
   };
 
   return (

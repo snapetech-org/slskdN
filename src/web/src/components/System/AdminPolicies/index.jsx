@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import './AdminPolicies.css';
 import * as optionsApi from '../../../lib/options';
 import {
@@ -618,12 +618,12 @@ const AdminPolicies = ({ options = {} }) => {
       }));
       setMessage({
         positive: true,
-        text: interfaceText("Policy settings saved to YAML. Restart-signalled options still require a daemon restart."),
+        text: interfaceTextOutput("Policy settings saved to YAML. Restart-signalled options still require a daemon restart."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text: getApiErrorMessage(error, { t: interfaceText }),
+        text: getApiErrorMessageOutput(error, { t: interfaceText }),
       });
     } finally {
       setSaving(false);
@@ -654,7 +654,7 @@ const AdminPolicies = ({ options = {} }) => {
           positive={message.positive}
           size="small"
         >
-          {message.text}
+          <LocalizedOutputText output={message.text} />
         </Message>
       )}
       {missing.length > 0 && (

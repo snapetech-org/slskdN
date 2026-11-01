@@ -1,6 +1,6 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 /* eslint-disable promise/prefer-await-to-then */
 import './Browse.css';
 import * as transfers from '../../lib/transfers';
@@ -21,7 +21,7 @@ import Directory from './Directory';
 import DirectoryTree from './DirectoryTree';
 import * as lzString from 'lz-string';
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Card,
@@ -84,7 +84,7 @@ const sameBrowseStatus = (left, right) =>
   );
 
 const getBrowseErrorMessage = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'Browse failed');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'Browse failed');
 
 // Cleanup old browse cache entries using LRU strategy
 const cleanupBrowseCache = () => {
@@ -548,7 +548,7 @@ class BrowseSession extends Component {
     const filesToDownload = collectFiles(directory);
 
     if (filesToDownload.length === 0) {
-      toast.info(interfaceText("No files found in directory: {name}", { "name": (directory.name) }));
+      toast.info(interfaceToastText("No files found in directory: {name}", { "name": (directory.name) }));
       return;
     }
 
@@ -566,12 +566,12 @@ class BrowseSession extends Component {
           username,
         })
         .then(() => {
-          toast.success(interfaceText("Queued {length} files for download", { "length": (filesToDownload.length) }));
+          toast.success(interfaceToastText("Queued {length} files for download", { "length": (filesToDownload.length) }));
         })
         .catch((error) => {
           console.error(error);
-          toast.error(interfaceText('Failed to queue download: {message}', {
-            message: getApiErrorMessage(error, { t: interfaceText }),
+          toast.error(interfaceToastText('Failed to queue download: {message}', {
+            message: getApiErrorMessageOutput(error, { t: interfaceText }),
           }));
         });
     }

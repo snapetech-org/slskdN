@@ -1,15 +1,16 @@
 import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import SearchStatusIcon from '../SearchStatusIcon';
+import { LocalizedOutputText } from '../../Shared/LocalizedText';
 import { buildDiscoveryGraph } from '../../../lib/discoveryGraph';
 import DiscoveryGraphModal from '../DiscoveryGraphModal';
 import * as searches from '../../../lib/searches';
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import { useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import SearchActionIcon from './SearchActionIcon';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Checkbox, Icon, Label, Popup, Table } from 'semantic-ui-react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 
 const sourceColors = {
   'auto-replace': 'orange',
@@ -75,14 +76,12 @@ const SearchListRow = ({
   selectionDisabled = false,
 }) => {
   const regionalLocale = useRegionalLocale();
-  const { language, t, languageFor, directionFor } = useInterfaceLanguage();
+  const { t, languageFor, directionFor } = useInterfaceLanguage();
   const localized = (source) => (
     <span dir={directionFor(source)} lang={languageFor(source)}>{t(source)}</span>
   );
   const localizedError = (error, fallback) => (
-    <span dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language}>
-      {getApiErrorMessage(error, { t }, fallback)}
-    </span>
+    <LocalizedOutputText output={getApiErrorMessageOutput(error, { t }, fallback)} />
   );
   const [working, setWorking] = useState(false);
   const [graphData, setGraphData] = useState(null);

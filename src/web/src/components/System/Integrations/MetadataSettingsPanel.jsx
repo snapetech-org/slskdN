@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="MetadataSettingsPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -376,12 +376,12 @@ const MetadataSettingsPanel = ({ options }) => {
       markSecretsConfigured(patch);
       setMessage({
         positive: true,
-        text: interfaceText("Metadata and Servarr integration settings saved to YAML."),
+        text: interfaceTextOutput("Metadata and Servarr integration settings saved to YAML."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text: getApiErrorMessage(error, { t: interfaceText }),
+        text: getApiErrorMessageOutput(error, { t: interfaceText }),
       });
     } finally {
       setSaving(false);
@@ -429,7 +429,7 @@ const MetadataSettingsPanel = ({ options }) => {
             positive={message.positive}
             size="small"
           >
-            {message.text}
+            <LocalizedOutputText output={message.text} />
           </Message>
         )}
         {missingRequiredSettings.length > 0 && (

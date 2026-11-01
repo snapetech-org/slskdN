@@ -21,6 +21,12 @@ const supportedLanguages = new Set(INTERFACE_LANGUAGE_OPTIONS.map((option) => op
 const listeners = new Set();
 const catalogCache = new Map();
 const catalogLoads = new Map();
+const interfaceTextOutputBrand = Symbol('slskdn.interface-text-output');
+const interfaceOpaqueOutputBrand = Symbol('slskdn.interface-opaque-output');
+const MAX_OUTPUT_SOURCE_LENGTH = 512;
+const MAX_OUTPUT_PARAMETER_COUNT = 24;
+const MAX_OUTPUT_PARAMETER_LENGTH = 2048;
+const MAX_OUTPUT_PARAMETER_TOTAL_LENGTH = 8192;
 let activeLanguage;
 let activeCatalog = null;
 let revision = 0;
@@ -124,9 +130,8 @@ const translationFor = (source, language) => {
 };
 
 export const getInterfaceTextLanguage = (source, language) => {
-  return translationFor(source, language)
-    ? language
-    : 'en';
+  const translated = translationFor(source, language);
+  return translated && translated !== source ? language : 'en';
 };
 
 export const getInterfaceTextDirection = (source, language) =>
@@ -143,8 +148,93 @@ const formatInterfaceText = (source, parameters = {}) => {
   });
 };
 
-export const interfaceText = (source, parameters = {}) =>
-  formatInterfaceText(source, parameters);
+export const isInterfaceTextOutput = (value) =>
+  Boolean(value && typeof value === 'object' && value[interfaceTextOutputBrand] === true);
+
+export const isInterfaceOpaqueOutput = (value) =>
+  Boolean(value && typeof value === 'object' && value[interfaceOpaqueOutputBrand] === true);
+
+const rawOutputValue = (value) => {
+  if (isInterfaceOpaqueOutput(value)) return value.text;
+  if (isInterfaceTextOutput(value)) return formatRawOutput(value.source, value.values);
+  return typeof value === 'string' || (typeof value === 'number' && Number.isFinite(value))
+    ? String(value)
+    : undefined;
+};
+
+const formatRawOutput = (source, values = {}) => {
+  if (typeof source !== 'string') return '';
+  return source.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) =>
+    rawOutputValue(values?.[name]) ?? placeholder);
+};
+
+const makeOpaqueOutput = (text) => Object.freeze({
+  [interfaceOpaqueOutputBrand]: true,
+  text,
+});
+
+const boundedOutputValues = (source, values) => {
+  if (!values || typeof values !== 'object' || Array.isArray(values)) {
+    return Object.freeze({});
+  }
+  const names = new Set(Array.from(
+    source.matchAll(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g),
+    (match) => match[1],
+  ));
+  if (names.size > MAX_OUTPUT_PARAMETER_COUNT) return undefined;
+  const bounded = {};
+  let totalLength = 0;
+  for (const name of names) {
+    if (!/^[a-zA-Z][a-zA-Z0-9_]{0,63}$/.test(name)) continue;
+    if (!Object.hasOwn(values, name)) continue;
+    const value = values[name];
+    if (isInterfaceTextOutput(value) || isInterfaceOpaqueOutput(value)) {
+      const rawValue = rawOutputValue(value);
+      if (rawValue.length > MAX_OUTPUT_PARAMETER_LENGTH ||
+        totalLength + rawValue.length > MAX_OUTPUT_PARAMETER_TOTAL_LENGTH) {
+        return undefined;
+      }
+      totalLength += rawValue.length;
+      bounded[name] = value;
+      continue;
+    }
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      bounded[name] = value;
+      continue;
+    }
+    if (typeof value !== 'string') continue;
+    if (value.length > MAX_OUTPUT_PARAMETER_LENGTH ||
+      totalLength + value.length > MAX_OUTPUT_PARAMETER_TOTAL_LENGTH) {
+      return undefined;
+    }
+    bounded[name] = value;
+    totalLength += value.length;
+  }
+  return Object.freeze(bounded);
+};
+
+export const interfaceTextOutput = (source, values = {}) => {
+  if (typeof source !== 'string') return undefined;
+  if (source.length > MAX_OUTPUT_SOURCE_LENGTH) {
+    return makeOpaqueOutput(formatRawOutput(source, values));
+  }
+  const boundedValues = boundedOutputValues(source, values);
+  if (boundedValues === undefined) {
+    return makeOpaqueOutput(formatRawOutput(source, values));
+  }
+  return Object.freeze({
+    [interfaceTextOutputBrand]: true,
+    source,
+    values: boundedValues,
+  });
+};
+
+export const interfaceToastText = (source, values = {}) =>
+  interfaceTextOutput(source, values);
+
+export const interfaceText = (source, parameters = {}) => {
+  return formatInterfaceText(source, parameters);
+};
 
 // Native attribute/dialog text cannot contain <bdi>. Keep isolates at this
 // presentation boundary; ordinary helpers and stored data remain unchanged.
@@ -161,12 +251,12 @@ export const interfacePresentationText = (source, parameters = {}) => {
 };
 
 export const interfaceTextProps = (source, parameters = {}) => {
-  const translated = translationFor(source, activeLanguage);
+  const textLanguage = getInterfaceTextLanguage(source, activeLanguage);
   const text = formatInterfaceText(source, parameters);
   const unresolved = typeof text === 'string' && /\{[a-zA-Z][a-zA-Z0-9_]*\}/.test(text);
   const props = {
-    dir: translated && activeLanguage === 'ar' ? 'rtl' : 'ltr',
-    lang: translated ? activeLanguage : 'en',
+    dir: textLanguage === 'ar' ? 'rtl' : 'ltr',
+    lang: textLanguage,
   };
   if (!unresolved) {
     props['aria-label'] = text;

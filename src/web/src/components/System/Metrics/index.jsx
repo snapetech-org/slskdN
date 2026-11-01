@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import { formatRegionalCompactNumber, formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import { getKpiMetrics } from '../../../lib/telemetry';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -187,7 +187,7 @@ const Metrics = () => {
       setMetrics(data);
       setLastUpdated(new Date());
     } catch (err) {
-      setError(getApiErrorMessage(err, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(err, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -203,7 +203,7 @@ const Metrics = () => {
         <Message
           error
           header={interfaceText("Failed to load metrics")}
-          content={error}
+          content={<LocalizedOutputText output={error} />}
          {...interfaceTextProps("Failed to load metrics")}/>
         <Popup
           content={interfaceText("Try the Prometheus metrics request again after the current error.")}

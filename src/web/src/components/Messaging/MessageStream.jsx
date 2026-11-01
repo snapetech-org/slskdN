@@ -1,7 +1,7 @@
-import LocalizedText from "../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 import { NewMessageCount } from "../Shared/LocalizedCounts";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import './MessageStream.css';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Button, Popup } from 'semantic-ui-react';
@@ -109,7 +109,7 @@ const messageListSignature = (messages) =>
     .join('\u0002');
 
 const getErrorText = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'The message history could not be loaded.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'The message history could not be loaded.');
 
 const autolink = (text) => {
   if (typeof text !== 'string' || text.length === 0) return [text];
@@ -626,7 +626,7 @@ const MessageStream = ({ adapter, emptyHint, onCopy, onQuote, onSenderClick }) =
       </div>
       {error && (
         <div className="msg-stream-error" role="alert">
-          <span>{error}</span>
+          <span><LocalizedOutputText output={error} /></span>
           <Popup
             content={interfaceText("Retry loading this conversation's messages.")}
             trigger={(

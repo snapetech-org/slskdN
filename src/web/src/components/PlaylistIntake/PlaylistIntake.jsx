@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 
 
 import './PlaylistIntake.css';
@@ -121,7 +121,7 @@ const PlaylistIntake = () => {
       getOrganizationInput(playlist),
     );
     setItems(nextItems);
-    setStatus(interfaceText("Prepared tag and organization dry run for {playlistName}", { playlistName: playlist.name }));
+      setStatus(interfaceTextOutput("Prepared tag and organization dry run for {playlistName}", { playlistName: playlist.name }));
   };
 
   const copyTagOrganizationReport = (playlist) => {
@@ -129,17 +129,17 @@ const PlaylistIntake = () => {
     if (navigator.clipboard?.writeText) {
       navigator.clipboard.writeText(report).catch(() => {});
     }
-    setStatus(interfaceText("Prepared tag and organization report for {playlistName}", { playlistName: playlist.name }));
+      setStatus(interfaceTextOutput("Prepared tag and organization report for {playlistName}", { playlistName: playlist.name }));
   };
 
   const approveTagOrganizationSnapshot = (playlist) => {
     setItems(approvePlaylistTagOrganizationPlan(playlist.id));
-    setStatus(interfaceText("Approved tag and organization snapshot for {playlistName}", { playlistName: playlist.name }));
+      setStatus(interfaceTextOutput("Approved tag and organization snapshot for {playlistName}", { playlistName: playlist.name }));
   };
 
   const clearTagOrganizationSnapshot = (playlist) => {
     setItems(clearPlaylistTagOrganizationApproval(playlist.id));
-    setStatus(interfaceText("Cleared tag and organization snapshot for {playlistName}", { playlistName: playlist.name }));
+      setStatus(interfaceTextOutput("Cleared tag and organization snapshot for {playlistName}", { playlistName: playlist.name }));
   };
 
   const setTrackState = (playlist, track, state) => {
@@ -149,7 +149,7 @@ const PlaylistIntake = () => {
   const createSlskdPlaylist = async (playlist) => {
     const itemsToCreate = buildPlaylistCollectionItems(playlist);
     if (itemsToCreate.length === 0) {
-      setStatus(interfaceText("No matched rows are ready for {playlistName}", { playlistName: playlist.name }));
+      setStatus(interfaceTextOutput("No matched rows are ready for {playlistName}", { playlistName: playlist.name }));
       return;
     }
 
@@ -172,10 +172,10 @@ const PlaylistIntake = () => {
       }
       setItems(markPlaylistCollectionCreated(playlist.id, collectionId));
       setStatus(
-        interfaceText("Created playlist collection for {playlistName} with {count} planned rows", { playlistName: playlist.name, count: itemsToCreate.length }),
+        interfaceTextOutput("Created playlist collection for {playlistName} with {count} planned rows", { playlistName: playlist.name, count: itemsToCreate.length }),
       );
     } catch (error) {
-      setStatus(interfaceText("Playlist creation failed for {playlistName}: {message}", { playlistName: playlist.name, message: getApiErrorMessage(error, { t: interfaceText }) }));
+      setStatus(interfaceTextOutput("Playlist creation failed for {playlistName}: {message}", { playlistName: playlist.name, message: getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setBusyPlaylistId('');
     }
@@ -253,7 +253,7 @@ const PlaylistIntake = () => {
           <LocalizedText source={"Unmatched"} /><Label.Detail>{summary.unmatched}</Label.Detail>
         </Label>
       </div>
-      {status && <div className="playlist-intake-status">{status}</div>}
+      {status && <div className="playlist-intake-status"><LocalizedOutputText output={status} /></div>}
 
       <div className="playlist-intake-grid">
         {items.map((playlist) => (

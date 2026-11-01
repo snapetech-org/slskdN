@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Icon, Segment } from 'semantic-ui-react';
+import { LocalizedOutputText } from './LocalizedText';
 import { useInterfaceLanguage } from '../../lib/interfaceLocale';
 
 const ErrorSegment = ({ caption, icon = 'x', suppressPrefix = false, translateCaption = false }) => {
@@ -8,7 +9,7 @@ const ErrorSegment = ({ caption, icon = 'x', suppressPrefix = false, translateCa
     <span dir={directionFor(caption)} lang={languageFor(caption)}>
       {t(caption)}
     </span>
-  ) : typeof caption === 'string' ? <span>{caption}</span> : caption;
+  ) : <LocalizedOutputText output={caption} />;
   return (
     <Segment
       basic

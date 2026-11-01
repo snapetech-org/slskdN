@@ -1,4 +1,4 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 // <copyright file="MediaServerPanel.jsx" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
@@ -343,7 +343,7 @@ const MediaServerPanel = () => {
             <Header as="h4"><LocalizedText source={"Path Diagnostic"} /></Header>
             <Message color={pathDiagnostic.color} size="small">
               <Message.Header><LocalizedText source={pathDiagnostic.status} /></Message.Header>
-              <p><LocalizedText source={pathDiagnostic.message} /></p>
+              <p><LocalizedOutputText output={pathDiagnostic.message} /></p>
               {pathDiagnostic.mappedPath && (
                 <p>
                   <LocalizedText source={"Mapped path:"} />{" "}<code>{pathDiagnostic.mappedPath}</code>

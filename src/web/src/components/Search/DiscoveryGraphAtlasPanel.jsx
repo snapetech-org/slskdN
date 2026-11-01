@@ -1,12 +1,12 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import {
   localizeDiscoveryGraphEdgeType,
   localizeDiscoveryGraphEvidenceLaneLabel,
   localizeDiscoveryGraphReason,
   localizeDiscoveryGraphSummary,
 } from '../../lib/discoveryGraphLocale';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import * as searches from '../../lib/searches';
 import { getLocalStorageItem } from '../../lib/storage';
@@ -15,7 +15,7 @@ import './Search.css';
 import DiscoveryGraphAtlas from './DiscoveryGraphAtlas';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Dropdown,
@@ -123,7 +123,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
       }
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to build discovery graph'));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to build discovery graph'));
     } finally {
       setLoading(false);
     }
@@ -175,16 +175,16 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
     }).searchQueries;
 
     if (queries.length === 0) {
-      toast.error(interfaceText("No nearby track nodes were available to queue"));
+      toast.error(interfaceToastText("No nearby track nodes were available to queue"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries });
-      toast.success(interfaceText("Started {count} nearby atlas searches", { "count": (count) }));
+      toast.success(interfaceToastText("Started {count} nearby atlas searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }));
     }
   };
 
@@ -200,10 +200,10 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
 
     try {
       await navigator.clipboard.writeText(report);
-      toast.success(interfaceText("Discovery Graph branch report copied"));
+      toast.success(interfaceToastText("Discovery Graph branch report copied"));
     } catch (error) {
       console.error(error);
-      toast.error(interfaceText("Unable to copy Discovery Graph branch report"));
+      toast.error(interfaceToastText("Unable to copy Discovery Graph branch report"));
     }
   };
 
