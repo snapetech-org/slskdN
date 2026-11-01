@@ -48,4 +48,3 @@ jobs:
 
       - name: Scan applicable repository files
         run: ./scripts/security-scan-local.sh --trivy-only --ci
-

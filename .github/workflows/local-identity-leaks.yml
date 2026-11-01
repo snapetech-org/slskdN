@@ -96,4 +96,3 @@ jobs:
           LOCAL_IDENTITY_SCAN_BASE: ${{ github.event_name == 'push' && github.event.before || '' }}
           LOCAL_IDENTITY_SCAN_COMMIT_COUNT: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
         run: bash scripts/check-local-identity-leaks.sh
-

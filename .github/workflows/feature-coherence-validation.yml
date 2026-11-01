@@ -30,4 +30,3 @@ jobs:
         run: bash scripts/audit-readme-maturity-draft.sh
       - name: Run roadmap claim audit
         run: bash scripts/audit-roadmap-claims.sh
-
