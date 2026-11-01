@@ -57,6 +57,28 @@ describe('LocalizedText', () => {
     expect(interfaceText(source, { directory })).not.toMatch(/[\u2066-\u2069]/);
   });
 
+  it.each(['es', 'ar'])(
+    'isolates opaque placeholders in English fallback when %s is selected',
+    async (language) => {
+      const source = 'Diagnostic placeholder boundary for {externalValue}.';
+      const externalValue = 'العربية: provider-42';
+
+      await act(async () => {
+        await setInterfaceLanguage(language);
+      });
+      const { container } = render(
+        <LocalizedText source={source} values={{ externalValue }} />,
+      );
+
+      const fallback = container.querySelector('[lang="en"]');
+      expect(fallback).toHaveAttribute('dir', 'ltr');
+      expect(fallback.textContent).toBe(source.replace('{externalValue}', externalValue));
+      expect(fallback.querySelector('bdi')).toHaveAttribute('dir', 'auto');
+      expect(fallback.querySelector('bdi')).toHaveAttribute('lang', 'und');
+      expect(fallback.querySelector('bdi').textContent).toBe(externalValue);
+    },
+  );
+
   it('keeps the last complete locale when another catalog fails to load', async () => {
     await act(async () => {
       await setInterfaceLanguage('ar');

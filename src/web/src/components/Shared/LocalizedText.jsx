@@ -5,7 +5,7 @@ import {
   useInterfaceLanguage,
 } from '../../lib/interfaceLocale';
 
-const isolateRtlValues = (template, values) => {
+const isolatePlaceholderValues = (template, values) => {
   if (typeof template !== 'string' || !values) return template;
 
   const parts = [];
@@ -15,6 +15,7 @@ const isolateRtlValues = (template, values) => {
   let match;
 
   while ((match = placeholderPattern.exec(template)) !== null) {
+    if (!Object.hasOwn(values, match[1])) continue;
     const value = values[match[1]];
     if (typeof value !== 'string' && typeof value !== 'number') continue;
 
@@ -38,9 +39,7 @@ const LocalizedText = ({ as: Element = 'span', source, values, children, ...prop
   const direction = typeof source === 'string' ? directionFor(source) : undefined;
   const text = typeof source !== 'string'
     ? children
-    : direction === 'rtl'
-      ? isolateRtlValues(t(source), values)
-      : t(source, values);
+    : isolatePlaceholderValues(t(source), values);
   const textLanguage = typeof source === 'string'
     ? languageFor(source)
     : undefined;

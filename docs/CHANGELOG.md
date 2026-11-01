@@ -22,6 +22,9 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: isolate dynamic string and number placeholders inside localized
+  text for every text direction and English fallback; keep the values unchanged.
+
 - Localization: preserve source identity for external-visualizer messages and
   isolate configured names/paths while retaining the existing translated
   fallback label.
