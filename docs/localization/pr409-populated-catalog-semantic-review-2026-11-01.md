@@ -4,7 +4,7 @@
 
 - PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Five independent manual slices cover 125 source keys / 1,500 cells across the 12 direct locales. Combined verdicts: 1,209 keep, 238 high-confidence correction candidates, and 53 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Six independent manual slices cover 150 source keys / 1,800 cells across the 12 direct locales. Combined verdicts: 1,463 keep, 284 high-confidence correction candidates, and 53 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
 - Qualified native-speaker review remains required.
 
 ## Window 1
@@ -38,3 +38,9 @@ Evidence: [`window4`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/win
 The fifth disjoint 25-key slice covers 300 cells: 226 keep, 62 high-confidence corrections, and 12 uncertain. Corrections address Soulfind as a named service, Pod terminology, read-only status wording, Lidarr music-release directories, the atlas recenter action, connected-client heading tense, rationale labels, Pushbullet casing, Wishlist search-run counts, Arabic interest terminology, approximate content matching, and diagnostic redaction wording. The single-word “Release” tally remains uncertain across all locales because the compact verdict label may be read as an action or a category; locale-idiomatic wording needs native review.
 
 Evidence: [`window5`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/). Manifest SHA-256 `a687c46b9b6ae22be2baaa79ab3ccb0002201d03b77dc2ffc5db22fa77a39979`; input `cb4d4cd094fc666104fdcd88c6f2f3c4e6d63be7df7d5ca47b429cf566eab795`; decisions `35bbda5c1ea44a70744abe134cc62b3ed7e84c914223737b73af80655d09b4cc`. The review was pinned to PR head `ab640fe4b65517a37778f947561513fe33684705` / tree `d201d8a813ec3554d333a28986f2bc529f510f47`; later packaging changes are docs-only.
+
+## Window 6
+
+The sixth disjoint 25-key slice covers 300 cells: 254 keep and 46 high-confidence corrections, with no uncertain cells. Corrections address network latency and peer-count terms, the Mesh transport filter, Vietnamese Pod terminology, Arabic throughput and randomization, cleanup-toast grammar, artist-following status, segment decomposition, traversal-time labels, bulk-filter counts, Spanish removed-state wording, and Arabic skipped-import status.
+
+Evidence: [`window6`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/). Manifest SHA-256 `13f14a2e8ee34e14becb89ebeb9c68d538b62d4085e03903f8103ebeab3c7ab0`; input `3fd36a787003b2a8ce1c66365135bf1b90c3e6aa30d1c3856c51dfd7f43c2664`; decisions `c8369e8daf83fb99363774e92c4f05c580fc0c26df3f5ada19ccccecdd3f89cc`. The review was pinned to PR head `1f0edf585591f7034e30865c78fc8de57ceb64ad` / tree `bd77b2cb241080a6bddf8ddf5ad7ded720d06260`; later packaging changes are docs-only.

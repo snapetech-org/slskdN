@@ -1,0 +1,300 @@
+{"id": "es:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "zh-Hans:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "hi:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "de:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "ja:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "fr:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "pt-BR:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "ar:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "ko:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "zh-Hant:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "vi:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "id:src_e0ccaf626017fbeb", "verdict": "keep"}
+{"id": "es:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "zh-Hans:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "hi:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "de:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "ja:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "fr:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "pt-BR:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "ar:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "ko:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "zh-Hant:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "vi:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"id": "id:src_e0d43b76ed1ebe1f", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e0e7d293043c8cf6", "reason": "This row labels a VPN latency measurement shown in milliseconds. These targets name latency; the existing Spanish means latent state and the Korean means hidden/being hidden.", "target": "Latencia", "verdict": "correct"}
+{"id": "zh-Hans:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "hi:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "de:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "ja:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "fr:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "pt-BR:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "ar:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"confidence": "high", "id": "ko:src_e0e7d293043c8cf6", "reason": "This row labels a VPN latency measurement shown in milliseconds. These targets name latency; the existing Spanish means latent state and the Korean means hidden/being hidden.", "target": "지연 시간", "verdict": "correct"}
+{"id": "zh-Hant:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "vi:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "id:src_e0e7d293043c8cf6", "verdict": "keep"}
+{"id": "es:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hans:src_e0f1ab860bfe0988", "reason": "The callsite is a Mesh network-statistic count. These targets preserve the technical network-peer meaning instead of colleagues/fellow travelers.", "target": "对等节点总数", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e0f1ab860bfe0988", "reason": "The callsite is a Mesh network-statistic count. These targets preserve the technical network-peer meaning instead of colleagues/fellow travelers.", "target": "कुल पीयर नोड्स", "verdict": "correct"}
+{"id": "de:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"id": "ja:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"id": "fr:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"id": "pt-BR:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"id": "ar:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"id": "ko:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hant:src_e0f1ab860bfe0988", "reason": "The callsite is a Mesh network-statistic count. These targets preserve the technical network-peer meaning instead of colleagues/fellow travelers.", "target": "對等節點總數", "verdict": "correct"}
+{"id": "vi:src_e0f1ab860bfe0988", "verdict": "keep"}
+{"confidence": "high", "id": "id:src_e0f1ab860bfe0988", "reason": "The callsite is a Mesh network-statistic count. These targets preserve the technical network-peer meaning instead of colleagues/fellow travelers.", "target": "Jumlah peer", "verdict": "correct"}
+{"id": "es:src_e107694c3c7ce0e1", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hans:src_e107694c3c7ce0e1", "reason": "This button filters messaging to Mesh pod conversations. The existing targets in these locales mean mesh-shaped/net/grid or only a generic network; preserve the Mesh transport name.", "target": "仅 Mesh", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e107694c3c7ce0e1", "reason": "This button filters messaging to Mesh pod conversations. The existing targets in these locales mean mesh-shaped/net/grid or only a generic network; preserve the Mesh transport name.", "target": "केवल Mesh", "verdict": "correct"}
+{"id": "de:src_e107694c3c7ce0e1", "verdict": "keep"}
+{"id": "ja:src_e107694c3c7ce0e1", "verdict": "keep"}
+{"id": "fr:src_e107694c3c7ce0e1", "verdict": "keep"}
+{"id": "pt-BR:src_e107694c3c7ce0e1", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e107694c3c7ce0e1", "reason": "This button filters messaging to Mesh pod conversations. The existing targets in these locales mean mesh-shaped/net/grid or only a generic network; preserve the Mesh transport name.", "target": "Mesh فقط", "verdict": "correct"}
+{"id": "ko:src_e107694c3c7ce0e1", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hant:src_e107694c3c7ce0e1", "reason": "This button filters messaging to Mesh pod conversations. The existing targets in these locales mean mesh-shaped/net/grid or only a generic network; preserve the Mesh transport name.", "target": "僅 Mesh", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e107694c3c7ce0e1", "reason": "This button filters messaging to Mesh pod conversations. The existing targets in these locales mean mesh-shaped/net/grid or only a generic network; preserve the Mesh transport name.", "target": "Chỉ Mesh", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e107694c3c7ce0e1", "reason": "This button filters messaging to Mesh pod conversations. The existing targets in these locales mean mesh-shaped/net/grid or only a generic network; preserve the Mesh transport name.", "target": "Hanya Mesh", "verdict": "correct"}
+{"id": "es:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "zh-Hans:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "hi:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "de:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "ja:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "fr:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "pt-BR:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "ar:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "ko:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "zh-Hant:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e1135731aa2ef1c2", "reason": "Pod is the federation entity selectable for VPN forwarding. “Nhóm” is a generic group and loses the technical object, consistent with prior reviewed Pod terminology.", "target": "Chọn Pod có hỗ trợ VPN", "verdict": "correct"}
+{"id": "id:src_e1135731aa2ef1c2", "verdict": "keep"}
+{"id": "es:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "zh-Hans:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "hi:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "de:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "ja:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "fr:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "pt-BR:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e1155ea052f9ab5a", "reason": "This statistic counts forwarding profiles whose performance flag is high-throughput. The current Arabic means high productivity; this target names a high transfer rate.", "target": "معدل نقل مرتفع", "verdict": "correct"}
+{"id": "ko:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "zh-Hant:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "vi:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "id:src_e1155ea052f9ab5a", "verdict": "keep"}
+{"id": "es:src_e1287c83ad942775", "verdict": "keep"}
+{"id": "zh-Hans:src_e1287c83ad942775", "verdict": "keep"}
+{"id": "hi:src_e1287c83ad942775", "verdict": "keep"}
+{"confidence": "high", "id": "de:src_e1287c83ad942775", "reason": "This success toast reports counts of expired-membership records cleaned and errors. These targets fix awkward count placement in German/French/Japanese and distinguish cleaned from deleted in Vietnamese; both placeholders are preserved.", "target": "Bereinigung abgeschlossen: {recordsCleaned} Datensätze bereinigt, {errorsEncountered} Fehler.", "verdict": "correct"}
+{"confidence": "high", "id": "ja:src_e1287c83ad942775", "reason": "This success toast reports counts of expired-membership records cleaned and errors. These targets fix awkward count placement in German/French/Japanese and distinguish cleaned from deleted in Vietnamese; both placeholders are preserved.", "target": "クリーンアップ完了: {recordsCleaned} 件のレコードを整理し、{errorsEncountered} 件のエラーが発生しました。", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_e1287c83ad942775", "reason": "This success toast reports counts of expired-membership records cleaned and errors. These targets fix awkward count placement in German/French/Japanese and distinguish cleaned from deleted in Vietnamese; both placeholders are preserved.", "target": "Nettoyage terminé : {recordsCleaned} enregistrements nettoyés, {errorsEncountered} erreurs.", "verdict": "correct"}
+{"id": "pt-BR:src_e1287c83ad942775", "verdict": "keep"}
+{"id": "ar:src_e1287c83ad942775", "verdict": "keep"}
+{"id": "ko:src_e1287c83ad942775", "verdict": "keep"}
+{"id": "zh-Hant:src_e1287c83ad942775", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e1287c83ad942775", "reason": "This success toast reports counts of expired-membership records cleaned and errors. These targets fix awkward count placement in German/French/Japanese and distinguish cleaned from deleted in Vietnamese; both placeholders are preserved.", "target": "Đã dọn dẹp xong: {recordsCleaned} bản ghi đã được làm sạch, gặp {errorsEncountered} lỗi.", "verdict": "correct"}
+{"id": "id:src_e1287c83ad942775", "verdict": "keep"}
+{"id": "es:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "zh-Hans:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "hi:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "de:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "ja:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "fr:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "pt-BR:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "ar:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "ko:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "zh-Hant:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "vi:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "id:src_e1356ce6ec2a6fbe", "verdict": "keep"}
+{"id": "es:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "zh-Hans:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "hi:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "de:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "ja:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "fr:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "pt-BR:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "ar:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "ko:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "zh-Hant:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "vi:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "id:src_e136f9e78ad7508f", "verdict": "keep"}
+{"id": "es:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "zh-Hans:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "hi:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "de:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "ja:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "fr:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "pt-BR:src_e14ecb9b008405d1", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e14ecb9b008405d1", "reason": "The popup describes randomizing visual parameters. The current Arabic says to arrange/order the parameters randomly, which changes the operation.", "target": "غيّر المعلمات المرئية الشائعة لإعداد MilkDrop الأصلي النشط عشوائيًا واحفظ النسخة المعدّلة محليًا.", "verdict": "correct"}
+{"id": "ko:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "zh-Hant:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "vi:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "id:src_e14ecb9b008405d1", "verdict": "keep"}
+{"id": "es:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "zh-Hans:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "hi:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "de:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "ja:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "fr:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "pt-BR:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "ar:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "ko:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "zh-Hant:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "vi:src_e159b06187d369a0", "verdict": "keep"}
+{"id": "id:src_e159b06187d369a0", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "Siguiendo a {artist}.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "正在关注 {artist}。", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "अब {artist} को फ़ॉलो कर रहे हैं।", "verdict": "correct"}
+{"confidence": "high", "id": "de:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "Ich folge {artist}.", "verdict": "correct"}
+{"confidence": "high", "id": "ja:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "{artist} をフォローしています。", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "Je suis les nouveautés de {artist}.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "Acompanhando {artist}.", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "أتابع {artist}.", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "아티스트 {artist} 팔로우 중입니다.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hant:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "正在關注 {artist}。", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "Đang theo dõi {artist}.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e15c77d0c8aee674", "reason": "The callsite is ArtistReleaseRadarPanel, where this status follows an artist to track upcoming releases. In the current targets several locales read as watching video/looking at the artist; these say following or monitoring the artist and preserve {artist}.", "target": "Mengikuti {artist}.", "verdict": "correct"}
+{"id": "es:src_e17b9a105e5b7499", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hans:src_e17b9a105e5b7499", "reason": "This is a SongID analysis heading above run.segments. These targets say decomposition of audio segments; the current Arabic refers to sector analysis and the Chinese terms are unnatural truncations.", "target": "片段分解", "verdict": "correct"}
+{"id": "hi:src_e17b9a105e5b7499", "verdict": "keep"}
+{"id": "de:src_e17b9a105e5b7499", "verdict": "keep"}
+{"id": "ja:src_e17b9a105e5b7499", "verdict": "keep"}
+{"id": "fr:src_e17b9a105e5b7499", "verdict": "keep"}
+{"id": "pt-BR:src_e17b9a105e5b7499", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e17b9a105e5b7499", "reason": "This is a SongID analysis heading above run.segments. These targets say decomposition of audio segments; the current Arabic refers to sector analysis and the Chinese terms are unnatural truncations.", "target": "تفكيك المقاطع", "verdict": "correct"}
+{"id": "ko:src_e17b9a105e5b7499", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hant:src_e17b9a105e5b7499", "reason": "This is a SongID analysis heading above run.segments. These targets say decomposition of audio segments; the current Arabic refers to sector analysis and the Chinese terms are unnatural truncations.", "target": "片段分解", "verdict": "correct"}
+{"id": "vi:src_e17b9a105e5b7499", "verdict": "keep"}
+{"id": "id:src_e17b9a105e5b7499", "verdict": "keep"}
+{"id": "es:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "zh-Hans:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "hi:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "de:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "ja:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "fr:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "pt-BR:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "ar:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "ko:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "zh-Hant:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "vi:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "id:src_e17d5f05f9d9c30d", "verdict": "keep"}
+{"id": "es:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "zh-Hans:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "hi:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "de:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "ja:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "fr:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "pt-BR:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "ar:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "ko:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "zh-Hant:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "vi:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "id:src_e18411a8f1756691", "verdict": "keep"}
+{"id": "es:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"id": "zh-Hans:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"id": "hi:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"id": "de:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"confidence": "high", "id": "ja:src_e1a94bc892e3bab1", "reason": "The source is an IPLD mapping traversal metric shown in milliseconds. The current targets in these locales mean movement/travel or data transmission rather than traversal.", "target": "平均走査時間:", "verdict": "correct"}
+{"id": "fr:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"id": "pt-BR:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"id": "ar:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"confidence": "high", "id": "ko:src_e1a94bc892e3bab1", "reason": "The source is an IPLD mapping traversal metric shown in milliseconds. The current targets in these locales mean movement/travel or data transmission rather than traversal.", "target": "평균 순회 시간:", "verdict": "correct"}
+{"id": "zh-Hant:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e1a94bc892e3bab1", "reason": "The source is an IPLD mapping traversal metric shown in milliseconds. The current targets in these locales mean movement/travel or data transmission rather than traversal.", "target": "Thời gian duyệt trung bình:", "verdict": "correct"}
+{"id": "id:src_e1a94bc892e3bab1", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e1bb4a0466c34074", "reason": "This is a success toast after bulk Wishlist filter updates. These targets put the count in the correct position and read as a completed update; {updatedCount} is preserved.", "target": "Se actualizaron los filtros de {updatedCount} elementos.", "verdict": "correct"}
+{"id": "zh-Hans:src_e1bb4a0466c34074", "verdict": "keep"}
+{"id": "hi:src_e1bb4a0466c34074", "verdict": "keep"}
+{"confidence": "high", "id": "de:src_e1bb4a0466c34074", "reason": "This is a success toast after bulk Wishlist filter updates. These targets put the count in the correct position and read as a completed update; {updatedCount} is preserved.", "target": "Filter für {updatedCount} Einträge aktualisiert.", "verdict": "correct"}
+{"id": "ja:src_e1bb4a0466c34074", "verdict": "keep"}
+{"confidence": "high", "id": "fr:src_e1bb4a0466c34074", "reason": "This is a success toast after bulk Wishlist filter updates. These targets put the count in the correct position and read as a completed update; {updatedCount} is preserved.", "target": "Filtres mis à jour pour {updatedCount} éléments.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e1bb4a0466c34074", "reason": "This is a success toast after bulk Wishlist filter updates. These targets put the count in the correct position and read as a completed update; {updatedCount} is preserved.", "target": "Filtros atualizados para {updatedCount} item(ns).", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_e1bb4a0466c34074", "reason": "This is a success toast after bulk Wishlist filter updates. These targets put the count in the correct position and read as a completed update; {updatedCount} is preserved.", "target": "تم تحديث عوامل التصفية لعدد {updatedCount} من العناصر.", "verdict": "correct"}
+{"id": "ko:src_e1bb4a0466c34074", "verdict": "keep"}
+{"id": "zh-Hant:src_e1bb4a0466c34074", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e1bb4a0466c34074", "reason": "This is a success toast after bulk Wishlist filter updates. These targets put the count in the correct position and read as a completed update; {updatedCount} is preserved.", "target": "Đã cập nhật bộ lọc cho {updatedCount} mục.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e1bb4a0466c34074", "reason": "This is a success toast after bulk Wishlist filter updates. These targets put the count in the correct position and read as a completed update; {updatedCount} is preserved.", "target": "Filter untuk {updatedCount} item telah diperbarui.", "verdict": "correct"}
+{"id": "es:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "zh-Hans:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "hi:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "de:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "ja:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "fr:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "pt-BR:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "ar:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "ko:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "zh-Hant:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "vi:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "id:src_e1bfe7eccc45465f", "verdict": "keep"}
+{"id": "es:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "zh-Hans:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "hi:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "de:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "ja:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "fr:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "pt-BR:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "ar:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "ko:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "zh-Hant:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "vi:src_e1c32645f2f85a25", "verdict": "keep"}
+{"id": "id:src_e1c32645f2f85a25", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e1f79758cc42e6fe", "reason": "This is a progress-state label. “Remoto” means remote; the source state is removed.", "target": "eliminado", "verdict": "correct"}
+{"id": "zh-Hans:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "hi:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "de:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "ja:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "fr:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "pt-BR:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "ar:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "ko:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "zh-Hant:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "vi:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "id:src_e1f79758cc42e6fe", "verdict": "keep"}
+{"id": "es:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "zh-Hans:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "hi:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "de:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "ja:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "fr:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "pt-BR:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "ar:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "ko:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "zh-Hant:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "vi:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "id:src_e1f8a177b7a08994", "verdict": "keep"}
+{"id": "es:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "zh-Hans:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "hi:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "de:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "ja:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "fr:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "pt-BR:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "ar:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "ko:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "zh-Hant:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "vi:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "id:src_e1fbeb365cac4f60", "verdict": "keep"}
+{"id": "es:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "zh-Hans:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "hi:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "de:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "ja:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "fr:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "pt-BR:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "ar:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "ko:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "zh-Hant:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "vi:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "id:src_e202f5aefd321648", "verdict": "keep"}
+{"id": "es:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "zh-Hans:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "hi:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "de:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "ja:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "fr:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "pt-BR:src_e206c7687ea52e93", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e206c7687ea52e93", "reason": "This toast reports completed import and skip counts. The current Arabic infinitive does not clearly state that the skipped items were skipped; this past/passive wording preserves all placeholders.", "target": "تم استيراد {importedCount}؛ وتم تخطي {skippedCount}: {fileNames}.", "verdict": "correct"}
+{"id": "ko:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "zh-Hant:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "vi:src_e206c7687ea52e93", "verdict": "keep"}
+{"id": "id:src_e206c7687ea52e93", "verdict": "keep"}
