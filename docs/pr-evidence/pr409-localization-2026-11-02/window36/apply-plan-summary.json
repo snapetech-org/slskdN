@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "pr": 409,
+  "repository": "snapetech-org/slskdN",
+  "head": "370c172e91935d7753c398eaf1b1fbc2e82f65ba",
+  "tree": "61bd0c6af797b0e810fdf9fad82c7d3a95c88b9c",
+  "primaryRowsReattested": 275,
+  "sourceCurrentCallerChecks": "PASS",
+  "candidateProposals": 39,
+  "acceptedPrimary": 36,
+  "refinedPrimary": 3,
+  "missedCorrections": 5,
+  "holdsUnchanged": 3,
+  "uniqueEdits": 44,
+  "filesTouched": 11,
+  "testBuildScanCiRun": false
+}
