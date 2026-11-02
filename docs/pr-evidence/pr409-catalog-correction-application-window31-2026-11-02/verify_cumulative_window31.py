@@ -31,8 +31,8 @@ APP30_COMMIT = '0188e7f2b3ca5d57fd91409159a42495cbbac763'
 REVIEW31 = 'fbafaae2e05af8ce51a263c7be2a92a8728ceb94'
 APP31_COMMIT = 'b38a95fb75ec4ac691ad02c4b2c7393f8a1389b7'
 APP31_TREE = 'f2e7a734d60555964f0487377066a955308fd8c9'
-APP31_PATHS = {f'src/web/public/locales/{locale}.json' for locale in LOCALES if locale != 'es'} | {'docs/CHANGELOG.md'}
 LOCALES = ['ar','de','es','fr','hi','id','ja','ko','pt-BR','vi','zh-Hans','zh-Hant']
+APP31_PATHS = {f'src/web/public/locales/{locale}.json' for locale in LOCALES if locale != 'es'} | {'docs/CHANGELOG.md'}
 APP_PATHS = {'src/web/public/locales/' + locale + '.json' for locale in LOCALES} | {'docs/CHANGELOG.md'}
 
 def sha(value):
