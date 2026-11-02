@@ -1,0 +1,300 @@
+{"confidence":"high","id":"ar:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"اكتمل البحث، عدد النتائج: {responseCount}","verdict":"correct"}
+{"id":"ar:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"ar:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"ar:src_fe7564971134ee98","verdict":"keep"}
+{"id":"ar:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"نشر سجل العضوية","verdict":"correct"}
+{"id":"ar:src_fe884a6de724146c","verdict":"keep"}
+{"id":"ar:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"ar:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"ar:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"ar:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"ar:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"مسارات مرشحة","verdict":"correct"}
+{"id":"ar:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"ar:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"ar:src_fed639a1440f8820","verdict":"keep"}
+{"id":"ar:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"ar:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"ar:src_ff08153efea69ac5","verdict":"keep"}
+{"confidence":"high","id":"ar:src_ff0b24dc9dca395a","reason":"The caller supplies the application’s full build identifier in the footer title. These targets identify the currently running build/version rather than saying only “current version” or leaving the running-build relation unclear.","target":"الإصدار الجاري تشغيله: {currentBuild}","verdict":"correct"}
+{"id":"ar:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"ar:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"ar:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"ar:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"ar:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"de:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"Suche abgeschlossen: {responseCount} Treffer","verdict":"correct"}
+{"id":"de:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"de:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"de:src_fe7564971134ee98","verdict":"keep"}
+{"id":"de:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"de:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"Mitgliedschaftsdatensatz veröffentlichen","verdict":"correct"}
+{"id":"de:src_fe884a6de724146c","verdict":"keep"}
+{"id":"de:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"de:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"de:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"de:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"de:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"de:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"mögliche Tracks","verdict":"correct"}
+{"id":"de:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"de:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"de:src_fed639a1440f8820","verdict":"keep"}
+{"id":"de:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"de:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"de:src_ff08153efea69ac5","verdict":"keep"}
+{"confidence":"high","id":"de:src_ff0b24dc9dca395a","reason":"The caller supplies the application’s full build identifier in the footer title. These targets identify the currently running build/version rather than saying only “current version” or leaving the running-build relation unclear.","target":"Ausgeführter Build: {currentBuild}","verdict":"correct"}
+{"id":"de:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"de:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"de:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"de:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"de:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"es:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"Búsqueda completada: {responseCount} resultados","verdict":"correct"}
+{"id":"es:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"es:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"es:src_fe7564971134ee98","verdict":"keep"}
+{"id":"es:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"es:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"Publicar el registro de membresía","verdict":"correct"}
+{"id":"es:src_fe884a6de724146c","verdict":"keep"}
+{"id":"es:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"es:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"es:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"es:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"es:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"es:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"pistas candidatas","verdict":"correct"}
+{"id":"es:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"es:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"es:src_fed639a1440f8820","verdict":"keep"}
+{"id":"es:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"es:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"es:src_ff08153efea69ac5","verdict":"keep"}
+{"confidence":"high","id":"es:src_ff0b24dc9dca395a","reason":"The caller supplies the application’s full build identifier in the footer title. These targets identify the currently running build/version rather than saying only “current version” or leaving the running-build relation unclear.","target":"Build en ejecución: {currentBuild}","verdict":"correct"}
+{"id":"es:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"es:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"es:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"es:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"es:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"Recherche terminée : {responseCount} résultats","verdict":"correct"}
+{"id":"fr:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"fr:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"fr:src_fe7564971134ee98","verdict":"keep"}
+{"id":"fr:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"Publier la fiche d’adhésion","verdict":"correct"}
+{"id":"fr:src_fe884a6de724146c","verdict":"keep"}
+{"id":"fr:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"fr:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"fr:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"fr:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"fr:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"pistes candidates","verdict":"correct"}
+{"id":"fr:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"fr:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"fr:src_fed639a1440f8820","verdict":"keep"}
+{"id":"fr:src_feee65fabe8baec3","verdict":"keep"}
+{"confidence":"high","id":"fr:src_ff07d1fc69a16ad6","reason":"The caller describes an outbound publication toggle whose state remains local until backend federation is implemented. These replacements avoid literal cable/wiring language and express implementation/setup in the UI context.","target":"Désactivez la publication de {label}. Cela reste un état de politique locale tant que la fédération côté serveur n’est pas mise en place.","verdict":"correct"}
+{"id":"fr:src_ff08153efea69ac5","verdict":"keep"}
+{"confidence":"high","id":"fr:src_ff0b24dc9dca395a","reason":"The caller supplies the application’s full build identifier in the footer title. These targets identify the currently running build/version rather than saying only “current version” or leaving the running-build relation unclear.","target":"Build en cours d’exécution : {currentBuild}","verdict":"correct"}
+{"id":"fr:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"fr:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"fr:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"fr:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"fr:src_ff356ecd7ccf583f","verdict":"keep"}
+{"id":"hi:src_fe65964a7f8e61f3","verdict":"keep"}
+{"id":"hi:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"hi:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"hi:src_fe7564971134ee98","verdict":"keep"}
+{"id":"hi:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"सदस्यता रिकॉर्ड प्रकाशित करें","verdict":"correct"}
+{"id":"hi:src_fe884a6de724146c","verdict":"keep"}
+{"id":"hi:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"hi:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"hi:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"hi:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"hi:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"संभावित ट्रैक","verdict":"correct"}
+{"id":"hi:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"hi:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"hi:src_fed639a1440f8820","verdict":"keep"}
+{"id":"hi:src_feee65fabe8baec3","verdict":"keep"}
+{"confidence":"high","id":"hi:src_ff07d1fc69a16ad6","reason":"The caller describes an outbound publication toggle whose state remains local until backend federation is implemented. These replacements avoid literal cable/wiring language and express implementation/setup in the UI context.","target":"{label} का प्रकाशन अक्षम करें। यह स्थिति तब तक स्थानीय नीति तक सीमित रहेगी, जब तक बैकएंड फ़ेडरेशन लागू नहीं हो जाता।","verdict":"correct"}
+{"id":"hi:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"hi:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"hi:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"hi:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"hi:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"hi:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"hi:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"id:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"Pencarian selesai. Jumlah hasil: {responseCount}","verdict":"correct"}
+{"id":"id:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"id:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"id:src_fe7564971134ee98","verdict":"keep"}
+{"id":"id:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"id:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"Terbitkan catatan keanggotaan","verdict":"correct"}
+{"id":"id:src_fe884a6de724146c","verdict":"keep"}
+{"id":"id:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"id:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"id:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"id:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"id:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"id:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"kandidat lagu","verdict":"correct"}
+{"id":"id:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"id:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"id:src_fed639a1440f8820","verdict":"keep"}
+{"id":"id:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"id:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"id:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"id:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"id:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"id:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"id:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"id:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"id:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"検索完了：{responseCount}件の結果","verdict":"correct"}
+{"id":"ja:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"ja:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"ja:src_fe7564971134ee98","verdict":"keep"}
+{"id":"ja:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"会員記録を公開","verdict":"correct"}
+{"id":"ja:src_fe884a6de724146c","verdict":"keep"}
+{"id":"ja:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"ja:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"ja:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"ja:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"ja:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"候補トラック","verdict":"correct"}
+{"id":"ja:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"ja:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"ja:src_fed639a1440f8820","verdict":"keep"}
+{"id":"ja:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"ja:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"ja:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"ja:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"ja:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"ja:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"ja:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"ja:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"ja:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"{responseCount}개의 결과로 검색이 완료되었습니다.","verdict":"correct"}
+{"id":"ko:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"ko:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"ko:src_fe7564971134ee98","verdict":"keep"}
+{"id":"ko:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"회원 기록 게시","verdict":"correct"}
+{"id":"ko:src_fe884a6de724146c","verdict":"keep"}
+{"id":"ko:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"ko:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"ko:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"ko:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"ko:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"후보 트랙","verdict":"correct"}
+{"id":"ko:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"ko:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"ko:src_fed639a1440f8820","verdict":"keep"}
+{"id":"ko:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"ko:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"ko:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"ko:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"ko:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"ko:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"ko:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"ko:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"ko:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"Pesquisa concluída: {responseCount} resultados","verdict":"correct"}
+{"id":"pt-BR:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"pt-BR:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"pt-BR:src_fe7564971134ee98","verdict":"keep"}
+{"id":"pt-BR:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"Publicar registro de associação","verdict":"correct"}
+{"id":"pt-BR:src_fe884a6de724146c","verdict":"keep"}
+{"id":"pt-BR:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"pt-BR:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"pt-BR:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"pt-BR:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"pt-BR:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"faixas candidatas","verdict":"correct"}
+{"id":"pt-BR:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"pt-BR:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"pt-BR:src_fed639a1440f8820","verdict":"keep"}
+{"id":"pt-BR:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"pt-BR:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"pt-BR:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"pt-BR:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"pt-BR:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"pt-BR:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"pt-BR:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"pt-BR:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"pt-BR:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"Tìm kiếm hoàn tất: {responseCount} kết quả","verdict":"correct"}
+{"id":"vi:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"vi:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"vi:src_fe7564971134ee98","verdict":"keep"}
+{"id":"vi:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"Xuất bản hồ sơ thành viên","verdict":"correct"}
+{"id":"vi:src_fe884a6de724146c","verdict":"keep"}
+{"id":"vi:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"vi:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"vi:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"vi:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"vi:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"bản nhạc ứng viên","verdict":"correct"}
+{"id":"vi:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"vi:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"vi:src_fed639a1440f8820","verdict":"keep"}
+{"id":"vi:src_feee65fabe8baec3","verdict":"keep"}
+{"confidence":"high","id":"vi:src_ff07d1fc69a16ad6","reason":"The caller describes an outbound publication toggle whose state remains local until backend federation is implemented. These replacements avoid literal cable/wiring language and express implementation/setup in the UI context.","target":"Tắt xuất bản {label}. Trạng thái này vẫn chỉ áp dụng cục bộ cho đến khi liên kết liên máy chủ ở backend được triển khai.","verdict":"correct"}
+{"id":"vi:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"vi:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"vi:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"vi:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"vi:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"vi:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"vi:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"搜索完成，共有 {responseCount} 个结果","verdict":"correct"}
+{"id":"zh-Hans:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"zh-Hans:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"zh-Hans:src_fe7564971134ee98","verdict":"keep"}
+{"id":"zh-Hans:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"发布会员记录","verdict":"correct"}
+{"id":"zh-Hans:src_fe884a6de724146c","verdict":"keep"}
+{"id":"zh-Hans:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"zh-Hans:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"zh-Hans:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"zh-Hans:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"zh-Hans:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"候选曲目","verdict":"correct"}
+{"id":"zh-Hans:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"zh-Hans:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"zh-Hans:src_fed639a1440f8820","verdict":"keep"}
+{"id":"zh-Hans:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"zh-Hans:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"zh-Hans:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"zh-Hans:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"zh-Hans:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"zh-Hans:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"zh-Hans:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"zh-Hans:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"zh-Hans:src_ff356ecd7ccf583f","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fe65964a7f8e61f3","reason":"The two callers show this is a success toast and pass the server responseCount. These targets present the count naturally as the number of results; the existing phrasing in these locales is awkward or omits a needed result counter/classifier.","target":"搜尋完成，共有 {responseCount} 個結果","verdict":"correct"}
+{"id":"zh-Hant:src_fe6bace339dfe7cd","verdict":"keep"}
+{"id":"zh-Hant:src_fe6e67fb82d295be","verdict":"keep"}
+{"id":"zh-Hant:src_fe7564971134ee98","verdict":"keep"}
+{"id":"zh-Hant:src_fe84c0cc7949dcdb","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fe85b015087cbb44","reason":"The button calls handlePublishMembership inside the advanced membership publishing form. The adjacent warning and tooltip say this action publishes a signed membership record to the DHT, and the form heading is “Publish Membership Record”; the targets name the record being published instead of a vague membership/qualification.","target":"發布會員記錄","verdict":"correct"}
+{"id":"zh-Hant:src_fe884a6de724146c","verdict":"keep"}
+{"id":"zh-Hant:src_fe8fe164cc305128","verdict":"keep"}
+{"id":"zh-Hant:src_fe9923b7b176d2bb","verdict":"keep"}
+{"id":"zh-Hant:src_fe9ba5e4de3fcb00","verdict":"keep"}
+{"id":"zh-Hant:src_fea4e3598c6a046b","verdict":"keep"}
+{"id":"zh-Hant:src_fea8a8c04fa3cb59","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fec9749eb891789b","reason":"The caller renders a numeric canonicalSupportCount followed by this noun phrase. It refers to candidate music tracks supporting a canonical match, not people who are candidates and not the verb “to track”; the replacements name candidate tracks.","target":"候選曲目","verdict":"correct"}
+{"id":"zh-Hant:src_fed324bc43ee16f6","verdict":"keep"}
+{"id":"zh-Hant:src_fed4151a336a4abf","verdict":"keep"}
+{"id":"zh-Hant:src_fed639a1440f8820","verdict":"keep"}
+{"id":"zh-Hant:src_feee65fabe8baec3","verdict":"keep"}
+{"id":"zh-Hant:src_ff07d1fc69a16ad6","verdict":"keep"}
+{"id":"zh-Hant:src_ff08153efea69ac5","verdict":"keep"}
+{"id":"zh-Hant:src_ff0b24dc9dca395a","verdict":"keep"}
+{"id":"zh-Hant:src_ff0c60dfa6d4561d","verdict":"keep"}
+{"id":"zh-Hant:src_ff2c57cb2ac25428","verdict":"keep"}
+{"id":"zh-Hant:src_ff3383c939c5d250","verdict":"keep"}
+{"id":"zh-Hant:src_ff33e4efc312b496","verdict":"keep"}
+{"id":"zh-Hant:src_ff356ecd7ccf583f","verdict":"keep"}

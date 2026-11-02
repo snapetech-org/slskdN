@@ -1,0 +1,101 @@
+{
+  "rows": 300,
+  "verdicts": {
+    "correct": 42,
+    "keep": 258
+  },
+  "correctionRows": 42,
+  "correctionsByLocale": {
+    "ar": 4,
+    "de": 4,
+    "es": 4,
+    "fr": 5,
+    "hi": 3,
+    "id": 3,
+    "ja": 3,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 4,
+    "zh-Hans": 3,
+    "zh-Hant": 3
+  },
+  "inputSha256": "fc41b5f62ac2feaad4c5184d1d09d481b114703596f734804718d5a651942307",
+  "decisionsSha256": "99c398c8439ed2d41870be80940ad5e0409e18d021e9e66d566bd863950375af",
+  "crossReviewPlanSha256": "b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568",
+  "correctionSourceKeys": 5,
+  "perLocale": {
+    "es": {
+      "correct": 4,
+      "keep": 21
+    },
+    "zh-Hans": {
+      "correct": 3,
+      "keep": 22
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 3
+    },
+    "de": {
+      "correct": 4,
+      "keep": 21
+    },
+    "ja": {
+      "correct": 3,
+      "keep": 22
+    },
+    "fr": {
+      "correct": 5,
+      "keep": 20
+    },
+    "pt-BR": {
+      "correct": 3,
+      "keep": 22
+    },
+    "ar": {
+      "correct": 4,
+      "keep": 21
+    },
+    "ko": {
+      "correct": 3,
+      "keep": 22
+    },
+    "zh-Hant": {
+      "correct": 3,
+      "keep": 22
+    },
+    "vi": {
+      "correct": 4,
+      "keep": 21
+    },
+    "id": {
+      "correct": 3,
+      "keep": 22
+    }
+  },
+  "placeholdersProtectedLiterals": "PASS",
+  "proposedTargetHashes": "PASS",
+  "reviewedSourceKeys": [
+    "src_fe65964a7f8e61f3",
+    "src_fe85b015087cbb44",
+    "src_fec9749eb891789b",
+    "src_ff07d1fc69a16ad6",
+    "src_ff0b24dc9dca395a"
+  ],
+  "semanticConfidence": "high for flagged corrections; locale-quality confidence moderate; native-speaker review outstanding",
+  "independentCrossReview": {
+    "reviewedCandidates": 42,
+    "acceptedAsProposed": 38,
+    "refinedAndAccepted": 4,
+    "held": 0,
+    "ledgerSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "applyPlanSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "summarySha256": "f985587187abfd975968a65ecd3255b836ec6fd8b0c83b486cc02bc3dbd64d20"
+  },
+  "application": {
+    "rows": 42,
+    "appliedCommit": "dff0b0281483d777c01c5e7dd68e24b51fdc67f8",
+    "appliedTree": "37f299d9e8f2f476bbc3eaefe872f3c727a4b17d",
+    "applicationLedgerSha256": "a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9"
+  }
+}
