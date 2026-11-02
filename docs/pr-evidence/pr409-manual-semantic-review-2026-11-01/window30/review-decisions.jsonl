@@ -1,0 +1,264 @@
+{"id":"ar:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"ar:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"ar:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"ar:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"ar:src_ff6850671df5dd90","verdict":"keep"}
+{"confidence":"high","id":"ar:src_ff6c640baa80b451","reason":"SongIDPanel displays this prefix before canonicalSupportCount and candidate track nouns. Here canonical means the reference/standard music record, and the count is candidate tracks supporting it; the current Arabic wording reads as ecclesiastical and the Vietnamese wording as classical.","target":"دعم السجل المرجعي من","verdict":"correct"}
+{"id":"ar:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"ar:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"على سبيل المثال، content:audio:track:mb-12345","verdict":"correct"}
+{"id":"ar:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"ar:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"ar:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"تحديد {title} كغير مطابق","verdict":"correct"}
+{"id":"ar:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"ar:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"ar:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"ar:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"ar:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"ar:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"ar:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"ar:src_ffed692bdf448397","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fff5ddd56887607a","reason":"The header names the application’s Pod publishing subsystem; the neighboring labels show publication counts and visibility. These targets preserve Pod as the subsystem name, and the current Arabic translation is malformed.","target":"إحصاءات نشر Pod","verdict":"correct"}
+{"id":"ar:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"ar:src_fffef474c78198de","verdict":"keep"}
+{"id":"de:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"de:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"de:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"de:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"de:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"de:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"de:src_ff6d88929596973a","verdict":"keep"}
+{"id":"de:src_ff7fccf610a69326","verdict":"keep"}
+{"id":"de:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"de:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"de:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"{title} als nicht zugeordnet markieren","verdict":"correct"}
+{"id":"de:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"de:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"de:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"de:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"de:src_ffe65c8a989efef7","verdict":"keep"}
+{"confidence":"high","id":"de:src_ffe71b62c066a1c7","reason":"The caller closes an internal Browse session tab. The current German Such-Tab labels it as a search tab, which is a different feature.","target":"Schließe den Browse-Tab {label}, ohne die freigegebenen Dateien des Benutzers zu ändern.","verdict":"correct"}
+{"id":"de:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"de:src_ffed692bdf448397","verdict":"keep"}
+{"id":"de:src_fff5ddd56887607a","verdict":"keep"}
+{"id":"de:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"de:src_fffef474c78198de","verdict":"keep"}
+{"id":"es:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"es:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"es:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"es:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"es:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"es:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"es:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"es:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"por ejemplo, content:audio:track:mb-12345","verdict":"correct"}
+{"id":"es:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"es:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"es:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"Marcar {title} como no coincidente","verdict":"correct"}
+{"id":"es:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"es:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"es:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"es:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"es:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"es:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"es:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"es:src_ffed692bdf448397","verdict":"keep"}
+{"confidence":"high","id":"es:src_fff5ddd56887607a","reason":"The header names the application’s Pod publishing subsystem; the neighboring labels show publication counts and visibility. These targets preserve Pod as the subsystem name, and the current Arabic translation is malformed.","target":"Estadísticas de publicación de Pod","verdict":"correct"}
+{"id":"es:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"es:src_fffef474c78198de","verdict":"keep"}
+{"id":"fr:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"fr:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"fr:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"fr:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"fr:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"fr:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"fr:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"fr:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"par exemple, content:audio:track:mb-12345","verdict":"correct"}
+{"confidence":"high","id":"fr:src_ff8059dc6752afdd","reason":"Each caller is a table header for row-level operations. In this UI context Actions names available operations; French Actes means acts/deeds and does not label the action column.","target":"Actions","verdict":"correct"}
+{"id":"fr:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"fr:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"Marquer {title} comme sans correspondance","verdict":"correct"}
+{"id":"fr:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"fr:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"fr:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"fr:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"fr:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"fr:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"fr:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"fr:src_ffed692bdf448397","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fff5ddd56887607a","reason":"The header names the application’s Pod publishing subsystem; the neighboring labels show publication counts and visibility. These targets preserve Pod as the subsystem name, and the current Arabic translation is malformed.","target":"Statistiques de publication de Pod","verdict":"correct"}
+{"id":"fr:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"fr:src_fffef474c78198de","verdict":"keep"}
+{"id":"hi:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"hi:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"hi:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"hi:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"hi:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"hi:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"hi:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"hi:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"उदाहरण के लिए, content:audio:track:mb-12345","verdict":"correct"}
+{"id":"hi:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"hi:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"hi:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"{title} को बिना मिलान के चिह्नित करें","verdict":"correct"}
+{"id":"hi:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"hi:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"hi:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"hi:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"hi:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"hi:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"hi:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"hi:src_ffed692bdf448397","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fff5ddd56887607a","reason":"The header names the application’s Pod publishing subsystem; the neighboring labels show publication counts and visibility. These targets preserve Pod as the subsystem name, and the current Arabic translation is malformed.","target":"Pod प्रकाशन के आँकड़े","verdict":"correct"}
+{"id":"hi:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"hi:src_fffef474c78198de","verdict":"keep"}
+{"id":"id:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"id:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"id:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"id:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"id:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"id:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"id:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"id:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"misalnya, content:audio:track:mb-12345","verdict":"correct"}
+{"id":"id:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"id:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"id:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"Tandai {title} sebagai belum dicocokkan","verdict":"correct"}
+{"id":"id:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"id:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"id:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"id:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"id:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"id:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"id:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"id:src_ffed692bdf448397","verdict":"keep"}
+{"id":"id:src_fff5ddd56887607a","verdict":"keep"}
+{"id":"id:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"id:src_fffef474c78198de","verdict":"keep"}
+{"id":"ja:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"ja:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"ja:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"ja:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"ja:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"ja:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"ja:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"ja:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"例: content:audio:track:mb-12345","verdict":"correct"}
+{"id":"ja:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"ja:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"ja:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"「{title}」を未マッチとしてマークします","verdict":"correct"}
+{"id":"ja:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"ja:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"ja:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"ja:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"ja:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"ja:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"ja:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"ja:src_ffed692bdf448397","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fff5ddd56887607a","reason":"The header names the application’s Pod publishing subsystem; the neighboring labels show publication counts and visibility. These targets preserve Pod as the subsystem name, and the current Arabic translation is malformed.","target":"Podの公開統計","verdict":"correct"}
+{"id":"ja:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"ja:src_fffef474c78198de","verdict":"keep"}
+{"id":"ko:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"ko:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"ko:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"ko:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"ko:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"ko:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"ko:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"ko:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"예: content:audio:track:mb-12345","verdict":"correct"}
+{"id":"ko:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"ko:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"ko:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"{title}을(를) 미매칭으로 표시","verdict":"correct"}
+{"id":"ko:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"confidence":"high","id":"ko:src_ffb77886abe0109d","reason":"This is a member count under aggregated opinion results. Korean 기부 means donation; 기여 correctly identifies members who contributed opinions.","target":"기여 회원:","verdict":"correct"}
+{"id":"ko:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"ko:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"ko:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"ko:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"ko:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"ko:src_ffed692bdf448397","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fff5ddd56887607a","reason":"The header names the application’s Pod publishing subsystem; the neighboring labels show publication counts and visibility. These targets preserve Pod as the subsystem name, and the current Arabic translation is malformed.","target":"Pod 게시 통계","verdict":"correct"}
+{"id":"ko:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"ko:src_fffef474c78198de","verdict":"keep"}
+{"id":"pt-BR:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"pt-BR:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_ff5ab6ce77a6c08f","reason":"The caller passes the number returned by searches.createBatch after a query builder caps replacement candidates at three per selected issue. These targets express a limited-scope replacement search; the current Portuguese wording incorrectly makes the searches seem limited by substitutions, and the Chinese wording is an unnatural literal for bounded.","target":"Foram iniciadas {count} pesquisas de substituição limitadas para os problemas selecionados de Library Health.","verdict":"correct"}
+{"id":"pt-BR:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"pt-BR:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"pt-BR:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"pt-BR:src_ff6d88929596973a","verdict":"keep"}
+{"id":"pt-BR:src_ff7fccf610a69326","verdict":"keep"}
+{"id":"pt-BR:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"pt-BR:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"Marcar {title} como não correspondido","verdict":"correct"}
+{"id":"pt-BR:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"pt-BR:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"pt-BR:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"pt-BR:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"pt-BR:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"pt-BR:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"pt-BR:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"pt-BR:src_ffed692bdf448397","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fff5ddd56887607a","reason":"The header names the application’s Pod publishing subsystem; the neighboring labels show publication counts and visibility. These targets preserve Pod as the subsystem name, and the current Arabic translation is malformed.","target":"Estatísticas de publicação de Pod","verdict":"correct"}
+{"id":"pt-BR:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"pt-BR:src_fffef474c78198de","verdict":"keep"}
+{"id":"vi:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"vi:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"id":"vi:src_ff5ab6ce77a6c08f","verdict":"keep"}
+{"id":"vi:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"vi:src_ff6850671df5dd90","verdict":"keep"}
+{"confidence":"high","id":"vi:src_ff6c640baa80b451","reason":"SongIDPanel displays this prefix before canonicalSupportCount and candidate track nouns. Here canonical means the reference/standard music record, and the count is candidate tracks supporting it; the current Arabic wording reads as ecclesiastical and the Vietnamese wording as classical.","target":"Ủng hộ bản ghi chuẩn từ","verdict":"correct"}
+{"id":"vi:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"vi:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"ví dụ: content:audio:track:mb-12345","verdict":"correct"}
+{"id":"vi:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"vi:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"vi:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"Đánh dấu {title} là chưa khớp","verdict":"correct"}
+{"id":"vi:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"vi:src_ffb77886abe0109d","verdict":"keep"}
+{"id":"vi:src_ffcae7fc619081e1","verdict":"keep"}
+{"id":"vi:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"vi:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"vi:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"vi:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"vi:src_ffed692bdf448397","verdict":"keep"}
+{"id":"vi:src_fff5ddd56887607a","verdict":"keep"}
+{"id":"vi:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"vi:src_fffef474c78198de","verdict":"keep"}
+{"id":"zh-Hans:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"zh-Hans:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_ff5ab6ce77a6c08f","reason":"The caller passes the number returned by searches.createBatch after a query builder caps replacement candidates at three per selected issue. These targets express a limited-scope replacement search; the current Portuguese wording incorrectly makes the searches seem limited by substitutions, and the Chinese wording is an unnatural literal for bounded.","target":"已针对选定的 Library Health 问题启动 {count} 次范围受限的替换搜索。","verdict":"correct"}
+{"id":"zh-Hans:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"zh-Hans:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"zh-Hans:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"zh-Hans:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"例如，content:audio:track:mb-12345","verdict":"correct"}
+{"id":"zh-Hans:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"zh-Hans:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"将 {title} 标记为未匹配","verdict":"correct"}
+{"id":"zh-Hans:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"zh-Hans:src_ffb77886abe0109d","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_ffcae7fc619081e1","reason":"The exact callers display this when user-reported interest/value lists are empty. The current Chinese targets use the news-coverage sense of 报道/報道; the replacements express that no information was reported.","target":"未报告任何信息","verdict":"correct"}
+{"id":"zh-Hans:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"zh-Hans:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"zh-Hans:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"zh-Hans:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"zh-Hans:src_ffed692bdf448397","verdict":"keep"}
+{"id":"zh-Hans:src_fff5ddd56887607a","verdict":"keep"}
+{"id":"zh-Hans:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"zh-Hans:src_fffef474c78198de","verdict":"keep"}
+{"id":"zh-Hant:src_ff41f41055fd86c7","verdict":"keep"}
+{"id":"zh-Hant:src_ff4cfb51cc2d1d8c","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_ff5ab6ce77a6c08f","reason":"The caller passes the number returned by searches.createBatch after a query builder caps replacement candidates at three per selected issue. These targets express a limited-scope replacement search; the current Portuguese wording incorrectly makes the searches seem limited by substitutions, and the Chinese wording is an unnatural literal for bounded.","target":"已針對選取的 Library Health 問題啟動 {count} 次範圍受限的替代搜尋。","verdict":"correct"}
+{"id":"zh-Hant:src_ff627200d1a38af6","verdict":"keep"}
+{"id":"zh-Hant:src_ff6850671df5dd90","verdict":"keep"}
+{"id":"zh-Hant:src_ff6c640baa80b451","verdict":"keep"}
+{"id":"zh-Hant:src_ff6d88929596973a","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_ff7fccf610a69326","reason":"Both callers use this as an example and input placeholder for a ContentID. The colon-delimited content:audio:track:mb-12345 string is a machine-readable identifier whose field tokens must remain exact; the current targets translate those tokens in ten locales.","target":"例如，content:audio:track:mb-12345","verdict":"correct"}
+{"id":"zh-Hant:src_ff8059dc6752afdd","verdict":"keep"}
+{"id":"zh-Hant:src_ff8b555d818f0b25","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_ffa41c72b49df0ef","reason":"The caller sets the playlist row state to Unmatched, and the adjacent tooltip says it can later be reviewed or matched again. The current targets in these locales mean peerless/unrivalled or use a mismatch reading instead of an item with no match.","target":"將 {title} 標記為未匹配","verdict":"correct"}
+{"id":"zh-Hant:src_ffb251bba794320c","reason":"This catalog phrase has no verified caller in the exact pinned source tree. Its semantics and current UI use cannot be established from this slice, so it remains held pending source context.","verdict":"uncertain"}
+{"id":"zh-Hant:src_ffb77886abe0109d","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_ffcae7fc619081e1","reason":"The exact callers display this when user-reported interest/value lists are empty. The current Chinese targets use the news-coverage sense of 报道/報道; the replacements express that no information was reported.","target":"未回報任何資訊","verdict":"correct"}
+{"id":"zh-Hant:src_ffcc218a9247ce31","verdict":"keep"}
+{"id":"zh-Hant:src_ffe65c8a989efef7","verdict":"keep"}
+{"id":"zh-Hant:src_ffe71b62c066a1c7","verdict":"keep"}
+{"id":"zh-Hant:src_ffe72b96956890ba","verdict":"keep"}
+{"id":"zh-Hant:src_ffed692bdf448397","verdict":"keep"}
+{"id":"zh-Hant:src_fff5ddd56887607a","verdict":"keep"}
+{"id":"zh-Hant:src_fff7ed3ca2e3b533","verdict":"keep"}
+{"id":"zh-Hant:src_fffef474c78198de","verdict":"keep"}

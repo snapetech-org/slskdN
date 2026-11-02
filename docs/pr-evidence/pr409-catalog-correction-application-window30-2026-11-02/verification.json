@@ -1,0 +1,119 @@
+{
+  "result": "PASS",
+  "pullRequest": 409,
+  "livePrState": "OPEN",
+  "livePrDraft": true,
+  "mergeStateStatus": "CLEAN",
+  "pushState": "pushed-and-current",
+  "applicationCommit": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+  "applicationTree": "0909e7e881d99f9e181ae6ed34034e45d9eada7d",
+  "currentHead": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+  "currentTree": "0909e7e881d99f9e181ae6ed34034e45d9eada7d",
+  "currentRemoteHead": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+  "manualCoverage": {
+    "windows": 30,
+    "sourceKeys": 747,
+    "cells": 8964,
+    "verdicts": {
+      "keep": 7468,
+      "correct": 1228,
+      "uncertain": 268
+    },
+    "formalOverlap": 0,
+    "manualWindowOverlap": 0
+  },
+  "window30RootReview": {
+    "rows": 39,
+    "acceptedAsProposed": 37,
+    "refinedAndAccepted": 2,
+    "held": 0,
+    "candidatePlanSha256": "a4754dbb630a91f612013e11feba2d2d27f38587eb17411ebeafde9a32eaee66",
+    "ledgerSha256": "6a1d408e2c2d513d0b9dfd3ccd7708f00331d3bb36c67093791667a747510c12",
+    "applyPlanSha256": "c38e7b567bab2a38f4897c2ba7364bd475ac6f8d03c78f8612f807cfb7d3b155"
+  },
+  "application": {
+    "previousApplied": 1195,
+    "newApplied": 39,
+    "totalApplied": 1234,
+    "uniqueSourceKeys": 284,
+    "heldNoContext": 6,
+    "uncertainOriginally": 268,
+    "uncertainResolvedByRealm": 12,
+    "uncertainRemaining": 256,
+    "unreviewedCells": 58116,
+    "byLocale": {
+      "ar": 135,
+      "de": 69,
+      "es": 105,
+      "fr": 103,
+      "hi": 102,
+      "id": 105,
+      "ja": 70,
+      "ko": 92,
+      "pt-BR": 91,
+      "vi": 123,
+      "zh-Hans": 120,
+      "zh-Hant": 119
+    },
+    "window30ByLocale": {
+      "ar": 4,
+      "de": 2,
+      "es": 3,
+      "fr": 4,
+      "hi": 3,
+      "id": 2,
+      "ja": 3,
+      "ko": 4,
+      "pt-BR": 3,
+      "vi": 3,
+      "zh-Hans": 4,
+      "zh-Hant": 4
+    }
+  },
+  "catalogCensus": {
+    "locales": 12,
+    "keysPerLocale": 6169,
+    "totalValues": 74028,
+    "changedCellsSinceFrozenBaseline": 1234,
+    "placeholderChecks": 74028,
+    "catalogFileSha256": {
+      "ar": "650dce6b7b4938f70f4fb962d2d8bc7adc0b9aa36c40377481cb7dc74a29e552",
+      "de": "44bdbf90e1d100281acceba3854ebf193a4480c6b3a012728c6ea57681a54772",
+      "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+      "fr": "db58d8e5bc7cb4a0193fbf35b6c2327d71963e947a59ff06b5939e4fd24bb158",
+      "hi": "265400c4ed359a3dd3a1aac043ecd203ab34eaee4e727b20f18093229868b22b",
+      "id": "fc0f2bf975708f66ec72d04cd7d39c91ead60a0268d26b9d8598ec6ff136417d",
+      "ja": "af016605ab4b0256d183d1cee54791ed2195a7898bdcfdffac1400883a2c30c0",
+      "ko": "628e8e2997d6ce0aedbae158dc722eb2f863019523c9440f5d430b09e816e377",
+      "pt-BR": "319299d3fcba4851f535d4c923460e5ef647c564b9cbc67949131549942c9f43",
+      "vi": "ff38116c6505880e18933e5d15e83d2df0a77a21814fa93bd20b4dfd2437b9df",
+      "zh-Hans": "8c536563f7a3b5b49edb937fd8ac6796a73c087fe5160fa4ca21eb5c4c5297e5",
+      "zh-Hant": "0cac65ebfa525abc608df5b42927c65ae76b9bd1f94d13a93b0a7cba037ed0e8"
+    }
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "workflowChanges": 0,
+  "window30ChangedPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "nativeSpeakerReview": "outstanding",
+  "headedBrowserReview": "outstanding",
+  "testsBuildCiReleaseOrTag": "not run"
+}

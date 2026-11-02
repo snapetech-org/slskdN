@@ -1,0 +1,21 @@
+{
+  "result": "READY_TO_APPLY",
+  "window": 30,
+  "baseHead": "f11dc7199b662a49c5e84794730043af29d6830b",
+  "baseTree": "14fc14f856f6335c17d87e78e33963ad1c219735",
+  "baseSourceSubtreeTree": "f55419446a34ba4c6cd666aedd1b192d004e88c3",
+  "candidatePlanSha256": "a4754dbb630a91f612013e11feba2d2d27f38587eb17411ebeafde9a32eaee66",
+  "rootDecisionLedgerSha256": "6a1d408e2c2d513d0b9dfd3ccd7708f00331d3bb36c67093791667a747510c12",
+  "rootSummarySha256": "e88a8173b52e8cc4ff5b402778f784a64cf7e2522936330bb2e7fc124e5cdc23",
+  "applyPlanRows": 39,
+  "applyPlanSha256": "c38e7b567bab2a38f4897c2ba7364bd475ac6f8d03c78f8612f807cfb7d3b155",
+  "dispositions": {
+    "accept": 37,
+    "refine": 2
+  },
+  "rootTargetShaAudit": "PASS",
+  "sourceAndCurrentCatalogHashAudit": "PASS",
+  "callsitePinAudit": "PASS",
+  "placeholdersProtectedLiterals": "PASS",
+  "nativeSpeakerReview": "outstanding"
+}

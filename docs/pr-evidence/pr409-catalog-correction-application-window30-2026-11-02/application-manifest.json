@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "exact-hash localization correction application evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestState": "OPEN",
+  "pullRequestDraft": true,
+  "reviewBase": {
+    "commit": "f11dc7199b662a49c5e84794730043af29d6830b",
+    "tree": "14fc14f856f6335c17d87e78e33963ad1c219735",
+    "sourceCatalogTree": "f55419446a34ba4c6cd666aedd1b192d004e88c3"
+  },
+  "application": {
+    "commit": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+    "tree": "0909e7e881d99f9e181ae6ed34034e45d9eada7d",
+    "parent": "f11dc7199b662a49c5e84794730043af29d6830b",
+    "rows": 39,
+    "sourceKeys": 9,
+    "accepted": 37,
+    "refined": 2,
+    "held": 0
+  },
+  "reviewEvidence": {
+    "inputSha256": "cdddce2d0a1eb4b24ac1dced73273ecedb23ef7ff7cc1feb6c426df35a8e8311",
+    "decisionSha256": "5b47f3a50bfd3206ee3847eebf5890d89f3c0e793124a20840837d4508c6bdb1",
+    "candidatePlanSha256": "a4754dbb630a91f612013e11feba2d2d27f38587eb17411ebeafde9a32eaee66"
+  },
+  "independentCrossReview": {
+    "ledgerSha256": "6a1d408e2c2d513d0b9dfd3ccd7708f00331d3bb36c67093791667a747510c12",
+    "summarySha256": "e88a8173b52e8cc4ff5b402778f784a64cf7e2522936330bb2e7fc124e5cdc23",
+    "applyPlanSha256": "c38e7b567bab2a38f4897c2ba7364bd475ac6f8d03c78f8612f807cfb7d3b155"
+  },
+  "applicationLedgerSha256": "175dfca5f3348b6deb8e512c5f6fd79fe35b649f2f5872e6dff3c22ea1fde456",
+  "applicationVerification": "PASS",
+  "nativeSpeakerReview": "outstanding",
+  "headedBrowserReview": "outstanding",
+  "changedPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "sourceCodeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "workflowTree": "6d455554f29767ab98df83e20185feb81d64a301",
+  "testsBuildsCiDispatched": false,
+  "releaseOrTagCreated": false,
+  "cumulativeVerification": {
+    "path": "verification.json",
+    "sha256": "7315a955fb6fe81811b18322226955f38aeb1e903936ccf7b73fbff33c937f1d",
+    "manualWindows": 30,
+    "manualCells": 8964,
+    "keep": 7468,
+    "correctionDecisions": 1228,
+    "originallyUncertain": 268,
+    "appliedCorrections": 1234,
+    "held": 6,
+    "uncertainRemaining": 256,
+    "unreviewedCells": 58116,
+    "formalCells": 4800,
+    "formalOverlap": 0
+  }
+}
