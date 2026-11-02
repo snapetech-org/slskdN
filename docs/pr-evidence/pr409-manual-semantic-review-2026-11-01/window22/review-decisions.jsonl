@@ -1,0 +1,300 @@
+{"id":"es:src_f5ab720599292084","verdict":"keep"}
+{"id":"es:src_f5ad0871124734e1","verdict":"correct","target":"Sin calificación","confidence":"high","reason":"“No clasificado” means unclassified; this player-rating fallback means that no rating is available."}
+{"id":"es:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"es:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"es:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"es:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"es:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"es:src_f6156185f567e9db","verdict":"keep"}
+{"id":"es:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"es:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"es:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"es:src_f64388c8dcd0081b","verdict":"correct","target":"El punto de encuentro de DHT no está en ejecución","confidence":"high","reason":"The source is a network peer-discovery status; cita means an appointment/date, not a rendezvous point/service."}
+{"id":"es:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"es:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"es:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"es:src_f67e758b9619419b","verdict":"keep"}
+{"id":"es:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"es:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"es:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"es:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"es:src_f6d370d83359d464","verdict":"keep"}
+{"id":"es:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"es:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"es:src_f707298a1508b074","verdict":"correct","target":"Configure la URL base del servidor multimedia antes de habilitar los escaneos en vivo.","confidence":"high","reason":"The current word order puts URL after “base del servidor de medios”; the source means the server’s base URL."}
+{"id":"es:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"zh-Hans:src_f5ab720599292084","verdict":"keep"}
+{"id":"zh-Hans:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"zh-Hans:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"zh-Hans:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"zh-Hans:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"zh-Hans:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"zh-Hans:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"zh-Hans:src_f6156185f567e9db","verdict":"keep"}
+{"id":"zh-Hans:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"zh-Hans:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"zh-Hans:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"zh-Hans:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"zh-Hans:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"zh-Hans:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"zh-Hans:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"zh-Hans:src_f67e758b9619419b","verdict":"keep"}
+{"id":"zh-Hans:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"zh-Hans:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"zh-Hans:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"zh-Hans:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"zh-Hans:src_f6d370d83359d464","verdict":"keep"}
+{"id":"zh-Hans:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"zh-Hans:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"zh-Hans:src_f707298a1508b074","verdict":"keep"}
+{"id":"zh-Hans:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"hi:src_f5ab720599292084","verdict":"keep"}
+{"id":"hi:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"hi:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"hi:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"hi:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"hi:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"hi:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"hi:src_f6156185f567e9db","verdict":"keep"}
+{"id":"hi:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"hi:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"hi:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"hi:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"hi:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"hi:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"hi:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"hi:src_f67e758b9619419b","verdict":"keep"}
+{"id":"hi:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"hi:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"hi:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"hi:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"hi:src_f6d370d83359d464","verdict":"keep"}
+{"id":"hi:src_f6f4688ff23d50c6","verdict":"correct","target":"भेजें","confidence":"high","reason":"भेजना is an infinitive; the source is an imperative button action."}
+{"id":"hi:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"hi:src_f707298a1508b074","verdict":"correct","target":"लाइव स्कैन सक्षम करने से पहले मीडिया सर्वर का बेस URL कॉन्फ़िगर करें।","confidence":"high","reason":"The current “मीडिया-सर्वर आधार URL” construction is an awkward calque; the source means the media server’s base URL."}
+{"id":"hi:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"de:src_f5ab720599292084","verdict":"keep"}
+{"id":"de:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"de:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"de:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"de:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"de:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"de:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"de:src_f6156185f567e9db","verdict":"keep"}
+{"id":"de:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"de:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"de:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"de:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"de:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"de:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"de:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"de:src_f67e758b9619419b","verdict":"keep"}
+{"id":"de:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"de:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"de:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"de:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"de:src_f6d370d83359d464","verdict":"keep"}
+{"id":"de:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"de:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"de:src_f707298a1508b074","verdict":"correct","target":"Konfigurieren Sie die Basis-URL des Medienservers, bevor Sie Live-Scans aktivieren.","confidence":"high","reason":"Medienserverbasis URL has malformed compound/word order; the source means the media server’s base URL."}
+{"id":"de:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"ja:src_f5ab720599292084","verdict":"keep"}
+{"id":"ja:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"ja:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"ja:src_f5def6c3cff76081","verdict":"correct","target":"レビューをコピー","confidence":"high","reason":"This button copies a Servarr compatibility or Wishlist request review packet; 確認 means confirmation/check rather than review."}
+{"id":"ja:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"ja:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"ja:src_f5fce1af6e3b2bd0","verdict":"correct","target":"このリダイレクト URI を Spotify の開発者ダッシュボードに登録してください：","confidence":"high","reason":"The source is an instruction followed by the URI; 登録します is declarative (“registers/will register”) rather than instructing the operator."}
+{"id":"ja:src_f6156185f567e9db","verdict":"keep"}
+{"id":"ja:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"ja:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"ja:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"ja:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"ja:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"ja:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"ja:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"ja:src_f67e758b9619419b","verdict":"keep"}
+{"id":"ja:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"ja:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"ja:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"ja:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"ja:src_f6d370d83359d464","verdict":"keep"}
+{"id":"ja:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"ja:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"ja:src_f707298a1508b074","verdict":"keep"}
+{"id":"ja:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"fr:src_f5ab720599292084","verdict":"keep"}
+{"id":"fr:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"fr:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"fr:src_f5def6c3cff76081","verdict":"correct","target":"Copier l’évaluation","confidence":"high","reason":"This button copies a Servarr compatibility or Wishlist request review packet; examen reads as an exam/examination rather than an assessment/review."}
+{"id":"fr:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"fr:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"fr:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"fr:src_f6156185f567e9db","verdict":"keep"}
+{"id":"fr:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"fr:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"fr:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"fr:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"fr:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"fr:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"fr:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"fr:src_f67e758b9619419b","verdict":"keep"}
+{"id":"fr:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"fr:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"fr:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"fr:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"fr:src_f6d370d83359d464","verdict":"keep"}
+{"id":"fr:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"fr:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"fr:src_f707298a1508b074","verdict":"correct","target":"Configurez l’URL de base du serveur multimédia avant d’activer les analyses en direct.","confidence":"high","reason":"The current word order puts URL after “base du serveur”; the source means the media server’s base URL."}
+{"id":"fr:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"pt-BR:src_f5ab720599292084","verdict":"keep"}
+{"id":"pt-BR:src_f5ad0871124734e1","verdict":"correct","target":"Sem avaliação","confidence":"high","reason":"“Não classificado” means unclassified; this player-rating fallback means that no rating is available."}
+{"id":"pt-BR:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"pt-BR:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"pt-BR:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"pt-BR:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"pt-BR:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"pt-BR:src_f6156185f567e9db","verdict":"keep"}
+{"id":"pt-BR:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"pt-BR:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"pt-BR:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"pt-BR:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"pt-BR:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"pt-BR:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"pt-BR:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"pt-BR:src_f67e758b9619419b","verdict":"keep"}
+{"id":"pt-BR:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"pt-BR:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"pt-BR:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"pt-BR:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"pt-BR:src_f6d370d83359d464","verdict":"keep"}
+{"id":"pt-BR:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"pt-BR:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"pt-BR:src_f707298a1508b074","verdict":"correct","target":"Configure a URL base do servidor de mídia antes de ativar as varreduras ao vivo.","confidence":"high","reason":"The current word order puts URL after “base do servidor”; the source means the media server’s base URL."}
+{"id":"pt-BR:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"ar:src_f5ab720599292084","verdict":"keep"}
+{"id":"ar:src_f5ad0871124734e1","verdict":"correct","target":"غير مُقيَّم","confidence":"high","reason":"غير مصنف means unclassified; the player-rating fallback says that no rating is available."}
+{"id":"ar:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"ar:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"ar:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"ar:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"ar:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"ar:src_f6156185f567e9db","verdict":"keep"}
+{"id":"ar:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"ar:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"ar:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"ar:src_f64388c8dcd0081b","verdict":"correct","target":"نقطة التقاء DHT لا تعمل","confidence":"high","reason":"In the network peer-discovery status, موعد reads as an appointment/scheduled time rather than the DHT rendezvous point/service."}
+{"id":"ar:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"ar:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"ar:src_f67d923e52dbeb67","verdict":"correct","target":"قم بتوسيع أداة التصوّر لملء نافذة المتصفح.","confidence":"high","reason":"المتخيل means “the imagined”; the source names the browser visualizer tool."}
+{"id":"ar:src_f67e758b9619419b","verdict":"keep"}
+{"id":"ar:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"ar:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"ar:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"ar:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"ar:src_f6d370d83359d464","verdict":"keep"}
+{"id":"ar:src_f6f4688ff23d50c6","verdict":"correct","target":"إرسال","confidence":"high","reason":"يرسل is third-person (“he sends”); the source is a button action label."}
+{"id":"ar:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"ar:src_f707298a1508b074","verdict":"correct","target":"قم بتكوين عنوان URL الأساسي لخادم الوسائط قبل تمكين عمليات الفحص المباشر.","confidence":"high","reason":"The current word order puts URL after the server-base phrase; the source means the media server’s base URL."}
+{"id":"ar:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"ko:src_f5ab720599292084","verdict":"keep"}
+{"id":"ko:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"ko:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"ko:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"ko:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"ko:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"ko:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"ko:src_f6156185f567e9db","verdict":"keep"}
+{"id":"ko:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"ko:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"ko:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"ko:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"ko:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"ko:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"ko:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"ko:src_f67e758b9619419b","verdict":"keep"}
+{"id":"ko:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"ko:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"ko:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"ko:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"ko:src_f6d370d83359d464","verdict":"correct","target":"내보낸 메타데이터 패키지 JSON을 여기에 붙여넣으세요...","confidence":"high","reason":"JSON is pronounced 제이슨 and takes the consonant-final object particle 을, not 를."}
+{"id":"ko:src_f6f4688ff23d50c6","verdict":"correct","target":"보내기","confidence":"high","reason":"보내다 is a dictionary-form verb; the source is a button action label, conventionally expressed as a nominalized action."}
+{"id":"ko:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"ko:src_f707298a1508b074","verdict":"correct","target":"실시간 스캔을 활성화하기 전에 미디어 서버 기본 URL을 구성하십시오.","confidence":"high","reason":"기반 URL means a URL based on the media server; the source means the media server’s base URL."}
+{"id":"ko:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"zh-Hant:src_f5ab720599292084","verdict":"keep"}
+{"id":"zh-Hant:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"zh-Hant:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"zh-Hant:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"zh-Hant:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"zh-Hant:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"zh-Hant:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"zh-Hant:src_f6156185f567e9db","verdict":"keep"}
+{"id":"zh-Hant:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"zh-Hant:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"zh-Hant:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"zh-Hant:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"zh-Hant:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"zh-Hant:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"zh-Hant:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"zh-Hant:src_f67e758b9619419b","verdict":"keep"}
+{"id":"zh-Hant:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"zh-Hant:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"zh-Hant:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"zh-Hant:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"zh-Hant:src_f6d370d83359d464","verdict":"keep"}
+{"id":"zh-Hant:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"zh-Hant:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"zh-Hant:src_f707298a1508b074","verdict":"keep"}
+{"id":"zh-Hant:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"vi:src_f5ab720599292084","verdict":"keep"}
+{"id":"vi:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"vi:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"vi:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"vi:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"vi:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"vi:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"vi:src_f6156185f567e9db","verdict":"keep"}
+{"id":"vi:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"vi:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"vi:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"vi:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"vi:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"vi:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"vi:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"vi:src_f67e758b9619419b","verdict":"keep"}
+{"id":"vi:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"vi:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"vi:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"vi:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"vi:src_f6d370d83359d464","verdict":"keep"}
+{"id":"vi:src_f6f4688ff23d50c6","verdict":"keep"}
+{"id":"vi:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"vi:src_f707298a1508b074","verdict":"correct","target":"Định cấu hình URL cơ sở của máy chủ phương tiện trước khi bật quét trực tiếp.","confidence":"high","reason":"The current order “cơ sở máy chủ phương tiện URL” does not clearly express that URL is the server’s base URL."}
+{"id":"vi:src_f71094a4385d5b57","verdict":"keep"}
+{"id":"id:src_f5ab720599292084","verdict":"keep"}
+{"id":"id:src_f5ad0871124734e1","verdict":"keep"}
+{"id":"id:src_f5d7e478bd095dcd","verdict":"keep"}
+{"id":"id:src_f5def6c3cff76081","verdict":"keep"}
+{"id":"id:src_f5ecf1932a05b9ad","verdict":"keep"}
+{"id":"id:src_f5ee10c4940b54f1","verdict":"keep"}
+{"id":"id:src_f5fce1af6e3b2bd0","verdict":"keep"}
+{"id":"id:src_f6156185f567e9db","verdict":"keep"}
+{"id":"id:src_f636f90bbb7941ad","verdict":"keep"}
+{"id":"id:src_f6387643338c4f7d","verdict":"keep"}
+{"id":"id:src_f63bb28961eb8ae5","verdict":"keep"}
+{"id":"id:src_f64388c8dcd0081b","verdict":"keep"}
+{"id":"id:src_f65e51fd4a748ed8","verdict":"keep"}
+{"id":"id:src_f66828595c27504a","verdict":"uncertain","reason":"No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."}
+{"id":"id:src_f67d923e52dbeb67","verdict":"keep"}
+{"id":"id:src_f67e758b9619419b","verdict":"keep"}
+{"id":"id:src_f6a45f96b9984569","verdict":"keep"}
+{"id":"id:src_f6a77ba4ee75ec7c","verdict":"keep"}
+{"id":"id:src_f6b2aec4571c5a56","verdict":"keep"}
+{"id":"id:src_f6c47a89df7e62a4","verdict":"keep"}
+{"id":"id:src_f6d370d83359d464","verdict":"keep"}
+{"id":"id:src_f6f4688ff23d50c6","verdict":"correct","target":"Kirim","confidence":"high","reason":"Mengirim is a gerund; the source is an imperative button action."}
+{"id":"id:src_f7058aadfcf36fdf","verdict":"keep"}
+{"id":"id:src_f707298a1508b074","verdict":"correct","target":"Konfigurasikan URL dasar server media sebelum mengaktifkan pemindaian langsung.","confidence":"high","reason":"The current order “basis server media URL” does not clearly express that URL is the server’s base URL."}
+{"id":"id:src_f71094a4385d5b57","verdict":"keep"}
