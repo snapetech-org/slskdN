@@ -1,0 +1,103 @@
+{
+  "head": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "tree": "7a8d85f9b967893d386bf5679ef0b46322307983",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "catalogs": [
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "blobOid": "5f5170bc8b92772a597e637b406fbea24f71cdbd",
+      "sha256": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+      "bytes": 530934,
+      "keyCount": 6169
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "blobOid": "70d852c52493f8df8a1e1664d57140893b169708",
+      "sha256": "caffd65412549eee5eaa041901d3f431c801583b748db3738b479f80e9b6dd0f",
+      "bytes": 455233,
+      "keyCount": 6169
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "blobOid": "4ef23787efa0e635639e0dc2096495506dbdfd68",
+      "sha256": "4273d8fd3bf7b64df899a0e34518945c3855867a8ad5b7483b4bfa6e5ec3aa3f",
+      "bytes": 829741,
+      "keyCount": 6169
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "blobOid": "0ae806e241846f12a62db1a9699ab620b34461b3",
+      "sha256": "1a36b66033c93f2ab6879b05626043dfe41f9050161898b3608c402734f819c7",
+      "bytes": 532165,
+      "keyCount": 6169
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "blobOid": "72c719678241f581d0d1d9568ceb2780b237abee",
+      "sha256": "e65ee3bbf5fbbd7e115025e55dd0be878ff6475ea59c418de431a7c5b431de85",
+      "bytes": 590619,
+      "keyCount": 6169
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "blobOid": "317d5abe6aa8a8cf3c5162fe59e5ab27e0ec4873",
+      "sha256": "e16615b98eac133df1c0e12d27869faff3ad75d80718a87246628af1b2b08922",
+      "bytes": 544932,
+      "keyCount": 6169
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "blobOid": "b02c1e02ced3a2dd5ccd0fb1c81732f1e0e3a4ed",
+      "sha256": "3a19e65d018a8320c3ae48de1aa174132dade71807256735d0077c805fd15620",
+      "bytes": 522705,
+      "keyCount": 6169
+    },
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "blobOid": "bf18a38f267d5f92d52afc9535ad722b5b000270",
+      "sha256": "33c9c920a2135ed5eb8312eef76c44b08aac8e5d944955e82018f7cc05b73b39",
+      "bytes": 615783,
+      "keyCount": 6169
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "blobOid": "979c0d5a50297a8ffb009924c74ce29eed38b94a",
+      "sha256": "858432905bb53721bbce2b2bee5c41d1675d7f65b719dbd7062504fd70ded7ca",
+      "bytes": 527542,
+      "keyCount": 6169
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "blobOid": "42d53b2816f3a259e4b74ea1b0d7922ea48935fd",
+      "sha256": "dc99bd8118634846424c40517c92e59c72ac7aae5d89e25e9093f449e651614c",
+      "bytes": 456566,
+      "keyCount": 6169
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "blobOid": "64cb69f3b78704003bcc01453e657aef94469b82",
+      "sha256": "87c88bff8193479ed4e9930e7d8168928e27109bf2e58e08a087d052723734de",
+      "bytes": 571602,
+      "keyCount": 6169
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "blobOid": "8d7db9eef3427c676c29be08ba522ddc4d34cd86",
+      "sha256": "12666b6eb4ae88551e96727eabfaae1e1c2026261d047b6013e8a04fe34c6358",
+      "bytes": 491455,
+      "keyCount": 6169
+    }
+  ]
+}

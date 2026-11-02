@@ -1,0 +1,557 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "primary exact-head populated-catalog semantic review packet",
+  "window": 40,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequest": {
+    "catalogKey": "Start or open a private conversation and send this message.",
+    "catalogPath": "src/web/public/locales/id.json",
+    "id": "id:src_0c1212cb64396a8d",
+    "locale": "id",
+    "pendingReason": "no exact reusable prior semantic decision",
+    "placeholders": [],
+    "previousCatalogTargetSha256": "ae684bf09a63ec087e33cb9092d8284f12257888e9060326140ecf484e27b5c4",
+    "protectedLiterals": [],
+    "reviewDisposition": "pending",
+    "source": "Start or open a private conversation and send this message.",
+    "sourceCallsites": [
+      {
+        "path": "src/web/src/components/Chat/SendMessageModal.jsx",
+        "line": 76,
+        "lineText": "? interfaceText('Start or open a private conversation and send this message.')",
+        "fileSha256": "e75678589bdf85ac1e7d0f46693f9ffb8aa7b6750b5719c0a991ffeaf8e1633b",
+        "lineTextSha256": "4a0e55909b73ddc7e315b6b6d8a4ad1a4c53dbe98f546b28912a0c565d0704ee"
+      }
+    ],
+    "sourceContexts": [
+      "validInput() | ? interfaceText('Start or open a private conversation and send this message.') | : interfaceText('Enter a username and message before sending.')"
+    ],
+    "sourceFingerprint": "a2a0d20448f94c770dc9b36733b5ccd51569346f877e4d786cafa73833204e11",
+    "sourceId": "src_0c1212cb64396a8d",
+    "sourceInventoryId": null,
+    "sourceKind": "fixed slskdN application UI copy",
+    "sourceSha256": "0c1212cb64396a8d4a99b1571792406308094a94430abb073b3ed189963554f4",
+    "target": "Mulai atau buka percakapan pribadi lalu kirim pesan ini.",
+    "targetDiagnostics": {
+      "exactEnglish": false,
+      "placeholderMismatch": false,
+      "protectedLiteralMismatches": []
+    },
+    "targetSha256": "ae684bf09a63ec087e33cb9092d8284f12257888e9060326140ecf484e27b5c4",
+    "unverifiedPriorCallers": [],
+    "rowSha256": "0b8bf0888e0d96ad3ca1e9b70f182b5a994a19d135a626dc1826853f875277c2"
+  },
+  "headCommit": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "tree": "7a8d85f9b967893d386bf5679ef0b46322307983",
+  "remoteBranchHead": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "bundleManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+    "batchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111"
+  },
+  "formalAccumulator": {
+    "formalCells": 4800,
+    "path": "docs/pr-evidence/pr409-localization-2026-11-02/window36/primary/formal-cell-ids.jsonl",
+    "sha256": "7bd9c90a1176403feb36daadfecb7822616a818d15e9980c99c0bf5dc9d6f856"
+  },
+  "priorManualCoverage": {
+    "windows": 39,
+    "cells": 11418,
+    "sourceKeys": 972,
+    "w1Through37Evidence": [
+      {
+        "window": 1,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2"
+      },
+      {
+        "window": 2,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "c8507f897140d5c9bbd38cd8b238228407541c971822ff55c55415242fc25af9"
+      },
+      {
+        "window": 3,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "82c267214443adddd832221240762f4fc3d178ec39639e7d4dce250eca0aeb87"
+      },
+      {
+        "window": 4,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "b1005dd04403787fbc7929dd1bb792fe601e5de462c31e830195c00ffdb70c72"
+      },
+      {
+        "window": 5,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "cb4d4cd094fc666104fdcd88c6f2f3c4e6d63be7df7d5ca47b429cf566eab795"
+      },
+      {
+        "window": 6,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "3fd36a787003b2a8ce1c66365135bf1b90c3e6aa30d1c3856c51dfd7f43c2664"
+      },
+      {
+        "window": 7,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "77197eb0cdb8943910ad35fbedab2ba1c41db7ae36017747b3cdeb87d90ed961"
+      },
+      {
+        "window": 8,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "73b80fc7fec7e9f9d8044ba78605ee3e675cd256590826ba00267f0332e3e176"
+      },
+      {
+        "window": 9,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "7d4f73d3bca269185ef7a1ac460b1b6d8bfdd8202951ffa7b2afb44acec571cb"
+      },
+      {
+        "window": 10,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "dc18ddabcf1e49e8283532bd9fb597e55d5f27682f3af93edff6027ff487dfed"
+      },
+      {
+        "window": 11,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "90d593959e210ffdc8ca8fdf7e8a933293106829d1aa3827131dd65309418a82"
+      },
+      {
+        "window": 12,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "4db161920d006dfa3ca1dcd09f8504b57689ffdc9bf55e52c3838b49a5a1ba57"
+      },
+      {
+        "window": 13,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window13/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "638d45f1b44d5d37d79e0f78828b99fe9eb93a5bd00ebdeebaebae5b07bcb2a1"
+      },
+      {
+        "window": 14,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window14/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8"
+      },
+      {
+        "window": 15,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window15/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "dbfd4aa6418be05df35c70c842aca5ccb2b4c9cfc578b41978be25d911dcfbe4"
+      },
+      {
+        "window": 16,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window16/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "849a840e92656c5782e92ee6380f3d0a442f3fc48118917e2f545a3c00eea2b3"
+      },
+      {
+        "window": 17,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window17/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "5c8aa2d11b2fc4d452497b5975d71cf85672925f5ab8a398e6a8e445cbeb9b55"
+      },
+      {
+        "window": 18,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window18/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "124a993a8f50ae4adaa57858c6426c8a36a57b2f789d96e7fefa960ed661c5cf"
+      },
+      {
+        "window": 19,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window19/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "675a23d87cb111538504af36d39cb5b6efe395248503c4f5165c53b29aa3cf8a"
+      },
+      {
+        "window": 20,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window20/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "de9c4ac3cb20993b9eca04a8188520f98de9e739d3d280ef7e4ce22cce09ada2"
+      },
+      {
+        "window": 21,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window21/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "50eccb5239402dc25d2f27988f4541e90d66a3908e6273a204509542aa81d974"
+      },
+      {
+        "window": 22,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window22/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "626b0b83a25d9494714ec23f308fd34b5b415eebcbbdcb4857b0d1b96b9c0ca4"
+      },
+      {
+        "window": 23,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window23/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "23ab5a2d823b2b1ee680adb175722e517f409e7d1bf3197e8b016705c2a783c9"
+      },
+      {
+        "window": 24,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window24/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "c8b6b51bb57d476b9272d05f27386f7f7829bacaa14f077db91003eac7898270"
+      },
+      {
+        "window": 25,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window25/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "e3763d124513fde73ddc786fdf32ec17bce713d5ced15f26e14d62c1fc13e79e"
+      },
+      {
+        "window": 26,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window26/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "14c65ba66c5ffd4d6074bc8b689d582b522cafe44906f1d3d6c468709604dfbb"
+      },
+      {
+        "window": 27,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window27/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "8a4954b9d45056abafb1646eb547c3aeccaba2a57b359289ac929d15d0fc0f86"
+      },
+      {
+        "window": 28,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window28/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "44b2c98fba43c0e3cffea0ad9e4cb14c7a844fcc0a11a2ad54751422f9ed3731"
+      },
+      {
+        "window": 29,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window29/review-input.jsonl",
+        "rows": 300,
+        "sourceIds": 25,
+        "sha256": "fc41b5f62ac2feaad4c5184d1d09d481b114703596f734804718d5a651942307"
+      },
+      {
+        "window": 30,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window30/review-input.jsonl",
+        "rows": 264,
+        "sourceIds": 22,
+        "sha256": "cdddce2d0a1eb4b24ac1dced73273ecedb23ef7ff7cc1feb6c426df35a8e8311"
+      },
+      {
+        "window": 31,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window31/review-input.jsonl",
+        "rows": 274,
+        "sourceIds": 25,
+        "sha256": "d5017efef0c3e063458c6271bb4b27d40b35bdf91cd8379e598648e9bfd0c1be"
+      },
+      {
+        "window": 32,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window32/review-packet/review-input.jsonl",
+        "rows": 266,
+        "sourceIds": 25,
+        "sha256": "09d534acad981c383c42c2da15b0c26a667af529cf108430ae7c388294c1f988"
+      },
+      {
+        "window": 33,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window33/review-packet/review-input.jsonl",
+        "rows": 274,
+        "sourceIds": 25,
+        "sha256": "9b919f98102d88f2c8de56b23a187531453ed38eac9034657b9f968b8412bcec"
+      },
+      {
+        "window": 34,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window34/review-packet/review-input.jsonl",
+        "rows": 274,
+        "sourceIds": 25,
+        "sha256": "549f8edf997aebcbf5ca8de93144fc9dd5331ac8177beea2b01ba8beaf29e874"
+      },
+      {
+        "window": 35,
+        "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window35/review-packet/review-input.jsonl",
+        "rows": 274,
+        "sourceIds": 25,
+        "sha256": "1a34ada42ec29d1e014dd845c69960bd0898a20658973111fa3f414b367f6f29"
+      },
+      {
+        "window": 36,
+        "path": "docs/pr-evidence/pr409-localization-2026-11-02/window36/primary/review-input.jsonl",
+        "rows": 275,
+        "sourceIds": 25,
+        "sha256": "afaff6fa0ec0f8ee26dae91669097dc1ecba614af5e85c364d1675da116c1bb4"
+      },
+      {
+        "window": 37,
+        "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window37-primary-20261102/review-input.jsonl",
+        "rows": 273,
+        "sourceIds": 25,
+        "sha256": "bc4a1ccd8201a50a926a6ff46ea904bdfa583855bce9e425f35557d7dc140f86"
+      }
+    ],
+    "w38InputSha256": "019c8e3165489531bee00ec98881d9311a30a5a368532164092d621d479e413a",
+    "w39InputSha256": "976a08528cde38ad906485e145bfbb05e6ed7b080d7c7724e565176d416789e9"
+  },
+  "priorHolds": {
+    "explicitHoldRows": 50,
+    "uniqueSourceIds": 7,
+    "ledgers": [
+      {
+        "path": "docs/pr-evidence/pr409-catalog-correction-application-window26-2026-11-02/uncertain-review-rows.jsonl",
+        "sha256": "ab7eb12c6549e280815700c252f3809f95ba1b90f00104d311df0d12f5d4ca29",
+        "rows": 12
+      },
+      {
+        "path": "docs/pr-evidence/pr409-catalog-correction-application-window27-2026-11-02/uncertain-review-rows.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rows": 0
+      },
+      {
+        "path": "docs/pr-evidence/pr409-catalog-correction-application-window28-2026-11-02/uncertain-review-rows.jsonl",
+        "sha256": "5c6be71c1b22f93d3ce7a206088b3365d3e950fdeca1691cf3f6fa3d1a34182b",
+        "rows": 24
+      },
+      {
+        "path": "docs/pr-evidence/pr409-catalog-correction-application-window29-2026-11-02/uncertain-review-rows.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rows": 0
+      },
+      {
+        "path": "docs/pr-evidence/pr409-catalog-correction-application-window33-2026-11-02/held-context-rows-window33.jsonl",
+        "sha256": "573bdce1bb61c7ea2037d462cf78fcc4be265ff07f0317db0cba7bd0a7697b66",
+        "rows": 11
+      },
+      {
+        "path": "docs/pr-evidence/pr409-localization-2026-11-02/window36/crossreview/holds.jsonl",
+        "sha256": "f562b996383683dd676b38e16502c3617070b0d07f779266e51dad0e65c612b3",
+        "rows": 3
+      }
+    ],
+    "missingCallerRefs": 47,
+    "preservedPath": "preserved-prior-holds.jsonl"
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_0b03c2b9ac921306",
+      "src_0b0b68d9f0e1ec0c",
+      "src_0b123743c9450622",
+      "src_0b183e082d895fc8",
+      "src_0b1fcd43f0c7379b",
+      "src_0b2520fca0ea1f20",
+      "src_0b2b7f69b8eff531",
+      "src_0b3cd4d35c53e5db",
+      "src_0b46c849b901c6ef",
+      "src_0b5e04cef14ce1ce",
+      "src_0b671776687f0c27",
+      "src_0b72366399bd6664",
+      "src_0b737af933e10fb9",
+      "src_0b83f76d6a46e5c6",
+      "src_0b85f61a474d6460",
+      "src_0b9588d904e9a1f9",
+      "src_0ba234a3b28db7cb",
+      "src_0bac3cbf345adcc4",
+      "src_0bacefcef4102da4",
+      "src_0bc7591c995eea47",
+      "src_0bc8cac3ec0945b1",
+      "src_0bd48b1925db78b7",
+      "src_0be496dc9d682148",
+      "src_0c02ad70096ba16e",
+      "src_0c1212cb64396a8d"
+    ],
+    "allLocaleCells": 300,
+    "manualReviewCells": 275,
+    "pendingReviewCells": 272,
+    "reusedPriorExactCells": 3,
+    "preservedFormalSpanishRows": 25,
+    "locales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "perLocalePendingCells": {
+      "ar": 25,
+      "de": 22,
+      "fr": 25,
+      "hi": 25,
+      "id": 25,
+      "ja": 25,
+      "ko": 25,
+      "pt-BR": 25,
+      "vi": 25,
+      "zh-Hans": 25,
+      "zh-Hant": 25
+    }
+  },
+  "sourceInventory": {
+    "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-populated-review-4c2b-20261101/bundle/manifest.json",
+    "frozenManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+    "frozenBatchSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111"
+  },
+  "catalogAttestation": {
+    "path": "catalog-attestation.json",
+    "locales": [
+      {
+        "locale": "es",
+        "path": "src/web/public/locales/es.json",
+        "blobOid": "5f5170bc8b92772a597e637b406fbea24f71cdbd",
+        "sha256": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+        "bytes": 530934,
+        "keyCount": 6169
+      },
+      {
+        "locale": "zh-Hans",
+        "path": "src/web/public/locales/zh-Hans.json",
+        "blobOid": "70d852c52493f8df8a1e1664d57140893b169708",
+        "sha256": "caffd65412549eee5eaa041901d3f431c801583b748db3738b479f80e9b6dd0f",
+        "bytes": 455233,
+        "keyCount": 6169
+      },
+      {
+        "locale": "hi",
+        "path": "src/web/public/locales/hi.json",
+        "blobOid": "4ef23787efa0e635639e0dc2096495506dbdfd68",
+        "sha256": "4273d8fd3bf7b64df899a0e34518945c3855867a8ad5b7483b4bfa6e5ec3aa3f",
+        "bytes": 829741,
+        "keyCount": 6169
+      },
+      {
+        "locale": "de",
+        "path": "src/web/public/locales/de.json",
+        "blobOid": "0ae806e241846f12a62db1a9699ab620b34461b3",
+        "sha256": "1a36b66033c93f2ab6879b05626043dfe41f9050161898b3608c402734f819c7",
+        "bytes": 532165,
+        "keyCount": 6169
+      },
+      {
+        "locale": "ja",
+        "path": "src/web/public/locales/ja.json",
+        "blobOid": "72c719678241f581d0d1d9568ceb2780b237abee",
+        "sha256": "e65ee3bbf5fbbd7e115025e55dd0be878ff6475ea59c418de431a7c5b431de85",
+        "bytes": 590619,
+        "keyCount": 6169
+      },
+      {
+        "locale": "fr",
+        "path": "src/web/public/locales/fr.json",
+        "blobOid": "317d5abe6aa8a8cf3c5162fe59e5ab27e0ec4873",
+        "sha256": "e16615b98eac133df1c0e12d27869faff3ad75d80718a87246628af1b2b08922",
+        "bytes": 544932,
+        "keyCount": 6169
+      },
+      {
+        "locale": "pt-BR",
+        "path": "src/web/public/locales/pt-BR.json",
+        "blobOid": "b02c1e02ced3a2dd5ccd0fb1c81732f1e0e3a4ed",
+        "sha256": "3a19e65d018a8320c3ae48de1aa174132dade71807256735d0077c805fd15620",
+        "bytes": 522705,
+        "keyCount": 6169
+      },
+      {
+        "locale": "ar",
+        "path": "src/web/public/locales/ar.json",
+        "blobOid": "bf18a38f267d5f92d52afc9535ad722b5b000270",
+        "sha256": "33c9c920a2135ed5eb8312eef76c44b08aac8e5d944955e82018f7cc05b73b39",
+        "bytes": 615783,
+        "keyCount": 6169
+      },
+      {
+        "locale": "ko",
+        "path": "src/web/public/locales/ko.json",
+        "blobOid": "979c0d5a50297a8ffb009924c74ce29eed38b94a",
+        "sha256": "858432905bb53721bbce2b2bee5c41d1675d7f65b719dbd7062504fd70ded7ca",
+        "bytes": 527542,
+        "keyCount": 6169
+      },
+      {
+        "locale": "zh-Hant",
+        "path": "src/web/public/locales/zh-Hant.json",
+        "blobOid": "42d53b2816f3a259e4b74ea1b0d7922ea48935fd",
+        "sha256": "dc99bd8118634846424c40517c92e59c72ac7aae5d89e25e9093f449e651614c",
+        "bytes": 456566,
+        "keyCount": 6169
+      },
+      {
+        "locale": "vi",
+        "path": "src/web/public/locales/vi.json",
+        "blobOid": "64cb69f3b78704003bcc01453e657aef94469b82",
+        "sha256": "87c88bff8193479ed4e9930e7d8168928e27109bf2e58e08a087d052723734de",
+        "bytes": 571602,
+        "keyCount": 6169
+      },
+      {
+        "locale": "id",
+        "path": "src/web/public/locales/id.json",
+        "blobOid": "8d7db9eef3427c676c29be08ba522ddc4d34cd86",
+        "sha256": "12666b6eb4ae88551e96727eabfaae1e1c2026261d047b6013e8a04fe34c6358",
+        "bytes": 491455,
+        "keyCount": 6169
+      }
+    ]
+  },
+  "sourceAttestation": {
+    "path": "source-attestation.jsonl",
+    "rows": 25,
+    "sha256": "f1de52bfd60c85cd0e77ad27a9b8d5a26ecf7b1e0e9c5a36fae74e1970e1a757"
+  },
+  "callerAttestation": {
+    "path": "caller-attestation.jsonl",
+    "uniqueFileLineRefs": 38,
+    "sha256": "fcb1c9145fbe1450358b68e47f06c28a5b29e04d3e5a62b2862f09baf363fd0d"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 272,
+    "sha256": "90a07c212568a4c2fe27b709bc990a494077f5cfeb5fbd2af8ab61713130cf72"
+  },
+  "reviewerMethod": "Review all 272 newly pending non-Spanish cells and independently reassess 3 reused exact German cells. Preserve 25 Spanish formal-lane cells and 50 earlier active holds. Native-speaker review remains required.",
+  "nativeSpeakerReview": "outstanding",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "repositoryOrPullRequestMutated": false,
+  "testsBuildsScansCIOrReleasesRun": false
+}

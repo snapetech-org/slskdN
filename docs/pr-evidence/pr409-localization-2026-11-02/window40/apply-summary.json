@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "slskdN PR #409 W40 exact-hash application summary",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "baseHead": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "baseTree": "7a8d85f9b967893d386bf5679ef0b46322307983",
+  "changedCells": 63,
+  "catalogFilesChanged": 11,
+  "dispositionCounts": {
+    "accept-candidate-refinement": 19,
+    "accept-candidate-correction": 44
+  },
+  "catalogKeysPerLocale": 6169,
+  "orderedKeyParity": "pass",
+  "sourceAndCallerPins": "cross-review reattested",
+  "exactBeforeAfterHashes": "pass",
+  "readbackCells": 63,
+  "placeholderMarkupProtectedLiteralChecks": "pass",
+  "nativeSpeakerReview": "outstanding",
+  "testsBuildsScansCIWorkflowsBrowserReleasesTagsMergesRun": false,
+  "changedCatalogSha256": {
+    "src/web/public/locales/ko.json": "4869dcba40b8d75f753ba7e9496fedd546cf2b4fef669f6b015a911af6d8ecd3",
+    "src/web/public/locales/id.json": "77e434256598bdbcc7f17e6f225de28c4f162aecfb6b2954f324bad3224459a3",
+    "src/web/public/locales/hi.json": "0f5c10a1058986673cfaa19e13044fa5df3bb50ffdb7a9686cf2494d6500450f",
+    "src/web/public/locales/de.json": "06826de679afc9ad2e26e60a090398ba9e5f905e2e9b5c8e68005e03e812730f",
+    "src/web/public/locales/ar.json": "9d96c0c96a06fb007eea7a0e3ccaba91b21da2b7df3c5d49ec1c08b8470d70cd",
+    "src/web/public/locales/zh-Hans.json": "38103980521060e0b249cb31095fc07efcfddad96e54f7b07b689af65e48958e",
+    "src/web/public/locales/ja.json": "ed7e21a032fd01d4f4d1aae1704e4c98602dd4363ea4594ce9ac64d033c3920d",
+    "src/web/public/locales/fr.json": "06411fc6793d28bd6df8650050f7b5193142eda9b73a9eb7e7fd554a1b49fa58",
+    "src/web/public/locales/pt-BR.json": "38fc3f99d50eb5c73d6244c1870f0ff54b0708f875577f670a28523d3f640154",
+    "src/web/public/locales/zh-Hant.json": "3346ad28b80be91b9c74a9e2f798a2e2b53d9d90b61c6c99a77a4d229733551e",
+    "src/web/public/locales/vi.json": "8f06d3f20856330310a6e087f9c91609ed9bb58754ecb98516f74251972f0fa2"
+  }
+}

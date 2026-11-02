@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: apply 63 exact-hash reviewed W40 corrections and refinements across 11 locale catalogs; preserve 25 Spanish formal-lane values and 50 prior holds. Native-speaker review remains outstanding.
+
 - Localization: apply 38 root- and independently reviewed W35 corrections across 11 locale catalogs, bringing populated-catalog manual coverage to 35 windows / 10,326 cells / 872 source keys and cumulative applied corrections to 1,411 across 333 source keys. The 267 prior uncertain cells and six earlier exact-context holds remain unchanged; native-speaker review remains outstanding.
 
 - Localization: apply 33 root-final W34 exact-hash corrections (32 accepted and one refined) across 11 locale catalogs. Manual review reaches 10,052 cells across 847 source keys; cumulative applied corrections reach 1,373 across 324 source keys. The French Transfer Policy summary remains unchanged after its neighboring transfer-slot labels confirmed `Emplacements` terminology. Native-speaker and headed-browser review remain outstanding.

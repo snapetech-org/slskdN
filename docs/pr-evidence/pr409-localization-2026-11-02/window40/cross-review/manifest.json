@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "independent cross-review packet manifest",
+  "pullRequest": 409,
+  "head": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "tree": "7a8d85f9b967893d386bf5679ef0b46322307983",
+  "files": {
+    "README.md": "57068a27b1d2169796c593e0209f3727d7af143b64205e9858c1e598dc516cf8",
+    "caller-reattestation.jsonl": "4b648d4eb8e531644500d34ed4fc10417105443385cdf629a3c941f3ad67300e",
+    "catalog-reattestation.json": "07cb1154d442b2554f2b930f13c8801cd1cbaea8dadb6b52aead06aa18e642f3",
+    "cross-review-ledger.jsonl": "c4b7bc3ab29998812817bc29aa539e2c1ceb85dd46bb1d35643d0dda3bd7cf89",
+    "cross-review-summary.json": "5e8eb19b143f22f57335033c6238ebadb589a4fff26e23111d9bf08c61776116",
+    "prior-hold-reattestation.jsonl": "4e76a81b8e3b9d0455c8c055bc983112cc3142dedf1f4daca3cdf5ffa3f90839",
+    "source-reattestation.jsonl": "3f0b4ef43e78d96096ecc04a4ea90d4f12dc5b8d8ac592d728e9beb5ccecb891"
+  }
+}
