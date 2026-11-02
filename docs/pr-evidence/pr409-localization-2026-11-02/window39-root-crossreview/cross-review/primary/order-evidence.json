@@ -1,0 +1,344 @@
+{
+  "window": 39,
+  "selectionRule": "next 25 lexicographically sorted source IDs remaining in W38 frozen pending inventory after excluding formal Spanish IDs and W1–W38 manual cells",
+  "frozenBundleHead": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+  "frozenBundleTree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+  "frozenBundleManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+  "frozenBundleBatchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111",
+  "w38PacketManifestSha256": "281d3513db1cdfc5be6e24e3c5cbe78105d79d571b46b7b0ebe353e1afa3d6e2",
+  "w38ReviewInputSha256": "019c8e3165489531bee00ec98881d9311a30a5a368532164092d621d479e413a",
+  "priorManualWindows1Through37": 37,
+  "priorManualCells1Through37": 10874,
+  "priorManualSourceKeys1Through37": 922,
+  "w38Cells": 269,
+  "w38SourceKeys": 25,
+  "w1Through38Cells": 11143,
+  "w1Through38SourceKeys": 947,
+  "frozenPendingCells": 67080,
+  "frozenFormalSpanishIds": 4800,
+  "remainingSourceIdsBeforeW39": 4703,
+  "selectedSourceIds": [
+    "src_0967ca7c2b0d21c3",
+    "src_098855a95cbe03e3",
+    "src_09b2e220c665ead6",
+    "src_09ca05993b80f61a",
+    "src_09e1086c29fb014a",
+    "src_09e7f03e9faa032f",
+    "src_0a1d1d38dd303b20",
+    "src_0a1e1e40f9c7b71e",
+    "src_0a30a815d67d7dd2",
+    "src_0a3f83066c613355",
+    "src_0a406581c42236da",
+    "src_0a44c64e88882ce3",
+    "src_0a54ae073c608c88",
+    "src_0a5ce94749505867",
+    "src_0a68ecff998bdeb7",
+    "src_0a758b917afa99ed",
+    "src_0a821acb2ec8e6a6",
+    "src_0ab03fe98860e719",
+    "src_0ab2e9be09bc039c",
+    "src_0ab863f01971f5b6",
+    "src_0ac0c70562cbbf70",
+    "src_0ad141da5c26d6f2",
+    "src_0ad1cddc534f8142",
+    "src_0ae7d853dbdd9f79",
+    "src_0af6caf91b78ca13"
+  ],
+  "selectedSourceCount": 25,
+  "nonSpanishCellCount": 275,
+  "selectedSourceIdsW38": [
+    "src_084759c8b290636e",
+    "src_084ee5f9dc342f13",
+    "src_086d9ef0599694b9",
+    "src_087410a9bffaa497",
+    "src_088998ef3f0eb88d",
+    "src_0894b7f847440bec",
+    "src_08a3e8e660874d8a",
+    "src_08b041935798fbf6",
+    "src_08b30b1aba98a1d4",
+    "src_08cddda722527ffd",
+    "src_08e11c585cb99736",
+    "src_08f271887ce94707",
+    "src_090269ba94d47580",
+    "src_090512d93fcc3c0d",
+    "src_090940bae1e24f54",
+    "src_090c731ea55b379e",
+    "src_09155891b81b403c",
+    "src_091a998e1a186d71",
+    "src_09230b3dbc35635f",
+    "src_0924a671165fef5a",
+    "src_0925387b88eda8fc",
+    "src_09298403b9c41b52",
+    "src_093fc8439d0ade12",
+    "src_094e2630f1d48460",
+    "src_09501d4b96861f65"
+  ],
+  "w38SelectionReproducedFromFrozenOrder": true,
+  "overlapWithW1Through38": 0,
+  "overlapWithFormalSpanishCells": 0,
+  "preservedFormalSpanishRows": 25,
+  "previousHoldRows": 50,
+  "previousHoldSourceIds": 7,
+  "selectedHoldSourceOverlap": 0,
+  "previousWindows": [
+    {
+      "window": 1,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2"
+    },
+    {
+      "window": 2,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "c8507f897140d5c9bbd38cd8b238228407541c971822ff55c55415242fc25af9"
+    },
+    {
+      "window": 3,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "82c267214443adddd832221240762f4fc3d178ec39639e7d4dce250eca0aeb87"
+    },
+    {
+      "window": 4,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "b1005dd04403787fbc7929dd1bb792fe601e5de462c31e830195c00ffdb70c72"
+    },
+    {
+      "window": 5,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "cb4d4cd094fc666104fdcd88c6f2f3c4e6d63be7df7d5ca47b429cf566eab795"
+    },
+    {
+      "window": 6,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "3fd36a787003b2a8ce1c66365135bf1b90c3e6aa30d1c3856c51dfd7f43c2664"
+    },
+    {
+      "window": 7,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "77197eb0cdb8943910ad35fbedab2ba1c41db7ae36017747b3cdeb87d90ed961"
+    },
+    {
+      "window": 8,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "73b80fc7fec7e9f9d8044ba78605ee3e675cd256590826ba00267f0332e3e176"
+    },
+    {
+      "window": 9,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "7d4f73d3bca269185ef7a1ac460b1b6d8bfdd8202951ffa7b2afb44acec571cb"
+    },
+    {
+      "window": 10,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "dc18ddabcf1e49e8283532bd9fb597e55d5f27682f3af93edff6027ff487dfed"
+    },
+    {
+      "window": 11,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "90d593959e210ffdc8ca8fdf7e8a933293106829d1aa3827131dd65309418a82"
+    },
+    {
+      "window": 12,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "4db161920d006dfa3ca1dcd09f8504b57689ffdc9bf55e52c3838b49a5a1ba57"
+    },
+    {
+      "window": 13,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window13/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "638d45f1b44d5d37d79e0f78828b99fe9eb93a5bd00ebdeebaebae5b07bcb2a1"
+    },
+    {
+      "window": 14,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window14/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8"
+    },
+    {
+      "window": 15,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window15/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "dbfd4aa6418be05df35c70c842aca5ccb2b4c9cfc578b41978be25d911dcfbe4"
+    },
+    {
+      "window": 16,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window16/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "849a840e92656c5782e92ee6380f3d0a442f3fc48118917e2f545a3c00eea2b3"
+    },
+    {
+      "window": 17,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window17/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "5c8aa2d11b2fc4d452497b5975d71cf85672925f5ab8a398e6a8e445cbeb9b55"
+    },
+    {
+      "window": 18,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window18/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "124a993a8f50ae4adaa57858c6426c8a36a57b2f789d96e7fefa960ed661c5cf"
+    },
+    {
+      "window": 19,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window19/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "675a23d87cb111538504af36d39cb5b6efe395248503c4f5165c53b29aa3cf8a"
+    },
+    {
+      "window": 20,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window20/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "de9c4ac3cb20993b9eca04a8188520f98de9e739d3d280ef7e4ce22cce09ada2"
+    },
+    {
+      "window": 21,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window21/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "50eccb5239402dc25d2f27988f4541e90d66a3908e6273a204509542aa81d974"
+    },
+    {
+      "window": 22,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window22/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "626b0b83a25d9494714ec23f308fd34b5b415eebcbbdcb4857b0d1b96b9c0ca4"
+    },
+    {
+      "window": 23,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window23/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "23ab5a2d823b2b1ee680adb175722e517f409e7d1bf3197e8b016705c2a783c9"
+    },
+    {
+      "window": 24,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window24/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "c8b6b51bb57d476b9272d05f27386f7f7829bacaa14f077db91003eac7898270"
+    },
+    {
+      "window": 25,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window25/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "e3763d124513fde73ddc786fdf32ec17bce713d5ced15f26e14d62c1fc13e79e"
+    },
+    {
+      "window": 26,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window26/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "14c65ba66c5ffd4d6074bc8b689d582b522cafe44906f1d3d6c468709604dfbb"
+    },
+    {
+      "window": 27,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window27/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "8a4954b9d45056abafb1646eb547c3aeccaba2a57b359289ac929d15d0fc0f86"
+    },
+    {
+      "window": 28,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window28/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "44b2c98fba43c0e3cffea0ad9e4cb14c7a844fcc0a11a2ad54751422f9ed3731"
+    },
+    {
+      "window": 29,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window29/review-input.jsonl",
+      "rows": 300,
+      "sourceKeys": 25,
+      "sha256": "fc41b5f62ac2feaad4c5184d1d09d481b114703596f734804718d5a651942307"
+    },
+    {
+      "window": 30,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window30/review-input.jsonl",
+      "rows": 264,
+      "sourceKeys": 22,
+      "sha256": "cdddce2d0a1eb4b24ac1dced73273ecedb23ef7ff7cc1feb6c426df35a8e8311"
+    },
+    {
+      "window": 31,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window31/review-input.jsonl",
+      "rows": 274,
+      "sourceKeys": 25,
+      "sha256": "d5017efef0c3e063458c6271bb4b27d40b35bdf91cd8379e598648e9bfd0c1be"
+    },
+    {
+      "window": 32,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window32/review-packet/review-input.jsonl",
+      "rows": 266,
+      "sourceKeys": 25,
+      "sha256": "09d534acad981c383c42c2da15b0c26a667af529cf108430ae7c388294c1f988"
+    },
+    {
+      "window": 33,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window33/review-packet/review-input.jsonl",
+      "rows": 274,
+      "sourceKeys": 25,
+      "sha256": "9b919f98102d88f2c8de56b23a187531453ed38eac9034657b9f968b8412bcec"
+    },
+    {
+      "window": 34,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window34/review-packet/review-input.jsonl",
+      "rows": 274,
+      "sourceKeys": 25,
+      "sha256": "549f8edf997aebcbf5ca8de93144fc9dd5331ac8177beea2b01ba8beaf29e874"
+    },
+    {
+      "window": 35,
+      "path": "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window35/review-packet/review-input.jsonl",
+      "rows": 274,
+      "sourceKeys": 25,
+      "sha256": "1a34ada42ec29d1e014dd845c69960bd0898a20658973111fa3f414b367f6f29"
+    },
+    {
+      "window": 36,
+      "path": "docs/pr-evidence/pr409-localization-2026-11-02/window36/primary/review-input.jsonl",
+      "rows": 275,
+      "sourceKeys": 25,
+      "sha256": "afaff6fa0ec0f8ee26dae91669097dc1ecba614af5e85c364d1675da116c1bb4"
+    },
+    {
+      "window": 37,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window37-primary-20261102/review-input.jsonl",
+      "rows": 273,
+      "sourceKeys": 25,
+      "sha256": "bc4a1ccd8201a50a926a6ff46ea904bdfa583855bce9e425f35557d7dc140f86"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pr_number": 409,
+  "window": 39,
+  "input_head": "54bbece421b44fae0cc9156c42a859848db8be5e",
+  "input_tree": "c9c5ea9d9cd444a677d5f3428a3e3d94c49c67f2",
+  "source_subtree_tree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "primary_review_cells": 275,
+  "independent_cross_review_dispositions": {
+    "accepted_current": 238,
+    "accepted_primary_proposals": 35,
+    "missed_current_issues": 2
+  },
+  "applied_rows": 37,
+  "applied_proposal_types": {
+    "primary_corrections": 25,
+    "primary_refinements": 10,
+    "root_missed_current_fixes": 2
+  },
+  "updates_by_locale": {
+    "vi": 7,
+    "hi": 5,
+    "pt-BR": 3,
+    "id": 4,
+    "ja": 4,
+    "fr": 2,
+    "ar": 4,
+    "ko": 3,
+    "de": 3,
+    "zh-Hans": 1,
+    "zh-Hant": 1
+  },
+  "catalog_count": 12,
+  "keys_per_locale": 6169,
+  "formal_spanish_rows_reattested": 25,
+  "prior_hold_rows_preserved": 50,
+  "protected_literals_placeholders_source_caller_hashes": "verified",
+  "native_speaker_approval": false,
+  "exact_head_browser_review": false,
+  "tests_builds_scans_ci_workflows_releases_tags_merges": false
+}
