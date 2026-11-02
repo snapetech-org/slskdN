@@ -1,0 +1,42 @@
+{
+  "rows": 300,
+  "verdicts": {
+    "keep": 257,
+    "correct": 43
+  },
+  "correctionRows": 43,
+  "correctionsByLocale": {
+    "ar": 6,
+    "de": 2,
+    "es": 4,
+    "fr": 4,
+    "hi": 3,
+    "id": 5,
+    "ja": 2,
+    "ko": 3,
+    "pt-BR": 5,
+    "vi": 3,
+    "zh-Hans": 3,
+    "zh-Hant": 3
+  },
+  "keepByLocale": {
+    "es": 21,
+    "zh-Hans": 22,
+    "hi": 22,
+    "de": 23,
+    "ja": 23,
+    "fr": 21,
+    "pt-BR": 20,
+    "ar": 19,
+    "ko": 22,
+    "zh-Hant": 22,
+    "vi": 22,
+    "id": 20
+  },
+  "inputSha256": "e3763d124513fde73ddc786fdf32ec17bce713d5ced15f26e14d62c1fc13e79e",
+  "decisionsSha256": "eb40c90a6cf2d2e2b63b9f0ccd738ab8c8e1ce5da1930df52d246193f7346aaf",
+  "crossReviewPlanSha256": "e91822aa4846ad711ba9fd2393d87ad87ade9a7ec024c3307ab4a082441b0764",
+  "correctionSourceKeys": 9,
+  "placeholdersProtectedLiterals": "PASS",
+  "proposedTargetHashes": "PASS"
+}
