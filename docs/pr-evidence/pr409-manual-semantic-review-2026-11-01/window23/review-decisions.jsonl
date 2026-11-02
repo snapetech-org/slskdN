@@ -1,0 +1,300 @@
+{"id":"es:src_f71157eafd4859bf","verdict":"correct","target":"Mostrar los resultados de {searchText} dentro de la página","confidence":"high","reason":"The control displays results inside the Wishlist page; en línea can mean online rather than inline."}
+{"id":"es:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"es:src_f73bad551b46621b","verdict":"keep"}
+{"id":"es:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"es:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"es:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"es:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"es:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"es:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"es:src_f77840debe76dded","verdict":"keep"}
+{"id":"es:src_f7881ff8beaf4b14","verdict":"correct","target":"Enviar (Enter)","confidence":"high","reason":"The parenthetical names the keyboard key; Entrar is the action “enter,” not the key label."}
+{"id":"es:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"es:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"es:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"es:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"es:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"es:src_f7f2495aa50ee719","verdict":"correct","target":"Punto de conexión:","confidence":"high","reason":"The following value is peer.endpoint, a network connection endpoint; punto final commonly means a sentence full stop."}
+{"id":"es:src_f8019af406d12fad","verdict":"keep"}
+{"id":"es:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"es:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"es:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"es:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"es:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"es:src_f845754d70f05777","verdict":"keep"}
+{"id":"es:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"zh-Hans:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"zh-Hans:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"zh-Hans:src_f73bad551b46621b","verdict":"keep"}
+{"id":"zh-Hans:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"zh-Hans:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"zh-Hans:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"zh-Hans:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"zh-Hans:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"zh-Hans:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"zh-Hans:src_f77840debe76dded","verdict":"correct","target":"AcoustID 基础 URL","confidence":"high","reason":"底座 means a physical base/pedestal; this settings field is the AcoustID service base URL."}
+{"id":"zh-Hans:src_f7881ff8beaf4b14","verdict":"correct","target":"发送（回车）","confidence":"high","reason":"The parenthetical names the keyboard key; 输入 means the action “input,” not the Enter key."}
+{"id":"zh-Hans:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"zh-Hans:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"zh-Hans:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"zh-Hans:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"zh-Hans:src_f7e7093dbf09c564","verdict":"correct","target":"内容注册表","confidence":"high","reason":"The card reports Content ID mappings and domain statistics; the source names the registry/store, while 注册 alone means registration."}
+{"id":"zh-Hans:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"zh-Hans:src_f8019af406d12fad","verdict":"keep"}
+{"id":"zh-Hans:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"zh-Hans:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"zh-Hans:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"zh-Hans:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"zh-Hans:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"zh-Hans:src_f845754d70f05777","verdict":"keep"}
+{"id":"zh-Hans:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"hi:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"hi:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"hi:src_f73bad551b46621b","verdict":"keep"}
+{"id":"hi:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"hi:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"hi:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"hi:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"hi:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"hi:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"hi:src_f77840debe76dded","verdict":"keep"}
+{"id":"hi:src_f7881ff8beaf4b14","verdict":"correct","target":"भेजें (Enter)","confidence":"high","reason":"The parenthetical names the keyboard key; दर्ज करें is the action “enter/input,” not the key label."}
+{"id":"hi:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"hi:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"hi:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"hi:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"hi:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"hi:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"hi:src_f8019af406d12fad","verdict":"keep"}
+{"id":"hi:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"hi:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"hi:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"hi:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"hi:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"hi:src_f845754d70f05777","verdict":"keep"}
+{"id":"hi:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"de:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"de:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"de:src_f73bad551b46621b","verdict":"keep"}
+{"id":"de:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"de:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"de:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"de:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"de:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"de:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"de:src_f77840debe76dded","verdict":"keep"}
+{"id":"de:src_f7881ff8beaf4b14","verdict":"correct","target":"Senden (Eingabetaste)","confidence":"high","reason":"The parenthetical names the keyboard key; Eingeben is the action “to input,” not the key label."}
+{"id":"de:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"de:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"de:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"de:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"de:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"de:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"de:src_f8019af406d12fad","verdict":"keep"}
+{"id":"de:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"de:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"de:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"de:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"de:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"de:src_f845754d70f05777","verdict":"keep"}
+{"id":"de:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"ja:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"ja:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"ja:src_f73bad551b46621b","verdict":"keep"}
+{"id":"ja:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"ja:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"ja:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"ja:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"ja:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"ja:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"ja:src_f77840debe76dded","verdict":"keep"}
+{"id":"ja:src_f7881ff8beaf4b14","verdict":"correct","target":"送信（Enterキー）","confidence":"high","reason":"The parenthetical names the keyboard key; 入力 means the action “input,” not the Enter key."}
+{"id":"ja:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"ja:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"ja:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"ja:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"ja:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"ja:src_f7f2495aa50ee719","verdict":"correct","target":"エンドポイント：","confidence":"high","reason":"The following value is peer.endpoint, a network connection endpoint; 終点 means a terminal/end point rather than the network endpoint field."}
+{"id":"ja:src_f8019af406d12fad","verdict":"keep"}
+{"id":"ja:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"ja:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"ja:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"ja:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"ja:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"ja:src_f845754d70f05777","verdict":"keep"}
+{"id":"ja:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"fr:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"fr:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"fr:src_f73bad551b46621b","verdict":"keep"}
+{"id":"fr:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"fr:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"fr:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"fr:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"fr:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"fr:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"fr:src_f77840debe76dded","verdict":"correct","target":"URL de base d’AcoustID","confidence":"high","reason":"The source is the base URL for the AcoustID service; “Base AcoustID URL” reverses the field relationship."}
+{"id":"fr:src_f7881ff8beaf4b14","verdict":"correct","target":"Envoyer (Entrée)","confidence":"high","reason":"The parenthetical names the keyboard key; Entrer is the verb “to enter,” not the key label."}
+{"id":"fr:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"fr:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"fr:src_f7cf39ee72f47395","verdict":"correct","target":"type :","confidence":"high","reason":"The source labels an obfuscation field; taper is the verb “to type,” not the noun “type.”"}
+{"id":"fr:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"fr:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"fr:src_f7f2495aa50ee719","verdict":"correct","target":"Point de terminaison :","confidence":"high","reason":"The following value is peer.endpoint, a network endpoint; point final means a final point/full stop."}
+{"id":"fr:src_f8019af406d12fad","verdict":"keep"}
+{"id":"fr:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"fr:src_f81cfebe7162a7e3","verdict":"correct","target":"Créez des pods liés à du contenu spécifique (musique, vidéos, etc.) pour des discussions ciblées","confidence":"high","reason":"The source names the app’s discussion pod object; modules means modules/components and does not identify the discussion spaces described here."}
+{"id":"fr:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"fr:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"fr:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"fr:src_f845754d70f05777","verdict":"keep"}
+{"id":"fr:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"pt-BR:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"pt-BR:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"pt-BR:src_f73bad551b46621b","verdict":"keep"}
+{"id":"pt-BR:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"pt-BR:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"pt-BR:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"pt-BR:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"pt-BR:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"pt-BR:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"pt-BR:src_f77840debe76dded","verdict":"correct","target":"URL base do AcoustID","confidence":"high","reason":"The source is the base URL for the AcoustID service; “Base AcoustID URL” reverses the field relationship."}
+{"id":"pt-BR:src_f7881ff8beaf4b14","verdict":"correct","target":"Enviar (Enter)","confidence":"high","reason":"The parenthetical names the keyboard key; Entrar is the action “to enter,” not the key label."}
+{"id":"pt-BR:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"pt-BR:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"pt-BR:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"pt-BR:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"pt-BR:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"pt-BR:src_f7f2495aa50ee719","verdict":"correct","target":"Ponto de extremidade:","confidence":"high","reason":"The following value is peer.endpoint, a network connection endpoint; ponto final commonly means a sentence full stop."}
+{"id":"pt-BR:src_f8019af406d12fad","verdict":"keep"}
+{"id":"pt-BR:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"pt-BR:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"pt-BR:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"pt-BR:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"pt-BR:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"pt-BR:src_f845754d70f05777","verdict":"keep"}
+{"id":"pt-BR:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"ar:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"ar:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"ar:src_f73bad551b46621b","verdict":"keep"}
+{"id":"ar:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"ar:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"ar:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"ar:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"ar:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"ar:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"ar:src_f77840debe76dded","verdict":"keep"}
+{"id":"ar:src_f7881ff8beaf4b14","verdict":"correct","target":"أرسل (Enter)","confidence":"high","reason":"The parenthetical names the keyboard key; أدخل is an imperative verb, not the key label."}
+{"id":"ar:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"ar:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"ar:src_f7cf39ee72f47395","verdict":"correct","target":"النوع:","confidence":"high","reason":"The source labels an obfuscation field; يكتب means “he writes,” not the noun “type.”"}
+{"id":"ar:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"ar:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"ar:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"ar:src_f8019af406d12fad","verdict":"keep"}
+{"id":"ar:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"ar:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"ar:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"ar:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"ar:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"ar:src_f845754d70f05777","verdict":"keep"}
+{"id":"ar:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"ko:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"ko:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"ko:src_f73bad551b46621b","verdict":"keep"}
+{"id":"ko:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"ko:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"ko:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"ko:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"ko:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"ko:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"ko:src_f77840debe76dded","verdict":"keep"}
+{"id":"ko:src_f7881ff8beaf4b14","verdict":"keep"}
+{"id":"ko:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"ko:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"ko:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"ko:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"ko:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"ko:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"ko:src_f8019af406d12fad","verdict":"keep"}
+{"id":"ko:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"ko:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"ko:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"ko:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"ko:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"ko:src_f845754d70f05777","verdict":"keep"}
+{"id":"ko:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"zh-Hant:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"zh-Hant:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"zh-Hant:src_f73bad551b46621b","verdict":"keep"}
+{"id":"zh-Hant:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"zh-Hant:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"zh-Hant:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"zh-Hant:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"zh-Hant:src_f76bad96debbda1c","verdict":"keep"}
+{"id":"zh-Hant:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"zh-Hant:src_f77840debe76dded","verdict":"correct","target":"AcoustID 基礎 URL","confidence":"high","reason":"底座 means a physical base/pedestal; this settings field is the AcoustID service base URL."}
+{"id":"zh-Hant:src_f7881ff8beaf4b14","verdict":"correct","target":"發送（Enter 鍵）","confidence":"high","reason":"The parenthetical names the keyboard key; 輸入 means the action “input,” not the Enter key."}
+{"id":"zh-Hant:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"zh-Hant:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"zh-Hant:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"zh-Hant:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"zh-Hant:src_f7e7093dbf09c564","verdict":"correct","target":"內容註冊表","confidence":"high","reason":"The card reports Content ID mappings and domain statistics; the source names the registry/store, while 註冊 alone means registration."}
+{"id":"zh-Hant:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"zh-Hant:src_f8019af406d12fad","verdict":"keep"}
+{"id":"zh-Hant:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"zh-Hant:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"zh-Hant:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"zh-Hant:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"zh-Hant:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"zh-Hant:src_f845754d70f05777","verdict":"keep"}
+{"id":"zh-Hant:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"vi:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"vi:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"vi:src_f73bad551b46621b","verdict":"keep"}
+{"id":"vi:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"vi:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"vi:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"vi:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"vi:src_f76bad96debbda1c","verdict":"correct","target":"URL chủ đề Ntfy","confidence":"high","reason":"ntfy is the notification service name; không vui means “not fun/unhappy” and is unrelated to the brand."}
+{"id":"vi:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"vi:src_f77840debe76dded","verdict":"correct","target":"URL cơ sở của AcoustID","confidence":"high","reason":"Đế means a physical base/pedestal; this settings field is the AcoustID service base URL."}
+{"id":"vi:src_f7881ff8beaf4b14","verdict":"correct","target":"Gửi (Enter)","confidence":"high","reason":"The parenthetical names the keyboard key; Nhập means the action “input,” not the key label."}
+{"id":"vi:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"vi:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"vi:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"vi:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"vi:src_f7e7093dbf09c564","verdict":"correct","target":"Sổ đăng ký nội dung","confidence":"high","reason":"The card reports Content ID mappings and domain statistics; the source names the registry/store, while Đăng ký nội dung reads as content registration."}
+{"id":"vi:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"vi:src_f8019af406d12fad","verdict":"keep"}
+{"id":"vi:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"vi:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"vi:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"vi:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"vi:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"vi:src_f845754d70f05777","verdict":"keep"}
+{"id":"vi:src_f84b20ccbda8a06b","verdict":"keep"}
+{"id":"id:src_f71157eafd4859bf","verdict":"keep"}
+{"id":"id:src_f7266854fe55fa4e","verdict":"keep"}
+{"id":"id:src_f73bad551b46621b","verdict":"keep"}
+{"id":"id:src_f7573bf001d513a8","verdict":"keep"}
+{"id":"id:src_f75b6c146d7bc494","verdict":"keep"}
+{"id":"id:src_f75c2a5e0c8a1584","verdict":"keep"}
+{"id":"id:src_f75cabab76f5a17e","verdict":"keep"}
+{"id":"id:src_f76bad96debbda1c","verdict":"correct","target":"URL topik Ntfy","confidence":"high","reason":"ntfy is the notification service name; tidak jelas means “unclear” and is unrelated to the brand."}
+{"id":"id:src_f77334c05f28e7b8","verdict":"keep"}
+{"id":"id:src_f77840debe76dded","verdict":"correct","target":"URL dasar AcoustID","confidence":"high","reason":"The source names a service base URL; the current order “Basis AcoustID URL” obscures that relationship."}
+{"id":"id:src_f7881ff8beaf4b14","verdict":"correct","target":"Kirim (Enter)","confidence":"high","reason":"The parenthetical names the keyboard key; Masuk means “enter/log in,” not the key label."}
+{"id":"id:src_f79076d91fa9e4e9","verdict":"keep"}
+{"id":"id:src_f795cbf5d25292b1","verdict":"keep"}
+{"id":"id:src_f7cf39ee72f47395","verdict":"keep"}
+{"id":"id:src_f7d9ac26857e3fac","verdict":"keep"}
+{"id":"id:src_f7e7093dbf09c564","verdict":"keep"}
+{"id":"id:src_f7f2495aa50ee719","verdict":"keep"}
+{"id":"id:src_f8019af406d12fad","verdict":"keep"}
+{"id":"id:src_f81ab834de5f8491","verdict":"keep"}
+{"id":"id:src_f81cfebe7162a7e3","verdict":"keep"}
+{"id":"id:src_f82329b9eda34a12","verdict":"keep"}
+{"id":"id:src_f83619b4a3a2eb6b","verdict":"keep"}
+{"id":"id:src_f83d9e6c4060ab46","verdict":"keep"}
+{"id":"id:src_f845754d70f05777","verdict":"keep"}
+{"id":"id:src_f84b20ccbda8a06b","verdict":"keep"}
