@@ -1,0 +1,300 @@
+{"id":"es:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"es:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"es:src_ecbc89cd37a03734","verdict":"correct","target":"Inicio","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"es:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"es:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"es:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"es:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"es:src_ecf5673d966c7ee6","verdict":"keep"}
+{"id":"es:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"es:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"es:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"es:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"es:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"es:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"es:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"es:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"es:src_edab51e6413666d6","verdict":"keep"}
+{"id":"es:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"es:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"es:src_edd00a94cc372e67","verdict":"correct","target":"Confianza en la coincidencia local para este elemento que se está reproduciendo.","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"es:src_ede8ee15812aca79","verdict":"correct","target":"Tabla de transferencias. Utilice las teclas de flecha izquierda y derecha para ver todas las columnas.","confidence":"high","reason":"The accessible label belongs to TransferTable.jsx and describes the data grid that contains file transfers. These targets read as physical furniture or a moving table, so name a table/grid of transfers."}
+{"id":"es:src_edeabc87f900a504","verdict":"keep"}
+{"id":"es:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"es:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"es:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"zh-Hans:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"zh-Hans:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"zh-Hans:src_ecbc89cd37a03734","verdict":"keep"}
+{"id":"zh-Hans:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"zh-Hans:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"zh-Hans:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"zh-Hans:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"zh-Hans:src_ecf5673d966c7ee6","verdict":"correct","target":"设置健康检查","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"zh-Hans:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"zh-Hans:src_ed1eb523bef0ec0c","verdict":"correct","target":"用户备注：","confidence":"high","reason":"The sticky-note modal displays a note attached to a user. 注意事项 means cautions/instructions rather than a note or memo."}
+{"id":"zh-Hans:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"zh-Hans:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"zh-Hans:src_ed63da6cdfb4c64b","verdict":"correct","target":"查找链接到此内容 ID 的 Pod，以浏览相关社区。这是手动查找。","confidence":"high","reason":"The tooltip describes a manually initiated Pod lookup. The Chinese targets calque “manual discovery query”; use a concise manual-lookup phrase."}
+{"id":"zh-Hans:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"zh-Hans:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"zh-Hans:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"zh-Hans:src_edab51e6413666d6","verdict":"keep"}
+{"id":"zh-Hans:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"zh-Hans:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"zh-Hans:src_edd00a94cc372e67","verdict":"keep"}
+{"id":"zh-Hans:src_ede8ee15812aca79","verdict":"keep"}
+{"id":"zh-Hans:src_edeabc87f900a504","verdict":"correct","target":"发布概览","confidence":"high","reason":"The MediaCore statistics section covers DHT content publishing and publication performance, not book publishing. Use the Chinese verb for publishing/releasing content."}
+{"id":"zh-Hans:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"zh-Hans:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"zh-Hans:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"hi:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"hi:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"hi:src_ecbc89cd37a03734","verdict":"correct","target":"प्रारंभ समय","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"hi:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"hi:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"hi:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"hi:src_ece3fc3f006337c0","verdict":"correct","target":"विकल्पों को फिर से आज़माएँ","confidence":"high","reason":"This button retries loading the Options page. The current Hindi word order is ungrammatical and reads as “try again option”; use a natural imperative for retrying the options."}
+{"id":"hi:src_ecf5673d966c7ee6","verdict":"correct","target":"सेटअप स्वास्थ्य जाँच","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"hi:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"hi:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"hi:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"hi:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"hi:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"hi:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"hi:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"hi:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"hi:src_edab51e6413666d6","verdict":"keep"}
+{"id":"hi:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"hi:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"hi:src_edd00a94cc372e67","verdict":"correct","target":"इस समय चल रहे आइटम के स्थानीय मिलान की विश्वसनीयता।","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"hi:src_ede8ee15812aca79","verdict":"keep"}
+{"id":"hi:src_edeabc87f900a504","verdict":"keep"}
+{"id":"hi:src_edfaab65d46d2346","verdict":"correct","target":"स्वचालित प्रतिस्थापन हेतु आकार सीमा","confidence":"high","reason":"This is a numeric cutoff for automatic replacement. The current Hindi reads as an instruction to change the limit, and the Vietnamese word order makes the threshold itself the object being replaced."}
+{"id":"hi:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"hi:src_ee56c591a7ad53a6","verdict":"correct","target":"मेश सिंक सुरक्षा","confidence":"high","reason":"“मेष” means Aries/ram in Hindi. Here Mesh is the overlay-network feature name; transliterate it as मेश."}
+{"id":"de:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"de:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"de:src_ecbc89cd37a03734","verdict":"correct","target":"Startzeit","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"de:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"de:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"de:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"de:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"de:src_ecf5673d966c7ee6","verdict":"correct","target":"Einrichtungsstatus","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"de:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"de:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"de:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"de:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"de:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"de:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"de:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"de:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"de:src_edab51e6413666d6","verdict":"keep"}
+{"id":"de:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"de:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"de:src_edd00a94cc372e67","verdict":"correct","target":"Konfidenz der lokalen Zuordnung für dieses gerade wiedergegebene Element.","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"de:src_ede8ee15812aca79","verdict":"correct","target":"Übertragungstabelle. Verwenden Sie die Pfeiltasten nach links und rechts, um alle Spalten anzuzeigen.","confidence":"high","reason":"The accessible label belongs to TransferTable.jsx and describes the data grid that contains file transfers. These targets read as physical furniture or a moving table, so name a table/grid of transfers."}
+{"id":"de:src_edeabc87f900a504","verdict":"keep"}
+{"id":"de:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"de:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"de:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"ja:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"ja:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"ja:src_ecbc89cd37a03734","verdict":"correct","target":"開始時刻","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"ja:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"ja:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"ja:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"ja:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"ja:src_ecf5673d966c7ee6","verdict":"correct","target":"セットアップの状態チェック","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"ja:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"ja:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"ja:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"ja:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"ja:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"ja:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"ja:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"ja:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"ja:src_edab51e6413666d6","verdict":"keep"}
+{"id":"ja:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"ja:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"ja:src_edd00a94cc372e67","verdict":"keep"}
+{"id":"ja:src_ede8ee15812aca79","verdict":"keep"}
+{"id":"ja:src_edeabc87f900a504","verdict":"keep"}
+{"id":"ja:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"ja:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"ja:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"fr:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"fr:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"fr:src_ecbc89cd37a03734","verdict":"correct","target":"Début","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"fr:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"fr:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"fr:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"fr:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"fr:src_ecf5673d966c7ee6","verdict":"keep"}
+{"id":"fr:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"fr:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"fr:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"fr:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"fr:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"fr:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"fr:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"fr:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"fr:src_edab51e6413666d6","verdict":"keep"}
+{"id":"fr:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"fr:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"fr:src_edd00a94cc372e67","verdict":"correct","target":"Confiance de correspondance locale pour cet élément en cours de lecture.","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"fr:src_ede8ee15812aca79","verdict":"keep"}
+{"id":"fr:src_edeabc87f900a504","verdict":"keep"}
+{"id":"fr:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"fr:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"fr:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"pt-BR:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"pt-BR:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"pt-BR:src_ecbc89cd37a03734","verdict":"correct","target":"Início","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"pt-BR:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"pt-BR:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"pt-BR:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"pt-BR:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"pt-BR:src_ecf5673d966c7ee6","verdict":"correct","target":"Verificação de integridade da configuração","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"pt-BR:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"pt-BR:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"pt-BR:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"pt-BR:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"pt-BR:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"pt-BR:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"pt-BR:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"pt-BR:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"pt-BR:src_edab51e6413666d6","verdict":"keep"}
+{"id":"pt-BR:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"pt-BR:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"pt-BR:src_edd00a94cc372e67","verdict":"correct","target":"Confiança na correspondência local deste item que está sendo reproduzido.","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"pt-BR:src_ede8ee15812aca79","verdict":"correct","target":"Tabela de transferências. Use as teclas de seta para a esquerda e para a direita para ver todas as colunas.","confidence":"high","reason":"The accessible label belongs to TransferTable.jsx and describes the data grid that contains file transfers. These targets read as physical furniture or a moving table, so name a table/grid of transfers."}
+{"id":"pt-BR:src_edeabc87f900a504","verdict":"keep"}
+{"id":"pt-BR:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"pt-BR:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"pt-BR:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"ar:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"ar:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"ar:src_ecbc89cd37a03734","verdict":"correct","target":"وقت البدء","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"ar:src_ecc574e69b150f0b","verdict":"correct","target":"انشر بيانات Pod الوصفية وأدِرها على DHT اللامركزية لتسهيل اكتشافها.","confidence":"high","reason":"The MediaCore callsite describes a named Pod entity published to DHT. Arabic currently means a physical pouch and Vietnamese means a generic group; retain the Pod entity name."}
+{"id":"ar:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"ar:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"ar:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"ar:src_ecf5673d966c7ee6","verdict":"keep"}
+{"id":"ar:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"ar:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"ar:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"ar:src_ed409f5d8bfe6fb6","verdict":"correct","target":"التثبيتات الجديدة","confidence":"high","reason":"The heading means new software installations; المنشآت الطازجة means fresh facilities rather than installations."}
+{"id":"ar:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"ar:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"ar:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"ar:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"ar:src_edab51e6413666d6","verdict":"keep"}
+{"id":"ar:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"ar:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"ar:src_edd00a94cc372e67","verdict":"correct","target":"درجة الثقة في المطابقة المحلية لهذا العنصر الجاري تشغيله.","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"ar:src_ede8ee15812aca79","verdict":"keep"}
+{"id":"ar:src_edeabc87f900a504","verdict":"keep"}
+{"id":"ar:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"ar:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"ar:src_ee56c591a7ad53a6","verdict":"uncertain","reason":"The source names Mesh Sync as a network feature, but the preferred Arabic product term is unclear from this heading alone. Confirm whether to retain “Mesh” or use the established Arabic mesh-network term."}
+{"id":"ko:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"ko:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"ko:src_ecbc89cd37a03734","verdict":"correct","target":"시작 시간","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"ko:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"ko:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"ko:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"ko:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"ko:src_ecf5673d966c7ee6","verdict":"correct","target":"설정 상태 점검","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"ko:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"ko:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"ko:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"ko:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"ko:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"ko:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"ko:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"ko:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"ko:src_edab51e6413666d6","verdict":"correct","target":"검증 통계를 불러오지 못했습니다:","confidence":"high","reason":"This prefix is followed inline by error details. Korean currently says generic confirmation/check statistics and ends a sentence; specify verification statistics and preserve the colon relationship."}
+{"id":"ko:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"ko:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"ko:src_edd00a94cc372e67","verdict":"keep"}
+{"id":"ko:src_ede8ee15812aca79","verdict":"keep"}
+{"id":"ko:src_edeabc87f900a504","verdict":"keep"}
+{"id":"ko:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"ko:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"ko:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"zh-Hant:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"zh-Hant:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"zh-Hant:src_ecbc89cd37a03734","verdict":"keep"}
+{"id":"zh-Hant:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"zh-Hant:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"zh-Hant:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"zh-Hant:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"zh-Hant:src_ecf5673d966c7ee6","verdict":"correct","target":"設定健康檢查","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"zh-Hant:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"zh-Hant:src_ed1eb523bef0ec0c","verdict":"correct","target":"使用者備註：","confidence":"high","reason":"The sticky-note modal displays a note attached to a user. 注意事项 means cautions/instructions rather than a note or memo."}
+{"id":"zh-Hant:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"zh-Hant:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"zh-Hant:src_ed63da6cdfb4c64b","verdict":"correct","target":"尋找連結至此內容 ID 的 Pod，以瀏覽相關社群。這是手動查找。","confidence":"high","reason":"The tooltip describes a manually initiated Pod lookup. The Chinese targets calque “manual discovery query”; use a concise manual-lookup phrase."}
+{"id":"zh-Hant:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"zh-Hant:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"zh-Hant:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"zh-Hant:src_edab51e6413666d6","verdict":"keep"}
+{"id":"zh-Hant:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"zh-Hant:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"zh-Hant:src_edd00a94cc372e67","verdict":"keep"}
+{"id":"zh-Hant:src_ede8ee15812aca79","verdict":"keep"}
+{"id":"zh-Hant:src_edeabc87f900a504","verdict":"correct","target":"發布概覽","confidence":"high","reason":"The MediaCore statistics section covers DHT content publishing and publication performance, not book publishing. Use the Chinese verb for publishing/releasing content."}
+{"id":"zh-Hant:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"zh-Hant:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"zh-Hant:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"vi:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"vi:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"vi:src_ecbc89cd37a03734","verdict":"correct","target":"Thời gian bắt đầu","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"vi:src_ecc574e69b150f0b","verdict":"correct","target":"Xuất bản và quản lý siêu dữ liệu Pod trên DHT phi tập trung để hỗ trợ khám phá.","confidence":"high","reason":"The MediaCore callsite describes a named Pod entity published to DHT. Arabic currently means a physical pouch and Vietnamese means a generic group; retain the Pod entity name."}
+{"id":"vi:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"vi:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"vi:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"vi:src_ecf5673d966c7ee6","verdict":"correct","target":"Kiểm tra tình trạng thiết lập","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"vi:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"vi:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"vi:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"vi:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"vi:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"vi:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"vi:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"vi:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"vi:src_edab51e6413666d6","verdict":"keep"}
+{"id":"vi:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"vi:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"vi:src_edd00a94cc372e67","verdict":"correct","target":"Mức độ tin cậy của kết quả khớp cục bộ cho mục đang phát này.","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"vi:src_ede8ee15812aca79","verdict":"correct","target":"Bảng truyền tệp. Sử dụng các phím Mũi tên trái và phải để xem tất cả các cột.","confidence":"high","reason":"The accessible label belongs to TransferTable.jsx and describes the data grid that contains file transfers. These targets read as physical furniture or a moving table, so name a table/grid of transfers."}
+{"id":"vi:src_edeabc87f900a504","verdict":"keep"}
+{"id":"vi:src_edfaab65d46d2346","verdict":"correct","target":"Ngưỡng kích thước cho thay thế tự động","confidence":"high","reason":"This is a numeric cutoff for automatic replacement. The current Hindi reads as an instruction to change the limit, and the Vietnamese word order makes the threshold itself the object being replaced."}
+{"id":"vi:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"vi:src_ee56c591a7ad53a6","verdict":"keep"}
+{"id":"id:src_ec85ac5c7fdad448","verdict":"keep"}
+{"id":"id:src_ecbaedf4b7b24dbb","verdict":"keep"}
+{"id":"id:src_ecbc89cd37a03734","verdict":"correct","target":"Waktu mulai","confidence":"high","reason":"These four tables render a start timestamp (`startedAt`), so the heading needs a start/time label. The current targets in these locales read as a completed action or past-tense statement."}
+{"id":"id:src_ecc574e69b150f0b","verdict":"keep"}
+{"id":"id:src_ecd11fd9f6ba3ceb","verdict":"keep"}
+{"id":"id:src_ecd487fc7cb6d38b","verdict":"keep"}
+{"id":"id:src_ece3fc3f006337c0","verdict":"keep"}
+{"id":"id:src_ecf5673d966c7ee6","verdict":"correct","target":"Pemeriksaan kesehatan konfigurasi","confidence":"high","reason":"The button and modal open a mobile-friendly setup health check. These targets read as an instruction to configure something, a generic status setting, or health settings; name the setup check instead."}
+{"id":"id:src_ed077f3d8125d60d","verdict":"keep"}
+{"id":"id:src_ed1eb523bef0ec0c","verdict":"keep"}
+{"id":"id:src_ed36b19e28a2b987","verdict":"keep"}
+{"id":"id:src_ed409f5d8bfe6fb6","verdict":"keep"}
+{"id":"id:src_ed63da6cdfb4c64b","verdict":"keep"}
+{"id":"id:src_ed87986ee80771ae","verdict":"keep"}
+{"id":"id:src_ed9f2bc75f7c2fa1","verdict":"keep"}
+{"id":"id:src_eda1dd89f4502861","verdict":"keep"}
+{"id":"id:src_edab51e6413666d6","verdict":"keep"}
+{"id":"id:src_edb76fbee38a5de5","verdict":"keep"}
+{"id":"id:src_edc279c643e5b7bb","verdict":"keep"}
+{"id":"id:src_edd00a94cc372e67","verdict":"correct","target":"Tingkat keyakinan kecocokan lokal untuk item yang sedang diputar ini.","confidence":"high","reason":"The PlayerBar shows a percentage for local item-identification confidence. These targets use a sports/game sense of match (or a suitability sense in Vietnamese), so use correspondence/matching terminology."}
+{"id":"id:src_ede8ee15812aca79","verdict":"correct","target":"Tabel transfer. Gunakan tombol panah kiri dan kanan untuk melihat semua kolom.","confidence":"high","reason":"The accessible label belongs to TransferTable.jsx and describes the data grid that contains file transfers. These targets read as physical furniture or a moving table, so name a table/grid of transfers."}
+{"id":"id:src_edeabc87f900a504","verdict":"keep"}
+{"id":"id:src_edfaab65d46d2346","verdict":"keep"}
+{"id":"id:src_ee01c7c4d6760464","verdict":"keep"}
+{"id":"id:src_ee56c591a7ad53a6","verdict":"keep"}

@@ -1,0 +1,9 @@
+# slskdN PR #409 manual semantic review: fifteenth 25-key slice
+
+The original scratch bundle passed its exact-head verifier at PR head `6e5658684ff16dffe267d27a3323c46a9120ab45` / tree `32a78530979e5a852d712a86721533809adb6604`. The source/catalog `src` tree `fff1ef49df31a8d1095cd43148c186fbcd7f5089` matches baseline `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`.
+
+This disjoint slice covers 25 keys / 300 cells across all twelve locales: 253 keep, 46 high-confidence correction candidates, and 1 uncertain. Corrections address timestamp column labels, Pod naming, Hindi retry wording, setup health-check labels, Chinese user-note and manual-lookup wording, Arabic new-install wording, Korean verification-stat punctuation, local match-confidence terminology, transfer-table labels, Chinese DHT publishing terminology, automatic-replacement size thresholds, and Hindi Mesh transliteration. Arabic “Mesh Sync Security” remains uncertain pending the preferred product/network term.
+
+The original scratch verifier checked checksums, exact source/catalog state, pending rows, placeholders/protected literals, formal overlap, and all fourteen previous windows. It found zero formal-result overlap and zero overlap with prior manual evidence. The sibling-sensitive verifier remains in scratch because its scan treats committed copies as duplicate reviews. This packaging README records the successful scratch verification; the input, decision, and manifest files are byte-identical copies. The manifest retains scratch hashes. No correction proposals have been applied; native-speaker review is still required.
+
+Scratch input SHA-256: `dbfd4aa6418be05df35c70c842aca5ccb2b4c9cfc578b41978be25d911dcfbe4`. Scratch decision SHA-256: `01794ece71d9ddfe25dc515c48202088186848f4f25f84d4eede290f0a8799ec`. Scratch manifest SHA-256: `7f34a7d568a9545abd59e1003c3103be06e7db677c6c35f44cb55e370c729e05`.
