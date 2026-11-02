@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "a098c95c814a555454c11eaf2478ca5ae628a933",
+  "tree": "dedfcc3c93b1b3a67e7d582a9eeaa0df052ccf42",
+  "sourceSubtreeTree": "a50cd94b2bc8d0f09de0882600207a4b82293108",
+  "generatedUtc": "2026-11-02T01:21:13Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 20,
+    "cells": 6000,
+    "keys": 500,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 818,
+    "ids": 818,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_f45aa5a5e4e25790",
+      "src_f46e7883c8536045",
+      "src_f4706a59c7dc1922",
+      "src_f48e8dc778dc625b",
+      "src_f48e9b60f7bd0b1b",
+      "src_f48f8eb4b033c36b",
+      "src_f498009686e8e2b1",
+      "src_f49afbce4eb23734",
+      "src_f4a3bb5aeff637a2",
+      "src_f4b0c8cb515487c0",
+      "src_f4b7ae4284ed2799",
+      "src_f4c3ba2077ffdebc",
+      "src_f4c5d08afda8b8a5",
+      "src_f4ccae29e1bb0c20",
+      "src_f4d5cdc43e8ccd8a",
+      "src_f5162206318ee964",
+      "src_f51d2ec6c6fa0d80",
+      "src_f532ee1f7288365e",
+      "src_f5488f58343653ed",
+      "src_f55cd32d4bc0e1cd",
+      "src_f565ff40819542f4",
+      "src_f571a9e79ca983f5",
+      "src_f5906e66e64fbf5d",
+      "src_f5992135812d7301",
+      "src_f59ab8d1331b7b16"
+    ],
+    "sourceIdListSha256": "42a7c64381108e4373823fd80e33cdc802714ef6e8d1d9d5f745f2dbd0a29199",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 247,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "f8af7ac6bb5f6175da30cb4eee8ea5c01e17fd39c207c08bcf8b1ef7f33a1f9e",
+    "zh-Hans": "26ee514e596a1f6ad5624065d4973c00435bcdfae7322a49aa66e335676cc42f",
+    "hi": "2c284b5922e8c0a76b9eabdf48c61705010754427f78652eed49a3b5c6293684",
+    "de": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75",
+    "ja": "005eec08f85635384634ab01a55b69572672d640f639c67e052b84a32f40c673",
+    "fr": "ee7c668874726114f7fd95933afa2b4ddc5fd69120d2f3baf6a2b1627ebb1776",
+    "pt-BR": "8d8d80ff0cb7956a5b1ab898b4afa483f25d5fd6493ccaafbcc7bec4384c2a89",
+    "ar": "a0bd7e5c8345a630813f327a046b5fd96b0cda5aec81ea11fc8ab5a0d94c2004",
+    "ko": "612a7677736cce13ce2a28b90e7360aaab43931f9dbecf0b7bddb52a415b127f",
+    "zh-Hant": "dd2ad7209d9a9bc419075b256d867fe994c833a62a7872a02fb818fd33a13763",
+    "vi": "6bdddf7ba57a975ab1efa6c3ef187263fc5ea4ad7e5653c8a330f4da6ba0cc61",
+    "id": "251daff9b3bebb2610d23362be51c56b117ec656382fe452441594eb31854575"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "50eccb5239402dc25d2f27988f4541e90d66a3908e6273a204509542aa81d974"
+  },
+  "reviewerMethod": "independent semantic review of pinned source context and code callsites; no local translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "caab2a60a2023206004b09e0b2e16eb3d444d09d4cc57b3bb003a9829398906b"
+  },
+  "decisionCounts": {
+    "keep": 247,
+    "correct": 29,
+    "uncertain": 24
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 22,
+      "correct": 1,
+      "uncertain": 2
+    },
+    "zh-Hans": {
+      "keep": 15,
+      "correct": 8,
+      "uncertain": 2
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 1,
+      "uncertain": 2
+    },
+    "de": {
+      "keep": 23,
+      "correct": 0,
+      "uncertain": 2
+    },
+    "ja": {
+      "keep": 21,
+      "correct": 2,
+      "uncertain": 2
+    },
+    "fr": {
+      "keep": 23,
+      "correct": 0,
+      "uncertain": 2
+    },
+    "pt-BR": {
+      "keep": 21,
+      "correct": 2,
+      "uncertain": 2
+    },
+    "ar": {
+      "keep": 22,
+      "correct": 1,
+      "uncertain": 2
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 2,
+      "uncertain": 2
+    },
+    "zh-Hant": {
+      "keep": 15,
+      "correct": 8,
+      "uncertain": 2
+    },
+    "vi": {
+      "keep": 20,
+      "correct": 3,
+      "uncertain": 2
+    },
+    "id": {
+      "keep": 22,
+      "correct": 1,
+      "uncertain": 2
+    }
+  },
+  "overallConfidence": "moderate",
+  "correctionFindings": [
+    {
+      "sourceId": "src_f45aa5a5e4e25790",
+      "source": "Age:",
+      "affectedLocales": [
+        "ja"
+      ],
+      "finding": "The callsite displays age.totalMinutes followed by “minutes”; 年 describes years and conflicts with the displayed unit."
+    },
+    {
+      "sourceId": "src_f48e8dc778dc625b",
+      "source": "Cancel transfer",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant",
+        "vi"
+      ],
+      "finding": "This is the cancel control in the file TransferTable; 转账 specifically means a financial bank transfer."
+    },
+    {
+      "sourceId": "src_f48e9b60f7bd0b1b",
+      "source": "Segments:",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "The callsite displays a transcript.segmentCount; 片段 means transcript segments, while 细分 means subdivision/segmentation."
+    },
+    {
+      "sourceId": "src_f48f8eb4b033c36b",
+      "source": "No linked search history for this item yet.",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "This text appears in a Wishlist row for an item; 商品 means a commercial product and is too specific for the wishlist entry."
+    },
+    {
+      "sourceId": "src_f4b7ae4284ed2799",
+      "source": "Signing Statistics",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant",
+        "vi"
+      ],
+      "finding": "The surrounding section counts cryptographic signatures created and verified; 签约 means contract signing."
+    },
+    {
+      "sourceId": "src_f4ccae29e1bb0c20",
+      "source": "Running",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "ja",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "id"
+      ],
+      "finding": "This is a service/job status used for an active process; the infinitive Correr is an action label, not the status “running.”"
+    },
+    {
+      "sourceId": "src_f4d5cdc43e8ccd8a",
+      "source": "Failed to register message: {message}",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "The message is the object that failed to register; the current word order reads as a “registration-failure message.”"
+    },
+    {
+      "sourceId": "src_f5162206318ee964",
+      "source": "Valid",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant",
+        "ko"
+      ],
+      "finding": "The value follows Verification Result as a standalone result; the suffix 的 in 有效的 leaves the adjective incomplete."
+    },
+    {
+      "sourceId": "src_f5906e66e64fbf5d",
+      "source": "Recording metadata not found",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant",
+        "pt-BR",
+        "vi"
+      ],
+      "finding": "This is a MusicBrainz recording lookup result; 录音 names the recording entity more clearly than 记录."
+    }
+  ],
+  "uncertaintyFindings": [
+    {
+      "sourceId": "src_f49afbce4eb23734",
+      "source": "Showing latest",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."
+    },
+    {
+      "sourceId": "src_f5992135812d7301",
+      "source": "ListenBrainz listens submitted: {count}.",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."
+    }
+  ],
+  "tools": {
+    "preflight_window21.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window21-a098c95c-20261102/preflight_window21.py",
+      "sha256": "2195f5712ed77d2dbd238c1203f78a4ef0b2d5627069f689a4e95e5e730adfad"
+    },
+    "verify_evidence.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window21-a098c95c-20261102/verify_evidence.py",
+      "sha256": "cb02841004c7cdda100a391f3cbcc8fed799f778da894addffbeada7d4ee402f"
+    }
+  }
+}

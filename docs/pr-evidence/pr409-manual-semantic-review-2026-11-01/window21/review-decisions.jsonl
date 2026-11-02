@@ -1,0 +1,300 @@
+{"id":"es:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"es:src_f46e7883c8536045","verdict":"keep"}
+{"id":"es:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"es:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"es:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"es:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"es:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"es:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"es:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"es:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"es:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"es:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"es:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"es:src_f4ccae29e1bb0c20","verdict":"correct","target":"En ejecución","confidence":"high","reason":"This is a service/job status used for an active process; the infinitive Correr is an action label, not the status “running.”"}
+{"id":"es:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"es:src_f5162206318ee964","verdict":"keep"}
+{"id":"es:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"es:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"es:src_f5488f58343653ed","verdict":"keep"}
+{"id":"es:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"es:src_f565ff40819542f4","verdict":"keep"}
+{"id":"es:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"es:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"es:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"es:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"zh-Hans:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"zh-Hans:src_f46e7883c8536045","verdict":"keep"}
+{"id":"zh-Hans:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"zh-Hans:src_f48e8dc778dc625b","verdict":"correct","target":"取消传输","confidence":"high","reason":"This is the cancel control in the file TransferTable; 转账 specifically means a financial bank transfer."}
+{"id":"zh-Hans:src_f48e9b60f7bd0b1b","verdict":"correct","target":"片段：","confidence":"high","reason":"The callsite displays a transcript.segmentCount; 片段 means transcript segments, while 细分 means subdivision/segmentation."}
+{"id":"zh-Hans:src_f48f8eb4b033c36b","verdict":"correct","target":"此条目尚无关联的搜索历史记录。","confidence":"high","reason":"This text appears in a Wishlist row for an item; 商品 means a commercial product and is too specific for the wishlist entry."}
+{"id":"zh-Hans:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"zh-Hans:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"zh-Hans:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"zh-Hans:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"zh-Hans:src_f4b7ae4284ed2799","verdict":"correct","target":"签名统计","confidence":"high","reason":"The surrounding section counts cryptographic signatures created and verified; 签约 means contract signing."}
+{"id":"zh-Hans:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"zh-Hans:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"zh-Hans:src_f4ccae29e1bb0c20","verdict":"correct","target":"运行中","confidence":"high","reason":"This is a service/job status; 跑步 means jogging/running as exercise."}
+{"id":"zh-Hans:src_f4d5cdc43e8ccd8a","verdict":"correct","target":"消息注册失败：{message}","confidence":"high","reason":"The message is the object that failed to register; the current word order reads as a “registration-failure message.”"}
+{"id":"zh-Hans:src_f5162206318ee964","verdict":"correct","target":"有效","confidence":"high","reason":"The value follows Verification Result as a standalone result; the suffix 的 in 有效的 leaves the adjective incomplete."}
+{"id":"zh-Hans:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"zh-Hans:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"zh-Hans:src_f5488f58343653ed","verdict":"keep"}
+{"id":"zh-Hans:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"zh-Hans:src_f565ff40819542f4","verdict":"keep"}
+{"id":"zh-Hans:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"zh-Hans:src_f5906e66e64fbf5d","verdict":"correct","target":"未找到录音元数据","confidence":"high","reason":"This is a MusicBrainz recording lookup result; 录音 names the recording entity more clearly than 记录."}
+{"id":"zh-Hans:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"zh-Hans:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"hi:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"hi:src_f46e7883c8536045","verdict":"keep"}
+{"id":"hi:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"hi:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"hi:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"hi:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"hi:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"hi:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"hi:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"hi:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"hi:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"hi:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"hi:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"hi:src_f4ccae29e1bb0c20","verdict":"correct","target":"चल रहा है","confidence":"high","reason":"This is a service/job status; दौड़ना is the infinitive “to run,” not an active status."}
+{"id":"hi:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"hi:src_f5162206318ee964","verdict":"keep"}
+{"id":"hi:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"hi:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"hi:src_f5488f58343653ed","verdict":"keep"}
+{"id":"hi:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"hi:src_f565ff40819542f4","verdict":"keep"}
+{"id":"hi:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"hi:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"hi:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"hi:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"de:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"de:src_f46e7883c8536045","verdict":"keep"}
+{"id":"de:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"de:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"de:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"de:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"de:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"de:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"de:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"de:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"de:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"de:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"de:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"de:src_f4ccae29e1bb0c20","verdict":"keep"}
+{"id":"de:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"de:src_f5162206318ee964","verdict":"keep"}
+{"id":"de:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"de:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"de:src_f5488f58343653ed","verdict":"keep"}
+{"id":"de:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"de:src_f565ff40819542f4","verdict":"keep"}
+{"id":"de:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"de:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"de:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"de:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"ja:src_f45aa5a5e4e25790","verdict":"correct","target":"経過時間：","confidence":"high","reason":"The callsite displays age.totalMinutes followed by “minutes”; 年 describes years and conflicts with the displayed unit."}
+{"id":"ja:src_f46e7883c8536045","verdict":"keep"}
+{"id":"ja:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"ja:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"ja:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"ja:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"ja:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"ja:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"ja:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"ja:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"ja:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"ja:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"ja:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"ja:src_f4ccae29e1bb0c20","verdict":"correct","target":"実行中","confidence":"high","reason":"This is a service/job status; ランニング commonly means running/jogging as exercise."}
+{"id":"ja:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"ja:src_f5162206318ee964","verdict":"keep"}
+{"id":"ja:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"ja:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"ja:src_f5488f58343653ed","verdict":"keep"}
+{"id":"ja:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"ja:src_f565ff40819542f4","verdict":"keep"}
+{"id":"ja:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"ja:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"ja:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"ja:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"fr:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"fr:src_f46e7883c8536045","verdict":"keep"}
+{"id":"fr:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"fr:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"fr:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"fr:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"fr:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"fr:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"fr:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"fr:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"fr:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"fr:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"fr:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"fr:src_f4ccae29e1bb0c20","verdict":"keep"}
+{"id":"fr:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"fr:src_f5162206318ee964","verdict":"keep"}
+{"id":"fr:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"fr:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"fr:src_f5488f58343653ed","verdict":"keep"}
+{"id":"fr:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"fr:src_f565ff40819542f4","verdict":"keep"}
+{"id":"fr:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"fr:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"fr:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"fr:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"pt-BR:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"pt-BR:src_f46e7883c8536045","verdict":"keep"}
+{"id":"pt-BR:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"pt-BR:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"pt-BR:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"pt-BR:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"pt-BR:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"pt-BR:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"pt-BR:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"pt-BR:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"pt-BR:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"pt-BR:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"pt-BR:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"pt-BR:src_f4ccae29e1bb0c20","verdict":"correct","target":"Em execução","confidence":"high","reason":"This is a service/job status; use the standard “in execution” status wording rather than Correndo."}
+{"id":"pt-BR:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"pt-BR:src_f5162206318ee964","verdict":"keep"}
+{"id":"pt-BR:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"pt-BR:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"pt-BR:src_f5488f58343653ed","verdict":"keep"}
+{"id":"pt-BR:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"pt-BR:src_f565ff40819542f4","verdict":"keep"}
+{"id":"pt-BR:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"pt-BR:src_f5906e66e64fbf5d","verdict":"correct","target":"Metadados da gravação não encontrados","confidence":"high","reason":"The current phrase means “metadata recording not found”; the source means metadata for the recording was not found."}
+{"id":"pt-BR:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"pt-BR:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"ar:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"ar:src_f46e7883c8536045","verdict":"keep"}
+{"id":"ar:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"ar:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"ar:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"ar:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"ar:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"ar:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"ar:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"ar:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"ar:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"ar:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"ar:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"ar:src_f4ccae29e1bb0c20","verdict":"correct","target":"قيد التشغيل","confidence":"high","reason":"This is a service/job status; the current noun جري means running as an activity rather than operating."}
+{"id":"ar:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"ar:src_f5162206318ee964","verdict":"keep"}
+{"id":"ar:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"ar:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"ar:src_f5488f58343653ed","verdict":"keep"}
+{"id":"ar:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"ar:src_f565ff40819542f4","verdict":"keep"}
+{"id":"ar:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"ar:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"ar:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"ar:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"ko:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"ko:src_f46e7883c8536045","verdict":"keep"}
+{"id":"ko:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"ko:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"ko:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"ko:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"ko:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"ko:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"ko:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"ko:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"ko:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"ko:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"ko:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"ko:src_f4ccae29e1bb0c20","verdict":"correct","target":"실행 중","confidence":"high","reason":"This is a service/job status; 달리기 means running as exercise rather than an active process."}
+{"id":"ko:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"ko:src_f5162206318ee964","verdict":"correct","target":"유효","confidence":"high","reason":"The value follows Verification Result as a standalone result; the current adjective 유효한 requires a following noun."}
+{"id":"ko:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"ko:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"ko:src_f5488f58343653ed","verdict":"keep"}
+{"id":"ko:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"ko:src_f565ff40819542f4","verdict":"keep"}
+{"id":"ko:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"ko:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"ko:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"ko:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"zh-Hant:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"zh-Hant:src_f46e7883c8536045","verdict":"keep"}
+{"id":"zh-Hant:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"zh-Hant:src_f48e8dc778dc625b","verdict":"correct","target":"取消傳輸","confidence":"high","reason":"This is the cancel control in the file TransferTable; 轉帳 specifically means a financial bank transfer."}
+{"id":"zh-Hant:src_f48e9b60f7bd0b1b","verdict":"correct","target":"片段：","confidence":"high","reason":"The callsite displays a transcript.segmentCount; 片段 means transcript segments, while 細分 means subdivision/segmentation."}
+{"id":"zh-Hant:src_f48f8eb4b033c36b","verdict":"correct","target":"此項目尚無關聯的搜尋記錄。","confidence":"high","reason":"This text appears in a Wishlist row for an item; 商品 means a commercial product and is too specific for the wishlist entry."}
+{"id":"zh-Hant:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"zh-Hant:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"zh-Hant:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"zh-Hant:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"zh-Hant:src_f4b7ae4284ed2799","verdict":"correct","target":"簽章統計","confidence":"high","reason":"The surrounding section counts cryptographic signatures created and verified; 簽約 means contract signing."}
+{"id":"zh-Hant:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"zh-Hant:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"zh-Hant:src_f4ccae29e1bb0c20","verdict":"correct","target":"執行中","confidence":"high","reason":"This is a service/job status; 跑步 means jogging/running as exercise."}
+{"id":"zh-Hant:src_f4d5cdc43e8ccd8a","verdict":"correct","target":"訊息註冊失敗：{message}","confidence":"high","reason":"The message is the object that failed to register; the current word order reads as a “registration-failure message.”"}
+{"id":"zh-Hant:src_f5162206318ee964","verdict":"correct","target":"有效","confidence":"high","reason":"The value follows Verification Result as a standalone result; the suffix 的 in 有效的 leaves the adjective incomplete."}
+{"id":"zh-Hant:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"zh-Hant:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"zh-Hant:src_f5488f58343653ed","verdict":"keep"}
+{"id":"zh-Hant:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"zh-Hant:src_f565ff40819542f4","verdict":"keep"}
+{"id":"zh-Hant:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"zh-Hant:src_f5906e66e64fbf5d","verdict":"correct","target":"未找到錄音中繼資料","confidence":"high","reason":"This is a MusicBrainz recording lookup result; 錄音 names the recording entity more clearly than 記錄."}
+{"id":"zh-Hant:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"zh-Hant:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"vi:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"vi:src_f46e7883c8536045","verdict":"keep"}
+{"id":"vi:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"vi:src_f48e8dc778dc625b","verdict":"correct","target":"Hủy truyền tệp","confidence":"high","reason":"This is the cancel control for a file transfer; chuyển khoản means a financial bank transfer."}
+{"id":"vi:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"vi:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"vi:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"vi:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"vi:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"vi:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"vi:src_f4b7ae4284ed2799","verdict":"correct","target":"Thống kê chữ ký","confidence":"high","reason":"The surrounding section counts cryptographic signatures created and verified; ký kết means concluding/signing a contract."}
+{"id":"vi:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"vi:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"vi:src_f4ccae29e1bb0c20","verdict":"keep"}
+{"id":"vi:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"vi:src_f5162206318ee964","verdict":"keep"}
+{"id":"vi:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"vi:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"vi:src_f5488f58343653ed","verdict":"keep"}
+{"id":"vi:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"vi:src_f565ff40819542f4","verdict":"keep"}
+{"id":"vi:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"vi:src_f5906e66e64fbf5d","verdict":"correct","target":"Không tìm thấy siêu dữ liệu bản thu âm","confidence":"high","reason":"The source refers to MusicBrainz recording metadata; the current siêu dữ liệu ghi lacks a noun for the recording entity."}
+{"id":"vi:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"vi:src_f59ab8d1331b7b16","verdict":"keep"}
+{"id":"id:src_f45aa5a5e4e25790","verdict":"keep"}
+{"id":"id:src_f46e7883c8536045","verdict":"keep"}
+{"id":"id:src_f4706a59c7dc1922","verdict":"keep"}
+{"id":"id:src_f48e8dc778dc625b","verdict":"keep"}
+{"id":"id:src_f48e9b60f7bd0b1b","verdict":"keep"}
+{"id":"id:src_f48f8eb4b033c36b","verdict":"keep"}
+{"id":"id:src_f498009686e8e2b1","verdict":"keep"}
+{"id":"id:src_f49afbce4eb23734","verdict":"uncertain","reason":"The UI assembles this fragment before numeric counts and separate “of” and “messages…” translations in fixed English order. Natural word order and count agreement depend on the whole sentence, so a catalog-only fragment decision is unsafe."}
+{"id":"id:src_f4a3bb5aeff637a2","verdict":"keep"}
+{"id":"id:src_f4b0c8cb515487c0","verdict":"keep"}
+{"id":"id:src_f4b7ae4284ed2799","verdict":"keep"}
+{"id":"id:src_f4c3ba2077ffdebc","verdict":"keep"}
+{"id":"id:src_f4c5d08afda8b8a5","verdict":"keep"}
+{"id":"id:src_f4ccae29e1bb0c20","verdict":"correct","target":"Berjalan","confidence":"high","reason":"This is a service/job status; Berlari means running as physical exercise, while Berjalan is used for a process/system operating."}
+{"id":"id:src_f4d5cdc43e8ccd8a","verdict":"keep"}
+{"id":"id:src_f5162206318ee964","verdict":"keep"}
+{"id":"id:src_f51d2ec6c6fa0d80","verdict":"keep"}
+{"id":"id:src_f532ee1f7288365e","verdict":"keep"}
+{"id":"id:src_f5488f58343653ed","verdict":"keep"}
+{"id":"id:src_f55cd32d4bc0e1cd","verdict":"keep"}
+{"id":"id:src_f565ff40819542f4","verdict":"keep"}
+{"id":"id:src_f571a9e79ca983f5","verdict":"keep"}
+{"id":"id:src_f5906e66e64fbf5d","verdict":"keep"}
+{"id":"id:src_f5992135812d7301","verdict":"uncertain","reason":"The frozen source has no callsite or surrounding source context for this ListenBrainz-specific “listen” count; without that use context, the exact event terminology and phrase role cannot be confirmed safely."}
+{"id":"id:src_f59ab8d1331b7b16","verdict":"keep"}
