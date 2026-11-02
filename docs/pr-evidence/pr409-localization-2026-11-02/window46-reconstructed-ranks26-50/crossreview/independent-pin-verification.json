@@ -1,0 +1,509 @@
+{
+  "callerReferenceCount": 41,
+  "callerReferencesVerified": [
+    {
+      "blobOid": "422982406109c6ee05d57bd3e486cbe847c5e7ec",
+      "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+      "line": 596,
+      "lineSha256": "10254658dc8e04ef29794e0a3e977c73aa6f1cadfc57331ff25472f02da7e197",
+      "path": "src/web/src/components/System/Security/AdversarialSettings.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_1048fd98417f0bae",
+      "verified": true
+    },
+    {
+      "blobOid": "80091af39e6d731a0c9b825536771f5c59112666",
+      "fileSha256": "a79d18614bdf1455224e3919b3ac334982498a380e032612da8ebc452cd19595",
+      "line": 694,
+      "lineSha256": "88a97907f8d72d50f773df7bdb9cc8228a886e03e36cfad0ecb0e5b040dec820",
+      "path": "src/web/src/components/Pods/PortForwarding.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_106452cd8862cf53",
+      "verified": true
+    },
+    {
+      "blobOid": "d5aa64fae1fcffdbc39d741fd5be159b76eff577",
+      "fileSha256": "4cf47947ee17c5862748010999c4cf762f99a63b9c49b5cb215a806e49c6a4a3",
+      "line": 150,
+      "lineSha256": "572035e837e1e7e3d419278652f094913fd4e903f0c3ef71323cfd51a633f260",
+      "path": "src/web/src/components/Pods/PortForwarding.test.jsx",
+      "referenceRole": "test-or-story-reference",
+      "sourceId": "src_106452cd8862cf53",
+      "verified": true
+    },
+    {
+      "blobOid": "c26212440f57a04f648e75a4863847129f0c85f3",
+      "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "line": 1703,
+      "lineSha256": "ac45e91ddbfc00df02830bdb28c732030607cca295b621aca744a373537d26c3",
+      "path": "src/web/src/components/System/MediaCore/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_109f1d902b5460d7",
+      "verified": true
+    },
+    {
+      "blobOid": "9a31a03756d71944a5a383e874bee3981b7073b9",
+      "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+      "line": 941,
+      "lineSha256": "476702df06ef9f326be3ed339bba83b66b11ecce0cf2842e074b83a371b95a19",
+      "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_10ac7829f9560ecb",
+      "verified": true
+    },
+    {
+      "blobOid": "04a724537e1353d5fc262c30df150dc0534c6c89",
+      "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+      "line": 1033,
+      "lineSha256": "dffff844d9ed1a12fbd55d72af028ab50e481c7a63b46a65ab2ebdb71a3bcc60",
+      "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10b0002e067d8755",
+      "verified": true
+    },
+    {
+      "blobOid": "04a724537e1353d5fc262c30df150dc0534c6c89",
+      "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+      "line": 1041,
+      "lineSha256": "5fcf6a1744d070c89cf3909da00abea74a069d8983e9b7a07a8d6ab026e2f386",
+      "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10b0002e067d8755",
+      "verified": true
+    },
+    {
+      "blobOid": "07afcf2a8fb9f3b3d4e7fc92e007cc03765bbfef",
+      "fileSha256": "272cbbc2a774c665771da5912ee4d17a1d285c4a9cf734df231145eedcf55a8a",
+      "line": 106,
+      "lineSha256": "680d8d9c4a59286073607dc3301ce21cda6a193f529cfaf0152b0a1b95217167",
+      "path": "src/web/src/components/System/AdminPolicies/index.test.jsx",
+      "referenceRole": "test-or-story-reference",
+      "sourceId": "src_10b0002e067d8755",
+      "verified": true
+    },
+    {
+      "blobOid": "606f80e874ed054f8ea64bd71ac6bec311c64be9",
+      "fileSha256": "0b7af025d06e9ed855fc5af493eb53caaed8f07bd071b460738cc5f98b032012",
+      "line": 124,
+      "lineSha256": "73f8281a7eecb18e16e75731e898bc04a68a85ffa90d90e75668c0338ba6ec75",
+      "path": "src/web/src/components/Shared/FileList.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10b85648092d9068",
+      "verified": true
+    },
+    {
+      "blobOid": "606f80e874ed054f8ea64bd71ac6bec311c64be9",
+      "fileSha256": "0b7af025d06e9ed855fc5af493eb53caaed8f07bd071b460738cc5f98b032012",
+      "line": 125,
+      "lineSha256": "58155f2c83415f17099c8a7788c696584bd473164e6e1ca6ffad6981e0957600",
+      "path": "src/web/src/components/Shared/FileList.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_10b85648092d9068",
+      "verified": true
+    },
+    {
+      "blobOid": "606f80e874ed054f8ea64bd71ac6bec311c64be9",
+      "fileSha256": "0b7af025d06e9ed855fc5af493eb53caaed8f07bd071b460738cc5f98b032012",
+      "line": 126,
+      "lineSha256": "65ee74981bfce9f619babde676f6aa56734c9a7e6019386eddc5ad14d7cf99c8",
+      "path": "src/web/src/components/Shared/FileList.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_10b85648092d9068",
+      "verified": true
+    },
+    {
+      "blobOid": "c26212440f57a04f648e75a4863847129f0c85f3",
+      "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "line": 1741,
+      "lineSha256": "c113959bb969b43d4d8ec03f9362273a719174cdd460cc63f7916a2079fbe9a9",
+      "path": "src/web/src/components/System/MediaCore/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10c0760701e0ec30",
+      "verified": true
+    },
+    {
+      "blobOid": "c26212440f57a04f648e75a4863847129f0c85f3",
+      "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "line": 1743,
+      "lineSha256": "7e1424eda34ce1dcc142b983391f07d492e4f1abe8469d8a65cf43e6a659da81",
+      "path": "src/web/src/components/System/MediaCore/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10c0760701e0ec30",
+      "verified": true
+    },
+    {
+      "blobOid": "9a31a03756d71944a5a383e874bee3981b7073b9",
+      "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+      "line": 1158,
+      "lineSha256": "7444ba6dc2c6d715b97b8ec7b2a4904663932967ff1fade47246a142e8c75a3d",
+      "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_10c4b48e0b09a118",
+      "verified": true
+    },
+    {
+      "blobOid": "c26212440f57a04f648e75a4863847129f0c85f3",
+      "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "line": 2110,
+      "lineSha256": "8bb4d90746f0c13125074de8b34df7893f4cce9fe6647d692a1f73c45e227ac5",
+      "path": "src/web/src/components/System/MediaCore/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10c9b8d83bc6fb0e",
+      "verified": true
+    },
+    {
+      "blobOid": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+      "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "line": 728,
+      "lineSha256": "e46140284a851a59757fdcf3c70ee2e4859aa527a7734c38b52a7aeba541a651",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10d24561221d610e",
+      "verified": true
+    },
+    {
+      "blobOid": "42844b665e20b7f69ead83506afb3cce3abdb71e",
+      "fileSha256": "8acbea6fafb793bd7638f923162a94c0c983f10631ffc7cd6c0e96551db11189",
+      "line": 155,
+      "lineSha256": "d44d485c1192c0d90993c9745446ad974be7483f6b8d7c5dbba8549b149a53ce",
+      "path": "src/web/src/lib/servarrReadiness.js",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10dca60f102f262e",
+      "verified": true
+    },
+    {
+      "blobOid": "57bf4b9b3c1e9dac776512d8f0c547f9efa2f1cd",
+      "fileSha256": "57a45bf75d9ac26c0200b1db9621465c70b04bb71500a90d171296a4235fb0fe",
+      "line": 558,
+      "lineSha256": "180ce3f2bd6c9ed192781028f86ef5db1fe9457c662b89e0aa7776c54bfb6369",
+      "path": "src/web/src/components/Browse/BrowseSession.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_10dec009bb7ddc89",
+      "verified": true
+    },
+    {
+      "blobOid": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+      "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+      "line": 1000,
+      "lineSha256": "7d5eb372b5fbaad5d8172797fe6a5b800aee7b4e55887f3aa8e5a32fe9087b8d",
+      "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_10ec2e506f382656",
+      "verified": true
+    },
+    {
+      "blobOid": "d641227f3c736ff1d4d01b89972020fa397910ec",
+      "fileSha256": "6868ad418bf476d1d1650b2d9028a76af053fe70b7a92de266cf6e4fd2f82e71",
+      "line": 277,
+      "lineSha256": "a1a96a74343161fca0da36f67b57acb957a2f44e8cb440bc0b204d692735e651",
+      "path": "src/web/src/components/System/Logs/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_110f16e46ed10794",
+      "verified": true
+    },
+    {
+      "blobOid": "d641227f3c736ff1d4d01b89972020fa397910ec",
+      "fileSha256": "6868ad418bf476d1d1650b2d9028a76af053fe70b7a92de266cf6e4fd2f82e71",
+      "line": 280,
+      "lineSha256": "455c2c50b12d631c56794190a7221de6263cf3cf81f23b5def6bc19592376fbe",
+      "path": "src/web/src/components/System/Logs/index.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_110f16e46ed10794",
+      "verified": true
+    },
+    {
+      "blobOid": "e5a12137bb44ba1a9ff859fb439d9cbaf6754acc",
+      "fileSha256": "0dc1a37290fb9ebd02c9b9c18ac71c0e6a6a4563b4ed8d99c017a4daac46172f",
+      "line": 650,
+      "lineSha256": "86e5f9244c85c0d40aab8ab124a6cee8a708e19a236513193a239cf017252f47",
+      "path": "src/web/src/components/Collections/Collections.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_1118eef952fbca7a",
+      "verified": true
+    },
+    {
+      "blobOid": "1759001507490c671f257b1f93217fcc5e8b8e3a",
+      "fileSha256": "b5da9e8771f550dea41bb0b52a38862b5c664c3a9ed16a417eeaefc88b116ebc",
+      "line": 43,
+      "lineSha256": "09f072462e8b619e126b3be07b138c98fc243690641b647c413fd46bde3f75b4",
+      "path": "src/web/src/components/Search/SoulseekDiscoveryPanel.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_112895d7af6c1253",
+      "verified": true
+    },
+    {
+      "blobOid": "1759001507490c671f257b1f93217fcc5e8b8e3a",
+      "fileSha256": "b5da9e8771f550dea41bb0b52a38862b5c664c3a9ed16a417eeaefc88b116ebc",
+      "line": 290,
+      "lineSha256": "d2683335b326fa3604d74b7a910ec2b99659c999d09d22476bd1977091945e2e",
+      "path": "src/web/src/components/Search/SoulseekDiscoveryPanel.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_112895d7af6c1253",
+      "verified": true
+    },
+    {
+      "blobOid": "8cacd50ce2e44c4cd4982b1ab9d7a01241add358",
+      "fileSha256": "6ec770c1ab7097ed2f5cf753602a3894309efaa34eb227756c9279c307423410",
+      "line": 548,
+      "lineSha256": "a1e346a59344b62812c4bede2d8adc56c0905ff36fb6fbeac74e3e9f044ddd54",
+      "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_112cb5f2343632c5",
+      "verified": true
+    },
+    {
+      "blobOid": "4761a75cab323ef1b23ecf0d944f85865522569d",
+      "fileSha256": "4794b736b5600ea0f7157d75f6c61e05370df15e642508aa107bd0c46197da81",
+      "line": 305,
+      "lineSha256": "a8d1318a97f208421600f480214c93221b965e784560f1a2124fc8b5380a4b6d",
+      "path": "src/web/src/components/Search/DiscoveryGraphAtlasPanel.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_112dc3682d09e1b5",
+      "verified": true
+    },
+    {
+      "blobOid": "4761a75cab323ef1b23ecf0d944f85865522569d",
+      "fileSha256": "4794b736b5600ea0f7157d75f6c61e05370df15e642508aa107bd0c46197da81",
+      "line": 309,
+      "lineSha256": "179e2a1fd5cea2218411898da1f2494e2c87c9e5625e0a1f8eb544906b4a83b7",
+      "path": "src/web/src/components/Search/DiscoveryGraphAtlasPanel.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_112dc3682d09e1b5",
+      "verified": true
+    },
+    {
+      "blobOid": "5dcff96536efd97779ea8e363090aa8988f3f27e",
+      "fileSha256": "b88e5efde59c0bacf64dff0c2b23f1fd860de6ba61aabad303a1c2e91c15a7e3",
+      "line": 130,
+      "lineSha256": "de5e85ce3c9fe5d46407740cec0ee9c959277f9227b3fc0791c11ec8fb10db6f",
+      "path": "src/web/src/components/Search/Detail/SearchFilterModal.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_113273dd475a9bbb",
+      "verified": true
+    },
+    {
+      "blobOid": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+      "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "line": 1670,
+      "lineSha256": "6e8ebf1c165947fc7f7baae65ffbb7f23fbcd1ba551fb1fb7e8f8803cb73ddbf",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_1139bdc9c63845da",
+      "verified": true
+    },
+    {
+      "blobOid": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+      "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "line": 2073,
+      "lineSha256": "2c08dfa54c6a3d806199ede39d68cb75cd39c3c9428feeb53e1be78c73c39ad8",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_1139bdc9c63845da",
+      "verified": true
+    },
+    {
+      "blobOid": "9a31a03756d71944a5a383e874bee3981b7073b9",
+      "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+      "line": 378,
+      "lineSha256": "b267dd3ac3280a4de80c908521da0460b54d6dce8d9dd30fceb20615fceb6c51",
+      "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+      "referenceRole": "exact-literal-reference",
+      "sourceId": "src_11425efe5687602b",
+      "verified": true
+    },
+    {
+      "blobOid": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+      "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+      "line": 1015,
+      "lineSha256": "733f975de75da204e9b13080e747b78f500ad66ec2eaf74ef488c528c21fb868",
+      "path": "src/web/src/components/Player/PlayerBar.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_114acbc397436521",
+      "verified": true
+    },
+    {
+      "blobOid": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+      "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "line": 1757,
+      "lineSha256": "7cd993c31eb4d95f15c719383a930b58c6c565182b1fa085631316ac90a40103",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_114beab2a4d780e7",
+      "verified": true
+    },
+    {
+      "blobOid": "34f120822f8af7a7121462e652a721fedd775b1f",
+      "fileSha256": "b4672243247f3125c0faafb13574fe0df11baeeb051b7279b0e7b9ef1c36d16f",
+      "line": 712,
+      "lineSha256": "e0c805564f16ce776167e36b5963d2f0627378674d6007c34fe958220bfb6e2c",
+      "path": "src/web/src/components/Messaging/MessageStream.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_11507a0e2f5e69d5",
+      "verified": true
+    },
+    {
+      "blobOid": "4e13e030ecb8011f876194dc5779e8ad63e28def",
+      "fileSha256": "671b2ae2906025e21ee914404c343f2cab75ed8f630b0d7013494b1de3498e61",
+      "line": 36,
+      "lineSha256": "2e1e877af898584954b8f8563364be1088b5c019373929032f1e21149232065d",
+      "path": "src/web/src/components/Player/useListeningPartyRooms.test.jsx",
+      "referenceRole": "test-or-story-reference",
+      "sourceId": "src_11507a0e2f5e69d5",
+      "verified": true
+    },
+    {
+      "blobOid": "4e13e030ecb8011f876194dc5779e8ad63e28def",
+      "fileSha256": "671b2ae2906025e21ee914404c343f2cab75ed8f630b0d7013494b1de3498e61",
+      "line": 37,
+      "lineSha256": "0d1b91f01f83b123dbb56dde870492e8b14118f4656005d937b74ea3afc15986",
+      "path": "src/web/src/components/Player/useListeningPartyRooms.test.jsx",
+      "referenceRole": "test-or-story-reference",
+      "sourceId": "src_11507a0e2f5e69d5",
+      "verified": true
+    },
+    {
+      "blobOid": "4e13e030ecb8011f876194dc5779e8ad63e28def",
+      "fileSha256": "671b2ae2906025e21ee914404c343f2cab75ed8f630b0d7013494b1de3498e61",
+      "line": 40,
+      "lineSha256": "b8360a99af9686911bea4501fe937afd684b484d8c7bff0682de273275006f1f",
+      "path": "src/web/src/components/Player/useListeningPartyRooms.test.jsx",
+      "referenceRole": "test-or-story-reference",
+      "sourceId": "src_11507a0e2f5e69d5",
+      "verified": true
+    },
+    {
+      "blobOid": "56e5f0c8e55637f05d705cd9d0874ba552b17364",
+      "fileSha256": "8d9db26184c3c37a1abb44aadd65e5a27e38b1226d81ca0315768739e432238e",
+      "line": 233,
+      "lineSha256": "06a044b6cc54f324d12b0079cf09f55463ca6418a34e2afcbf2ee86a82d888e1",
+      "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_11507a0e2f5e69d5",
+      "verified": true
+    },
+    {
+      "blobOid": "56e5f0c8e55637f05d705cd9d0874ba552b17364",
+      "fileSha256": "8d9db26184c3c37a1abb44aadd65e5a27e38b1226d81ca0315768739e432238e",
+      "line": 611,
+      "lineSha256": "a645c3bd24f49d71ddedaf5a54f82bc539d05cc7aa5eb9974f5ff5296132951f",
+      "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_11507a0e2f5e69d5",
+      "verified": true
+    },
+    {
+      "blobOid": "c2f99d6bd0cd9a63b49e1a4c75555ac69a4e7a19",
+      "fileSha256": "d185fd59f9203c735351b3c030c7184baa9974a239587716a573d3d2afd76ad2",
+      "line": 157,
+      "lineSha256": "51d629757c6208f90af2c0fcf5a91f05a33d7d59607122f4671a65110376e15f",
+      "path": "src/web/src/components/Rooms/RoomCreateModal.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_1150f05446e4d344",
+      "verified": true
+    },
+    {
+      "blobOid": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+      "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "line": 4133,
+      "lineSha256": "10d840f4107decf2214ca6dcda74b49cba581cf605c335ad8b6f866607f09207",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "referenceRole": "direct-localized-caller",
+      "sourceId": "src_1150f05446e4d344",
+      "verified": true
+    }
+  ],
+  "callerRowsWithProductionDisplay": 20,
+  "catalogCount": 12,
+  "catalogsVerified": [
+    {
+      "blobOid": "affcdc5505cba6f926d26102cdca6bf18775a084",
+      "entryCount": 6170,
+      "fileSha256": "b9031eba19eacee5efae372f023e6fadbeadaf1c65752e5d4bb0a6b2d1f2b720",
+      "path": "src/web/public/locales/ar.json",
+      "verified": true
+    },
+    {
+      "blobOid": "b80628a48ff47f470c82ee642cd936cbd8ee1223",
+      "entryCount": 6170,
+      "fileSha256": "2f29b30715a90507471a7787efb30e2cd700e5f162a4f1ddc9d1ae6bb04194ba",
+      "path": "src/web/public/locales/de.json",
+      "verified": true
+    },
+    {
+      "blobOid": "530738c76187ad59e5dcd2634fa2ce8c08ac67fa",
+      "entryCount": 6170,
+      "fileSha256": "875fcc680fbd50d7ecc691e4840e3b1101f2da51b7c53efa8a6d1cf531087507",
+      "path": "src/web/public/locales/es.json",
+      "verified": true
+    },
+    {
+      "blobOid": "bebaf4386e9c0e4748b95d97b79493265f6006ae",
+      "entryCount": 6170,
+      "fileSha256": "244488abbf3de2a515fc41c74561bbb8da956fe36c3b183c8bc75663ef5412af",
+      "path": "src/web/public/locales/fr.json",
+      "verified": true
+    },
+    {
+      "blobOid": "bacb53fda08fa9c8dc576946fc5943241ca8ba3e",
+      "entryCount": 6170,
+      "fileSha256": "ebfb75ab65ed509757e5336c5ebb79670662231fe386f4d11941b8bb4841b9c0",
+      "path": "src/web/public/locales/hi.json",
+      "verified": true
+    },
+    {
+      "blobOid": "fd2e27c5f85936558d267538c5779387731e222b",
+      "entryCount": 6170,
+      "fileSha256": "24865939223172513356272317bab0b7f0721d044459f9baf9d8a9a9600724ac",
+      "path": "src/web/public/locales/id.json",
+      "verified": true
+    },
+    {
+      "blobOid": "050a6331b7c385c470680264ca4d74f761c71a03",
+      "entryCount": 6170,
+      "fileSha256": "021f39c3d70faccbe48d01dea9146a87672e6a81c6285dd894002578f162ba91",
+      "path": "src/web/public/locales/ja.json",
+      "verified": true
+    },
+    {
+      "blobOid": "17ae3211ebddf8bff06808a40c354d842cbd364a",
+      "entryCount": 6170,
+      "fileSha256": "c23b9ffc37fc29c92a14ad364e8bc078dfda9cd851c637b38779903e09c2abf4",
+      "path": "src/web/public/locales/ko.json",
+      "verified": true
+    },
+    {
+      "blobOid": "b33f3a67b4f395ed358a81b6200980b0154192dd",
+      "entryCount": 6170,
+      "fileSha256": "9374306fd0f179de341bbc9b6fbcaa05dcdf4154d7014b2fba4cf094582d890e",
+      "path": "src/web/public/locales/pt-BR.json",
+      "verified": true
+    },
+    {
+      "blobOid": "c16e9586c4662bcf2805e8c4cee5d4aba742fd25",
+      "entryCount": 6170,
+      "fileSha256": "fbf84be2bf4535310bfcc72573e24d75c3af86366015518ff5eb6709cf474899",
+      "path": "src/web/public/locales/vi.json",
+      "verified": true
+    },
+    {
+      "blobOid": "ad41e4fc852ac576617cb5e0924ea078bc580557",
+      "entryCount": 6170,
+      "fileSha256": "64c66ca14ef78f412fd1f2e0308212a543ceb42ea9df1a60acec5c639657fdc2",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "verified": true
+    },
+    {
+      "blobOid": "e0f4c5ff81998f1c42e5946fe415d5aac31aa500",
+      "entryCount": 6170,
+      "fileSha256": "23b83822d8f7cb336cdcd76c0a6e966bb311551d7f297c27cd731bec1189b0e8",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "verified": true
+    }
+  ],
+  "head": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "repository": "snapetech-org/slskdN",
+  "tree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "verifiedAtUtc": "2026-11-02T21:06:22.507760+00:00",
+  "worktree": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn",
+  "worktreeClean": true
+}

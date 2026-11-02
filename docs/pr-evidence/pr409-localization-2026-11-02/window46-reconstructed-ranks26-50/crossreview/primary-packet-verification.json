@@ -1,0 +1,102 @@
+{
+  "allSevenLivePrHeadsMatchPrimarySnapshot": true,
+  "fileCount": 18,
+  "manifestAndChecksumsVerified": true,
+  "manifestSha256": "52c0d2f6e314eb047c9fd23aadbf4f32e496999988d33c8ff41ae3603f321215",
+  "pr409ExactHead": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "pr409ExactTree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "primaryPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window46-reconstructed-ranks26-50-primary-20261102",
+  "sha256SumsSha256": "2040e66635e5c5d239533ba40b41a858ee73dccc2e2377be0d2fed40ba8f0362",
+  "verifiedFiles": [
+    {
+      "path": "README.md",
+      "sha256": "5bee819d5a63533fb86c2ab0809658224d83622011195def8f5cef353b20ef2d",
+      "verified": true
+    },
+    {
+      "path": "build_w46_primary.py",
+      "sha256": "3cd9010b906a86d9b215e1063a355b677e486a4ddd2578865a5634226330c016",
+      "verified": true
+    },
+    {
+      "path": "caller-context.jsonl",
+      "sha256": "a9d2f82132dda5f17f05e128288eb32780706617bf2f91287df4d8c509e81d5c",
+      "verified": true
+    },
+    {
+      "path": "caller-source-hits.jsonl",
+      "sha256": "21356342f8bf52352c1b0233a082c73290329afc7e55977ed5516767deb05b8f",
+      "verified": true
+    },
+    {
+      "path": "candidate-proposals.jsonl",
+      "sha256": "9e9cd0a9c0d74b78e91850436670fe397e88b7c6ef158cf1fc9ab1f2dc65584b",
+      "verified": true
+    },
+    {
+      "path": "catalog-structure.json",
+      "sha256": "bb73a2cc7c48f8cec3655f0527d4d4f27641f8f99bb95d831a866af96fc455ee",
+      "verified": true
+    },
+    {
+      "path": "input-cells.jsonl",
+      "sha256": "eb1eac61c9e6773a82672b4e1be0cea8f397d5e61f63c2597dd767b6028fa1cf",
+      "verified": true
+    },
+    {
+      "path": "input-integrity.json",
+      "sha256": "50143c69c9162832fa239854b011eb8b6436fe78f6c8508854ed281c02e8e673",
+      "verified": true
+    },
+    {
+      "path": "prepare_w46_inputs.py",
+      "sha256": "528121bf1fc6b0c3c3550e51e77f46f45df13e946ac7b6c918bc86370509487b",
+      "verified": true
+    },
+    {
+      "path": "prior-source-ids.jsonl",
+      "sha256": "54221db1f6c2a02ec6a87f84121df9202584e5b0ec65bba0fb79432aafc312f7",
+      "verified": true
+    },
+    {
+      "path": "review-decisions.jsonl",
+      "sha256": "a7366e3add2dc2adf6c8278f741286af1884d3577649787f6bb8c02ad341cc17",
+      "verified": true
+    },
+    {
+      "path": "review-summary.json",
+      "sha256": "7656e079dfde706b0ca56f3654831b83838b41d07fea168fcfaa365efd4ba532",
+      "verified": true
+    },
+    {
+      "path": "selection-method.json",
+      "sha256": "e94152c50dd9116332762360b8a01665d2df3118163a13dace2d18c90b004687",
+      "verified": true
+    },
+    {
+      "path": "source-inventory.jsonl",
+      "sha256": "147f372b920ecb2dd4a0744bebdc295caf6aa49500d659e66f0e7f37ab3a2039",
+      "verified": true
+    },
+    {
+      "path": "source-runtime-gaps.jsonl",
+      "sha256": "45f96debcdc315d3ba3d68b1ed02d7b957a13f001b1ab777955a7aa9bc35dcb4",
+      "verified": true
+    },
+    {
+      "path": "source-selection.jsonl",
+      "sha256": "4b0621b7cf11d0f73186be6ab8a98ababc48d747deddb4503a8666bc6d50c5f6",
+      "verified": true
+    },
+    {
+      "path": "spanish-formal-applicability.jsonl",
+      "sha256": "aabdcea0c5e15f6469085a9b1a5aec42e7b9813759a091860e306ca7d693e69b",
+      "verified": true
+    },
+    {
+      "path": "structural-validation.jsonl",
+      "sha256": "33b4817591a3f29b2b89ebd558f83c4e4f8435817a3646cfc1e3bd50023fc476",
+      "verified": true
+    }
+  ]
+}

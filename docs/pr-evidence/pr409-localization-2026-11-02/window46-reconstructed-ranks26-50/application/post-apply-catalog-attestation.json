@@ -1,0 +1,155 @@
+{
+  "allReadbackMatches": true,
+  "catalogKeySetParity": true,
+  "catalogs": [
+    {
+      "fileSha256": "d87a017490a6f42e30d0027147c68868dcd6717e663f4a90f94f6e1831f8e9ee",
+      "gitBlobOid": "d67d3db1e1d915950a07fe79e4249bd52be103dc",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "ar",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/ar.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "39e549cc12ae48ced329450249b6fcee7558f08c704116fb7ed394269018d2cb",
+      "gitBlobOid": "ceef04f70603abe266e10759c5534f25e5bb1dcd",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "de",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/de.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "7614f9ea4680b9b1a0dfff5e9f8403c0796b09e45a39308deb697940e7074f88",
+      "gitBlobOid": "38aa13265a5a5836174299c8210e23d312da600f",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "es",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/es.json",
+      "serializationStyle": "compact-with-final-newline"
+    },
+    {
+      "fileSha256": "6e03df27da0a07fd691a45b52c5692a8264ecb6dc80963770f656ef1bc3d945c",
+      "gitBlobOid": "e89bb5f8c8022b754d8556db97f494a1bc2a57ff",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "fr",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/fr.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "00be367d8d62dc7e97d5622688a768cfbd9be153477260f262c6a95c22db7721",
+      "gitBlobOid": "c883e3db4237c938823b0221e19a0f61887ef28c",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "hi",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/hi.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "0361e7592b1347f7c67ae62a644efe8e41d1c21457f928172950d3bd77c353f4",
+      "gitBlobOid": "01c8f8aebb1ccd382857c66cb8e3833713ec2d03",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "id",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/id.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "b649f918d937ad8258941c9ed2a319780c8f56e918878da1b869fccac47840d9",
+      "gitBlobOid": "8c59ae16ca05bc21acd0f0ecd8bb2733a275de7b",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "ja",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/ja.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "8471f469202371ce412100d2caeb52a13ee33aa3637126eb788eded5338a9d94",
+      "gitBlobOid": "7708ceff255a370731dbf52345f0cf9ec37716bd",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "ko",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/ko.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "9d0ba5dba5afa138e27ba76af07ca0614ad5c1096a37c2739ac4ba397149d0bf",
+      "gitBlobOid": "13b1ae61ff478cadfd5e41714fde14e5d5e08d6f",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "pt-BR",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/pt-BR.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "093adbb843a8cf24e9ba154e883a9cd4435c21c1ec2bd7f171aa62ac09f57d25",
+      "gitBlobOid": "c83b75d24006fc237383acc489080445f346e65e",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "vi",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/vi.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "56ef9d5c98c2d646ec347912fbbcd53e86a2b1b4580fc53fba14af52722fe37c",
+      "gitBlobOid": "05bc5e1f3b8567e18d787fe829e21927bb4c1f89",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "zh-Hans",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "serializationStyle": "compact-no-final-newline"
+    },
+    {
+      "fileSha256": "2143e7b4b93eb88f5f346b665c50268101b4f44592cfb93c5db52e1bb5a39452",
+      "gitBlobOid": "43195a0097860db94376b9757e89ef7e5620da16",
+      "keyCount": 6170,
+      "keySetSha256": "bf8aa6f752de4f27ca3c387082640b8af99a2f0777d102865847ce2cf7f6b255",
+      "locale": "zh-Hant",
+      "orderedKeysSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "serializationStyle": "compact-no-final-newline"
+    }
+  ],
+  "cells": 300,
+  "changedCells": 44,
+  "dispositions": {
+    "accept-current": 220,
+    "accept-reviewed-correction": 38,
+    "adopt-crossreview-revision": 6,
+    "hold": 36
+  },
+  "headedBrowserReview": false,
+  "heldCells": 36,
+  "holdRanks": [
+    37,
+    42,
+    49
+  ],
+  "locales": 12,
+  "mergeReleaseOrTag": false,
+  "nativeSpeakerApproval": false,
+  "perLocaleKeyOrderPreserved": true,
+  "pullRequest": 409,
+  "readbackCells": 300,
+  "repository": "snapetech-org/slskdN",
+  "retainedCurrentCells": 220,
+  "sourceHead": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "sourceIds": 25,
+  "sourceTree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "testsBuildScansCiRun": false,
+  "window": "W46 reconstructed ranks 26–50; historical source ordinal unavailable",
+  "workflowFilesTouched": false
+}

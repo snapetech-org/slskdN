@@ -1,0 +1,68 @@
+{
+  "queriedAtUtc": "2026-11-02T21:09:30Z",
+  "pullRequests": [
+    {
+      "branch": "codex/seerrng-localization-overhaul-20261028",
+      "draft": true,
+      "head": "9242898e23f7f25d515d10b5b0b51df322e395fb",
+      "number": 418,
+      "repository": "snapetech-org/seerrng",
+      "state": "open",
+      "tree": "06cfd94ee611684c33e9e78af9d8bb60a2e98825"
+    },
+    {
+      "branch": "codex/chaptarrng-localization-complete-20261031",
+      "draft": true,
+      "head": "a9a74f6ba733e8c1f06a2d260bd802d4fde2da0e",
+      "number": 190,
+      "repository": "snapetech-org/chaptarrng",
+      "state": "open",
+      "tree": "d9d25f309f3a7256056b4ed8deb1dabee58b64fe"
+    },
+    {
+      "branch": "codex/localization-foundations-20261028",
+      "draft": false,
+      "head": "be131f2d42988bb8f4a271e4df428985da15b53b",
+      "number": 155,
+      "repository": "snapetech-org/QuestarrNG",
+      "state": "open",
+      "tree": "afd827714b9ada51ef269e41184ac219e064059b"
+    },
+    {
+      "branch": "task/localization-translation-review-20261030",
+      "draft": true,
+      "head": "8e3820252b0c362e18e421b3a73e7ff1478d32a0",
+      "number": 70,
+      "repository": "snapetech-org/ROMarrNG",
+      "state": "open",
+      "tree": "0d29024efd7e5e886926a83d95f57c472f327db9"
+    },
+    {
+      "branch": "codex/slskr-l10n-audit-20261030",
+      "draft": true,
+      "head": "5f295feea832b3078c52d92d9268cd6446f804a5",
+      "number": 204,
+      "repository": "snapetech-org/slskr",
+      "state": "open",
+      "tree": "22c6c11a817777e2a0df3987acd5fc6bf938c9a7"
+    },
+    {
+      "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "draft": true,
+      "head": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+      "number": 409,
+      "repository": "snapetech-org/slskdN",
+      "state": "open",
+      "tree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d"
+    },
+    {
+      "branch": "codex/torrentng-localization-audit-20261030",
+      "draft": true,
+      "head": "11ff6fa2618e842e92716b7e92867769200e32e5",
+      "number": 243,
+      "repository": "snapetech-org/TorrentNG",
+      "state": "open",
+      "tree": "770415a3fcd9353884ac245b53798af9610c0aa3"
+    }
+  ]
+}
