@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "primary exact-head populated-catalog semantic review packet",
+  "window": 41,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "headCommit": "ab6f8fd9fe94d222834f7e4720fd153af4e0649b",
+  "tree": "bebc34f8806f57158140d8b831c7a17c1fc6f8f1",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "reviewCells": 275,
+  "formalSpanishRows": 25,
+  "preservedPriorHoldRows": 50,
+  "candidateRows": 81,
+  "nativeSpeakerReview": "outstanding",
+  "readOnly": true
+}

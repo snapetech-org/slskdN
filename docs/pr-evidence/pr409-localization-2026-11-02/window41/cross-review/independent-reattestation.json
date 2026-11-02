@@ -1,0 +1,61 @@
+{
+  "all12LocaleCatalogFilesReattested": true,
+  "all300WindowCatalogTargetsReattested": true,
+  "all81CandidateTargetHashesReattested": true,
+  "allCallerLedgerRows": 36,
+  "callerRefactorNeeded": false,
+  "candidateDispositions": {
+    "accept-primary-candidate": 69,
+    "hold-candidate": 11,
+    "refine-primary-candidate": 1
+  },
+  "candidateHoldSummary": "All 11 ordinal-30 candidates narrow listening seeds to tracks, while the caller builds artist, genre, track, and forgotten-favorite search seeds; keep current strings pending terminology review.",
+  "candidateRowsReviewed": 81,
+  "cellDispositions": {
+    "accept-current": 194,
+    "accept-primary-candidate": 69,
+    "hold-candidate": 11,
+    "refine-primary-candidate": 1
+  },
+  "currentCallerReferencesReattested": 30,
+  "exactHead": "ab6f8fd9fe94d222834f7e4720fd153af4e0649b",
+  "exactTree": "bebc34f8806f57158140d8b831c7a17c1fc6f8f1",
+  "formalSpanishRowsReattested": 25,
+  "generatedAtUtc": "2026-11-02T15:02:49+00:00",
+  "nativeSpeakerReview": "Still required for fluency and coined terminology; this packet is an independent machine review, not native-speaker approval.",
+  "noDirectCallerJudgment": "standalone text only",
+  "noDirectCallerSourceIds": [
+    "src_0c41bd79387d4568",
+    "src_0d2e2283d5148d40"
+  ],
+  "nonSpanishCellsReviewed": 275,
+  "prStateAfter": {
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "ab6f8fd9fe94d222834f7e4720fd153af4e0649b",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "prStateBefore": {
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "ab6f8fd9fe94d222834f7e4720fd153af4e0649b",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "preservedPriorHoldsReattested": 50,
+  "primaryPacketChecksumsVerified": true,
+  "primaryPacketPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window41-primary-20261102",
+  "priorHoldCallerPinsReattested": 4,
+  "pullRequest": 409,
+  "refinedCandidateSummary": "German ordinal-36 candidate refined to use “teilt nichts” for the source sharing action.",
+  "releasesOrTagsCreated": false,
+  "repoOrPRMutations": false,
+  "result": "INDEPENDENT_CROSS_REVIEW_COMPLETE_PENDING_NATIVE_SPEAKER_REVIEW",
+  "sourceRowsReviewed": 25,
+  "technicalTerminology": "Working Set is treated as an OS process-memory metric and retained in standard technical form where appropriate; no wording was altered without caller support.",
+  "testsBuildsScansCIOrBrowserUsed": false,
+  "window": 41,
+  "worktreeCleanBeforeAndAfter": true,
+  "worktreePath": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root"
+}
