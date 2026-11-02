@@ -1,0 +1,30 @@
+{
+  "exactSourceLiteralHits": 46,
+  "packetQuotedReferences": 42,
+  "dynamicLocalizedRenderers": 1,
+  "sourceFiles": 24,
+  "sourcesWithCallers": 25,
+  "coverageVerified": true,
+  "excludedNoncallerLiteralRefs": [
+    {
+      "path": "src/web/src/components/Shared/FileList.jsx",
+      "line": 107,
+      "reason": "lang metadata"
+    },
+    {
+      "path": "src/web/src/components/Shared/FileList.jsx",
+      "line": 108,
+      "reason": "direction metadata"
+    },
+    {
+      "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+      "line": 1491,
+      "reason": "icon name"
+    },
+    {
+      "path": "src/web/src/lib/watchlists.js",
+      "line": 15,
+      "reason": "enum value, not rendered"
+    }
+  ]
+}

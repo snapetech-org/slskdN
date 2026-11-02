@@ -1,0 +1,107 @@
+{
+  "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window43-primary-20261102/SHA256SUMS.txt",
+  "sha256": "3572142f705cd95f0bd89f1030e2ea3e5843536bcb666f1956edbb0746ec6681",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "ebe3942ce06b9be19ae769a0d33712e06648b831d1e961b1cacb23829be0cc76",
+      "matches": true
+    },
+    {
+      "path": "build_primary_packet.py",
+      "sha256": "01b1d3d72d674603f3fe9b03e387cc92b1f651b32df1ccc6c23277e0683cef1e",
+      "matches": true
+    },
+    {
+      "path": "caller-context.jsonl",
+      "sha256": "81449ae556c3bbbb5031ac71d78bddbab650c50356553e61b931ebc6254bc0ea",
+      "matches": true
+    },
+    {
+      "path": "candidate-proposals.jsonl",
+      "sha256": "8163ba01f2e3a2081d81657f5109f1ae35d74663d313b258eff09870a2353e2f",
+      "matches": true
+    },
+    {
+      "path": "catalog-structure.json",
+      "sha256": "0225cebb508554bb96ed1f7d92227be82dea227c90a2a61238f792587e7d256d",
+      "matches": true
+    },
+    {
+      "path": "current-cells.jsonl",
+      "sha256": "04e377a8b20c62efc88375febcfe4bca591b7cc3241e03f28f1229af8c5ae428",
+      "matches": true
+    },
+    {
+      "path": "exact-head.json",
+      "sha256": "de96868b1f34aaa296d5dd906e6bd40aa782826a262adecbd7f43639b9d55289",
+      "matches": true
+    },
+    {
+      "path": "input-integrity.json",
+      "sha256": "8d69d91480476b4521ee03079678c275db6fa7319e8b9dc954225fa76bf5cb68",
+      "matches": true
+    },
+    {
+      "path": "order-and-boundary.json",
+      "sha256": "46ecd540cff848be08fb3e62f122f41502b6dc4f9629a79a3a015191486558c3",
+      "matches": true
+    },
+    {
+      "path": "prior-hold-reattestation.jsonl",
+      "sha256": "04e608ac1334125ff248c8c67c02c4b9c2322650c432ded2280b62a5eb123ab6",
+      "matches": true
+    },
+    {
+      "path": "prior-window-input-reattestation.jsonl",
+      "sha256": "05df5859941691ee82e71de24a82ca57eaf2573282a5c5bd27f9cab116a4a457",
+      "matches": true
+    },
+    {
+      "path": "review-decisions.jsonl",
+      "sha256": "04e377a8b20c62efc88375febcfe4bca591b7cc3241e03f28f1229af8c5ae428",
+      "matches": true
+    },
+    {
+      "path": "source-runtime-gaps.jsonl",
+      "sha256": "c65626f3fe0410ab2bb49bd80aae7849f65d3fde0fa5e60f6e2666e6adbe3ac2",
+      "matches": true
+    },
+    {
+      "path": "spanish-formal-reattestation.jsonl",
+      "sha256": "69fded867639b7f1e8125d97568064db04f4c019fb53ca443d4b7e8564ef682b",
+      "matches": true
+    },
+    {
+      "path": "structural-validation.jsonl",
+      "sha256": "f5bc05b7e39e283581d39a46bbe196c0f4e97b9490045d1ddff9f8a507656127",
+      "matches": true
+    },
+    {
+      "path": "summary.json",
+      "sha256": "09266aab1c1c3ee23e23113b7e723e989b3afeabad30b33a945f0e81b36ede42",
+      "matches": true
+    },
+    {
+      "path": "w42-applied-readback-reattestation.jsonl",
+      "sha256": "c30489d3c97e2776515304de3f07283560f9c3d1f1f2da05e0da4077db739779",
+      "matches": true
+    },
+    {
+      "path": "w42-final-cell-reattestation.jsonl",
+      "sha256": "bcd509f1c8e11128c702683d8e3219b622c6944a8099322c25c3fc172e108e96",
+      "matches": true
+    },
+    {
+      "path": "w42-source-reattestation.jsonl",
+      "sha256": "aec589154d3906479db61c1437b32d502a1e792f2a969865c5fdf858312d7880",
+      "matches": true
+    },
+    {
+      "path": "w43-spanish-formal-boundary.jsonl",
+      "sha256": "731d3beafef2ab4f8d3e39fb448d3ba4d27cb380ebc502b802dfd37aa1b3e68c",
+      "matches": true
+    }
+  ],
+  "allMatch": true
+}

@@ -1,0 +1,32 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "OPEN",
+  "isDraft": true,
+  "baseRefName": "main",
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+  "tree": "25282a0cd8197815b3ffcbec9dbea8a03a5c8725",
+  "branch": "codex/slskdn-localization-apply-20261102",
+  "remote": "taskgithub",
+  "remoteHead": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+  "livePrStart": {
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "livePrEnd": {
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "verifiedAtUtc": "2026-11-02T18:04:14.399108+00:00",
+  "worktreeClean": true
+}

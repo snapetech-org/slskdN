@@ -1,0 +1,81 @@
+{
+  "head": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+  "tree": "25282a0cd8197815b3ffcbec9dbea8a03a5c8725",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "w42SourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "currentLocaleCatalogTree": "8918ccb89373baede67d85653739965fb56add63",
+  "w42LocaleCatalogTree": "dd773ad577db8f4bb9274140d297ebad2da7dd92",
+  "w42PrimaryExternalManifest": {
+    "manifest": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window42-primary-20261102/SHA256SUMS.txt",
+    "sha256": "f72d022763fd048482b2c4108e5136ebfed1afffb21afcde94060b99ab92aef5",
+    "entries": 22,
+    "failures": [],
+    "verified": true
+  },
+  "w42CrossReviewExternalManifest": {
+    "manifest": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window42-crossreview-independent-20261102/SHA256SUMS.txt",
+    "sha256": "3b1024f3edb0d560aa6e7edd2ffc20ac45818ef693698e59c52ebda68ae8ce40",
+    "entries": 21,
+    "failures": [],
+    "verified": true
+  },
+  "w40PrimaryHistoricalManifest": {
+    "manifest": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window40-primary-20261102/SHA256SUMS.txt",
+    "sha256": "77b135ec75ea7fadb0965036054dedbcc937a89763bd39e72eaa00091fae1be4",
+    "entries": 17,
+    "failures": [],
+    "verified": true
+  },
+  "w42RepoEvidenceManifests": [
+    {
+      "manifest": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window42/primary/SHA256SUMS.txt",
+      "sha256": "f72d022763fd048482b2c4108e5136ebfed1afffb21afcde94060b99ab92aef5",
+      "entries": 22,
+      "failures": [],
+      "verified": true
+    },
+    {
+      "manifest": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window42/crossreview/SHA256SUMS.txt",
+      "sha256": "3b1024f3edb0d560aa6e7edd2ffc20ac45818ef693698e59c52ebda68ae8ce40",
+      "entries": 21,
+      "failures": [],
+      "verified": true
+    },
+    {
+      "manifest": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window42/application/SHA256SUMS.txt",
+      "sha256": "3be10a1b8a3f864a2ebaaa0cf7e53a990818bd30efe2174af1f6e2793007c424",
+      "entries": 5,
+      "failures": [],
+      "verified": true
+    }
+  ],
+  "w42FutureBoundarySha256": "9fff94b98b6fbbb7972b766ab57acc4318735ed6fe407e0df0e51d56a1deafb0",
+  "w42FutureBoundaryExternalCopyMatches": true,
+  "w42PriorInputFilesReattestedAtCurrentHead": 41,
+  "w42PriorInputFileMismatches": [],
+  "w1Through41UniqueSourceIdsReattested": 1022,
+  "w42InputOrderEvidenceSelectionRule": "next 25 lexicographically sorted non-Spanish pending source IDs after excluding all W1-W41 manual source IDs; preserve prior held sources",
+  "w42SelectionClaim": true,
+  "w43BoundarySourceRowsReattested": 25,
+  "w43BoundaryCellRowsReattested": 275,
+  "w43BoundaryIdsDisjointFromW1Through42": true,
+  "w40RootBundlePath": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/bundle",
+  "w40RootBundleExists": false,
+  "w40PrimaryReviewHead": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "w40PrimaryWasUsedForCurrentInputs": false,
+  "w40Handling": "The requested bundle path is absent. The checksummed W40 primary packet is historical at 67e40aaa; it was not used as current source/caller/catalog evidence. W43 source IDs/current catalog values were taken from W42 future-boundary rows and reattested against this exact current source tree and all 11 live catalogs.",
+  "formalAccumulatorPath": "docs/pr-evidence/pr409-localization-2026-11-02/window36/primary/formal-cell-ids.jsonl",
+  "formalAccumulatorSha256": "7bd9c90a1176403feb36daadfecb7822616a818d15e9980c99c0bf5dc9d6f856",
+  "formalAccumulatorEntries": 4800,
+  "w42AppliedRowsReattested": 48,
+  "w42FinalCellsReattested": 275,
+  "priorHoldRowsReattested": 50,
+  "spanishFormalRowsReattested": 50,
+  "w43SpanishBoundaryRowsPreserved": 25,
+  "w43SpanishBoundaryFormalAccumulatorCount": 24,
+  "catalogFilesReattested": 12,
+  "sourceCallerFilesPinned": 24,
+  "readOnly": true,
+  "repoMutated": false,
+  "testsBuildsCiBrowserRun": false
+}
