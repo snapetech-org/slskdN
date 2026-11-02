@@ -1,0 +1,72 @@
+{
+  "evidencePath": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window47-runtime-followup/catalog-key-readback.json",
+  "sourceCount": 7,
+  "sources": [
+    {
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "alreadyInPriorEvidence": true,
+      "remainingQueueRank": null,
+      "continuationRank": null,
+      "inW48": false,
+      "note": "Runtime display fix/catalog readback is not treated as an independent semantic translation disposition unless the source is covered by prior window evidence."
+    },
+    {
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "alreadyInPriorEvidence": true,
+      "remainingQueueRank": null,
+      "continuationRank": null,
+      "inW48": false,
+      "note": "Runtime display fix/catalog readback is not treated as an independent semantic translation disposition unless the source is covered by prior window evidence."
+    },
+    {
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "alreadyInPriorEvidence": false,
+      "remainingQueueRank": 3618,
+      "continuationRank": 3693,
+      "inW48": false,
+      "note": "Runtime display fix/catalog readback is not treated as an independent semantic translation disposition unless the source is covered by prior window evidence."
+    },
+    {
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "alreadyInPriorEvidence": false,
+      "remainingQueueRank": 1013,
+      "continuationRank": 1088,
+      "inW48": false,
+      "note": "Runtime display fix/catalog readback is not treated as an independent semantic translation disposition unless the source is covered by prior window evidence."
+    },
+    {
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "alreadyInPriorEvidence": true,
+      "remainingQueueRank": null,
+      "continuationRank": null,
+      "inW48": false,
+      "note": "Runtime display fix/catalog readback is not treated as an independent semantic translation disposition unless the source is covered by prior window evidence."
+    },
+    {
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "alreadyInPriorEvidence": false,
+      "remainingQueueRank": 2,
+      "continuationRank": 77,
+      "inW48": true,
+      "note": "Runtime display fix/catalog readback is not treated as an independent semantic translation disposition unless the source is covered by prior window evidence."
+    },
+    {
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "alreadyInPriorEvidence": true,
+      "remainingQueueRank": null,
+      "continuationRank": null,
+      "inW48": false,
+      "note": "Runtime display fix/catalog readback is not treated as an independent semantic translation disposition unless the source is covered by prior window evidence."
+    }
+  ],
+  "richTextSourceIdExcluded": "src_9f923ae09ae2aeb7",
+  "richTextSourceSha256": "9f923ae09ae2aeb7586ac6ee6efbc92a6dd406d4b9b36af076a0a9268ed3b26c",
+  "rationale": "Avoid treating runtime caller review as translation review for otherwise pending source keys."
+}

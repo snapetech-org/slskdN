@@ -1,0 +1,55 @@
+{
+  "crosscheck": "The live PR records four protected-literal uncertainties in Japanese, Korean, Simplified Chinese, and Traditional Chinese. The W48 primary holds exactly these four localized current cells and proposes no replacements.",
+  "heldCells": [
+    {
+      "currentTarget": "検疫陪審が更新されました",
+      "currentTargetSha256": "a1ee594a52d4fe942ac9303e98cdbde5a4835db41711dd48cdaa9b3aebbb5683",
+      "independentDisposition": "uphold-hold",
+      "locale": "ja",
+      "primaryCandidate": null,
+      "primaryDisposition": "hold",
+      "rationale": "The exact source term is marked protected in earlier review evidence. Window 14 retained localized forms in this locale only as an unresolved exception; preserve the current value and hold until the protected-name policy is resolved."
+    },
+    {
+      "currentTarget": "검역 심사위원단이 업데이트되었습니다.",
+      "currentTargetSha256": "c8905c0f4de714af71f87c2307be5dc3e34cff78c6134b52ff5434cf3a19b8df",
+      "independentDisposition": "uphold-hold",
+      "locale": "ko",
+      "primaryCandidate": null,
+      "primaryDisposition": "hold",
+      "rationale": "The exact source term is marked protected in earlier review evidence. Window 14 retained localized forms in this locale only as an unresolved exception; preserve the current value and hold until the protected-name policy is resolved."
+    },
+    {
+      "currentTarget": "检疫陪审团更新",
+      "currentTargetSha256": "1fac3797495a141a0cb60ee8bcbbcdb3e0fd4792edb7fe5d16d473ee54e745ca",
+      "independentDisposition": "uphold-hold",
+      "locale": "zh-Hans",
+      "primaryCandidate": null,
+      "primaryDisposition": "hold",
+      "rationale": "The exact source term is marked protected in earlier review evidence. Window 14 retained localized forms in this locale only as an unresolved exception; preserve the current value and hold until the protected-name policy is resolved."
+    },
+    {
+      "currentTarget": "檢疫陪審團更新",
+      "currentTargetSha256": "34127a07810d3e4d0212ad263b164c29456edf516992146d0447db980a16eab5",
+      "independentDisposition": "uphold-hold",
+      "locale": "zh-Hant",
+      "primaryCandidate": null,
+      "primaryDisposition": "hold",
+      "rationale": "The exact source term is marked protected in earlier review evidence. Window 14 retained localized forms in this locale only as an unresolved exception; preserve the current value and hold until the protected-name policy is resolved."
+    }
+  ],
+  "livePrW14SummaryLine": "Window 14 covers 25 keys / 300 cells (238 keep, 44 correction candidates, 18 uncertain); manifest `0f710896ab5fa8f5321de43a48462b58c3eb77ae41f876d32b39c26f63d3ddbb`, input `bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8`, decisions `2c75706a2e1e9e330ab7ae351e1d1f2bd5d912aaa844af716537978c95dcd905`. The review covers Smart Radio naming, MilkDrop composite-shader terminology, port-field grammar, content-registry terms, status labels, Pod and peer terminology, access categories, selected-search labels, color values, and perceptual similarity; four Chinese/Japanese/Korean “Quarantine Jury” values remain uncertain because the phrase is a protected literal. Verification found zero formal-result overlap, zero overlap with the thirteen prior windows, and compared all 3,900 prior input/decision rows. The review was pinned to PR head `3b5060fa630836b7bdb467f61d73d5e52f907dbb` / tree `283aa0efedacd4df8528853ea31a4e38db5095a3`; the current packaging commit changes docs only.",
+  "livePrW14SummaryLineSha256": "609ae6e971878e3689ce9a6e46af67a176196b8073392dff5f2c2b349cdffb19",
+  "locales": [
+    "ja",
+    "ko",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "priorW14DecisionsSha256": "2c75706a2e1e9e330ab7ae351e1d1f2bd5d912aaa844af716537978c95dcd905",
+  "priorW14InputSha256": "bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8",
+  "priorW14ManifestSha256": "0f710896ab5fa8f5321de43a48462b58c3eb77ae41f876d32b39c26f63d3ddbb",
+  "source": "Quarantine Jury updated",
+  "sourceId": "src_1223810b95b7b104",
+  "sourceSha256": "1223810b95b7b1044fed461164ae6cddf2ce49ed25c388aa86151aea6d34817a"
+}

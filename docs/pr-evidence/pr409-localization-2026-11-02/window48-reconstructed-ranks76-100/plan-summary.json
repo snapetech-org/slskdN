@@ -1,0 +1,23 @@
+{
+  "exactHead": "0a6cbdcb606de1888045df358427eb2b81c85546",
+  "exactTree": "dcef8f70ea7c10926058c5db7430611b5faa07db",
+  "cellCount": 300,
+  "dispositions": {
+    "retain-current": 228,
+    "hold": 4,
+    "apply-primary-proposal": 67,
+    "apply-independent-revision": 1
+  },
+  "editCount": 68,
+  "holds": 4,
+  "holdLocales": [
+    "ja",
+    "ko",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "catalogKeyCount": 6176,
+  "catalogKeySetsAndOrderIdentical": true,
+  "allCurrentTargetAndCatalogFileHashesMatch": true,
+  "nativeSpeakerApproval": false
+}

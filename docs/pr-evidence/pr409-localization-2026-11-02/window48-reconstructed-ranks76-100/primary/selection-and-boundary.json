@@ -1,0 +1,213 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "pullRequestState": "OPEN",
+  "pullRequestIsDraft": true,
+  "exactHead": "0a6cbdcb606de1888045df358427eb2b81c85546",
+  "exactTree": "dcef8f70ea7c10926058c5db7430611b5faa07db",
+  "headVerifiedAgainstLiveGitHub": true,
+  "worktreeClean": true,
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "bytes": 642962,
+      "sha256": "0bb661b9a4a04120a1c2e69b4b0fba95056356fed4cd04830e13bd4c8e15505a",
+      "gitBlob": "eb11d2bf594c2486132ee4ec6f1fb81b36175284",
+      "gitBlobSha1Check": "eb11d2bf594c2486132ee4ec6f1fb81b36175284",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "bytes": 558334,
+      "sha256": "05834937e3fa8e0625f2e65b8cee0e11564f3e4f7dfa6eb1abcb093072bee5ad",
+      "gitBlob": "598b04b6770a097a136e8a1f9467f641db0b488c",
+      "gitBlobSha1Check": "598b04b6770a097a136e8a1f9467f641db0b488c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "bytes": 557056,
+      "sha256": "e27fbd70e015ced712b8f1fbe322b72ab3546892d451241fae73b1f3952c962d",
+      "gitBlob": "ccfb4b294e9606a5a14fdebec094cf0e344931ad",
+      "gitBlobSha1Check": "ccfb4b294e9606a5a14fdebec094cf0e344931ad",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "bytes": 571330,
+      "sha256": "ebfe6da44f33c405ee2c73ca1f9354e5caf142d1c7128770eb6e056789b288f6",
+      "gitBlob": "2a933963151f4d4a21da667959955df0803ceaf4",
+      "gitBlobSha1Check": "2a933963151f4d4a21da667959955df0803ceaf4",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "bytes": 856900,
+      "sha256": "1caf629c97abeb23c5442f844b02ea0bf047a05634ea0dc706ed60e695a83d33",
+      "gitBlob": "e9a3b020b708d60738785d7c33adbeec53d6b127",
+      "gitBlobSha1Check": "e9a3b020b708d60738785d7c33adbeec53d6b127",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "bytes": 517647,
+      "sha256": "d7be0a468bea45709a6c57d98c23a30849c8d4934fffb3b1daad227b81def7df",
+      "gitBlob": "0d5a5715329b2e290d1e3da7e692d506d274ca11",
+      "gitBlobSha1Check": "0d5a5715329b2e290d1e3da7e692d506d274ca11",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "bytes": 616958,
+      "sha256": "3cbfbafa6dd68a123709ddfc46cbbbeb0c19bfacb8db3e29ed70e0ca7e4dfd5e",
+      "gitBlob": "bc0d860f65fb3d1d90febdfb6fe1a1848bdb81fc",
+      "gitBlobSha1Check": "bc0d860f65fb3d1d90febdfb6fe1a1848bdb81fc",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "bytes": 553708,
+      "sha256": "0e9327e2105fbcedebb05ed1c41eb060efeeaa7a3aa1ad46efbcbaf8ad49a941",
+      "gitBlob": "d5e94a6af28615d742988b0b8856bf4994081f4d",
+      "gitBlobSha1Check": "d5e94a6af28615d742988b0b8856bf4994081f4d",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "bytes": 548911,
+      "sha256": "6ec52afb04e90e8ba4b91796daa1ada5224f0b9fe21168f4cfb1d7b31eff737c",
+      "gitBlob": "a84599a80c3787dc6e70bde68d290e29cc8c1282",
+      "gitBlobSha1Check": "a84599a80c3787dc6e70bde68d290e29cc8c1282",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "bytes": 597936,
+      "sha256": "756c85ec001f8c4128a5422ddf575426beb4ed760013f47f1e8e4b69fb0f839d",
+      "gitBlob": "44ada8c3af4287fc9270a10713c1ff302e1c092c",
+      "gitBlobSha1Check": "44ada8c3af4287fc9270a10713c1ff302e1c092c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "bytes": 481290,
+      "sha256": "ddef0afbdeeb94757fce9c28bc69804dcb8f48b1b7b4f52bd56b681fd04d09b3",
+      "gitBlob": "10e3ea9c8098efe5d5f4cf5410f837e8b46daecf",
+      "gitBlobSha1Check": "10e3ea9c8098efe5d5f4cf5410f837e8b46daecf",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "bytes": 482651,
+      "sha256": "aa41c509ae5b51203668c164653d23a23125f66c43fb20b3fd9cc85fa89bdb82",
+      "gitBlob": "6f0ff6dca3292c8615687843ba7d660bfdbf1bc7",
+      "gitBlobSha1Check": "6f0ff6dca3292c8615687843ba7d660bfdbf1bc7",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176
+    }
+  ],
+  "orderedCatalogKeyCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "exclusionCounts": {
+    "W1-W45 evidence IDs": 1122,
+    "W46 reconstructed manual IDs": 25,
+    "W46 count-aware follow-up IDs": 5,
+    "W47 primary IDs": 25,
+    "W47 W71 rich-text follow-up ID": 1,
+    "uniqueTotal": 1178
+  },
+  "excludedStableIdCount": 1178,
+  "pendingStableIdCount": 4998,
+  "windowLabel": "W48 reconstructed pending stable-ID ranks 76-100; historical source ordinal unavailable",
+  "selectionRankRange": [
+    76,
+    100
+  ],
+  "remainingQueueRankRange": [
+    1,
+    25
+  ],
+  "nextUnselectedRemainingQueueRank": 26,
+  "sourceOrdinalRange": null,
+  "selectedSourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "exclusionSourceIdsFile": "prior-excluded-source-ids.jsonl",
+  "w47PrimaryChecksumsVerified": 20,
+  "w47PrimaryChecksumFailures": 0,
+  "w47RichTextReattestationCells": 12,
+  "w47RichTextReattestationFailures": 0,
+  "w47RuntimeCatalogReattestationCells": 84,
+  "w47RuntimeCatalogReattestationFailures": 0,
+  "runtimeFollowupPolicy": "W47 W54/W57 runtime follow-up reattests seven catalog values but is not treated as semantic translation review for pending IDs. The W71 combined rich-text source was separately translated/reviewed and is excluded.",
+  "boundaryEvidence": {
+    "previousRank75": {
+      "continuationRank": 75,
+      "role": "previous-window-last",
+      "sourceId": "src_12156e921bdb6085",
+      "source": "Id",
+      "sourceSha256": "12156e921bdb6085ccc2f0109b8ff8ea8f0b17e8b4fb0741f63b6708b930b380",
+      "origin": "W47 selection evidence"
+    },
+    "firstRank76": {
+      "continuationRank": 76,
+      "role": "selected-W48",
+      "sourceId": "src_1218edb12079792d",
+      "source": "Publish Opinion",
+      "sourceSha256": "1218edb12079792d361ed52582290751cc0198a1a539b2afce23601b4d9702ea",
+      "remainingQueueRank": 1
+    },
+    "lastRank100": {
+      "continuationRank": 100,
+      "role": "selected-W48",
+      "sourceId": "src_12f39195f426d605",
+      "source": "Signed release-completeness observations without file paths.",
+      "sourceSha256": "12f39195f426d6054043604f3833c176cd5c44146d3039f838815250610bfa78",
+      "remainingQueueRank": 25
+    },
+    "nextRank101": {
+      "continuationRank": 101,
+      "role": "next-unselected-boundary",
+      "sourceId": "src_130011756125313c",
+      "source": "On",
+      "sourceSha256": "130011756125313c72f2cab730db4347e2841526d236a89cb25f38789fa49229",
+      "remainingQueueRank": 26
+    }
+  },
+  "primaryDispositionCounts": {
+    "accept-current": 228,
+    "hold": 4,
+    "propose-correction": 68
+  },
+  "placeholderMismatches": 0,
+  "markupMismatches": 0,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReview": false,
+  "testsBuildScansCiRun": false,
+  "repositoryModified": false,
+  "remoteMutation": false
+}

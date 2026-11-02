@@ -1,0 +1,41 @@
+{
+  "exactHead": "0a6cbdcb606de1888045df358427eb2b81c85546",
+  "exactTree": "dcef8f70ea7c10926058c5db7430611b5faa07db",
+  "window": "W48 reconstructed pending stable-ID ranks 76-100; historical source ordinal unavailable",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 228,
+    "hold": 4,
+    "propose-correction": 68
+  },
+  "proposalSourceIds": [
+    "src_1232c530004023ca",
+    "src_1249220b17fd8814",
+    "src_124d1626df992ed7",
+    "src_1255d4681c92134d",
+    "src_12814bb2ebddb786",
+    "src_1283d290aa30df88",
+    "src_128ec406ed985ebe",
+    "src_12a9e10edb3b6736",
+    "src_12b0285a2d5a2b9d",
+    "src_12c63a454cc27dc2",
+    "src_12cc5fb5affe2e9e",
+    "src_12f39195f426d605"
+  ],
+  "heldSourceIds": [
+    "src_1223810b95b7b104"
+  ],
+  "placeholderMismatches": 0,
+  "markupMismatches": 0,
+  "protectedPodPreserved": true,
+  "protectedCsvUrlPreserved": true,
+  "nativeSpeakerApproval": false,
+  "semanticConfidence": "moderate machine-assisted primary review",
+  "localeQualityConfidence": "moderate machine-assisted; native-speaker review outstanding",
+  "headedBrowserReview": false,
+  "testsBuildScansCiRun": false,
+  "remoteMutation": false,
+  "repositoryModified": false
+}

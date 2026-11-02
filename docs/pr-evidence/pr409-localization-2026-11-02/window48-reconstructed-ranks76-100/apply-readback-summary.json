@@ -1,0 +1,23 @@
+{
+  "editCount": 68,
+  "changedCatalogCount": 12,
+  "changedCatalogPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "readbackCellCount": 300,
+  "readbackMismatches": 0,
+  "catalogKeyCountPerLocale": 6176,
+  "catalogKeySetsAndOrderIdentical": true,
+  "holdCells": 4
+}
