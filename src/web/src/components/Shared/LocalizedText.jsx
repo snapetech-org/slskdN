@@ -1,7 +1,11 @@
-import React from 'react';
-import { useInterfaceLanguage } from '../../lib/interfaceLocale';
+import React, { Fragment } from 'react';
+import {
+  isInterfaceOpaqueOutput,
+  isInterfaceTextOutput,
+  useInterfaceLanguage,
+} from '../../lib/interfaceLocale';
 
-const isolateRtlValues = (template, values) => {
+const isolatePlaceholderValues = (template, values) => {
   if (typeof template !== 'string' || !values) return template;
 
   const parts = [];
@@ -11,12 +15,13 @@ const isolateRtlValues = (template, values) => {
   let match;
 
   while ((match = placeholderPattern.exec(template)) !== null) {
+    if (!Object.hasOwn(values, match[1])) continue;
     const value = values[match[1]];
     if (typeof value !== 'string' && typeof value !== 'number') continue;
 
     parts.push(template.slice(lastIndex, match.index));
     parts.push(
-      <bdi dir="auto" key={`localized-value-${partIndex}`}>
+      <bdi dir="auto" lang="und" key={`localized-value-${partIndex}`}>
         {String(value)}
       </bdi>,
     );
@@ -30,22 +35,27 @@ const isolateRtlValues = (template, values) => {
 };
 
 const LocalizedText = ({ as: Element = 'span', source, values, children, ...props }) => {
-  const { directionFor, languageFor, t } = useInterfaceLanguage();
+  const { directionFor, language, languageFor, t } = useInterfaceLanguage();
   const direction = typeof source === 'string' ? directionFor(source) : undefined;
   const text = typeof source !== 'string'
     ? children
-    : direction === 'rtl'
-      ? isolateRtlValues(t(source), values)
-      : t(source, values);
-  const language = typeof source === 'string' ? languageFor(source) : undefined;
+    : isolatePlaceholderValues(t(source), values);
+  const textLanguage = typeof source === 'string'
+    ? languageFor(source)
+    : undefined;
 
-  if (Element === 'span' && language === 'en' && Object.keys(props).length === 0) {
+  if (
+    Element === 'span' &&
+    textLanguage === 'en' &&
+    Object.keys(props).length === 0 &&
+    language === 'en'
+  ) {
     return text;
   }
 
   return (
     <Element dir={direction}
-      lang={language}
+      lang={textLanguage}
       {...props}
     >
       {text}
@@ -54,3 +64,40 @@ const LocalizedText = ({ as: Element = 'span', source, values, children, ...prop
 };
 
 export default LocalizedText;
+
+// React-node parameters are app-owned presentation fragments; plain opaque
+// values still get their own bidi boundary. Translation text is never markup.
+export const LocalizedRichText = ({ source, values = {} }) => {
+  const { directionFor, languageFor, t } = useInterfaceLanguage();
+  const parts = t(source).split(/(\{[a-zA-Z][a-zA-Z0-9_]*\})/g);
+  return (
+    <span dir={directionFor(source)} lang={languageFor(source)}>
+      {parts.map((part, index) => {
+        const token = /^\{([a-zA-Z][a-zA-Z0-9_]*)\}$/.exec(part);
+        if (!token || !Object.hasOwn(values, token[1])) return <Fragment key={index}>{part}</Fragment>;
+        const value = values[token[1]];
+        if (isInterfaceTextOutput(value) || isInterfaceOpaqueOutput(value)) {
+          return <LocalizedOutputText key={index} output={value} />;
+        }
+        return typeof value === 'string' || typeof value === 'number'
+          ? <bdi dir="auto" lang="und" key={index}>{String(value)}</bdi>
+          : <Fragment key={index}>{value}</Fragment>;
+      })}
+    </span>
+  );
+};
+
+export const LocalizedOutputText = ({ output, text }) => {
+  const value = output ?? text;
+  if (isInterfaceOpaqueOutput(value)) {
+    return <bdi dir="auto" lang="und">{value.text}</bdi>;
+  }
+  if (isInterfaceTextOutput(value)) {
+    return <LocalizedRichText source={value.source} values={value.values} />;
+  }
+  if (React.isValidElement(value)) return value;
+  if (typeof value === 'string' || typeof value === 'number') {
+    return <bdi dir="auto" lang="und">{String(value)}</bdi>;
+  }
+  return value == null ? null : <bdi dir="auto" lang="und">{String(value)}</bdi>;
+};

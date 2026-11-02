@@ -322,7 +322,7 @@ describe('LibraryHealth', () => {
       Array.from({ length: 25 }, (_, index) => `issue-${index + 1}`),
     );
     expect(screen.getByTestId('library-health-fix-selected')).toHaveTextContent(
-      'Queue fixes for 5 auto-fixable issues',
+      'Queue fixes (auto-fixable issues: 5)',
     );
     expect(screen.getByText('5 issues selected')).toBeInTheDocument();
   });

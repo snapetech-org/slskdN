@@ -1,0 +1,3 @@
+6c45c55b0c45cecddcac7097f2c7a93219020d97ea9e77a8509540e98031e44a  README.md
+5ff63d8e936e7640febc50847ece6f1a3eee4928530dbaa03cacddfc070af7db  root-disposition-ledger.jsonl
+8be6751f1b93586800fbcad203a22a7b9a61e2c1be64d3c9b49fbe086c5812e2  verification-report.json

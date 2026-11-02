@@ -1,11 +1,11 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import './Security.css';
 import * as securityApi from '../../../lib/security';
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Button,
@@ -54,10 +54,10 @@ const AdversarialSettings = () => {
         setError(null);
         return data;
       } else {
-        setError(interfaceText("Adversarial features are not configured on this server"));
+        setError(interfaceTextOutput("Adversarial features are not configured on this server"));
       }
     } catch (fetchError) {
-      setError(fetchError.message || interfaceText('Failed to load adversarial settings'));
+      setError(fetchError.message || interfaceTextOutput('Failed to load adversarial settings'));
     } finally {
       setLoading(false);
     }
@@ -142,7 +142,7 @@ const AdversarialSettings = () => {
       setSuccess(interfaceText("Adversarial settings updated successfully"));
       setHasChanges(false);
     } catch (saveError) {
-      setError(saveError.message || interfaceText('Failed to save adversarial settings'));
+      setError(saveError.message || interfaceTextOutput('Failed to save adversarial settings'));
     } finally {
       setSaving(false);
     }
@@ -271,7 +271,7 @@ const AdversarialSettings = () => {
     return (
       <Message negative>
         <Message.Header><LocalizedText source={"Adversarial Features Unavailable"} /></Message.Header>
-        <p>{error}</p>
+        <p><LocalizedOutputText output={error} /></p>
         <p>
           <LocalizedText source={"Adversarial features are advanced security options designed for users in adversarial environments. They are disabled by default and require explicit configuration."} /></p>
         <Popup
@@ -544,7 +544,7 @@ const AdversarialSettings = () => {
                     </p>
                     {torStatus.LastError && (
                       <p>
-                        <strong><LocalizedText source={"Last Error:"} /></strong> {torStatus.LastError}
+                        <strong><LocalizedText source="Last Error:" /></strong> {torStatus.LastError}
                       </p>
                     )}
                     {torStatus.LastSuccessfulConnection && (
@@ -1098,7 +1098,7 @@ const AdversarialSettings = () => {
                               position="top center"
                               trigger={(
                                 <Button
-                                  aria-label={interfaceText('Remove Obfs4 bridge line {index}', { index: index + 1 })}
+                                  aria-label={interfaceAttributeText('Remove Obfs4 bridge line {index}', { index: index + 1 })}
                                   icon="minus"
                                   onClick={() =>
                                     removeArrayItem(
@@ -1229,7 +1229,7 @@ const AdversarialSettings = () => {
                     setSuccess(interfaceText("Transport connectivity test completed"));
                     fetchTransportStatus();
                   } catch (error) {
-                    setError(getApiErrorMessage(error, { t: interfaceText }, 'Transport test failed'));
+                    setError(getApiErrorMessageOutput(error, { t: interfaceText }, 'Transport test failed'));
                   }
                 }}
                 size="tiny"
@@ -1250,7 +1250,7 @@ const AdversarialSettings = () => {
                     setSuccess(interfaceText("Tor connectivity test completed"));
                     fetchTorStatus();
                   } catch (error) {
-                    setError(getApiErrorMessage(error, { t: interfaceText }, 'Tor test failed'));
+                    setError(getApiErrorMessageOutput(error, { t: interfaceText }, 'Tor test failed'));
                   }
                 }}
                 size="tiny"
@@ -1277,8 +1277,8 @@ const AdversarialSettings = () => {
 
       {error && (
         <Message negative>
-          <Message.Header><LocalizedText source={"Error"} /></Message.Header>
-          <p>{error}</p>
+          <Message.Header><LocalizedText source="Error" /></Message.Header>
+          <p><LocalizedOutputText output={error} /></p>
         </Message>
       )}
 

@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "d3227259db9a485c75d39f5017ac9966a1a17bd1",
+  "tree": "dffdaf8b5cad7387a9de17fee1aac92eabe98b37",
+  "sourceSubtreeTree": "444662a240631d9b1ba4e8358e70d1a27b14469d",
+  "generatedUtc": "2026-11-02T01:34:15Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 21,
+    "cells": 6300,
+    "keys": 525,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 869,
+    "ids": 869,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "windows20_21": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_f5ab720599292084",
+      "src_f5ad0871124734e1",
+      "src_f5d7e478bd095dcd",
+      "src_f5def6c3cff76081",
+      "src_f5ecf1932a05b9ad",
+      "src_f5ee10c4940b54f1",
+      "src_f5fce1af6e3b2bd0",
+      "src_f6156185f567e9db",
+      "src_f636f90bbb7941ad",
+      "src_f6387643338c4f7d",
+      "src_f63bb28961eb8ae5",
+      "src_f64388c8dcd0081b",
+      "src_f65e51fd4a748ed8",
+      "src_f66828595c27504a",
+      "src_f67d923e52dbeb67",
+      "src_f67e758b9619419b",
+      "src_f6a45f96b9984569",
+      "src_f6a77ba4ee75ec7c",
+      "src_f6b2aec4571c5a56",
+      "src_f6c47a89df7e62a4",
+      "src_f6d370d83359d464",
+      "src_f6f4688ff23d50c6",
+      "src_f7058aadfcf36fdf",
+      "src_f707298a1508b074",
+      "src_f71094a4385d5b57"
+    ],
+    "sourceIdListSha256": "51bf4ee917135ff7553b1cd83d9c252e756b61f09ab4d1518ef87037084a2eee",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 222,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "b9a6eaa9d736695249e838ba3ad1cf44dda8f663a359c43b89240195ce7025c5",
+    "zh-Hans": "01a346827a48b1cf46115e334f099505cdb108a60f788ed1ccc1eb766866b269",
+    "hi": "fbdb117753bd351d8ce31955cc5001c2455b2cb800ad5d61f0e1be576ab7a9dd",
+    "de": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75",
+    "ja": "589b61d7b3ad694913eb10d66a94ff10cc17c11f3a5725d52e9f63440d3b37b9",
+    "fr": "4f3341b3416813d7e72f71e7a5fc129d8aa4965950ec22579772d073fc6de6d5",
+    "pt-BR": "d8e7628a9eac2471d123ed289a98f03038a54015dd18fcb1efe18dab5b70831a",
+    "ar": "918bf828523723dd4a58524f1233c45a8fa6e282207c01f1f9a0c32d5e40ae90",
+    "ko": "0f26115f8c4406ada424dc3ac55116762e0390226f4983a46c55086133a09448",
+    "zh-Hant": "9fd1d5a9415ba6d627e121328dd40b86d28896844eabe60537b3ed043f7b3b81",
+    "vi": "f5a2f103f3523c9e5afcd332ea9ac8f8bdf13eeb3460b55d87d42adaeb03f10f",
+    "id": "3d63e2bbe413569eb957d23c5ed9506c3368fc22f635392ad81857b83ed37c0c"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "626b0b83a25d9494714ec23f308fd34b5b415eebcbbdcb4857b0d1b96b9c0ca4"
+  },
+  "reviewerMethod": "independent semantic review of pinned source context and code callsites; no local translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "95be1e51294ab721e819701aa0a21a4d6059e45ca62c6593a30490fce2e80031"
+  },
+  "decisionCounts": {
+    "keep": 265,
+    "correct": 23,
+    "uncertain": 12
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "zh-Hans": {
+      "keep": 24,
+      "correct": 0,
+      "uncertain": 1
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "de": {
+      "keep": 23,
+      "correct": 1,
+      "uncertain": 1
+    },
+    "ja": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "fr": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "ar": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 1
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "zh-Hant": {
+      "keep": 24,
+      "correct": 0,
+      "uncertain": 1
+    },
+    "vi": {
+      "keep": 23,
+      "correct": 1,
+      "uncertain": 1
+    },
+    "id": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    }
+  },
+  "correctionFindings": [
+    {
+      "sourceId": "src_f5ad0871124734e1",
+      "source": "Not rated",
+      "affectedLocales": [
+        "es",
+        "pt-BR",
+        "ar"
+      ],
+      "finding": "The player-rating fallback means no rating is available; the current targets mean unclassified."
+    },
+    {
+      "sourceId": "src_f5def6c3cff76081",
+      "source": "Copy Review",
+      "affectedLocales": [
+        "fr",
+        "ja"
+      ],
+      "finding": "The two callsites copy a compatibility assessment or a request review packet; the current French target reads as an exam and the Japanese target as confirmation/check."
+    },
+    {
+      "sourceId": "src_f5fce1af6e3b2bd0",
+      "source": "Register this Redirect URI in the Spotify developer dashboard:",
+      "affectedLocales": [
+        "ja"
+      ],
+      "finding": "The following URI and dashboard context make this an instruction; the current Japanese target is declarative."
+    },
+    {
+      "sourceId": "src_f64388c8dcd0081b",
+      "source": "DHT rendezvous not running",
+      "affectedLocales": [
+        "es",
+        "ar"
+      ],
+      "finding": "The source is a network peer-discovery status; the current translations use words for an appointment/scheduled time instead of a rendezvous point/service."
+    },
+    {
+      "sourceId": "src_f67d923e52dbeb67",
+      "source": "Expand visualizer to fill the browser window.",
+      "affectedLocales": [
+        "ar"
+      ],
+      "finding": "المتخيل means “the imagined”; the source names the visualizer tool."
+    },
+    {
+      "sourceId": "src_f707298a1508b074",
+      "source": "Configure the media-server base URL before enabling live scans.",
+      "affectedLocales": [
+        "es",
+        "hi",
+        "de",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "vi",
+        "id"
+      ],
+      "finding": "The current word order or compound obscures that URL is the media server’s base URL."
+    },
+    {
+      "sourceId": "src_f6f4688ff23d50c6",
+      "source": "Send",
+      "affectedLocales": [
+        "hi",
+        "ar",
+        "ko",
+        "id"
+      ],
+      "finding": "The source is a button action; current targets use an infinitive, third-person verb, dictionary form, or gerund rather than the action label."
+    },
+    {
+      "sourceId": "src_f6d370d83359d464",
+      "source": "Paste exported metadata package JSON here...",
+      "affectedLocales": [
+        "ko"
+      ],
+      "finding": "The object particle after JSON is inconsistent with its consonant-final Korean pronunciation."
+    }
+  ],
+  "uncertaintyFindings": [
+    {
+      "sourceId": "src_f66828595c27504a",
+      "source": "Showing first 20 of",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "No source callsite or surrounding context is present in the pinned tree for this incomplete fragment ending in “of”. The following count and noun may affect grammatical form and word order, so the catalog value cannot be judged safely in isolation."
+    }
+  ],
+  "tools": {
+    "preflight_window22.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window22-d3227259-20261102/preflight_window22.py",
+      "sha256": "377f967bb91960550762f63cad69e63cccffde0e451e08586239adc14f0ff7f9"
+    },
+    "build_decisions.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window22-d3227259-20261102/build_decisions.py",
+      "sha256": "17db1f398a7497f5c091522fb138287989a5f761f940a370941a6be64ad48595"
+    },
+    "verify_evidence.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window22-d3227259-20261102/verify_evidence.py",
+      "sha256": "9ea0ccf01a72363f61d31ee13e27817be37e8d8474d8aea85514959429ad76e1"
+    }
+  }
+}

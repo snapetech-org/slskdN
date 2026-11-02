@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "commit": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+  "tree": "0909e7e881d99f9e181ae6ed34034e45d9eada7d",
+  "parent": "f11dc7199b662a49c5e84794730043af29d6830b",
+  "remoteHead": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+  "pr": {
+    "headRefOid": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "state": "OPEN"
+  },
+  "sourceCodeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "workflowTree": "6d455554f29767ab98df83e20185feb81d64a301",
+  "worktree": "clean",
+  "workflowPathsChanged": [],
+  "testsBuildsCiDispatched": false
+}

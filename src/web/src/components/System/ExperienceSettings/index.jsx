@@ -62,10 +62,14 @@ const readStoredPreferences = () =>
 
 const buildReport = (form) =>
   [
-    'slskdN browser experience preferences',
-    `Regional format: ${form.regionalFormat}`,
-    `Search: album_candidates=${form.searchAlbumCandidatesVisible}`,
-    `Player: visible=${form.playerVisible}`,
+    interfaceText('slskdN browser experience preferences'),
+    interfaceText('Regional format: {locale}', { locale: form.regionalFormat }),
+    interfaceText('Search: album candidates {visibility}', {
+      visibility: interfaceText(form.searchAlbumCandidatesVisible ? 'shown' : 'hidden'),
+    }),
+    interfaceText('Player: {visibility}', {
+      visibility: interfaceText(form.playerVisible ? 'visible' : 'hidden'),
+    }),
   ].join('\n');
 
 const ExperienceSettings = () => {

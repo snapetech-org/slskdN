@@ -1,0 +1,300 @@
+{"id":"es:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"es:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"es:src_f36dff2d475ece34","verdict":"correct","target":"Borrar el filtro de calidad","confidence":"high","reason":"The button resets the bitrate, lossless, bit-depth, and sample-rate filters; the current wording says to erase quality itself."}
+{"id":"es:src_f380df1323e4024f","verdict":"keep"}
+{"id":"es:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"es:src_f399cf280654e29c","verdict":"keep"}
+{"id":"es:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"es:src_f3b42c83ca64ccdc","verdict":"correct","target":"Actualización de descubrimiento completada: {entriesRefreshed} entradas actualizadas, {entriesExpired} expiradas","confidence":"high","reason":"The placeholders are entry counts; include the counted entries and use plural agreement."}
+{"id":"es:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"es:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"es:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"es:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"es:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"es:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"es:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"es:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"es:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"es:src_f41358bab4c355de","verdict":"keep"}
+{"id":"es:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"es:src_f42a8e2057ce2c9f","verdict":"correct","target":"Cargar estadísticas de portabilidad","confidence":"high","reason":"This is a button command whose handler loads statistics; carga is read as the noun “load/weight” here."}
+{"id":"es:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"es:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"es:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"es:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"es:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"zh-Hans:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"zh-Hans:src_f3686bb328c6d408","verdict":"correct","target":"成功","confidence":"high","reason":"The Chinese adjective form 成功的 requires a following noun; this standalone import-status badge is simply 成功."}
+{"id":"zh-Hans:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"zh-Hans:src_f380df1323e4024f","verdict":"keep"}
+{"id":"zh-Hans:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"zh-Hans:src_f399cf280654e29c","verdict":"keep"}
+{"id":"zh-Hans:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"zh-Hans:src_f3b42c83ca64ccdc","verdict":"keep"}
+{"id":"zh-Hans:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"zh-Hans:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"zh-Hans:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"zh-Hans:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"zh-Hans:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"zh-Hans:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"zh-Hans:src_f3e4352a5df650e5","verdict":"correct","target":"剩余","confidence":"high","reason":"This is a numeric transfer-table column for bytes still remaining, so use the amount/status term 剩余 instead of 其余的 (“the rest”)."}
+{"id":"zh-Hans:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"zh-Hans:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"zh-Hans:src_f41358bab4c355de","verdict":"keep"}
+{"id":"zh-Hans:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"zh-Hans:src_f42a8e2057ce2c9f","verdict":"correct","target":"加载可移植性统计数据","confidence":"high","reason":"This is a button command whose handler loads statistics; 负载 means load/weight rather than the verb “load.”"}
+{"id":"zh-Hans:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"zh-Hans:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"zh-Hans:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"zh-Hans:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"zh-Hans:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"hi:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"hi:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"hi:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"hi:src_f380df1323e4024f","verdict":"keep"}
+{"id":"hi:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"hi:src_f399cf280654e29c","verdict":"keep"}
+{"id":"hi:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"hi:src_f3b42c83ca64ccdc","verdict":"correct","target":"डिस्कवरी रीफ़्रेश पूरा हुआ: {entriesRefreshed} प्रविष्टियाँ रीफ़्रेश हुईं, {entriesExpired} प्रविष्टियों की अवधि समाप्त हुई","confidence":"high","reason":"The placeholders are entry counts; the current singular verb forms do not agree with the counts."}
+{"id":"hi:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"hi:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"hi:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"hi:src_f3cbc1a88a06a2a0","verdict":"correct","target":"पुष्ट फ़ाइल कार्रवाइयाँ","confidence":"high","reason":"The source labels a category of multiple confirmed file actions; the current Hindi uses a singular action noun."}
+{"id":"hi:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"hi:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"hi:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"hi:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"hi:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"hi:src_f41358bab4c355de","verdict":"keep"}
+{"id":"hi:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"hi:src_f42a8e2057ce2c9f","verdict":"correct","target":"पोर्टेबिलिटी आँकड़े लोड करें","confidence":"high","reason":"This is a button command whose handler loads statistics; use the verb form rather than लोड as a noun."}
+{"id":"hi:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"hi:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"hi:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"hi:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"hi:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"de:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"de:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"de:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"de:src_f380df1323e4024f","verdict":"keep"}
+{"id":"de:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"de:src_f399cf280654e29c","verdict":"keep"}
+{"id":"de:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"de:src_f3b42c83ca64ccdc","verdict":"keep"}
+{"id":"de:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"de:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"de:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"de:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"de:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"de:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"de:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"de:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"de:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"de:src_f41358bab4c355de","verdict":"keep"}
+{"id":"de:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"de:src_f42a8e2057ce2c9f","verdict":"keep"}
+{"id":"de:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"de:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"de:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"de:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"de:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"ja:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"ja:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"ja:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"ja:src_f380df1323e4024f","verdict":"keep"}
+{"id":"ja:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"ja:src_f399cf280654e29c","verdict":"keep"}
+{"id":"ja:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"ja:src_f3b42c83ca64ccdc","verdict":"keep"}
+{"id":"ja:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"ja:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"ja:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"ja:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"ja:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"ja:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"ja:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"ja:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"ja:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"ja:src_f41358bab4c355de","verdict":"keep"}
+{"id":"ja:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"ja:src_f42a8e2057ce2c9f","verdict":"correct","target":"ポータビリティ統計を読み込む","confidence":"high","reason":"This is a button command whose handler loads statistics; ロードポータビリティ can be read as the noun “load.”"}
+{"id":"ja:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"ja:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"ja:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"ja:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"ja:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"fr:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"fr:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"fr:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"fr:src_f380df1323e4024f","verdict":"keep"}
+{"id":"fr:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"fr:src_f399cf280654e29c","verdict":"keep"}
+{"id":"fr:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"fr:src_f3b42c83ca64ccdc","verdict":"correct","target":"Actualisation de la découverte terminée : {entriesRefreshed} entrées actualisées, {entriesExpired} expirées","confidence":"high","reason":"The placeholders are entry counts; the current singular participles do not agree with the plural entries."}
+{"id":"fr:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"fr:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"fr:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"fr:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"fr:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"fr:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"fr:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"fr:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"fr:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"fr:src_f41358bab4c355de","verdict":"keep"}
+{"id":"fr:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"fr:src_f42a8e2057ce2c9f","verdict":"keep"}
+{"id":"fr:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"fr:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"fr:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"fr:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"fr:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"pt-BR:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"pt-BR:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"pt-BR:src_f36dff2d475ece34","verdict":"correct","target":"Limpar o filtro de qualidade","confidence":"high","reason":"The button resets the bitrate, lossless, bit-depth, and sample-rate filters; name the quality filter being cleared."}
+{"id":"pt-BR:src_f380df1323e4024f","verdict":"keep"}
+{"id":"pt-BR:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"pt-BR:src_f399cf280654e29c","verdict":"keep"}
+{"id":"pt-BR:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"pt-BR:src_f3b42c83ca64ccdc","verdict":"correct","target":"Atualização da descoberta concluída: {entriesRefreshed} entradas atualizadas, {entriesExpired} expiradas","confidence":"high","reason":"The placeholders are entry counts; the current singular participles do not agree with the plural entries."}
+{"id":"pt-BR:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"pt-BR:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"pt-BR:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"pt-BR:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"pt-BR:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"pt-BR:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"pt-BR:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"pt-BR:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"pt-BR:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"pt-BR:src_f41358bab4c355de","verdict":"keep"}
+{"id":"pt-BR:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"pt-BR:src_f42a8e2057ce2c9f","verdict":"correct","target":"Carregar estatísticas de portabilidade","confidence":"high","reason":"This is a button command whose handler loads statistics; carga is read as the noun “load/weight” here."}
+{"id":"pt-BR:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"pt-BR:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"pt-BR:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"pt-BR:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"pt-BR:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"ar:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"ar:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"ar:src_f36dff2d475ece34","verdict":"correct","target":"مسح عوامل تصفية الجودة","confidence":"high","reason":"The button resets four quality-search filters, not general quality settings; use the established Arabic wording for filters."}
+{"id":"ar:src_f380df1323e4024f","verdict":"keep"}
+{"id":"ar:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"ar:src_f399cf280654e29c","verdict":"keep"}
+{"id":"ar:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"ar:src_f3b42c83ca64ccdc","verdict":"keep"}
+{"id":"ar:src_f3c1749ec1bbc236","verdict":"correct","target":"أرسل إشعارات Pushover عند ذكر اسم المستخدم الخاص بك في غرفة انضممت إليها.","confidence":"high","reason":"Pushover is the notification service name; the current Arabic translates it as الانتقال (“transition”)."}
+{"id":"ar:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"ar:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"ar:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"ar:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"ar:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"ar:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"ar:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"ar:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"ar:src_f41358bab4c355de","verdict":"keep"}
+{"id":"ar:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"ar:src_f42a8e2057ce2c9f","verdict":"keep"}
+{"id":"ar:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"ar:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"ar:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"ar:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"ar:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"ko:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"ko:src_f3686bb328c6d408","verdict":"correct","target":"성공","confidence":"high","reason":"The Korean adjective form 성공적인 requires a following noun; this standalone import-status badge is simply 성공."}
+{"id":"ko:src_f36dff2d475ece34","verdict":"correct","target":"품질 필터 지우기","confidence":"high","reason":"The button clears the quality filters; the current wording says to clear quality without identifying the filter."}
+{"id":"ko:src_f380df1323e4024f","verdict":"keep"}
+{"id":"ko:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"ko:src_f399cf280654e29c","verdict":"keep"}
+{"id":"ko:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"ko:src_f3b42c83ca64ccdc","verdict":"correct","target":"검색 새로 고침 완료: {entriesRefreshed}개 항목을 새로 고쳤고, {entriesExpired}개 항목이 만료되었습니다","confidence":"high","reason":"The placeholders count entries; the current Korean omits count units and uses bare fragments, so state the refreshed and expired entry counts."}
+{"id":"ko:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"ko:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"ko:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"ko:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"ko:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"ko:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"ko:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"ko:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"ko:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"ko:src_f41358bab4c355de","verdict":"keep"}
+{"id":"ko:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"ko:src_f42a8e2057ce2c9f","verdict":"keep"}
+{"id":"ko:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"ko:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"ko:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"ko:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"ko:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"zh-Hant:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"zh-Hant:src_f3686bb328c6d408","verdict":"correct","target":"成功","confidence":"high","reason":"The Chinese adjective form 成功的 requires a following noun; this standalone import-status badge is simply 成功."}
+{"id":"zh-Hant:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"zh-Hant:src_f380df1323e4024f","verdict":"keep"}
+{"id":"zh-Hant:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"zh-Hant:src_f399cf280654e29c","verdict":"keep"}
+{"id":"zh-Hant:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"zh-Hant:src_f3b42c83ca64ccdc","verdict":"keep"}
+{"id":"zh-Hant:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"zh-Hant:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"zh-Hant:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"zh-Hant:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"zh-Hant:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"zh-Hant:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"zh-Hant:src_f3e4352a5df650e5","verdict":"correct","target":"剩餘","confidence":"high","reason":"This is a numeric transfer-table column for bytes still remaining, so use the amount/status term 剩餘 instead of 其餘的 (“the rest”)."}
+{"id":"zh-Hant:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"zh-Hant:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"zh-Hant:src_f41358bab4c355de","verdict":"keep"}
+{"id":"zh-Hant:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"zh-Hant:src_f42a8e2057ce2c9f","verdict":"correct","target":"載入可攜性統計資料","confidence":"high","reason":"This is a button command whose handler loads statistics; 負載 means load/weight rather than the verb “load.”"}
+{"id":"zh-Hant:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"zh-Hant:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"zh-Hant:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"zh-Hant:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"zh-Hant:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"vi:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"vi:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"vi:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"vi:src_f380df1323e4024f","verdict":"keep"}
+{"id":"vi:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"vi:src_f399cf280654e29c","verdict":"keep"}
+{"id":"vi:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"vi:src_f3b42c83ca64ccdc","verdict":"keep"}
+{"id":"vi:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"vi:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"vi:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"vi:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"vi:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"vi:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"vi:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"vi:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"vi:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"vi:src_f41358bab4c355de","verdict":"keep"}
+{"id":"vi:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"vi:src_f42a8e2057ce2c9f","verdict":"keep"}
+{"id":"vi:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"vi:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"vi:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"vi:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"vi:src_f45850b2e8fbc954","verdict":"keep"}
+{"id":"id:src_f3677ae8bb7f1d69","verdict":"keep"}
+{"id":"id:src_f3686bb328c6d408","verdict":"keep"}
+{"id":"id:src_f36dff2d475ece34","verdict":"keep"}
+{"id":"id:src_f380df1323e4024f","verdict":"keep"}
+{"id":"id:src_f389f82299ec5ff5","verdict":"keep"}
+{"id":"id:src_f399cf280654e29c","verdict":"keep"}
+{"id":"id:src_f3a8804d7e386e5e","verdict":"keep"}
+{"id":"id:src_f3b42c83ca64ccdc","verdict":"keep"}
+{"id":"id:src_f3c1749ec1bbc236","verdict":"keep"}
+{"id":"id:src_f3c457197e53da9a","verdict":"keep"}
+{"id":"id:src_f3c4cac5c6935a84","verdict":"keep"}
+{"id":"id:src_f3cbc1a88a06a2a0","verdict":"keep"}
+{"id":"id:src_f3d19541f3a5a842","verdict":"keep"}
+{"id":"id:src_f3de59bd1ade94d8","verdict":"keep"}
+{"id":"id:src_f3e4352a5df650e5","verdict":"keep"}
+{"id":"id:src_f3fccc06b528a38d","verdict":"keep"}
+{"id":"id:src_f40236c9df2afa26","verdict":"keep"}
+{"id":"id:src_f41358bab4c355de","verdict":"keep"}
+{"id":"id:src_f41792666b3f8d5b","verdict":"uncertain","reason":"Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."}
+{"id":"id:src_f42a8e2057ce2c9f","verdict":"keep"}
+{"id":"id:src_f42ca9740749dba9","verdict":"keep"}
+{"id":"id:src_f42e0f66017d9937","verdict":"keep"}
+{"id":"id:src_f44034a1c79947cd","verdict":"keep"}
+{"id":"id:src_f452afa2f6b9cd3c","verdict":"keep"}
+{"id":"id:src_f45850b2e8fbc954","verdict":"keep"}

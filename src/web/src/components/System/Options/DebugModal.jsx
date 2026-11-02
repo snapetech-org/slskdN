@@ -1,13 +1,13 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import { getCurrentDebugView } from '../../../lib/options';
 import { CodeEditor, PlaceholderSegment, Switch } from '../../Shared';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Icon, Message, Modal, Popup } from 'semantic-ui-react';
 
 const getErrorText = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'Could not load the debug view.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'Could not load the debug view.');
 
 const DebugModal = ({ onClose, open, theme }) => {
   useInterfaceLanguage();
@@ -56,7 +56,7 @@ const DebugModal = ({ onClose, open, theme }) => {
         <Switch loading={loading && <PlaceholderSegment loading />}>
           {error ? (
             <Message negative>
-              <Message.Content>{error}</Message.Content>
+              <Message.Content><LocalizedOutputText output={error} /></Message.Content>
               <Popup
                 content={interfaceText("Retry loading the current debug view.")}
                 trigger={(

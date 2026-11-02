@@ -1,12 +1,12 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 import {
   fetchDiscographyCoverage,
   promoteDiscographyCoverageToWishlist,
 } from '../../lib/musicBrainz';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Dropdown,
@@ -95,7 +95,7 @@ const DiscographyCoveragePanel = ({ disabled }) => {
   const loadCoverage = async ({ forceRefresh = false } = {}) => {
     const normalizedArtistId = artistId.trim();
     if (!normalizedArtistId) {
-      toast.error(interfaceText("Artist MBID is required"));
+      toast.error(interfaceToastText("Artist MBID is required"));
       return;
     }
 
@@ -111,7 +111,7 @@ const DiscographyCoveragePanel = ({ disabled }) => {
       setCoverage(normalizeDiscographyCoverage(response.data));
     } catch (loadError) {
       console.error(loadError);
-      setError(getApiErrorMessage(loadError, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -130,13 +130,13 @@ const DiscographyCoveragePanel = ({ disabled }) => {
         filter: filter.trim() || 'flac',
         profile,
       });
-      toast.success(interfaceText('Added {count} missing tracks to Wishlist', {
+      toast.success(interfaceToastText('Added {count} missing tracks to Wishlist', {
         count: response.data?.createdCount ?? 0,
       }));
       await loadCoverage();
     } catch (promoteError) {
       console.error(promoteError);
-      toast.error(getApiErrorMessage(promoteError, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(promoteError, { t: interfaceText }));
     } finally {
       setPromoting(false);
     }
@@ -232,7 +232,7 @@ const DiscographyCoveragePanel = ({ disabled }) => {
       </Form>
       {error && (
         <Message
-          content={error}
+          content={<LocalizedOutputText output={error} />}
           negative
         />
       )}

@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { TooltipButton } from '../Shared';
 import { Form, Message, Segment } from 'semantic-ui-react';
@@ -17,7 +17,7 @@ export default function SolidSettings() {
   const statusRequestId = useRef(0);
 
   const formatError = (error) =>
-    getApiErrorMessage(error, { t: interfaceText });
+    getApiErrorMessageOutput(error, { t: interfaceText });
 
   const loadStatus = useCallback(async () => {
     const requestId = ++statusRequestId.current;
@@ -69,7 +69,7 @@ export default function SolidSettings() {
 
       {statusError && (
         <Message negative role="alert">
-          <Message.Content>{statusError}</Message.Content>
+          <Message.Content><LocalizedOutputText output={statusError} /></Message.Content>
           <TooltipButton
             onClick={loadStatus}
             tooltip="Retry checking whether the Solid integration is enabled."
@@ -96,7 +96,11 @@ export default function SolidSettings() {
         </Message>
       )}
 
-      {resolveError && <Message negative role="alert">{resolveError}</Message>}
+      {resolveError && (
+        <Message negative role="alert">
+          <LocalizedOutputText output={resolveError} />
+        </Message>
+      )}
 
       <Form>
         <Form.Field>

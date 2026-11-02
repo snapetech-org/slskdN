@@ -1,0 +1,300 @@
+{"id":"es:src_f25ebda399d5624d","verdict":"keep"}
+{"id":"es:src_f28027121308c8de","verdict":"keep"}
+{"id":"es:src_f287935a7d706912","verdict":"keep"}
+{"id":"es:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"es:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"es:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"es:src_f2b783e561284d41","verdict":"keep"}
+{"id":"es:src_f2bb8727f2cd0fe7","verdict":"correct","target":"Página anterior de archivos compartidos con usted","confidence":"high","reason":"This is pagination for files shared with the current user; acciones entrantes reads as incoming actions or financial shares."}
+{"id":"es:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"es:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"es:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"es:src_f2daa18861b5c952","verdict":"correct","target":"Paquete","confidence":"high","reason":"The modal shows a redacted diagnostic data package; manojo means a bunch of objects."}
+{"id":"es:src_f2efdfb071c0a844","verdict":"keep"}
+{"id":"es:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"es:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"es:src_f30006f481124248","verdict":"keep"}
+{"id":"es:src_f305b42911f86726","verdict":"keep"}
+{"id":"es:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"es:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"es:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"es:src_f33deea9b1009db3","verdict":"correct","target":"Fecha de lanzamiento","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; liberado means freed/released rather than the date."}
+{"id":"es:src_f34186f67a38a598","verdict":"keep"}
+{"id":"es:src_f34794ebb03dcce0","verdict":"correct","target":"Obtenga el estado del sistema Lidarr con la URL configurada y la clave de API.","confidence":"high","reason":"The tooltip names a configured URL and one API key; the current wording makes URL and API both keys."}
+{"id":"es:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"es:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"zh-Hans:src_f25ebda399d5624d","verdict":"correct","target":"管理您的对等节点联系人","confidence":"high","reason":"The component stores remote network identities (`peerId`) and discovers nearby peers; 同事 means colleagues rather than network peers."}
+{"id":"zh-Hans:src_f28027121308c8de","verdict":"keep"}
+{"id":"zh-Hans:src_f287935a7d706912","verdict":"keep"}
+{"id":"zh-Hans:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"zh-Hans:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"zh-Hans:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"zh-Hans:src_f2b783e561284d41","verdict":"keep"}
+{"id":"zh-Hans:src_f2bb8727f2cd0fe7","verdict":"correct","target":"上一页收到的共享文件","confidence":"high","reason":"This is pagination for files shared with the current user; 股票 means financial shares."}
+{"id":"zh-Hans:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"zh-Hans:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"zh-Hans:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"zh-Hans:src_f2daa18861b5c952","verdict":"correct","target":"诊断包","confidence":"high","reason":"The modal shows a redacted diagnostic data package; 捆 refers to a tied bundle rather than a software/data package."}
+{"id":"zh-Hans:src_f2efdfb071c0a844","verdict":"correct","target":"联邦请求速率限制窗口（秒）","confidence":"high","reason":"This is the federation request-rate limiting window length; adding the unit in parentheses makes the seconds field clear."}
+{"id":"zh-Hans:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"zh-Hans:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"zh-Hans:src_f30006f481124248","verdict":"keep"}
+{"id":"zh-Hans:src_f305b42911f86726","verdict":"correct","target":"限制原生 MilkDrop 渲染的帧率以降低 GPU 负载，或取消帧率上限以获得最流畅的画面。","confidence":"high","reason":"The source contrasts native rendering with a frame-rate cap; 本机 describes the local machine rather than native rendering."}
+{"id":"zh-Hans:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"zh-Hans:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"zh-Hans:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"zh-Hans:src_f33deea9b1009db3","verdict":"correct","target":"发行日期","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; 已发布 describes publication status rather than the date."}
+{"id":"zh-Hans:src_f34186f67a38a598","verdict":"keep"}
+{"id":"zh-Hans:src_f34794ebb03dcce0","verdict":"keep"}
+{"id":"zh-Hans:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"zh-Hans:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"hi:src_f25ebda399d5624d","verdict":"correct","target":"अपने पीयर संपर्क प्रबंधित करें","confidence":"high","reason":"This Contacts screen stores remote network identities (`peerId`) and discovers nearby peers; सहकर्मी means colleague rather than a P2P peer."}
+{"id":"hi:src_f28027121308c8de","verdict":"keep"}
+{"id":"hi:src_f287935a7d706912","verdict":"keep"}
+{"id":"hi:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"hi:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"hi:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"hi:src_f2b783e561284d41","verdict":"keep"}
+{"id":"hi:src_f2bb8727f2cd0fe7","verdict":"correct","target":"मेरे साथ साझा की गई फ़ाइलों का पिछला पृष्ठ","confidence":"high","reason":"This is pagination for files shared with the current user; the current literal share wording is ambiguous without naming the shared files."}
+{"id":"hi:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"hi:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"hi:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"hi:src_f2daa18861b5c952","verdict":"keep"}
+{"id":"hi:src_f2efdfb071c0a844","verdict":"correct","target":"फ़ेडरेशन दर-सीमा की अवधि (सेकंड)","confidence":"high","reason":"This is the duration of a federation rate-limit window; the current transliterated “window seconds” order is not a natural field label."}
+{"id":"hi:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"hi:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"hi:src_f30006f481124248","verdict":"keep"}
+{"id":"hi:src_f305b42911f86726","verdict":"correct","target":"GPU लोड कम करने के लिए नेटिव MilkDrop रेंडरिंग की फ़्रेम दर सीमित करें, या अधिकतम सहज प्रदर्शन के लिए इसे बिना सीमा के चलने दें।","confidence":"high","reason":"The neighboring control is an FPS cap; cap/uncapped are currently left as unclear transliterations."}
+{"id":"hi:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"hi:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"hi:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"hi:src_f33deea9b1009db3","verdict":"correct","target":"रिलीज़ की तारीख","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; जारी किया is a released-state phrase rather than the date."}
+{"id":"hi:src_f34186f67a38a598","verdict":"keep"}
+{"id":"hi:src_f34794ebb03dcce0","verdict":"keep"}
+{"id":"hi:src_f34e47fe2407aef1","verdict":"correct","target":"भारित स्कोर:","confidence":"high","reason":"The current Hindi value contains the misspelling स्कोर्त; स्कोर is score."}
+{"id":"hi:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"de:src_f25ebda399d5624d","verdict":"keep"}
+{"id":"de:src_f28027121308c8de","verdict":"keep"}
+{"id":"de:src_f287935a7d706912","verdict":"keep"}
+{"id":"de:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"de:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"de:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"de:src_f2b783e561284d41","verdict":"keep"}
+{"id":"de:src_f2bb8727f2cd0fe7","verdict":"keep"}
+{"id":"de:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"de:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"de:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"de:src_f2daa18861b5c952","verdict":"correct","target":"Paket","confidence":"high","reason":"The modal shows a redacted diagnostic package; Bündeln is a verb rather than the package noun."}
+{"id":"de:src_f2efdfb071c0a844","verdict":"keep"}
+{"id":"de:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"de:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"de:src_f30006f481124248","verdict":"keep"}
+{"id":"de:src_f305b42911f86726","verdict":"correct","target":"Begrenzen Sie die Bildrate des nativen MilkDrop-Renderings, um die GPU zu entlasten, oder lassen Sie sie für eine möglichst flüssige Darstellung unbegrenzt.","confidence":"high","reason":"The neighboring control is an FPS cap; offen means open and does not clearly express an uncapped frame rate."}
+{"id":"de:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"de:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"de:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"de:src_f33deea9b1009db3","verdict":"correct","target":"Erscheinungsdatum","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; the current adjective means released/approved rather than the release date."}
+{"id":"de:src_f34186f67a38a598","verdict":"keep"}
+{"id":"de:src_f34794ebb03dcce0","verdict":"correct","target":"Rufen Sie den Systemstatus von Lidarr mit der konfigurierten URL und dem API-Schlüssel ab.","confidence":"high","reason":"The tooltip names a configured URL and one API key; the current wording makes URL and API both keys."}
+{"id":"de:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"de:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"ja:src_f25ebda399d5624d","verdict":"correct","target":"ピアの連絡先を管理する","confidence":"high","reason":"The component stores remote network identities (`peerId`) and discovers nearby peers; 同僚 means work colleagues rather than network peers."}
+{"id":"ja:src_f28027121308c8de","verdict":"keep"}
+{"id":"ja:src_f287935a7d706912","verdict":"keep"}
+{"id":"ja:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"ja:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"ja:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"ja:src_f2b783e561284d41","verdict":"keep"}
+{"id":"ja:src_f2bb8727f2cd0fe7","verdict":"correct","target":"受信した共有ファイルの前のページ","confidence":"high","reason":"This is pagination for files shared with the current user; 株式 means financial shares."}
+{"id":"ja:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"ja:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"ja:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"ja:src_f2daa18861b5c952","verdict":"keep"}
+{"id":"ja:src_f2efdfb071c0a844","verdict":"keep"}
+{"id":"ja:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"ja:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"ja:src_f30006f481124248","verdict":"keep"}
+{"id":"ja:src_f305b42911f86726","verdict":"keep"}
+{"id":"ja:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"ja:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"ja:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"ja:src_f33deea9b1009db3","verdict":"correct","target":"リリース日","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; the current past-tense phrase says released rather than naming the date."}
+{"id":"ja:src_f34186f67a38a598","verdict":"keep"}
+{"id":"ja:src_f34794ebb03dcce0","verdict":"keep"}
+{"id":"ja:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"ja:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"fr:src_f25ebda399d5624d","verdict":"keep"}
+{"id":"fr:src_f28027121308c8de","verdict":"keep"}
+{"id":"fr:src_f287935a7d706912","verdict":"keep"}
+{"id":"fr:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"fr:src_f2a3e096de8046ca","verdict":"correct","target":"Signaux de sécurité du réseau maillé {count} visibles","confidence":"high","reason":"The current adjective maillé is singular and the phrase omits the mesh network it modifies; the source describes visible security signals from the mesh network."}
+{"id":"fr:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"fr:src_f2b783e561284d41","verdict":"keep"}
+{"id":"fr:src_f2bb8727f2cd0fe7","verdict":"keep"}
+{"id":"fr:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"fr:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"fr:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"fr:src_f2daa18861b5c952","verdict":"keep"}
+{"id":"fr:src_f2efdfb071c0a844","verdict":"keep"}
+{"id":"fr:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"fr:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"fr:src_f30006f481124248","verdict":"keep"}
+{"id":"fr:src_f305b42911f86726","verdict":"keep"}
+{"id":"fr:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"fr:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"fr:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"fr:src_f33deea9b1009db3","verdict":"correct","target":"Date de sortie","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; libéré means freed rather than the release date."}
+{"id":"fr:src_f34186f67a38a598","verdict":"keep"}
+{"id":"fr:src_f34794ebb03dcce0","verdict":"correct","target":"Récupérez l’état du système Lidarr avec l’URL configurée et la clé API.","confidence":"high","reason":"The tooltip names a configured URL and one API key; the current wording makes URL and API both keys."}
+{"id":"fr:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"fr:src_f34f5b18ffbe66dd","verdict":"correct","target":"Aucun Pod compatible avec un VPN","confidence":"high","reason":"This empty state specifically requires a Pod with VPN gateway capability; module replaces the product entity with a generic module."}
+{"id":"pt-BR:src_f25ebda399d5624d","verdict":"keep"}
+{"id":"pt-BR:src_f28027121308c8de","verdict":"keep"}
+{"id":"pt-BR:src_f287935a7d706912","verdict":"keep"}
+{"id":"pt-BR:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"pt-BR:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"pt-BR:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"pt-BR:src_f2b783e561284d41","verdict":"keep"}
+{"id":"pt-BR:src_f2bb8727f2cd0fe7","verdict":"correct","target":"Página anterior de compartilhamentos recebidos","confidence":"high","reason":"This label is pagination for received file shares; placing anteriores after compartilhamentos makes it read as prior shares rather than the previous page."}
+{"id":"pt-BR:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"pt-BR:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"pt-BR:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"pt-BR:src_f2daa18861b5c952","verdict":"keep"}
+{"id":"pt-BR:src_f2efdfb071c0a844","verdict":"keep"}
+{"id":"pt-BR:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"pt-BR:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"pt-BR:src_f30006f481124248","verdict":"keep"}
+{"id":"pt-BR:src_f305b42911f86726","verdict":"correct","target":"Limite a taxa de quadros da renderização nativa do MilkDrop para reduzir a carga da GPU ou deixe sem limite para obter a máxima fluidez.","confidence":"high","reason":"The neighboring control is an FPS cap; destapada means uncovered rather than uncapped."}
+{"id":"pt-BR:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"pt-BR:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"pt-BR:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"pt-BR:src_f33deea9b1009db3","verdict":"correct","target":"Data de lançamento","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; lançado is a released-state adjective rather than the date."}
+{"id":"pt-BR:src_f34186f67a38a598","verdict":"keep"}
+{"id":"pt-BR:src_f34794ebb03dcce0","verdict":"correct","target":"Consulte o status do sistema Lidarr usando a URL configurada e a chave de API.","confidence":"high","reason":"The tooltip names a configured URL and one API key; the current wording makes URL and API both keys."}
+{"id":"pt-BR:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"pt-BR:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"ar:src_f25ebda399d5624d","verdict":"keep"}
+{"id":"ar:src_f28027121308c8de","verdict":"keep"}
+{"id":"ar:src_f287935a7d706912","verdict":"keep"}
+{"id":"ar:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"ar:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"ar:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"ar:src_f2b783e561284d41","verdict":"keep"}
+{"id":"ar:src_f2bb8727f2cd0fe7","verdict":"correct","target":"الصفحة السابقة للملفات المشتركة معك","confidence":"high","reason":"This is pagination for files shared with the current user; الأسهم الواردة reads as incoming stock shares."}
+{"id":"ar:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"ar:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"ar:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"ar:src_f2daa18861b5c952","verdict":"correct","target":"حزمة","confidence":"high","reason":"The modal shows a redacted diagnostic data package; حزمة is the standard package/bundle term in this context."}
+{"id":"ar:src_f2efdfb071c0a844","verdict":"keep"}
+{"id":"ar:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"ar:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"ar:src_f30006f481124248","verdict":"keep"}
+{"id":"ar:src_f305b42911f86726","verdict":"correct","target":"ضع حدًا لمعدل إطارات عرض MilkDrop الأصلي لتقليل حمل وحدة معالجة الرسومات، أو اتركه بلا حد أقصى لتحقيق أقصى سلاسة.","confidence":"high","reason":"The tooltip and neighboring FPS-cap setting show that cap means limit the frame rate; قم بتغطية means cover."}
+{"id":"ar:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"ar:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"ar:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"ar:src_f33deea9b1009db3","verdict":"correct","target":"تاريخ الإصدار","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; the current wording means released/free rather than the release date."}
+{"id":"ar:src_f34186f67a38a598","verdict":"keep"}
+{"id":"ar:src_f34794ebb03dcce0","verdict":"correct","target":"اجلب حالة نظام Lidarr باستخدام عنوان URL المُهيّأ ومفتاح API.","confidence":"high","reason":"The tooltip names a configured URL and one API key; the current wording calls the URL itself a key."}
+{"id":"ar:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"ar:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"ko:src_f25ebda399d5624d","verdict":"correct","target":"피어 연락처 관리","confidence":"high","reason":"The component stores remote network identities (`peerId`) and discovers nearby peers; 동료 means colleagues rather than network peers."}
+{"id":"ko:src_f28027121308c8de","verdict":"keep"}
+{"id":"ko:src_f287935a7d706912","verdict":"keep"}
+{"id":"ko:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"ko:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"ko:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"ko:src_f2b783e561284d41","verdict":"keep"}
+{"id":"ko:src_f2bb8727f2cd0fe7","verdict":"keep"}
+{"id":"ko:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"ko:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"ko:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"ko:src_f2daa18861b5c952","verdict":"keep"}
+{"id":"ko:src_f2efdfb071c0a844","verdict":"correct","target":"페더레이션 요청 속도 제한 구간(초)","confidence":"high","reason":"This is a request rate-limit window; 비율 means ratio/proportion rather than a request rate."}
+{"id":"ko:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"ko:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"ko:src_f30006f481124248","verdict":"keep"}
+{"id":"ko:src_f305b42911f86726","verdict":"correct","target":"GPU 부하를 낮추려면 네이티브 MilkDrop 렌더링의 프레임 속도에 상한을 설정하고, 최대한 부드러운 화면을 원하면 상한을 해제하세요.","confidence":"high","reason":"The source means built-in/native rendering, but 기본 means default; the neighboring FPS-cap setting also clarifies the frame-rate limit."}
+{"id":"ko:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"ko:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"ko:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"ko:src_f33deea9b1009db3","verdict":"correct","target":"발매일","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; 출시된 is a released-state adjective rather than the date."}
+{"id":"ko:src_f34186f67a38a598","verdict":"keep"}
+{"id":"ko:src_f34794ebb03dcce0","verdict":"keep"}
+{"id":"ko:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"ko:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"zh-Hant:src_f25ebda399d5624d","verdict":"correct","target":"管理您的對等節點聯絡人","confidence":"high","reason":"The component stores remote network identities (`peerId`) and discovers nearby peers; 同事 means colleagues rather than network peers."}
+{"id":"zh-Hant:src_f28027121308c8de","verdict":"keep"}
+{"id":"zh-Hant:src_f287935a7d706912","verdict":"keep"}
+{"id":"zh-Hant:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"zh-Hant:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"zh-Hant:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"zh-Hant:src_f2b783e561284d41","verdict":"keep"}
+{"id":"zh-Hant:src_f2bb8727f2cd0fe7","verdict":"correct","target":"上一頁收到的共享檔案","confidence":"high","reason":"This is pagination for files shared with the current user; 股票 means financial shares."}
+{"id":"zh-Hant:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"zh-Hant:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"zh-Hant:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"zh-Hant:src_f2daa18861b5c952","verdict":"correct","target":"診斷包","confidence":"high","reason":"The modal shows a redacted diagnostic data package; 捆 refers to a tied bundle rather than a software/data package."}
+{"id":"zh-Hant:src_f2efdfb071c0a844","verdict":"correct","target":"聯邦請求速率限制視窗（秒）","confidence":"high","reason":"This is the federation request-rate limiting window length; adding the unit in parentheses makes the seconds field clear."}
+{"id":"zh-Hant:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"zh-Hant:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"zh-Hant:src_f30006f481124248","verdict":"keep"}
+{"id":"zh-Hant:src_f305b42911f86726","verdict":"correct","target":"限制原生 MilkDrop 渲染的影格率以降低 GPU 負載，或取消影格率上限以獲得最流暢的畫面。","confidence":"high","reason":"The source contrasts native rendering with a frame-rate cap; 本機 describes the local machine rather than native rendering."}
+{"id":"zh-Hant:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"zh-Hant:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"zh-Hant:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"zh-Hant:src_f33deea9b1009db3","verdict":"correct","target":"發行日期","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; 已發布 describes publication status rather than the date."}
+{"id":"zh-Hant:src_f34186f67a38a598","verdict":"keep"}
+{"id":"zh-Hant:src_f34794ebb03dcce0","verdict":"keep"}
+{"id":"zh-Hant:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"zh-Hant:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"vi:src_f25ebda399d5624d","verdict":"keep"}
+{"id":"vi:src_f28027121308c8de","verdict":"keep"}
+{"id":"vi:src_f287935a7d706912","verdict":"keep"}
+{"id":"vi:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"vi:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"vi:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"vi:src_f2b783e561284d41","verdict":"keep"}
+{"id":"vi:src_f2bb8727f2cd0fe7","verdict":"correct","target":"Trang trước về các tệp được chia sẻ với bạn","confidence":"high","reason":"This is pagination for files shared with the current user; the current phrase has unnatural word order and does not identify the shared files."}
+{"id":"vi:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"vi:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"vi:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"vi:src_f2daa18861b5c952","verdict":"correct","target":"Gói","confidence":"high","reason":"The modal shows a redacted diagnostic data package; bó usually describes a tied bundle such as a bunch of objects."}
+{"id":"vi:src_f2efdfb071c0a844","verdict":"correct","target":"Số giây của cửa sổ giới hạn tốc độ liên kết","confidence":"high","reason":"The source asks for the window length in seconds; the current word order leaves giây disconnected from the duration."}
+{"id":"vi:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"vi:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"vi:src_f30006f481124248","verdict":"keep"}
+{"id":"vi:src_f305b42911f86726","verdict":"keep"}
+{"id":"vi:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"vi:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"vi:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"vi:src_f33deea9b1009db3","verdict":"correct","target":"Ngày phát hành","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; the source column is the release date, not the release action/state."}
+{"id":"vi:src_f34186f67a38a598","verdict":"keep"}
+{"id":"vi:src_f34794ebb03dcce0","verdict":"correct","target":"Tải trạng thái hệ thống Lidarr bằng URL và khóa API đã cấu hình.","confidence":"high","reason":"The tooltip names a configured URL and one API key; the current wording makes URL and API both keys."}
+{"id":"vi:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"vi:src_f34f5b18ffbe66dd","verdict":"keep"}
+{"id":"id:src_f25ebda399d5624d","verdict":"correct","target":"Kelola kontak peer Anda","confidence":"high","reason":"The component stores remote network identities (`peerId`) and discovers nearby peers; rekan means colleague, while peer is the network participant."}
+{"id":"id:src_f28027121308c8de","verdict":"keep"}
+{"id":"id:src_f287935a7d706912","verdict":"keep"}
+{"id":"id:src_f291bb6a0612d059","verdict":"keep"}
+{"id":"id:src_f2a3e096de8046ca","verdict":"keep"}
+{"id":"id:src_f2a7742db5857ac5","verdict":"keep"}
+{"id":"id:src_f2b783e561284d41","verdict":"keep"}
+{"id":"id:src_f2bb8727f2cd0fe7","verdict":"correct","target":"Halaman sebelumnya untuk berkas yang dibagikan kepada Anda","confidence":"high","reason":"This is pagination for files shared with the current user; the current incoming-share wording is unclear about the shared files."}
+{"id":"id:src_f2c1317ecf0481d5","verdict":"keep"}
+{"id":"id:src_f2ccf043e2022df1","verdict":"keep"}
+{"id":"id:src_f2cf76de40f001fe","verdict":"keep"}
+{"id":"id:src_f2daa18861b5c952","verdict":"keep"}
+{"id":"id:src_f2efdfb071c0a844","verdict":"correct","target":"Detik dalam jendela pembatasan laju federasi","confidence":"high","reason":"This is a request rate-limit window, not a tariff limit; tarif means tariff."}
+{"id":"id:src_f2f84e72ed0be29e","verdict":"keep"}
+{"id":"id:src_f2fdc50af8483159","verdict":"keep"}
+{"id":"id:src_f30006f481124248","verdict":"keep"}
+{"id":"id:src_f305b42911f86726","verdict":"correct","target":"Batasi laju bingkai rendering MilkDrop native untuk mengurangi beban GPU, atau biarkan tanpa batas agar tampilan semulus mungkin.","confidence":"high","reason":"The neighboring control is an FPS cap; ditutup means closed rather than capped."}
+{"id":"id:src_f317ae3475e0da18","verdict":"keep"}
+{"id":"id:src_f335ad7ca363696f","verdict":"keep"}
+{"id":"id:src_f339be2a959bbd64","verdict":"keep"}
+{"id":"id:src_f33deea9b1009db3","verdict":"correct","target":"Tanggal rilis","confidence":"high","reason":"The Lidarr table cell displays album.releaseDate; dilepaskan means released/set free rather than the date."}
+{"id":"id:src_f34186f67a38a598","verdict":"keep"}
+{"id":"id:src_f34794ebb03dcce0","verdict":"correct","target":"Ambil status sistem Lidarr menggunakan URL dan kunci API yang dikonfigurasi.","confidence":"high","reason":"The tooltip names a configured URL and one API key; the current wording makes URL and API both keys."}
+{"id":"id:src_f34e47fe2407aef1","verdict":"keep"}
+{"id":"id:src_f34f5b18ffbe66dd","verdict":"keep"}

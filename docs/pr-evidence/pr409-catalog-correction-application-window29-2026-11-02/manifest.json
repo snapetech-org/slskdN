@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "exact-hash catalog correction application evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "reviewBaseHead": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "reviewBaseTree": "8070731f8ee7529b9f4353720ca6214941b1ae21",
+  "reviewSourceSubtree": "299b4318cd8fc2a03173ab510ee265a779964034",
+  "applicationCommit": "dff0b0281483d777c01c5e7dd68e24b51fdc67f8",
+  "applicationTree": "37f299d9e8f2f476bbc3eaefe872f3c727a4b17d",
+  "applicationParent": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "candidatePlanSha256": "b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568",
+  "applicationLedger": {
+    "path": "applied-corrections-window29.jsonl",
+    "sha256": "a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9",
+    "rows": 42,
+    "uniqueSourceKeys": 5,
+    "byLocale": {
+      "ar": 4,
+      "de": 4,
+      "es": 4,
+      "fr": 5,
+      "hi": 3,
+      "id": 3,
+      "ja": 3,
+      "ko": 3,
+      "pt-BR": 3,
+      "vi": 4,
+      "zh-Hans": 3,
+      "zh-Hant": 3
+    }
+  },
+  "rootCrossReview": {
+    "ledgerPath": "root-crossreview-decisions-window29.jsonl",
+    "ledgerSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "applyPlanPath": "root-apply-plan-window29.jsonl",
+    "applyPlanSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "summaryPath": "root-crossreview-summary-window29.json",
+    "summarySha256": "f985587187abfd975968a65ecd3255b836ec6fd8b0c83b486cc02bc3dbd64d20",
+    "acceptedAsProposed": 38,
+    "refined": 4,
+    "held": 0
+  },
+  "unchangedUncertainRows": {
+    "path": "uncertain-review-rows.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rows": 0
+  },
+  "cumulativeAfterApplication": {
+    "manualWindows": 29,
+    "manualKeys": 725,
+    "manualCells": 8700,
+    "verdicts": {
+      "keep": 7255,
+      "correct": 1189,
+      "uncertain": 256
+    },
+    "appliedValues": 1195,
+    "appliedSourceKeys": 275,
+    "held": 6,
+    "remainingUncertain": 244,
+    "unreviewedCells": 58380,
+    "formalCells": 4800,
+    "formalOverlap": 0,
+    "manualOverlap": 0
+  },
+  "confidence": {
+    "semantic": "moderate for accepted targets",
+    "localeQuality": "moderate",
+    "nativeSpeakerReview": "outstanding",
+    "headedBrowserReview": "outstanding"
+  },
+  "noTestsBuildCiReleaseOrTag": true,
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0,
+  "verificationReport": {
+    "path": "verification.json",
+    "sha256": "2352b9b7fdb0fa7274991755dba0fe0f76db191212085481c4f7649fc910b505",
+    "generatedAtHead": "dff0b0281483d777c01c5e7dd68e24b51fdc67f8",
+    "result": "PASS"
+  },
+  "evidenceFiles": {
+    "README.md": "1cb08970af53d36bbc867d497cf0ad331c218e389bede9c4ec1bf9fd5cb8d299",
+    "application-ledger-summary.json": "598ecf1f9af00e3a2d5ece7eb1f61f2bf26b476e8782341b2778c871806782a1",
+    "applied-corrections-window29.jsonl": "a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9",
+    "apply-result.json": "1d9f35df12833137bb2d7e6a1b58a3355d04ae8de73ab875af652d3b72a8296d",
+    "post-apply-verification.json": "7d76fd515ba8574f2da5c8921dceb07fe8ca6b575b5c14bed3c8ec138e2e9107",
+    "preflight.json": "645d0db0fa060ef91f3bafc0980ec3a7549ee89016984f3f37c2ffca6df8cea8",
+    "root-apply-plan-window29.jsonl": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "root-crossreview-decisions-window29.jsonl": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "root-crossreview-summary-window29.json": "f985587187abfd975968a65ecd3255b836ec6fd8b0c83b486cc02bc3dbd64d20",
+    "uncertain-review-rows.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verification.json": "2352b9b7fdb0fa7274991755dba0fe0f76db191212085481c4f7649fc910b505",
+    "verify_application.py": "d967d7b50ef7f3048586243d847a70a15a7f3342df0dff67f3c7521e46015f0e"
+  }
+}

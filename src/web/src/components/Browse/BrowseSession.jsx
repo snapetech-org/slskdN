@@ -1,6 +1,6 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 /* eslint-disable promise/prefer-await-to-then */
 import './Browse.css';
 import * as transfers from '../../lib/transfers';
@@ -21,7 +21,7 @@ import Directory from './Directory';
 import DirectoryTree from './DirectoryTree';
 import * as lzString from 'lz-string';
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Card,
@@ -84,7 +84,7 @@ const sameBrowseStatus = (left, right) =>
   );
 
 const getBrowseErrorMessage = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'Browse failed');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'Browse failed');
 
 // Cleanup old browse cache entries using LRU strategy
 const cleanupBrowseCache = () => {
@@ -548,7 +548,7 @@ class BrowseSession extends Component {
     const filesToDownload = collectFiles(directory);
 
     if (filesToDownload.length === 0) {
-      toast.info(interfaceText("No files found in directory: {name}", { "name": (directory.name) }));
+      toast.info(interfaceToastText("No files found in directory: {name}", { "name": (directory.name) }));
       return;
     }
 
@@ -566,12 +566,12 @@ class BrowseSession extends Component {
           username,
         })
         .then(() => {
-          toast.success(interfaceText("Queued {length} files for download", { "length": (filesToDownload.length) }));
+          toast.success(interfaceToastText("Queued {length} files for download", { "length": (filesToDownload.length) }));
         })
         .catch((error) => {
           console.error(error);
-          toast.error(interfaceText('Failed to queue download: {message}', {
-            message: getApiErrorMessage(error, { t: interfaceText }),
+          toast.error(interfaceToastText('Failed to queue download: {message}', {
+            message: getApiErrorMessageOutput(error, { t: interfaceText }),
           }));
         });
     }
@@ -629,7 +629,7 @@ class BrowseSession extends Component {
                   trigger={
                     <Button
                       aria-label={
-                        interfaceText(browseState === 'idle'
+                        interfaceAttributeText(browseState === 'idle'
                           ? 'Browse user files'
                           : 'Clear browse result')
                       }
@@ -714,14 +714,14 @@ class BrowseSession extends Component {
                             onClose={() => this.fetchUserNote(username)}
                             trigger={
                               <TooltipButton
-                                aria-label={interfaceText("Edit user note for {username}", { "username": (username) })}
+                                aria-label={interfaceAttributeText("Edit user note for {username}", { "username": (username) })}
                                 basic
                                 compact
                                 icon
                                 size="small"
                                 style={{ marginLeft: '4px', opacity: 0.5 }}
                                 tooltip="Open your local note and color rating for {username}."
-                               {...interfaceTextProps("Edit user note for {username}", { username })}>
+                               {...interfaceAttributeTextProps("Edit user note for {username}", { username })}>
                                 <Icon color="grey" name="pencil alternate" />
                               </TooltipButton>
                             }
@@ -729,13 +729,13 @@ class BrowseSession extends Component {
                           />
                         </span>
                         <TooltipButton
-                          aria-label={interfaceText("Refresh {username}'s shared files", { "username": (username) })}
+                          aria-label={interfaceAttributeText("Refresh {username}'s shared files", { "username": (username) })}
                           basic
                           compact
                           icon
                           onClick={this.handleRefresh}
                           tooltip="Request {username}'s current shared file list from Soulseek and refresh this browse view."
-                         {...interfaceTextProps("Refresh {username}'s shared files", { username })}>
+                         {...interfaceAttributeTextProps("Refresh {username}'s shared files", { username })}>
                           <Icon name="refresh" />
                         </TooltipButton>
                       </Card.Header>

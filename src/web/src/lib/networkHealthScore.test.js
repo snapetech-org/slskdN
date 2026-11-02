@@ -91,6 +91,6 @@ describe('networkHealthScore', () => {
 
     expect(report).toContain('slskdN network health report');
     expect(report).toContain('Score:');
-    expect(report).toContain('[INFO] DHT: DHT rendezvous disabled');
+    expect(report).toContain('[Info] DHT: DHT rendezvous disabled');
   });
 });

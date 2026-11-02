@@ -1,5 +1,5 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import {
   createBatch,
   filterResponse,
@@ -27,7 +27,7 @@ import {
   saveSearchFilter,
 } from '../../../lib/savedSearchFilters';
 import { useExperiencePreference } from '../../../lib/experiencePreferences';
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 
 import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
 import {
@@ -48,7 +48,7 @@ import Response from '../Response';
 import SearchDetailHeader from './SearchDetailHeader';
 import SearchFilterModal from './SearchFilterModal';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -164,10 +164,8 @@ const SearchDetail = ({
     </span>
   ), [directionFor, languageFor, t]);
   const localizedError = useCallback((error_, fallback) => (
-    <span dir={directionFor(fallback)} lang={languageFor(fallback)}>
-      {getApiErrorMessage(error_, { t }, fallback)}
-    </span>
-  ), [directionFor, languageFor, t]);
+    <LocalizedOutputText output={getApiErrorMessageOutput(error_, { t }, fallback)} />
+  ), [t]);
   const {
     fileCount,
     id,
@@ -725,11 +723,11 @@ const SearchDetail = ({
   const saveNamedFilter = () => {
     const name = saveFilterName.trim();
     if (!name) {
-      setSaveFilterError(interfaceText('Enter a name for this saved filter.'));
+      setSaveFilterError(interfaceTextOutput('Enter a name for this saved filter.'));
       return;
     }
     if (!resultFilters.trim()) {
-      setSaveFilterError(interfaceText('Add at least one result condition before saving.'));
+      setSaveFilterError(interfaceTextOutput('Add at least one result condition before saving.'));
       return;
     }
 
@@ -740,7 +738,7 @@ const SearchDetail = ({
       toast.success(localized('Search filter saved.'));
     } catch (error_) {
       console.error(error_);
-      setSaveFilterError(interfaceText('Could not save this filter in browser storage.'));
+      setSaveFilterError(interfaceTextOutput('Could not save this filter in browser storage.'));
     }
   };
 
@@ -790,7 +788,7 @@ const SearchDetail = ({
   const loaded = !removing && !creating && !loading && results;
 
   if (error) {
-    return <ErrorSegment caption={t('Could not load search results. Try again later.')} />;
+    return <ErrorSegment caption="Could not load search results. Try again later." translateCaption />;
   }
 
   return (
@@ -1342,7 +1340,7 @@ const SearchDetail = ({
             </Form.Field>
           </Form>
           {saveFilterError && (
-            <Message negative role="alert">{saveFilterError}</Message>
+            <Message negative role="alert"><LocalizedOutputText output={saveFilterError} /></Message>
           )}
         </Modal.Content>
         <Modal.Actions>

@@ -72,7 +72,7 @@ describe('formatSearchActionPreview', () => {
       warnings: [],
     });
 
-    expect(text).toContain('Action: download');
+    expect(text).toContain('Action: Download');
     expect(text).toContain('Source: peer');
     expect(text).toContain('- Artist/Album/01 Track.flac');
   });

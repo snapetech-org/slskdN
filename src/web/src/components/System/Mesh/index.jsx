@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import * as mesh from '../../../lib/mesh';
 import * as soulseekDiscovery from '../../../lib/soulseekDiscovery';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
@@ -66,7 +66,7 @@ const Mesh = () => {
   const [rendezvousMessage, setRendezvousMessage] = useState(null);
 
   const getRendezvousErrorText = (error_, fallback) =>
-    getApiErrorMessage(error_, { t: interfaceText }, fallback);
+    getApiErrorMessageOutput(error_, { t: interfaceText }, fallback);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -102,7 +102,7 @@ const Mesh = () => {
     } catch (error_) {
       if (!mountedRef.current || document.hidden) return;
       if (!statsLoadedRef.current) {
-        setError(getApiErrorMessage(error_, { t: interfaceText }));
+        setError(getApiErrorMessageOutput(error_, { t: interfaceText }));
       }
     } finally {
       statsFetchInFlightRef.current = false;
@@ -163,7 +163,7 @@ const Mesh = () => {
         if (!mountedRef.current) return;
         setRendezvousStatus({
           enabled: false,
-          error: getApiErrorMessage(error_, { t: interfaceText }),
+          error: getApiErrorMessageOutput(error_, { t: interfaceText }),
         });
       }
     };
@@ -316,7 +316,7 @@ const Mesh = () => {
     return (
       <Message error>
         <Message.Header><LocalizedText source={"Failed to load mesh statistics"} /></Message.Header>
-        <p>{error}</p>
+        <p><LocalizedOutputText output={error} /></p>
       </Message>
     );
   }
@@ -633,7 +633,7 @@ const Mesh = () => {
                       <List.Header>{user.username || user.Username}</List.Header>
                       <List.Description>
                         <LocalizedText source={"Similarity rating:"} />{' '}
-                        {user.rating ?? user.Rating ?? 'not reported'}
+                        {user.rating ?? user.Rating ?? <LocalizedText source="not reported" />}
                       </List.Description>
                     </List.Content>
                   </List.Item>
@@ -655,9 +655,9 @@ const Mesh = () => {
                     <List.Content>
                       <List.Header>{record.username}</List.Header>
                       <List.Description>
-                        {record.peerId || 'unsigned peer'}, {' '}
-                        {asArray(record.features).join(', ') || 'no features'}, {' '}
-                        <LocalizedText source={"overlay port"} />{" "}{record.overlayPort || 'not advertised'}
+                        {record.peerId || <LocalizedText source="unsigned peer" />}, {' '}
+                        {asArray(record.features).join(', ') || <LocalizedText source="no features" />}, {' '}
+                        <LocalizedText source={"overlay port"} />{" "}{record.overlayPort || <LocalizedText source="not advertised" />}
                       </List.Description>
                     </List.Content>
                   </List.Item>

@@ -1,6 +1,6 @@
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import './Transfers.css';
 import * as autoReplaceLibrary from '../../lib/autoReplace';
 import { createTransfersHubConnection } from '../../lib/hubFactory';
@@ -27,7 +27,7 @@ import React, {
   useSyncExternalStore,
 } from 'react';
 import { Button, Input, Menu, Popup } from 'semantic-ui-react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 
 const STATUS_FILTERS = [
   { key: 'all', get label() { return interfaceText("All"); }, match: () => true },
@@ -68,14 +68,14 @@ const ACTIVE_TRANSFER_PAGE_SIZE = 100;
 const HISTORY_PAGE_SIZE = 250;
 
 const getErrorMessage = (error) =>
-  getApiErrorMessage(error, { t: interfaceText });
+  getApiErrorMessageOutput(error, { t: interfaceText });
 
 const summarizeBulkFailures = ({ failures }) => {
   if (failures.length === 0) {
     return;
   }
 
-  toast.error(interfaceText('Some transfers could not be updated. Try again.'));
+  toast.error(interfaceToastText('Some transfers could not be updated. Try again.'));
 };
 
 const matchesDirection = (transfer, direction) =>
@@ -399,7 +399,7 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       status.hasMore = page.hasMore;
     } catch (error) {
       console.error('active transfer page failed', error);
-      toast.error(interfaceText('Could not load more transfers'));
+      toast.error(interfaceToastText('Could not load more transfers'));
     } finally {
       status.loading = false;
       setHistoryVersion((version) => version + 1);
@@ -673,18 +673,18 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
         await autoReplaceLibrary.enableAutoReplace();
         setAutoReplaceEnabled(true);
         toast.info(
-          interfaceText("Auto-replace enabled. Backend will check for stuck downloads periodically."),
+          interfaceToastText("Auto-replace enabled. Backend will check for stuck downloads periodically."),
         );
       } else {
         await autoReplaceLibrary.disableAutoReplace();
         setAutoReplaceEnabled(false);
         toast.info(
-          interfaceText("Auto-replace disabled. Automatic retry is separate; disable transfers.download.auto_retry.enabled to stop retries of failed downloads."),
+          interfaceToastText("Auto-replace disabled. Automatic retry is separate; disable transfers.download.auto_retry.enabled to stop retries of failed downloads."),
         );
       }
     } catch (error) {
       console.error('Failed to toggle auto-replace:', error);
-      toast.error(interfaceText("Failed to toggle auto-replace"));
+      toast.error(interfaceToastText("Failed to toggle auto-replace"));
     }
   };
 
@@ -694,12 +694,12 @@ const TransferManager = ({ direction, server = { isConnected: true } }) => {
       setAcceleratedEnabled(status?.enabled ?? enabled);
       toast.info(
         enabled
-          ? interfaceText('Accelerated mode enabled. Slow or stalled downloads can use verified alternate sources.')
-          : interfaceText('Accelerated mode disabled'),
+          ? interfaceToastText('Accelerated mode enabled. Slow or stalled downloads can use verified alternate sources.')
+          : interfaceToastText('Accelerated mode disabled'),
       );
     } catch (error) {
       console.error('Failed to toggle accelerated mode:', error);
-      toast.error(interfaceText("Failed to toggle accelerated mode"));
+      toast.error(interfaceToastText("Failed to toggle accelerated mode"));
     }
   };
 

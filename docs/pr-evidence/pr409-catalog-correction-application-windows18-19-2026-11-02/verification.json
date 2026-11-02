@@ -1,0 +1,54 @@
+{
+  "result": "PASS",
+  "head": "6045f46102ed582a60ad11088bd9209f63b15f33",
+  "tree": "07b1a5cd77ca5d1afd20c90cb63d87e90dee527f",
+  "applicationCommit": "6045f46102ed582a60ad11088bd9209f63b15f33",
+  "catalogCensus": {
+    "locales": 12,
+    "keysPerLocale": 6169,
+    "totalValues": 74028,
+    "changedCellsSinceFrozenBaseline": 818,
+    "changedCellsByLocale": {
+      "ar": 93,
+      "de": 44,
+      "es": 66,
+      "fr": 66,
+      "hi": 72,
+      "id": 78,
+      "ja": 43,
+      "ko": 57,
+      "pt-BR": 57,
+      "vi": 86,
+      "zh-Hans": 79,
+      "zh-Hant": 77
+    }
+  },
+  "application": {
+    "priorAppliedCells": 736,
+    "newAppliedCells": 82,
+    "totalAppliedCells": 818,
+    "appliedSourceKeys": 195,
+    "heldNoContext": 6
+  },
+  "manualReconciliation": {
+    "windows": 19,
+    "keys": 475,
+    "cells": 5700,
+    "verdicts": {
+      "keep": 4704,
+      "correct": 824,
+      "uncertain": 172
+    },
+    "formalOverlap": 0,
+    "manualOverlap": 0,
+    "unreconciledCells": 0
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0
+}

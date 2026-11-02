@@ -1,19 +1,19 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceAttributeText, interfacePresentationText, interfaceText, interfaceTextOutput, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Player.css';
 import * as collectionsAPI from '../../lib/collections';
 import {
   clearDiscoveryShelf,
   exportDiscoveryShelfPolicyReport,
   getDiscoveryShelf,
-  getDiscoveryShelfActionLabel,
+  localizeDiscoveryShelfActionLabel,
   getDiscoveryShelfPolicyPreview,
   getDiscoveryShelfSummary,
   removeDiscoveryShelfItem,
   upsertDiscoveryShelfItem,
 } from '../../lib/discoveryShelf';
 import * as externalVisualizer from '../../lib/externalVisualizer';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { setExperiencePreference } from '../../lib/experiencePreferences';
 import * as listenBrainz from '../../lib/listenBrainz';
 import * as nowPlaying from '../../lib/nowPlaying';
@@ -37,6 +37,7 @@ import {
   buildPlayerRadioSearchPath,
   getPlayerRadioQueries,
   getPlayerRadioCopyText,
+  getPlayerRadioReasonSource,
 } from '../../lib/playerRadio';
 import {
   buildSimilarQueueCandidates,
@@ -186,16 +187,16 @@ const setPlayerHeightVariable = (element) => {
 };
 
 const getExternalVisualizerStatusText = (status, loading) => {
-  if (loading) return interfaceText('Checking external visualizer launcher...');
-  if (!status) return interfaceText('Status unavailable.');
-  if (!status.enabled) return interfaceText('Disabled in slskd.yml.');
-  if (!status.configured) return interfaceText('No launcher path configured.');
-  if (!status.available) return interfaceText('Configured launcher path was not found.');
-  return interfaceText('Ready to launch on the slskdN host.');
+  if (loading) return 'Checking external visualizer launcher...';
+  if (!status) return 'Status unavailable.';
+  if (!status.enabled) return 'Disabled in slskd.yml.';
+  if (!status.configured) return 'No launcher path configured.';
+  if (!status.available) return 'Configured launcher path was not found.';
+  return 'Ready to launch on the slskdN host.';
 };
 
 const getExternalVisualizerError = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'External visualizer did not launch.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'External visualizer did not launch.');
 
 const PlayerToolButton = ({
   active = false,
@@ -309,8 +310,8 @@ const PlayerRatingControls = ({ current, onChange, rating }) => {
             <button
               aria-label={
                 value === rating
-                  ? interfaceText('Clear {rating} star rating', { rating: value })
-                  : interfaceText('Rate {rating} stars', { rating: value })
+                  ? interfaceAttributeText('Clear {rating} star rating', { rating: value })
+                  : interfaceAttributeText('Rate {rating} stars', { rating: value })
               }
               className={[
                 'player-rating-button',
@@ -321,8 +322,8 @@ const PlayerRatingControls = ({ current, onChange, rating }) => {
               onClick={() => onChange(value === rating ? 0 : value)}
               title={
                 value === rating
-                  ? interfaceText('Clear this local rating.')
-                  : interfaceText('Rate this track {rating} out of 5.', { rating: value })
+                  ? interfaceAttributeText('Clear this local rating.')
+                  : interfaceAttributeText('Rate this track {rating} out of 5.', { rating: value })
               }
               type="button"
             >
@@ -420,7 +421,11 @@ const PlayerRadioModal = ({ current, onClose, onOpenSearch, open }) => {
         <div className="player-radio-seed" data-testid="player-radio-seed">
           <Icon name="random" />
           <div>
-            <strong>{plan.seedLabel}</strong>
+            <strong>
+              {plan.seedLabel === 'Untitled seed'
+                ? <LocalizedText source="Untitled seed" />
+                : plan.seedLabel}
+            </strong>
             <div>
               {plan.basis.length > 0 ? plan.basis.join(' | ') : <LocalizedText source={"Pick a track first."} />}
             </div>
@@ -431,7 +436,7 @@ const PlayerRadioModal = ({ current, onClose, onOpenSearch, open }) => {
             <div className="player-radio-query" key={item.id}>
               <div>
                 <Label color="violet" size="mini">
-                  {item.reason}
+                  <LocalizedText source={getPlayerRadioReasonSource(item.reason)} />
                 </Label>
                 <code>{item.query}</code>
               </div>
@@ -819,17 +824,17 @@ const PlayerQueueModal = ({
                       <strong>{getTrackLabel(item)}</strong>
                       <span>{item.artist || item.album || item.contentId}</span>
                     </div>
-                    <Popup content={interfaceText("Move this track earlier in the queue.")} trigger={
-                      <Button aria-label={`Move ${getTrackLabel(item)} up`} disabled={index === 0} icon onClick={() => onMove(index + 1, index)} size="mini" type="button"><Icon name="arrow up" /></Button>
+                    <Popup content={<LocalizedText source={"Move this track earlier in the queue."} />} trigger={
+                      <Button {...interfaceTextProps("Move {track} up")} aria-label={interfaceAttributeText("Move {track} up", { track: getTrackLabel(item) })} disabled={index === 0} icon onClick={() => onMove(index + 1, index)} size="mini" type="button"><Icon name="arrow up" /></Button>
                     }  {...interfaceTextProps("Move this track earlier in the queue.")}/>
-                    <Popup content={interfaceText("Move this track later in the queue.")} trigger={
-                      <Button aria-label={`Move ${getTrackLabel(item)} down`} disabled={index === upcoming.length - 1} icon onClick={() => onMove(index + 1, index + 2)} size="mini" type="button"><Icon name="arrow down" /></Button>
+                    <Popup content={<LocalizedText source={"Move this track later in the queue."} />} trigger={
+                      <Button {...interfaceTextProps("Move {track} down")} aria-label={interfaceAttributeText("Move {track} down", { track: getTrackLabel(item) })} disabled={index === upcoming.length - 1} icon onClick={() => onMove(index + 1, index + 2)} size="mini" type="button"><Icon name="arrow down" /></Button>
                     }  {...interfaceTextProps("Move this track later in the queue.")}/>
                     <Popup
-                      content={interfaceText("Remove this upcoming item from the local playback queue.")}
+                      content={<LocalizedText source={"Remove this upcoming item from the local playback queue."} />}
                       trigger={
                         <Button
-                          aria-label={`Remove ${getTrackLabel(item)} from queue`}
+                          {...interfaceTextProps("Remove {track} from queue")} aria-label={interfaceAttributeText("Remove {track} from queue", { track: getTrackLabel(item) })}
                           data-testid={`player-remove-queue-${item.contentId}`}
                           icon
                           onClick={() => onRemove(index + 1)}
@@ -942,7 +947,7 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
 
   const previewAction = (item) => {
     setMessage(
-      interfaceText("{action} prepared for {title}. No files were moved or deleted.", { action: interfaceText(getDiscoveryShelfActionLabel(item.action)), title: item.title }),
+      interfaceText("{action} prepared for {title}. No files were moved or deleted.", { action: localizeDiscoveryShelfActionLabel(item.action), title: item.title }),
     );
   };
 
@@ -1068,13 +1073,13 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
                 </span>
               </div>
               <Label size="mini">
-                {interfaceText(getDiscoveryShelfActionLabel(item.action))}
+                {localizeDiscoveryShelfActionLabel(item.action)}
               </Label>
               <Popup
-                content={interfaceText("Preview the shelf action. This does not move, delete, share, download, or publish anything.")}
+                content={<LocalizedText source={"Preview the shelf action. This does not move, delete, share, download, or publish anything."} />}
                 trigger={
                   <Button
-                    aria-label={`Preview ${item.title || item.artist || 'discovery shelf item'}`}
+                    {...interfaceTextProps("Preview {item}")} aria-label={interfaceAttributeText("Preview {item}", { item: item.title || item.artist || interfaceText("discovery shelf item") })}
                     data-testid={`player-shelf-preview-${item.key}`}
                     icon
                     onClick={() => previewAction(item)}
@@ -1086,10 +1091,10 @@ const PlayerDiscoveryShelfModal = ({ onClose, open }) => {
                 }
                {...interfaceTextProps("Preview the shelf action. This does not move, delete, share, download, or publish anything.")}/>
               <Popup
-                content={interfaceText("Remove this local review item from the browser-only shelf.")}
+                content={<LocalizedText source={"Remove this local review item from the browser-only shelf."} />}
                 trigger={
                   <Button
-                    aria-label={`Remove ${item.title || item.artist || 'discovery shelf item'} from the discovery shelf`}
+                    {...interfaceTextProps("Remove {item} from the discovery shelf")} aria-label={interfaceAttributeText("Remove {item} from the discovery shelf", { item: item.title || item.artist || interfaceText("discovery shelf item") })}
                     data-testid={`player-shelf-remove-${item.key}`}
                     icon
                     onClick={() => removeItem(item.key)}
@@ -1342,8 +1347,8 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
                 <Button
                   active={rangeDays === range.value}
                   aria-label={range.value
-                    ? interfaceText('Show last {days} days of listening statistics', { days: range.value })
-                    : interfaceText('Show all listening statistics')}
+                    ? interfaceAttributeText('Show last {days} days of listening statistics', { days: range.value })
+                    : interfaceAttributeText('Show all listening statistics')}
                   data-testid={`player-stats-range-${range.label}`}
                   onClick={() => updateRange(range.value)}
                   size="mini"
@@ -1395,7 +1400,7 @@ const PlayerStatsModal = ({ onClose, onOpenSearch, open }) => {
                       content={interfaceText("Open this local listening seed as a normal Search page query. Network search starts only after you choose to search.")}
                       trigger={
                         <Button
-                          aria-label={interfaceText("Search {label}", { "label": (seed.label) })}
+                          aria-label={interfaceAttributeText("Search {label}", { "label": (seed.label) })}
                           data-testid={`player-stats-search-seed-${seed.query}`}
                           icon
                           onClick={() => onOpenSearch(seed.query)}
@@ -1818,7 +1823,7 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                             content={interfaceText("Show tracks in {title} so you can choose one to play or queue.", { "title": (collection.title) })}
                             trigger={
                               <button
-                                aria-label={interfaceText("Show tracks in {title}", { "title": (collection.title) })}
+                                aria-label={interfaceAttributeText("Show tracks in {title}", { "title": (collection.title) })}
                                 aria-pressed={selectedCollection?.id === collection.id}
                                 className="player-collection-select"
                                 onClick={(event) => {
@@ -1872,10 +1877,10 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                         </Table.Cell>
                         <Table.Cell collapsing>
                           <Popup
-                            content={interfaceText("Play this collection item in the browser player.")}
+                            content={<LocalizedText source={"Play this collection item in the browser player."} />}
                             trigger={
                               <Button
-                                aria-label={`Play ${item.title || item.fileName || item.contentId || 'track'} from this collection`}
+                                {...interfaceTextProps("Play {track} from this collection")} aria-label={interfaceAttributeText("Play {track} from this collection", { track: item.title || item.fileName || item.contentId || interfaceText("Track") })}
                                 data-testid={`player-play-collection-item-${item.contentId}`}
                                 icon
                                 onClick={() => playAndClose(item)}
@@ -1885,8 +1890,8 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                               </Button>
                             }
                            {...interfaceTextProps("Play this collection item in the browser player.")}/>
-                          <Popup content={interfaceText("Place this collection item next in the playback queue.")} trigger={
-                            <Button aria-label={`Play ${item.title || item.fileName || 'track'} next`} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
+                          <Popup content={<LocalizedText source={"Place this collection item next in the playback queue."} />} trigger={
+                            <Button {...interfaceTextProps("Play {track} next")} aria-label={interfaceAttributeText("Play {track} next", { track: item.title || item.fileName || interfaceText("Track") })} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
                           }  {...interfaceTextProps("Place this collection item next in the playback queue.")}/>
                         </Table.Cell>
                       </Table.Row>
@@ -2056,22 +2061,22 @@ const PlayerLauncher = ({ compact = false, onPlayItem, onPlayNext }) => {
                           </Table.Cell>
                           <Table.Cell collapsing>
                             <Popup
-                              content={interfaceText("Play this local file in the browser player.")}
+                              content={<LocalizedText source={"Play this local file in the browser player."} />}
                               trigger={
                                 <Button
-                                  aria-label={`Play ${item.fileName || item.contentId}`}
+                                  {...interfaceTextProps("Play {track}")} aria-label={interfaceAttributeText("Play {track}", { track: item.fileName || item.contentId })}
                                   data-testid={`player-play-file-${item.contentId}`}
                                   icon
                                   onClick={() => playAndClose(item)}
                                   size="small"
-                                  title={`Play ${item.fileName || item.contentId}`}
+                                  title={interfaceAttributeText("Play {track}", { track: item.fileName || item.contentId })}
                                 >
                                   <Icon name="play" />
                                 </Button>
                               }
                              {...interfaceTextProps("Play this local file in the browser player.")}/>
-                            <Popup content={interfaceText("Place this file next in the playback queue.")} trigger={
-                              <Button aria-label={`Play ${item.fileName || 'file'} next`} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
+                            <Popup content={<LocalizedText source={"Place this file next in the playback queue."} />} trigger={
+                              <Button {...interfaceTextProps("Play {track} next")} aria-label={interfaceAttributeText("Play {track} next", { track: item.fileName || interfaceText("file") })} disabled={!onPlayNext} icon onClick={() => onPlayNext(item)} size="small"><Icon name="level down alternate" /></Button>
                             }  {...interfaceTextProps("Place this file next in the playback queue.")}/>
                           </Table.Cell>
                         </Table.Row>
@@ -2236,11 +2241,11 @@ const PlayerVisualTile = ({
           trigger={
             <div
               aria-label={analyzerMotionSuppressed
-                ? interfaceText(
+                ? interfaceAttributeText(
                   'Show {mode} in player visual tile. Analyzer animation is paused because reduced motion is enabled',
                   { mode: localizedTileModeLabel(nextTileMode) },
                 )
-                : interfaceText('Show {mode} in player visual tile', {
+                : interfaceAttributeText('Show {mode} in player visual tile', {
                   mode: localizedTileModeLabel(nextTileMode),
                 })}
               role="button"
@@ -2329,7 +2334,7 @@ const PlayerVisualTile = ({
             key={option}
             trigger={
               <Button
-                aria-label={interfaceText('Show {mode}', { mode: localizedTileModeLabel(option) })}
+                aria-label={interfaceAttributeText('Show {mode}', { mode: localizedTileModeLabel(option) })}
                 active={effectiveTileMode === option}
                 toggle
                 data-testid={`player-visual-tile-mode-${option}`}
@@ -2389,9 +2394,9 @@ const PlayerAnalyzerTile = ({ audioElement, mode, onModeChange }) => {
     scope: 'Signal scope',
   }[mode];
   const nextLabel = {
-    off: 'turn off the analyzer',
-    spectrum: 'show spectrum bars',
-    scope: 'show signal scope',
+    off: interfaceText("turn off the analyzer"),
+    spectrum: interfaceText("show spectrum bars"),
+    scope: interfaceText("show signal scope"),
   }[nextMode];
 
   useEffect(() => {
@@ -2401,12 +2406,11 @@ const PlayerAnalyzerTile = ({ audioElement, mode, onModeChange }) => {
   return (
     <div className="player-analyzer-tile-shell">
       <Popup
-        content={interfaceText("Click to {nextLabel}.", { "nextLabel": (nextLabel) })}
+        content={<LocalizedText source="Click to {nextLabel}." values={{ nextLabel }} />}
         trigger={
           <div
-            aria-label={`Click to ${nextLabel}${motionSuppressed
-              ? '. Animation is paused because reduced motion is enabled'
-              : ''}`}
+            {...interfaceTextProps("Click to {nextLabel}.")}
+            aria-label={`${interfaceAttributeText("Click to {nextLabel}.", { nextLabel })}${motionSuppressed ? ` ${interfaceText("Animation is paused because reduced motion is enabled")}` : ''}`}
             className="player-analyzer-tile"
             data-testid="player-analyzer-tile"
             onClick={() => onModeChange(nextMode)}
@@ -2645,7 +2649,7 @@ const PlayerBar = () => {
         const timer = window.setTimeout(() => {
           if (previousAnnouncementItemRef.current === previousItem) {
             previousAnnouncementItemRef.current = null;
-            setPlaybackAnnouncement('Playback stopped.');
+            setPlaybackAnnouncement(interfaceTextOutput('Playback stopped.'));
           }
         }, 200);
         return () => window.clearTimeout(timer);
@@ -2656,18 +2660,18 @@ const PlayerBar = () => {
     previousAnnouncementItemRef.current = current;
     const title = current.title || current.fileName || current.contentId || 'Current track';
     if (previousItem !== current) {
-      const timer = window.setTimeout(() => setPlaybackAnnouncement(interfaceText('Loading: {title}.', { title })), 400);
+      const timer = window.setTimeout(() => setPlaybackAnnouncement(interfaceTextOutput('Loading: {title}.', { title })), 400);
       return () => window.clearTimeout(timer);
     }
     const messages = {
-      buffering: interfaceText('Buffering: {title}.', { title }),
-      ended: interfaceText('Finished: {title}.', { title }),
-      error: interfaceText('Playback error: {title}. {message}', {
+      buffering: interfaceTextOutput('Buffering: {title}.', { title }),
+      ended: interfaceTextOutput('Finished: {title}.', { title }),
+      error: interfaceTextOutput('Playback error: {title}. {message}', {
         title,
-        message: playbackError || interfaceText('Playback could not continue.'),
+        message: playbackError || interfaceTextOutput('Playback could not continue.'),
       }),
-      paused: interfaceText('Paused: {title}.', { title }),
-      playing: interfaceText('Now playing: {title}.', { title }),
+      paused: interfaceTextOutput('Paused: {title}.', { title }),
+      playing: interfaceTextOutput('Now playing: {title}.', { title }),
     };
     const message = messages[playbackStatus];
     if (!message) return undefined;
@@ -2696,7 +2700,7 @@ const PlayerBar = () => {
       data-testid="player-playback-announcement"
       role="status"
     >
-      {playbackAnnouncement}
+      {playbackAnnouncement ? <LocalizedOutputText output={playbackAnnouncement} /> : null}
     </div>
   );
 
@@ -2711,7 +2715,7 @@ const PlayerBar = () => {
       })
       .catch(() => {
         setExternalVisualizerStatus(null);
-        setExternalVisualizerMessage(interfaceText('External visualizer status is unavailable.'));
+        setExternalVisualizerMessage(interfaceTextOutput('External visualizer status is unavailable.'));
       })
       .finally(() => {
         setExternalVisualizerLoading(false);
@@ -2724,9 +2728,11 @@ const PlayerBar = () => {
 
     externalVisualizer.launchExternalVisualizer()
       .then((result) => {
-        const name = result?.name || externalVisualizerStatus?.name || 'External visualizer';
+        const name = result?.name || externalVisualizerStatus?.name || interfaceTextOutput('External Visualizer');
         setExternalVisualizerMessage(
-          result?.started ? interfaceText('{name} launched.', { name }) : result?.error || interfaceText('External visualizer did not launch.'),
+          result?.started
+            ? interfaceTextOutput('{name} launched.', { name })
+            : result?.error || interfaceTextOutput('External visualizer did not launch.'),
         );
       })
       .catch((error) => {
@@ -2828,7 +2834,7 @@ const PlayerBar = () => {
     outgoing.pause();
     const graph = getExistingAudioGraph(outgoing);
     if (graph && graph.ctx.state !== 'closed') {
-        suspendAudioGraph(outgoing).catch(() => setPlaybackError(interfaceText('Audio processing could not pause.')));
+        suspendAudioGraph(outgoing).catch(() => setPlaybackError(interfaceTextOutput('Audio processing could not pause.')));
     }
     outgoing.removeAttribute('src');
     outgoing.load();
@@ -2849,7 +2855,7 @@ const PlayerBar = () => {
     });
     Promise.allSettled(elements.map((element) => suspendAudioGraph(element))).then((results) => {
       if (!cancelled && results.some((result) => result.status === 'rejected')) {
-        setPlaybackError(interfaceText('Audio processing could not pause.'));
+        setPlaybackError(interfaceTextOutput('Audio processing could not pause.'));
       }
     });
     return () => { cancelled = true; };
@@ -2930,7 +2936,7 @@ const PlayerBar = () => {
       pendingTranscodeRef.current = false;
       setPlaybackStatus('error');
       failedTranscodeRef.current = seconds;
-      setPlaybackError(interfaceText('Decoding could not start. Press Play to retry. The server may be busy or FFmpeg may be unavailable.'));
+      setPlaybackError(interfaceTextOutput('Decoding could not start. Press Play to retry. The server may be busy or FFmpeg may be unavailable.'));
     }
   }, [current, reportPlaybackEvent, setPlaybackPosition, stopOutgoingFade]);
 
@@ -2975,7 +2981,7 @@ const PlayerBar = () => {
       if (selectedItemRef.current !== current || audioRef.current !== element) return;
       pausePlayback();
       setPlaybackStatus('error');
-      setPlaybackError(interfaceText('Playback could not start. Check the file or try again.'));
+      setPlaybackError(interfaceTextOutput('Playback could not start. Check the file or try again.'));
       reportPlaybackEvent?.('pause', transcodeOffset + element.currentTime);
     });
   }, [current, pausePlayback, playAudio, reportPlaybackEvent, startTranscode, transcodeMode, transcodeOffset]);
@@ -3072,7 +3078,7 @@ const PlayerBar = () => {
   useEffect(() => {
     if (!crossfadeEnabled || !audioRef.current || audioRef.current.paused) return;
     resumeAudioGraph(audioRef.current).catch(() => {
-      setPlaybackError(interfaceText('Could not prepare crossfade audio.'));
+      setPlaybackError(interfaceTextOutput('Could not prepare crossfade audio.'));
     });
   }, [crossfadeEnabled]);
 
@@ -3122,7 +3128,7 @@ const PlayerBar = () => {
         setKaraokeEnabled(element, karaokeEnabled);
         if (!element.paused) {
           resumeAudioGraph(element, false).catch(() => {
-            setPlaybackError(interfaceText('Could not enable vocal reduction for this track.'));
+            setPlaybackError(interfaceTextOutput('Could not enable vocal reduction for this track.'));
           });
         }
       });
@@ -3229,7 +3235,7 @@ const PlayerBar = () => {
         if (!cancelled) {
           setPlaybackStatus('error');
           const status = error?.response?.status;
-          setPlaybackError(interfaceText(error?.response?.data?.code === 'radio_fairness_limited'
+          setPlaybackError(interfaceTextOutput(error?.response?.data?.code === 'radio_fairness_limited'
             ? 'Remote radio is limited by network fairness. Check sharing activity before retrying.'
             : status === 429
               ? 'Radio streaming is at capacity. Retry later.'
@@ -3357,7 +3363,7 @@ const PlayerBar = () => {
         playingRef.current = false;
         setPlaying(false);
         setPlaybackStatus('error');
-        setPlaybackError(interfaceText('The next track could not start.'));
+        setPlaybackError(interfaceTextOutput('The next track could not start.'));
         reportPlaybackEvent?.('pause', transcodeOffset + standby.currentTime);
         nowPlaying.clearNowPlaying().catch(() => {});
       });
@@ -3429,7 +3435,12 @@ const PlayerBar = () => {
     if (!audioRef.current || !window.documentPictureInPicture) return;
 
     closePictureInPicture();
-    setPlaybackError((error) => error.startsWith('Picture-in-Picture could not open.') ? '' : error);
+    setPlaybackError((error) => (
+      isInterfaceTextOutput(error) &&
+      error.source.startsWith('Picture-in-Picture could not open.')
+        ? ''
+        : error
+    ));
     const request = pipRequestRef.current;
     try {
       const graph = await resumeAudioGraph(audioRef.current);
@@ -3503,7 +3514,7 @@ const PlayerBar = () => {
     } catch {
       if (request !== pipRequestRef.current) return;
       closePictureInPicture();
-      setPlaybackError(interfaceText('Picture-in-Picture could not open. Try again from the player tools.'));
+      setPlaybackError(interfaceTextOutput('Picture-in-Picture could not open. Try again from the player tools.'));
     }
   };
 
@@ -3605,14 +3616,14 @@ const PlayerBar = () => {
           .map((element) => resumeAudioGraph(element, false)),
       );
       if (resumeResults.some((result) => result.status === 'rejected')) {
-        setPlaybackError(interfaceText('Audio output changed, but playback could not resume.'));
+        setPlaybackError(interfaceTextOutput('Audio output changed, but playback could not resume.'));
       }
     })();
     outputSwitchPromiseRef.current = switching.catch(() => {});
     try {
       await switching;
     } catch {
-      setPlaybackError(interfaceText('Could not switch audio output device.'));
+      setPlaybackError(interfaceTextOutput('Could not switch audio output device.'));
     } finally {
       outputSwitchingRef.current = false;
       setOutputSwitching(false);
@@ -3632,7 +3643,7 @@ const PlayerBar = () => {
       await switchOutputDevice(device.deviceId);
     } catch (error) {
       if (error?.name !== 'AbortError') {
-        setPlaybackError(interfaceText('Could not choose an audio output device.'));
+        setPlaybackError(interfaceTextOutput('Could not choose an audio output device.'));
       }
     } finally {
       setOutputChoosing(false);
@@ -3738,11 +3749,11 @@ const PlayerBar = () => {
       playingRef.current = false;
       setPlaying(false);
       setPlaybackStatus('error');
-      setPlaybackError(transcodeMode
+      setPlaybackError(interfaceTextOutput(transcodeMode
         ? 'The server could not decode this audio. Press Play to retry.'
         : current.radioPartyId
           ? 'The listed radio stream stopped or changed. Retry playback or refresh listed radio.'
-          : 'This audio could not be decoded or streamed.');
+          : 'This audio could not be decoded or streamed.'));
       reportPlaybackEvent?.('pause', transcodeOffset + failedElement.currentTime);
       if (!transcodeMode && !current.streamUrl && !current.contentId.startsWith('local:')) {
         streaming.getPlaybackInfo(current.contentId).then((response) => {
@@ -4009,7 +4020,7 @@ const PlayerBar = () => {
                 </div>
                 {broadcastStatus ? (
                   <div className="player-broadcast-controls">
-                    {broadcastStatus.error ? <span role="alert"><LocalizedText source={broadcastStatus.error} /></span> : null}
+                    {broadcastStatus.error ? <span role="alert"><LocalizedOutputText output={broadcastStatus.error} /></span> : null}
                     {broadcastStatus.active ? <>
                       {broadcastStatus.error ? <Popup content={interfaceText("Retry publishing this room's current playback state after an update failure.")} trigger={<Button aria-label={interfaceText("Retry room broadcast")} onClick={() => retryBroadcast().catch(() => {})} size="mini" {...interfaceTextProps("Retry room broadcast")}><LocalizedText source={"Retry broadcast"} /></Button>}  {...interfaceTextProps("Retry publishing this room's current playback state after an update failure.")}/> : null}
                       <Popup content={interfaceText("Stop this room broadcast while keeping your own playback available.")} trigger={<Button aria-label={interfaceText("Stop active room broadcast")} onClick={() => stopBroadcast().catch(() => {})} size="mini" {...interfaceTextProps("Stop active room broadcast")}><LocalizedText source={"Stop broadcast"} /></Button>}  {...interfaceTextProps("Stop this room broadcast while keeping your own playback available.")}/>
@@ -4046,7 +4057,7 @@ const PlayerBar = () => {
             </div>
             <PlayerProgress current={current} duration={duration} onSeek={seekTo} position={position} />
             <PlayerRatingControls current={current} onChange={updatePlayerRating} rating={playerRating} />
-            {playbackError ? <Message negative size="mini">{playbackError}</Message> : null}
+            {playbackError ? <Message negative size="mini"><LocalizedOutputText output={playbackError} /></Message> : null}
             {transcodeAvailable && !transcodeMode ? (
               <Popup content={interfaceText("Decode this server library file to MP3 for this playback only. This uses server CPU until playback stops.")} trigger={
                 <Button onClick={() => startTranscode(0)} size="mini" type="button"><LocalizedText source={"Decode for playback"} /></Button>
@@ -4128,7 +4139,7 @@ const PlayerBar = () => {
             />
             <PlayerToolButton
               active={repeatMode !== 'off'}
-              aria-label={interfaceText("Repeat {repeatMode}", { "repeatMode": (repeatMode) })}
+              aria-label={interfaceAttributeText("Repeat {repeatMode}", { "repeatMode": (repeatMode) })}
               content={interfaceText("Repeat: {repeatMode}. Click to cycle off, all tracks, and one track.", { "repeatMode": (repeatMode) })}
               icon="repeat"
               onClick={() => setRepeatMode((mode) => mode === 'off' ? 'all' : mode === 'all' ? 'one' : 'off')}
@@ -4437,20 +4448,26 @@ const PlayerBar = () => {
               />
               <div>
                 <div className="player-external-visualizer-name">
-                  {externalVisualizerStatus?.name || 'MilkDrop3'}
+                  {externalVisualizerStatus?.name ? (
+                    <bdi dir="auto" lang="und">{externalVisualizerStatus.name}</bdi>
+                  ) : (
+                    <bdi dir="auto" lang="und">MilkDrop3</bdi>
+                  )}
                 </div>
                 <div className="player-external-visualizer-status">
-                  {getExternalVisualizerStatusText(
+                  <LocalizedText source={getExternalVisualizerStatusText(
                     externalVisualizerStatus,
                     externalVisualizerLoading,
-                  )}
+                  )} />
                 </div>
                 {externalVisualizerStatus?.path ? (
                   <div
                     className="player-external-visualizer-path"
                     title={externalVisualizerStatus.path}
+                    dir="ltr"
+                    lang="und"
                   >
-                    {externalVisualizerStatus.path}
+                    <bdi dir="ltr" lang="und">{externalVisualizerStatus.path}</bdi>
                   </div>
                 ) : null}
               </div>
@@ -4464,7 +4481,7 @@ const PlayerBar = () => {
                 size="tiny"
                 warning={!externalVisualizerStatus?.available}
               >
-                {externalVisualizerMessage}
+                <LocalizedOutputText output={externalVisualizerMessage} />
               </Message>
             ) : null}
             <div className="player-external-visualizer-actions">
@@ -4582,7 +4599,7 @@ const PlayerBar = () => {
               key={`${item.contentId}-${index}`}
               trigger={
                 <button
-                  aria-label={interfaceText('Remove {track} from queue', {
+                  aria-label={interfaceAttributeText('Remove {track} from queue', {
                     track: item.title || item.fileName || item.contentId,
                   })}
                   className="player-queue-item"

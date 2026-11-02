@@ -1,0 +1,30 @@
+{
+  "applyCount": 39,
+  "applyPlanSha256": "ade3ade63ee11a972eb95c175b48ad38161ab4883e0f14c97e417425be8ea161",
+  "callerPinsVerified": true,
+  "candidatePlanSha256": "f5ac0b1afa7ac50c6138dfbb11297f09c51a61e99fa52344519ea06c8750d574",
+  "candidateRows": 39,
+  "currentPrHead": "17e8d8b829867065b882423ef81c69f1f31c7d07",
+  "currentPrTree": "7562b0dd09a92398a898d84e1c936119492015be",
+  "currentSourceSubtreeTree": "6d80c43cea32f0a5721f31235ec80e6eaa6d1896",
+  "decisionCounts": {
+    "accepted": 39,
+    "held": 0,
+    "refined": 0
+  },
+  "nativeSpeakerApproval": false,
+  "placeholdersVerified": true,
+  "protectedLiteralsVerified": true,
+  "rootConfidence": "moderate",
+  "rootLedgerSha256": "2e913a85844b83658c057667a65831f50bb3897bc61255a6196d29cbe865259b",
+  "schemaVersion": 1,
+  "sourceAndCurrentTargetJoinVerified": true,
+  "sourceGroups": {
+    "src_fd48a7251ff6d2a6": 4,
+    "src_fdab05cca7f0c474": 10,
+    "src_fdc9c0f69d6aa8ea": 12,
+    "src_fe165fb2a7031724": 1,
+    "src_fe22d9d028792660": 12
+  },
+  "window": 28
+}

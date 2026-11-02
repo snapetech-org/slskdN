@@ -1,5 +1,5 @@
+import { interfaceToastText, interfaceTextOutput, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import * as slskdnAPI from '../../../lib/slskdn';
@@ -14,7 +14,7 @@ import {
 import { getLocalStorageItem, setLocalStorageItem } from '../../../lib/storage';
 import { ShrinkableButton } from '../../Shared';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Card,
@@ -222,13 +222,17 @@ const Network = ({ theme }) => {
     try {
       const result = await slskdnAPI.triggerMeshSync(username);
       if (!result?.success) {
-        toast.error(result?.error || interfaceText('Failed to sync with {username}', { username }));
+        const errorSource = result?.error;
+        const knownError = errorSource === 'Failed to sync with peer' || errorSource === 'Sync failed';
+        toast.error(knownError
+          ? interfaceToastText(errorSource)
+          : errorSource || interfaceToastText('Failed to sync with {username}', { username }));
         return;
       }
 
-      toast.success(interfaceText("Sync initiated with {username}", { "username": (username) }));
+      toast.success(interfaceToastText("Sync initiated with {username}", { "username": (username) }));
     } catch {
-      toast.error(interfaceText("Failed to sync with {username}", { "username": (username) }));
+      toast.error(interfaceToastText("Failed to sync with {username}", { "username": (username) }));
     } finally {
       setSyncing((previous) => ({ ...previous, [username]: false }));
     }
@@ -243,7 +247,7 @@ const Network = ({ theme }) => {
       });
 
       if (result.error) {
-        toast.error(interfaceText("Backfill failed: {error}", { "error": (result.error) }));
+        toast.error(interfaceToastText("Backfill failed: {error}", { "error": (result.error) }));
         setBackfillProgress(null);
       } else {
         setBackfillProgress(result);
@@ -274,7 +278,7 @@ const Network = ({ theme }) => {
         fetchData(); // Refresh stats
       }
     } catch {
-      toast.error(interfaceText("Failed to trigger backfill from search history"));
+      toast.error(interfaceToastText("Failed to trigger backfill from search history"));
       setBackfillProgress(null);
     } finally {
       setBackfilling(false);
@@ -327,14 +331,14 @@ const Network = ({ theme }) => {
     if (navigator.clipboard?.writeText) {
       try {
         await navigator.clipboard.writeText(report);
-        toast.success(interfaceText("Network health report copied"));
+        toast.success(interfaceToastText("Network health report copied"));
       } catch {
-        toast.error(interfaceText("Unable to copy network health report"));
+        toast.error(interfaceToastText("Unable to copy network health report"));
       }
       return;
     }
 
-    toast.info(interfaceText("Clipboard unavailable; select the report text manually"));
+    toast.info(interfaceToastText("Clipboard unavailable; select the report text manually"));
   };
 
   return (
@@ -698,7 +702,7 @@ const Network = ({ theme }) => {
                           onClick={() => handleSync(peer.username)}
                           primary
                           size="mini"
-                          tooltip={`Sync hash data with ${peer.username}. Use this when its sequence is behind yours.`}
+                          tooltip={<LocalizedText source="Sync hash data with {username}. Use this when its sequence is behind yours." values={{ username: peer.username }} />}
                         >
                           <LocalizedText source={"Sync"} /></ShrinkableButton>
                       </Table.Cell>

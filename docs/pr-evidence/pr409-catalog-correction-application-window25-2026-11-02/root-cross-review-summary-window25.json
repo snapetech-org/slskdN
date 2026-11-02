@@ -1,0 +1,11 @@
+{
+  "rows": 43,
+  "acceptedAsProposed": 43,
+  "refinedAndAccepted": 0,
+  "held": 0,
+  "semanticConfidence": "high",
+  "localeQualityConfidence": "moderate",
+  "nativeSpeakerReview": "outstanding",
+  "ledgerSha256": "aabde10757dcfd577082d58c40a15c356c42c0b3ff01c853f84a30ed57658e33",
+  "applyPlanSha256": "d2cb37641191d7d8bfcfd64a870e563aa13c4403432a35cda92e0d60fba0340e"
+}

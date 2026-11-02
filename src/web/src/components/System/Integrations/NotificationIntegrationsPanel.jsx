@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="NotificationIntegrationsPanel.js" company="slskdN Team">
 //     Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -245,12 +245,12 @@ const NotificationIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: interfaceText("Notification integration settings applied for this running daemon."),
+        text: interfaceTextOutput("Notification integration settings applied for this running daemon."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text: getApiErrorMessage(error, { t: interfaceText }),
+        text: getApiErrorMessageOutput(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -341,12 +341,12 @@ const NotificationIntegrationsPanel = ({ options }) => {
       markSecretsConfigured(overlay);
       setMessage({
         positive: true,
-        text: interfaceText("Notification integration settings saved to YAML."),
+        text: interfaceTextOutput("Notification integration settings saved to YAML."),
       });
     } catch (error) {
       setMessage({
         negative: true,
-        text: getApiErrorMessage(error, { t: interfaceText }),
+        text: getApiErrorMessageOutput(error, { t: interfaceText }),
       });
     } finally {
       setSavingAction('');
@@ -407,7 +407,7 @@ const NotificationIntegrationsPanel = ({ options }) => {
             positive={message.positive}
             size="small"
           >
-            {message.text}
+            <LocalizedOutputText output={message.text} />
           </Message>
         )}
         {missingRequiredSettings.length > 0 && (

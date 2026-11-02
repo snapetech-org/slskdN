@@ -1,6 +1,7 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getTasteRecommendationReasonPresentation } from '../../lib/appGeneratedReasonText';
 // <copyright file="FederatedTasteRecommendationsPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -15,7 +16,7 @@ import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalForma
 import FeatureGateNotice from '../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../Shared/useFeatureGates';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -68,11 +69,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
       const nextRecommendations = asArray(response.data?.recommendations);
       setSummary(response.data);
       setRecommendations(nextRecommendations);
-      setStatus(interfaceText('Loaded {count} privacy-filtered recommendations.', {
+      setStatus(interfaceTextOutput('Loaded {count} privacy-filtered recommendations.', {
         count: nextRecommendations.length,
       }));
     } catch (loadError) {
-      setError(getApiErrorMessage(
+      setError(getApiErrorMessageOutput(
         loadError,
         { t: interfaceText },
         'Unable to load federated taste recommendations.',
@@ -88,11 +89,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         note: 'Promoted from federated taste recommendation review.',
         workRef: recommendation.workRef,
       });
-      setStatus(interfaceText('Promoted {title} to Wishlist.', {
+      setStatus(interfaceTextOutput('Promoted {title} to Wishlist.', {
         title: getTitle(recommendation.workRef),
       }));
     } catch (promoteError) {
-      toast.error(getApiErrorMessage(promoteError, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(promoteError, { t: interfaceText }));
     }
   };
 
@@ -102,11 +103,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         scope: 'trusted',
         workRef: recommendation.workRef,
       });
-      setStatus(interfaceText('Subscribed {creator} to Release Radar.', {
+      setStatus(interfaceTextOutput('Subscribed {creator} to Release Radar.', {
         creator: getCreator(recommendation.workRef),
       }));
     } catch (subscribeError) {
-      toast.error(getApiErrorMessage(subscribeError, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(subscribeError, { t: interfaceText }));
     }
   };
 
@@ -116,11 +117,11 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
         workRef: recommendation.workRef,
       });
       setGraphPreview(response.data);
-      setStatus(interfaceText('Discovery Graph previewed for {title}.', {
+      setStatus(interfaceTextOutput('Discovery Graph previewed for {title}.', {
         title: getTitle(recommendation.workRef),
       }));
     } catch (previewError) {
-      toast.error(getApiErrorMessage(previewError, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(previewError, { t: interfaceText }));
     }
   };
 
@@ -212,8 +213,8 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
           }
          {...interfaceTextProps("Load privacy-filtered recommendations from followed federated actors. Optionally include raw native Soulseek recommendation seeds.")}/>
       </Form>
-      {status && <Message compact size="mini">{status}</Message>}
-      {error && <Message compact error size="mini">{String(error)}</Message>}
+      {status && <Message compact size="mini"><LocalizedOutputText output={status} /></Message>}
+      {error && <Message compact error size="mini"><LocalizedOutputText output={error} /></Message>}
       {summary && (
         <div className="search-acquisition-profile-strip">
           <Label basic>
@@ -251,9 +252,16 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                 <List.Description>
                   {recommendation.trustedSourceCount} <LocalizedText source={"trusted sources · score"} />{" "}{Math.round((recommendation.score || 0) * 100)}%
                 </List.Description>
-                {asArray(recommendation.reasons).map((reason) => (
-                  <Label basic key={reason}>{reason}</Label>
-                ))}
+                {asArray(recommendation.reasons).map((reason) => {
+                  const reasonCopy = getTasteRecommendationReasonPresentation(reason);
+                  return (
+                    <Label basic key={reason}>
+                      {reasonCopy.source
+                        ? <LocalizedText source={reasonCopy.source} values={reasonCopy.values} />
+                        : reasonCopy.text}
+                    </Label>
+                  );
+                })}
                 {includeSourceActors && asArray(recommendation.sourceActors).length > 0 && (
                   <div className="search-acquisition-profile-summary">
                     {asArray(recommendation.sourceActors).join(', ')}
@@ -264,7 +272,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Promote {title} taste recommendation to Wishlist", { "title": (title) })}
+                      aria-label={interfaceAttributeText("Promote {title} taste recommendation to Wishlist", { "title": (title) })}
                       onClick={() => promoteToWishlist(recommendation)}
                       size="mini"
                       type="button"
@@ -278,7 +286,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Subscribe {title} taste recommendation to Release Radar", { "title": (title) })}
+                      aria-label={interfaceAttributeText("Subscribe {title} taste recommendation to Release Radar", { "title": (title) })}
                       onClick={() => subscribeRadar(recommendation)}
                       size="mini"
                       type="button"
@@ -292,7 +300,7 @@ const FederatedTasteRecommendationsPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Preview {title} taste recommendation graph", { "title": (title) })}
+                      aria-label={interfaceAttributeText("Preview {title} taste recommendation graph", { "title": (title) })}
                       onClick={() => previewGraph(recommendation)}
                       size="mini"
                       type="button"

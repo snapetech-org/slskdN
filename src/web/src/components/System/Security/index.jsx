@@ -1,5 +1,5 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import './Security.css';
@@ -56,7 +56,7 @@ const Security = () => {
     } catch (fetchError) {
       if (!mountedRef.current || document.hidden) return;
       if (!dashboardLoadedRef.current) {
-        setError(fetchError.message || interfaceText('Failed to load security data'));
+        setError(fetchError.message || interfaceTextOutput('Failed to load security data'));
       }
     } finally {
       fetchInFlightRef.current = false;
@@ -123,7 +123,7 @@ const Security = () => {
     return (
       <Message negative>
         <Message.Header><LocalizedText source={"Security Module Unavailable"} /></Message.Header>
-        <p>{error}</p>
+        <p><LocalizedOutputText output={error} /></p>
         <p><LocalizedText source={"Security features may not be enabled on this server."} /></p>
         <Popup
           content={interfaceText("Try loading the security dashboard again after the service is enabled or the connection recovers.")}

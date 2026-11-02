@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import '../System.css';
 import { list } from '../../../lib/events';
 import React, { useEffect, useState } from 'react';
@@ -56,7 +56,7 @@ const Events = () => {
       } catch (error_) {
         if (!active) return;
         setEvents([]);
-        setError(getApiErrorMessage(error_, { t: interfaceText }));
+        setError(getApiErrorMessageOutput(error_, { t: interfaceText }));
       } finally {
         if (active) setLoading(false);
       }
@@ -81,7 +81,7 @@ const Events = () => {
         <Message
           error
           header={interfaceText("Failed to load events")}
-          content={error}
+          content={<LocalizedOutputText output={error} />}
          {...interfaceTextProps("Failed to load events")}/>
         <Popup
           content={interfaceText("Try loading this page of system events again after the current request error.")}
@@ -179,7 +179,7 @@ const Events = () => {
                       position="top left"
                       trigger={(
                         <Button
-                          aria-label={interfaceText("Show identifier for event {id}", { "id": (event.id) })}
+                          aria-label={interfaceAttributeText("Show identifier for event {id}", { "id": (event.id) })}
                           basic
                           icon="info circle"
                           size="small"

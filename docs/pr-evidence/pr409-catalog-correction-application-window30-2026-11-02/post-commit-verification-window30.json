@@ -1,0 +1,52 @@
+{
+  "result": "PASS",
+  "commit": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+  "parent": "f11dc7199b662a49c5e84794730043af29d6830b",
+  "tree": "0909e7e881d99f9e181ae6ed34034e45d9eada7d",
+  "sourceTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "workflowTree": "6d455554f29767ab98df83e20185feb81d64a301",
+  "changedPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "catalogKeyCount": 6169,
+  "appliedRows": 39,
+  "rowsByLocale": {
+    "es": 3,
+    "zh-Hans": 4,
+    "hi": 3,
+    "de": 2,
+    "ja": 3,
+    "fr": 4,
+    "pt-BR": 3,
+    "ar": 4,
+    "ko": 4,
+    "zh-Hant": 4,
+    "vi": 3,
+    "id": 2
+  },
+  "sourceAndWorkflowUnchanged": true,
+  "exactChangedCellSets": "PASS",
+  "placeholdersAndContentIDLiteral": "PASS",
+  "diffCheck": "PASS",
+  "worktree": "clean",
+  "remoteBeforePush": "f11dc7199b662a49c5e84794730043af29d6830b",
+  "prBeforePush": {
+    "headRefOid": "f11dc7199b662a49c5e84794730043af29d6830b",
+    "isDraft": true,
+    "state": "OPEN"
+  },
+  "appliedLedgerSha256": "175dfca5f3348b6deb8e512c5f6fd79fe35b649f2f5872e6dff3c22ea1fde456",
+  "rootApplyPlanSha256": "c38e7b567bab2a38f4897c2ba7364bd475ac6f8d03c78f8612f807cfb7d3b155"
+}

@@ -1,0 +1,87 @@
+{
+  "window": 31,
+  "sourceKeys": 25,
+  "cells": 274,
+  "verdicts": {
+    "correct": 36,
+    "keep": 238
+  },
+  "correctionRows": 36,
+  "correctionSourceKeys": 6,
+  "perLocale": {
+    "zh-Hans": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    }
+  },
+  "inputSha256": "d5017efef0c3e063458c6271bb4b27d40b35bdf91cd8379e598648e9bfd0c1be",
+  "decisionsSha256": "5395a5a3e2d205db02560c351a98bbee6420a5b845f6d35a1e5088b0e55840be",
+  "candidatePlanSha256": "320f88df56d7f9f1f1ec2fe20fab467235ab59471fe7812b63f8ba8979de5bba",
+  "reviewedCorrectionSourceIds": [
+    "src_000ca605239a867d",
+    "src_005fa0c315c0197b",
+    "src_008dacb6d1e85bd8",
+    "src_00ae215c188213ca",
+    "src_00c90c6eedf67611",
+    "src_00e0ff21ca6b3875"
+  ],
+  "semanticDecisionConfidence": "high for the flagged semantic/meaning errors; locale-quality confidence moderate; native-speaker review outstanding",
+  "reviewerMethod": "manual review of all 274 pending cells against exact source callsites and UI context; no translation-model/API call",
+  "independentCrossReview": "complete; 36 accepted as proposed, 0 refined, 0 held",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "rootDecisionLedgerSha256": "4e0809fcad3782ab73027cb22f2dea97ce18a3c891e91a7ad872a1ee74d67005",
+  "applyPlanSha256": "70067d1a6a13349d1d72db7227d3e79fae1757cc97e50e37330456d3121a64ca",
+  "applicationCommit": "b38a95fb75ec4ac691ad02c4b2c7393f8a1389b7"
+}

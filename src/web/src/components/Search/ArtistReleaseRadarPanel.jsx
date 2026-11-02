@@ -1,5 +1,5 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 // <copyright file="ArtistReleaseRadarPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -11,7 +11,7 @@ import {
   subscribeArtistReleaseRadar,
 } from '../../lib/musicBrainz';
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -83,7 +83,7 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
 
   const subscribe = async () => {
     if (!artistId.trim()) {
-      toast.error(interfaceText("Artist MBID is required"));
+      toast.error(interfaceToastText("Artist MBID is required"));
       return;
     }
 
@@ -228,7 +228,7 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
       )}
       {error && (
         <Message compact error size="mini">
-          <LocalizedText source={error} />
+          <LocalizedOutputText output={error} />
         </Message>
       )}
       <div className="search-acquisition-profile-strip">
@@ -290,11 +290,11 @@ const ArtistReleaseRadarPanel = ({ disabled }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText('Route {title} radar hit', { title: localizedTitle })}
+                      aria-label={interfaceAttributeText('Route {title} radar hit', { title: localizedTitle })}
                       onClick={() => routeNotification(notification)}
                       size="mini"
                       type="button"
-                     {...interfaceTextProps('Route {title} radar hit', { title: localizedTitle })}>
+                     {...interfaceAttributeTextProps('Route {title} radar hit', { title: localizedTitle })}>
                       <Icon name="send" />
                       <LocalizedText source={"Route"} /></Button>
                   }

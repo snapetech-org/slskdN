@@ -1,0 +1,11 @@
+# slskdN PR #409 manual semantic review: window 23
+
+This exact-head evidence window reviews the next disjoint 25 source keys (src_f71157eafd4859bf through src_f84b20ccbda8a06b): 300 cells across all twelve direct locales. It is pinned to OPEN/DRAFT PR head `ff8e73dca9575177c88645a27b8e7221f8828d5c`, tree `c325d60a5c44dac45e07c965747b91e2f608ecd3`, and source tree `444662a240631d9b1ba4e8358e70d1a27b14469d`. The reviewed catalog/source state matches the exact-head preflight; this package records review evidence only.
+
+Verdicts: **270 keep, 30 high-confidence correction candidates, 0 uncertain**. The proposed corrections address the Spanish inline-results label; Vietnamese and Indonesian ntfy branding; AcoustID base-URL wording in Simplified Chinese, Traditional Chinese, French, Brazilian Portuguese, Vietnamese, and Indonesian; Enter-key labels in eleven locales; French and Arabic obfuscation type labels; Content Registry wording in Simplified Chinese, Traditional Chinese, and Vietnamese; network endpoint labels in Spanish, French, Brazilian Portuguese, and Japanese; and French terminology for the app’s content-linked discussion pods.
+
+Per-locale counts (keep / correction / uncertain): es 22/3/0; zh-Hans 22/3/0; hi 24/1/0; de 24/1/0; ja 23/2/0; fr 20/5/0; pt-BR 22/3/0; ar 23/2/0; ko 25/0/0; zh-Hant 22/3/0; vi 21/4/0; id 22/3/0.
+
+The exact-head verifier rebuilt eligibility from the frozen pending bundle, the formal accumulator (150 valid jobs / 4,800 cells), all 22 prior manual windows (6,600 cells), and the 869-row applied-correction ledger. It found zero formal overlap, zero prior-manual overlap, and zero applied-target overlap. It compared 6,600 prior input rows, reverified 456 available source-callsite occurrences, and confirmed the selected 300 catalog values still match their frozen hashes. Input SHA-256: `23ab5a2d823b2b1ee680adb175722e517f409e7d1bf3197e8b016705c2a783c9`. Decisions SHA-256: `fb20be25ce6cb5922550931096d9bd572fccfebb1eedf545f4d5fca2f158938c`.
+
+The scratch verifier passed at the exact PR head/tree above. Its path and SHA-256 are recorded in `manifest.json`; JSON evidence is copied unchanged from scratch. This package does not apply catalog targets and does not edit source or formal ledgers. No translation-model/API calls, tests, builds, or CI jobs ran. Qualified native-speaker review remains outstanding.

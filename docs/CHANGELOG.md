@@ -22,6 +22,48 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: apply 41 root-final W33 corrections across 11 locale catalogs (40 accepted and one refined), bringing manual review coverage to 33 windows / 9,778 cells / 822 source keys. W33’s 11 source-context-mismatched cells remain held unchanged; 267 uncertain cells remain overall and the six earlier exact-context correction holds remain. Cumulative applied corrections are 1,340 across 311 source keys, with 52,502 frozen pending cells outside the formal and manual review lanes.
+
+- Localization: apply 29 W32 exact-hash corrections, bringing the cumulative populated-catalog total to 1,299 across 300 source keys and all twelve locales; six values with missing exact source context remain held, and 256 uncertain values remain unresolved.
+
+- Localization: isolate dynamic string and number placeholders inside localized
+  text for every text direction and English fallback; keep the values unchanged.
+
+- Localization: preserve source identity for external-visualizer messages and
+  isolate configured names/paths while retaining the existing translated
+  fallback label.
+- Localization: isolate dynamic aria-label, title, and confirmation values in
+  every UI language, keep unknown file-delete error codes on the fixed fallback,
+  and include the new helpers in source-coverage extraction.
+
+- Localization: extend source-bound rendering across playback, messaging, pods, rooms, network, and library-health interfaces while keeping unknown API values opaque.
+
+- Localization: route additional discovery, health, acquisition, media-server,
+  playlist, and playback copy through catalog keys; preserve unknown provider
+  and API values, and record the remaining twelve-locale translation inventory.
+
+- Localization: route additional chat, playback, mesh, confirmation, count,
+  report, and background notification copy through the twelve-locale source
+  path; target translations and review remain pending.
+
+- Unknown API error codes that match JavaScript object property names now use
+  the localized fallback instead of breaking error display.
+
+- Localization: correct 110 mixed service labels, day-window controls, French punctuation, and Portuguese transfer labels after a bounded 1,460-cell contextual review across all twelve locales.
+
+- Localization: translate the Automation Center execute action in Brazilian Portuguese.
+- Localization: translate the MusicBrainz base URL field in Brazilian Portuguese.
+- Localization: fixed Content ID and mesh-sync errors plus collection backfill
+  notices now display in the selected interface language with structured
+  success/failure counts; unmatched diagnostics remain unchanged.
+- Localization: translate exact Quarantine Jury status/error messages and the
+  fixed Library Health scan failure; preserve unknown router/server details
+  and isolate dynamic Arabic presentation values.
+- Localization: mark opaque placeholders in Arabic localized messages with
+  undetermined language metadata while retaining automatic bidi isolation.
+- Localization: translate Soulseek connect/disconnect tooltips and the download-exclusion label in all twelve catalogs; check fixed display and accessibility attributes and retain language metadata.
+- Localization coverage verifies that connection and download-exclusion labels update immediately when the selected language changes.
+- Localization: translate the identity-provider sign-in and selected-wishlist filter tooltips in all twelve catalogs; clarify Smart Radio search labels and webhook timeout units, and check tooltip copy in the coverage test.
 - Security: release tag validation is bounded and shell-safe, and manual publisher recovery is limited to the main-branch workflow.
 - CI: Add exact job-scoped JIT labels to shared runner builds and security scans.
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.

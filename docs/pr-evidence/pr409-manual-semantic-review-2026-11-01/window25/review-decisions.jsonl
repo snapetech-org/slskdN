@@ -1,0 +1,300 @@
+{"id":"ar:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"ar:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"ar:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"ar:src_f9995b833690469f","verdict":"keep"}
+{"confidence":"high","id":"ar:src_f9a1e30788475901","reason":"The caller is the Pod Message Backfill panel; its adjacent description says this feature synchronizes missed messages when peers rejoin. These current targets mean replenishment, generic filling, earthwork, or refilling rather than recovery of missed messages.","target":"إدارة استرجاع الرسائل الفائتة","verdict":"correct"}
+{"id":"ar:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"ar:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"ar:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"ar:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"ar:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"ar:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"معرّف MBID للفنان في رادار الإصدارات","verdict":"correct"}
+{"id":"ar:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"ar:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"ar:src_fa00e647d0794304","verdict":"keep"}
+{"id":"ar:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"عدد مرات التشغيل: {plays}","verdict":"correct"}
+{"confidence":"high","id":"ar:src_fa15a5c1d6101055","reason":"This is a color-name option whose backing note color is CSS `teal`. The current Arabic and Korean values name ducks, the Brazilian Portuguese value names the bird, and Indonesian leaves the label untranslated; the replacements name the blue-green color.","target":"أزرق مخضر","verdict":"correct"}
+{"id":"ar:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fa253f1caff0bea3","reason":"The caller displays a count of import-result conflicts resolved. In this software context these are data conflicts, not interpersonal/legal disputes.","target":"التعارضات المحلولة:","verdict":"correct"}
+{"id":"ar:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"ar:src_fa2daf8951be8b5e","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fa2e2a2e9194d044","reason":"This is the accessible name of the toggle that enables an Artist Release Radar subscription. The current Arabic word order makes “release radar” ungrammatical.","target":"تفعيل الاشتراك في رادار الإصدارات","verdict":"correct"}
+{"id":"ar:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"ar:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"ar:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"de:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"de:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"de:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"de:src_f9995b833690469f","verdict":"keep"}
+{"id":"de:src_f9a1e30788475901","verdict":"keep"}
+{"id":"de:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"de:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"de:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"de:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"de:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"de:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"Künstler-MBID im Release-Radar","verdict":"correct"}
+{"id":"de:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"de:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"de:src_fa00e647d0794304","verdict":"keep"}
+{"id":"de:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"de:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} Wiedergaben","verdict":"correct"}
+{"id":"de:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"de:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"de:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"de:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"de:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"de:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"de:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"de:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"de:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"es:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"es:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"es:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"es:src_f9995b833690469f","verdict":"keep"}
+{"confidence":"high","id":"es:src_f9a1e30788475901","reason":"The caller is the Pod Message Backfill panel; its adjacent description says this feature synchronizes missed messages when peers rejoin. These current targets mean replenishment, generic filling, earthwork, or refilling rather than recovery of missed messages.","target":"Gestión de recuperación de mensajes","verdict":"correct"}
+{"id":"es:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"es:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"es:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"es:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"es:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"es:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"MBID del artista en el radar de lanzamientos","verdict":"correct"}
+{"id":"es:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"es:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"es:src_fa00e647d0794304","verdict":"keep"}
+{"id":"es:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"es:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} reproducciones","verdict":"correct"}
+{"id":"es:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"es:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"es:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"es:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"es:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"es:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"es:src_fa362cf0cbda8230","verdict":"keep"}
+{"confidence":"high","id":"es:src_fa79e0df6e4a7a39","reason":"This is the accessible label for an info button that opens the request associated with a transfer. The existing Spanish/French wording says the request is open rather than asking the user to open it.","target":"Abrir la solicitud de origen","verdict":"correct"}
+{"id":"es:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"fr:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"fr:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"fr:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"fr:src_f9995b833690469f","verdict":"keep"}
+{"confidence":"high","id":"fr:src_f9a1e30788475901","reason":"The caller is the Pod Message Backfill panel; its adjacent description says this feature synchronizes missed messages when peers rejoin. These current targets mean replenishment, generic filling, earthwork, or refilling rather than recovery of missed messages.","target":"Gestion du rattrapage des messages","verdict":"correct"}
+{"id":"fr:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"fr:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"fr:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"fr:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"fr:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"fr:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"MBID de l’artiste dans le radar des sorties","verdict":"correct"}
+{"id":"fr:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"fr:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"fr:src_fa00e647d0794304","verdict":"keep"}
+{"id":"fr:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} écoutes","verdict":"correct"}
+{"id":"fr:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"fr:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"fr:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"fr:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"fr:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"fr:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"fr:src_fa362cf0cbda8230","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fa79e0df6e4a7a39","reason":"This is the accessible label for an info button that opens the request associated with a transfer. The existing Spanish/French wording says the request is open rather than asking the user to open it.","target":"Ouvrir la demande d’origine","verdict":"correct"}
+{"id":"fr:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"hi:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"hi:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"hi:src_f9846dc0a3d47b80","verdict":"keep"}
+{"confidence":"high","id":"hi:src_f9995b833690469f","reason":"This setup-health status is emitted when a local username is present; the existing Hindi wording says the identity is filled rather than loaded.","target":"उपयोगकर्ता की पहचान लोड हो गई","verdict":"correct"}
+{"id":"hi:src_f9a1e30788475901","verdict":"keep"}
+{"id":"hi:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"hi:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"hi:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"hi:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"hi:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"hi:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"रिलीज़ रडार में कलाकार का MBID","verdict":"correct"}
+{"id":"hi:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"hi:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"hi:src_fa00e647d0794304","verdict":"keep"}
+{"id":"hi:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} बार चलाया गया","verdict":"correct"}
+{"id":"hi:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"hi:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"hi:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"hi:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"hi:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"hi:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"hi:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"hi:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"hi:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"id:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"id:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"id:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"id:src_f9995b833690469f","verdict":"keep"}
+{"confidence":"high","id":"id:src_f9a1e30788475901","reason":"The caller is the Pod Message Backfill panel; its adjacent description says this feature synchronizes missed messages when peers rejoin. These current targets mean replenishment, generic filling, earthwork, or refilling rather than recovery of missed messages.","target":"Pengelolaan pemulihan pesan yang terlewat","verdict":"correct"}
+{"id":"id:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"id:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"id:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"id:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"id:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"id:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"MBID artis di Radar Rilis","verdict":"correct"}
+{"id":"id:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"id:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"confidence":"high","id":"id:src_fa00e647d0794304","reason":"This is the accessible label for a numeric Chromaprint duration field. The unit is seconds; the existing wording omits or awkwardly attaches the unit in these locales.","target":"Durasi Chromaprint (detik)","verdict":"correct"}
+{"id":"id:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"id:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} kali diputar","verdict":"correct"}
+{"confidence":"high","id":"id:src_fa15a5c1d6101055","reason":"This is a color-name option whose backing note color is CSS `teal`. The current Arabic and Korean values name ducks, the Brazilian Portuguese value names the bird, and Indonesian leaves the label untranslated; the replacements name the blue-green color.","target":"biru kehijauan","verdict":"correct"}
+{"id":"id:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"id:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"id:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"id:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"id:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"id:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"id:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"id:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"ja:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"ja:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"ja:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"ja:src_f9995b833690469f","verdict":"keep"}
+{"id":"ja:src_f9a1e30788475901","verdict":"keep"}
+{"id":"ja:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"ja:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"ja:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"ja:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"ja:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"ja:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"リリースレーダーのアーティスト MBID","verdict":"correct"}
+{"id":"ja:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"ja:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"ja:src_fa00e647d0794304","verdict":"keep"}
+{"id":"ja:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} 回再生","verdict":"correct"}
+{"id":"ja:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"ja:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"ja:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"ja:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"ja:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"ja:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"ja:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"ja:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"ja:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"ko:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"ko:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"ko:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"ko:src_f9995b833690469f","verdict":"keep"}
+{"id":"ko:src_f9a1e30788475901","verdict":"keep"}
+{"id":"ko:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"ko:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"ko:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"ko:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"ko:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"ko:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"릴리스 레이더의 아티스트 MBID","verdict":"correct"}
+{"id":"ko:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"ko:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"ko:src_fa00e647d0794304","verdict":"keep"}
+{"id":"ko:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays}회 재생","verdict":"correct"}
+{"confidence":"high","id":"ko:src_fa15a5c1d6101055","reason":"This is a color-name option whose backing note color is CSS `teal`. The current Arabic and Korean values name ducks, the Brazilian Portuguese value names the bird, and Indonesian leaves the label untranslated; the replacements name the blue-green color.","target":"청록색","verdict":"correct"}
+{"id":"ko:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"ko:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"ko:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"ko:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"ko:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"ko:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"ko:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"ko:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"pt-BR:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"pt-BR:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"pt-BR:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"pt-BR:src_f9995b833690469f","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_f9a1e30788475901","reason":"The caller is the Pod Message Backfill panel; its adjacent description says this feature synchronizes missed messages when peers rejoin. These current targets mean replenishment, generic filling, earthwork, or refilling rather than recovery of missed messages.","target":"Gerenciamento da recuperação de mensagens perdidas","verdict":"correct"}
+{"id":"pt-BR:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"pt-BR:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"pt-BR:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"pt-BR:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"pt-BR:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"MBID do artista no radar de lançamentos","verdict":"correct"}
+{"id":"pt-BR:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"pt-BR:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fa00e647d0794304","reason":"This is the accessible label for a numeric Chromaprint duration field. The unit is seconds; the existing wording omits or awkwardly attaches the unit in these locales.","target":"Duração do Chromaprint em segundos","verdict":"correct"}
+{"id":"pt-BR:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} reproduções","verdict":"correct"}
+{"confidence":"high","id":"pt-BR:src_fa15a5c1d6101055","reason":"This is a color-name option whose backing note color is CSS `teal`. The current Arabic and Korean values name ducks, the Brazilian Portuguese value names the bird, and Indonesian leaves the label untranslated; the replacements name the blue-green color.","target":"verde-azulado","verdict":"correct"}
+{"id":"pt-BR:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"pt-BR:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"pt-BR:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"pt-BR:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"pt-BR:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"pt-BR:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"pt-BR:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"pt-BR:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"vi:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"vi:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"vi:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"vi:src_f9995b833690469f","verdict":"keep"}
+{"confidence":"high","id":"vi:src_f9a1e30788475901","reason":"The caller is the Pod Message Backfill panel; its adjacent description says this feature synchronizes missed messages when peers rejoin. These current targets mean replenishment, generic filling, earthwork, or refilling rather than recovery of missed messages.","target":"Quản lý khôi phục các tin nhắn bị lỡ","verdict":"correct"}
+{"id":"vi:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"vi:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"vi:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"vi:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"vi:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"vi:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"MBID của nghệ sĩ trong radar phát hành","verdict":"correct"}
+{"id":"vi:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"vi:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"id":"vi:src_fa00e647d0794304","verdict":"keep"}
+{"id":"vi:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} lượt phát","verdict":"correct"}
+{"id":"vi:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"vi:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"vi:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"vi:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"vi:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"vi:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"vi:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"vi:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"vi:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"zh-Hans:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"zh-Hans:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"zh-Hans:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"zh-Hans:src_f9995b833690469f","verdict":"keep"}
+{"id":"zh-Hans:src_f9a1e30788475901","verdict":"keep"}
+{"id":"zh-Hans:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"zh-Hans:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"zh-Hans:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"zh-Hans:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"zh-Hans:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"发行雷达中的艺术家 MBID","verdict":"correct"}
+{"id":"zh-Hans:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"zh-Hans:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fa00e647d0794304","reason":"This is the accessible label for a numeric Chromaprint duration field. The unit is seconds; the existing wording omits or awkwardly attaches the unit in these locales.","target":"Chromaprint 时长（秒）","verdict":"correct"}
+{"id":"zh-Hans:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} 次播放","verdict":"correct"}
+{"id":"zh-Hans:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"zh-Hans:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"zh-Hans:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"zh-Hans:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"zh-Hans:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"zh-Hans:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"zh-Hans:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"zh-Hans:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"zh-Hans:src_fa7a4706f7006680","verdict":"keep"}
+{"id":"zh-Hant:src_f97cd2cfcbd4a79e","verdict":"keep"}
+{"id":"zh-Hant:src_f98033a61e9a250c","verdict":"keep"}
+{"id":"zh-Hant:src_f9846dc0a3d47b80","verdict":"keep"}
+{"id":"zh-Hant:src_f9995b833690469f","verdict":"keep"}
+{"id":"zh-Hant:src_f9a1e30788475901","verdict":"keep"}
+{"id":"zh-Hant:src_f9aba0bbcbc6fded","verdict":"keep"}
+{"id":"zh-Hant:src_f9ad1321f5a94977","verdict":"keep"}
+{"id":"zh-Hant:src_f9ade3634e005d24","verdict":"keep"}
+{"id":"zh-Hant:src_f9b05fdecff2a5c2","verdict":"keep"}
+{"id":"zh-Hant:src_f9ceaf266e5fee37","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_f9cf6944b987830b","reason":"This is the accessible label for the Artist MBID input in the Artist Release Radar subscription form. “Release” modifies the radar feature; the existing targets parse it as an action to release/publish the artist or MBID.","target":"發行雷達中的藝人 MBID","verdict":"correct"}
+{"id":"zh-Hant:src_f9db72ced1ee8bb9","verdict":"keep"}
+{"id":"zh-Hant:src_f9ddf2d05b578c8e","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fa00e647d0794304","reason":"This is the accessible label for a numeric Chromaprint duration field. The unit is seconds; the existing wording omits or awkwardly attaches the unit in these locales.","target":"Chromaprint 時長（秒）","verdict":"correct"}
+{"id":"zh-Hant:src_fa0562414281ef18","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fa0fa9b5e7ea5c41","reason":"The caller renders a numeric `item.plays` count beneath an item in listening statistics. The existing targets use a verb, a theatrical “play,” or otherwise fail to label the count of music plays.","target":"{plays} 次播放","verdict":"correct"}
+{"id":"zh-Hant:src_fa15a5c1d6101055","verdict":"keep"}
+{"id":"zh-Hant:src_fa1f0a72f5dd3830","verdict":"keep"}
+{"id":"zh-Hant:src_fa253f1caff0bea3","verdict":"keep"}
+{"id":"zh-Hant:src_fa2b76d31fa4fb14","verdict":"keep"}
+{"id":"zh-Hant:src_fa2daf8951be8b5e","verdict":"keep"}
+{"id":"zh-Hant:src_fa2e2a2e9194d044","verdict":"keep"}
+{"id":"zh-Hant:src_fa362cf0cbda8230","verdict":"keep"}
+{"id":"zh-Hant:src_fa79e0df6e4a7a39","verdict":"keep"}
+{"id":"zh-Hant:src_fa7a4706f7006680","verdict":"keep"}

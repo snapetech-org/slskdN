@@ -1,0 +1,7 @@
+# slskdN PR #409 manual semantic review: thirteenth 25-key slice
+
+The original scratch bundle passed its exact-head verifier at PR head `b4b66f815240a7b8636a61d02a208efc314f8e10` / tree `853677967f0691c53c10cb52d565c5c046ae68e9`. The source/catalog `src` tree `fff1ef49df31a8d1095cd43148c186fbcd7f5089` matches baseline `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`.
+
+This disjoint slice covers 25 keys / 300 cells across all twelve locales: 240 keep, 36 high-confidence correction candidates, and 24 uncertain. Corrections address Wishlist search-hit counts, Mesh overlay-network sessions, imported-search count grammar, Smart Radio wording in three locales, Arabic fast-forward wording, Lidarr import terminology, and the Local Disables statistic. “Playlist collection” and “native Soulseek interests” remain uncertain in all locales because their product meanings need locale-native wording.
+
+The original scratch verifier checked checksums, exact source/catalog state, pending rows, placeholders/protected literals, formal overlap, and all twelve previous windows; it found zero formal-result overlap and zero overlap with prior manual evidence. The sibling-sensitive verifier remains in scratch because its scan treats committed copies as duplicate reviews. The manifest retains scratch hashes and packaging provenance. Suggestions remain unapplied; native-speaker review is still required.

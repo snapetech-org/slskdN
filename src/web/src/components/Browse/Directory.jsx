@@ -1,5 +1,5 @@
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { interfaceAttributeText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as transfers from '../../lib/transfers';
 import { formatBytes } from '../../lib/util';
 import FileList from '../Shared/FileList';
@@ -10,7 +10,7 @@ import { Card, Icon, Message } from 'semantic-ui-react';
 const Button = TooltipButton;
 
 const getDownloadErrorMessage = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'The download request could not be completed.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'The download request could not be completed.');
 
 const initialState = {
   downloadError: '',
@@ -104,7 +104,7 @@ class Directory extends Component {
           <Card.Content extra>
             <span>
               <Button
-                aria-label={interfaceText(selectedFiles.length === 1
+                aria-label={interfaceAttributeText(selectedFiles.length === 1
                   ? 'Download {count} selected file'
                   : 'Download {count} selected files', { count: selectedFiles.length })}
                 color="green"

@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "4ebd4591994ee709051156df9c9d42160da0b165",
+  "tree": "89658bbd1e5ae93080d8fd61ef71beea811e99a2",
+  "sourceSubtreeTree": "b5a776a81982ebde32163f06d47c57fc79e40ad9",
+  "generatedUtc": "2026-11-02T00:58:27Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 18,
+    "cells": 5400,
+    "keys": 450,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 736,
+    "ids": 736,
+    "sha256": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196"
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_f25ebda399d5624d",
+      "src_f28027121308c8de",
+      "src_f287935a7d706912",
+      "src_f291bb6a0612d059",
+      "src_f2a3e096de8046ca",
+      "src_f2a7742db5857ac5",
+      "src_f2b783e561284d41",
+      "src_f2bb8727f2cd0fe7",
+      "src_f2c1317ecf0481d5",
+      "src_f2ccf043e2022df1",
+      "src_f2cf76de40f001fe",
+      "src_f2daa18861b5c952",
+      "src_f2efdfb071c0a844",
+      "src_f2f84e72ed0be29e",
+      "src_f2fdc50af8483159",
+      "src_f30006f481124248",
+      "src_f305b42911f86726",
+      "src_f317ae3475e0da18",
+      "src_f335ad7ca363696f",
+      "src_f339be2a959bbd64",
+      "src_f33deea9b1009db3",
+      "src_f34186f67a38a598",
+      "src_f34794ebb03dcce0",
+      "src_f34e47fe2407aef1",
+      "src_f34f5b18ffbe66dd"
+    ],
+    "sourceIdListSha256": "95a0be6235e8af92a305eb070398294ff66394e56d2cbfdc6ae7bc7ef6aaee03",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 297,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "d76594af79808b38ed8bed729b6bba9ac7c812a6a11263f37422d0ecd2d1f2c4",
+    "zh-Hans": "3f814961af9d1828a11979d469a47c27f92effe0b712de644b756525e7214413",
+    "hi": "44bd6126a00076a87c2bf5cb3c6a0604b1b956d3dc0ce88ce64c94307c8d40a0",
+    "de": "fa01f543c9bb7671a5f4e9a17f082967117df939386da7babb843c5de3227f11",
+    "ja": "901d539dda35730f63f0ddd530153aedbb4939b66de8fa93e39308cccf258102",
+    "fr": "491e0c43500f4c8a25a2bb5fccc1c029bdd0f62d3e3d2d59b15023827ca9a4cf",
+    "pt-BR": "e85cc3a83efaf0dd2a6e6c2cf3c698146877faac85a8d4f4ee2309639261d348",
+    "ar": "4cd66e38c09aa6b68d6dad005e484e9f9c0dc3d317df3675b19c55d60ee972bb",
+    "ko": "ec2fdeeea662fc9f9bccdcae35f189392f1e561210663afc94ac7d2adb177b4b",
+    "zh-Hant": "8c4850478ed0f33f7027f2f6bd7954a77b060c3794f387281f05a278e07e58f4",
+    "vi": "13f011cbf7f074bedb7ca62fa10f54c1e0f4d398b2385900abe4aa729339b16c",
+    "id": "feb123cfa7ceead1ba8d740f3c3e683c9db312a6434d895778c0e5ee02a7e6af"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "675a23d87cb111538504af36d39cb5b6efe395248503c4f5165c53b29aa3cf8a"
+  },
+  "reviewerMethod": "independent semantic review of pinned source context and code callsites; no local translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "decisionCounts": {
+    "keep": 243,
+    "correct": 57,
+    "uncertain": 0
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "zh-Hans": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    }
+  },
+  "overallConfidence": "moderate",
+  "correctionFindings": [
+    {
+      "sourceId": "src_f25ebda399d5624d",
+      "source": "Manage your peer contacts",
+      "affectedLocales": [
+        "zh-Hans",
+        "hi",
+        "ja",
+        "ko",
+        "zh-Hant",
+        "id"
+      ],
+      "finding": "This Contacts screen stores remote network identities (`peerId`) and discovers nearby peers; सहकर्मी means colleague rather than a P2P peer."
+    },
+    {
+      "sourceId": "src_f2a3e096de8046ca",
+      "source": "{count} mesh security signals visible",
+      "affectedLocales": [
+        "fr"
+      ],
+      "finding": "The current adjective maillé is singular and the phrase omits the mesh network it modifies; the source describes visible security signals from the mesh network."
+    },
+    {
+      "sourceId": "src_f2bb8727f2cd0fe7",
+      "source": "Previous incoming shares page",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "ja",
+        "pt-BR",
+        "ar",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "This is pagination for files shared with the current user; acciones entrantes reads as incoming actions or financial shares."
+    },
+    {
+      "sourceId": "src_f2daa18861b5c952",
+      "source": "Bundle",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "de",
+        "ar",
+        "zh-Hant",
+        "vi"
+      ],
+      "finding": "The modal shows a redacted diagnostic data package; manojo means a bunch of objects."
+    },
+    {
+      "sourceId": "src_f2efdfb071c0a844",
+      "source": "Federation rate limit window seconds",
+      "affectedLocales": [
+        "zh-Hans",
+        "hi",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "This is the duration of a federation rate-limit window; the current transliterated “window seconds” order is not a natural field label."
+    },
+    {
+      "sourceId": "src_f305b42911f86726",
+      "source": "Cap native MilkDrop rendering for lower GPU load, or leave it uncapped for maximum smoothness.",
+      "affectedLocales": [
+        "zh-Hans",
+        "hi",
+        "de",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "id"
+      ],
+      "finding": "The tooltip and neighboring FPS-cap setting show that cap means limit the frame rate; قم بتغطية means cover."
+    },
+    {
+      "sourceId": "src_f33deea9b1009db3",
+      "source": "Released",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The Lidarr table cell displays album.releaseDate; the current wording means released/free rather than the release date."
+    },
+    {
+      "sourceId": "src_f34794ebb03dcce0",
+      "source": "Fetch Lidarr system status using the configured URL and API key.",
+      "affectedLocales": [
+        "es",
+        "de",
+        "fr",
+        "pt-BR",
+        "ar",
+        "vi",
+        "id"
+      ],
+      "finding": "The tooltip names a configured URL and one API key; the current wording calls the URL itself a key."
+    },
+    {
+      "sourceId": "src_f34f5b18ffbe66dd",
+      "source": "No VPN-Capable Pods",
+      "affectedLocales": [
+        "fr"
+      ],
+      "finding": "This empty state specifically requires a Pod with VPN gateway capability; module replaces the product entity with a generic module."
+    },
+    {
+      "sourceId": "src_f34e47fe2407aef1",
+      "source": "Weighted Score:",
+      "affectedLocales": [
+        "hi"
+      ],
+      "finding": "The current Hindi value contains the misspelling स्कोर्त; स्कोर is score."
+    }
+  ],
+  "uncertaintyFindings": [],
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "5074f55c96eef5782e9d002676fc6214902baf207fbedf837b932d58c53c2fee"
+  },
+  "files": {
+    "review-input.jsonl": {
+      "bytes": 533479,
+      "sha256": "675a23d87cb111538504af36d39cb5b6efe395248503c4f5165c53b29aa3cf8a",
+      "rows": 300
+    },
+    "review-decisions.jsonl": {
+      "bytes": 27896,
+      "sha256": "5074f55c96eef5782e9d002676fc6214902baf207fbedf837b932d58c53c2fee",
+      "rows": 300
+    },
+    "verification.json": {
+      "bytes": 1732,
+      "sha256": "c46e5b5762ed281e73e447eaf1ddd2d41c087c2615b34eb5dcbe36807d919b74"
+    },
+    "scratchVerifier": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window19-4ebd4591-20261101/verify_evidence.py",
+      "sha256": "60154a756ff18d45494b00f73b955b18923ff3c1360bfd2567655c8214d7af13",
+      "includedInPrCopy": false,
+      "provenanceNote": "Verifier rechecks exact live PR head/tree and was run before the docs-only evidence package advanced that head; original verifier is retained in task scratch."
+    }
+  }
+}

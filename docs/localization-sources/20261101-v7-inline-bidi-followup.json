@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "53af3400b46c8a30cb2b021b9e7edf0ac6086f86",
+  "sourceHead": "cfde13f414b13f71c26585cf061fcd38abd9bd7b",
+  "state": "inline localized-text bidi boundary follow-up; no source or translation scope delta",
+  "sourceReferenceCountDelta": 0,
+  "uniqueSourceCountDelta": 0,
+  "catalogDelta": 0,
+  "pendingTargetCellDelta": 0,
+  "renderBoundary": {
+    "path": "src/web/src/components/Shared/LocalizedText.jsx",
+    "fileSha256": "63580997056b598d0752519d059776abd607c1f105e2b299cd270d0a4a227319",
+    "behavior": "Every own string or number placeholder rendered by LocalizedText is placed in a DOM bdi with dir=auto and lang=und, regardless of translated text direction or English fallback.",
+    "storedApiOrCopiedValueChanges": 0
+  },
+  "regressionCoverage": {
+    "path": "src/web/src/components/Shared/LocalizedText.test.jsx",
+    "fileSha256": "251933b69ca7db7c176c6a2e698f8c8d4620931c806bde4b1517e21681cbc48a",
+    "cases": [
+      "Spanish-selected English fallback containing an Arabic provider value",
+      "Arabic-selected English fallback containing an Arabic provider value"
+    ],
+    "testsRun": false
+  },
+  "boundaryNotes": [
+    "The LocalizedText fallback path previously inserted bidi isolates only for translated RTL text; LTR and English-fallback placeholders were emitted inline.",
+    "Values remain unchanged and are isolated only in rendered React output.",
+    "This is independent of native aria-label/title/dialog isolation recorded in v6."
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "result": "PASS",
+  "applicationBaseHead": "64556f04f436af2e53860cdf14f0bf7d44118cfe",
+  "applicationBaseTree": "c101f1032ed25dcb6cd0d693704aac44bea0db2f",
+  "applicationCommit": "740ae56ebe31893319648edadfc7da087ba5dfe3",
+  "applicationTree": "b3b70ef49cc4ba2556c9960868231505fb57d1df",
+  "currentHead": "740ae56ebe31893319648edadfc7da087ba5dfe3",
+  "currentTree": "b3b70ef49cc4ba2556c9960868231505fb57d1df",
+  "catalogCensus": {
+    "locales": 12,
+    "keysPerLocale": 6169,
+    "totalValues": 74028,
+    "changedCellsSinceFrozenBaseline": 934,
+    "changedCellsByLocale": {
+      "ar": 104,
+      "de": 47,
+      "es": 77,
+      "fr": 75,
+      "hi": 80,
+      "id": 85,
+      "ja": 51,
+      "ko": 66,
+      "pt-BR": 68,
+      "vi": 95,
+      "zh-Hans": 94,
+      "zh-Hant": 92
+    },
+    "catalogFileSha256": {
+      "src/web/public/locales/ar.json": "f3c0505a9667745581cde46a01b2a7cfe65462e296f4bea21309b77833ad40fd",
+      "src/web/public/locales/de.json": "b7ff5aac6d149defdf60082663500eaa21e1f6d6b763d9e0c9d3e56f07f99b9a",
+      "src/web/public/locales/es.json": "37fd5bbf3f51168c08ee2617345eba76224c09d27361124d8b53c3abacf25702",
+      "src/web/public/locales/fr.json": "c3413d63027d8010c408ff1586e954e51770effa764331370f35a30a6c30188c",
+      "src/web/public/locales/hi.json": "1780feb9937c3c8ddb60d967444c3c5af41d7e9ff713886ab82b12dd36199898",
+      "src/web/public/locales/id.json": "580714fd7db7c4e05cab49ba9643bcc8a8c4e608915bdf523d1c57d18ce5a7bd",
+      "src/web/public/locales/ja.json": "aee7222906f04af717078e50a6e04fc28f7971d312fcb11957a2249f77158db4",
+      "src/web/public/locales/ko.json": "65513e3c8a0f47abc544c11539896c3bc96709f2d41409e8d1923934f33eb133",
+      "src/web/public/locales/pt-BR.json": "3b281db441f557f97c22e567fb5ecf89a9213a573ad827c657b7a0c3eaaecb84",
+      "src/web/public/locales/vi.json": "55f4542a5db2f8243b3fb9fa5a6b85684e2a29666d2dde335c04dd705692a646",
+      "src/web/public/locales/zh-Hans.json": "29a977b5975cb6de8f5c4984df078caf57c68bcfb4ba48902cf00b0ec1905c18",
+      "src/web/public/locales/zh-Hant.json": "ed6d8044523f3bb3ee39efab5bbe146becc14197a94b1839dc74f56b19fac041"
+    }
+  },
+  "application": {
+    "previousAppliedCells": 869,
+    "newManualWindowCells": 53,
+    "newIndependentCrossReviewCells": 12,
+    "newAppliedCells": 65,
+    "totalAppliedCells": 934,
+    "appliedSourceKeys": 228,
+    "heldNoContext": 6,
+    "newPerLocaleCellCounts": {
+      "ar": 7,
+      "de": 2,
+      "es": 6,
+      "fr": 7,
+      "hi": 3,
+      "id": 5,
+      "ja": 4,
+      "ko": 3,
+      "pt-BR": 5,
+      "vi": 5,
+      "zh-Hans": 3,
+      "zh-Hant": 3
+    }
+  },
+  "independentManualCorrectionReview": {
+    "rows": 53,
+    "acceptedAsProposed": 53,
+    "refinements": 0,
+    "holds": 0,
+    "semanticConfidence": "high",
+    "localeQualityConfidence": "moderate",
+    "nativeSpeakerReview": "outstanding",
+    "sourceLedgerSha256": "cc976e55113ede92e8d36370babcf37150ccc09929ceb5b6e38edad0cbe1087e"
+  },
+  "independentCrossReview": {
+    "rows": 12,
+    "sourceId": "src_f41792666b3f8d5b",
+    "acceptedAsProposed": 10,
+    "refinedAndAccepted": 2,
+    "holds": 0,
+    "resolvedUncertainCells": 12,
+    "remainingUncertainCells": 208,
+    "semanticConfidence": "high",
+    "localeQualityConfidence": "moderate",
+    "nativeSpeakerReview": "outstanding",
+    "sourceLedgerSha256": "4767ca0981a52863f848185554857afbeb7479602b9a339c3da730e31c3911f5"
+  },
+  "manualReconciliation": {
+    "windows": 23,
+    "keys": 575,
+    "cells": 6900,
+    "verdicts": {
+      "keep": 5752,
+      "correct": 928,
+      "uncertain": 220
+    },
+    "correctPlusCrossReviewDispositions": 940,
+    "appliedAndHeld": {
+      "applied": 934,
+      "held": 6
+    },
+    "uncertainBeforeCrossReview": 220,
+    "independentlyResolved": 12,
+    "uncertainRemaining": 208,
+    "formalOverlap": 0,
+    "manualOverlap": 0,
+    "unreconciledCorrections": 0,
+    "perLocale": {
+      "ar": {
+        "keep": 453,
+        "correct": 104,
+        "uncertain": 18
+      },
+      "de": {
+        "keep": 512,
+        "correct": 46,
+        "uncertain": 17
+      },
+      "es": {
+        "keep": 480,
+        "correct": 77,
+        "uncertain": 18
+      },
+      "fr": {
+        "keep": 483,
+        "correct": 75,
+        "uncertain": 17
+      },
+      "hi": {
+        "keep": 476,
+        "correct": 80,
+        "uncertain": 19
+      },
+      "id": {
+        "keep": 472,
+        "correct": 85,
+        "uncertain": 18
+      },
+      "ja": {
+        "keep": 506,
+        "correct": 50,
+        "uncertain": 19
+      },
+      "ko": {
+        "keep": 492,
+        "correct": 65,
+        "uncertain": 18
+      },
+      "pt-BR": {
+        "keep": 491,
+        "correct": 67,
+        "uncertain": 17
+      },
+      "vi": {
+        "keep": 459,
+        "correct": 95,
+        "uncertain": 21
+      },
+      "zh-Hans": {
+        "keep": 463,
+        "correct": 93,
+        "uncertain": 19
+      },
+      "zh-Hant": {
+        "keep": 465,
+        "correct": 91,
+        "uncertain": 19
+      }
+    }
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0,
+  "changedPathsInApplicationCommit": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ]
+}

@@ -1,5 +1,5 @@
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import './Rooms.css';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import * as rooms from '../../lib/rooms';
@@ -10,7 +10,7 @@ import RoomSession from './RoomSession';
 import TooltipButton from '../Shared/TooltipButton';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Dropdown,
@@ -252,9 +252,9 @@ const Rooms = () => {
       openRoomTab(roomName);
     } catch (error) {
       console.error('Failed to join room:', error);
-      toast.error(interfaceText('Failed to join room "{roomName}": {message}', {
+      toast.error(interfaceToastText('Failed to join room "{roomName}": {message}', {
         roomName,
-        message: getApiErrorMessage(error, { t: interfaceText }),
+        message: getApiErrorMessageOutput(error, { t: interfaceText }),
       }));
     }
   };
@@ -333,7 +333,7 @@ const Rooms = () => {
         {tab.label}
         {tabs.length > 1 && (
           <TooltipButton
-            aria-label={interfaceText("Close {label} room tab", { "label": (tab.label) })}
+            aria-label={interfaceAttributeText("Close {label} room tab", { "label": (tab.label) })}
             basic
             className="room-tab-close"
             compact
@@ -345,7 +345,7 @@ const Rooms = () => {
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
             tooltip="Close the {label} room tab without leaving the Soulseek room."
-           {...interfaceTextProps("Close {label} room tab", { label: tab.label })}>
+           {...interfaceAttributeTextProps("Close {label} room tab", { label: tab.label })}>
             <Icon name="close" />
           </TooltipButton>
         )}

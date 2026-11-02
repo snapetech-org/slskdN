@@ -1,14 +1,21 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import {
+  localizeDiscoveryGraphEdgeType,
+  localizeDiscoveryGraphEvidenceLaneLabel,
+  localizeDiscoveryGraphReason,
+  localizeDiscoveryGraphSummary,
+} from '../../lib/discoveryGraphLocale';
 import * as discoveryGraph from '../../lib/discoveryGraph';
 import * as searches from '../../lib/searches';
 import { getLocalStorageItem } from '../../lib/storage';
+import { formatRegionalNumber } from '../../lib/regionalFormat';
 import './Search.css';
 import DiscoveryGraphAtlas from './DiscoveryGraphAtlas';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Dropdown,
@@ -116,7 +123,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
       }
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to build discovery graph'));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to build discovery graph'));
     } finally {
       setLoading(false);
     }
@@ -168,16 +175,16 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
     }).searchQueries;
 
     if (queries.length === 0) {
-      toast.error(interfaceText("No nearby track nodes were available to queue"));
+      toast.error(interfaceToastText("No nearby track nodes were available to queue"));
       return;
     }
 
     try {
       const count = await searches.createBatch({ queries });
-      toast.success(interfaceText("Started {count} nearby atlas searches", { "count": (count) }));
+      toast.success(interfaceToastText("Started {count} nearby atlas searches", { "count": (count) }));
     } catch (error) {
       console.error(error);
-      toast.error(getApiErrorMessage(error, { t: interfaceText }));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }));
     }
   };
 
@@ -193,10 +200,10 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
 
     try {
       await navigator.clipboard.writeText(report);
-      toast.success(interfaceText("Discovery Graph branch report copied"));
+      toast.success(interfaceToastText("Discovery Graph branch report copied"));
     } catch (error) {
       console.error(error);
-      toast.error(interfaceText("Unable to copy Discovery Graph branch report"));
+      toast.error(interfaceToastText("Unable to copy Discovery Graph branch report"));
     }
   };
 
@@ -380,7 +387,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
               onClick={() => toggleEdgeType(edgeType)}
               size="tiny"
             >
-              {edgeType}
+              {localizeDiscoveryGraphEdgeType(edgeType)}
             </Label>
           ))}
         </div>
@@ -413,7 +420,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
           <Header as="h5" style={{ marginBottom: '0.35em', marginTop: '1em' }}>
             {graph.title}
           </Header>
-          <p style={{ marginTop: 0 }}>{graph.summary}</p>
+          <p style={{ marginTop: 0 }}>{localizeDiscoveryGraphSummary(graph.summary)}</p>
           {pinnedNode ? (
             <div style={{ marginBottom: '0.75em' }}>
               <Label color="pink" size="tiny">
@@ -424,7 +431,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
           <div style={{ marginBottom: '0.75em' }}>
             {edgeTypeSummary.map(([edgeType, count]) => (
               <Label key={edgeType} size="tiny">
-                {edgeType} {count}
+                {localizeDiscoveryGraphEdgeType(edgeType)} {formatRegionalNumber(count)}
               </Label>
             ))}
           </div>
@@ -479,8 +486,8 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                         {route.source.label} → {route.target.label}
                       </List.Header>
                       <List.Description>
-                        {route.edge.edgeType} <LocalizedText source={"· score"} />{" "}{Math.round(route.score * 100)} ·{' '}
-                        {route.edge.reason}
+                        {localizeDiscoveryGraphEdgeType(route.edge.edgeType)} <LocalizedText source={"· score"} />{" "}{formatRegionalNumber(Math.round(route.score * 100))} ·{' '}
+                        {localizeDiscoveryGraphReason(route.edge.reason)}
                       </List.Description>
                     </List.Content>
                   </List.Item>
@@ -514,7 +521,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                     {(nodeMap[edge.targetNodeId]?.label || edge.targetNodeId)}
                   </List.Header>
                   <List.Description>
-                    {edge.edgeType} · {edge.reason}
+                    {localizeDiscoveryGraphEdgeType(edge.edgeType)} · {localizeDiscoveryGraphReason(edge.reason)}
                     {edge.provenance ? <LocalizedText source={"· {provenance}"} values={{ "provenance": (edge.provenance) }} /> : ''}
                   </List.Description>
                   {edge.scoreComponents &&
@@ -523,7 +530,7 @@ const DiscoveryGraphAtlasPanel = ({ disabled, persistRoute = false }) => {
                       {Object.entries(edge.scoreComponents)
                         .map(
                           ([key, value]) =>
-                            `${key} ${Math.round((value || 0) * 100)}`,
+                            `${localizeDiscoveryGraphEvidenceLaneLabel(key)} ${formatRegionalNumber(Math.round((value || 0) * 100))}`,
                         )
                         .join(' | ')}
                     </List.Description>

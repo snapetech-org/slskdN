@@ -1,0 +1,300 @@
+{"id": "es:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "zh-Hans:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "hi:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "de:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "ja:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "fr:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "pt-BR:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "ar:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "ko:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "zh-Hant:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "vi:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "id:src_e9cb3c5074ab5622", "verdict": "uncertain", "reason": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."}
+{"id": "es:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "zh-Hans:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "hi:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "de:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "ja:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "fr:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "pt-BR:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "ar:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "ko:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "zh-Hant:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "vi:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "id:src_e9cd7b7f08611d1e", "verdict": "keep"}
+{"id": "es:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "zh-Hans:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "hi:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "de:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "ja:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "fr:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "pt-BR:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "ar:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "ko:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "zh-Hant:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "vi:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "id:src_e9cfb4e7caa5b13b", "verdict": "keep"}
+{"id": "es:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "zh-Hans:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "hi:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "de:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "ja:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "fr:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "pt-BR:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "ar:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "ko:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "zh-Hant:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "vi:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "id:src_e9d1efe9c556129f", "verdict": "keep"}
+{"id": "es:src_ea0a452dff8d626e", "verdict": "correct", "target": "Resultados:", "confidence": "high", "reason": "The Wishlist shows matching Soulseek files and hidden locked matches under this count. “Visitas” means visits, not search hits."}
+{"id": "zh-Hans:src_ea0a452dff8d626e", "verdict": "correct", "target": "命中数：", "confidence": "high", "reason": "The Wishlist shows matching Soulseek files under this count. “点击次数” means click count, not search hits."}
+{"id": "hi:src_ea0a452dff8d626e", "verdict": "keep"}
+{"id": "de:src_ea0a452dff8d626e", "verdict": "keep"}
+{"id": "ja:src_ea0a452dff8d626e", "verdict": "keep"}
+{"id": "fr:src_ea0a452dff8d626e", "verdict": "correct", "target": "Correspondances :", "confidence": "high", "reason": "The Wishlist shows files matched by a search. “Coups” means hits/strikes without the search-result meaning."}
+{"id": "pt-BR:src_ea0a452dff8d626e", "verdict": "correct", "target": "Resultados:", "confidence": "high", "reason": "The Wishlist shows matching Soulseek files. “Acessos” means accesses/visits rather than search hits."}
+{"id": "ar:src_ea0a452dff8d626e", "verdict": "correct", "target": "النتائج:", "confidence": "high", "reason": "The Wishlist shows matching Soulseek files. “الزيارات” means visits rather than search hits."}
+{"id": "ko:src_ea0a452dff8d626e", "verdict": "correct", "target": "검색 결과 수:", "confidence": "high", "reason": "The Wishlist shows matching Soulseek files. “조회수” means view count rather than search hits."}
+{"id": "zh-Hant:src_ea0a452dff8d626e", "verdict": "correct", "target": "命中數：", "confidence": "high", "reason": "The Wishlist shows matching Soulseek files. “點擊次數” means click count, not search hits."}
+{"id": "vi:src_ea0a452dff8d626e", "verdict": "correct", "target": "Kết quả:", "confidence": "high", "reason": "The Wishlist shows matched files. “Lượt truy cập” means visits, not search hits."}
+{"id": "id:src_ea0a452dff8d626e", "verdict": "keep"}
+{"id": "es:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "zh-Hans:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "hi:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "de:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "ja:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "fr:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "pt-BR:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "ar:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "ko:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "zh-Hant:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "vi:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "id:src_ea0b350e75967161", "verdict": "keep"}
+{"id": "es:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "zh-Hans:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "hi:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "de:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "ja:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "fr:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "pt-BR:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "ar:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "ko:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "zh-Hant:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "vi:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "id:src_ea2100dc89ae9fe2", "verdict": "keep"}
+{"id": "es:src_ea35e6dae2aae8e7", "verdict": "correct", "target": "Sesiones de la red superpuesta", "confidence": "high", "reason": "This is a count of active Mesh overlay-network connections. “Sesiones superpuestas” means sessions that overlap in time."}
+{"id": "zh-Hans:src_ea35e6dae2aae8e7", "verdict": "correct", "target": "覆盖网络会话", "confidence": "high", "reason": "This is a count of active Mesh overlay-network connections. “叠加会话” can mean layered or overlapping sessions."}
+{"id": "hi:src_ea35e6dae2aae8e7", "verdict": "keep"}
+{"id": "de:src_ea35e6dae2aae8e7", "verdict": "keep"}
+{"id": "ja:src_ea35e6dae2aae8e7", "verdict": "keep"}
+{"id": "fr:src_ea35e6dae2aae8e7", "verdict": "correct", "target": "Sessions du réseau superposé", "confidence": "high", "reason": "This is a count of active Mesh overlay-network connections. “Séances de superposition” does not name network sessions."}
+{"id": "pt-BR:src_ea35e6dae2aae8e7", "verdict": "correct", "target": "Sessões da rede de sobreposição", "confidence": "high", "reason": "This is a count of active Mesh overlay-network connections. “Sessões de sobreposição” can mean overlapping sessions."}
+{"id": "ar:src_ea35e6dae2aae8e7", "verdict": "keep"}
+{"id": "ko:src_ea35e6dae2aae8e7", "verdict": "keep"}
+{"id": "zh-Hant:src_ea35e6dae2aae8e7", "verdict": "correct", "target": "覆蓋網路工作階段", "confidence": "high", "reason": "This is a count of active Mesh overlay-network connections. “疊加會話” can mean layered or overlapping sessions."}
+{"id": "vi:src_ea35e6dae2aae8e7", "verdict": "correct", "target": "Phiên mạng phủ", "confidence": "high", "reason": "This is a count of active Mesh overlay-network connections. The current phrase can be read as UI overlay sessions; name the network context."}
+{"id": "id:src_ea35e6dae2aae8e7", "verdict": "correct", "target": "Sesi jaringan overlay", "confidence": "high", "reason": "This is a count of active Mesh overlay-network connections. “Hamparan” alone can mean a visual overlay; name the network context."}
+{"id": "es:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "zh-Hans:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "hi:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "de:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "ja:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "fr:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "pt-BR:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "ar:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "ko:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "zh-Hant:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "vi:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "id:src_ea388a892fa70d24", "verdict": "keep"}
+{"id": "es:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "zh-Hans:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "hi:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "de:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "ja:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "fr:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "pt-BR:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "ar:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "ko:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "zh-Hant:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "vi:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "id:src_ea4ec3d04e7faae6", "verdict": "keep"}
+{"id": "es:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "zh-Hans:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "hi:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "de:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "ja:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "fr:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "pt-BR:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "ar:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "ko:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "zh-Hant:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "vi:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "id:src_ea6ec02e136124bc", "verdict": "keep"}
+{"id": "es:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "zh-Hans:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "hi:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "de:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "ja:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "fr:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "pt-BR:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "ar:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "ko:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "zh-Hant:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "vi:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "id:src_ea7c587572fba577", "verdict": "keep"}
+{"id": "es:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "zh-Hans:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "hi:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "de:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "ja:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "fr:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "pt-BR:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "ar:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "ko:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "zh-Hant:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "vi:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "id:src_ea8229f7ee2a197e", "verdict": "keep"}
+{"id": "es:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "zh-Hans:src_ea8b0355da9f3185", "verdict": "correct", "target": "网络公平性限制了远程智能电台。重试前请检查共享活动。", "confidence": "high", "reason": "This PlayerBar error concerns the Smart Radio stream. “远程广播” means a broadcast/radio transmission; the adjacent Smart Radio feature label uses “智能电台.”"}
+{"id": "hi:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "de:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "ja:src_ea8b0355da9f3185", "verdict": "correct", "target": "ネットワークの公平性によりリモート・スマートラジオは制限されています。再試行前に共有状況を確認してください。", "confidence": "high", "reason": "This PlayerBar error concerns the Smart Radio stream. “リモートラジオ” can mean a radio transmission; use the established Smart Radio feature term."}
+{"id": "fr:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "pt-BR:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "ar:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "ko:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "zh-Hant:src_ea8b0355da9f3185", "verdict": "correct", "target": "遠端智慧電台受網路公平性限制。重試前請檢查分享活動。", "confidence": "high", "reason": "This PlayerBar error concerns the Smart Radio stream. “遠端廣播” means a broadcast/radio transmission; the adjacent Smart Radio feature label uses “智慧電台.”"}
+{"id": "vi:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "id:src_ea8b0355da9f3185", "verdict": "keep"}
+{"id": "es:src_eaa0e4919b66a927", "verdict": "correct", "target": "Se importaron {createdCount} búsquedas ({duplicateCount} duplicadas, {skippedCount} omitidas)", "confidence": "high", "reason": "This toast reports counts of imported, duplicate, and skipped searches. The current “búsquedas importadas de {count}” makes the count sound like a source."}
+{"id": "zh-Hans:src_eaa0e4919b66a927", "verdict": "correct", "target": "已导入 {createdCount} 项搜索（{duplicateCount} 项重复，{skippedCount} 项已跳过）", "confidence": "high", "reason": "This toast reports search counts. The current targets place bare numbers before nouns without a classifier, making the quantities unnatural."}
+{"id": "hi:src_eaa0e4919b66a927", "verdict": "keep"}
+{"id": "de:src_eaa0e4919b66a927", "verdict": "correct", "target": "{createdCount} Suchen importiert ({duplicateCount} Duplikate, {skippedCount} übersprungen)", "confidence": "high", "reason": "This toast reports counts of imported, duplicate, and skipped searches. “Importierte {count}-Suchen” forms an incorrect compound."}
+{"id": "ja:src_eaa0e4919b66a927", "verdict": "correct", "target": "{createdCount} 件の検索をインポートしました（重複 {duplicateCount} 件、スキップ {skippedCount} 件）", "confidence": "high", "reason": "This toast reports search counts. The current wording lacks Japanese count classifiers and reads as a bare number modifying “search.”"}
+{"id": "fr:src_eaa0e4919b66a927", "verdict": "correct", "target": "{createdCount} recherches importées ({duplicateCount} doublons, {skippedCount} ignorées)", "confidence": "high", "reason": "This toast reports counts of imported, duplicate, and skipped searches. The current word order puts the number between the noun and adjective."}
+{"id": "pt-BR:src_eaa0e4919b66a927", "verdict": "correct", "target": "{createdCount} pesquisas importadas ({duplicateCount} duplicatas, {skippedCount} ignoradas)", "confidence": "high", "reason": "This toast reports counts of imported, duplicate, and skipped searches. The current word order places the number between the noun and adjective."}
+{"id": "ar:src_eaa0e4919b66a927", "verdict": "correct", "target": "تم استيراد عمليات البحث: {createdCount} (التكرارات: {duplicateCount}، المتخطاة: {skippedCount})", "confidence": "high", "reason": "This toast reports counts of imported, duplicate, and skipped searches. The current ordering is not natural Arabic and makes each count/category relation unclear."}
+{"id": "ko:src_eaa0e4919b66a927", "verdict": "correct", "target": "{createdCount}건의 검색을 가져왔습니다 ({duplicateCount}건 중복, {skippedCount}건 건너뜀)", "confidence": "high", "reason": "This toast reports search counts. The current targets omit Korean count classifiers, leaving bare numbers before the search noun."}
+{"id": "zh-Hant:src_eaa0e4919b66a927", "verdict": "correct", "target": "已匯入 {createdCount} 項搜尋（{duplicateCount} 項重複、{skippedCount} 項已略過）", "confidence": "high", "reason": "This toast reports search counts. The current targets place bare numbers before nouns without a classifier, making the quantities unnatural."}
+{"id": "vi:src_eaa0e4919b66a927", "verdict": "correct", "target": "Đã nhập {createdCount} lượt tìm kiếm ({duplicateCount} lượt trùng lặp, bỏ qua {skippedCount})", "confidence": "high", "reason": "This toast reports imported, duplicate, and skipped search counts. The current word order puts the numeral after the noun phrase unnaturally."}
+{"id": "id:src_eaa0e4919b66a927", "verdict": "correct", "target": "Berhasil mengimpor {createdCount} pencarian ({duplicateCount} duplikat, {skippedCount} dilewati)", "confidence": "high", "reason": "This toast reports counts of imported, duplicate, and skipped searches. The current word order puts the numeral after the noun."}
+{"id": "es:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "zh-Hans:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "hi:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "de:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "ja:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "fr:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "pt-BR:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "ar:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "ko:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "zh-Hant:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "vi:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "id:src_eaa5b2911dc49b0b", "verdict": "keep"}
+{"id": "es:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "zh-Hans:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "hi:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "de:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "ja:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "fr:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "pt-BR:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "ar:src_eaa73c3a627c0355", "verdict": "correct", "target": "التقديم السريع للتشغيل المحلي", "confidence": "high", "reason": "The PlayerBar action advances local playback by 30 seconds. The current phrase means fast local playback and omits the forward/skip action."}
+{"id": "ko:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "zh-Hant:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "vi:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "id:src_eaa73c3a627c0355", "verdict": "keep"}
+{"id": "es:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "zh-Hans:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "hi:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "de:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "ja:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "fr:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "pt-BR:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "ar:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "ko:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "zh-Hant:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "vi:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "id:src_eaada331d30b5919", "verdict": "keep"}
+{"id": "es:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "zh-Hans:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "hi:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "de:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "ja:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "fr:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "pt-BR:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "ar:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "ko:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "zh-Hant:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "vi:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "id:src_eaaf0888f4211a52", "verdict": "keep"}
+{"id": "es:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "zh-Hans:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "hi:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "de:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "ja:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "fr:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "pt-BR:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "ar:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "ko:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "zh-Hant:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "vi:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "id:src_eab3fa1da672ac64", "verdict": "uncertain", "reason": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."}
+{"id": "es:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "zh-Hans:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "hi:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "de:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "ja:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "fr:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "pt-BR:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "ar:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "ko:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "zh-Hant:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "vi:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "id:src_eab702e553b0db6d", "verdict": "keep"}
+{"id": "es:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "zh-Hans:src_eacbca16785fccf7", "verdict": "correct", "target": "尚未记录 Lidarr 导入。运行手动导入以开始跟踪尝试。", "confidence": "high", "reason": "This is the Lidarr metadata-import history empty state. “进口” means commercial importing; software import is “导入,” as used in the second sentence."}
+{"id": "hi:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "de:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "ja:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "fr:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "pt-BR:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "ar:src_eacbca16785fccf7", "verdict": "correct", "target": "لم تُسجّل أي عمليات استيراد من Lidarr بعد. شغّل استيرادًا يدويًا لبدء تتبّع المحاولات.", "confidence": "high", "reason": "This is the Lidarr metadata-import history empty state. “واردات” suggests imported goods rather than software import operations."}
+{"id": "ko:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "zh-Hant:src_eacbca16785fccf7", "verdict": "correct", "target": "尚未記錄 Lidarr 匯入。執行手動匯入以開始追蹤嘗試。", "confidence": "high", "reason": "This is the Lidarr metadata-import history empty state. “進口” means commercial importing; software import is “匯入,” as used in the second sentence."}
+{"id": "vi:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "id:src_eacbca16785fccf7", "verdict": "keep"}
+{"id": "es:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "zh-Hans:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "hi:src_eace6271ccf24946", "verdict": "correct", "target": "स्थानीय निष्क्रियताएँ", "confidence": "high", "reason": "This statistic counts locally disabled authorities. “अक्षमताएँ” means disabilities/inabilities."}
+{"id": "de:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "ja:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "fr:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "pt-BR:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "ar:src_eace6271ccf24946", "verdict": "correct", "target": "حالات التعطيل المحلية", "confidence": "high", "reason": "This statistic counts locally disabled authorities. The current word order does not form the intended noun label for local disables."}
+{"id": "ko:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "zh-Hant:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "vi:src_eace6271ccf24946", "verdict": "keep"}
+{"id": "id:src_eace6271ccf24946", "verdict": "correct", "target": "Penonaktifan lokal", "confidence": "high", "reason": "This statistic counts locally disabled authorities. “Penyandang cacat” means disabled people, changing the subject."}
+{"id": "es:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "zh-Hans:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "hi:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "de:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "ja:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "fr:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "pt-BR:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "ar:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "ko:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "zh-Hant:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "vi:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "id:src_ead6028e33bc8bc1", "verdict": "keep"}
+{"id": "es:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "zh-Hans:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "hi:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "de:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "ja:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "fr:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "pt-BR:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "ar:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "ko:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "zh-Hant:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "vi:src_eadece606e01b6ec", "verdict": "keep"}
+{"id": "id:src_eadece606e01b6ec", "verdict": "keep"}

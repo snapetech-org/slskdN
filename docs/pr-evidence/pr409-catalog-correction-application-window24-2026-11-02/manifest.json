@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "exact-hash catalog correction application and independent cross-review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "applicationBaseHead": "805246b87e208cedcbdd0e2f33a83f912f4ad84b",
+  "applicationBaseTree": "4377ade660fa379731a41b54ba387c4eff2bcf32",
+  "sourceSubtreeAtReview": "c3d06e298da7f7e04e69bee3c2596805a03d1e4b",
+  "applicationCommit": "00ee3b76686a3b4cdafd4d9a24a02342d5f36bb2",
+  "applicationTree": "d0a640b4716f3363264cf96ee5fa9aea0e417a20",
+  "postApplicationSrcTree": "a518acd202aebcfe7f17372017cba519e432ab9a",
+  "window": 24,
+  "windowKeys": 25,
+  "windowCells": 300,
+  "windowVerdicts": {
+    "keep": 255,
+    "correct": 45,
+    "uncertain": 0
+  },
+  "correctionRows": 45,
+  "uniqueSourceKeys": 10,
+  "rootCrossReview": {
+    "rows": 45,
+    "acceptedAsProposed": 43,
+    "refinedAndAccepted": 2,
+    "held": 0,
+    "semanticConfidence": "high",
+    "localeQualityConfidence": "moderate",
+    "nativeSpeakerReview": "outstanding",
+    "ledgerSha256": "2afa2c49dcfbf885afc70c40e8341ec8cdd4b91429825a743b460159da8c53e6",
+    "applyPlanSha256": "e4181de90b344aea2ea13c199852886969a2a65088689fce4363f87c5ea87d2d",
+    "summarySha256": "6858b427a3f629ec0862daa59fe4c5fdf20718caae23aa3964a2e13c02969a3e"
+  },
+  "applicationLedger": {
+    "path": "applied-corrections-window24.jsonl",
+    "rows": 45,
+    "sha256": "e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df",
+    "byLocale": {
+      "ar": 4,
+      "de": 3,
+      "es": 6,
+      "fr": 3,
+      "hi": 2,
+      "id": 2,
+      "ja": 4,
+      "ko": 4,
+      "pt-BR": 4,
+      "vi": 5,
+      "zh-Hans": 4,
+      "zh-Hant": 4
+    }
+  },
+  "reviewEvidence": {
+    "inputSha256": "c8b6b51bb57d476b9272d05f27386f7f7829bacaa14f077db91003eac7898270",
+    "decisionSha256": "b0a2e8e9a082db42423fbc08dccaed95a72f0aee5c24f48d92b56b31f2c94d69",
+    "proposalPlanSha256": "a32015312fd7bb99e8428bbc0d42e0d5e5794c9f06d29203d4c03dadf531cfce"
+  },
+  "cumulativeApplication": {
+    "previousAppliedCells": 934,
+    "newAppliedCells": 45,
+    "totalAppliedCells": 979,
+    "sourceKeys": 238,
+    "heldNoContext": 6,
+    "uncertainRemaining": 208,
+    "unreviewedCells": 59880
+  },
+  "sourceOrWorkflowChanges": 0,
+  "testsBuildCiReleaseOrTag": "not run",
+  "prStatusAfterPush": "OPEN/DRAFT expected",
+  "supersededDraftPlan": "An earlier proposal-to-source mapping draft was caught before apply, superseded, and excluded from this bundle.",
+  "postApplicationVerification": {
+    "path": "verification.json",
+    "sha256": "9f0e8667e0a99240ecab09e713fffde3219f14c865660dff735c9c5aa3ed08c0",
+    "result": "PASS",
+    "pushStateAtVerification": "local-commit-ahead-before-push"
+  },
+  "verifier": {
+    "path": "verify_application.py",
+    "sha256": "9afaa8c5a5b03a5130b7b0890d5be2f8d2618f47bbf524d05d6a6b97a48f2b09"
+  },
+  "applyPreflightSha256": "307513958ef3257a4289ed86047f2b7ae7923793f7659d2e9c4319f5585010e3",
+  "applyResultSha256": "833a942fa7dd0bc35916cd8d4b573af715bc4f4c8cd16769239da6c1e8ee44d3",
+  "applicationCommitPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ]
+}

@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "370eeaed2bd8773736040f484b34c4e328417d00",
+  "state": "uncommitted source-only preparation; no translations generated",
+  "newSourceKeys": 56,
+  "targetLocales": [
+    "es",
+    "zh-Hans",
+    "hi",
+    "de",
+    "ja",
+    "fr",
+    "pt-BR",
+    "ar",
+    "ko",
+    "zh-Hant",
+    "vi",
+    "id"
+  ],
+  "pendingTargetCells": 672,
+  "categories": {
+    "app-owned-diagnostic": 8,
+    "copied-report-heading": 6,
+    "outbound-title": 2,
+    "ui-copy": 40
+  },
+  "records": [
+    {
+      "id": "ui-copy.284d7de19f6f",
+      "source": "; rejected because {reasons}",
+      "sourceSha256": "284d7de19f6fe6d7cce2c87547a1919adb5a6a7261e8df10cea217285953eaf9",
+      "category": "ui-copy",
+      "parameters": [
+        "reasons"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/MeshEvidencePolicy.jsx",
+          "line": 341,
+          "literal": "\"; rejected because {reasons}\"",
+          "fileSha256": "b5f97a171f600133a92e44f408f4809329712fdd0b65d8d7368f6e1feef3e3a8"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.4ae91ba94954",
+      "source": "Animation is paused because reduced motion is enabled",
+      "sourceSha256": "4ae91ba94954043ab25c3d24ff08338546c32d0235f5c825d225505985dd8733",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2408,
+          "literal": "\"Animation is paused because reduced motion is enabled\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.f13dd24c54a5",
+      "source": "Are you sure you want to ban member \"{membershipPeerId}\" from pod \"{membershipPodId}\"?",
+      "sourceSha256": "f13dd24c54a5dd15c591d43e476a1578046968ff9d5af8416ab8c92e0253503b",
+      "category": "ui-copy",
+      "parameters": [
+        "membershipPeerId",
+        "membershipPodId"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+          "line": 376,
+          "literal": "'Are you sure you want to ban member \"{membershipPeerId}\" from pod \"{membershipPodId}\"?'",
+          "fileSha256": "e2b80189b1c7bb3b195303e6a319322143939d22e27d9c971b5e729703ff91fb"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.af38514e7297",
+      "source": "Are you sure you want to cleanup expired membership records?",
+      "sourceSha256": "af38514e72971a8158b65325c5d6cfafe6005bf104273797a22e4b23604ed30f",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+          "line": 436,
+          "literal": "\"Are you sure you want to cleanup expired membership records?\"",
+          "fileSha256": "e2b80189b1c7bb3b195303e6a319322143939d22e27d9c971b5e729703ff91fb"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.a4bd8e62f868",
+      "source": "Are you sure you want to delete the channel \"{channelName}\"? This action cannot be undone.",
+      "sourceSha256": "a4bd8e62f868b54e0d8deaa3ccd822fe6bed102fb91aa8edc9364e18b3e20e42",
+      "category": "ui-copy",
+      "parameters": [
+        "channelName"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+          "line": 1191,
+          "literal": "'Are you sure you want to delete the channel \"{channelName}\"? This action cannot be undone.'",
+          "fileSha256": "e2b80189b1c7bb3b195303e6a319322143939d22e27d9c971b5e729703ff91fb"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.260a6d17c78f",
+      "source": "Are you sure you want to reset all MediaCore statistics? This cannot be undone.",
+      "sourceSha256": "260a6d17c78fbab132699bf82e634b6770dc21f2147970813e2f242e4c68681c",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/MediaCore/MediaCoreStats.jsx",
+          "line": 83,
+          "literal": "\"Are you sure you want to reset all MediaCore statistics? This cannot be undone.\"",
+          "fileSha256": "666417b1d32c15fefc756ff65a17a0108be6411314b6f89199d603e6ad75cc95"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.598c4ce519a4",
+      "source": "Are you sure you want to unpublish pod \"{podToUnpublish}\"?",
+      "sourceSha256": "598c4ce519a424593a1ea2cab497c3978ade141923f6d472a160086a58940e09",
+      "category": "ui-copy",
+      "parameters": [
+        "podToUnpublish"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+          "line": 274,
+          "literal": "'Are you sure you want to unpublish pod \"{podToUnpublish}\"?'",
+          "fileSha256": "e2b80189b1c7bb3b195303e6a319322143939d22e27d9c971b5e729703ff91fb"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.ca1ac20cf003",
+      "source": "Close the {label} tab. Its saved conversation remains available in the chat list.",
+      "sourceSha256": "ca1ac20cf003f887bc7936324d25152e12a819a706d348ba4bfa3aeccb785a80",
+      "category": "ui-copy",
+      "parameters": [
+        "label"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Chat/Chat.jsx",
+          "line": 270,
+          "literal": "\"Close the {label} tab. Its saved conversation remains available in the chat list.\"",
+          "fileSha256": "9ed431923fbf071ad9059082592059a750d0ee42b3681b81a4a5fd67c4145014"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.eef9d1e04370",
+      "source": "Delete the saved direct-message conversation with {username} and remove it from your chat list.",
+      "sourceSha256": "eef9d1e0437059f85bb07c79d17a07bcdd56b7de3c067c205ce0be4b0c4a1395",
+      "category": "ui-copy",
+      "parameters": [
+        "username"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Chat/ChatSession.jsx",
+          "line": 325,
+          "literal": "\"Delete the saved direct-message conversation with {username} and remove it from your chat list.\"",
+          "fileSha256": "3b32f761533091b4f8168a374de7e5aaa38e7af2dba9d81e0fb07760ad7ba7b6"
+        },
+        {
+          "path": "src/web/src/components/Chat/ChatSession.jsx",
+          "line": 354,
+          "literal": "\"Delete the saved direct-message conversation with {username} and remove it from your chat list.\"",
+          "fileSha256": "3b32f761533091b4f8168a374de7e5aaa38e7af2dba9d81e0fb07760ad7ba7b6"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.1338cf5ea2df",
+      "source": "Disable authority {authorityKey}",
+      "sourceSha256": "1338cf5ea2df8d1bd5ebcc6e008db685a3aa6943338cce91da866f0307e888b3",
+      "category": "ui-copy",
+      "parameters": [
+        "authorityKey"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+          "line": 254,
+          "literal": "\"Disable authority {authorityKey}\"",
+          "fileSha256": "8837503aefc683d6aa987d0a6780a994982d4d95ebf01d3f5b2c8a125fdcd61b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.3109c7f2e1f5",
+      "source": "Disable this authority locally for review. This only changes browser review state and does not update realm governance.",
+      "sourceSha256": "3109c7f2e1f5502fd525ff2af231beee13ad49279532de4aa18181df8b250bd9",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+          "line": 249,
+          "literal": "\"Disable this authority locally for review. This only changes browser review state and does not update realm governance.\"",
+          "fileSha256": "8837503aefc683d6aa987d0a6780a994982d4d95ebf01d3f5b2c8a125fdcd61b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.b6291460cf24",
+      "source": "Enable authority {authorityKey}",
+      "sourceSha256": "b6291460cf240bda76e03d448d1169469e21d598c87595d45599346b770c0c8d",
+      "category": "ui-copy",
+      "parameters": [
+        "authorityKey"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+          "line": 254,
+          "literal": "\"Enable authority {authorityKey}\"",
+          "fileSha256": "8837503aefc683d6aa987d0a6780a994982d4d95ebf01d3f5b2c8a125fdcd61b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.1967ce5ab5a3",
+      "source": "Known-family score {score}. This is a hint lane, not a download-control signal.",
+      "sourceSha256": "1967ce5ab5a333f9637c7cd51f78ebd253f2e98dfafc5727da36d9bf2b01a35c",
+      "category": "ui-copy",
+      "parameters": [
+        "score"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Search/SongIDPanel.jsx",
+          "line": 1055,
+          "literal": "\"Known-family score {score}. This is a hint lane, not a download-control signal.\"",
+          "fileSha256": "c256560f59b09fe19124820d5e8de560d54a889fd91a0889396940f41d7d59c5"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.f6ee2236314c",
+      "source": "Move {track} down",
+      "sourceSha256": "f6ee2236314c46bfdc5a3873bf99a4dc44dff033e5fa7ff024e2cd4a2af1cebf",
+      "category": "ui-copy",
+      "parameters": [
+        "track"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 826,
+          "literal": "\"Move {track} down\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.44f6d3960ac2",
+      "source": "Move {track} up",
+      "sourceSha256": "44f6d3960ac224ef85cab1912c3ad9fc1e868ccc60408cd0960f92e47a0800fb",
+      "category": "ui-copy",
+      "parameters": [
+        "track"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 823,
+          "literal": "\"Move {track} up\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.a51965761dcf",
+      "source": "Open a loopback-only listener on localhost:{port} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service.",
+      "sourceSha256": "a51965761dcf1f9d7dcc46f8e7ed6b092d19bbabe8eed1939f55b7dc9cc2282d",
+      "category": "ui-copy",
+      "parameters": [
+        "port"
+      ],
+      "protectedLiterals": [
+        "localhost:"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Pods/PortForwarding.jsx",
+          "line": 929,
+          "literal": "\"Open a loopback-only listener on localhost:{port} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service.\"",
+          "fileSha256": "9a5101623682fb25c2c95d01d7d670d6ec7d4a640d569fe1226422182571f8a1"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.c2eb12f42d66",
+      "source": "Play {track}",
+      "sourceSha256": "c2eb12f42d66e2e7d7c81266e092b996797a596e2944b61822b27884d428c99f",
+      "category": "ui-copy",
+      "parameters": [
+        "track"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2062,
+          "literal": "\"Play {track}\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        },
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2067,
+          "literal": "\"Play {track}\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.7574cc4dfee9",
+      "source": "Play {track} from this collection",
+      "sourceSha256": "7574cc4dfee9f4315ca2ff115e56574bc9928eb04b88607a227991552e1a1b9f",
+      "category": "ui-copy",
+      "parameters": [
+        "track"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 1878,
+          "literal": "\"Play {track} from this collection\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.9ca30528642e",
+      "source": "Play {track} in the browser player",
+      "sourceSha256": "9ca30528642ef7208067949c130b04fe16a3cb2d320b9f248edf9fbd7a1e3860",
+      "category": "ui-copy",
+      "parameters": [
+        "track"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayCollectionItemButton.jsx",
+          "line": 18,
+          "literal": "\"Play {track} in the browser player\"",
+          "fileSha256": "a0a756e621cbee9fb8c4bc71b9b812ca7a0416f601b712380c957ce170eacc85"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.6b0315a8eb17",
+      "source": "Play {track} next",
+      "sourceSha256": "6b0315a8eb173570abc0412fff0c5a95c5ba2bfb6936adbc7edfa403682119fe",
+      "category": "ui-copy",
+      "parameters": [
+        "track"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 1889,
+          "literal": "\"Play {track} next\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        },
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2074,
+          "literal": "\"Play {track} next\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.94ed05c3cb26",
+      "source": "Preview {item}",
+      "sourceSha256": "94ed05c3cb2646b7fddb976509f6ce63c79a79249e8fcc92e0e2fb9a2fa8086c",
+      "category": "ui-copy",
+      "parameters": [
+        "item"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 1077,
+          "literal": "\"Preview {item}\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "outbound-title.07340fd83dfc",
+      "source": "Private Message from {username}",
+      "sourceSha256": "07340fd83dfc3c751ff73aa2ce1afe3c0dd08233da471abf330ffaf263a9b177",
+      "category": "outbound-title",
+      "parameters": [
+        "username"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/slskd/Integrations/Notifications/NotificationTitleFormatter.cs",
+          "line": 16,
+          "literal": "\"Private Message from {username}\"",
+          "fileSha256": "2e34d0eee25863df73e167ffc0a763aea27b15729b3d8256103ffc40ddf0f53b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.c9e0fee28dfc",
+      "source": "Queue fixes (auto-fixable issues: {count})",
+      "sourceSha256": "c9e0fee28dfcc63d3f272db1a55a94087b4b178891104be7af4cd7d0b2771ca2",
+      "category": "ui-copy",
+      "parameters": [
+        "count"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Shared/LocalizedCounts.jsx",
+          "line": 12,
+          "literal": "\"Queue fixes (auto-fixable issues: {count})\"",
+          "fileSha256": "e64cca325cd333a418285dbc978353ebbcb9abe1020fbbbe2598987037f840d3"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.ff8e3f4cf127",
+      "source": "Re-enable this authority locally for review. This only changes browser review state and does not update realm governance.",
+      "sourceSha256": "ff8e3f4cf1275012a092882e9dcc922628e52b8ec9d6202185c9ebbc226e5eb3",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+          "line": 249,
+          "literal": "\"Re-enable this authority locally for review. This only changes browser review state and does not update realm governance.\"",
+          "fileSha256": "8837503aefc683d6aa987d0a6780a994982d4d95ebf01d3f5b2c8a125fdcd61b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.d953e7c60b13",
+      "source": "Remove {item} from the discovery shelf",
+      "sourceSha256": "d953e7c60b137ec1778180c33ce525ad0da6e64ccd8883a913e67485d452bb2f",
+      "category": "ui-copy",
+      "parameters": [
+        "item"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 1092,
+          "literal": "\"Remove {item} from the discovery shelf\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "outbound-title.5e406fe6402c",
+      "source": "Room Mention by {username} in {room}",
+      "sourceSha256": "5e406fe6402cd235b6e03e7e9a7494aa97ce1aa61dff38524dc62db5820fc031",
+      "category": "outbound-title",
+      "parameters": [
+        "username",
+        "room"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/slskd/Integrations/Notifications/NotificationTitleFormatter.cs",
+          "line": 17,
+          "literal": "\"Room Mention by {username} in {room}\"",
+          "fileSha256": "2e34d0eee25863df73e167ffc0a763aea27b15729b3d8256103ffc40ddf0f53b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.db0ac695c3f5",
+      "source": "Select to insert {syntax} in the composer.",
+      "sourceSha256": "db0ac695c3f5e6a859ab4890a2ba89314663a582fdff0d9386f7e84d09a8647f",
+      "category": "ui-copy",
+      "parameters": [
+        "syntax"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Messaging/Composer.jsx",
+          "line": 144,
+          "literal": "\"Select to insert {syntax} in the composer.\"",
+          "fileSha256": "382683708847f9c30c38f06ba63c5d76e10a49898cc01f4526454345247753ef"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.83ea910e1c7b",
+      "source": "Show {count} More",
+      "sourceSha256": "83ea910e1c7b62b165c4c52695df3b34318b85f2389d6cb2a5a0d7b594fd56fa",
+      "category": "ui-copy",
+      "parameters": [
+        "count"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/TrafficTicker/TrafficTicker.jsx",
+          "line": 190,
+          "literal": "\"Show {count} More\"",
+          "fileSha256": "424776bda02014b2e3aefb78e58627f283800b546851975139dee2f87aad3c33"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.c7ffccba5fe6",
+      "source": "Sync hash data with {username}. Use this when its sequence is behind yours.",
+      "sourceSha256": "c7ffccba5fe6b7fa6c29625daf7b1731d9595445d59e23f3824e7250c373db7b",
+      "category": "ui-copy",
+      "parameters": [
+        "username"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Network/index.jsx",
+          "line": 705,
+          "literal": "\"Sync hash data with {username}. Use this when its sequence is behind yours.\"",
+          "fileSha256": "7cdade996343b0613a153d59685b8f19dd340918675ba1e45511f7a4cfc207e6"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.c0beaa88500b",
+      "source": "confidence below {minimum}",
+      "sourceSha256": "c0beaa88500b8dd9d5c042a57ec59219727515c19c8a8d19bb9b9f048d8793ea",
+      "category": "app-owned-diagnostic",
+      "parameters": [
+        "minimum"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 5,
+          "literal": "\"confidence below {minimum}\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.fe6c274791fd",
+      "source": "contains exact local holdings",
+      "sourceSha256": "fe6c274791fd1c431fc4105db5a47e135078610ab0e2152840fac6872cf4c20a",
+      "category": "app-owned-diagnostic",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 8,
+          "literal": "\"contains exact local holdings\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.7cf2df2a5586",
+      "source": "contains raw listening history",
+      "sourceSha256": "7cf2df2a5586a55ace12bd562989691790d0f933cf5f6c20008a0f25b158ec38",
+      "category": "app-owned-diagnostic",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 9,
+          "literal": "\"contains raw listening history\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.21aa6cf2684a",
+      "source": "contains raw path data",
+      "sourceSha256": "21aa6cf2684a3759040ebe5f4c71b52e96e868fa52284d642810163920859f14",
+      "category": "app-owned-diagnostic",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 7,
+          "literal": "\"contains raw path data\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.f4fbb9fcd793",
+      "source": "discovery shelf item",
+      "sourceSha256": "f4fbb9fcd793f799d2b628aad0d21cda9af8a3ba23a42236389a19c5549b6c70",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 1077,
+          "literal": "\"discovery shelf item\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        },
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 1092,
+          "literal": "\"discovery shelf item\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.fe07cdeb20c1",
+      "source": "inbound mesh evidence disabled",
+      "sourceSha256": "fe07cdeb20c14b4faefefaf8370480d9950ba46aa7d6e519f9cf3c92182e3b3c",
+      "category": "app-owned-diagnostic",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 2,
+          "literal": "\"inbound mesh evidence disabled\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.6c1ff09db3a7",
+      "source": "low",
+      "sourceSha256": "6c1ff09db3a73dc4a854f695d20d174a848d55f2d743bab2ee1f8fc75be454f3",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Search/SongIDPanel.jsx",
+          "line": 1049,
+          "literal": "\"low\"",
+          "fileSha256": "c256560f59b09fe19124820d5e8de560d54a889fd91a0889396940f41d7d59c5"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.3287656b5b4d",
+      "source": "missing signed provenance",
+      "sourceSha256": "3287656b5b4d7d626f75f1a8c09b6c80ff2a893ce920da5a7936dad6a3721b50",
+      "category": "app-owned-diagnostic",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 3,
+          "literal": "\"missing signed provenance\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.9199dc34a0a0",
+      "source": "no features",
+      "sourceSha256": "9199dc34a0a0dc80fb6dfcdbc573d1bb3085e3c7f767681f17f29ff0807e09b7",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/index.jsx",
+          "line": 659,
+          "literal": "\"no features\"",
+          "fileSha256": "d3cc1aa9c1f9b6439324073bfaa93d5d3ab6f5424b54da2b40d3b0eed54ab0bc"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.883ac15b6815",
+      "source": "not advertised",
+      "sourceSha256": "883ac15b6815a5baea9c7872149c7fb18b769188d0a98bd349d8fee239a8285d",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/index.jsx",
+          "line": 660,
+          "literal": "\"not advertised\"",
+          "fileSha256": "d3cc1aa9c1f9b6439324073bfaa93d5d3ab6f5424b54da2b40d3b0eed54ab0bc"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.2087cb5f8b63",
+      "source": "not reported",
+      "sourceSha256": "2087cb5f8b6365490a647d14a3494bf2b96683a2a8437eddae03c623b628665b",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/index.jsx",
+          "line": 636,
+          "literal": "\"not reported\"",
+          "fileSha256": "d3cc1aa9c1f9b6439324073bfaa93d5d3ab6f5424b54da2b40d3b0eed54ab0bc"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.5c9a0566e2f1",
+      "source": "show signal scope",
+      "sourceSha256": "5c9a0566e2f118631d83c4da2e7236a164ef17fbdcc5f46ff81a0d4736d564fa",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2394,
+          "literal": "\"show signal scope\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.b3c4ce4ca3f0",
+      "source": "show spectrum bars",
+      "sourceSha256": "b3c4ce4ca3f089c56fa82040433f536d8062a13c6c7641b912bcaebf1eb9e564",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2393,
+          "literal": "\"show spectrum bars\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "copied-report-heading.6d11cbe8ebeb",
+      "source": "slskdN Discovery Graph branch review",
+      "sourceSha256": "6d11cbe8ebeb23905f002823bdab8e93a4bd920b3f9eb38061b87db4c3ecabb2",
+      "category": "copied-report-heading",
+      "parameters": [],
+      "protectedLiterals": [
+        "slskdN"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/discoveryGraph.js",
+          "line": 151,
+          "literal": "\"slskdN Discovery Graph branch review\"",
+          "fileSha256": "89dc047851a24f841ef1258e0a8a40b052a6b9a0377616d71b85822c41472c6d"
+        }
+      ]
+    },
+    {
+      "id": "copied-report-heading.708e3e0202f4",
+      "source": "slskdN automation review history",
+      "sourceSha256": "708e3e0202f4af0cab8edce0e9a4cdf73603c636c3b02096e50f3962498c2d3c",
+      "category": "copied-report-heading",
+      "parameters": [],
+      "protectedLiterals": [
+        "slskdN"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/automationRecipes.js",
+          "line": 207,
+          "literal": "\"slskdN automation review history\"",
+          "fileSha256": "f92235d159f487af85959fc52cf4b0984121e37f0a32a817bcd7e9915079b5a5"
+        }
+      ]
+    },
+    {
+      "id": "copied-report-heading.4e58abc6f858",
+      "source": "slskdN media-server execution contract",
+      "sourceSha256": "4e58abc6f8585df73f8651cf96858da82b5934bc534272f5c4fee78d00006efc",
+      "category": "copied-report-heading",
+      "parameters": [],
+      "protectedLiterals": [
+        "slskdN"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/mediaServerIntegrations.js",
+          "line": 301,
+          "literal": "\"slskdN media-server execution contract\"",
+          "fileSha256": "ea9fc291363c004626a3964c985d89955e867234c7bc8370407ba6d8ca9eee65"
+        }
+      ]
+    },
+    {
+      "id": "copied-report-heading.080891051781",
+      "source": "slskdN media-server sync review",
+      "sourceSha256": "0808910517813eb32cf9d5fd54c0a7d109639deae332ed39db4154f5f33a00c2",
+      "category": "copied-report-heading",
+      "parameters": [],
+      "protectedLiterals": [
+        "slskdN"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/mediaServerIntegrations.js",
+          "line": 276,
+          "literal": "\"slskdN media-server sync review\"",
+          "fileSha256": "ea9fc291363c004626a3964c985d89955e867234c7bc8370407ba6d8ca9eee65"
+        }
+      ]
+    },
+    {
+      "id": "copied-report-heading.15fb7be775ac",
+      "source": "slskdN mesh evidence review",
+      "sourceSha256": "15fb7be775ac985dd91dbd44f750f66e8a7e07fb5554d7034fb807b79b438f13",
+      "category": "copied-report-heading",
+      "parameters": [],
+      "protectedLiterals": [
+        "slskdN"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidencePolicy.js",
+          "line": 287,
+          "literal": "\"slskdN mesh evidence review\"",
+          "fileSha256": "c3fdf8355df6d432b01dc000ce9fd5f3e6e85d412689386bc55d10eb116aea05"
+        }
+      ]
+    },
+    {
+      "id": "copied-report-heading.9124e49f9b80",
+      "source": "slskdN realm subject-index conflict review",
+      "sourceSha256": "9124e49f9b807b1546cb58cf24b4ab59fa782f77e4cba4523e722a94bd8773e6",
+      "category": "copied-report-heading",
+      "parameters": [],
+      "protectedLiterals": [
+        "slskdN"
+      ],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/realmSubjectIndexes.js",
+          "line": 47,
+          "literal": "\"slskdN realm subject-index conflict review\"",
+          "fileSha256": "12944163c2f0dca956b3cc72ed89287aeeddc0b5a8a0baa8ca31e90755e812af"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.0722d01d3379",
+      "source": "the selected port",
+      "sourceSha256": "0722d01d337955a0371c138248ef53168bc920dd8f0431309aa1a58df05a641f",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Pods/PortForwarding.jsx",
+          "line": 929,
+          "literal": "\"the selected port\"",
+          "fileSha256": "9a5101623682fb25c2c95d01d7d670d6ec7d4a640d569fe1226422182571f8a1"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.fbc817da937d",
+      "source": "turn off the analyzer",
+      "sourceSha256": "fbc817da937df7c55a901672402c3a3a7d3f03fabe07eb443cb95f97c3387fbf",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2392,
+          "literal": "\"turn off the analyzer\"",
+          "fileSha256": "c6de77886c9224174bb33c9c305c527ecfe167b55fe4251dfa79174817409720"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.4a7c72c344aa",
+      "source": "unsigned peer",
+      "sourceSha256": "4a7c72c344aad311ce36cf7ee7edebbe8bda0100d01264dde27177d3eaf36420",
+      "category": "ui-copy",
+      "parameters": [],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Mesh/index.jsx",
+          "line": 658,
+          "literal": "\"unsigned peer\"",
+          "fileSha256": "d3cc1aa9c1f9b6439324073bfaa93d5d3ab6f5424b54da2b40d3b0eed54ab0bc"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.05e19370e89d",
+      "source": "untrusted provenance tier: {tier}",
+      "sourceSha256": "05e19370e89dff1c55ce128fee332f0918120368900ccb2c278eeff0ed1a01b7",
+      "category": "app-owned-diagnostic",
+      "parameters": [
+        "tier"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 4,
+          "literal": "\"untrusted provenance tier: {tier}\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "app-owned-diagnostic.d837b378142e",
+      "source": "witness count below {minimum}",
+      "sourceSha256": "d837b378142e23e19f0e32af3ceb6f54d20a186c1c2ec0e20eebf9664d24bcca",
+      "category": "app-owned-diagnostic",
+      "parameters": [
+        "minimum"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/lib/meshEvidenceReasonSources.json",
+          "line": 6,
+          "literal": "\"witness count below {minimum}\"",
+          "fileSha256": "88502be43d7f219dfff045b4b92babdadcea0239311bbebc82c5c770bc24491b"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.1cc79d0bd979",
+      "source": "{label} options",
+      "sourceSha256": "1cc79d0bd9794bf43c051d96761fdf97c7aa15b316da0b3a4b9646ea77976a7b",
+      "category": "ui-copy",
+      "parameters": [
+        "label"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Shared/ShrinkableDropdownButton.jsx",
+          "line": 28,
+          "literal": "\"{label} options\"",
+          "fileSha256": "4a1ff0dc638f0a0b16a229dd0cc6b38234691168e0a7c6335fccdda450c37a31"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.fabc751a3340",
+      "source": "{start}-{end}/{visible} of {total}",
+      "sourceSha256": "fabc751a3340e55a9254fb6e48006cf2784a6083b5c4fa52d30f9e11c92c85d1",
+      "category": "ui-copy",
+      "parameters": [
+        "start",
+        "end",
+        "visible",
+        "total"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 2102,
+          "literal": "\"{start}-{end}/{visible} of {total}\"",
+          "fileSha256": "efcb825c1e27fbe09f1d9570599cdb9f895eeb872ae71f15408430724e03db12"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.8630e2cda1b1",
+      "source": "↓ New messages: {count}",
+      "sourceSha256": "8630e2cda1b10de75bb66daa4b398d7ac710624922a7dd4187eb980b719e8f7b",
+      "category": "ui-copy",
+      "parameters": [
+        "count"
+      ],
+      "protectedLiterals": [],
+      "status": "source-wired; translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Shared/LocalizedCounts.jsx",
+          "line": 7,
+          "literal": "\"↓ New messages: {count}\"",
+          "fileSha256": "e64cca325cd333a418285dbc978353ebbcb9abe1020fbbbe2598987037f840d3"
+        }
+      ]
+    }
+  ],
+  "outboundConsumers": [
+    {
+      "path": "src/slskd/Integrations/Notifications/NotificationService.cs",
+      "methods": [
+        "SendPrivateMessageAsync",
+        "SendRoomMentionAsync"
+      ],
+      "titleFormatter": "NotificationTitleFormatter",
+      "locale": "Options.Integration.NotificationLanguage; default en; unsupported values use English",
+      "catalogs": "same embedded src/web/public/locales/*.json as UI; missing targets use source English",
+      "opaqueValues": [
+        "username",
+        "room",
+        "message body",
+        "configured prefix"
+      ]
+    }
+  ],
+  "excludedData": [
+    "provider/user media metadata, room/user names, message bodies and configured prefixes",
+    "paths, URLs, command syntax and aliases, protocol IDs and literal code/JSON examples",
+    "raw provider/API/OS/exception fields without source-proven app-owned wording"
+  ],
+  "remainingScope": [
+    "Report body templates and status prose outside these six headings require a separate fixed-source inventory; existing body strings remain unchanged.",
+    "The older182-record server assignment inventory has181 unique values,177 absent catalogs; internal-only diagnostics are mixed in. It is not a ready translation batch.",
+    "Return/throw/API success/error/log caller origins and fallback/data boundaries remain to be audited.",
+    "English-identical native equivalents vs technical-token RTL metadata require contextual disposition, not a blanket equality rule.",
+    "No new target translations, full semantic/native review or headed RTL acceptance are claimed."
+  ],
+  "transportEvidence": {
+    "ntfy": "https://docs.ntfy.sh/publish/#message-title",
+    "rule": "RFC2047 UTF8 titles are supported; encode non-ASCII header text without changing decoded prefix/title content."
+  }
+}

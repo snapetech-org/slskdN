@@ -1,0 +1,46 @@
+{
+  "result": "PASS",
+  "head": "295f33de43fbe4b6139f6800672411a2e90038c6",
+  "catalogCensus": {
+    "locales": 12,
+    "keysPerLocale": 6169,
+    "totalValues": 74028,
+    "changedCellsSinceFrozenBaseline": 736,
+    "changedCellsByLocale": {
+      "ar": 85,
+      "de": 40,
+      "es": 61,
+      "fr": 60,
+      "hi": 62,
+      "id": 68,
+      "ja": 40,
+      "ko": 52,
+      "pt-BR": 52,
+      "vi": 76,
+      "zh-Hans": 71,
+      "zh-Hant": 69
+    }
+  },
+  "application": {
+    "appliedCells": 736,
+    "appliedSourceKeys": 175,
+    "heldNoContext": 6,
+    "applicationCommits": 7
+  },
+  "manualReconciliation": {
+    "windows": 17,
+    "keys": 425,
+    "cells": 5100,
+    "verdicts": {
+      "keep": 4187,
+      "correct": 742,
+      "uncertain": 171
+    },
+    "manualOverlap": 0,
+    "formalOverlap": 0,
+    "formalCellsCovered": 4800
+  },
+  "sourceCallsiteFilesVerified": 89,
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0
+}

@@ -1,0 +1,15 @@
+# PR #409 catalog correction application: windows 20–21
+
+This batch applies **51 high-confidence, exact-hash corrections** from manual semantic-review windows 20 and 21, across 16 source keys. It was preflighted against OPEN/DRAFT PR head 9b8e87ccc6fbcb77e82681aced4597ecc94d980f / tree dab884c9337715644efd6cbd8ce7efc3b2467ce9, with the frozen source subtree a50cd94b2bc8d0f09de0882600207a4b82293108. Review window 20 was pinned to 17f8c15c9d35d75819e39383d751eb255e8bdedb / tree db85d8b825f7510a58384f11ee3ce1a9472e415a; window 21 was pinned to a098c95c814a555454c11eaf2478ca5ae628a933 / tree dedfcc3c93b1b3a67e7d582a9eeaa0df052ccf42.
+
+The catalog update is commit f12c058c74e69b68483e3f46f064f4165f1f387c / tree 1e4c6679f5e0f8d4b5fbf49e2e1916b53ddd28b1. The commit changes 11 locale catalogs and docs/CHANGELOG.md; the German catalog had no new target in these windows. New applied cells by locale: ar 3, es 4, fr 1, hi 4, id 1, ja 3, ko 5, pt-BR 5, vi 3, zh-Hans 11, zh-Hant 11.
+
+The cumulative exact-hash application now covers **869 cells across 211 source keys**. Six correction decisions remain held because their frozen review inputs did not include exact source context. Across the 21 manual windows, 6,300 cells reconcile to 5,217 keep, 875 correction decisions, and 208 uncertain values. All 51 new targets were applied; no keep or uncertain target changed.
+
+The final census has 6,169 nonempty values in each of twelve catalogs (74,028 total), with matching key sets. Exactly the 869 cells recorded in the combined application ledgers differ from frozen catalog baseline 4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb / tree 0eb84397dc2b4be4afd730f6818203bd5910cf15. Cumulative applied cells by locale: ar 96, de 44, es 70, fr 67, hi 76, id 79, ja 46, ko 62, pt-BR 62, vi 89, zh-Hans 90, zh-Hant 88.
+
+The preflight and final verifier confirm zero overlap with 4,800 formal-result cells, zero overlap among the 21 manual windows, zero overlap with 818 prior applied cells or six held cells, and zero catalog changes outside the correction ledgers. The application commit contains no workflow or non-catalog source-code changes. The PR remains open and draft.
+
+applied-corrections.jsonl records each source, current target, proposed target, hashes, review window, decision reason, and source callsites. preflight.json pins the live head, prior ledgers, formal accumulator, manual windows, current catalogs, and overlap checks. application-result.json records before/after catalog hashes. verification.json contains the passing final census and reconciliation; verify_application.py can reproduce those checks from the repository root.
+
+No tests, builds, CI jobs, local scans, releases, or tags ran for this correction application. The local Semgrep hook was bypassed on the commit with the one-command core.hooksPath=/dev/null override under the private-JIT policy; no local Semgrep rerun was performed. An earlier automatic hook at 5e2c0cb7 reported zero findings. Native-speaker review remains outstanding.

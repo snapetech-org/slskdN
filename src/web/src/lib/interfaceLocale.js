@@ -21,6 +21,12 @@ const supportedLanguages = new Set(INTERFACE_LANGUAGE_OPTIONS.map((option) => op
 const listeners = new Set();
 const catalogCache = new Map();
 const catalogLoads = new Map();
+const interfaceTextOutputBrand = Symbol('slskdn.interface-text-output');
+const interfaceOpaqueOutputBrand = Symbol('slskdn.interface-opaque-output');
+const MAX_OUTPUT_SOURCE_LENGTH = 512;
+const MAX_OUTPUT_PARAMETER_COUNT = 24;
+const MAX_OUTPUT_PARAMETER_LENGTH = 2048;
+const MAX_OUTPUT_PARAMETER_TOTAL_LENGTH = 8192;
 let activeLanguage;
 let activeCatalog = null;
 let revision = 0;
@@ -53,10 +59,10 @@ const readLanguage = () => {
   }
 };
 
-const applyDocumentLanguage = (_language) => {
+const applyDocumentLanguage = (language) => {
   if (typeof document === 'undefined') return;
-  document.documentElement.lang = 'en';
-  document.documentElement.dir = 'ltr';
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
 };
 
 const loadCatalog = (language) => {
@@ -115,11 +121,17 @@ const activateLanguage = (language, { persist = false } = {}) => {
   });
 };
 
-export const getInterfaceTextLanguage = (source, language) => {
+const translationFor = (source, language) => {
   const catalog = catalogCache.get(language) || (language === activeLanguage ? activeCatalog : null);
-  return language !== 'en' && typeof catalog?.[source] === 'string' && catalog[source]
-    ? language
-    : 'en';
+  return language !== 'en' && catalog && Object.hasOwn(catalog, source) &&
+    typeof catalog[source] === 'string' && catalog[source]
+    ? catalog[source]
+    : undefined;
+};
+
+export const getInterfaceTextLanguage = (source, language) => {
+  const translated = translationFor(source, language);
+  return translated && translated !== source ? language : 'en';
 };
 
 export const getInterfaceTextDirection = (source, language) =>
@@ -127,7 +139,7 @@ export const getInterfaceTextDirection = (source, language) =>
 
 const formatInterfaceText = (source, parameters = {}) => {
   if (typeof source !== 'string') return source;
-  const translated = activeLanguage === 'en' ? source : activeCatalog?.[source] || source;
+  const translated = translationFor(source, activeLanguage) || source;
   return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
     const value = parameters?.[name];
     return typeof value === 'string' || typeof value === 'number'
@@ -136,16 +148,128 @@ const formatInterfaceText = (source, parameters = {}) => {
   });
 };
 
-export const interfaceText = (source, parameters = {}) =>
-  formatInterfaceText(source, parameters);
+export const isInterfaceTextOutput = (value) =>
+  Boolean(value && typeof value === 'object' && value[interfaceTextOutputBrand] === true);
+
+export const isInterfaceOpaqueOutput = (value) =>
+  Boolean(value && typeof value === 'object' && value[interfaceOpaqueOutputBrand] === true);
+
+const rawOutputValue = (value) => {
+  if (isInterfaceOpaqueOutput(value)) return value.text;
+  if (isInterfaceTextOutput(value)) return formatRawOutput(value.source, value.values);
+  return typeof value === 'string' || (typeof value === 'number' && Number.isFinite(value))
+    ? String(value)
+    : undefined;
+};
+
+const formatRawOutput = (source, values = {}) => {
+  if (typeof source !== 'string') return '';
+  return source.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) =>
+    rawOutputValue(values?.[name]) ?? placeholder);
+};
+
+const makeOpaqueOutput = (text) => Object.freeze({
+  [interfaceOpaqueOutputBrand]: true,
+  text,
+});
+
+const boundedOutputValues = (source, values) => {
+  if (!values || typeof values !== 'object' || Array.isArray(values)) {
+    return Object.freeze({});
+  }
+  const names = new Set(Array.from(
+    source.matchAll(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g),
+    (match) => match[1],
+  ));
+  if (names.size > MAX_OUTPUT_PARAMETER_COUNT) return undefined;
+  const bounded = {};
+  let totalLength = 0;
+  for (const name of names) {
+    if (!/^[a-zA-Z][a-zA-Z0-9_]{0,63}$/.test(name)) continue;
+    if (!Object.hasOwn(values, name)) continue;
+    const value = values[name];
+    if (isInterfaceTextOutput(value) || isInterfaceOpaqueOutput(value)) {
+      const rawValue = rawOutputValue(value);
+      if (rawValue.length > MAX_OUTPUT_PARAMETER_LENGTH ||
+        totalLength + rawValue.length > MAX_OUTPUT_PARAMETER_TOTAL_LENGTH) {
+        return undefined;
+      }
+      totalLength += rawValue.length;
+      bounded[name] = value;
+      continue;
+    }
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      bounded[name] = value;
+      continue;
+    }
+    if (typeof value !== 'string') continue;
+    if (value.length > MAX_OUTPUT_PARAMETER_LENGTH ||
+      totalLength + value.length > MAX_OUTPUT_PARAMETER_TOTAL_LENGTH) {
+      return undefined;
+    }
+    bounded[name] = value;
+    totalLength += value.length;
+  }
+  return Object.freeze(bounded);
+};
+
+export const interfaceTextOutput = (source, values = {}) => {
+  if (typeof source !== 'string') return undefined;
+  if (source.length > MAX_OUTPUT_SOURCE_LENGTH) {
+    return makeOpaqueOutput(formatRawOutput(source, values));
+  }
+  const boundedValues = boundedOutputValues(source, values);
+  if (boundedValues === undefined) {
+    return makeOpaqueOutput(formatRawOutput(source, values));
+  }
+  return Object.freeze({
+    [interfaceTextOutputBrand]: true,
+    source,
+    values: boundedValues,
+  });
+};
+
+export const interfaceToastText = (source, values = {}) =>
+  interfaceTextOutput(source, values);
+
+export const interfaceText = (source, parameters = {}) => {
+  return formatInterfaceText(source, parameters);
+};
+
+const isolateNativePresentationParameters = (parameters = {}) =>
+  Object.fromEntries(Object.entries(parameters).map(([name, value]) => [
+    name,
+    (typeof value === 'string' || typeof value === 'number') && String(value)
+      ? `\u2068${value}\u2069`
+      : value,
+  ]));
+
+// Native attribute/dialog text cannot contain <bdi>. Keep isolates at this
+// presentation boundary; ordinary helpers and stored data remain unchanged.
+export const interfacePresentationText = (source, parameters = {}) => {
+  const values = activeLanguage === 'ar'
+    ? isolateNativePresentationParameters(parameters)
+    : parameters;
+  return formatInterfaceText(source, values);
+};
+
+// Native aria-label/title strings cannot contain structured <bdi> elements.
+// Isolate interpolated values in every locale without changing stored text.
+export const interfaceAttributeText = (source, parameters = {}) => {
+  return formatInterfaceText(source, isolateNativePresentationParameters(parameters));
+};
+
+// Native confirm dialogs also need all-direction isolation for opaque values.
+export const interfaceDialogText = (source, parameters = {}) =>
+  formatInterfaceText(source, isolateNativePresentationParameters(parameters));
 
 export const interfaceTextProps = (source, parameters = {}) => {
-  const translated = activeLanguage !== 'en' ? activeCatalog?.[source] : undefined;
+  const textLanguage = getInterfaceTextLanguage(source, activeLanguage);
   const text = formatInterfaceText(source, parameters);
   const unresolved = typeof text === 'string' && /\{[a-zA-Z][a-zA-Z0-9_]*\}/.test(text);
   const props = {
-    dir: translated && activeLanguage === 'ar' ? 'rtl' : 'ltr',
-    lang: translated ? activeLanguage : 'en',
+    dir: textLanguage === 'ar' ? 'rtl' : 'ltr',
+    lang: textLanguage,
   };
   if (!unresolved) {
     props['aria-label'] = text;
@@ -153,6 +277,13 @@ export const interfaceTextProps = (source, parameters = {}) => {
   }
   if (parameters && Object.keys(parameters).length > 0) props.parameters = parameters;
   return props;
+};
+
+export const interfaceAttributeTextProps = (source, parameters = {}) => {
+  const props = interfaceTextProps(source, parameters);
+  if (!Object.hasOwn(props, 'aria-label')) return props;
+  const text = interfaceAttributeText(source, parameters);
+  return { ...props, 'aria-label': text, title: text };
 };
 
 activeLanguage = 'en';
@@ -183,7 +314,7 @@ export const useInterfaceLanguage = () => {
   );
   const language = activeLanguage;
   const t = useCallback((source, parameters) => {
-    const translated = language === 'en' ? source : activeCatalog?.[source] || source;
+    const translated = translationFor(source, language) || source;
     if (!parameters || typeof translated !== 'string') return translated;
     return translated.replace(/\{([a-zA-Z][a-zA-Z0-9_]*)\}/g, (placeholder, name) => {
       const value = parameters[name];

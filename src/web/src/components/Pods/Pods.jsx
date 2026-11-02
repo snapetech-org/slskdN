@@ -1,6 +1,6 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 
 
 import { getRegionalLocale } from '../../lib/regionalFormat';
@@ -13,7 +13,7 @@ import PortForwarding from './PortForwarding';
 import VpnGatewayConfig from './VpnGatewayConfig';
 import { TooltipButton } from '../Shared';
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   Button,
@@ -466,7 +466,7 @@ export class Pods extends Component {
       // Messages will be refreshed by interval
     } catch (error) {
       console.error('Failed to send message:', error);
-      toast.error(interfaceText("Failed to send message: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to send message: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     }
   };
 
@@ -518,7 +518,7 @@ export class Pods extends Component {
       );
     } catch (error) {
       console.error('Failed to create pod:', error);
-      toast.error(interfaceText("Failed to create pod: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to create pod: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     }
   };
 
@@ -533,7 +533,7 @@ export class Pods extends Component {
       this.setState({ discoveryResults: asArray(discovered).filter(isObject) });
     } catch (error) {
       console.error('Failed to discover pods:', error);
-      toast.error(interfaceText("Failed to discover pods: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to discover pods: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       this.setState({ discoveryLoading: false });
     }
@@ -565,7 +565,7 @@ export class Pods extends Component {
         visibility,
       }, this.getLocalPeerId());
 
-      toast.success(interfaceText("Saved pod {name}", { "name": (name) }));
+      toast.success(interfaceToastText("Saved pod {name}", { "name": (name) }));
       const podList = await this.fetchPods();
       await this.selectPod(
         savedPod.podId,
@@ -574,7 +574,7 @@ export class Pods extends Component {
       );
     } catch (error) {
       console.error('Failed to save discovered pod:', error);
-      toast.error(interfaceText("Failed to save pod: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to save pod: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     }
   };
 
@@ -597,11 +597,11 @@ export class Pods extends Component {
 
     try {
       await pods.leave(activePodId, peerId);
-      toast.success(interfaceText("Left {podName}", { "podName": (podName) }));
+      toast.success(interfaceToastText("Left {podName}", { "podName": (podName) }));
       await this.fetchPodDetail(activePodId);
     } catch (error) {
       console.error('Failed to leave pod:', error);
-      toast.error(interfaceText("Failed to leave pod: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to leave pod: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     }
   };
 
@@ -721,7 +721,7 @@ export class Pods extends Component {
                             content={interfaceText("Save this pod's details in your local pod list so it is available after restarts. This does not join the pod.")}
                             trigger={
                               <Button
-                                aria-label={interfaceText("Save discovered pod {name} locally", { "name": (name) })}
+                                aria-label={interfaceAttributeText("Save discovered pod {name} locally", { "name": (name) })}
                                 basic
                                 icon="save"
                                 onClick={(event) => {
@@ -819,8 +819,8 @@ export class Pods extends Component {
                     trigger={
                       <Button
                         aria-label={isGoldStarClub
-                          ? interfaceText('Permanently leave Gold Star Club')
-                          : interfaceText('Leave pod {pod}', { pod: podDetail.name || podDetail.podId })}
+                          ? interfaceAttributeText('Permanently leave Gold Star Club')
+                          : interfaceAttributeText('Leave pod {pod}', { pod: podDetail.name || podDetail.podId })}
                         icon
                         labelPosition="left"
                         negative={isGoldStarClub}
@@ -849,7 +849,7 @@ export class Pods extends Component {
                     {podDetail.channels.map((channel, index) => (
                       <TooltipButton
                         active={channel.channelId === activeChannelId}
-                        aria-label={interfaceText('Open {channel} channel', {
+                        aria-label={interfaceAttributeText('Open {channel} channel', {
                           channel: channel.name || channel.channelId,
                         })}
                         icon={channel.kind === 'Direct' ? 'comments' : 'comment alternate'}

@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "ff8e73dca9575177c88645a27b8e7221f8828d5c",
+  "tree": "c325d60a5c44dac45e07c965747b91e2f608ecd3",
+  "sourceSubtreeTree": "444662a240631d9b1ba4e8358e70d1a27b14469d",
+  "generatedUtc": "2026-11-02T01:39:43Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 22,
+    "cells": 6600,
+    "keys": 550,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 869,
+    "ids": 869,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "windows20_21": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_f71157eafd4859bf",
+      "src_f7266854fe55fa4e",
+      "src_f73bad551b46621b",
+      "src_f7573bf001d513a8",
+      "src_f75b6c146d7bc494",
+      "src_f75c2a5e0c8a1584",
+      "src_f75cabab76f5a17e",
+      "src_f76bad96debbda1c",
+      "src_f77334c05f28e7b8",
+      "src_f77840debe76dded",
+      "src_f7881ff8beaf4b14",
+      "src_f79076d91fa9e4e9",
+      "src_f795cbf5d25292b1",
+      "src_f7cf39ee72f47395",
+      "src_f7d9ac26857e3fac",
+      "src_f7e7093dbf09c564",
+      "src_f7f2495aa50ee719",
+      "src_f8019af406d12fad",
+      "src_f81ab834de5f8491",
+      "src_f81cfebe7162a7e3",
+      "src_f82329b9eda34a12",
+      "src_f83619b4a3a2eb6b",
+      "src_f83d9e6c4060ab46",
+      "src_f845754d70f05777",
+      "src_f84b20ccbda8a06b"
+    ],
+    "sourceIdListSha256": "8cc0a1c2cf6bb61dcfbe06c3a3684062d54c71bc0b413f755c2eb3c8ddb90eb1",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 197,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "b9a6eaa9d736695249e838ba3ad1cf44dda8f663a359c43b89240195ce7025c5",
+    "zh-Hans": "01a346827a48b1cf46115e334f099505cdb108a60f788ed1ccc1eb766866b269",
+    "hi": "fbdb117753bd351d8ce31955cc5001c2455b2cb800ad5d61f0e1be576ab7a9dd",
+    "de": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75",
+    "ja": "589b61d7b3ad694913eb10d66a94ff10cc17c11f3a5725d52e9f63440d3b37b9",
+    "fr": "4f3341b3416813d7e72f71e7a5fc129d8aa4965950ec22579772d073fc6de6d5",
+    "pt-BR": "d8e7628a9eac2471d123ed289a98f03038a54015dd18fcb1efe18dab5b70831a",
+    "ar": "918bf828523723dd4a58524f1233c45a8fa6e282207c01f1f9a0c32d5e40ae90",
+    "ko": "0f26115f8c4406ada424dc3ac55116762e0390226f4983a46c55086133a09448",
+    "zh-Hant": "9fd1d5a9415ba6d627e121328dd40b86d28896844eabe60537b3ed043f7b3b81",
+    "vi": "f5a2f103f3523c9e5afcd332ea9ac8f8bdf13eeb3460b55d87d42adaeb03f10f",
+    "id": "3d63e2bbe413569eb957d23c5ed9506c3368fc22f635392ad81857b83ed37c0c"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "23ab5a2d823b2b1ee680adb175722e517f409e7d1bf3197e8b016705c2a783c9"
+  },
+  "reviewerMethod": "independent semantic review of pinned source context and code callsites; no local translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "fb20be25ce6cb5922550931096d9bd572fccfebb1eedf545f4d5fca2f158938c"
+  },
+  "decisionCounts": {
+    "keep": 270,
+    "correct": 30,
+    "uncertain": 0
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "zh-Hans": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 25,
+      "correct": 0,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    }
+  },
+  "correctionFindings": [
+    {
+      "sourceId": "src_f71157eafd4859bf",
+      "source": "Show {searchText} results inline",
+      "affectedLocales": [
+        "es"
+      ],
+      "finding": "The control displays results inside the Wishlist page; en línea can be read as online rather than inline."
+    },
+    {
+      "sourceId": "src_f76bad96debbda1c",
+      "source": "Ntfy topic URL",
+      "affectedLocales": [
+        "vi",
+        "id"
+      ],
+      "finding": "ntfy is the notification-service brand; the current translations instead mean “not fun/unhappy” and “unclear”."
+    },
+    {
+      "sourceId": "src_f77840debe76dded",
+      "source": "AcoustID base URL",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant",
+        "fr",
+        "pt-BR",
+        "vi",
+        "id"
+      ],
+      "finding": "The input is a service base URL; current targets use physical-base vocabulary or word order that obscures URL as the base value."
+    },
+    {
+      "sourceId": "src_f7881ff8beaf4b14",
+      "source": "Send (Enter)",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The parenthetical names the Enter keyboard key; current targets translate the name as a verb or the act of inputting rather than a key label."
+    },
+    {
+      "sourceId": "src_f7cf39ee72f47395",
+      "source": "type:",
+      "affectedLocales": [
+        "fr",
+        "ar"
+      ],
+      "finding": "This is a field label for obfuscation.type; current targets use a verb (“to type/he writes”) rather than the noun “type”."
+    },
+    {
+      "sourceId": "src_f7e7093dbf09c564",
+      "source": "Content Registry",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant",
+        "vi"
+      ],
+      "finding": "The card reports mapping totals and domain statistics; the source names a registry/store, while current targets read as the process of content registration."
+    },
+    {
+      "sourceId": "src_f7f2495aa50ee719",
+      "source": "Endpoint:",
+      "affectedLocales": [
+        "es",
+        "fr",
+        "pt-BR",
+        "ja"
+      ],
+      "finding": "The following value is peer.endpoint, a network endpoint; the current target reads as a sentence full stop or a generic terminal point."
+    },
+    {
+      "sourceId": "src_f81cfebe7162a7e3",
+      "source": "Create pods linked to specific content (music, videos, etc.) for focused discussions",
+      "affectedLocales": [
+        "fr"
+      ],
+      "finding": "The source refers to the app’s discussion pod objects; modules/components does not identify the discussion spaces described."
+    }
+  ],
+  "uncertaintyFindings": [],
+  "tools": {
+    "preflight_window23.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window23-ff8e73d-20261102/preflight_window23.py",
+      "sha256": "01086fedd2c59cdd9d283758c117402f91b4c4419d3811867c6d87e36fc70d64"
+    },
+    "build_decisions.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window23-ff8e73d-20261102/build_decisions.py",
+      "sha256": "3805111b4cc994ab71914e6cb1e5bfae4629ab555a951e743d7a66b8db0d2151"
+    }
+  }
+}

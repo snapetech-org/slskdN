@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { interfaceAttributeText, interfaceToastText, interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 // <copyright file="SoulseekDiscoveryPanel.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -8,7 +8,7 @@ import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import * as soulseekDiscovery from '../../lib/soulseekDiscovery';
 import * as wishlist from '../../lib/wishlist';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import {
   Button as SemanticButton,
   Form,
@@ -61,7 +61,7 @@ const getUsernames = (payload) =>
     .filter((user) => user.username);
 
 const errorMessage = (error, fallback) =>
-  getApiErrorMessage(error, { t: interfaceText }, fallback);
+  getApiErrorMessageOutput(error, { t: interfaceText }, fallback);
 
 const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
   useInterfaceLanguage();
@@ -116,7 +116,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       setRecommendations(getRecommendations(payload));
       setUnrecommendations(getUnrecommendations(payload));
       setTitle(global ? 'Global recommendations' : 'My recommendations');
-      setStatus(interfaceText('Recommendations loaded: {count}.', {
+      setStatus(interfaceTextOutput('Recommendations loaded: {count}.', {
         count: getRecommendations(payload).length,
       }));
     });
@@ -124,7 +124,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
   const loadItemRecommendations = () => {
     const trimmed = item.trim();
     if (!trimmed) {
-      toast.error(interfaceText("Item is required"));
+      toast.error(interfaceToastText("Item is required"));
       return;
     }
 
@@ -136,7 +136,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setRecommendations(getRecommendations(response.data || {}));
       setTitle(`Recommendations for ${trimmed}`);
-      setStatus(interfaceText('Related recommendation seeds loaded for {item}.', { item: trimmed }));
+      setStatus(interfaceTextOutput('Related recommendation seeds loaded for {item}.', { item: trimmed }));
     });
   };
 
@@ -148,13 +148,13 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setSimilarUsers(users.map(normalizeUser).filter((user) => user.username));
       setTitle('Similar users');
-      setStatus(interfaceText('Loaded {count} similar users.', { count: users.length }));
+      setStatus(interfaceTextOutput('Loaded {count} similar users.', { count: users.length }));
     });
 
   const loadItemSimilarUsers = () => {
     const trimmed = item.trim();
     if (!trimmed) {
-      toast.error(interfaceText("Item is required"));
+      toast.error(interfaceToastText("Item is required"));
       return;
     }
 
@@ -166,14 +166,14 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setSimilarUsers(getUsernames(response.data || {}));
       setTitle(`Users similar to ${trimmed}`);
-      setStatus(interfaceText('Users associated with {item} loaded.', { item: trimmed }));
+      setStatus(interfaceTextOutput('Users associated with {item} loaded.', { item: trimmed }));
     });
   };
 
   const loadUserInterests = (target = username) => {
     const trimmed = `${target || ''}`.trim();
     if (!trimmed) {
-      toast.error(interfaceText("Username is required"));
+      toast.error(interfaceToastText("Username is required"));
       return;
     }
 
@@ -185,14 +185,14 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       clearResults();
       setUserInterests(response.data || {});
       setTitle(`${trimmed} interests`);
-      setStatus(interfaceText('Native interests loaded for {username}.', { username: trimmed }));
+      setStatus(interfaceTextOutput('Native interests loaded for {username}.', { username: trimmed }));
     });
   };
 
   const updateInterest = (hated = false, remove = false) => {
     const trimmed = interest.trim();
     if (!trimmed) {
-      toast.error(interfaceText("Interest is required"));
+      toast.error(interfaceToastText("Interest is required"));
       return;
     }
 
@@ -209,7 +209,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
       const statusSource = remove
         ? hated ? 'Removed {interest} as a hated interest.' : 'Removed {interest} as an interest.'
         : hated ? 'Added {interest} as a hated interest.' : 'Added {interest} as an interest.';
-      setStatus(interfaceText(statusSource, { interest: trimmed }));
+      setStatus(interfaceTextOutput(statusSource, { interest: trimmed }));
       setInterest('');
     });
   };
@@ -223,7 +223,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
         maxResults: 25,
         searchText,
       });
-      toast.success(interfaceText("Added {searchText} to Wishlist for review", { "searchText": (searchText) }));
+      toast.success(interfaceToastText("Added {searchText} to Wishlist for review", { "searchText": (searchText) }));
     } catch (wishlistError) {
       toast.error(errorMessage(wishlistError, 'Unable to add to Wishlist.'));
     }
@@ -236,7 +236,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
           content={interfaceText("Start a normal Soulseek search for this recommendation.")}
           trigger={
             <SemanticButton
-              aria-label={interfaceText("Search {item}", { "item": (recommendation.item) })}
+              aria-label={interfaceAttributeText("Search {item}", { "item": (recommendation.item) })}
               icon="search"
               onClick={() => onSearch?.(recommendation.item)}
               size="mini"
@@ -247,7 +247,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
           content={interfaceText("Save this raw recommendation to Wishlist for manual review.")}
           trigger={
             <SemanticButton
-              aria-label={interfaceText("Add {item} to Wishlist", { "item": (recommendation.item) })}
+              aria-label={interfaceAttributeText("Add {item} to Wishlist", { "item": (recommendation.item) })}
               icon="bookmark outline"
               onClick={() => addToWishlist(recommendation.item)}
               size="mini"
@@ -274,7 +274,7 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
           content={interfaceText("Load this user's native Soulseek interests.")}
           trigger={
             <SemanticButton
-              aria-label={interfaceText("Load {username} interests", { "username": (user.username) })}
+              aria-label={interfaceAttributeText("Load {username} interests", { "username": (user.username) })}
               icon="heart outline"
               onClick={() => loadUserInterests(user.username)}
               size="mini"
@@ -459,13 +459,13 @@ const SoulseekDiscoveryPanel = ({ disabled, onSearch }) => {
 
       {error && (
         <Message
-          content={error}
+          content={<LocalizedOutputText output={error} />}
           error
         />
       )}
       {status && (
         <Message
-          content={status}
+          content={<LocalizedOutputText output={status} />}
           positive={!error}
         />
       )}

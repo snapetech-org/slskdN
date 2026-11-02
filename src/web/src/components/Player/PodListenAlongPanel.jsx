@@ -1,7 +1,7 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceAttributeText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import * as listeningParty from '../../lib/listeningParty';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { usePlayer } from './PlayerContext';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Button, Checkbox, Icon, Label, List, Popup, Segment } from 'semantic-ui-react';
@@ -169,7 +169,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           ? 'Could not stop the room broadcast. Try again.'
           : updatingSettings
             ? 'Could not confirm broadcast settings. Retry to apply the requested settings.'
-            : getApiErrorMessage(error, { t: interfaceText }, 'Could not start the room broadcast. Try again.')));
+            : getApiErrorMessageOutput(error, { t: interfaceText }, 'Could not start the room broadcast. Try again.')));
       }
     });
   };
@@ -196,7 +196,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
       ? <div className="pod-listen-along-state" role="status"><LocalizedText source={"Stopping room broadcast…"} /></div> : null}
     {hosting && player.broadcastStatus.settingsPending
       ? <div className="pod-listen-along-state" role="status"><LocalizedText source={"Applying broadcast settings…"} /></div> : null}
-    {visiblePublishError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={visiblePublishError} /></div> : null}
+    {visiblePublishError ? <div className="pod-listen-along-error" role="alert"><LocalizedOutputText output={visiblePublishError} /></div> : null}
     {hosting && player.broadcastStatus.error ? <Popup
       content={interfaceText("Retry the failed room update using the current playback state. Failed Stop requests are retried as Stop.")}
       trigger={<Button aria-label={interfaceText("Retry room broadcast update")} className="pod-listen-along-retry" disabled={player.broadcastStatus.pending || player.broadcastStatus.stopping}
@@ -366,7 +366,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
             }
            {...interfaceTextProps("Stop broadcasting listen-along metadata for this room.")}/>
         </div>
-        {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
+        {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedOutputText output={connectionError} /></div> : null}
         {broadcastFeedback}
       </Segment>
     );
@@ -475,7 +475,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           }
          {...interfaceTextProps("Stop hosting listen-along metadata for this pod.")}/>
       </Button.Group>
-      {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
+      {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedOutputText output={connectionError} /></div> : null}
       {broadcastFeedback}
       {directory.length > 0 && (
         <div className="pod-listen-along-directory">
@@ -488,7 +488,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
                     content={interfaceText("Play this listed radio snapshot through the host's stream endpoint. Rejoin for later track changes.")}
                     trigger={
                       <Button
-                        aria-label={`Play ${party.title || party.contentId} from listed radio`}
+                        {...interfaceTextProps("Play {track} from listed radio")} aria-label={interfaceAttributeText("Play {track} from listed radio", { track: party.title || party.contentId })}
                         disabled={!party.allowMeshStreaming || !party.transportUsername || !party.streamTicket}
                         icon
                         onClick={() => joinListedParty(party)}

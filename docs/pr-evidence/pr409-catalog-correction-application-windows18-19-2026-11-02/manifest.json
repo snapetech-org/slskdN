@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "exact-hash catalog correction application",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "catalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15"
+  },
+  "applicationBaseHead": "35e1c6289cab52a585f14b01d5e4684c068855b6",
+  "applicationBaseTree": "196e0432f190f0ceede5cdf8e81e7fa66fb3030a",
+  "applicationCommit": "6045f46102ed582a60ad11088bd9209f63b15f33",
+  "applicationTree": "07b1a5cd77ca5d1afd20c90cb63d87e90dee527f",
+  "applicationCommitParent": "35e1c6289cab52a585f14b01d5e4684c068855b6",
+  "sourceSubtreeTree": "b5a776a81982ebde32163f06d47c57fc79e40ad9",
+  "manualReviewPins": {
+    "window18": {
+      "head": "5e2c0cb7a8fa3711a5e3ac231a22699fcc86f44f",
+      "tree": "a47479dc9625f7dd13c99e6c4febb121e6c56769"
+    },
+    "window19": {
+      "head": "4ebd4591994ee709051156df9c9d42160da0b165",
+      "tree": "89658bbd1e5ae93080d8fd61ef71beea811e99a2"
+    }
+  },
+  "priorApplication": {
+    "path": "docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/",
+    "appliedCells": 736,
+    "appliedSourceKeys": 175,
+    "appliedLedgerSha256": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+    "heldNoContext": 6,
+    "heldLedgerSha256": "4d41c7f5d4b04af8a64013b92c72daee8eb7c358bce88b7cc7005d146a201ef6"
+  },
+  "newApplication": {
+    "reviewWindows": [
+      18,
+      19
+    ],
+    "appliedCells": 82,
+    "appliedSourceKeys": 20,
+    "perLocaleCellCounts": {
+      "ar": 8,
+      "de": 4,
+      "es": 5,
+      "fr": 6,
+      "hi": 10,
+      "id": 10,
+      "ja": 3,
+      "ko": 5,
+      "pt-BR": 5,
+      "vi": 10,
+      "zh-Hans": 8,
+      "zh-Hant": 8
+    },
+    "applicationRowsSha256": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+    "preflightSha256": "a72cedb73b9b3854e1f53603b78b912c34c8a5dd5a9794139447ba365d462590",
+    "applicationResultSha256": "1f67222f11909f65be01cff080640ff0e32731e235be5aba4db446add36c7952",
+    "applicationCommitPaths": [
+      "docs/CHANGELOG.md",
+      "src/web/public/locales/ar.json",
+      "src/web/public/locales/de.json",
+      "src/web/public/locales/es.json",
+      "src/web/public/locales/fr.json",
+      "src/web/public/locales/hi.json",
+      "src/web/public/locales/id.json",
+      "src/web/public/locales/ja.json",
+      "src/web/public/locales/ko.json",
+      "src/web/public/locales/pt-BR.json",
+      "src/web/public/locales/vi.json",
+      "src/web/public/locales/zh-Hans.json",
+      "src/web/public/locales/zh-Hant.json"
+    ]
+  },
+  "cumulative": {
+    "manualWindows": 19,
+    "manualKeys": 475,
+    "manualCells": 5700,
+    "keep": 4704,
+    "correctionDecisions": 824,
+    "uncertain": 172,
+    "appliedCorrections": 818,
+    "heldNoContext": 6,
+    "appliedSourceKeys": 195,
+    "unreviewedPendingCells": 61380,
+    "perLocaleAppliedCells": {
+      "ar": 93,
+      "de": 44,
+      "es": 66,
+      "fr": 66,
+      "hi": 72,
+      "id": 78,
+      "ja": 43,
+      "ko": 57,
+      "pt-BR": 57,
+      "vi": 86,
+      "zh-Hans": 79,
+      "zh-Hant": 77
+    }
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "beforeCatalogFileSha256": {
+    "ar": "4cd66e38c09aa6b68d6dad005e484e9f9c0dc3d317df3675b19c55d60ee972bb",
+    "de": "fa01f543c9bb7671a5f4e9a17f082967117df939386da7babb843c5de3227f11",
+    "es": "d76594af79808b38ed8bed729b6bba9ac7c812a6a11263f37422d0ecd2d1f2c4",
+    "fr": "491e0c43500f4c8a25a2bb5fccc1c029bdd0f62d3e3d2d59b15023827ca9a4cf",
+    "hi": "44bd6126a00076a87c2bf5cb3c6a0604b1b956d3dc0ce88ce64c94307c8d40a0",
+    "id": "feb123cfa7ceead1ba8d740f3c3e683c9db312a6434d895778c0e5ee02a7e6af",
+    "ja": "901d539dda35730f63f0ddd530153aedbb4939b66de8fa93e39308cccf258102",
+    "ko": "ec2fdeeea662fc9f9bccdcae35f189392f1e561210663afc94ac7d2adb177b4b",
+    "pt-BR": "e85cc3a83efaf0dd2a6e6c2cf3c698146877faac85a8d4f4ee2309639261d348",
+    "vi": "13f011cbf7f074bedb7ca62fa10f54c1e0f4d398b2385900abe4aa729339b16c",
+    "zh-Hans": "3f814961af9d1828a11979d469a47c27f92effe0b712de644b756525e7214413",
+    "zh-Hant": "8c4850478ed0f33f7027f2f6bd7954a77b060c3794f387281f05a278e07e58f4"
+  },
+  "afterCatalogFileSha256": {
+    "src/web/public/locales/ar.json": "a0bd7e5c8345a630813f327a046b5fd96b0cda5aec81ea11fc8ab5a0d94c2004",
+    "src/web/public/locales/de.json": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75",
+    "src/web/public/locales/es.json": "f8af7ac6bb5f6175da30cb4eee8ea5c01e17fd39c207c08bcf8b1ef7f33a1f9e",
+    "src/web/public/locales/fr.json": "ee7c668874726114f7fd95933afa2b4ddc5fd69120d2f3baf6a2b1627ebb1776",
+    "src/web/public/locales/hi.json": "2c284b5922e8c0a76b9eabdf48c61705010754427f78652eed49a3b5c6293684",
+    "src/web/public/locales/id.json": "251daff9b3bebb2610d23362be51c56b117ec656382fe452441594eb31854575",
+    "src/web/public/locales/ja.json": "005eec08f85635384634ab01a55b69572672d640f639c67e052b84a32f40c673",
+    "src/web/public/locales/ko.json": "612a7677736cce13ce2a28b90e7360aaab43931f9dbecf0b7bddb52a415b127f",
+    "src/web/public/locales/pt-BR.json": "8d8d80ff0cb7956a5b1ab898b4afa483f25d5fd6493ccaafbcc7bec4384c2a89",
+    "src/web/public/locales/vi.json": "6bdddf7ba57a975ab1efa6c3ef187263fc5ea4ad7e5653c8a330f4da6ba0cc61",
+    "src/web/public/locales/zh-Hans.json": "26ee514e596a1f6ad5624065d4973c00435bcdfae7322a49aa66e335676cc42f",
+    "src/web/public/locales/zh-Hant.json": "dd2ad7209d9a9bc419075b256d867fe994c833a62a7872a02fb818fd33a13763"
+  },
+  "newApplicationRowsSha256": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+  "preflightSha256": "a72cedb73b9b3854e1f53603b78b912c34c8a5dd5a9794139447ba365d462590",
+  "applicationResultSha256": "1f67222f11909f65be01cff080640ff0e32731e235be5aba4db446add36c7952",
+  "catalogChangedValueCountSinceBaseline": 818,
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0,
+  "validation": {
+    "testsRun": false,
+    "buildsRun": false,
+    "ciRun": false,
+    "localScansRun": false,
+    "nativeSpeakerReview": "not performed"
+  },
+  "provenance": {
+    "priorAutomaticSemgrep": "The earlier packaging commit 5e2c0cb7 automatically ran the local Semgrep hook and reported zero findings; this application and subsequent docs commits disabled local hooks per private-JIT policy."
+  },
+  "verifierSha256": "62e71cc25bba4401696b68283a1d6273ef084a796d175e8ee0f9b3a7797a9cba",
+  "verificationSha256": "fce7bb94622e7da442c0d5df90c9eb051c7579ccbbc5666d9aa50b8aeaf746e4"
+}

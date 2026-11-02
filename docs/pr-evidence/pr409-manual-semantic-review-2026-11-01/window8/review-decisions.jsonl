@@ -1,0 +1,300 @@
+{"id":"es:src_e338ef580756645f","verdict":"keep"}
+{"id":"zh-Hans:src_e338ef580756645f","verdict":"keep"}
+{"id":"hi:src_e338ef580756645f","verdict":"keep"}
+{"id":"de:src_e338ef580756645f","verdict":"keep"}
+{"id":"ja:src_e338ef580756645f","verdict":"keep"}
+{"id":"fr:src_e338ef580756645f","verdict":"keep"}
+{"id":"pt-BR:src_e338ef580756645f","verdict":"keep"}
+{"id":"ar:src_e338ef580756645f","verdict":"keep"}
+{"id":"ko:src_e338ef580756645f","verdict":"keep"}
+{"id":"zh-Hant:src_e338ef580756645f","verdict":"keep"}
+{"id":"vi:src_e338ef580756645f","verdict":"keep"}
+{"id":"id:src_e338ef580756645f","verdict":"keep"}
+{"id":"es:src_e33c82bc5f8e56a9","verdict":"correct","target":"Rescate activado","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"zh-Hans:src_e33c82bc5f8e56a9","verdict":"correct","target":"救援已触发","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"hi:src_e33c82bc5f8e56a9","verdict":"correct","target":"बचाव प्रक्रिया सक्रिय हुई","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"de:src_e33c82bc5f8e56a9","verdict":"correct","target":"Rettung ausgelöst","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"ja:src_e33c82bc5f8e56a9","verdict":"keep"}
+{"id":"fr:src_e33c82bc5f8e56a9","verdict":"correct","target":"Sauvetage déclenché","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"pt-BR:src_e33c82bc5f8e56a9","verdict":"correct","target":"Resgate acionado","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"ar:src_e33c82bc5f8e56a9","verdict":"correct","target":"تم تفعيل الإنقاذ","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"ko:src_e33c82bc5f8e56a9","verdict":"correct","target":"구조 절차 실행","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"zh-Hant:src_e33c82bc5f8e56a9","verdict":"correct","target":"救援已觸發","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"vi:src_e33c82bc5f8e56a9","verdict":"correct","target":"Đã kích hoạt cứu hộ","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"id:src_e33c82bc5f8e56a9","verdict":"correct","target":"Penyelamatan diaktifkan","confidence":"high","reason":"The callsite displays the boolean `traceSummary.rescueInvoked` beside a Normal state. The label reports that the rescue path was triggered; the current wording in these locales reads as summoning or requesting rescue."}
+{"id":"es:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"zh-Hans:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"hi:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"de:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"ja:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"fr:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"pt-BR:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"ar:src_e35fdbbff50a4625","verdict":"correct","target":"أخفِ عارض MilkDrop.","confidence":"high","reason":"The PlayerBar toggle hides the MilkDrop visualizer. The current Arabic `مرئي` means visible/visual rather than naming a visualizer."}
+{"id":"ko:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"zh-Hant:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"vi:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"id:src_e35fdbbff50a4625","verdict":"keep"}
+{"id":"es:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"zh-Hans:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"hi:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"de:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"ja:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"fr:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"pt-BR:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"ar:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"ko:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"zh-Hant:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"vi:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"id:src_e3654f9f5fdc952c","verdict":"keep"}
+{"id":"es:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"zh-Hans:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"hi:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"de:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"ja:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"fr:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"pt-BR:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"ar:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"ko:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"zh-Hant:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"vi:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"id:src_e36a7ce8e5614260","verdict":"keep"}
+{"id":"es:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"zh-Hans:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"hi:src_e36ab87b89a9aaf2","verdict":"correct","target":"कई प्रदाताओं या पीयर से मिली डुप्लिकेट फ़ाइल उम्मीदवारों को समेटें, सबसे ऊँची रैंक वाले दिखाई देने वाले परिणाम को रखें और समेटे गए स्रोतों को मेटाडेटा के रूप में दिखाएँ।","confidence":"high","reason":"The Search Detail callsite describes duplicate file candidates from providers or Soulseek peers. The current Hindi calls peers companions; this target preserves the network-peer meaning."}
+{"id":"de:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"ja:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"fr:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"pt-BR:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"ar:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"ko:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"zh-Hant:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"vi:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"id:src_e36ab87b89a9aaf2","verdict":"keep"}
+{"id":"es:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"zh-Hans:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"hi:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"de:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"ja:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"fr:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"pt-BR:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"ar:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"ko:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"zh-Hant:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"vi:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"id:src_e386e98cd5100ca0","verdict":"keep"}
+{"id":"es:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"zh-Hans:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"hi:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"de:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"ja:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"fr:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"pt-BR:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"ar:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"ko:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"zh-Hant:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"vi:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"id:src_e3aa56acef5c724c","verdict":"keep"}
+{"id":"es:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"zh-Hans:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"hi:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"de:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"ja:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"fr:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"pt-BR:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"ar:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"ko:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"zh-Hant:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"vi:src_e3b89e9d33f88e52","verdict":"keep"}
+{"id":"id:src_e3b89e9d33f88e52","verdict":"correct","target":"Nama pengguna","confidence":"high","reason":"The callsite uses this string as a username search placeholder. The current Indonesian `Nama belakang` means surname, not username."}
+{"id":"es:src_e3bb3b0359cd7c99","verdict":"correct","target":"El usuario está desconectado en este momento. El sistema volverá a intentarlo automáticamente cuando vuelva.","confidence":"high","reason":"The source refers to one user. These current targets use plural or mismatched pronouns; the replacement keeps the singular reference clear and says the system retries when that user returns."}
+{"id":"zh-Hans:src_e3bb3b0359cd7c99","verdict":"keep"}
+{"id":"hi:src_e3bb3b0359cd7c99","verdict":"keep"}
+{"id":"de:src_e3bb3b0359cd7c99","verdict":"correct","target":"Der Benutzer ist derzeit offline. Das System versucht es automatisch erneut, sobald der Benutzer wieder online ist.","confidence":"high","reason":"The source refers to one user. These current targets use plural or mismatched pronouns; the replacement keeps the singular reference clear and says the system retries when that user returns."}
+{"id":"ja:src_e3bb3b0359cd7c99","verdict":"correct","target":"ユーザーは現在オフラインです。ユーザーが戻ると、システムは自動的に再試行します。","confidence":"high","reason":"The source refers to one user. These current targets use plural or mismatched pronouns; the replacement keeps the singular reference clear and says the system retries when that user returns."}
+{"id":"fr:src_e3bb3b0359cd7c99","verdict":"keep"}
+{"id":"pt-BR:src_e3bb3b0359cd7c99","verdict":"correct","target":"O usuário está off-line no momento. O sistema tentará novamente automaticamente quando o usuário voltar.","confidence":"high","reason":"The source refers to one user. These current targets use plural or mismatched pronouns; the replacement keeps the singular reference clear and says the system retries when that user returns."}
+{"id":"ar:src_e3bb3b0359cd7c99","verdict":"correct","target":"المستخدم غير متصل حاليًا. سيعيد النظام المحاولة تلقائيًا عند عودة المستخدم.","confidence":"high","reason":"The source refers to one user. These current targets use plural or mismatched pronouns; the replacement keeps the singular reference clear and says the system retries when that user returns."}
+{"id":"ko:src_e3bb3b0359cd7c99","verdict":"keep"}
+{"id":"zh-Hant:src_e3bb3b0359cd7c99","verdict":"keep"}
+{"id":"vi:src_e3bb3b0359cd7c99","verdict":"keep"}
+{"id":"id:src_e3bb3b0359cd7c99","verdict":"keep"}
+{"id":"es:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"zh-Hans:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"hi:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"de:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"ja:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"fr:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"pt-BR:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"ar:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"ko:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"zh-Hant:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"vi:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"id:src_e3d64c93002bd09f","verdict":"keep"}
+{"id":"es:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"zh-Hans:src_e3ff7b51330daa07","verdict":"correct","target":"没有可用的智能电台查询。","confidence":"high","reason":"The callsite is the Smart Radio search-plan status after it finds no generated searches. These targets render radio as wireless communication; use the music-radio feature meaning."}
+{"id":"hi:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"de:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"ja:src_e3ff7b51330daa07","verdict":"correct","target":"準備できているスマートラジオのクエリはありません。","confidence":"high","reason":"The callsite is the Smart Radio search-plan status after it finds no generated searches. These targets render radio as wireless communication; use the music-radio feature meaning."}
+{"id":"fr:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"pt-BR:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"ar:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"ko:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"zh-Hant:src_e3ff7b51330daa07","verdict":"correct","target":"沒有可用的智慧電台查詢。","confidence":"high","reason":"The callsite is the Smart Radio search-plan status after it finds no generated searches. These targets render radio as wireless communication; use the music-radio feature meaning."}
+{"id":"vi:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"id:src_e3ff7b51330daa07","verdict":"keep"}
+{"id":"es:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"zh-Hans:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"hi:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"de:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"ja:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"fr:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"pt-BR:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"ar:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"ko:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"zh-Hant:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"vi:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"id:src_e4009f6ebc64d04e","verdict":"keep"}
+{"id":"es:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"zh-Hans:src_e40c3d509e1e3320","verdict":"correct","target":"例如：mp3 minbr:320","confidence":"high","reason":"The Wishlist placeholder contains the literal `minbr:320` filter directive (minimum bitrate). The current Chinese targets translate `minbr` as minutes, breaking the example syntax."}
+{"id":"hi:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"de:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"ja:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"fr:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"pt-BR:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"ar:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"ko:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"zh-Hant:src_e40c3d509e1e3320","verdict":"correct","target":"例如：mp3 minbr:320","confidence":"high","reason":"The Wishlist placeholder contains the literal `minbr:320` filter directive (minimum bitrate). The current Chinese targets translate `minbr` as minutes, breaking the example syntax."}
+{"id":"vi:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"id:src_e40c3d509e1e3320","verdict":"keep"}
+{"id":"es:src_e41134be2796b835","verdict":"keep"}
+{"id":"zh-Hans:src_e41134be2796b835","verdict":"keep"}
+{"id":"hi:src_e41134be2796b835","verdict":"keep"}
+{"id":"de:src_e41134be2796b835","verdict":"keep"}
+{"id":"ja:src_e41134be2796b835","verdict":"keep"}
+{"id":"fr:src_e41134be2796b835","verdict":"keep"}
+{"id":"pt-BR:src_e41134be2796b835","verdict":"keep"}
+{"id":"ar:src_e41134be2796b835","verdict":"keep"}
+{"id":"ko:src_e41134be2796b835","verdict":"keep"}
+{"id":"zh-Hant:src_e41134be2796b835","verdict":"keep"}
+{"id":"vi:src_e41134be2796b835","verdict":"keep"}
+{"id":"id:src_e41134be2796b835","verdict":"keep"}
+{"id":"es:src_e4370cdd485df088","verdict":"keep"}
+{"id":"zh-Hans:src_e4370cdd485df088","verdict":"keep"}
+{"id":"hi:src_e4370cdd485df088","verdict":"keep"}
+{"id":"de:src_e4370cdd485df088","verdict":"keep"}
+{"id":"ja:src_e4370cdd485df088","verdict":"keep"}
+{"id":"fr:src_e4370cdd485df088","verdict":"keep"}
+{"id":"pt-BR:src_e4370cdd485df088","verdict":"keep"}
+{"id":"ar:src_e4370cdd485df088","verdict":"keep"}
+{"id":"ko:src_e4370cdd485df088","verdict":"keep"}
+{"id":"zh-Hant:src_e4370cdd485df088","verdict":"keep"}
+{"id":"vi:src_e4370cdd485df088","verdict":"keep"}
+{"id":"id:src_e4370cdd485df088","verdict":"keep"}
+{"id":"es:src_e4591d642569e643","verdict":"keep"}
+{"id":"zh-Hans:src_e4591d642569e643","verdict":"keep"}
+{"id":"hi:src_e4591d642569e643","verdict":"keep"}
+{"id":"de:src_e4591d642569e643","verdict":"keep"}
+{"id":"ja:src_e4591d642569e643","verdict":"keep"}
+{"id":"fr:src_e4591d642569e643","verdict":"keep"}
+{"id":"pt-BR:src_e4591d642569e643","verdict":"keep"}
+{"id":"ar:src_e4591d642569e643","verdict":"keep"}
+{"id":"ko:src_e4591d642569e643","verdict":"keep"}
+{"id":"zh-Hant:src_e4591d642569e643","verdict":"keep"}
+{"id":"vi:src_e4591d642569e643","verdict":"keep"}
+{"id":"id:src_e4591d642569e643","verdict":"keep"}
+{"id":"es:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"zh-Hans:src_e4599b0de864be5f","verdict":"correct","target":"SAM 地址：","confidence":"high","reason":"The callsite displays the I2P `SamAddress`; official I2P documentation names SAM as the Simple Anonymous Messaging protocol, not a person named Sam. Preserve the uppercase protocol acronym. https://geti2p.net/en/get-involved/develop/applications"}
+{"id":"hi:src_e4599b0de864be5f","verdict":"correct","target":"SAM पता:","confidence":"high","reason":"The callsite displays the I2P `SamAddress`; official I2P documentation names SAM as the Simple Anonymous Messaging protocol, not a person named Sam. Preserve the uppercase protocol acronym. https://geti2p.net/en/get-involved/develop/applications"}
+{"id":"de:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"ja:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"fr:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"pt-BR:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"ar:src_e4599b0de864be5f","verdict":"correct","target":"عنوان SAM:","confidence":"high","reason":"The callsite displays the I2P `SamAddress`; official I2P documentation names SAM as the Simple Anonymous Messaging protocol, not a person named Sam. Preserve the uppercase protocol acronym. https://geti2p.net/en/get-involved/develop/applications"}
+{"id":"ko:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"zh-Hant:src_e4599b0de864be5f","verdict":"correct","target":"SAM 位址：","confidence":"high","reason":"The callsite displays the I2P `SamAddress`; official I2P documentation names SAM as the Simple Anonymous Messaging protocol, not a person named Sam. Preserve the uppercase protocol acronym. https://geti2p.net/en/get-involved/develop/applications"}
+{"id":"vi:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"id:src_e4599b0de864be5f","verdict":"keep"}
+{"id":"es:src_e465afed0c5d35aa","verdict":"correct","target":"Dirección SOCKS:","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"zh-Hans:src_e465afed0c5d35aa","verdict":"correct","target":"SOCKS 地址：","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"hi:src_e465afed0c5d35aa","verdict":"correct","target":"SOCKS पता:","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"de:src_e465afed0c5d35aa","verdict":"keep"}
+{"id":"ja:src_e465afed0c5d35aa","verdict":"correct","target":"SOCKS アドレス:","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"fr:src_e465afed0c5d35aa","verdict":"correct","target":"Adresse SOCKS :","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"pt-BR:src_e465afed0c5d35aa","verdict":"correct","target":"Endereço SOCKS:","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"ar:src_e465afed0c5d35aa","verdict":"correct","target":"عنوان SOCKS:","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"ko:src_e465afed0c5d35aa","verdict":"correct","target":"SOCKS 주소:","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"zh-Hant:src_e465afed0c5d35aa","verdict":"correct","target":"SOCKS 位址：","confidence":"high","reason":"The callsite shows the configured Tor SOCKS proxy endpoint. These targets translated the protocol name SOCKS as socks/stockings or misplaced it as an ordinary noun; preserve the protocol acronym."}
+{"id":"vi:src_e465afed0c5d35aa","verdict":"keep"}
+{"id":"id:src_e465afed0c5d35aa","verdict":"keep"}
+{"id":"es:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"zh-Hans:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"hi:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"de:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"ja:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"fr:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"pt-BR:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"ar:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"ko:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"zh-Hant:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"vi:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"id:src_e4707f517b4ebaf6","verdict":"keep"}
+{"id":"es:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"zh-Hans:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"hi:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"de:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"ja:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"fr:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"pt-BR:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"ar:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"ko:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"zh-Hant:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"vi:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"id:src_e4892a460642ea0d","verdict":"uncertain","reason":"The empty-state callsite is the browser-local discovery review shelf populated by rating tracks. “Discovery review shelf” is product-specific and can mean a shelf/list of discoveries to review; choose a concise locale-native term with a native reviewer rather than treating the literal shelf metaphor as settled."}
+{"id":"es:src_e48a9cb180aac933","verdict":"correct","target":"Cargar estadísticas","confidence":"high","reason":"The callsites are buttons with handlers that fetch and display statistics; nearby tooltips say “Load ... statistics.” These targets read as a load/capacity statistic rather than the action to load statistics."}
+{"id":"zh-Hans:src_e48a9cb180aac933","verdict":"correct","target":"加载统计信息","confidence":"high","reason":"The callsites are buttons with handlers that fetch and display statistics; nearby tooltips say “Load ... statistics.” These targets read as a load/capacity statistic rather than the action to load statistics."}
+{"id":"hi:src_e48a9cb180aac933","verdict":"keep"}
+{"id":"de:src_e48a9cb180aac933","verdict":"keep"}
+{"id":"ja:src_e48a9cb180aac933","verdict":"correct","target":"統計を読み込む","confidence":"high","reason":"The callsites are buttons with handlers that fetch and display statistics; nearby tooltips say “Load ... statistics.” These targets read as a load/capacity statistic rather than the action to load statistics."}
+{"id":"fr:src_e48a9cb180aac933","verdict":"keep"}
+{"id":"pt-BR:src_e48a9cb180aac933","verdict":"keep"}
+{"id":"ar:src_e48a9cb180aac933","verdict":"correct","target":"تحميل الإحصاءات","confidence":"high","reason":"The callsites are buttons with handlers that fetch and display statistics; nearby tooltips say “Load ... statistics.” These targets read as a load/capacity statistic rather than the action to load statistics."}
+{"id":"ko:src_e48a9cb180aac933","verdict":"correct","target":"통계 불러오기","confidence":"high","reason":"The callsites are buttons with handlers that fetch and display statistics; nearby tooltips say “Load ... statistics.” These targets read as a load/capacity statistic rather than the action to load statistics."}
+{"id":"zh-Hant:src_e48a9cb180aac933","verdict":"correct","target":"載入統計資料","confidence":"high","reason":"The callsites are buttons with handlers that fetch and display statistics; nearby tooltips say “Load ... statistics.” These targets read as a load/capacity statistic rather than the action to load statistics."}
+{"id":"vi:src_e48a9cb180aac933","verdict":"keep"}
+{"id":"id:src_e48a9cb180aac933","verdict":"keep"}
+{"id":"es:src_e48c51300b25e602","verdict":"keep"}
+{"id":"zh-Hans:src_e48c51300b25e602","verdict":"keep"}
+{"id":"hi:src_e48c51300b25e602","verdict":"keep"}
+{"id":"de:src_e48c51300b25e602","verdict":"keep"}
+{"id":"ja:src_e48c51300b25e602","verdict":"keep"}
+{"id":"fr:src_e48c51300b25e602","verdict":"keep"}
+{"id":"pt-BR:src_e48c51300b25e602","verdict":"keep"}
+{"id":"ar:src_e48c51300b25e602","verdict":"keep"}
+{"id":"ko:src_e48c51300b25e602","verdict":"keep"}
+{"id":"zh-Hant:src_e48c51300b25e602","verdict":"keep"}
+{"id":"vi:src_e48c51300b25e602","verdict":"keep"}
+{"id":"id:src_e48c51300b25e602","verdict":"correct","target":"Frekuensi sampel (Hz)","confidence":"high","reason":"This is the audio sample-rate field measured in hertz. The current Indonesian `Kecepatan Sampel` reads as sample speed; use the standard frequency meaning."}
+{"id":"es:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"zh-Hans:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"hi:src_e4979b65781c0e15","verdict":"correct","target":"कॉन्फ़िगरेशन की समस्या का पता लगाने के लिए लागू विकल्पों का निरीक्षण करें।","confidence":"high","reason":"The Options page tooltip directs users to inspect the effective options after configuration resolution. The current Hindi leaves “resolve” in English and the Korean says the options were merely confirmed; these targets name the effective/applied values."}
+{"id":"de:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"ja:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"fr:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"pt-BR:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"ar:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"ko:src_e4979b65781c0e15","verdict":"correct","target":"구성 문제를 해결하려면 최종 적용된 옵션을 확인하세요.","confidence":"high","reason":"The Options page tooltip directs users to inspect the effective options after configuration resolution. The current Hindi leaves “resolve” in English and the Korean says the options were merely confirmed; these targets name the effective/applied values."}
+{"id":"zh-Hant:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"vi:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"id:src_e4979b65781c0e15","verdict":"keep"}
+{"id":"es:src_e4a3905e56d1f25b","verdict":"correct","target":"Atenuación","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"zh-Hans:src_e4a3905e56d1f25b","verdict":"correct","target":"衰减","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"hi:src_e4a3905e56d1f25b","verdict":"keep"}
+{"id":"de:src_e4a3905e56d1f25b","verdict":"keep"}
+{"id":"ja:src_e4a3905e56d1f25b","verdict":"keep"}
+{"id":"fr:src_e4a3905e56d1f25b","verdict":"correct","target":"Atténuation","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"pt-BR:src_e4a3905e56d1f25b","verdict":"correct","target":"Decaimento","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"ar:src_e4a3905e56d1f25b","verdict":"correct","target":"تلاشي","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"ko:src_e4a3905e56d1f25b","verdict":"correct","target":"감쇠","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"zh-Hant:src_e4a3905e56d1f25b","verdict":"correct","target":"衰減","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"vi:src_e4a3905e56d1f25b","verdict":"correct","target":"Suy giảm","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}
+{"id":"id:src_e4a3905e56d1f25b","verdict":"correct","target":"Pemudaran","confidence":"high","reason":"The Visualizer settings expose MilkDrop preset `decay`, and the renderer uses it as the feedback blend/fade parameter. These existing terms mean decadence, radioactive decay, rot, corruption, corrosion, or physical disintegration rather than visual attenuation/fading."}

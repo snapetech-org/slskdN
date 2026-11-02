@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import './MessagingV2.css';
 import * as chat from '../../lib/chat';
@@ -60,43 +60,51 @@ const POD_HYDRATION_INTERVAL_MS = 60_000;
 
 const COMPOSER_COMMANDS = [
   {
-    get description() { return interfaceText("Send an italic action (e.g. /me waves)."); },
+    descriptionSource: "Send an italic action (e.g. /me waves).",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'me',
     syntax: '/me <action>',
   },
   {
-    get description() { return interfaceText("Open a direct-message tab with the given user."); },
+    descriptionSource: "Open a direct-message tab with the given user.",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'msg',
     syntax: '/msg <user>',
   },
   {
-    get description() { return interfaceText("Join (or create) a Soulseek room."); },
+    descriptionSource: "Join (or create) a Soulseek room.",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'join',
     syntax: '/join <room>',
   },
   {
     aliases: ['part', 'leave'],
-    get description() { return interfaceText("Leave the current room or pod, or close the current DM tab."); },
+    descriptionSource: "Leave the current room or pod, or close the current DM tab.",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'close',
     syntax: '/close',
   },
   {
-    get description() { return interfaceText("Set message density."); },
+    descriptionSource: "Set message density.",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'zoom',
     syntax: '/zoom <s|m|l|xl>',
   },
   {
-    get description() { return interfaceText("Refetch messages for the current tab."); },
+    descriptionSource: "Refetch messages for the current tab.",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'reload',
     syntax: '/reload',
   },
   {
-    get description() { return interfaceText("Open the channel switcher."); },
+    descriptionSource: "Open the channel switcher.",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'switch',
     syntax: '/switch',
   },
   {
-    get description() { return interfaceText("Show this command list."); },
+    descriptionSource: "Show this command list.",
+    get description() { return interfaceText(this.descriptionSource); },
     name: 'help',
     syntax: '/help',
   },
@@ -136,7 +144,7 @@ const conversationListSignature = (conversations) =>
 const roomListSignature = (rooms) => rooms.join('\u0001');
 
 const getActionErrorDetail = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'Please try again.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'Please try again.');
 
 const InlineLoadError = ({ message, onRetry, retryLabel, testId }) => (
   <div
@@ -144,16 +152,16 @@ const InlineLoadError = ({ message, onRetry, retryLabel, testId }) => (
     data-testid={testId}
     role="alert"
   >
-    <span>{message}</span>
+    <span><LocalizedOutputText output={message} /></span>
     <Popup
       content={interfaceText(retryLabel)}
       position="top center"
       trigger={(
         <button
-          aria-label={interfaceText(retryLabel)}
+          aria-label={interfaceAttributeText(retryLabel)}
           className="msgv2-tree-add-go"
           onClick={onRetry}
-          title={interfaceText(retryLabel)}
+          title={interfaceAttributeText(retryLabel)}
           type="button"
         >
           <LocalizedText source={"Retry"} /></button>
@@ -274,8 +282,8 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
   const podsFeatureEnabled = featureGates?.pods?.enabled !== false;
 
   const reportActionFailure = useCallback((action, error) => {
-    setActionError(interfaceText('{action}: {message}', {
-      action: interfaceText(action),
+    setActionError(interfaceTextOutput('{action}: {message}', {
+      action: isInterfaceTextOutput(action) ? action : interfaceTextOutput(action),
       message: getActionErrorDetail(error),
     }));
   }, []);
@@ -316,7 +324,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       } catch (error) {
         if (mountedRef.current) {
           setMessagingLoadError(
-            interfaceText('Could not load saved conversations and joined rooms: {message}', {
+            interfaceTextOutput('Could not load saved conversations and joined rooms: {message}', {
               message: getActionErrorDetail(error),
             }),
           );
@@ -345,7 +353,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
         } catch (error) {
           if (mountedRef.current) {
             setPodLoadError(
-              interfaceText('Could not load saved pod channels: {message}', {
+              interfaceTextOutput('Could not load saved pod channels: {message}', {
                 message: getActionErrorDetail(error),
               }),
             );
@@ -363,7 +371,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
         } catch (error) {
           if (mountedRef.current) {
             setPodDiscoveryError(
-              interfaceText('Could not refresh discovered pods: {message}', {
+              interfaceTextOutput('Could not refresh discovered pods: {message}', {
                 message: getActionErrorDetail(error),
               }),
             );
@@ -410,7 +418,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       } catch (error) {
         if (mountedRef.current) {
           setPodLoadError(
-            interfaceText('Could not load pod channels: {message}', {
+            interfaceTextOutput('Could not load pod channels: {message}', {
               message: getActionErrorDetail(error),
             }),
           );
@@ -778,7 +786,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
               };
         });
       } catch (error) {
-        reportActionFailure(`Could not leave room ${roomName}`, error);
+        reportActionFailure(interfaceTextOutput('Could not leave room {roomName}', { roomName }), error);
       }
     },
     [refreshMessagingAfterMutation, reportActionFailure, updateWorkspace],
@@ -821,7 +829,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
               };
         });
       } catch (error) {
-        reportActionFailure(`Could not leave pod ${podName}`, error);
+        reportActionFailure(interfaceTextOutput('Could not leave pod {podName}', { podName }), error);
       }
     },
     [refreshPodsAfterMutation, reportActionFailure, state?.user?.username, updateWorkspace],
@@ -846,7 +854,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       openTab('room', trimmed);
       return true;
     } catch (error) {
-      const message = getApiErrorMessage(error, { t: interfaceText }, 'Room join failed. Try again shortly.');
+      const message = getApiErrorMessageOutput(error, { t: interfaceText }, 'Room join failed. Try again shortly.');
       setRoomJoinError(message);
       return false;
     }
@@ -926,7 +934,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
       await refreshPodsAfterMutation();
       openTab('pod', channel.target, channelLabel(channel));
     } catch (error) {
-      reportActionFailure(`Could not join discovered pod ${name}`, error);
+      reportActionFailure(interfaceTextOutput('Could not join discovered pod {name}', { name }), error);
     }
   }, [currentUser, openTab, refreshPodsAfterMutation, reportActionFailure]);
 
@@ -1580,7 +1588,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
             data-testid="messaging-action-error"
             role="alert"
           >
-            {actionError}
+            <LocalizedOutputText output={actionError} />
           </div>
         )}
         <header className="msgv2-tabs">
@@ -1620,7 +1628,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                       content={interfaceText("Close {label} without closing the other message tabs.", { label: tabLabel(tab) })}
                       trigger={(
                         <button
-                          aria-label={interfaceText("Close {label}", { label: tabLabel(tab) })}
+                          aria-label={interfaceAttributeText("Close {label}", { label: tabLabel(tab) })}
                           className="msgv2-tab-close"
                           onClick={() => closeTab(tab.id)}
                           type="button"
@@ -1651,7 +1659,7 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                     onClick={() =>
                       setHumanCheckAutoResponse(!humanCheckAutoResponseEnabled)
                     }
-                    title={interfaceText(canApplyHumanCheck
+                    title={interfaceAttributeText(canApplyHumanCheck
                       ? 'Automatically answer private messages that look like human-check or share-gate prompts.'
                       : 'Saved locally. Enable remote configuration to apply this to daemon-side replies.')}
                     type="button"
@@ -1667,11 +1675,11 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
                   : 'Show the current room or pod member list.')}
                 trigger={(
                   <button
-                    aria-label={interfaceText(memberRailOpen ? 'Hide members' : 'Show members')}
+                    aria-label={interfaceAttributeText(memberRailOpen ? 'Hide members' : 'Show members')}
                     aria-pressed={memberRailOpen}
                     className={`msgv2-icon-button ${memberRailOpen ? 'is-on' : ''}`}
                     onClick={() => setMemberRailOpen((open) => !open)}
-                    title={interfaceText(memberRailOpen ? 'Hide members' : 'Show members')}
+                    title={interfaceAttributeText(memberRailOpen ? 'Hide members' : 'Show members')}
                     type="button"
                   >
                     ☰
@@ -1935,7 +1943,7 @@ const TreeRow = ({
           className={`msgv2-tree-row ${isActive ? 'is-active' : ''}`}
           data-accent={accent}
           onClick={onActivate}
-          title={interfaceText("{prefix}{target}", { "prefix": (prefix), "target": (target) })}
+          title={interfaceAttributeText("{prefix}{target}", { "prefix": (prefix), "target": (target) })}
           type="button"
          {...interfaceTextProps("{prefix}{target}")}>
           <span className="msgv2-tree-row-prefix">{prefix}</span>
@@ -2058,7 +2066,7 @@ const RoomJoinSearch = ({
           content={canSubmit
             ? interfaceText('Join the matching Soulseek room, or create {query} if it does not exist.', { query })
             : interfaceText('Enter a room name to search the directory and enable joining or creating a Soulseek room.')}
-          {...interfaceTextProps(
+          {...interfaceAttributeTextProps(
             canSubmit
               ? 'Join the matching Soulseek room, or create {query} if it does not exist.'
               : 'Enter a room name to search the directory and enable joining or creating a Soulseek room.',
@@ -2109,7 +2117,7 @@ const RoomJoinSearch = ({
                     ? interfaceText('Open the existing {roomName} conversation.', { roomName })
                     : interfaceText('Join the Soulseek room {roomName} and add it to your workspace.', { roomName })}
                   key={roomName}
-                  {...interfaceTextProps(
+                  {...interfaceAttributeTextProps(
                     status === 'joined'
                       ? 'Open the existing {roomName} conversation.'
                       : 'Join the Soulseek room {roomName} and add it to your workspace.',
@@ -2117,18 +2125,18 @@ const RoomJoinSearch = ({
                   )}
                   trigger={(
                     <button
-                      aria-label={interfaceText(
+                      aria-label={interfaceAttributeText(
                         status === 'joined' ? 'Open {roomName}' : 'Join {roomName}',
                         { roomName },
                       )}
                       className="msgv2-room-search-result"
                       onClick={() => onJoinRoom(roomName)}
-                      title={interfaceText(
+                      title={interfaceAttributeText(
                         status === 'joined' ? 'Open {roomName}' : 'Join {roomName}',
                         { roomName },
                       )}
                       type="button"
-                     {...interfaceTextProps(
+                     {...interfaceAttributeTextProps(
                        status === 'joined' ? 'Open {roomName}' : 'Join {roomName}',
                        { roomName },
                      )}>
@@ -2150,7 +2158,7 @@ const RoomJoinSearch = ({
                 <button
                   className="msgv2-room-search-create"
                   onClick={submit}
-                  title={interfaceText("Join or create {query}", { "query": (query) })}
+                  title={interfaceAttributeText("Join or create {query}", { "query": (query) })}
                   type="button"
                  {...interfaceTextProps("Join or create {query}")}>
                   <LocalizedText source={"Join/Create #"} />{query}
@@ -2163,7 +2171,7 @@ const RoomJoinSearch = ({
           )}
         </>
       )}
-      {error && <div className="msgv2-room-search-error">{error}</div>}
+      {error && <div className="msgv2-room-search-error"><LocalizedOutputText output={error} /></div>}
     </div>
   );
 };
@@ -2267,7 +2275,7 @@ const DensityToggle = ({ onAdjust, onChange, value }) => (
               className={`msgv2-density-pip ${value === level ? 'is-active' : ''}`}
               onClick={() => onChange(level)}
               role="radio"
-              title={interfaceText('Messages UI size {size}', { size: level.toUpperCase() })}
+              title={interfaceAttributeText('Messages UI size {size}', { size: level.toUpperCase() })}
               type="button"
             >
               {level.toUpperCase()}

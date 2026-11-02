@@ -161,6 +161,30 @@ describe('acquisitionRequests', () => {
     expect(report).toContain('[Automatic] rare album');
   });
 
+  it('preserves unknown states and quota labels in copied request packets', () => {
+    const report = formatWishlistRequestReviewPacket({
+      generatedAt: '2026-10-31T00:00:00.000Z',
+      rows: [{
+        autoDownload: false,
+        enabled: true,
+        searchText: 'user supplied title',
+        state: 'adapter-state:{room}',
+      }],
+      summary: {
+        automatic: 0,
+        enabled: 1,
+        quotaRemaining: 0,
+        quotaStatus: 'adapter quota:{room}',
+        reviewCount: 0,
+        total: 1,
+      },
+    });
+
+    expect(report).toContain('adapter quota:{room}');
+    expect(report).toContain('adapter-state:{room}');
+    expect(report).toContain('user supplied title');
+  });
+
   it('selects bounded runnable wishlist requests', () => {
     const requests = getRunnableWishlistRequests([
       { enabled: true, id: 'one', searchText: 'one' },

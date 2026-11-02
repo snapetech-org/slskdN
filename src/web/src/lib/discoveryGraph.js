@@ -1,4 +1,13 @@
+import { interfaceText } from './interfaceLocale';
 import api from './api';
+import { formatRegionalNumber } from './regionalFormat';
+import {
+  localizeDiscoveryGraphEdgeType,
+  localizeDiscoveryGraphEvidenceLaneLabel,
+  localizeDiscoveryGraphEvidenceLaneSummary,
+  localizeDiscoveryGraphNodeType,
+  localizeDiscoveryGraphReason,
+} from './discoveryGraphLocale';
 
 const asObject = (value) =>
   value && typeof value === 'object' && !Array.isArray(value) ? value : {};
@@ -147,50 +156,62 @@ export const buildDiscoveryGraphBranchPlan = ({
 
 export const formatDiscoveryGraphBranchReport = (plan) => {
   const lines = [
-    'slskdN Discovery Graph branch review',
-    `Graph: ${plan.graphTitle}`,
-    `Seed: ${plan.seedNodeId || 'unknown'}`,
-    `Visible nodes: ${plan.visibleNodeCount}`,
-    `Visible edges: ${plan.visibleEdgeCount}`,
-    `Depth: ${plan.maxDepth}`,
-    `Minimum weight: ${Math.round((plan.minNodeWeight || 0) * 100)}`,
+    interfaceText("slskdN Discovery Graph branch review"),
+    interfaceText('Graph: {graphTitle}', { graphTitle: plan.graphTitle }),
+    interfaceText('Seed: {seed}', { seed: plan.seedNodeId || interfaceText('unknown') }),
+    interfaceText('Visible nodes: {count}', { count: formatRegionalNumber(plan.visibleNodeCount) }),
+    interfaceText('Visible edges: {count}', { count: formatRegionalNumber(plan.visibleEdgeCount) }),
+    interfaceText('Depth: {depth}', { depth: formatRegionalNumber(plan.maxDepth) }),
+    interfaceText('Minimum weight: {percent}%', {
+      percent: formatRegionalNumber(Math.round((plan.minNodeWeight || 0) * 100)),
+    }),
   ];
 
   if (plan.pinnedNode?.nodeId) {
-    lines.push(`Pinned comparison: ${plan.pinnedNode.label || plan.pinnedNode.nodeId}`);
+    lines.push(interfaceText('Pinned comparison: {node}', {
+      node: plan.pinnedNode.label || plan.pinnedNode.nodeId,
+    }));
   }
 
-  lines.push('', 'Node families:');
-  appendCounts(lines, plan.nodeTypeCounts);
-  lines.push('', 'Edge families:');
-  appendCounts(lines, plan.edgeTypeCounts);
+  lines.push('', interfaceText('Node families:'));
+  appendCounts(lines, plan.nodeTypeCounts, localizeDiscoveryGraphNodeType);
+  lines.push('', interfaceText('Edge families:'));
+  appendCounts(lines, plan.edgeTypeCounts, localizeDiscoveryGraphEdgeType);
 
   if (plan.routeSuggestions.length > 0) {
-    lines.push('', 'Suggested branch routes:');
+    lines.push('', interfaceText('Suggested branch routes:'));
     plan.routeSuggestions.forEach((route) => {
       lines.push(
-        `- ${route.source.label} -> ${route.target.label} ` +
-          `[${route.edge.edgeType}, ${Math.round((route.edge.weight || 0) * 100)}] ` +
-          `${route.edge.reason || ''}`.trim(),
+        interfaceText('- {source} -> {target} [{type}, {weight}] {reason}', {
+          source: route.source.label,
+          target: route.target.label,
+          type: localizeDiscoveryGraphEdgeType(route.edge.edgeType),
+          weight: formatRegionalNumber(Math.round((route.edge.weight || 0) * 100)),
+          reason: localizeDiscoveryGraphReason(route.edge.reason || ''),
+        }).trim(),
       );
     });
   }
 
   if (plan.evidenceSummary.length > 0) {
-    lines.push('', 'Evidence lanes:');
+    lines.push('', interfaceText('Evidence lanes:'));
     plan.evidenceSummary
       .slice()
       .sort((left, right) => (right.score || 0) - (left.score || 0))
       .forEach((lane) => {
         lines.push(
-          `- ${lane.label || lane.lane}: ${Math.round((lane.score || 0) * 100)} ` +
-            `(${lane.count || 0}) ${lane.summary || ''}`.trim(),
+          interfaceText('- {label}: {score} ({count}) {summary}', {
+            label: localizeDiscoveryGraphEvidenceLaneLabel(lane.lane, lane.label),
+            score: formatRegionalNumber(Math.round((lane.score || 0) * 100)),
+            count: formatRegionalNumber(lane.count || 0),
+            summary: localizeDiscoveryGraphEvidenceLaneSummary(lane),
+          }).trim(),
         );
       });
   }
 
   if (plan.searchQueries.length > 0) {
-    lines.push('', 'Nearby search seeds:');
+    lines.push('', interfaceText('Nearby search seeds:'));
     plan.searchQueries.forEach((query) => lines.push(`- ${query}`));
   }
 
@@ -204,14 +225,17 @@ const summarizeCounts = (items, property) =>
     return accumulator;
   }, {});
 
-const appendCounts = (lines, counts) => {
+const appendCounts = (lines, counts, localizeKey = (key) => key) => {
   const entries = Object.entries(asObject(counts));
   if (entries.length === 0) {
-    lines.push('- none visible');
+    lines.push(interfaceText('- none visible'));
     return;
   }
 
   entries
     .sort(([left], [right]) => left.localeCompare(right))
-    .forEach(([key, count]) => lines.push(`- ${key}: ${count}`));
+    .forEach(([key, count]) => lines.push(interfaceText('- {key}: {count}', {
+      key: localizeKey(key),
+      count: formatRegionalNumber(count),
+    })));
 };

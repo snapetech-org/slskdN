@@ -1,0 +1,18 @@
+{
+  "candidatePlanSha256": "ac67de5559bea50e815a729f95ff8a3c6e54bdd4751fc3d1278fd4add7808109",
+  "candidateRows": 29,
+  "catalogsEdited": false,
+  "dispositions": {
+    "accept": 22,
+    "refine": 7
+  },
+  "inputSha256": "09d534acad981c383c42c2da15b0c26a667af529cf108430ae7c388294c1f988",
+  "nativeSpeakerApproved": false,
+  "prHead": "dfb9707f946bf2686210bcf1072b9d70c8442a62",
+  "prNumber": 409,
+  "prTree": "9458e836ae12c02573535b5c9dc052f055b7820d",
+  "result": "PASS",
+  "reviewMethod": "Independent manual contextual review plus exact PR/source/catalog/caller hash verification and placeholder/protected-literal checks; no translation model/API call.",
+  "reviewedSourceKeys": 10,
+  "sourceSubtreeTree": "469e060d9e0a3fd6f54bc75a69993ee2651d3e4b"
+}

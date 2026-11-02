@@ -68,7 +68,40 @@ const isTrueAttribute = (attributes, name) => {
   if (!attribute.initializer) return true;
   return ts.isJsxExpression(attribute.initializer) && attribute.initializer.expression?.kind === ts.SyntaxKind.TrueKeyword;
 };
-const localizedTags = new Set(['LocalizedText', 'LocalizedPopup', 'LocalizedPluralText', 'PlaceholderSegment']);
+const localizedTags = new Set(['LocalizedText', 'LocalizedRichText', 'LocalizedPopup', 'LocalizedPluralText', 'PlaceholderSegment']);
+const catalogDisplayAttributes = new Set([
+  'aria-label', 'title', 'alt', 'label', 'tooltip', 'caption', 'content', 'description',
+]);
+const fixedTransferCleanupMessages = [
+  'Completed upload records cleared.',
+  'Completed download records cleared.',
+];
+
+const frenchUploadDownloadPairs = [
+  ['Clear All Completed Uploads', 'Clear All Completed Downloads', 'Effacer tous les envois terminés'],
+  ['Upload KiB/s', 'Download KiB/s', 'Débit d’envoi (KiB/s)'],
+  ['Upload cancelled retention minutes', 'Download cancelled retention minutes', 'Minutes de conservation des envois annulés'],
+  ['Upload succeeded retention minutes', 'Download succeeded retention minutes', 'Minutes de conservation des envois réussis'],
+  ['Uploads Active', 'Downloads Active', 'Envois actifs'],
+  ['Uploads Queued', 'Downloads Queued', 'Envois en file d’attente'],
+  ['Uploads Total', 'Downloads Total', 'Total des envois'],
+  ['Enable upload schedules', 'Enable download schedules', 'Activer les planifications d’envoi'],
+  ['Enable scheduled upload speed limits under global upload policy.', 'Enable scheduled download speed limits under global download policy.', 'Activez les limites de débit d’envoi planifiées selon la politique globale d’envoi.'],
+  ['Global upload slots', 'Global download slots', 'Emplacements d’envoi globaux'],
+  ['Global upload speed limit', 'Global download speed limit', 'Limite globale de débit d’envoi'],
+];
+
+const fixedServerMessageSources = [
+  'Content ID cannot be empty',
+  'Invalid content ID format. Expected: content:<domain>:<type>:<id>',
+  'Content not found or inaccessible',
+  'Validation failed',
+  'Failed to sync with peer',
+  'Sync failed',
+  'No items to download.',
+  'Collection backfill finished — successful: {count}',
+  'Collection backfill results — successful: {successful}; failed: {failed}',
+];
 
 const collectLocalizationReferences = () => {
   const references = [];
@@ -90,7 +123,7 @@ const collectLocalizationReferences = () => {
     collectValues(sourceFile);
 
     const add = (node, value) => {
-      if (typeof value !== 'string' || !value.trim()) return;
+      if (typeof value !== 'string' || !value.trim() || !/\p{L}/u.test(value)) return;
       references.push({
         source: value,
         file: relativeFile,
@@ -99,10 +132,17 @@ const collectLocalizationReferences = () => {
     };
 
     const visit = (node, localizedAncestor = false) => {
+      if (ts.isPropertyAssignment(node) && node.name.getText(sourceFile) === 'descriptionSource') {
+        staticStrings(node.initializer, values).forEach((source) => add(node, source));
+      }
       if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) {
         const helper = node.expression.text;
         const sourceCount = ['interfaceTextPlural', 'tPlural', 'tp'].includes(helper) ? 2 : 1;
-        if (['interfaceText', 'interfaceTextProps', 'interfaceTextPlural', 't', 'tp', 'tPlural'].includes(helper)) {
+        if ([
+          'interfaceText', 'interfacePresentationText', 'interfaceTextProps',
+          'interfaceAttributeText', 'interfaceAttributeTextProps', 'interfaceDialogText',
+          'interfaceTextPlural', 't', 'tp', 'tPlural',
+        ].includes(helper)) {
           node.arguments.slice(0, sourceCount).forEach((argument) => {
             staticStrings(argument, values).forEach((value) => add(argument, value));
           });
@@ -115,7 +155,13 @@ const collectLocalizationReferences = () => {
         const localized = localizedAncestor || localizedTags.has(tag) || (
           tag === 'ErrorSegment' && isTrueAttribute(attrs, 'translateCaption')
         );
-        const attributeNames = tag === 'LocalizedText'
+        for (const attribute of attrs) {
+          if (!ts.isJsxAttribute(attribute) || !catalogDisplayAttributes.has(attribute.name.getText())) continue;
+          const value = attribute.initializer && attributeValue(attribute);
+          if (typeof value === 'string') add(attribute, value);
+          else staticStrings(value, values).forEach((source) => add(attribute, source));
+        }
+        const attributeNames = ['LocalizedText', 'LocalizedRichText'].includes(tag)
           ? ['source']
           : tag === 'LocalizedPopup'
             ? ['content']
@@ -131,6 +177,12 @@ const collectLocalizationReferences = () => {
           const value = attribute && attributeValue(attribute);
           if (typeof value === 'string') add(attribute, value);
           else staticStrings(value, values).forEach((source) => add(attribute, source));
+        }
+        const tooltip = attrs.find((item) => ts.isJsxAttribute(item) && item.name.getText() === 'tooltip');
+        if (tooltip) {
+          const value = attributeValue(tooltip);
+          if (typeof value === 'string') add(tooltip, value);
+          else staticStrings(value, values).forEach((source) => add(tooltip, source));
         }
         if (ts.isJsxOpeningElement(node)) {
           ts.forEachChild(node, (child) => visit(child, localized));
@@ -160,6 +212,13 @@ const localeCatalogs = Object.fromEntries(localeIds.map((locale) => [
   JSON.parse(fs.readFileSync(path.join(localeRoot, `${locale}.json`), 'utf8')),
 ]));
 const { references, rawJsxText } = collectLocalizationReferences();
+// Stable descriptors are resolved at render/copy time, so include their sources
+// explicitly rather than relying on literal helper-call extraction.
+const reasonSourcePath = path.join(sourceRoot, 'lib/meshEvidenceReasonSources.json');
+const reasonSourceText = fs.readFileSync(reasonSourcePath, 'utf8');
+for (const source of Object.values(JSON.parse(reasonSourceText))) {
+  references.push({ source, file: 'src/lib/meshEvidenceReasonSources.json', line: reasonSourceText.slice(0, reasonSourceText.indexOf(JSON.stringify(source))).split('\n').length });
+}
 
 const formatFailures = () => {
   const failures = [];
@@ -194,6 +253,27 @@ describe('interface locale coverage', () => {
       .flatMap(({ source, file, line }) => localeIds
         .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
         .map((locale) => `${locale}:${file}:${line}: ${source}`));
+    expect(missing).toEqual([]);
+  });
+
+  it('translates fixed transfer cleanup success messages in every locale', () => {
+    const missing = fixedTransferCleanupMessages.flatMap((source) => localeIds
+      .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
+      .map((locale) => `${locale}:transfer-cleanup:${source}`));
+    expect(missing).toEqual([]);
+  });
+
+  it('keeps French upload and download settings distinct', () => {
+    for (const [uploadSource, downloadSource, uploadTarget] of frenchUploadDownloadPairs) {
+      expect(localeCatalogs.fr[uploadSource]).toBe(uploadTarget);
+      expect(localeCatalogs.fr[uploadSource]).not.toBe(localeCatalogs.fr[downloadSource]);
+    }
+  });
+
+  it('translates fixed server result messages in every locale', () => {
+    const missing = fixedServerMessageSources.flatMap((source) => localeIds
+      .filter((locale) => typeof localeCatalogs[locale][source] !== 'string' || !localeCatalogs[locale][source].trim())
+      .map((locale) => `${locale}:server:${source}`));
     expect(missing).toEqual([]);
   });
 

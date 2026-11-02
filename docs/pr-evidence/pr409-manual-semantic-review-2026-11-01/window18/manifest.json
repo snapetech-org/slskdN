@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "5e2c0cb7a8fa3711a5e3ac231a22699fcc86f44f",
+  "tree": "a47479dc9625f7dd13c99e6c4febb121e6c56769",
+  "sourceSubtreeTree": "b5a776a81982ebde32163f06d47c57fc79e40ad9",
+  "generatedUtc": "2026-11-02T00:49:39Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 17,
+    "cells": 5100,
+    "keys": 425,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 736,
+    "ids": 736,
+    "sha256": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196"
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_f101087c95dc08fd",
+      "src_f10cfec70786b655",
+      "src_f112088162c193e0",
+      "src_f13177a60e0bbd1d",
+      "src_f14294b510156c64",
+      "src_f147ccdb0f51fab1",
+      "src_f1584a8b0dd9eaa4",
+      "src_f16a4914871b7052",
+      "src_f171ba9929862554",
+      "src_f190a5cb3aff17b0",
+      "src_f19aeaafb4738566",
+      "src_f19bed30213abe42",
+      "src_f1c7f4e0055a188c",
+      "src_f1d26cf3159fec0b",
+      "src_f1dbc33978a95b95",
+      "src_f1e979ba59defa79",
+      "src_f1f979d7acc1f24b",
+      "src_f1fc59fe5edf8c29",
+      "src_f20647b0cd1bbed2",
+      "src_f20c879465551f0d",
+      "src_f2121e8376155798",
+      "src_f21a2b4cab020aa9",
+      "src_f22796541a454510",
+      "src_f22e114f909f8e52",
+      "src_f231cfdd92359de2"
+    ],
+    "sourceIdListSha256": "cc88c2e5306b26d36d4976421fa168f17c4fc800099f5272016861644f0960df",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 322,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "d76594af79808b38ed8bed729b6bba9ac7c812a6a11263f37422d0ecd2d1f2c4",
+    "zh-Hans": "3f814961af9d1828a11979d469a47c27f92effe0b712de644b756525e7214413",
+    "hi": "44bd6126a00076a87c2bf5cb3c6a0604b1b956d3dc0ce88ce64c94307c8d40a0",
+    "de": "fa01f543c9bb7671a5f4e9a17f082967117df939386da7babb843c5de3227f11",
+    "ja": "901d539dda35730f63f0ddd530153aedbb4939b66de8fa93e39308cccf258102",
+    "fr": "491e0c43500f4c8a25a2bb5fccc1c029bdd0f62d3e3d2d59b15023827ca9a4cf",
+    "pt-BR": "e85cc3a83efaf0dd2a6e6c2cf3c698146877faac85a8d4f4ee2309639261d348",
+    "ar": "4cd66e38c09aa6b68d6dad005e484e9f9c0dc3d317df3675b19c55d60ee972bb",
+    "ko": "ec2fdeeea662fc9f9bccdcae35f189392f1e561210663afc94ac7d2adb177b4b",
+    "zh-Hant": "8c4850478ed0f33f7027f2f6bd7954a77b060c3794f387281f05a278e07e58f4",
+    "vi": "13f011cbf7f074bedb7ca62fa10f54c1e0f4d398b2385900abe4aa729339b16c",
+    "id": "feb123cfa7ceead1ba8d740f3c3e683c9db312a6434d895778c0e5ee02a7e6af"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "124a993a8f50ae4adaa57858c6426c8a36a57b2f789d96e7fefa960ed661c5cf"
+  },
+  "reviewerMethod": "independent semantic review of pinned source context and code callsites; no local translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "decisionCounts": {
+    "keep": 274,
+    "correct": 25,
+    "uncertain": 1
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "zh-Hans": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 25,
+      "correct": 0,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 24,
+      "correct": 0,
+      "uncertain": 1
+    },
+    "fr": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    }
+  },
+  "overallConfidence": "moderate",
+  "correctionFindings": [
+    {
+      "sourceId": "src_f101087c95dc08fd",
+      "source": "Stop Active",
+      "affectedLocales": [
+        "hi"
+      ],
+      "finding": "The Search List button stops searches that are still running. The tooltip and selectedActiveSearches state supply the omitted object; this Hindi label currently leaves only the incomplete phrase “stop active.”"
+    },
+    {
+      "sourceId": "src_f13177a60e0bbd1d",
+      "source": "Copy a local network-health report for diagnostics. This does not query peers or change network state.",
+      "affectedLocales": [
+        "hi",
+        "vi",
+        "id"
+      ],
+      "finding": "This is a network-health tooltip about querying Soulseek peers; साथियों means companions/colleagues rather than network peers."
+    },
+    {
+      "sourceId": "src_f1584a8b0dd9eaa4",
+      "source": "Clear Local History",
+      "affectedLocales": [
+        "zh-Hans",
+        "ko",
+        "zh-Hant"
+      ],
+      "finding": "This is a button action. 清晰的 means clear/obvious as an adjective, not clear as a verb."
+    },
+    {
+      "sourceId": "src_f190a5cb3aff17b0",
+      "source": "Acceptance",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "The section reports whether a release candidate was accepted and identifies the accepting user; 验收 suggests an acceptance inspection rather than the recorded decision state."
+    },
+    {
+      "sourceId": "src_f1c7f4e0055a188c",
+      "source": "Advanced dashboard reset controls",
+      "affectedLocales": [
+        "ar"
+      ],
+      "finding": "This summary labels expandable UI controls, including a reset button. ضوابط reads as rules/conditions here; عناصر التحكم names interface controls."
+    },
+    {
+      "sourceId": "src_f1e979ba59defa79",
+      "source": "Pod ID for backfill sync",
+      "affectedLocales": [
+        "es",
+        "fr",
+        "pt-BR",
+        "ar",
+        "vi",
+        "id"
+      ],
+      "finding": "The adjacent help text says this sync requests missed message history. Reabastecimiento means replenishment; naming the missing history clarifies the action and preserves the Pod entity."
+    },
+    {
+      "sourceId": "src_f20647b0cd1bbed2",
+      "source": "Share and Library Reminders",
+      "affectedLocales": [
+        "vi",
+        "id"
+      ],
+      "finding": "This is a named automation-card title for share-cache and library-scan reminders. The current opening Chia sẻ reads as an imperative (“share”), not the noun/topic in this title."
+    },
+    {
+      "sourceId": "src_f20c879465551f0d",
+      "source": "Pinned",
+      "affectedLocales": [
+        "hi"
+      ],
+      "finding": "This badge precedes a pinned graph-node label. The current feminine पिन की गई does not agree with the masculine implied नोड."
+    },
+    {
+      "sourceId": "src_f22e114f909f8e52",
+      "source": "Enable {title}. Disabled recipes remain visible so setup work is discoverable.",
+      "affectedLocales": [
+        "hi",
+        "vi"
+      ],
+      "finding": "The callsite is an Automation Center card. व्यंजन means a cooked dish; the source uses recipe for an automation workflow, not food."
+    },
+    {
+      "sourceId": "src_f231cfdd92359de2",
+      "source": "Add this host, port, and protocol to the draft allowlist. Save the VPN configuration to apply it to the pod.",
+      "affectedLocales": [
+        "fr",
+        "ar",
+        "vi",
+        "id"
+      ],
+      "finding": "The configuration is a draft that becomes active when saved. Provisoire suggests a temporary allowlist rather than an unsaved draft."
+    }
+  ],
+  "uncertaintyFindings": [
+    {
+      "sourceId": "src_f2121e8376155798",
+      "source": "DHT nodes and",
+      "affectedLocales": [
+        "ja"
+      ],
+      "finding": "This fragment is concatenated around literal counts in the full sentence “0 DHT nodes and 0 discovered peers are expected.” The current fragment appears to omit DHT nodes and reorder the peer count, but a safe Japanese correction depends on coordinating the adjacent count fragment; leave it unchanged for contextual review."
+    }
+  ],
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "d83201fdb2a63fee0ab8fdfed5bae479707a3cc75d30626788c07621bc7e1157"
+  },
+  "files": {
+    "review-input.jsonl": {
+      "bytes": 526926,
+      "sha256": "124a993a8f50ae4adaa57858c6426c8a36a57b2f789d96e7fefa960ed661c5cf",
+      "rows": 300
+    },
+    "review-decisions.jsonl": {
+      "bytes": 22656,
+      "sha256": "d83201fdb2a63fee0ab8fdfed5bae479707a3cc75d30626788c07621bc7e1157",
+      "rows": 300
+    },
+    "verification.json": {
+      "bytes": 1732,
+      "sha256": "6abb85f1a7637b6dfe41c0386f9599772c65ba2748ca2aa0263b34f14279c86e"
+    },
+    "scratchVerifier": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window18-5e2c0cb7-20261101/verify_evidence.py",
+      "sha256": "59ac8bb7b60ea74cb066d2d7349146233ab53cd14e5f434a3636d8c6750e57c6",
+      "includedInPrCopy": false,
+      "provenanceNote": "Verifier rechecks exact live PR head/tree and was run before this docs-only evidence package advanced the PR head; original verifier is retained in task scratch."
+    }
+  },
+  "prEvidencePackaging": {
+    "packagedAtReviewHead": "5e2c0cb7a8fa3711a5e3ac231a22699fcc86f44f",
+    "onlyEvidenceAndStatusDocsMayAdvanceHeadAfterReview": true
+  }
+}

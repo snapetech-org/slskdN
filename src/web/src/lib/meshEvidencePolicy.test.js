@@ -122,9 +122,9 @@ describe('meshEvidencePolicy', () => {
     });
     expect(review.rejected[0].reasons).toEqual(
       expect.arrayContaining([
-        'untrusted provenance tier: untrusted',
-        'witness count below 2',
-        'contains raw path data',
+        { id: 'untrusted-tier', parameters: { tier: 'untrusted' } },
+        { id: 'few-witnesses', parameters: { minimum: 2 } },
+        { id: 'contains-path', parameters: {} },
       ]),
     );
   });
