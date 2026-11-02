@@ -1,0 +1,11 @@
+{
+  "branch": "codex/slskdn-localization-apply-20261102",
+  "head": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "host": "kspld0",
+  "livePrDraft": true,
+  "livePrState": "OPEN",
+  "remoteBranchOid": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "status": "## codex/slskdn-localization-apply-20261102",
+  "tree": "a0946207555e494a558707008ba051013964b447",
+  "worktree": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn"
+}

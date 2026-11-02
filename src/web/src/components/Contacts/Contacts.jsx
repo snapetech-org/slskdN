@@ -1,4 +1,4 @@
-import LocalizedText from "../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 
@@ -309,7 +309,7 @@ class Contacts extends Component {
           <Tab.Pane>
             {contactsLoadError && contacts.length > 0 && (
               <Message warning data-testid="contacts-load-warning">
-                <p>{contactsLoadError}</p>
+                <p><LocalizedOutputText output={contactsLoadError} /></p>
                 <Button
                   onClick={this.loadContacts}
                   tooltip="Try loading the latest contacts again."
@@ -322,7 +322,7 @@ class Contacts extends Component {
             ) : contactsLoadError && contacts.length === 0 ? (
               <Message negative data-testid="contacts-load-error">
                 <Message.Header><LocalizedText source={"Contacts could not be loaded"} /></Message.Header>
-                <p>{contactsLoadError}</p>
+                <p><LocalizedOutputText output={contactsLoadError} /></p>
                 <Button
                   onClick={this.loadContacts}
                   primary

@@ -1,0 +1,31 @@
+{
+  "exactHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "exactTree": "a0946207555e494a558707008ba051013964b447",
+  "finalDispositionCounts": {
+    "accept-current": 252,
+    "correction": 34,
+    "hold": 12,
+    "refinement": 2
+  },
+  "holdsRetained": 12,
+  "localeCount": 12,
+  "missedCorrectionsAdopted": 6,
+  "missedRefinementsAdopted": 2,
+  "nativeSpeakerApproval": false,
+  "plannedCatalogChanges": 36,
+  "primaryCorrectionsConfirmed": 28,
+  "rows": 300,
+  "runtimeGapCleared": [
+    "W55"
+  ],
+  "runtimeGapsConfirmed": [
+    "W54",
+    "W57"
+  ],
+  "runtimeHold": [
+    "W71"
+  ],
+  "semanticConfidence": "moderate",
+  "sourceCount": 25,
+  "structuralConfidence": "high"
+}

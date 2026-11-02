@@ -1,0 +1,140 @@
+{
+  "verified": true,
+  "localRepository": {
+    "host": "kspld0",
+    "worktree": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn",
+    "head": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+    "tree": "a0946207555e494a558707008ba051013964b447",
+    "branch": "codex/slskdn-localization-apply-20261102",
+    "status": ""
+  },
+  "primaryPacketChecksumEntries": 20,
+  "sourceInventoryRows": 6175,
+  "sourceSelectionRows": 25,
+  "inputCells": 300,
+  "reviewDecisionRows": 300,
+  "catalogFileCount": 12,
+  "catalogPins": [
+    {
+      "path": "src/web/public/locales/ar.json",
+      "blobOid": "667f3ebc12666c9d2b418de46e2c2729e411bdb9",
+      "sha256": "844c4bb93be3f8bbcc69a969370c51be78ce0e4826336161439390b8bd2b6913",
+      "bytes": 617976
+    },
+    {
+      "path": "src/web/public/locales/de.json",
+      "blobOid": "3e94cf699c8b6e061d08e512cb9d5e64d073a6da",
+      "sha256": "7a021d3bd638dc0b3a827d114f07d9e1cb467d1966f6c65354ec4ddf71800d94",
+      "bytes": 533366
+    },
+    {
+      "path": "src/web/public/locales/es.json",
+      "blobOid": "a722aec8af3e5619b370ccc4851d0d7708c403a8",
+      "sha256": "a01392c3f8d41b2994cd426a8b7b32c9b0dc5800035fb579e899ea5ef4658a06",
+      "bytes": 532063
+    },
+    {
+      "path": "src/web/public/locales/fr.json",
+      "blobOid": "8a5d62c191273471036082d16a48efd8a2d70a8f",
+      "sha256": "aab281fc3ceedc1620802dcbba6598481c662e9337b792bb048d51b97b4224ba",
+      "bytes": 546349
+    },
+    {
+      "path": "src/web/public/locales/hi.json",
+      "blobOid": "199d207605380acc42bfc40205e46217fa4c186f",
+      "sha256": "fe444d09ae7dcdb612c07a071582ed8e54291d5564246554769e2438e7bf5d06",
+      "bytes": 831741
+    },
+    {
+      "path": "src/web/public/locales/id.json",
+      "blobOid": "f56e293ed5e27f58abf6e65b105e6ab123540d5b",
+      "sha256": "4f885e41fd7810e91234d90c6a18157565e80afa933680d94d2ff21711f5bda2",
+      "bytes": 492677
+    },
+    {
+      "path": "src/web/public/locales/ja.json",
+      "blobOid": "e57360ce6550eb59e370a2899ad64d48fb9e39b8",
+      "sha256": "5bf11a815b5e9375ae57b4ce5b59ea2ea502524438e99471d96da68d3bf27613",
+      "bytes": 591933
+    },
+    {
+      "path": "src/web/public/locales/ko.json",
+      "blobOid": "a466eed9753bacd89803bdabc2d2305fc7056a79",
+      "sha256": "ea78917b96113e6a91a99e344f36474f769584fdbfbf13e7e8b1e5d9a5218b1b",
+      "bytes": 528746
+    },
+    {
+      "path": "src/web/public/locales/pt-BR.json",
+      "blobOid": "1f78c5054c3fdbca439feaec323e120721b7378a",
+      "sha256": "f44dd21457bf3c771d9cd3d9cff8a5d9aecf2e93e5bc496c625dac7e1c47db18",
+      "bytes": 523930
+    },
+    {
+      "path": "src/web/public/locales/vi.json",
+      "blobOid": "dce0675b9c100bf8eafa902d8742bc3d08ac1b3b",
+      "sha256": "0a61426d7bab58b6875986120f08e96d532f4992b815eac8027875307c525d2e",
+      "bytes": 572943
+    },
+    {
+      "path": "src/web/public/locales/zh-Hans.json",
+      "blobOid": "d625188024c91d253ae6e6b53aecd7a7000def47",
+      "sha256": "9cc4aa5ac2da73ab857d0c780ebbf66fc4ea88d52111a1cba93f1b37a86a6a48",
+      "bytes": 456349
+    },
+    {
+      "path": "src/web/public/locales/zh-Hant.json",
+      "blobOid": "d838d3343523cc5da0b8873fd22b4317b70d0b35",
+      "sha256": "710ea2e8a8a9e110dadc6a2d352978b264d48dc2057939b0cf51883b2da5d5a3",
+      "bytes": 457710
+    }
+  ],
+  "callerContextRows": 25,
+  "callerSourceHitRows": 46,
+  "callerReferencesRechecked": 92,
+  "sourceAndTargetHashChecksPassed": true,
+  "placeholderMarkupProtectedLiteralChecksPassed": true,
+  "primaryReviewReadbackRowsMatched": true,
+  "runtimeBoundaryRows": [
+    {
+      "selectionRank": 54,
+      "classification": "raw-fixed-string-through-bidi-only-renderer",
+      "findingSha256": "7f0cec561a50aebfbbe598ccfa85abf25306634ee90eb7292863f2220c7d6191"
+    },
+    {
+      "selectionRank": 55,
+      "classification": "production-localized-helper",
+      "findingSha256": "01174a411abfe4d1e8f17c45a1019693d2782e4cb91c898f4d9cb7fce9236af0"
+    },
+    {
+      "selectionRank": 57,
+      "classification": "runtime-render-boundary-mismatch",
+      "findingSha256": "879cd26c76e5e8792d62cdd7fb6294a64e4ac28d423278cbbd09e5c3a495b611"
+    },
+    {
+      "selectionRank": 71,
+      "classification": "fragmented-source-composition",
+      "findingSha256": "2c22db745ced3cf9219d004ac9592e9503519ab4cb22a23a381c12e9f82e9628"
+    },
+    {
+      "selectionRank": 72,
+      "classification": "background-download-worker-count",
+      "findingSha256": "d18e57a8b60b26c5ecceafd98a2a6d6a760a084ef99004484675ed4d950584d1"
+    },
+    {
+      "selectionRank": 63,
+      "classification": "native-milkdrop-preset-export",
+      "findingSha256": "6f1475fa41617a1d72a8776bfcc929f321b2ab710ab3531badadb3d0baea22aa"
+    },
+    {
+      "selectionRank": 64,
+      "classification": "numeric-max-delay-settings-label",
+      "findingSha256": "f6ee539a159375eaf80e1e7c1d20f7b9e4a3232a1d0edad5731182889d2775fd"
+    },
+    {
+      "selectionRank": 70,
+      "classification": "lidarr-settings-tooltip",
+      "findingSha256": "0fa18e1a28ca083a13b050e5cc38cbb9c79fdc615b73a9005b2fd47ad50896df"
+    }
+  ],
+  "packetSha256sumFileSha256": "ec371ba11c72bf55a74613099efb87eb8133d7034d95edd7425ceed2efff9488"
+}

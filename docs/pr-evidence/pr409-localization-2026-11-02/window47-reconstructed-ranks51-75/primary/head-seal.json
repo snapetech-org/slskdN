@@ -1,0 +1,14 @@
+{
+  "allSevenHeadsAndTreesMatchSelectionSnapshot": true,
+  "allSevenHeadsAndTreesMatchStart": true,
+  "headSnapshotSha256": "9628f9e05e1c477b837434e0ca91220b6a2d2d4f4b84a611b91e74f7f73eb185",
+  "localHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "localTree": "a0946207555e494a558707008ba051013964b447",
+  "pr409Draft": true,
+  "pr409Head": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "pr409State": "OPEN",
+  "pr409Tree": "a0946207555e494a558707008ba051013964b447",
+  "remoteMutation": false,
+  "repositoryModified": false,
+  "worktreeStatus": "## codex/slskdn-localization-apply-20261102"
+}

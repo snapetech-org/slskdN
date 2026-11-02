@@ -366,7 +366,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
             }
            {...interfaceTextProps("Stop broadcasting listen-along metadata for this room.")}/>
         </div>
-        {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedOutputText output={connectionError} /></div> : null}
+        {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
         {broadcastFeedback}
       </Segment>
     );
@@ -475,7 +475,7 @@ const PodListenAlongPanel = ({ channelId, compact = false, podId, user }) => {
           }
          {...interfaceTextProps("Stop hosting listen-along metadata for this pod.")}/>
       </Button.Group>
-      {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedOutputText output={connectionError} /></div> : null}
+      {connectionError ? <div className="pod-listen-along-error" role="alert"><LocalizedText source={connectionError} /></div> : null}
       {broadcastFeedback}
       {directory.length > 0 && (
         <div className="pod-listen-along-directory">

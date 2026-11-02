@@ -1,4 +1,4 @@
-import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText, LocalizedRichText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
@@ -185,7 +185,11 @@ const Security = () => {
           <li><LocalizedText source={"Wait for peer connections and transfer activity"} /></li>
         </ol>
         <p>
-          <LocalizedText source={"Security monitoring will begin automatically once peer activity is detected. Check the"} />{" "}<strong><LocalizedText source={"Mesh"} /></strong> <LocalizedText source={"tab to verify connectivity."} /></p>
+          <LocalizedRichText
+            source={"Security monitoring will begin automatically once peer activity is detected. Check connectivity in the {tab} tab."}
+            values={{ tab: <strong><LocalizedText source={"Mesh"} /></strong> }}
+          />
+        </p>
         <Popup
           content={interfaceText("Request the latest security snapshot now instead of waiting for the next automatic refresh.")}
           position="top center"

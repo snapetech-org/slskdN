@@ -1,0 +1,187 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "inputHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "source": "Security monitoring will begin automatically once peer activity is detected. Check connectivity in the {tab} tab.",
+  "sourceSha256": "9f923ae09ae2aeb7586ac6ee6efbc92a6dd406d4b9b36af076a0a9268ed3b26c",
+  "sourceId": "src_9f923ae09ae2aeb7",
+  "reviewDisposition": "accept all 12 final machine-reviewed targets; four independent revisions and one catalog-consistency refinement applied",
+  "targets": {
+    "es": {
+      "target": "La supervisión de seguridad se iniciará automáticamente en cuanto se detecte actividad de pares. Compruebe la conectividad en la pestaña {tab}.",
+      "targetSha256": "8f2b11d79de70430b91625ff486669ba0bb8e96808f646ee1f3d5ba35db89006",
+      "catalogPath": "src/web/public/locales/es.json",
+      "catalogSha256": "e27fbd70e015ced712b8f1fbe322b72ab3546892d451241fae73b1f3952c962d",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "zh-Hans": {
+      "target": "一旦检测到对等活动，安全监控将自动开始。请在{tab}选项卡中检查连接状态。",
+      "targetSha256": "ceb97b116a37931b9ad1f50e301cb3522a4b8297fd10700d03458b9678f33253",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "catalogSha256": "ddef0afbdeeb94757fce9c28bc69804dcb8f48b1b7b4f52bd56b681fd04d09b3",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "hi": {
+      "target": "सहकर्मी गतिविधि का पता चलते ही सुरक्षा निगरानी अपने-आप शुरू हो जाएगी। कनेक्टिविटी की जाँच {tab} टैब में करें。",
+      "targetSha256": "ef6b3b7a84d7cfab74a6d86b4c25f1b545cbffe060f898ff5c0b62c822e3c76d",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "catalogSha256": "1caf629c97abeb23c5442f844b02ea0bf047a05634ea0dc706ed60e695a83d33",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "de": {
+      "target": "Die Sicherheitsüberwachung beginnt automatisch, sobald Peer-Aktivität erkannt wird. Überprüfen Sie die Verbindung in der Registerkarte {tab}.",
+      "targetSha256": "d4d49cb5f17af068afdb950cc0f9147383ffc86eb94134652dbe491ce47d850e",
+      "catalogPath": "src/web/public/locales/de.json",
+      "catalogSha256": "05834937e3fa8e0625f2e65b8cee0e11564f3e4f7dfa6eb1abcb093072bee5ad",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "ja": {
+      "target": "ピアのアクティビティが検出されると、セキュリティ監視が自動的に開始されます。接続状況は{tab}タブで確認してください。",
+      "targetSha256": "2485a89164209078ef9d28583b64f725a85cbd3805ce8e3f8fd8c6b48e7530bf",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "catalogSha256": "3cbfbafa6dd68a123709ddfc46cbbbeb0c19bfacb8db3e29ed70e0ca7e4dfd5e",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "fr": {
+      "target": "La surveillance de la sécurité commencera automatiquement une fois l’activité des pairs détectée. Vérifiez la connectivité dans l’onglet {tab}.",
+      "targetSha256": "3c9b83826e050b0d39b94487d05e71e0085246673ec9b0ff0808a09bb47433e1",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "catalogSha256": "ebfe6da44f33c405ee2c73ca1f9354e5caf142d1c7128770eb6e056789b288f6",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "pt-BR": {
+      "target": "O monitoramento de segurança começará automaticamente assim que a atividade dos pares for detectada. Verifique a conectividade na guia {tab}.",
+      "targetSha256": "e60a5bc705ac02ed4c6ca42a183c01cbce6b00df6968692be7ef81f1d38427d1",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "catalogSha256": "6ec52afb04e90e8ba4b91796daa1ada5224f0b9fe21168f4cfb1d7b31eff737c",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "ar": {
+      "target": "ستبدأ مراقبة الأمان تلقائيًا بمجرد اكتشاف نشاط الأقران. تحقّق من الاتصال في علامة التبويب {tab}.",
+      "targetSha256": "8393b9daf9bf796c5212a9ad15a614f638d9ced231965acaf436f6b52e3f787f",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "catalogSha256": "0bb661b9a4a04120a1c2e69b4b0fba95056356fed4cd04830e13bd4c8e15505a",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "ko": {
+      "target": "피어 활동이 감지되면 보안 모니터링이 자동으로 시작됩니다. 연결 상태는 {tab} 탭에서 확인하세요.",
+      "targetSha256": "e088e7a8f229ce77f5545872b56b317f42372e2d92b460adf283699ac36fc37d",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "catalogSha256": "0e9327e2105fbcedebb05ed1c41eb060efeeaa7a3aa1ad46efbcbaf8ad49a941",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "zh-Hant": {
+      "target": "一旦偵測到對等活動，安全監控就會自動開始。請在{tab}分頁中檢查連線狀態。",
+      "targetSha256": "7f1ead7a260f01d791178ea9780415889b486b880d2c358c82a90f2924a966f9",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "catalogSha256": "aa41c509ae5b51203668c164653d23a23125f66c43fb20b3fd9cc85fa89bdb82",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "vi": {
+      "target": "Khi phát hiện hoạt động ngang hàng, giám sát bảo mật sẽ tự động bắt đầu. Kiểm tra kết nối trong tab {tab}.",
+      "targetSha256": "d3485030d6842cebb6520c46918a0a96f46903df5b6f785f1ccc855129172569",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "catalogSha256": "756c85ec001f8c4128a5422ddf575426beb4ed760013f47f1e8e4b69fb0f839d",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    },
+    "id": {
+      "target": "Pemantauan keamanan akan dimulai secara otomatis setelah aktivitas rekan terdeteksi. Periksa konektivitas di tab {tab}.",
+      "targetSha256": "6b52b80aaf18860465030dd15d7cd24d55ca06f7f50a7f7c0d4317e47fedf0d1",
+      "catalogPath": "src/web/public/locales/id.json",
+      "catalogSha256": "d7be0a468bea45709a6c57d98c23a30849c8d4934fffb3b1daad227b81def7df",
+      "catalogKeys": 6176,
+      "newKeyAppended": true
+    }
+  },
+  "allTargetsPresentAndNonempty": true,
+  "placeholderParity": true,
+  "markupSuppliedByCallerSlot": true,
+  "catalogKeyOrderPreserved": true,
+  "nativeSpeakerApproval": false,
+  "nativeSpeakerReviewRequired": true,
+  "catalogReadback": {
+    "ar": {
+      "target": "ستبدأ مراقبة الأمان تلقائيًا بمجرد اكتشاف نشاط الأقران. تحقّق من الاتصال في علامة التبويب {tab}.",
+      "targetSha256": "8393b9daf9bf796c5212a9ad15a614f638d9ced231965acaf436f6b52e3f787f",
+      "catalogSha256": "0bb661b9a4a04120a1c2e69b4b0fba95056356fed4cd04830e13bd4c8e15505a",
+      "catalogKeys": 6176
+    },
+    "de": {
+      "target": "Die Sicherheitsüberwachung beginnt automatisch, sobald Peer-Aktivität erkannt wird. Überprüfen Sie die Verbindung in der Registerkarte {tab}.",
+      "targetSha256": "d4d49cb5f17af068afdb950cc0f9147383ffc86eb94134652dbe491ce47d850e",
+      "catalogSha256": "05834937e3fa8e0625f2e65b8cee0e11564f3e4f7dfa6eb1abcb093072bee5ad",
+      "catalogKeys": 6176
+    },
+    "es": {
+      "target": "La supervisión de seguridad se iniciará automáticamente en cuanto se detecte actividad de pares. Compruebe la conectividad en la pestaña {tab}.",
+      "targetSha256": "8f2b11d79de70430b91625ff486669ba0bb8e96808f646ee1f3d5ba35db89006",
+      "catalogSha256": "e27fbd70e015ced712b8f1fbe322b72ab3546892d451241fae73b1f3952c962d",
+      "catalogKeys": 6176
+    },
+    "fr": {
+      "target": "La surveillance de la sécurité commencera automatiquement une fois l’activité des pairs détectée. Vérifiez la connectivité dans l’onglet {tab}.",
+      "targetSha256": "3c9b83826e050b0d39b94487d05e71e0085246673ec9b0ff0808a09bb47433e1",
+      "catalogSha256": "ebfe6da44f33c405ee2c73ca1f9354e5caf142d1c7128770eb6e056789b288f6",
+      "catalogKeys": 6176
+    },
+    "hi": {
+      "target": "सहकर्मी गतिविधि का पता चलते ही सुरक्षा निगरानी अपने-आप शुरू हो जाएगी। कनेक्टिविटी की जाँच {tab} टैब में करें。",
+      "targetSha256": "ef6b3b7a84d7cfab74a6d86b4c25f1b545cbffe060f898ff5c0b62c822e3c76d",
+      "catalogSha256": "1caf629c97abeb23c5442f844b02ea0bf047a05634ea0dc706ed60e695a83d33",
+      "catalogKeys": 6176
+    },
+    "id": {
+      "target": "Pemantauan keamanan akan dimulai secara otomatis setelah aktivitas rekan terdeteksi. Periksa konektivitas di tab {tab}.",
+      "targetSha256": "6b52b80aaf18860465030dd15d7cd24d55ca06f7f50a7f7c0d4317e47fedf0d1",
+      "catalogSha256": "d7be0a468bea45709a6c57d98c23a30849c8d4934fffb3b1daad227b81def7df",
+      "catalogKeys": 6176
+    },
+    "ja": {
+      "target": "ピアのアクティビティが検出されると、セキュリティ監視が自動的に開始されます。接続状況は{tab}タブで確認してください。",
+      "targetSha256": "2485a89164209078ef9d28583b64f725a85cbd3805ce8e3f8fd8c6b48e7530bf",
+      "catalogSha256": "3cbfbafa6dd68a123709ddfc46cbbbeb0c19bfacb8db3e29ed70e0ca7e4dfd5e",
+      "catalogKeys": 6176
+    },
+    "ko": {
+      "target": "피어 활동이 감지되면 보안 모니터링이 자동으로 시작됩니다. 연결 상태는 {tab} 탭에서 확인하세요.",
+      "targetSha256": "e088e7a8f229ce77f5545872b56b317f42372e2d92b460adf283699ac36fc37d",
+      "catalogSha256": "0e9327e2105fbcedebb05ed1c41eb060efeeaa7a3aa1ad46efbcbaf8ad49a941",
+      "catalogKeys": 6176
+    },
+    "pt-BR": {
+      "target": "O monitoramento de segurança começará automaticamente assim que a atividade dos pares for detectada. Verifique a conectividade na guia {tab}.",
+      "targetSha256": "e60a5bc705ac02ed4c6ca42a183c01cbce6b00df6968692be7ef81f1d38427d1",
+      "catalogSha256": "6ec52afb04e90e8ba4b91796daa1ada5224f0b9fe21168f4cfb1d7b31eff737c",
+      "catalogKeys": 6176
+    },
+    "vi": {
+      "target": "Khi phát hiện hoạt động ngang hàng, giám sát bảo mật sẽ tự động bắt đầu. Kiểm tra kết nối trong tab {tab}.",
+      "targetSha256": "d3485030d6842cebb6520c46918a0a96f46903df5b6f785f1ccc855129172569",
+      "catalogSha256": "756c85ec001f8c4128a5422ddf575426beb4ed760013f47f1e8e4b69fb0f839d",
+      "catalogKeys": 6176
+    },
+    "zh-Hans": {
+      "target": "一旦检测到对等活动，安全监控将自动开始。请在{tab}选项卡中检查连接状态。",
+      "targetSha256": "ceb97b116a37931b9ad1f50e301cb3522a4b8297fd10700d03458b9678f33253",
+      "catalogSha256": "ddef0afbdeeb94757fce9c28bc69804dcb8f48b1b7b4f52bd56b681fd04d09b3",
+      "catalogKeys": 6176
+    },
+    "zh-Hant": {
+      "target": "一旦偵測到對等活動，安全監控就會自動開始。請在{tab}分頁中檢查連線狀態。",
+      "targetSha256": "7f1ead7a260f01d791178ea9780415889b486b880d2c358c82a90f2924a966f9",
+      "catalogSha256": "aa41c509ae5b51203668c164653d23a23125f66c43fb20b3fd9cc85fa89bdb82",
+      "catalogKeys": 6176
+    }
+  }
+}

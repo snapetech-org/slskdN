@@ -1,0 +1,38 @@
+{
+  "reviewType": "independent machine cross-review",
+  "result": "pass with four revisions adopted",
+  "findings": [
+    {
+      "locale": "zh-Hans",
+      "change": "Removed spaces around CJK inline tab label.",
+      "finalTarget": "一旦检测到对等活动，安全监控将自动开始。请在{tab}选项卡中检查连接状态。",
+      "confidence": "moderate"
+    },
+    {
+      "locale": "zh-Hant",
+      "change": "Removed spaces around CJK inline tab label.",
+      "finalTarget": "一旦偵測到對等活動，安全監控就會自動開始。請在{tab}分頁中檢查連線狀態。",
+      "confidence": "moderate"
+    },
+    {
+      "locale": "id",
+      "change": "Changed peer activity term from “peer” to existing catalog term “rekan”.",
+      "finalTarget": "Pemantauan keamanan akan dimulai secara otomatis setelah aktivitas rekan terdeteksi. Periksa konektivitas di tab {tab}.",
+      "confidence": "moderate"
+    },
+    {
+      "locale": "de",
+      "change": "Changed “Tab” to existing catalog term “Registerkarte”.",
+      "finalTarget": "Die Sicherheitsüberwachung beginnt automatisch, sobald Peer-Aktivität erkannt wird. Überprüfen Sie die Verbindung in der Registerkarte {tab}.",
+      "confidence": "moderate"
+    },
+    {
+      "locale": "es",
+      "change": "Root aligned “security monitoring” and opening clause to the existing reviewed W71 terminology “supervisión de seguridad … en cuanto”.",
+      "finalTarget": "La supervisión de seguridad se iniciará automáticamente en cuanto se detecte actividad de pares. Compruebe la conectividad en la pestaña {tab}.",
+      "confidence": "moderate"
+    }
+  ],
+  "allTargetsKeepTabExactlyOnce": true,
+  "nativeSpeakerApproval": false
+}

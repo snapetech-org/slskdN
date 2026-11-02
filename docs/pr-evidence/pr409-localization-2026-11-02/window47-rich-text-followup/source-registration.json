@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "source": "Security monitoring will begin automatically once peer activity is detected. Check connectivity in the {tab} tab.",
+  "sourceSha256": "9f923ae09ae2aeb7586ac6ee6efbc92a6dd406d4b9b36af076a0a9268ed3b26c",
+  "sourceId": "src_9f923ae09ae2aeb7",
+  "caller": "src/web/src/components/System/Security/index.jsx",
+  "baseCallerFileSha256": "cd0774119dffdebb66d0eea47c2e16612f416671447a56e59c00286ae678ff67",
+  "workingCallerFileSha256": "63197fbd11b1a026794e3649e93179fed5b1ad7ae1422e30c424d80a30fc0450",
+  "runtime": "LocalizedRichText with one React-node {tab} slot containing <strong><LocalizedText source={\"Mesh\"} /></strong>",
+  "replacesSources": [
+    "Security monitoring will begin automatically once peer activity is detected. Check the",
+    "tab to verify connectivity."
+  ]
+}
