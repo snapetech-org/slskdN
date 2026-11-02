@@ -1,0 +1,95 @@
+{
+  "rows": 300,
+  "verdicts": {
+    "keep": 237,
+    "correct": 39,
+    "uncertain": 24
+  },
+  "correctionRows": 39,
+  "correctionsByLocale": {
+    "ar": 3,
+    "de": 3,
+    "es": 4,
+    "fr": 4,
+    "hi": 3,
+    "id": 3,
+    "ja": 2,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 5,
+    "zh-Hans": 3,
+    "zh-Hant": 3
+  },
+  "inputSha256": "44b2c98fba43c0e3cffea0ad9e4cb14c7a844fcc0a11a2ad54751422f9ed3731",
+  "decisionsSha256": "cc7b85e6324e04fb232691cbdab41fa9e649900f6bc7ffd8b4ce1d305233dd34",
+  "crossReviewPlanSha256": "f5ac0b1afa7ac50c6138dfbb11297f09c51a61e99fa52344519ea06c8750d574",
+  "correctionSourceKeys": 5,
+  "perLocale": {
+    "es": {
+      "keep": 19,
+      "correct": 4,
+      "uncertain": 2
+    },
+    "zh-Hans": {
+      "keep": 20,
+      "uncertain": 2,
+      "correct": 3
+    },
+    "hi": {
+      "keep": 20,
+      "uncertain": 2,
+      "correct": 3
+    },
+    "de": {
+      "keep": 20,
+      "uncertain": 2,
+      "correct": 3
+    },
+    "ja": {
+      "keep": 21,
+      "uncertain": 2,
+      "correct": 2
+    },
+    "fr": {
+      "keep": 19,
+      "correct": 4,
+      "uncertain": 2
+    },
+    "pt-BR": {
+      "keep": 20,
+      "uncertain": 2,
+      "correct": 3
+    },
+    "ar": {
+      "keep": 20,
+      "correct": 3,
+      "uncertain": 2
+    },
+    "ko": {
+      "keep": 20,
+      "uncertain": 2,
+      "correct": 3
+    },
+    "zh-Hant": {
+      "keep": 20,
+      "uncertain": 2,
+      "correct": 3
+    },
+    "vi": {
+      "keep": 18,
+      "correct": 5,
+      "uncertain": 2
+    },
+    "id": {
+      "keep": 20,
+      "uncertain": 2,
+      "correct": 3
+    }
+  },
+  "placeholdersProtectedLiterals": "PASS",
+  "proposedTargetHashes": "PASS",
+  "uncertainSourceKeys": [
+    "src_fd96813fb2cc612b",
+    "src_fe60c7ad5a5617f7"
+  ]
+}
