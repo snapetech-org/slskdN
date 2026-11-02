@@ -1,0 +1,300 @@
+{"id":"es:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"es:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"es:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"es:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"es:src_f8934f486f691270","verdict":"keep"}
+{"id":"es:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"es:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"es:src_f8b7633a1c681001","verdict":"correct","target":"Se requiere el ID del Pod.","confidence":"high","reason":"The API validation refers to the Pod entity identifier; módulo means a module and does not identify the Pod."}
+{"id":"es:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"es:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"es:src_f8c6168b8c8d73b3","verdict":"correct","target":"Publica tu puntuación y tu nota sobre este contenido en el Pod. Revisa el ID del contenido y el hash de la variante, porque otros participantes podrían ver esta opinión.","confidence":"high","reason":"The tooltip names two specific fields. The current Spanish leaves “content ID” untranslated instead of identifying the content ID explicitly."}
+{"id":"es:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"es:src_f8cea452d1a7ce44","verdict":"correct","target":"La creación de un pod vinculado al contenido puede publicar el identificador de contenido seleccionado, el nombre del pod y la configuración de visibilidad. Mantenga las discusiones privadas o en borrador sin listar, salvo que se quiera permitir su descubrimiento público.","confidence":"high","reason":"The source says draft discussions and an unlisted state; the current wording treats drafts as a separate noun and is less precise about keeping them unlisted."}
+{"id":"es:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"es:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"es:src_f908d426b1b88663","verdict":"keep"}
+{"id":"es:src_f9091358d2161f62","verdict":"correct","target":"Cree un trabajo para este lanzamiento de álbum de SongID para que slskdN pueda planificar directamente la adquisición del álbum.","confidence":"high","reason":"The caller passes this album candidate’s MusicBrainz release ID to create an album job; lanzamiento único can suggest a music single or one-off rather than this album release."}
+{"id":"es:src_f917fbdfc928a17f","verdict":"correct","target":"Repetir: {repeatMode}. Haga clic para alternar entre desactivado, repetir todas las pistas y repetir una pista.","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"es:src_f947505a819e1138","verdict":"correct","target":"Firmar mensaje","confidence":"high","reason":"The button invokes handleSignMessage; Mensaje de firma describes a signature message rather than the signing action."}
+{"id":"es:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"es:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"es:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"es:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"es:src_f96e044aff224a43","verdict":"keep"}
+{"id":"es:src_f979c57727a12999","verdict":"keep"}
+{"id":"zh-Hans:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"zh-Hans:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"zh-Hans:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"zh-Hans:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"zh-Hans:src_f8934f486f691270","verdict":"keep"}
+{"id":"zh-Hans:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"zh-Hans:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"zh-Hans:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"zh-Hans:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"zh-Hans:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"zh-Hans:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"zh-Hans:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"zh-Hans:src_f8cea452d1a7ce44","verdict":"correct","target":"创建与内容关联的 Pod 可能会公开选定的内容标识符、Pod 名称和可见性设置。除非有意让公众发现，否则请将私人讨论或草稿讨论保持为未列出状态。","confidence":"high","reason":"The caller warns about public discovery; the current translation changes “keep unlisted” to “do not publicly discuss,” which is a different instruction."}
+{"id":"zh-Hans:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"zh-Hans:src_f8f7937bb8943a27","verdict":"correct","target":"配置的基础 URL：{urlBase}","confidence":"high","reason":"This is the configured web-app base URL; 底座 means a physical base/platform rather than the URL base."}
+{"id":"zh-Hans:src_f908d426b1b88663","verdict":"keep"}
+{"id":"zh-Hans:src_f9091358d2161f62","verdict":"correct","target":"从这个 SongID 专辑候选项创建针对该专辑发行版本的作业，以便 slskdN 直接规划专辑获取。","confidence":"high","reason":"The caller passes an album MusicBrainz release ID; 单曲发布 means a music single, not a job for this album release."}
+{"id":"zh-Hans:src_f917fbdfc928a17f","verdict":"correct","target":"重复：{repeatMode}。点击可依次切换：关闭、重复所有曲目、重复单首曲目。","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"zh-Hans:src_f947505a819e1138","verdict":"keep"}
+{"id":"zh-Hans:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"zh-Hans:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"zh-Hans:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"zh-Hans:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"zh-Hans:src_f96e044aff224a43","verdict":"keep"}
+{"id":"zh-Hans:src_f979c57727a12999","verdict":"keep"}
+{"id":"hi:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"hi:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"hi:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"hi:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"hi:src_f8934f486f691270","verdict":"keep"}
+{"id":"hi:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"hi:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"hi:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"hi:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"hi:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"hi:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"hi:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"hi:src_f8cea452d1a7ce44","verdict":"keep"}
+{"id":"hi:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"hi:src_f8f7937bb8943a27","verdict":"correct","target":"कॉन्फ़िगर किया गया बेस URL: {urlBase}","confidence":"high","reason":"This health-check field reports the configured base URL; URL आधार is an awkward literal rather than the conventional web term."}
+{"id":"hi:src_f908d426b1b88663","verdict":"keep"}
+{"id":"hi:src_f9091358d2161f62","verdict":"keep"}
+{"id":"hi:src_f917fbdfc928a17f","verdict":"correct","target":"दोहराएँ: {repeatMode}। क्लिक करके बंद, सभी ट्रैक दोहराने और एक ट्रैक दोहराने के बीच क्रम से बदलें।","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"hi:src_f947505a819e1138","verdict":"keep"}
+{"id":"hi:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"hi:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"hi:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"hi:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"hi:src_f96e044aff224a43","verdict":"keep"}
+{"id":"hi:src_f979c57727a12999","verdict":"keep"}
+{"id":"de:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"de:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"de:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"de:src_f87e2c5614e2df5b","verdict":"correct","target":"Versuchen Sie erneut, das Remote-YAML und seinen Quellpfad zu laden.","confidence":"high","reason":"The source is a remote YAML document; the existing German uses the wrong article for YAML and an awkward compound. The source location is its source path."}
+{"id":"de:src_f8934f486f691270","verdict":"keep"}
+{"id":"de:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"de:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"de:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"de:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"de:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"de:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"de:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"de:src_f8cea452d1a7ce44","verdict":"keep"}
+{"id":"de:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"de:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"de:src_f908d426b1b88663","verdict":"keep"}
+{"id":"de:src_f9091358d2161f62","verdict":"correct","target":"Erstellen Sie aus diesem SongID-Albenkandidaten einen Auftrag für diese einzelne Albumveröffentlichung, damit slskdN den Erwerb des Albums direkt planen kann.","confidence":"high","reason":"The caller passes an album MusicBrainz release ID; Single-Release-Job suggests a music single rather than this one album release."}
+{"id":"de:src_f917fbdfc928a17f","verdict":"correct","target":"Wiederholen: {repeatMode}. Klicken Sie, um zwischen „Aus“, „Alle Titel wiederholen“ und „Einen Titel wiederholen“ zu wechseln.","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"de:src_f947505a819e1138","verdict":"keep"}
+{"id":"de:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"de:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"de:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"de:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"de:src_f96e044aff224a43","verdict":"keep"}
+{"id":"de:src_f979c57727a12999","verdict":"keep"}
+{"id":"ja:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"ja:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"ja:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"ja:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"ja:src_f8934f486f691270","verdict":"keep"}
+{"id":"ja:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"ja:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"ja:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"ja:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"ja:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"ja:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"ja:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"ja:src_f8cea452d1a7ce44","verdict":"correct","target":"コンテンツにリンクされた Pod を作成すると、選択したコンテンツ識別子、Pod 名、表示設定が公開される可能性があります。公開で見つけられるようにする意図がない限り、非公開の議論や下書きの議論は一覧に表示しないでください。","confidence":"high","reason":"The source distinguishes an unlisted state from private visibility; the current Japanese says to keep discussions private."}
+{"id":"ja:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"ja:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"ja:src_f908d426b1b88663","verdict":"correct","target":"暗号技術の健全性：","confidence":"high","reason":"The heading is in the security section beside entropy checks; 暗号通貨 means cryptocurrency, not cryptography."}
+{"id":"ja:src_f9091358d2161f62","verdict":"correct","target":"この SongID アルバム候補のアルバムリリース用ジョブを作成し、slskdN がアルバムの取得を直接計画できるようにします。","confidence":"high","reason":"The caller passes an album MusicBrainz release ID; シングルリリース suggests a music single rather than this album release."}
+{"id":"ja:src_f917fbdfc928a17f","verdict":"correct","target":"リピート：{repeatMode}。クリックすると、「オフ」「全曲リピート」「1曲リピート」の順に切り替わります。","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"ja:src_f947505a819e1138","verdict":"keep"}
+{"id":"ja:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"ja:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"ja:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"ja:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"ja:src_f96e044aff224a43","verdict":"keep"}
+{"id":"ja:src_f979c57727a12999","verdict":"keep"}
+{"id":"fr:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"fr:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"fr:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"fr:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"fr:src_f8934f486f691270","verdict":"keep"}
+{"id":"fr:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"fr:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"fr:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"fr:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"fr:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"fr:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"fr:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"fr:src_f8cea452d1a7ce44","verdict":"keep"}
+{"id":"fr:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"fr:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"fr:src_f908d426b1b88663","verdict":"correct","target":"État de la cryptographie :","confidence":"high","reason":"The heading is in the security section beside entropy checks; cryptomonnaies means cryptocurrencies, not cryptography."}
+{"id":"fr:src_f9091358d2161f62","verdict":"keep"}
+{"id":"fr:src_f917fbdfc928a17f","verdict":"correct","target":"Répétition : {repeatMode}. Cliquez pour alterner entre « désactivée », « répéter tous les morceaux » et « répéter un seul morceau ».","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"fr:src_f947505a819e1138","verdict":"correct","target":"Signer le message","confidence":"high","reason":"The button invokes handleSignMessage; Message de signature is a noun phrase rather than the signing action."}
+{"id":"fr:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"fr:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"fr:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"fr:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"fr:src_f96e044aff224a43","verdict":"keep"}
+{"id":"fr:src_f979c57727a12999","verdict":"keep"}
+{"id":"pt-BR:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"pt-BR:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"pt-BR:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"pt-BR:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"pt-BR:src_f8934f486f691270","verdict":"keep"}
+{"id":"pt-BR:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"pt-BR:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"pt-BR:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"pt-BR:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"pt-BR:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"pt-BR:src_f8c6168b8c8d73b3","verdict":"correct","target":"Publique sua nota e comentário sobre este conteúdo no Pod. Confira o ID do conteúdo e o hash da variante, pois outros participantes poderão ver essa opinião.","confidence":"high","reason":"The tooltip names the content ID and variant hash; the current Brazilian Portuguese omits both qualifiers, making it unclear which identifiers to review."}
+{"id":"pt-BR:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"pt-BR:src_f8cea452d1a7ce44","verdict":"correct","target":"A criação de um pod vinculado ao conteúdo pode publicar o identificador de conteúdo selecionado, o nome do pod e a configuração de visibilidade. Mantenha as discussões privadas ou em rascunho sem listá-las, a menos que a descoberta pública seja intencional.","confidence":"high","reason":"“Preliminares” means preliminary, not draft, and the source asks to keep drafts unlisted unless public discovery is intended."}
+{"id":"pt-BR:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"pt-BR:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"pt-BR:src_f908d426b1b88663","verdict":"keep"}
+{"id":"pt-BR:src_f9091358d2161f62","verdict":"correct","target":"Crie um trabalho para este lançamento de álbum do candidato SongID, para que slskdN possa planejar diretamente a aquisição do álbum.","confidence":"high","reason":"The caller passes an album MusicBrainz release ID; lançamento único can suggest a music single or one-off rather than this album release."}
+{"id":"pt-BR:src_f917fbdfc928a17f","verdict":"correct","target":"Repetição: {repeatMode}. Clique para alternar entre “Desativado”, “Repetir todas as faixas” e “Repetir uma faixa”.","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"pt-BR:src_f947505a819e1138","verdict":"keep"}
+{"id":"pt-BR:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"pt-BR:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"pt-BR:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"pt-BR:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"pt-BR:src_f96e044aff224a43","verdict":"keep"}
+{"id":"pt-BR:src_f979c57727a12999","verdict":"keep"}
+{"id":"ar:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"ar:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"ar:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"ar:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"ar:src_f8934f486f691270","verdict":"keep"}
+{"id":"ar:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"ar:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"ar:src_f8b7633a1c681001","verdict":"correct","target":"معرّف Pod مطلوب.","confidence":"high","reason":"The API validation refers to the Pod entity identifier; جراب means a pouch/case. Preserve the product entity name Pod."}
+{"id":"ar:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"ar:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"ar:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"ar:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"ar:src_f8cea452d1a7ce44","verdict":"correct","target":"قد يؤدي إنشاء Pod مرتبط بالمحتوى إلى نشر معرّف المحتوى المحدد واسم Pod وإعدادات الرؤية. أبقِ المناقشات الخاصة أو المسودات غير مُدرجة ما لم يكن الاكتشاف العام مقصودًا.","confidence":"high","reason":"The current Arabic describes the Pod as a container/folder and uses a singular draft; the source is the content-linked discussion entity and private or draft discussions must remain unlisted."}
+{"id":"ar:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"ar:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"ar:src_f908d426b1b88663","verdict":"keep"}
+{"id":"ar:src_f9091358d2161f62","verdict":"keep"}
+{"id":"ar:src_f917fbdfc928a17f","verdict":"correct","target":"التكرار: {repeatMode}. انقر للتنقل بالتتابع بين الإيقاف، وتكرار جميع المسارات، وتكرار مسار واحد.","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"ar:src_f947505a819e1138","verdict":"correct","target":"وقّع الرسالة","confidence":"high","reason":"The button invokes the signing action; the current noun phrase means “message signature.”"}
+{"id":"ar:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"ar:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"ar:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"ar:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"ar:src_f96e044aff224a43","verdict":"keep"}
+{"id":"ar:src_f979c57727a12999","verdict":"keep"}
+{"id":"ko:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"ko:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"ko:src_f87425f74b283f5b","verdict":"correct","target":"저장된 분기","confidence":"high","reason":"This heading labels stored Discovery Graph branches; 지점 means a location/point rather than a graph branch."}
+{"id":"ko:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"ko:src_f8934f486f691270","verdict":"keep"}
+{"id":"ko:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"ko:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"ko:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"ko:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"ko:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"ko:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"ko:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"ko:src_f8cea452d1a7ce44","verdict":"correct","target":"콘텐츠 연결 포드를 만들면 선택한 콘텐츠 식별자, 포드 이름 및 공개 설정이 게시될 수 있습니다. 공개 검색을 의도한 경우가 아니라면 비공개 또는 초안 토론은 목록에 표시되지 않도록 유지하세요.","confidence":"high","reason":"The source asks to keep private or draft discussions unlisted; the current Korean says to keep them private, which changes the visibility state."}
+{"id":"ko:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"ko:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"ko:src_f908d426b1b88663","verdict":"correct","target":"암호 기술 상태:","confidence":"high","reason":"The heading is in the security section beside entropy checks; 암호화폐 means cryptocurrency, not cryptography."}
+{"id":"ko:src_f9091358d2161f62","verdict":"keep"}
+{"id":"ko:src_f917fbdfc928a17f","verdict":"correct","target":"반복: {repeatMode}. 클릭하면 끔, 전체 트랙 반복, 한 트랙 반복 순서로 전환됩니다.","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"ko:src_f947505a819e1138","verdict":"keep"}
+{"id":"ko:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"ko:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"ko:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"ko:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"ko:src_f96e044aff224a43","verdict":"keep"}
+{"id":"ko:src_f979c57727a12999","verdict":"keep"}
+{"id":"zh-Hant:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"zh-Hant:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"zh-Hant:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"zh-Hant:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"zh-Hant:src_f8934f486f691270","verdict":"keep"}
+{"id":"zh-Hant:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"zh-Hant:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"zh-Hant:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"zh-Hant:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"zh-Hant:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"zh-Hant:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"zh-Hant:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"zh-Hant:src_f8cea452d1a7ce44","verdict":"correct","target":"建立與內容關聯的 Pod 可能會公開選定的內容識別碼、Pod 名稱和可見性設定。除非有意讓大眾發現，否則請將私人討論或草稿討論保持為未列出狀態。","confidence":"high","reason":"The caller warns about public discovery; the current translation changes “keep unlisted” to “do not publicly discuss,” which is a different instruction."}
+{"id":"zh-Hant:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"zh-Hant:src_f8f7937bb8943a27","verdict":"correct","target":"已設定的基礎 URL：{urlBase}","confidence":"high","reason":"This is the configured web-app base URL; 底座 means a physical base/platform rather than the URL base."}
+{"id":"zh-Hant:src_f908d426b1b88663","verdict":"keep"}
+{"id":"zh-Hant:src_f9091358d2161f62","verdict":"correct","target":"從這個 SongID 專輯候選項建立針對該專輯發行版本的工作，以便 slskdN 直接規劃專輯取得。","confidence":"high","reason":"The caller passes an album MusicBrainz release ID; 單曲發布 means a music single, not a job for this album release."}
+{"id":"zh-Hant:src_f917fbdfc928a17f","verdict":"correct","target":"重複：{repeatMode}。按一下可依序切換：關閉、重複所有曲目、重複單曲。","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"zh-Hant:src_f947505a819e1138","verdict":"keep"}
+{"id":"zh-Hant:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"zh-Hant:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"zh-Hant:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"zh-Hant:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"zh-Hant:src_f96e044aff224a43","verdict":"keep"}
+{"id":"zh-Hant:src_f979c57727a12999","verdict":"keep"}
+{"id":"vi:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"vi:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"vi:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"vi:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"vi:src_f8934f486f691270","verdict":"keep"}
+{"id":"vi:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"vi:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"vi:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"vi:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"vi:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"vi:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"vi:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"vi:src_f8cea452d1a7ce44","verdict":"correct","target":"Tạo Pod liên kết với nội dung có thể công khai mã định danh nội dung đã chọn, tên Pod và cài đặt hiển thị. Trừ khi bạn muốn công khai để mọi người tìm thấy, hãy giữ các cuộc thảo luận riêng tư hoặc bản nháp ở trạng thái không được liệt kê.","confidence":"high","reason":"The source distinguishes an unlisted state from private visibility; the current Vietnamese says only not public, and should explicitly say not listed."}
+{"id":"vi:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"vi:src_f8f7937bb8943a27","verdict":"correct","target":"URL cơ sở đã cấu hình: {urlBase}","confidence":"high","reason":"This health-check field reports the configured base URL; Cơ sở URL is an unnatural literal rather than the web term."}
+{"id":"vi:src_f908d426b1b88663","verdict":"correct","target":"Tình trạng mật mã:","confidence":"high","reason":"The heading is in the security section beside entropy checks; tiền điện tử means cryptocurrency, not cryptography."}
+{"id":"vi:src_f9091358d2161f62","verdict":"correct","target":"Tạo tác vụ cho bản phát hành album này từ ứng viên album SongID để slskdN có thể lập kế hoạch mua album trực tiếp.","confidence":"high","reason":"The caller passes an album MusicBrainz release ID; đĩa đơn means a music single, not this album release."}
+{"id":"vi:src_f917fbdfc928a17f","verdict":"correct","target":"Lặp lại: {repeatMode}. Nhấp để lần lượt chuyển giữa tắt, lặp tất cả bản nhạc và lặp một bản nhạc.","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"vi:src_f947505a819e1138","verdict":"keep"}
+{"id":"vi:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"vi:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"vi:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"vi:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"vi:src_f96e044aff224a43","verdict":"keep"}
+{"id":"vi:src_f979c57727a12999","verdict":"keep"}
+{"id":"id:src_f854c1a24ec09075","verdict":"keep"}
+{"id":"id:src_f85f7ff72d6b5e87","verdict":"keep"}
+{"id":"id:src_f87425f74b283f5b","verdict":"keep"}
+{"id":"id:src_f87e2c5614e2df5b","verdict":"keep"}
+{"id":"id:src_f8934f486f691270","verdict":"keep"}
+{"id":"id:src_f8ad0148b8ecce4b","verdict":"keep"}
+{"id":"id:src_f8b6fc272545733c","verdict":"keep"}
+{"id":"id:src_f8b7633a1c681001","verdict":"keep"}
+{"id":"id:src_f8b8883f0c9d8d82","verdict":"keep"}
+{"id":"id:src_f8beeb1de72567ca","verdict":"keep"}
+{"id":"id:src_f8c6168b8c8d73b3","verdict":"keep"}
+{"id":"id:src_f8cd89f86f3d26cf","verdict":"keep"}
+{"id":"id:src_f8cea452d1a7ce44","verdict":"keep"}
+{"id":"id:src_f8e405de6abbbf5f","verdict":"keep"}
+{"id":"id:src_f8f7937bb8943a27","verdict":"keep"}
+{"id":"id:src_f908d426b1b88663","verdict":"keep"}
+{"id":"id:src_f9091358d2161f62","verdict":"correct","target":"Buat tugas untuk rilisan album ini dari kandidat album SongID agar slskdN dapat merencanakan akuisisi album secara langsung.","confidence":"high","reason":"The caller passes an album MusicBrainz release ID; single can suggest a music single rather than this album release."}
+{"id":"id:src_f917fbdfc928a17f","verdict":"correct","target":"Ulangi: {repeatMode}. Klik untuk beralih secara berurutan antara nonaktif, ulangi semua trek, dan ulangi satu trek.","confidence":"high","reason":"The PlayerBar click handler cycles through exactly three modes (off, all, one); this wording names all three modes in order instead of omitting or obscuring a state."}
+{"id":"id:src_f947505a819e1138","verdict":"keep"}
+{"id":"id:src_f94d73c6ef50c0e6","verdict":"keep"}
+{"id":"id:src_f94e4039b7e6a5c5","verdict":"keep"}
+{"id":"id:src_f9580240644ec9ea","verdict":"keep"}
+{"id":"id:src_f95cf1a0d4241b61","verdict":"keep"}
+{"id":"id:src_f96e044aff224a43","verdict":"keep"}
+{"id":"id:src_f979c57727a12999","verdict":"keep"}
