@@ -1,0 +1,32 @@
+{
+  "result": "MANUAL_REVIEW_COMPLETE_PENDING_ROOT_CROSS_REVIEW",
+  "window": 34,
+  "reviewBaseHead": "dc8ed2406a2247600d487df1ae3128ce08cc7faa",
+  "reviewBaseTree": "9909f5d6e32dfcc78ba53aa0c838f95e9ba246d3",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "cells": 274,
+  "perLocaleCells": {
+    "ar": 25,
+    "de": 25,
+    "fr": 24,
+    "hi": 25,
+    "id": 25,
+    "ja": 25,
+    "ko": 25,
+    "pt-BR": 25,
+    "vi": 25,
+    "zh-Hans": 25,
+    "zh-Hant": 25
+  },
+  "verdicts": {
+    "correct": 33,
+    "keep": 240,
+    "uncertain": 1
+  },
+  "candidateRows": 33,
+  "heldRows": 1,
+  "rootCrossReview": "pending",
+  "nativeSpeakerReview": "outstanding"
+}

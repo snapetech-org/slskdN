@@ -1,0 +1,118 @@
+{
+  "result": "PASS",
+  "window": 34,
+  "reviewBaseHead": "dc8ed2406a2247600d487df1ae3128ce08cc7faa",
+  "reviewBaseTree": "9909f5d6e32dfcc78ba53aa0c838f95e9ba246d3",
+  "reviewBaseSourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "manualCoverage": {
+    "windows": 34,
+    "sourceKeys": 847,
+    "cells": 10052,
+    "verdicts": {
+      "correct": 1367,
+      "keep": 8405,
+      "uncertain": 280
+    },
+    "rawWindow34Verdicts": {
+      "correct": 33,
+      "keep": 240,
+      "uncertain": 1
+    },
+    "rootFinalWindow34Dispositions": {
+      "accept": 32,
+      "refine": 1,
+      "keep-current": 1
+    },
+    "window34UncertainResolvedAsKeepCurrent": 1,
+    "manualWindowOverlap": 0,
+    "appliedCorrectionOverlap": 0,
+    "formalOverlapClaimedZeroRawFormalRowsUnavailable": true
+  },
+  "rootReview": {
+    "reviewedRows": 34,
+    "correctionRows": 33,
+    "acceptedAsProposed": 32,
+    "refinedAndAccepted": 1,
+    "keepCurrent": 1,
+    "held": 0,
+    "rootLedgerSha256": "da7bccd982e54172209375534b9a9309b04a2a6c3a20ce87a4b9df4e08a7cc59",
+    "independentLedgerSha256": "7a9da225deb033f6cacfa7306c0051e0d66dd899df11051249c50fe600a4fc40",
+    "applyPlanSha256": "d9232fb9d91ed34d44012fc40d54e6c98ff8bb3f5792ca7551096e65973d21bb",
+    "appliedLedgerSha256": "b75f7de69ae63f8ce95f37b1f24072fe999bfca9c7291dc0d2df4b5fecc80810"
+  },
+  "application": {
+    "previousApplied": 1340,
+    "newApplied": 33,
+    "totalApplied": 1373,
+    "previousUniqueAppliedSourceKeys": 311,
+    "newCorrectionSourceKeys": 13,
+    "uniqueAppliedSourceKeys": 324,
+    "heldExactContextCorrectionRows": 6,
+    "totalContextMismatchRowsHeld": 11,
+    "newContextMismatchRowsHeld": 0,
+    "totalDistinctHeldRows": 17,
+    "uncertainOriginal": 280,
+    "uncertainResolvedInRealmFollowup": 12,
+    "uncertainResolvedInWindow34CrossReview": 1,
+    "uncertainRemaining": 267,
+    "frozenPendingCellLane": 67080,
+    "formalCellsTrackedSeparately": 4800,
+    "manualCells": 10052,
+    "cellsOutsideFormalAndManualReview": 52228,
+    "byLocale": {
+      "ar": 152,
+      "de": 77,
+      "es": 105,
+      "fr": 115,
+      "hi": 116,
+      "id": 119,
+      "ja": 79,
+      "ko": 107,
+      "pt-BR": 101,
+      "vi": 135,
+      "zh-Hans": 134,
+      "zh-Hant": 133
+    },
+    "window34ByLocale": {
+      "ar": 3,
+      "de": 2,
+      "fr": 1,
+      "hi": 6,
+      "id": 3,
+      "ja": 2,
+      "ko": 2,
+      "pt-BR": 2,
+      "vi": 4,
+      "zh-Hans": 4,
+      "zh-Hant": 4
+    }
+  },
+  "catalogs": {
+    "localeFilesChanged": 11,
+    "keysPerLocale": 6169,
+    "catalogValues": 74028,
+    "w34TargetsIndividuallyVerified": 33,
+    "keyParityPreserved": true,
+    "fullCatalogPlaceholderPass": "Not run for W34; all 33 target placeholders and protected literals were verified individually.",
+    "catalogFileSha256": {
+      "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+      "zh-Hans": "c713f0cbc4d260eec93527ca8ff50f6c260d5be71bcc093a7a245e4fbcacdc15",
+      "hi": "a63687779c326c694d5f118b71f866d37fb68b7232d797b2e1eb4d581463d433",
+      "de": "b7e4bb7c4e140e2867b750b6f6560dde1e132f87f213e13654610fac020edcde",
+      "ja": "96a12d791534fa723abf19cc998f3bca97dbd98df7194b6f1444cf9fa2626f3b",
+      "fr": "279dacc92b19a336ddc4af3fd247a9f4fb1f355dfd8015fb6195ac47bcd4c6e5",
+      "pt-BR": "57bb2a459e78b6d34ae26431ab1983088ea263de1da07eb2fc0df50534bba52e",
+      "ar": "1ffa562a8599a5e601e52bfb4a8255ba8ce7763bf735b2b3bd7be172eb5cf681",
+      "ko": "bb35acb29e336df279a70b5d60b932cd4bf72e31b7286e12f8d276b23b48d985",
+      "zh-Hant": "5d7150ccf7b077f80fb673369631c2f1c26bdc9b9c461e0e2cff46fb2a526619",
+      "vi": "d9c138e17bd7cc25d702eeb63ab72e5aa3e28fe6c2513bae153b11d29e27b654",
+      "id": "a351e538a86058cd38caa59d76eb91da7cc3e50b484a5408aad353b14394aa60"
+    }
+  },
+  "workflowChanges": 0,
+  "sourceSubtreeChanged": false,
+  "nativeSpeakerReview": "outstanding",
+  "headedBrowserReview": "outstanding",
+  "testsBuildScansCi": "not run",
+  "formalOverlapNote": "The frozen packet claims zero overlap; the raw formal result rows were not included, so the independent reviewer could not reconstruct this component."
+}

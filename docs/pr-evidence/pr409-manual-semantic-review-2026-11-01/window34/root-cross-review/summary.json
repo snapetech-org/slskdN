@@ -1,0 +1,19 @@
+{
+  "window": 34,
+  "reviewBaseHead": "dc8ed2406a2247600d487df1ae3128ce08cc7faa",
+  "reviewBaseTree": "9909f5d6e32dfcc78ba53aa0c838f95e9ba246d3",
+  "reviewedRows": 34,
+  "rootDispositions": {
+    "accept": 32,
+    "refine": 1,
+    "keep-current": 1
+  },
+  "finalCatalogChanges": 33,
+  "rootRefinementIds": [
+    "zh-Hant:src_04875bce2d1363bd"
+  ],
+  "heldCellResolvedUnchanged": "fr:src_03c73a8121cec12f",
+  "nativeSpeakerReview": "outstanding",
+  "independentCrossReview": "pending",
+  "ledgerSha256": "da7bccd982e54172209375534b9a9309b04a2a6c3a20ce87a4b9df4e08a7cc59"
+}

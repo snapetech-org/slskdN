@@ -1,0 +1,171 @@
+{
+  "result": "MANUAL_REVIEW_COMPLETE_PENDING_ROOT_CROSS_REVIEW",
+  "window": 34,
+  "reviewBaseHead": "dc8ed2406a2247600d487df1ae3128ce08cc7faa",
+  "reviewBaseTree": "9909f5d6e32dfcc78ba53aa0c838f95e9ba246d3",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "cells": 274,
+  "verdicts": {
+    "correct": 33,
+    "keep": 240,
+    "uncertain": 1
+  },
+  "correctionRows": 33,
+  "correctionSourceKeys": 13,
+  "uncertainRows": 1,
+  "uncertainCellIds": [
+    "fr:src_03c73a8121cec12f"
+  ],
+  "perLocale": {
+    "zh-Hans": {
+      "keep": 21,
+      "correct": 4
+    },
+    "hi": {
+      "keep": 19,
+      "correct": 6
+    },
+    "de": {
+      "correct": 2,
+      "keep": 23
+    },
+    "ja": {
+      "correct": 2,
+      "keep": 23
+    },
+    "fr": {
+      "keep": 22,
+      "correct": 1,
+      "uncertain": 1
+    },
+    "pt-BR": {
+      "keep": 23,
+      "correct": 2
+    },
+    "ar": {
+      "keep": 22,
+      "correct": 3
+    },
+    "ko": {
+      "keep": 23,
+      "correct": 2
+    },
+    "zh-Hant": {
+      "keep": 21,
+      "correct": 4
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 4
+    },
+    "id": {
+      "keep": 22,
+      "correct": 3
+    }
+  },
+  "perSourceKey": {
+    "src_02f5f7929175e1c0": {
+      "correct": 2,
+      "keep": 9
+    },
+    "src_0303e18246708180": {
+      "keep": 11
+    },
+    "src_030a1b1d9c5117ee": {
+      "keep": 11
+    },
+    "src_03146d319e93da56": {
+      "keep": 11
+    },
+    "src_031a8f0f659df890": {
+      "correct": 2,
+      "keep": 9
+    },
+    "src_034d99b92c102178": {
+      "keep": 11
+    },
+    "src_03513e10082916f0": {
+      "correct": 7,
+      "keep": 4
+    },
+    "src_03867aea70acaf4c": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_0390795f456408d4": {
+      "keep": 11
+    },
+    "src_03bd71353a136104": {
+      "keep": 11
+    },
+    "src_03c73a8121cec12f": {
+      "correct": 1,
+      "keep": 9,
+      "uncertain": 1
+    },
+    "src_03d02cb9535b25b0": {
+      "correct": 5,
+      "keep": 6
+    },
+    "src_0404be0f930be704": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_046a093f5e41b87e": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_046ca04041737cfb": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_047b64c86d5d9f2b": {
+      "keep": 11
+    },
+    "src_04875bce2d1363bd": {
+      "correct": 2,
+      "keep": 9
+    },
+    "src_0489310e023d53ed": {
+      "keep": 11
+    },
+    "src_048fc12579e7f9cd": {
+      "correct": 3,
+      "keep": 8
+    },
+    "src_04abc996f51bbd12": {
+      "keep": 11
+    },
+    "src_04d1e2c8561db224": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_04d21f2e2af9f9a0": {
+      "keep": 11
+    },
+    "src_04d7b48339271ea6": {
+      "keep": 10
+    },
+    "src_04dfac3671b494ad": {
+      "keep": 11
+    },
+    "src_04e24b989d400c03": {
+      "correct": 6,
+      "keep": 5
+    }
+  },
+  "reviewInputSha256": "549f8edf997aebcbf5ca8de93144fc9dd5331ac8177beea2b01ba8beaf29e874",
+  "decisionLedgerSha256": "aaaf65b5c31c6e016622274ba6cfb9c844db6b23b5e5c9b70ff27dfa918bfe8b",
+  "candidatePlanSha256": "e4000f1998a82c0018a266e149ed43df1e11f66be8e7e892d310ef0b0d90876a",
+  "uncertainLedgerSha256": "0c9b122606c72d1e5526d37ed72cc87ee105be421d2d5706737308306431e3ca",
+  "sourceCallerLinesPinned": 514,
+  "semanticDecisionConfidence": "high for direct meaning, protected literal, and network terminology mismatches; moderate for locale phrasing and borrowed technical terms; native-speaker review outstanding",
+  "reviewerMethod": "manual review of every selected locale cell against the frozen English source, exact caller context, locale usage, placeholders, protected literals, and pinned product context; no translation API/model calls",
+  "independentCrossReview": "not requested for this packet",
+  "rootCrossReview": "pending",
+  "nativeSpeakerReview": "outstanding",
+  "targetsApplied": false,
+  "catalogsEdited": false
+}
