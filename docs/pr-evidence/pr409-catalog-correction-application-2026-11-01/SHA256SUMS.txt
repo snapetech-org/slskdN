@@ -1,0 +1,7 @@
+9e0b3bd9f0b0c26d2ccc459949c55009a839352d986adbe817de12a1bb76beb2  docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/manifest.json
+9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196  docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/applied-corrections.jsonl
+4d41c7f5d4b04af8a64013b92c72daee8eb7c358bce88b7cc7005d146a201ef6  docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/held-no-context.jsonl
+6d9eae77e8dcb22a75426c94860aaed1602af77d6269501f9d3f9be86d5a79f6  docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/preflight.json
+03b64921464c225a0a98ea2e8c1c1eae1aaded1ea4b53d26f79c2d6766c1986e  docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/verify_application.py
+a8afecf6b7512c414133a92ebc67272fe4caf342f4402738a592f790e84d086e  docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/verification.json
+f997e512b3dfdc56a185509a627c136f29e31403f796b324aac8eae2e3e851ed  docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/README.md

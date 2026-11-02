@@ -2,10 +2,16 @@
 
 ## Exact-head status — 2026-11-01
 
-- PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
+- PR #409 remains open and draft. The audited catalog baseline is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Seven exact-hash application commits changed only the approved locale values and `docs/CHANGELOG.md`; application ended at `295f33de43fbe4b6139f6800672411a2e90038c6` / tree `96e0884a82a2cf63f19756d63fb6a7ee77d0a259`. Source code and workflows were not changed.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Seventeen independent manual slices cover 425 source keys / 5,100 cells across the 12 direct locales. Combined verdicts: 4,187 keep, 742 high-confidence correction candidates, and 171 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Seventeen disjoint manual slices cover 425 source keys / 5,100 cells across the 12 direct locales. Combined verdicts: 4,187 keep, 742 high-confidence correction decisions, and 171 uncertain. Of the correction decisions, 736 exact-hash targets were applied and six remain held because the frozen input lacked exact source context. Keep and uncertain values remain unchanged. Formal-ledger overlap and overlap among the manual slices are both zero.
 - Qualified native-speaker review remains required.
+
+## Exact-hash correction application
+
+- Applied 736 high-confidence catalog corrections across 175 source keys and all twelve locales in seven sequential commits. The bundle records every prior/proposed value hash, exact source callsite and line hashes, per-file hashes, and commit/tree pins: [`correction application evidence`](../pr-evidence/pr409-catalog-correction-application-2026-11-01/).
+- The final census contains 6,169 nonempty values per locale (74,028 total). Comparing with the frozen catalog baseline, exactly the 736 evidenced cells changed; key sets still match across all catalogs. The verifier reconciled every one of the 5,100 manual decisions against the current catalogs and confirmed zero changes outside the correction ledger.
+- Six values remain held for missing exact source context, 171 uncertain values remain unchanged, and all 4,187 keep values remain unchanged. No source-code or workflow paths changed. No tests, builds, CI, releases, or tags were run for this application.
 
 ## Window 1
 
