@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdn",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "draft": true,
+  "exactHead": "6a082138c09fa8af40aee3258beb98523ee821d9",
+  "exactTree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+  "selection": "W45 reconstructed lexicographic ranks 1–25; no historical source ordinal claimed",
+  "sourceIdsReviewed": 25,
+  "localeCount": 12,
+  "cellsReviewed": 300,
+  "crossReviewDispositionCounts": {
+    "accept-current": 265,
+    "accept-proposal": 34,
+    "revise-proposal": 1,
+    "reject-proposal": 0,
+    "hold": 0
+  },
+  "primaryCandidateDispositionCounts": {
+    "propose-correction": 29,
+    "propose-refinement": 6
+  },
+  "revisedCells": [
+    {
+      "selectionRank": 15,
+      "sourceId": "src_0fbdb1f5674cf535",
+      "locale": "es",
+      "primaryTarget": "Intente cargar de nuevo las configuraciones adversarias después de activarlas en el servidor o restablecer la conexión.",
+      "crossReviewTarget": "Intente cargar de nuevo la configuración para entornos adversarios después de habilitarla en el servidor o restablecer la conexión.",
+      "reason": "The revised text keeps formal Intente and describes a configuration for adversarial environments, matching the adjacent security explanation; it preserves enabling the server setting or restoring the connection as the retry condition."
+    }
+  ],
+  "currentProtectedLiteralMismatch": {
+    "count": 1,
+    "selectionRank": 24,
+    "sourceId": "src_10274e17ad4ba010",
+    "locale": "hi",
+    "literal": "ContentID",
+    "crossReviewedTargetRestoresExactLiteral": true
+  },
+  "finalPlaceholderMismatchCount": 0,
+  "finalMarkupMismatchCount": 0,
+  "finalProtectedLiteralMismatchCount": 0,
+  "callerSourceHitLinePinsReattested": 72,
+  "callerContextReferencePinsReattested": 72,
+  "productionCallerGaps": 0,
+  "W44ReadbackCellsReattested": 300,
+  "sameOrderedLocaleKeyCount": 6170,
+  "nativeSpeakerApproval": false,
+  "nativeSpeakerReview": "outstanding",
+  "confidence": "moderate; machine-assisted independent review",
+  "testsBuildScansCiBrowser": "not run",
+  "repositoryMutation": "none",
+  "pullRequestMutation": "none",
+  "sevenPullRequestHeadsBeforeCaptured": true,
+  "sevenPullRequestHeadsAfter": "captured and unchanged from cross-review start; #409 remains OPEN/DRAFT at exact pinned head/tree",
+  "primaryPacketManifestSha256": "29b23467516b41a1b4a13758aa69345689907d819ad48587c92047565275f677",
+  "sevenPullRequestHeadsBeforeFile": "live-seven-pr-heads-before.json",
+  "sevenPullRequestHeadsAfterFile": "live-seven-pr-heads-after.json",
+  "unrelatedChaptarrAdvanceDuringPrimaryReview": "Already present at cross-review start; #190 remains at a9a74f6ba733e8c1f06a2d260bd802d4fde2da0e across this cross-review."
+}

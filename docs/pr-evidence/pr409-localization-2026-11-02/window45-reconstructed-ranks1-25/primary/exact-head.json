@@ -1,0 +1,24 @@
+{
+  "allSevenHeadTreeChangesDuringReview": [
+    {
+      "finalHead": "a9a74f6ba733e8c1f06a2d260bd802d4fde2da0e",
+      "finalTree": "d9d25f309f3a7256056b4ed8deb1dabee58b64fe",
+      "number": 190,
+      "repository": "snapetech-org/ChaptarrNG",
+      "startHead": "722c0aaab4eda88bb507ba4a165e2f6bb22901fa",
+      "startTree": "d162735f61d934389634111229b42beae04aaeea"
+    }
+  ],
+  "allSevenPrHeadsFinal": "live-seven-pr-heads-final.json",
+  "allSevenPrHeadsStart": "live-seven-pr-heads-start.json",
+  "exactHead": "6a082138c09fa8af40aee3258beb98523ee821d9",
+  "exactTree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "isDraft": true,
+  "localBranch": "codex/slskdn-localization-apply-20261102",
+  "pullRequest": 409,
+  "remoteBranchOid": "6a082138c09fa8af40aee3258beb98523ee821d9",
+  "repository": "snapetech-org/slskdN",
+  "state": "OPEN",
+  "worktree": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn"
+}

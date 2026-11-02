@@ -1,0 +1,8 @@
+{
+  "primaryPacketPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window45-primary-reconstructed-20261102",
+  "primaryPacketManifestSha256": "29b23467516b41a1b4a13758aa69345689907d819ad48587c92047565275f677",
+  "exactHead": "6a082138c09fa8af40aee3258beb98523ee821d9",
+  "exactTree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+  "rows": 300,
+  "primaryCandidateRows": 35
+}

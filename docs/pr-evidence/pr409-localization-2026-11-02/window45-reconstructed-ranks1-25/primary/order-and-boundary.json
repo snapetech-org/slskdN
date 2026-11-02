@@ -1,0 +1,203 @@
+{
+  "currentOrderedSourceCatalogKeys": 6170,
+  "exactHead": "6a082138c09fa8af40aee3258beb98523ee821d9",
+  "exactTree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+  "firstSelected": {
+    "selectionBasis": "rank in lexicographically sorted current pending source IDs after W1-W44 stable ID exclusion; historical ordinal not established",
+    "selectionRank": 1,
+    "source": "↻ {nextAttempt}",
+    "sourceId": "src_08a031ca85d481b5",
+    "sourceOrdinal": null,
+    "sourceSha256": "08a031ca85d481b5b77c97b0e5b65b3ab54bbd7f88b3741c3e6adef7e134d64c"
+  },
+  "lastSelected": {
+    "selectionBasis": "rank in lexicographically sorted current pending source IDs after W1-W44 stable ID exclusion; historical ordinal not established",
+    "selectionRank": 25,
+    "source": "Members",
+    "sourceId": "src_1044a4c056d0d685",
+    "sourceOrdinal": null,
+    "sourceSha256": "1044a4c056d0d685bf4f09174d2bc136137765d62916779fadcacf006a99ffac"
+  },
+  "ordinalBoundaryStatus": "not available; no historical ordinal is claimed",
+  "pendingIdsAfterExclusion": 5073,
+  "priorStableIds": {
+    "sha256": "838dc58c081cc5c5619db2488e4506b24ff3f768a81f7c815b886b70237121da",
+    "sourceIdsFile": "prior-source-ids.jsonl",
+    "w1ThroughW43": 1072,
+    "w1ThroughW44Unique": 1097,
+    "w44": 25
+  },
+  "selectedSourceIds": [
+    {
+      "selectionRank": 1,
+      "sourceId": "src_08a031ca85d481b5",
+      "sourceOrdinal": null,
+      "sourceSha256": "08a031ca85d481b5b77c97b0e5b65b3ab54bbd7f88b3741c3e6adef7e134d64c"
+    },
+    {
+      "selectionRank": 2,
+      "sourceId": "src_0a421585a2d4843e",
+      "sourceOrdinal": null,
+      "sourceSha256": "0a421585a2d4843eedddbfdad4e76abec89f46503d2dd29b503a975032dbfa2f"
+    },
+    {
+      "selectionRank": 3,
+      "sourceId": "src_0a6bb8b01de10156",
+      "sourceOrdinal": null,
+      "sourceSha256": "0a6bb8b01de1015655303abd99d3e33a2eeb857b9db1979a9414074b6750c8f8"
+    },
+    {
+      "selectionRank": 4,
+      "sourceId": "src_0b805e590d54d2fe",
+      "sourceOrdinal": null,
+      "sourceSha256": "0b805e590d54d2fec099f667ef0a756ffbb14009deccd96a0802544b4f949220"
+    },
+    {
+      "selectionRank": 5,
+      "sourceId": "src_0c0429faa508bde4",
+      "sourceOrdinal": null,
+      "sourceSha256": "0c0429faa508bde4898e2f6e9b45bef128270e266dd476926dd6d311883d95b7"
+    },
+    {
+      "selectionRank": 6,
+      "sourceId": "src_0f570de0172543d6",
+      "sourceOrdinal": null,
+      "sourceSha256": "0f570de0172543d65e009f2a494871d444051accf1d936651ad0c12de7d78929"
+    },
+    {
+      "selectionRank": 7,
+      "sourceId": "src_0f7171b0f3955545",
+      "sourceOrdinal": null,
+      "sourceSha256": "0f7171b0f3955545c664ccb135b345bcd2b6d41bc99455a44da502db18fd9415"
+    },
+    {
+      "selectionRank": 8,
+      "sourceId": "src_0f8216ceeb059219",
+      "sourceOrdinal": null,
+      "sourceSha256": "0f8216ceeb0592196ce53276e0ff3fec60f5d30a74dec4c2aa2fa9d4fcf03ff3"
+    },
+    {
+      "selectionRank": 9,
+      "sourceId": "src_0f830c93c353b1b8",
+      "sourceOrdinal": null,
+      "sourceSha256": "0f830c93c353b1b8946752511a81c416ec51581c46975d18bb6c83dd2497b32a"
+    },
+    {
+      "selectionRank": 10,
+      "sourceId": "src_0f931224f83f7362",
+      "sourceOrdinal": null,
+      "sourceSha256": "0f931224f83f7362bce4bdf092c2cb19d6b49d43a89e08aaa48178f299d5b646"
+    },
+    {
+      "selectionRank": 11,
+      "sourceId": "src_0f96646b2d650b8f",
+      "sourceOrdinal": null,
+      "sourceSha256": "0f96646b2d650b8f84c322275da1ef39bd3db6f8492f1f273d8a15fdef294f2f"
+    },
+    {
+      "selectionRank": 12,
+      "sourceId": "src_0fa2335ae05ef20f",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fa2335ae05ef20f01b0635a225b88f0b124c7291165c22a7bff1175d13f9ce5"
+    },
+    {
+      "selectionRank": 13,
+      "sourceId": "src_0fae0341527390de",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fae0341527390de12bfc3ef932187a795e9ff8b78a4746a32217242dcc91447"
+    },
+    {
+      "selectionRank": 14,
+      "sourceId": "src_0faf12b34b49c646",
+      "sourceOrdinal": null,
+      "sourceSha256": "0faf12b34b49c646a75d4e312d041d53d697c28fea6bee19610e8dd6a0c41f90"
+    },
+    {
+      "selectionRank": 15,
+      "sourceId": "src_0fbdb1f5674cf535",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fbdb1f5674cf535d41a7440a4dfb6adb7c65f27eaf4f9d0f2dc3814ad3efc45"
+    },
+    {
+      "selectionRank": 16,
+      "sourceId": "src_0fd9fbf938b4cfa0",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fd9fbf938b4cfa04bbd2b34cbb35174ef9922c4c8652a05d4f1b15162f56dcc"
+    },
+    {
+      "selectionRank": 17,
+      "sourceId": "src_0fda0a3042fc0063",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fda0a3042fc00639047b7fb7d1d83bd68b8dc58a878b2a1c82791adfc3020c6"
+    },
+    {
+      "selectionRank": 18,
+      "sourceId": "src_0fdfa99df1ef5255",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fdfa99df1ef5255b24e651963eb6c37e03bf8f2f4269ddc7df0ae4ad5a21a55"
+    },
+    {
+      "selectionRank": 19,
+      "sourceId": "src_0fe1058feb9f7e16",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fe1058feb9f7e16f4be04c3a39df7e95876e05cf0414afd43d42da8ddfa8e7a"
+    },
+    {
+      "selectionRank": 20,
+      "sourceId": "src_0fff3eaed3ba1095",
+      "sourceOrdinal": null,
+      "sourceSha256": "0fff3eaed3ba10953b5ffbc69b2441dfd9511b8bf1e0013ed310979360e375e0"
+    },
+    {
+      "selectionRank": 21,
+      "sourceId": "src_1000a7c4e336c590",
+      "sourceOrdinal": null,
+      "sourceSha256": "1000a7c4e336c590c840d644ab3f83da85064542acadefa8993effbdd0de232b"
+    },
+    {
+      "selectionRank": 22,
+      "sourceId": "src_1013f282796718f3",
+      "sourceOrdinal": null,
+      "sourceSha256": "1013f282796718f31aad0fc29e6337c17e1b46767c2c3b0e53de8da6eca02805"
+    },
+    {
+      "selectionRank": 23,
+      "sourceId": "src_10269b0581fff0ad",
+      "sourceOrdinal": null,
+      "sourceSha256": "10269b0581fff0ad8851ab0dd2214af9df6de0c5b3f88c8e0cf0a190143dc1e8"
+    },
+    {
+      "selectionRank": 24,
+      "sourceId": "src_10274e17ad4ba010",
+      "sourceOrdinal": null,
+      "sourceSha256": "10274e17ad4ba010bfe967081d72e23aa810978a47147611614ffdcea941f14b"
+    },
+    {
+      "selectionRank": 25,
+      "sourceId": "src_1044a4c056d0d685",
+      "sourceOrdinal": null,
+      "sourceSha256": "1044a4c056d0d685bf4f09174d2bc136137765d62916779fadcacf006a99ffac"
+    }
+  ],
+  "selectionMethod": "Exclude every stable source ID in W1-W44 from the exact current source catalog; sort remaining source IDs lexicographically; select the first 25.",
+  "selectionRankRange": [
+    1,
+    25
+  ],
+  "sourceOrdinalRange": null,
+  "w44PriorEvidenceManifests": {
+    "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window44-reconstructed-ranks1-25/SHA256SUMS.txt": {
+      "sha256": "a67b82d4eecf6a0c2f4879caec1aed25abd5cfcbd37fa028d2100c252bc3d86f",
+      "verifiedEntries": 46
+    },
+    "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window44-reconstructed-ranks1-25/crossreview/SHA256SUMS.txt": {
+      "sha256": "2d33af9fdbf5252d7fcdb35a68d8e5671feb961a52f6cb4cf4f6bc9df42c7a78",
+      "verifiedEntries": 12
+    },
+    "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window44-reconstructed-ranks1-25/primary/SHA256SUMS.txt": {
+      "sha256": "4bc75c5111f8e4e6e650225e6e4b3e9cc62eb2f738adb0d8fe66e3dcfeeb2068",
+      "verifiedEntries": 18
+    }
+  },
+  "windowLabel": "W45 reconstructed source-ID ranks 1-25; historical ordinal boundary unavailable"
+}
