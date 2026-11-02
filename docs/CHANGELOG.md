@@ -25,6 +25,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Localization: correct 142 exact-hash-validated existing catalog values across all twelve locales from the first 25-key semantic-review batch.
 - Localization: correct 103 exact-hash-validated existing catalog values across all twelve locales from the second 25-key semantic-review batch.
 - Localization: correct 121 exact-hash-validated existing catalog values across all twelve locales from the third 25-key semantic-review batch.
+- Localization: correct 95 exact-hash-validated existing catalog values across all twelve locales from the fourth 25-key semantic-review batch.
 
 - Localization: isolate dynamic string and number placeholders inside localized
   text for every text direction and English fallback; keep the values unchanged.
