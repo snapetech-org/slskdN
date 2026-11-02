@@ -22,7 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
-- Localization: apply 1,270 exact-hash-validated populated-catalog corrections across 290 source keys and all twelve locales; keep six values with missing exact source context held and 256 uncertain values unchanged.
+- Localization: apply 29 W32 exact-hash corrections, bringing the cumulative populated-catalog total to 1,299 across 300 source keys and all twelve locales; six values with missing exact source context remain held, and 256 uncertain values remain unresolved.
 
 - Localization: isolate dynamic string and number placeholders inside localized
   text for every text direction and English fallback; keep the values unchanged.

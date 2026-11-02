@@ -1,0 +1,93 @@
+{
+  "result": "PASS",
+  "window": 32,
+  "reviewBaseHead": "dfb9707f946bf2686210bcf1072b9d70c8442a62",
+  "reviewBaseTree": "9458e836ae12c02573535b5c9dc052f055b7820d",
+  "reviewBaseSourceSubtreeTree": "469e060d9e0a3fd6f54bc75a69993ee2651d3e4b",
+  "manualCoverage": {
+    "windows": 32,
+    "sourceKeys": 797,
+    "cells": 9504,
+    "verdicts": {
+      "correct": 1293,
+      "keep": 7943,
+      "uncertain": 268
+    },
+    "manualWindowOverlap": 0
+  },
+  "rootReview": {
+    "candidateRows": 29,
+    "acceptedAsProposed": 22,
+    "refinedAndAccepted": 7,
+    "held": 0,
+    "candidatePlanSha256": "ac67de5559bea50e815a729f95ff8a3c6e54bdd4751fc3d1278fd4add7808109",
+    "independentLedgerSha256": "18dcbf5ae633336bf3cb423dc7c470adc38636aba9b2f17eb66c1d1d65f8204a",
+    "rootLedgerSha256": "5ff63d8e936e7640febc50847ece6f1a3eee4928530dbaa03cacddfc070af7db",
+    "applyPlanSha256": "7902629320d3e3ed1a5e540321b57b5445a1e1ffa8527b01fa7c2aaa7f2ae2b5"
+  },
+  "application": {
+    "previousApplied": 1270,
+    "newApplied": 29,
+    "totalApplied": 1299,
+    "uniqueAppliedSourceKeys": 300,
+    "heldNoContext": 6,
+    "uncertainOriginal": 268,
+    "uncertainResolvedInRealmFollowup": 12,
+    "uncertainRemaining": 256,
+    "frozenPendingCellLane": 67080,
+    "formalCellsTrackedSeparately": 4800,
+    "manualCells": 9504,
+    "cellsOutsideFormalAndManualReview": 52776,
+    "byLocale": {
+      "ar": 145,
+      "de": 74,
+      "es": 105,
+      "fr": 107,
+      "hi": 106,
+      "id": 111,
+      "ja": 75,
+      "ko": 101,
+      "pt-BR": 95,
+      "vi": 129,
+      "zh-Hans": 126,
+      "zh-Hant": 125
+    },
+    "window32ByLocale": {
+      "ar": 6,
+      "de": 2,
+      "fr": 2,
+      "hi": 1,
+      "id": 2,
+      "ja": 2,
+      "ko": 5,
+      "pt-BR": 2,
+      "vi": 3,
+      "zh-Hans": 2,
+      "zh-Hant": 2
+    }
+  },
+  "catalogs": {
+    "localeFilesChanged": 11,
+    "keysPerLocale": 6169,
+    "catalogValues": 74028,
+    "w32TargetsIndividuallyVerified": 29,
+    "fullCatalogPlaceholderPass": "Prior W31 exact-head scan remains historical; W32 changed targets were checked individually.",
+    "catalogFileSha256": {
+      "ar": "8922f03545a9edebd323f4f2692c549fa1f007a2fba923b29e795510d338b22a",
+      "de": "14b8436a948506fd51bd9f385ade5c738a7cc5c0d2dddb5a333516980e66c5df",
+      "fr": "5a24596ace3952bfa6518bea5df85b3efa91af1fef13abf07edf85cb68f9767d",
+      "hi": "8a16c53d79a861fb0c5fadd15ffbe50a1a8d5f0c500eaa2f1543677eb1634f74",
+      "id": "ef7e4528f0fd368d1bc10e78ac991f7f0578032391ddf4c0d3c3de376019f424",
+      "ja": "c1347a69945e2aae94c6cc25d3e7955e1f622f7d4697257d47a79e9baffc354d",
+      "ko": "46e2c58e51bbdcce06e82aeb604a9103a3a814e1232887869545c50e4146847a",
+      "pt-BR": "ebcdddf28e64f57e12fe631feb68af0a9caa112a6c193839f4554a82c538e7ac",
+      "vi": "a26ea14df241076087d3c8a7665f557320b200fb46af3bf70d063209b04b5fea",
+      "zh-Hans": "1e7cc620d7ae3f930b9d5cc0f14b181f0dcb1ae49199709cc5161d62a6a1864a",
+      "zh-Hant": "ea7e3c187358537322df7e9392c3a3b2a3c29dc61223964ade57e32a9b602914"
+    }
+  },
+  "workflowChanges": 0,
+  "nativeSpeakerReview": "outstanding",
+  "headedBrowserReview": "outstanding",
+  "testsBuildScansCi": "not run"
+}

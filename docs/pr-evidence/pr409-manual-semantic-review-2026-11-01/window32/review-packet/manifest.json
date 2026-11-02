@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "window": 32,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "dfb9707f946bf2686210bcf1072b9d70c8442a62",
+  "tree": "9458e836ae12c02573535b5c9dc052f055b7820d",
+  "sourceSubtreeTree": "469e060d9e0a3fd6f54bc75a69993ee2651d3e4b",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "bundleManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+    "batchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 31,
+    "cells": 9238,
+    "sourceKeys": 772,
+    "overlapPairs": 0
+  },
+  "priorAppliedCorrectionLedger": {
+    "rows": 1270,
+    "uniqueIds": 1270,
+    "perFileSha256": {
+      "docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/applied-corrections.jsonl": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows18-19-2026-11-02/applied-corrections.jsonl": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows20-21-2026-11-02/applied-corrections.jsonl": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/applied-corrections-windows22-23.jsonl": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/applied-corrections-realm-window20.jsonl": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+      "docs/pr-evidence/pr409-catalog-correction-application-window24-2026-11-02/applied-corrections-window24.jsonl": "e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df",
+      "docs/pr-evidence/pr409-catalog-correction-application-window25-2026-11-02/applied-corrections-window25.jsonl": "030269709bebedf67f60d6c367bcd8e43ea92f7d9c9824ae6b9217b3afefdeb3",
+      "docs/pr-evidence/pr409-catalog-correction-application-window26-2026-11-02/applied-corrections-window26.jsonl": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd",
+      "docs/pr-evidence/pr409-catalog-correction-application-window27-2026-11-02/applied-corrections-window27.jsonl": "5af4b16894f7aed5b571c8dcb8b7572ae2e14eb6f3f507ce324bbc184450b8d1",
+      "docs/pr-evidence/pr409-catalog-correction-application-window28-2026-11-02/applied-corrections-window28.jsonl": "943fd894ad0d17b194d8ec426dce5457c1a2e3378292fd1cbe0bb1873f26b7b6",
+      "docs/pr-evidence/pr409-catalog-correction-application-window29-2026-11-02/applied-corrections-window29.jsonl": "a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9",
+      "docs/pr-evidence/pr409-catalog-correction-application-window30-2026-11-02/applied-corrections-window30.jsonl": "175dfca5f3348b6deb8e512c5f6fd79fe35b649f2f5872e6dff3c22ea1fde456",
+      "docs/pr-evidence/pr409-catalog-correction-application-window31-2026-11-02/applied-corrections-window31.jsonl": "2704474b3d89611ab953246fa99e3230a82e3214bf09ff707dda6bf5939011f7"
+    }
+  },
+  "scope": {
+    "selectedSourceIds": [
+      "src_010cd8a9e4a38ed7",
+      "src_011fbaf2a487fdc3",
+      "src_01263c44f5761270",
+      "src_01331a5ec16ac342",
+      "src_0134493aa130b5ee",
+      "src_014043680758da6c",
+      "src_0143a3db005e1e7f",
+      "src_014659ab9d98c8fe",
+      "src_0157260f182c3702",
+      "src_015aa2cc0b508343",
+      "src_016d0b6d20206159",
+      "src_016dce189e3497a9",
+      "src_017221fc3d377de4",
+      "src_01736849b86961f6",
+      "src_0178bd925cfa0ddc",
+      "src_017e295490d17c4a",
+      "src_018a1dce4e1fb967",
+      "src_018fa086df9f8bf1",
+      "src_019b8e9c4a21ce4e",
+      "src_019dac0da06b5d96",
+      "src_01b745e9746bc73b",
+      "src_01c17432f91bc0ec",
+      "src_01c4d3c21642b217",
+      "src_01cd1662ba5c61e7",
+      "src_01d460734d22d23c"
+    ],
+    "sourceKeyCount": 25,
+    "cells": 266,
+    "pendingCellsFrozen": 67080,
+    "remainingNonOverlappingCellsBeforeSelection": 53042,
+    "remainingSourceIdsBeforeSelection": 4878,
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "perLocaleCells": {
+      "ar": 25,
+      "de": 24,
+      "fr": 24,
+      "hi": 25,
+      "id": 24,
+      "ja": 24,
+      "ko": 24,
+      "pt-BR": 24,
+      "vi": 24,
+      "zh-Hans": 24,
+      "zh-Hant": 24
+    },
+    "allSelectedRowsPending": true,
+    "allSelectedTargetsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 266,
+    "sha256": "09d534acad981c383c42c2da15b0c26a667af529cf108430ae7c388294c1f988"
+  },
+  "currentCatalogFileSha256": {
+    "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+    "zh-Hans": "94f6baa8d4a3d7c6b8fd18db2146635d3587d9b6834e8882836270c02e90b1c6",
+    "hi": "dc7908ae1c1630fe108bc6757d735c2490555b08e1a217dca7c96e75b60e6854",
+    "de": "42649d8f2bbb045766d05723865abf89e435e08266222e3c925d1642e83e0ed9",
+    "ja": "539304a14f416816c4a48ff95c048c558506e23dc815cfc6687d05f5715370ad",
+    "fr": "522d26cdd4ec9178b6af15f5bbac6c2f2c51d040a045d48e254113063a3cf7e9",
+    "pt-BR": "6bbc94eea7dc0c8043e5093ec4ddb53b87914bb297cec22cd0b86d36e99915c5",
+    "ar": "632a362e55c207109f9088c34bde9643f2d6fcf42c06bf77c9ec6577a9d2ebd9",
+    "ko": "3d4673085d09239e34bd9aaf3af0cea95d1766cb2eda1722018603bd97efa2d3",
+    "zh-Hant": "c4274a72f6229f6c78c09d7a04fe3e26c661aeeb93c0c7fb219e1756e146f1a4",
+    "vi": "653d75e0264992a9cbd871899ddc9814d2ceca0bda8d27cc2e60318733ddc24c",
+    "id": "cb36c4a132a74be1f4d2301b196b85c506e94be004a1577bf763e5a24b275092"
+  },
+  "catalogKeyCounts": {
+    "es": 6169,
+    "zh-Hans": 6169,
+    "hi": 6169,
+    "de": 6169,
+    "ja": 6169,
+    "fr": 6169,
+    "pt-BR": 6169,
+    "ar": 6169,
+    "ko": 6169,
+    "zh-Hant": 6169,
+    "vi": 6169,
+    "id": 6169
+  },
+  "sourceCallerLinesPreflighted": 376,
+  "reviewerMethod": "manual semantic review of all 266 pending cells against exact source callers and UI context; exact-hash and placeholder checks; no translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "decisionCounts": {
+    "keep": 237,
+    "correct": 29
+  },
+  "perLocaleDecisionCounts": {
+    "zh-Hans": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    }
+  },
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 266,
+    "sha256": "cfee536d726295c1560d7e691a9bbe36a6948b50a5a0d6eafbfa5a27cf04d711"
+  },
+  "crossReviewPlan": {
+    "path": "crossreview-plan.jsonl",
+    "rows": 29,
+    "sha256": "ac67de5559bea50e815a729f95ff8a3c6e54bdd4751fc3d1278fd4add7808109",
+    "status": "pending independent exact-hash cross-review"
+  },
+  "semanticDecisionConfidence": "high for the identified meaning, identifier, and grammar errors; locale-quality confidence moderate; native-speaker review outstanding"
+}

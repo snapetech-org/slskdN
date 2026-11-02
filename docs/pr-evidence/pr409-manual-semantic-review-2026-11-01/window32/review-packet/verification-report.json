@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "prHead": "dfb9707f946bf2686210bcf1072b9d70c8442a62",
+  "tree": "9458e836ae12c02573535b5c9dc052f055b7820d",
+  "sourceSubtreeTree": "469e060d9e0a3fd6f54bc75a69993ee2651d3e4b",
+  "inputRows": 266,
+  "decisionRows": 266,
+  "correctionRows": 29,
+  "keepRows": 237,
+  "callerPins": 376,
+  "catalogPins": 12,
+  "sourceTargetPlaceholderAndIdentifierChecks": "passed",
+  "repositoryWorktree": "clean",
+  "catalogsChanged": false,
+  "testsBuildsScansCiRun": false
+}

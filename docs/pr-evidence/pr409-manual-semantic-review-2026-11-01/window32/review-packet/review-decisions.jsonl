@@ -1,0 +1,266 @@
+{"id":"zh-Hans:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"hi:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"de:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"ja:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"fr:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"pt-BR:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"ar:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"ko:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"zh-Hant:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"vi:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"id:src_010cd8a9e4a38ed7","verdict":"keep"}
+{"id":"zh-Hans:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"hi:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"de:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"ja:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"fr:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"pt-BR:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"ar:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"ko:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"zh-Hant:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"vi:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"id:src_011fbaf2a487fdc3","verdict":"keep"}
+{"id":"zh-Hans:src_01263c44f5761270","verdict":"keep"}
+{"id":"hi:src_01263c44f5761270","verdict":"keep"}
+{"id":"de:src_01263c44f5761270","verdict":"keep"}
+{"id":"ja:src_01263c44f5761270","verdict":"keep"}
+{"id":"fr:src_01263c44f5761270","verdict":"keep"}
+{"id":"pt-BR:src_01263c44f5761270","verdict":"keep"}
+{"id":"ar:src_01263c44f5761270","verdict":"keep"}
+{"id":"ko:src_01263c44f5761270","verdict":"keep"}
+{"id":"zh-Hant:src_01263c44f5761270","verdict":"keep"}
+{"id":"vi:src_01263c44f5761270","verdict":"keep"}
+{"id":"id:src_01263c44f5761270","verdict":"keep"}
+{"id":"zh-Hans:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"hi:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"de:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"ja:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"fr:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"pt-BR:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"ar:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"ko:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"zh-Hant:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"vi:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"id:src_01331a5ec16ac342","verdict":"keep"}
+{"id":"zh-Hans:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"hi:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"de:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"ja:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"fr:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"pt-BR:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"ar:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"ko:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"zh-Hant:src_0134493aa130b5ee","verdict":"keep"}
+{"confidence":"high","id":"vi:src_0134493aa130b5ee","reason":"The UI describes querying descriptors by domain and optional type. The current Vietnamese wording parses as describing query content; the correction makes descriptors the object of the query and preserves the domain/type filters.","target":"Truy vấn các bộ mô tả nội dung theo miền và loại tùy chọn","verdict":"correct"}
+{"id":"id:src_0134493aa130b5ee","verdict":"keep"}
+{"id":"zh-Hans:src_014043680758da6c","verdict":"keep"}
+{"id":"hi:src_014043680758da6c","verdict":"keep"}
+{"id":"de:src_014043680758da6c","verdict":"keep"}
+{"id":"ja:src_014043680758da6c","verdict":"keep"}
+{"id":"fr:src_014043680758da6c","verdict":"keep"}
+{"id":"pt-BR:src_014043680758da6c","verdict":"keep"}
+{"id":"ar:src_014043680758da6c","verdict":"keep"}
+{"id":"ko:src_014043680758da6c","verdict":"keep"}
+{"id":"zh-Hant:src_014043680758da6c","verdict":"keep"}
+{"id":"vi:src_014043680758da6c","verdict":"keep"}
+{"id":"id:src_014043680758da6c","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_0143a3db005e1e7f","reason":"This is an External ID input example. The `mb:recording` prefix is a MusicBrainz identifier namespace used by this form and fixtures; translating it or changing its ASCII separators obscures the literal value users must enter. The correction translates only the introductory phrase.","target":"例如，mb:recording:12345-6789-...","verdict":"correct"}
+{"confidence":"high","id":"hi:src_0143a3db005e1e7f","reason":"This is an External ID input example. The `mb:recording` prefix is a MusicBrainz identifier namespace used by this form and fixtures; translating it or changing its ASCII separators obscures the literal value users must enter. The correction translates only the introductory phrase.","target":"उदाहरण के लिए, mb:recording:12345-6789-...","verdict":"correct"}
+{"id":"de:src_0143a3db005e1e7f","verdict":"keep"}
+{"id":"ja:src_0143a3db005e1e7f","verdict":"keep"}
+{"confidence":"high","id":"fr:src_0143a3db005e1e7f","reason":"This is an External ID input example. The `mb:recording` prefix is a MusicBrainz identifier namespace used by this form and fixtures; translating it or changing its ASCII separators obscures the literal value users must enter. The correction translates only the introductory phrase.","target":"par exemple, mb:recording:12345-6789-...","verdict":"correct"}
+{"confidence":"high","id":"pt-BR:src_0143a3db005e1e7f","reason":"This is an External ID input example. The `mb:recording` prefix is a MusicBrainz identifier namespace used by this form and fixtures; translating it or changing its ASCII separators obscures the literal value users must enter. The correction translates only the introductory phrase.","target":"por exemplo, mb:recording:12345-6789-...","verdict":"correct"}
+{"confidence":"high","id":"ar:src_0143a3db005e1e7f","reason":"This is an External ID input example. The `mb:recording` prefix is a MusicBrainz identifier namespace used by this form and fixtures; translating it or changing its ASCII separators obscures the literal value users must enter. The correction translates only the introductory phrase.","target":"على سبيل المثال، mb:recording:12345-6789-...","verdict":"correct"}
+{"confidence":"high","id":"ko:src_0143a3db005e1e7f","reason":"This is an External ID input example. The `mb:recording` prefix is a MusicBrainz identifier namespace used by this form and fixtures; translating it or changing its ASCII separators obscures the literal value users must enter. The correction translates only the introductory phrase.","target":"예: mb:recording:12345-6789-...","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_0143a3db005e1e7f","reason":"This is an External ID input example. The `mb:recording` prefix is a MusicBrainz identifier namespace used by this form and fixtures; translating it or changing its ASCII separators obscures the literal value users must enter. The correction translates only the introductory phrase.","target":"例如，mb:recording:12345-6789-...","verdict":"correct"}
+{"id":"vi:src_0143a3db005e1e7f","verdict":"keep"}
+{"id":"id:src_0143a3db005e1e7f","verdict":"keep"}
+{"id":"zh-Hans:src_014659ab9d98c8fe","verdict":"keep"}
+{"id":"hi:src_014659ab9d98c8fe","verdict":"keep"}
+{"id":"de:src_014659ab9d98c8fe","verdict":"keep"}
+{"confidence":"high","id":"ja:src_014659ab9d98c8fe","reason":"The caller is a table of subject-index data conflicts. The current terms suggest interpersonal struggle/opposition rather than a data conflict/collision; the replacements use the technical conflict sense.","target":"競合","verdict":"correct"}
+{"id":"fr:src_014659ab9d98c8fe","verdict":"keep"}
+{"id":"pt-BR:src_014659ab9d98c8fe","verdict":"keep"}
+{"confidence":"high","id":"ar:src_014659ab9d98c8fe","reason":"The caller is a table of subject-index data conflicts. The current terms suggest interpersonal struggle/opposition rather than a data conflict/collision; the replacements use the technical conflict sense.","target":"تعارض","verdict":"correct"}
+{"confidence":"high","id":"ko:src_014659ab9d98c8fe","reason":"The caller is a table of subject-index data conflicts. The current terms suggest interpersonal struggle/opposition rather than a data conflict/collision; the replacements use the technical conflict sense.","target":"충돌","verdict":"correct"}
+{"id":"zh-Hant:src_014659ab9d98c8fe","verdict":"keep"}
+{"id":"vi:src_014659ab9d98c8fe","verdict":"keep"}
+{"id":"id:src_014659ab9d98c8fe","verdict":"keep"}
+{"id":"zh-Hans:src_0157260f182c3702","verdict":"keep"}
+{"id":"hi:src_0157260f182c3702","verdict":"keep"}
+{"id":"de:src_0157260f182c3702","verdict":"keep"}
+{"id":"ja:src_0157260f182c3702","verdict":"keep"}
+{"id":"fr:src_0157260f182c3702","verdict":"keep"}
+{"id":"pt-BR:src_0157260f182c3702","verdict":"keep"}
+{"id":"ar:src_0157260f182c3702","verdict":"keep"}
+{"id":"ko:src_0157260f182c3702","verdict":"keep"}
+{"id":"zh-Hant:src_0157260f182c3702","verdict":"keep"}
+{"id":"vi:src_0157260f182c3702","verdict":"keep"}
+{"id":"id:src_0157260f182c3702","verdict":"keep"}
+{"id":"zh-Hans:src_015aa2cc0b508343","verdict":"keep"}
+{"id":"hi:src_015aa2cc0b508343","verdict":"keep"}
+{"id":"de:src_015aa2cc0b508343","verdict":"keep"}
+{"id":"ja:src_015aa2cc0b508343","verdict":"keep"}
+{"id":"fr:src_015aa2cc0b508343","verdict":"keep"}
+{"id":"pt-BR:src_015aa2cc0b508343","verdict":"keep"}
+{"confidence":"high","id":"ar:src_015aa2cc0b508343","reason":"This is a numeric maximum-retries policy label. The Arabic target transliterates “Max” and the Indonesian target abbreviates “Maks”; the replacements state the maximum retry count directly.","target":"الحد الأقصى لعدد مرات إعادة المحاولة","verdict":"correct"}
+{"id":"ko:src_015aa2cc0b508343","verdict":"keep"}
+{"id":"zh-Hant:src_015aa2cc0b508343","verdict":"keep"}
+{"id":"vi:src_015aa2cc0b508343","verdict":"keep"}
+{"confidence":"high","id":"id:src_015aa2cc0b508343","reason":"This is a numeric maximum-retries policy label. The Arabic target transliterates “Max” and the Indonesian target abbreviates “Maks”; the replacements state the maximum retry count directly.","target":"Jumlah Percobaan Ulang Maksimum","verdict":"correct"}
+{"id":"zh-Hans:src_016d0b6d20206159","verdict":"keep"}
+{"id":"hi:src_016d0b6d20206159","verdict":"keep"}
+{"id":"de:src_016d0b6d20206159","verdict":"keep"}
+{"id":"ja:src_016d0b6d20206159","verdict":"keep"}
+{"id":"fr:src_016d0b6d20206159","verdict":"keep"}
+{"id":"pt-BR:src_016d0b6d20206159","verdict":"keep"}
+{"id":"ar:src_016d0b6d20206159","verdict":"keep"}
+{"id":"ko:src_016d0b6d20206159","verdict":"keep"}
+{"id":"zh-Hant:src_016d0b6d20206159","verdict":"keep"}
+{"id":"vi:src_016d0b6d20206159","verdict":"keep"}
+{"id":"id:src_016d0b6d20206159","verdict":"keep"}
+{"id":"zh-Hans:src_016dce189e3497a9","verdict":"keep"}
+{"id":"hi:src_016dce189e3497a9","verdict":"keep"}
+{"id":"de:src_016dce189e3497a9","verdict":"keep"}
+{"id":"ja:src_016dce189e3497a9","verdict":"keep"}
+{"id":"fr:src_016dce189e3497a9","verdict":"keep"}
+{"id":"pt-BR:src_016dce189e3497a9","verdict":"keep"}
+{"id":"ar:src_016dce189e3497a9","verdict":"keep"}
+{"id":"ko:src_016dce189e3497a9","verdict":"keep"}
+{"id":"zh-Hant:src_016dce189e3497a9","verdict":"keep"}
+{"id":"vi:src_016dce189e3497a9","verdict":"keep"}
+{"id":"id:src_016dce189e3497a9","verdict":"keep"}
+{"id":"zh-Hans:src_017221fc3d377de4","verdict":"keep"}
+{"id":"hi:src_017221fc3d377de4","verdict":"keep"}
+{"id":"de:src_017221fc3d377de4","verdict":"keep"}
+{"id":"ja:src_017221fc3d377de4","verdict":"keep"}
+{"id":"fr:src_017221fc3d377de4","verdict":"keep"}
+{"id":"pt-BR:src_017221fc3d377de4","verdict":"keep"}
+{"id":"ar:src_017221fc3d377de4","verdict":"keep"}
+{"id":"ko:src_017221fc3d377de4","verdict":"keep"}
+{"id":"zh-Hant:src_017221fc3d377de4","verdict":"keep"}
+{"id":"vi:src_017221fc3d377de4","verdict":"keep"}
+{"id":"id:src_017221fc3d377de4","verdict":"keep"}
+{"id":"zh-Hans:src_01736849b86961f6","verdict":"keep"}
+{"id":"hi:src_01736849b86961f6","verdict":"keep"}
+{"id":"de:src_01736849b86961f6","verdict":"keep"}
+{"confidence":"high","id":"ja:src_01736849b86961f6","reason":"The caller renders `peer.lastSeqId` in a mesh synchronization table. The current Japanese term can mean array ID and the Korean term means rank/ordinal number; these replacements identify a sequence ID.","target":"シーケンス ID","verdict":"correct"}
+{"id":"fr:src_01736849b86961f6","verdict":"keep"}
+{"id":"pt-BR:src_01736849b86961f6","verdict":"keep"}
+{"id":"ar:src_01736849b86961f6","verdict":"keep"}
+{"confidence":"high","id":"ko:src_01736849b86961f6","reason":"The caller renders `peer.lastSeqId` in a mesh synchronization table. The current Japanese term can mean array ID and the Korean term means rank/ordinal number; these replacements identify a sequence ID.","target":"시퀀스 ID","verdict":"correct"}
+{"id":"zh-Hant:src_01736849b86961f6","verdict":"keep"}
+{"id":"vi:src_01736849b86961f6","verdict":"keep"}
+{"id":"id:src_01736849b86961f6","verdict":"keep"}
+{"id":"zh-Hans:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"hi:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"de:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"ja:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"fr:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"pt-BR:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"ar:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"ko:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"zh-Hant:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"vi:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"id:src_0178bd925cfa0ddc","verdict":"keep"}
+{"id":"zh-Hans:src_017e295490d17c4a","verdict":"keep"}
+{"id":"hi:src_017e295490d17c4a","verdict":"keep"}
+{"id":"de:src_017e295490d17c4a","verdict":"keep"}
+{"id":"ja:src_017e295490d17c4a","verdict":"keep"}
+{"id":"fr:src_017e295490d17c4a","verdict":"keep"}
+{"id":"pt-BR:src_017e295490d17c4a","verdict":"keep"}
+{"id":"ar:src_017e295490d17c4a","verdict":"keep"}
+{"id":"ko:src_017e295490d17c4a","verdict":"keep"}
+{"id":"zh-Hant:src_017e295490d17c4a","verdict":"keep"}
+{"id":"vi:src_017e295490d17c4a","verdict":"keep"}
+{"id":"id:src_017e295490d17c4a","verdict":"keep"}
+{"id":"zh-Hans:src_018a1dce4e1fb967","verdict":"keep"}
+{"id":"hi:src_018a1dce4e1fb967","verdict":"keep"}
+{"id":"de:src_018a1dce4e1fb967","verdict":"keep"}
+{"id":"ja:src_018a1dce4e1fb967","verdict":"keep"}
+{"id":"fr:src_018a1dce4e1fb967","verdict":"keep"}
+{"id":"pt-BR:src_018a1dce4e1fb967","verdict":"keep"}
+{"confidence":"high","id":"ar:src_018a1dce4e1fb967","reason":"MediaCore uses “descriptor” as the technical record type that is published and retrieved from the DHT. The current Arabic and Vietnamese wording says “description”; the replacements preserve the descriptor concept.","target":"إدارة الواصفات المنشورة ومراقبة حالة النشر","verdict":"correct"}
+{"id":"ko:src_018a1dce4e1fb967","verdict":"keep"}
+{"id":"zh-Hant:src_018a1dce4e1fb967","verdict":"keep"}
+{"confidence":"high","id":"vi:src_018a1dce4e1fb967","reason":"MediaCore uses “descriptor” as the technical record type that is published and retrieved from the DHT. The current Arabic and Vietnamese wording says “description”; the replacements preserve the descriptor concept.","target":"Quản lý các bộ mô tả đã xuất bản và theo dõi trạng thái xuất bản","verdict":"correct"}
+{"id":"id:src_018a1dce4e1fb967","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"回填同步完成：已收到 {totalMessagesReceived} 条消息","verdict":"correct"}
+{"id":"hi:src_018fa086df9f8bf1","verdict":"keep"}
+{"confidence":"high","id":"de:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"Backfill-Synchronisierung abgeschlossen: {totalMessagesReceived} Nachrichten empfangen","verdict":"correct"}
+{"id":"ja:src_018fa086df9f8bf1","verdict":"keep"}
+{"confidence":"high","id":"fr:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"Synchronisation de remplissage terminée : {totalMessagesReceived} messages reçus","verdict":"correct"}
+{"confidence":"high","id":"pt-BR:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"Sincronização de preenchimento concluída: {totalMessagesReceived} mensagens recebidas","verdict":"correct"}
+{"confidence":"high","id":"ar:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"اكتملت مزامنة إعادة التعبئة: تم استلام {totalMessagesReceived} رسالة","verdict":"correct"}
+{"confidence":"high","id":"ko:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"백필 동기화 완료: {totalMessagesReceived}개의 메시지 수신","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"回填同步完成：已收到 {totalMessagesReceived} 則訊息","verdict":"correct"}
+{"confidence":"high","id":"vi:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"Đồng bộ hóa chèn lấp đã hoàn tất: Đã nhận được {totalMessagesReceived} tin nhắn","verdict":"correct"}
+{"confidence":"high","id":"id:src_018fa086df9f8bf1","reason":"This is a success toast reporting a count of messages received. The current targets place the variable as though it were an item number, omit required count constructions, or attach an incorrect German hyphen. The revisions express the quantity with locale-appropriate word order while preserving the named placeholder.","target":"Sinkronisasi pengisian ulang selesai: {totalMessagesReceived} pesan diterima","verdict":"correct"}
+{"id":"zh-Hans:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"hi:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"de:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"ja:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"fr:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"pt-BR:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"ar:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"ko:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"zh-Hant:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"vi:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"id:src_019b8e9c4a21ce4e","verdict":"keep"}
+{"id":"zh-Hans:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"hi:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"de:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"ja:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"fr:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"pt-BR:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"ar:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"ko:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"zh-Hant:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"vi:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"id:src_019dac0da06b5d96","verdict":"keep"}
+{"id":"zh-Hans:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"hi:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"de:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"ja:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"fr:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"pt-BR:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"ar:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"ko:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"zh-Hant:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"vi:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"id:src_01b745e9746bc73b","verdict":"keep"}
+{"id":"zh-Hans:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"hi:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"de:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"ja:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"fr:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"pt-BR:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"ar:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"ko:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"zh-Hant:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"vi:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"id:src_01c17432f91bc0ec","verdict":"keep"}
+{"id":"hi:src_01c4d3c21642b217","verdict":"keep"}
+{"confidence":"high","id":"ar:src_01c4d3c21642b217","reason":"SSH is the exact protocol option shown in the selector. The current Arabic transliteration drops the repeated S and H sounds; retaining the standard protocol acronym is unambiguous.","target":"SSH","verdict":"correct"}
+{"id":"zh-Hans:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"hi:src_01cd1662ba5c61e7","verdict":"keep"}
+{"confidence":"high","id":"de:src_01cd1662ba5c61e7","reason":"The source is a noun heading for a rendered preview of synchronization output. The current German wording is an imperative verb (“synchronize preview”); the replacement is a preview of the synchronization.","target":"Vorschau der Synchronisierung","verdict":"correct"}
+{"id":"ja:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"fr:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"pt-BR:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"ar:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"ko:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"zh-Hant:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"vi:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"id:src_01cd1662ba5c61e7","verdict":"keep"}
+{"id":"zh-Hans:src_01d460734d22d23c","verdict":"keep"}
+{"id":"hi:src_01d460734d22d23c","verdict":"keep"}
+{"id":"de:src_01d460734d22d23c","verdict":"keep"}
+{"id":"ja:src_01d460734d22d23c","verdict":"keep"}
+{"id":"fr:src_01d460734d22d23c","verdict":"keep"}
+{"id":"pt-BR:src_01d460734d22d23c","verdict":"keep"}
+{"id":"ar:src_01d460734d22d23c","verdict":"keep"}
+{"confidence":"high","id":"ko:src_01d460734d22d23c","reason":"This is a setup-health-check result state meaning automation recipes are present and visible. The current Korean phrase reads like “automation display”; the correction expresses that automation is displayed/visible.","target":"자동화가 표시됨","verdict":"correct"}
+{"id":"zh-Hant:src_01d460734d22d23c","verdict":"keep"}
+{"id":"vi:src_01d460734d22d23c","verdict":"keep"}
+{"id":"id:src_01d460734d22d23c","verdict":"keep"}
