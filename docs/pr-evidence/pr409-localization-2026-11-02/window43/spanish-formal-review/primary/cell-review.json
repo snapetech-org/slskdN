@@ -1,0 +1,34 @@
+{
+  "sourceOrdinal": 87,
+  "sourceId": "src_0ef5849949bcf7b6",
+  "source": "30D",
+  "sourceSha256": "0ef5849949bcf7b63a4aafd392d689e6b689f7d94a5091a115fe1516bb753b9b",
+  "locale": "es",
+  "catalogPath": "src/web/public/locales/es.json",
+  "catalogBlob": "58248ad4e614a2569a42673cb05f14610bfac38a",
+  "catalogFileSha256": "f1514481256f477d21e1592ed3355a4576f40f445bd9d95b95c631920a60e900",
+  "catalogKeyCount": 6170,
+  "currentTarget": "30 d",
+  "currentTargetSha256": "0cbbf41178dfbbf2e967a8ed94407179e7cbcf76618f7fc0059c0e760a92528b",
+  "recommendedTarget": "30 d",
+  "recommendedTargetSha256": "0cbbf41178dfbbf2e967a8ed94407179e7cbcf76618f7fc0059c0e760a92528b",
+  "disposition": "accept-current",
+  "callerPath": "src/web/src/components/Player/PlayerBar.jsx",
+  "callerBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+  "callerFileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+  "callerLine": 1337,
+  "callerLineText": "            { label: interfaceText(\"30D\"), value: 30 },",
+  "callerLineSha256": "7918e2297942fca4b957fba026f4779c367ff4f30483751ef6aeae91c695e2ce",
+  "callerContextBefore": [
+    "          {[",
+    "            { label: interfaceText(\"7D\"), value: 7 },"
+  ],
+  "callerContextAfter": [
+    "            { label: interfaceText(\"90D\"), value: 90 },",
+    "            { label: interfaceText(\"All\"), value: null },"
+  ],
+  "rationale": "The adjacent PlayerBar filter options 7D, 30D, and 90D are numeric durations. Spanish 30 d uses d as the international symbol for day and contains no person, verb, pronoun, or address form that distinguishes formal from informal register. This exact cell is therefore register-neutral; the missing formal-lane accumulator does not change its value.",
+  "registerApplicability": "none; numeric unit label has no address/register choice",
+  "externalReference": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9.pdf/fcf090b2-04e6-88cc-1149-c3e029ad8232",
+  "nativeSpeakerApproval": false
+}

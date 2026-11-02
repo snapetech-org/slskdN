@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: close the W43 Spanish formal-lane check for the PlayerBar 30D filter. Independent exact-head review confirms the register-neutral value “30 d” matches the adjacent 7D and 90D options and the international day symbol; native-speaker approval remains outstanding.
+
 - Localization: replace fragmented Pod help with one full sentence in all 12 locales and render the `feature.Pods` configuration token as left-to-right code.
 
 - Localization: apply 45 independently accepted W43 corrections and refinements (21 corrections, 24 refinements) across 11 non-Spanish locale catalogs; restore the FTP protocol labels, retain 11 W98 caller holds, and preserve 25 Spanish formal-lane values without a W43 verdict. Native-speaker review remains outstanding.

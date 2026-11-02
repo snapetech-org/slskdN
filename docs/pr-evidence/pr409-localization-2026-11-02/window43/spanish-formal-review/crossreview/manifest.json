@@ -1,0 +1,26 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "7fa557e4b3c433708bd490bd1fc9279c0539bc8f",
+  "tree": "fd4f7b6f33398fec278173fcf68a04d9c15bc94b",
+  "decision": "accept-current",
+  "cells": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1684,
+      "sha256": "f5616559ab60f4e0de5a291dd228dfbfff0a37b446be2955873f8f4a817f7510"
+    },
+    {
+      "path": "cross-review.jsonl",
+      "bytes": 3270,
+      "sha256": "a9701d6424477016005e7e678024456e68cbf7a280d28b7d8ff6becddd8cb6e5"
+    },
+    {
+      "path": "evidence.json",
+      "bytes": 2261,
+      "sha256": "fa463f81b79575e0ce038b847acd98da8e98d4dea7cca292805537730a395cec"
+    }
+  ],
+  "sha256SumsSha256": "4ce950175dafc1b137ee15f70794d1fd65eff3297e4e41933f0e275daf1c8117"
+}
