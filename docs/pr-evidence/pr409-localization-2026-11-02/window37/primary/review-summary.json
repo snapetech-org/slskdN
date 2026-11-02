@@ -1,0 +1,175 @@
+{
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "callerRowReferencesReattested": 383,
+  "catalogFileHashesReattested": {
+    "ar": "d1395add89aad04473dd77e74119a4f13e553cb7ae7ef086a4640ae724a955c8",
+    "de": "fc5e743f4b9a196fda1a91a45f3955d0d9ddb4170ed7b095dc375ab674b694b5",
+    "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+    "fr": "232afa6ba63213a93ce069d31356d405f4a7fce2da3688edf250c983200618c1",
+    "hi": "800b0a0d4f701f5afec49b8ea2b8db1bbf6267a7df4a352c09e8db77e5442fad",
+    "id": "e2153985803b5dee08133ec344d57cc3dd984fbaf0d046d7ea5dec555128f0f7",
+    "ja": "843826bb8692be4e9f6082dde41b011a7c54c8017f62124d77fad72280fc63f0",
+    "ko": "20604684b4796fde1bd0ea42813a7a9c9ba5d4aeb0f3b9d7ba1c49d68773979f",
+    "pt-BR": "3d38db814ad5828cbe5193a58c64d9babf41650192d3365a20caaf1ba57e5c49",
+    "vi": "8bfb9b431a214d62bc6eb435cc8c154c9d01139639179de8ec5c30aa957bf1b8",
+    "zh-Hans": "ee1d5332cfb88b2d03124281d98004466ff62d77000125cdfc406a96c5aa58ca",
+    "zh-Hant": "a5701099e2151a5724b3fbaf665ea4d59d34ab138c2f37fc7ad5b3f7be50805b"
+  },
+  "catalogFilesEdited": false,
+  "correctedSourceIds": [
+    "src_0738bb3259fd619e",
+    "src_076f9c8cff1db724",
+    "src_077506f3bbc87b87",
+    "src_07ac461a993457c4",
+    "src_07c0b991c768e218",
+    "src_07ce8b8a99bc57e9",
+    "src_07ceeb4bc33842b0",
+    "src_07d70633fc2bb901",
+    "src_07daadb6ed60272f",
+    "src_07e56bf8696ead49",
+    "src_07f4c78b5e0b3026",
+    "src_07f68caa669e1912",
+    "src_0831a9db649eaabc",
+    "src_0845f26528463f04"
+  ],
+  "correctionCandidatesSha256": "f1b7a6798ffa88f2e214e76216ae448aab11be399abff51f222470e9e64a759d",
+  "correctionCellsByLocale": {
+    "ar": 4,
+    "de": 4,
+    "fr": 6,
+    "hi": 3,
+    "id": 5,
+    "ja": 2,
+    "ko": 1,
+    "pt-BR": 3,
+    "vi": 6,
+    "zh-Hans": 4,
+    "zh-Hant": 4
+  },
+  "correctionsBySource": {
+    "src_0738bb3259fd619e": 7,
+    "src_076f9c8cff1db724": 2,
+    "src_077506f3bbc87b87": 1,
+    "src_07ac461a993457c4": 1,
+    "src_07c0b991c768e218": 6,
+    "src_07ce8b8a99bc57e9": 6,
+    "src_07ceeb4bc33842b0": 5,
+    "src_07d70633fc2bb901": 1,
+    "src_07daadb6ed60272f": 2,
+    "src_07e56bf8696ead49": 2,
+    "src_07f4c78b5e0b3026": 1,
+    "src_07f68caa669e1912": 1,
+    "src_0831a9db649eaabc": 6,
+    "src_0845f26528463f04": 1
+  },
+  "formalCellIdsSha256": "7bd9c90a1176403feb36daadfecb7822616a818d15e9980c99c0bf5dc9d6f856",
+  "formalLaneRowsPreserved": 24,
+  "headedBrowserReview": "not part of this source/catalog audit; remains outstanding for parent workflow",
+  "keepCellsByLocale": {
+    "ar": 21,
+    "de": 20,
+    "fr": 19,
+    "hi": 22,
+    "id": 19,
+    "ja": 23,
+    "ko": 24,
+    "pt-BR": 22,
+    "vi": 19,
+    "zh-Hans": 21,
+    "zh-Hant": 21
+  },
+  "livePrDraft": true,
+  "livePrMergeState": "CLEAN",
+  "livePrState": "OPEN",
+  "nativeSpeakerReview": "outstanding",
+  "pendingCellCounts": {
+    "ar": 25,
+    "de": 24,
+    "fr": 25,
+    "hi": 25,
+    "id": 24,
+    "ja": 25,
+    "ko": 25,
+    "pt-BR": 25,
+    "vi": 25,
+    "zh-Hans": 25,
+    "zh-Hant": 25
+  },
+  "pendingCells": 273,
+  "perLocaleVerdicts": {
+    "ar": {
+      "correct": 4,
+      "keep": 21
+    },
+    "de": {
+      "correct": 4,
+      "keep": 20
+    },
+    "fr": {
+      "correct": 6,
+      "keep": 19
+    },
+    "hi": {
+      "correct": 3,
+      "keep": 22
+    },
+    "id": {
+      "correct": 5,
+      "keep": 19
+    },
+    "ja": {
+      "correct": 2,
+      "keep": 23
+    },
+    "ko": {
+      "correct": 1,
+      "keep": 24
+    },
+    "pt-BR": {
+      "correct": 3,
+      "keep": 22
+    },
+    "vi": {
+      "correct": 6,
+      "keep": 19
+    },
+    "zh-Hans": {
+      "correct": 4,
+      "keep": 21
+    },
+    "zh-Hant": {
+      "correct": 4,
+      "keep": 21
+    }
+  },
+  "placeholdersAndProtectedLiterals": "PASS: 273 current rows and all 42 proposed targets; zero mismatch",
+  "priorAppliedCorrectionRows": 1455,
+  "priorHoldRowsPreservedAndReattested": 50,
+  "priorHoldSourceIds": 7,
+  "priorManualCells": 10601,
+  "priorManualSourceKeys": 897,
+  "privateJitFunctionalValidation": "not run for this read-only review",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPullRequestMutated": false,
+  "result": "PRIMARY_REVIEW_COMPLETE_PENDING_CROSS_REVIEW_NATIVE_SPEAKER_REVIEW_OUTSTANDING",
+  "reviewBaseHead": "2be3fa4dd46a0f0f49adad342f289721e4777035",
+  "reviewBaseTree": "f838ae565086dec8639f8a54aa4c7d4572342b5f",
+  "reviewDecisionSha256": "b1cc0918bb5fe849af45a41f83a6b36e4b9f26a6e61a676b42c46d6fc043e31e",
+  "reviewEvidenceSha256": "7abcb0ebe7856c0aa5ece9c379a9735f6c0feb42304ecda6436a64d082c104ae",
+  "reviewInputSha256": "bc4a1ccd8201a50a926a6ff46ea904bdfa583855bce9e425f35557d7dc140f86",
+  "semanticConfidence": "High for clear false-friend, wrong data-type, path, and exact configuration-key errors; moderate overall; native-speaker review remains outstanding.",
+  "sourceCurrentTargetCallerPins": "PASS at exact pushed head",
+  "sourceKeys": 25,
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "spanishExactReuseRowsPreserved": 1,
+  "testsBuildsScansCiOrReleasesRun": false,
+  "uniqueCallerLinesReattested": 35,
+  "verdictCounts": {
+    "correct": 42,
+    "keep": 231
+  },
+  "window": 37,
+  "workflowFilesEdited": false
+}
