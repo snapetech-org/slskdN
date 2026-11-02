@@ -1,0 +1,11 @@
+# slskdN PR #409 manual semantic review: window 20
+
+This exact-head evidence window reviews the next 25 eligible source keys (`src_f3677ae8bb7f1d69` through `src_f45850b2e8fbc954`): 300 cells across all twelve direct locales. It is pinned to OPEN/DRAFT PR head `17f8c15c9d35d75819e39383d751eb255e8bdedb`, tree `db85d8b825f7510a58384f11ee3ce1a9472e415a`, and source tree `a50cd94b2bc8d0f09de0882600207a4b82293108`.
+
+Verdicts: **266 keep, 22 high-confidence correction candidates, 12 uncertain**. Corrections address the standalone Chinese and Korean import-success status, quality-filter wording, count agreement in discovery refresh messages, Arabic preservation of the Pushover service name, plural Hindi file-action labeling, Chinese transfer-table “remaining” labels, and verb-form translations for the Load Portability Stats button. The Realm-governance conflict-report sentence remains uncertain in all locales until its cross-locale identity/governance term is standardized. All proposed targets preserve placeholders and protected literals.
+
+Per-locale counts (keep / correction / uncertain): es 21/3/1; zh-Hans 21/3/1; hi 21/3/1; de 24/0/1; ja 23/1/1; fr 23/1/1; pt-BR 21/3/1; ar 22/2/1; ko 21/3/1; zh-Hant 21/3/1; vi 24/0/1; id 24/0/1.
+
+The exact-head preflight rebuilt eligibility from the frozen pending bundle, the formal accumulator (150 valid jobs / 4,800 cells), all 19 prior manual windows (5,700 cells), and the 818-row applied-correction ledger. It selected the next disjoint 25 keys; overlap with formal decisions, prior manual windows, and the correction ledger is zero. All 300 selected catalog values matched their frozen target hashes, and all source callsite occurrences were reverified. Input SHA-256: `de9c4ac3cb20993b9eca04a8188520f98de9e739d3d280ef7e4ce22cce09ada2`. Decisions SHA-256: `ac2d261c4d62f1844753670fef2354dd58151f6a774a908c04877a15f7f1a024`.
+
+The adapted scratch verifier passed at the exact head/tree above. Its path and SHA-256 are recorded in `manifest.json`; the script is not copied here because it enforces the live PR head and prior-sibling state. The packaged JSON rows and verification result are byte-identical to scratch. This package is evidence-only: no catalog values were changed by this review. No model/API calls, tests, builds, or CI jobs ran. Native-speaker review remains outstanding.
