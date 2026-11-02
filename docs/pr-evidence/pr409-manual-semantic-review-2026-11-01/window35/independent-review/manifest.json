@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "independent exact-head full-row cross-review",
+  "capturedAtUtc": "2026-11-02T06:14:24Z",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "livePullRequestMergeState": "CLEAN",
+  "head": "917273260c49cca1c14576a0720fc84998d2846d",
+  "tree": "1cdd8c831d224a5706ac6f3e465add4fd249d2be",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "remotePrBranchHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "inspectionWorktree": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w35-review",
+  "inspectionWorktreeHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "inspectionWorktreeClean": true,
+  "sourcePacket": "/mnt/disks/scratch/task-scratch/slskdn-manual-review-window35-91727326-20261102",
+  "sourcePacketChecksumsSha256": "5008ddd69a574af0994386c158c0a63bdf27e0bbb0ad7781e7dc37d58eef67f7",
+  "sourcePacketInputHashes": {
+    "review-input.jsonl": "1a34ada42ec29d1e014dd845c69960bd0898a20658973111fa3f414b367f6f29",
+    "review-decisions.jsonl": "f8cab36f2d4bb8b059f01920a8b64cd12e4569e720f55f539b7bacb6ecfac069",
+    "crossreview-plan.jsonl": "938f53404562111e77d388336c8756a21f90fb65323650164cb47c3ecbbc7b0f",
+    "uncertain-ledger.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "rootCrossReview": {
+    "path": "/mnt/disks/scratch/task-scratch/slskdn-root-crossreview-window35-91727326-20261102/root-crossreview.jsonl",
+    "sha256": "9370973a90aaef1e6a597a4aa31d6bd21fedd4b7f8ded71f4d93ee0533d0f749",
+    "rows": 38,
+    "allDispositions": "accept-proposed",
+    "perIdTargetAndContextMismatches": 0
+  },
+  "independentReview": {
+    "ledger": "independent-review.jsonl",
+    "rows": 274,
+    "uniqueCells": 274,
+    "dispositions": {
+      "accept-proposed": 38,
+      "retain-current": 236
+    },
+    "proposalNoOps": 0,
+    "uncertain": 0,
+    "newCandidates": 0
+  },
+  "method": "Manual per-cell comparison of current and proposed targets against pinned source/caller context, plus read-only hash, placeholder, protected-literal, overlap, and exact-root-ledger checks. No external translation API or additional reviewer model was used.",
+  "limitations": [
+    "Native-speaker signoff outstanding.",
+    "No runtime/browser review in this audit.",
+    "Static review does not certify full-application visual fit."
+  ],
+  "scopeRestrictionsHonored": {
+    "repoOrCatalogEdits": false,
+    "testsBuildsScansCI": false,
+    "workflowReleaseTagMerge": false
+  }
+}

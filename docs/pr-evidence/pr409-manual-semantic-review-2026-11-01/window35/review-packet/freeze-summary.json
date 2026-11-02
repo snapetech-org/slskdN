@@ -1,0 +1,30 @@
+{
+  "result": "MANUAL_REVIEW_COMPLETE_PENDING_ROOT_CROSS_REVIEW",
+  "window": 35,
+  "reviewBaseHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "reviewBaseTree": "1cdd8c831d224a5706ac6f3e465add4fd249d2be",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "cells": 274,
+  "perLocalePendingCells": {
+    "ar": 25,
+    "de": 24,
+    "fr": 25,
+    "hi": 25,
+    "id": 25,
+    "ja": 25,
+    "ko": 25,
+    "pt-BR": 25,
+    "vi": 25,
+    "zh-Hans": 25,
+    "zh-Hant": 25
+  },
+  "manualDecisionsPending": 0,
+  "correctionRows": 38,
+  "keepRows": 236,
+  "uncertainRows": 0,
+  "nativeSpeakerReview": "outstanding",
+  "rootCrossReview": "pending",
+  "catalogsEdited": false
+}

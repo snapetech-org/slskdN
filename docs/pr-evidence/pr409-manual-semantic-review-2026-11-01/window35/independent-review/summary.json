@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": 35,
+  "liveHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "tree": "1cdd8c831d224a5706ac6f3e465add4fd249d2be",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeyCount": 25,
+  "rowCount": 274,
+  "uniqueCells": 274,
+  "perLocaleCells": {
+    "ar": 25,
+    "de": 24,
+    "fr": 25,
+    "hi": 25,
+    "id": 25,
+    "ja": 25,
+    "ko": 25,
+    "pt-BR": 25,
+    "vi": 25,
+    "zh-Hans": 25,
+    "zh-Hant": 25
+  },
+  "independentDispositionCounts": {
+    "accept-proposed": 38,
+    "retain-current": 236
+  },
+  "candidateCount": 38,
+  "candidateDispositionCounts": {
+    "accept-proposed": 38,
+    "refine": 0,
+    "hold": 0
+  },
+  "proposalNoOpCount": 0,
+  "rootCandidateRows": 38,
+  "rootDispositionCounts": {
+    "accept-proposed": 38
+  },
+  "rootPerIdComparison": {
+    "matched": 38,
+    "mismatches": 0,
+    "exactFields": [
+      "sourceId",
+      "source text/source hash recomputation",
+      "current target/hash",
+      "proposed target/hash",
+      "root final target/hash",
+      "source callsites",
+      "source contexts",
+      "head/tree/source subtree pins",
+      "root disposition"
+    ]
+  },
+  "cellAndSourceHashChecks": {
+    "inputRowHashes": 274,
+    "sourceTextHashes": 274,
+    "currentTargetHashes": 274,
+    "proposalTargetHashes": 38,
+    "sourceIdFromHashChecks": 274
+  },
+  "catalogAndCallerChecks": {
+    "localeCatalogFiles": 12,
+    "catalogKeyCountEach": 6169,
+    "sourceCallerLineReferences": 445,
+    "callerSourceFiles": 19,
+    "unverifiedPriorCallerReferences": 0
+  },
+  "placeholderAndProtectedLiteralChecks": {
+    "currentRowsChecked": 274,
+    "proposalRowsChecked": 38,
+    "placeholderMismatches": 0,
+    "protectedLiteralRowsCurrent": 33,
+    "protectedLiteralRowsProposed": 11,
+    "protectedLiteralMismatches": 0
+  },
+  "translationDiagnostics": {
+    "exactEnglishTargets": 0,
+    "targetDiagnosticPlaceholderMismatches": 0,
+    "targetDiagnosticProtectedLiteralMismatches": 0,
+    "currentTargetUnicodeControls": {
+      "vi:src_04f125038ce71bc8": "two U+200B characters, removed by the accepted proposal"
+    },
+    "otherObservedSpacing": "French NBSP before colons is retained as standard typography."
+  },
+  "overlap": {
+    "formalCellsPrior": 4800,
+    "priorManualCells": 10052,
+    "priorManualSourceKeys": 847,
+    "appliedCorrectionRows": 1373,
+    "formalOverlap": 0,
+    "priorManualCellOverlap": 0,
+    "priorManualSourceKeyOverlap": 0,
+    "appliedCorrectionOverlap": 0
+  },
+  "copyReportRegisterCheck": {
+    "sourceId": "src_05a9f307fe3f3abf",
+    "sourceSha256": "05a9f307fe3f3abf9711205c6df4189b9dcf21a49a0543b1c203c39217fd5dea",
+    "caller": {
+      "path": "src/web/src/components/System/ExperienceSettings/index.jsx",
+      "line": 314
+    },
+    "currentTargets": {
+      "de": "Kopiert einen kurzen Bericht dieser lokalen Einstellungen für eine Supportanfrage.",
+      "fr": "Copie un bref rapport de ces choix locaux à joindre à une demande d’assistance.",
+      "pt-BR": "Copia um breve relatório destas opções locais para incluir em uma solicitação de suporte."
+    },
+    "nearbySource": "Clear browser-local experience preferences and restore the supported defaults.",
+    "nearbyCaller": {
+      "path": "src/web/src/components/System/ExperienceSettings/index.jsx",
+      "line": 299
+    },
+    "nearbyCurrentTargets": {
+      "de": "Löscht die lokalen Nutzungseinstellungen und stellt die unterstützten Standardwerte wieder her.",
+      "fr": "Efface les préférences d’expérience locales et restaure les valeurs par défaut prises en charge.",
+      "pt-BR": "Limpa as preferências locais e restaura os valores padrão compatíveis."
+    },
+    "disposition": "no separate issue/candidate",
+    "reason": "In the same popup, the neighboring Clear description uses the same short imperative forms in all three locales. The Copy Report control itself is a noun label. The initial suspected register inconsistency is not confirmed by exact caller-local context."
+  },
+  "statusReconciliation": {
+    "packetReviewSummarySays": "root cross-review pending",
+    "externalRootLedger": "complete; 38/38 accept-proposed",
+    "disposition": "packet summary predates the external root ledger; no target/caller/hash mismatch"
+  },
+  "limitations": [
+    "No native-speaker approval; native review remains outstanding.",
+    "No runtime/browser review was performed by this cross-review.",
+    "This is a static source/context and translation audit, not full-app acceptance."
+  ],
+  "actions": {
+    "repositoryFilesChanged": false,
+    "catalogsEdited": false,
+    "PRChanged": false,
+    "testsBuildsScansCI": false,
+    "releaseTagMergeWorkflowChanges": false
+  },
+  "unresolvedIndependentTargetMismatches": 0,
+  "confidence": "moderate overall; high on clear false-friend, control-character, placeholder, and exact-caller cases."
+}

@@ -1,0 +1,159 @@
+{
+  "result": "MANUAL_REVIEW_COMPLETE_PENDING_ROOT_CROSS_REVIEW",
+  "window": 35,
+  "reviewBaseHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "reviewBaseTree": "1cdd8c831d224a5706ac6f3e465add4fd249d2be",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "cells": 274,
+  "verdicts": {
+    "correct": 38,
+    "keep": 236
+  },
+  "correctionRows": 38,
+  "correctionSourceKeys": 9,
+  "uncertainRows": 0,
+  "perLocale": {
+    "zh-Hans": {
+      "keep": 23,
+      "correct": 2
+    },
+    "hi": {
+      "keep": 21,
+      "correct": 4
+    },
+    "de": {
+      "keep": 21,
+      "correct": 3
+    },
+    "ja": {
+      "keep": 22,
+      "correct": 3
+    },
+    "fr": {
+      "keep": 22,
+      "correct": 3
+    },
+    "pt-BR": {
+      "keep": 21,
+      "correct": 4
+    },
+    "ar": {
+      "keep": 22,
+      "correct": 3
+    },
+    "ko": {
+      "keep": 20,
+      "correct": 5
+    },
+    "zh-Hant": {
+      "keep": 23,
+      "correct": 2
+    },
+    "vi": {
+      "correct": 5,
+      "keep": 20
+    },
+    "id": {
+      "keep": 21,
+      "correct": 4
+    }
+  },
+  "perSourceKey": {
+    "src_04f125038ce71bc8": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_04f13cecbc50590b": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_04f3388c3a8060be": {
+      "keep": 11
+    },
+    "src_04ff26fbdf36f0ef": {
+      "keep": 11
+    },
+    "src_05111e1ef45a3be6": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_051a21c278945c0e": {
+      "keep": 11
+    },
+    "src_051b1355a50fbc4e": {
+      "correct": 9,
+      "keep": 2
+    },
+    "src_051db32dab4715ab": {
+      "keep": 11
+    },
+    "src_051f01f095a28b04": {
+      "keep": 10
+    },
+    "src_053bab2d204beea8": {
+      "keep": 11
+    },
+    "src_05487af3f074b4f3": {
+      "correct": 1,
+      "keep": 10
+    },
+    "src_054bcbbe578e1d87": {
+      "keep": 11
+    },
+    "src_0552043c98e39e0b": {
+      "keep": 11
+    },
+    "src_05773a6d917474de": {
+      "keep": 11
+    },
+    "src_057e8f4bcc960b72": {
+      "keep": 11
+    },
+    "src_05903727c237b6da": {
+      "correct": 8,
+      "keep": 3
+    },
+    "src_05913f10180b52ba": {
+      "keep": 11
+    },
+    "src_059c7c7ff9dafcbb": {
+      "correct": 4,
+      "keep": 7
+    },
+    "src_05a30e98b39e2e9f": {
+      "keep": 11
+    },
+    "src_05a9f307fe3f3abf": {
+      "keep": 11
+    },
+    "src_05aed12e5196f6d5": {
+      "keep": 11
+    },
+    "src_05b7e1277f0ef50a": {
+      "keep": 11
+    },
+    "src_05c50790b5f82c09": {
+      "keep": 11
+    },
+    "src_05c963d66fcc88b9": {
+      "correct": 2,
+      "keep": 9
+    },
+    "src_05cda9f50fa087de": {
+      "correct": 11
+    }
+  },
+  "reviewInputSha256": "1a34ada42ec29d1e014dd845c69960bd0898a20658973111fa3f414b367f6f29",
+  "decisionLedgerSha256": "f8cab36f2d4bb8b059f01920a8b64cd12e4569e720f55f539b7bacb6ecfac069",
+  "candidatePlanSha256": "938f53404562111e77d388336c8756a21f90fb65323650164cb47c3ecbbc7b0f",
+  "uncertainLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "sourceCallerLinesPinned": 445,
+  "semanticDecisionConfidence": "high for direct mistranslations, hidden characters, and caller-bound terminology; moderate for nuanced technical terms and locale phrasing; native-speaker review outstanding",
+  "reviewerMethod": "manual review of every selected locale cell against frozen English source, exact caller context, neighboring UI usage, placeholders, protected literals, and pinned product context; no translation API/model calls",
+  "rootCrossReview": "pending",
+  "nativeSpeakerReview": "outstanding",
+  "targetsApplied": false,
+  "catalogsEdited": false
+}
