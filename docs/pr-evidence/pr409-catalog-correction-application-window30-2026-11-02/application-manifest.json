@@ -55,7 +55,10 @@
   "releaseOrTagCreated": false,
   "cumulativeVerification": {
     "path": "verification.json",
-    "sha256": "7315a955fb6fe81811b18322226955f38aeb1e903936ccf7b73fbff33c937f1d",
+    "sha256": "7662e1eced83b457ea96ea96b040f84ff9aba185974c767fee96b225e2143f71",
+    "checkedHead": "39c44133e75b128935a1a6acf85b3c9db1b46ffe",
+    "checkedTree": "211eadc1f6d1f99ac6d33fc6179fd03a0c56d12a",
+    "applicationCommit": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
     "manualWindows": 30,
     "manualCells": 8964,
     "keep": 7468,
@@ -66,6 +69,7 @@
     "uncertainRemaining": 256,
     "unreviewedCells": 58116,
     "formalCells": 4800,
-    "formalOverlap": 0
+    "formalOverlap": 0,
+    "fullCatalogPlaceholderChecks": 74028
   }
 }

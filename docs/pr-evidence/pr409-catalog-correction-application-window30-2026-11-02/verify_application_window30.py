@@ -64,8 +64,16 @@ def main():
     head, tree = git('rev-parse','HEAD'), git('rev-parse','HEAD^{tree}')
     remote = subprocess.check_output(['git','-C',str(REPO),'ls-remote','origin','refs/heads/codex/slskdn-oidc-tooltip-localization-20261030'],text=True).split()[0]
     state = json.loads(subprocess.check_output(['gh','pr','view','409','--repo','snapetech-org/slskdN','--json','state,isDraft,mergeStateStatus,headRefOid'],text=True))
-    if head != APP30_COMMIT or remote != head or state.get('headRefOid') != head or state.get('state') != 'OPEN' or state.get('isDraft') is not True:
+    if remote != head or state.get('headRefOid') != head or state.get('state') != 'OPEN' or state.get('isDraft') is not True:
         fail(f'PR/local/remote exact-head mismatch: head={head} remote={remote} pr={state}')
+    if subprocess.run(['git','-C',str(REPO),'merge-base','--is-ancestor',APP30_COMMIT,head]).returncode:
+        fail('window30 application is not an ancestor of current final head')
+    if git('status','--porcelain'):
+        fail('repository worktree is not clean at final verification')
+    for locale in LOCALES:
+        rel=f'src/web/public/locales/{locale}.json'
+        if show(head,rel) != show(APP30_COMMIT,rel):
+            fail(f'catalog changed after window30 application: {locale}')
     if git('rev-parse',APP30_COMMIT+'^') != REVIEW30:
         fail('window30 application commit is not a direct child of its review base')
     if git('rev-parse',APP30_COMMIT+'^{tree}') != '0909e7e881d99f9e181ae6ed34034e45d9eada7d':
