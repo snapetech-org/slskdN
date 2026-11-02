@@ -1,0 +1,10 @@
+{
+  "afterSha256": "386191af02156fa2910e026d4055c302c4f7be789a1cbf8ff55b8024699712eb",
+  "beforeSha256": "19060fc2a401f489313c8e7c5e4d67a4c7a7b2db591bde3cec3056aad46b72bd",
+  "localizedRichTextImportCount": 1,
+  "ltrCodeTokenCount": 1,
+  "newBlock": "                <LocalizedRichText\n                  source={\"Enable {feature} in the server configuration to use Pod rooms and discover other Pods.\"}\n                  values={{ feature: <code dir=\"ltr\">feature.Pods</code> }}\n                />\n              </div>",
+  "newSourceCount": 1,
+  "oldCompositionCount": 0,
+  "path": "src/web/src/components/Messaging/MessagingV2.jsx"
+}

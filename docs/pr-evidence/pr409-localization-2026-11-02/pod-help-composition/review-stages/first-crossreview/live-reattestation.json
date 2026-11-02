@@ -1,0 +1,24 @@
+{
+  "callerPinVerified": true,
+  "head": "490983c336d4958f11518c73268de2788c8858cb",
+  "inputChecksumSha256": "e96eaa6455540928facc04bffde28c928fa9d2dac78596acecd8ec513701ffc0",
+  "livePullRequest": {
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "490983c336d4958f11518c73268de2788c8858cb",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "localeFilePinsVerified": 12,
+  "localizedRichTextBlob": "14a72e54457bebb3eb9f0f8aba0750ed8ead8c39",
+  "passed": true,
+  "productContextRefs": 4,
+  "remoteBranchHead": "490983c336d4958f11518c73268de2788c8858cb",
+  "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da",
+  "worktree": {
+    "head": "490983c336d4958f11518c73268de2788c8858cb",
+    "status": "",
+    "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da"
+  }
+}

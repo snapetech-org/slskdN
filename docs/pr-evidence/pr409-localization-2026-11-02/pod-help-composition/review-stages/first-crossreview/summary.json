@@ -1,0 +1,28 @@
+{
+  "browserReview": false,
+  "callerBlob": "ab5a672ca6e1242e45da3f93247593780221eadc",
+  "candidateRefinements": 12,
+  "codeNode": "<code dir=\"ltr\">feature.Pods</code>",
+  "codeToken": "feature.Pods",
+  "head": "490983c336d4958f11518c73268de2788c8858cb",
+  "liveReattestationPassed": true,
+  "localeCount": 12,
+  "localizedRichTextBlob": "14a72e54457bebb3eb9f0f8aba0750ed8ead8c39",
+  "nativeSpeakerApproval": false,
+  "placeholderOccurrencesPerCandidate": 1,
+  "pullRequest": 409,
+  "recommendedEnglishSource": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+  "repository": "snapetech-org/slskdN",
+  "repositoryModified": false,
+  "schemaVersion": 1,
+  "scope": "12 target phrases evaluated with the React code placeholder in full-sentence context",
+  "sourceDesignIssue": "“pod rooms and discovery” leaves discovery as an abstract noun without naming what is discovered. The pinned Pod UI identifies a pod discovery index and discovered pods, so wording “discover other Pods” is clearer and supports consistent translations. This is a terminology clarification recommendation, not a source edit.",
+  "testsBuildsCiRun": false,
+  "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da",
+  "verdictCounts": {
+    "accept-proposal": 0,
+    "hold": 0,
+    "revise-proposal": 12
+  },
+  "worktreeClean": true
+}

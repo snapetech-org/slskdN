@@ -1,0 +1,27 @@
+{
+  "allLocaleFilesReattested": true,
+  "browserReview": false,
+  "callerPinReattested": true,
+  "cleanWorktree": true,
+  "codeToken": "feature.Pods",
+  "codeTokenOccurrencesAfterComposition": 1,
+  "head": "490983c336d4958f11518c73268de2788c8858cb",
+  "inputChecksumsSha256": "3879e194aae58e1a0cb721542aeb60a29c31c86e58cfadf751dc766a0dc2fe05",
+  "inputPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-pod-help-composition-crossreview-20261102/cell-crossreview.jsonl",
+  "inputSha256": "9372dc8dca916803448afd8039933d8ee67bb682b5e45a0414c032a667d0a4dd",
+  "localeCount": 12,
+  "nativeSpeakerApproval": false,
+  "placeholderPerSentence": 1,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryModified": false,
+  "schemaVersion": 1,
+  "sourceSha256": "dd06eb6cc61e4586860d36bb3c9a4cf3ad155ebef5f81b649330086db5a5ecc3",
+  "testsBuildsCiRun": false,
+  "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da",
+  "verdictCounts": {
+    "accept-proposal": 6,
+    "hold": 0,
+    "revise-proposal": 6
+  }
+}

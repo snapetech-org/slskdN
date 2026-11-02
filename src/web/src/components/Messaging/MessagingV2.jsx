@@ -1,4 +1,4 @@
-import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText, LocalizedRichText } from "../Shared/LocalizedText";
 import { interfaceAttributeTextProps, interfaceAttributeText, interfaceTextOutput, interfaceText, interfaceTextProps, isInterfaceTextOutput, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
@@ -1713,7 +1713,11 @@ const MessagingV2 = ({ initialKind = 'mixed', state }) => {
               <div className="msgv2-empty-glyph">⌬</div>
               <div className="msgv2-empty-title"><LocalizedText source={"Mesh Pods are disabled"} /></div>
               <div className="msgv2-empty-hint">
-                <LocalizedText source={"Enable"} />{" "}<code>feature.Pods</code> <LocalizedText source={"in the server configuration to use pod rooms and discovery."} /></div>
+                <LocalizedRichText
+                  source={"Enable {feature} in the server configuration to use Pod rooms and discover other Pods."}
+                  values={{ feature: <code dir="ltr">feature.Pods</code> }}
+                />
+              </div>
             </div>
           ) : activeTab ? (
             <MessageStream

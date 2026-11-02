@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: replace fragmented Pod help with one full sentence in all 12 locales and render the `feature.Pods` configuration token as left-to-right code.
+
 - Localization: apply 45 independently accepted W43 corrections and refinements (21 corrections, 24 refinements) across 11 non-Spanish locale catalogs; restore the FTP protocol labels, retain 11 W98 caller holds, and preserve 25 Spanish formal-lane values without a W43 verdict. Native-speaker review remains outstanding.
 
 - Localization: apply 63 exact-hash reviewed W40 corrections and refinements across 11 locale catalogs; preserve 25 Spanish formal-lane values and 50 prior holds. Native-speaker review remains outstanding.

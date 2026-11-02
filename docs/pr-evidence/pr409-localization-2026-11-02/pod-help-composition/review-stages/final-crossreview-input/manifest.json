@@ -1,0 +1,103 @@
+{
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "cellCount": 12,
+  "head": "490983c336d4958f11518c73268de2788c8858cb",
+  "localeCatalogPins": [
+    {
+      "gitBlob": "5ce7357bf5ba2624460bc2af1a65168eb7a21393",
+      "keyCount": 6169,
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "sha256": "a81e129c024f3150150e9930fd9dfaef4f0938667a9fe82ee5cd83b356e851a1"
+    },
+    {
+      "gitBlob": "00ca6b956bd1bcbbd14c5cd37372840af5972d9e",
+      "keyCount": 6169,
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "sha256": "80efc1182b070257b204739c5e7455f395d4d0b43f406c0af5e73e472e9ee0a9"
+    },
+    {
+      "gitBlob": "5f5170bc8b92772a597e637b406fbea24f71cdbd",
+      "keyCount": 6169,
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "sha256": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff"
+    },
+    {
+      "gitBlob": "4401cee7ad5c4759936438ebda019e72c1a39926",
+      "keyCount": 6169,
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "sha256": "ca150d1a332a5d067fbbe2e342687cf15088d04a6177fd01a2195da8253fc8a3"
+    },
+    {
+      "gitBlob": "de7d649a77b7890f645d707b3c73fdb3f7282bbb",
+      "keyCount": 6169,
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "sha256": "f6657400b9e0da78185f4eb273a26c089bf7aeaac3af96b9a8d4f2adff8207d2"
+    },
+    {
+      "gitBlob": "f722d0f23308cee94d64d3590b18e8e28f5df4f7",
+      "keyCount": 6169,
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "sha256": "a5b4a256cf3aa58913659d4bf41111c611f9603be358b00437b55f1a002d10d9"
+    },
+    {
+      "gitBlob": "4f4bf646ef89d5fa04942fe3f8d8220976c84692",
+      "keyCount": 6169,
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "sha256": "012206d90844459d383298f6f93489e54f99a7f67800d2f75f609ea0416b8016"
+    },
+    {
+      "gitBlob": "5c97c44fd76431b94db625b7f5cefdc647980b8b",
+      "keyCount": 6169,
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "sha256": "a073752a550d21fd48c475165d81e0e069340504ccc48952e936ea44971146cb"
+    },
+    {
+      "gitBlob": "c8d6fd86f63c126946bddf388f35b2a1fa50715c",
+      "keyCount": 6169,
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "sha256": "762c7cd9da9b0e94cac485fd897b537ae59a6c399d99c045eb05e1021efd183f"
+    },
+    {
+      "gitBlob": "0d61f25583896a6bdaecabdce2f122b1e5c355af",
+      "keyCount": 6169,
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "sha256": "785a237f9a8061b968bb70ac2a1a30660971ea802b18ffd92426482df8e4ec10"
+    },
+    {
+      "gitBlob": "f7ff02a236771f1d1dbd69c4f41414c4da0f886a",
+      "keyCount": 6169,
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "sha256": "7a466590111cbcd082dcee8550564542e5bb2594f9162a0400dd805b9658ac4a"
+    },
+    {
+      "gitBlob": "12774a69242423f48ed5fa4c6ca0e2e5dff4283d",
+      "keyCount": 6169,
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "sha256": "aa463219478861e435d5e49df0bba9bfab447da0434df8b4cf9e7614a66ee666"
+    }
+  ],
+  "localeCount": 12,
+  "priorReviews": {
+    "firstCrossReview": "/mnt/disks/scratch/task-scratch/slskdn-pr409-pod-help-composition-crossreview-20261102/SHA256SUMS",
+    "initialPrimary": "/mnt/disks/scratch/task-scratch/slskdn-pr409-pod-help-composition-review-20261102/composition-review-input.json",
+    "revisedProposalReview": "/mnt/disks/scratch/task-scratch/slskdn-pr409-pod-help-revised-proposal-review-20261102/SHA256SUMS",
+    "revisedProposalReviewManifestSha256": "5a363610ed24f1096c1dcfc7170db115ad6ec04df23d1cc63099f7f790d48da7"
+  },
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "sourceSentence": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+  "state": "OPEN/DRAFT",
+  "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da"
+}

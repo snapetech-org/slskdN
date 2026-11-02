@@ -1,0 +1,46 @@
+{
+  "files": [
+    {
+      "bytes": 1071,
+      "path": "README.md",
+      "sha256": "ba54d47774a4584e4fa501d96854927d93414e9c369ab02c15c65be34cf612de"
+    },
+    {
+      "bytes": 19048,
+      "path": "per-locale-review.jsonl",
+      "sha256": "20c67cfced5edd4dd4310fa3fc7eab77eb07a2ca60acd1093b7d8a103f9f3d03"
+    },
+    {
+      "bytes": 10838,
+      "path": "review.py",
+      "sha256": "ae6039eb7edb9b094693ba3da439a77f8604d990b8e5f0ec5cb3c4e768eaa303"
+    },
+    {
+      "bytes": 1815,
+      "path": "source-caller-pins.json",
+      "sha256": "3ff5c45bc6333edc4b68b442a9d39b94b5217997cadfbb1c9f39da318e18be7e"
+    },
+    {
+      "bytes": 1020,
+      "path": "summary.json",
+      "sha256": "bb240acd17d7bd88ee1a5cf7e2898a200be3c80f214f9569e37c2e9c4db3a1e1"
+    }
+  ],
+  "head": "490983c336d4958f11518c73268de2788c8858cb",
+  "input": {
+    "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-pod-help-composition-crossreview-20261102/cell-crossreview.jsonl",
+    "sha256": "9372dc8dca916803448afd8039933d8ee67bb682b5e45a0414c032a667d0a4dd"
+  },
+  "localeCount": 12,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "schemaVersion": 1,
+  "scope": "12 locale full-sentence candidates",
+  "sourceSha256": "dd06eb6cc61e4586860d36bb3c9a4cf3ad155ebef5f81b649330086db5a5ecc3",
+  "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da",
+  "verdictCounts": {
+    "accept-proposal": 6,
+    "hold": 0,
+    "revise-proposal": 6
+  }
+}

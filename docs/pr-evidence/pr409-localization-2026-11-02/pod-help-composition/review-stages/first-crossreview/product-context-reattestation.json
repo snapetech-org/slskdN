@@ -1,0 +1,36 @@
+[
+  {
+    "blob": "0d21613128bf88cc1524c3a0232b2ef2b94ce99b",
+    "fileSha256": "1f20ae14d37483d4b092c49680f46967d84b8798e32736de4258c401a3977e1a",
+    "path": "src/web/src/components/Pods/Pods.jsx",
+    "references": [
+      {
+        "line": 660,
+        "lineSha256": "fbcf7d18ee7c2be7520dd4ce3a1485a0a038fea84c487958c3590b056427a03f",
+        "lineText": "content={interfaceText(\"Search the pod discovery index for listed pods. This sends your search term to the discovery service so you can find pods to save locally.\")}"
+      },
+      {
+        "line": 663,
+        "lineSha256": "a5452b48dda143ae6b78c3c03720362a9573d95198526f5f9fd18ba3772433ec",
+        "lineText": "aria-label={interfaceText(\"Search the pod discovery index\")}"
+      },
+      {
+        "line": 669,
+        "lineSha256": "2f1d306373dd04d1296ad17e23af58bff6007b8dd891edbf39691a805673d255",
+        "lineText": "{...interfaceTextProps(\"Search the pod discovery index for listed pods. This sends your search term to the discovery service so you can find pods to save locally.\")}/>"
+      }
+    ]
+  },
+  {
+    "blob": "ab5a672ca6e1242e45da3f93247593780221eadc",
+    "fileSha256": "19060fc2a401f489313c8e7c5e4d67a4c7a7b2db591bde3cec3056aad46b72bd",
+    "path": "src/web/src/components/Messaging/MessagingV2.jsx",
+    "references": [
+      {
+        "line": 1527,
+        "lineSha256": "987afd19c3eee39426193e7d1847f939355c299557b8812cc2939303f640babf",
+        "lineText": ": <EmptyHint><LocalizedText source={\"No pod rooms or discovered pods yet.\"} /></EmptyHint>"
+      }
+    ]
+  }
+]

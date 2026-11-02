@@ -1,0 +1,257 @@
+{
+  "cells": [
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "ar",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "“فعّل” is a clear imperative for enabling the server feature; غرف Pod and Pods أخرى preserve the feature term and plural “other Pods.” Arabic nonhuman plural agreement is acceptable.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "فعّل {feature} في إعدادات الخادم لاستخدام غرف Pod واكتشاف Pods أخرى.",
+      "targetSha256": "f40ad8b88f5e72f81ec75e54261e88a9acb20c8b93347f5e6cd3dcf3c9bfb229"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "de",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural informal imperative; Serverkonfiguration is compact and idiomatic. Pod-Räume and andere Pods preserve capitalization and plural morphology.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Aktiviere {feature} in der Serverkonfiguration, um Pod-Räume zu nutzen und andere Pods zu entdecken.",
+      "targetSha256": "7c66dacdc823697bdfe1278b1b168e420a4166404afa34c2161989396df5e2ee"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "es",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural tú imperative. Salas de Pod is understandable product terminology for Pod rooms; otros Pods preserves plural and capitalization.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Activa {feature} en la configuración del servidor para usar las salas de Pod y descubrir otros Pods.",
+      "targetSha256": "129f0d654bb3028e2a99209457163216b06391751b003da8a5689a49a0a7cd34"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "fr",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural formal imperative. Configuration du serveur and salons Pod are concise; d’autres Pods retains the product plural and punctuation is correct.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Activez {feature} dans la configuration du serveur pour utiliser les salons Pod et découvrir d’autres Pods.",
+      "targetSha256": "9d7aa6246248a9829bf8a0f8858a7c4da6a71f989ce016e5230b6e30c8b78bac"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "hi",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural imperative with plural oblique रूमों after का उपयोग; अन्य Pods correctly conveys other Pods while preserving the product token.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Pod रूमों का उपयोग करने और अन्य Pods खोजने के लिए सर्वर कॉन्फ़िगरेशन में {feature} सक्षम करें।",
+      "targetSha256": "312d67554b5cee1f72b4bf59aa06b816a73aefb80482483c47dd5de2138b0a71"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "id",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural Indonesian instruction; ruang Pod expresses Pod rooms and Pod lainnya conveys other Pods with the product name capitalized.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Aktifkan {feature} di konfigurasi server untuk menggunakan ruang Pod dan menemukan Pod lainnya.",
+      "targetSha256": "e2c6c88c1f270d032bfd320cb33499e80d86166496418f256c8e02366dbb5484"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "ja",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural polite Japanese instruction. Japanese does not inflect noun number; 他の Pod expresses other Pods. The product token keeps its Latin case.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Pod ルームを利用して他の Pod を見つけるには、サーバー設定で {feature} を有効にしてください。",
+      "targetSha256": "d1277e12d3f400c20eb00534969ff39f659061a5f3edae2d7771941a325256ec"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "ko",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural polite Korean instruction. Korean does not require a plural suffix here; 다른 Pod means other Pod(s) and retains product casing.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Pod 대화방을 사용하고 다른 Pod를 찾으려면 서버 설정에서 {feature}를 활성화하세요.",
+      "targetSha256": "320e3f255f882baeda031b081f806f778401019c0a9162ed59a7eebb2579f7cc"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "pt-BR",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural Brazilian Portuguese imperative. Salas de Pod and outros Pods preserve the room feature and plural product-name form.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Ative {feature} na configuração do servidor para usar salas de Pod e descobrir outros Pods.",
+      "targetSha256": "83c25a2d73c460830f4ad204cf95ac70e8512e2d79239fbc6272ba1b18bb0c43"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "vi",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural Vietnamese imperative. Các phòng Pod and các Pod khác express plural rooms and other Pods with consistent capitalization.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "Bật {feature} trong cấu hình máy chủ để sử dụng các phòng Pod và tìm các Pod khác.",
+      "targetSha256": "890008eea782ab06dbbcdc0c2c013b309d54ce13dfc68076df5507d4c881a627"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "zh-Hans",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural concise Simplified Chinese instruction. 其他 Pod conveys other Pods without a grammatical plural suffix; Pod 房间 preserves product styling.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "在服务器配置中启用 {feature}，即可使用 Pod 房间并发现其他 Pod。",
+      "targetSha256": "608ef92501ba435d9d1686941e84056b7a1ac8c9376546fd8badbb7914e4db7d"
+    },
+    {
+      "confidence": "moderate",
+      "decision": "accept",
+      "locale": "zh-Hant",
+      "markupCheck": "No markup in localized text. React composition inserts `<code dir=\"ltr\">feature.Pods</code>` exactly once at the single feature placeholder.",
+      "placeholderCheck": "Exactly one `{feature}`; no other braces.",
+      "placeholderCount": 1,
+      "productTermsCheck": "Pod/Pods capitalization and locale plural strategy are consistent.",
+      "punctuationCheck": "Locale-appropriate sentence-final punctuation.",
+      "rationale": "Natural Traditional Chinese instruction. 其他 Pod conveys other Pods without a plural suffix; Pod 房間 uses consistent Taiwan-style characters and product casing.",
+      "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+      "sourceMeaning": [
+        "enable the feature in server configuration",
+        "use Pod rooms",
+        "discover other Pods"
+      ],
+      "target": "在伺服器設定中啟用 {feature}，即可使用 Pod 房間並發現其他 Pod。",
+      "targetSha256": "836ebea6a2041f20ea6c51b11911a7f933606f98cd380c4b095e571c160ce321"
+    }
+  ],
+  "confidence": "moderate",
+  "expectedComposition": "LocalizedRichText source with values={{ feature: <code dir=\"ltr\">feature.Pods</code> }}",
+  "inputHead": "490983c336d4958f11518c73268de2788c8858cb",
+  "inputTree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da",
+  "limitations": [
+    "Machine review is not native-speaker approval.",
+    "The exact sentence and React-node composition are reviewed as a proposal; no current-head browser rendering was inspected.",
+    "No repository or PR writes, tests, builds, CI, or browser actions were performed."
+  ],
+  "pullRequest": 409,
+  "renderingInterpretation": "The source has one feature placeholder; LocalizedRichText maps that placeholder once and passes its React node value through as a Fragment. The code element therefore renders once, with dir=\"ltr\" and exact text feature.Pods. This is a static composition review, not browser evidence.",
+  "repository": "snapetech-org/slskdN",
+  "reviewType": "independent machine-assisted semantic cross-review",
+  "schemaVersion": 1,
+  "source": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+  "state": "OPEN/DRAFT",
+  "summary": {
+    "accept": 12,
+    "codeTokenCompositionOccurrences": 1,
+    "hold": 0,
+    "localesReviewed": 12,
+    "nativeSpeakerApproval": false,
+    "placeholderFailures": 0,
+    "revise": 0
+  }
+}
