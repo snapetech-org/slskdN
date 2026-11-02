@@ -260,5 +260,17 @@
     "nativeSpeakerReview": "outstanding",
     "tree": "f2e7a734d60555964f0487377066a955308fd8c9",
     "remoteState": "pushed-and-current"
+  },
+  "cumulativeVerification": {
+    "result": "PASS",
+    "path": "cumulative-verification.json",
+    "sha256": "1afb6b732e6ccceaf3619f0df598329db2152d3462c11236feda26c5d5558028",
+    "snapshotHead": "2d0434655973b42c1d2c43ead9572954da49a495"
+  },
+  "postPushVerification": {
+    "result": "PASS",
+    "path": "post-push-verification.json",
+    "sha256": "d39daf93cbc870cca13344281438a58065bcc9e7495a577d93ad2a45df98aba3",
+    "snapshotHead": "2d0434655973b42c1d2c43ead9572954da49a495"
   }
 }

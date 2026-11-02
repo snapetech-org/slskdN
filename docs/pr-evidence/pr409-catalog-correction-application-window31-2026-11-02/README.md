@@ -9,3 +9,5 @@ The post-apply verification passed exact old/new target hashes, changed-cell set
 The commit changes no source-code or workflow paths. Post-commit verification passed path scope, `git diff --check`, source-code and workflow subtree equality, and exact catalog hashes. PR #409 remains OPEN/DRAFT/CLEAN. Native-speaker and headed-browser review remain outstanding. No tests, builds, CI, releases, tags, or merges were run. The Semgrep hook was disabled for the single commit command as required outside private JIT; no local Semgrep run is claimed.
 
 See the [window31 manual semantic review](../pr409-manual-semantic-review-2026-11-01/window31/README.md) for the input, dispositions, root cross-review, and caller pins.
+
+The durable cumulative verifier passed at PR head `2d0434655973b42c1d2c43ead9572954da49a495`; its snapshot is `cumulative-verification.json` (SHA-256 `1afb6b732e6ccceaf3619f0df598329db2152d3462c11236feda26c5d5558028`). The exact-current post-push attestation is `post-push-verification.json` (SHA-256 `d39daf93cbc870cca13344281438a58065bcc9e7495a577d93ad2a45df98aba3`). The verifier script is included and can be rerun at a later clean PR head.
