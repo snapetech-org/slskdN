@@ -1,0 +1,300 @@
+{"id":"es:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"zh-Hans:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"hi:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"de:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"ja:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"fr:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"pt-BR:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"ar:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"ko:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"zh-Hant:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"vi:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"id:src_eae34ccbc4432c13","verdict":"keep"}
+{"id":"es:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"zh-Hans:src_eb3760993d9e9a1f","verdict":"correct","target":"打开智能电台种子","confidence":"high","reason":"The adjacent tooltip identifies the feature as a smart-radio search planner. “智能广播” means smart broadcasting; use the established Smart Radio music-feature term."}
+{"id":"hi:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"de:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"ja:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"fr:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"pt-BR:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"ar:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"ko:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"zh-Hant:src_eb3760993d9e9a1f","verdict":"correct","target":"打開智慧電台種子","confidence":"high","reason":"The adjacent tooltip identifies the feature as a smart-radio search planner. “智慧廣播” means smart broadcasting; use the established Smart Radio music-feature term."}
+{"id":"vi:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"id:src_eb3760993d9e9a1f","verdict":"keep"}
+{"id":"es:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"zh-Hans:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"hi:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"de:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"ja:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"fr:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"pt-BR:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"ar:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"ko:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"zh-Hant:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"vi:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"id:src_eb3830e25c2e8472","verdict":"keep"}
+{"id":"es:src_eb39cebe78819885","verdict":"correct","target":"Sin shader de composición","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not compensation."}
+{"id":"zh-Hans:src_eb39cebe78819885","verdict":"correct","target":"无合成着色器","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not compensation."}
+{"id":"hi:src_eb39cebe78819885","verdict":"correct","target":"कोई कंपोज़िट शेडर नहीं","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not an abbreviated loanword."}
+{"id":"de:src_eb39cebe78819885","verdict":"correct","target":"Kein Composite-Shader","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not a general abbreviation."}
+{"id":"ja:src_eb39cebe78819885","verdict":"correct","target":"合成シェーダーなし","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not compression."}
+{"id":"fr:src_eb39cebe78819885","verdict":"correct","target":"Aucun shader de composition","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not compensation."}
+{"id":"pt-BR:src_eb39cebe78819885","verdict":"correct","target":"Sem shader composto","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not comparison."}
+{"id":"ar:src_eb39cebe78819885","verdict":"correct","target":"لا يوجد تظليل مركّب","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not companies."}
+{"id":"ko:src_eb39cebe78819885","verdict":"correct","target":"컴포지트 셰이더 없음","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not compensation/reward."}
+{"id":"zh-Hant:src_eb39cebe78819885","verdict":"correct","target":"無合成著色器","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not compensation."}
+{"id":"vi:src_eb39cebe78819885","verdict":"correct","target":"Không có shader tổng hợp","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader, not a cash bonus."}
+{"id":"id:src_eb39cebe78819885","verdict":"correct","target":"Tidak ada shader komposit","confidence":"high","reason":"The Player Visualizer debug snapshot checks `shaderSections.comp`; this is the MilkDrop composite shader; spell out the abbreviation."}
+{"id":"es:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"zh-Hans:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"hi:src_eb3b6c449d13a4b9","verdict":"correct","target":"अपनी स्थानीय मशीन का पोर्ट (1024-65535)","confidence":"high","reason":"This helper text labels a port field. The current Hindi imperative “पोर्ट करें” means to port/migrate the machine."}
+{"id":"de:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"ja:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"fr:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"pt-BR:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"ar:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"ko:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"zh-Hant:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"vi:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"id:src_eb3b6c449d13a4b9","verdict":"keep"}
+{"id":"es:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"zh-Hans:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"hi:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"de:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"ja:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"fr:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"pt-BR:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"ar:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"ko:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"zh-Hant:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"vi:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"id:src_eb76668d1877fbce","verdict":"keep"}
+{"id":"es:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"zh-Hans:src_eb93ccb20a01663d","verdict":"correct","target":"导入此软件包并将其更改应用到本地内容注册库。应用前请检查冲突处理策略。","confidence":"high","reason":"The callsite imports metadata into the app’s local content registry. “注册表” commonly names the Windows registry, which is a different system store."}
+{"id":"hi:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"de:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"ja:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"fr:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"pt-BR:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"ar:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"ko:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"zh-Hant:src_eb93ccb20a01663d","verdict":"correct","target":"匯入此套件並將變更套用至本機內容登錄庫。套用前請檢查衝突策略。","confidence":"high","reason":"The callsite imports metadata into the app’s local content registry. “登錄檔” names the operating-system registry rather than this application content registry."}
+{"id":"vi:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"id:src_eb93ccb20a01663d","verdict":"keep"}
+{"id":"es:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"zh-Hans:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"hi:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"de:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"ja:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"fr:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"pt-BR:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"ar:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"ko:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"zh-Hant:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"vi:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"id:src_eb970eb0951c6cde","verdict":"uncertain","reason":"The only source callsite is the internal C# static-analysis list of expensive method names (`Count`, `Any`, `First`, `Single`, `Last`). The row does not establish user-facing copy; confirm whether this identifier belongs in the UI catalog before choosing a translation."}
+{"id":"es:src_eb986f619af229ae","verdict":"keep"}
+{"id":"zh-Hans:src_eb986f619af229ae","verdict":"keep"}
+{"id":"hi:src_eb986f619af229ae","verdict":"keep"}
+{"id":"de:src_eb986f619af229ae","verdict":"keep"}
+{"id":"ja:src_eb986f619af229ae","verdict":"keep"}
+{"id":"fr:src_eb986f619af229ae","verdict":"keep"}
+{"id":"pt-BR:src_eb986f619af229ae","verdict":"keep"}
+{"id":"ar:src_eb986f619af229ae","verdict":"keep"}
+{"id":"ko:src_eb986f619af229ae","verdict":"keep"}
+{"id":"zh-Hant:src_eb986f619af229ae","verdict":"keep"}
+{"id":"vi:src_eb986f619af229ae","verdict":"keep"}
+{"id":"id:src_eb986f619af229ae","verdict":"keep"}
+{"id":"es:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"zh-Hans:src_ebb24a3bcb152fad","verdict":"uncertain","reason":"The catalog marks “Quarantine Jury” as a protected literal. The adjacent callsite context suggests an isolation review panel, but the protected-name rule conflicts with replacing the displayed phrase; confirm whether this title is a fixed product name or localizable UI text before changing it."}
+{"id":"hi:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"de:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"ja:src_ebb24a3bcb152fad","verdict":"uncertain","reason":"The catalog marks “Quarantine Jury” as a protected literal. The adjacent callsite context suggests an isolation review panel, but the protected-name rule conflicts with replacing the displayed phrase; confirm whether this title is a fixed product name or localizable UI text before changing it."}
+{"id":"fr:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"pt-BR:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"ar:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"ko:src_ebb24a3bcb152fad","verdict":"uncertain","reason":"The catalog marks “Quarantine Jury” as a protected literal. The adjacent callsite context suggests an isolation review panel, but the protected-name rule conflicts with replacing the displayed phrase; confirm whether this title is a fixed product name or localizable UI text before changing it."}
+{"id":"zh-Hant:src_ebb24a3bcb152fad","verdict":"uncertain","reason":"The catalog marks “Quarantine Jury” as a protected literal. The adjacent callsite context suggests an isolation review panel, but the protected-name rule conflicts with replacing the displayed phrase; confirm whether this title is a fixed product name or localizable UI text before changing it."}
+{"id":"vi:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"id:src_ebb24a3bcb152fad","verdict":"keep"}
+{"id":"es:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"Aprobado","confidence":"high","reason":"The Setup Health Check displays this as the count/category of successful checks. The infinitive “Aprobar” is an action, not the pass status."}
+{"id":"zh-Hans:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"通过","confidence":"high","reason":"The Setup Health Check displays this as the pass status/count. “经过” means passing through or experience, not a successful check."}
+{"id":"hi:src_ebdf8cc00bc4d9ce","verdict":"keep"}
+{"id":"de:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"Bestanden","confidence":"high","reason":"The Setup Health Check displays this as the pass status/count. “Passieren” means to pass by or happen, not to pass a check."}
+{"id":"ja:src_ebdf8cc00bc4d9ce","verdict":"keep"}
+{"id":"fr:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"Réussi","confidence":"high","reason":"The Setup Health Check displays this as the pass status/count. “Passer” is an action verb, not a successful result."}
+{"id":"pt-BR:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"Aprovado","confidence":"high","reason":"The Setup Health Check displays this as the count/category of successful checks. The infinitive “Passar” is an action, not the pass status."}
+{"id":"ar:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"ناجح","confidence":"high","reason":"The Setup Health Check displays this as the pass status/count. “يمر” is a verb meaning that someone/something passes through."}
+{"id":"ko:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"통과","confidence":"high","reason":"The Setup Health Check displays this as the pass status/count. “통과하다” is a verb; use the result/status noun."}
+{"id":"zh-Hant:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"通過","confidence":"high","reason":"The Setup Health Check displays this as the pass status/count. “經過” means passing through or experience, not a successful check."}
+{"id":"vi:src_ebdf8cc00bc4d9ce","verdict":"correct","target":"Đạt","confidence":"high","reason":"The Setup Health Check displays this as the status/count of checks meeting requirements. “Vượt qua” means overcome/pass over, not a check result."}
+{"id":"id:src_ebdf8cc00bc4d9ce","verdict":"keep"}
+{"id":"es:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"zh-Hans:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"hi:src_ebe003725d86c5f4","verdict":"uncertain","reason":"The ContentID page uses “perceptual” as a technical similarity measure. The existing “अवधारणात्मक” can mean conceptual/cognitive; confirm the accepted Hindi technical term for perceptual similarity with a native reviewer."}
+{"id":"de:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"ja:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"fr:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"pt-BR:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"ar:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"ko:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"zh-Hant:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"vi:src_ebe003725d86c5f4","verdict":"correct","target":"Tương đồng tri giác","confidence":"high","reason":"The ContentID page compares perceptual similarity. “Nhận thức” means cognition/awareness rather than sensory perception."}
+{"id":"id:src_ebe003725d86c5f4","verdict":"keep"}
+{"id":"es:src_ebe60ba379836749","verdict":"keep"}
+{"id":"zh-Hans:src_ebe60ba379836749","verdict":"keep"}
+{"id":"hi:src_ebe60ba379836749","verdict":"keep"}
+{"id":"de:src_ebe60ba379836749","verdict":"keep"}
+{"id":"ja:src_ebe60ba379836749","verdict":"keep"}
+{"id":"fr:src_ebe60ba379836749","verdict":"keep"}
+{"id":"pt-BR:src_ebe60ba379836749","verdict":"keep"}
+{"id":"ar:src_ebe60ba379836749","verdict":"keep"}
+{"id":"ko:src_ebe60ba379836749","verdict":"keep"}
+{"id":"zh-Hant:src_ebe60ba379836749","verdict":"keep"}
+{"id":"vi:src_ebe60ba379836749","verdict":"keep"}
+{"id":"id:src_ebe60ba379836749","verdict":"keep"}
+{"id":"es:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"zh-Hans:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"hi:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"de:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"ja:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"fr:src_ec0e6c5d89fd7129","verdict":"correct","target":"Opérations de jonction et de départ de Pod","confidence":"high","reason":"The MediaCore workflow operates on named Pod entities. “Modules” changes the entity to software modules."}
+{"id":"pt-BR:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"ar:src_ec0e6c5d89fd7129","verdict":"correct","target":"عمليات الانضمام إلى Pod ومغادرته","confidence":"high","reason":"The MediaCore workflow operates on named Pod entities. “قرنة” changes Pod to a physical pod/horn-like object."}
+{"id":"ko:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"zh-Hant:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"vi:src_ec0e6c5d89fd7129","verdict":"correct","target":"Hoạt động tham gia/rời khỏi Pod","confidence":"high","reason":"The MediaCore workflow operates on named Pod entities. “nhóm” means group and changes the entity."}
+{"id":"id:src_ec0e6c5d89fd7129","verdict":"keep"}
+{"id":"es:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"zh-Hans:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"hi:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"de:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"ja:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"fr:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"pt-BR:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"ar:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"ko:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"zh-Hant:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"vi:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"id:src_ec1e62325e1c2397","verdict":"keep"}
+{"id":"es:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"zh-Hans:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"hi:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"de:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"ja:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"fr:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"pt-BR:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"ar:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"ko:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"zh-Hant:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"vi:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"id:src_ec234dafe26861a9","verdict":"keep"}
+{"id":"es:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"zh-Hans:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"hi:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"de:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"ja:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"fr:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"pt-BR:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"ar:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"ko:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"zh-Hant:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"vi:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"id:src_ec3c7d8810bf7d0a","verdict":"keep"}
+{"id":"es:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"zh-Hans:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"hi:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"de:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"ja:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"fr:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"pt-BR:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"ar:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"ko:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"zh-Hant:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"vi:src_ec46d7fb329f9aab","verdict":"uncertain","reason":"The callsite reports metadata export/import and conflict-resolution metrics. “Tính di động” can mean mobility; confirm the locale-native term for data portability with a Vietnamese reviewer."}
+{"id":"id:src_ec46d7fb329f9aab","verdict":"keep"}
+{"id":"es:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"zh-Hans:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"hi:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"de:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"ja:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"fr:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"pt-BR:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"ar:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"ko:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"zh-Hant:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"vi:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"id:src_ec4d30026007d8ae","verdict":"keep"}
+{"id":"es:src_ec4f10332e163484","verdict":"keep"}
+{"id":"zh-Hans:src_ec4f10332e163484","verdict":"keep"}
+{"id":"hi:src_ec4f10332e163484","verdict":"keep"}
+{"id":"de:src_ec4f10332e163484","verdict":"keep"}
+{"id":"ja:src_ec4f10332e163484","verdict":"keep"}
+{"id":"fr:src_ec4f10332e163484","verdict":"keep"}
+{"id":"pt-BR:src_ec4f10332e163484","verdict":"keep"}
+{"id":"ar:src_ec4f10332e163484","verdict":"correct","target":"إجراءات عمليات البحث المحددة","confidence":"high","reason":"The aria-label names actions for the selected searches in a toolbar. The current phrase uses singular “search.”"}
+{"id":"ko:src_ec4f10332e163484","verdict":"keep"}
+{"id":"zh-Hant:src_ec4f10332e163484","verdict":"keep"}
+{"id":"vi:src_ec4f10332e163484","verdict":"correct","target":"Thao tác dành cho các tìm kiếm đã chọn","confidence":"high","reason":"The aria-label names actions for the selected searches in a toolbar. The current phrase reads as a selected search action rather than actions for selected searches."}
+{"id":"id:src_ec4f10332e163484","verdict":"keep"}
+{"id":"es:src_ec5ba0abb717da87","verdict":"keep"}
+{"id":"zh-Hans:src_ec5ba0abb717da87","verdict":"correct","target":"访问","confidence":"high","reason":"This is a Setup Health Check category for usernames, API keys, and configured URLs. “使用权” means permission/right to use."}
+{"id":"hi:src_ec5ba0abb717da87","verdict":"keep"}
+{"id":"de:src_ec5ba0abb717da87","verdict":"keep"}
+{"id":"ja:src_ec5ba0abb717da87","verdict":"keep"}
+{"id":"fr:src_ec5ba0abb717da87","verdict":"correct","target":"Accès","confidence":"high","reason":"This is a Setup Health Check category for credentials and endpoints. “Accéder” is the verb “to access.”"}
+{"id":"pt-BR:src_ec5ba0abb717da87","verdict":"keep"}
+{"id":"ar:src_ec5ba0abb717da87","verdict":"keep"}
+{"id":"ko:src_ec5ba0abb717da87","verdict":"correct","target":"접근","confidence":"high","reason":"This is a Setup Health Check category for credentials and endpoints. “입장” means entry/admission."}
+{"id":"zh-Hant:src_ec5ba0abb717da87","verdict":"correct","target":"存取","confidence":"high","reason":"This is a Setup Health Check category for credentials, API keys, and configured URLs. “使用權” means permission/right to use."}
+{"id":"vi:src_ec5ba0abb717da87","verdict":"keep"}
+{"id":"id:src_ec5ba0abb717da87","verdict":"correct","target":"Akses","confidence":"high","reason":"This is a Setup Health Check category for credentials and endpoints. “Mengakses” is the verb/gerund “accessing.”"}
+{"id":"es:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"zh-Hans:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"hi:src_ec68096b6b04b9b3","verdict":"correct","target":"पीयर कनेक्टिविटी:","confidence":"high","reason":"This heading reports P2P network peer health. “सहकर्मी” means a colleague/coworker."}
+{"id":"de:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"ja:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"fr:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"pt-BR:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"ar:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"ko:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"zh-Hant:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"vi:src_ec68096b6b04b9b3","verdict":"keep"}
+{"id":"id:src_ec68096b6b04b9b3","verdict":"correct","target":"Konektivitas peer:","confidence":"high","reason":"This heading reports P2P network peer health. “Rekan” means a colleague/associate."}
+{"id":"es:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"zh-Hans:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"hi:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"de:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"ja:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"fr:src_ec72121387a9cbff","verdict":"correct","target":"Peut créer des pods liés au contenu","confidence":"high","reason":"The MediaCore feature creates named Pod entities. “Modules” changes the entity to software modules."}
+{"id":"pt-BR:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"ar:src_ec72121387a9cbff","verdict":"correct","target":"يمكن إنشاء Pods مرتبطة بالمحتوى","confidence":"high","reason":"The MediaCore feature creates named Pod entities. “قرون” changes Pod to physical pods/horns rather than the named entity."}
+{"id":"ko:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"zh-Hant:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"vi:src_ec72121387a9cbff","verdict":"correct","target":"Có thể tạo Pod liên kết với nội dung","confidence":"high","reason":"The MediaCore feature creates named Pod entities. “nhóm” means group and changes the entity."}
+{"id":"id:src_ec72121387a9cbff","verdict":"keep"}
+{"id":"es:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"zh-Hans:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"hi:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"de:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"ja:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"fr:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"pt-BR:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"ar:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"ko:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"zh-Hant:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"vi:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"id:src_ec7630ea4f56e334","verdict":"keep"}
+{"id":"es:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"zh-Hans:src_ec7d56a01607001e","verdict":"correct","target":"蓝色","confidence":"high","reason":"This value labels a color choice. The trailing “的” turns the color adjective into a modifier awaiting a noun."}
+{"id":"hi:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"de:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"ja:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"fr:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"pt-BR:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"ar:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"ko:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"zh-Hant:src_ec7d56a01607001e","verdict":"correct","target":"藍色","confidence":"high","reason":"This value labels a color choice. The trailing “的” turns the color adjective into a modifier awaiting a noun."}
+{"id":"vi:src_ec7d56a01607001e","verdict":"keep"}
+{"id":"id:src_ec7d56a01607001e","verdict":"keep"}

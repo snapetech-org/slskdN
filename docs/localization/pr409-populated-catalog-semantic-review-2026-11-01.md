@@ -4,7 +4,7 @@
 
 - PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Thirteen independent manual slices cover 325 source keys / 3,900 cells across the 12 direct locales. Combined verdicts: 3,172 keep, 600 high-confidence correction candidates, and 128 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Fourteen independent manual slices cover 350 source keys / 4,200 cells across the 12 direct locales. Combined verdicts: 3,410 keep, 644 high-confidence correction candidates, and 146 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
 - Qualified native-speaker review remains required.
 
 ## Window 1
@@ -89,3 +89,9 @@ Evidence: [`window12`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/wi
 The thirteenth disjoint 25-key slice covers 300 cells: 240 keep, 36 high-confidence correction candidates, and 24 uncertain. Corrections address Wishlist search-hit labels, Mesh overlay-network sessions, imported-search count grammar, Smart Radio terminology in Chinese and Japanese, Arabic fast-forward wording, Chinese/Arabic Lidarr software-import terms, and Hindi/Arabic/Indonesian Local Disables labels. “Playlist collection” and “native Soulseek interests” remain uncertain across all locales pending precise product wording.
 
 Evidence: [`window13`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window13/). Manifest SHA-256 `a4b46faeedb1a78c131df0a275da6560f779773e9a28245b9e11453961c56cbe`; input `638d45f1b44d5d37d79e0f78828b99fe9eb93a5bd00ebdeebaebae5b07bcb2a1`; decisions `556b4791e022bcf442589345ea88dec95f47456c565831cb7ba48ea1552a6912`. The review was pinned to PR head `b4b66f815240a7b8636a61d02a208efc314f8e10` / tree `853677967f0691c53c10cb52d565c5c046ae68e9`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the twelve prior windows, and compared all 3,600 prior input/decision rows.
+
+## Window 14
+
+The fourteenth disjoint 25-key slice covers 300 cells: 238 keep, 44 high-confidence correction candidates, and 18 uncertain. Corrections address Smart Radio naming, MilkDrop composite-shader terminology, Hindi port-field grammar, Chinese content-registry terms, successful-check labels, Pod and peer terminology, access categories, selected-search labels, standalone color values, and perceptual-similarity wording. The four Chinese/Japanese/Korean “Quarantine Jury” values remain uncertain because the phrase is marked as a protected literal while the contextual correction would replace it.
+
+Evidence: [`window14`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window14/). Manifest SHA-256 `0f710896ab5fa8f5321de43a48462b58c3eb77ae41f876d32b39c26f63d3ddbb`; input `bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8`; decisions `2c75706a2e1e9e330ab7ae351e1d1f2bd5d912aaa844af716537978c95dcd905`. The review was pinned to PR head `3b5060fa630836b7bdb467f61d73d5e52f907dbb` / tree `283aa0efedacd4df8528853ea31a4e38db5095a3`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the thirteen prior windows, and compared all 3,900 prior input/decision rows.
