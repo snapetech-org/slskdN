@@ -18,7 +18,7 @@
   "rootCrossReviewLedgerSha256": "9370973a90aaef1e6a597a4aa31d6bd21fedd4b7f8ded71f4d93ee0533d0f749",
   "independentCrossReviewLedgerSha256": "6053ad16c8c19ecccfcfb330987810b6f3fd30c19538b67e48488195e190a36f",
   "rootApplyPlanSha256": "fff13fd0e44f61ce78bf21d53136dd99bd8bcb2258662f4bf61ecfe454bc39fc",
-  "appliedLedgerSha256": "2b71c4706ca4d0a089e4bd2b57ef8820523c5ccd5cd02af2f4ea09b33f56bb4a",
+  "appliedLedgerSha256": "86697c9ce74c9c333c6c3b38ab874a6a98ee93c6a582303816bfea994684fa15",
   "applicationPreflightSha256": "74c868ae7f18fd63bde58fb9862bfe12273f5f3e51aa80b7561c504e63fa409b",
   "postApplyVerificationSha256": "50ef46418e744f218e180ef70e3b36e91174efceba65e49a0ec13ca93f28d289",
   "rootDispositionCounts": {
