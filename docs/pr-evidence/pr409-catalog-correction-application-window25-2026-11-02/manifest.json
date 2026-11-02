@@ -113,7 +113,7 @@
   "prStatusAfterPush": "OPEN/DRAFT expected",
   "postApplicationVerification": {
     "path": "verification.json",
-    "sha256": "6256436a9f66d0c4a366c53952312718e29c55f52cfe9a4fe38e05aa94a4e1bb",
+    "sha256": "bed3fc2b0b706e032880a6ad2be8b49b03fe7a20e696043f7aaba5bb2773fed5",
     "result": "PASS"
   },
   "applicationCommitPaths": [
