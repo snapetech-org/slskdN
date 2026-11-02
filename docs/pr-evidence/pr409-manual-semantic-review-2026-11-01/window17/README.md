@@ -1,0 +1,9 @@
+# slskdN PR #409 manual semantic review: seventeenth 25-key slice
+
+The original scratch bundle passed its exact-head verifier at PR head `b488c6e3a383824f30702ab469fc74972b647b80` / tree `5f41148487d822b8c6fd51339336928018839226`. The source/catalog `src` tree `fff1ef49df31a8d1095cd43148c186fbcd7f5089` matches baseline `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`.
+
+This disjoint slice covers 25 keys / 300 cells across all twelve locales: 241 keep, 35 high-confidence correction candidates, and 24 uncertain. Corrections address Hindi auto-replace wording and a service-name example, Chinese similarity labels, security settings for adversarial environments, Vietnamese Discovery Inbox naming, completed-transfer filters, and successful-transfer count labels. The meaning of “Unknown Seed” and the incomplete “Edit Filter for” fragment remains uncertain across all locales.
+
+The original scratch verifier checked checksums, exact source/catalog state, pending rows, placeholders/protected literals, formal overlap, and all sixteen previous windows. It found zero formal-result overlap and zero overlap with prior manual evidence. The sibling-sensitive verifier remains in scratch because its scan treats committed copies as duplicate reviews. This packaging README records the successful scratch verification; the input, decision, and manifest files are byte-identical copies. The manifest retains scratch hashes. No correction proposals have been applied; native-speaker review is still required.
+
+Scratch input SHA-256: `5c8aa2d11b2fc4d452497b5975d71cf85672925f5ab8a398e6a8e445cbeb9b55`. Scratch decision SHA-256: `70bd71fa0b37cd7f83172fde81fbf9587d623a316256e8a3a1dec7eb89417bd8`. Scratch manifest SHA-256: `2f607cf9329a41bf7d822408d9e1d169699f07afd7f74c4a1c020ecc11d1fac6`.

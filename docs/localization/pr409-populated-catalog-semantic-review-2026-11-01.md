@@ -4,7 +4,7 @@
 
 - PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Sixteen independent manual slices cover 400 source keys / 4,800 cells across the 12 direct locales. Combined verdicts: 3,946 keep, 707 high-confidence correction candidates, and 147 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Seventeen independent manual slices cover 425 source keys / 5,100 cells across the 12 direct locales. Combined verdicts: 4,187 keep, 742 high-confidence correction candidates, and 171 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
 - Qualified native-speaker review remains required.
 
 ## Window 1
@@ -107,3 +107,9 @@ Evidence: [`window15`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/wi
 The sixteenth disjoint 25-key slice covers 300 cells: 283 keep and 17 high-confidence correction candidates, with no uncertain cells. Corrections address Hindi user-profile terminology, Vietnamese Pod channels and routing, Arabic confirmation and Mesh Pods labels, computing thread counts, playback buffering, transfer-history retention, Korean retrieval counts, and Hindi/Korean visual-theme labels.
 
 Evidence: [`window16`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window16/). Manifest SHA-256 `fc453431e0f182af16d8bd0472f035066521219755aae3f58b2c11e8fd6324f0`; input `849a840e92656c5782e92ee6380f3d0a442f3fc48118917e2f545a3c00eea2b3`; decisions `40c30305647b29d48386a6285d7ff13e71ac18ec39a06a78b9877b12ae23427d`. The review was pinned to PR head `7c111b332060cf23c6c283f3437cb8fc5fb17370` / tree `8857a0cd9d25298a4fa7c6425ce5b7d7ac62f4b6`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the fifteen prior windows, and compared all 4,500 prior input/decision rows.
+
+## Window 17
+
+The seventeenth disjoint 25-key slice covers 300 cells: 241 keep, 35 high-confidence correction candidates, and 24 uncertain. Corrections address Hindi automatic-replacement wording and the service-name example, Chinese similarity headings, adversarial-environment security settings, Vietnamese Discovery Inbox naming, completed-transfer filter labels, and successful-transfer counts. “Unknown Seed” and the incomplete “Edit Filter for” phrase remain uncertain across all locales.
+
+Evidence: [`window17`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window17/). Manifest SHA-256 `2f607cf9329a41bf7d822408d9e1d169699f07afd7f74c4a1c020ecc11d1fac6`; input `5c8aa2d11b2fc4d452497b5975d71cf85672925f5ab8a398e6a8e445cbeb9b55`; decisions `70bd71fa0b37cd7f83172fde81fbf9587d623a316256e8a3a1dec7eb89417bd8`. The review was pinned to PR head `b488c6e3a383824f30702ab469fc74972b647b80` / tree `5f41148487d822b8c6fd51339336928018839226`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the sixteen prior windows, and compared all 4,800 prior input/decision rows.
