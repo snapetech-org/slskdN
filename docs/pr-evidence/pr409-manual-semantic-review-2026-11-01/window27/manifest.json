@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "11e7971bc33513c7aad65f2831e1d474e541a5e0",
+  "tree": "97b609cdbf423f55d595a77220b7362b9fd3d8ef",
+  "sourceSubtreeTree": "ee5969020b2184b7a6179e8e7b9805041c782fb7",
+  "generatedUtc": "2026-11-02T02:50:26Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 26,
+    "cells": 7800,
+    "keys": 650,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 1070,
+    "ids": 1070,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "windows20_21": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02",
+      "windows22_23": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "realmWindow20": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+      "window24": "e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df",
+      "window25": "030269709bebedf67f60d6c367bcd8e43ea92f7d9c9824ae6b9217b3afefdeb3",
+      "window26": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_fbf21603437b59b3",
+      "src_fbf278edf4ab21d7",
+      "src_fbf525c326baebfc",
+      "src_fbfd5dbcb2101b44",
+      "src_fc02713419b8cb92",
+      "src_fc0662d38746b6eb",
+      "src_fc08ebd61c6ac599",
+      "src_fc24fb3e1ff3cbc5",
+      "src_fc42ffb282f01569",
+      "src_fc4b59a0dbaa1701",
+      "src_fc77215b91b8fdf2",
+      "src_fc795bb8ec9ba4f9",
+      "src_fc7b5068cce9715d",
+      "src_fc9c6c38f9663859",
+      "src_fca72f1b95b8111b",
+      "src_fca9013242ecbd46",
+      "src_fcab226019dbdb2f",
+      "src_fcb8175433c530e0",
+      "src_fcd02407a02abde2",
+      "src_fcd1aacad8761370",
+      "src_fce32f3541ecf0fb",
+      "src_fcea2252477fefa3",
+      "src_fcf48f6ad2c33baa",
+      "src_fcfb9d08496fd8de",
+      "src_fd24a91d63f505e9"
+    ],
+    "sourceIdListSha256": "0d925d64a9bc94e737faf810bc1953ca1cf49c8c7a999a6bd46c17df41bc4282",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 97,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "ba9c74dc83977cd0d04c8fc9cb8bf6320e202ec55668d9411e4351cfd48058aa",
+    "zh-Hans": "5285f9c2a44859fc9ca5352fad2e9e61233b8a9b13868b57a370db6c291e2f81",
+    "hi": "dd00a12064ae998d4fdc85cd4d0d78f6727d6ae3a726d1444ab6535ed5f8d5b4",
+    "de": "3adc7507640c7eb3e48362c89be0e6cb1056f69c4c665456d338684c79c92739",
+    "ja": "0830ea9abd83fb244bb48af0e9a26b533b24a9d7473bda940234e7c1143bb34f",
+    "fr": "021dcae802e41825b4637069e5785a8f7d08b28bd5565654103c88abea3c456f",
+    "pt-BR": "065bd5820dac17078a3dc38850896dec39671804d3b668be9308307b5185ce10",
+    "ar": "15c703abec9a6ebe188d0acbcff028b460787fbe89e0602ca1ff12735105edb2",
+    "ko": "0c303304f6011eef7cda46fe06650d3c0d1dbfba9d91a119c7ae99c3e8858c29",
+    "zh-Hant": "4134a9737742acfb2eac55755029d77a05f7ca6bf4ed09f0a4085d835fa8a569",
+    "vi": "dc5469f13c426cdb517863e460f6a90b0631b2285bcb7bd06090488c18c4e69d",
+    "id": "5b2422c09ed8935d5ff00db1f21b00748c2edd7304595fb9d22deab14899db51"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "8a4954b9d45056abafb1646eb547c3aeccaba2a57b359289ac929d15d0fc0f86"
+  },
+  "callsiteLinesPreflighted": 396,
+  "reviewerMethod": "manual semantic review against exact source callsites and UI context; no translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "decisionCounts": {
+    "keep": 256,
+    "correct": 44,
+    "uncertain": 0
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "zh-Hans": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    }
+  },
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "5404625d7ff6b26dbe557aee95e1716b4854c892c832cc2e384fbf554d4ed858"
+  },
+  "crossReviewPlan": {
+    "path": "crossreview-plan.jsonl",
+    "rows": 44,
+    "sha256": "c0fee30c06711138405301f4bd781fef1b12d3387a3bfd6f433a1ca457797c69",
+    "status": "completed; 30 accepted as proposed and 14 refined by independent root review"
+  },
+  "proposalAudit": {
+    "result": "PASS",
+    "rows": 44,
+    "sourceAndCatalogJoin": "PASS",
+    "sourceCurrentAndProposedHashes": "PASS",
+    "placeholdersAndProtectedLiterals": "PASS",
+    "candidatePlanPinsToCurrentHead": true
+  },
+  "semanticDecisionConfidence": "high for flagged corrections; no uncertain decisions in this window",
+  "independentCrossReview": {
+    "ledgerPath": "../pr409-catalog-correction-application-window27-2026-11-02/root-crossreview-decisions-window27.jsonl",
+    "ledgerSha256": "64d248714be02c9ee6f246b91f835193794eec8e946d726aadb9a35dba98af00",
+    "exactApplyPlanPath": "../pr409-catalog-correction-application-window27-2026-11-02/root-apply-plan-window27.jsonl",
+    "exactApplyPlanSha256": "7b901948fb2fe6ec473d7f961b18c89a07767d215dcb4f741071780e7e662227",
+    "acceptedAsProposed": 30,
+    "refinedAndAccepted": 14,
+    "held": 0,
+    "summarySha256": "22c7ba81f4069d54d7c9d3945023262e97ade582e04ce0fca9a6aecfef2e361a"
+  },
+  "subsequentApplication": {
+    "commit": "3c25504c8c475ae40dab1acef2a85bdb37f1a620",
+    "tree": "349af6afff06f50d9583cecbe05847486affd15b",
+    "rows": 44,
+    "bundlePath": "../pr409-catalog-correction-application-window27-2026-11-02/"
+  }
+}
