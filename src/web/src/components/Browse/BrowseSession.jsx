@@ -1,5 +1,12 @@
 import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
-import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps } from '../../lib/interfaceLocale';
+import {
+  interfaceAttributeTextProps,
+  interfaceAttributeText,
+  interfaceDialogText,
+  interfaceToastText,
+  interfaceText,
+  interfaceTextProps,
+} from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
 /* eslint-disable promise/prefer-await-to-then */
 import './Browse.css';
@@ -554,8 +561,8 @@ class BrowseSession extends Component {
 
     if (
       // eslint-disable-next-line no-alert
-      window.confirm(interfaceText(
-        'Download {count} files from {directory}?',
+      window.confirm(interfaceDialogText(
+        '{count, plural, one {Download # file} other {Download # files}} from {directory}?',
         { count: filesToDownload.length, directory: directory.name },
       ))
     ) {

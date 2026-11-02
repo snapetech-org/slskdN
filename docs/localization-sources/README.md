@@ -57,3 +57,18 @@ for LTR translations, RTL translations, and English fallback text. Regression
 coverage was added for Spanish- and Arabic-selected English fallback; it was
 not run for this source-only follow-up. No source IDs, catalog values, or
 translation cells were added.
+
+The v8 count-aware plural follow-up is
+`20261102-v8-count-aware-plural-followup.json`. It records five new message
+sources and seven production references for the browse-download confirmation,
+playlist-approval counts, wishlist result badges/tooltips, and the standalone
+message-stream separator. All 60 target cells are present and have primary and
+independent machine review; native-speaker approval remains pending. Catalogs
+now contain 6,175 ordered keys each, with five identical appended keys. The
+confirmation formatter keeps numeric cardinal selectors numeric through
+`Intl.PluralRules` and `Intl.NumberFormat`, then isolates the opaque directory
+name at the native-dialog boundary. The follow-up also corrects the W46 rank37
+caller record: its `BrowseSession` literal is passed to `window.confirm` with a
+file count and directory name. Its evidence supersedes only the 12 W46
+cross-review and 12 adjudication holds based on the earlier callerless
+classification; sealed historical packets remain unchanged.

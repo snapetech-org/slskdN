@@ -1,0 +1,225 @@
+{
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "844c4bb93be3f8bbcc69a969370c51be78ce0e4826336161439390b8bd2b6913",
+      "baseBytes": 616202,
+      "currentBytes": 617976,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "7a021d3bd638dc0b3a827d114f07d9e1cb467d1966f6c65354ec4ddf71800d94",
+      "baseBytes": 532517,
+      "currentBytes": 533366,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "a01392c3f8d41b2994cd426a8b7b32c9b0dc5800035fb579e899ea5ef4658a06",
+      "baseBytes": 531193,
+      "currentBytes": 532063,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "b4d120a4ea7bed26bf06178559eafa5fe89739a8083ee76e9d9ff18f816e9464",
+      "baseBytes": 545422,
+      "currentBytes": 546311,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "3742b57cb84b191957c3350a741dd30e229e657a8ac6591bcb4c01fdb3f8a26b",
+      "baseBytes": 830550,
+      "currentBytes": 831669,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "2919023c470073206c79f3ab8a7b4049e23cae627df0d75e45a8fb404c7addec",
+      "baseBytes": 491858,
+      "currentBytes": 492673,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "5bf11a815b5e9375ae57b4ce5b59ea2ea502524438e99471d96da68d3bf27613",
+      "baseBytes": 590959,
+      "currentBytes": 591933,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "ea78917b96113e6a91a99e344f36474f769584fdbfbf13e7e8b1e5d9a5218b1b",
+      "baseBytes": 527892,
+      "currentBytes": 528746,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "76c0eb91417f509ce3b0459a0c7b5f918cbc376845359025024459d1145bee31",
+      "baseBytes": 523033,
+      "currentBytes": 523892,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "0a61426d7bab58b6875986120f08e96d532f4992b815eac8027875307c525d2e",
+      "baseBytes": 572046,
+      "currentBytes": 572943,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "9cc4aa5ac2da73ab857d0c780ebbf66fc4ea88d52111a1cba93f1b37a86a6a48",
+      "baseBytes": 455532,
+      "currentBytes": 456349,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "currentFileSha256": "710ea2e8a8a9e110dadc6a2d352978b264d48dc2057939b0cf51883b2da5d5a3",
+      "baseBytes": 456884,
+      "currentBytes": 457710,
+      "originalValuesAndOrderPreserved": true,
+      "addedKeysInExpectedOrder": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "finalNewlinePreserved": true
+    }
+  ],
+  "totalExistingKeysPreserved": 74040,
+  "newLocaleCells": 60,
+  "allChecksPassed": true
+}

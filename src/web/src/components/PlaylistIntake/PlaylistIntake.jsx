@@ -545,12 +545,14 @@ const PlaylistIntake = () => {
                               <Icon name="check circle outline" />
                               <LocalizedText source={"Snapshot approved"} /></Label>
                             <span>
-                              {playlist.organizationApproval.summary.matched} <LocalizedText source={"tracks,"} />{' '}
-                              {
-                                playlist.organizationApproval.summary
-                                  .changedFieldCount
-                              }{' '}
-                              <LocalizedText source={"changed fields"} /></span>
+                              <LocalizedText
+                                source={"{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}"}
+                                values={{
+                                  matched: playlist.organizationApproval.summary.matched,
+                                  changed: playlist.organizationApproval.summary.changedFieldCount,
+                                }}
+                              />
+                            </span>
                             <div className="playlist-intake-impact">
                               {playlist.organizationApproval.impact}
                             </div>

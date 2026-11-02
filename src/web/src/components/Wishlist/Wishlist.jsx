@@ -37,6 +37,9 @@ import {
   Table,
 } from 'semantic-ui-react';
 
+const WISHLIST_UNSEEN_COUNT_SOURCE = '{count, plural, one {# new result} other {# new results}}';
+const WISHLIST_UNSEEN_TOOLTIP_SOURCE = '{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}';
+
 const formatDate = (dateString) => {
   if (!dateString) return interfaceText('Never');
   const date = new Date(dateString);
@@ -223,16 +226,20 @@ const WishlistItemRow = ({
           />
           {unseenCount > 0 && (
             <Popup
-              content={interfaceText("{unseenCount} new result(s) since you last viewed this item", { "unseenCount": (unseenCount) })}
+              content={interfaceText(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}
               trigger={
                 <Label
                   color="red"
                   size="mini"
                   style={{ marginLeft: '0.5em' }}
                 >
-                  {unseenCount} <LocalizedText source={"new"} /></Label>
+                  <LocalizedText
+                    source={WISHLIST_UNSEEN_COUNT_SOURCE}
+                    values={{ count: unseenCount }}
+                  />
+                </Label>
               }
-             {...interfaceTextProps("{unseenCount} new result(s) since you last viewed this item")}/>
+             {...interfaceTextProps(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}/>
           )}
         </Table.Cell>
         <Table.Cell textAlign="center">{item.totalSearchCount}</Table.Cell>
@@ -605,12 +612,16 @@ const WishlistItemCard = ({
               )}
               {unseenCount > 0 && (
                 <Popup
-                  content={interfaceText("{unseenCount} new result(s) since you last viewed this item", { "unseenCount": (unseenCount) })}
+                  content={interfaceText(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}
                   trigger={
                     <Label color="red" size="mini">
-                      {unseenCount} <LocalizedText source={"new"} /></Label>
+                      <LocalizedText
+                        source={WISHLIST_UNSEEN_COUNT_SOURCE}
+                        values={{ count: unseenCount }}
+                      />
+                    </Label>
                   }
-                 {...interfaceTextProps("{unseenCount} new result(s) since you last viewed this item")}/>
+                 {...interfaceTextProps(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}/>
               )}
               <Popup
                 content={<LocalizedText source={requestState.summary} />}

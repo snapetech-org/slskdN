@@ -709,7 +709,7 @@ const NewMessagesMarker = () => (
     role="separator"
    {...interfaceTextProps("New messages below")}>
     <span className="msg-stream-newmarker-line" aria-hidden="true" />
-    <span className="msg-stream-newmarker-label"><LocalizedText source={"new"} /></span>
+    <span className="msg-stream-newmarker-label"><LocalizedText source={"New messages"} /></span>
     <span className="msg-stream-newmarker-line" aria-hidden="true" />
   </div>
 );

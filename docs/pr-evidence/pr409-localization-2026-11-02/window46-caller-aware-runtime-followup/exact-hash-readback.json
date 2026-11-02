@@ -1,0 +1,592 @@
+{
+  "capturedAt": "2026-11-02T21:36:28+00:00",
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "worktreeHeadBeforeCommit": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "scope": {
+    "sourceIds": 5,
+    "directLocales": 12,
+    "targetCells": 60,
+    "finalDecisions": {
+      "accept-proposal": 56,
+      "revise": 4
+    }
+  },
+  "catalogShape": {
+    "baseKeysPerLocale": 6170,
+    "currentKeysPerLocale": 6175,
+    "originalValuesAndOrderPreserved": true,
+    "appendedKeys": [
+      "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+      "{count, plural, one {# new result} other {# new results}}",
+      "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+      "New messages",
+      "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+    ],
+    "appendedKeyOrderIdenticalAcrossLocales": true,
+    "changedExistingKeys": []
+  },
+  "perLocale": {
+    "es": {
+      "file": "src/web/public/locales/es.json",
+      "baseSha256": "7614f9ea4680b9b1a0dfff5e9f8403c0796b09e45a39308deb697940e7074f88",
+      "currentSha256": "a01392c3f8d41b2994cd426a8b7b32c9b0dc5800035fb579e899ea5ef4658a06",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {# pista} other {# pistas}}, {changed, plural, one {# campo modificado} other {# campos modificados}}",
+          "targetSha256": "71dc67a1799b77264a878e25d196b9912bd859bc9d3cf5c6ff0f555924952b61"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# resultado nuevo} other {# resultados nuevos}}",
+          "targetSha256": "936daff9dcff6da97f98c51a2e27f8d203756b7d08d6a90782d5b60670362e9b"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {# resultado nuevo desde la última vez que viste este elemento} other {# resultados nuevos desde la última vez que viste este elemento}}",
+          "targetSha256": "c244a9fbedb57ea0ead0e34636ca64997546988b0bee13e56c1ab2aabed62e09"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "Mensajes nuevos",
+          "targetSha256": "84fc288fc5ec03ff470d91027279c1f35aee2402652aaf1308da53bd3995e1d6"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "¿{count, plural, one {Descargar # archivo} other {Descargar # archivos}} de {directory}?",
+          "targetSha256": "f4306405fff3523fa455e1419d37700a1c2be9f344848597d6120047c47321bf"
+        }
+      },
+      "newlineTerminated": true
+    },
+    "zh-Hans": {
+      "file": "src/web/public/locales/zh-Hans.json",
+      "baseSha256": "56ef9d5c98c2d646ec347912fbbcd53e86a2b1b4580fc53fba14af52722fe37c",
+      "currentSha256": "9cc4aa5ac2da73ab857d0c780ebbf66fc4ea88d52111a1cba93f1b37a86a6a48",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {# 首曲目} other {# 首曲目}}, {changed, plural, one {# 个已更改字段} other {# 个已更改字段}}",
+          "targetSha256": "60e0b9e0febd974d47772c1886f4e4fe20c8f17c33ea9a330a3b78da12cb1da2"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# 条新结果} other {# 条新结果}}",
+          "targetSha256": "de09281c6845ea7c19f2119586451677dea0f8b5ea82b848e40fe4a1b435fef1"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {你上次查看此项后有 # 条新结果} other {你上次查看此项后有 # 条新结果}}",
+          "targetSha256": "a73e5e60690cb798ec01dfb4b4a8ee330187595d2a3a3f03b00d2e0fd8898084"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "新消息",
+          "targetSha256": "3fc957bf0f70c3caf3a7cfa08ba8baa895f01c4ed3741dcffbe6d1ae70e41581"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "从 {directory} 下载 {count, plural, one {# 个文件} other {# 个文件}}吗？",
+          "targetSha256": "8c3f06c207a2ec0064eca90e1590541a2f611f457229c345f43f7bd09856014d"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "hi": {
+      "file": "src/web/public/locales/hi.json",
+      "baseSha256": "00be367d8d62dc7e97d5622688a768cfbd9be153477260f262c6a95c22db7721",
+      "currentSha256": "fe444d09ae7dcdb612c07a071582ed8e54291d5564246554769e2438e7bf5d06",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, =0 {# ट्रैक} one {# ट्रैक} other {# ट्रैक}}, {changed, plural, =0 {# बदले हुए फ़ील्ड} one {# बदला हुआ फ़ील्ड} other {# बदले हुए फ़ील्ड}}",
+          "targetSha256": "532981a788ca19c0c39513aacf320c467838815b745295e7b04f62dfcf257f5f"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# नया परिणाम} other {# नए परिणाम}}",
+          "targetSha256": "5f71dbb3c86a6067221b514180652363ca1ea107fa73dde358165d8c99206c87"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {इस आइटम को पिछली बार देखने के बाद # नया परिणाम} other {इस आइटम को पिछली बार देखने के बाद # नए परिणाम}}",
+          "targetSha256": "14a9f60d83f98e9c2b6b5f0442b46bddc32cd172b96e70dc8622ed9333ca9ef2"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "नए संदेश",
+          "targetSha256": "6c1a0fd865b12b387f680cf7bb75b75c91b79dbe3b213c225f1bb714b1bf468f"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "क्या {directory} से {count, plural, one {# फ़ाइल} other {# फ़ाइलें}} डाउनलोड करें?",
+          "targetSha256": "5d289407e154eae100c1bf7b6c85f3a9581684ca0c2c9afafc5d5a6b38f016d0"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "de": {
+      "file": "src/web/public/locales/de.json",
+      "baseSha256": "39e549cc12ae48ced329450249b6fcee7558f08c704116fb7ed394269018d2cb",
+      "currentSha256": "7a021d3bd638dc0b3a827d114f07d9e1cb467d1966f6c65354ec4ddf71800d94",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {# Titel} other {# Titel}}, {changed, plural, one {# geändertes Feld} other {# geänderte Felder}}",
+          "targetSha256": "14e4c8f23dd8409af1e4dc24e5fde0933a310d4e758c4be023213b8b94f080dd"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# neues Ergebnis} other {# neue Ergebnisse}}",
+          "targetSha256": "4a6f5fb3f58e0da58239b3a0015f08689e39929b4c0f4ca7bbc8ff95655bc907"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {# neues Ergebnis seit deinem letzten Besuch dieses Eintrags} other {# neue Ergebnisse seit deinem letzten Besuch dieses Eintrags}}",
+          "targetSha256": "de2266527bad9e9589d81534016962a5d4885617597a370597cca3fbe890a7d0"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "Neue Nachrichten",
+          "targetSha256": "4aadfb7b596d7bb3f34501255721f330b1227fce96221d7dd576d00fa8b0477f"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "{count, plural, one {# Datei} other {# Dateien}} aus {directory} herunterladen?",
+          "targetSha256": "c9e7f60a4c01d47cb1a3c33ae7f67dd54662915ca0c704edff749d5d049d40eb"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "ja": {
+      "file": "src/web/public/locales/ja.json",
+      "baseSha256": "b649f918d937ad8258941c9ed2a319780c8f56e918878da1b869fccac47840d9",
+      "currentSha256": "5bf11a815b5e9375ae57b4ce5b59ea2ea502524438e99471d96da68d3bf27613",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {# 曲} other {# 曲}}, {changed, plural, one {# 個の変更済みフィールド} other {# 個の変更済みフィールド}}",
+          "targetSha256": "499a4519f02b7ff9ca5aa30ddb3212e8c33aba2f67045a9bd5a1319efe58f57d"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {新しい結果 # 件} other {新しい結果 # 件}}",
+          "targetSha256": "b6351237f7b81c841a7d58c4bf824afdb7d08ebeb497f50c0b2d7c7f8a953a70"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {この項目を前回表示してから新しい結果が # 件あります} other {この項目を前回表示してから新しい結果が # 件あります}}",
+          "targetSha256": "a4dce59182ff78c37c28c2c8f4e860ae766f3b59dd184ada6471f2917e488eec"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "新しいメッセージ",
+          "targetSha256": "e478d7284ed8d585dd33456b7812f93b8744b082d4a38929fbf826d48f49515a"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "{directory} から {count, plural, one {# 個のファイル} other {# 個のファイル}}をダウンロードしますか？",
+          "targetSha256": "eb6a0a238b613b3e726eed4722b3ee01458639ed060df1957f253eea0a3b2fd8"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "fr": {
+      "file": "src/web/public/locales/fr.json",
+      "baseSha256": "6e03df27da0a07fd691a45b52c5692a8264ecb6dc80963770f656ef1bc3d945c",
+      "currentSha256": "aab281fc3ceedc1620802dcbba6598481c662e9337b792bb048d51b97b4224ba",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, =0 {# pistes} one {# piste} other {# pistes}}, {changed, plural, =0 {# champs modifiés} one {# champ modifié} other {# champs modifiés}}",
+          "targetSha256": "c3576b0e58aab0f89ebeed8c407897402a432ff7eadfc233d857d63acdf8d33d"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# nouveau résultat} other {# nouveaux résultats}}",
+          "targetSha256": "171360320c256b86f95016054195fd34fa9c69269d346cd2cee31a571d6b0019"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {# nouveau résultat depuis votre dernière consultation de cet élément} other {# nouveaux résultats depuis votre dernière consultation de cet élément}}",
+          "targetSha256": "0d9bf8850fb1d26702aa4e27de4de12245632f8a9e3802f78e1702e649ce451e"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "Nouveaux messages",
+          "targetSha256": "010d8f7bf8fa7e4434f818a27116a9f80c3f41e12eacf2b848a1aaee4c16c5fe"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "Télécharger {count, plural, one {# fichier} other {# fichiers}} depuis {directory} ?",
+          "targetSha256": "3bb62db1c22cf6d95867373f3e6c1b6398ddb21202b1b5e18d1079321dc16b12"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "pt-BR": {
+      "file": "src/web/public/locales/pt-BR.json",
+      "baseSha256": "9d0ba5dba5afa138e27ba76af07ca0614ad5c1096a37c2739ac4ba397149d0bf",
+      "currentSha256": "f44dd21457bf3c771d9cd3d9cff8a5d9aecf2e93e5bc496c625dac7e1c47db18",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, =0 {# faixas} one {# faixa} other {# faixas}}, {changed, plural, =0 {# campos alterados} one {# campo alterado} other {# campos alterados}}",
+          "targetSha256": "552b7a1f6c4e975fcdb59d9e1642bb6680614a1bd1375f07d8eaa336e27b1e81"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# novo resultado} other {# novos resultados}}",
+          "targetSha256": "384f38edc06560b25e7a975b7e17a67ef25f71ecc733ae557214034943ea45f5"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {# novo resultado desde a última vez que você visualizou este item} other {# novos resultados desde a última vez que você visualizou este item}}",
+          "targetSha256": "f7b750d750f3a9971dceae2fe8627efdf3e73b3e77b4870a9812dbdcd9f40db9"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "Novas mensagens",
+          "targetSha256": "2948b82ba0cbb11753cde7663489b0bdec970abd06f851f7ba6a8e3c2eadc7bb"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "Baixar {count, plural, one {# arquivo} other {# arquivos}} de {directory}?",
+          "targetSha256": "68527f0eeb2d5427c1dfeefd8ad707aaf94c977739d1b9f3050f745f2ccdeede"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "ar": {
+      "file": "src/web/public/locales/ar.json",
+      "baseSha256": "d87a017490a6f42e30d0027147c68868dcd6717e663f4a90f94f6e1831f8e9ee",
+      "currentSha256": "844c4bb93be3f8bbcc69a969370c51be78ce0e4826336161439390b8bd2b6913",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, zero {# مقاطع} one {# مقطع} two {# مقطعان} few {# مقاطع} many {# مقطعًا} other {# مقطع}}، {changed, plural, zero {# حقول متغيرة} one {# حقل متغير} two {# حقلان متغيران} few {# حقول متغيرة} many {# حقلًا متغيرًا} other {# حقل متغير}}",
+          "targetSha256": "a00fe52c8f5d775788c6f45dd38d6a749a3e9f5c1bf23eec25e24753fa786e8b"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, zero {# نتائج جديدة} one {# نتيجة جديدة} two {# نتيجتان جديدتان} few {# نتائج جديدة} many {# نتيجة جديدة} other {# نتيجة جديدة}}",
+          "targetSha256": "e8bdf56a946e87732b49fc827b504811d8abb15bf1456ce724f291a8e5409929"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, zero {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر} one {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر} two {# نتيجتان جديدتان منذ آخر مرة عرضت فيها هذا العنصر} few {# نتائج جديدة منذ آخر مرة عرضت فيها هذا العنصر} many {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر} other {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر}}",
+          "targetSha256": "6cd2ae3ceb53606b8de8fa62b4a34627bd83a0c93e8e7687a21a27318d819f4f"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "رسائل جديدة",
+          "targetSha256": "ee690fdf17c297627528b413c40051d78950d7ca9e3faf91fffa6a32dfe82548"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "هل تريد {count, plural, zero {تنزيل # ملفات} one {تنزيل # ملف} two {تنزيل # ملفين} few {تنزيل # ملفات} many {تنزيل # ملفًا} other {تنزيل # ملف}} من {directory}؟",
+          "targetSha256": "606c647d857f910aead38c7cf9cd32141192b91f4cb68a5bd794a97310e41bd8"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "ko": {
+      "file": "src/web/public/locales/ko.json",
+      "baseSha256": "8471f469202371ce412100d2caeb52a13ee33aa3637126eb788eded5338a9d94",
+      "currentSha256": "ea78917b96113e6a91a99e344f36474f769584fdbfbf13e7e8b1e5d9a5218b1b",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {#곡} other {#곡}}, {changed, plural, one {#개의 변경된 필드} other {#개의 변경된 필드}}",
+          "targetSha256": "7cac4397cc70fd8f2aad2333aaca273cdd16fc5b9551362830ac2a7722e969a9"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {새 결과 #개} other {새 결과 #개}}",
+          "targetSha256": "e4fbe6ff6b78f9cc138e77f7447a28840c8e436dda2fbe9a5de3fe55cba77b81"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {이 항목을 마지막으로 본 뒤 새 결과 #개} other {이 항목을 마지막으로 본 뒤 새 결과 #개}}",
+          "targetSha256": "1a9b218b09eb1826c4986761cae7a34d4d92177f9bc2ea0317425bd85a2fb0de"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "새 메시지",
+          "targetSha256": "4f85edbeb9f357832e14d804aeaff78744c37528b65879cfcc96a12c5a095194"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "{directory}에서 {count, plural, one {파일 #개} other {파일 #개}}를 다운로드할까요?",
+          "targetSha256": "9867c91b242f92bd830169aac7553ebfd68e9415c661fbe2e7be1ac1ed2bb948"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "zh-Hant": {
+      "file": "src/web/public/locales/zh-Hant.json",
+      "baseSha256": "2143e7b4b93eb88f5f346b665c50268101b4f44592cfb93c5db52e1bb5a39452",
+      "currentSha256": "710ea2e8a8a9e110dadc6a2d352978b264d48dc2057939b0cf51883b2da5d5a3",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {# 首曲目} other {# 首曲目}}, {changed, plural, one {# 個已變更欄位} other {# 個已變更欄位}}",
+          "targetSha256": "226d5da0a3665ed61f219c46a11e5f0e2fa173bf08eb646bf48704e4427ac657"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# 項新結果} other {# 項新結果}}",
+          "targetSha256": "92187725263bd145e037b3bf1616fd7fb88f3b711cc86daaaf963cc342247e10"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {您上次查看此項目後有 # 項新結果} other {您上次查看此項目後有 # 項新結果}}",
+          "targetSha256": "9c38ae08884ef2e2ca7e3f5fe692fb41794607bda2785e6a8b8fa82f3cfd6b8f"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "新訊息",
+          "targetSha256": "3d1acbde26ea7a9bbcbe63130f783ec3840811922f5c6b44f72aab48db494cb8"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "要從 {directory} 下載 {count, plural, one {# 個檔案} other {# 個檔案}}嗎？",
+          "targetSha256": "c6168a1aac7b4b42f1850747629fee6a6ae8d872b6a5b8738e3a9659d13c79d4"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "vi": {
+      "file": "src/web/public/locales/vi.json",
+      "baseSha256": "093adbb843a8cf24e9ba154e883a9cd4435c21c1ec2bd7f171aa62ac09f57d25",
+      "currentSha256": "0a61426d7bab58b6875986120f08e96d532f4992b815eac8027875307c525d2e",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {# bản nhạc} other {# bản nhạc}}, {changed, plural, one {# trường đã thay đổi} other {# trường đã thay đổi}}",
+          "targetSha256": "eae4a5b1d6af2832504daa79f2291ba3a33bf23c745e1f605f19d991b89d9fc6"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# kết quả mới} other {# kết quả mới}}",
+          "targetSha256": "59a824bf0fa2fabab7f470a1547a946fc08527eb1002989df5d334552b5ebe01"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {# kết quả mới kể từ lần bạn xem mục này gần nhất} other {# kết quả mới kể từ lần bạn xem mục này gần nhất}}",
+          "targetSha256": "965aa626f112dda10653512c73e197f63567d6b42bc56e69cc18a4b64af5aed2"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "Tin nhắn mới",
+          "targetSha256": "f37e40144796edee6319e71d3790705b6ee360e04885fa96e7ab55c8ecc72028"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "Tải {count, plural, one {# tệp} other {# tệp}} từ {directory}?",
+          "targetSha256": "61d416bf34602a1ee25593125e405c86295328d28e42414dfef29ff79ca9f67f"
+        }
+      },
+      "newlineTerminated": false
+    },
+    "id": {
+      "file": "src/web/public/locales/id.json",
+      "baseSha256": "0361e7592b1347f7c67ae62a644efe8e41d1c21457f928172950d3bd77c353f4",
+      "currentSha256": "4f885e41fd7810e91234d90c6a18157565e80afa933680d94d2ff21711f5bda2",
+      "baseKeyCount": 6170,
+      "currentKeyCount": 6175,
+      "baseKeyOrderSha256": "81cb4d6a1d0304bae8e6586139bfe6d1e9a8c8a5a3f78be92a5d28eb8985f042",
+      "currentKeyOrderSha256": "409696bcb9f94a2892c0d70c9238106c32fbbde133fd4281dd736e836ff278cf",
+      "appendedKeys": [
+        "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+        "{count, plural, one {# new result} other {# new results}}",
+        "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+        "New messages",
+        "{count, plural, one {Download # file} other {Download # files}} from {directory}?"
+      ],
+      "changedExistingKeys": [],
+      "finalTargets": {
+        "src_a496c430224a74df": {
+          "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+          "target": "{matched, plural, one {# trek} other {# trek}}, {changed, plural, one {# bidang yang berubah} other {# bidang yang berubah}}",
+          "targetSha256": "5d99490047cccf39c54e1b5fb431ca3f83a8cd9816d0a96656657a7df2afdeae"
+        },
+        "src_86c7c500a8a29d14": {
+          "sourceText": "{count, plural, one {# new result} other {# new results}}",
+          "target": "{count, plural, one {# hasil baru} other {# hasil baru}}",
+          "targetSha256": "e7450d56bd81d59416ee6495ac375517f9ba4fa2ba8cf7add73e32b1846ba9cc"
+        },
+        "src_548b82b14a90f35c": {
+          "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+          "target": "{count, plural, one {# hasil baru sejak terakhir kali Anda melihat item ini} other {# hasil baru sejak terakhir kali Anda melihat item ini}}",
+          "targetSha256": "2474fe2e584ddb6f070632c21fa603921758c673e7d2921e2f63e05161b8a241"
+        },
+        "src_ef5df7e6051540ca": {
+          "sourceText": "New messages",
+          "target": "Pesan baru",
+          "targetSha256": "87a7f23c55020a381577db4179618801b88b9adb00b8a5796added7efdf12baf"
+        },
+        "src_6845751a223bdec1": {
+          "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+          "target": "Unduh {count, plural, one {# berkas} other {# berkas}} dari {directory}?",
+          "targetSha256": "e1f8cbfe2b17dad8b1fcf69c1e7a84921b5f37718fabadde02cfdac9bef0451d"
+        }
+      },
+      "newlineTerminated": false
+    }
+  },
+  "checks": {
+    "allJsonParsed": true,
+    "all60FinalTargetsMatchExactCatalogValues": true,
+    "all60FinalHashesRecomputed": true,
+    "noOldCatalogValuesChanged": true,
+    "priorKeyOrderPreserved": true,
+    "catalogsAppendSameFiveKeys": true,
+    "finalPluralSelectorNamesAndBranchBalanceValidated": true,
+    "finalPluralBranchesHaveOneCountMarkerAndOtherFallback": true
+  },
+  "limitations": {
+    "nativeSpeakerReview": "outstanding for all 60 cells",
+    "browserReview": "not performed; exact PR-head deployment count was zero at review time",
+    "testsBuildScansCi": "not run"
+  },
+  "rootStaticReview": {
+    "performed": true,
+    "scope": "all 60 finalized target cells",
+    "results": "selector names match source, branches balance, each plural branch contains one # marker, and each selector retains an other fallback",
+    "notRuntimeTests": true
+  }
+}

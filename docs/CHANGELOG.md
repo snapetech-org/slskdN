@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: apply 60 reviewed cells for five count-aware sources across all twelve locales; localize playlist and wishlist plurals, the download confirmation, and the new-message separator while preserving RTL direction handling. Native-speaker and headed-browser review remain outstanding.
+
 - Localization: close the W43 Spanish formal-lane check for the PlayerBar 30D filter. Independent exact-head review confirms the register-neutral value “30 d” matches the adjacent 7D and 90D options and the international day symbol; native-speaker approval remains outstanding.
 
 - Localization: replace fragmented Pod help with one full sentence in all 12 locales and render the `feature.Pods` configuration token as left-to-right code.

@@ -37,9 +37,13 @@ const isolatePlaceholderValues = (template, values) => {
 const LocalizedText = ({ as: Element = 'span', source, values, children, ...props }) => {
   const { directionFor, language, languageFor, t } = useInterfaceLanguage();
   const direction = typeof source === 'string' ? directionFor(source) : undefined;
+  const usesCardinalPlural = typeof source === 'string' &&
+    /\{[a-zA-Z][a-zA-Z0-9_]*,\s*plural,/.test(source);
   const text = typeof source !== 'string'
     ? children
-    : isolatePlaceholderValues(t(source), values);
+    : usesCardinalPlural
+      ? t(source, values)
+      : isolatePlaceholderValues(t(source), values);
   const textLanguage = typeof source === 'string'
     ? languageFor(source)
     : undefined;
