@@ -4,7 +4,7 @@
 
 - PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Ten independent manual slices cover 250 source keys / 3,000 cells across the 12 direct locales. Combined verdicts: 2,410 keep, 489 high-confidence correction candidates, and 101 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Eleven independent manual slices cover 275 source keys / 3,300 cells across the 12 direct locales. Combined verdicts: 2,677 keep, 520 high-confidence correction candidates, and 103 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
 - Qualified native-speaker review remains required.
 
 ## Window 1
@@ -71,3 +71,9 @@ Evidence: [`window9`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/win
 The tenth disjoint 25-key slice covers 300 cells: 247 keep, 41 high-confidence correction candidates, and 12 uncertain. Corrections address P2P peer labels, routing-stat button wording, Quarantine Jury release decisions, Lidarr API-key terms, sharing-group nouns, wishlist search selection, and the Artist Release Radar explanation. “Native playlist” remains uncertain across all locales because the source refers to a browser-local MilkDrop preset playlist and the best locale-native term needs reviewer input.
 
 Evidence: [`window10`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/). Manifest SHA-256 `6339cdba5b142a0e1cddc57c1ad06f9a20680ce7a57f3b0ad8ad6f9d95054af9`; input `dc18ddabcf1e49e8283532bd9fb597e55d5f27682f3af93edff6027ff487dfed`; decisions `dc3ecff9c141fa4c06159c90180beb8d46bcc9ea665e335859a059a373078a3c`. The review was pinned to PR head `917e41c1d7b78ca7b114679e8ec1db3178a54e89` / tree `062d80f1b41b7411213736d7c9c91ffab462b0a5`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the nine prior windows, and compared all 2,700 prior input/decision rows.
+
+## Window 11
+
+The eleventh disjoint 25-key slice covers 300 cells: 267 keep, 31 high-confidence correction candidates, and 2 uncertain. Corrections address the lyrics and forensic-analysis labels, parser-fixture terminology, Realm and Pod naming, share-group membership, French expired-membership and download-record wording, Hindi/Indonesian application-status wording, a Japanese execution-contract label, an Arabic copied-report label, and Arabic/Indonesian comparison buttons. Spanish and Vietnamese phrasing for the awkward source sentence “visible in state” remains uncertain pending native review.
+
+Evidence: [`window11`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/). Manifest SHA-256 `65e317f6dbca32d1f3350c0e107170fe28d1e9fbd195a74f1bc749775b967efa`; input `90d593959e210ffdc8ca8fdf7e8a933293106829d1aa3827131dd65309418a82`; decisions `f12d3f0e14d18c8d129bc3ddc7f405e0fe2f692e146a2b43f84e52b1a0a9a098`. The review was pinned to PR head `061d9d4d10a7595edc1de6717228bbd5f385fc78` / tree `47a7c87f07c9046ed5a3201fd58ac8ee1effdba4`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the ten prior windows, and compared all 3,000 prior input/decision rows.
