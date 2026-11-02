@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: apply 41 root-final W33 corrections across 11 locale catalogs (40 accepted and one refined), bringing manual review coverage to 33 windows / 9,778 cells / 822 source keys. W33’s 11 source-context-mismatched cells remain held unchanged; 267 uncertain cells remain overall and the six earlier exact-context correction holds remain. Cumulative applied corrections are 1,340 across 311 source keys, with 52,502 frozen pending cells outside the formal and manual review lanes.
+
 - Localization: apply 29 W32 exact-hash corrections, bringing the cumulative populated-catalog total to 1,299 across 300 source keys and all twelve locales; six values with missing exact source context remain held, and 256 uncertain values remain unresolved.
 
 - Localization: isolate dynamic string and number placeholders inside localized

@@ -1,0 +1,53 @@
+{
+  "result": "PASS",
+  "window": 33,
+  "reviewScope": "All 41 W33 correction candidates only",
+  "reviewedCandidates": 41,
+  "dispositions": {
+    "accept": 40,
+    "refine": 1
+  },
+  "keep": 0,
+  "hold": 0,
+  "livePr": {
+    "repository": "snapetech-org/slskdN",
+    "number": 409,
+    "state": "open",
+    "draft": true,
+    "head": "0abf10ae9f49d27d7cfef823cfe5d70765ee29f4",
+    "tree": "8ac49de1cde7dc242484eadc597781819e26e1d2"
+  },
+  "localPins": {
+    "head": "0abf10ae9f49d27d7cfef823cfe5d70765ee29f4",
+    "tree": "8ac49de1cde7dc242484eadc597781819e26e1d2",
+    "sourceSubtreePath": "src/web/src",
+    "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb"
+  },
+  "remoteCommitTreeVerified": true,
+  "repoWorktreeClean": true,
+  "sourceStringsVerifiedInPinnedCallsites": true,
+  "candidateInputPacket": {
+    "candidatePlanSha256": "906c3e8bb45b08e9bc9d26d9ac286def387a132c741e4e7f0be68deb0094df06",
+    "inputSha256": "9b919f98102d88f2c8de56b23a187531453ed38eac9034657b9f968b8412bcec"
+  },
+  "catalogFiles": {
+    "src/web/public/locales/ar.json": "8922f03545a9edebd323f4f2692c549fa1f007a2fba923b29e795510d338b22a",
+    "src/web/public/locales/de.json": "14b8436a948506fd51bd9f385ade5c738a7cc5c0d2dddb5a333516980e66c5df",
+    "src/web/public/locales/fr.json": "5a24596ace3952bfa6518bea5df85b3efa91af1fef13abf07edf85cb68f9767d",
+    "src/web/public/locales/hi.json": "8a16c53d79a861fb0c5fadd15ffbe50a1a8d5f0c500eaa2f1543677eb1634f74",
+    "src/web/public/locales/id.json": "ef7e4528f0fd368d1bc10e78ac991f7f0578032391ddf4c0d3c3de376019f424",
+    "src/web/public/locales/ja.json": "c1347a69945e2aae94c6cc25d3e7955e1f622f7d4697257d47a79e9baffc354d",
+    "src/web/public/locales/ko.json": "46e2c58e51bbdcce06e82aeb604a9103a3a814e1232887869545c50e4146847a",
+    "src/web/public/locales/pt-BR.json": "ebcdddf28e64f57e12fe631feb68af0a9caa112a6c193839f4554a82c538e7ac",
+    "src/web/public/locales/vi.json": "a26ea14df241076087d3c8a7665f557320b200fb46af3bf70d063209b04b5fea",
+    "src/web/public/locales/zh-Hans.json": "1e7cc620d7ae3f930b9d5cc0f14b181f0dcb1ae49199709cc5161d62a6a1864a",
+    "src/web/public/locales/zh-Hant.json": "ea7e3c187358537322df7e9392c3a3b2a3c29dc61223964ade57e32a9b602914"
+  },
+  "callerRowsRechecked": 67,
+  "placeholderSequencesChecked": 41,
+  "protectedLiteralSetsChecked": 41,
+  "nativeSpeakerSignoff": "not performed; no native-speaker approval claimed",
+  "repoEdits": false,
+  "testsBuildsScansCi": false,
+  "decisionLedgerSha256": "647fcf26d3029795ca7e7763df68448a72c474f47db55d9db989360066e469b9"
+}

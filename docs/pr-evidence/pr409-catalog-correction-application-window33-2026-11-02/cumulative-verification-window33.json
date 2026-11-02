@@ -1,0 +1,100 @@
+{
+  "result": "PENDING_POST_APPLY_VERIFICATION",
+  "window": 33,
+  "reviewBaseHead": "0abf10ae9f49d27d7cfef823cfe5d70765ee29f4",
+  "reviewBaseTree": "8ac49de1cde7dc242484eadc597781819e26e1d2",
+  "reviewBaseSourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "manualCoverage": {
+    "windows": 33,
+    "sourceKeys": 822,
+    "cells": 9778,
+    "verdicts": {
+      "correct": 1334,
+      "keep": 8165,
+      "uncertain": 279
+    },
+    "manualWindowOverlap": 0
+  },
+  "rootReview": {
+    "candidateRows": 41,
+    "acceptedAsProposed": 40,
+    "refinedAndAccepted": 1,
+    "held": 0,
+    "contextMismatchRowsHeld": 11,
+    "candidatePlanSha256": "906c3e8bb45b08e9bc9d26d9ac286def387a132c741e4e7f0be68deb0094df06",
+    "independentLedgerSha256": "647fcf26d3029795ca7e7763df68448a72c474f47db55d9db989360066e469b9",
+    "rootLedgerSha256": "2c4ca97f6df7cd87e4ba5e6bbec52ec135ebd12578eec163f8c398365b5e3dc0",
+    "applyPlanSha256": "e6c79a5d0550c0265af5c073bf3e9747735656bdf6aaaacbd6409e4c067cc166"
+  },
+  "application": {
+    "previousApplied": 1299,
+    "newApplied": 41,
+    "totalApplied": 1340,
+    "previousUniqueAppliedSourceKeys": 300,
+    "newCorrectionSourceKeys": 11,
+    "uniqueAppliedSourceKeys": 311,
+    "heldExactContextCorrectionRows": 6,
+    "newContextMismatchRowsHeld": 11,
+    "totalDistinctHeldRows": 17,
+    "uncertainOriginal": 279,
+    "uncertainResolvedInRealmFollowup": 12,
+    "uncertainRemaining": 267,
+    "frozenPendingCellLane": 67080,
+    "formalCellsTrackedSeparately": 4800,
+    "manualCells": 9778,
+    "cellsOutsideFormalAndManualReview": 52502,
+    "byLocale": {
+      "ar": 149,
+      "de": 75,
+      "es": 105,
+      "fr": 114,
+      "hi": 110,
+      "id": 116,
+      "ja": 77,
+      "ko": 105,
+      "pt-BR": 99,
+      "vi": 131,
+      "zh-Hans": 130,
+      "zh-Hant": 129
+    },
+    "window33ByLocale": {
+      "ar": 4,
+      "de": 1,
+      "fr": 7,
+      "hi": 4,
+      "id": 5,
+      "ja": 2,
+      "ko": 4,
+      "pt-BR": 4,
+      "vi": 2,
+      "zh-Hans": 4,
+      "zh-Hant": 4
+    }
+  },
+  "catalogs": {
+    "localeFilesChanged": 11,
+    "keysPerLocale": 6169,
+    "catalogValues": 74028,
+    "w33TargetsIndividuallyVerified": 41,
+    "heldRowsVerifiedUnchanged": 11,
+    "fullCatalogPlaceholderPass": "Not run for W33; all W33 target placeholders/protected literals checked individually. Previous full-catalog evidence remains historical.",
+    "catalogFileSha256": {
+      "ar": "d11e67c44773aa14e21f96c40a59787dab5969af76e962706af6b48abd76e093",
+      "de": "4a2a713bfd278878589cb9b0c8fa562f0b577c1f154a3c68a457a11e54d8c7d9",
+      "fr": "d75067aab51d88766860e7916977f1d96830cea290e95995b5b61e02b63c059c",
+      "hi": "c50bb72b4188b9e6bd68ec09f8423ce4a09e3c45833392752ec3d8f78d566bf1",
+      "id": "e6aeb7c84459cfaa50d6a195be5f5628f796c5bbde45cbc7327396805a49806a",
+      "ja": "3688a4c1a265d15882d49c30b82e5d5dad6dbf25d1437003b81a85de380a82b4",
+      "ko": "c2b098158c295225197cf03e41c861dfeba5d01d4439965d6047600802825b90",
+      "pt-BR": "1284806e6358b8ea88473fe87e7acaccb91451322b60fea9584a54c54c592d1b",
+      "vi": "7a0acbc296da7219da71617f7ab0e7345d1828e71461263d97db45d781ae512b",
+      "zh-Hans": "e479486bbed7aea5039739189afa33301c854076ec0eb7fd61fb093eac99efc9",
+      "zh-Hant": "ab2d33a32042c001c6cf0d82a11365653716bfdc9721cca385974b33ffc04ddc"
+    }
+  },
+  "workflowChanges": 0,
+  "sourceSubtreeChanged": false,
+  "nativeSpeakerReview": "outstanding",
+  "headedBrowserReview": "outstanding",
+  "testsBuildScansCi": "not run"
+}
