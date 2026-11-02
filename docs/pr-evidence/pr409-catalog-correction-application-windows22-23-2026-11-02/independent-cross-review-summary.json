@@ -1,0 +1,14 @@
+{
+  "sourceId": "src_f41792666b3f8d5b",
+  "currentPrHead": "64556f04f436af2e53860cdf14f0bf7d44118cfe",
+  "currentPrTree": "c101f1032ed25dcb6cd0d693704aac44bea0db2f",
+  "rows": 12,
+  "acceptedAsProposed": 10,
+  "refinedAndAccepted": 2,
+  "holds": 0,
+  "semanticConfidence": "high",
+  "localeQualityConfidence": "moderate",
+  "nativeSpeakerReview": "outstanding",
+  "artifact": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-realm-root-cross-review-window20-20261102.jsonl",
+  "sha256": "4767ca0981a52863f848185554857afbeb7479602b9a339c3da730e31c3911f5"
+}

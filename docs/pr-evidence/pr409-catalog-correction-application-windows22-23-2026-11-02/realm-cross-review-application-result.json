@@ -1,0 +1,67 @@
+{
+  "headBefore": "64556f04f436af2e53860cdf14f0bf7d44118cfe",
+  "treeBefore": "c101f1032ed25dcb6cd0d693704aac44bea0db2f",
+  "independentCrossReviewRows": 12,
+  "files": {
+    "src/web/public/locales/ar.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "b6592cf8c79cd87a612e2ac6b4f56a0fe7c17b265137b3a77004dcb7732f5b0c",
+      "afterFileSha256": "f3c0505a9667745581cde46a01b2a7cfe65462e296f4bea21309b77833ad40fd"
+    },
+    "src/web/public/locales/de.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "f194ceae19c5bd061b12c2d700c9c60b309b3eac4f0f50c6c38374655549b860",
+      "afterFileSha256": "b7ff5aac6d149defdf60082663500eaa21e1f6d6b763d9e0c9d3e56f07f99b9a"
+    },
+    "src/web/public/locales/es.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "eed429ce42d6fd80b1a89e1406cb025c42a581ba02ab258d307b88e85867c32c",
+      "afterFileSha256": "37fd5bbf3f51168c08ee2617345eba76224c09d27361124d8b53c3abacf25702"
+    },
+    "src/web/public/locales/fr.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "ba5d0fe10e3a8163dbd575e389dd2d3fc3c1fa34b01af8e39fd178a15d18f8ed",
+      "afterFileSha256": "c3413d63027d8010c408ff1586e954e51770effa764331370f35a30a6c30188c"
+    },
+    "src/web/public/locales/hi.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "3e3d9198380747041bb97c35dd18d653f7022a4f96162e51aaa196c4a1b3fbdc",
+      "afterFileSha256": "1780feb9937c3c8ddb60d967444c3c5af41d7e9ff713886ab82b12dd36199898"
+    },
+    "src/web/public/locales/id.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "d96815f7fade20409d8485da4c7ed2d439b3a92882b7ed2342cf749a0f809016",
+      "afterFileSha256": "580714fd7db7c4e05cab49ba9643bcc8a8c4e608915bdf523d1c57d18ce5a7bd"
+    },
+    "src/web/public/locales/ja.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "2c0074b1c7f332ed4705cc7abedf76e32fb977bedbf206ae74c7771c98065b5e",
+      "afterFileSha256": "aee7222906f04af717078e50a6e04fc28f7971d312fcb11957a2249f77158db4"
+    },
+    "src/web/public/locales/ko.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "106a7ae304ce6b2622972d772c207860db33c0c8bc2340ce4697eb09181ef55f",
+      "afterFileSha256": "65513e3c8a0f47abc544c11539896c3bc96709f2d41409e8d1923934f33eb133"
+    },
+    "src/web/public/locales/pt-BR.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "caa7bf7d309e9e999763f7b8f7f108adeac1345caba678fa435483201e7fdd9e",
+      "afterFileSha256": "3b281db441f557f97c22e567fb5ecf89a9213a573ad827c657b7a0c3eaaecb84"
+    },
+    "src/web/public/locales/vi.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "1ace28ae9915622fe0310da5a04629726cdc866e89e202e73ec74ef85eb13a01",
+      "afterFileSha256": "55f4542a5db2f8243b3fb9fa5a6b85684e2a29666d2dde335c04dd705692a646"
+    },
+    "src/web/public/locales/zh-Hans.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "600c23329c36974a17eb08cd74356d581c71057cb8910f9156b7d58992dce37b",
+      "afterFileSha256": "29a977b5975cb6de8f5c4984df078caf57c68bcfb4ba48902cf00b0ec1905c18"
+    },
+    "src/web/public/locales/zh-Hant.json": {
+      "crossReviewCells": 1,
+      "beforeWorktreeFileSha256": "cb2fdb1dfe0f526c0247f02c72107a52a0c06cd173a831e434eab422033d6ba9",
+      "afterFileSha256": "ed6d8044523f3bb3ee39efab5bbe146becc14197a94b1839dc74f56b19fac041"
+    }
+  }
+}
