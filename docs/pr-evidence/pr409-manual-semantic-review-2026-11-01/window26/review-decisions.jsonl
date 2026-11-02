@@ -1,0 +1,300 @@
+{"id":"ar:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"ar:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"ar:src_fab4539d26e078ca","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fac3c810d5fe2521","reason":"The caller describes the MediaCore workflow that searches media and creates content-linked Pods. Existing Arabic means capsules rather than collaborative groups, and Korean translates Pods as physical windows; nearby feature labels use the group/Pod concept.","target":"ابحث في المحتوى وأنشئ مجموعات مرتبطة بالمحتوى.","verdict":"correct"}
+{"id":"ar:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"ar:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"ar:src_fae75018276afa77","verdict":"keep"}
+{"id":"ar:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"إجمالي المهام","verdict":"correct"}
+{"id":"ar:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"ar:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"ar:src_fb470ce44b0b85c4","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fb49df160209257b","reason":"The caller is an action button wired to handleLoadVerificationStats. The existing targets in these locales read as a noun/load compound or omit the action; the replacements make loading the verification statistics explicit.","target":"حمّل إحصائيات التحقق","verdict":"correct"}
+{"confidence":"high","id":"ar:src_fb609c505c921789","reason":"This is the Listen Along feature heading in the Pod playback panel. Spanish and French reduce it to “listen” without the together/alongsider meaning; Arabic “على طول” means along the length rather than listening together.","target":"الاستماع معًا","verdict":"correct"}
+{"id":"ar:src_fb60eebf58d7a236","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fb635a4459883a44","reason":"The caller renders this localized fragment immediately before appending selectedUsername. Existing targets in these locales put the username before a grammatical suffix or after a clause that cannot take it; the replacements form a complete “could not retrieve user information:” prefix for the appended name.","target":"تعذر استرداد معلومات المستخدم:","verdict":"correct"}
+{"id":"ar:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"ar:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"ar:src_fb9470409e07618c","verdict":"keep"}
+{"id":"ar:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"ar:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"الحد الأقصى للعملاء","verdict":"correct"}
+{"id":"ar:src_fbb26b4abe24adf4","verdict":"keep"}
+{"id":"ar:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"ar:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"de:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"de:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"de:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"de:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"de:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"de:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"de:src_fae75018276afa77","verdict":"keep"}
+{"id":"de:src_fb0d399db307fb40","verdict":"keep"}
+{"id":"de:src_fb1411144fac713c","verdict":"keep"}
+{"id":"de:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"de:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"de:src_fb470ce44b0b85c4","verdict":"keep"}
+{"confidence":"high","id":"de:src_fb49df160209257b","reason":"The caller is an action button wired to handleLoadVerificationStats. The existing targets in these locales read as a noun/load compound or omit the action; the replacements make loading the verification statistics explicit.","target":"Verifizierungsstatistiken laden","verdict":"correct"}
+{"id":"de:src_fb609c505c921789","verdict":"keep"}
+{"id":"de:src_fb60eebf58d7a236","verdict":"keep"}
+{"confidence":"high","id":"de:src_fb635a4459883a44","reason":"The caller renders this localized fragment immediately before appending selectedUsername. Existing targets in these locales put the username before a grammatical suffix or after a clause that cannot take it; the replacements form a complete “could not retrieve user information:” prefix for the appended name.","target":"Benutzerinformationen konnten nicht abgerufen werden:","verdict":"correct"}
+{"id":"de:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"de:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"de:src_fb9470409e07618c","verdict":"keep"}
+{"confidence":"high","id":"de:src_fb9cf75606b4070d","reason":"This is the scheduler state in a log message (“Scheduler enabled”). The existing German “ermöglicht” means made possible/permitted, not that the scheduler is activated.","target":"aktiviert","verdict":"correct"}
+{"id":"de:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"de:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"Max. Clients","verdict":"correct"}
+{"confidence":"high","id":"de:src_fbb26b4abe24adf4","reason":"The caller displays status.clientId from the Solid integration. Existing targets in these locales say customer ID/number instead of the application/client identifier; the replacements use the software-client term.","target":"Client-ID:","verdict":"correct"}
+{"id":"de:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"de:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"es:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"es:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"es:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"es:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"es:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"es:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"es:src_fae75018276afa77","verdict":"keep"}
+{"id":"es:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"es:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"Total de trabajos","verdict":"correct"}
+{"id":"es:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"es:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"es:src_fb470ce44b0b85c4","verdict":"keep"}
+{"confidence":"high","id":"es:src_fb49df160209257b","reason":"The caller is an action button wired to handleLoadVerificationStats. The existing targets in these locales read as a noun/load compound or omit the action; the replacements make loading the verification statistics explicit.","target":"Cargar estadísticas de verificación","verdict":"correct"}
+{"confidence":"high","id":"es:src_fb609c505c921789","reason":"This is the Listen Along feature heading in the Pod playback panel. Spanish and French reduce it to “listen” without the together/alongsider meaning; Arabic “على طول” means along the length rather than listening together.","target":"Escuchar juntos","verdict":"correct"}
+{"id":"es:src_fb60eebf58d7a236","verdict":"keep"}
+{"id":"es:src_fb635a4459883a44","verdict":"keep"}
+{"id":"es:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"es:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"es:src_fb9470409e07618c","verdict":"keep"}
+{"id":"es:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"es:src_fba99a71f97da5a2","verdict":"keep"}
+{"id":"es:src_fbb1d998c6588f90","verdict":"keep"}
+{"id":"es:src_fbb26b4abe24adf4","verdict":"keep"}
+{"confidence":"high","id":"es:src_fbe5477b3348b530","reason":"This is the button that starts the configured local legacy-client bridge. Existing Spanish and French name a starting/departure bridge rather than instructing the user to start it; Japanese and Vietnamese also use non-action or wrong-movement wording.","target":"Iniciar puente","verdict":"correct"}
+{"id":"es:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"fr:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"fr:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"fr:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"fr:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"fr:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"fr:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"fr:src_fae75018276afa77","verdict":"keep"}
+{"id":"fr:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"Total des tâches","verdict":"correct"}
+{"id":"fr:src_fb18ae7b217b9637","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fb1a90e5df5678dc","reason":"This is the heading of the single Bridge service configuration card. French pluralizes “service”; the UI controls one bridge service, so use the singular.","target":"Contrôle du service","verdict":"correct"}
+{"id":"fr:src_fb470ce44b0b85c4","verdict":"keep"}
+{"id":"fr:src_fb49df160209257b","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fb609c505c921789","reason":"This is the Listen Along feature heading in the Pod playback panel. Spanish and French reduce it to “listen” without the together/alongsider meaning; Arabic “على طول” means along the length rather than listening together.","target":"Écouter ensemble","verdict":"correct"}
+{"id":"fr:src_fb60eebf58d7a236","verdict":"keep"}
+{"id":"fr:src_fb635a4459883a44","verdict":"keep"}
+{"id":"fr:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"fr:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"fr:src_fb9470409e07618c","verdict":"keep"}
+{"id":"fr:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"fr:src_fba99a71f97da5a2","verdict":"keep"}
+{"id":"fr:src_fbb1d998c6588f90","verdict":"keep"}
+{"id":"fr:src_fbb26b4abe24adf4","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fbe5477b3348b530","reason":"This is the button that starts the configured local legacy-client bridge. Existing Spanish and French name a starting/departure bridge rather than instructing the user to start it; Japanese and Vietnamese also use non-action or wrong-movement wording.","target":"Démarrer le pont","verdict":"correct"}
+{"id":"fr:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"hi:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"hi:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"hi:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"hi:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"hi:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"hi:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"hi:src_fae75018276afa77","verdict":"keep"}
+{"id":"hi:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"कुल कार्य","verdict":"correct"}
+{"id":"hi:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"hi:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"hi:src_fb470ce44b0b85c4","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fb49df160209257b","reason":"The caller is an action button wired to handleLoadVerificationStats. The existing targets in these locales read as a noun/load compound or omit the action; the replacements make loading the verification statistics explicit.","target":"सत्यापन आँकड़े लोड करें","verdict":"correct"}
+{"id":"hi:src_fb609c505c921789","verdict":"keep"}
+{"id":"hi:src_fb60eebf58d7a236","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fb635a4459883a44","reason":"The caller renders this localized fragment immediately before appending selectedUsername. Existing targets in these locales put the username before a grammatical suffix or after a clause that cannot take it; the replacements form a complete “could not retrieve user information:” prefix for the appended name.","target":"उपयोगकर्ता की जानकारी प्राप्त नहीं हो सकी:","verdict":"correct"}
+{"id":"hi:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"hi:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"hi:src_fb9470409e07618c","verdict":"keep"}
+{"id":"hi:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"hi:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"अधिकतम क्लाइंट संख्या","verdict":"correct"}
+{"confidence":"high","id":"hi:src_fbb26b4abe24adf4","reason":"The caller displays status.clientId from the Solid integration. Existing targets in these locales say customer ID/number instead of the application/client identifier; the replacements use the software-client term.","target":"क्लाइंट आईडी:","verdict":"correct"}
+{"id":"hi:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"hi:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"id:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"id:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"id:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"id:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"id:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"id:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"id:src_fae75018276afa77","verdict":"keep"}
+{"id":"id:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"id:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"Jumlah tugas","verdict":"correct"}
+{"id":"id:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"id:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"id:src_fb470ce44b0b85c4","verdict":"keep"}
+{"id":"id:src_fb49df160209257b","verdict":"keep"}
+{"id":"id:src_fb609c505c921789","verdict":"keep"}
+{"id":"id:src_fb60eebf58d7a236","verdict":"keep"}
+{"id":"id:src_fb635a4459883a44","verdict":"keep"}
+{"id":"id:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"id:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"id:src_fb9470409e07618c","verdict":"keep"}
+{"id":"id:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"id:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"id:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"Maks. jumlah klien","verdict":"correct"}
+{"id":"id:src_fbb26b4abe24adf4","verdict":"keep"}
+{"id":"id:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"id:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"ja:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"ja:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"ja:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"ja:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"ja:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"ja:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"ja:src_fae75018276afa77","verdict":"keep"}
+{"id":"ja:src_fb0d399db307fb40","verdict":"keep"}
+{"id":"ja:src_fb1411144fac713c","verdict":"keep"}
+{"id":"ja:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"ja:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"ja:src_fb470ce44b0b85c4","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fb49df160209257b","reason":"The caller is an action button wired to handleLoadVerificationStats. The existing targets in these locales read as a noun/load compound or omit the action; the replacements make loading the verification statistics explicit.","target":"検証統計を読み込む","verdict":"correct"}
+{"id":"ja:src_fb609c505c921789","verdict":"keep"}
+{"id":"ja:src_fb60eebf58d7a236","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fb635a4459883a44","reason":"The caller renders this localized fragment immediately before appending selectedUsername. Existing targets in these locales put the username before a grammatical suffix or after a clause that cannot take it; the replacements form a complete “could not retrieve user information:” prefix for the appended name.","target":"ユーザー情報を取得できませんでした：","verdict":"correct"}
+{"id":"ja:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"ja:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"ja:src_fb9470409e07618c","verdict":"keep"}
+{"id":"ja:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"ja:src_fba99a71f97da5a2","verdict":"keep"}
+{"id":"ja:src_fbb1d998c6588f90","verdict":"keep"}
+{"id":"ja:src_fbb26b4abe24adf4","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fbe5477b3348b530","reason":"This is the button that starts the configured local legacy-client bridge. Existing Spanish and French name a starting/departure bridge rather than instructing the user to start it; Japanese and Vietnamese also use non-action or wrong-movement wording.","target":"ブリッジを起動","verdict":"correct"}
+{"id":"ja:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"ko:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"ko:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"ko:src_fab4539d26e078ca","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fac3c810d5fe2521","reason":"The caller describes the MediaCore workflow that searches media and creates content-linked Pods. Existing Arabic means capsules rather than collaborative groups, and Korean translates Pods as physical windows; nearby feature labels use the group/Pod concept.","target":"콘텐츠를 검색하고 콘텐츠에 연결된 포드를 만듭니다.","verdict":"correct"}
+{"id":"ko:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"ko:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"ko:src_fae75018276afa77","verdict":"keep"}
+{"id":"ko:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"총 작업 수","verdict":"correct"}
+{"id":"ko:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"ko:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"ko:src_fb470ce44b0b85c4","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fb49df160209257b","reason":"The caller is an action button wired to handleLoadVerificationStats. The existing targets in these locales read as a noun/load compound or omit the action; the replacements make loading the verification statistics explicit.","target":"검증 통계 불러오기","verdict":"correct"}
+{"id":"ko:src_fb609c505c921789","verdict":"keep"}
+{"id":"ko:src_fb60eebf58d7a236","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fb635a4459883a44","reason":"The caller renders this localized fragment immediately before appending selectedUsername. Existing targets in these locales put the username before a grammatical suffix or after a clause that cannot take it; the replacements form a complete “could not retrieve user information:” prefix for the appended name.","target":"사용자 정보를 가져오지 못했습니다：","verdict":"correct"}
+{"id":"ko:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"ko:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"ko:src_fb9470409e07618c","verdict":"keep"}
+{"id":"ko:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"ko:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"최대 클라이언트 수","verdict":"correct"}
+{"id":"ko:src_fbb26b4abe24adf4","verdict":"keep"}
+{"id":"ko:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"ko:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"pt-BR:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"pt-BR:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"pt-BR:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"pt-BR:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"pt-BR:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"pt-BR:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"pt-BR:src_fae75018276afa77","verdict":"keep"}
+{"id":"pt-BR:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"Total de tarefas","verdict":"correct"}
+{"id":"pt-BR:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"pt-BR:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"pt-BR:src_fb470ce44b0b85c4","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fb49df160209257b","reason":"The caller is an action button wired to handleLoadVerificationStats. The existing targets in these locales read as a noun/load compound or omit the action; the replacements make loading the verification statistics explicit.","target":"Carregar estatísticas de verificação","verdict":"correct"}
+{"id":"pt-BR:src_fb609c505c921789","verdict":"keep"}
+{"id":"pt-BR:src_fb60eebf58d7a236","verdict":"keep"}
+{"id":"pt-BR:src_fb635a4459883a44","verdict":"keep"}
+{"id":"pt-BR:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"pt-BR:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"pt-BR:src_fb9470409e07618c","verdict":"keep"}
+{"id":"pt-BR:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"pt-BR:src_fba99a71f97da5a2","verdict":"keep"}
+{"id":"pt-BR:src_fbb1d998c6588f90","verdict":"keep"}
+{"id":"pt-BR:src_fbb26b4abe24adf4","verdict":"keep"}
+{"id":"pt-BR:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"pt-BR:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"vi:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"vi:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"vi:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"vi:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"vi:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"vi:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"vi:src_fae75018276afa77","verdict":"keep"}
+{"id":"vi:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"Tổng số tác vụ","verdict":"correct"}
+{"id":"vi:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"vi:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"vi:src_fb470ce44b0b85c4","verdict":"keep"}
+{"id":"vi:src_fb49df160209257b","verdict":"keep"}
+{"id":"vi:src_fb609c505c921789","verdict":"keep"}
+{"id":"vi:src_fb60eebf58d7a236","verdict":"keep"}
+{"id":"vi:src_fb635a4459883a44","verdict":"keep"}
+{"id":"vi:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"vi:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"vi:src_fb9470409e07618c","verdict":"keep"}
+{"id":"vi:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"vi:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"Số lượng máy khách tối đa","verdict":"correct"}
+{"confidence":"high","id":"vi:src_fbb26b4abe24adf4","reason":"The caller displays status.clientId from the Solid integration. Existing targets in these locales say customer ID/number instead of the application/client identifier; the replacements use the software-client term.","target":"ID máy khách:","verdict":"correct"}
+{"confidence":"high","id":"vi:src_fbe5477b3348b530","reason":"This is the button that starts the configured local legacy-client bridge. Existing Spanish and French name a starting/departure bridge rather than instructing the user to start it; Japanese and Vietnamese also use non-action or wrong-movement wording.","target":"Khởi động cầu nối","verdict":"correct"}
+{"id":"vi:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"zh-Hans:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"zh-Hans:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"zh-Hans:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"zh-Hans:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"zh-Hans:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"zh-Hans:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"zh-Hans:src_fae75018276afa77","verdict":"keep"}
+{"id":"zh-Hans:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"任务总数","verdict":"correct"}
+{"id":"zh-Hans:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"zh-Hans:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"zh-Hans:src_fb470ce44b0b85c4","verdict":"keep"}
+{"id":"zh-Hans:src_fb49df160209257b","verdict":"keep"}
+{"id":"zh-Hans:src_fb609c505c921789","verdict":"keep"}
+{"id":"zh-Hans:src_fb60eebf58d7a236","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fb635a4459883a44","reason":"The caller renders this localized fragment immediately before appending selectedUsername. Existing targets in these locales put the username before a grammatical suffix or after a clause that cannot take it; the replacements form a complete “could not retrieve user information:” prefix for the appended name.","target":"无法获取用户信息：","verdict":"correct"}
+{"id":"zh-Hans:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"zh-Hans:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"zh-Hans:src_fb9470409e07618c","verdict":"keep"}
+{"id":"zh-Hans:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"zh-Hans:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"最大客户端数","verdict":"correct"}
+{"confidence":"high","id":"zh-Hans:src_fbb26b4abe24adf4","reason":"The caller displays status.clientId from the Solid integration. Existing targets in these locales say customer ID/number instead of the application/client identifier; the replacements use the software-client term.","target":"客户端 ID：","verdict":"correct"}
+{"id":"zh-Hans:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"zh-Hans:src_fbedb4720f8d5d62","verdict":"keep"}
+{"id":"zh-Hant:src_fa7fe67124e94375","verdict":"keep"}
+{"id":"zh-Hant:src_fa8f08b9e1f675cc","verdict":"keep"}
+{"id":"zh-Hant:src_fab4539d26e078ca","verdict":"keep"}
+{"id":"zh-Hant:src_fac3c810d5fe2521","verdict":"keep"}
+{"id":"zh-Hant:src_fad654c2db4308fd","verdict":"keep"}
+{"id":"zh-Hant:src_fadcdc7815d10e1f","verdict":"keep"}
+{"id":"zh-Hant:src_fae75018276afa77","verdict":"keep"}
+{"id":"zh-Hant:src_fb0d399db307fb40","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fb1411144fac713c","reason":"This label is the total count in the System Jobs analytics page. Several targets use employment meanings (jobs/positions) rather than system jobs or tasks; the replacements name the task count.","target":"作業總數","verdict":"correct"}
+{"id":"zh-Hant:src_fb18ae7b217b9637","verdict":"keep"}
+{"id":"zh-Hant:src_fb1a90e5df5678dc","verdict":"keep"}
+{"id":"zh-Hant:src_fb470ce44b0b85c4","verdict":"keep"}
+{"id":"zh-Hant:src_fb49df160209257b","verdict":"keep"}
+{"id":"zh-Hant:src_fb609c505c921789","verdict":"keep"}
+{"id":"zh-Hant:src_fb60eebf58d7a236","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fb635a4459883a44","reason":"The caller renders this localized fragment immediately before appending selectedUsername. Existing targets in these locales put the username before a grammatical suffix or after a clause that cannot take it; the replacements form a complete “could not retrieve user information:” prefix for the appended name.","target":"無法取得使用者資訊：","verdict":"correct"}
+{"id":"zh-Hant:src_fb8da46694bfa931","reason":"The frozen source has no caller or surrounding UI context. “Smart-radio Wishlist seeds” could refer to search seed terms, recommendation inputs, or Wishlist entries, so the current localized wording cannot be safely judged or changed from this snapshot alone.","verdict":"uncertain"}
+{"id":"zh-Hant:src_fb8e7a1a3cb7b25d","verdict":"keep"}
+{"id":"zh-Hant:src_fb9470409e07618c","verdict":"keep"}
+{"id":"zh-Hant:src_fb9cf75606b4070d","verdict":"keep"}
+{"id":"zh-Hant:src_fba99a71f97da5a2","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fbb1d998c6588f90","reason":"The caller is the maximum-client setting for the legacy-client bridge, capped at 50. Existing targets in these locales say customers or use ungrammatical word order rather than the maximum count of client applications.","target":"最大用戶端數","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_fbb26b4abe24adf4","reason":"The caller displays status.clientId from the Solid integration. Existing targets in these locales say customer ID/number instead of the application/client identifier; the replacements use the software-client term.","target":"用戶端 ID：","verdict":"correct"}
+{"id":"zh-Hant:src_fbe5477b3348b530","verdict":"keep"}
+{"id":"zh-Hant:src_fbedb4720f8d5d62","verdict":"keep"}

@@ -1,0 +1,22 @@
+{
+  "rows": 48,
+  "uniqueSourceKeys": 10,
+  "byLocale": {
+    "ar": 6,
+    "de": 5,
+    "es": 4,
+    "fr": 4,
+    "hi": 5,
+    "id": 2,
+    "ja": 3,
+    "ko": 5,
+    "pt-BR": 2,
+    "vi": 4,
+    "zh-Hans": 4,
+    "zh-Hant": 4
+  },
+  "rootDisposition": {
+    "accepted-proposal": 48
+  },
+  "sha256": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd"
+}
