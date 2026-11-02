@@ -1,0 +1,16 @@
+{
+  "sourceId": "src_090c731ea55b379e",
+  "source": "Skipped {count} texture asset: {fileNames}.",
+  "sourceSha256": "090c731ea55b379e7f97d2bde31e7b9dbc96d45abf184a6b7306cf9da6b5e1c1",
+  "localeCellCount": 11,
+  "callerPath": "src/web/src/components/Player/Visualizer.jsx",
+  "callerLine": 551,
+  "callerFileSha256AtUpdatedHead": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+  "singularCondition": "skippedTextureAssets.length === 1",
+  "singularSource": "Skipped {count} texture asset: {fileNames}.",
+  "separatePluralSource": "Skipped {count} texture assets: {fileNames}.",
+  "decision": "accept-current in all locales",
+  "reason": "The singular key is used only when exactly one asset is skipped; the separate plural key is used for every other count.",
+  "secondReviewerConfidence": "high",
+  "reattestedAtHead": "36084c57b5a0e26804bc497c32d51c321258176d"
+}
