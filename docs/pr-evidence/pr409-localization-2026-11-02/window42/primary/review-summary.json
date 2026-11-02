@@ -1,0 +1,101 @@
+{
+  "result": "PRIMARY_REVIEW_COMPLETE_PENDING_CROSS_REVIEW_AND_NATIVE_SPEAKER_REVIEW",
+  "window": 42,
+  "pullRequest": 409,
+  "headCommit": "1b518a69d099032c497149102751271eddb0fa57",
+  "tree": "c7f351a3507a3758a10369632feeb7a001e83aeb",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceOrdinals": [
+    51,
+    75
+  ],
+  "sourceKeys": 25,
+  "nonSpanishReviewCells": 275,
+  "formalSpanishRowsPreserved": 25,
+  "priorHoldsPreserved": 50,
+  "priorExactRowsIndependentlyReattested": 1,
+  "candidateRows": 47,
+  "dispositions": {
+    "accept-current": 228,
+    "propose-correction": 14,
+    "propose-refinement": 33
+  },
+  "perLocaleVerdicts": {
+    "zh-Hans": {
+      "accept-current": 21,
+      "propose-refinement": 4
+    },
+    "hi": {
+      "accept-current": 19,
+      "propose-refinement": 4,
+      "propose-correction": 2
+    },
+    "de": {
+      "accept-current": 21,
+      "propose-refinement": 3,
+      "propose-correction": 1
+    },
+    "ja": {
+      "accept-current": 21,
+      "propose-refinement": 3,
+      "propose-correction": 1
+    },
+    "fr": {
+      "accept-current": 20,
+      "propose-refinement": 3,
+      "propose-correction": 2
+    },
+    "pt-BR": {
+      "accept-current": 21,
+      "propose-refinement": 3,
+      "propose-correction": 1
+    },
+    "ar": {
+      "accept-current": 21,
+      "propose-correction": 2,
+      "propose-refinement": 2
+    },
+    "ko": {
+      "propose-correction": 3,
+      "propose-refinement": 3,
+      "accept-current": 19
+    },
+    "zh-Hant": {
+      "accept-current": 21,
+      "propose-refinement": 4
+    },
+    "vi": {
+      "propose-correction": 2,
+      "accept-current": 21,
+      "propose-refinement": 2
+    },
+    "id": {
+      "accept-current": 23,
+      "propose-refinement": 2
+    }
+  },
+  "directCallerReferences": 41,
+  "sourcesWithoutDirectCaller": [
+    "src_0e0596861c16a65a"
+  ],
+  "currentPlaceholderIntegrityFailures": 0,
+  "currentProtectedLiteralIntegrityFailures": 0,
+  "currentMarkupIntegrityFailures": 0,
+  "candidatePlaceholderIntegrityFailures": 0,
+  "candidateProtectedLiteralIntegrityFailures": 0,
+  "candidateMarkupIntegrityFailures": 0,
+  "w41CellRowsReattested": 275,
+  "w41CellMismatchCount": 0,
+  "w41AppliedReadbacksReattested": 70,
+  "w41PriorHoldsReattested": 50,
+  "w41SpanishFormalCellsReattested": 25,
+  "reattestationAfterHeadAdvanceRequired": false,
+  "liveHeadAtCompletion": "1b518a69d099032c497149102751271eddb0fa57",
+  "nativeSpeakerReview": "outstanding",
+  "readOnly": true,
+  "notes": [
+    "No repo, catalog, PR, tests, builds, scans, CI, browser, workflow, release, or tag writes/actions were performed.",
+    "The Vietnamese “inbound links” target has no direct caller in the frozen source inventory; its proposal is standalone-text only.",
+    "The French “Source” target reuses one prior exact keep after exact source and current target hashes were reattested."
+  ]
+}

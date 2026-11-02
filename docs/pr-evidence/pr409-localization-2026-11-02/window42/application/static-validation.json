@@ -1,0 +1,31 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pull_request": 409,
+  "pinned_head": "1b518a69d099032c497149102751271eddb0fa57",
+  "pinned_tree": "c7f351a3507a3758a10369632feeb7a001e83aeb",
+  "reviewed_cells": 275,
+  "locales_reviewed": 11,
+  "catalog_keys_per_locale": 6169,
+  "primary_candidates": 47,
+  "primary_candidates_accepted": 47,
+  "independent_additional_corrections": 1,
+  "final_dispositions": {
+    "accept-current": 227,
+    "accept-cross-reviewed-primary": 47,
+    "accept-independent-correction": 1
+  },
+  "applied_changes": 48,
+  "exact_readbacks": 48,
+  "changed_locale_count": 11,
+  "w41_cells_reattested": 275,
+  "w41_applied_readbacks_reattested": 70,
+  "prior_holds_preserved": 50,
+  "w41_spanish_formal_rows_preserved": 25,
+  "w42_spanish_formal_rows_preserved": 25,
+  "w43_boundary_cells_reattested": 275,
+  "caller_references_reattested": 41,
+  "structural_failures": 0,
+  "catalog_key_sets_identical": true,
+  "native_speaker_approval": false,
+  "tests_builds_scans_ci_browser_workflows_releases_tags_merges": "none performed or changed"
+}

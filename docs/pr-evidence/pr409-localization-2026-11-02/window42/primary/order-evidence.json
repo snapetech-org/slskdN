@@ -1,0 +1,504 @@
+{
+  "window": 42,
+  "selectionRule": "next 25 lexicographically sorted non-Spanish pending source IDs after excluding all W1-W41 manual source IDs; preserve prior held sources",
+  "frozenBundleHead": null,
+  "frozenBundleTree": null,
+  "frozenBundleManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+  "frozenBundleBatchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111",
+  "priorWindowInputAttestations": [
+    {
+      "window": 1,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/review-input.jsonl",
+      "rows": 300,
+      "sha256": "11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 2,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/review-input.jsonl",
+      "rows": 300,
+      "sha256": "c8507f897140d5c9bbd38cd8b238228407541c971822ff55c55415242fc25af9",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 3,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/review-input.jsonl",
+      "rows": 300,
+      "sha256": "82c267214443adddd832221240762f4fc3d178ec39639e7d4dce250eca0aeb87",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 4,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/review-input.jsonl",
+      "rows": 300,
+      "sha256": "b1005dd04403787fbc7929dd1bb792fe601e5de462c31e830195c00ffdb70c72",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 5,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/review-input.jsonl",
+      "rows": 300,
+      "sha256": "cb4d4cd094fc666104fdcd88c6f2f3c4e6d63be7df7d5ca47b429cf566eab795",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 6,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/review-input.jsonl",
+      "rows": 300,
+      "sha256": "3fd36a787003b2a8ce1c66365135bf1b90c3e6aa30d1c3856c51dfd7f43c2664",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 7,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/review-input.jsonl",
+      "rows": 300,
+      "sha256": "77197eb0cdb8943910ad35fbedab2ba1c41db7ae36017747b3cdeb87d90ed961",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 8,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/review-input.jsonl",
+      "rows": 300,
+      "sha256": "73b80fc7fec7e9f9d8044ba78605ee3e675cd256590826ba00267f0332e3e176",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 9,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/review-input.jsonl",
+      "rows": 300,
+      "sha256": "7d4f73d3bca269185ef7a1ac460b1b6d8bfdd8202951ffa7b2afb44acec571cb",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 10,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/review-input.jsonl",
+      "rows": 300,
+      "sha256": "dc18ddabcf1e49e8283532bd9fb597e55d5f27682f3af93edff6027ff487dfed",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 11,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/review-input.jsonl",
+      "rows": 300,
+      "sha256": "90d593959e210ffdc8ca8fdf7e8a933293106829d1aa3827131dd65309418a82",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 12,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/review-input.jsonl",
+      "rows": 300,
+      "sha256": "4db161920d006dfa3ca1dcd09f8504b57689ffdc9bf55e52c3838b49a5a1ba57",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 13,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window13/review-input.jsonl",
+      "rows": 300,
+      "sha256": "638d45f1b44d5d37d79e0f78828b99fe9eb93a5bd00ebdeebaebae5b07bcb2a1",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 14,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window14/review-input.jsonl",
+      "rows": 300,
+      "sha256": "bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 15,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window15/review-input.jsonl",
+      "rows": 300,
+      "sha256": "dbfd4aa6418be05df35c70c842aca5ccb2b4c9cfc578b41978be25d911dcfbe4",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 16,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window16/review-input.jsonl",
+      "rows": 300,
+      "sha256": "849a840e92656c5782e92ee6380f3d0a442f3fc48118917e2f545a3c00eea2b3",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 17,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window17/review-input.jsonl",
+      "rows": 300,
+      "sha256": "5c8aa2d11b2fc4d452497b5975d71cf85672925f5ab8a398e6a8e445cbeb9b55",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 18,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window18/review-input.jsonl",
+      "rows": 300,
+      "sha256": "124a993a8f50ae4adaa57858c6426c8a36a57b2f789d96e7fefa960ed661c5cf",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 19,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window19/review-input.jsonl",
+      "rows": 300,
+      "sha256": "675a23d87cb111538504af36d39cb5b6efe395248503c4f5165c53b29aa3cf8a",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 20,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window20/review-input.jsonl",
+      "rows": 300,
+      "sha256": "de9c4ac3cb20993b9eca04a8188520f98de9e739d3d280ef7e4ce22cce09ada2",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 21,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window21/review-input.jsonl",
+      "rows": 300,
+      "sha256": "50eccb5239402dc25d2f27988f4541e90d66a3908e6273a204509542aa81d974",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 22,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window22/review-input.jsonl",
+      "rows": 300,
+      "sha256": "626b0b83a25d9494714ec23f308fd34b5b415eebcbbdcb4857b0d1b96b9c0ca4",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 23,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window23/review-input.jsonl",
+      "rows": 300,
+      "sha256": "23ab5a2d823b2b1ee680adb175722e517f409e7d1bf3197e8b016705c2a783c9",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 24,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window24/review-input.jsonl",
+      "rows": 300,
+      "sha256": "c8b6b51bb57d476b9272d05f27386f7f7829bacaa14f077db91003eac7898270",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 25,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window25/review-input.jsonl",
+      "rows": 300,
+      "sha256": "e3763d124513fde73ddc786fdf32ec17bce713d5ced15f26e14d62c1fc13e79e",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 26,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window26/review-input.jsonl",
+      "rows": 300,
+      "sha256": "14c65ba66c5ffd4d6074bc8b689d582b522cafe44906f1d3d6c468709604dfbb",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 27,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window27/review-input.jsonl",
+      "rows": 300,
+      "sha256": "8a4954b9d45056abafb1646eb547c3aeccaba2a57b359289ac929d15d0fc0f86",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 28,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window28/review-input.jsonl",
+      "rows": 300,
+      "sha256": "44b2c98fba43c0e3cffea0ad9e4cb14c7a844fcc0a11a2ad54751422f9ed3731",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 29,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window29/review-input.jsonl",
+      "rows": 300,
+      "sha256": "fc41b5f62ac2feaad4c5184d1d09d481b114703596f734804718d5a651942307",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 30,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window30/review-input.jsonl",
+      "rows": 264,
+      "sha256": "cdddce2d0a1eb4b24ac1dced73273ecedb23ef7ff7cc1feb6c426df35a8e8311",
+      "uniqueSourceIds": 22,
+      "verified": true
+    },
+    {
+      "window": 31,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window31/review-input.jsonl",
+      "rows": 274,
+      "sha256": "d5017efef0c3e063458c6271bb4b27d40b35bdf91cd8379e598648e9bfd0c1be",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 32,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window32/review-packet/review-input.jsonl",
+      "rows": 266,
+      "sha256": "09d534acad981c383c42c2da15b0c26a667af529cf108430ae7c388294c1f988",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 33,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window33/review-packet/review-input.jsonl",
+      "rows": 274,
+      "sha256": "9b919f98102d88f2c8de56b23a187531453ed38eac9034657b9f968b8412bcec",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 34,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window34/review-packet/review-input.jsonl",
+      "rows": 274,
+      "sha256": "549f8edf997aebcbf5ca8de93144fc9dd5331ac8177beea2b01ba8beaf29e874",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 35,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window35/review-packet/review-input.jsonl",
+      "rows": 274,
+      "sha256": "1a34ada42ec29d1e014dd845c69960bd0898a20658973111fa3f414b367f6f29",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 36,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window36/primary/review-input.jsonl",
+      "rows": 275,
+      "sha256": "afaff6fa0ec0f8ee26dae91669097dc1ecba614af5e85c364d1675da116c1bb4",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 37,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window37-primary-20261102/review-input.jsonl",
+      "rows": 273,
+      "sha256": "bc4a1ccd8201a50a926a6ff46ea904bdfa583855bce9e425f35557d7dc140f86",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 38,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window38-primary-20261102/review-input.jsonl",
+      "rows": 269,
+      "sha256": "019c8e3165489531bee00ec98881d9311a30a5a368532164092d621d479e413a",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 39,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window39-primary-20261102/review-input.jsonl",
+      "rows": 275,
+      "sha256": "976a08528cde38ad906485e145bfbb05e6ed7b080d7c7724e565176d416789e9",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 40,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window40/primary/review-input.jsonl",
+      "rows": 272,
+      "sha256": "90a07c212568a4c2fe27b709bc990a494077f5cfeb5fbd2af8ab61713130cf72",
+      "uniqueSourceIds": 25,
+      "verified": true
+    },
+    {
+      "window": 41,
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window41/primary/review-input.jsonl",
+      "rows": 275,
+      "sha256": "1873ae2f3e18458fb6da0af3f19b074347ccb523b09aac5fc64a6c45812e5887",
+      "uniqueSourceIds": 25,
+      "verified": true
+    }
+  ],
+  "w1Through41UniqueSourceIds": 1022,
+  "frozenNonSpanishPendingSourceIdCount": 5650,
+  "remainingSourceIdsBeforeW42": 4628,
+  "priorHoldRowsPreserved": 50,
+  "priorHoldSourceIds": [
+    "src_029c1853243a12a3",
+    "src_07141bc6c8b8c649",
+    "src_072c79f620d6edd4",
+    "src_0731fec9926056e0",
+    "src_fb8da46694bfa931",
+    "src_fd96813fb2cc612b",
+    "src_fe60c7ad5a5617f7"
+  ],
+  "selectedSourceIds": [
+    {
+      "ordinal": 51,
+      "sourceId": "src_0d4f70bcbb1e7c30",
+      "sourceSha256": "0d4f70bcbb1e7c305c18537f01f64d573edb6598f8513dc8d25f403108b03348",
+      "source": "Route messages, target peers, and review deduplication state."
+    },
+    {
+      "ordinal": 52,
+      "sourceId": "src_0d5da1ed1e7ccdc9",
+      "sourceSha256": "0d5da1ed1e7ccdc942ce30fc3966563b76023ac629ceafb66adcb5f3cf773e06",
+      "source": "Copy tag organization report for {name}"
+    },
+    {
+      "ordinal": 53,
+      "sourceId": "src_0d6346e060b47f1c",
+      "sourceSha256": "0d6346e060b47f1c3f9f98ac3d3c62aefccca331d4349625b6bb139c64fe16fa",
+      "source": "Matched"
+    },
+    {
+      "ordinal": 54,
+      "sourceId": "src_0d765f1844a92aea",
+      "sourceSha256": "0d765f1844a92aea8013c4a5455be86a33fd620f801607f8290f4a1c00765713",
+      "source": "CSV import failed: {message}"
+    },
+    {
+      "ordinal": 55,
+      "sourceId": "src_0d7dc2edbb50e377",
+      "sourceSha256": "0d7dc2edbb50e37741b4254415ee79968e856b1f1ec57b01fac07b467ce4bde3",
+      "source": "Refresh source providers"
+    },
+    {
+      "ordinal": 56,
+      "sourceId": "src_0d97a1b8d289d6fe",
+      "sourceSha256": "0d97a1b8d289d6feb7c04494c8a225eb9333231678fa4ebe8304b6dbb6d3fe80",
+      "source": "Hide MilkDrop visualizer"
+    },
+    {
+      "ordinal": 57,
+      "sourceId": "src_0db326ab6ce1e7c7",
+      "sourceSha256": "0db326ab6ce1e7c73eebffbc371cfa2a83d515e5e0445a1663c2202a848ba5c0",
+      "source": "Remove all matching completed rows from the server list; completed files remain on disk."
+    },
+    {
+      "ordinal": 58,
+      "sourceId": "src_0db7ad800232e491",
+      "sourceSha256": "0db7ad800232e4918b1e464aedaba813b74ae51ece1f218923044956bce4a64f",
+      "source": "Started {count} similar-track searches."
+    },
+    {
+      "ordinal": 59,
+      "sourceId": "src_0db9878dac7fdefb",
+      "sourceSha256": "0db9878dac7fdefba0d5ba3ddb3b2720219d8e0368d84cab1c11b4b2b6d29bcc",
+      "source": "Preview Lidarr wanted albums that can be synced into slskdN Wishlist."
+    },
+    {
+      "ordinal": 60,
+      "sourceId": "src_0dc9672fedff6262",
+      "sourceSha256": "0dc9672fedff6262cd18ee708206671ba83e67c09cb85c175c6c60508e5d1819",
+      "source": "Listen Along connecting"
+    },
+    {
+      "ordinal": 61,
+      "sourceId": "src_0dca6fa0ff6ad434",
+      "sourceSha256": "0dca6fa0ff6ad434646062c64a8ca244ea16cdf968c38aa025e5fb747997a847",
+      "source": "Queue this search without leaving the search page."
+    },
+    {
+      "ordinal": 62,
+      "sourceId": "src_0dd822f637746f1a",
+      "sourceSha256": "0dd822f637746f1a0c4f10148f09131502ec42df0e811899b46203993d2d2716",
+      "source": "Show all severities"
+    },
+    {
+      "ordinal": 63,
+      "sourceId": "src_0de137986edb81d2",
+      "sourceSha256": "0de137986edb81d239dac823fbe0f0df4cc69a6e0bd9d9f00b326c2a95226671",
+      "source": "Enabled and allowed to auto-download through Wishlist policy."
+    },
+    {
+      "ordinal": 64,
+      "sourceId": "src_0de1821c35acb2f3",
+      "sourceSha256": "0de1821c35acb2f358aa0b3bcb259adc2e5a9fb1f875049cac01ddea8e364096",
+      "source": "Load local message-storage counts so you can review database usage before cleanup or maintenance."
+    },
+    {
+      "ordinal": 65,
+      "sourceId": "src_0dec36086a383897",
+      "sourceSha256": "0dec36086a383897e8f2b6e22f7d0beb9524725096b234982ee6b19b5dc07cd7",
+      "source": "✗ Invalid Content ID"
+    },
+    {
+      "ordinal": 66,
+      "sourceId": "src_0dfd3efc34cc1fe4",
+      "sourceSha256": "0dfd3efc34cc1fe45fce785ea29e90c5c75e74d5e126bda6e4857d2cff37cd10",
+      "source": "Show the next page of contacts without rendering the entire contact list at once."
+    },
+    {
+      "ordinal": 67,
+      "sourceId": "src_0e0596861c16a65a",
+      "sourceSha256": "0e0596861c16a65abbdebd507c0fedc4558350eef20fc9eca04cb78da8991594",
+      "source": "inbound links"
+    },
+    {
+      "ordinal": 68,
+      "sourceId": "src_0e20bd83bc0a6dcb",
+      "sourceSha256": "0e20bd83bc0a6dcb8721530c2a78465b5274977776000e935b5cb6a27c8dd589",
+      "source": "Remote Configuration Disabled"
+    },
+    {
+      "ordinal": 69,
+      "sourceId": "src_0e21a53f20377038",
+      "sourceSha256": "0e21a53f2037703858c9bb0eeb5aff9abecbdd4fbedd1a48302ad5422ffb5252",
+      "source": "Standard (Privacy)"
+    },
+    {
+      "ordinal": 70,
+      "sourceId": "src_0e33ff5998293a59",
+      "sourceSha256": "0e33ff5998293a59b460172e3341d0ad550088909fe3e5a5e7cfd94c7e043466",
+      "source": "Avg Confidence:"
+    },
+    {
+      "ordinal": 71,
+      "sourceId": "src_0e3f65899b24c92b",
+      "sourceSha256": "0e3f65899b24c92b3cc9405cb681650dba604cbcfe6e1bf8bbc701a98eb70306",
+      "source": "e.g., audio, video, image"
+    },
+    {
+      "ordinal": 72,
+      "sourceId": "src_0e570ca6fabe24f9",
+      "sourceSha256": "0e570ca6fabe24f94e52c1833f3ffd25567022beb826fa16891f3322051bc221",
+      "source": "Source"
+    },
+    {
+      "ordinal": 73,
+      "sourceId": "src_0e584a1b63a8a243",
+      "sourceSha256": "0e584a1b63a8a24313d000424fbb0bd0e906db0e9ffb612e306e9656bc8c43d0",
+      "source": "Advanced membership publishing controls"
+    },
+    {
+      "ordinal": 74,
+      "sourceId": "src_0e62467cbf370b10",
+      "sourceSha256": "0e62467cbf370b10d3ec61be837b965ade7d932391e9280a37355f9997760f06",
+      "source": "Jump to a conversation…"
+    },
+    {
+      "ordinal": 75,
+      "sourceId": "src_0e6537ef86b246e6",
+      "sourceSha256": "0e6537ef86b246e6c077de36ebb0b1ff7b07b530fd8d004a8dfa43a15b8deac2",
+      "source": "Export native MilkDrop wave fragment"
+    }
+  ],
+  "selectionReproduced": true
+}

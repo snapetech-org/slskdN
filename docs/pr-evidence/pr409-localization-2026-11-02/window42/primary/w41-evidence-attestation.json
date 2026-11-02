@@ -1,0 +1,45 @@
+{
+  "window": 41,
+  "reviewInputHead": "ab6f8fd9fe94d222834f7e4720fd153af4e0649b",
+  "reviewInputTree": "bebc34f8806f57158140d8b831c7a17c1fc6f8f1",
+  "currentHeadAfterW41Application": "1b518a69d099032c497149102751271eddb0fa57",
+  "evidence": {
+    "primary/review-input.jsonl": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window41/primary/review-input.jsonl",
+      "sha256": "1873ae2f3e18458fb6da0af3f19b074347ccb523b09aac5fc64a6c45812e5887",
+      "rows": 275
+    },
+    "cross-review/cross-review-ledger.jsonl": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window41/cross-review/cross-review-ledger.jsonl",
+      "sha256": "ecbbe1d15ccf89a76660763c677b227b36896b7c7e1dd4ac33c77889f5c70bf0",
+      "rows": 275
+    },
+    "apply-plan.jsonl": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window41/apply-plan.jsonl",
+      "sha256": "150712193fe8324477b661320f008f5b90b4b892dce863f7d9dcdfb412effbba",
+      "rows": 70
+    },
+    "readback.jsonl": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window41/readback.jsonl",
+      "sha256": "80b4d4e055eb68e614cc6894d299bf99b135df023c2d5f54e5ff87ba207970f0",
+      "rows": 70
+    },
+    "cross-review/preserved-holds-reattestation.jsonl": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window41/cross-review/preserved-holds-reattestation.jsonl",
+      "sha256": "cd9edcd4b72fc6d85a5eb0399d1ddc109dcb36f667f8bf894786743b393a2b8e",
+      "rows": 50
+    },
+    "cross-review/preserved-spanish-reattestation.jsonl": {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/docs/pr-evidence/pr409-localization-2026-11-02/window41/cross-review/preserved-spanish-reattestation.jsonl",
+      "sha256": "ff8c0bb826eb546e2ee5262d4ccddea9aa449f76fa411b76eaea354c5b58329f",
+      "rows": 25
+    }
+  },
+  "currentCatalogReattestation": {
+    "w41ReviewedCells": 275,
+    "mismatches": 0,
+    "w41AppliedReadbacks": 70,
+    "priorHolds": 50,
+    "spanishFormalCells": 25
+  }
+}

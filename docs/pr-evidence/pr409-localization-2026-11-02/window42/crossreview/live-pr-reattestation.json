@@ -1,0 +1,19 @@
+{
+  "start": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "open",
+    "draft": true,
+    "headCommit": "1b518a69d099032c497149102751271eddb0fa57",
+    "headTree": "c7f351a3507a3758a10369632feeb7a001e83aeb",
+    "base": "main"
+  },
+  "finish": {
+    "state": "open",
+    "draft": true,
+    "headCommit": "1b518a69d099032c497149102751271eddb0fa57",
+    "headTree": "c7f351a3507a3758a10369632feeb7a001e83aeb"
+  },
+  "unchangedAtPinnedHead": true
+}
