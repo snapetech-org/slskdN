@@ -4,7 +4,7 @@
 
 - PR #409 remains open and draft. The audited source/catalog snapshot is head `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb`, tree `0eb84397dc2b4be4afd730f6818203bd5910cf15`. Subsequent commits in this workstream contain review evidence/docs only.
 - Frozen preexisting-catalog backlog: 67,080 cells. The formal result ledger has 150 valid jobs (4,800 cells), 1,951 missing jobs, and zero invalid jobs.
-- Eleven independent manual slices cover 275 source keys / 3,300 cells across the 12 direct locales. Combined verdicts: 2,677 keep, 520 high-confidence correction candidates, and 103 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
+- Twelve independent manual slices cover 300 source keys / 3,600 cells across the 12 direct locales. Combined verdicts: 2,932 keep, 564 high-confidence correction candidates, and 104 uncertain. These evidence-only decisions are separate from the formal result ledger; no corrections have been applied to catalogs.
 - Qualified native-speaker review remains required.
 
 ## Window 1
@@ -77,3 +77,9 @@ Evidence: [`window10`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/wi
 The eleventh disjoint 25-key slice covers 300 cells: 267 keep, 31 high-confidence correction candidates, and 2 uncertain. Corrections address the lyrics and forensic-analysis labels, parser-fixture terminology, Realm and Pod naming, share-group membership, French expired-membership and download-record wording, Hindi/Indonesian application-status wording, a Japanese execution-contract label, an Arabic copied-report label, and Arabic/Indonesian comparison buttons. Spanish and Vietnamese phrasing for the awkward source sentence “visible in state” remains uncertain pending native review.
 
 Evidence: [`window11`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/). Manifest SHA-256 `65e317f6dbca32d1f3350c0e107170fe28d1e9fbd195a74f1bc749775b967efa`; input `90d593959e210ffdc8ca8fdf7e8a933293106829d1aa3827131dd65309418a82`; decisions `f12d3f0e14d18c8d129bc3ddc7f405e0fe2f692e146a2b43f84e52b1a0a9a098`. The review was pinned to PR head `061d9d4d10a7595edc1de6717228bbd5f385fc78` / tree `47a7c87f07c9046ed5a3201fd58ac8ee1effdba4`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the ten prior windows, and compared all 3,000 prior input/decision rows.
+
+## Window 12
+
+The twelfth disjoint 25-key slice covers 300 cells: 255 keep, 44 high-confidence correction candidates, and 1 uncertain. Corrections address IPLD graph-structure terminology, publication statistics, configured share scanning, Smart Radio’s search-plan name, file-write impact, lossless-exact profile wording, recommendation-seed grammar, Pushbullet room mentions, local readiness, and membership-record terminology. Vietnamese wording for the compressed “No file writes” label remains uncertain pending native review.
+
+Evidence: [`window12`](../pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/). Manifest SHA-256 `28dd658c1a245f9a6a65597ec35f8a3ca1a6f6e24a2de3b05c9f80c319bde458`; input `4db161920d006dfa3ca1dcd09f8504b57689ffdc9bf55e52c3838b49a5a1ba57`; decisions `85b9121d358c023ec6402539c62eb55d6ea5950255a837f3afa88232272344e4`. The review was pinned to PR head `45645893ab0af3b7cc15556c27496bb9bb699b73` / tree `019bcabdb9d0ef709e7d3a2dd1b9da7f3ed59017`; later packaging changes are docs-only. The scratch verifier confirmed zero formal-result overlap, zero overlap with the eleven prior windows, and compared all 3,300 prior input/decision rows.
