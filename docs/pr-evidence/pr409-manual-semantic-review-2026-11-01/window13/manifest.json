@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-cell semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "b4b66f815240a7b8636a61d02a208efc314f8e10",
+  "tree": "853677967f0691c53c10cb52d565c5c046ae68e9",
+  "generatedUtc": "2026-11-02T00:11:08.234770+00:00",
+  "sourceSnapshot": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101",
+  "sourceCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreePath": "src",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089",
+    "sourceCatalogTreeUnchanged": true,
+    "sourceCatalogChangedPaths": [],
+    "changedPaths": [
+      "docs/localization/pr409-populated-catalog-semantic-review-2026-11-01.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8/review-input.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/README.md",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/SHA256SUMS.txt",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/manifest.json",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/review-decisions.jsonl",
+      "docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9/review-input.jsonl"
+    ]
+  },
+  "frozenBundle": {
+    "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-populated-review-4c2b-20261101/bundle",
+    "snapshotRepository": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-populated-review-4c2b-20261101/snapshot-repo",
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "manifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+    "batchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111",
+    "populatedCells": 68604,
+    "pendingCells": 67080,
+    "reusedExactCells": 1524
+  },
+  "currentAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCellsCovered": 4800,
+    "invalidSample": []
+  },
+  "priorManualBundles": [
+    {
+      "window": "window1",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-4c2b-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "30bc07c74d23d823c441811a559eb9a4677bc9304e6b5183d4b9cf71a229cb4e",
+      "inputSha256": "11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2",
+      "decisionSha256": "2914f53ec1e807edaeb033deefa81661a5133c1da9b269704971e87c79c1dcb6",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "071f5b20c5bf43c6473720be21aac95a2741743bd207b11e9b5d6517e6381d63",
+        "committedReadmeSha256": "2b61fc9e77e41312039f96fbbcd39b93b191902998c72961e67fd4c09e652606",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window2",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-4c2b-window2-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window2",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "32a567b651ced306e08287b731585f29f1c953e475a3f57da700a929855bb2fa",
+      "inputSha256": "c8507f897140d5c9bbd38cd8b238228407541c971822ff55c55415242fc25af9",
+      "decisionSha256": "965201e7bb42959fd262f22eb1132db8cdb6558c9f1f5e1cea0bb31697677d3d",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "a826af8417e68540b98c20aaf9df0d978f533b7d39920a398522a746a9ec9538",
+        "committedReadmeSha256": "46c900d5b94a29e8cd8dbf3d3fb23ffb851ca49655d8761f53477adde18300f3",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window3",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-4c2b-window3-124890-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window3",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "ae814abc687882d941082139eb039ef7bae053b05f839dc8550cc8c8a06d70b9",
+      "inputSha256": "82c267214443adddd832221240762f4fc3d178ec39639e7d4dce250eca0aeb87",
+      "decisionSha256": "4720deeaf0598e20d974701b65e9c9b1712c7740bdd11d8c6d2a452b1fe54d2c",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "0143fa4ae519f1a7fb3d3d77b5e1ee99ac5f68ea3aea30482c6dea9b848c0e46",
+        "committedReadmeSha256": "c52412e2a677e6333a441f56d315b6e395b694f57df56086a2383193993aa3cc",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window4",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-4c2b-window4-33a630-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window4",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "ea5d19ea1afe85ab17be9d559592e38868f3f5f690c9dc0ebc82fd9083c901e2",
+      "inputSha256": "b1005dd04403787fbc7929dd1bb792fe601e5de462c31e830195c00ffdb70c72",
+      "decisionSha256": "cbb9b148015764073c9c3c56fa4fdb0505dbb93238e275a2561431978d3ed143",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "e7a3cce9a1cad6baed3abb58d0818ff71e6f0a791cf2905f8748524a759ed422",
+        "committedReadmeSha256": "6c48f53cb311265357d9e3435a7b066aa862eea596a76d552b79385852945679",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window5",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window5-ab640-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window5",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "a687c46b9b6ae22be2baaa79ab3ccb0002201d03b77dc2ffc5db22fa77a39979",
+      "inputSha256": "cb4d4cd094fc666104fdcd88c6f2f3c4e6d63be7df7d5ca47b429cf566eab795",
+      "decisionSha256": "35bbda5c1ea44a70744abe134cc62b3ed7e84c914223737b73af80655d09b4cc",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "e637c39a633c9e3a60a3c3af6464fe0f8393d6a1fa735f74379e71a082052226",
+        "committedReadmeSha256": "faf2c2589fca094b8b42e4f07ab365b0d266ab76cd9f5404ec97dbeddda5f413",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window6",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window6-1f0edf-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window6",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "13f14a2e8ee34e14becb89ebeb9c68d538b62d4085e03903f8103ebeab3c7ab0",
+      "inputSha256": "3fd36a787003b2a8ce1c66365135bf1b90c3e6aa30d1c3856c51dfd7f43c2664",
+      "decisionSha256": "c8369e8daf83fb99363774e92c4f05c580fc0c26df3f5ada19ccccecdd3f89cc",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "b5fe380643d8ae7d69052115104a6a973cb8df07d9e38e575296470445878c78",
+        "committedReadmeSha256": "c08fbe91f272b471804d46b051e0224cdfd7823c502f620430f69cdc058b9618",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window7",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window7-ba5d2b-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window7",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "30b193dd2173898e7e5b7af8fa4738d0347af422a11520991f112f3a43e284d0",
+      "inputSha256": "77197eb0cdb8943910ad35fbedab2ba1c41db7ae36017747b3cdeb87d90ed961",
+      "decisionSha256": "18a43c82e2e0fb3df7111970876bce83741094bdf293099e56f8b06211f67a20",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "4be65d6f2fac7c50e9ff19358adadd7543a91b7980d01a381db576e628e7ef5e",
+        "committedReadmeSha256": "cfed7a66c68638a1f7427234fa9b8371e575bbfceaa0d17429e40e8925836786",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window8",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window8-44d4-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window8",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "809339be633ebc36a88453d54a53cdccc51cf700040b23af14e715b7db993e96",
+      "inputSha256": "73b80fc7fec7e9f9d8044ba78605ee3e675cd256590826ba00267f0332e3e176",
+      "decisionSha256": "740126ca575defdc6d070ee92824dba260e62b8ac6cb4bc1136d83cd2ebf6cbd",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "fe3effab1c602448cc5c5b876080c4e6270386af0828bbe790c0894f08ed4283",
+        "committedReadmeSha256": "4a0782d11aa3d96b7065b88bd654c0e9051c0311e6549e3d79c1a1218c42f5a9",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window9",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window9-b7462-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window9",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "fdfe97bb58fecebf3c755cb82f82332b0958cea0a89aa1ec6d7183f0284f974b",
+      "inputSha256": "7d4f73d3bca269185ef7a1ac460b1b6d8bfdd8202951ffa7b2afb44acec571cb",
+      "decisionSha256": "814d541e36b2b6c4884695c0f4bca70f52077d9d96a1f0e9f68fd4b04a931bb8",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "095be75a56d8e7ab72c4875212107b31250cfe364205a1d001a3cd01f38c927a",
+        "committedReadmeSha256": "3645adaae90052047dbfe8e67f877d421ec4b4c0b8a6cdb18ecd56467b137d72",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window10",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window10-917e4-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window10",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "6339cdba5b142a0e1cddc57c1ad06f9a20680ce7a57f3b0ad8ad6f9d95054af9",
+      "inputSha256": "dc18ddabcf1e49e8283532bd9fb597e55d5f27682f3af93edff6027ff487dfed",
+      "decisionSha256": "dc3ecff9c141fa4c06159c90180beb8d46bcc9ea665e335859a059a373078a3c",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "23bc64751af3280158b423f28f78b0c15b63ae8e52fa4f590880dede6d4e2792",
+        "committedReadmeSha256": "6b7d14bbbe183cd460d8d017ec01714ea8cd9d774eee316ffdb3b62c90ff938a",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window11",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window11-061d9-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window11",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "65e317f6dbca32d1f3350c0e107170fe28d1e9fbd195a74f1bc749775b967efa",
+      "inputSha256": "90d593959e210ffdc8ca8fdf7e8a933293106829d1aa3827131dd65309418a82",
+      "decisionSha256": "f12d3f0e14d18c8d129bc3ddc7f405e0fe2f692e146a2b43f84e52b1a0a9a098",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "631cc58e36485d41b2a664327db7f369381d83f8ab8ae535bb3eb097a0e86ccf",
+        "committedReadmeSha256": "9c9a79393d0f6f111fe27948838bd051b77a9d2c1d9ef2b870c885aa345baef1",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    },
+    {
+      "window": "window12",
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-window12-456458-20261101",
+      "committedPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-batch4-docs-20261101/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window12",
+      "keys": 25,
+      "cells": 300,
+      "manifestSha256": "28dd658c1a245f9a6a65597ec35f8a3ca1a6f6e24a2de3b05c9f80c319bde458",
+      "inputSha256": "4db161920d006dfa3ca1dcd09f8504b57689ffdc9bf55e52c3838b49a5a1ba57",
+      "decisionSha256": "85b9121d358c023ec6402539c62eb55d6ea5950255a837f3afa88232272344e4",
+      "committedCopyComparison": {
+        "inputJsonRowsEqual": true,
+        "decisionJsonRowsEqual": true,
+        "manifestByteEqual": true,
+        "scratchReadmeSha256": "b4643f60411e07fc1fe95f8382a9b9e7e05494501d8711a7078952bfe3a0381e",
+        "committedReadmeSha256": "c0c06996ee178af67896ec8b73946bffff964f75f04636971cf9fb26808bf513",
+        "readmeByteEqual": false,
+        "readmeProvenanceNote": "The PR copy README is a packaging/status copy recording successful verification in the original scratch bundle; scratch README retains the original verifier command and review narrative. The copied verifier is omitted from PR evidence to avoid treating committed siblings as duplicate reviews; each original scratch verifier remains.",
+        "committedVerifierIncluded": false
+      }
+    }
+  ],
+  "priorManualCellCount": 3600,
+  "priorManualKeyCount": 300,
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_e9cb3c5074ab5622",
+      "src_e9cd7b7f08611d1e",
+      "src_e9cfb4e7caa5b13b",
+      "src_e9d1efe9c556129f",
+      "src_ea0a452dff8d626e",
+      "src_ea0b350e75967161",
+      "src_ea2100dc89ae9fe2",
+      "src_ea35e6dae2aae8e7",
+      "src_ea388a892fa70d24",
+      "src_ea4ec3d04e7faae6",
+      "src_ea6ec02e136124bc",
+      "src_ea7c587572fba577",
+      "src_ea8229f7ee2a197e",
+      "src_ea8b0355da9f3185",
+      "src_eaa0e4919b66a927",
+      "src_eaa5b2911dc49b0b",
+      "src_eaa73c3a627c0355",
+      "src_eaada331d30b5919",
+      "src_eaaf0888f4211a52",
+      "src_eab3fa1da672ac64",
+      "src_eab702e553b0db6d",
+      "src_eacbca16785fccf7",
+      "src_eace6271ccf24946",
+      "src_ead6028e33bc8bc1",
+      "src_eadece606e01b6ec"
+    ],
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "existingResultOverlap": 0,
+    "priorManualOverlap": 0,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 447,
+    "nextSliceCandidateSourceIds": [
+      "src_eae34ccbc4432c13",
+      "src_eb3760993d9e9a1f",
+      "src_eb3830e25c2e8472",
+      "src_eb39cebe78819885",
+      "src_eb3b6c449d13a4b9",
+      "src_eb76668d1877fbce",
+      "src_eb93ccb20a01663d",
+      "src_eb970eb0951c6cde",
+      "src_eb986f619af229ae",
+      "src_ebb24a3bcb152fad",
+      "src_ebdf8cc00bc4d9ce",
+      "src_ebe003725d86c5f4",
+      "src_ebe60ba379836749",
+      "src_ec0e6c5d89fd7129",
+      "src_ec1e62325e1c2397",
+      "src_ec234dafe26861a9",
+      "src_ec3c7d8810bf7d0a",
+      "src_ec46d7fb329f9aab",
+      "src_ec4d30026007d8ae",
+      "src_ec4f10332e163484",
+      "src_ec5ba0abb717da87",
+      "src_ec68096b6b04b9b3",
+      "src_ec72121387a9cbff",
+      "src_ec7630ea4f56e334",
+      "src_ec7d56a01607001e"
+    ]
+  },
+  "decisionCounts": {
+    "keep": 240,
+    "correct": 36,
+    "uncertain": 24
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 20,
+      "correct": 3,
+      "uncertain": 2
+    },
+    "zh-Hans": {
+      "keep": 18,
+      "correct": 5,
+      "uncertain": 2
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 1,
+      "uncertain": 2
+    },
+    "de": {
+      "keep": 22,
+      "correct": 1,
+      "uncertain": 2
+    },
+    "ja": {
+      "keep": 21,
+      "correct": 2,
+      "uncertain": 2
+    },
+    "fr": {
+      "keep": 20,
+      "correct": 3,
+      "uncertain": 2
+    },
+    "pt-BR": {
+      "keep": 20,
+      "correct": 3,
+      "uncertain": 2
+    },
+    "ar": {
+      "keep": 18,
+      "correct": 5,
+      "uncertain": 2
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 2,
+      "uncertain": 2
+    },
+    "zh-Hant": {
+      "keep": 18,
+      "correct": 5,
+      "uncertain": 2
+    },
+    "vi": {
+      "keep": 20,
+      "correct": 3,
+      "uncertain": 2
+    },
+    "id": {
+      "keep": 20,
+      "correct": 3,
+      "uncertain": 2
+    }
+  },
+  "reviewerMethod": "independent manual semantic review using pinned source context and code callsites; no local translation-model or API call",
+  "overallConfidence": "moderate",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "sharedLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "correctionFindings": [
+    {
+      "sourceId": "src_ea0a452dff8d626e",
+      "source": "Hits:",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi"
+      ],
+      "finding": "The Wishlist shows matching Soulseek files and locked matches under this count. Several targets say visits, views, or clicks instead of search hits."
+    },
+    {
+      "sourceId": "src_ea35e6dae2aae8e7",
+      "source": "Overlay Sessions",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "fr",
+        "pt-BR",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The Mesh panel counts active overlay-network connections. Several targets describe overlapping sessions or fail to say this is a network overlay."
+    },
+    {
+      "sourceId": "src_ea8b0355da9f3185",
+      "source": "Remote radio is limited by network fairness. Check sharing activity before retrying.",
+      "affectedLocales": [
+        "zh-Hans",
+        "ja",
+        "zh-Hant"
+      ],
+      "finding": "The PlayerBar error concerns the Smart Radio stream. The Simplified/Traditional Chinese and Japanese targets read as broadcast-radio transmission instead of the established Smart Radio feature."
+    },
+    {
+      "sourceId": "src_eaa0e4919b66a927",
+      "source": "Imported {createdCount} searches ({duplicateCount} duplicates, {skippedCount} skipped)",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "This toast reports counts of imported, duplicate, and skipped searches. Several targets use unnatural number placement or omit locale-required count classifiers."
+    },
+    {
+      "sourceId": "src_eaa73c3a627c0355",
+      "source": "Fast-forward local playback",
+      "affectedLocales": [
+        "ar"
+      ],
+      "finding": "The PlayerBar action advances playback by 30 seconds. The Arabic label says fast local playback and omits forward/skip."
+    },
+    {
+      "sourceId": "src_eacbca16785fccf7",
+      "source": "No Lidarr imports recorded yet. Run a manual import to start tracking attempts.",
+      "affectedLocales": [
+        "zh-Hans",
+        "ar",
+        "zh-Hant"
+      ],
+      "finding": "The Lidarr empty state concerns software metadata-import history. These targets use the commercial-import sense instead of software import."
+    },
+    {
+      "sourceId": "src_eace6271ccf24946",
+      "source": "Local Disables",
+      "affectedLocales": [
+        "hi",
+        "ar",
+        "id"
+      ],
+      "finding": "This statistic counts locally disabled authorities. Hindi means disabilities, Indonesian means disabled people, and Arabic has unclear noun order."
+    }
+  ],
+  "uncertaintyFindings": [
+    {
+      "sourceId": "src_e9cb3c5074ab5622",
+      "source": "Created playlist collection for {playlistName} with {count} planned rows",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The code creates a collection with type “Playlist” for an imported playlist, and describes its rows as planned playlist entries. The short source “playlist collection” can mean a collection of playlists or a playlist-type collection; choose a locale-native label that preserves the product object."
+    },
+    {
+      "sourceId": "src_eab3fa1da672ac64",
+      "source": "Click to load native Soulseek interests for",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The callsite appends a username to this tooltip, but “native Soulseek interests” is ambiguous between a protocol-native interest field and built-in/local interests. Clarify the product term before choosing a locale-native rendering."
+    }
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 2171,
+      "sha256": "6a3809648cc9e0ab08aa3b67248e011e2dad9c252805cc6d7acc95ff38e76b90"
+    },
+    "review-input.jsonl": {
+      "bytes": 533200,
+      "sha256": "638d45f1b44d5d37d79e0f78828b99fe9eb93a5bd00ebdeebaebae5b07bcb2a1",
+      "rows": 300
+    },
+    "review-decisions.jsonl": {
+      "bytes": 32043,
+      "sha256": "556b4791e022bcf442589345ea88dec95f47456c565831cb7ba48ea1552a6912",
+      "rows": 300
+    },
+    "verify_evidence.py": {
+      "bytes": 8941,
+      "sha256": "e881b99e115af44f39dcf9fd82cbc68a1bf5fadb0e018267682190e1db3e888a"
+    }
+  }
+}
