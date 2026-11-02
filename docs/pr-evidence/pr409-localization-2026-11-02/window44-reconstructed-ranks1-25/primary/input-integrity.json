@@ -1,0 +1,286 @@
+{
+  "head": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "tree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "sourceSubtreeTree": "6552126d387a94e95dbe4134c1e5ac2d42b0ae11",
+  "localeCatalogSubtreeTree": "e5b964e50ee44873b4e28546b811fdbe2a45f7bb",
+  "w43PacketManifest": {
+    "path": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window43/SHA256SUMS.txt",
+    "sha256": "a350918bbac38ddc05f3325208ecd4bcced1bbe790f2a58872546c65c1794510",
+    "entries": 44,
+    "failures": [],
+    "verified": true
+  },
+  "w42RepoEvidenceManifests": [
+    {
+      "path": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window42/primary/SHA256SUMS.txt",
+      "sha256": "f72d022763fd048482b2c4108e5136ebfed1afffb21afcde94060b99ab92aef5",
+      "entries": 22,
+      "failures": [],
+      "verified": true
+    },
+    {
+      "path": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window42/crossreview/SHA256SUMS.txt",
+      "sha256": "3b1024f3edb0d560aa6e7edd2ffc20ac45818ef693698e59c52ebda68ae8ce40",
+      "entries": 21,
+      "failures": [],
+      "verified": true
+    },
+    {
+      "path": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window42/application/SHA256SUMS.txt",
+      "sha256": "3be10a1b8a3f864a2ebaaa0cf7e53a990818bd30efe2174af1f6e2793007c424",
+      "entries": 5,
+      "failures": [],
+      "verified": true
+    }
+  ],
+  "retainedScratchPacketManifests": [
+    {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window42-primary-20261102/SHA256SUMS.txt",
+      "sha256": "f72d022763fd048482b2c4108e5136ebfed1afffb21afcde94060b99ab92aef5",
+      "entries": 22,
+      "failures": [],
+      "verified": true
+    },
+    {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window42-crossreview-independent-20261102/SHA256SUMS.txt",
+      "sha256": "3b1024f3edb0d560aa6e7edd2ffc20ac45818ef693698e59c52ebda68ae8ce40",
+      "entries": 21,
+      "failures": [],
+      "verified": true
+    },
+    {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window40-primary-20261102/SHA256SUMS.txt",
+      "sha256": "77b135ec75ea7fadb0965036054dedbcc937a89763bd39e72eaa00091fae1be4",
+      "entries": 17,
+      "failures": [],
+      "verified": true
+    }
+  ],
+  "w43ExactHeadRecord": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+    "tree": "25282a0cd8197815b3ffcbec9dbea8a03a5c8725",
+    "branch": "codex/slskdn-localization-apply-20261102",
+    "remote": "taskgithub",
+    "remoteHead": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+    "livePrStart": {
+      "baseRefName": "main",
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headRefOid": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+      "isDraft": true,
+      "state": "OPEN",
+      "url": "https://github.com/snapetech-org/slskdN/pull/409"
+    },
+    "livePrEnd": {
+      "baseRefName": "main",
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headRefOid": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+      "isDraft": true,
+      "state": "OPEN",
+      "url": "https://github.com/snapetech-org/slskdN/pull/409"
+    },
+    "verifiedAtUtc": "2026-11-02T18:04:14.399108+00:00",
+    "worktreeClean": true
+  },
+  "w43OrderBoundaryRecord": {
+    "selectionClaim": "source ordinals 76–100, next 25 pending IDs following W42, as explicitly scoped by task and recorded in W42 future-boundary evidence",
+    "sourceOrdinalRange": [
+      76,
+      100
+    ],
+    "w42SourceOrdinalRange": [
+      51,
+      75
+    ],
+    "priorSourceIdsW1Through41": 1022,
+    "w42SourceIds": 25,
+    "w43SourceIds": 25,
+    "sourceIdsByOrdinal": [
+      {
+        "sourceOrdinal": 76,
+        "sourceId": "src_0e66373f45dcf3dd",
+        "source": "Label",
+        "sourceSha256": "0e66373f45dcf3dd656151e519f7ee5e3d558d9c22cb87df339bbdd2b6c6a3c1"
+      },
+      {
+        "sourceOrdinal": 77,
+        "sourceId": "src_0e6e1684b7c3fb6a",
+        "source": "Failed to load analytics",
+        "sourceSha256": "0e6e1684b7c3fb6a907c59a2e4eeb1d0d66ded168a320c2fc14762d529da82e9"
+      },
+      {
+        "sourceOrdinal": 78,
+        "sourceId": "src_0e6fd432f10ed5e6",
+        "source": "Signed warnings for suspicious fake-lossless candidates.",
+        "sourceSha256": "0e6fd432f10ed5e6c5079a328eaae127938a1e83ea4b0542fcb435f42ec7fb61"
+      },
+      {
+        "sourceOrdinal": 79,
+        "sourceId": "src_0e76960093379060",
+        "source": "History",
+        "sourceSha256": "0e769600933790607b2a13b33ddfade0fa17810eb62c3b28ee23e59516516491"
+      },
+      {
+        "sourceOrdinal": 80,
+        "sourceId": "src_0e8ec1fddec7a018",
+        "source": "HTTP Tunnel",
+        "sourceSha256": "0e8ec1fddec7a018a7007b3190c9d2668ee1064379dfdd3eb0824bb1de4f759f"
+      },
+      {
+        "sourceOrdinal": 81,
+        "sourceId": "src_0e91610117029a62",
+        "source": "Refresh",
+        "sourceSha256": "0e91610117029a62a478b7fa7df0b8598bebe3ab1e192d4b1882e310719c9671"
+      },
+      {
+        "sourceOrdinal": 82,
+        "sourceId": "src_0eaea46f111ec615",
+        "source": "Audio output {number}",
+        "sourceSha256": "0eaea46f111ec61585ed9d7b89fa8e04d038c4043636651a8f0b4b323d0af934"
+      },
+      {
+        "sourceOrdinal": 83,
+        "sourceId": "src_0eb3e36bfb24dcd9",
+        "source": "archive",
+        "sourceSha256": "0eb3e36bfb24dcd9bb1d1bece1531216b59539a8fde17ee80224af0653c92aa3"
+      },
+      {
+        "sourceOrdinal": 84,
+        "sourceId": "src_0ed2fa4dbeaa0f8f",
+        "source": "Total Connections",
+        "sourceSha256": "0ed2fa4dbeaa0f8f66daecbecd2245a361202dbbdd26e9b346b899745c23eb27"
+      },
+      {
+        "sourceOrdinal": 85,
+        "sourceId": "src_0edd8bd3f7894f83",
+        "source": "Create a named group that can be granted access to shared collections.",
+        "sourceSha256": "0edd8bd3f7894f83b7a27ee1a677fd4c0bc53877d1b9050b4189d7d1b8878bfa"
+      },
+      {
+        "sourceOrdinal": 86,
+        "sourceId": "src_0ee24381637bb187",
+        "source": "Available from Soulseek Scene",
+        "sourceSha256": "0ee24381637bb187f7ce41a1260728cc2e5cdaaafceb7090cb7d24b5bfcc4d5c"
+      },
+      {
+        "sourceOrdinal": 87,
+        "sourceId": "src_0ef5849949bcf7b6",
+        "source": "30D",
+        "sourceSha256": "0ef5849949bcf7b63a4aafd392d689e6b689f7d94a5091a115fe1516bb753b9b"
+      },
+      {
+        "sourceOrdinal": 88,
+        "sourceId": "src_0ef7a3f259aabc1b",
+        "source": "Close the {directory} file list and return to the surrounding search results.",
+        "sourceSha256": "0ef7a3f259aabc1b01f49bf79fb75ccc71c9155f5fc192e2a210274292c73e18"
+      },
+      {
+        "sourceOrdinal": 89,
+        "sourceId": "src_0efbd769ce16a42b",
+        "source": "FTP server address",
+        "sourceSha256": "0efbd769ce16a42b1b45fed8c10edbc1fba527ca2da395e32b052963c126d1e3"
+      },
+      {
+        "sourceOrdinal": 90,
+        "sourceId": "src_0efdb92dd3141889",
+        "source": "Sync Lidarr wanted albums into slskdN Wishlist review items.",
+        "sourceSha256": "0efdb92dd3141889b258094935e27469ddb769e62accc9ff88ef4a9c686d425c"
+      },
+      {
+        "sourceOrdinal": 91,
+        "sourceId": "src_0f0887ffbaa9861b",
+        "source": "Refresh the current job list.",
+        "sourceSha256": "0f0887ffbaa9861b476992f6da78f4ff8a44a0c0517df17af94909154789f82c"
+      },
+      {
+        "sourceOrdinal": 92,
+        "sourceId": "src_0f129c2f585ab612",
+        "source": "Search {item}",
+        "sourceSha256": "0f129c2f585ab612aae1629cfca5ac6d3a5ee2e530e717b735831e757a260ac2"
+      },
+      {
+        "sourceOrdinal": 93,
+        "sourceId": "src_0f132f34ccfe1c49",
+        "source": "Managed Memory",
+        "sourceSha256": "0f132f34ccfe1c49928645067cf1a56526edd3a943d77c036f70241b841e1b84"
+      },
+      {
+        "sourceOrdinal": 94,
+        "sourceId": "src_0f153d0a863ce56c",
+        "source": "Disable Web UI authentication only for tightly controlled loopback deployments.",
+        "sourceSha256": "0f153d0a863ce56ccf3ba4e6021dc7269d3d6e0b64bf233572b45501b7a81049"
+      },
+      {
+        "sourceOrdinal": 95,
+        "sourceId": "src_0f158b83a8039926",
+        "source": "Item Recs",
+        "sourceSha256": "0f158b83a80399267f32e19825363faf55f9024baee0f7137798b47ca48e730d"
+      },
+      {
+        "sourceOrdinal": 96,
+        "sourceId": "src_0f2caa0a5f49d156",
+        "source": "Please select a pod first",
+        "sourceSha256": "0f2caa0a5f49d156ea4b3a60352c299bcca3d57adac21aa1f6af38b06030f4e8"
+      },
+      {
+        "sourceOrdinal": 97,
+        "sourceId": "src_0f30500dd2a8d590",
+        "source": "AcoustID Raw",
+        "sourceSha256": "0f30500dd2a8d590aab55eff8da8e8eb04319d901f86e816c9170ee16f5e3af8"
+      },
+      {
+        "sourceOrdinal": 98,
+        "sourceId": "src_0f34b6ede09f66e5",
+        "source": "seen in pod",
+        "sourceSha256": "0f34b6ede09f66e5941339c2959c05b20e85b2d624d7983e962eef08c65b47c4"
+      },
+      {
+        "sourceOrdinal": 99,
+        "sourceId": "src_0f5752e35af5785d",
+        "source": "Load member affinity scores for this pod so you can understand how current recommendations are ranked.",
+        "sourceSha256": "0f5752e35af5785d1f34b152655b41ea9e78440fc1efb6106f00e865a6cc74b9"
+      },
+      {
+        "sourceOrdinal": 100,
+        "sourceId": "src_0f5c3ff221813fed",
+        "source": "Import failed: {message}",
+        "sourceSha256": "0f5c3ff221813fed7314a12497fdbc124c744c6950000cd445ed2063e4e2b38a"
+      }
+    ],
+    "sourceIdOrderingSortedLexically": true,
+    "fullFrozenPendingQueueReproduced": false,
+    "selectionProvenanceLimit": "The task-specified W40 bundle directory is absent, so the full 5,650-ID frozen queue cannot be rebuilt from that path. W42 recorded the future boundary as derived; all 25 source hashes/IDs, all 275 targets, source-tree identity, W42 prior-input file hashes and current caller pins were independently reattested at the live exact head."
+  },
+  "w42FutureBoundarySha256": "9fff94b98b6fbbb7972b766ab57acc4318735ed6fe407e0df0e51d56a1deafb0",
+  "w42FutureBoundaryOnlyPinsW43": true,
+  "explicitW44BoundaryFound": false,
+  "w1ThroughW41InputFilesReattested": 41,
+  "w1ThroughW41UniqueSourceIds": 1022,
+  "w42SourceIdsReattested": 25,
+  "w43SourceIdsReattested": 25,
+  "w1ThroughW43UniqueSourceIds": 1072,
+  "priorWindowSetsDisjoint": true,
+  "allPriorSourceKeysPresentInCurrentCatalog": true,
+  "sourceCatalogCount": 12,
+  "sourceInventoryCount": 6170,
+  "pendingCountAfterExclusion": 5098,
+  "w40BundlePaths": [
+    {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/bundle",
+      "exists": false
+    },
+    {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-w40-frozen-bundle",
+      "exists": false
+    }
+  ],
+  "readOnly": true,
+  "repoMutated": false,
+  "testsBuildsCiBrowserRun": false
+}

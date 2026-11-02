@@ -1,0 +1,71 @@
+{
+  "windowLabel": "W44 deterministic reconstruction; not a historically pinned ordinal window",
+  "selectionMethod": "Build source IDs as src_ plus the first 16 hex characters of SHA-256 over each exact English source key. Exclude all 1,072 source IDs in committed W1-W43 inputs. Sort the remaining IDs lexicographically and select ranks 1-25.",
+  "sourceOrdinalRange": null,
+  "selectionRankRange": [
+    1,
+    25
+  ],
+  "selectedSourceIds": [
+    "src_00584470b901894c",
+    "src_00f8edd8bfb7a769",
+    "src_01a6f87c38cf6f9a",
+    "src_0220040a680c679a",
+    "src_026741b287567ba3",
+    "src_028c91844b3f88b4",
+    "src_02fcb11878038bda",
+    "src_033ac3db37df2036",
+    "src_043275f676ad0f53",
+    "src_043a718774c572bd",
+    "src_043d027f96d30249",
+    "src_049c287ed3e2d554",
+    "src_050080a4fb0dda17",
+    "src_056c3431d4ad33cc",
+    "src_05afc66a51f62542",
+    "src_05e19370e89dff1c",
+    "src_05f82d0f2d002090",
+    "src_068263d796c6603a",
+    "src_0722d01d337955a0",
+    "src_072d70f68f12345d",
+    "src_07340fd83dfc3c75",
+    "src_0808910517813eb3",
+    "src_0879b91621242969",
+    "src_08822f8abe8a3424",
+    "src_088256c96f272851"
+  ],
+  "pendingSourceIdsBeforeSelection": 5098,
+  "currentCatalogInventoryCount": 6170,
+  "priorW1W41UniqueSourceIds": 1022,
+  "priorW42SourceIds": 25,
+  "priorW43SourceIds": 25,
+  "priorW1W43UniqueSourceIds": 1072,
+  "priorWindowSetsDisjoint": true,
+  "fullFrozenPendingQueueReproduced": false,
+  "noOrdinal101To125Invented": true,
+  "w43BoundaryAssessment": {
+    "retainedW43Head": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+    "retainedW43Tree": "25282a0cd8197815b3ffcbec9dbea8a03a5c8725",
+    "retainedSourceOrdinalRange": [
+      76,
+      100
+    ],
+    "explicitW44BoundaryFound": false,
+    "searchedW42W43PacketMatches": [],
+    "w42FutureBoundaryScope": [
+      43
+    ],
+    "w44EvidenceDirectoryExists": false,
+    "noW44OrdinalInvented": true,
+    "w40BundlePaths": [
+      {
+        "path": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w40-root/bundle",
+        "exists": false
+      },
+      {
+        "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-w40-frozen-bundle",
+        "exists": false
+      }
+    ],
+    "provenanceLimit": "W43 pins only source ordinals 76–100; W42 future-boundary evidence pins W43 only. The task-named W40 frozen bundle directories are absent, so the historical full pending queue cannot be reconstructed. W44 selection is reconstructed deterministically from the exact current 6,170-key inventory after excluding every committed W1–W43 source ID; selectionRank is used instead of a fabricated ordinal."
+  }
+}

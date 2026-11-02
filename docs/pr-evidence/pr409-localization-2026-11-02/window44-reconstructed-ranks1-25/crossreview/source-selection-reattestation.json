@@ -1,0 +1,192 @@
+{
+  "all12CatalogsOrderAndKeysetsMatch": true,
+  "capturedAtUtc": "2026-11-02T20:09:07.682502+00:00",
+  "catalogSubtreeTree": "e5b964e50ee44873b4e28546b811fdbe2a45f7bb",
+  "exactHead": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "exactTree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "historicalOrdinalWindowEstablished": false,
+  "orderedKeyInventorySha256": "a84ad362b5acd80e4944ea1c5d7316f2593b9eb82b2b272801cee806850d55a8",
+  "pendingIdsAfterPriorExclusion": 5098,
+  "priorW1W43UniqueIds": 1072,
+  "selectedIds": [
+    {
+      "historicalOrdinal": null,
+      "rank": 1,
+      "source": " | Issue {id}",
+      "sourceId": "src_00584470b901894c",
+      "sourceSha256": "00584470b901894c9de07dbb44e00f8d82de1ef1a8e3929eacece18ad9b1bd84"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 2,
+      "source": "limited download history",
+      "sourceId": "src_00f8edd8bfb7a769",
+      "sourceSha256": "00f8edd8bfb7a769f334df3ff0b14ce831829bb1859efd7044fcb501165e7a41"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 3,
+      "source": "Lidarr",
+      "sourceId": "src_01a6f87c38cf6f9a",
+      "sourceSha256": "01a6f87c38cf6f9acfdbd0d5e9096f945a84099ae4358bfe744293ba52eea3bd"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 4,
+      "source": "Readiness: {readiness}",
+      "sourceId": "src_0220040a680c679a",
+      "sourceSha256": "0220040a680c679a9ddd54cbc2704af079f1abb4f312551ad9ec87c5ac4847e9"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 5,
+      "source": "Expire candidates: {count}",
+      "sourceId": "src_026741b287567ba3",
+      "sourceSha256": "026741b287567ba3aa6f9735b816c61ea2cf8cf0cfddab8aeb0efaf7128af66e"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 6,
+      "source": "Album title: {title}",
+      "sourceId": "src_028c91844b3f88b4",
+      "sourceSha256": "028c91844b3f88b40b0dd1c072ea7d954a84549b91af4016fe38d3cc64b372e8"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 7,
+      "source": "Minimum weight: {percent}%",
+      "sourceId": "src_02fcb11878038bda",
+      "sourceSha256": "02fcb11878038bda20180ab3f7b64d756ba140fd1cdb8ea00d4c7f35274ca96a"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 8,
+      "source": "0/{length}",
+      "sourceId": "src_033ac3db37df2036",
+      "sourceSha256": "033ac3db37df20368c972cf89ee1b04a14a36963e4b82763d67e517b60c4424c"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 9,
+      "source": "Trusted jurors reached a supermajority recommendation.",
+      "sourceId": "src_043275f676ad0f53",
+      "sourceSha256": "043275f676ad0f53bd2d3167328a3d1503715734097e7e8e0ee3869daa9d3f5e"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 10,
+      "source": "s",
+      "sourceId": "src_043a718774c572bd",
+      "sourceSha256": "043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 11,
+      "source": "Local quality signals are ignored by reviewer override",
+      "sourceId": "src_043d027f96d30249",
+      "sourceSha256": "043d027f96d30249f4c97c0fcf380b0bb602df318c6207b1f7dab5fa74563822"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 12,
+      "source": "pods",
+      "sourceId": "src_049c287ed3e2d554",
+      "sourceSha256": "049c287ed3e2d554fabbbf4055dc3621a8bf44852f372b29a1be7570653fe789"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 13,
+      "source": "ReplayGain will not run.",
+      "sourceId": "src_050080a4fb0dda17",
+      "sourceSha256": "050080a4fb0dda17988e592f716053957cd48388062008c463b39fcb99b234da"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 14,
+      "source": "  {description}",
+      "sourceId": "src_056c3431d4ad33cc",
+      "sourceSha256": "056c3431d4ad33cc97196741b469875d1bedf06b519bc604ada77bddaef58f08"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 15,
+      "source": "AcoustID",
+      "sourceId": "src_05afc66a51f62542",
+      "sourceSha256": "05afc66a51f625427f538dc3de47cd7d6e2fbcfaff5648e5bd17e884d898acba"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 16,
+      "source": "untrusted provenance tier: {tier}",
+      "sourceId": "src_05e19370e89dff1c",
+      "sourceSha256": "05e19370e89dff1c55ce128fee332f0918120368900ccb2c278eeff0ed1a01b7"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 17,
+      "source": "Spectral bandwidth {bandwidth}kHz suggests {bitrate}kbps lossy source",
+      "sourceId": "src_05f82d0f2d002090",
+      "sourceSha256": "05f82d0f2d002090a8939a3aaa9c47ab1595da8226333bf2783ed016d3f9f599"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 18,
+      "source": "- [{severity}] {area}: {summary}",
+      "sourceId": "src_068263d796c6603a",
+      "sourceSha256": "068263d796c6603a9481ab2fea66db4f1568d427e30d15b3da387b0c56dc59bc"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 19,
+      "source": "the selected port",
+      "sourceId": "src_0722d01d337955a0",
+      "sourceSha256": "0722d01d337955a0371c138248ef53168bc920dd8f0431309aa1a58df05a641f"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 20,
+      "source": "{artist} - {title}",
+      "sourceId": "src_072d70f68f12345d",
+      "sourceSha256": "072d70f68f12345d9c5ef8b8db64c388ce928c6d432bbc8c100c0a78013f961a"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 21,
+      "source": "Private Message from {username}",
+      "sourceId": "src_07340fd83dfc3c75",
+      "sourceSha256": "07340fd83dfc3c751ff73aa2ce1afe3c0dd08233da471abf330ffaf263a9b177"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 22,
+      "source": "slskdN media-server sync review",
+      "sourceId": "src_0808910517813eb3",
+      "sourceSha256": "0808910517813eb32cf9d5fd54c0a7d109639deae332ed39db4154f5f33a00c2"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 23,
+      "source": "Evidence: {evidence}",
+      "sourceId": "src_0879b91621242969",
+      "sourceSha256": "0879b916212429691c91e1395f373a853ffa6493f6644105bd9a69fa437ea751"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 24,
+      "source": " | {severity}",
+      "sourceId": "src_08822f8abe8a3424",
+      "sourceSha256": "08822f8abe8a3424d77f678995591619cb0ef2970610e1eea30842a291d8b0d8"
+    },
+    {
+      "historicalOrdinal": null,
+      "rank": 25,
+      "source": "Search seeds:",
+      "sourceId": "src_088256c96f272851",
+      "sourceSha256": "088256c96f272851d00fc02297088782b96ec2d0824a924472e1747e0cb900ce"
+    }
+  ],
+  "sourceIdInventorySha256": "e7dbd7640d1e6d8285ad1551ca733c9004fa03902ea5032240a71d41fffd1141",
+  "sourceKeyCount": 6170,
+  "sourceSelectionClaim": "Ranks 1–25 from the exact current lexicographically sorted pending source-ID queue after W1-W43 exclusion; no historical source ordinal is claimed.",
+  "sourceSubtreeTree": "6552126d387a94e95dbe4134c1e5ac2d42b0ae11"
+}

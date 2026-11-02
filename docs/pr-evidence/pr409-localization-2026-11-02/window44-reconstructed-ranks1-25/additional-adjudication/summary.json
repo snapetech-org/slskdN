@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "title": "slskdN PR #409 W44 additional wording proposal adjudication",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "exactHead": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "exactTree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "state": "OPEN",
+  "draft": true,
+  "scope": {
+    "proposals": 4,
+    "sourceIds": 3,
+    "locales": [
+      "ar",
+      "id",
+      "pt-BR"
+    ]
+  },
+  "verdictCounts": {
+    "accept-additional-correction": 2,
+    "accept-additional-refinement": 2
+  },
+  "allFinalTargetsMatchCandidates": true,
+  "upstreamCallerGapHoldsOutsideScope": 24,
+  "callerGapHoldsRevisited": false,
+  "reviewCoverage": {
+    "proposalsIndependentlyAdjudicated": 4,
+    "callerRefsReattested": 5,
+    "catalogBlobsReattested": 3
+  },
+  "structuralChecksPassed": true,
+  "nativeSpeakerApproval": false,
+  "nativeSpeakerReview": "outstanding",
+  "confidence": "moderate",
+  "repositoryModified": false,
+  "prModified": false,
+  "testsBuildCiBrowserRun": false,
+  "inputManifestVerification": {
+    "crossReviewRows": 12,
+    "primaryRows": 18,
+    "crossReviewManifestSha256": "2d33af9fdbf5252d7fcdb35a68d8e5671feb961a52f6cb4cf4f6bc9df42c7a78",
+    "primaryManifestSha256": "4bc75c5111f8e4e6e650225e6e4b3e9cc62eb2f738adb0d8fe66e3dcfeeb2068"
+  }
+}
