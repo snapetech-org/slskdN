@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W70 ranks 628-652 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "tree": "7168de556608115be3b7e16b9ceb30b977df904b",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "remainingQueueRankRange": [
+    528,
+    552
+  ],
+  "continuationRankRange": [
+    628,
+    652
+  ],
+  "previousWindow": "W69",
+  "nextUnselectedContinuationRank": 653,
+  "nextUnselectedSourceId": "src_2919fe8558c441c9",
+  "priorSelectedIdsExcluded": 1732,
+  "priorHeldCellsReattested": 140,
+  "priorHoldLineage": {
+    "carriedFromPriorW68": 128,
+    "addedAndHeldInW69": 12
+  },
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 1,
+    "protectedLiteral": 2
+  },
+  "w69LineagePins": {
+    "candidateFreeManifestSha256": "d27b8b6801b4bf7361685c8ec7366caf4a91e8a464de45b213b0b744025e9fa1",
+    "candidateFreeChecksumsSha256": "9ce22e3db93f85de3a2cbdf6bb712daf1424d3faddd698c0f7c4c4809a8f8199",
+    "primaryManifestSha256": "a1623a37ca699e3fb8a472d72ae0cc1c382ac66d0813b03acdd3cfab20fda5a6",
+    "primaryChecksumsSha256": "b11c668013457b0a3b307ccc53fb7a07730463bb7ba747bce1b19c028f384844",
+    "primaryLedgerSha256": "72d76178f39d4078137324cf2c9321bcf250eeec178003e4616b369accecf43b"
+  },
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1575,
+      "sha256": "5274cce51d83eb7cd1774c2ed72dbc9fc43a8261530e7376cd518023afec7213"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 129,
+      "sha256": "5e420b1e24e874d0d2bcdb0c8f9d58b1c6fd6119b8a16bd3598ba4d443e15efe"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 54514,
+      "sha256": "0a5a002266e87cca0713c4b4792b631c4def666df4c7845dfb61036d4d0ff037"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "c5fca451039eb5adee066282e5081f8f47671606b53e7a92290d5cd3fcbb3663"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 596,
+      "sha256": "992dab20f09ef995add8bc4de9aa0a508267873ccdcbe4fa4f0458a33c3c74e7"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 197,
+      "sha256": "de2f5402848cf00b5e0d3b83ae5dff185a40a178dbc0056e05bc4077952b542b"
+    },
+    {
+      "path": "prior-held-cell-reattestation.jsonl",
+      "bytes": 174667,
+      "sha256": "c980483176c30601da64f49df1425d7d573f0d3bbf271b3e528acbc55d5e9764"
+    },
+    {
+      "path": "prior-selected-id-exclusions.jsonl",
+      "bytes": 541592,
+      "sha256": "e00918e4173d6ea855379e6244eaa8d976488835a3806ec39aeed1af849dfbad"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1786,
+      "sha256": "ccd79386497afe0799487f194d6862cfe81c0b228815f444cdf7accf1678f3d7"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8483,
+      "sha256": "6eb6d645e6ba83339962047dd6ccb1696f96ec2c68a7dcc555ed8fa333da89b4"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 486514,
+      "sha256": "c7bb79d3f53d888679660d73fbf37be0a1a131aabe3103bd8b91e8df260827a9"
+    },
+    {
+      "path": "source-inventory-pinned.jsonl",
+      "bytes": 1800171,
+      "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7166,
+      "sha256": "0ad7438a1b35d96e81260232b0369e5400ac3ec429e1a7bfa81452941f3235c4"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 10175,
+      "sha256": "a756d8202a51e4887ee692d2f0869977798ac2531619f5e7d986a47d2fcdd637"
+    }
+  ]
+}

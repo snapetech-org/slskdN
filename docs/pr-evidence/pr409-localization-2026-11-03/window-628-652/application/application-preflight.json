@@ -1,0 +1,68 @@
+{
+  "result": "PASS",
+  "capturedAtUTC": "2026-11-03T22:54:25.237773+00:00",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "parentHead": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "parentTree": "7168de556608115be3b7e16b9ceb30b977df904b",
+  "prApiBaseRefName": "main",
+  "prApiBaseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "currentMainTip": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "mergeBase": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "aheadOfCurrentMain": 142,
+  "behindCurrentMain": 4,
+  "branchRef": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "pullRef": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "state": "OPEN",
+  "draft": true,
+  "prBodySha256": "2befda5d9828edbdfe30ed990e6f77b2afc3b30b15f8f246ce1247601b4f7a79",
+  "prBodyBytes": 95556,
+  "mainHistoryRebased": false,
+  "crossAuditVerifier": {
+    "result": "PASS",
+    "head": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+    "tree": "7168de556608115be3b7e16b9ceb30b977df904b",
+    "cells": 300,
+    "crossDispositionCounts": {
+      "accept-current": 203,
+      "correction": 47,
+      "refinement": 50
+    },
+    "targetDisagreements": 92,
+    "dispositionDisagreements": 70,
+    "dispositionOnly": 2,
+    "selectedChanges": 97,
+    "sharedChanged": 5,
+    "carriedHolds": 140,
+    "priorIdsExcluded": 1732,
+    "catalogsReattested": 12,
+    "callerFilesAndLinesReattested": 43,
+    "sourceInventoryRowsReattested": 6176,
+    "baselineTokenMismatches": {
+      "placeholder": 0,
+      "markup": 0,
+      "numeric": 1,
+      "protectedLiteral": 2
+    },
+    "selectedTokenFailures": {
+      "placeholder": 0,
+      "markup": 0,
+      "numeric": 0,
+      "protectedLiteral": 0
+    },
+    "packetCopyFilesCompared": {
+      "candidateFree": 17,
+      "primary": 8,
+      "blind": 5
+    },
+    "blindVerifierRerun": true,
+    "repoCleanAtExactHead": true
+  },
+  "cellsReattested": 300,
+  "selectedChanges": 97,
+  "carriedHoldsReattested": 140,
+  "priorIdsExcluded": 1732,
+  "catalogFilesReattested": 12,
+  "catalogEntriesPerFile": 6176
+}

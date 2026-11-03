@@ -1,0 +1,99 @@
+{
+  "artifact": "slskdN PR #409 W70 independent blind semantic review",
+  "baseBranch": "main",
+  "baseHead": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baselineTokenMismatchCounts": {
+    "numericTokens": 1,
+    "protectedLiterals": 2
+  },
+  "baselineTokenRepairs": [
+    {
+      "continuationRank": 631,
+      "locale": "ar"
+    },
+    {
+      "continuationRank": 631,
+      "locale": "hi"
+    },
+    {
+      "continuationRank": 638,
+      "locale": "ar"
+    }
+  ],
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFree": true,
+  "candidateFreeInputManifestSha256": "f2d7adeda9c470362cf6cd4c6a46e161b33d665a9929719c32437c4d05eb5e04",
+  "candidateFreeInputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w70-ranks628-652-candidate-free-20261103/input",
+  "candidateFreePacketChecksumsSha256": "d4523d543e816f4878cad4b17203b53c1eee947e30c52c4db04019bfeebdcdc2",
+  "dispositionCounts": {
+    "accept-current": 212,
+    "correction": 45,
+    "refinement": 43
+  },
+  "draft": true,
+  "files": [
+    {
+      "bytes": 593770,
+      "path": "blind-ledger.jsonl",
+      "sha256": "837ec2d4fba03cf41337f7ddbe166cd969d2384e28f9248791a4086f9e31f53b"
+    },
+    {
+      "bytes": 158804,
+      "path": "prior-hold-reattestation.jsonl",
+      "sha256": "2d2e7aa5060f1c3907d20e37986a6ad9dc4b83bb770370d20fe7cb980d0272a6"
+    },
+    {
+      "bytes": 5619,
+      "path": "verify_blind.py",
+      "sha256": "0818502e2cfec20960f561acf59e8af4741c695953b1aab390003571cab70ae3"
+    }
+  ],
+  "head": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "independence": {
+    "crossAuditPerformed": false,
+    "primaryLedgerOrSummaryRead": false
+  },
+  "livePinReattestation": {
+    "branchRef": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+    "prHead": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+    "pullRef": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+    "verifiedAtUtc": "2026-11-03T21:26:15Z"
+  },
+  "nextUnselectedContinuationRank": 653,
+  "nextUnselectedSourceId": "src_2919fe8558c441c9",
+  "postSelectionTokenMismatchCounts": {},
+  "priorHoldLineage": {
+    "W68Carried": 128,
+    "W69Carried": 12
+  },
+  "priorHoldReattestationCount": 140,
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "repoOrPrModified": false,
+  "repository": "snapetech-org/slskdN",
+  "reviewScope": {
+    "browserReviewPerformed": false,
+    "callerContextReviewed": true,
+    "nativeSpeakerReviewPerformed": false
+  },
+  "reviewType": "independent-blind",
+  "schemaVersion": 1,
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "state": "OPEN",
+  "taskScratchFreeBytesBeforeWrite": 280572473344,
+  "tree": "7168de556608115be3b7e16b9ceb30b977df904b",
+  "window": {
+    "cellCount": 300,
+    "continuationRankRange": [
+      628,
+      652
+    ],
+    "localeCount": 12,
+    "name": "W70",
+    "remainingQueueRankRange": [
+      528,
+      552
+    ],
+    "sourceCount": 25
+  }
+}

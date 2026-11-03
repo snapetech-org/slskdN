@@ -1,0 +1,114 @@
+{
+  "schema": "slskdn-cross-audit-summary/v1",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W70",
+  "head": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "tree": "7168de556608115be3b7e16b9ceb30b977df904b",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "primaryDispositionCounts": {
+    "accept-current": 252,
+    "correction": 32,
+    "refinement": 16
+  },
+  "blindDispositionCounts": {
+    "accept-current": 212,
+    "refinement": 43,
+    "correction": 45
+  },
+  "crossDispositionCounts": {
+    "accept-current": 203,
+    "correction": 47,
+    "refinement": 50
+  },
+  "primaryBlindTargetDisagreements": 92,
+  "primaryBlindDispositionDisagreements": 70,
+  "dispositionOnlyDisagreements": 2,
+  "primaryBlindSharedChangedTargets": 5,
+  "selectedTargetChanges": 97,
+  "retainedCurrent": 203,
+  "newWindowHolds": 0,
+  "carryForwardHoldsReattested": 140,
+  "carriedHoldLineage": {
+    "W68": 128,
+    "W69": 12
+  },
+  "priorSelectedIdsExcluded": 1732,
+  "sourceInventoryRows": 6176,
+  "firstContinuationRank": 628,
+  "lastContinuationRank": 652,
+  "firstRemainingQueueRank": 528,
+  "lastRemainingQueueRank": 552,
+  "nextUnselectedContinuationRank": 653,
+  "nextUnselectedSourceId": "src_2919fe8558c441c9",
+  "productionCallerRows": 25,
+  "productionCallerReferences": 43,
+  "selectionSources": {
+    "consensus": 208,
+    "primary": 26,
+    "blind": 66
+  },
+  "targetDisagreementSelectionSources": {
+    "primary": 26,
+    "blind": 66
+  },
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 1,
+    "protectedLiteral": 2
+  },
+  "selectedTokenMismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "baselineTokenRepairs": [
+    {
+      "continuationRank": 631,
+      "locale": "ar",
+      "kind": "protected-literal",
+      "missingCurrent": [
+        "GPU"
+      ],
+      "selectedTargetPreserves": [
+        "GPU",
+        "MilkDrop",
+        "FPS"
+      ]
+    },
+    {
+      "continuationRank": 631,
+      "locale": "hi",
+      "kind": "protected-literal",
+      "missingCurrent": [
+        "MilkDrop"
+      ],
+      "selectedTargetPreserves": [
+        "GPU",
+        "MilkDrop",
+        "FPS"
+      ]
+    },
+    {
+      "continuationRank": 638,
+      "locale": "ar",
+      "kind": "numeric-token",
+      "missingCurrent": [
+        "1"
+      ],
+      "selectedTargetPreserves": [
+        "1",
+        "Soulseek"
+      ]
+    }
+  ],
+  "pinnedSourceCatalogCallerPreimagesReattested": true,
+  "noRelevantSourceCatalogCallerDrift": true,
+  "nativeSpeakerReviewPerformed": false,
+  "browserReviewPerformed": false,
+  "confidence": "moderate; source/caller review with no qualified native-speaker signoff"
+}

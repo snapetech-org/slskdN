@@ -1,0 +1,31 @@
+Candidate-free W70 verifier passed before primary review.
+
+{
+  "pass": true,
+  "head": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "tree": "7168de556608115be3b7e16b9ceb30b977df904b",
+  "pr": "OPEN/DRAFT",
+  "sources": 25,
+  "cells": 300,
+  "ranks": [
+    628,
+    652
+  ],
+  "remainingQueueRanks": [
+    528,
+    552
+  ],
+  "nextBoundary": {
+    "rank": 653,
+    "sourceId": "src_2919fe8558c441c9"
+  },
+  "priorIds": 1732,
+  "carriedHolds": 140,
+  "callerContexts": 43,
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 1,
+    "protectedLiteral": 2
+  }
+}
