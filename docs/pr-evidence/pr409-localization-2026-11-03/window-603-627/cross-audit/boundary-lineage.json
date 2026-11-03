@@ -1,0 +1,27 @@
+{
+  "w49InventoryRows": 6176,
+  "w49InventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "w68CandidateFreeChecksumListSha256": "0ddb2a00cefbe6dbc16c883bb43b316ee316638d014e57c4d24441af774ed2ca",
+  "w68ContinuationRanks": [
+    578,
+    602
+  ],
+  "w68CrossAuditChecksumsSha256": "8e4305fb97f6d188f061dae0e63aeaf2fc8a3b4f3d29c7353030767c6050c62a",
+  "w68CrossAuditManifestSha256": "7831cf2e0928df0084bbed08345771840408bda090810178154ec6a8be8a1775",
+  "w68Head": "973a65312a475de4d8aa39aee837249553fd884e",
+  "w68NextUnselectedRank": 603,
+  "w68NextUnselectedSourceId": "src_26d85de841644aff",
+  "w68Tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+  "w69FirstSelectedSourceId": "src_26d85de841644aff",
+  "w69Head": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "w69NextUnselectedRank": 628,
+  "w69NextUnselectedSourceId": "src_27f3ec760e95a097",
+  "w69PreviousWindow": "W68",
+  "w69PreviousWindowFinalRank": 602,
+  "w69PreviousWindowFinalSourceId": "src_26d6e736f7dcfcf6",
+  "w69SelectedRanks": [
+    603,
+    627
+  ],
+  "w69Tree": "becf17f8be3f3251691002dbce487c1e94693e63"
+}

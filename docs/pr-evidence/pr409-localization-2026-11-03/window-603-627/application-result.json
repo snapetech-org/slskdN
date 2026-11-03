@@ -1,0 +1,268 @@
+{
+  "applicationMethod": "Surgical JSON string-token replacement; preserves non-target bytes, entry order, and key set.",
+  "appliedAtUtc": "2026-11-03T20:02:51.020194+00:00",
+  "baseHead": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "baseTree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "baselineProtectedLiteralFlagsResolved": 3,
+  "catalogs": [
+    {
+      "catalogGitBlobAfter": "4701a1463c8fec882ea49c83f686c8dc8f7cdffb",
+      "catalogGitBlobBefore": "0d300a6d352266498faa27fd745ba2a94f28348a",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "catalogSha256After": "2ca22c0f210f94e299ee7cd7421bc2d44b81df2601586770264ee8d8c26a8489",
+      "catalogSha256Before": "770e1b843c01c0925994222247e3ad0726a772da4fa1ee63d262a4ebd262300f",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Batch Publish Descriptors",
+        "Publishing an opinion can expose the selected content ID, variant hash, score, note, and peer preference signal to pod participants.",
+        "added",
+        "Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue.",
+        "Maximize the visualizer to fullscreen."
+      ],
+      "changedEntryCount": 6,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "8f60c762556c527eed673e956951823eecc5d74b",
+      "catalogGitBlobBefore": "d0b90763f5a54bd2069a2617cbec9d66fc6845c9",
+      "catalogPath": "src/web/public/locales/de.json",
+      "catalogSha256After": "b3e0edaf2d03d71deda4858d4a53d17fdecdefcbe40d6e0933c4efabf2d17afc",
+      "catalogSha256Before": "d13233ea6711016790424bb7c03b414e627af48b5f14b8f1945f02f68965b093",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Batch Publish Descriptors",
+        "Apply this filter to {count} selected wishlist items in one step.",
+        "Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library."
+      ],
+      "changedEntryCount": 4,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "666533eec64d209c540f146103965da42d069237",
+      "catalogGitBlobBefore": "ad93b06ab075955de94138a46197b615f48e6ccc",
+      "catalogPath": "src/web/public/locales/es.json",
+      "catalogSha256After": "203ac20504cc2f06f04fce09d091c858e19081a87b3f9a2e937a5001db553564",
+      "catalogSha256Before": "9565f66660f234c722e54bb7fc4b8cc59ab78f48dfbf28bddec37a1c45987fd7",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Batch Publish Descriptors",
+        "Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue.",
+        "Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.",
+        "Allow this peer folder to appear again in future runs of this wishlist item."
+      ],
+      "changedEntryCount": 5,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "02b6c7baebdeb392911353765ef30c8f02b0bbbe",
+      "catalogGitBlobBefore": "628ff6820acae4b42fcd01da5253da557e1157f1",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "catalogSha256After": "d92ca7f821911aa007da1277edced822da578d7af4c4c05a3b625f7f9a50b550",
+      "catalogSha256Before": "0f058f50a61b2cb87315abe6c430a1d20540f56c694259c8fa8a5c1a4ba5ff7a",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Preview tag organization for {name}",
+        "Batch Publish Descriptors",
+        "Native interests loaded for {username}.",
+        "Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue.",
+        "Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.",
+        "Allow this peer folder to appear again in future runs of this wishlist item.",
+        "Paste Plex, Jellyfin, Navidrome, or generic CSV/JSON play history here for local import."
+      ],
+      "changedEntryCount": 8,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "731b8d0dde6ede1d3837d2c798078d22abd6eabd",
+      "catalogGitBlobBefore": "34d5f89f541a6a9ce60d4b2341a62fe9fd9dd830",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "catalogSha256After": "1b302a3b0531ea5e5fe5a748e361625945f67d42e5f0c32732186468d5b3769e",
+      "catalogSha256Before": "371cb80eae72d2b6d72b0c9ef67bbd4bf17cf82056910f16a45297e56fddaeb8",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Batch Publish Descriptors",
+        "Publishing an opinion can expose the selected content ID, variant hash, score, note, and peer preference signal to pod participants.",
+        "Load the read-only conflict report for this realm. This does not publish, disable, search, browse, or download.",
+        "added",
+        "Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue.",
+        "Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.",
+        "Maximize the visualizer to fullscreen.",
+        "Paste Plex, Jellyfin, Navidrome, or generic CSV/JSON play history here for local import."
+      ],
+      "changedEntryCount": 9,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "9104f3a1260babc6f8399faa5a77acf4653a7ca9",
+      "catalogGitBlobBefore": "a86fc8fd76f3081a01d06c8e2455454891838075",
+      "catalogPath": "src/web/public/locales/id.json",
+      "catalogSha256After": "bbda8d68c4b555e62c8fe4f2e9139cac515b060b2d6b00e0a1f96cf485cbea39",
+      "catalogSha256Before": "4ac278c1b92c7ded5312052eb3cc168adf5652c9fdcfc4088a6b99e491638140",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Batch Publish Descriptors",
+        "Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.",
+        "Maximize the visualizer to fullscreen."
+      ],
+      "changedEntryCount": 4,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "17919993cc81332f9ed933127d4e6eb4fc055b34",
+      "catalogGitBlobBefore": "b2166b90aaee13ca7dc71e1d8c82a62eeb1d0518",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "catalogSha256After": "413564cf50d1b590974b4acde5e8e0fb0dc78676356e3099bc1762a7fe7f74c9",
+      "catalogSha256Before": "e2c1ef9411ce8ed7ac7f6bb3bc50566c1d2b9be3accc368c7230511e972cf4dd",
+      "changedCatalogKeys": [
+        "Batch Publish Descriptors",
+        "Publishing an opinion can expose the selected content ID, variant hash, score, note, and peer preference signal to pod participants.",
+        "added",
+        "Library Health Replacement Search Seeds",
+        "Maximize the visualizer to fullscreen."
+      ],
+      "changedEntryCount": 5,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "07803ccbf858b97bb1cce57d11eb3c7022a24c13",
+      "catalogGitBlobBefore": "e37afe71f72b2284f5f39f3cce6d096355154581",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "catalogSha256After": "da93c81b3793120a1773c56fdf598f62f40e6063b0fca2ad234753d31b25f45f",
+      "catalogSha256Before": "6f9d82390236ee923515f1b0d561cc86e66a2e9049204fe29cb69c8a63a637ae",
+      "changedCatalogKeys": [
+        "Batch Publish Descriptors",
+        "Library Health Replacement Search Seeds",
+        "Maximize the visualizer to fullscreen."
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "d266e78dd6b7cde6ef60e96e0d6db00ebd302c18",
+      "catalogGitBlobBefore": "6c5cd1156d73c0fc9c573dac9f9edc06e12af0ae",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "catalogSha256After": "d4ffb5bf7f14f442b85acef00cb54b102d38801433bd11f1b392033f6f0644f3",
+      "catalogSha256Before": "4cf6da724d359469d4de72fe9d7f88185268a8e471b5d0ff921e42b20151f3df",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Batch Publish Descriptors",
+        "added",
+        "Library Health Replacement Search Seeds",
+        "Audio tags were saved, but the share scan could not start. Run a share scan to refresh the library.",
+        "Maximize the visualizer to fullscreen."
+      ],
+      "changedEntryCount": 6,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "9b51487ad81daf40ceb86b5b62c78c7962fd361d",
+      "catalogGitBlobBefore": "dfead7a2d12bfb87e98e4e8e32302640b163e9c8",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "catalogSha256After": "71c363fcd0bd56415e64eba994b3f151155321a3474f87b71b8f8977ee4763d8",
+      "catalogSha256Before": "9747679d1ae4d73f64075713063fb884a4674beaaea635c10344615bb9de0c15",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Preview tag organization for {name}",
+        "Batch Publish Descriptors",
+        "Publishing an opinion can expose the selected content ID, variant hash, score, note, and peer preference signal to pod participants.",
+        "Search this decomposed segment directly when SongID found a plausible chapter or timestamp clue."
+      ],
+      "changedEntryCount": 5,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "d9a7d446aaab6d6c873b597628c92aadaa071442",
+      "catalogGitBlobBefore": "806ae99e93d329612cdae7168edf4f50402344a4",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "catalogSha256After": "8ce59f97b4345716f56559cfe5b987606c4a60b1a893a774339cf993994a0d32",
+      "catalogSha256Before": "f040053bd996abd7b1709548599315ac2af0c9a700e910dac5fca7c75ae80c89",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Preview tag organization for {name}",
+        "Native interests loaded for {username}.",
+        "added",
+        "Library Health Replacement Search Seeds",
+        "No tabs open"
+      ],
+      "changedEntryCount": 6,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogGitBlobAfter": "c71c810cfe923a486aa9707f75694c14be2d4f4c",
+      "catalogGitBlobBefore": "1b5aad14188018de54d0d88c3c306ac6f6d6aa0f",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "catalogSha256After": "7305e13de8b16b8f44192fd2a360572ac28491510645997149b9d6369dfd7d66",
+      "catalogSha256Before": "69b71e120819d60724923ec873622e1159c288a33696c64d51cbfd7b73fa17ac",
+      "changedCatalogKeys": [
+        "Enabled {size} item(s)",
+        "Preview tag organization for {name}",
+        "Batch Publish Descriptors",
+        "Native interests loaded for {username}.",
+        "added",
+        "Library Health Replacement Search Seeds",
+        "No tabs open"
+      ],
+      "changedEntryCount": 7,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeySha256Before": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    }
+  ],
+  "changedCellCount": 68,
+  "dispositionCounts": {
+    "accept-current": 220,
+    "correction": 34,
+    "hold": 12,
+    "refinement": 34
+  },
+  "noOpCount": 232,
+  "priorHoldsRetainedUnchanged": 128,
+  "repositoryFilesChangedOutside12LocaleCatalogs": false,
+  "selectedTokenFailures": 0
+}

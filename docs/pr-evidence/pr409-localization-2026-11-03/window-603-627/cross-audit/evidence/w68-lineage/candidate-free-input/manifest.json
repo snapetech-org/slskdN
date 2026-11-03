@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W68 ranks 578-602 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "973a65312a475de4d8aa39aee837249553fd884e",
+  "tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "remainingQueueRankRange": [
+    478,
+    502
+  ],
+  "continuationRankRange": [
+    578,
+    602
+  ],
+  "priorSelectedIdsExcluded": 1682,
+  "priorHeldCellsReattested": 128,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 9
+  },
+  "previousWindow": "W67",
+  "nextUnselectedContinuationRank": 603,
+  "nextUnselectedSourceId": "src_26d85de841644aff",
+  "priorLineagePins": {
+    "W67CandidateFreeChecksumsSha256": "f486f9010a4c026988e6dc1c2b952da7d3d53b9f43fcf6e9bd3ab9761ec7284f",
+    "W67CrossAuditManifestSha256": "b970ad3b4177bcf325fc23c94dd3e8aab35932ce7ec85ea36773d073edf2001c",
+    "W67CrossAuditChecksumsSha256": "4aed635502a6a3545b42473d2fec179b8087b5ffa9dcc84324d14bf690896810"
+  },
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1234,
+      "sha256": "66ef263a9d4aac65d8fb187e28fbaf51c1c61033189ec915ea366fdcbc22d54f"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 129,
+      "sha256": "19cc718b46f010a7b7c47d654b16ac4c0b6d1119ab5eb625bf654855193fcf08"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 55396,
+      "sha256": "6ac31f3b1c2942cf1334b5d5aa724eef02dc8e3d1e817a01eec354a4edf707e7"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "2a1b98a2edb1b38e95522c8fd6f37c25ce4acb8d17ede9a0113818ca6a615fe2"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 596,
+      "sha256": "d7a1a886a012a4f428d5db54b4b0f948792c9046fff55b45ad058d3534db3bf5"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 196,
+      "sha256": "e0922e105c5f09f0482dc6031a4fe8db15e9b69bc8ed50aa4d65886d92cf7481"
+    },
+    {
+      "path": "prior-held-cell-reattestation.jsonl",
+      "bytes": 160659,
+      "sha256": "727dcec1b2cf2e3b4520bdb4b826105587a4609b5958b77f81e29e22b14bfb76"
+    },
+    {
+      "path": "prior-selected-id-exclusions.jsonl",
+      "bytes": 528269,
+      "sha256": "4b49289c1f9849f84d9790859c1d640decdc50caae2e0e717f38bf7358104829"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1789,
+      "sha256": "2d82a6a1ac1de6239cfb855fad6440ff069daf964f4adb340fdfa536a9c786d2"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8533,
+      "sha256": "0250cc6f9131a5666141f478effe7c517e3be6db076c8e09e47e4fed74eb6ed7"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 494990,
+      "sha256": "e0f3ed9ab0364af4603720578e3d8eb3cfdbf8def9a1117e65bc948b1e5de14f"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7250,
+      "sha256": "4c364e4433953b56700e60afe552bd3c3198a905f497d8d1509bea00c27213b2"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 13672,
+      "sha256": "4c87f58706e8a69181c87b5dc6d529dc56d8baf8adc630bcaafbf8b85be4ebf7"
+    }
+  ]
+}

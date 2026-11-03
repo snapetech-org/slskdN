@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "inputFilesVerified": 14,
+  "outputFilesVerified": 7,
+  "cells": 300,
+  "decisionCounts": {
+    "accept-current": 222,
+    "refinement": 34,
+    "hold": 12,
+    "correction": 32
+  },
+  "baselineProtectedLiteralFlags": 3,
+  "selectedProtectedLiteralFailures": 0,
+  "selectedTokenAuditFailures": 0,
+  "rank615HeldCells": 12,
+  "priorHolds": 128,
+  "priorHoldHashesMatched": 128
+}

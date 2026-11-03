@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W69-ranks603-627",
+  "head": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "tree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "decisionCounts": {
+    "accept-current": 222,
+    "correction": 32,
+    "refinement": 34,
+    "hold": 12
+  },
+  "decisionCountsByLocale": {
+    "ar": {
+      "accept-current": 18,
+      "correction": 5,
+      "refinement": 1,
+      "hold": 1
+    },
+    "de": {
+      "accept-current": 20,
+      "correction": 3,
+      "refinement": 1,
+      "hold": 1
+    },
+    "es": {
+      "accept-current": 19,
+      "correction": 1,
+      "refinement": 4,
+      "hold": 1
+    },
+    "fr": {
+      "accept-current": 16,
+      "correction": 4,
+      "refinement": 4,
+      "hold": 1
+    },
+    "hi": {
+      "accept-current": 15,
+      "correction": 3,
+      "refinement": 6,
+      "hold": 1
+    },
+    "id": {
+      "accept-current": 20,
+      "correction": 2,
+      "refinement": 2,
+      "hold": 1
+    },
+    "ja": {
+      "accept-current": 19,
+      "correction": 1,
+      "refinement": 4,
+      "hold": 1
+    },
+    "ko": {
+      "accept-current": 21,
+      "correction": 2,
+      "refinement": 1,
+      "hold": 1
+    },
+    "pt-BR": {
+      "accept-current": 18,
+      "correction": 1,
+      "refinement": 5,
+      "hold": 1
+    },
+    "vi": {
+      "accept-current": 19,
+      "correction": 3,
+      "refinement": 2,
+      "hold": 1
+    },
+    "zh-Hans": {
+      "accept-current": 19,
+      "correction": 3,
+      "refinement": 2,
+      "hold": 1
+    },
+    "zh-Hant": {
+      "accept-current": 18,
+      "correction": 4,
+      "refinement": 2,
+      "hold": 1
+    }
+  },
+  "rank615CallerCount": 0,
+  "rank615HoldCount": 12,
+  "baselineTokenMismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 3
+  },
+  "baselineProtectedLiteralFlags": [
+    {
+      "continuationRank": 612,
+      "locale": "ar",
+      "sourceId": "src_275b7ea6f8004b84",
+      "required": [
+        "ID"
+      ],
+      "current": [],
+      "selected": [
+        "ID"
+      ]
+    },
+    {
+      "continuationRank": 612,
+      "locale": "hi",
+      "sourceId": "src_275b7ea6f8004b84",
+      "required": [
+        "ID"
+      ],
+      "current": [],
+      "selected": [
+        "ID"
+      ]
+    },
+    {
+      "continuationRank": 619,
+      "locale": "hi",
+      "sourceId": "src_27a79b8b9b81a3d1",
+      "required": [
+        "SongID"
+      ],
+      "current": [],
+      "selected": [
+        "SongID"
+      ]
+    }
+  ],
+  "selectedProtectedLiteralFailures": 0,
+  "selectedTokenAuditFailures": 0,
+  "priorHoldCount": 128,
+  "priorHoldHashesReattested": 128,
+  "priorHoldTextIncluded": false,
+  "inputVerifier": "PASS at build time (candidate-free verify_input.py)",
+  "nativeSpeakerReviewClaimed": false
+}

@@ -1,0 +1,94 @@
+{
+  "baseHead": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "baseTree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "catalogKeyCountPerLocale": 6176,
+  "catalogs": [
+    {
+      "catalogPath": "src/web/public/locales/ar.json",
+      "changedCellCount": 6,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/de.json",
+      "changedCellCount": 4,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/es.json",
+      "changedCellCount": 5,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/fr.json",
+      "changedCellCount": 8,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/hi.json",
+      "changedCellCount": 9,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/id.json",
+      "changedCellCount": 4,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/ja.json",
+      "changedCellCount": 5,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/ko.json",
+      "changedCellCount": 3,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "changedCellCount": 6,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/vi.json",
+      "changedCellCount": 5,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "changedCellCount": 6,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "changedCellCount": 7,
+      "keyCount": 6176,
+      "nonTargetValuesChanged": 0,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    }
+  ],
+  "changedCellCount": 68,
+  "expectedOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "nonTargetValuesChanged": 0
+}

@@ -1,0 +1,199 @@
+{
+  "head": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "tree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "fileCount": 32,
+  "files": [
+    {
+      "path": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+      "bytes": 1800171,
+      "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+      "gitBlob": "3efe93287ed6e1e22e021f43476e887516a45afd"
+    },
+    {
+      "path": "src/web/public/locales/ar.json",
+      "bytes": 643912,
+      "sha256": "770e1b843c01c0925994222247e3ad0726a772da4fa1ee63d262a4ebd262300f",
+      "gitBlob": "0d300a6d352266498faa27fd745ba2a94f28348a"
+    },
+    {
+      "path": "src/web/public/locales/de.json",
+      "bytes": 558898,
+      "sha256": "d13233ea6711016790424bb7c03b414e627af48b5f14b8f1945f02f68965b093",
+      "gitBlob": "d0b90763f5a54bd2069a2617cbec9d66fc6845c9"
+    },
+    {
+      "path": "src/web/public/locales/es.json",
+      "bytes": 557630,
+      "sha256": "9565f66660f234c722e54bb7fc4b8cc59ab78f48dfbf28bddec37a1c45987fd7",
+      "gitBlob": "ad93b06ab075955de94138a46197b615f48e6ccc"
+    },
+    {
+      "path": "src/web/public/locales/fr.json",
+      "bytes": 571992,
+      "sha256": "0f058f50a61b2cb87315abe6c430a1d20540f56c694259c8fa8a5c1a4ba5ff7a",
+      "gitBlob": "628ff6820acae4b42fcd01da5253da557e1157f1"
+    },
+    {
+      "path": "src/web/public/locales/hi.json",
+      "bytes": 858376,
+      "sha256": "371cb80eae72d2b6d72b0c9ef67bbd4bf17cf82056910f16a45297e56fddaeb8",
+      "gitBlob": "34d5f89f541a6a9ce60d4b2341a62fe9fd9dd830"
+    },
+    {
+      "path": "src/web/public/locales/id.json",
+      "bytes": 518246,
+      "sha256": "4ac278c1b92c7ded5312052eb3cc168adf5652c9fdcfc4088a6b99e491638140",
+      "gitBlob": "a86fc8fd76f3081a01d06c8e2455454891838075"
+    },
+    {
+      "path": "src/web/public/locales/ja.json",
+      "bytes": 617289,
+      "sha256": "e2c1ef9411ce8ed7ac7f6bb3bc50566c1d2b9be3accc368c7230511e972cf4dd",
+      "gitBlob": "b2166b90aaee13ca7dc71e1d8c82a62eeb1d0518"
+    },
+    {
+      "path": "src/web/public/locales/ko.json",
+      "bytes": 554232,
+      "sha256": "6f9d82390236ee923515f1b0d561cc86e66a2e9049204fe29cb69c8a63a637ae",
+      "gitBlob": "e37afe71f72b2284f5f39f3cce6d096355154581"
+    },
+    {
+      "path": "src/web/public/locales/pt-BR.json",
+      "bytes": 549594,
+      "sha256": "4cf6da724d359469d4de72fe9d7f88185268a8e471b5d0ff921e42b20151f3df",
+      "gitBlob": "6c5cd1156d73c0fc9c573dac9f9edc06e12af0ae"
+    },
+    {
+      "path": "src/web/public/locales/vi.json",
+      "bytes": 598665,
+      "sha256": "9747679d1ae4d73f64075713063fb884a4674beaaea635c10344615bb9de0c15",
+      "gitBlob": "dfead7a2d12bfb87e98e4e8e32302640b163e9c8"
+    },
+    {
+      "path": "src/web/public/locales/zh-Hans.json",
+      "bytes": 481891,
+      "sha256": "f040053bd996abd7b1709548599315ac2af0c9a700e910dac5fca7c75ae80c89",
+      "gitBlob": "806ae99e93d329612cdae7168edf4f50402344a4"
+    },
+    {
+      "path": "src/web/public/locales/zh-Hant.json",
+      "bytes": 483305,
+      "sha256": "69b71e120819d60724923ec873622e1159c288a33696c64d51cbfd7b73fa17ac",
+      "gitBlob": "1b5aad14188018de54d0d88c3c306ac6f6d6aa0f"
+    },
+    {
+      "path": "src/web/src/components/Collections/Collections.jsx",
+      "bytes": 39783,
+      "sha256": "0dc1a37290fb9ebd02c9b9c18ac71c0e6a6a4563b4ed8d99c017a4daac46172f",
+      "gitBlob": "e5a12137bb44ba1a9ff859fb439d9cbaf6754acc"
+    },
+    {
+      "path": "src/web/src/components/Lidarr/Lidarr.jsx",
+      "bytes": 30129,
+      "sha256": "ac37a76c5344d2290f8fa5c7a1021985da140c6078064a1f079127e02a1e13e3",
+      "gitBlob": "bbb2b81a43f982f50abb4cd3096913a6eee4d96b"
+    },
+    {
+      "path": "src/web/src/components/Messaging/MessagingV2.jsx",
+      "bytes": 83294,
+      "sha256": "386191af02156fa2910e026d4055c302c4f7be789a1cbf8ff55b8024699712eb",
+      "gitBlob": "c2d8b88d24d2cea6f86ac5c2f75c0db034121cbf"
+    },
+    {
+      "path": "src/web/src/components/Player/PlayerBar.jsx",
+      "bytes": 192794,
+      "sha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+      "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d"
+    },
+    {
+      "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+      "bytes": 33270,
+      "sha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40",
+      "gitBlob": "296709c21670998686758a237a53e4fa47295ab2"
+    },
+    {
+      "path": "src/web/src/components/Rooms/RoomJoinModal.jsx",
+      "bytes": 11029,
+      "sha256": "120f23492d04db5bd8495d557b671480e083f3648476df82a3f1237686ad657b",
+      "gitBlob": "0cb8d4361bc08f08fbea3caa6fe83b3390add21a"
+    },
+    {
+      "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+      "bytes": 50392,
+      "sha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+      "gitBlob": "9a31a03756d71944a5a383e874bee3981b7073b9"
+    },
+    {
+      "path": "src/web/src/components/Search/SongIDPanel.jsx",
+      "bytes": 81837,
+      "sha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+      "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483"
+    },
+    {
+      "path": "src/web/src/components/Search/SoulseekDiscoveryPanel.jsx",
+      "bytes": 17290,
+      "sha256": "b5da9e8771f550dea41bb0b52a38862b5c664c3a9ed16a417eeaefc88b116ebc",
+      "gitBlob": "1759001507490c671f257b1f93217fcc5e8b8e3a"
+    },
+    {
+      "path": "src/web/src/components/Solid/SolidSettings.jsx",
+      "bytes": 4560,
+      "sha256": "f7334c523a52d0874099d8ef4158f94ab65e07562dae6cb277e99d4fc9914296",
+      "gitBlob": "5d83c4acc6e1c7c24670f200f1aabe6b680c77ed"
+    },
+    {
+      "path": "src/web/src/components/System/Files/Explorer.jsx",
+      "bytes": 25323,
+      "sha256": "b875d9ebdfb98ae5edd097a554db12d8285f7151be3da1c6fd2ea2921261b822",
+      "gitBlob": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e"
+    },
+    {
+      "path": "src/web/src/components/System/Jobs/index.jsx",
+      "bytes": 23332,
+      "sha256": "958df03a13eb20612b395f335ae997cf65dbb766bc2f7cab3339ee5b9677906c",
+      "gitBlob": "929b90226e3a91c192ff435d095523a19d3c4fb0"
+    },
+    {
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "bytes": 215588,
+      "sha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+    },
+    {
+      "path": "src/web/src/components/System/MediaCore/index.jsx",
+      "bytes": 129328,
+      "sha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3"
+    },
+    {
+      "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+      "bytes": 12532,
+      "sha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+      "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8"
+    },
+    {
+      "path": "src/web/src/components/Transfers/TransferManager.jsx",
+      "bytes": 31691,
+      "sha256": "5f98de1b0ac73b9e6524027744df7568e80c89e6d8ccd07c83b5d67c8383640c",
+      "gitBlob": "8ebffeffe988e32126f843c07bedf5e3cb66470e"
+    },
+    {
+      "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+      "bytes": 95828,
+      "sha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d",
+      "gitBlob": "58fe85e293eaf7c697a9b280c85910d0bec70a3f"
+    },
+    {
+      "path": "src/web/src/lib/automationRecipes.js",
+      "bytes": 16015,
+      "sha256": "4fee99ff732fdfe41b08ea94c7cadad6dcaf464f9a98a0ca815b764b4b452925",
+      "gitBlob": "8e5a6242af0a830af917465933f51f9b8e39f80b"
+    },
+    {
+      "path": "src/web/src/lib/libraryHealthReport.js",
+      "bytes": 17994,
+      "sha256": "bc9e7728e127b371250fde2c9273bd71a07dce73bf33ae46e78399a8be69ee10",
+      "gitBlob": "a8909de8740a76d9ebe0b917c24d4f95c1474cef"
+    }
+  ]
+}
