@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "exactHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "exactTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "window": "W49 continuation ranks 101-125; historical ordinals unavailable",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 1634,
+      "sha256": "32ea821cbaeabef4470be3a3f388238f87cd1c5611629ec2e561a041a0ecec49"
+    },
+    {
+      "path": "build_w49_primary.py",
+      "bytes": 32540,
+      "sha256": "416596266775e1d6bf2fd018486c6e14b0c2fd4248626601faddeffa1e841209"
+    },
+    {
+      "path": "caller-context.jsonl",
+      "bytes": 44872,
+      "sha256": "6467ce17212a3e30e5c08fee7bdf7153f2ae3778324998f57889e1d717882bb3"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4730,
+      "sha256": "f801faba83199a4a303fdf363e9a42cc5c8df78f813d48bd81e1028eefcf806d"
+    },
+    {
+      "path": "prior-excluded-source-ids.jsonl",
+      "bytes": 237227,
+      "sha256": "6a51618af21611492bb5e146df18753d87f8ab93b87985f2b07803ca0953696e"
+    },
+    {
+      "path": "review-decisions.jsonl",
+      "bytes": 620949,
+      "sha256": "04fad26151ed34953441ced4d49de8430bbbd9281cb551d032bf7a2844977782"
+    },
+    {
+      "path": "review-summary.json",
+      "bytes": 3449,
+      "sha256": "231973f401ad041a03b89376a37c25d1e7ddc5cf5cffb97b618a6f153f6aaffd"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 4008,
+      "sha256": "f8ab94760012e6b63eff983bed77301bd2633fa2c6e84102b4ee629331378234"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 7141,
+      "sha256": "debaab294edcff598dbe1f251e8d0c4a3a340691c9280c59cfa2b500439c1264"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 349444,
+      "sha256": "f1a81685eed49b37e4d2e4b20df4d2b29ad8fe87732c44abcdf84a8910488098"
+    },
+    {
+      "path": "source-inventory.jsonl",
+      "bytes": 1800171,
+      "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+    },
+    {
+      "path": "supporting-context.jsonl",
+      "bytes": 2417,
+      "sha256": "e8d57cb53f2a6c8867d119e167e6eda8d332bbb913c5b3ac76460dd855888281"
+    }
+  ]
+}

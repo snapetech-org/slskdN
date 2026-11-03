@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "kind": "root adjudication exact-head reattestation",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "liveState": "open",
+  "liveDraft": true,
+  "liveHeadRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "exactHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "exactTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "livePullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "liveHeadQueriedBeforeRootPacketSeal": true,
+  "verificationMethod": "Fetched exact PR head into a temporary task-scoped bare repository; all catalog/source/caller content read with git show at the pinned commit. No checked-out repo was edited.",
+  "checks": {
+    "all12CatalogBytesHashesGitBlobsMatch": true,
+    "orderedCatalogKeySetsMatch": true,
+    "catalogKeyCountEach": 6176,
+    "sourceInventoryCount": 6176,
+    "exclusionSetCount": 1205,
+    "continuationRanks101to125Recomputed": true,
+    "sourceCurrentCellsVerified": 300,
+    "sourceIdsAndSourceHashesVerified": 25,
+    "callerReferencesVerified": 39,
+    "callerFilesVerified": 23,
+    "primaryAndCrossSourceCurrentCallerPinsMatch": true,
+    "rank105HoldsVerified": 12
+  },
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "bytes": 643046,
+      "sha256": "10156e777ab75324b9c61b107ab0fcc41751eb9c4b50774235af4e018edd0702",
+      "gitBlob": "00c7462dd282ec3cd29feeb4556d9f49a7e28975",
+      "gitBlobSha1Check": "00c7462dd282ec3cd29feeb4556d9f49a7e28975",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "10156e777ab75324b9c61b107ab0fcc41751eb9c4b50774235af4e018edd0702",
+      "exactHeadGitBlob": "00c7462dd282ec3cd29feeb4556d9f49a7e28975",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "bytes": 558347,
+      "sha256": "e8ca3c1ce2e901b91b3624811ed194e4cbce7ef6c3061b3184fc25d933e432aa",
+      "gitBlob": "bceb942ddba11b985b3cb4cc05d4e5637d56fd1c",
+      "gitBlobSha1Check": "bceb942ddba11b985b3cb4cc05d4e5637d56fd1c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "e8ca3c1ce2e901b91b3624811ed194e4cbce7ef6c3061b3184fc25d933e432aa",
+      "exactHeadGitBlob": "bceb942ddba11b985b3cb4cc05d4e5637d56fd1c",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "bytes": 557124,
+      "sha256": "679832579a2a2214c1deda6ec2e8c68dee8e8e84bfef42108ff73ef443e10568",
+      "gitBlob": "330a33814e2f620f2a61f85c6705d760a613010c",
+      "gitBlobSha1Check": "330a33814e2f620f2a61f85c6705d760a613010c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "679832579a2a2214c1deda6ec2e8c68dee8e8e84bfef42108ff73ef443e10568",
+      "exactHeadGitBlob": "330a33814e2f620f2a61f85c6705d760a613010c",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "bytes": 571391,
+      "sha256": "96e4ed25e0226aa50e7198eb7f53dd2f5af5b7a67528c5df25c6ecd938384468",
+      "gitBlob": "511578ba4c73db63c41d3d167f13534ad7497a4b",
+      "gitBlobSha1Check": "511578ba4c73db63c41d3d167f13534ad7497a4b",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "96e4ed25e0226aa50e7198eb7f53dd2f5af5b7a67528c5df25c6ecd938384468",
+      "exactHeadGitBlob": "511578ba4c73db63c41d3d167f13534ad7497a4b",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "bytes": 857018,
+      "sha256": "d5b111d8269e50da62ee3a17af8f9e34f140efedd3c11b835fee6c74ae9df080",
+      "gitBlob": "34b90eed062fe4731ed34f18a1ccfcabff69da36",
+      "gitBlobSha1Check": "34b90eed062fe4731ed34f18a1ccfcabff69da36",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "d5b111d8269e50da62ee3a17af8f9e34f140efedd3c11b835fee6c74ae9df080",
+      "exactHeadGitBlob": "34b90eed062fe4731ed34f18a1ccfcabff69da36",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "bytes": 517681,
+      "sha256": "fbbac186fb10bdde58b581c502b98a2b65b9ad0336b55f995d81830d73269a46",
+      "gitBlob": "95d103558d55eee9c059fd73df5cc231990bf31f",
+      "gitBlobSha1Check": "95d103558d55eee9c059fd73df5cc231990bf31f",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "fbbac186fb10bdde58b581c502b98a2b65b9ad0336b55f995d81830d73269a46",
+      "exactHeadGitBlob": "95d103558d55eee9c059fd73df5cc231990bf31f",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "bytes": 617022,
+      "sha256": "de45cbd8c3f5f5f6da34e9543c76ef1cbc4e742852452ac9c580c300bc2c1366",
+      "gitBlob": "3bf96942372b1a660e6868af8fdb19e53c03897c",
+      "gitBlobSha1Check": "3bf96942372b1a660e6868af8fdb19e53c03897c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "de45cbd8c3f5f5f6da34e9543c76ef1cbc4e742852452ac9c580c300bc2c1366",
+      "exactHeadGitBlob": "3bf96942372b1a660e6868af8fdb19e53c03897c",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "bytes": 553746,
+      "sha256": "0c83ff8cac232ea5bb01699fdf760887af123ccc88e558afae6fe2b90e63d076",
+      "gitBlob": "c5b9fa5fa22db96920feb985466629dc0852e8f8",
+      "gitBlobSha1Check": "c5b9fa5fa22db96920feb985466629dc0852e8f8",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "0c83ff8cac232ea5bb01699fdf760887af123ccc88e558afae6fe2b90e63d076",
+      "exactHeadGitBlob": "c5b9fa5fa22db96920feb985466629dc0852e8f8",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "bytes": 548975,
+      "sha256": "0e2130ce8e6687feb07789aaedfd05942acdb127478164ad0fd52cba2794dcff",
+      "gitBlob": "2692be69333112beac00579ab27b5bf6d08e65cb",
+      "gitBlobSha1Check": "2692be69333112beac00579ab27b5bf6d08e65cb",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "0e2130ce8e6687feb07789aaedfd05942acdb127478164ad0fd52cba2794dcff",
+      "exactHeadGitBlob": "2692be69333112beac00579ab27b5bf6d08e65cb",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "bytes": 597985,
+      "sha256": "bf1eb9e21a57347293aefd2e25aded3f290a4752dcc4f30b157e1bdf2d9232e7",
+      "gitBlob": "3669bae20bbc823099ab1f4abab42f36e52a91af",
+      "gitBlobSha1Check": "3669bae20bbc823099ab1f4abab42f36e52a91af",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "bf1eb9e21a57347293aefd2e25aded3f290a4752dcc4f30b157e1bdf2d9232e7",
+      "exactHeadGitBlob": "3669bae20bbc823099ab1f4abab42f36e52a91af",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "bytes": 481320,
+      "sha256": "540991fe6ba19741188e36473e959a8a9c84cafa1c5aad9ab62827d81010e9f7",
+      "gitBlob": "8eb1dc2f8d686e7a31f0c08f20170ccff044b10d",
+      "gitBlobSha1Check": "8eb1dc2f8d686e7a31f0c08f20170ccff044b10d",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "540991fe6ba19741188e36473e959a8a9c84cafa1c5aad9ab62827d81010e9f7",
+      "exactHeadGitBlob": "8eb1dc2f8d686e7a31f0c08f20170ccff044b10d",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "bytes": 482681,
+      "sha256": "f64ba87ddee5e7f894216f3ab5529fb05bab07cae273bce937992f64e4bd08c4",
+      "gitBlob": "033aa9ba86510a118613bae7a07c13bd74fb9d1c",
+      "gitBlobSha1Check": "033aa9ba86510a118613bae7a07c13bd74fb9d1c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactHeadFileSha256": "f64ba87ddee5e7f894216f3ab5529fb05bab07cae273bce937992f64e4bd08c4",
+      "exactHeadGitBlob": "033aa9ba86510a118613bae7a07c13bd74fb9d1c",
+      "exactOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "exactEntryCount": 6176,
+      "matches": true
+    }
+  ],
+  "callerFilePins": {
+    "src/web/src/components/System/AdminPolicies/index.jsx": {
+      "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+      "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89"
+    },
+    "src/web/src/components/System/Mesh/MeshEvidencePolicy.jsx": {
+      "fileSha256": "dacaf70e93d5df4ce088e2ac9b039e3ea615989c3b1fa62c8128dde89890a02f",
+      "gitBlob": "0ec18db2860be78db0a74be382aba34f052c1316"
+    },
+    "src/web/src/components/Player/PlayerBar.jsx": {
+      "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+      "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d"
+    },
+    "src/web/src/components/System/MediaCore/MediaCorePods.jsx": {
+      "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+    },
+    "src/web/src/components/Search/DiscoveryGraphAtlasPanel.jsx": {
+      "fileSha256": "4794b736b5600ea0f7157d75f6c61e05370df15e642508aa107bd0c46197da81",
+      "gitBlob": "4761a75cab323ef1b23ecf0d944f85865522569d"
+    },
+    "src/web/src/components/Search/Detail/SearchDetail.jsx": {
+      "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+      "gitBlob": "9a31a03756d71944a5a383e874bee3981b7073b9"
+    },
+    "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx": {
+      "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40",
+      "gitBlob": "296709c21670998686758a237a53e4fa47295ab2"
+    },
+    "src/web/src/components/Player/Visualizer.jsx": {
+      "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+      "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135"
+    },
+    "src/web/src/components/Pods/Pods.jsx": {
+      "fileSha256": "1f20ae14d37483d4b092c49680f46967d84b8798e32736de4258c401a3977e1a",
+      "gitBlob": "0d21613128bf88cc1524c3a0232b2ef2b94ce99b"
+    },
+    "src/web/src/lib/mediaServerIntegrations.js": {
+      "fileSha256": "e6679217952bfcf9a761d790d42c15563879ec4031a9fb80275c80f7a0b1eb68",
+      "gitBlob": "f8502c916c5d3701ff916581c57920b1ef0ccf74"
+    },
+    "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx": {
+      "fileSha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+      "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8"
+    },
+    "src/web/src/components/Rooms/Rooms.jsx": {
+      "fileSha256": "3430b773117a082289d151d96b571c3b642c64cdc34b73742ccb348811fff1c0",
+      "gitBlob": "1f5de400309f9d8d8839e4cd258fff26a593e32a"
+    },
+    "src/web/src/components/System/MediaCore/index.jsx": {
+      "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3"
+    },
+    "src/web/src/lib/transfers.js": {
+      "fileSha256": "543ac84d06bf10007948875d5c4152bf6eddd262a0caebef249608772979c43b",
+      "gitBlob": "a153d0c6b72aebc6a4df328d9027e3f7a4f1564e"
+    },
+    "src/web/src/components/System/Files/Explorer.jsx": {
+      "fileSha256": "b875d9ebdfb98ae5edd097a554db12d8285f7151be3da1c6fd2ea2921261b822",
+      "gitBlob": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e"
+    },
+    "src/web/src/lib/meshEvidencePolicy.js": {
+      "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+      "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319"
+    },
+    "src/web/src/components/System/Integrations/NotificationIntegrationsPanel.jsx": {
+      "fileSha256": "fcd3de6665787bbcef17792613b5a2566b17a6f464f5707cda7c461fc174a016",
+      "gitBlob": "39ee7ba06443e87a9cb398f87ffa33132056735d"
+    },
+    "src/web/src/components/System/LibraryHealth/index.jsx": {
+      "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+      "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b"
+    },
+    "src/web/src/components/Contacts/Contacts.jsx": {
+      "fileSha256": "a929c367f999de20a93d348374788dccd62148ff2762fac88fadb58b09b14193",
+      "gitBlob": "664ddb7226c24e8c5308db7d015a8e6d95d7eaae"
+    },
+    "src/web/src/lib/networkHealthScore.js": {
+      "fileSha256": "b897766a68e563edf80cd29158a7c3999bc28b1f2ee7cd70ec8b907629d0f13c",
+      "gitBlob": "6d4efd10db92d5cf5fca307b146dddebe9284484"
+    },
+    "src/web/src/components/Search/SongIDPanel.jsx": {
+      "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+      "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483"
+    },
+    "src/web/src/components/System/Metrics/index.jsx": {
+      "fileSha256": "1d3cc120ebb902f4c72b0a1c43a571c203588dcd5017017c5444f44c4f664414",
+      "gitBlob": "4456d98b27c24725acb4187dc8274ef70b40dab0"
+    },
+    "src/web/src/lib/libraryHealthReport.js": {
+      "fileSha256": "bc9e7728e127b371250fde2c9273bd71a07dce73bf33ae46e78399a8be69ee10",
+      "gitBlob": "a8909de8740a76d9ebe0b917c24d4f95c1474cef"
+    }
+  },
+  "blindReview": {
+    "strictBlindSealPresent": true,
+    "sealedBeforePrimaryComparison": true,
+    "sealedAtUtc": "2026-11-03T01:37:54Z",
+    "caveat": "No per-cell primary decisions/proposals were read before the independent ledger was sealed; the subsequent primary comparison occurred after sealing."
+  },
+  "limits": {
+    "nativeSpeakerApproval": false,
+    "headedBrowserReview": false,
+    "testsBuildScansCiRun": false,
+    "repositoryOrPrModified": false,
+    "workflowEdits": false,
+    "releaseCut": false,
+    "W50Prepared": false
+  },
+  "finalLiveRequeryBeforeSealing": {
+    "queriedAtUtc": "2026-11-03T01:50:15.511020Z",
+    "prState": "OPEN",
+    "draft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+    "tree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+    "githubPrHeadAndRemotePullRefMatch": true,
+    "githubCommitTreeMatches": true,
+    "prUrl": "https://github.com/snapetech-org/slskdN/pull/409"
+  }
+}

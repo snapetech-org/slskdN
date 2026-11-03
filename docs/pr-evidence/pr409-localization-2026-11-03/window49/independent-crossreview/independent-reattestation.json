@@ -1,0 +1,2929 @@
+{
+  "task": "Independent blind cross-review of reconstructed continuation ranks 101–125; no historical ordinal claim.",
+  "strictBlindMethod": "Before this packet was sealed, I read only source-current-cells.jsonl, caller-context.jsonl, catalog-structure.jsonl, and exact-head repository text; I did not open primary README.md, review-summary.json, candidate proposals, or review-decisions.jsonl.",
+  "livePullRequest": {
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+    "isDraft": true,
+    "number": 409,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "headCommit": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "headTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "scope": {
+    "continuationRanks": [
+      101,
+      125
+    ],
+    "sourceIds": 25,
+    "locales": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "cells": 300,
+    "historicalOrdinalClaim": false
+  },
+  "sourceCurrentHashReattestation": {
+    "cellCount": 300,
+    "sourceSha256Matches": 300,
+    "currentTargetSha256Matches": 300,
+    "allCurrentValuesMatchExactHeadCatalogs": true
+  },
+  "catalogPins": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "bytes": 643046,
+      "sha256": "10156e777ab75324b9c61b107ab0fcc41751eb9c4b50774235af4e018edd0702",
+      "gitBlob": "00c7462dd282ec3cd29feeb4556d9f49a7e28975",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "bytes": 558347,
+      "sha256": "e8ca3c1ce2e901b91b3624811ed194e4cbce7ef6c3061b3184fc25d933e432aa",
+      "gitBlob": "bceb942ddba11b985b3cb4cc05d4e5637d56fd1c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "bytes": 557124,
+      "sha256": "679832579a2a2214c1deda6ec2e8c68dee8e8e84bfef42108ff73ef443e10568",
+      "gitBlob": "330a33814e2f620f2a61f85c6705d760a613010c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "bytes": 571391,
+      "sha256": "96e4ed25e0226aa50e7198eb7f53dd2f5af5b7a67528c5df25c6ecd938384468",
+      "gitBlob": "511578ba4c73db63c41d3d167f13534ad7497a4b",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "bytes": 857018,
+      "sha256": "d5b111d8269e50da62ee3a17af8f9e34f140efedd3c11b835fee6c74ae9df080",
+      "gitBlob": "34b90eed062fe4731ed34f18a1ccfcabff69da36",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "bytes": 517681,
+      "sha256": "fbbac186fb10bdde58b581c502b98a2b65b9ad0336b55f995d81830d73269a46",
+      "gitBlob": "95d103558d55eee9c059fd73df5cc231990bf31f",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "bytes": 617022,
+      "sha256": "de45cbd8c3f5f5f6da34e9543c76ef1cbc4e742852452ac9c580c300bc2c1366",
+      "gitBlob": "3bf96942372b1a660e6868af8fdb19e53c03897c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "bytes": 553746,
+      "sha256": "0c83ff8cac232ea5bb01699fdf760887af123ccc88e558afae6fe2b90e63d076",
+      "gitBlob": "c5b9fa5fa22db96920feb985466629dc0852e8f8",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "bytes": 548975,
+      "sha256": "0e2130ce8e6687feb07789aaedfd05942acdb127478164ad0fd52cba2794dcff",
+      "gitBlob": "2692be69333112beac00579ab27b5bf6d08e65cb",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "bytes": 597985,
+      "sha256": "bf1eb9e21a57347293aefd2e25aded3f290a4752dcc4f30b157e1bdf2d9232e7",
+      "gitBlob": "3669bae20bbc823099ab1f4abab42f36e52a91af",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "bytes": 481320,
+      "sha256": "540991fe6ba19741188e36473e959a8a9c84cafa1c5aad9ab62827d81010e9f7",
+      "gitBlob": "8eb1dc2f8d686e7a31f0c08f20170ccff044b10d",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "bytes": 482681,
+      "sha256": "f64ba87ddee5e7f894216f3ab5529fb05bab07cae273bce937992f64e4bd08c4",
+      "gitBlob": "033aa9ba86510a118613bae7a07c13bd74fb9d1c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "orderedKeysIdenticalAcrossLocales": true,
+      "currentWindowCellsVerified": 25
+    }
+  ],
+  "catalogKeyset": {
+    "orderedKeyCount": 6176,
+    "localeCount": 12,
+    "sameOrderedKeysetAcrossLocales": true,
+    "orderedKeySha256Algorithm": "SHA-256 of ordered UTF-8 keys joined by LF, with a final LF"
+  },
+  "callerContextReattestation": {
+    "sourceCount": 25,
+    "uniqueCallerPinCount": 39,
+    "allSourceCurrentCallerRefsMatchContextPacketAndExactHead": true,
+    "allFileBlobAndLineHashesMatch": true,
+    "sources": [
+      {
+        "continuationRank": 101,
+        "sourceId": "src_130011756125313c",
+        "source": "On",
+        "sourceSha256": "130011756125313c72f2cab730db4347e2841526d236a89cb25f38789fa49229",
+        "productionCallerCount": 3,
+        "callerContextSha256": "05f0697c1a163f6594bd86e2c1ecea0fba68bea174774d4db29c07c6703fa4d6",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+            "line": 287,
+            "lineText": "    scriptEvents: toLines(getOption(firstScript, 'on', 'On') || []),",
+            "lineSha256": "ea9b2d46d5d9afee675a07a0016dae0f9b08c3819bd79db20e11bee3ad1bedd0",
+            "context": [
+              {
+                "line": 285,
+                "text": "    scriptArgs: getOption(firstScriptRun, 'args', 'Args') || '',"
+              },
+              {
+                "line": 286,
+                "text": "    scriptCommand: getOption(firstScriptRun, 'command', 'Command') || '',"
+              },
+              {
+                "line": 287,
+                "text": "    scriptEvents: toLines(getOption(firstScript, 'on', 'On') || []),"
+              },
+              {
+                "line": 288,
+                "text": "    scriptExecutable: getOption(firstScriptRun, 'executable', 'Executable') || '',"
+              },
+              {
+                "line": 289,
+                "text": "    scriptName: firstScriptName,"
+              }
+            ],
+            "contextSha256": "b89e54da5296ba69c9ae608d669744d8163990364bd27ed804210b453d1827db",
+            "fileBytes": 86622,
+            "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+            "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+            "gitBlobSha1Check": "04a724537e1353d5fc262c30df150dc0534c6c89"
+          },
+          {
+            "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+            "line": 304,
+            "lineText": "    webhookEvents: toLines(getOption(firstWebhook, 'on', 'On') || []),",
+            "lineSha256": "f20f5f4371c60bbc570ecb08f7a7e1bf3dc325e0197e441b45c46ae29d00a238",
+            "context": [
+              {
+                "line": 302,
+                "text": "    uploadSpeedLimit: String(getOption(upload, 'speedLimit', 'speed_limit', 'SpeedLimit') ?? 0),"
+              },
+              {
+                "line": 303,
+                "text": "    uploadScheduledLimitsEnabled: Boolean(getOption(uploadScheduledLimits, 'enabled', 'Enabled')),"
+              },
+              {
+                "line": 304,
+                "text": "    webhookEvents: toLines(getOption(firstWebhook, 'on', 'On') || []),"
+              },
+              {
+                "line": 305,
+                "text": "    webhookIgnoreCertificateErrors: Boolean(getOption(firstWebhookCall, 'ignoreCertificateErrors', 'ignore_certificate_errors', 'IgnoreCertificateErrors')),"
+              },
+              {
+                "line": 306,
+                "text": "    webhookName: firstWebhookName,"
+              }
+            ],
+            "contextSha256": "0b998575742025105bc43d8b9b99f92b6549f6e40703d3730b89f35317a8aaf7",
+            "fileBytes": 86622,
+            "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+            "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+            "gitBlobSha1Check": "04a724537e1353d5fc262c30df150dc0534c6c89"
+          },
+          {
+            "path": "src/web/src/components/System/Mesh/MeshEvidencePolicy.jsx",
+            "line": 157,
+            "lineText": "          <Statistic.Value>{summary.inboundEnabled ? <LocalizedText source={\"On\"} /> : <LocalizedText source={\"Off\"} />}</Statistic.Value>",
+            "lineSha256": "a5338a13cc89b936fa4e7708d4aa56fb67a87c875e7e559d4bacd71ae21ea4fe",
+            "context": [
+              {
+                "line": 155,
+                "text": "      >"
+              },
+              {
+                "line": 156,
+                "text": "        <Statistic color={summary.inboundEnabled ? 'blue' : 'grey'}>"
+              },
+              {
+                "line": 157,
+                "text": "          <Statistic.Value>{summary.inboundEnabled ? <LocalizedText source={\"On\"} /> : <LocalizedText source={\"Off\"} />}</Statistic.Value>"
+              },
+              {
+                "line": 158,
+                "text": "          <Statistic.Label><LocalizedText source={\"Inbound Evidence\"} /></Statistic.Label>"
+              },
+              {
+                "line": 159,
+                "text": "        </Statistic>"
+              }
+            ],
+            "contextSha256": "206282a91bf9148cf897d96eb7548d025ee772f48d10580cd3a898f43c13ccba",
+            "fileBytes": 14472,
+            "fileSha256": "dacaf70e93d5df4ce088e2ac9b039e3ea615989c3b1fa62c8128dde89890a02f",
+            "gitBlob": "0ec18db2860be78db0a74be382aba34f052c1316",
+            "gitBlobSha1Check": "0ec18db2860be78db0a74be382aba34f052c1316"
+          }
+        ]
+      },
+      {
+        "continuationRank": 102,
+        "sourceId": "src_130148c847e18255",
+        "source": "Unable to start similar-track searches.",
+        "sourceSha256": "130148c847e18255fb2f702f2e1f0b40578d60d04103713ba7276595bd6c16fa",
+        "productionCallerCount": 1,
+        "callerContextSha256": "2c8334602d05ce7fc49db19bcc4879c0302ca9c728973aa2fd3c1ed90e0fa7e9",
+        "callers": [
+          {
+            "path": "src/web/src/components/Player/PlayerBar.jsx",
+            "line": 665,
+            "lineText": "      setHandoffStatus(interfaceText('Unable to start similar-track searches.'));",
+            "lineSha256": "4ca9d7fe49e5aed38ae9b030f0c63043c06853277503496ac2777e627ce4a6d2",
+            "context": [
+              {
+                "line": 663,
+                "text": "      ));"
+              },
+              {
+                "line": 664,
+                "text": "    } catch {"
+              },
+              {
+                "line": 665,
+                "text": "      setHandoffStatus(interfaceText('Unable to start similar-track searches.'));"
+              },
+              {
+                "line": 666,
+                "text": "    } finally {"
+              },
+              {
+                "line": 667,
+                "text": "      setSearchingSimilar(false);"
+              }
+            ],
+            "contextSha256": "9193a5749fb2be58b70b16becd4a8cc5ed29cd4f6b3552629b807cdc560f9493",
+            "fileBytes": 192794,
+            "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+            "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+            "gitBlobSha1Check": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d"
+          }
+        ]
+      },
+      {
+        "continuationRank": 103,
+        "sourceId": "src_13103df9ca24e023",
+        "source": "Membership Verification Result",
+        "sourceSha256": "13103df9ca24e02374ecc847400f6e2414deaf33b0a5ed4ed3e235d47f2d7c2b",
+        "productionCallerCount": 1,
+        "callerContextSha256": "490002f87b0e9225a983202ef321d0645fe35a42f02cc21b6b81c65f56203d5a",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 2239,
+            "lineText": "                        <LocalizedText source={\"Membership Verification Result\"} /></Message.Header>",
+            "lineSha256": "5d51c3cff53ba5108027d08c057d1f1f26bd87cf49a907fa5c2788575dc2e6e4",
+            "context": [
+              {
+                "line": 2237,
+                "text": "                    <Message success>"
+              },
+              {
+                "line": 2238,
+                "text": "                      <Message.Header>"
+              },
+              {
+                "line": 2239,
+                "text": "                        <LocalizedText source={\"Membership Verification Result\"} /></Message.Header>"
+              },
+              {
+                "line": 2240,
+                "text": "                      <p>"
+              },
+              {
+                "line": 2241,
+                "text": "                        <strong><LocalizedText source={\"Valid Member:\"} /></strong>{' '}"
+              }
+            ],
+            "contextSha256": "06751c5bf6b91688c69b361ad0cc85ddc8576170d22fcfa6718d584a2e1e7997",
+            "fileBytes": 215588,
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+            "gitBlobSha1Check": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ]
+      },
+      {
+        "continuationRank": 104,
+        "sourceId": "src_131b4ed4cb824edd",
+        "source": "Persistent graph surface for wandering the neighborhood around a seed without opening a modal. Use manual seeds, canonical ids, or saved branches to keep exploration in the page flow.",
+        "sourceSha256": "131b4ed4cb824edd236d088830d7c35c1fff0879da79d7e9743bb901bedc03fc",
+        "productionCallerCount": 1,
+        "callerContextSha256": "efbfbcfe6066d97b25cd7db592a0ee942baf8ff79c59723a8c8c0063da1cef8c",
+        "callers": [
+          {
+            "path": "src/web/src/components/Search/DiscoveryGraphAtlasPanel.jsx",
+            "line": 241,
+            "lineText": "        <LocalizedText source={\"Persistent graph surface for wandering the neighborhood around a seed without opening a modal. Use manual seeds, canonical ids, or saved branches to keep exploration in the page flow.\"} /></p>",
+            "lineSha256": "79a5a0b61faa97058a234398019dee0b18f683cebfc192f7c34757f5de720f12",
+            "context": [
+              {
+                "line": 239,
+                "text": "      <Header as=\"h4\"><LocalizedText source={\"Discovery Graph Atlas\"} /></Header>"
+              },
+              {
+                "line": 240,
+                "text": "      <p style={{ marginTop: 0 }}>"
+              },
+              {
+                "line": 241,
+                "text": "        <LocalizedText source={\"Persistent graph surface for wandering the neighborhood around a seed without opening a modal. Use manual seeds, canonical ids, or saved branches to keep exploration in the page flow.\"} /></p>"
+              },
+              {
+                "line": 242,
+                "text": "      <Form className=\"discovery-graph-seed-form\">"
+              },
+              {
+                "line": 243,
+                "text": "        <Form.Field>"
+              }
+            ],
+            "contextSha256": "452954dc1f643f4f605a5b3c3865fff7f95ccea4a808bfefd6b26f36395ad8bf",
+            "fileBytes": 21517,
+            "fileSha256": "4794b736b5600ea0f7157d75f6c61e05370df15e642508aa107bd0c46197da81",
+            "gitBlob": "4761a75cab323ef1b23ecf0d944f85865522569d",
+            "gitBlobSha1Check": "4761a75cab323ef1b23ecf0d944f85865522569d"
+          }
+        ]
+      },
+      {
+        "continuationRank": 105,
+        "sourceId": "src_131da8f86d4d7a45",
+        "source": "lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000",
+        "sourceSha256": "131da8f86d4d7a455883a45066384c60ae1abecc1166223dc7004171d58f1b87",
+        "productionCallerCount": 2,
+        "callerContextSha256": "53273176ec995617714402471d00f715c96028556a38921c4eab80f5d21bc5a3",
+        "callers": [
+          {
+            "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+            "line": 1072,
+            "lineText": "              placeholder={interfaceText(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}",
+            "lineSha256": "dfa997f52fb0d4841dc6ad06545533b8623a4327c3bf405a29fbe92a65455bd7",
+            "context": [
+              {
+                "line": 1070,
+                "text": "              label={{ content: localized('Filter'), icon: 'filter' }}"
+              },
+              {
+                "line": 1071,
+                "text": "              onChange={(_event, data) => setResultFilters(data.value)}"
+              },
+              {
+                "line": 1072,
+                "text": "              placeholder={interfaceText(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}"
+              },
+              {
+                "line": 1073,
+                "text": "              value={resultFilters}"
+              },
+              {
+                "line": 1074,
+                "text": "             {...interfaceTextProps(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}/>"
+              }
+            ],
+            "contextSha256": "a2c7ea3369db2001409eddb214a374eda6e7c394d4ff7100faa3039bfde552ac",
+            "fileBytes": 50392,
+            "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+            "gitBlob": "9a31a03756d71944a5a383e874bee3981b7073b9",
+            "gitBlobSha1Check": "9a31a03756d71944a5a383e874bee3981b7073b9"
+          },
+          {
+            "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+            "line": 1074,
+            "lineText": "             {...interfaceTextProps(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}/>",
+            "lineSha256": "16727dd078d2a5b3fbf67edb8335dd4d6c7a53c6d0abe7dce9c765ac907c0c54",
+            "context": [
+              {
+                "line": 1072,
+                "text": "              placeholder={interfaceText(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}"
+              },
+              {
+                "line": 1073,
+                "text": "              value={resultFilters}"
+              },
+              {
+                "line": 1074,
+                "text": "             {...interfaceTextProps(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}/>"
+              },
+              {
+                "line": 1075,
+                "text": "          </Segment>"
+              },
+              {
+                "line": 1076,
+                "text": "        )}"
+              }
+            ],
+            "contextSha256": "4229a20e485895496b3bbde89a3002ce191231e5f0272bcac07708fbd56371c7",
+            "fileBytes": 50392,
+            "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+            "gitBlob": "9a31a03756d71944a5a383e874bee3981b7073b9",
+            "gitBlobSha1Check": "9a31a03756d71944a5a383e874bee3981b7073b9"
+          }
+        ]
+      },
+      {
+        "continuationRank": 106,
+        "sourceId": "src_13242cb7c988f4dd",
+        "source": "Preview Playlist",
+        "sourceSha256": "13242cb7c988f4ddb8eab4de0a92ad58edc3daf7773f4d85e0180e3d9d5a67c4",
+        "productionCallerCount": 1,
+        "callerContextSha256": "36a431764816a42739cfe42b525444a99fbe942363370a73b7b305522face2b5",
+        "callers": [
+          {
+            "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+            "line": 320,
+            "lineText": "                          <LocalizedText source={\"Preview Playlist\"} /></Button>",
+            "lineSha256": "8453378557f248f1803de7dc8c04159534fcbc2110ca3c5bb72e02fa8b49a092",
+            "context": [
+              {
+                "line": 318,
+                "text": "                         {...interfaceTextProps(\"Preview slskdN playlist for {name}\")}>"
+              },
+              {
+                "line": 319,
+                "text": "                          <Icon name=\"file alternate outline\" />"
+              },
+              {
+                "line": 320,
+                "text": "                          <LocalizedText source={\"Preview Playlist\"} /></Button>"
+              },
+              {
+                "line": 321,
+                "text": "                      }"
+              },
+              {
+                "line": 322,
+                "text": "                     {...interfaceTextProps(\"Preview the matched rows that will be used for a slskdN playlist Collection.\")}/>"
+              }
+            ],
+            "contextSha256": "7dd71ac43158fc462f80e086d6d8ff344e081764548346150c7a29b0e28b14d1",
+            "fileBytes": 33270,
+            "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40",
+            "gitBlob": "296709c21670998686758a237a53e4fa47295ab2",
+            "gitBlobSha1Check": "296709c21670998686758a237a53e4fa47295ab2"
+          }
+        ]
+      },
+      {
+        "continuationRank": 107,
+        "sourceId": "src_1330514af562230f",
+        "source": "Delete the active native playlist from this browser.",
+        "sourceSha256": "1330514af562230f8876607d88d2e29c9ab95cc030e34563b09bb5f409b178e7",
+        "productionCallerCount": 2,
+        "callerContextSha256": "28271419b3b08bc877d2a5716e7f0668e29a9606fa460e52e8acae95dad292e3",
+        "callers": [
+          {
+            "path": "src/web/src/components/Player/Visualizer.jsx",
+            "line": 1899,
+            "lineText": "                  content={interfaceText(\"Delete the active native playlist from this browser.\")}",
+            "lineSha256": "0217a0d277dce67408c8c77048cbe93688dbcc1f4f0fa859dd7e41a9e1f2e1a3",
+            "context": [
+              {
+                "line": 1897,
+                "text": "              {activeNativePlaylistId ? ("
+              },
+              {
+                "line": 1898,
+                "text": "                <Popup"
+              },
+              {
+                "line": 1899,
+                "text": "                  content={interfaceText(\"Delete the active native playlist from this browser.\")}"
+              },
+              {
+                "line": 1900,
+                "text": "                  trigger={"
+              },
+              {
+                "line": 1901,
+                "text": "                    <Button"
+              }
+            ],
+            "contextSha256": "1bfdd3da965c3966dadf98d497c9e2fbcd18cbc38a1ffb4507e4b1dfabb1efbb",
+            "fileBytes": 101527,
+            "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+            "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+            "gitBlobSha1Check": "4652a041e84082e3656eddb2ea64e2871cafe135"
+          },
+          {
+            "path": "src/web/src/components/Player/Visualizer.jsx",
+            "line": 1911,
+            "lineText": "                 {...interfaceTextProps(\"Delete the active native playlist from this browser.\")}/>",
+            "lineSha256": "00a760141af6cc641f9f63cd9d75ff98516ce2a56637cfe77013e9b40a220ef4",
+            "context": [
+              {
+                "line": 1909,
+                "text": "                    </Button>"
+              },
+              {
+                "line": 1910,
+                "text": "                  }"
+              },
+              {
+                "line": 1911,
+                "text": "                 {...interfaceTextProps(\"Delete the active native playlist from this browser.\")}/>"
+              },
+              {
+                "line": 1912,
+                "text": "              ) : null}"
+              },
+              {
+                "line": 1913,
+                "text": "              {nativePresetLibrary.length > 0 ? ("
+              }
+            ],
+            "contextSha256": "0b6395c197b9f324598fc6d732621069298092668137ea9ca747783767164201",
+            "fileBytes": 101527,
+            "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+            "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+            "gitBlobSha1Check": "4652a041e84082e3656eddb2ea64e2871cafe135"
+          }
+        ]
+      },
+      {
+        "continuationRank": 108,
+        "sourceId": "src_1331275bc537b4c2",
+        "source": "Tags",
+        "sourceSha256": "1331275bc537b4c2bf1e46f7275677967515342e30b572e6852fa6f51b831fe8",
+        "productionCallerCount": 1,
+        "callerContextSha256": "c22f2e0ec08e47869cd44dd93e73f0c1731240dbc816fdd71e259068ea8fc1ed",
+        "callers": [
+          {
+            "path": "src/web/src/components/Pods/Pods.jsx",
+            "line": 1022,
+            "lineText": "                <label><LocalizedText source={\"Tags\"} /></label>",
+            "lineSha256": "d9fa8a237e40886c2b75fb66dafc449637aebc55b4dda8d42c48f2fb40eee774",
+            "context": [
+              {
+                "line": 1020,
+                "text": "               {...interfaceTextProps(\"Description\")}/>"
+              },
+              {
+                "line": 1021,
+                "text": "              <Form.Field>"
+              },
+              {
+                "line": 1022,
+                "text": "                <label><LocalizedText source={\"Tags\"} /></label>"
+              },
+              {
+                "line": 1023,
+                "text": "                <Input"
+              },
+              {
+                "line": 1024,
+                "text": "                  onChange={(e) =>"
+              }
+            ],
+            "contextSha256": "741142e72b516888298ec29f16af278127446c0af1696308c9177b60c568e55b",
+            "fileBytes": 38151,
+            "fileSha256": "1f20ae14d37483d4b092c49680f46967d84b8798e32736de4258c401a3977e1a",
+            "gitBlob": "0d21613128bf88cc1524c3a0232b2ef2b94ce99b",
+            "gitBlobSha1Check": "0d21613128bf88cc1524c3a0232b2ef2b94ce99b"
+          }
+        ]
+      },
+      {
+        "continuationRank": 109,
+        "sourceId": "src_1335523a4eab0ede",
+        "source": "Automations:",
+        "sourceSha256": "1335523a4eab0ede0c22ed871f02bb50dfc3878992b5a30914032d404cf85010",
+        "productionCallerCount": 1,
+        "callerContextSha256": "d58a031faad3951bbcc03f26422b278ff4ed75b047f6a1a76055ff72dd2eee1c",
+        "callers": [
+          {
+            "path": "src/web/src/lib/mediaServerIntegrations.js",
+            "line": 440,
+            "lineText": "  lines.push('', interfaceText('Automations:'));",
+            "lineSha256": "0a39e5e8122e096ca3000c62e207225918968c253ad806b0faa0d48e78808ed4",
+            "context": [
+              {
+                "line": 438,
+                "text": "  });"
+              },
+              {
+                "line": 439,
+                "text": ""
+              },
+              {
+                "line": 440,
+                "text": "  lines.push('', interfaceText('Automations:'));"
+              },
+              {
+                "line": 441,
+                "text": "  contract.automations.forEach((automation) => {"
+              },
+              {
+                "line": 442,
+                "text": "    lines.push("
+              }
+            ],
+            "contextSha256": "2869b17156011d88d284b90570b74ebbc12147381bc1b45e63df2add00637cba",
+            "fileBytes": 17870,
+            "fileSha256": "e6679217952bfcf9a761d790d42c15563879ec4031a9fb80275c80f7a0b1eb68",
+            "gitBlob": "f8502c916c5d3701ff916581c57920b1ef0ccf74",
+            "gitBlobSha1Check": "f8502c916c5d3701ff916581c57920b1ef0ccf74"
+          }
+        ]
+      },
+      {
+        "continuationRank": 110,
+        "sourceId": "src_1338cf5ea2df8d1b",
+        "source": "Disable authority {authorityKey}",
+        "sourceSha256": "1338cf5ea2df8d1bd5ebcc6e008db685a3aa6943338cce91da866f0307e888b3",
+        "productionCallerCount": 2,
+        "callerContextSha256": "fdffb639afd7e53505124c4ad2b13151d72c366e6b3782c18cf87bd6ff266f04",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+            "line": 267,
+            "lineText": "                                    {...interfaceTextProps(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\")}",
+            "lineSha256": "48dbd84236c7ce89b8e7971407f9ff130e6d4d7bcac8382d6cc8c62723116b14",
+            "context": [
+              {
+                "line": 265,
+                "text": "                                trigger={"
+              },
+              {
+                "line": 266,
+                "text": "                                  <Button"
+              },
+              {
+                "line": 267,
+                "text": "                                    {...interfaceTextProps(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\")}"
+              },
+              {
+                "line": 268,
+                "text": "                                    aria-label={interfaceAttributeText(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\", { authorityKey })}"
+              },
+              {
+                "line": 269,
+                "text": "                                    onClick={() => toggleAuthority(authorityKey)}"
+              }
+            ],
+            "contextSha256": "d9e1f0f4b160e2dd93c5a77c4840cbc5cc39e6617c9a2f68a339e2302d05319b",
+            "fileBytes": 12532,
+            "fileSha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+            "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8",
+            "gitBlobSha1Check": "a48cc382a560bc95a94e14d11688704a57b6ceb8"
+          },
+          {
+            "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+            "line": 268,
+            "lineText": "                                    aria-label={interfaceAttributeText(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\", { authorityKey })}",
+            "lineSha256": "81329295dd93c1e3a1292e8543147591e128ceef070e324dbc83f34995d0c8de",
+            "context": [
+              {
+                "line": 266,
+                "text": "                                  <Button"
+              },
+              {
+                "line": 267,
+                "text": "                                    {...interfaceTextProps(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\")}"
+              },
+              {
+                "line": 268,
+                "text": "                                    aria-label={interfaceAttributeText(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\", { authorityKey })}"
+              },
+              {
+                "line": 269,
+                "text": "                                    onClick={() => toggleAuthority(authorityKey)}"
+              },
+              {
+                "line": 270,
+                "text": "                                    size=\"mini\""
+              }
+            ],
+            "contextSha256": "290abb0d3e36383ec106f2b4d827addd00e2535c1d430f9baa52a5573d20440f",
+            "fileBytes": 12532,
+            "fileSha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+            "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8",
+            "gitBlobSha1Check": "a48cc382a560bc95a94e14d11688704a57b6ceb8"
+          }
+        ]
+      },
+      {
+        "continuationRank": 111,
+        "sourceId": "src_133e860ea3d82307",
+        "source": "Failed to join room \"{roomName}\": {message}",
+        "sourceSha256": "133e860ea3d82307e3ec1aab6e7947840ceea712813f4965685b03aa4aecb9ee",
+        "productionCallerCount": 1,
+        "callerContextSha256": "62bf32da5d4fb5db8c8f2f466cc09d2bde678199f5982cb8ae335b2f6e8ba4a7",
+        "callers": [
+          {
+            "path": "src/web/src/components/Rooms/Rooms.jsx",
+            "line": 255,
+            "lineText": "      toast.error(interfaceToastText('Failed to join room \"{roomName}\": {message}', {",
+            "lineSha256": "9a17d6e0df286a47b6a6ae80af9d4a80733442b7554955bebba0249e96865dd4",
+            "context": [
+              {
+                "line": 253,
+                "text": "    } catch (error) {"
+              },
+              {
+                "line": 254,
+                "text": "      console.error('Failed to join room:', error);"
+              },
+              {
+                "line": 255,
+                "text": "      toast.error(interfaceToastText('Failed to join room \"{roomName}\": {message}', {"
+              },
+              {
+                "line": 256,
+                "text": "        roomName,"
+              },
+              {
+                "line": 257,
+                "text": "        message: getApiErrorMessageOutput(error, { t: interfaceText }),"
+              }
+            ],
+            "contextSha256": "86a926f679c6ebb2f5d528f92014f9dfaf09746345976bf1c720fe9d6fc81e97",
+            "fileBytes": 13563,
+            "fileSha256": "3430b773117a082289d151d96b571c3b642c64cdc34b73742ccb348811fff1c0",
+            "gitBlob": "1f5de400309f9d8d8839e4cd258fff26a593e32a",
+            "gitBlobSha1Check": "1f5de400309f9d8d8839e4cd258fff26a593e32a"
+          }
+        ]
+      },
+      {
+        "continuationRank": 112,
+        "sourceId": "src_13542a241842f5f7",
+        "source": "Similarity Analysis",
+        "sourceSha256": "13542a241842f5f7b5cdfc32aa6f28e6e89939d0d7960e02350d56dbc56e6176",
+        "productionCallerCount": 1,
+        "callerContextSha256": "b5eb382a4290d1ace77d8cb4898a93c2ceaddae9d28eaaf65a4d40b402313ad2",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/MediaCore/index.jsx",
+            "line": 1907,
+            "lineText": "                      <Message.Header><LocalizedText source={\"Similarity Analysis\"} /></Message.Header>",
+            "lineSha256": "001d781e9557c89aad1f8dbac0e4062ce5352c1a72fc70ca8bb1b3b8513fb569",
+            "context": [
+              {
+                "line": 1905,
+                "text": "                  ) : ("
+              },
+              {
+                "line": 1906,
+                "text": "                    <Message info>"
+              },
+              {
+                "line": 1907,
+                "text": "                      <Message.Header><LocalizedText source={\"Similarity Analysis\"} /></Message.Header>"
+              },
+              {
+                "line": 1908,
+                "text": "                      <p>"
+              },
+              {
+                "line": 1909,
+                "text": "                        <strong><LocalizedText source={\"Content A:\"} /></strong>{' '}"
+              }
+            ],
+            "contextSha256": "602cc13101a6f119b89b6a475d6d43c69c1950a3a176b056823cd303aa9c45b4",
+            "fileBytes": 129328,
+            "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+            "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3",
+            "gitBlobSha1Check": "c26212440f57a04f648e75a4863847129f0c85f3"
+          }
+        ]
+      },
+      {
+        "continuationRank": 113,
+        "sourceId": "src_135a21d2aa43fd87",
+        "source": "Wait for online",
+        "sourceSha256": "135a21d2aa43fd87c3eb2f18621d47186ba29a39ce6b690b1a9542e4448fb98b",
+        "productionCallerCount": 1,
+        "callerContextSha256": "c01ec13cc4d97af4b49ebd601ab53ff50c1a690fc20600e001d1ea57b14e5da9",
+        "callers": [
+          {
+            "path": "src/web/src/lib/transfers.js",
+            "line": 331,
+            "lineText": "      label: 'Wait for online',",
+            "lineSha256": "7f26f002b6d6c11d00e2dccc2631727acbc6a5c46ece83e3f00a1c9871da4bc2",
+            "context": [
+              {
+                "line": 329,
+                "text": "    return {"
+              },
+              {
+                "line": 330,
+                "text": "      action: 'wait',"
+              },
+              {
+                "line": 331,
+                "text": "      label: 'Wait for online',"
+              },
+              {
+                "line": 332,
+                "text": "      icon: 'pause',"
+              },
+              {
+                "line": 333,
+                "text": "      description: 'The user is currently offline. The system will retry automatically when they come back.',"
+              }
+            ],
+            "contextSha256": "b111a334ccaee88612786f86bc3b41f7d2a18f8c3b03dffdc086d4620924027e",
+            "fileBytes": 11287,
+            "fileSha256": "543ac84d06bf10007948875d5c4152bf6eddd262a0caebef249608772979c43b",
+            "gitBlob": "a153d0c6b72aebc6a4df328d9027e3f7a4f1564e",
+            "gitBlobSha1Check": "a153d0c6b72aebc6a4df328d9027e3f7a4f1564e"
+          }
+        ]
+      },
+      {
+        "continuationRank": 114,
+        "sourceId": "src_135a4dd90ce54e1e",
+        "source": "Open confirmation to permanently delete {itemType} '{fullName}'.",
+        "sourceSha256": "135a4dd90ce54e1e4707a6b4dc078518f1b0bacba56e41c08ea6b1a0c5e960e4",
+        "productionCallerCount": 2,
+        "callerContextSha256": "62b0ba4718d314e4983efe4bb64d723ca57e2c326387fc72c7b6b63fdde808c4",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/Files/Explorer.jsx",
+            "line": 57,
+            "lineText": "        content={interfaceText(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}",
+            "lineSha256": "e31a95caf74b12f1e81775fdda13ca8cff7c01fbaadbbdd4c383564a9d91dd38",
+            "context": [
+              {
+                "line": 55,
+                "text": "    <>"
+              },
+              {
+                "line": 56,
+                "text": "      <Popup"
+              },
+              {
+                "line": 57,
+                "text": "        content={interfaceText(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}"
+              },
+              {
+                "line": 58,
+                "text": "        on={['hover', 'focus']}"
+              },
+              {
+                "line": 59,
+                "text": "        position=\"top center\""
+              }
+            ],
+            "contextSha256": "71b559c048e66e76b27eaa513a3da270cd5bc4443dfbcca946de0f11f87140d3",
+            "fileBytes": 25323,
+            "fileSha256": "b875d9ebdfb98ae5edd097a554db12d8285f7151be3da1c6fd2ea2921261b822",
+            "gitBlob": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e",
+            "gitBlobSha1Check": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e"
+          },
+          {
+            "path": "src/web/src/components/System/Files/Explorer.jsx",
+            "line": 72,
+            "lineText": "       {...interfaceAttributeTextProps(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}/>",
+            "lineSha256": "0ad51145c7e7bdfcf6049ef3c67f5ffd8247d94adaf0f8b7b8f15f0e7da63c90",
+            "context": [
+              {
+                "line": 70,
+                "text": "           {...interfaceAttributeTextProps(\"Delete {itemType} {fullName}\", { itemType: itemTypeLabel, fullName })}/>"
+              },
+              {
+                "line": 71,
+                "text": "        )}"
+              },
+              {
+                "line": 72,
+                "text": "       {...interfaceAttributeTextProps(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}/>"
+              },
+              {
+                "line": 73,
+                "text": "      <Modal"
+              },
+              {
+                "line": 74,
+                "text": "        onClose={() => !deleting && setOpen(false)}"
+              }
+            ],
+            "contextSha256": "f834b7e7438c9e2a5fc1db67ddbaec48bcb2a5e64efff8164b9f52c684ffa8a1",
+            "fileBytes": 25323,
+            "fileSha256": "b875d9ebdfb98ae5edd097a554db12d8285f7151be3da1c6fd2ea2921261b822",
+            "gitBlob": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e",
+            "gitBlobSha1Check": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e"
+          }
+        ]
+      },
+      {
+        "continuationRank": 115,
+        "sourceId": "src_136374f537ea99eb",
+        "source": "Fake-lossless warnings",
+        "sourceSha256": "136374f537ea99ebfba33a254bc141514c8d3807f3346d85540beea96648184c",
+        "productionCallerCount": 1,
+        "callerContextSha256": "6254530088474d395fa8d38aaefc593ab4d16f722fc1f041850692bd9383d8d1",
+        "callers": [
+          {
+            "path": "src/web/src/lib/meshEvidencePolicy.js",
+            "line": 64,
+            "lineText": "    label: 'Fake-lossless warnings',",
+            "lineSha256": "064b995b836eab732b07007cea1a9c337a75f512b72e96c311186d3019c71140",
+            "context": [
+              {
+                "line": 62,
+                "text": "    description: 'Signed warnings for suspicious fake-lossless candidates.',"
+              },
+              {
+                "line": 63,
+                "text": "    id: 'fakeLosslessWarning',"
+              },
+              {
+                "line": 64,
+                "text": "    label: 'Fake-lossless warnings',"
+              },
+              {
+                "line": 65,
+                "text": "  },"
+              },
+              {
+                "line": 66,
+                "text": "  {"
+              }
+            ],
+            "contextSha256": "40e50e3c148f1d8479f5dd7a130d4c090be6bfed962d986a15e60308971d62ef",
+            "fileBytes": 10254,
+            "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+            "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319",
+            "gitBlobSha1Check": "87b655560d0e2898cabaefa1ae090afbb8d0f319"
+          }
+        ]
+      },
+      {
+        "continuationRank": 116,
+        "sourceId": "src_1374f7fd87153c97",
+        "source": "Send Ntfy notifications when a private message arrives.",
+        "sourceSha256": "1374f7fd87153c974ced399f179b5b9befc844b7fe3495d3f76e25505c84e568",
+        "productionCallerCount": 2,
+        "callerContextSha256": "7e1ab136a8064d55639872d77fe71332decccc972ec5108a90075a8b6ebdfa2b",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/Integrations/NotificationIntegrationsPanel.jsx",
+            "line": 568,
+            "lineText": "                content={interfaceText(\"Send Ntfy notifications when a private message arrives.\")}",
+            "lineSha256": "cb80e46ee36e1ca9f0740167ef1a3af1b4f05989040eb32f7cd1a8ac1badd1cd",
+            "context": [
+              {
+                "line": 566,
+                "text": "            <Form.Group grouped>"
+              },
+              {
+                "line": 567,
+                "text": "              <Popup"
+              },
+              {
+                "line": 568,
+                "text": "                content={interfaceText(\"Send Ntfy notifications when a private message arrives.\")}"
+              },
+              {
+                "line": 569,
+                "text": "                trigger={"
+              },
+              {
+                "line": 570,
+                "text": "                  <Checkbox"
+              }
+            ],
+            "contextSha256": "0bec5e05d2a17159557bc348ff0a8ce7279621d0f76ec3868f139dc146fe5a02",
+            "fileBytes": 29389,
+            "fileSha256": "fcd3de6665787bbcef17792613b5a2566b17a6f464f5707cda7c461fc174a016",
+            "gitBlob": "39ee7ba06443e87a9cb398f87ffa33132056735d",
+            "gitBlobSha1Check": "39ee7ba06443e87a9cb398f87ffa33132056735d"
+          },
+          {
+            "path": "src/web/src/components/System/Integrations/NotificationIntegrationsPanel.jsx",
+            "line": 580,
+            "lineText": "               {...interfaceTextProps(\"Send Ntfy notifications when a private message arrives.\")}/>",
+            "lineSha256": "44aa6674f4f4ee789d08afb976c8dd5ee7301484a37ae84573c1e4b5c316d00a",
+            "context": [
+              {
+                "line": 578,
+                "text": "                   {...interfaceTextProps(\"Ntfy private message notifications\")}/>"
+              },
+              {
+                "line": 579,
+                "text": "                }"
+              },
+              {
+                "line": 580,
+                "text": "               {...interfaceTextProps(\"Send Ntfy notifications when a private message arrives.\")}/>"
+              },
+              {
+                "line": 581,
+                "text": "              <Popup"
+              },
+              {
+                "line": 582,
+                "text": "                content={interfaceText(\"Send Ntfy notifications when your username is mentioned in a joined room.\")}"
+              }
+            ],
+            "contextSha256": "cbdd9d1880a178bdc57674769df8a547b7796c653ba3d40f42e5ccd99837f01b",
+            "fileBytes": 29389,
+            "fileSha256": "fcd3de6665787bbcef17792613b5a2566b17a6f464f5707cda7c461fc174a016",
+            "gitBlob": "39ee7ba06443e87a9cb398f87ffa33132056735d",
+            "gitBlobSha1Check": "39ee7ba06443e87a9cb398f87ffa33132056735d"
+          }
+        ]
+      },
+      {
+        "continuationRank": 117,
+        "sourceId": "src_139ddaabbd20c266",
+        "source": "Please enter a message JSON",
+        "sourceSha256": "139ddaabbd20c266614a58c35651bd436369ed2cdcc20504d21421fe8a236b54",
+        "productionCallerCount": 1,
+        "callerContextSha256": "1109edc94883f69d09756541a7166a0aff79c61552c93440e0acc7b1a4081129",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 477,
+            "lineText": "      toast.warning(interfaceToastText(\"Please enter a message JSON\"));",
+            "lineSha256": "b9d62d8dde178c92111b0cd9f2c43a9bd5e4c48398b6c24d92b6cb1f1df571e7",
+            "context": [
+              {
+                "line": 475,
+                "text": "  const handleVerifyMessage = async () => {"
+              },
+              {
+                "line": 476,
+                "text": "    if (!membershipMessageToVerify.trim()) {"
+              },
+              {
+                "line": 477,
+                "text": "      toast.warning(interfaceToastText(\"Please enter a message JSON\"));"
+              },
+              {
+                "line": 478,
+                "text": "      return;"
+              },
+              {
+                "line": 479,
+                "text": "    }"
+              }
+            ],
+            "contextSha256": "0ff49709f64bad468897f7f5cae618b1ae3a768f42c2e33f228d0d1f969ed8e8",
+            "fileBytes": 215588,
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+            "gitBlobSha1Check": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ]
+      },
+      {
+        "continuationRank": 118,
+        "sourceId": "src_13aad430d4600a3f",
+        "source": "Retry Status Checks",
+        "sourceSha256": "13aad430d4600a3f9d45d6fcb531c9605c3e639b3bdf43b132f272a93b2cbb9a",
+        "productionCallerCount": 1,
+        "callerContextSha256": "9a62cadafe295741ee9f03e729f20e30c262ae409b3f66f2cccf279dfe1229f3",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+            "line": 628,
+            "lineText": "              <LocalizedText source={\"Retry Status Checks\"} /></Button>",
+            "lineSha256": "2b4121b445270508dd9af0b6b79f4d7bb8840b9bc5a88126b04eb12d7761ab8e",
+            "context": [
+              {
+                "line": 626,
+                "text": "              type=\"button\""
+              },
+              {
+                "line": 627,
+                "text": "             {...interfaceTextProps(\"Retry Library Health scan status checks\")}>"
+              },
+              {
+                "line": 628,
+                "text": "              <LocalizedText source={\"Retry Status Checks\"} /></Button>"
+              },
+              {
+                "line": 629,
+                "text": "          )}"
+              },
+              {
+                "line": 630,
+                "text": "         {...interfaceTextProps(\"Resume status checks for the current server-side scan. This does not start a second scan.\")}/>"
+              }
+            ],
+            "contextSha256": "0fad22aa1110f9bdafd19b627854619c1cdcda12e676c25926429854f8636ada",
+            "fileBytes": 52507,
+            "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+            "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+            "gitBlobSha1Check": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b"
+          }
+        ]
+      },
+      {
+        "continuationRank": 119,
+        "sourceId": "src_13bbb849749b73d6",
+        "source": "Nickname:",
+        "sourceSha256": "13bbb849749b73d660a955e67646b5c9e65e6a331d803772f6beddd7a2ea05df",
+        "productionCallerCount": 1,
+        "callerContextSha256": "da6941f60e3232f119f1b525473daf4729e24405d7b00a023b34097112e03d5c",
+        "callers": [
+          {
+            "path": "src/web/src/components/Contacts/Contacts.jsx",
+            "line": 814,
+            "lineText": "          <label><LocalizedText source={\"Nickname:\"} /></label>",
+            "lineSha256": "20c6520016c7e318c8bf8d4e4c0366c22aab467bedb1330379c753d128424c50",
+            "context": [
+              {
+                "line": 812,
+                "text": "        </div>"
+              },
+              {
+                "line": 813,
+                "text": "        <div style={{ marginBottom: '1em' }}>"
+              },
+              {
+                "line": 814,
+                "text": "          <label><LocalizedText source={\"Nickname:\"} /></label>"
+              },
+              {
+                "line": 815,
+                "text": "          <input"
+              },
+              {
+                "line": 816,
+                "text": "            data-testid=\"contacts-contact-nickname\""
+              }
+            ],
+            "contextSha256": "7670f5f6a197951c91d55961c352ab1698ee8b30ca290200a7454d2b366d5a30",
+            "fileBytes": 31603,
+            "fileSha256": "a929c367f999de20a93d348374788dccd62148ff2762fac88fadb58b09b14193",
+            "gitBlob": "664ddb7226c24e8c5308db7d015a8e6d95d7eaae",
+            "gitBlobSha1Check": "664ddb7226c24e8c5308db7d015a8e6d95d7eaae"
+          }
+        ]
+      },
+      {
+        "continuationRank": 120,
+        "sourceId": "src_13bc769f900deb8d",
+        "source": "Clear selected Library Health issues",
+        "sourceSha256": "13bc769f900deb8d2d6c35f0b9eed8c8fe219487918c5efb1b5c8d99f70c56d3",
+        "productionCallerCount": 2,
+        "callerContextSha256": "1d74909766e6691b00af004cd1a253d9f845d08c0c7892526c80a7ede40019c0",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+            "line": 959,
+            "lineText": "                      aria-label={interfaceText(\"Clear selected Library Health issues\")}",
+            "lineSha256": "92601cb990932908d3827800fd0a0de0789481f2606e16044d916c17e995fc64",
+            "context": [
+              {
+                "line": 957,
+                "text": "                  trigger={("
+              },
+              {
+                "line": 958,
+                "text": "                    <Button"
+              },
+              {
+                "line": 959,
+                "text": "                      aria-label={interfaceText(\"Clear selected Library Health issues\")}"
+              },
+              {
+                "line": 960,
+                "text": "                      basic"
+              },
+              {
+                "line": 961,
+                "text": "                      className=\"library-health-action\""
+              }
+            ],
+            "contextSha256": "22bbe20a50237f95998ae8a543d99ffe816f5450461778051670b982d55272ac",
+            "fileBytes": 52507,
+            "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+            "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+            "gitBlobSha1Check": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b"
+          },
+          {
+            "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+            "line": 965,
+            "lineText": "                     {...interfaceTextProps(\"Clear selected Library Health issues\")}>",
+            "lineSha256": "df40ef185e59fd033934638733b27a6ebd8358f8883e79fe1380ec956fdeda36",
+            "context": [
+              {
+                "line": 963,
+                "text": "                      onClick={() => setSelectedIssues(new Set())}"
+              },
+              {
+                "line": 964,
+                "text": "                      type=\"button\""
+              },
+              {
+                "line": 965,
+                "text": "                     {...interfaceTextProps(\"Clear selected Library Health issues\")}>"
+              },
+              {
+                "line": 966,
+                "text": "                      <LocalizedText source={\"Clear Selection\"} /></Button>"
+              },
+              {
+                "line": 967,
+                "text": "                  )}"
+              }
+            ],
+            "contextSha256": "2c5f1f5aabf43b4a9fc6078a7d83544a7f2d5bec0819c55fa2a0e217e2965a82",
+            "fileBytes": 52507,
+            "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+            "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+            "gitBlobSha1Check": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b"
+          }
+        ]
+      },
+      {
+        "continuationRank": 121,
+        "sourceId": "src_13d3af4237d0f25a",
+        "source": "No connected mesh peers",
+        "sourceSha256": "13d3af4237d0f25a6666170f09723cd224b4defa139608577b5b2d3436ae70ac",
+        "productionCallerCount": 3,
+        "callerContextSha256": "78ce987ec28316fe8341fdf586122b7471dfd8bd086a7aa5402e1776291488c7",
+        "callers": [
+          {
+            "path": "src/web/src/lib/networkHealthScore.js",
+            "line": 82,
+            "lineText": "      summary: 'No connected mesh peers',",
+            "lineSha256": "7b22cffbc334e4b8209b4f17e81758fadd1ddde20fb6079a48febac3268a5fa5",
+            "context": [
+              {
+                "line": 80,
+                "text": "      area: 'Mesh',"
+              },
+              {
+                "line": 81,
+                "text": "      severity: 'warn',"
+              },
+              {
+                "line": 82,
+                "text": "      summary: 'No connected mesh peers',"
+              },
+              {
+                "line": 83,
+                "text": "    });"
+              },
+              {
+                "line": 84,
+                "text": "  }"
+              }
+            ],
+            "contextSha256": "058dcd2777a72795763e853a016781e89a4b8f825ceeaa80dde7efb33df5ff72",
+            "fileBytes": 9660,
+            "fileSha256": "b897766a68e563edf80cd29158a7c3999bc28b1f2ee7cd70ec8b907629d0f13c",
+            "gitBlob": "6d4efd10db92d5cf5fca307b146dddebe9284484",
+            "gitBlobSha1Check": "6d4efd10db92d5cf5fca307b146dddebe9284484"
+          },
+          {
+            "path": "src/web/src/lib/networkHealthScore.js",
+            "line": 228,
+            "lineText": "      case 'No connected mesh peers':",
+            "lineSha256": "cc0c184eae648aff02c85756baabb6af0add86c8bbfc4548aab511681ef0933b",
+            "context": [
+              {
+                "line": 226,
+                "text": "      case 'LAN-only mode has no local peers yet':"
+              },
+              {
+                "line": 227,
+                "text": "        return interfaceText('LAN-only mode has no local peers yet');"
+              },
+              {
+                "line": 228,
+                "text": "      case 'No connected mesh peers':"
+              },
+              {
+                "line": 229,
+                "text": "        return interfaceText('No connected mesh peers');"
+              },
+              {
+                "line": 230,
+                "text": "      case 'No hash entries visible':"
+              }
+            ],
+            "contextSha256": "616ae52d4c0ce44edcaf46551977ac96162ab6a251f2e104de74e840ab301244",
+            "fileBytes": 9660,
+            "fileSha256": "b897766a68e563edf80cd29158a7c3999bc28b1f2ee7cd70ec8b907629d0f13c",
+            "gitBlob": "6d4efd10db92d5cf5fca307b146dddebe9284484",
+            "gitBlobSha1Check": "6d4efd10db92d5cf5fca307b146dddebe9284484"
+          },
+          {
+            "path": "src/web/src/lib/networkHealthScore.js",
+            "line": 229,
+            "lineText": "        return interfaceText('No connected mesh peers');",
+            "lineSha256": "5679757c61b1d2fe2df680d31fed392fc8bb6152ededa16ad95765b92ae4b6aa",
+            "context": [
+              {
+                "line": 227,
+                "text": "        return interfaceText('LAN-only mode has no local peers yet');"
+              },
+              {
+                "line": 228,
+                "text": "      case 'No connected mesh peers':"
+              },
+              {
+                "line": 229,
+                "text": "        return interfaceText('No connected mesh peers');"
+              },
+              {
+                "line": 230,
+                "text": "      case 'No hash entries visible':"
+              },
+              {
+                "line": 231,
+                "text": "        return interfaceText('No hash entries visible');"
+              }
+            ],
+            "contextSha256": "34294d26d464fcfb5c46683a1e6eb53e902411a09168b502e0552b73b4b1281b",
+            "fileBytes": 9660,
+            "fileSha256": "b897766a68e563edf80cd29158a7c3999bc28b1f2ee7cd70ec8b907629d0f13c",
+            "gitBlob": "6d4efd10db92d5cf5fca307b146dddebe9284484",
+            "gitBlobSha1Check": "6d4efd10db92d5cf5fca307b146dddebe9284484"
+          }
+        ]
+      },
+      {
+        "continuationRank": 122,
+        "sourceId": "src_140a15a3559c2d7f",
+        "source": "Enable DHT rendezvous. Disable this when you want no DHT peer discovery.",
+        "sourceSha256": "140a15a3559c2d7fc4658bf87e03d903e86fdc72dec6e84c61afcad4e62a1116",
+        "productionCallerCount": 2,
+        "callerContextSha256": "cfcd0241a95e969409d38dcacf746a5599916a7954f4f185202f97743ce9a087",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+            "line": 1375,
+            "lineText": "                  content={interfaceText(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}",
+            "lineSha256": "5a1584b25f080b55a9c0bc6102fa7434c0e42730a4ad8b10514a6ef0cd6d0cfc",
+            "context": [
+              {
+                "line": 1373,
+                "text": "                <Popup"
+              },
+              {
+                "line": 1374,
+                "text": "                  className=\"admin-policy-popup\""
+              },
+              {
+                "line": 1375,
+                "text": "                  content={interfaceText(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}"
+              },
+              {
+                "line": 1376,
+                "text": "                  trigger={"
+              },
+              {
+                "line": 1377,
+                "text": "                    <Checkbox"
+              }
+            ],
+            "contextSha256": "fd1b5ef836b677b4a7bb546899e3d035d15ed36367b4411a145098ac0d010d5d",
+            "fileBytes": 86622,
+            "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+            "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+            "gitBlobSha1Check": "04a724537e1353d5fc262c30df150dc0534c6c89"
+          },
+          {
+            "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+            "line": 1388,
+            "lineText": "                 {...interfaceTextProps(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}/>",
+            "lineSha256": "0224761f53e921ef1aea12c679015464a64b212daddab04e763f8ad9a57bc046",
+            "context": [
+              {
+                "line": 1386,
+                "text": "                     {...interfaceTextProps(\"Enable DHT rendezvous\")}/>"
+              },
+              {
+                "line": 1387,
+                "text": "                  }"
+              },
+              {
+                "line": 1388,
+                "text": "                 {...interfaceTextProps(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}/>"
+              },
+              {
+                "line": 1389,
+                "text": "                <Popup"
+              },
+              {
+                "line": 1390,
+                "text": "                  className=\"admin-policy-popup\""
+              }
+            ],
+            "contextSha256": "c868e17deb19e716c63f505dc705f5ec417a217e49cc977694c9d06b5180f512",
+            "fileBytes": 86622,
+            "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+            "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+            "gitBlobSha1Check": "04a724537e1353d5fc262c30df150dc0534c6c89"
+          }
+        ]
+      },
+      {
+        "continuationRank": 123,
+        "sourceId": "src_140bedbf9c3f6d56",
+        "source": "none",
+        "sourceSha256": "140bedbf9c3f6d56a9846d2ba7088798683f4da0c248231336e6a05679e4fdfe",
+        "productionCallerCount": 4,
+        "callerContextSha256": "ad8f94d51b8ff6bcd7d450ddf0e67ca45d0adfbe96f4d2739e73dc59c5c2b6d1",
+        "callers": [
+          {
+            "path": "src/web/src/components/Search/SongIDPanel.jsx",
+            "line": 613,
+            "lineText": "          {matrix.confidenceScore || 0} <LocalizedText source={\"· family\"} />{\" \"}{matrix.familyLabel || <LocalizedText source={\"none\"} />}",
+            "lineSha256": "4e319c3b70418e831d2dad8ab6f4369cc27b54f4386bd0aeefc9221ca33aa2ca",
+            "context": [
+              {
+                "line": 611,
+                "text": "        <div>"
+              },
+              {
+                "line": 612,
+                "text": "          <LocalizedText source={\"Synthetic score\"} />{\" \"}{matrix.syntheticScore || 0} <LocalizedText source={\"· confidence\"} />{' '}"
+              },
+              {
+                "line": 613,
+                "text": "          {matrix.confidenceScore || 0} <LocalizedText source={\"· family\"} />{\" \"}{matrix.familyLabel || <LocalizedText source={\"none\"} />}"
+              },
+              {
+                "line": 614,
+                "text": "        </div>"
+              },
+              {
+                "line": 615,
+                "text": "        {Array.isArray(matrix.topEvidenceFor) && matrix.topEvidenceFor.length > 0 ? ("
+              }
+            ],
+            "contextSha256": "491eede4d407e4c127df12aedcad481694ae71bf881b5d8071ede9ff4f7d854d",
+            "fileBytes": 81837,
+            "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+            "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483",
+            "gitBlobSha1Check": "8c087c1b1800ba9d5501b1c9af4df27fcb483483"
+          },
+          {
+            "path": "src/web/src/components/Search/SongIDPanel.jsx",
+            "line": 1098,
+            "lineText": "                <Label size=\"tiny\"><LocalizedText source={\"Audio\"} />{\" \"}{run.scorecard.analysisAudioSource || <LocalizedText source={\"none\"} />}</Label>",
+            "lineSha256": "096cd85e000f0c918b7f6e1f163a2fd909213cfedb34720c96ce956839ba51c8",
+            "context": [
+              {
+                "line": 1096,
+                "text": "              <summary style={detailSummaryStyle}><LocalizedText source={\"Scorecard\"} /></summary>"
+              },
+              {
+                "line": 1097,
+                "text": "              <div style={{ marginBottom: '1em' }}>"
+              },
+              {
+                "line": 1098,
+                "text": "                <Label size=\"tiny\"><LocalizedText source={\"Audio\"} />{\" \"}{run.scorecard.analysisAudioSource || <LocalizedText source={\"none\"} />}</Label>"
+              },
+              {
+                "line": 1099,
+                "text": "                <Label size=\"tiny\"><LocalizedText source={\"Clips\"} />{\" \"}{run.scorecard.clipCount || 0}</Label>"
+              },
+              {
+                "line": 1100,
+                "text": "                <Label size=\"tiny\"><LocalizedText source={\"AcoustID\"} />{\" \"}{run.scorecard.acoustIdHitCount || 0}</Label>"
+              }
+            ],
+            "contextSha256": "0be4cf55e53fe88a829e85be8add4d5efdee7c90cd70832ed7d6e25f9928539c",
+            "fileBytes": 81837,
+            "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+            "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483",
+            "gitBlobSha1Check": "8c087c1b1800ba9d5501b1c9af4df27fcb483483"
+          },
+          {
+            "path": "src/web/src/components/Search/SongIDPanel.jsx",
+            "line": 1160,
+            "lineText": "                  <LocalizedText source={\"Manifest\"} />{\" \"}{run.provenance.manifestHint ? <LocalizedText source={\"hinted\"} /> : <LocalizedText source={\"none\"} />}",
+            "lineSha256": "f0aa7f3b7cd1680e346e8bd87d4f6f6571e3ae6c773f1adaeee6d9cdfe6e78ae",
+            "context": [
+              {
+                "line": 1158,
+                "text": "                </Label>"
+              },
+              {
+                "line": 1159,
+                "text": "                <Label size=\"tiny\">"
+              },
+              {
+                "line": 1160,
+                "text": "                  <LocalizedText source={\"Manifest\"} />{\" \"}{run.provenance.manifestHint ? <LocalizedText source={\"hinted\"} /> : <LocalizedText source={\"none\"} />}"
+              },
+              {
+                "line": 1161,
+                "text": "                </Label>"
+              },
+              {
+                "line": 1162,
+                "text": "                <Label size=\"tiny\">"
+              }
+            ],
+            "contextSha256": "ccad8ec904b411a94087f880688d507c44e0afc384a8fbc77b76be9ce8446e68",
+            "fileBytes": 81837,
+            "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+            "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483",
+            "gitBlobSha1Check": "8c087c1b1800ba9d5501b1c9af4df27fcb483483"
+          },
+          {
+            "path": "src/web/src/components/System/MediaCore/index.jsx",
+            "line": 2476,
+            "lineText": "                        {updateResult.appliedUpdates?.join(', ') || <LocalizedText source={\"none\"} />}",
+            "lineSha256": "a063f575b6ec642cbb07df7b678789367f8e8f404260250510fd12d72de41efc",
+            "context": [
+              {
+                "line": 2474,
+                "text": "                        <br />"
+              },
+              {
+                "line": 2475,
+                "text": "                        <strong><LocalizedText source={\"Updates Applied:\"} /></strong>{' '}"
+              },
+              {
+                "line": 2476,
+                "text": "                        {updateResult.appliedUpdates?.join(', ') || <LocalizedText source={\"none\"} />}"
+              },
+              {
+                "line": 2477,
+                "text": "                      </p>"
+              },
+              {
+                "line": 2478,
+                "text": "                    </Message>"
+              }
+            ],
+            "contextSha256": "c228e151924d322b4029b90525471f65f063b8cb4b410f447cfec874aebf9823",
+            "fileBytes": 129328,
+            "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+            "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3",
+            "gitBlobSha1Check": "c26212440f57a04f648e75a4863847129f0c85f3"
+          }
+        ]
+      },
+      {
+        "continuationRank": 124,
+        "sourceId": "src_1417e456c9e9f3b9",
+        "source": "Uploads Total",
+        "sourceSha256": "1417e456c9e9f3b99809461a4fe0a98e9d16bfbeb3269777051f07830d30e79f",
+        "productionCallerCount": 1,
+        "callerContextSha256": "2d13d759d98707bd477152ab6183c3652d3036c83f340c3a486fce235203ec80",
+        "callers": [
+          {
+            "path": "src/web/src/components/System/Metrics/index.jsx",
+            "line": 50,
+            "lineText": "      { key: 'slskd_uploads_total', get label() { return interfaceText(\"Uploads Total\"); }, format: formatNumber },",
+            "lineSha256": "8734687bc0e60bc5ca5e6335e91315bc026d2ec25eb3ba2453b4621168157929",
+            "context": [
+              {
+                "line": 48,
+                "text": "    icon: 'exchange',"
+              },
+              {
+                "line": 49,
+                "text": "    metrics: ["
+              },
+              {
+                "line": 50,
+                "text": "      { key: 'slskd_uploads_total', get label() { return interfaceText(\"Uploads Total\"); }, format: formatNumber },"
+              },
+              {
+                "line": 51,
+                "text": "      { key: 'slskd_downloads_total', get label() { return interfaceText(\"Downloads Total\"); }, format: formatNumber },"
+              },
+              {
+                "line": 52,
+                "text": "      { key: 'slskd_uploads_active', get label() { return interfaceText(\"Uploads Active\"); }, format: formatNumber },"
+              }
+            ],
+            "contextSha256": "2e9778338e8d6f8e68b6c9e67f9ba4bc41f2768c39ac702376b7494ab9a7ce4b",
+            "fileBytes": 9719,
+            "fileSha256": "1d3cc120ebb902f4c72b0a1c43a571c203588dcd5017017c5444f44c4f664414",
+            "gitBlob": "4456d98b27c24725acb4187dc8274ef70b40dab0",
+            "gitBlobSha1Check": "4456d98b27c24725acb4187dc8274ef70b40dab0"
+          }
+        ]
+      },
+      {
+        "continuationRank": 125,
+        "sourceId": "src_141835a90fdf5c54",
+        "source": "{label}: {count}",
+        "sourceSha256": "141835a90fdf5c547509524b274b18de5f2e3491e14fb28673b2b858a372b083",
+        "productionCallerCount": 1,
+        "callerContextSha256": "f3b1b532fd4fa98faeddbf575180e34248777a4ca93f0a062f4402f9efa95d95",
+        "callers": [
+          {
+            "path": "src/web/src/lib/libraryHealthReport.js",
+            "line": 57,
+            "lineText": "const formatCountLine = (label, value) => interfaceText('{label}: {count}', {",
+            "lineSha256": "bd2da3b3609402ec75b333063b0fb3205939f72f9557db3626e2ebae68478932",
+            "context": [
+              {
+                "line": 55,
+                "text": "};"
+              },
+              {
+                "line": 56,
+                "text": ""
+              },
+              {
+                "line": 57,
+                "text": "const formatCountLine = (label, value) => interfaceText('{label}: {count}', {"
+              },
+              {
+                "line": 58,
+                "text": "  count: formatRegionalNumber(Number(value || 0)),"
+              },
+              {
+                "line": 59,
+                "text": "  label: interfaceText(label),"
+              }
+            ],
+            "contextSha256": "1b6cbe3d2b08a99fc789ecac125ea085fef17b55dcb73d0357f31583845d42b9",
+            "fileBytes": 17994,
+            "fileSha256": "bc9e7728e127b371250fde2c9273bd71a07dce73bf33ae46e78399a8be69ee10",
+            "gitBlob": "a8909de8740a76d9ebe0b917c24d4f95c1474cef",
+            "gitBlobSha1Check": "a8909de8740a76d9ebe0b917c24d4f95c1474cef"
+          }
+        ]
+      }
+    ],
+    "uniquePins": [
+      {
+        "path": "src/web/src/components/Contacts/Contacts.jsx",
+        "line": 814,
+        "lineSha256": "20c6520016c7e318c8bf8d4e4c0366c22aab467bedb1330379c753d128424c50",
+        "fileSha256": "a929c367f999de20a93d348374788dccd62148ff2762fac88fadb58b09b14193",
+        "gitBlob": "664ddb7226c24e8c5308db7d015a8e6d95d7eaae",
+        "lineText": "          <label><LocalizedText source={\"Nickname:\"} /></label>",
+        "context": [
+          {
+            "line": 812,
+            "text": "        </div>"
+          },
+          {
+            "line": 813,
+            "text": "        <div style={{ marginBottom: '1em' }}>"
+          },
+          {
+            "line": 814,
+            "text": "          <label><LocalizedText source={\"Nickname:\"} /></label>"
+          },
+          {
+            "line": 815,
+            "text": "          <input"
+          },
+          {
+            "line": 816,
+            "text": "            data-testid=\"contacts-contact-nickname\""
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Player/PlayerBar.jsx",
+        "line": 665,
+        "lineSha256": "4ca9d7fe49e5aed38ae9b030f0c63043c06853277503496ac2777e627ce4a6d2",
+        "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+        "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+        "lineText": "      setHandoffStatus(interfaceText('Unable to start similar-track searches.'));",
+        "context": [
+          {
+            "line": 663,
+            "text": "      ));"
+          },
+          {
+            "line": 664,
+            "text": "    } catch {"
+          },
+          {
+            "line": 665,
+            "text": "      setHandoffStatus(interfaceText('Unable to start similar-track searches.'));"
+          },
+          {
+            "line": 666,
+            "text": "    } finally {"
+          },
+          {
+            "line": 667,
+            "text": "      setSearchingSimilar(false);"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Player/Visualizer.jsx",
+        "line": 1899,
+        "lineSha256": "0217a0d277dce67408c8c77048cbe93688dbcc1f4f0fa859dd7e41a9e1f2e1a3",
+        "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+        "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+        "lineText": "                  content={interfaceText(\"Delete the active native playlist from this browser.\")}",
+        "context": [
+          {
+            "line": 1897,
+            "text": "              {activeNativePlaylistId ? ("
+          },
+          {
+            "line": 1898,
+            "text": "                <Popup"
+          },
+          {
+            "line": 1899,
+            "text": "                  content={interfaceText(\"Delete the active native playlist from this browser.\")}"
+          },
+          {
+            "line": 1900,
+            "text": "                  trigger={"
+          },
+          {
+            "line": 1901,
+            "text": "                    <Button"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Player/Visualizer.jsx",
+        "line": 1911,
+        "lineSha256": "00a760141af6cc641f9f63cd9d75ff98516ce2a56637cfe77013e9b40a220ef4",
+        "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+        "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+        "lineText": "                 {...interfaceTextProps(\"Delete the active native playlist from this browser.\")}/>",
+        "context": [
+          {
+            "line": 1909,
+            "text": "                    </Button>"
+          },
+          {
+            "line": 1910,
+            "text": "                  }"
+          },
+          {
+            "line": 1911,
+            "text": "                 {...interfaceTextProps(\"Delete the active native playlist from this browser.\")}/>"
+          },
+          {
+            "line": 1912,
+            "text": "              ) : null}"
+          },
+          {
+            "line": 1913,
+            "text": "              {nativePresetLibrary.length > 0 ? ("
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+        "line": 320,
+        "lineSha256": "8453378557f248f1803de7dc8c04159534fcbc2110ca3c5bb72e02fa8b49a092",
+        "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40",
+        "gitBlob": "296709c21670998686758a237a53e4fa47295ab2",
+        "lineText": "                          <LocalizedText source={\"Preview Playlist\"} /></Button>",
+        "context": [
+          {
+            "line": 318,
+            "text": "                         {...interfaceTextProps(\"Preview slskdN playlist for {name}\")}>"
+          },
+          {
+            "line": 319,
+            "text": "                          <Icon name=\"file alternate outline\" />"
+          },
+          {
+            "line": 320,
+            "text": "                          <LocalizedText source={\"Preview Playlist\"} /></Button>"
+          },
+          {
+            "line": 321,
+            "text": "                      }"
+          },
+          {
+            "line": 322,
+            "text": "                     {...interfaceTextProps(\"Preview the matched rows that will be used for a slskdN playlist Collection.\")}/>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Pods/Pods.jsx",
+        "line": 1022,
+        "lineSha256": "d9fa8a237e40886c2b75fb66dafc449637aebc55b4dda8d42c48f2fb40eee774",
+        "fileSha256": "1f20ae14d37483d4b092c49680f46967d84b8798e32736de4258c401a3977e1a",
+        "gitBlob": "0d21613128bf88cc1524c3a0232b2ef2b94ce99b",
+        "lineText": "                <label><LocalizedText source={\"Tags\"} /></label>",
+        "context": [
+          {
+            "line": 1020,
+            "text": "               {...interfaceTextProps(\"Description\")}/>"
+          },
+          {
+            "line": 1021,
+            "text": "              <Form.Field>"
+          },
+          {
+            "line": 1022,
+            "text": "                <label><LocalizedText source={\"Tags\"} /></label>"
+          },
+          {
+            "line": 1023,
+            "text": "                <Input"
+          },
+          {
+            "line": 1024,
+            "text": "                  onChange={(e) =>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Rooms/Rooms.jsx",
+        "line": 255,
+        "lineSha256": "9a17d6e0df286a47b6a6ae80af9d4a80733442b7554955bebba0249e96865dd4",
+        "fileSha256": "3430b773117a082289d151d96b571c3b642c64cdc34b73742ccb348811fff1c0",
+        "gitBlob": "1f5de400309f9d8d8839e4cd258fff26a593e32a",
+        "lineText": "      toast.error(interfaceToastText('Failed to join room \"{roomName}\": {message}', {",
+        "context": [
+          {
+            "line": 253,
+            "text": "    } catch (error) {"
+          },
+          {
+            "line": 254,
+            "text": "      console.error('Failed to join room:', error);"
+          },
+          {
+            "line": 255,
+            "text": "      toast.error(interfaceToastText('Failed to join room \"{roomName}\": {message}', {"
+          },
+          {
+            "line": 256,
+            "text": "        roomName,"
+          },
+          {
+            "line": 257,
+            "text": "        message: getApiErrorMessageOutput(error, { t: interfaceText }),"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+        "line": 1072,
+        "lineSha256": "dfa997f52fb0d4841dc6ad06545533b8623a4327c3bf405a29fbe92a65455bd7",
+        "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+        "gitBlob": "9a31a03756d71944a5a383e874bee3981b7073b9",
+        "lineText": "              placeholder={interfaceText(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}",
+        "context": [
+          {
+            "line": 1070,
+            "text": "              label={{ content: localized('Filter'), icon: 'filter' }}"
+          },
+          {
+            "line": 1071,
+            "text": "              onChange={(_event, data) => setResultFilters(data.value)}"
+          },
+          {
+            "line": 1072,
+            "text": "              placeholder={interfaceText(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}"
+          },
+          {
+            "line": 1073,
+            "text": "              value={resultFilters}"
+          },
+          {
+            "line": 1074,
+            "text": "             {...interfaceTextProps(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}/>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Search/Detail/SearchDetail.jsx",
+        "line": 1074,
+        "lineSha256": "16727dd078d2a5b3fbf67edb8335dd4d6c7a53c6d0abe7dce9c765ac907c0c54",
+        "fileSha256": "864356b9220505837267c7243f768565b3b4fd8c43546f68b0a24d84c4429568",
+        "gitBlob": "9a31a03756d71944a5a383e874bee3981b7073b9",
+        "lineText": "             {...interfaceTextProps(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}/>",
+        "context": [
+          {
+            "line": 1072,
+            "text": "              placeholder={interfaceText(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}"
+          },
+          {
+            "line": 1073,
+            "text": "              value={resultFilters}"
+          },
+          {
+            "line": 1074,
+            "text": "             {...interfaceTextProps(\"lackluster container -bothersome iscbr|isvbr islossless|islossy minbr:320 minfilesize:100mb maxfilesize:2gb minfilesinfolder:8 minlength:5000\")}/>"
+          },
+          {
+            "line": 1075,
+            "text": "          </Segment>"
+          },
+          {
+            "line": 1076,
+            "text": "        )}"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Search/DiscoveryGraphAtlasPanel.jsx",
+        "line": 241,
+        "lineSha256": "79a5a0b61faa97058a234398019dee0b18f683cebfc192f7c34757f5de720f12",
+        "fileSha256": "4794b736b5600ea0f7157d75f6c61e05370df15e642508aa107bd0c46197da81",
+        "gitBlob": "4761a75cab323ef1b23ecf0d944f85865522569d",
+        "lineText": "        <LocalizedText source={\"Persistent graph surface for wandering the neighborhood around a seed without opening a modal. Use manual seeds, canonical ids, or saved branches to keep exploration in the page flow.\"} /></p>",
+        "context": [
+          {
+            "line": 239,
+            "text": "      <Header as=\"h4\"><LocalizedText source={\"Discovery Graph Atlas\"} /></Header>"
+          },
+          {
+            "line": 240,
+            "text": "      <p style={{ marginTop: 0 }}>"
+          },
+          {
+            "line": 241,
+            "text": "        <LocalizedText source={\"Persistent graph surface for wandering the neighborhood around a seed without opening a modal. Use manual seeds, canonical ids, or saved branches to keep exploration in the page flow.\"} /></p>"
+          },
+          {
+            "line": 242,
+            "text": "      <Form className=\"discovery-graph-seed-form\">"
+          },
+          {
+            "line": 243,
+            "text": "        <Form.Field>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Search/SongIDPanel.jsx",
+        "line": 613,
+        "lineSha256": "4e319c3b70418e831d2dad8ab6f4369cc27b54f4386bd0aeefc9221ca33aa2ca",
+        "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+        "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483",
+        "lineText": "          {matrix.confidenceScore || 0} <LocalizedText source={\"· family\"} />{\" \"}{matrix.familyLabel || <LocalizedText source={\"none\"} />}",
+        "context": [
+          {
+            "line": 611,
+            "text": "        <div>"
+          },
+          {
+            "line": 612,
+            "text": "          <LocalizedText source={\"Synthetic score\"} />{\" \"}{matrix.syntheticScore || 0} <LocalizedText source={\"· confidence\"} />{' '}"
+          },
+          {
+            "line": 613,
+            "text": "          {matrix.confidenceScore || 0} <LocalizedText source={\"· family\"} />{\" \"}{matrix.familyLabel || <LocalizedText source={\"none\"} />}"
+          },
+          {
+            "line": 614,
+            "text": "        </div>"
+          },
+          {
+            "line": 615,
+            "text": "        {Array.isArray(matrix.topEvidenceFor) && matrix.topEvidenceFor.length > 0 ? ("
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Search/SongIDPanel.jsx",
+        "line": 1098,
+        "lineSha256": "096cd85e000f0c918b7f6e1f163a2fd909213cfedb34720c96ce956839ba51c8",
+        "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+        "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483",
+        "lineText": "                <Label size=\"tiny\"><LocalizedText source={\"Audio\"} />{\" \"}{run.scorecard.analysisAudioSource || <LocalizedText source={\"none\"} />}</Label>",
+        "context": [
+          {
+            "line": 1096,
+            "text": "              <summary style={detailSummaryStyle}><LocalizedText source={\"Scorecard\"} /></summary>"
+          },
+          {
+            "line": 1097,
+            "text": "              <div style={{ marginBottom: '1em' }}>"
+          },
+          {
+            "line": 1098,
+            "text": "                <Label size=\"tiny\"><LocalizedText source={\"Audio\"} />{\" \"}{run.scorecard.analysisAudioSource || <LocalizedText source={\"none\"} />}</Label>"
+          },
+          {
+            "line": 1099,
+            "text": "                <Label size=\"tiny\"><LocalizedText source={\"Clips\"} />{\" \"}{run.scorecard.clipCount || 0}</Label>"
+          },
+          {
+            "line": 1100,
+            "text": "                <Label size=\"tiny\"><LocalizedText source={\"AcoustID\"} />{\" \"}{run.scorecard.acoustIdHitCount || 0}</Label>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/Search/SongIDPanel.jsx",
+        "line": 1160,
+        "lineSha256": "f0aa7f3b7cd1680e346e8bd87d4f6f6571e3ae6c773f1adaeee6d9cdfe6e78ae",
+        "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+        "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483",
+        "lineText": "                  <LocalizedText source={\"Manifest\"} />{\" \"}{run.provenance.manifestHint ? <LocalizedText source={\"hinted\"} /> : <LocalizedText source={\"none\"} />}",
+        "context": [
+          {
+            "line": 1158,
+            "text": "                </Label>"
+          },
+          {
+            "line": 1159,
+            "text": "                <Label size=\"tiny\">"
+          },
+          {
+            "line": 1160,
+            "text": "                  <LocalizedText source={\"Manifest\"} />{\" \"}{run.provenance.manifestHint ? <LocalizedText source={\"hinted\"} /> : <LocalizedText source={\"none\"} />}"
+          },
+          {
+            "line": 1161,
+            "text": "                </Label>"
+          },
+          {
+            "line": 1162,
+            "text": "                <Label size=\"tiny\">"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+        "line": 287,
+        "lineSha256": "ea9b2d46d5d9afee675a07a0016dae0f9b08c3819bd79db20e11bee3ad1bedd0",
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "lineText": "    scriptEvents: toLines(getOption(firstScript, 'on', 'On') || []),",
+        "context": [
+          {
+            "line": 285,
+            "text": "    scriptArgs: getOption(firstScriptRun, 'args', 'Args') || '',"
+          },
+          {
+            "line": 286,
+            "text": "    scriptCommand: getOption(firstScriptRun, 'command', 'Command') || '',"
+          },
+          {
+            "line": 287,
+            "text": "    scriptEvents: toLines(getOption(firstScript, 'on', 'On') || []),"
+          },
+          {
+            "line": 288,
+            "text": "    scriptExecutable: getOption(firstScriptRun, 'executable', 'Executable') || '',"
+          },
+          {
+            "line": 289,
+            "text": "    scriptName: firstScriptName,"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+        "line": 304,
+        "lineSha256": "f20f5f4371c60bbc570ecb08f7a7e1bf3dc325e0197e441b45c46ae29d00a238",
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "lineText": "    webhookEvents: toLines(getOption(firstWebhook, 'on', 'On') || []),",
+        "context": [
+          {
+            "line": 302,
+            "text": "    uploadSpeedLimit: String(getOption(upload, 'speedLimit', 'speed_limit', 'SpeedLimit') ?? 0),"
+          },
+          {
+            "line": 303,
+            "text": "    uploadScheduledLimitsEnabled: Boolean(getOption(uploadScheduledLimits, 'enabled', 'Enabled')),"
+          },
+          {
+            "line": 304,
+            "text": "    webhookEvents: toLines(getOption(firstWebhook, 'on', 'On') || []),"
+          },
+          {
+            "line": 305,
+            "text": "    webhookIgnoreCertificateErrors: Boolean(getOption(firstWebhookCall, 'ignoreCertificateErrors', 'ignore_certificate_errors', 'IgnoreCertificateErrors')),"
+          },
+          {
+            "line": 306,
+            "text": "    webhookName: firstWebhookName,"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+        "line": 1375,
+        "lineSha256": "5a1584b25f080b55a9c0bc6102fa7434c0e42730a4ad8b10514a6ef0cd6d0cfc",
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "lineText": "                  content={interfaceText(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}",
+        "context": [
+          {
+            "line": 1373,
+            "text": "                <Popup"
+          },
+          {
+            "line": 1374,
+            "text": "                  className=\"admin-policy-popup\""
+          },
+          {
+            "line": 1375,
+            "text": "                  content={interfaceText(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}"
+          },
+          {
+            "line": 1376,
+            "text": "                  trigger={"
+          },
+          {
+            "line": 1377,
+            "text": "                    <Checkbox"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx",
+        "line": 1388,
+        "lineSha256": "0224761f53e921ef1aea12c679015464a64b212daddab04e763f8ad9a57bc046",
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "lineText": "                 {...interfaceTextProps(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}/>",
+        "context": [
+          {
+            "line": 1386,
+            "text": "                     {...interfaceTextProps(\"Enable DHT rendezvous\")}/>"
+          },
+          {
+            "line": 1387,
+            "text": "                  }"
+          },
+          {
+            "line": 1388,
+            "text": "                 {...interfaceTextProps(\"Enable DHT rendezvous. Disable this when you want no DHT peer discovery.\")}/>"
+          },
+          {
+            "line": 1389,
+            "text": "                <Popup"
+          },
+          {
+            "line": 1390,
+            "text": "                  className=\"admin-policy-popup\""
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Files/Explorer.jsx",
+        "line": 57,
+        "lineSha256": "e31a95caf74b12f1e81775fdda13ca8cff7c01fbaadbbdd4c383564a9d91dd38",
+        "fileSha256": "b875d9ebdfb98ae5edd097a554db12d8285f7151be3da1c6fd2ea2921261b822",
+        "gitBlob": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e",
+        "lineText": "        content={interfaceText(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}",
+        "context": [
+          {
+            "line": 55,
+            "text": "    <>"
+          },
+          {
+            "line": 56,
+            "text": "      <Popup"
+          },
+          {
+            "line": 57,
+            "text": "        content={interfaceText(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}"
+          },
+          {
+            "line": 58,
+            "text": "        on={['hover', 'focus']}"
+          },
+          {
+            "line": 59,
+            "text": "        position=\"top center\""
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Files/Explorer.jsx",
+        "line": 72,
+        "lineSha256": "0ad51145c7e7bdfcf6049ef3c67f5ffd8247d94adaf0f8b7b8f15f0e7da63c90",
+        "fileSha256": "b875d9ebdfb98ae5edd097a554db12d8285f7151be3da1c6fd2ea2921261b822",
+        "gitBlob": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e",
+        "lineText": "       {...interfaceAttributeTextProps(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}/>",
+        "context": [
+          {
+            "line": 70,
+            "text": "           {...interfaceAttributeTextProps(\"Delete {itemType} {fullName}\", { itemType: itemTypeLabel, fullName })}/>"
+          },
+          {
+            "line": 71,
+            "text": "        )}"
+          },
+          {
+            "line": 72,
+            "text": "       {...interfaceAttributeTextProps(\"Open confirmation to permanently delete {itemType} '{fullName}'.\", { itemType: itemTypeLabel, fullName })}/>"
+          },
+          {
+            "line": 73,
+            "text": "      <Modal"
+          },
+          {
+            "line": 74,
+            "text": "        onClose={() => !deleting && setOpen(false)}"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Integrations/NotificationIntegrationsPanel.jsx",
+        "line": 568,
+        "lineSha256": "cb80e46ee36e1ca9f0740167ef1a3af1b4f05989040eb32f7cd1a8ac1badd1cd",
+        "fileSha256": "fcd3de6665787bbcef17792613b5a2566b17a6f464f5707cda7c461fc174a016",
+        "gitBlob": "39ee7ba06443e87a9cb398f87ffa33132056735d",
+        "lineText": "                content={interfaceText(\"Send Ntfy notifications when a private message arrives.\")}",
+        "context": [
+          {
+            "line": 566,
+            "text": "            <Form.Group grouped>"
+          },
+          {
+            "line": 567,
+            "text": "              <Popup"
+          },
+          {
+            "line": 568,
+            "text": "                content={interfaceText(\"Send Ntfy notifications when a private message arrives.\")}"
+          },
+          {
+            "line": 569,
+            "text": "                trigger={"
+          },
+          {
+            "line": 570,
+            "text": "                  <Checkbox"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Integrations/NotificationIntegrationsPanel.jsx",
+        "line": 580,
+        "lineSha256": "44aa6674f4f4ee789d08afb976c8dd5ee7301484a37ae84573c1e4b5c316d00a",
+        "fileSha256": "fcd3de6665787bbcef17792613b5a2566b17a6f464f5707cda7c461fc174a016",
+        "gitBlob": "39ee7ba06443e87a9cb398f87ffa33132056735d",
+        "lineText": "               {...interfaceTextProps(\"Send Ntfy notifications when a private message arrives.\")}/>",
+        "context": [
+          {
+            "line": 578,
+            "text": "                   {...interfaceTextProps(\"Ntfy private message notifications\")}/>"
+          },
+          {
+            "line": 579,
+            "text": "                }"
+          },
+          {
+            "line": 580,
+            "text": "               {...interfaceTextProps(\"Send Ntfy notifications when a private message arrives.\")}/>"
+          },
+          {
+            "line": 581,
+            "text": "              <Popup"
+          },
+          {
+            "line": 582,
+            "text": "                content={interfaceText(\"Send Ntfy notifications when your username is mentioned in a joined room.\")}"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+        "line": 628,
+        "lineSha256": "2b4121b445270508dd9af0b6b79f4d7bb8840b9bc5a88126b04eb12d7761ab8e",
+        "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+        "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+        "lineText": "              <LocalizedText source={\"Retry Status Checks\"} /></Button>",
+        "context": [
+          {
+            "line": 626,
+            "text": "              type=\"button\""
+          },
+          {
+            "line": 627,
+            "text": "             {...interfaceTextProps(\"Retry Library Health scan status checks\")}>"
+          },
+          {
+            "line": 628,
+            "text": "              <LocalizedText source={\"Retry Status Checks\"} /></Button>"
+          },
+          {
+            "line": 629,
+            "text": "          )}"
+          },
+          {
+            "line": 630,
+            "text": "         {...interfaceTextProps(\"Resume status checks for the current server-side scan. This does not start a second scan.\")}/>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+        "line": 959,
+        "lineSha256": "92601cb990932908d3827800fd0a0de0789481f2606e16044d916c17e995fc64",
+        "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+        "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+        "lineText": "                      aria-label={interfaceText(\"Clear selected Library Health issues\")}",
+        "context": [
+          {
+            "line": 957,
+            "text": "                  trigger={("
+          },
+          {
+            "line": 958,
+            "text": "                    <Button"
+          },
+          {
+            "line": 959,
+            "text": "                      aria-label={interfaceText(\"Clear selected Library Health issues\")}"
+          },
+          {
+            "line": 960,
+            "text": "                      basic"
+          },
+          {
+            "line": 961,
+            "text": "                      className=\"library-health-action\""
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/LibraryHealth/index.jsx",
+        "line": 965,
+        "lineSha256": "df40ef185e59fd033934638733b27a6ebd8358f8883e79fe1380ec956fdeda36",
+        "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+        "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+        "lineText": "                     {...interfaceTextProps(\"Clear selected Library Health issues\")}>",
+        "context": [
+          {
+            "line": 963,
+            "text": "                      onClick={() => setSelectedIssues(new Set())}"
+          },
+          {
+            "line": 964,
+            "text": "                      type=\"button\""
+          },
+          {
+            "line": 965,
+            "text": "                     {...interfaceTextProps(\"Clear selected Library Health issues\")}>"
+          },
+          {
+            "line": 966,
+            "text": "                      <LocalizedText source={\"Clear Selection\"} /></Button>"
+          },
+          {
+            "line": 967,
+            "text": "                  )}"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+        "line": 477,
+        "lineSha256": "b9d62d8dde178c92111b0cd9f2c43a9bd5e4c48398b6c24d92b6cb1f1df571e7",
+        "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+        "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+        "lineText": "      toast.warning(interfaceToastText(\"Please enter a message JSON\"));",
+        "context": [
+          {
+            "line": 475,
+            "text": "  const handleVerifyMessage = async () => {"
+          },
+          {
+            "line": 476,
+            "text": "    if (!membershipMessageToVerify.trim()) {"
+          },
+          {
+            "line": 477,
+            "text": "      toast.warning(interfaceToastText(\"Please enter a message JSON\"));"
+          },
+          {
+            "line": 478,
+            "text": "      return;"
+          },
+          {
+            "line": 479,
+            "text": "    }"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+        "line": 2239,
+        "lineSha256": "5d51c3cff53ba5108027d08c057d1f1f26bd87cf49a907fa5c2788575dc2e6e4",
+        "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+        "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+        "lineText": "                        <LocalizedText source={\"Membership Verification Result\"} /></Message.Header>",
+        "context": [
+          {
+            "line": 2237,
+            "text": "                    <Message success>"
+          },
+          {
+            "line": 2238,
+            "text": "                      <Message.Header>"
+          },
+          {
+            "line": 2239,
+            "text": "                        <LocalizedText source={\"Membership Verification Result\"} /></Message.Header>"
+          },
+          {
+            "line": 2240,
+            "text": "                      <p>"
+          },
+          {
+            "line": 2241,
+            "text": "                        <strong><LocalizedText source={\"Valid Member:\"} /></strong>{' '}"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/MediaCore/index.jsx",
+        "line": 1907,
+        "lineSha256": "001d781e9557c89aad1f8dbac0e4062ce5352c1a72fc70ca8bb1b3b8513fb569",
+        "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+        "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3",
+        "lineText": "                      <Message.Header><LocalizedText source={\"Similarity Analysis\"} /></Message.Header>",
+        "context": [
+          {
+            "line": 1905,
+            "text": "                  ) : ("
+          },
+          {
+            "line": 1906,
+            "text": "                    <Message info>"
+          },
+          {
+            "line": 1907,
+            "text": "                      <Message.Header><LocalizedText source={\"Similarity Analysis\"} /></Message.Header>"
+          },
+          {
+            "line": 1908,
+            "text": "                      <p>"
+          },
+          {
+            "line": 1909,
+            "text": "                        <strong><LocalizedText source={\"Content A:\"} /></strong>{' '}"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/MediaCore/index.jsx",
+        "line": 2476,
+        "lineSha256": "a063f575b6ec642cbb07df7b678789367f8e8f404260250510fd12d72de41efc",
+        "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+        "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3",
+        "lineText": "                        {updateResult.appliedUpdates?.join(', ') || <LocalizedText source={\"none\"} />}",
+        "context": [
+          {
+            "line": 2474,
+            "text": "                        <br />"
+          },
+          {
+            "line": 2475,
+            "text": "                        <strong><LocalizedText source={\"Updates Applied:\"} /></strong>{' '}"
+          },
+          {
+            "line": 2476,
+            "text": "                        {updateResult.appliedUpdates?.join(', ') || <LocalizedText source={\"none\"} />}"
+          },
+          {
+            "line": 2477,
+            "text": "                      </p>"
+          },
+          {
+            "line": 2478,
+            "text": "                    </Message>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Mesh/MeshEvidencePolicy.jsx",
+        "line": 157,
+        "lineSha256": "a5338a13cc89b936fa4e7708d4aa56fb67a87c875e7e559d4bacd71ae21ea4fe",
+        "fileSha256": "dacaf70e93d5df4ce088e2ac9b039e3ea615989c3b1fa62c8128dde89890a02f",
+        "gitBlob": "0ec18db2860be78db0a74be382aba34f052c1316",
+        "lineText": "          <Statistic.Value>{summary.inboundEnabled ? <LocalizedText source={\"On\"} /> : <LocalizedText source={\"Off\"} />}</Statistic.Value>",
+        "context": [
+          {
+            "line": 155,
+            "text": "      >"
+          },
+          {
+            "line": 156,
+            "text": "        <Statistic color={summary.inboundEnabled ? 'blue' : 'grey'}>"
+          },
+          {
+            "line": 157,
+            "text": "          <Statistic.Value>{summary.inboundEnabled ? <LocalizedText source={\"On\"} /> : <LocalizedText source={\"Off\"} />}</Statistic.Value>"
+          },
+          {
+            "line": 158,
+            "text": "          <Statistic.Label><LocalizedText source={\"Inbound Evidence\"} /></Statistic.Label>"
+          },
+          {
+            "line": 159,
+            "text": "        </Statistic>"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+        "line": 267,
+        "lineSha256": "48dbd84236c7ce89b8e7971407f9ff130e6d4d7bcac8382d6cc8c62723116b14",
+        "fileSha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+        "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8",
+        "lineText": "                                    {...interfaceTextProps(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\")}",
+        "context": [
+          {
+            "line": 265,
+            "text": "                                trigger={"
+          },
+          {
+            "line": 266,
+            "text": "                                  <Button"
+          },
+          {
+            "line": 267,
+            "text": "                                    {...interfaceTextProps(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\")}"
+          },
+          {
+            "line": 268,
+            "text": "                                    aria-label={interfaceAttributeText(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\", { authorityKey })}"
+          },
+          {
+            "line": 269,
+            "text": "                                    onClick={() => toggleAuthority(authorityKey)}"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx",
+        "line": 268,
+        "lineSha256": "81329295dd93c1e3a1292e8543147591e128ceef070e324dbc83f34995d0c8de",
+        "fileSha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+        "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8",
+        "lineText": "                                    aria-label={interfaceAttributeText(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\", { authorityKey })}",
+        "context": [
+          {
+            "line": 266,
+            "text": "                                  <Button"
+          },
+          {
+            "line": 267,
+            "text": "                                    {...interfaceTextProps(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\")}"
+          },
+          {
+            "line": 268,
+            "text": "                                    aria-label={interfaceAttributeText(disabled ? \"Enable authority {authorityKey}\" : \"Disable authority {authorityKey}\", { authorityKey })}"
+          },
+          {
+            "line": 269,
+            "text": "                                    onClick={() => toggleAuthority(authorityKey)}"
+          },
+          {
+            "line": 270,
+            "text": "                                    size=\"mini\""
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/components/System/Metrics/index.jsx",
+        "line": 50,
+        "lineSha256": "8734687bc0e60bc5ca5e6335e91315bc026d2ec25eb3ba2453b4621168157929",
+        "fileSha256": "1d3cc120ebb902f4c72b0a1c43a571c203588dcd5017017c5444f44c4f664414",
+        "gitBlob": "4456d98b27c24725acb4187dc8274ef70b40dab0",
+        "lineText": "      { key: 'slskd_uploads_total', get label() { return interfaceText(\"Uploads Total\"); }, format: formatNumber },",
+        "context": [
+          {
+            "line": 48,
+            "text": "    icon: 'exchange',"
+          },
+          {
+            "line": 49,
+            "text": "    metrics: ["
+          },
+          {
+            "line": 50,
+            "text": "      { key: 'slskd_uploads_total', get label() { return interfaceText(\"Uploads Total\"); }, format: formatNumber },"
+          },
+          {
+            "line": 51,
+            "text": "      { key: 'slskd_downloads_total', get label() { return interfaceText(\"Downloads Total\"); }, format: formatNumber },"
+          },
+          {
+            "line": 52,
+            "text": "      { key: 'slskd_uploads_active', get label() { return interfaceText(\"Uploads Active\"); }, format: formatNumber },"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/lib/libraryHealthReport.js",
+        "line": 57,
+        "lineSha256": "bd2da3b3609402ec75b333063b0fb3205939f72f9557db3626e2ebae68478932",
+        "fileSha256": "bc9e7728e127b371250fde2c9273bd71a07dce73bf33ae46e78399a8be69ee10",
+        "gitBlob": "a8909de8740a76d9ebe0b917c24d4f95c1474cef",
+        "lineText": "const formatCountLine = (label, value) => interfaceText('{label}: {count}', {",
+        "context": [
+          {
+            "line": 55,
+            "text": "};"
+          },
+          {
+            "line": 56,
+            "text": ""
+          },
+          {
+            "line": 57,
+            "text": "const formatCountLine = (label, value) => interfaceText('{label}: {count}', {"
+          },
+          {
+            "line": 58,
+            "text": "  count: formatRegionalNumber(Number(value || 0)),"
+          },
+          {
+            "line": 59,
+            "text": "  label: interfaceText(label),"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/lib/mediaServerIntegrations.js",
+        "line": 440,
+        "lineSha256": "0a39e5e8122e096ca3000c62e207225918968c253ad806b0faa0d48e78808ed4",
+        "fileSha256": "e6679217952bfcf9a761d790d42c15563879ec4031a9fb80275c80f7a0b1eb68",
+        "gitBlob": "f8502c916c5d3701ff916581c57920b1ef0ccf74",
+        "lineText": "  lines.push('', interfaceText('Automations:'));",
+        "context": [
+          {
+            "line": 438,
+            "text": "  });"
+          },
+          {
+            "line": 439,
+            "text": ""
+          },
+          {
+            "line": 440,
+            "text": "  lines.push('', interfaceText('Automations:'));"
+          },
+          {
+            "line": 441,
+            "text": "  contract.automations.forEach((automation) => {"
+          },
+          {
+            "line": 442,
+            "text": "    lines.push("
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/lib/meshEvidencePolicy.js",
+        "line": 64,
+        "lineSha256": "064b995b836eab732b07007cea1a9c337a75f512b72e96c311186d3019c71140",
+        "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+        "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319",
+        "lineText": "    label: 'Fake-lossless warnings',",
+        "context": [
+          {
+            "line": 62,
+            "text": "    description: 'Signed warnings for suspicious fake-lossless candidates.',"
+          },
+          {
+            "line": 63,
+            "text": "    id: 'fakeLosslessWarning',"
+          },
+          {
+            "line": 64,
+            "text": "    label: 'Fake-lossless warnings',"
+          },
+          {
+            "line": 65,
+            "text": "  },"
+          },
+          {
+            "line": 66,
+            "text": "  {"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/lib/networkHealthScore.js",
+        "line": 82,
+        "lineSha256": "7b22cffbc334e4b8209b4f17e81758fadd1ddde20fb6079a48febac3268a5fa5",
+        "fileSha256": "b897766a68e563edf80cd29158a7c3999bc28b1f2ee7cd70ec8b907629d0f13c",
+        "gitBlob": "6d4efd10db92d5cf5fca307b146dddebe9284484",
+        "lineText": "      summary: 'No connected mesh peers',",
+        "context": [
+          {
+            "line": 80,
+            "text": "      area: 'Mesh',"
+          },
+          {
+            "line": 81,
+            "text": "      severity: 'warn',"
+          },
+          {
+            "line": 82,
+            "text": "      summary: 'No connected mesh peers',"
+          },
+          {
+            "line": 83,
+            "text": "    });"
+          },
+          {
+            "line": 84,
+            "text": "  }"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/lib/networkHealthScore.js",
+        "line": 228,
+        "lineSha256": "cc0c184eae648aff02c85756baabb6af0add86c8bbfc4548aab511681ef0933b",
+        "fileSha256": "b897766a68e563edf80cd29158a7c3999bc28b1f2ee7cd70ec8b907629d0f13c",
+        "gitBlob": "6d4efd10db92d5cf5fca307b146dddebe9284484",
+        "lineText": "      case 'No connected mesh peers':",
+        "context": [
+          {
+            "line": 226,
+            "text": "      case 'LAN-only mode has no local peers yet':"
+          },
+          {
+            "line": 227,
+            "text": "        return interfaceText('LAN-only mode has no local peers yet');"
+          },
+          {
+            "line": 228,
+            "text": "      case 'No connected mesh peers':"
+          },
+          {
+            "line": 229,
+            "text": "        return interfaceText('No connected mesh peers');"
+          },
+          {
+            "line": 230,
+            "text": "      case 'No hash entries visible':"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/lib/networkHealthScore.js",
+        "line": 229,
+        "lineSha256": "5679757c61b1d2fe2df680d31fed392fc8bb6152ededa16ad95765b92ae4b6aa",
+        "fileSha256": "b897766a68e563edf80cd29158a7c3999bc28b1f2ee7cd70ec8b907629d0f13c",
+        "gitBlob": "6d4efd10db92d5cf5fca307b146dddebe9284484",
+        "lineText": "        return interfaceText('No connected mesh peers');",
+        "context": [
+          {
+            "line": 227,
+            "text": "        return interfaceText('LAN-only mode has no local peers yet');"
+          },
+          {
+            "line": 228,
+            "text": "      case 'No connected mesh peers':"
+          },
+          {
+            "line": 229,
+            "text": "        return interfaceText('No connected mesh peers');"
+          },
+          {
+            "line": 230,
+            "text": "      case 'No hash entries visible':"
+          },
+          {
+            "line": 231,
+            "text": "        return interfaceText('No hash entries visible');"
+          }
+        ]
+      },
+      {
+        "path": "src/web/src/lib/transfers.js",
+        "line": 331,
+        "lineSha256": "7f26f002b6d6c11d00e2dccc2631727acbc6a5c46ece83e3f00a1c9871da4bc2",
+        "fileSha256": "543ac84d06bf10007948875d5c4152bf6eddd262a0caebef249608772979c43b",
+        "gitBlob": "a153d0c6b72aebc6a4df328d9027e3f7a4f1564e",
+        "lineText": "      label: 'Wait for online',",
+        "context": [
+          {
+            "line": 329,
+            "text": "    return {"
+          },
+          {
+            "line": 330,
+            "text": "      action: 'wait',"
+          },
+          {
+            "line": 331,
+            "text": "      label: 'Wait for online',"
+          },
+          {
+            "line": 332,
+            "text": "      icon: 'pause',"
+          },
+          {
+            "line": 333,
+            "text": "      description: 'The user is currently offline. The system will retry automatically when they come back.',"
+          }
+        ]
+      }
+    ]
+  },
+  "reviewDecisionCounts": {
+    "revise": 86,
+    "keep": 202,
+    "hold": 12
+  },
+  "structuralLiteralChecks": {
+    "placeholderMismatches": 0,
+    "protectedLiteralMismatches": 0,
+    "automationHeadingColonMismatches": 0,
+    "parserSyntaxHeldCells": 12
+  },
+  "limitations": [
+    "No native-speaker approval; linguistic judgments are model-generated.",
+    "The 12 rank-105 cells remain held because the parser-like placeholder mixes prose, operators, and numeric criteria without a caller-defined translation boundary.",
+    "The review is strict-blind to the primary review outcomes until after this seal."
+  ]
+}

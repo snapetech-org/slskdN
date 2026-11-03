@@ -1,0 +1,15 @@
+{
+  "sealedBeforePrimaryComparison": true,
+  "sealedAtUtc": "2026-11-03T01:37:54Z",
+  "files": {
+    "independent-review-decisions.jsonl": "3749d764b86c5478a939f85cbcbfc092ef632d284d4199b0068109284b7db0e0",
+    "independent-reattestation.json": "dc16ac287b67b31d4d6952814a141d1128fd9362ef5a3184becfea2008464d5f"
+  },
+  "cellCount": 300,
+  "dispositionCounts": {
+    "revise": 86,
+    "keep": 202,
+    "hold": 12
+  },
+  "scope": "continuation ranks 101–125, 25 source IDs × 12 locales; no historical ordinal claim"
+}
