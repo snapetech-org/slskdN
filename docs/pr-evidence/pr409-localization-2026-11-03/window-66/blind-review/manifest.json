@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W66 ranks 528-552 independent blind localization review",
+  "reviewType": "independent-blind",
+  "candidateFreeInputOnly": true,
+  "primaryPacketOpened": false,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "candidateFreeInputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w66-ranks528-552-primary-20261103/input",
+  "candidateFreeInputManifestSha256": "f691fd2825c9445ff80c760a1d83e0635769d665538f0bc44995161dd7fef0fd",
+  "candidateFreeInputChecksumListSha256": "f4501c8d88e0e9854cec1c06b5632f1ee9f8aea1ae5934bc7ee82347b10dee63",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "continuationRankRange": [
+    528,
+    552
+  ],
+  "remainingQueueRankRange": [
+    428,
+    452
+  ],
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "reviewLedger": "sealed-blind-review-ledger.jsonl",
+  "reviewCounts": {
+    "accept-current": 234,
+    "correction": 26,
+    "hold": 24,
+    "refinement": 16
+  },
+  "heldRanks": [
+    533,
+    541
+  ],
+  "tokenContracts": {
+    "placeholders": "exact match",
+    "markup": "exact tag match",
+    "numericTokens": "exact match",
+    "protectedLiterals": "all source literals retained; extra source-context product terms allowed"
+  },
+  "files": [
+    "README.md",
+    "manifest.json",
+    "summary.json",
+    "sealed-blind-review-ledger.jsonl",
+    "verify_blind_review.py",
+    "verification.json",
+    "SHA256SUMS.txt"
+  ]
+}

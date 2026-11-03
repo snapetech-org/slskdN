@@ -1,0 +1,52 @@
+Candidate-free W66 input verifier ran before ledger construction.
+
+{
+  "pass": true,
+  "mode": "candidate-free-input",
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "sources": 25,
+  "cells": 300,
+  "ranks": [
+    528,
+    552
+  ],
+  "remainingQueue": [
+    428,
+    452
+  ],
+  "priorSelectedIdsExcluded": 1632,
+  "priorHoldsReattested": 104,
+  "callerCounts": {
+    "528": 1,
+    "529": 1,
+    "530": 1,
+    "531": 1,
+    "532": 2,
+    "533": 0,
+    "534": 1,
+    "535": 2,
+    "536": 3,
+    "537": 2,
+    "538": 1,
+    "539": 1,
+    "540": 1,
+    "541": 0,
+    "542": 1,
+    "543": 1,
+    "544": 1,
+    "545": 2,
+    "546": 1,
+    "547": 1,
+    "548": 2,
+    "549": 2,
+    "550": 1,
+    "551": 1,
+    "552": 1
+  },
+  "catalogKeysPerLocale": 6176,
+  "targetRowsPinned": true,
+  "noCandidates": true,
+  "livePRRefs": "PASS",
+  "checksums": "PASS"
+}

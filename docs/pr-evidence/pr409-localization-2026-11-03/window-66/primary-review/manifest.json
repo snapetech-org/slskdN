@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W66 primary semantic review ledger",
+  "reviewType": "primary-semantic",
+  "sealed": true,
+  "candidateFreeInput": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "window": "W66",
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "inputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w66-ranks528-552-primary-20261103/input",
+  "inputManifestSha256": "f691fd2825c9445ff80c760a1d83e0635769d665538f0bc44995161dd7fef0fd",
+  "inputChecksumListSha256": "f4501c8d88e0e9854cec1c06b5632f1ee9f8aea1ae5934bc7ee82347b10dee63",
+  "priorHeldCellsReattested": 104,
+  "dispositionCounts": {
+    "accept-current": 227,
+    "correction": 36,
+    "hold": 24,
+    "refinement": 13
+  },
+  "proposalCount": 49,
+  "blindPacketAccessed": false,
+  "nativeSpeakerReview": "not performed",
+  "browserReview": "not performed",
+  "createdAtUtc": "2026-11-03T16:52:19.554819+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 993,
+      "sha256": "be12156c54c6b947964beb8059f4b3bc0456ea5845c5e7b206d1579400ebedd9"
+    },
+    {
+      "path": "build_primary.py",
+      "bytes": 18928,
+      "sha256": "a9fa251b2fd28d1c554c94a0c523d8626de0a11cb1911203fd244a7ad8dccf07"
+    },
+    {
+      "path": "input-verification.txt",
+      "bytes": 912,
+      "sha256": "98ea5773f364b4cd70c38a5c43c2495ef6bafcdaac1426eae78d6f61a9b33006"
+    },
+    {
+      "path": "primary-ledger.jsonl",
+      "bytes": 1045167,
+      "sha256": "f8e2c68f5c03ed6afbfc8ad739c97fed272e87b47d14282e97c6fea25ff53288"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 7298,
+      "sha256": "0784b1565561e2d83d7d5d7fdc2703ce8ac7ac964eb7ebd76ce1b79d6335ad0c"
+    },
+    {
+      "path": "verify_primary.py",
+      "bytes": 6388,
+      "sha256": "df2b974b0f5b990196346eb138c6d78a38093375d95a5fdc03fd506e96d60db9"
+    }
+  ]
+}

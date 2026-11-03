@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "baseHead": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "baseTree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "window": "W66",
+  "rankRange": [
+    528,
+    552
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "reviewedCells": 300,
+  "crossAuditDispositions": {
+    "accept-current": 217,
+    "correction": 41,
+    "refinement": 18,
+    "hold": 24
+  },
+  "exactCatalogEdits": 59,
+  "noOpCells": 217,
+  "heldCells": 24,
+  "priorHeldCellsReattestedUnchanged": 104,
+  "catalogCount": 12,
+  "catalogKeyCountPerFile": {
+    "src/web/public/locales/ar.json": 6176,
+    "src/web/public/locales/de.json": 6176,
+    "src/web/public/locales/es.json": 6176,
+    "src/web/public/locales/fr.json": 6176,
+    "src/web/public/locales/hi.json": 6176,
+    "src/web/public/locales/id.json": 6176,
+    "src/web/public/locales/ja.json": 6176,
+    "src/web/public/locales/ko.json": 6176,
+    "src/web/public/locales/pt-BR.json": 6176,
+    "src/web/public/locales/vi.json": 6176,
+    "src/web/public/locales/zh-Hans.json": 6176,
+    "src/web/public/locales/zh-Hant.json": 6176
+  },
+  "allSelectedTokenChecksPass": true,
+  "protectedLiteralGapsAdjudicated": 5,
+  "japaneseNumericSurfaceAdjudicated": true,
+  "browserReview": "not performed",
+  "qualifiedNativeSpeakerReview": "not performed",
+  "testsBuildsCI": "not run",
+  "releasesTagsMerges": "not performed",
+  "workflowFiles": "untouched"
+}

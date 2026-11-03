@@ -1,0 +1,47 @@
+{
+  "result": "PASS",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "continuationRanks": [
+    528,
+    552
+  ],
+  "remainingQueueRanks": [
+    428,
+    452
+  ],
+  "dispositionCounts": {
+    "accept-current": 234,
+    "correction": 26,
+    "hold": 24,
+    "refinement": 16
+  },
+  "callerlessHolds": [
+    {
+      "rank": 533,
+      "cells": 12
+    },
+    {
+      "rank": 541,
+      "cells": 12
+    }
+  ],
+  "priorHeldCellsReattested": 104,
+  "currentTokenGapsCorrected": 5,
+  "currentNumericMismatchCorrected": 1,
+  "placeholderMismatches": 0,
+  "markupMismatches": 0,
+  "proposedNumericMismatches": 0,
+  "missingProtectedLiterals": 0,
+  "candidateFreeInputManifestSha256": "f691fd2825c9445ff80c760a1d83e0635769d665538f0bc44995161dd7fef0fd",
+  "candidateFreeInputChecksumListSha256": "f4501c8d88e0e9854cec1c06b5632f1ee9f8aea1ae5934bc7ee82347b10dee63",
+  "primaryPacketOpened": false,
+  "repoOrPrChanges": false,
+  "testsBuildsCiBrowserReleases": "not performed"
+}

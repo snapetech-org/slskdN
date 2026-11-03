@@ -1,0 +1,91 @@
+{
+  "blindSeparation": {
+    "blindLedgerSha256": "fbca2507c37fab6150fb8795f637f493ca5acdcd12133551a4b07da7357f4aae",
+    "blindPacketSealedAt": "2026-11-03",
+    "candidateFreeInputOnlyAtBlindReview": true,
+    "primaryPacketOpenedByBlindReviewer": false
+  },
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "cellCount": 300,
+  "createdAtUtc": "2026-11-03T17:10:43.922878+00:00",
+  "files": [
+    {
+      "bytes": 1394,
+      "path": "README.md",
+      "sha256": "38d716a683b92ddf09c44b1dd792ecdbe88244668e8de8a6659fdeb36e0a8046"
+    },
+    {
+      "bytes": 202434,
+      "path": "apply-plan.json",
+      "sha256": "9913b59c53f39908e0276f5ac7792d86cb4d8e243346a3cf29f284ee26dc5c62"
+    },
+    {
+      "bytes": 29737,
+      "path": "build_cross_audit.py",
+      "sha256": "09f1556d9edc2d16cb93e44000f1327db2a524b22242b1791918586a5da17611"
+    },
+    {
+      "bytes": 473,
+      "path": "live-head-attestation.json",
+      "sha256": "bb16b1d7b9cf8af2aa2db95834fe060305214a649f52fe27c1b74ede3d92c78d"
+    },
+    {
+      "bytes": 132511,
+      "path": "prior-held-cell-reattestation.jsonl",
+      "sha256": "50d2d5c4642753cc626ed86332547360d35d92610a56d73a875fa18ad0b8c667"
+    },
+    {
+      "bytes": 1282829,
+      "path": "resolution-ledger.jsonl",
+      "sha256": "10f755c806d8f6ffa5629bdeb4614f70af1b0b11a52ab11ca9c06026d66e3d48"
+    },
+    {
+      "bytes": 2421,
+      "path": "summary.json",
+      "sha256": "b783938339257a918706b6456622c553cd085bd065da41635c1845fc75178dd5"
+    },
+    {
+      "bytes": 11442,
+      "path": "verify_cross_audit.py",
+      "sha256": "7a76ba601861173aaa640e8dba987c68c088b4e431fee6d6e8721fd6b015bc7e"
+    }
+  ],
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "inputPaths": {
+    "blind": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w66-ranks528-552-blind-review-20261103",
+    "candidateFree": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w66-ranks528-552-primary-20261103/input",
+    "primary": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w66-ranks528-552-primary-20261103/primary"
+  },
+  "inputPins": {
+    "blindChecksumListSha256": "47f6206e4c913328e56154543077faf939486894c29b9461322c6077232ee071",
+    "blindLedgerSha256": "fbca2507c37fab6150fb8795f637f493ca5acdcd12133551a4b07da7357f4aae",
+    "blindManifestSha256": "9b7ddc8b18b37b4c46dea6a2e1e8c37b0ae5320e5720189d5ee1209611badfc4",
+    "candidateFreeCallerContextsSha256": "686226342824c1db7a9d39eb2028cd506b850b5b7b738985570e606d53386438",
+    "candidateFreeCellsSha256": "c3c091577a22ba3bc0e743d07f470720aa29f670792d67d60f8fc897a0df5119",
+    "candidateFreeChecksumListSha256": "f4501c8d88e0e9854cec1c06b5632f1ee9f8aea1ae5934bc7ee82347b10dee63",
+    "candidateFreeManifestSha256": "f691fd2825c9445ff80c760a1d83e0635769d665538f0bc44995161dd7fef0fd",
+    "candidateFreePriorHeldSha256": "50d2d5c4642753cc626ed86332547360d35d92610a56d73a875fa18ad0b8c667",
+    "primaryChecksumListSha256": "ad4b710b70b9fe7a4e99c32be0c45eed5163676d8be25845bd121adf03ce3fa1",
+    "primaryLedgerSha256": "f8e2c68f5c03ed6afbfc8ad739c97fed272e87b47d14282e97c6fea25ff53288",
+    "primaryManifestSha256": "3003c6103223a7753cf248bbcf4384f688d015bd6bd9d00208a5c0a6d9b8d7a0"
+  },
+  "livePrDraft": true,
+  "livePrState": "OPEN",
+  "outputFileSet": [
+    "README.md",
+    "apply-plan.json",
+    "build_cross_audit.py",
+    "live-head-attestation.json",
+    "prior-held-cell-reattestation.jsonl",
+    "resolution-ledger.jsonl",
+    "summary.json",
+    "verify_cross_audit.py"
+  ],
+  "priorHeldCellsReattestedUnchanged": 104,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "schema": "slskdn-w66-third-party-crossaudit-manifest/v1",
+  "sealed": true,
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "window": "W66"
+}

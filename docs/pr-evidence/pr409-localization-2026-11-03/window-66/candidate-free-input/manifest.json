@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W66 ranks 528-552 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "remainingQueueRankRange": [
+    428,
+    452
+  ],
+  "continuationRankRange": [
+    528,
+    552
+  ],
+  "priorSelectedIdsExcluded": 1632,
+  "priorHeldCellsReattested": 104,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 1,
+    "protectedLiteral": 5
+  },
+  "previousWindow": "W65",
+  "nextUnselectedContinuationRank": 553,
+  "nextUnselectedSourceId": "src_246f3d65a2306860",
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1229,
+      "sha256": "5b14aeb59faf3cd6d1ad074e781be8e6d82124ef8d975d2968240835a2c2e80d"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 129,
+      "sha256": "ae17349390f2d4d028e74ea8fc873a54fe501e38b81b9f4b43b969658198cf93"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 42969,
+      "sha256": "686226342824c1db7a9d39eb2028cd506b850b5b7b738985570e606d53386438"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "b04be8adad9f501f36638a684c030205a4ecacdc234ca2820f3d13e405f1dcfe"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 596,
+      "sha256": "6217306a1226fce03c749882370d736e505a4f8bf611be231881fd42d03cdd14"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 195,
+      "sha256": "4a8ac1cf6b7e2d5e47de62c500b5653dacea5d91d8f676cef7402b9a7f2667cf"
+    },
+    {
+      "path": "prior-held-cell-reattestation.jsonl",
+      "bytes": 132511,
+      "sha256": "50d2d5c4642753cc626ed86332547360d35d92610a56d73a875fa18ad0b8c667"
+    },
+    {
+      "path": "prior-selected-id-exclusions.jsonl",
+      "bytes": 515071,
+      "sha256": "8ab0516646e77d21276b53ca827d269a4c484ec0f13f19c6e7aff103f0f986dd"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1789,
+      "sha256": "11ee51de33e312ea78001c897810377014c2c4725ae057e5783d838f4ca35215"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8580,
+      "sha256": "fe32e679f5fb7a2b2754c1884db34a4129aa4dcf4deaf5dc96e133f146e62784"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 445788,
+      "sha256": "c3c091577a22ba3bc0e743d07f470720aa29f670792d67d60f8fc897a0df5119"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7234,
+      "sha256": "3dd65d30bc298c3127fab0b16e1efe09d6604f75570b4e22f9242a0166d7aff7"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 10160,
+      "sha256": "2ee73d3238baa13218b75ec351b8e36e8c312e7bc1ee0b783092d766a84be845"
+    }
+  ]
+}
