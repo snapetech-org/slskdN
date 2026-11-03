@@ -11,7 +11,7 @@ REPO = E.parents[3]
 BASE = "c64d57a0322897bbaac77fa88a1327dd2f687db7"
 TREE = "51ebf25124fc6ba30c8d5d99298e78353a951f17"
 BRANCH = "codex/slskdn-oidc-tooltip-localization-20261030"
-MODES = {"--precommit", "--prepush", "--postpush"}
+MODES = {"--precommit", "--prepush", "--evidence", "--postpush"}
 mode = sys.argv[1] if len(sys.argv) > 1 else "--postpush"
 assert mode in MODES, mode
 
@@ -171,10 +171,37 @@ elif mode == "--prepush":
     assert run(["git", "rev-parse", f"{head}^"]) == BASE
     assert not status_paths, status_paths
     assert state["head"]["sha"] == BASE and remote_branch == remote_pr == BASE
+elif mode == "--evidence":
+    assert head == "ed63a36e37f12b1061bed90418d52044e5bff410"
+    assert state["head"]["sha"] == head and remote_branch == remote_pr == head
+    assert all(p.startswith(evidence_rel + "/") for p in status_paths), status_paths
+    verify_repo_sums()
 else:
     assert state["head"]["sha"] == head and remote_branch == remote_pr == head
     assert not status_paths, status_paths
     verify_repo_sums()
+    av_path = E / "application-verification.json"
+    if av_path.exists():
+        av = json.loads(av_path.read_text(encoding="utf-8"))
+        applied = av["applicationCommit"]
+        assert applied in run(["git", "rev-list", f"{BASE}..{head}"]).split()
+        assert run(["git", "rev-parse", f"{applied}^{{tree}}"]) == av["applicationTree"]
+        assert av["livePullRequestHead"] == applied
+        assert av["branch"] == BRANCH
+        assert av["catalogs"] == {
+            path: sha((REPO / path).read_bytes()) for path in sorted(allowed_catalogs)
+        }
+av_path = E / "application-verification.json"
+if av_path.exists():
+    av = json.loads(av_path.read_text(encoding="utf-8"))
+    applied = av["applicationCommit"]
+    assert applied in run(["git", "rev-list", f"{BASE}..{head}"]).split()
+    assert run(["git", "rev-parse", f"{applied}^{{tree}}"]) == av["applicationTree"]
+    assert av["livePullRequestHead"] == applied
+    assert av["branch"] == BRANCH
+    assert av["catalogs"] == {
+        path: sha((REPO / path).read_bytes()) for path in sorted(allowed_catalogs)
+    }
 print(json.dumps({
     "pass": True, "mode": mode, "reviewBaseHead": BASE, "reviewBaseTree": TREE,
     "currentHead": head, "currentTree": tree, "cells": 300,
