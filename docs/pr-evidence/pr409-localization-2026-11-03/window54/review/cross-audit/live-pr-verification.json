@@ -1,0 +1,16 @@
+{
+  "allLiveHeadChecksMatch": true,
+  "baseRef": "main",
+  "branchApiHead": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+  "draft": true,
+  "gitLsRemoteHead": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+  "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "pullRequest": 409,
+  "pullRequestHead": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "repository": "snapetech-org/slskdN",
+  "state": "open",
+  "tree": "632924177388e15b594976774d2d879a098e8a72",
+  "verificationMethod": "GitHub CLI pull request and branch APIs plus git ls-remote",
+  "verifiedAtUtc": "2026-11-03 05:56:05 UTC"
+}

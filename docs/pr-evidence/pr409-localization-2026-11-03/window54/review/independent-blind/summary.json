@@ -1,0 +1,264 @@
+{
+  "title": "Independent candidate-free blind review: slskdN PR #409 W54",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+  "tree": "632924177388e15b594976774d2d879a098e8a72",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "pullRequestBodySha256": "9234d213b20ffdbb469fcf0067a34df7ccd23d155cd1349cebb2481499738ae4",
+  "inputCopy": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w54-independent-blind-20261103/input",
+  "inputPacketChecksumListSha256": "8d9fe2f15b2761cd23f22f00cc734dd1eb6791b06f8e12341cc91ac14cb59f0d",
+  "selection": "continuation ranks 251–275, 25 source IDs × 12 locales = 300 cells",
+  "historicalSourceOrdinals": "unavailable and not claimed",
+  "previousBoundaryRank": 250,
+  "nextBoundaryRank": 276,
+  "inputContainsCandidates": false,
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "decisionCounts": {
+    "KEEP_CANDIDATE": 231,
+    "REVISE_CANDIDATE": 41,
+    "HOLD_TERMINOLOGY": 4,
+    "HOLD_NO_DIRECT_LOCALIZED_CALLER": 24
+  },
+  "revisedCells": 41,
+  "heldSourceIds": [
+    {
+      "rank": 270,
+      "sourceId": "src_199ba895c707daaf",
+      "source": "waves ·",
+      "productionCallerCount": 0,
+      "directLocalizedCaller": false
+    },
+    {
+      "rank": 272,
+      "sourceId": "src_19b3efdadf4c6e0b",
+      "source": "Certificate password",
+      "productionCallerCount": 1,
+      "directLocalizedCaller": false
+    }
+  ],
+  "heldCellCount": 28,
+  "independentRevisionCells": [
+    {
+      "rank": 251,
+      "source": "Brown",
+      "locales": [
+        "zh-Hans",
+        "zh-Hant"
+      ]
+    },
+    {
+      "rank": 252,
+      "source": "New",
+      "locales": [
+        "zh-Hans"
+      ]
+    },
+    {
+      "rank": 253,
+      "source": "{imported} imported, {skipped} skipped as duplicates or incomplete rows.",
+      "locales": [
+        "vi"
+      ]
+    },
+    {
+      "rank": 254,
+      "source": "Advanced retrieval cache controls",
+      "locales": [
+        "ar"
+      ]
+    },
+    {
+      "rank": 255,
+      "source": "Peer:",
+      "locales": [
+        "ko",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ]
+    },
+    {
+      "rank": 256,
+      "source": "Load Descriptor Stats",
+      "locales": [
+        "vi"
+      ]
+    },
+    {
+      "rank": 258,
+      "source": "Show all native presets",
+      "locales": [
+        "ar",
+        "es",
+        "vi"
+      ]
+    },
+    {
+      "rank": 261,
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locales": [
+        "de",
+        "es",
+        "fr",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ]
+    },
+    {
+      "rank": 262,
+      "source": "Publish Pod",
+      "locales": [
+        "ar",
+        "fr",
+        "vi"
+      ]
+    },
+    {
+      "rank": 267,
+      "source": "Monitor the most recent application records as they arrive.",
+      "locales": [
+        "ar",
+        "de",
+        "fr",
+        "ko",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ]
+    },
+    {
+      "rank": 269,
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locales": [
+        "ar",
+        "es",
+        "id",
+        "ko",
+        "pt-BR",
+        "vi"
+      ]
+    },
+    {
+      "rank": 271,
+      "source": "Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run.",
+      "locales": [
+        "id",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ]
+    },
+    {
+      "rank": 275,
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  ],
+  "placeholderIcuMarkupNumericProtectedValidation": {
+    "placeholderOrIcuMismatches": 0,
+    "markupMismatches": 0,
+    "numericSourceValueLosses": 0,
+    "protectedSourceLiteralLosses": 0,
+    "allZero": true
+  },
+  "noDirectLocalizedCallExplanation": "Two IDs have only raw/no production caller evidence: waves · has no caller, and Certificate password has one raw JSX fallback occurrence without a direct localization helper/component. All 24 cells remain holds.",
+  "uncertainTerminologyHolds": [
+    {
+      "rank": 254,
+      "locale": "ko",
+      "source": "Advanced retrieval cache controls"
+    },
+    {
+      "rank": 255,
+      "locale": "id",
+      "source": "Peer:"
+    },
+    {
+      "rank": 258,
+      "locale": "id",
+      "source": "Show all native presets"
+    },
+    {
+      "rank": 258,
+      "locale": "ko",
+      "source": "Show all native presets"
+    }
+  ],
+  "inputOnlyVsLedgerHashes": "input-only-vs-ledger-hashes.json",
+  "nativeSpeakerApproval": "pending; this machine-assisted review is not qualified native-speaker approval",
+  "repositoryOrPrEdits": false,
+  "testsBuildScansCiWorkflowChanges": false,
+  "ledgerSha256": "a0f482e5457d5803c9eb2e6f9e8c742cf5a7f8109d1954f8ec5d53f65fa742c9",
+  "summarySha256": "28f446f2214e4f5acd594915eb63605f409d67401fdfdd10ef4a2f01de671d7b",
+  "decisionCountsByLocale": {
+    "ar": {
+      "KEEP_CANDIDATE": 18,
+      "REVISE_CANDIDATE": 5,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "de": {
+      "KEEP_CANDIDATE": 21,
+      "REVISE_CANDIDATE": 2,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "es": {
+      "KEEP_CANDIDATE": 20,
+      "REVISE_CANDIDATE": 3,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "fr": {
+      "KEEP_CANDIDATE": 20,
+      "REVISE_CANDIDATE": 3,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "hi": {
+      "KEEP_CANDIDATE": 23,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "id": {
+      "KEEP_CANDIDATE": 19,
+      "HOLD_TERMINOLOGY": 2,
+      "REVISE_CANDIDATE": 2,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "ja": {
+      "KEEP_CANDIDATE": 23,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "ko": {
+      "KEEP_CANDIDATE": 18,
+      "HOLD_TERMINOLOGY": 2,
+      "REVISE_CANDIDATE": 3,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "pt-BR": {
+      "KEEP_CANDIDATE": 21,
+      "REVISE_CANDIDATE": 2,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "vi": {
+      "KEEP_CANDIDATE": 14,
+      "REVISE_CANDIDATE": 9,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "zh-Hans": {
+      "REVISE_CANDIDATE": 7,
+      "KEEP_CANDIDATE": 16,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    },
+    "zh-Hant": {
+      "REVISE_CANDIDATE": 5,
+      "KEEP_CANDIDATE": 18,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2
+    }
+  },
+  "primaryComparisonPerformed": false,
+  "disagreementStatus": "No primary comparison was performed in this blind phase; no primary directory or primary-review message was opened. This is not a finding of agreement."
+}

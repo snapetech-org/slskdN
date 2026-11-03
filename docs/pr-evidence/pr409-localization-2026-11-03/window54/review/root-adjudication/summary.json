@@ -1,0 +1,33 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W54, stable-ID continuation ranks 251–275",
+  "baseHead": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+  "baseTree": "632924177388e15b594976774d2d879a098e8a72",
+  "reviewedCells": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "rootDispositions": {
+    "accept-current": 207,
+    "correction": 43,
+    "hold-context": 24,
+    "hold-terminology": 19,
+    "refinement": 7
+  },
+  "winningCandidateSources": {
+    "blind": 3,
+    "primary": 47
+  },
+  "heldCounts": {
+    "hold-context": 24,
+    "hold-terminology": 19
+  },
+  "appliedCandidateCount": 50,
+  "callerReferencesReattested": 68,
+  "catalogKeyCountPerLocale": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "nativeSpeakerApproval": false,
+  "headedProductBrowserAcceptance": false,
+  "testsBuildsScansOrCiRun": false,
+  "workflowsChanged": false
+}
