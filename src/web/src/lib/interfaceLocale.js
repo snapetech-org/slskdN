@@ -42,8 +42,15 @@ const browserLanguage = () => {
   const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
   for (const candidate of candidates) {
     const normalized = candidate.toLowerCase();
-    const base = normalized.split(/[-_]/)[0];
-    if (base === 'zh') return /(?:hant|tw|hk|mo)/.test(normalized) ? 'zh-Hant' : 'zh-Hans';
+    const subtags = normalized.split(/[-_]/);
+    const base = subtags[0];
+    if (base === 'zh') {
+      const script = subtags.find((subtag) => subtag === 'hans' || subtag === 'hant');
+      if (script) return script === 'hant' ? 'zh-Hant' : 'zh-Hans';
+      return /(?:^|[-_])(?:tw|hk|mo)(?:[-_]|$)/.test(normalized)
+        ? 'zh-Hant'
+        : 'zh-Hans';
+    }
     if (base === 'pt') return 'pt-BR';
     if (supportedLanguages.has(base)) return base;
   }
