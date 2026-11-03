@@ -1,0 +1,26 @@
+{
+  "candidateIssues": [],
+  "currentValueIssues": [],
+  "localizableNamedFeatureTerms": [
+    "Wishlist",
+    "Pod"
+  ],
+  "note": "Brand names Soulseek and Lidarr, runtime placeholders, source markup/numerics, and edge whitespace are protected. Wishlist and Pod are treated as localizable feature/domain terms because the packet provides no exact-literal glossary.",
+  "placeholdersCheckedExactly": [
+    "{count}",
+    "{tier}",
+    "{peerId}",
+    "{enabled}"
+  ],
+  "protectedLiteralsBySource": {
+    "315": [
+      "Soulseek"
+    ],
+    "316": [
+      "Lidarr"
+    ],
+    "318": [
+      "Lidarr"
+    ]
+  }
+}

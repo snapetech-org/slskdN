@@ -1,0 +1,35 @@
+{
+  "artifact": "sealed independent blind review evidence",
+  "inputChecksumListSha256": "84b6fcf416116a557decda2efca0f6c680055aab6726eecf75cf9742e3d4d90f",
+  "liveHead": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "liveTree": "a5f9b792875d341a49208d0785bfff28aa9092d7",
+  "sourceCount": 25,
+  "callerContextCount": 25,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 287,
+    "correction/refinement proposal": 10,
+    "hold": 3
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "1add94246ead06ef173d7eb84c90e83fa3cdc757a6b04cb0015282b6a737f08f",
+      "bytes": 1402
+    },
+    {
+      "path": "review-decisions.jsonl",
+      "sha256": "f25a893010214bbcddce6975a55e024687aec4ae6af8ba1fee9e6a52f7547b05",
+      "bytes": 694293
+    },
+    {
+      "path": "review-summary.json",
+      "sha256": "31142bda2a3f49445f7d685a25b72ef249acf63414071b4d29cfa3f0e1cbf419",
+      "bytes": 7938
+    }
+  ],
+  "checksumFile": {
+    "path": "SHA256SUMS.txt",
+    "sha256": "2937f44647c53fbc154cf059065fafd3e6e3bc5e9a46f5febf0a205e283a0c54"
+  }
+}

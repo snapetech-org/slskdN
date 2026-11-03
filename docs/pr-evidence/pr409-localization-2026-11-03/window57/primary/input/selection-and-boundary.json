@@ -1,0 +1,209 @@
+{
+  "artifact": "slskdN PR #409 candidate-free exact-head review input W57 ranks 303-327",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+    "tree": "a5f9b792875d341a49208d0785bfff28aa9092d7",
+    "remoteBranchHead": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+    "bodySha256": "21a90dfb39c6ecb70ceb107389f179c664be88614494f1a3bcd06345c80cf868",
+    "localWorktreeClean": true
+  },
+  "window": "W57 continuation of the pinned W49 stable-ID inventory: ranks 303-327; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W56 candidate-free packet pins ranks 301-302 and identifies rank 303 as next. Selected IDs and source hashes are re-attested against the W49 pinned source inventory at the current exact head. W49 ranks 101-125 and W50-W56 ranks 151-302 are prior coverage; the reserved W49 gap 126-150 remains excluded and unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W56",
+    "continuationRank": 302,
+    "sourceId": "src_1ab6aea79b68f3ed",
+    "source": "Job Types",
+    "sourceSha256": "1ab6aea79b68f3edeb36d09130d367776a09d392f439c974ff2a00096494626c",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W57",
+    "continuationRank": 303,
+    "sourceId": "src_1abda7931e0f021a",
+    "source": "Get Statistics",
+    "sourceSha256": "1abda7931e0f021aef9166a2a00a61c75a3ee6d3d7c807ea72e9324ffefd82cc",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W57",
+    "continuationRank": 304,
+    "sourceId": "src_1ac3248584b0a538",
+    "source": "Preview the changes this package would make to the local registry without applying them.",
+    "sourceSha256": "1ac3248584b0a5386b25c8dc3e8184a0ef8fc74a2441a58c5179f043064d1590",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "selected-W57",
+    "continuationRank": 305,
+    "sourceId": "src_1ad4215158cc50e0",
+    "source": "Load descriptor retrieval and cache performance metrics.",
+    "sourceSha256": "1ad4215158cc50e0b45e413675f2a96f4b68ef043471f309b4e1ac406d74df24",
+    "historicalSourceOrdinal": null
+  },
+  "w56Input": {
+    "inputDirectory": "/mnt/disks/scratch/task-worktrees/localization-20261103/slskdn-pr409-w56-apply-20261103/docs/pr-evidence/pr409-localization-2026-11-03/window56/review/candidate-free-input",
+    "checksumListSha256": "b46194d9825ebd1e2e12283a2553361975a223096908e356378c2f83754f09fd",
+    "verifiedFiles": [
+      {
+        "path": "README.md",
+        "expected": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+        "actual": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+        "matches": true
+      },
+      {
+        "path": "caller-contexts.jsonl",
+        "expected": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+        "actual": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+        "matches": true
+      },
+      {
+        "path": "catalog-structure.jsonl",
+        "expected": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+        "actual": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+        "matches": true
+      },
+      {
+        "path": "head-tree-attestation.json",
+        "expected": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+        "actual": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "expected": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+        "actual": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+        "matches": true
+      },
+      {
+        "path": "selection-and-boundary.json",
+        "expected": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+        "actual": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+        "matches": true
+      },
+      {
+        "path": "selection-boundary.jsonl",
+        "expected": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+        "actual": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+        "matches": true
+      },
+      {
+        "path": "source-current-cells.jsonl",
+        "expected": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+        "actual": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+        "matches": true
+      },
+      {
+        "path": "source-inventory-selection.jsonl",
+        "expected": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+        "actual": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+        "matches": true
+      }
+    ],
+    "previousWindowLastSelected": {
+      "role": "selected-W56",
+      "continuationRank": 302,
+      "sourceId": "src_1ab6aea79b68f3ed",
+      "source": "Job Types",
+      "sourceSha256": "1ab6aea79b68f3edeb36d09130d367776a09d392f439c974ff2a00096494626c",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W57",
+      "continuationRank": 303,
+      "sourceId": "src_1abda7931e0f021a",
+      "source": "Get Statistics",
+      "sourceSha256": "1abda7931e0f021aef9166a2a00a61c75a3ee6d3d7c807ea72e9324ffefd82cc",
+      "historicalSourceOrdinal": null
+    }
+  },
+  "sourceInventory": {
+    "pathAtHead": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+    "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "selectedRanksExcluded": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "selectedRanksInW49": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "candidateFree": true,
+  "containsTranslationsBeyondCurrentValues": false,
+  "callerScan": "Exact quoted source-literal search across pinned src/web/src JavaScript/TypeScript production files; tests excluded; bounded six-line context spans retained for hits."
+}

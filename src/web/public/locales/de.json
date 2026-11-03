@@ -1480,7 +1480,7 @@
   "Enable Lidarr auto-download setting": "Aktivieren Sie die automatische Download-Einstellung Lidarr",
   "Enable Lidarr completed import setting": "Aktivieren Sie die Einstellung „Lidarr abgeschlossener Import“.",
   "Enable Lidarr integration settings": "Aktivieren Sie die Integrationseinstellungen Lidarr",
-  "Enable Lidarr replace existing files setting": "Aktivieren Sie die Einstellung Lidarr zum Ersetzen vorhandener Dateien",
+  "Enable Lidarr replace existing files setting": "Aktivieren Sie die Lidarr-Einstellung zum Ersetzen vorhandener Dateien",
   "Enable Lidarr wanted sync setting": "Synchronisierung der von Lidarr gewünschten Alben mit der Wunschliste aktivieren",
   "Enable Lidarr wanted-album sync and completed-download import settings. Live sync still runs only from explicit Lidarr actions or configured schedulers.": "Aktivieren Sie die Lidarr-Synchronisierung für gesuchte Alben und die Importeinstellungen für abgeschlossene Downloads. Die Live-Synchronisierung wird weiterhin nur über explizite Lidarr-Aktionen oder konfigurierte Planer ausgeführt.",
   "Enable Message Batching": "Aktivieren Sie die Nachrichtenstapelverarbeitung",

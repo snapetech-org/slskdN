@@ -5963,7 +5963,7 @@
   "Private Message from {username}": "{username}的私人信息",
   "Promote candidates: {count}": "待提升候選項：{count}",
   "Promote preview": "提升操作預覽",
-  "Provenance: {tier} {peerId}": "出生: {tier} {peerId}",
+  "Provenance: {tier} {peerId}": "來源：{tier} {peerId}",
   "Providers: {providers}": "供應商:{providers}",
   "Quarantine review candidates: {count}": "隔離審查候選項：{count}",
   "Quarantine review previews: {count}": "隔離審查預覽：{count}",

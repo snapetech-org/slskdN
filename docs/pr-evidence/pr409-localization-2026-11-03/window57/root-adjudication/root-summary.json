@@ -1,0 +1,42 @@
+{
+  "artifact": "slskdN PR #409 W57 root adjudication and application",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "inputHead": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "inputTree": "a5f9b792875d341a49208d0785bfff28aa9092d7",
+  "reviewedCells": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "uniqueProductionCallerOccurrences": 42,
+  "rootDispositionCounts": {
+    "accept-current": 276,
+    "adopt-third-party-correction": 11,
+    "adopt-third-party-refinement": 1,
+    "hold": 12
+  },
+  "changedCells": 12,
+  "catalogFilesChanged": [
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "heldCells": 12,
+  "heldPosition": 319,
+  "readbackCells": 300,
+  "readbackFailures": 0,
+  "catalogKeyCountPerLocale": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "packetBoundaryDefectCorrectedInRootRecord": true,
+  "selectedRanks": [
+    303,
+    327
+  ],
+  "nextBoundaryRank": 328,
+  "nativeSpeakerApproval": false,
+  "exactHeadProductBrowserAcceptance": false,
+  "testsBuildsScansCIWorkflowChangesMergeReleaseOrTag": false
+}
