@@ -1,0 +1,11 @@
+{
+  "expectedHeldCells": 98,
+  "priorHeldCellsReattested": 98,
+  "cellsFromPriorWindows": 86,
+  "W64HeldCells": 12,
+  "W64Breakdown": {
+    "rank486/allLocales": 12
+  },
+  "allTargetHashesMatchPrior": true,
+  "allCurrentCallerAndCatalogEvidenceRepinned": true
+}

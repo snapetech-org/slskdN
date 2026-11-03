@@ -1,0 +1,17 @@
+{
+  "blindInputChecksums": "PASS",
+  "blindReviewChecksums": "PASS",
+  "blindVerifier": "PASS",
+  "branchRef": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "candidateFreeVerifier": "PASS",
+  "inputChecksums": "PASS",
+  "livePrHead": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "primaryChecksums": "PASS",
+  "primaryVerifier": "PASS",
+  "priorHeldCellsReattestedUnchanged": 98,
+  "pullRef": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "result": "PASS",
+  "rows": 300,
+  "targetDisagreements": 152,
+  "targetDisagreementsAdjudicated": 152
+}

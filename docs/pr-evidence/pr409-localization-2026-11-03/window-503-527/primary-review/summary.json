@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W65",
+  "head": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "tree": "51ebf25124fc6ba30c8d5d99298e78353a951f17",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 227,
+    "correction": 60,
+    "hold": 6,
+    "refinement": 7
+  },
+  "proposalCount": 67,
+  "holdCells": [
+    {
+      "continuationRank": 504,
+      "locale": "ar",
+      "source": "Recording subject conflict",
+      "rationale": "Caller taxonomy separates recording-subject from WorkRef identity and alias-subject but does not define whether recording subject means identity or subject; retain current pending glossary context."
+    },
+    {
+      "continuationRank": 504,
+      "locale": "de",
+      "source": "Recording subject conflict",
+      "rationale": "Caller taxonomy separates recording-subject from WorkRef identity and alias-subject but does not define whether recording subject means identity or subject; retain current pending glossary context."
+    },
+    {
+      "continuationRank": 504,
+      "locale": "es",
+      "source": "Recording subject conflict",
+      "rationale": "Caller taxonomy separates recording-subject from WorkRef identity and alias-subject but does not define whether recording subject means identity or subject; retain current pending glossary context."
+    },
+    {
+      "continuationRank": 504,
+      "locale": "fr",
+      "source": "Recording subject conflict",
+      "rationale": "Caller taxonomy separates recording-subject from WorkRef identity and alias-subject but does not define whether recording subject means identity or subject; retain current pending glossary context."
+    },
+    {
+      "continuationRank": 504,
+      "locale": "hi",
+      "source": "Recording subject conflict",
+      "rationale": "Caller taxonomy separates recording-subject from WorkRef identity and alias-subject but does not define whether recording subject means identity or subject; retain current pending glossary context."
+    },
+    {
+      "continuationRank": 504,
+      "locale": "pt-BR",
+      "source": "Recording subject conflict",
+      "rationale": "Caller taxonomy separates recording-subject from WorkRef identity and alias-subject but does not define whether recording subject means identity or subject; retain current pending glossary context."
+    }
+  ],
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 22
+  },
+  "reviewedTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "priorHeldCellsReattested": 98,
+  "callerlessSelectedRanks": [],
+  "candidateFreeInputVerified": true,
+  "blindPacketAccessed": false,
+  "repositoryOrPRFilesEdited": false,
+  "nativeSpeakerReview": "not performed",
+  "browserReview": "not performed"
+}

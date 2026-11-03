@@ -1,0 +1,57 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W65",
+  "head": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "tree": "51ebf25124fc6ba30c8d5d99298e78353a951f17",
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "cellCount": 300,
+  "sourceCount": 25,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "forbiddenFieldNames": [
+    "candidate",
+    "candidateText",
+    "currentTarget",
+    "currentTargetSha256",
+    "disposition",
+    "previousReview",
+    "priorTarget",
+    "proposedTranslation",
+    "target",
+    "targetSha256",
+    "targetValue",
+    "translation",
+    "verdict"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 894,
+      "sha256": "5351f7705940b0b0b2b456befac3335da1ddecb2636c2d8eb9c0a86b7f2fd43a"
+    },
+    {
+      "path": "translation-prompts.jsonl",
+      "bytes": 671738,
+      "sha256": "9ef5438356f81322cd8535d20a9099a3c59041694652eba61d96d9d93ce17286"
+    },
+    {
+      "path": "verify_blind_input.py",
+      "bytes": 1790,
+      "sha256": "29c2a0a767088a46562b7017b455a86d47bd65af0ece4eaf82667c386ea92532"
+    }
+  ]
+}

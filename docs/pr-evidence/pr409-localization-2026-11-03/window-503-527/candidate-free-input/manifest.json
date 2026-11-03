@@ -1,0 +1,126 @@
+{
+  "artifact": "slskdN PR #409 W65 ranks 503-527 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "tree": "51ebf25124fc6ba30c8d5d99298e78353a951f17",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "remainingQueueRankRange": [
+    403,
+    427
+  ],
+  "continuationRankRange": [
+    503,
+    527
+  ],
+  "priorSelectedIdsExcluded": 402,
+  "preexistingW1W45ExcludedRows": 1205,
+  "allUnavailableIdsBeforeW65": 1607,
+  "priorHeldCellsReattested": 98,
+  "callerlessSelectedRanks": [],
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 22
+  },
+  "W64CandidateFreeManifestJsonSha256": "4f428c69b3abec8db8ad9d7796f5c9a6e9e6da9234361cc644721b932de05456",
+  "W64CandidateFreeChecksumListSha256": "2064eb36dcd2bc27344f73c57b62e8e3078d087da115fe04d52348a30855e5c8",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2349,
+      "sha256": "a40ea34579e75aaee9b6f2bb296855531e180c62d07d122cc2dd39159b676b31"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 130,
+      "sha256": "a77f8d19d90b51fd90c074d7892d1efa698119c22210803d0e07c6f37ebf82d2"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 82275,
+      "sha256": "eaf2abecbb8277bd7b26f4ccb2c33fd638eea5f7a74034f400d9c633a3e481c7"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "d29c291d95574541f2356c0f38c832444029553937d1ed1b6df7c9e654291e66"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 596,
+      "sha256": "df4536333b0d1fb98654e56fceae294538bbbe152b6388382c0fbb36c629c021"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 262,
+      "sha256": "d44e50198a2f2f5602ca49005a850f92ee302b7751824e4ddc8647b462056297"
+    },
+    {
+      "path": "prior-held-cell-reattestation.jsonl",
+      "bytes": 120171,
+      "sha256": "8737e5f9e6c90f398666dc0bf7944227a4482537727c2543e2ebffacbabc06dd"
+    },
+    {
+      "path": "prior-selected-id-exclusions.jsonl",
+      "bytes": 508941,
+      "sha256": "419690487c683a4f2a6269e0a5bb9d34809afe9152515a0fafa883f0775e7e51"
+    },
+    {
+      "path": "prior-window-selection-and-boundary.json",
+      "bytes": 1837,
+      "sha256": "9a1527b0139c93bf6b81212c9f1943fe85ad5f9f6e2932e0866c0ccb3c5be96f"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1833,
+      "sha256": "5959c652b30eb449e9041b718bd33334795b4d835ac424c515c35eca95fc32c7"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8083,
+      "sha256": "61b3796d98bdb7471018f607b194833b20e22a522499164bfaf9bce3b96f37a3"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 590303,
+      "sha256": "9ca51c5a04b4c666e047a6ef90da20c580570f704effb0e251670eec5bc4e50f"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 6805,
+      "sha256": "d16cd1a6bd68e4457a4cdcc5a2677e7b26229a03d054026a2e0ce7b2dad92715"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 8731,
+      "sha256": "16ee0c914236b22aac4cd5be498b261824f3e7feab46adf8f2313351e3b2e38e"
+    }
+  ],
+  "priorBoundaryEvidence": "Bundled W64 candidate-free input prior-window-selection-and-boundary.json",
+  "priorBoundaryEvidenceSha256": "9a1527b0139c93bf6b81212c9f1943fe85ad5f9f6e2932e0866c0ccb3c5be96f",
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ]
+}
