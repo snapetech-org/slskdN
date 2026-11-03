@@ -1,0 +1,66 @@
+{
+  "artifact": "slskdN PR #409 W58 ranks 328-352 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+  "tree": "b29397903a036d40af1c6551dedbe070e735cfed",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1145,
+      "sha256": "d2d17144b5fe75c00bf155356b2ed0216027d93581df8c10d23bcdca6ec283ef"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 58103,
+      "sha256": "eec62a4cf37b568f922a9ed02330ec963196cbc0b88f25793e4cce0ef25daeb6"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "317ca517b368e7a70eb43e0d8fc6dd2f8836125eeadaff94169d2e9a000bbb36"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 515,
+      "sha256": "12672f471e1e659f5cce5ae3f888a3e4769599bb3bda45b2528f386d2666d657"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 7512,
+      "sha256": "1b6a32f865e3408e4789b7eb09ba79279eefc8fb0796e1543192e65995e8a07e"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 6715,
+      "sha256": "6d619aa1e37c74224f101b7e1d9bbe2085fe8509440ced2328c35a627a283bc7"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 449703,
+      "sha256": "4f6540a9f433b55d2c977a4c624803eb6197bbf4b1f14a0b43b1db4524ad5481"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7381,
+      "sha256": "fe3357d0dda8f9f888cf6048e8d37078b57d55b108d669365b1d4acb08d55b72"
+    }
+  ]
+}

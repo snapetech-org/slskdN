@@ -1,0 +1,39 @@
+{
+  "artifact": "slskdN PR #409 W58 primary semantic review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+  "tree": "b29397903a036d40af1c6551dedbe070e735cfed",
+  "window": "ranks 328–352",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "dispositionCounts": {
+    "accept-current": 267,
+    "correction": 21,
+    "refinement": 12
+  },
+  "callerRows": 25,
+  "pinnedProductionCallerOccurrences": 48,
+  "callerlessSourceIds": [],
+  "placeholderMarkupNumericEdgeWhitespaceMismatches": 0,
+  "protectedLiteralMismatches": 0,
+  "candidateFreeInputManifestSha256": "1923643b86d14cdac6847f46d2b6482dd841a297d6d5b2fd25a98eca2905f93c",
+  "primaryLedgerSha256": "30a7af5a25d8a210c9b9fb501e6297d26ee91833e3b31a2a07b07e8412d5bbd4",
+  "nativeSpeakerApproved": false,
+  "repositoryOrPrChanged": false,
+  "testsBuildsScansCIWorkflowsBrowserMergeReleaseOrTagPerformed": false
+}

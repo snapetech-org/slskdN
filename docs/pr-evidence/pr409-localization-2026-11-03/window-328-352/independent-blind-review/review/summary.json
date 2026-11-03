@@ -1,0 +1,26 @@
+{
+  "callerRefsPresentCells": 300,
+  "candidateFreeManifestFile": "PACKET-SHA256SUMS.txt",
+  "candidateFreeManifestSha256": "b9ee90713942e94f801c019690b279c4ce01dc2a34c096dc826b684d4e53a839",
+  "dispositionCounts": {
+    "accept-current": 249,
+    "correction": 33,
+    "refinement": 18
+  },
+  "head": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+  "holdsByRank": {},
+  "localeCount": 12,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "reviewLimit": "Independent machine-assisted semantic review, not native-speaker approval.",
+  "reviewedCells": 300,
+  "sourceCount": 25,
+  "structuralChecks": {
+    "cells": 300,
+    "markupMismatches": 0,
+    "placeholderMismatches": 0,
+    "protectedProtocolProductLiteralMismatches": 0
+  },
+  "tree": "b29397903a036d40af1c6551dedbe070e735cfed",
+  "window": "W58-ranks-328-352"
+}

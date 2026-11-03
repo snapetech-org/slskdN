@@ -1,0 +1,47 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "baseHead": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+  "baseTree": "b29397903a036d40af1c6551dedbe070e735cfed",
+  "reviewedCells": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "finalDispositionCounts": {
+    "accept-current": 242,
+    "correction": 36,
+    "refinement": 22
+  },
+  "changedTargets": 58,
+  "changedCatalogFiles": 12,
+  "changedSourceIds": [
+    "src_1b598b72cfd3f224",
+    "src_1b625be856ce548c",
+    "src_1b6e816c428d7a0e",
+    "src_1b7b0e2ff23563eb",
+    "src_1b816a2091327542",
+    "src_1b82cdaa1bcd8c60",
+    "src_1b90b48642b2f8a5",
+    "src_1c034c9bbdc8685a",
+    "src_1c049981ac6d7dca",
+    "src_1c05bf040b1d747f",
+    "src_1c14e2379f412799",
+    "src_1c2d95838476ca92"
+  ],
+  "readbackRows": 300,
+  "readbackMismatches": 0,
+  "nonTargetChanges": 0,
+  "orderedKeyCounts": {
+    "src/web/public/locales/ar.json": 6176,
+    "src/web/public/locales/de.json": 6176,
+    "src/web/public/locales/es.json": 6176,
+    "src/web/public/locales/fr.json": 6176,
+    "src/web/public/locales/hi.json": 6176,
+    "src/web/public/locales/id.json": 6176,
+    "src/web/public/locales/ja.json": 6176,
+    "src/web/public/locales/ko.json": 6176,
+    "src/web/public/locales/pt-BR.json": 6176,
+    "src/web/public/locales/vi.json": 6176,
+    "src/web/public/locales/zh-Hans.json": 6176,
+    "src/web/public/locales/zh-Hant.json": 6176
+  }
+}
