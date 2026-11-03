@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W61 independent root cross-audit",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W61 ranks 403-427",
+  "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+  "tree": "fad129065c1ccbdaaabe99c1054649dc426ea94b",
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "primaryDispositionCounts": {
+    "accept-current": 212,
+    "correction": 64,
+    "refinement": 24
+  },
+  "blindDispositionCounts": {
+    "accept-current": 237,
+    "correction": 41,
+    "refinement": 10,
+    "hold": 12
+  },
+  "crossAuditDispositionCounts": {
+    "accept-current": 211,
+    "correction": 57,
+    "refinement": 20,
+    "hold": 12
+  },
+  "crossAuditChangeCounts": {
+    "correction": 57,
+    "refinement": 20
+  },
+  "selectedChanges": 77,
+  "heldCells": 12,
+  "disagreementCells": 82,
+  "candidateFreeManifestJsonSha256": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+  "candidateFreeChecksumListSha256": "418735698e3e789a8c14005d531980631980bdccb993fe9ae669b65735e4ace7",
+  "primaryReviewChecksumListSha256": "c4eacae4064fbf574bcb22469b996d9c133bcba2e9ac90cc960b512e467da7a4",
+  "blindReviewChecksumListSha256": "8c4fecece454f7f863faa98c980049ab7674074b6a8b2bb7cc91ddcba8b665e3",
+  "livePrOpenDraftAtExpectedHead": true,
+  "branchAndPullRefsMatch": true,
+  "allCallerBacked": true,
+  "placeholderMismatches": 0,
+  "qualifiedNativeSpeakerApproval": false,
+  "exactHeadBrowserAcceptance": false,
+  "noRepositoryOrPRChanges": true,
+  "createdAtUTC": "2026-11-03T11:19:09.056830+00:00"
+}

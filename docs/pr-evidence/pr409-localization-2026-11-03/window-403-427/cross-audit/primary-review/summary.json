@@ -1,0 +1,40 @@
+{
+  "artifact": "slskdN PR #409 W61 independent primary semantic review",
+  "window": "W61 ranks 403-427",
+  "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+  "tree": "fad129065c1ccbdaaabe99c1054649dc426ea94b",
+  "candidateFreePacketChecksumListSha256": "418735698e3e789a8c14005d531980631980bdccb993fe9ae669b65735e4ace7",
+  "candidateFreeManifestJsonSha256": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+  "inputChecksumVerification": [
+    "README.md: OK",
+    "caller-contexts.jsonl: OK",
+    "catalog-structure.jsonl: OK",
+    "head-tree-attestation.json: OK",
+    "manifest.json: OK",
+    "prior-rank-disposition-reattestation-summary.json: OK",
+    "prior-rank-disposition-reattestation.jsonl: OK",
+    "selection-and-boundary.json: OK",
+    "selection-boundary.jsonl: OK",
+    "source-current-cells.jsonl: OK",
+    "source-inventory-selection.jsonl: OK"
+  ],
+  "rowCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "verdictCounts": {
+    "accept-current": 212,
+    "correction": 64,
+    "refinement": 24
+  },
+  "proposedTargetCount": 88,
+  "selectedTargetCount": 88,
+  "semanticHolds": [],
+  "callerlessSourceIds": 0,
+  "callerlessHoldCells": 0,
+  "allCellsCallerBacked": true,
+  "structuralChecksAllPass": true,
+  "candidateFreeInputModified": false,
+  "repositoryOrPRModified": false,
+  "qualifiedNativeSpeakerApproval": false
+}

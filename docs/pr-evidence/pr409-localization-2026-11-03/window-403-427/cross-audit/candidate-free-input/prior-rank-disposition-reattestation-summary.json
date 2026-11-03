@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+  "tree": "fad129065c1ccbdaaabe99c1054649dc426ea94b",
+  "sourcePacketsVerified": {
+    "W59RootFiles": 39,
+    "W59InputFiles": 9,
+    "W60RootFiles": 36,
+    "W60InputFiles": 9
+  },
+  "W59": {
+    "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "holdCells": 24,
+    "heldRanks": [
+      356,
+      366
+    ],
+    "preservedHolds": 24,
+    "targetHashesReattested": 24,
+    "callerlessContextsReattested": 24
+  },
+  "W60": {
+    "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
+    "cells": 300,
+    "dispositions": {
+      "accept-current": 216,
+      "correction": 57,
+      "refinement": 27
+    },
+    "selectedChanges": 84,
+    "appliedTargetsReattested": 300,
+    "callerContextsReattested": 300,
+    "holds": 0
+  },
+  "candidateTextCopied": false,
+  "priorW59CurrentHeldValuesCopied": 24,
+  "priorW60CurrentAppliedValuesCopied": 300,
+  "allPriorDispositionHashesAndContextsReattested": true
+}
