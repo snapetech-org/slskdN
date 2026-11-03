@@ -1,0 +1,39 @@
+{
+  "result": "PASS",
+  "head": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "tree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "reviewDispositionCounts": {
+    "refinement": 27,
+    "correction": 80,
+    "accept-current": 193
+  },
+  "proposalCount": 300,
+  "proposalHashes": "proposal-hashes.txt",
+  "priorHoldsReattested": 128,
+  "priorHoldsUnchanged": 128,
+  "newHolds": 0,
+  "candidateFreeBaselineMismatchCount": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 10
+  },
+  "proposalMismatchCount": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "protectedLiteralCorrections": 10,
+  "placeholdersPreserved": true,
+  "numericValuesPreserved": true,
+  "primaryMaterialOpened": false,
+  "currentTargetsAvailableInCandidateFreeInput": true,
+  "nativeSpeakerApproval": "not performed",
+  "browserReview": "not performed",
+  "repositoryOrPRFilesEdited": false,
+  "testsBuildsScansCiReleaseTagsOrMergesRun": false
+}

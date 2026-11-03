@@ -1,0 +1,14 @@
+{
+  "blindChecksumListSha256": "340d90cd029195587358419219cffcc413ee0e42c3c9fc134945606268f5f7b7",
+  "blindManifestSha256": "5865e1634096d05ada38a824ee8bab834f2cea395823233e79a91a1015ac4e5e",
+  "candidateFreeChecksumListSha256": "f486f9010a4c026988e6dc1c2b952da7d3d53b9f43fcf6e9bd3ab9761ec7284f",
+  "candidateFreeInputManifestSha256": "4ebd8174467382461e3190b76b791406b197e45e3576004940a89b11fdf98dca",
+  "crossAuditChecksumListDigest": "4aed635502a6a3545b42473d2fec179b8087b5ffa9dcc84324d14bf690896810",
+  "crossAuditChecksumListSha256": "4aed635502a6a3545b42473d2fec179b8087b5ffa9dcc84324d14bf690896810",
+  "crossAuditLedgerSha256": "9f806e7374a5d9a3e1f1d80ac4778939311ba68b9567cdab819e7d1de427c7ab",
+  "crossAuditManifestSha256": "b970ad3b4177bcf325fc23c94dd3e8aab35932ce7ec85ea36773d073edf2001c",
+  "crossAuditPacketPathAtCreation": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w67-cross-audit-20261103",
+  "finalProposalHashesSha256": "851470c17b726d88bce4e7aac8d00f41496ce05bb67f706a7b7da96921d4fa1c",
+  "primaryChecksumListSha256": "09a3505374521f55f12ad6efc8c7fbd3b46eea47015347e900aba38e65af79e9",
+  "primaryManifestSha256": "f2bc711dca1149c6d9fb5589026a07ee6367adf672a60b2cb25f69a6998f34b5"
+}

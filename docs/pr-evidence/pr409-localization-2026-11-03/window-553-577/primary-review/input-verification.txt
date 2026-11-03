@@ -1,0 +1,31 @@
+Candidate-free W67 input verifier ran before primary review.
+
+{
+  "pass": true,
+  "head": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "tree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "continuationRanks": [
+    553,
+    577
+  ],
+  "remainingQueueRanks": [
+    453,
+    477
+  ],
+  "priorSelectedIdsExcluded": 1657,
+  "priorHoldsReattested": 128,
+  "priorHoldRanks533And541": 24,
+  "callerlessSelectedSources": [],
+  "catalogKeysPerLocale": 6176,
+  "catalogKeyOrderSha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 10
+  },
+  "livePR": "PASS",
+  "checksums": "PASS"
+}

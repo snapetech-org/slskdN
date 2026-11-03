@@ -1,0 +1,144 @@
+{
+  "blindPacketDispositionCounts": {
+    "accept-current": 193,
+    "correction": 80,
+    "refinement": 27
+  },
+  "byRank": {
+    "553": {
+      "correction": 2,
+      "refinement": 10
+    },
+    "554": {
+      "correction": 12
+    },
+    "555": {
+      "accept-current": 9,
+      "correction": 3
+    },
+    "556": {
+      "accept-current": 12
+    },
+    "557": {
+      "accept-current": 12
+    },
+    "558": {
+      "accept-current": 10,
+      "refinement": 2
+    },
+    "559": {
+      "accept-current": 12
+    },
+    "560": {
+      "accept-current": 12
+    },
+    "561": {
+      "correction": 10,
+      "refinement": 2
+    },
+    "562": {
+      "accept-current": 12
+    },
+    "563": {
+      "accept-current": 4,
+      "correction": 3,
+      "refinement": 5
+    },
+    "564": {
+      "correction": 11,
+      "refinement": 1
+    },
+    "565": {
+      "accept-current": 6,
+      "correction": 2,
+      "refinement": 4
+    },
+    "566": {
+      "accept-current": 9,
+      "correction": 3
+    },
+    "567": {
+      "accept-current": 12
+    },
+    "568": {
+      "accept-current": 12
+    },
+    "569": {
+      "accept-current": 12
+    },
+    "570": {
+      "accept-current": 12
+    },
+    "571": {
+      "accept-current": 12
+    },
+    "572": {
+      "correction": 2,
+      "refinement": 10
+    },
+    "573": {
+      "accept-current": 5,
+      "correction": 5,
+      "refinement": 2
+    },
+    "574": {
+      "accept-current": 11,
+      "correction": 1
+    },
+    "575": {
+      "accept-current": 2,
+      "correction": 8,
+      "refinement": 2
+    },
+    "576": {
+      "accept-current": 1,
+      "correction": 10,
+      "refinement": 1
+    },
+    "577": {
+      "accept-current": 12
+    }
+  },
+  "categoryCounts": {
+    "both-current": 186,
+    "proposal-disagreement": 105,
+    "same-proposal": 9
+  },
+  "cellCount": 300,
+  "crossAuditMethod": "For each of 300 cells, exact source/current/caller/catalog pins were matched across candidate-free input and both independent ledgers. All 105 unequal targets were adjudicated; 9 exact proposed-target hashes agreed and 186 exact current-target hashes were accepted.",
+  "disagreementCount": 105,
+  "finalDispositionCounts": {
+    "accept-current": 189,
+    "correction": 72,
+    "refinement": 39
+  },
+  "head": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "headedBrowserReview": "not performed",
+  "localeCount": 12,
+  "nativeSpeakerReview": "not performed",
+  "newHoldCount": 0,
+  "noOpCount": 189,
+  "placeholderMarkupNumericFinalMismatches": 0,
+  "primaryPacketDispositionCounts": {
+    "accept-current": 226,
+    "correction": 33,
+    "refinement": 41
+  },
+  "priorHoldCallerlessCount": 96,
+  "priorHoldsReattestedUnchanged": 128,
+  "protectedLiteralBaselineMismatches": 10,
+  "protectedLiteralFinalMismatches": 0,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPRFilesEdited": false,
+  "schema": "slskdn-w67-cross-audit-summary/v1",
+  "selectionCounts": {
+    "blind": 56,
+    "consensus-current": 186,
+    "consensus-proposal": 9,
+    "primary": 49
+  },
+  "sourceCount": 25,
+  "tree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "updateCount": 111
+}
