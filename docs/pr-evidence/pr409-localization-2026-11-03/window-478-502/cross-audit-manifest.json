@@ -1,0 +1,23 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W64-ranks-478-502",
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "candidateFreeManifestSha256": "4f428c69b3abec8db8ad9d7796f5c9a6e9e6da9234361cc644721b932de05456",
+  "candidateFreeChecksumListSha256": "2064eb36dcd2bc27344f73c57b62e8e3078d087da115fe04d52348a30855e5c8",
+  "primaryChecksumListSha256": "0cce03a378a71f9250586c8d99005ab3bc7a78c9d112739698f6f0123bfa2139",
+  "blindChecksumListSha256": "9525a2322f1ab0c820d0abbade8ad302a9d5f2dc87725b9ffad194095f68ec30",
+  "rootDecisionCount": 300,
+  "rootDecisionFileSha256": "fd28534b469cf879760ec7a12840f47ce5146c2afd4e6845f70916232a8d164e",
+  "applyPlanSha256": "34b68b47bcb63ebb995f8157d001eb4c0310b64b8da589be1601a0a2c20956a6",
+  "liveAttestationSha256": "517b2c6d12810c7c2b8e3c886ce0b0df17e2435cd54a7f8dbabda7db2e3ef4f8",
+  "reviewedAllCells": true,
+  "workflowFilesTouched": false,
+  "nativeSpeakerApproval": false,
+  "exactHeadBrowserReview": false,
+  "applyScriptSha256": "d105ef51a4c83683dbc5e4987578a9c02348b418968152832f3fe76b46327871",
+  "verifyScriptSha256": "c64b9f82e04f5170e0b161e2e73be30d0d19754a0ce1b348abab3fba85a43609",
+  "precommitVerificationSha256": "2161a2bd88359b0076995129bb3a5e08c3396e7ebb0b46cc6b9f1df386c5838a",
+  "summarySha256": "144844a80a2357c328a00ada2d8cbaa2e822fe38ee517789d0ee268b3ce583e9"
+}

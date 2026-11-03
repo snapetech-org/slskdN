@@ -1,0 +1,107 @@
+{
+  "artifact": "slskdN PR #409 W64 ranks 478-502 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "remainingQueueRankRange": [
+    378,
+    402
+  ],
+  "continuationRankRange": [
+    478,
+    502
+  ],
+  "priorSelectedIdsExcluded": 377,
+  "priorHeldCellsReattested": 86,
+  "callerlessSelectedRanks": [
+    486
+  ],
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 23
+  },
+  "W63CandidateFreeManifestJsonSha256": "4acb80051e2c934b271d5ff5a8bf45907788e4fc0220d9d27f5cf740aa992c94",
+  "W63CandidateFreeChecksumListSha256": "005422a8c4c92af3c44d672fe133ec1e551b58bbee947a563e2a9960b2b0d1c4",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2346,
+      "sha256": "4080619831dae3f04656f63550509b6a422b1e46b5ebaf0591574abe7501911d"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 130,
+      "sha256": "8bb70178e796ddf70bc26e793db1dc167c3f5bf36ad22b20616108f6bd03b2fa"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 48436,
+      "sha256": "fdeea959f8fd7b3af878ce3fd09643f72b3f26e76bf56a833da4417b466295f3"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "1555037652a52724dc0f1964641eb73489bb337ef095d0ea64bc3cf259773044"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 596,
+      "sha256": "398d8870288a4f73ab75f18bdd68686c499a93cdec1a522c46d4ed9c04d9a212"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 304,
+      "sha256": "365c910fda91a91ef955779531ce7a9c2510a9b3ae5af4a2423a31ac967a5b37"
+    },
+    {
+      "path": "prior-held-cell-reattestation.jsonl",
+      "bytes": 106266,
+      "sha256": "0e7aa914557d5e22fc91c7b8869853d816a8638c296bf690b995a66f4298287b"
+    },
+    {
+      "path": "prior-selected-id-exclusions.jsonl",
+      "bytes": 502567,
+      "sha256": "d6736d9f4fe955a5df2f07bd2227a35aceb97a342ca7be0adbfc3aa513a6ad21"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1837,
+      "sha256": "9a1527b0139c93bf6b81212c9f1943fe85ad5f9f6e2932e0866c0ccb3c5be96f"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8315,
+      "sha256": "4c4e898599b66c9ae8684f7977d6d1f7f7163238ec82cf91b75f7aa41d7ec6ec"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 459892,
+      "sha256": "c7835ff8d782aecab2ea982c20cc5fb7dc29c27107660ee747964cd19e1d1cb4"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7049,
+      "sha256": "6af67fec34df1040ed87eb179982ac19b909c1e6c1b6a8bc5d78a7c36db155d3"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 4400,
+      "sha256": "0c504cd8d3c1d5cdc6accda5f9f5447a942a8b70bf70589d1be0a34864845173"
+    }
+  ],
+  "preexistingW1W45ExcludedRows": 1205,
+  "allUnavailableIdsBeforeW64": 1582
+}

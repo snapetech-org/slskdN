@@ -1,0 +1,53 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "draft": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "previousWindow": "W63",
+  "previousWindowFinalContinuationRank": 477,
+  "previousWindowFinalSourceId": "src_215e73b2ecd3f60e",
+  "priorBoundaryEvidence": "W63 candidate-free input selection-and-boundary.json, checksum-verified; exact-head W63 README confirms rank 478 next",
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "selection": {
+    "window": "W64",
+    "continuationRankStart": 478,
+    "continuationRankEnd": 502,
+    "remainingQueueRankStart": 378,
+    "remainingQueueRankEnd": 402,
+    "sourceCount": 25,
+    "localeCount": 12,
+    "cellCount": 300
+  },
+  "nextUnselectedContinuationRank": 503,
+  "nextUnselectedSourceId": "src_2272abad86bb9bf4",
+  "priorSelectedIdsExcluded": {
+    "throughW63": 377,
+    "W49": 25,
+    "priorContinuationQueue": 352,
+    "preexistingW1W45ExcludedRows": 1205,
+    "totalUnavailableIds": 1582,
+    "selectionRule": "pinned W49 inventory excludes all rows marked excluded=true and inW49=true; all pre-W64 continuation IDs through rank 477 are separately excluded; select the immediate next ranks 478-502"
+  },
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "candidateFree": true
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W64-ranks-478-502",
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "candidateFreeManifestJsonSha256": "4f428c69b3abec8db8ad9d7796f5c9a6e9e6da9234361cc644721b932de05456",
+  "candidateFreeChecksumListSha256": "2064eb36dcd2bc27344f73c57b62e8e3078d087da115fe04d52348a30855e5c8",
+  "candidateFreeHashesAreSeparateFiles": true,
+  "reviewType": "independent blind semantic review using candidate-free input only",
+  "primaryReviewRead": false,
+  "otherAuditRead": false,
+  "all300CellsReviewed": true,
+  "callerContextsUsed": true,
+  "currentCallerlessHoldsPreserved": [
+    [
+      486,
+      "ar"
+    ],
+    [
+      486,
+      "de"
+    ],
+    [
+      486,
+      "es"
+    ],
+    [
+      486,
+      "fr"
+    ],
+    [
+      486,
+      "hi"
+    ],
+    [
+      486,
+      "id"
+    ],
+    [
+      486,
+      "ja"
+    ],
+    [
+      486,
+      "ko"
+    ],
+    [
+      486,
+      "pt-BR"
+    ],
+    [
+      486,
+      "vi"
+    ],
+    [
+      486,
+      "zh-Hans"
+    ],
+    [
+      486,
+      "zh-Hant"
+    ]
+  ],
+  "priorHeldCellsReattestedAndPreserved": 86,
+  "nativeSpeakerApproval": false,
+  "browserReview": false,
+  "reviewedAtUTC": "2026-11-03T13:59:15.360571+00:00"
+}

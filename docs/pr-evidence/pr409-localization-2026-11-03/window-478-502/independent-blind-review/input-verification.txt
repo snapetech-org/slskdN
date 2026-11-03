@@ -1,0 +1,25 @@
+README.md: OK
+baseline-token-mismatch-summary.json: OK
+caller-contexts.jsonl: OK
+catalog-structure.jsonl: OK
+head-tree-attestation.json: OK
+manifest.json: OK
+prior-held-cell-reattestation-summary.json: OK
+prior-held-cell-reattestation.jsonl: OK
+prior-selected-id-exclusions.jsonl: OK
+selection-and-boundary.json: OK
+selection-boundary.jsonl: OK
+source-current-cells.jsonl: OK
+source-inventory-selection.jsonl: OK
+verify_input.py: OK
+{
+  "pass": true,
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "priorSelectedIdsExcluded": 377,
+  "priorHeldCellsReattested": 86,
+  "baselineProtectedLiteralMismatches": 23,
+  "placeholderMarkupNumericMismatches": 0
+}

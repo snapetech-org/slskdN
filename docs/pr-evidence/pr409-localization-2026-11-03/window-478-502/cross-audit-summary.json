@@ -1,0 +1,71 @@
+{
+  "result": "PASS",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W64-ranks-478-502",
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "primaryBlindTargetDisagreements": 79,
+  "primaryBlindDispositionPairs": {
+    "accept-current/accept-current": 189,
+    "accept-current/correction": 16,
+    "accept-current/refinement": 9,
+    "correction/accept-current": 21,
+    "correction/correction": 46,
+    "correction/refinement": 7,
+    "hold/hold": 12
+  },
+  "rootDispositions": {
+    "correction": 79,
+    "accept-current": 202,
+    "hold": 12,
+    "refinement": 7
+  },
+  "selectedUpdates": 86,
+  "updatesByDisposition": {
+    "correction": 79,
+    "refinement": 7
+  },
+  "updatesByLocale": {
+    "ar": 7,
+    "de": 6,
+    "es": 10,
+    "fr": 6,
+    "hi": 5,
+    "id": 8,
+    "ja": 6,
+    "ko": 7,
+    "pt-BR": 7,
+    "vi": 6,
+    "zh-Hans": 9,
+    "zh-Hant": 9
+  },
+  "updatesByRank": {
+    "478": 12,
+    "480": 7,
+    "482": 9,
+    "483": 1,
+    "485": 1,
+    "487": 12,
+    "489": 2,
+    "490": 5,
+    "491": 6,
+    "493": 12,
+    "498": 8,
+    "499": 5,
+    "500": 3,
+    "502": 3
+  },
+  "callerlessHeldCells": 12,
+  "callerlessHeldRank": 486,
+  "priorHeldCellsReattested": 86,
+  "baselineProtectedLiteralMismatches": 23,
+  "postAuditPlaceholderMarkupNumericMismatches": 0,
+  "postAuditProtectedLiteralMismatches": 0,
+  "nativeSpeakerApproval": false,
+  "exactHeadBrowserReview": false,
+  "workflowFilesTouched": false
+}
