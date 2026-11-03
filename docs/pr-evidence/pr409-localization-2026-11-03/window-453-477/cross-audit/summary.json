@@ -1,0 +1,134 @@
+{
+  "artifact": "slskdN PR #409 W63 independent third-party cross-audit",
+  "pin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "head": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+    "tree": "8b5c0ef640f487741f0a08086cc6d60d5eef43a4",
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "base": "main"
+  },
+  "inputs": {
+    "candidateFree": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w63-ranks453-477-primary-20261103/input",
+    "candidateFreeManifestSha256": "4acb80051e2c934b271d5ff5a8bf45907788e4fc0220d9d27f5cf740aa992c94",
+    "candidateFreeChecksumListSha256": "005422a8c4c92af3c44d672fe133ec1e551b58bbee947a563e2a9960b2b0d1c4",
+    "primary": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w63-ranks453-477-primary-20261103/primary",
+    "primaryManifestSha256": "b1d5a18af4dfb66406322e0040ebfc27a68137d75845b49cb0bfe515a7995823",
+    "primaryChecksumListSha256": "906f0680e16b0751b1cf2d2d260a377402995030427d82b6aadb434e32da8041",
+    "blindReview": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w63-independent-blind-20261103/blind-review",
+    "blindRootChecksumListSha256": "913ea16aebbb8a3db2e4d7bdf39fe8b7cfcaca54f48bdefab27f0b52ebb2ee27",
+    "blindRootPathMismatchNote": "The prompt path ending /review/ was absent; the sealed artifact is in blind-review/ and verifies under its root checksum list."
+  },
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "crossAuditCounts": {
+    "propose-update": 55,
+    "retain-current": 231,
+    "hold": 14
+  },
+  "selectedChanges": 55,
+  "disagreementRows": 59,
+  "reviewerCounts": {
+    "primary": {
+      "changed": 28,
+      "acceptCurrent": 260,
+      "holds": 12
+    },
+    "blind": {
+      "changed": 69,
+      "acceptCurrent": 219,
+      "holds": 12
+    },
+    "primaryBlindSharedChangedCells": 27,
+    "primaryBlindExactTargetAgreementAmongSharedChanges": 11,
+    "primaryBlindDifferentTargetsAmongSharedChanges": 16,
+    "primaryBlindFinalTargetDifferencesAcrossWindow": 59
+  },
+  "currentTokenMismatchCells": 20,
+  "currentTokenMismatchBreakdown": {
+    "numeric": 1,
+    "protectedLiteral": 19,
+    "placeholder": 0,
+    "markup": 0
+  },
+  "plannedTargetTokenMismatches": 0,
+  "holds": [
+    {
+      "rank": 476,
+      "locale": "ar",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "de",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "es",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "fr",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "hi",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "id",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "ja",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "ko",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "pt-BR",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "vi",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "zh-Hans",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 476,
+      "locale": "zh-Hant",
+      "reason": "No exact production caller exists; preserve the current fragment and target unchanged."
+    },
+    {
+      "rank": 459,
+      "locale": "ar",
+      "reason": "The exact caller names read-only resolve and validation fields in the ContentID examples. The available Arabic choices translate resolve as analysis or solution; the caller does not settle the locale term. Keep the current value pending terminology review."
+    },
+    {
+      "rank": 475,
+      "locale": "ar",
+      "reason": "This search-filter heading distinguishes format from codec. The current Arabic says encoding, while the blind wording “codec program” may describe an encoder rather than the codec itself. Hold pending an Arabic technical term choice."
+    }
+  ],
+  "priorHeldCellsReattested": 72,
+  "nativeSpeakerSignoff": false,
+  "applicationAuthorization": "NOT AUTHORIZED — application-plan-proposal.json is a recommendation only.",
+  "noRepositoryOrPrChanges": true,
+  "noTestsBuildsScansCIWorkflowsMergeReleaseOrTag": true,
+  "createdAtUTC": "2026-11-03T13:16:37.799430+00:00"
+}

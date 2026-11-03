@@ -1,0 +1,27 @@
+{
+  "reviewMethod": "Independent blind semantic review using the candidate-free input packet only; no primary-review directory or candidate review data was opened.",
+  "inputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w63-ranks453-477-primary-20261103/input",
+  "outputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w63-independent-blind-20261103",
+  "candidateFreeManifestJsonSha256": "4acb80051e2c934b271d5ff5a8bf45907788e4fc0220d9d27f5cf740aa992c94",
+  "candidateFreeChecksumListSha256": "005422a8c4c92af3c44d672fe133ec1e551b58bbee947a563e2a9960b2b0d1c4",
+  "livePullRequestReattested": {
+    "host": "kspls0",
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+    "base": "main",
+    "tree": "8b5c0ef640f487741f0a08086cc6d60d5eef43a4",
+    "branchRefHead": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+    "pullRefHead": "1979c8dc4e59d5ca397251bcde73216a888aa9c9"
+  },
+  "scope": "Ranks 453-477 inclusive; 25 source strings x 12 locales = 300 cell decisions.",
+  "preserved": {
+    "callerlessRank476": "all 12 current values held unchanged because the pinned scan reports zero exact production callers.",
+    "priorHeldCells": 72
+  },
+  "noRepositoryOrPrChanges": true,
+  "createdUtc": "2026-11-03T13:04:05.075014+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "source": "W62 candidate-free input reattested at W63 exact head",
+  "priorHeldCellCount": 72,
+  "priorWindows": {
+    "W57": 12,
+    "W59": 24,
+    "W61": 12,
+    "W62": 24
+  },
+  "allCurrentTargetHashesMatchPrior": true,
+  "allCatalogAndCallerEvidenceRepinned": true,
+  "W62CallerlessHeldRanks": [
+    438,
+    452
+  ]
+}

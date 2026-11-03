@@ -1,0 +1,93 @@
+{
+  "artifact": "slskdN PR #409 W63 ranks 453-477 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+  "tree": "8b5c0ef640f487741f0a08086cc6d60d5eef43a4",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "catalogKeyCountPerLocale": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "callerlessSelectedRanks": [
+    476
+  ],
+  "priorDispositionReattestation": {
+    "summaryPath": "prior-rank-disposition-reattestation-summary.json",
+    "rowsPath": "prior-rank-disposition-reattestation.jsonl",
+    "heldCells": 72,
+    "W57HeldCells": 12,
+    "W59HeldCells": 24,
+    "W61HeldCells": 12,
+    "W62CallerlessHeldCells": 24
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1749,
+      "sha256": "f9c7c68189516ed4b9eaeaae63200d021832c7645df95739a2d230336c6a1905"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 41759,
+      "sha256": "a4739fc7f1b6e33046b84315515f02a5c45af79564430fcb93318dbcd2b5de0a"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "b9520ee4a702309a8eb6b0715ec6d957b3d9e2df9662c6407d02285d96cb776a"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 503,
+      "sha256": "bee40b844c7bdb074c3e435a29854167d4c5d7b56b9f32f0a58128946a4227cc"
+    },
+    {
+      "path": "prior-rank-disposition-reattestation-summary.json",
+      "bytes": 327,
+      "sha256": "0ec89dfbd6150ad55aed07871cdc4026d9df85ce7ac0c33ef11709af5387eee4"
+    },
+    {
+      "path": "prior-rank-disposition-reattestation.jsonl",
+      "bytes": 85231,
+      "sha256": "30c1375597b218b0ab4d5946f25bbbcd2821225dd41ede9154634c73b426bcfd"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1573,
+      "sha256": "5bfd3f778bdd2c794e9fe84a17104808e684a90717c477cf1fe358f29bdc588e"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8483,
+      "sha256": "af163befa61c641e8690190e927da10a74c5e1ee9b784c4f277b1de0b2b71e16"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 442103,
+      "sha256": "f4e74448f4b3f230ec37cfad21e557dec7ccf65a485eb9a89ed6231dc09191a8"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7205,
+      "sha256": "dddba3055a9456d5937902280899517b4377458a8b1ede86171044734cdc7969"
+    }
+  ]
+}

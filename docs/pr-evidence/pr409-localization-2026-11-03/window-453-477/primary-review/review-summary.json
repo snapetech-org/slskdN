@@ -1,0 +1,44 @@
+{
+  "artifact": "slskdN PR #409 W63 primary semantic review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+  "tree": "8b5c0ef640f487741f0a08086cc6d60d5eef43a4",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "dispositionCounts": {
+    "accept-current": 260,
+    "correction": 25,
+    "refinement": 3,
+    "hold": 12
+  },
+  "proposedChangeCount": 28,
+  "selectedRowsRetained": 260,
+  "heldCells": 12,
+  "heldRanks": [
+    476
+  ],
+  "callerlessHeldSourceCount": 1,
+  "priorHeldCellsReattested": 72,
+  "currentStructuralMismatchCells": 20,
+  "primaryStructuralMismatchCellsAfterProposal": 0,
+  "placeholderMarkupNumericAndProtectedLiteralChecksPassed": true,
+  "nativeSpeakerSignoff": false,
+  "reviewBasis": "Candidate-free source/current packet only: exact source strings, pinned production caller contexts, locale list/metadata, current catalog values/hashes, and structural-token evidence.",
+  "limitations": "Primary semantic judgment is unendorsed by native speakers; callerless rank 476 remains held."
+}
