@@ -1,0 +1,76 @@
+{
+  "inputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w56-ranks301-302-candidate-free-20261103/input",
+  "inputChecksumListSha256": "b46194d9825ebd1e2e12283a2553361975a223096908e356378c2f83754f09fd",
+  "verifiedInputFiles": [
+    {
+      "path": "README.md",
+      "expected": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "actual": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "matches": true
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "expected": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "actual": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "matches": true
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "expected": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "actual": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "matches": true
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "expected": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "actual": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "matches": true
+    },
+    {
+      "path": "manifest.json",
+      "expected": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "actual": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "matches": true
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "expected": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "actual": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "matches": true
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "expected": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "actual": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "matches": true
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "expected": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "actual": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "matches": true
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "expected": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "actual": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "matches": true
+    }
+  ],
+  "inputManifestSha256": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+  "headTreeAttestationSha256": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+  "sourceCurrentCellsSha256": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+  "callerContextsSha256": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+  "livePRRemoteVerification": {
+    "livePR": {
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headRefOid": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+      "isDraft": true,
+      "state": "OPEN"
+    },
+    "remoteBranchHead": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909"
+  },
+  "primaryReviewUsedCandidateFreePacketOnly": true
+}

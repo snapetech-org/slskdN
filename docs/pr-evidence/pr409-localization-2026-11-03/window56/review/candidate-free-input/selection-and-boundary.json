@@ -1,0 +1,157 @@
+{
+  "artifact": "slskdN PR #409 candidate-free exact-head review input W56 ranks 301-302",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909",
+    "remoteBranchHead": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "bodySha256": "cede4dd83d017c0ecc68913550f606bd121a54bdc8cf160aefcb3bbbfd5fc56b",
+    "localWorktreeClean": true
+  },
+  "window": "W56 continuation of the pinned W49 stable-ID inventory: ranks 301-302; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W55 candidate-free packet and PR body identify W55 ranks 276-300 and explicitly state ranks 301-302 were untouched. Selected IDs and source hashes are re-attested against the W49 pinned source inventory at the current exact head. W49 ranks 101-125 and W50-W55 ranks 151-300 are prior coverage; the reserved W49 gap 126-150 remains excluded and unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 2,
+  "cellCount": 24,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W55",
+    "continuationRank": 300,
+    "sourceId": "src_1ab4cba1fe971008",
+    "source": " | Album: {album}",
+    "sourceSha256": "1ab4cba1fe9710087eb0d7a34d6eed34d2afec1ea9685f5be23bdf0c1ded2da0",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W56",
+    "continuationRank": 301,
+    "sourceId": "src_1ab57bbe37fe439f",
+    "source": "- {warning}",
+    "sourceSha256": "1ab57bbe37fe439fc635c50b8e12b55eebbb739c34cdc7041fbeca892968baae",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W56",
+    "continuationRank": 302,
+    "sourceId": "src_1ab6aea79b68f3ed",
+    "source": "Job Types",
+    "sourceSha256": "1ab6aea79b68f3edeb36d09130d367776a09d392f439c974ff2a00096494626c",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W57",
+    "continuationRank": 303,
+    "sourceId": "src_1abda7931e0f021a",
+    "source": "Get Statistics",
+    "sourceSha256": "1abda7931e0f021aef9166a2a00a61c75a3ee6d3d7c807ea72e9324ffefd82cc",
+    "historicalSourceOrdinal": null
+  },
+  "w55Input": {
+    "inputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w55-primary-20261103/input",
+    "checksumListSha256": "4dcbdb679ced3a9211560682a5b8775af06aab9a06b1970179156d94e3cabfb0",
+    "verifiedFiles": [
+      {
+        "path": "README.md",
+        "expected": "5f6215b454f9e48807426c7d8609f582c3e589d00fbb2a801f734fd543ee8ca9",
+        "actual": "5f6215b454f9e48807426c7d8609f582c3e589d00fbb2a801f734fd543ee8ca9",
+        "matches": true
+      },
+      {
+        "path": "caller-contexts.jsonl",
+        "expected": "fa6f0751aa5f1741ddd4a63aee25755c11d60537442512e900e13e5eea4690bf",
+        "actual": "fa6f0751aa5f1741ddd4a63aee25755c11d60537442512e900e13e5eea4690bf",
+        "matches": true
+      },
+      {
+        "path": "catalog-structure.jsonl",
+        "expected": "79461643c2cf49cf402eef0a16e08ba7e700f238929d84e372148dcb44da907b",
+        "actual": "79461643c2cf49cf402eef0a16e08ba7e700f238929d84e372148dcb44da907b",
+        "matches": true
+      },
+      {
+        "path": "head-tree-attestation.json",
+        "expected": "9533407500e3e56258bca7b3d8b4e0a971541f05f5c92b59109f3a17635ad102",
+        "actual": "9533407500e3e56258bca7b3d8b4e0a971541f05f5c92b59109f3a17635ad102",
+        "matches": true
+      },
+      {
+        "path": "protected-literals.jsonl",
+        "expected": "09df5faae6c549f752415dcdc682ef7d90a9c8b4c2112034c92699bf8d5842cf",
+        "actual": "09df5faae6c549f752415dcdc682ef7d90a9c8b4c2112034c92699bf8d5842cf",
+        "matches": true
+      },
+      {
+        "path": "selection-and-boundary.json",
+        "expected": "0e315e49ccbd2f673ae85bb815b44f8452893083d287377ca775fe967bddf42c",
+        "actual": "0e315e49ccbd2f673ae85bb815b44f8452893083d287377ca775fe967bddf42c",
+        "matches": true
+      },
+      {
+        "path": "selection-boundary.jsonl",
+        "expected": "a461a11a8894a05b4a565140880a4f54b6bcecaa73e0aebeb17d2078fc9b7dfa",
+        "actual": "a461a11a8894a05b4a565140880a4f54b6bcecaa73e0aebeb17d2078fc9b7dfa",
+        "matches": true
+      },
+      {
+        "path": "source-current-cells.jsonl",
+        "expected": "3178226b8d2e52128d74d678ec4ac3d0c95fe3f818624effd632d25c7298e793",
+        "actual": "3178226b8d2e52128d74d678ec4ac3d0c95fe3f818624effd632d25c7298e793",
+        "matches": true
+      }
+    ],
+    "previousWindowLastSelected": {
+      "role": "selected-W55",
+      "continuationRank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "source": " | Album: {album}",
+      "sourceSha256": "1ab4cba1fe9710087eb0d7a34d6eed34d2afec1ea9685f5be23bdf0c1ded2da0",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W56",
+      "continuationRank": 301,
+      "sourceId": "src_1ab57bbe37fe439f",
+      "source": "- {warning}",
+      "sourceSha256": "1ab57bbe37fe439fc635c50b8e12b55eebbb739c34cdc7041fbeca892968baae",
+      "historicalSourceOrdinal": null
+    }
+  },
+  "sourceInventory": {
+    "pathAtHead": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+    "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "selectedRanksExcluded": [
+      false,
+      false
+    ],
+    "selectedRanksInW49": [
+      false,
+      false
+    ]
+  },
+  "candidateFree": true,
+  "containsTranslationsBeyondCurrentValues": false,
+  "callerScan": "Exact quoted source-literal search across pinned src/web/src JavaScript/TypeScript production files; tests excluded; bounded six-line context spans retained for hits."
+}

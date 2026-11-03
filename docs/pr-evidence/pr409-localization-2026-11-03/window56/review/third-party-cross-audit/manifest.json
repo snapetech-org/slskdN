@@ -1,0 +1,47 @@
+{
+  "artifact": "slskdN PR #409 W56 third-party cross-audit",
+  "sealed": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909",
+  "rowCount": 24,
+  "disagreementCount": 8,
+  "decisionCounts": {
+    "accept-current": 13,
+    "refinement": 5,
+    "correction": 6
+  },
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 1431,
+      "sha256": "5c3ab9db5f96d447d0634835f822a70a053b0bd04e8f3045100507ffab34ec04"
+    },
+    {
+      "name": "build_cross_audit.py",
+      "bytes": 20588,
+      "sha256": "e51324a9a0ce5a69ff2b073fe1df91108047a084e719daf1fd83f4bc9230acb5"
+    },
+    {
+      "name": "cross-audit-ledger.jsonl",
+      "bytes": 48642,
+      "sha256": "21aa76f4fb3f9d7d9eee2e9974168d546e7726cec96b8d456f029b32f91af2f8"
+    },
+    {
+      "name": "disagreements.jsonl",
+      "bytes": 4624,
+      "sha256": "f9e33c7e19753428bb0f859e20b4f6786ff5aaa7e8ce06709ac27a2465a2b9b0"
+    },
+    {
+      "name": "input-verification.json",
+      "bytes": 10541,
+      "sha256": "117e9701167ae02f7c97fe8ed7155e37eefc93d0bdf565c2959f8e9766ea1bed"
+    },
+    {
+      "name": "summary.json",
+      "bytes": 2097,
+      "sha256": "03a723be84afbbdfbcdb94df4e04987b31f0ce411f788b2617c0fd7b286e129b"
+    }
+  ]
+}

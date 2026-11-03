@@ -1,0 +1,87 @@
+{
+  "artifact": "slskdN PR #409 primary semantic localization review W56 ranks 301-302",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909",
+  "sourceIds": 2,
+  "reviewedCells": 24,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "decisionCounts": {
+    "accept-current": 18,
+    "correction": 6
+  },
+  "proposalCounts": {
+    "correction": 6,
+    "refinement": 0
+  },
+  "holds": 0,
+  "rank301": {
+    "decision": "accept-current-all-locales",
+    "sourceId": "src_1ab57bbe37fe439f",
+    "runtimePlaceholder": "{warning}",
+    "placeholderPreservedInAllLocales": true,
+    "caller": "src/web/src/lib/searchActionPreview.js:112 passes warning: formatWarning(warning) to interfaceText and appends it beneath Warnings:"
+  },
+  "rank302": {
+    "sourceId": "src_1ab6aea79b68f3ed",
+    "caller": "src/web/src/components/System/Jobs/index.jsx:332-334 labels the analytics.byType count",
+    "corrections": [
+      {
+        "locale": "fr",
+        "candidate": "Types de tâches"
+      },
+      {
+        "locale": "hi",
+        "candidate": "जॉब के प्रकार"
+      },
+      {
+        "locale": "ja",
+        "candidate": "ジョブの種類"
+      },
+      {
+        "locale": "ko",
+        "candidate": "작업 유형"
+      },
+      {
+        "locale": "zh-Hans",
+        "candidate": "作业类型"
+      },
+      {
+        "locale": "zh-Hant",
+        "candidate": "作業類型"
+      }
+    ]
+  },
+  "inputChecksumFilesVerified": 9,
+  "livePRAndRemotePinVerified": {
+    "livePR": {
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headRefOid": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+      "isDraft": true,
+      "state": "OPEN"
+    },
+    "remoteBranchHead": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909"
+  },
+  "placeholderMarkupNumericChecks": {
+    "mismatches": 0,
+    "rank301RuntimePlaceholderFailures": 0
+  },
+  "nativeSpeakerApproval": false,
+  "limitations": "Machine-assisted semantic review. Confidence is moderate for the six job-term corrections; qualified native-speaker review remains necessary."
+}

@@ -1,0 +1,261 @@
+{
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909",
+  "livePRRemote": {
+    "pr": {
+      "baseRefName": "main",
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headRefOid": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+      "isDraft": true,
+      "state": "OPEN"
+    },
+    "remoteBranchHead": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909"
+  },
+  "candidateFreePacketChecks": [
+    {
+      "path": "README.md",
+      "expected": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "actual": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "matches": true
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "expected": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "actual": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "matches": true
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "expected": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "actual": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "matches": true
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "expected": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "actual": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "matches": true
+    },
+    {
+      "path": "manifest.json",
+      "expected": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "actual": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "matches": true
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "expected": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "actual": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "matches": true
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "expected": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "actual": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "matches": true
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "expected": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "actual": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "matches": true
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "expected": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "actual": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "matches": true
+    }
+  ],
+  "primaryPacketChecks": [
+    {
+      "path": "README.md",
+      "expected": "be4efc6cde94bb6263cc9cab40e4ac20340255fdd20d496fb74e3eeb73210c28",
+      "actual": "be4efc6cde94bb6263cc9cab40e4ac20340255fdd20d496fb74e3eeb73210c28",
+      "matches": true
+    },
+    {
+      "path": "build_primary_review.py",
+      "expected": "9f30b8b3e5561b0ae79fa70499beea881133b94c8ace0f398ed7aa5f6e50173d",
+      "actual": "9f30b8b3e5561b0ae79fa70499beea881133b94c8ace0f398ed7aa5f6e50173d",
+      "matches": true
+    },
+    {
+      "path": "input-attestation.json",
+      "expected": "469519bf4bc8c71fa319873606093e543cdf207210bde90eaaf291e9303b4780",
+      "actual": "469519bf4bc8c71fa319873606093e543cdf207210bde90eaaf291e9303b4780",
+      "matches": true
+    },
+    {
+      "path": "review-ledger.jsonl",
+      "expected": "d72c96d0efd282341f910645806d847fcd080976270e9702bdfab3f2824767a8",
+      "actual": "d72c96d0efd282341f910645806d847fcd080976270e9702bdfab3f2824767a8",
+      "matches": true
+    },
+    {
+      "path": "summary.json",
+      "expected": "d6ebdae904b4196c718901bcec8a38f5f6927afaa2e0b3d4dd2a9e3c47b94642",
+      "actual": "d6ebdae904b4196c718901bcec8a38f5f6927afaa2e0b3d4dd2a9e3c47b94642",
+      "matches": true
+    }
+  ],
+  "blindPacketChecks": [
+    {
+      "path": "./README.md",
+      "expected": "0bb78c03738d8987964d689988d2a279fa8094ae50e80b586f84f688d5df996d",
+      "actual": "0bb78c03738d8987964d689988d2a279fa8094ae50e80b586f84f688d5df996d",
+      "matches": true
+    },
+    {
+      "path": "./blind-decisions.jsonl",
+      "expected": "261d637402240e4d5fde0c42c2c0acce013c09f6a5b605a7f50a64738e4cc1eb",
+      "actual": "261d637402240e4d5fde0c42c2c0acce013c09f6a5b605a7f50a64738e4cc1eb",
+      "matches": true
+    },
+    {
+      "path": "./input/PACKET-SHA256SUMS.txt",
+      "expected": "b46194d9825ebd1e2e12283a2553361975a223096908e356378c2f83754f09fd",
+      "actual": "b46194d9825ebd1e2e12283a2553361975a223096908e356378c2f83754f09fd",
+      "matches": true
+    },
+    {
+      "path": "./input/README.md",
+      "expected": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "actual": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "matches": true
+    },
+    {
+      "path": "./input/caller-contexts.jsonl",
+      "expected": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "actual": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "matches": true
+    },
+    {
+      "path": "./input/catalog-structure.jsonl",
+      "expected": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "actual": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "matches": true
+    },
+    {
+      "path": "./input/head-tree-attestation.json",
+      "expected": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "actual": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "matches": true
+    },
+    {
+      "path": "./input/manifest.json",
+      "expected": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "actual": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "matches": true
+    },
+    {
+      "path": "./input/selection-and-boundary.json",
+      "expected": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "actual": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "matches": true
+    },
+    {
+      "path": "./input/selection-boundary.jsonl",
+      "expected": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "actual": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "matches": true
+    },
+    {
+      "path": "./input/source-current-cells.jsonl",
+      "expected": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "actual": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "matches": true
+    },
+    {
+      "path": "./input/source-inventory-selection.jsonl",
+      "expected": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "actual": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "matches": true
+    },
+    {
+      "path": "./live-pr-verification.json",
+      "expected": "8df0e26557e97a8451e7d2e7a7209904f1a56dce13516a1787f64c021229c29a",
+      "actual": "8df0e26557e97a8451e7d2e7a7209904f1a56dce13516a1787f64c021229c29a",
+      "matches": true
+    },
+    {
+      "path": "./review_blind.py",
+      "expected": "bc836f0985bccf87ed73c02a89cff3b7cca20a6db5c0c8217613e096533a7466",
+      "actual": "bc836f0985bccf87ed73c02a89cff3b7cca20a6db5c0c8217613e096533a7466",
+      "matches": true
+    },
+    {
+      "path": "./summary.json",
+      "expected": "88e6df47972bf06e6d291396884f2bd26d419344d00618d774e225c4e36a1b7c",
+      "actual": "88e6df47972bf06e6d291396884f2bd26d419344d00618d774e225c4e36a1b7c",
+      "matches": true
+    }
+  ],
+  "blindCandidateFreeInputChecks": [
+    {
+      "path": "README.md",
+      "expected": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "actual": "3fddb4b1cdaa19cf607433ca0c7639895a006e351ab0e7e2c7c1c1ca01f7e82d",
+      "matches": true
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "expected": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "actual": "5d1f09d7a192c0e0430f89c11c8b66fb0109bb10e988ae9cb7f747f553f5d0a5",
+      "matches": true
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "expected": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "actual": "02983245621c03a7dbe767d7195924e72ff26d231ba9a4098f0b1c0c36968c79",
+      "matches": true
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "expected": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "actual": "b7ee5880f9f2aabafef6c98e0920f78f3f331d205e7979aaafa577c2bb7fe91a",
+      "matches": true
+    },
+    {
+      "path": "manifest.json",
+      "expected": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "actual": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+      "matches": true
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "expected": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "actual": "5371debe88dff5aed51cc7aa661dd9f5da3889767408db543d991f6bf3361d6a",
+      "matches": true
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "expected": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "actual": "001f73ab1498abad06aeb883d74854f87e461d7014a1b35ad97acecf47ebb486",
+      "matches": true
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "expected": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "actual": "d2df40d0c4155be80068d31838decc717b7a5eca400196e4e228a2fb566597f9",
+      "matches": true
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "expected": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "actual": "f0522c845cc335c53a6c0d50871c1afe8e1a68a123bc80d3c459c03f1a951529",
+      "matches": true
+    }
+  ],
+  "blindInputIsByteIdenticalToCanonicalPacket": true,
+  "canonicalInputManifestSha256": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+  "primaryManifestSha256": "3d586e04408b20a02199b71e124439ffbd6adfd7bf64156d9ec1df6e57b07f22",
+  "blindSummarySha256": "88e6df47972bf06e6d291396884f2bd26d419344d00618d774e225c4e36a1b7c",
+  "candidateFreeRows": 24,
+  "primaryRows": 24,
+  "blindRows": 24,
+  "cellPinsMatchAcrossAllThreePackets": true,
+  "callerPinsMatchAcrossAllThreePackets": true
+}
