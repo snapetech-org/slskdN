@@ -1416,7 +1416,7 @@
   "Download Slots": "Slots herunterladen",
   "Download cancelled retention minutes": "Laden Sie stornierte Aufbewahrungsminuten herunter",
   "Download destination": "Ziel herunterladen",
-  "Download errored retention minutes": "Laden Sie fehlerhafte Aufbewahrungsminuten herunter",
+  "Download errored retention minutes": "Aufbewahrungsdauer fehlgeschlagener Downloads (Minuten)",
   "Download every file in {folderName} and its subdirectories to queue the whole folder tree at once.": "Laden Sie jede Datei in {folderName} und seinen Unterverzeichnissen herunter, um den gesamten Ordnerbaum auf einmal in die Warteschlange zu stellen.",
   "Download filters saved": "Download-Filter gespeichert",
   "Download request": "Download-Anfrage",

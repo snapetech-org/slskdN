@@ -1,0 +1,207 @@
+{
+  "applicationMethod": "Surgical JSON string-token replacement; preserves all non-target bytes, entry order, and key set.",
+  "baseHead": "973a65312a475de4d8aa39aee837249553fd884e",
+  "baseTree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+  "catalogs": [
+    {
+      "catalogGitBlobAfter": "0d300a6d352266498faa27fd745ba2a94f28348a",
+      "catalogGitBlobBefore": "89372e0711ef48dc92f81ed682607e94f8135917",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "catalogSha256After": "770e1b843c01c0925994222247e3ad0726a772da4fa1ee63d262a4ebd262300f",
+      "catalogSha256Before": "d6c6ecbf1a49a84f5c73cc64d9230210a78fea407957d141a265463250c1954b",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Pod Membership Management"
+      ],
+      "changedEntryCount": 2,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "d0b90763f5a54bd2069a2617cbec9d66fc6845c9",
+      "catalogGitBlobBefore": "6ddc487e64c696ec1aa5778292c74100125696e6",
+      "catalogPath": "src/web/public/locales/de.json",
+      "catalogSha256After": "d13233ea6711016790424bb7c03b414e627af48b5f14b8f1945f02f68965b093",
+      "catalogSha256Before": "aac20c23ce6c955dcc2750ac51ddf2c584e4028f9e28fb758672d05bbaacd1aa",
+      "changedCatalogKeys": [
+        "Download errored retention minutes"
+      ],
+      "changedEntryCount": 1,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "ad93b06ab075955de94138a46197b615f48e6ccc",
+      "catalogGitBlobBefore": "4465714544cbfcff349c1cbacc49d65147a1ddb8",
+      "catalogPath": "src/web/public/locales/es.json",
+      "catalogSha256After": "9565f66660f234c722e54bb7fc4b8cc59ab78f48dfbf28bddec37a1c45987fd7",
+      "catalogSha256Before": "f3e6df585432d2cf5211407cb27d971216029e9bdf3a895d534748675e38b279",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Playlist Intake",
+        "Pod Membership Management"
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "628ff6820acae4b42fcd01da5253da557e1157f1",
+      "catalogGitBlobBefore": "d15e188a13fac898dd2054ea6cd0b60f8fe2a11c",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "catalogSha256After": "0f058f50a61b2cb87315abe6c430a1d20540f56c694259c8fa8a5c1a4ba5ff7a",
+      "catalogSha256Before": "9855d6528d83789175a30f64785998cf9fca2e95becbcb4fa42ab5677554f41f",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Pod Membership Management",
+        "Type (optional)"
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "34d5f89f541a6a9ce60d4b2341a62fe9fd9dd830",
+      "catalogGitBlobBefore": "654650250dfbd6f03679585e24c8cb8b78aa5516",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "catalogSha256After": "371cb80eae72d2b6d72b0c9ef67bbd4bf17cf82056910f16a45297e56fddaeb8",
+      "catalogSha256Before": "083f8590f88f10977269750e5ff07981b608cb834e8d71163c11c26fd3ff8078",
+      "changedCatalogKeys": [
+        "Copy the complete forensic matrix JSON for this SongID run without changing ranking, downloads, or local files.",
+        "Download errored retention minutes",
+        "Pod Membership Management"
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "a86fc8fd76f3081a01d06c8e2455454891838075",
+      "catalogGitBlobBefore": "e17007cf9626132e20963b794f62beeb633da336",
+      "catalogPath": "src/web/public/locales/id.json",
+      "catalogSha256After": "4ac278c1b92c7ded5312052eb3cc168adf5652c9fdcfc4088a6b99e491638140",
+      "catalogSha256Before": "26f3f75211c3b8c5458faeaa9d584ba83c76e039bb02feb2d5bac2933fe29218",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Tag and organization dry run only; no tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download has started.",
+        "Type (optional)"
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "b2166b90aaee13ca7dc71e1d8c82a62eeb1d0518",
+      "catalogGitBlobBefore": "6662563d917d1c2419129d0b57722efb46fe1e56",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "catalogSha256After": "e2c1ef9411ce8ed7ac7f6bb3bc50566c1d2b9be3accc368c7230511e972cf4dd",
+      "catalogSha256Before": "8ef1b637ce8a35e5b5bedec2c9e4fdd326c8afb921a49283d0c73c5a60207270",
+      "changedCatalogKeys": [
+        "Pod Membership Management"
+      ],
+      "changedEntryCount": 1,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "e37afe71f72b2284f5f39f3cce6d096355154581",
+      "catalogGitBlobBefore": "a4bb06bf5a1103c125dfeded0f94e8db02b27e58",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "catalogSha256After": "6f9d82390236ee923515f1b0d561cc86e66a2e9049204fe29cb69c8a63a637ae",
+      "catalogSha256Before": "d838100d9c1fbde09d8cb9a010cfcbbc69a2ba8134775c12afa708bb48e031d4",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Pod Membership Management",
+        "Tag and organization dry run only; no tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download has started."
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "6c5cd1156d73c0fc9c573dac9f9edc06e12af0ae",
+      "catalogGitBlobBefore": "d6ebf7aeb76bc78c502d7a3e44823e289b23ac5e",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "catalogSha256After": "4cf6da724d359469d4de72fe9d7f88185268a8e471b5d0ff921e42b20151f3df",
+      "catalogSha256Before": "f301abc6e5836b6d39a62f6d1d05f8e959b863bad07191db113958763dc62446",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Pod Membership Management"
+      ],
+      "changedEntryCount": 2,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "dfead7a2d12bfb87e98e4e8e32302640b163e9c8",
+      "catalogGitBlobBefore": "18d3f716e2fbd6ca866d4af98cd117b9e5309720",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "catalogSha256After": "9747679d1ae4d73f64075713063fb884a4674beaaea635c10344615bb9de0c15",
+      "catalogSha256Before": "c73ab5d1159515581faefaec1cff568e2c117d389217aa01a48fb969bb162b03",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Pod Membership Management"
+      ],
+      "changedEntryCount": 2,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "806ae99e93d329612cdae7168edf4f50402344a4",
+      "catalogGitBlobBefore": "221c003dc790e891361f089146ebc8ba74908efc",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "catalogSha256After": "f040053bd996abd7b1709548599315ac2af0c9a700e910dac5fca7c75ae80c89",
+      "catalogSha256Before": "d7a38e6dd8662d0427cd2402a1ad233c3f5c991a529ca900a8623875be8822ec",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Message Deduplication",
+        "Tag and organization dry run only; no tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download has started."
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    },
+    {
+      "catalogGitBlobAfter": "1b5aad14188018de54d0d88c3c306ac6f6d6aa0f",
+      "catalogGitBlobBefore": "7dda3663d7476306bca0a0514c372291efdf1c76",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "catalogSha256After": "69b71e120819d60724923ec873622e1159c288a33696c64d51cbfd7b73fa17ac",
+      "catalogSha256Before": "e7daa2aedb9b723aba7145b7a64b6f471d1561bff6706a2287aebb7c8cf86f0a",
+      "changedCatalogKeys": [
+        "Download errored retention minutes",
+        "Message Deduplication",
+        "Tag and organization dry run only; no tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download has started."
+      ],
+      "changedEntryCount": 3,
+      "keyCountAfter": 6176,
+      "keyCountBefore": 6176,
+      "nonTargetValuesChanged": 0
+    }
+  ],
+  "catalogsChanged": 12,
+  "newHolds": 0,
+  "noOpCount": 271,
+  "priorHoldsRetainedUnchanged": 128,
+  "projectTestsBuildsCiBrowserActions": "not run",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "reviewedCells": 300,
+  "schema": "slskdn-w68-application-result/v1",
+  "updateCount": 29,
+  "updatesByDisposition": {
+    "correction": 29,
+    "refinement": 0
+  },
+  "window": "W68"
+}

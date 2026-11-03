@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W68 primary semantic review ledger",
+  "reviewType": "primary-semantic",
+  "sealed": true,
+  "candidateFreeInput": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "window": "W68",
+  "head": "973a65312a475de4d8aa39aee837249553fd884e",
+  "tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "inputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w68-ranks578-602-candidate-free-20261103/input",
+  "inputManifestSha256": "a9f4ebf9dd435faf2330fce08d0f90ef131bc0c8d694f54475a4450e11ce568f",
+  "inputChecksumListSha256": "0ddb2a00cefbe6dbc16c883bb43b316ee316638d014e57c4d24441af774ed2ca",
+  "inputLedgerSha256": "e0f3ed9ab0364af4603720578e3d8eb3cfdbf8def9a1117e65bc948b1e5de14f",
+  "priorHeldCellsReattested": 128,
+  "dispositionCounts": {
+    "accept-current": 271,
+    "correction": 29
+  },
+  "proposalCount": 29,
+  "blindPacketAccessed": false,
+  "nativeSpeakerReview": "not performed",
+  "browserReview": "not performed",
+  "createdAtUtc": "2026-11-03T19:04:27.815289+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 882,
+      "sha256": "b33f1c08dc44f0b6b91ec7b16a212d6cfe77958996c8cd7a3fa8d3095db96639"
+    },
+    {
+      "path": "build_primary_review.py",
+      "bytes": 15399,
+      "sha256": "5539937fe43b9c949c28bf78c662d62fba28fe409b3caeebfa039ad3f6d8d8b5"
+    },
+    {
+      "path": "input-verification.txt",
+      "bytes": 737,
+      "sha256": "282c364565b8ee43f32c32e3d89e852893ecfc2be2bf24402fdd5a734370c91c"
+    },
+    {
+      "path": "primary-ledger.jsonl",
+      "bytes": 1241702,
+      "sha256": "2ef76aae570e974fcd0d6b27bb7ba2c9b573db2243fda339e62052a7bbc0bb04"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1301,
+      "sha256": "82df162af725cbd701a62fc8093843ae0330aeb27fb6de00d0fdb6e90296989e"
+    },
+    {
+      "path": "verify_primary.py",
+      "bytes": 7904,
+      "sha256": "a0d1bb6e496cb131fae769ce6654bd4f174cff294035b7b3ec5a1811b5a9f180"
+    }
+  ]
+}

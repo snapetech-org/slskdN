@@ -1,0 +1,31 @@
+Candidate-free W68 input verifier ran before primary review.
+
+{
+  "pass": true,
+  "head": "973a65312a475de4d8aa39aee837249553fd884e",
+  "tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "continuationRanks": [
+    578,
+    602
+  ],
+  "remainingQueueRanks": [
+    478,
+    502
+  ],
+  "priorSelectedIdsExcluded": 1682,
+  "priorHoldsReattested": 128,
+  "newW67Holds": 0,
+  "callerlessSelectedSources": [],
+  "catalogKeysPerLocale": 6176,
+  "catalogKeyOrderSha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 9
+  },
+  "livePR": "PASS",
+  "checksums": "PASS"
+}

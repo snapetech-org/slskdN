@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W68 blind/primary cross-audit",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "973a65312a475de4d8aa39aee837249553fd884e",
+  "tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+  "continuationRankRange": [
+    578,
+    602
+  ],
+  "remainingQueueRankRange": [
+    478,
+    502
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "heldCellsReattested": 128,
+  "candidateFreeInputManifestSha256": "a9f4ebf9dd435faf2330fce08d0f90ef131bc0c8d694f54475a4450e11ce568f",
+  "blindManifestSha256": "042c0cb34f87a64e7f1c5592d3e3ff0aabb785937c55d30d51249519defc7ac4",
+  "primaryManifestSha256": "0986395655f3aae1d95c24f787d717de14e143ad71ca4f6f47a1b117c85d8569",
+  "primarySealed": true,
+  "noRepositoryOrPRChanges": true,
+  "finalDecisionCounts": {
+    "accept-current": 271,
+    "correction": 29,
+    "hold": 0
+  },
+  "resolvedDispositionDifferences": 2,
+  "resolvedProposalTextDifferences": 16,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1746,
+      "sha256": "d7cf575e27748b7ffcb780ac97e901cccb62e49d0181c4eb34adbc87399042d5"
+    },
+    {
+      "path": "cross-audit-ledger.jsonl",
+      "bytes": 797658,
+      "sha256": "00a94360475b028ca49b5ac8bce7ea9984206ede9b00be0156c3b18b71012d03"
+    },
+    {
+      "path": "hold-cross-audit.jsonl",
+      "bytes": 127870,
+      "sha256": "280436356bf94522f3be9617756f0b80fbd2fb350e9fbdd6fc534ed1dae13e61"
+    },
+    {
+      "path": "cross-audit-summary.json",
+      "bytes": 21365,
+      "sha256": "7519f404200982b7ea9ea60f61935d2661147817e5e5b564c4881c2e1667d2c1"
+    },
+    {
+      "path": "verify_cross_audit.py",
+      "bytes": 5458,
+      "sha256": "104617652a5fe9a0160e665a818f033c7bab83b0b923ca01119b888bf3079443"
+    }
+  ]
+}
