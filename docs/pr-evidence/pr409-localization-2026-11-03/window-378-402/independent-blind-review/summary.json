@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent blind machine review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W60 ranks 378-402",
+  "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
+  "tree": "95604b428133b5e52247c1f3f00900c2c7d5192f",
+  "inputManifestSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "callerlessSourceIds": 0,
+  "dispositions": {
+    "accept-current": 229,
+    "correction": 50,
+    "refinement": 21
+  },
+  "recommendedChangedCells": 71,
+  "recommendationsSelectedForApplication": 0,
+  "qualifiedNativeSpeakerApproval": false,
+  "exactHeadBrowserReview": false,
+  "releaseApproved": false
+}
