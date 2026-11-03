@@ -1,0 +1,181 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "pins": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+    "tree": "a22e9a896aae12aa89a1502d9748b12816d491ed",
+    "remoteBranchHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+    "bodySha256": "9ce6507c68b3ccfbb2b7ec78282951a449d04abecf8b35c8f15b4d2412985faa",
+    "localWorktreeClean": true
+  },
+  "window": "W55 continuation of the W49 stable-ID inventory: ranks 276-300; historical source ordinals unavailable and not claimed",
+  "rankBasis": "Pinned W49 primary source-inventory.jsonl, re-attested against exact-head current catalog keys. W49 reviewed IDs map to ranks 101-125; the reserved W49 gap 126-150 remains excluded/unreviewed; W50-W54 reviewed IDs map to ranks 151-275. W55 selects the next 25 unexcluded IDs at ranks 276-300.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W54",
+    "continuationRank": 275,
+    "sourceId": "src_19d9e58cec9cd8fd",
+    "source": "A sidecar cover file would be written after explicit import approval.",
+    "sourceSha256": "19d9e58cec9cd8fdc7ad2db7cf6077fe63346b59914a60a41384a24f92bf09e8",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W55",
+    "continuationRank": 276,
+    "sourceId": "src_19dd83f117525b93",
+    "source": "Yellow",
+    "sourceSha256": "19dd83f117525b931fccdafe808aaa6939af792ee549f359eff13fac0d622f5d",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W55",
+    "continuationRank": 300,
+    "sourceId": "src_1ab4cba1fe971008",
+    "source": " | Album: {album}",
+    "sourceSha256": "1ab4cba1fe9710087eb0d7a34d6eed34d2afec1ea9685f5be23bdf0c1ded2da0",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W56",
+    "continuationRank": 301,
+    "sourceId": "src_1ab57bbe37fe439f",
+    "source": "- {warning}",
+    "sourceSha256": "1ab57bbe37fe439fc635c50b8e12b55eebbb739c34cdc7041fbeca892968baae",
+    "historicalSourceOrdinal": null
+  },
+  "disjointness": {
+    "w49Reviewed": 25,
+    "w49Gap126To150": 25,
+    "w50Selected": 25,
+    "w51Selected": 25,
+    "w52Selected": 25,
+    "w53Selected": 25,
+    "w54Selected": 25,
+    "w55Selected": 25,
+    "w55DisjointFromAllPriorReviewed": true,
+    "w55DisjointFromW49Gap": true,
+    "priorRankMaps": {
+      "W49": {
+        "selectedCount": 25,
+        "mappedRankStart": 101,
+        "mappedRankEnd": 125,
+        "matchesPinnedInventory": true
+      },
+      "W50": {
+        "selectedCount": 25,
+        "mappedRankStart": 151,
+        "mappedRankEnd": 175,
+        "matchesPinnedInventory": true
+      },
+      "W51": {
+        "selectedCount": 25,
+        "mappedRankStart": 176,
+        "mappedRankEnd": 200,
+        "matchesPinnedInventory": true
+      },
+      "W52": {
+        "selectedCount": 25,
+        "mappedRankStart": 201,
+        "mappedRankEnd": 225,
+        "matchesPinnedInventory": true
+      },
+      "W53": {
+        "selectedCount": 25,
+        "mappedRankStart": 226,
+        "mappedRankEnd": 250,
+        "matchesPinnedInventory": true
+      },
+      "W54": {
+        "selectedCount": 25,
+        "mappedRankStart": 251,
+        "mappedRankEnd": 275,
+        "matchesPinnedInventory": true
+      }
+    }
+  },
+  "priorEvidenceChecks": {
+    "window49": {
+      "entriesVerified": 36,
+      "manifestSha256": "cb6140b7ab323d8faf039808ce20a37b20d20e4a21772d8ef67d11aac4f8d3da"
+    },
+    "window50": {
+      "entriesVerified": 28,
+      "manifestSha256": "b8b2415b3d6840d57ab227b8639a38dfbd66c0c24936fe15773c15b4ab1dc43c"
+    },
+    "window51": {
+      "entriesVerified": 36,
+      "manifestSha256": "9bbdfcb9a4522cf6a081da938da1f6feb6975e64ac0aed2e871050478f5b7123"
+    },
+    "window52": {
+      "entriesVerified": 43,
+      "manifestSha256": "5c84cd342744e7e4825d8a71655c8dbe0ec7509fbf0e37a45c521faaced475c7",
+      "cross-review/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 5,
+        "manifestSha256": "c5c561951b538965776c6c18780a10a91faf21486a0f215263199884e9e5b57b"
+      },
+      "independent/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 5,
+        "manifestSha256": "89f1d645f6aaee67d323aaacad402dc05868fe4b764e075bc489757a6c7610b7"
+      },
+      "input/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 6,
+        "manifestSha256": "ad0ac60a4d2782cbb7ef759ef0cb68458d71f4431136e098c7b8010470183cb9"
+      }
+    },
+    "window53": {
+      "entriesVerified": 31,
+      "manifestSha256": "6de71810cbdbb758e0a8fbdc7a18cd5f84136c1d4f5b506b91d7bdf9d0c964aa",
+      "review/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 19,
+        "manifestSha256": "10e7db8c2a27a1b73873f5287856918c97362016dc2362f3b709bee9392e040d"
+      },
+      "review/cross-review/independent-hash-audit/SHA256SUMS": {
+        "entriesVerified": 2,
+        "manifestSha256": "7f1e0a040487451eac6470422d88d66cace172fcc9f5a04c21928fa727a5acbd"
+      },
+      "review/input/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 8,
+        "manifestSha256": "e6aa0e93e693a317a02d33a853aeade7a70445ace9c69bf106a1b1ab76fbeab8"
+      }
+    },
+    "window54": {
+      "entriesVerified": 48,
+      "manifestSha256": "35c2761139b4ca4b0c7bc0650a353aa322c519b65aa5766c4aa4fd50d18a11b2",
+      "review/independent-blind/input/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 8,
+        "manifestSha256": "8d9fe2f15b2761cd23f22f00cc734dd1eb6791b06f8e12341cc91ac14cb59f0d"
+      },
+      "review/input/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 8,
+        "manifestSha256": "8d9fe2f15b2761cd23f22f00cc734dd1eb6791b06f8e12341cc91ac14cb59f0d"
+      }
+    },
+    "w49SourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+  },
+  "inputContainsCandidates": false
+}
