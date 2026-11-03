@@ -4,7 +4,8 @@
   "window": "W60 ranks 378-402",
   "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
   "tree": "95604b428133b5e52247c1f3f00900c2c7d5192f",
-  "candidateFreeInputManifestSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "candidateFreePacketChecksumListSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "candidateFreeManifestJsonSha256": "d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797",
   "blindLedgerSha256": "95d497524b8c176206db1720b30064efe384871a7c2c5ecef83e50bf125c067c",
   "cellCount": 300,
   "dispositionCounts": {

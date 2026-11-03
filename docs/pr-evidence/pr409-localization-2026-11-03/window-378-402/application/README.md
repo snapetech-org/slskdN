@@ -7,3 +7,5 @@ The exact application plan and final readback cover every cell. Readback matched
 Evidence folders include the checksummed candidate-free input, primary review, independent blind review, and third-party cross-audit. The cross-audit ledger SHA-256 is `5f5fc3e05c9bb73032e9a93f23f093eb7f2c0ba6fb54591af71c5bf00e81c6c0`.
 
 Qualified native-speaker approval and exact-head browser review remain pending; this packet does not approve a release.
+
+Evidence hash clarification: the candidate-free packet checksum-list SHA-256 is `b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91`; the separate `manifest.json` SHA-256 is `d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797`. Post-application verification is recorded in `verification.json`; it rechecked all 300 readbacks, all 84 planned changes, and zero non-target changes.

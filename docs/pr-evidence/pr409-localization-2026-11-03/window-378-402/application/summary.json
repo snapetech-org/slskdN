@@ -24,5 +24,7 @@
   "qualifiedNativeSpeakerApproval": false,
   "exactHeadBrowserReview": false,
   "releaseApproved": false,
-  "crossAuditLedgerSha256": "5f5fc3e05c9bb73032e9a93f23f093eb7f2c0ba6fb54591af71c5bf00e81c6c0"
+  "crossAuditLedgerSha256": "5f5fc3e05c9bb73032e9a93f23f093eb7f2c0ba6fb54591af71c5bf00e81c6c0",
+  "candidateFreePacketChecksumListSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "candidateFreeManifestJsonSha256": "d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797"
 }
