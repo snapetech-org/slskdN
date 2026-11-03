@@ -1,0 +1,51 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W53",
+  "exactHead": "6d5723e244338a550e3dfa5182a45857156467a7",
+  "exactTree": "8435576260e9aa760609be6a28001b2bb38b8c11",
+  "inputManifestSha256": "e6aa0e93e693a317a02d33a853aeade7a70445ace9c69bf106a1b1ab76fbeab8",
+  "primaryManifestSha256": "897fb20550e52577fdde60a76a1ccc2ef56adb4ed0e26e2025b2f4c602962335",
+  "sourceCells": 300,
+  "ratifiedCells": 300,
+  "ratifiedTargetSha256Included": true,
+  "currentAndSourcePinsVerified": true,
+  "callerContextPinsVerified": true,
+  "placeholderChecks": "300/300 match",
+  "numericChecks": "300/300 preserve listed source numeric tokens",
+  "protectedLiteralChecks": "all protected literals preserved exactly in final targets",
+  "finalDispositions": {
+    "hold-context": 24,
+    "accept-current": 194,
+    "refinement": 14,
+    "correction": 68
+  },
+  "changedCells": 82,
+  "changedByLocale": {
+    "ar": 8,
+    "de": 4,
+    "es": 7,
+    "fr": 5,
+    "hi": 8,
+    "id": 6,
+    "ja": 6,
+    "ko": 7,
+    "pt-BR": 5,
+    "vi": 8,
+    "zh-Hans": 9,
+    "zh-Hant": 9
+  },
+  "nativeSpeakerApproval": false,
+  "headedBrowserAcceptance": false,
+  "semanticAdjudication": {
+    "rank231": "field context is errored-upload retention in minutes; proposals describe failed uploads and retention duration",
+    "rank232": "exact toast caller runs after successful pod leave; target expresses leaving the pod and preserves {podName}",
+    "rank235": "listen-along room retry caller uses a human room host; Spanish/Vietnamese/Chinese host terms selected from primary where current was technical-host/host-machine wording",
+    "rank237": "Pushbullet is a protected notification service name; Arabic refinement keeps exact brand spelling",
+    "rank241": "caller renders +N for workers beyond the visible five; Japanese/Korean/Chinese person counters and Vietnamese “more” particle fit numeric context",
+    "rank244": "Visualizer action clears imported native presets; reject Arabic candidate that relocates “native” onto a viewer",
+    "rank245": "Kestrel is a protected server technology name; preserve exact case and translate Connections where the locale has a natural form",
+    "rank249": "Servarr readiness copy refers to wanted and cutoff-unmet items; use general threshold wording without adding an unsupported “quality” qualifier"
+  },
+  "ratifiedHashGuardsSha256": "ad8c79fc2f392250554b8bb65685ce40fb8d2a1f2df89d9fbec6a1eca9a1d30f"
+}

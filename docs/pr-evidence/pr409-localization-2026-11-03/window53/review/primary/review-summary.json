@@ -1,0 +1,935 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "exactHead": "6d5723e244338a550e3dfa5182a45857156467a7",
+  "exactTree": "8435576260e9aa760609be6a28001b2bb38b8c11",
+  "pinnedPrBodySha256": "8d1708765c003a72da67370af5816a7cd998cfb97b2246227aaf1529f858cf4a",
+  "window": "W53 continuation ranks 226-250 from the W49 stable-ID inventory; historical source ordinals unavailable and not claimed",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "hold-context": 24,
+    "accept-current": 194,
+    "refinement": 14,
+    "correction": 68
+  },
+  "candidateChangeCount": 82,
+  "changedCellsByLocale": {
+    "hi": 8,
+    "id": 6,
+    "ar": 8,
+    "es": 7,
+    "pt-BR": 5,
+    "vi": 8,
+    "zh-Hans": 9,
+    "zh-Hant": 9,
+    "de": 4,
+    "fr": 5,
+    "ja": 6,
+    "ko": 7
+  },
+  "changedCellsByRank": {
+    "227": 2,
+    "229": 7,
+    "230": 12,
+    "231": 12,
+    "232": 12,
+    "235": 4,
+    "241": 5,
+    "244": 7,
+    "245": 8,
+    "247": 1,
+    "249": 12
+  },
+  "changedCellsBySource": {
+    "src_181cda8ec31125a8": 2,
+    "src_18249e74cf9aa0ea": 7,
+    "src_182d84066ed1de74": 12,
+    "src_1830a6a76eda8b82": 12,
+    "src_183aa9ee109b285d": 12,
+    "src_184a20b7a1c37507": 4,
+    "src_187897ce0afcf20b": 5,
+    "src_188b150a7d7b1b78": 7,
+    "src_188ed889bef38cbf": 8,
+    "src_18b38ae8ef3cd8fc": 1,
+    "src_18d7b3545b378f2b": 12
+  },
+  "holdCount": 24,
+  "heldSourceIds": [
+    "src_181cc0be6408b7a3",
+    "src_185c64e10bf3c515"
+  ],
+  "callerReferenceCount": 32,
+  "callerlessSourceIds": [
+    "src_181cc0be6408b7a3",
+    "src_185c64e10bf3c515"
+  ],
+  "currentProtectedLiteralMismatchCount": 21,
+  "candidateProtectedLiteralMismatchCount": 0,
+  "placeholderMismatchCount": 0,
+  "markupMismatchCount": 0,
+  "numericMismatchCount": 0,
+  "candidateChangedSourceIds": 11,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReview": false,
+  "repositoryModified": false,
+  "remoteMutation": false,
+  "reviewType": "machine-assisted primary review; moderate confidence except context holds",
+  "inputManifestSha256": "e6aa0e93e693a317a02d33a853aeade7a70445ace9c69bf106a1b1ab76fbeab8",
+  "inputManifestEntriesVerified": 8,
+  "sourceSequence": {
+    "first": {
+      "role": "selected-W53",
+      "continuationRank": 226,
+      "sourceId": "src_181cc0be6408b7a3",
+      "source": "The item could not be deleted.",
+      "sourceSha256": "181cc0be6408b7a31372b38687d43116b782f3ec38c45817309a993795284cab",
+      "historicalSourceOrdinal": null
+    },
+    "last": {
+      "role": "selected-W53",
+      "continuationRank": 250,
+      "sourceId": "src_18e805b373a547da",
+      "source": "Review this item’s linked search history and past results.",
+      "sourceSha256": "18e805b373a547da95f44651248f9ecda579f3d7afae0b6bb36851a245d4ed83",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W54",
+      "continuationRank": 251,
+      "sourceId": "src_18f285592896ec8e",
+      "source": "Brown",
+      "sourceSha256": "18f285592896ec8ead1b69d90ee4080300ba8dc31665a6ad97550c8f81b15502",
+      "historicalSourceOrdinal": null
+    },
+    "disjointFromW50W51W52": true,
+    "w49UnreviewedGapPreserved": true
+  },
+  "changes": [
+    {
+      "rank": 227,
+      "sourceId": "src_181cda8ec31125a8",
+      "source": "Server Address",
+      "locale": "hi",
+      "from": "सर्वर पता",
+      "to": "सर्वर का पता",
+      "disposition": "refinement",
+      "rationale": "This is the FTP integration form label. Adding का makes the Hindi genitive relation natural."
+    },
+    {
+      "rank": 227,
+      "sourceId": "src_181cda8ec31125a8",
+      "source": "Server Address",
+      "locale": "id",
+      "from": "Alamat Server",
+      "to": "Alamat server",
+      "disposition": "refinement",
+      "rationale": "This is the FTP integration form label. Lowercase server follows ordinary Indonesian noun capitalization."
+    },
+    {
+      "rank": 229,
+      "sourceId": "src_18249e74cf9aa0ea",
+      "source": "MilkDrop3-style q-register coverage across equations, primitives, and shaders.",
+      "locale": "ar",
+      "from": "تغطية تسجيل q على غرار MilkDrop3 عبر المعادلات والأوليات والتظليل.",
+      "to": "تغطية سجلات q على غرار MilkDrop3 عبر المعادلات والعناصر الأولية والمظللات.",
+      "disposition": "correction",
+      "rationale": "The caller is a MilkDrop preset fixture. تسجيل q reads as recording q; this uses the q-register concept and preserves the exact MilkDrop3 product name."
+    },
+    {
+      "rank": 229,
+      "sourceId": "src_18249e74cf9aa0ea",
+      "source": "MilkDrop3-style q-register coverage across equations, primitives, and shaders.",
+      "locale": "es",
+      "from": "Cobertura de registro q estilo MilkDrop3 en ecuaciones, primitivas y sombreadores.",
+      "to": "Cobertura de registros q al estilo de MilkDrop3 en ecuaciones, primitivas y shaders.",
+      "disposition": "refinement",
+      "rationale": "The caller is a MilkDrop preset fixture. Add the missing de in al estilo de while retaining the technical q-register and MilkDrop3 terms."
+    },
+    {
+      "rank": 229,
+      "sourceId": "src_18249e74cf9aa0ea",
+      "source": "MilkDrop3-style q-register coverage across equations, primitives, and shaders.",
+      "locale": "hi",
+      "from": "समीकरणों, प्रिमिटिव और शेडर्स में मिल्कड्रॉप3-शैली क्यू-रजिस्टर कवरेज।",
+      "to": "समीकरणों, प्रिमिटिव और शेडर्स में MilkDrop3-शैली के q-रजिस्टर का कवरेज।",
+      "disposition": "correction",
+      "rationale": "The caller is a MilkDrop preset fixture. Preserve the exact MilkDrop3 product spelling; the current transliteration loses the protected product name."
+    },
+    {
+      "rank": 229,
+      "sourceId": "src_18249e74cf9aa0ea",
+      "source": "MilkDrop3-style q-register coverage across equations, primitives, and shaders.",
+      "locale": "pt-BR",
+      "from": "Cobertura de registro q estilo MilkDrop3 em equações, primitivas e shaders.",
+      "to": "Cobertura de registros q no estilo do MilkDrop3 em equações, primitivas e shaders.",
+      "disposition": "refinement",
+      "rationale": "The caller is a MilkDrop preset fixture. This makes the Portuguese phrase grammatical and keeps the q-register/MilkDrop3 concepts."
+    },
+    {
+      "rank": 229,
+      "sourceId": "src_18249e74cf9aa0ea",
+      "source": "MilkDrop3-style q-register coverage across equations, primitives, and shaders.",
+      "locale": "vi",
+      "from": "Phạm vi bao phủ đăng ký q theo phong cách MilkDrop3 trên các phương trình, nguyên thủy và trình đổ bóng.",
+      "to": "Phạm vi bao phủ các thanh ghi q theo phong cách MilkDrop3 trong phương trình, hình cơ bản và shader.",
+      "disposition": "correction",
+      "rationale": "The caller is a MilkDrop preset fixture. Đăng ký means sign up/register, not a technical register; this uses thanh ghi and keeps MilkDrop3 exact."
+    },
+    {
+      "rank": 229,
+      "sourceId": "src_18249e74cf9aa0ea",
+      "source": "MilkDrop3-style q-register coverage across equations, primitives, and shaders.",
+      "locale": "zh-Hans",
+      "from": "MilkDrop3 风格的 q 寄存器覆盖方程、基元和着色器。",
+      "to": "MilkDrop3 风格的 q 寄存器在方程、图元和着色器中的覆盖范围。",
+      "disposition": "refinement",
+      "rationale": "The caller is a MilkDrop preset fixture. The current grammar makes the register itself cover the subjects; this expresses the coverage range."
+    },
+    {
+      "rank": 229,
+      "sourceId": "src_18249e74cf9aa0ea",
+      "source": "MilkDrop3-style q-register coverage across equations, primitives, and shaders.",
+      "locale": "zh-Hant",
+      "from": "MilkDrop3 風格的 q 暫存器覆蓋方程式、基元和著色器。",
+      "to": "MilkDrop3 風格的 q 暫存器在方程式、圖元和著色器中的涵蓋範圍。",
+      "disposition": "refinement",
+      "rationale": "The caller is a MilkDrop preset fixture. The current grammar makes the register itself cover the subjects; this expresses the coverage range."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "ar",
+      "from": "مهمة سهلة",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Arabic text translates the ordinary “easy task” sense."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "de",
+      "from": "Schwächling",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current German text describes a pushover person."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "es",
+      "from": "Persona fácil de convencer",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Spanish text describes a person who is easy to persuade."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "fr",
+      "from": "Jeu d'enfant",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current French text means “child’s play.”"
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "hi",
+      "from": "छोटी बात",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Hindi text means a small matter."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "id",
+      "from": "penurut",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Indonesian text means a compliant person."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "ja",
+      "from": "プッシュオーバー",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. Preserve the exact service name instead of phonetic transliteration."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "ko",
+      "from": "쉬운 일",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Korean text means an easy task."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "pt-BR",
+      "from": "Flexão",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Portuguese text means a push-up."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "vi",
+      "from": "đẩy",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Vietnamese text means “push.”"
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "zh-Hans",
+      "from": "推倒",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Chinese text translates the ordinary “push over” sense."
+    },
+    {
+      "rank": 230,
+      "sourceId": "src_182d84066ed1de74",
+      "source": "Pushover",
+      "locale": "zh-Hant",
+      "from": "推倒",
+      "to": "Pushover",
+      "disposition": "correction",
+      "rationale": "The caller uses Pushover as the notification-service product name. The current Chinese text translates the ordinary “push over” sense."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "ar",
+      "from": "تحميل دقائق الاحتفاظ التي بها أخطاء",
+      "to": "دقائق الاحتفاظ بالتحميلات الفاشلة",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This names the duration to retain failed uploads, rather than uploading retention minutes."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "de",
+      "from": "Laden Sie fehlerhafte Aufbewahrungsminuten hoch",
+      "to": "Aufbewahrungsdauer für fehlgeschlagene Uploads (Minuten)",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. The current imperative says to upload retention minutes."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "es",
+      "from": "Cargar minutos de retención con errores",
+      "to": "Minutos de retención de las subidas fallidas",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This is a duration label for failed uploads, not an upload action."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "fr",
+      "from": "Minutes de conservation des envois en erreur",
+      "to": "Durée de conservation des envois échoués (minutes)",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This names how long failed uploads are retained."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "hi",
+      "from": "त्रुटिपूर्ण अवधारण मिनट अपलोड करें",
+      "to": "विफल अपलोड को कितने मिनट तक रखना है",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. The current text reverses the action and duration."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "id",
+      "from": "Unggah menit retensi yang error",
+      "to": "Lama penyimpanan unggahan yang gagal (menit)",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This names the retention duration, not an upload command."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "ja",
+      "from": "アップロードエラーの保存時間",
+      "to": "失敗したアップロードの保持期間（分）",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. Add the missing unit and identify the retained failed uploads."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "ko",
+      "from": "오류가 발생한 보존 시간(분) 업로드",
+      "to": "실패한 업로드 보존 기간(분)",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. The current word order describes an upload action."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "pt-BR",
+      "from": "Carregar minutos de retenção com erro",
+      "to": "Tempo de retenção de uploads com falha (minutos)",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This names the time to retain failed uploads."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "vi",
+      "from": "Tải lên số phút lưu giữ bị lỗi",
+      "to": "Thời gian lưu giữ các lượt tải lên thất bại (phút)",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This names the duration for failed uploads."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "zh-Hans",
+      "from": "上传错误的保留分钟数",
+      "to": "失败的上传保留时间（分钟）",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This names the retention period for failed uploads."
+    },
+    {
+      "rank": 231,
+      "sourceId": "src_1830a6a76eda8b82",
+      "source": "Upload errored retention minutes",
+      "locale": "zh-Hant",
+      "from": "上傳錯誤的保留分鐘數",
+      "to": "失敗的上傳保留時間（分鐘）",
+      "disposition": "correction",
+      "rationale": "The caller is the Errored column of the Uploads retention table. This names the retention period for failed uploads."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "ar",
+      "from": "اليسار {podName}",
+      "to": "تمت مغادرة {podName}",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. اليسار means “left” as a direction, not leaving a Pod."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "de",
+      "from": "Links {podName}",
+      "to": "Du hast {podName} verlassen.",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. Links means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "es",
+      "from": "Izquierda {podName}",
+      "to": "Has salido de {podName}.",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. Izquierda means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "fr",
+      "from": "Gauche {podName}",
+      "to": "Vous avez quitté {podName}.",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. Gauche means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "hi",
+      "from": "बायां {podName}",
+      "to": "आपने {podName} छोड़ दिया।",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. बायां means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "id",
+      "from": "Kiri {podName}",
+      "to": "Anda telah keluar dari {podName}.",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. Kiri means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "ja",
+      "from": "左 {podName}",
+      "to": "{podName} から退出しました。",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. 左 means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "ko",
+      "from": "왼쪽 {podName}",
+      "to": "{podName}에서 나왔습니다.",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. 왼쪽 means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "pt-BR",
+      "from": "Esquerda {podName}",
+      "to": "Você saiu de {podName}.",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. Esquerda means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "vi",
+      "from": "Còn lại {podName}",
+      "to": "Đã rời khỏi {podName}.",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. Còn lại means “remaining,” not leaving."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "zh-Hans",
+      "from": "左 {podName}",
+      "to": "已离开 {podName}。",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. 左 means “left” as a direction."
+    },
+    {
+      "rank": 232,
+      "sourceId": "src_183aa9ee109b285d",
+      "source": "Left {podName}",
+      "locale": "zh-Hant",
+      "from": "左 {podName}",
+      "to": "已離開 {podName}。",
+      "disposition": "correction",
+      "rationale": "The caller emits a success toast after pods.leave completes. 左 means “left” as a direction."
+    },
+    {
+      "rank": 235,
+      "sourceId": "src_184a20b7a1c37507",
+      "source": "Reconnect to this room and refresh the host's current state after a connection or refresh failure.",
+      "locale": "es",
+      "from": "Vuelva a conectarse a esta sala y actualice el estado actual del host después de una falla de conexión o actualización.",
+      "to": "Vuelva a conectarse a esta sala y actualice el estado actual del anfitrión después de un fallo de conexión o de actualización.",
+      "disposition": "correction",
+      "rationale": "The caller is the listen-along room retry action. Host is the person hosting playback, so anfitrión is clearer than the English loanword."
+    },
+    {
+      "rank": 235,
+      "sourceId": "src_184a20b7a1c37507",
+      "source": "Reconnect to this room and refresh the host's current state after a connection or refresh failure.",
+      "locale": "vi",
+      "from": "Kết nối lại với phòng này và làm mới trạng thái hiện tại của máy chủ sau khi kết nối hoặc làm mới không thành công.",
+      "to": "Kết nối lại với phòng này và làm mới trạng thái hiện tại của chủ phòng sau khi kết nối hoặc làm mới thất bại.",
+      "disposition": "correction",
+      "rationale": "The caller is the listen-along room retry action. Máy chủ means a computer server; the host is the room’s person, chủ phòng."
+    },
+    {
+      "rank": 235,
+      "sourceId": "src_184a20b7a1c37507",
+      "source": "Reconnect to this room and refresh the host's current state after a connection or refresh failure.",
+      "locale": "zh-Hans",
+      "from": "连接或刷新失败后重新连接到该房间并刷新主机当前状态。",
+      "to": "连接或刷新失败后，重新连接到该房间并刷新房主的当前状态。",
+      "disposition": "correction",
+      "rationale": "The caller is the listen-along room retry action. 主机 reads as a computer host; 房主 identifies the room’s playback host."
+    },
+    {
+      "rank": 235,
+      "sourceId": "src_184a20b7a1c37507",
+      "source": "Reconnect to this room and refresh the host's current state after a connection or refresh failure.",
+      "locale": "zh-Hant",
+      "from": "連線或刷新失敗後重新連線到該房間並刷新主機目前狀態。",
+      "to": "連線或重新整理失敗後，重新連線到該房間並更新房主目前的狀態。",
+      "disposition": "correction",
+      "rationale": "The caller is the listen-along room retry action. 主機 reads as a computer host; 房主 identifies the room’s playback host."
+    },
+    {
+      "rank": 241,
+      "sourceId": "src_187897ce0afcf20b",
+      "source": "more",
+      "locale": "ja",
+      "from": "もっと",
+      "to": "人",
+      "disposition": "refinement",
+      "rationale": "The only caller appends this label after a number of worker usernames. 人 gives a natural count of the additional people."
+    },
+    {
+      "rank": 241,
+      "sourceId": "src_187897ce0afcf20b",
+      "source": "more",
+      "locale": "ko",
+      "from": "더",
+      "to": "명",
+      "disposition": "refinement",
+      "rationale": "The only caller appends this label after a number of worker usernames. 명 supplies the natural Korean counter for additional people."
+    },
+    {
+      "rank": 241,
+      "sourceId": "src_187897ce0afcf20b",
+      "source": "more",
+      "locale": "vi",
+      "from": "hơn",
+      "to": "nữa",
+      "disposition": "correction",
+      "rationale": "The only caller appends this label after a number of worker usernames. hơn requires a comparison; nữa expresses additional workers."
+    },
+    {
+      "rank": 241,
+      "sourceId": "src_187897ce0afcf20b",
+      "source": "more",
+      "locale": "zh-Hans",
+      "from": "更多的",
+      "to": "人",
+      "disposition": "correction",
+      "rationale": "The only caller appends this label after the count of extra worker usernames. 人 gives a natural count of additional people; 的 makes the current suffix ungrammatical."
+    },
+    {
+      "rank": 241,
+      "sourceId": "src_187897ce0afcf20b",
+      "source": "more",
+      "locale": "zh-Hant",
+      "from": "更多的",
+      "to": "人",
+      "disposition": "correction",
+      "rationale": "The only caller appends this label after the count of extra worker usernames. 人 gives a natural count of additional people; 的 makes the current suffix ungrammatical."
+    },
+    {
+      "rank": 244,
+      "sourceId": "src_188b150a7d7b1b78",
+      "source": "Clear imported native presets",
+      "locale": "ar",
+      "from": "مسح الإعدادات المسبقة الأصلية المستوردة",
+      "to": "مسح الإعدادات المسبقة المستوردة إلى العارض الأصلي",
+      "disposition": "refinement",
+      "rationale": "The Visualizer caller clarifies these are imported presets for the native MilkDrop renderer. الأصلية reads as “original”; this states the renderer relationship."
+    },
+    {
+      "rank": 244,
+      "sourceId": "src_188b150a7d7b1b78",
+      "source": "Clear imported native presets",
+      "locale": "hi",
+      "from": "आयातित देशी प्रीसेट साफ़ करें",
+      "to": "आयातित नेटिव प्रीसेट हटाएँ",
+      "disposition": "correction",
+      "rationale": "The Visualizer caller clarifies these are presets for the native MilkDrop renderer. देशी suggests indigenous/local origin rather than the software renderer."
+    },
+    {
+      "rank": 244,
+      "sourceId": "src_188b150a7d7b1b78",
+      "source": "Clear imported native presets",
+      "locale": "id",
+      "from": "Hapus preset asli yang diimpor",
+      "to": "Hapus preset native yang diimpor",
+      "disposition": "refinement",
+      "rationale": "The Visualizer caller clarifies native means the app’s renderer. Asli reads as original; native is the relevant software term."
+    },
+    {
+      "rank": 244,
+      "sourceId": "src_188b150a7d7b1b78",
+      "source": "Clear imported native presets",
+      "locale": "ko",
+      "from": "가져온 기본 사전 설정 지우기",
+      "to": "가져온 네이티브 프리셋 지우기",
+      "disposition": "correction",
+      "rationale": "The Visualizer caller clarifies these are presets for the native MilkDrop renderer. 기본 means default, which is not the source meaning."
+    },
+    {
+      "rank": 244,
+      "sourceId": "src_188b150a7d7b1b78",
+      "source": "Clear imported native presets",
+      "locale": "vi",
+      "from": "Xóa cài đặt trước gốc đã nhập",
+      "to": "Xóa các preset native đã nhập",
+      "disposition": "correction",
+      "rationale": "The Visualizer caller clarifies native means the app’s renderer. Gốc means original/root, not a native renderer."
+    },
+    {
+      "rank": 244,
+      "sourceId": "src_188b150a7d7b1b78",
+      "source": "Clear imported native presets",
+      "locale": "zh-Hans",
+      "from": "清除导入的本机预设",
+      "to": "清除已导入的原生预设",
+      "disposition": "refinement",
+      "rationale": "The Visualizer caller clarifies these are presets for the native MilkDrop renderer. 本机 means local-machine presets; 原生 preserves the renderer meaning."
+    },
+    {
+      "rank": 244,
+      "sourceId": "src_188b150a7d7b1b78",
+      "source": "Clear imported native presets",
+      "locale": "zh-Hant",
+      "from": "清除導入的本機預設",
+      "to": "清除已匯入的原生預設",
+      "disposition": "refinement",
+      "rationale": "The Visualizer caller clarifies these are presets for the native MilkDrop renderer. 本機 means local-machine presets; 原生 preserves the renderer meaning."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "ar",
+      "from": "اتصالات كيستريل",
+      "to": "اتصالات Kestrel",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. Preserve Kestrel as the exact technology name rather than transliterating it."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "es",
+      "from": "Conexiones de cernícalo",
+      "to": "Conexiones de Kestrel",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. Cernícalo means the bird kestrel; preserve the exact technology name."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "fr",
+      "from": "Connexions crécerelle",
+      "to": "Connexions Kestrel",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. Crécerelle means the bird kestrel; preserve the exact technology name."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "hi",
+      "from": "केस्टरेल कनेक्शन",
+      "to": "Kestrel कनेक्शन",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. Preserve the exact technology spelling instead of transliteration."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "ja",
+      "from": "ケストレル接続",
+      "to": "Kestrel 接続数",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. Preserve the exact technology spelling and label the connection count."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "ko",
+      "from": "케스트렐 연결",
+      "to": "Kestrel 연결 수",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. Preserve the exact technology spelling and label the connection count."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "zh-Hans",
+      "from": "红隼连接",
+      "to": "Kestrel 连接数",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. 红隼 means the bird; preserve the exact technology name."
+    },
+    {
+      "rank": 245,
+      "sourceId": "src_188ed889bef38cbf",
+      "source": "Kestrel Connections",
+      "locale": "zh-Hant",
+      "from": "紅隼連接",
+      "to": "Kestrel 連線數",
+      "disposition": "correction",
+      "rationale": "The caller is the ASP.NET Core Kestrel current-connections metric. 紅隼 means the bird; preserve the exact technology name."
+    },
+    {
+      "rank": 247,
+      "sourceId": "src_18b38ae8ef3cd8fc",
+      "source": "Top 10",
+      "locale": "ar",
+      "from": "أعلى 10",
+      "to": "أفضل 10",
+      "disposition": "refinement",
+      "rationale": "The caller is a ranking-limit option alongside 20 and 50. أفضل is the natural label for the top-ranked entries."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "ar",
+      "from": "يمكن سحب العناصر المطلوبة والعناصر التي لم يتم تلبيتها إلى مراجعة قائمة أمنيات slskdN.",
+      "to": "يمكن إضافة العناصر المطلوبة والعناصر التي لم تبلغ الحد المطلوب إلى مراجعة قائمة أمنيات slskdN.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description for pulling wanted and cutoff-unmet items into Wishlist review. This explains the unmet cutoff as a required threshold and uses إضافة for adding items."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "de",
+      "from": "Gesuchte und nicht erfüllte Artikel können in die Wunschliste-Überprüfung slskdN aufgenommen werden.",
+      "to": "Gesuchte Einträge und solche, die den Grenzwert nicht erreichen, können zur Prüfung in die slskdN-Wunschliste übernommen werden.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current “nicht erfüllte” omits the cutoff condition; this makes the unmet threshold explicit."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "es",
+      "from": "Los artículos deseados y no satisfechos se pueden incluir en la revisión de la lista de deseos slskdN.",
+      "to": "Los elementos deseados y los que no alcanzan el umbral pueden añadirse a la revisión de la lista de deseos de slskdN.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current “no satisfechos” omits the cutoff condition; this names the unmet threshold."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "fr",
+      "from": "Les éléments recherchés et non satisfaits peuvent être extraits de la liste de souhaits slskdN.",
+      "to": "Les éléments souhaités et ceux qui n’atteignent pas le seuil peuvent être ajoutés à la liste de souhaits de slskdN pour examen.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. Recherchés can mean searched and extraits de reverses the direction; this says wanted items below the cutoff are added for review."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "hi",
+      "from": "वांछित और कटऑफ-अनमेट आइटम को slskdN विशलिस्ट समीक्षा में खींचा जा सकता है।",
+      "to": "चाहे गए आइटम और सीमा तक न पहुँचे आइटम समीक्षा के लिए slskdN की इच्छा-सूची में जोड़े जा सकते हैं।",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. Replace the unexplained cutoff-unmet hybrid with items that have not reached the threshold."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "id",
+      "from": "Item yang diinginkan dan item yang belum terpenuhi dapat ditarik ke ulasan Daftar Keinginan slskdN.",
+      "to": "Item yang diinginkan dan item yang belum mencapai ambang batas dapat ditambahkan ke Daftar Keinginan slskdN untuk ditinjau.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current wording omits the cutoff; this names the unmet threshold and review action."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "ja",
+      "from": "欲しいアイテムや条件が満たされていないアイテムは、slskdN ウィッシュリストのレビューに取り込むことができます。",
+      "to": "希望するアイテムや基準に達していないアイテムを、slskdN のウィッシュリストに追加して確認できます。",
+      "disposition": "refinement",
+      "rationale": "The caller is a Servarr readiness description. Make the cutoff threshold explicit and express the Wishlist review action naturally."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "ko",
+      "from": "구함 및 충족되지 않은 컷오프 항목은 slskdN 위시리스트 검토로 가져올 수 있습니다.",
+      "to": "원하는 항목과 기준에 미달한 항목을 slskdN 위시리스트 검토에 추가할 수 있습니다.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current phrasing is awkward and does not clearly identify items below the cutoff."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "pt-BR",
+      "from": "Itens desejados e não atendidos podem ser incluídos na revisão da lista de desejos do slskdN.",
+      "to": "Itens desejados e os que não atingiram o limite podem ser adicionados à revisão da lista de desejos do slskdN.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current “não atendidos” omits the cutoff condition; this names the unmet threshold."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "vi",
+      "from": "Các mặt hàng mong muốn và chưa đáp ứng được có thể được đưa vào phần đánh giá Danh sách yêu thích của slskdN.",
+      "to": "Các mục được yêu cầu và các mục chưa đạt ngưỡng có thể được thêm vào phần rà soát Danh sách yêu thích của slskdN.",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current text omits the cutoff; this names the unmet threshold and review section."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "zh-Hans",
+      "from": "想要的和截止未满足的项目可以拉到 slskdN 愿望清单评论中。",
+      "to": "想要的项目和未达到门槛的项目可以加入 slskdN 愿望清单审核。",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current cutoff phrase is unnatural and 评论 means comments; this names the threshold and review."
+    },
+    {
+      "rank": 249,
+      "sourceId": "src_18d7b3545b378f2b",
+      "source": "Wanted and cutoff-unmet items can be pulled into slskdN Wishlist review.",
+      "locale": "zh-Hant",
+      "from": "想要的和截止未滿足的項目可以拉到 slskdN 願望清單評論中。",
+      "to": "想要的項目和未達到門檻的項目可以加入 slskdN 願望清單審查。",
+      "disposition": "correction",
+      "rationale": "The caller is a Servarr readiness description. The current cutoff phrase is unnatural and 評論 means comments; this names the threshold and review."
+    }
+  ],
+  "projectTestsBuildScansCiRun": false,
+  "reviewHelperSyntaxPreflight": true,
+  "taskOwnedPycacheRemoved": true
+}

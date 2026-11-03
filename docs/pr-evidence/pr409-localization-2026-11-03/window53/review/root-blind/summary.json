@@ -1,0 +1,19 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W53",
+  "exactHead": "6d5723e244338a550e3dfa5182a45857156467a7",
+  "exactTree": "8435576260e9aa760609be6a28001b2bb38b8c11",
+  "inputPacketSha256": "e6aa0e93e693a317a02d33a853aeade7a70445ace9c69bf106a1b1ab76fbeab8",
+  "ledgerSha256": "2a9bbf6e8774de40f499e55fcc78bebf5dd62a814e4feb929ee7634968070ff6",
+  "cells": 300,
+  "dispositions": {
+    "hold-context": 24,
+    "accept-current": 209,
+    "correction": 64,
+    "refinement": 3
+  },
+  "callerlessSourceCount": 2,
+  "holdCells": 24,
+  "nativeSpeakerApproval": false
+}
