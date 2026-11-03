@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "window": "W59 ranks 353-377",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositions": {
+    "accept-current": 207,
+    "correction": 54,
+    "hold": 24,
+    "refinement": 15
+  },
+  "selectedCatalogChanges": 69,
+  "callerlessHolds": {
+    "ranks": [
+      356,
+      366
+    ],
+    "cells": 24,
+    "preservedCurrentTargets": true
+  },
+  "changeCounts": {
+    "correction": 54,
+    "refinement": 15
+  },
+  "primaryBlindDispositionPairs": {
+    "accept-current|accept-current": 213,
+    "accept-current|correction": 1,
+    "correction|accept-current": 21,
+    "correction|correction": 24,
+    "correction|refinement": 1,
+    "hold|hold": 24,
+    "refinement|accept-current": 15,
+    "refinement|correction": 1
+  },
+  "primaryBlindDispositionDisagreements": 39,
+  "primaryBlindSelectedTargetDisagreements": 53,
+  "sameDispositionDifferentTargetCells": 15,
+  "crossAuditSpecificActions": {
+    "primaryCandidatesSelected": 61,
+    "primaryCandidateAdjusted": 1,
+    "blindOnlyCandidateSelected": 1,
+    "additionalCatalogGlossaryCorrections": 6
+  },
+  "placeholderMarkupNumericProtectedAndWhitespaceFailures": 0,
+  "exactCatalogCurrentReadbackCells": 300,
+  "catalogFilesPinned": 12,
+  "orderedCatalogKeySetPreservationRequired": true,
+  "nativeSpeakerApproval": false,
+  "qualifiedLocaleReviewRequiredBeforeRelease": true,
+  "releaseApprovedByThisCrossAudit": false,
+  "inputManifestSha256": "7283335c280db03cb764b911aa0542abbb6af5a27bd8574acd117f44850a1cf8",
+  "primaryLedgerSha256": "4c56bd8dc87723f49ace84edf00d2e3847c702da046d856b0cbd3621d311e2cb",
+  "blindLedgerSha256": "5fefd7f236fee52f34a58c520c32ff7218f5fc9e86e442ec156b96ef4ef69125"
+}

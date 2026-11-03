@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+  "window": "W59-ranks-353-377",
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "dispositions": {
+    "accept-current": 249,
+    "correction": 26,
+    "hold": 24,
+    "refinement": 1
+  },
+  "reviewedCallerlessRanks": [
+    356,
+    366
+  ],
+  "integrityFailures": 0,
+  "candidateFreeInputChecksumManifestSha256": "7283335c280db03cb764b911aa0542abbb6af5a27bd8574acd117f44850a1cf8",
+  "nativeSpeakerApproved": false,
+  "reviewType": "independent blind semantic review; no primary proposal ledger consulted"
+}

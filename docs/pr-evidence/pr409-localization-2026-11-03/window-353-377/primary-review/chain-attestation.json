@@ -1,0 +1,37 @@
+{
+  "artifact": "W58-to-W59 source-boundary and exact-head re-attestation",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+    "remoteBranchHead": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "bodySha256": "960cc9d13a2ac9da556ebbf73c1ce5eda3bcad51517df3714a25cc59db7711f6",
+    "localWorktreeClean": true
+  },
+  "boundaryAndInventory": {
+    "w58ChecksumsVerified": 9,
+    "w58BoundaryRows": 27,
+    "w58CandidateFreeCells": 300,
+    "w58InventorySelectionRows": 25,
+    "w59InputChecksumsVerified": 9,
+    "w59BoundaryRows": 27,
+    "w59InventorySelectionRows": 25,
+    "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "reservedGap126to150": "preserved and unreviewed"
+  },
+  "currentHeadReattestation": {
+    "catalogs": 12,
+    "orderedKeysPerCatalog": 6176,
+    "cells": 300,
+    "sourceIds": 25,
+    "callerReferencesReattested": 50,
+    "zeroCallerSourceIds": 2
+  },
+  "prohibitedTestsBuildsSecurityScansCIWorkflowsOrPRMutationsPerformed": false,
+  "requiredPinnedProductionCallerLiteralScanPerformedDuringPacketBuild": true
+}

@@ -1,0 +1,946 @@
+{
+  "schemaVersion": 1,
+  "cellCount": 300,
+  "primaryBlindDispositionPairs": {
+    "accept-current|accept-current": 213,
+    "accept-current|correction": 1,
+    "correction|accept-current": 21,
+    "correction|correction": 24,
+    "correction|refinement": 1,
+    "hold|hold": 24,
+    "refinement|accept-current": 15,
+    "refinement|correction": 1
+  },
+  "dispositionDisagreementCount": 39,
+  "selectedTargetDisagreementCount": 53,
+  "sameDispositionDifferentTargetCount": 15,
+  "dispositionDisagreementCells": [
+    {
+      "continuationRank": 355,
+      "locale": "ja",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 355,
+      "locale": "pt-BR",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 355,
+      "locale": "vi",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 357,
+      "locale": "ko",
+      "primary": "correction",
+      "blind": "refinement"
+    },
+    {
+      "continuationRank": 360,
+      "locale": "de",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 360,
+      "locale": "hi",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "pt-BR",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "zh-Hans",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "zh-Hant",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 363,
+      "locale": "fr",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "ar",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "de",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "es",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "fr",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "hi",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "id",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "ko",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "pt-BR",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "vi",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "zh-Hans",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "zh-Hant",
+      "primary": "refinement",
+      "blind": "correction"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "de",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "es",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "hi",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "id",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "pt-BR",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "vi",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 368,
+      "locale": "hi",
+      "primary": "accept-current",
+      "blind": "correction"
+    },
+    {
+      "continuationRank": 370,
+      "locale": "pt-BR",
+      "primary": "refinement",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 370,
+      "locale": "vi",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 371,
+      "locale": "id",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 371,
+      "locale": "ko",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 371,
+      "locale": "vi",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "ja",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "ko",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "pt-BR",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "vi",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "zh-Hans",
+      "primary": "correction",
+      "blind": "accept-current"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "zh-Hant",
+      "primary": "correction",
+      "blind": "accept-current"
+    }
+  ],
+  "selectedTargetDisagreementCells": [
+    {
+      "continuationRank": 355,
+      "locale": "ja",
+      "primaryTargetSha256": "a6f80d5b7ecf36ed621cb83c9a1502b36b17c23f297adf449060e0b0a1f8d344",
+      "blindTargetSha256": "02372a139fd8ee4fd69ae44be065663c0ec9a4366ec4b1c2925fd65e5a9b0f1b"
+    },
+    {
+      "continuationRank": 355,
+      "locale": "pt-BR",
+      "primaryTargetSha256": "7dcacadbd4a7c9bf7d020742e83e7bbac208af8825b6be1466dc2bb7e370fdf6",
+      "blindTargetSha256": "e558ade743b56324c10be1df531e26ddc980334b38f07288cc24d1c9acf69f93"
+    },
+    {
+      "continuationRank": 355,
+      "locale": "vi",
+      "primaryTargetSha256": "e93b6b72f751788aa9c8469367ce6393fa2b5b358edf30dcb3b1a29b86b531dd",
+      "blindTargetSha256": "a6583da694e00675ebf3c2547836e86a80a59a18a22f1eae725fe5e050e3d107"
+    },
+    {
+      "continuationRank": 360,
+      "locale": "de",
+      "primaryTargetSha256": "6c20f8268a92dced9cf1d92e3c1f6ba2c4edaa2e5a4e83980f82e25f5728b6ed",
+      "blindTargetSha256": "591b2a4f510ef1927c7c50ac7de6f37aca2db28ee37792ddaff134f8fc9ce116"
+    },
+    {
+      "continuationRank": 360,
+      "locale": "hi",
+      "primaryTargetSha256": "1911277ec3964f5f55cac99d24de2ebf4454d143987a57c117df3d2a277d6356",
+      "blindTargetSha256": "972a10e85c0b29eb86cc81140b1e826eabeaad47eed7a9fd91e55bba22e06dbb"
+    },
+    {
+      "continuationRank": 360,
+      "locale": "vi",
+      "primaryTargetSha256": "5eed656a072eec4d4dbfe2033dc837d4377d07e15ee9438936de8348425fac52",
+      "blindTargetSha256": "70d10db9e734c45fb7bc396f79520f886c676bc8a2e741e6d49a61b486ee37c5"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "pt-BR",
+      "primaryTargetSha256": "70fc5d069b9b315c39f6b40bddb9b88072e76f27db2aa10cf6e24402dc9ca150",
+      "blindTargetSha256": "b59d7e0a3e92a302390b5db68108f6c9c1c1e939fa6427dfa3a235e6dbaf5803"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "vi",
+      "primaryTargetSha256": "f504f71f68c9923504a061a59ceceab3f4ac506db3d6a562bfe76bd8013d10f6",
+      "blindTargetSha256": "6d64d04a1cb18dbfc03d3bb5479fddd37de995de4ff82fb5383b52098f9d2332"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "zh-Hans",
+      "primaryTargetSha256": "f9960d5501b12f529193420630de7a956e69e709e6900cca9100946668510f7c",
+      "blindTargetSha256": "8e6d6789f7ad784034d20eabfb49332e81a45e04e53148a32f9dab7830c7d09c"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "zh-Hant",
+      "primaryTargetSha256": "973bfa2c39a6e0ed94f07f640fb1fc73dd0777a3a906c5b6bb5129f1b59a30e3",
+      "blindTargetSha256": "fb6d2f53d17423128a3751136e0b467a1aeec01605810690ce235852d0e6cc1f"
+    },
+    {
+      "continuationRank": 363,
+      "locale": "fr",
+      "primaryTargetSha256": "10ead74aaeb5ca96dd2e218b1f1b09919489a5e9b13b92f7addea6a58acd319b",
+      "blindTargetSha256": "c857c4ed2cd96bb55adc9898c1f85290845b91b6050524b88d57b159986c5d42"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "ar",
+      "primaryTargetSha256": "908d57d9afc72fc5f1499841963aeafb7170872e661a082435b8f97ad35652e7",
+      "blindTargetSha256": "08da85af7a99599dac0e0277793946261a9afba6bf457b7d1edf61263c1ffab6"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "de",
+      "primaryTargetSha256": "7eaab76a38315e86ee72b3e4bbc3ce9072a56230a0fa17b51e2f43b7bb6a1db5",
+      "blindTargetSha256": "7adb8f11180f70fb54a62c8ab5ae9136212fe83ea8ce3490eeb738b6c33b8feb"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "es",
+      "primaryTargetSha256": "d20336854e7671cf5ef7e1e91111e1e390f53b2c1aa36980342293f81c4b1b0f",
+      "blindTargetSha256": "dfd040eb717e5c1a4f1aaaa0458cd312ddd06c94967b22020d84ac16508fc8d7"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "fr",
+      "primaryTargetSha256": "9db254c8e24204fe92230ae46849197d6e03ef5b873462eea9d1e0fa209ea447",
+      "blindTargetSha256": "6a0f1c862cf9b0813c985186d631f778f8853d6ed16c24d7f247a92ae603190a"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "hi",
+      "primaryTargetSha256": "8cd0c37d5a807e27f0b659b4f25e88f2de3735e02514f6af58d7aafd674dfe4c",
+      "blindTargetSha256": "d8abb47d59bd162c6a785a0c7d705e36abec0476dd5b84008946bb4d128724d3"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "id",
+      "primaryTargetSha256": "f95f4275f6745a52371c7daf502d7e0daaaaf7e6515006c9e0c4203aaa1a2300",
+      "blindTargetSha256": "7e2ac5f7b3de3e62bfa3ea2fa2554b5da7ea0e24ba8eb69d969fe0b5afa68b01"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "ko",
+      "primaryTargetSha256": "a597b9fb69abe9c0df15f8e04d510ffe2274474f4dbc5b77dcf88f730e49dfdb",
+      "blindTargetSha256": "73ae62fa50d07a673fe7e198c28a292f7e46fc0cf0ee51eb6526ae828c59d67a"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "pt-BR",
+      "primaryTargetSha256": "c7212708f11b54cd7e7ed83a7d12d57741792295efb5e39e54812a785fab5646",
+      "blindTargetSha256": "4c8a72f190d881908f4f93b17aae1ca2492b24829cd0d25d90fe5249273a3ba3"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "vi",
+      "primaryTargetSha256": "34997818ca7926fc93d9c797476b41ce36b029a6b1b1a7c8ec71d2d933c7ae0f",
+      "blindTargetSha256": "97463fc9827556df4c7243fefb4ea5ec27cbc5c6bbc7999a592509aeaa7692ca"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "zh-Hans",
+      "primaryTargetSha256": "c5850b4e4dba765f5b8a773a72e3e471f167754162112e369d6c4ba6b61a669d",
+      "blindTargetSha256": "abeab212cd71712c56702010544212d73e89c391e18b5e185f644a73c0bb7967"
+    },
+    {
+      "continuationRank": 365,
+      "locale": "zh-Hant",
+      "primaryTargetSha256": "7f9b338366b8b73cae1d4ec1eafdee7f8559ea3a32120d9877a51222aab92a2d",
+      "blindTargetSha256": "61d722ffd13e2211d1b15db0bdedcc9913468c6a6ff6eddf68ed45f92ab2f7d9"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "de",
+      "primaryTargetSha256": "68e263b01086f46166ec114c6f1c926edbba2bd1c493a312bb4b900f8f04aa40",
+      "blindTargetSha256": "c440e08920e66af19ba9779d77783d68342c8bbde9314fa6f812daba0ff4b054"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "es",
+      "primaryTargetSha256": "b77aa5bffae87e65cfbb680c8e49caac72e7c3124519408cb2b3e62276df7a4b",
+      "blindTargetSha256": "5e69605a9f2f9e98cf29bb2e79140aee74a76fedeb05b6932f123e998f9aaff1"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "hi",
+      "primaryTargetSha256": "f97246764832f40432bb3cc6e86392c46a9138ae4f4a2459af86baf49b440cf7",
+      "blindTargetSha256": "b80729da5ed05bc3611957eeb79f2d8c872f06ab4f18b4db033f879a8573cbf1"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "id",
+      "primaryTargetSha256": "80a3ad45b052d4d0481b190f63ed8f06b0a9dd085efd91f285815bcaaa907732",
+      "blindTargetSha256": "31d4e81e8392e750f7f3137ae595e8a1e9770cb2d77218ac935d3e54970c178a"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "pt-BR",
+      "primaryTargetSha256": "f3467197701ff868aec6cce769a18511e2136a9225aa1d59111c4dee11d6d4e0",
+      "blindTargetSha256": "820eb9be1e8a4943a971cd44e03f0cb93210ba507e487c051a8f7507fade2be4"
+    },
+    {
+      "continuationRank": 367,
+      "locale": "vi",
+      "primaryTargetSha256": "bd7a353efe829a7e87a730cb018977524c60cbc5cc0f5654b004af2fe4af9248",
+      "blindTargetSha256": "ae560e24609ea1baa2be94ddc9448fe71d24a3ebf9f1065cbe58d959391aa4e1"
+    },
+    {
+      "continuationRank": 368,
+      "locale": "hi",
+      "primaryTargetSha256": "fbdda8f0519a5a4c1c5164cf14293861e089f8a0f30764ebca601c019ef3ebdd",
+      "blindTargetSha256": "4a9f41040a11dc8bec057ca14f2d514be4ce63de7ad040b512c073041527ac60"
+    },
+    {
+      "continuationRank": 368,
+      "locale": "vi",
+      "primaryTargetSha256": "3bd0fbf997ade8fcb887de1fc59b691f3a08d1c7834e1a9594416010389943fe",
+      "blindTargetSha256": "481bbe1f6d775bd6f57f9abb49d9019777240f54931758892886adef40431321"
+    },
+    {
+      "continuationRank": 370,
+      "locale": "pt-BR",
+      "primaryTargetSha256": "795a68bcafc213779da0be5cce59ed0278f5208673f44ac11a06d5f6c32ba82f",
+      "blindTargetSha256": "ea0a2faa903ead07fdb42475252bada9904d587b1f5588b4806d4793ac35cdd9"
+    },
+    {
+      "continuationRank": 370,
+      "locale": "vi",
+      "primaryTargetSha256": "f8ef05ced8acf891aced096385b368ae833627105d282fbb463c10a27622ab25",
+      "blindTargetSha256": "28124b9c8e637b8ad93e59cdce42a2df508e566c4be0340bbebe3d11335209c0"
+    },
+    {
+      "continuationRank": 371,
+      "locale": "id",
+      "primaryTargetSha256": "1394efc434fa5ce7d8e9d717c2b0a312182c4b98ace82f15faa1ce8f0400b934",
+      "blindTargetSha256": "978aca5358f268234e7987b59c4528240aec7a04540a7b6f9025c27141b80fc3"
+    },
+    {
+      "continuationRank": 371,
+      "locale": "ko",
+      "primaryTargetSha256": "565ca5a7a22d6784832e8abede1f12c998cda203511745b4436f530c9146f132",
+      "blindTargetSha256": "49d4bbfba6cf490851560d1cfb448e7f7a77b9beff3229883543e59f284654b6"
+    },
+    {
+      "continuationRank": 371,
+      "locale": "vi",
+      "primaryTargetSha256": "35d657bdf5e275c549add8e1bb0bbcf4a0f5cad16fd2e5600566630e4b31ac31",
+      "blindTargetSha256": "254becd1796dbf9d06354767a2fe94b266024777a873199f067493353030798d"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "ar",
+      "primaryTargetSha256": "2c70c074ceec9734f1f78f0546c915b15ffa33e010a2b3003dd0bb3b7b147bf9",
+      "blindTargetSha256": "c2f6d7881e6c9f191eb9c1d954c30eb76d91eed6895207cb287614bc4e069317"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "de",
+      "primaryTargetSha256": "1bbbc00aadf00616b095b26baae74164da8aa8bb37d9be0ce910c5dfbded50e2",
+      "blindTargetSha256": "e78cca7bd69972a0ca64585725d95d62292004c0b3ee2869c1096a87f3273d64"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "es",
+      "primaryTargetSha256": "7d197311287ffd579e2ae5c53d7bb6d9f545d8cff5c68bceb5d6ffcc63c28fea",
+      "blindTargetSha256": "ed93a4f34fe882634c6189bc8a8289b4836faff5d3698bfeac22712f376a1748"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "fr",
+      "primaryTargetSha256": "b7d13ef35e16295e1c36176978b47acbe89659ec509ebf4cd238868d932ef872",
+      "blindTargetSha256": "9249094cf9f9ea54b4bef0c8c32216e60d9d36637f5ebe640d8bf8a7b606c889"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "hi",
+      "primaryTargetSha256": "59da25dc3b5284601db6b959681c777236fb53adf9de48b844f0391d3e83a9e3",
+      "blindTargetSha256": "d2460f6f19d5bcb39989c862c9e618d947f1196d7fc4027d191d548b39b3a264"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "id",
+      "primaryTargetSha256": "3ea7eee574b0c561b860340d2ea9006d19835c83ad1f25e91df72cfae8c200b2",
+      "blindTargetSha256": "991239b24575fe84b334b7ef4bb70830c215b58883cfb075b69a25b9079d95e5"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "ja",
+      "primaryTargetSha256": "a7b94ff18f6f4b1bb6afbd3ce51066d0f95d7d7200fb5bdbfeec33ab9d81edb2",
+      "blindTargetSha256": "35e83249c12f2beb098eaef82335b9264567f3c415e07e29225561f066a19dcc"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "ko",
+      "primaryTargetSha256": "3e7e2a3c839b727aca149a2507d3aa41aea8ba555cc6c133edf42238a6a21bf9",
+      "blindTargetSha256": "26f743267852fbe4bfa72009d1b5adc0044d68e5db62f77684b7a55a187a9344"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "pt-BR",
+      "primaryTargetSha256": "0a514d0f6ef50599db0f95c39c86f2d7cc9d5ea50ce9e9a989423469c6d44682",
+      "blindTargetSha256": "284501aeeb8ed8c481e4b7d3002027d38654fa030a21fb7e52ec8b4a499930d2"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "vi",
+      "primaryTargetSha256": "31bbade33aef910a22a0b6a573cf5a846ed7fc1de41c51ecb9b57064cfceaf79",
+      "blindTargetSha256": "73cf8b5670990ee7a5149977440dc6260e930c99da423227ebd9d2f2a1fbfa58"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "zh-Hans",
+      "primaryTargetSha256": "2024581d78484a050e52c55852f16fadc9467654b33cb66073c5d922d8359c9a",
+      "blindTargetSha256": "0e53eb0330da93465428411a3ca5931fdf1757f5517c2ebafa14db939b4d4ff8"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "zh-Hant",
+      "primaryTargetSha256": "e666b15a63fd1597a8bfc5bc64ff1b88a09f5eb8b6439149b08d27dc9851bbd1",
+      "blindTargetSha256": "9549367c486607c1566abda259fbb1e0a802c8fefc841cf3bf595439526a16bc"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "ja",
+      "primaryTargetSha256": "1ef5c2fd96a86995f9952e764b2430f74a431964b598a49d6c497c245a774cf4",
+      "blindTargetSha256": "7409ee9d3aa601bbd2a2960a3c5ce790a7d1ac3346269d9dbcff8fcd6f1a61fd"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "ko",
+      "primaryTargetSha256": "9d62759e177a362521dc66320ec911ffe75ced9970163cd77d47d33890be0450",
+      "blindTargetSha256": "e0948785ea704a7f0bbb95832710d065d9ec26c3c4fe1200af4bf53f4a1dbb66"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "pt-BR",
+      "primaryTargetSha256": "7ef35b09df65f9d16c8393ac753d030b88480ca93ba056a3d3021db9ada4163e",
+      "blindTargetSha256": "2171338d033ab58ce97e6cc0a3ee14e7f0801fc10312e0a41cff65c9741bd76b"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "vi",
+      "primaryTargetSha256": "8ce2da3c3ca2a6a75fe77b8d6e32076d072d08c1c0b3f1a214fb43bf7ffef364",
+      "blindTargetSha256": "d45311e000ea99f34b19a6290e1180818ccf925560de7989e7156d6960797f53"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "zh-Hans",
+      "primaryTargetSha256": "251b5ba590ef439edb6939d22541fa2e7e9ab496326811c9494b3117315b940b",
+      "blindTargetSha256": "69cf98a768bfa1528f366d150884ee86d63c8eacb106d846646c3fb38ab1c2f1"
+    },
+    {
+      "continuationRank": 374,
+      "locale": "zh-Hant",
+      "primaryTargetSha256": "533bda3f183a1f2c2c9e252ec57f6651e6b20511159e1274ca389a82423ca16d",
+      "blindTargetSha256": "46437734fcd24411b3e139a72911c9acf09bac353c34a43e6faf9b40cb088ca0"
+    }
+  ],
+  "sameDispositionDifferentTargetCells": [
+    {
+      "continuationRank": 360,
+      "locale": "vi",
+      "disposition": "correction",
+      "primaryTargetSha256": "5eed656a072eec4d4dbfe2033dc837d4377d07e15ee9438936de8348425fac52",
+      "blindTargetSha256": "70d10db9e734c45fb7bc396f79520f886c676bc8a2e741e6d49a61b486ee37c5"
+    },
+    {
+      "continuationRank": 362,
+      "locale": "vi",
+      "disposition": "correction",
+      "primaryTargetSha256": "f504f71f68c9923504a061a59ceceab3f4ac506db3d6a562bfe76bd8013d10f6",
+      "blindTargetSha256": "6d64d04a1cb18dbfc03d3bb5479fddd37de995de4ff82fb5383b52098f9d2332"
+    },
+    {
+      "continuationRank": 368,
+      "locale": "vi",
+      "disposition": "correction",
+      "primaryTargetSha256": "3bd0fbf997ade8fcb887de1fc59b691f3a08d1c7834e1a9594416010389943fe",
+      "blindTargetSha256": "481bbe1f6d775bd6f57f9abb49d9019777240f54931758892886adef40431321"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "ar",
+      "disposition": "correction",
+      "primaryTargetSha256": "2c70c074ceec9734f1f78f0546c915b15ffa33e010a2b3003dd0bb3b7b147bf9",
+      "blindTargetSha256": "c2f6d7881e6c9f191eb9c1d954c30eb76d91eed6895207cb287614bc4e069317"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "de",
+      "disposition": "correction",
+      "primaryTargetSha256": "1bbbc00aadf00616b095b26baae74164da8aa8bb37d9be0ce910c5dfbded50e2",
+      "blindTargetSha256": "e78cca7bd69972a0ca64585725d95d62292004c0b3ee2869c1096a87f3273d64"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "es",
+      "disposition": "correction",
+      "primaryTargetSha256": "7d197311287ffd579e2ae5c53d7bb6d9f545d8cff5c68bceb5d6ffcc63c28fea",
+      "blindTargetSha256": "ed93a4f34fe882634c6189bc8a8289b4836faff5d3698bfeac22712f376a1748"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "fr",
+      "disposition": "correction",
+      "primaryTargetSha256": "b7d13ef35e16295e1c36176978b47acbe89659ec509ebf4cd238868d932ef872",
+      "blindTargetSha256": "9249094cf9f9ea54b4bef0c8c32216e60d9d36637f5ebe640d8bf8a7b606c889"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "hi",
+      "disposition": "correction",
+      "primaryTargetSha256": "59da25dc3b5284601db6b959681c777236fb53adf9de48b844f0391d3e83a9e3",
+      "blindTargetSha256": "d2460f6f19d5bcb39989c862c9e618d947f1196d7fc4027d191d548b39b3a264"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "id",
+      "disposition": "correction",
+      "primaryTargetSha256": "3ea7eee574b0c561b860340d2ea9006d19835c83ad1f25e91df72cfae8c200b2",
+      "blindTargetSha256": "991239b24575fe84b334b7ef4bb70830c215b58883cfb075b69a25b9079d95e5"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "ja",
+      "disposition": "correction",
+      "primaryTargetSha256": "a7b94ff18f6f4b1bb6afbd3ce51066d0f95d7d7200fb5bdbfeec33ab9d81edb2",
+      "blindTargetSha256": "35e83249c12f2beb098eaef82335b9264567f3c415e07e29225561f066a19dcc"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "ko",
+      "disposition": "correction",
+      "primaryTargetSha256": "3e7e2a3c839b727aca149a2507d3aa41aea8ba555cc6c133edf42238a6a21bf9",
+      "blindTargetSha256": "26f743267852fbe4bfa72009d1b5adc0044d68e5db62f77684b7a55a187a9344"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "pt-BR",
+      "disposition": "correction",
+      "primaryTargetSha256": "0a514d0f6ef50599db0f95c39c86f2d7cc9d5ea50ce9e9a989423469c6d44682",
+      "blindTargetSha256": "284501aeeb8ed8c481e4b7d3002027d38654fa030a21fb7e52ec8b4a499930d2"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "vi",
+      "disposition": "correction",
+      "primaryTargetSha256": "31bbade33aef910a22a0b6a573cf5a846ed7fc1de41c51ecb9b57064cfceaf79",
+      "blindTargetSha256": "73cf8b5670990ee7a5149977440dc6260e930c99da423227ebd9d2f2a1fbfa58"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "zh-Hans",
+      "disposition": "correction",
+      "primaryTargetSha256": "2024581d78484a050e52c55852f16fadc9467654b33cb66073c5d922d8359c9a",
+      "blindTargetSha256": "0e53eb0330da93465428411a3ca5931fdf1757f5517c2ebafa14db939b4d4ff8"
+    },
+    {
+      "continuationRank": 372,
+      "locale": "zh-Hant",
+      "disposition": "correction",
+      "primaryTargetSha256": "e666b15a63fd1597a8bfc5bc64ff1b88a09f5eb8b6439149b08d27dc9851bbd1",
+      "blindTargetSha256": "9549367c486607c1566abda259fbb1e0a802c8fefc841cf3bf595439526a16bc"
+    }
+  ],
+  "callerlessHolds": [
+    {
+      "continuationRank": 356,
+      "locale": "ar",
+      "source": "Add Torrent",
+      "currentTarget": "إضافة تورنت",
+      "currentTargetSha256": "436da7df284b7e6f26e540d800c90205f07a7d9afe6d302cb82abab10f154163",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "de",
+      "source": "Add Torrent",
+      "currentTarget": "Torrent hinzufügen",
+      "currentTargetSha256": "a8e2be838d9278ebc02e0b26d50405dbbb57638b4f04e92cd29c95826d4d5e8e",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "es",
+      "source": "Add Torrent",
+      "currentTarget": "Añadir torrent",
+      "currentTargetSha256": "51defc83611657e970c9ce623b87d82ca4614aa20ca71b064f853a1d037c7dcd",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "fr",
+      "source": "Add Torrent",
+      "currentTarget": "Ajouter un torrent",
+      "currentTargetSha256": "e04175a3fe9b9b9bb32e6fd96580db334e5c97bb2ead46b3684dcabb83374d28",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "hi",
+      "source": "Add Torrent",
+      "currentTarget": "टॉरेंट जोड़ें",
+      "currentTargetSha256": "fcb9e0792eb70a639c531b182cb938ac1175d2c25a083d0566a45ecba17b5ca4",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "id",
+      "source": "Add Torrent",
+      "currentTarget": "Tambah torrent",
+      "currentTargetSha256": "673c993af0c0cf6e5b5b3628772aea8c7da31efaf0f1e5cf9a82990835cf2e36",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "ja",
+      "source": "Add Torrent",
+      "currentTarget": "トレントを追加",
+      "currentTargetSha256": "741322761b66177d843592a38b3c88ee0db31662ee141a83045dcf7cee69799e",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "ko",
+      "source": "Add Torrent",
+      "currentTarget": "토렌트 추가",
+      "currentTargetSha256": "53cc4e1b35d4a87f3ca2a561082e1106dbd6ec4069f76978352d5c9988368843",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "pt-BR",
+      "source": "Add Torrent",
+      "currentTarget": "Adicionar torrent",
+      "currentTargetSha256": "09983839ade5b738d15b012d07b3ef08b7e330bbc993ab65a9b9a90b16c3eb7a",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "vi",
+      "source": "Add Torrent",
+      "currentTarget": "Thêm torrent",
+      "currentTargetSha256": "c3d27e2caf2871451b2f45525d6b83990a5b1072d59a366e67df3ae2edcaa7ae",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "zh-Hans",
+      "source": "Add Torrent",
+      "currentTarget": "添加种子",
+      "currentTargetSha256": "9788faa8760f4f9d4f8825f29397dfa61234669716919788d81af41f5d16e6e0",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 356,
+      "locale": "zh-Hant",
+      "source": "Add Torrent",
+      "currentTarget": "新增種子",
+      "currentTargetSha256": "c7c7e6581507a28704b7cdc7cc9b60a48345ef8fd2f51e01b0e1d90a4cf08372",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "ar",
+      "source": "Searches",
+      "currentTarget": "عمليات البحث",
+      "currentTargetSha256": "dcf9937cdfe05ea6d92bce719c1677c0784db90434d1b7e1ce8fa50baf734d37",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "de",
+      "source": "Searches",
+      "currentTarget": "Suchen",
+      "currentTargetSha256": "dd097e77dd737a2ac71a1f2faa492711111dd78d77d8ae7d9067c57b01e78810",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "es",
+      "source": "Searches",
+      "currentTarget": "Búsquedas",
+      "currentTargetSha256": "86b27d5f47213c5de1ce26ea7759f7c8e5d09d6824669b0551f500074fbd569c",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "fr",
+      "source": "Searches",
+      "currentTarget": "Recherches",
+      "currentTargetSha256": "c5434b43c96c56b0e4072fa9d8e923d04f575118c5bb57a3b0fbc6db3264eaee",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "hi",
+      "source": "Searches",
+      "currentTarget": "खोजें",
+      "currentTargetSha256": "12213714b248c4c323c00a43883b1a906150783741b027de6131a48aa231f69e",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "id",
+      "source": "Searches",
+      "currentTarget": "Pencarian",
+      "currentTargetSha256": "404a676a140535359893500aea9d870ec2ef6eb8b318d953f8c9219d56ebb0f6",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "ja",
+      "source": "Searches",
+      "currentTarget": "検索",
+      "currentTargetSha256": "1b6b1a6f89315f6e4297ec12101c4066eb256512652602f477fb6f2bdc7429ae",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "ko",
+      "source": "Searches",
+      "currentTarget": "검색",
+      "currentTargetSha256": "4b8d541ebe6d9003aba399fbbc7244810563833ce89058628536a099c386ef46",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "pt-BR",
+      "source": "Searches",
+      "currentTarget": "Buscas",
+      "currentTargetSha256": "582db85917f480273b4c1cf04857cc24eaf0982cbe43d9c5786b9f73c6053b74",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "vi",
+      "source": "Searches",
+      "currentTarget": "Tìm kiếm",
+      "currentTargetSha256": "87ae432c9f654c1e8fcb184465374b3d43f0b184b95db79921116bf3099c396d",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "zh-Hans",
+      "source": "Searches",
+      "currentTarget": "搜索",
+      "currentTargetSha256": "44ce7ae909bbb28bbbe3cbbba8d617b71217869d62741b4c104dc123a6ef603d",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    },
+    {
+      "continuationRank": 366,
+      "locale": "zh-Hant",
+      "source": "Searches",
+      "currentTarget": "搜尋",
+      "currentTargetSha256": "03c481a6ab85c30da4de8b33ea31651a234100ae8c6d720b47966440901d642f",
+      "callerCount": 0,
+      "primaryDisposition": "hold",
+      "blindDisposition": "hold",
+      "finalDisposition": "hold"
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "artifact": "slskdN PR #409 candidate-free exact-head review input W59 ranks 353-377",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+    "remoteBranchHead": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "bodySha256": "960cc9d13a2ac9da556ebbf73c1ce5eda3bcad51517df3714a25cc59db7711f6",
+    "localWorktreeClean": true
+  },
+  "window": "W59 continuation of the pinned W49 stable-ID inventory: ranks 353-377; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W58 candidate-free packet checksum-verifies its complete selection-boundary.jsonl, all 300 selected cells, and all 25 selected source-inventory rows. That boundary ledger ends at rank 352 and identifies rank 353 as next. Selected IDs and source hashes are re-attested against the W49 pinned source inventory and current catalogs, callers, and exact head. Prior W49 ranks 101-125 and W50-W58 ranks 151-352 are covered; the reserved W49 gap 126-150 remains excluded and unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W58",
+    "continuationRank": 352,
+    "sourceId": "src_1c34f88707b55e61",
+    "source": "verified",
+    "sourceSha256": "1c34f88707b55e6104c4eb20e71ffa3d33e414b71ef689a15fad0640d0ac58cb",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W59",
+    "continuationRank": 353,
+    "sourceId": "src_1c398e7298c2c9b8",
+    "source": "Content Opinions",
+    "sourceSha256": "1c398e7298c2c9b8e176417a93142b6f7071ede3400045a3d137ef066b534034",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W59",
+    "continuationRank": 377,
+    "sourceId": "src_1d432f58690c2b4a",
+    "source": "Conversations",
+    "sourceSha256": "1d432f58690c2b4a9737b0a97f04b70bb4f0d9950d5177619039afe139f3b31e",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W60",
+    "continuationRank": 378,
+    "sourceId": "src_1d4d2158be4824a6",
+    "source": "FTP ignore certificate errors",
+    "sourceSha256": "1d4d2158be4824a6f309db31c5d87c77ba938699a1245320c21de51a5e77d622",
+    "historicalSourceOrdinal": null
+  },
+  "w58Input": {
+    "inputDirectory": "/mnt/disks/scratch/task-worktrees/localization-20261103/slskdn-pr409-w56-apply-20261103/docs/pr-evidence/pr409-localization-2026-11-03/window-328-352/candidate-free-input",
+    "checksumListSha256": "b9ee90713942e94f801c019690b279c4ce01dc2a34c096dc826b684d4e53a839",
+    "verifiedFiles": [
+      {
+        "path": "README.md",
+        "expected": "d2d17144b5fe75c00bf155356b2ed0216027d93581df8c10d23bcdca6ec283ef",
+        "actual": "d2d17144b5fe75c00bf155356b2ed0216027d93581df8c10d23bcdca6ec283ef",
+        "matches": true
+      },
+      {
+        "path": "caller-contexts.jsonl",
+        "expected": "eec62a4cf37b568f922a9ed02330ec963196cbc0b88f25793e4cce0ef25daeb6",
+        "actual": "eec62a4cf37b568f922a9ed02330ec963196cbc0b88f25793e4cce0ef25daeb6",
+        "matches": true
+      },
+      {
+        "path": "catalog-structure.jsonl",
+        "expected": "317ca517b368e7a70eb43e0d8fc6dd2f8836125eeadaff94169d2e9a000bbb36",
+        "actual": "317ca517b368e7a70eb43e0d8fc6dd2f8836125eeadaff94169d2e9a000bbb36",
+        "matches": true
+      },
+      {
+        "path": "head-tree-attestation.json",
+        "expected": "12672f471e1e659f5cce5ae3f888a3e4769599bb3bda45b2528f386d2666d657",
+        "actual": "12672f471e1e659f5cce5ae3f888a3e4769599bb3bda45b2528f386d2666d657",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "expected": "1923643b86d14cdac6847f46d2b6482dd841a297d6d5b2fd25a98eca2905f93c",
+        "actual": "1923643b86d14cdac6847f46d2b6482dd841a297d6d5b2fd25a98eca2905f93c",
+        "matches": true
+      },
+      {
+        "path": "selection-and-boundary.json",
+        "expected": "1b6a32f865e3408e4789b7eb09ba79279eefc8fb0796e1543192e65995e8a07e",
+        "actual": "1b6a32f865e3408e4789b7eb09ba79279eefc8fb0796e1543192e65995e8a07e",
+        "matches": true
+      },
+      {
+        "path": "selection-boundary.jsonl",
+        "expected": "6d619aa1e37c74224f101b7e1d9bbe2085fe8509440ced2328c35a627a283bc7",
+        "actual": "6d619aa1e37c74224f101b7e1d9bbe2085fe8509440ced2328c35a627a283bc7",
+        "matches": true
+      },
+      {
+        "path": "source-current-cells.jsonl",
+        "expected": "4f6540a9f433b55d2c977a4c624803eb6197bbf4b1f14a0b43b1db4524ad5481",
+        "actual": "4f6540a9f433b55d2c977a4c624803eb6197bbf4b1f14a0b43b1db4524ad5481",
+        "matches": true
+      },
+      {
+        "path": "source-inventory-selection.jsonl",
+        "expected": "fe3357d0dda8f9f888cf6048e8d37078b57d55b108d669365b1d4acb08d55b72",
+        "actual": "fe3357d0dda8f9f888cf6048e8d37078b57d55b108d669365b1d4acb08d55b72",
+        "matches": true
+      }
+    ],
+    "previousWindowLastSelected": {
+      "role": "selected-W58",
+      "continuationRank": 352,
+      "sourceId": "src_1c34f88707b55e61",
+      "source": "verified",
+      "sourceSha256": "1c34f88707b55e6104c4eb20e71ffa3d33e414b71ef689a15fad0640d0ac58cb",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W59",
+      "continuationRank": 353,
+      "sourceId": "src_1c398e7298c2c9b8",
+      "source": "Content Opinions",
+      "sourceSha256": "1c398e7298c2c9b8e176417a93142b6f7071ede3400045a3d137ef066b534034",
+      "historicalSourceOrdinal": null
+    }
+  },
+  "sourceInventory": {
+    "pathAtHead": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+    "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "selectedRanksExcluded": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "selectedRanksInW49": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "candidateFree": true,
+  "containsTranslationsBeyondCurrentValues": false,
+  "callerScan": "Exact quoted source-literal search across pinned src/web/src JavaScript/TypeScript production files; tests excluded; bounded six-line context spans retained for hits."
+}

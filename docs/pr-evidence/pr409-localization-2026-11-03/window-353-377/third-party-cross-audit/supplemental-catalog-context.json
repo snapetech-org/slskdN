@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+  "catalogKeyEvidence": {
+    "Wishlist": {
+      "ar": {
+        "translatedValue": "قائمة الرغبات",
+        "catalogPath": "src/web/public/locales/ar.json",
+        "catalogFileSha256": "c7eb1931187f5a1ba2b1a7d8940d7806857fbab512899e56e50f0c2650ef553e",
+        "catalogGitBlob": "06a9193647932eba73ebbdab72e18de3093d129f",
+        "valueSha256": "3a4e47601b1cf2ff41a3541468aee22e826a772abbbbd6384b08395d1afa2a08"
+      },
+      "de": {
+        "translatedValue": "Wunschliste",
+        "catalogPath": "src/web/public/locales/de.json",
+        "catalogFileSha256": "f618ab14e9fcad1fe3543a1aff7228983e3b97b49f1752316c971ac6155fd056",
+        "catalogGitBlob": "af8f4f5d8f9655e29279b00b682cf001fcb0f34a",
+        "valueSha256": "34d9d80abf35f0faedd76cc3fb11b583eb6dd97a6cd2d239e254e3a4c0a93d3b"
+      },
+      "es": {
+        "translatedValue": "Lista de deseos",
+        "catalogPath": "src/web/public/locales/es.json",
+        "catalogFileSha256": "40e9145d7f3ab604054d8bcc0e967cd369f9c330479aab072314094052fb9be7",
+        "catalogGitBlob": "d346581334b1736e053923b6197b564650decde5",
+        "valueSha256": "8ad5efc0e6cf40a31d58f01d25f317a0f4cd4a36c0eecd5abd6b718f5a9afe97"
+      },
+      "fr": {
+        "translatedValue": "Liste de souhaits",
+        "catalogPath": "src/web/public/locales/fr.json",
+        "catalogFileSha256": "524bb25561fc7f3ca4f9b8a87135466359cacd1958836381e75c54c4e203ace2",
+        "catalogGitBlob": "47137340f6a3537bbe1ffce0cc250cad74f21435",
+        "valueSha256": "859ef7b5660617eb642810567f237977e5ea5120fc2ab58f182aecd290b6ea33"
+      },
+      "hi": {
+        "translatedValue": "इच्छा सूची",
+        "catalogPath": "src/web/public/locales/hi.json",
+        "catalogFileSha256": "b2fc5a9b62833b24ab0db3d0a241a05856feebbb7452884f199180846deea7e3",
+        "catalogGitBlob": "3114bd2211daf7c76d1ea1847a5bc24c19ba684e",
+        "valueSha256": "c4a5550f85c08b912cc3196856a42c5a4e063a3c756656eefeb0fa13c026c43a"
+      },
+      "id": {
+        "translatedValue": "Daftar keinginan",
+        "catalogPath": "src/web/public/locales/id.json",
+        "catalogFileSha256": "0d9de3a93561f482c1ee790097ae9a2e79048844108bb5a991b8aee3ca969e2d",
+        "catalogGitBlob": "ec56305cfa999c6caa0d27240011954575a82722",
+        "valueSha256": "c6a36c4f36d21451d6fdd5c9629598774e846039359f4a6fe7d739f542e16fc8"
+      },
+      "ja": {
+        "translatedValue": "ウィッシュリスト",
+        "catalogPath": "src/web/public/locales/ja.json",
+        "catalogFileSha256": "01f33b4716de90427b4012626b38bfef2e34504db57acaab815f9d22b8e0d6ee",
+        "catalogGitBlob": "c14f911d6fbf82a8d4d569a7a0a6c04766fae7e2",
+        "valueSha256": "90ed37a9c55c783d3e2162c60309e9f2f62c5c84a7684884b2964e980187f4c8"
+      },
+      "ko": {
+        "translatedValue": "위시리스트",
+        "catalogPath": "src/web/public/locales/ko.json",
+        "catalogFileSha256": "f691cb7bdeca0ae7f03fa8f1e97cae8ad97285fb180407c3a0b00fc09b5c9c89",
+        "catalogGitBlob": "cda5f21b0c1503f13f7696e281b2547dbeabe288",
+        "valueSha256": "0c9f27222f08c9d1620931d07ceef0b8d5fe7aed5abd3c33cc219ae0f816ec6d"
+      },
+      "pt-BR": {
+        "translatedValue": "Lista de desejos",
+        "catalogPath": "src/web/public/locales/pt-BR.json",
+        "catalogFileSha256": "15beccf6c08818e5c69abec575a5e2fb43e4d961c060a3af3b9f75eb8fafca13",
+        "catalogGitBlob": "f7da7b1fa89bea50013e73cacdcf5c1e6a8eb74b",
+        "valueSha256": "ae1d86ff8d7a734754909403ca9e7343bdd4a9c6886817fb21a9e7242616b3fb"
+      },
+      "vi": {
+        "translatedValue": "Danh sách yêu thích",
+        "catalogPath": "src/web/public/locales/vi.json",
+        "catalogFileSha256": "eefa33ef7128f27e3a5414d77a2a2a1887f96ef44a46d27d5461393ba5f235c8",
+        "catalogGitBlob": "63e6243778e2ff597e54afe515a4cd098d640ffa",
+        "valueSha256": "b885a8807c857d6ccb557ec633eed37a7c852c0e9092b8acab7616e3c6c88fdc"
+      },
+      "zh-Hans": {
+        "translatedValue": "愿望单",
+        "catalogPath": "src/web/public/locales/zh-Hans.json",
+        "catalogFileSha256": "a118917022d20ab7b7077e939c180adcdc83ca85ddd3d2deec6640a102af78d2",
+        "catalogGitBlob": "cb957faacf13f555b49ad77617c05855bf565447",
+        "valueSha256": "4efd61c979cced743bb45d6474dd5d84ba988cbb22d02cf56eee3f7553d62ff5"
+      },
+      "zh-Hant": {
+        "translatedValue": "願望清單",
+        "catalogPath": "src/web/public/locales/zh-Hant.json",
+        "catalogFileSha256": "9a33570c93565f06e208cae269f46541c24c4ba4032a2ac0f4ca35f32c2b6b14",
+        "catalogGitBlob": "0800a2f6678d7b9ca60078d0db0350f4656a5ef7",
+        "valueSha256": "940529726339c907ca244b3ee16d1efc7916f79a48d98caef8f90abe6a71eb03"
+      }
+    },
+    "Messages": {
+      "ar": {
+        "translatedValue": "الرسائل",
+        "catalogPath": "src/web/public/locales/ar.json",
+        "catalogFileSha256": "c7eb1931187f5a1ba2b1a7d8940d7806857fbab512899e56e50f0c2650ef553e",
+        "catalogGitBlob": "06a9193647932eba73ebbdab72e18de3093d129f",
+        "valueSha256": "d0205b7a63d4ab2b58ad8f9d0cfd644c9c01e48ceb78b56d3dfc535f62920c64"
+      },
+      "de": {
+        "translatedValue": "Nachrichten",
+        "catalogPath": "src/web/public/locales/de.json",
+        "catalogFileSha256": "f618ab14e9fcad1fe3543a1aff7228983e3b97b49f1752316c971ac6155fd056",
+        "catalogGitBlob": "af8f4f5d8f9655e29279b00b682cf001fcb0f34a",
+        "valueSha256": "1fd65f7e85bb27928057636ebe732eb129b83adf66190fd31531532cec78a2c7"
+      },
+      "es": {
+        "translatedValue": "Mensajes",
+        "catalogPath": "src/web/public/locales/es.json",
+        "catalogFileSha256": "40e9145d7f3ab604054d8bcc0e967cd369f9c330479aab072314094052fb9be7",
+        "catalogGitBlob": "d346581334b1736e053923b6197b564650decde5",
+        "valueSha256": "2af01f2aa3c86179516329bdc477dae9d56b27f18bd61f953f24d672e01747c5"
+      },
+      "fr": {
+        "translatedValue": "Messages",
+        "catalogPath": "src/web/public/locales/fr.json",
+        "catalogFileSha256": "524bb25561fc7f3ca4f9b8a87135466359cacd1958836381e75c54c4e203ace2",
+        "catalogGitBlob": "47137340f6a3537bbe1ffce0cc250cad74f21435",
+        "valueSha256": "04d7b48339271ea67d3c8493e07e90bc68dc565485eebe5e0b67c21c1586e3c0"
+      },
+      "hi": {
+        "translatedValue": "संदेश",
+        "catalogPath": "src/web/public/locales/hi.json",
+        "catalogFileSha256": "b2fc5a9b62833b24ab0db3d0a241a05856feebbb7452884f199180846deea7e3",
+        "catalogGitBlob": "3114bd2211daf7c76d1ea1847a5bc24c19ba684e",
+        "valueSha256": "f254f72bec8a25a1841d9d1a27beb8b9de3bea844ff6715a9d7802a8bc02d1ae"
+      },
+      "id": {
+        "translatedValue": "Pesan",
+        "catalogPath": "src/web/public/locales/id.json",
+        "catalogFileSha256": "0d9de3a93561f482c1ee790097ae9a2e79048844108bb5a991b8aee3ca969e2d",
+        "catalogGitBlob": "ec56305cfa999c6caa0d27240011954575a82722",
+        "valueSha256": "c88c1e8de587798bb5d1a68b60af5b77dbe8cc3168fd43219021b814f48be0d1"
+      },
+      "ja": {
+        "translatedValue": "メッセージ",
+        "catalogPath": "src/web/public/locales/ja.json",
+        "catalogFileSha256": "01f33b4716de90427b4012626b38bfef2e34504db57acaab815f9d22b8e0d6ee",
+        "catalogGitBlob": "c14f911d6fbf82a8d4d569a7a0a6c04766fae7e2",
+        "valueSha256": "94d14c42c7f3639f698c5ecd655994032f84545bee72d82edda1044b8c14a78c"
+      },
+      "ko": {
+        "translatedValue": "메시지",
+        "catalogPath": "src/web/public/locales/ko.json",
+        "catalogFileSha256": "f691cb7bdeca0ae7f03fa8f1e97cae8ad97285fb180407c3a0b00fc09b5c9c89",
+        "catalogGitBlob": "cda5f21b0c1503f13f7696e281b2547dbeabe288",
+        "valueSha256": "4cd44bae95c4239c79a2c4d3a710e891ecaf171dcee5f709628cf382cb794c91"
+      },
+      "pt-BR": {
+        "translatedValue": "Mensagens",
+        "catalogPath": "src/web/public/locales/pt-BR.json",
+        "catalogFileSha256": "15beccf6c08818e5c69abec575a5e2fb43e4d961c060a3af3b9f75eb8fafca13",
+        "catalogGitBlob": "f7da7b1fa89bea50013e73cacdcf5c1e6a8eb74b",
+        "valueSha256": "c8b6078aa72fd690a46990bd2b2f49701d82baa52f66e82d07afd8f487764938"
+      },
+      "vi": {
+        "translatedValue": "Tin nhắn",
+        "catalogPath": "src/web/public/locales/vi.json",
+        "catalogFileSha256": "eefa33ef7128f27e3a5414d77a2a2a1887f96ef44a46d27d5461393ba5f235c8",
+        "catalogGitBlob": "63e6243778e2ff597e54afe515a4cd098d640ffa",
+        "valueSha256": "983ddc502789d42df60279257a84fe4edf1242b24ba648bafdc355193772cbf8"
+      },
+      "zh-Hans": {
+        "translatedValue": "消息",
+        "catalogPath": "src/web/public/locales/zh-Hans.json",
+        "catalogFileSha256": "a118917022d20ab7b7077e939c180adcdc83ca85ddd3d2deec6640a102af78d2",
+        "catalogGitBlob": "cb957faacf13f555b49ad77617c05855bf565447",
+        "valueSha256": "4da199fae933d4fa14bb7495676aed4269884851ee727a67297b4035c74d7d43"
+      },
+      "zh-Hant": {
+        "translatedValue": "訊息",
+        "catalogPath": "src/web/public/locales/zh-Hant.json",
+        "catalogFileSha256": "9a33570c93565f06e208cae269f46541c24c4ba4032a2ac0f4ca35f32c2b6b14",
+        "catalogGitBlob": "0800a2f6678d7b9ca60078d0db0350f4656a5ef7",
+        "valueSha256": "d36a0f127d5551dc2155d363f3868f9fe59e0da31c9361516fa533a0fd0a0ec2"
+      }
+    },
+    "Peers are discovered through searches and downloads": {
+      "ar": {
+        "translatedValue": "يتم اكتشاف الأقران من خلال عمليات البحث والتنزيلات",
+        "catalogPath": "src/web/public/locales/ar.json",
+        "catalogFileSha256": "c7eb1931187f5a1ba2b1a7d8940d7806857fbab512899e56e50f0c2650ef553e",
+        "catalogGitBlob": "06a9193647932eba73ebbdab72e18de3093d129f",
+        "valueSha256": "50b15120a0e63879b9202a57d671c7ce10d3935de516577d18c6f6d2a0d8301f"
+      },
+      "de": {
+        "translatedValue": "Peers werden durch Suchen und Downloads entdeckt",
+        "catalogPath": "src/web/public/locales/de.json",
+        "catalogFileSha256": "f618ab14e9fcad1fe3543a1aff7228983e3b97b49f1752316c971ac6155fd056",
+        "catalogGitBlob": "af8f4f5d8f9655e29279b00b682cf001fcb0f34a",
+        "valueSha256": "d6c5cb54f00304abc826df573b745c5bfa780b434fdee8e9224c29294602325b"
+      },
+      "es": {
+        "translatedValue": "Los pares se descubren a través de búsquedas y descargas.",
+        "catalogPath": "src/web/public/locales/es.json",
+        "catalogFileSha256": "40e9145d7f3ab604054d8bcc0e967cd369f9c330479aab072314094052fb9be7",
+        "catalogGitBlob": "d346581334b1736e053923b6197b564650decde5",
+        "valueSha256": "d3a72996168f4ef5154eb90a0b5d078edaf3391e48bb96090c31f7d18e52316a"
+      },
+      "fr": {
+        "translatedValue": "Les pairs sont découverts grâce aux recherches et aux téléchargements",
+        "catalogPath": "src/web/public/locales/fr.json",
+        "catalogFileSha256": "524bb25561fc7f3ca4f9b8a87135466359cacd1958836381e75c54c4e203ace2",
+        "catalogGitBlob": "47137340f6a3537bbe1ffce0cc250cad74f21435",
+        "valueSha256": "79fc4fea12b9363735ad62f9f575194c121e7645df219f06303b18f5f661b8a7"
+      },
+      "hi": {
+        "translatedValue": "खोज और डाउनलोड के माध्यम से पीयर खोजे जाते हैं",
+        "catalogPath": "src/web/public/locales/hi.json",
+        "catalogFileSha256": "b2fc5a9b62833b24ab0db3d0a241a05856feebbb7452884f199180846deea7e3",
+        "catalogGitBlob": "3114bd2211daf7c76d1ea1847a5bc24c19ba684e",
+        "valueSha256": "2bb3d56c8dea4958ba65009cfe21be60d8e2601d70764fdcdd3abdb108b81bd4"
+      },
+      "id": {
+        "translatedValue": "Peer ditemukan melalui pencarian dan unduhan",
+        "catalogPath": "src/web/public/locales/id.json",
+        "catalogFileSha256": "0d9de3a93561f482c1ee790097ae9a2e79048844108bb5a991b8aee3ca969e2d",
+        "catalogGitBlob": "ec56305cfa999c6caa0d27240011954575a82722",
+        "valueSha256": "8ee3c92f8a993e62dbd7333b761a24822fe69349ea6dc6438ed8b7a87ca7126f"
+      },
+      "ja": {
+        "translatedValue": "ピアは検索とダウンロードを通じて検出されます",
+        "catalogPath": "src/web/public/locales/ja.json",
+        "catalogFileSha256": "01f33b4716de90427b4012626b38bfef2e34504db57acaab815f9d22b8e0d6ee",
+        "catalogGitBlob": "c14f911d6fbf82a8d4d569a7a0a6c04766fae7e2",
+        "valueSha256": "8c7a41a1c9acd876849c00d196f0c7f0303cf04a5e659ca5238240ffb2b0b4c3"
+      },
+      "ko": {
+        "translatedValue": "피어는 검색 및 다운로드를 통해 발견됩니다.",
+        "catalogPath": "src/web/public/locales/ko.json",
+        "catalogFileSha256": "f691cb7bdeca0ae7f03fa8f1e97cae8ad97285fb180407c3a0b00fc09b5c9c89",
+        "catalogGitBlob": "cda5f21b0c1503f13f7696e281b2547dbeabe288",
+        "valueSha256": "63ea6f8d25eeea8e14d697cffbdab2963e9c2eb5529f346014a50109586bf3b2"
+      },
+      "pt-BR": {
+        "translatedValue": "Os pares são descobertos por meio de pesquisas e downloads",
+        "catalogPath": "src/web/public/locales/pt-BR.json",
+        "catalogFileSha256": "15beccf6c08818e5c69abec575a5e2fb43e4d961c060a3af3b9f75eb8fafca13",
+        "catalogGitBlob": "f7da7b1fa89bea50013e73cacdcf5c1e6a8eb74b",
+        "valueSha256": "61d5af609e30bf7231f705e498eb065c7f1b16b66673edef4ebca6d5cc102134"
+      },
+      "vi": {
+        "translatedValue": "Các peer được phát hiện qua tìm kiếm và tải xuống",
+        "catalogPath": "src/web/public/locales/vi.json",
+        "catalogFileSha256": "eefa33ef7128f27e3a5414d77a2a2a1887f96ef44a46d27d5461393ba5f235c8",
+        "catalogGitBlob": "63e6243778e2ff597e54afe515a4cd098d640ffa",
+        "valueSha256": "b7c4d6b91fa22229fd50f219be2ff16a1da66b106e6985ff53c75807a73c3c66"
+      },
+      "zh-Hans": {
+        "translatedValue": "对等方通过搜索和下载发现",
+        "catalogPath": "src/web/public/locales/zh-Hans.json",
+        "catalogFileSha256": "a118917022d20ab7b7077e939c180adcdc83ca85ddd3d2deec6640a102af78d2",
+        "catalogGitBlob": "cb957faacf13f555b49ad77617c05855bf565447",
+        "valueSha256": "8bbe4e463b71e9910173352a0b0def7d8eb09d2ca44ecf6639b9d2c7865bd16b"
+      },
+      "zh-Hant": {
+        "translatedValue": "透過搜尋和下載發現對等方",
+        "catalogPath": "src/web/public/locales/zh-Hant.json",
+        "catalogFileSha256": "9a33570c93565f06e208cae269f46541c24c4ba4032a2ac0f4ca35f32c2b6b14",
+        "catalogGitBlob": "0800a2f6678d7b9ca60078d0db0350f4656a5ef7",
+        "valueSha256": "da0ced0b4edce1cfdb5b6b0bc4cfd09051cb743897d18be2bfe508816f31889b"
+      }
+    }
+  },
+  "purpose": "Exact current-head translations used to adjudicate context-specific consistency questions."
+}

@@ -1,0 +1,103 @@
+{
+  "artifact": "slskdN PR #409 W59 primary semantic review part ja/ko/pt-BR/vi/zh",
+  "inputManifestSha256": "463ca62f877c64d98a160a979ece48319b153736fd4d174f123b6d8cfc391d86",
+  "output": "primary-ja-ko-pt-vi-zh.jsonl",
+  "outputSha256": "a8550c7dc466a4c4353a19291c9b45e2ea57ec639abef02f0b3c3d9c31db6ab2",
+  "rowCount": 150,
+  "ranks": [
+    353,
+    377
+  ],
+  "locales": [
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "verdictCounts": {
+    "accept-current": 100,
+    "correction": 28,
+    "refinement": 10,
+    "hold": 12
+  },
+  "structuralChecksAllPass": true,
+  "holds": [
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "ja",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "ko",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "pt-BR",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "vi",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "zh-Hans",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "zh-Hant",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "ja",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "ko",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "pt-BR",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "vi",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "zh-Hans",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "zh-Hant",
+      "source": "Searches"
+    }
+  ],
+  "proposedTargetCount": 38,
+  "candidateFreeInputModified": false,
+  "repositoryOrPRModified": false
+}
