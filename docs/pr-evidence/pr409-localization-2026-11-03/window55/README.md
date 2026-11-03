@@ -47,4 +47,4 @@ Candidate placeholders, markup, numeric tokens, and protected literals passed th
 
 The root ledger SHA-256 is `1ff5ea3fadfdf1c6f886e394f5bdffe7e37c6eaf75743fdf19038ed72743ab81`. Primary, blind, and cross-audit source checksums are retained with their packets and are included in the root summary.
 
-This is machine-assisted semantic review, not qualified native-speaker approval. Qualified native-speaker review and headed product-browser acceptance remain pending.
+This is machine-assisted semantic review, not qualified native-speaker approval. Qualified native-speaker review remains pending. Exact-head headed-browser acceptance could not be completed: the Agentic VM returned `ERR_CONNECTION_REFUSED` before loading the recorded product preview. The attempt is documented in [browser-review-attempt.json](review/browser-review-attempt.json); no service was restarted and no other browser tab was changed.
