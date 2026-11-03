@@ -1,0 +1,122 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "prState": "open",
+  "draft": true,
+  "merged": false,
+  "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "inputHead": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+  "inputTree": "ca9f1bf1d9f4373556476a51b863601668878eb3",
+  "preflightHead": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+  "preflightTree": "ca9f1bf1d9f4373556476a51b863601668878eb3",
+  "remoteBranchHeadBeforeApply": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+  "inputManifestSha256": "ad0ac60a4d2782cbb7ef759ef0cb68458d71f4431136e098c7b8010470183cb9",
+  "ratifiedLedgerSha256": "79ad76059db3fa97b1dccf6e93dddc52eede7de8136647de43115d55883abfc4",
+  "reviewLedgerSha256": {
+    "rootBlind": "887247a6dfd6edaf63e6b201724cfb17dfd801a09ef1cefabd71154a1312311d",
+    "primary": "b72ccf5f7dd9656e0aea247874e1053cbea30885e60d27593cc01fad87201b27",
+    "independent": "9ad6d680beb4871459ae19c304005be896de957745ae20dd7c193db3526b947d",
+    "crossReview": "642dd99cca384bb4f5654af400b7fb30eff5cd76d3d06a929f44c439661d2822"
+  },
+  "packetChecksumListSha256": {
+    "input": "ad0ac60a4d2782cbb7ef759ef0cb68458d71f4431136e098c7b8010470183cb9",
+    "rootBlind": "62fdcd04324036e454d7e57a0f8b27c2ca8a69d368818f6a1e962f04733a16bd",
+    "primary": "8f0b9b1d9fddef4b98d0989f1c3ef3a4c4c8d0dd473fc10bd73e50e6eccbf334",
+    "independent": "89f1d645f6aaee67d323aaacad402dc05868fe4b764e075bc489757a6c7610b7",
+    "crossReview": "c5c561951b538965776c6c18780a10a91faf21486a0f215263199884e9e5b57b",
+    "rootRatified": "5bd547f68036b5b1dde8aa55fab54c96dbacef840bba129577db757566c63160"
+  },
+  "inputCellCount": 300,
+  "changedTargetCount": 100,
+  "changedByLocale": {
+    "ar": 9,
+    "de": 7,
+    "es": 10,
+    "fr": 9,
+    "hi": 5,
+    "id": 8,
+    "ja": 7,
+    "ko": 9,
+    "pt-BR": 8,
+    "vi": 10,
+    "zh-Hans": 9,
+    "zh-Hant": 9
+  },
+  "prBodySha256BeforeAppend": "9e44ad9c48f8cfb4efbd4855737940e57ed212aaaad3c5e5942d4efb02838bc9",
+  "prBodyUtf8BytesBeforeAppend": 68317,
+  "catalogsBefore": {
+    "ar": {
+      "path": "src/web/public/locales/ar.json",
+      "sha256": "88e96ae0035e737bf4f885d5600c99483766c3b854b6edbbd133de408a0b9dab",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "de": {
+      "path": "src/web/public/locales/de.json",
+      "sha256": "4edb242340c8873333e8791af513d8b6004dbe0ff4089234f9faf3b9566d5773",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "es": {
+      "path": "src/web/public/locales/es.json",
+      "sha256": "035f85f7fbe04b4d7f54387921a4bd164b01eb04660eafaca20e878e51bb5d07",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "fr": {
+      "path": "src/web/public/locales/fr.json",
+      "sha256": "f09db30bbb0e8b475e9f2918aeff60d172525046050d9a53534b3c27057d402d",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "hi": {
+      "path": "src/web/public/locales/hi.json",
+      "sha256": "4cef8fe99e2c942d2d052e5277588da6f2e18c94b8b5dae03352bfbde5e65441",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "id": {
+      "path": "src/web/public/locales/id.json",
+      "sha256": "05151138323b5f1832354d29684ecce7fe318003b599bd3d8c7da33a135e49d7",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "ja": {
+      "path": "src/web/public/locales/ja.json",
+      "sha256": "b6635a4bab16ae639348735b2842854b7faf5429407892de2b59bc4ee77190d0",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "ko": {
+      "path": "src/web/public/locales/ko.json",
+      "sha256": "9478ee9fd544c4638b8cefab4d56b246f8068b778361a90eb34c14ecb2e7d4c0",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "pt-BR": {
+      "path": "src/web/public/locales/pt-BR.json",
+      "sha256": "1f78da420b43028489443983d51325561b98fff660a411c7e105aa218bdc2055",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "vi": {
+      "path": "src/web/public/locales/vi.json",
+      "sha256": "9e312311bea6902fd56d5fbb1586e37e7ba0fee31fe192da8e9ce7c89c8c5a74",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "zh-Hans": {
+      "path": "src/web/public/locales/zh-Hans.json",
+      "sha256": "bfe02716217cd7d35ae1c55107746af4a7560b7198345f1e5cc09845f594ab2d",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    "zh-Hant": {
+      "path": "src/web/public/locales/zh-Hant.json",
+      "sha256": "6bc96d190c45058e2b7b5a65fe8b71cfde365bdcf203e115fa20487fce22fc02",
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    }
+  },
+  "validation": "All packet manifests passed. All six ledgers reconcile to the exact 300-cell input; current catalog hashes, values, locale key sets, placeholders, and target hashes passed."
+}
