@@ -22,7 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
-- Localization: refine existing interface translations across all twelve supported locales for clearer, more consistent wording.
+- Localization: refine existing interface translations across all twelve supported locales for clearer, more consistent wording; apply 71 exact-hash W50 corrections and refinements, with native-speaker and headed-browser review still outstanding.
 
 - Localization: apply 60 reviewed cells for five count-aware sources across all twelve locales; localize playlist and wishlist plurals, the download confirmation, and the new-message separator while preserving RTL direction handling. Native-speaker and headed-browser review remain outstanding.
 

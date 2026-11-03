@@ -1,0 +1,79 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "pins": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "livePrHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "remoteBranchHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "liveCommitTree": "12b1a85af7c036dc3716d2730dfef0fa18a220a8",
+    "localHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "localTree": "12b1a85af7c036dc3716d2730dfef0fa18a220a8",
+    "worktreeClean": true,
+    "allPinsMatch": true
+  },
+  "window": "W50 reconstructed pending stable-ID continuation ranks 126-150; historical source ordinals are unavailable and not claimed",
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "priorSemanticExclusionCount": 1205,
+  "w49SourceCount": 25,
+  "specialRuntimeFollowupReservedCount": 2,
+  "excludedUniqueCount": 1230,
+  "pendingCount": 4946,
+  "rankRule": "Sort unexcluded exact catalog source IDs lexicographically; current remainingQueueRank 26-50 maps to continuationRank 126-150. Do not infer or report historical extraction ordinals.",
+  "w49PrimaryPacketChecksumManifestSha256": "251ee3e42d92e7acf33c992ac3b112d6a54ad30ef3b35c688bb700c2a4108805",
+  "w49SourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "w49PriorExclusionsSha256": "6a51618af21611492bb5e146df18753d87f8ab93b87985f2b07803ca0953696e",
+  "w49SelectionBoundarySha256": "f8ab94760012e6b63eff983bed77301bd2633fa2c6e84102b4ee629331378234",
+  "w49SourceListReattestedToCurrentKeys": true,
+  "previousBoundary": {
+    "continuationRank": 125,
+    "sourceId": "src_141835a90fdf5c54",
+    "source": "{label}: {count}"
+  },
+  "firstSelected": {
+    "continuationRank": 126,
+    "remainingQueueRank": 26,
+    "sourceId": "src_151f7660e593b38d",
+    "source": "is playing",
+    "sourceSha256": "151f7660e593b38dd05387435aee0f3caae071d5bc9847d4295fa3a5707a4c56",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "continuationRank": 150,
+    "remainingQueueRank": 50,
+    "sourceId": "src_1653318a216ff433",
+    "source": "Music acquisition via Lidarr",
+    "sourceSha256": "1653318a216ff433c273510682bfc079b22e73182c5f36d0f418a09a4083c3ae",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "continuationRank": 151,
+    "remainingQueueRank": 51,
+    "sourceId": "src_1659ba85e3daecfb",
+    "source": "Cache performance and retrieval statistics"
+  },
+  "specialRuntimeFollowups": [
+    {
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "origin": "W54/W57 runtime-only catalog readback; reserved from primary sequence without semantic disposition",
+      "sourceSha256": "a9047a85f2fe6ce8748de115e4b1e59089c70a1ee8a87d221d94ac7506d5975f"
+    },
+    {
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "origin": "W54/W57 runtime-only catalog readback; reserved from primary sequence without semantic disposition",
+      "sourceSha256": "3aed87bbbe53efdb7bbf7620ee949d9f50aea1dad8982e0069fc5c6f9a3152eb"
+    }
+  ],
+  "runtimeFollowupPolicy": "The two W54/W57 runtime-only strings remain reserved from the general queue without new semantic dispositions; W71 rich-text follow-up is already in prior semantic evidence."
+}

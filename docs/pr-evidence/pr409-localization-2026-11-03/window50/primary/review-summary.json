@@ -1,0 +1,81 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "exactHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+  "exactTree": "12b1a85af7c036dc3716d2730dfef0fa18a220a8",
+  "window": "W50 reconstructed stable-ID continuation ranks 126-150; historical source ordinals unavailable and not claimed",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "correction": 32,
+    "accept-current": 247,
+    "refinement": 21
+  },
+  "candidateChangeCount": 53,
+  "changedCellsByLocale": {
+    "ar": 5,
+    "es": 4,
+    "hi": 3,
+    "id": 3,
+    "ja": 4,
+    "ko": 4,
+    "pt-BR": 3,
+    "vi": 6,
+    "de": 5,
+    "fr": 2,
+    "zh-Hans": 6,
+    "zh-Hant": 8
+  },
+  "changedCellsBySource": {
+    "src_151f7660e593b38d": 8,
+    "src_1535a621dfe1e20f": 12,
+    "src_154af95978c7a025": 1,
+    "src_15a4cdfe34d36dde": 1,
+    "src_15aefa85207c6c5e": 6,
+    "src_15ca9ba30ff29cd0": 1,
+    "src_15f8dce8554b29f6": 2,
+    "src_1629ef0d25ba6a46": 10,
+    "src_162a4508d46ede92": 2,
+    "src_163451e420aa9745": 4,
+    "src_16426573690bb63d": 4,
+    "src_1653318a216ff433": 2
+  },
+  "holdCount": 0,
+  "callerReferenceCount": 36,
+  "sourceIdsWithoutExactStringProductionCaller": [
+    "src_15ab574345cf98ee"
+  ],
+  "placeholderMismatchCount": 0,
+  "markupMismatchCount": 0,
+  "currentProtectedLiteralMismatches": [
+    {
+      "sourceId": "src_154af95978c7a025",
+      "locale": "ar",
+      "literal": "F1"
+    },
+    {
+      "sourceId": "src_16426573690bb63d",
+      "locale": "ar",
+      "literal": "Ntfy"
+    },
+    {
+      "sourceId": "src_16426573690bb63d",
+      "locale": "zh-Hans",
+      "literal": "Ntfy"
+    },
+    {
+      "sourceId": "src_16426573690bb63d",
+      "locale": "zh-Hant",
+      "literal": "Ntfy"
+    }
+  ],
+  "candidateProtectedLiteralMismatchCount": 0,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReview": false,
+  "testsBuildScansCiRun": false,
+  "repositoryModified": false,
+  "remoteMutation": false,
+  "reviewConfidence": "moderate machine-assisted primary review only",
+  "scratchPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window50-primary-20261103"
+}
