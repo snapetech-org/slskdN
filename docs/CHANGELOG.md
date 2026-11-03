@@ -23,6 +23,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 ## [Unreleased]
 
 - Localization: refine existing interface translations across all twelve supported locales for clearer, more consistent wording; apply 71 exact-hash W50 corrections and refinements, with native-speaker and headed-browser review still outstanding.
+- Localization: apply 99 exact-hash W51 corrections and refinements across all twelve supported locales; 300 cells were reviewed and read back with the same ordered 6,176-key catalogs. W51 covers W49 stable-ID ranks 176–200; W50’s selected IDs map to W49 ranks 151–175 despite its historical 126–150 label, while W49 ranks 126–150 remain unreviewed. Native-speaker and headed-browser review remain outstanding.
 
 - Localization: apply 60 reviewed cells for five count-aware sources across all twelve locales; localize playlist and wishlist plurals, the download confirmation, and the new-message separator while preserving RTL direction handling. Native-speaker and headed-browser review remain outstanding.
 

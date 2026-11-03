@@ -1,0 +1,29 @@
+{
+  "headBefore": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+  "treeBefore": "dc5f6ab2aab3668f674dd583451d3464a3a1c081",
+  "cellCount": 300,
+  "changedCellCount": 99,
+  "unchangedCellCount": 201,
+  "readbackMismatches": 0,
+  "placeholderMismatches": 0,
+  "markupMismatches": 0,
+  "protectedLiteralMismatches": 0,
+  "orderedCatalogKeyCountAfter": 6176,
+  "orderedCatalogKeySha256After": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "changedCellsByLocale": {
+    "ko": 9,
+    "ar": 9,
+    "de": 7,
+    "es": 8,
+    "fr": 7,
+    "hi": 9,
+    "id": 8,
+    "ja": 9,
+    "pt-BR": 8,
+    "vi": 10,
+    "zh-Hans": 7,
+    "zh-Hant": 8
+  },
+  "catalogFileCount": 12,
+  "catalogHashesAndGitBlobsRecorded": true
+}

@@ -1,0 +1,95 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "pins": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+    "tree": "dc5f6ab2aab3668f674dd583451d3464a3a1c081",
+    "remoteBranchHead": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+    "localWorktreeClean": true
+  },
+  "window": "W51 continuation of the exact W49 stable-ID inventory: ranks 176-200; historical source ordinals unavailable and not claimed",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "sourceSequenceBasis": "W49 primary source-inventory.jsonl, re-attested against W51 current catalog keys; selected stable-ID rows at continuationRank 176-200",
+  "previousBoundary": {
+    "continuationRank": 175,
+    "sourceId": "src_1653318a216ff433",
+    "source": "Music acquisition via Lidarr",
+    "sourceSha256": "1653318a216ff433c273510682bfc079b22e73182c5f36d0f418a09a4083c3ae"
+  },
+  "firstSelected": {
+    "role": "selected-W51",
+    "continuationRank": 176,
+    "sourceId": "src_1659ba85e3daecfb",
+    "source": "Cache performance and retrieval statistics",
+    "sourceSha256": "1659ba85e3daecfb43f638e96744679c916c749ad8cd55afe492e4360c0a2c32",
+    "historicalSourceOrdinal": null,
+    "w49RemainingQueueRank": 76
+  },
+  "lastSelected": {
+    "role": "selected-W51",
+    "continuationRank": 200,
+    "sourceId": "src_173c0f8ad6173038",
+    "source": "Open {username}'s profile to view available user details.",
+    "sourceSha256": "173c0f8ad617303875a36e77ac6d783c853077c2e607389f20e02f5be0779fca",
+    "historicalSourceOrdinal": null,
+    "w49RemainingQueueRank": 100
+  },
+  "nextBoundary": {
+    "continuationRank": 201,
+    "sourceId": "src_1744b96470b51bf3",
+    "source": "Network",
+    "sourceSha256": "1744b96470b51bf30935e2748b237a708d226a0430063f92accf90961cd28d86"
+  },
+  "w50RankBasisReconciliation": {
+    "w50PacketHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "w50PacketTree": "12b1a85af7c036dc3716d2730dfef0fa18a220a8",
+    "w50AppliedHead": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+    "w50PacketDeclaredWindow": "continuation ranks 126-150",
+    "w50SelectedIdsAsRankedInW49Inventory": "151-175",
+    "w50DeclaredRank151NextBoundarySourceId": "src_1659ba85e3daecfb",
+    "w50NextBoundaryAsRankedInW49Inventory": 176,
+    "resolution": "Preserve W50 historical packets unchanged. Continue from the exact W49 stable-ID inventory sequence; W51 uses ranks 176-200, beginning at the W50 next-boundary ID. W50 declared rank labels used a different rank basis."
+  },
+  "disjointness": {
+    "w49SelectedCount": 25,
+    "w50SelectedCount": 25,
+    "w51SelectedCount": 25,
+    "w51DisjointFromW49": true,
+    "w51DisjointFromW50": true,
+    "w51DisjointFromW50PriorExclusions": true,
+    "w50SelectedIdsMatchW49InventoryRanks151To175": true
+  },
+  "priorEvidenceChecksums": {
+    "w49EvidenceEntriesVerified": 36,
+    "w50EvidenceEntriesVerified": 28,
+    "w49EvidenceManifestSha256": "cb6140b7ab323d8faf039808ce20a37b20d20e4a21772d8ef67d11aac4f8d3da",
+    "w50EvidenceManifestSha256": "b8b2415b3d6840d57ab227b8639a38dfbd66c0c24936fe15773c15b4ab1dc43c",
+    "w49SourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "w50SelectionBoundarySha256": "5e6ec06ff7cea252e006c37fec6d34c4e51f85dc3edf0e081df66502e46bf7cd"
+  }
+}
