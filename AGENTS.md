@@ -1,19 +1,22 @@
-## Runner policy — owner directive, 2026-10-26
+## Runner policy — owner directive, 2026-11-03
 
-All repositories and all GitHub Actions build, test, scan, packaging and release
-jobs must use compatible private ephemeral JIT runners. GitHub-hosted runners
-and automatic hosted fallback are not authorized. This directive supersedes
-older hosted-first, pilot-only, selected-jobs-only and permission-pending notes.
-Do not restore `NG_HOSTED_FIRST`, a hosted literal, or a hosted matrix fallback.
-Missing capacity is a provisioning blocker, never permission to spend hosted
-minutes. Preserve OS and architecture requirements. Keep untrusted pull-request
-code on an isolated disposable runner with no secrets; do not widen trusted
-runner-group access to make it run. Preserve active builds and other agents'
-work. Do not restart the broker while it owns running guests. Validate a new
-workflow revision on private JIT; rerunning an old run uses its old revision.
+GitHub-hosted runner minutes are available again. Use compatible GitHub-hosted
+runners for build, test, scan, packaging and release jobs when their operating
+system and architecture requirements are met. Preserve native OS and
+architecture. Use private ephemeral JIT runners when a job needs private
+network access, special hardware or storage, or explicit JIT validation. Do not
+require private JIT solely because of the former organization-wide policy, and
+do not treat missing private capacity as a blocker when a compatible hosted
+runner is available.
 
-The shared policy and exact workflow inventory live in
-`snapetech-org/packer/scripts/shared-jit-runner-pool/`. Source routing, deployed
-broker policy, runner-group access and live platform capacity must all agree.
-Do not report the rollout complete from YAML changes alone.
+Keep untrusted pull-request code isolated in a disposable environment without
+secrets, with minimal permissions and restricted egress. Do not widen trusted
+runner-group access to make untrusted code run. Preserve active builds and other
+agents' work. Do not restart the broker while it owns running guests. Select a
+runner route that fits the workload and trust requirements; rerunning an old
+run uses its original workflow revision.
+
+The shared inventory continues to govern private JIT jobs. For a private route,
+verify source routing, broker policy, runner-group access and live capacity
+before relying on it.
 
