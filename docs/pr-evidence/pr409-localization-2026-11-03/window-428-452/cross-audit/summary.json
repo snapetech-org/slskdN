@@ -1,0 +1,651 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W62 root cross-audit summary",
+  "window": "W62 ranks 428-452",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "candidateFreeInputPacketSha256": "005097b25bd89a302b4caebd4478013fbc5b239c210f841613b5edb6d706660b",
+  "primaryPacketSha256": "6057ebfea2c6d4d527059b414f1e91768b7b7fcf72709089d34b5092dfdeee28",
+  "blindPacketSha256": "a24a3708b562a6219eb47559f4747bd8b42702b884d2b56029348a96e7df3464",
+  "reviewedCells": 300,
+  "dispositions": {
+    "accept-current": 200,
+    "correction": 45,
+    "hold": 24,
+    "refinement": 31
+  },
+  "selectedUpdates": 76,
+  "updatesByRank": {
+    "428": 12,
+    "429": 1,
+    "430": 4,
+    "432": 12,
+    "433": 3,
+    "434": 12,
+    "437": 3,
+    "439": 3,
+    "440": 1,
+    "441": 3,
+    "442": 1,
+    "445": 4,
+    "446": 1,
+    "447": 5,
+    "449": 6,
+    "450": 2,
+    "451": 3
+  },
+  "callerlessHolds": 24,
+  "changedCells": [
+    {
+      "continuationRank": 428,
+      "locale": "ar",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "الرجاء إدخال بيانات سجل العضوية JSON",
+      "selectedTarget": "الرجاء إدخال بيانات سجل العضوية بصيغة JSON",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "de",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "Bitte geben Sie die Daten des Mitgliedsdatensatzes JSON ein",
+      "selectedTarget": "Bitte geben Sie die JSON-Daten des Mitgliedschaftseintrags ein.",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "es",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "Por favor ingrese los datos del registro de membresía JSON",
+      "selectedTarget": "Por favor, ingrese los datos del registro de membresía en formato JSON.",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "fr",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "Veuillez saisir les données du dossier d'adhésion JSON.",
+      "selectedTarget": "Veuillez saisir les données du dossier d’adhésion au format JSON.",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "hi",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "कृपया सदस्यता रिकॉर्ड JSON डेटा दर्ज करें",
+      "selectedTarget": "कृपया सदस्यता रिकॉर्ड का JSON डेटा दर्ज करें।",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "id",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "Silakan masukkan data catatan keanggotaan JSON",
+      "selectedTarget": "Silakan masukkan data JSON catatan keanggotaan.",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "ja",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "会員レコード JSON データを入力してください",
+      "selectedTarget": "会員レコードのJSONデータを入力してください。",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "ko",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "회원기록 JSON 데이터를 입력해주세요",
+      "selectedTarget": "멤버십 기록 JSON 데이터를 입력해 주세요.",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "pt-BR",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "Insira os dados do registro de associação JSON",
+      "selectedTarget": "Insira os dados do registro de associação em formato JSON.",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "vi",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "Vui lòng nhập dữ liệu hồ sơ thành viên JSON",
+      "selectedTarget": "Vui lòng nhập dữ liệu JSON của hồ sơ thành viên.",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "zh-Hans",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "请输入会员记录JSON数据",
+      "selectedTarget": "请输入会员记录的 JSON 数据。",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 428,
+      "locale": "zh-Hant",
+      "sourceId": "src_1f67d3ae92012561",
+      "currentTarget": "請輸入會員記錄JSON數據",
+      "selectedTarget": "請輸入會員記錄的 JSON 資料。",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 429,
+      "locale": "ar",
+      "sourceId": "src_1f6b353db598335d",
+      "currentTarget": "مطابقة غامضة",
+      "selectedTarget": "مطابقة تقريبية",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 430,
+      "locale": "es",
+      "sourceId": "src_1f722bfe602f1a1c",
+      "currentTarget": "(+{lastHiddenLockedHitCount} bloqueado)",
+      "selectedTarget": "(+{lastHiddenLockedHitCount} bloqueados)",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 430,
+      "locale": "fr",
+      "sourceId": "src_1f722bfe602f1a1c",
+      "currentTarget": "(+{lastHiddenLockedHitCount} verrouillé)",
+      "selectedTarget": "(+{lastHiddenLockedHitCount} verrouillés)",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 430,
+      "locale": "ja",
+      "sourceId": "src_1f722bfe602f1a1c",
+      "currentTarget": "(+{lastHiddenLockedHitCount}はロックされています)",
+      "selectedTarget": "(+{lastHiddenLockedHitCount} 件ロック中)",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 430,
+      "locale": "pt-BR",
+      "sourceId": "src_1f722bfe602f1a1c",
+      "currentTarget": "(+{lastHiddenLockedHitCount} bloqueado)",
+      "selectedTarget": "(+{lastHiddenLockedHitCount} bloqueados)",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "ar",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "مطلوب مزامنة",
+      "selectedTarget": "مزامنة الألبومات المطلوبة",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "de",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "Synchronisierung gesucht",
+      "selectedTarget": "Gewünschte Alben synchronisieren",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "es",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "Se busca sincronización",
+      "selectedTarget": "Sincronizar álbumes deseados",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "fr",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "Synchronisation recherchée",
+      "selectedTarget": "Synchroniser les albums souhaités",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "hi",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "सिंक चाहता था",
+      "selectedTarget": "चाहे गए एल्बम सिंक करें",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "id",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "Sinkronisasi Diinginkan",
+      "selectedTarget": "Sinkronkan album yang diinginkan",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "ja",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "同期募集中",
+      "selectedTarget": "希望するアルバムを同期",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "ko",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "동기화 원함",
+      "selectedTarget": "원하는 앨범 동기화",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "pt-BR",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "Sincronização desejada",
+      "selectedTarget": "Sincronizar álbuns desejados",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "vi",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "Muốn đồng bộ hóa",
+      "selectedTarget": "Đồng bộ album mong muốn",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "zh-Hans",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "需要同步",
+      "selectedTarget": "同步所需专辑",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 432,
+      "locale": "zh-Hant",
+      "sourceId": "src_1f7bcf973efa092f",
+      "currentTarget": "需要同步",
+      "selectedTarget": "同步所需專輯",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 433,
+      "locale": "id",
+      "sourceId": "src_1f9437981103fcc1",
+      "currentTarget": "Jumlah Acara",
+      "selectedTarget": "Jumlah Peristiwa",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 433,
+      "locale": "zh-Hans",
+      "sourceId": "src_1f9437981103fcc1",
+      "currentTarget": "活动总数",
+      "selectedTarget": "事件总数",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 433,
+      "locale": "zh-Hant",
+      "sourceId": "src_1f9437981103fcc1",
+      "currentTarget": "活動總數",
+      "selectedTarget": "事件總數",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "ar",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "صحة المكتبة",
+      "selectedTarget": "صحة مكتبة الوسائط",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "de",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "Bibliotheksgesundheit",
+      "selectedTarget": "Zustand der Medienbibliothek",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "es",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "Salud de la biblioteca",
+      "selectedTarget": "Estado de la biblioteca multimedia",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "fr",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "Santé des bibliothèques",
+      "selectedTarget": "Santé de la bibliothèque multimédia",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "hi",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "पुस्तकालय स्वास्थ्य",
+      "selectedTarget": "मीडिया लाइब्रेरी की स्थिति",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "id",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "Kesehatan Perpustakaan",
+      "selectedTarget": "Kondisi pustaka media",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "ja",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "図書館の健全性",
+      "selectedTarget": "メディアライブラリの健全性",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "ko",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "도서관 건강",
+      "selectedTarget": "미디어 라이브러리 상태",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "pt-BR",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "Saúde da Biblioteca",
+      "selectedTarget": "Saúde da biblioteca de mídia",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "vi",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "Thư viện sức khỏe",
+      "selectedTarget": "Tình trạng thư viện đa phương tiện",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "zh-Hans",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "图书馆健康",
+      "selectedTarget": "媒体库健康",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 434,
+      "locale": "zh-Hant",
+      "sourceId": "src_1fa6915fbd099610",
+      "currentTarget": "圖書館健康",
+      "selectedTarget": "媒體庫健康",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 437,
+      "locale": "hi",
+      "sourceId": "src_1fd516a548812c4b",
+      "currentTarget": "गति कम होना",
+      "selectedTarget": "गतिशील प्रभाव कम किए गए",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 437,
+      "locale": "zh-Hans",
+      "sourceId": "src_1fd516a548812c4b",
+      "currentTarget": "减少运动",
+      "selectedTarget": "动态效果已减少",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 437,
+      "locale": "zh-Hant",
+      "sourceId": "src_1fd516a548812c4b",
+      "currentTarget": "減少運動",
+      "selectedTarget": "動態效果已減少",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 439,
+      "locale": "es",
+      "sourceId": "src_1fe8d438e269c038",
+      "currentTarget": "guardar cola",
+      "selectedTarget": "Guardar cola",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 439,
+      "locale": "id",
+      "sourceId": "src_1fe8d438e269c038",
+      "currentTarget": "Simpan antrian",
+      "selectedTarget": "Simpan antrean",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 439,
+      "locale": "ja",
+      "sourceId": "src_1fe8d438e269c038",
+      "currentTarget": "キューの保存",
+      "selectedTarget": "キューを保存",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 440,
+      "locale": "de",
+      "sourceId": "src_1feabe6324c6e2c9",
+      "currentTarget": "Ersatzsuche konnte nicht gestartet werden",
+      "selectedTarget": "Ersatzsuchen konnten nicht gestartet werden",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 441,
+      "locale": "de",
+      "sourceId": "src_1ff57a29d7c9d11b",
+      "currentTarget": "Nächste",
+      "selectedTarget": "Weiter",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 441,
+      "locale": "es",
+      "sourceId": "src_1ff57a29d7c9d11b",
+      "currentTarget": "Próximo",
+      "selectedTarget": "Siguiente",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 441,
+      "locale": "pt-BR",
+      "sourceId": "src_1ff57a29d7c9d11b",
+      "currentTarget": "Próximo",
+      "selectedTarget": "Avançar",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 442,
+      "locale": "hi",
+      "sourceId": "src_20088e22e6b21135",
+      "currentTarget": "आवेदन स्थिति (उन्नत)",
+      "selectedTarget": "ऐप की स्थिति (उन्नत)",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 445,
+      "locale": "es",
+      "sourceId": "src_20158224750041d6",
+      "currentTarget": "configurado",
+      "selectedTarget": "configurados",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 445,
+      "locale": "fr",
+      "sourceId": "src_20158224750041d6",
+      "currentTarget": "configuré",
+      "selectedTarget": "configurés",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 445,
+      "locale": "hi",
+      "sourceId": "src_20158224750041d6",
+      "currentTarget": "कॉन्फ़िगर किया गया",
+      "selectedTarget": "कॉन्फ़िगर किए गए",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 445,
+      "locale": "pt-BR",
+      "sourceId": "src_20158224750041d6",
+      "currentTarget": "configurado",
+      "selectedTarget": "configurados",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 446,
+      "locale": "hi",
+      "sourceId": "src_20195541dc5dea56",
+      "currentTarget": "विज्ञप्ति",
+      "selectedTarget": "रिलीज़",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 447,
+      "locale": "ar",
+      "sourceId": "src_20196fa3fbb1ca84",
+      "currentTarget": "موعد Soulseek",
+      "selectedTarget": "نقطة التقاء Soulseek",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 447,
+      "locale": "es",
+      "sourceId": "src_20196fa3fbb1ca84",
+      "currentTarget": "encuentro Soulseek",
+      "selectedTarget": "Punto de encuentro de Soulseek",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 447,
+      "locale": "hi",
+      "sourceId": "src_20196fa3fbb1ca84",
+      "currentTarget": "Soulseek मुलाकात",
+      "selectedTarget": "Soulseek मिलन-बिंदु",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 447,
+      "locale": "id",
+      "sourceId": "src_20196fa3fbb1ca84",
+      "currentTarget": "Pertemuan Soulseek",
+      "selectedTarget": "Titik temu Soulseek",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 447,
+      "locale": "pt-BR",
+      "sourceId": "src_20196fa3fbb1ca84",
+      "currentTarget": "Encontro Soulseek",
+      "selectedTarget": "Ponto de encontro do Soulseek",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 449,
+      "locale": "ar",
+      "sourceId": "src_202c8cee26b848c7",
+      "currentTarget": "طلب الانضمام إلى البود",
+      "selectedTarget": "طلب الانضمام إلى Pod",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 449,
+      "locale": "es",
+      "sourceId": "src_202c8cee26b848c7",
+      "currentTarget": "Solicitud para unirse al grupo",
+      "selectedTarget": "Solicitud para unirse a Pod",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 449,
+      "locale": "hi",
+      "sourceId": "src_202c8cee26b848c7",
+      "currentTarget": "पॉड में शामिल होने का अनुरोध",
+      "selectedTarget": "Pod में शामिल होने का अनुरोध",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 449,
+      "locale": "ja",
+      "sourceId": "src_202c8cee26b848c7",
+      "currentTarget": "ポッドへの参加リクエスト",
+      "selectedTarget": "Pod への参加リクエスト",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 449,
+      "locale": "ko",
+      "sourceId": "src_202c8cee26b848c7",
+      "currentTarget": "포드 가입 요청",
+      "selectedTarget": "Pod 가입 요청",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 449,
+      "locale": "pt-BR",
+      "sourceId": "src_202c8cee26b848c7",
+      "currentTarget": "Solicitação para ingressar no pod",
+      "selectedTarget": "Solicitação para ingressar no Pod",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 450,
+      "locale": "ar",
+      "sourceId": "src_2047c33856237c12",
+      "currentTarget": "قراءة فقط حتى ثابتة",
+      "selectedTarget": "للقراءة فقط إلى أن يتم إصلاح المشكلة",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 450,
+      "locale": "hi",
+      "sourceId": "src_2047c33856237c12",
+      "currentTarget": "तय होने तक ही पढ़ें",
+      "selectedTarget": "समस्या ठीक होने तक केवल-पठन मोड",
+      "disposition": "correction"
+    },
+    {
+      "continuationRank": 451,
+      "locale": "pt-BR",
+      "sourceId": "src_205e338eb691da6b",
+      "currentTarget": "Discogs#",
+      "selectedTarget": "Discogs #",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 451,
+      "locale": "zh-Hans",
+      "sourceId": "src_205e338eb691da6b",
+      "currentTarget": "Discogs#",
+      "selectedTarget": "Discogs #",
+      "disposition": "refinement"
+    },
+    {
+      "continuationRank": 451,
+      "locale": "zh-Hant",
+      "sourceId": "src_205e338eb691da6b",
+      "currentTarget": "Discogs#",
+      "selectedTarget": "Discogs #",
+      "disposition": "refinement"
+    }
+  ],
+  "rootReviewPolicy": "Every cell was compared with the candidate-free current target, pinned production caller evidence, primary review and independent blind review. Callerless cells remain held. Wishlist is localized as an app feature label. No native-speaker approval is claimed."
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "window": "W62 ranks 428-452",
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "livePrOpenDraftAtExpectedHead": true,
+  "candidateFreeFilesVerified": 11,
+  "candidateFreePacketChecksumListSha256": "005097b25bd89a302b4caebd4478013fbc5b239c210f841613b5edb6d706660b",
+  "candidateFreeManifestJsonSha256": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+  "primaryRowsVerified": 300,
+  "verdictCounts": {
+    "accept-current": 216,
+    "correction": 34,
+    "hold": 24,
+    "refinement": 26
+  },
+  "proposedChanges": 60,
+  "callerlessHoldCells": 24,
+  "priorHoldCellsReattested": 48,
+  "priorW60DispositionCellsReattested": 300,
+  "placeholderMarkupNumericProtectedWhitespaceAndPunctuationChecksPass": true,
+  "candidateFreeInputUnmodified": true,
+  "repositoryOrPrModified": false,
+  "testsBuildsScansCIOrWorkflowEditsPerformed": false
+}

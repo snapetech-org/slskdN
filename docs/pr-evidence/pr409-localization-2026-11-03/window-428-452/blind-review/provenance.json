@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "reviewMode": "independent strict blind semantic review",
+  "candidateFreeOnly": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "sourceInputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w62-ranks428-452-primary-20261103/input",
+  "candidateFreeInputChecksumListSha256": "005097b25bd89a302b4caebd4478013fbc5b239c210f841613b5edb6d706660b",
+  "candidateFreeInputManifestSha256": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+  "candidateFreeInputUsedFiles": {
+    "README.md": "6f9e37bbf87b8372c8d132644395980a9e636819a150ec187ac688a05a86ac8b",
+    "manifest.json": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+    "head-tree-attestation.json": "a744a59bb8ee24b8310a7c7cd6801144b1800fdf061d0e9f4b54b35e70ac0e29",
+    "selection-and-boundary.json": "6132c62bc371a54aa57d54fd72a43dc94e6b9ce5890342973710639ff0a19eff",
+    "selection-boundary.jsonl": "2877a938403fdf661d979b5a8c2683cb5154f143a738ff90d2c724bfdc49407f",
+    "catalog-structure.jsonl": "61547cf736704caf7e117e1d43d0c334f7a99f2f299a030f12bace2e835425db",
+    "source-current-cells.jsonl": "f3719d255fed65c670fe4e8d183a79121b00a63306b3a5f8aec27f33c3258fbb",
+    "caller-contexts.jsonl": "83e38df56590e848b242d3b84802bc23efbae5fba19cb9a6859e1817dd64cc58"
+  },
+  "liveAttestation": {
+    "state": "OPEN",
+    "draft": true,
+    "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+    "baseRef": "main",
+    "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "branchRef": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+    "pullRef": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+    "reattestedAtUtc": "2026-11-03T11:53:07.246979+00:00",
+    "method": "GitHub GraphQL selected fields and GitHub commit tree API; git ls-remote branch and pull refs; PR body field not requested"
+  },
+  "bodyNotUsed": true,
+  "primaryReviewNotRead": true,
+  "priorCandidateProposalsNotRead": true,
+  "reviewerNotes": "Semantic decisions were authored from source text, candidate-free current values, pinned production caller contexts, locale codes, and token evidence."
+}

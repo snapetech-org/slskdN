@@ -1,0 +1,236 @@
+{
+  "artifact": "slskdN PR #409 candidate-free exact-head review input W62 ranks 428-452",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+    "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+    "remoteBranchHead": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+    "remotePullRequestHead": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+    "bodySha256": "6518e83ecb2bf908aac188d21ad6ea3ab9c2c6cc28f8c26ff8cef18eee8002fb",
+    "localWorktreeClean": true
+  },
+  "window": "W62 continuation of the pinned W49 stable-ID inventory: ranks 428-452; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W61 candidate-free packet checksum-verifies its complete selection-boundary.jsonl, all 300 selected cells, and all 25 selected source-inventory rows. That boundary ledger ends at rank 427 and identifies rank 428 as next. Selected IDs and source hashes are re-attested against the W49 pinned source inventory and current catalogs, callers, and exact head. Prior W49 ranks 101-125 and W50-W61 ranks 151-427 are covered; the reserved W49 gap 126-150 remains excluded and unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W61",
+    "continuationRank": 427,
+    "sourceId": "src_1f5503d99f5886af",
+    "source": "Title Prefix",
+    "sourceSha256": "1f5503d99f5886af1957d0dff3d5f928b95c4a52e5fa5ef4f830322d5140d37c",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W62",
+    "continuationRank": 428,
+    "sourceId": "src_1f67d3ae92012561",
+    "source": "Please enter membership record JSON data",
+    "sourceSha256": "1f67d3ae92012561746b76c9f1c7e8967d738342a0d3063f8a3436105d5164e8",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W62",
+    "continuationRank": 452,
+    "sourceId": "src_2063789a98916996",
+    "source": "Download complete",
+    "sourceSha256": "2063789a989169967cf624b5130c998cd31335663b70f82dc119b817c4028bbf",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W62",
+    "continuationRank": 453,
+    "sourceId": "src_206af413da0af7ec",
+    "source": "At least one source must be selected",
+    "sourceSha256": "206af413da0af7ece0f77236db2ae2e4834a82b7e63c1b766b32f8439181fec0",
+    "historicalSourceOrdinal": null
+  },
+  "w61Input": {
+    "inputDirectory": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w61-ranks403-427-primary-20261103/input",
+    "checksumListSha256": "418735698e3e789a8c14005d531980631980bdccb993fe9ae669b65735e4ace7",
+    "manifestJsonSha256": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+    "verifiedFiles": [
+      {
+        "path": "README.md",
+        "expected": "8b21376693661ad1c698b749e2253acd4c9889a8396b5db22803eccada2bb5a5",
+        "actual": "8b21376693661ad1c698b749e2253acd4c9889a8396b5db22803eccada2bb5a5",
+        "matches": true
+      },
+      {
+        "path": "caller-contexts.jsonl",
+        "expected": "420040799b7ee916aeec493fe8bca0cc0e3bcb5d3a1feac53c4ed043a46f232c",
+        "actual": "420040799b7ee916aeec493fe8bca0cc0e3bcb5d3a1feac53c4ed043a46f232c",
+        "matches": true
+      },
+      {
+        "path": "catalog-structure.jsonl",
+        "expected": "fbb08f0beb0dda19fe4fb34a3e0727935311e161426f6fad2d2de04b05ed68cb",
+        "actual": "fbb08f0beb0dda19fe4fb34a3e0727935311e161426f6fad2d2de04b05ed68cb",
+        "matches": true
+      },
+      {
+        "path": "head-tree-attestation.json",
+        "expected": "0df81ac084faba488cfc65ca261d2cdfe64a1132e87e62bda5a713400dbe5cf2",
+        "actual": "0df81ac084faba488cfc65ca261d2cdfe64a1132e87e62bda5a713400dbe5cf2",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "expected": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+        "actual": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+        "matches": true
+      },
+      {
+        "path": "prior-rank-disposition-reattestation-summary.json",
+        "expected": "71d46194523deebe8e40bb30b1a96348304142dc8b9edcb0a031222f9f6973c2",
+        "actual": "71d46194523deebe8e40bb30b1a96348304142dc8b9edcb0a031222f9f6973c2",
+        "matches": true
+      },
+      {
+        "path": "prior-rank-disposition-reattestation.jsonl",
+        "expected": "e1b687095385a383185a8f32c34e216ee7a165abb6ad4e39f0a3ec1622dcdabd",
+        "actual": "e1b687095385a383185a8f32c34e216ee7a165abb6ad4e39f0a3ec1622dcdabd",
+        "matches": true
+      },
+      {
+        "path": "selection-and-boundary.json",
+        "expected": "ed53a589515d541cbf4f556388d7743c4a0dbf54b8da25256c1dec6c7f43af77",
+        "actual": "ed53a589515d541cbf4f556388d7743c4a0dbf54b8da25256c1dec6c7f43af77",
+        "matches": true
+      },
+      {
+        "path": "selection-boundary.jsonl",
+        "expected": "a125a9844eff2d41d86ec1cd59f3199baa451421fc76d0b32dadb31993b5a764",
+        "actual": "a125a9844eff2d41d86ec1cd59f3199baa451421fc76d0b32dadb31993b5a764",
+        "matches": true
+      },
+      {
+        "path": "source-current-cells.jsonl",
+        "expected": "a8819bf146f5fec55fcff917e30c1dc5f5d75c4e884cb3989c3388d259f89dde",
+        "actual": "a8819bf146f5fec55fcff917e30c1dc5f5d75c4e884cb3989c3388d259f89dde",
+        "matches": true
+      },
+      {
+        "path": "source-inventory-selection.jsonl",
+        "expected": "f68905811e302a8b22a79b4b85e9d6cd864bf4cdda624c176387545b3751789b",
+        "actual": "f68905811e302a8b22a79b4b85e9d6cd864bf4cdda624c176387545b3751789b",
+        "matches": true
+      }
+    ],
+    "previousWindowLastSelected": {
+      "role": "selected-W61",
+      "continuationRank": 427,
+      "sourceId": "src_1f5503d99f5886af",
+      "source": "Title Prefix",
+      "sourceSha256": "1f5503d99f5886af1957d0dff3d5f928b95c4a52e5fa5ef4f830322d5140d37c",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W62",
+      "continuationRank": 428,
+      "sourceId": "src_1f67d3ae92012561",
+      "source": "Please enter membership record JSON data",
+      "sourceSha256": "1f67d3ae92012561746b76c9f1c7e8967d738342a0d3063f8a3436105d5164e8",
+      "historicalSourceOrdinal": null
+    }
+  },
+  "sourceInventory": {
+    "pathAtHead": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+    "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "selectedRanksExcluded": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "selectedRanksInW49": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "candidateFree": true,
+  "containsTranslationsBeyondCurrentValues": false,
+  "callerScan": "Exact quoted source-literal search across pinned src/web/src JavaScript/TypeScript production files; tests excluded; bounded six-line context spans retained for hits.",
+  "priorDispositionReattestation": {
+    "summaryPath": "prior-rank-disposition-reattestation-summary.json",
+    "rowsPath": "prior-rank-disposition-reattestation.jsonl",
+    "heldCellsReattested": 48,
+    "W60DispositionCellsReattested": 300,
+    "windows": [
+      "W57",
+      "W59",
+      "W60",
+      "W61"
+    ],
+    "candidateTargetsCopied": false
+  }
+}

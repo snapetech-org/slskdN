@@ -1,0 +1,84 @@
+{
+  "artifact": "slskdN PR #409 W62 ranks 428-452 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1254,
+      "sha256": "6f9e37bbf87b8372c8d132644395980a9e636819a150ec187ac688a05a86ac8b"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 37471,
+      "sha256": "83e38df56590e848b242d3b84802bc23efbae5fba19cb9a6859e1817dd64cc58"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "61547cf736704caf7e117e1d43d0c334f7a99f2f299a030f12bace2e835425db"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 586,
+      "sha256": "a744a59bb8ee24b8310a7c7cd6801144b1800fdf061d0e9f4b54b35e70ac0e29"
+    },
+    {
+      "path": "prior-rank-disposition-reattestation-summary.json",
+      "bytes": 1410,
+      "sha256": "64ceb04fa9508a6a5baba0b7624e90f8cb77fb1377a553aed2a876db451c63e1"
+    },
+    {
+      "path": "prior-rank-disposition-reattestation.jsonl",
+      "bytes": 530675,
+      "sha256": "aaa086f57e6fd9b6d285f2087cb25953f0df5b0a066d626ecf3b3545d1c48c54"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 8440,
+      "sha256": "6132c62bc371a54aa57d54fd72a43dc94e6b9ce5890342973710639ff0a19eff"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 6283,
+      "sha256": "2877a938403fdf661d979b5a8c2683cb5154f143a738ff90d2c724bfdc49407f"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 412849,
+      "sha256": "f3719d255fed65c670fe4e8d183a79121b00a63306b3a5f8aec27f33c3258fbb"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 6934,
+      "sha256": "8a5e2018facfc4ee052bd9206cfeb6b9752eb71026d846d3d5045d19fb3f7700"
+    }
+  ],
+  "priorDispositionReattestation": {
+    "summaryPath": "prior-rank-disposition-reattestation-summary.json",
+    "rowsPath": "prior-rank-disposition-reattestation.jsonl",
+    "W57HeldCells": 12,
+    "W59HeldCells": 24,
+    "W60DispositionCells": 300,
+    "W61HeldCells": 12
+  }
+}
