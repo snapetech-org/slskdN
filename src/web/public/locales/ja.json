@@ -1991,7 +1991,7 @@
   "Leave Pod": "ポッドから離れる",
   "Leave Request JSON (signed by member)": "脱退リクエスト JSON (メンバーの署名)",
   "Leave Requests:": "休暇リクエスト:",
-  "Leave accepted successfully": "休暇は正常に承認されました",
+  "Leave accepted successfully": "退会申請が正常に承認されました。",
   "Leave blank = disable after first download": "空白のままにする = 最初のダウンロード後に無効にする",
   "Leave empty to keep current": "最新の状態を維持するには空のままにしておきます",
   "Leave request submitted": "休暇申請が提出されました",
