@@ -1,0 +1,405 @@
+{
+  "evidenceFileSha256": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+  "evidenceGitBlob": "79a752f21b9af32d5afd4a50d015f718b3bce92a",
+  "evidencePath": "docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/applied-corrections.jsonl",
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "locales": {
+    "ar": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/ar.json",
+        "confidence": "high",
+        "currentTarget": "مطلوب سحب",
+        "currentTargetSha256": "0857f79766de0e55e9233cc38dc2dc257e0cf845988345394d9fd65b831d58de",
+        "id": "ar:src_e2632921eacdad49",
+        "locale": "ar",
+        "proposedTarget": "مزامنة العناصر المطلوبة",
+        "proposedTargetSha256": "07b5ae3ec5ec62422b162f8c33e76d5f688aeee3937b3030699ad1f5000363a2",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "مزامنة العناصر المطلوبة",
+      "termSha256": "07b5ae3ec5ec62422b162f8c33e76d5f688aeee3937b3030699ad1f5000363a2"
+    },
+    "de": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/de.json",
+        "confidence": "high",
+        "currentTarget": "Gesuchter Pull",
+        "currentTargetSha256": "e1b8ab2cbbcf6d06a5c99aaddfac67910d48a96f28d3c273bdc733754821649f",
+        "id": "de:src_e2632921eacdad49",
+        "locale": "de",
+        "proposedTarget": "Synchronisierung gewünschter Einträge",
+        "proposedTargetSha256": "00bab5db5f6c044ebe0b2cd4f7faeedc6b7cc91ee49aa94e3f552ad599c35e27",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "Synchronisierung gewünschter Einträge",
+      "termSha256": "00bab5db5f6c044ebe0b2cd4f7faeedc6b7cc91ee49aa94e3f552ad599c35e27"
+    },
+    "es": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/es.json",
+        "confidence": "high",
+        "currentTarget": "Se busca tirar",
+        "currentTargetSha256": "f72c2cc36c9b707ac7b4edb4afadfdef9cfb10b1b4bd64273e771fb1040b3068",
+        "id": "es:src_e2632921eacdad49",
+        "locale": "es",
+        "proposedTarget": "Sincronización de elementos deseados",
+        "proposedTargetSha256": "461f893a48d8c4fc242b7d418c86425298d73afebf8e2816b056be806c878f43",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "Sincronización de elementos deseados",
+      "termSha256": "461f893a48d8c4fc242b7d418c86425298d73afebf8e2816b056be806c878f43"
+    },
+    "fr": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/fr.json",
+        "confidence": "high",
+        "currentTarget": "Pull recherché",
+        "currentTargetSha256": "7ad2b38e040674b4341021800de2f89e662eda4d84a779fa12cc4be60df4a900",
+        "id": "fr:src_e2632921eacdad49",
+        "locale": "fr",
+        "proposedTarget": "Synchronisation des éléments souhaités",
+        "proposedTargetSha256": "0ebf5f6537c12b19e9321d7d2f0f7a54f81a6cfc286e96b13714236edf894dd8",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "Synchronisation des éléments souhaités",
+      "termSha256": "0ebf5f6537c12b19e9321d7d2f0f7a54f81a6cfc286e96b13714236edf894dd8"
+    },
+    "hi": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/hi.json",
+        "confidence": "high",
+        "currentTarget": "खींचना चाहता था",
+        "currentTargetSha256": "f6aeb91ebe686c9c58dd0369f1a05845b490f96b1a918804cc979c38b7c2b205",
+        "id": "hi:src_e2632921eacdad49",
+        "locale": "hi",
+        "proposedTarget": "वांछित आइटम का समन्वयन",
+        "proposedTargetSha256": "dc942e73fad4a8256864fbf0504238477474dfe352403e8c45e4207673b8cabe",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "वांछित आइटम का समन्वयन",
+      "termSha256": "dc942e73fad4a8256864fbf0504238477474dfe352403e8c45e4207673b8cabe"
+    },
+    "id": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/id.json",
+        "confidence": "high",
+        "currentTarget": "Ingin Tarik",
+        "currentTargetSha256": "87a11627f8d6880f13caf46547abff826dc110749932901316c2cf2f1c62bcde",
+        "id": "id:src_e2632921eacdad49",
+        "locale": "id",
+        "proposedTarget": "Sinkronisasi item yang diinginkan",
+        "proposedTargetSha256": "b48bf1fec988fdb91c9f120988ba612b7d0b9e7413defe26f3fbf0c83a4cbb35",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "Sinkronisasi item yang diinginkan",
+      "termSha256": "b48bf1fec988fdb91c9f120988ba612b7d0b9e7413defe26f3fbf0c83a4cbb35"
+    },
+    "ja": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/ja.json",
+        "confidence": "high",
+        "currentTarget": "募集中のプル",
+        "currentTargetSha256": "6cada0e6dfb9e73dd2428fd17ccfe72ce1299f96b68ce827f7dfe5b888d4d8ff",
+        "id": "ja:src_e2632921eacdad49",
+        "locale": "ja",
+        "proposedTarget": "希望項目の同期",
+        "proposedTargetSha256": "b3299f2473bace5f71da0ea6f012bf630037a616bccdaa09c5b8f59c4ae4daf6",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "希望項目の同期",
+      "termSha256": "b3299f2473bace5f71da0ea6f012bf630037a616bccdaa09c5b8f59c4ae4daf6"
+    },
+    "ko": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/ko.json",
+        "confidence": "high",
+        "currentTarget": "원티드 풀",
+        "currentTargetSha256": "5eae9a4bf12c3d96129b2081141fdf6b2274df25649e01805eafdba4ce30ba42",
+        "id": "ko:src_e2632921eacdad49",
+        "locale": "ko",
+        "proposedTarget": "원하는 항목 동기화",
+        "proposedTargetSha256": "8178029634f9df02de33842f92aecd312c19d4c785afcdde66a740fdbbcc0163",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "원하는 항목 동기화",
+      "termSha256": "8178029634f9df02de33842f92aecd312c19d4c785afcdde66a740fdbbcc0163"
+    },
+    "pt-BR": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/pt-BR.json",
+        "confidence": "high",
+        "currentTarget": "Procurado Puxar",
+        "currentTargetSha256": "bc5c6ecf9d402dc03e2d6ed38df2c4b7fb0c57ef3553772937d067f93fe71a56",
+        "id": "pt-BR:src_e2632921eacdad49",
+        "locale": "pt-BR",
+        "proposedTarget": "Sincronização de itens desejados",
+        "proposedTargetSha256": "84fb7f0eb69f6ddca6c509c2182cdd620032dc446fb79b7d9d7cd3a3b5afd906",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "Sincronização de itens desejados",
+      "termSha256": "84fb7f0eb69f6ddca6c509c2182cdd620032dc446fb79b7d9d7cd3a3b5afd906"
+    },
+    "vi": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/vi.json",
+        "confidence": "high",
+        "currentTarget": "muốn kéo",
+        "currentTargetSha256": "4be7b35bec8ba92229bb32880c505b4b49c89955245bd96005dbbfdd5ba25229",
+        "id": "vi:src_e2632921eacdad49",
+        "locale": "vi",
+        "proposedTarget": "Đồng bộ các mục mong muốn",
+        "proposedTargetSha256": "a50e92653de1b70a9fcc9dc5b9adee7e92be6e356f486752f75e59e41e9e5dc1",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "Đồng bộ các mục mong muốn",
+      "termSha256": "a50e92653de1b70a9fcc9dc5b9adee7e92be6e356f486752f75e59e41e9e5dc1"
+    },
+    "zh-Hans": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/zh-Hans.json",
+        "confidence": "high",
+        "currentTarget": "通缉拉动",
+        "currentTargetSha256": "723f979bf2c44f674ce8ef2b53e4e6451e116fb90fc76f14b2b860ebce5a0f93",
+        "id": "zh-Hans:src_e2632921eacdad49",
+        "locale": "zh-Hans",
+        "proposedTarget": "同步所需项目",
+        "proposedTargetSha256": "79496c2691f119a271dac4fcbaac68aba98a6687d2db85cefda5cca99057d3fe",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "同步所需项目",
+      "termSha256": "79496c2691f119a271dac4fcbaac68aba98a6687d2db85cefda5cca99057d3fe"
+    },
+    "zh-Hant": {
+      "sourceCorrectionRow": {
+        "catalogKey": "Wanted Pull",
+        "catalogPath": "src/web/public/locales/zh-Hant.json",
+        "confidence": "high",
+        "currentTarget": "通緝拉動",
+        "currentTargetSha256": "00deeef7bc2131b79e254d54655635c1dc6e8d37d609cbf6c69632cdff8b3730",
+        "id": "zh-Hant:src_e2632921eacdad49",
+        "locale": "zh-Hant",
+        "proposedTarget": "同步所需項目",
+        "proposedTargetSha256": "f3336acd5853c3a97af055a0e52808b62e3a8614c6285ac302aaf8f21ad74f0e",
+        "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.",
+        "source": "Wanted Pull",
+        "sourceCallsites": [
+          {
+            "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+            "line": 193,
+            "lineText": "<LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />}",
+            "lineTextSha256": "0c4097718fdefb6e9f780aeba3f953350521f84407c68a60ef89e05c6cc5e6c8",
+            "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+          }
+        ],
+        "sourceContexts": [
+          "<Label color={compatibility.supportsWantedPull ? 'green' : 'grey'}> | <LocalizedText source={\"Wanted Pull\"} />{\" \"}{compatibility.supportsWantedPull ? <LocalizedText source={\"Ready\"} /> : <LocalizedText source={\"Not Ready\"} />} | </Label>"
+        ],
+        "sourceId": "src_e2632921eacdad49",
+        "sourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+        "window": 7
+      },
+      "term": "同步所需項目",
+      "termSha256": "f3336acd5853c3a97af055a0e52808b62e3a8614c6285ac302aaf8f21ad74f0e"
+    }
+  },
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "semanticDefinition": "Synchronizing items marked wanted into the Wishlist; literal pull/wanted readings do not express this integration capability.",
+  "sourceCaller": {
+    "action": "lidarrAPI.syncWanted()",
+    "line": 193,
+    "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx",
+    "supports": "compatibility.supportsWantedPull"
+  },
+  "termSource": "Wanted Pull",
+  "termSourceId": "src_e2632921eacdad49",
+  "termSourceSha256": "e2632921eacdad4988439a67268cefbef388929ae40cbfd5f09b8a6dc81f28f0",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5"
+}

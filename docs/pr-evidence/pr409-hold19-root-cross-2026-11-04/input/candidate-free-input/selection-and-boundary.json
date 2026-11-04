@@ -1,0 +1,33 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "draft": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "scopeKind": "historical caller-scope correction re-review",
+  "currentSourceRanks": [
+    409,
+    475,
+    504
+  ],
+  "currentSourceIds": [
+    "src_1ebad52e6ebb059b",
+    "src_21351b02a51c3a85",
+    "src_227ab7b919019ee9"
+  ],
+  "cellCount": 19,
+  "localeCount": 12,
+  "sourceCount": 3,
+  "previousHoldHead": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "previousHoldTree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "candidateFree": true,
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false,
+  "historicalHoldRecordsPath": "historical-prior-hold-rows-hash-only.jsonl",
+  "scopeCorrectionPath": "prior-hold-context-reconciliation-hash-only.jsonl"
+}

@@ -1,0 +1,18 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "reviewedHead": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "reviewedTree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "catalogCommit": "2a8bed93f3b65dcc9fc858dc3bdee04a4bb3851a",
+  "catalogTree": "33da083110901b831bf0e808d23bbb647511fa9d",
+  "cells": 19,
+  "updates": 12,
+  "acceptCurrent": 1,
+  "holds": 6,
+  "holdReadbackTextFree": true,
+  "ServarrPreservedInAllUpdates": true,
+  "workflowsChanged": false,
+  "browserAcceptance": false,
+  "nativeSpeakerSignoff": false,
+  "deploymentsAtReviewedHead": 0
+}

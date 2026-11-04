@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "reviewPass": "independent-primary",
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "cellCount": 19,
+  "dispositions": {
+    "accept-current": 2,
+    "correct": 7,
+    "refine": 4,
+    "hold": 6
+  },
+  "proposedTargets": 11,
+  "callerlessHolds": 0,
+  "heldForSemanticAmbiguity": 6,
+  "tokenChecks": {
+    "placeholders": 0,
+    "markup": 0,
+    "numeric": 0,
+    "requiredServarrLiteralMissing": 0
+  },
+  "inputManifestSha256": "039cb3058f514f8c1e2fa5e294be00a24ba22eab68088f6aae634a19a442d5f3",
+  "inputChecksumListSha256": "ae07f1437f6766bad9e1fa0ab381cc2c582a1e27ebce12e02257e335e7e885ee",
+  "selectionBoundarySha256": "548f117b5b8adb566dad6770d606f0f9f7ce28e66a806e9bbecb36b84e325584"
+}

@@ -1,0 +1,11 @@
+{
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "productionSourceRoot": "src/web/src",
+  "productionFileCount": 279,
+  "sourceSubtreeOidAtReviewHead": "031a559dee5e6d4153d44dd26beb6d9c1243b9fd",
+  "sourceSubtreeOidAtCurrentHead": "031a559dee5e6d4153d44dd26beb6d9c1243b9fd",
+  "treeEnumeration": "git ls-tree -r -z at exact pinned commit",
+  "callerScan": "exact single/double-quoted source literal scan",
+  "testAndSpecFilesExcluded": true
+}

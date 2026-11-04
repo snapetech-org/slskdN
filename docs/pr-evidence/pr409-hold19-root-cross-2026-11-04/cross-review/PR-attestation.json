@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-11-04 04:19:33 UTC",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "isDraft": true,
+  "baseRefName": "main",
+  "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "headRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "pullHeadRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "pullMergeRefOid": "7b23616161b04b59745df747f30c91bf1e799769",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "deploymentsForHead": [],
+  "browserAcceptance": "not performed at this head",
+  "source": "live gh pr view, git ls-remote, and GitHub deployments API on kspls0"
+}

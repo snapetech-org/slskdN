@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "artifact": "PR #409 prior-hold caller-context re-review candidate-free input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "sourceCount": 3,
+  "localeCount": 12,
+  "cellCount": 19,
+  "scopeKind": "historical-hold caller-context re-review",
+  "sourceIds": [
+    "src_1ebad52e6ebb059b",
+    "src_21351b02a51c3a85",
+    "src_227ab7b919019ee9"
+  ],
+  "historicalRanks": [
+    409,
+    475,
+    504
+  ],
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false,
+  "priorHeldCellsHistoryHashOnly": 152,
+  "affectedHistoricalHoldRowsHashOnly": 19,
+  "sourceSubtreeOidAtBothHeads": "031a559dee5e6d4153d44dd26beb6d9c1243b9fd",
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "branchRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "pullRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "treeOid": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T03:34:16+00:00"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "branchRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "pullRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "treeOid": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T03:34:21+00:00"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1133,
+      "sha256": "d366e99ba167c51e80437242715a3279863bdbe8e37c885413c3a4d072951e6e"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 128,
+      "sha256": "d2f667972a0d71dc21d20510575bd1684f51fe51109f8274a7bcfef5cf48c3a6"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 4624,
+      "sha256": "41a989b505161e356461e30af121f0a17e7a6cdf1226b305db0a2410eaec1908"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "774247038b0cb2405c56810674e827114a0f13540de60f761f9eb47453d9d6d0"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 621,
+      "sha256": "c9691e50f828b3be8e64e1aa6baa38042f65d7d61e9ec54b02b2f98e37674e04"
+    },
+    {
+      "path": "historical-prior-hold-rows-hash-only.jsonl",
+      "bytes": 19849,
+      "sha256": "2c6b46d1e6fca983b25b0d124cf96ccc4406a916011b0ef00f8813b9933eb0b0"
+    },
+    {
+      "path": "prior-held-cell-reattestation-hash-only.jsonl",
+      "bytes": 163566,
+      "sha256": "585c514017cd5d6249f9312eb89c1af821eccd1a42fb144c3dcd27775d1a91af"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 361,
+      "sha256": "fb9ed8b131eaf482225d04c5b07c46e4db402d763fe7471dd8b414cc9a929bb6"
+    },
+    {
+      "path": "prior-hold-context-reconciliation-hash-only.jsonl",
+      "bytes": 77237,
+      "sha256": "3b74ec239fd8793156a1d22b7fd746482b801fc7de1d59c0a3baeeb227ada9d2"
+    },
+    {
+      "path": "prior-hold-context-reconciliation-summary.json",
+      "bytes": 1809,
+      "sha256": "92825d9df9452068985ecb7238d485a61370bc66b300bf851d33aeb7690f800b"
+    },
+    {
+      "path": "prior-selected-id-exclusions-hash-only.jsonl",
+      "bytes": 757863,
+      "sha256": "7be7f02f91d119146759738628e9dc834399da94809ab57537aa6b519700caf8"
+    },
+    {
+      "path": "scope-correction-finding.json",
+      "bytes": 1288,
+      "sha256": "51ad4f9825afca724b04d7b8412937fdbad4562acf0a96fe266b6a5c0d357796"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1189,
+      "sha256": "28797ea3651af9e5c2b1639f3deff4396f47b5e4df6b05bba5c178d66a80f744"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 32563,
+      "sha256": "f2cda1cad8f752bc1b018a597a9209603e8019709bb40d733a7a3ebe6fd4f4c8"
+    },
+    {
+      "path": "source-inventory-pinned.jsonl",
+      "bytes": 1800171,
+      "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 843,
+      "sha256": "0af5f4e039f66132f023951c0603a0426fc4780fe8ec6f468f0034874ed1cf49"
+    },
+    {
+      "path": "source-tree-attestation.json",
+      "bytes": 506,
+      "sha256": "420e20723c89555d723f33693442599be3cf4ae59a3764c45cd741009a77ecfa"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 9420,
+      "sha256": "cf5743824e325dff6990380eddac7151bebd93d7322673782bf68bbe4f71f133"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "scope": "19 reopened prior holds across ranks 409, 475, and 504",
+  "cells": 19,
+  "sourceIds": 3,
+  "primaryProposalCount": 11,
+  "independentBlindProposalCount": 9,
+  "rootSelectedDispositionCounts": {
+    "accept-current": 1,
+    "correction": 12,
+    "hold": 6
+  },
+  "rank409TermReconciliations": 12,
+  "rank475AcceptedCurrent": 1,
+  "rank504TextFreeHolds": 6,
+  "callerScopeCorrection": "all 19 cells reattested as caller-backed at the pinned tree; 1/1/2 production caller counts across source IDs",
+  "terminologyAnchorPath": "input/terminology-anchor.json",
+  "terminologyAnchorGitBlob": "79a752f21b9af32d5afd4a50d015f718b3bce92a",
+  "terminologyAnchorFileSha256": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+  "nativeSpeakerSignoff": "not claimed; confidence moderate pending fluent-speaker review",
+  "browserAcceptance": "not performed at this exact head; deployments are zero",
+  "catalogApplication": "pending"
+}
