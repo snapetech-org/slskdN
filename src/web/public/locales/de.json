@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "Die letzten Anhörungen von ListenBrainz konnten nicht übermittelt werden.",
   "Unable to {action}.": "{action} nicht möglich.",
   "Users associated with {item} loaded.": "Mit {item} verknüpfte Benutzer wurden geladen.",
-  "Wanted pull is not ready; no Servarr action was run.": "Gesuchter Zug ist noch nicht fertig; Es wurde keine Aktion Servarr ausgeführt.",
+  "Wanted pull is not ready; no Servarr action was run.": "Die Synchronisierung gewünschter Einträge ist noch nicht bereit; es wurde keine Servarr-Aktion ausgeführt.",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "Gesuchte Synchronisierung abgeschlossen. Erstellt: {created}; Duplikate: {duplicates}; übersprungen: {skipped}.",
   "Watching {artist}.": "Ich folge {artist}.",
   "Wishlist request review copied.": "Wunschlisten-Anfrageprüfung kopiert.",

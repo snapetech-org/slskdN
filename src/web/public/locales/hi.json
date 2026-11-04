@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "ListenBrainz पर हाल ही में सुनी गई बातें सबमिट करने में असमर्थ।",
   "Unable to {action}.": "{action} करने में असमर्थ.",
   "Users associated with {item} loaded.": "{item} से जुड़े उपयोगकर्ता लोड हो गए।",
-  "Wanted pull is not ready; no Servarr action was run.": "वांटेड पुल तैयार नहीं है; कोई Servarr क्रिया नहीं चलाई गई।",
+  "Wanted pull is not ready; no Servarr action was run.": "वांछित आइटम का समन्वयन अभी तैयार नहीं है; Servarr की कोई कार्रवाई नहीं की गई।",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "वांछित सिंक समाप्त हो गया. बनाया गया: {created}; डुप्लिकेट: {duplicates}; छोड़ दिया गया: {skipped}।",
   "Watching {artist}.": "अब {artist} को फ़ॉलो कर रहे हैं।",
   "Wishlist request review copied.": "विशलिस्ट अनुरोध समीक्षा कॉपी की गई।",

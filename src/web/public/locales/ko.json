@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "ListenBrainz에 대한 최근 청취를 제출할 수 없습니다.",
   "Unable to {action}.": "{action}을(를) 수행할 수 없습니다.",
   "Users associated with {item} loaded.": "{item}와 연결된 사용자가 로드되었습니다.",
-  "Wanted pull is not ready; no Servarr action was run.": "수배 당김이 준비되지 않았습니다. Servarr 작업이 실행되지 않았습니다.",
+  "Wanted pull is not ready; no Servarr action was run.": "원하는 항목 동기화가 아직 준비되지 않았습니다. Servarr 작업은 실행되지 않았습니다.",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "원하는 동기화가 완료되었습니다. 생성됨: {created}; 중복: {duplicates}; 건너뛰었습니다: {skipped}.",
   "Watching {artist}.": "아티스트 {artist} 팔로우 중입니다.",
   "Wishlist request review copied.": "위시리스트 요청 검토를 복사했습니다.",

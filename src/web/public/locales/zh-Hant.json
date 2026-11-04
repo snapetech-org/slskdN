@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "無法提交最近收聽的 ListenBrainz。",
   "Unable to {action}.": "無法{action}。",
   "Users associated with {item} loaded.": "已載入與 {item} 關聯的使用者。",
-  "Wanted pull is not ready; no Servarr action was run.": "想要的拉力還沒準備好；沒有運轉 Servarr 操作。",
+  "Wanted pull is not ready; no Servarr action was run.": "同步所需項目尚未就緒；尚未執行任何 Servarr 操作。",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "想要同步完成。建立：{created}；重複：{duplicates}；跳過：{skipped}。",
   "Watching {artist}.": "正在關注 {artist}。",
   "Wishlist request review copied.": "已複製願望清單請求審查。",

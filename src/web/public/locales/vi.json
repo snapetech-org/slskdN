@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "Không thể gửi các bản nghe gần đây của ListenBrainz.",
   "Unable to {action}.": "Không thể {action}.",
   "Users associated with {item} loaded.": "Người dùng liên kết với {item} đã được tải.",
-  "Wanted pull is not ready; no Servarr action was run.": "Lực kéo mong muốn chưa sẵn sàng; không có hành động Servarr nào được thực hiện.",
+  "Wanted pull is not ready; no Servarr action was run.": "Việc đồng bộ các mục mong muốn vẫn chưa sẵn sàng; chưa thực hiện thao tác nào của Servarr.",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "Đồng bộ hóa mong muốn đã hoàn tất. Đã tạo: {created}; trùng lặp: {duplicates}; đã bỏ qua: {skipped}.",
   "Watching {artist}.": "Đang theo dõi {artist}.",
   "Wishlist request review copied.": "Đã sao chép bản đánh giá yêu cầu.",

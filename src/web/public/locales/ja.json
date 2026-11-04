@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "ListenBrainz への最近の聴取を送信できません。",
   "Unable to {action}.": "{action} できません。",
   "Users associated with {item} loaded.": "{item} に関連付けられたユーザーがロードされました。",
-  "Wanted pull is not ready; no Servarr action was run.": "求められているプルの準備ができていません。 Servarr アクションは実行されませんでした。",
+  "Wanted pull is not ready; no Servarr action was run.": "希望項目の同期はまだ準備できていません。Servarr の操作は実行されませんでした。",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "必要な同期が完了しました。作成日: {created};重複: {duplicates};スキップされました: {skipped}。",
   "Watching {artist}.": "{artist} をフォローしています。",
   "Wishlist request review copied.": "ウィッシュリストのリクエスト確認をコピーしました。",

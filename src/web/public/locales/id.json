@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "Tidak dapat mengirimkan lagu terbaru ke ListenBrainz.",
   "Unable to {action}.": "Tidak dapat {action}.",
   "Users associated with {item} loaded.": "Pengguna yang terkait dengan {item} dimuat.",
-  "Wanted pull is not ready; no Servarr action was run.": "Tarikan yang diinginkan belum siap; tidak ada tindakan Servarr yang dijalankan.",
+  "Wanted pull is not ready; no Servarr action was run.": "Sinkronisasi item yang diinginkan belum siap; tidak ada tindakan Servarr yang dijalankan.",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "Sinkronisasi yang diinginkan selesai. Dibuat: {created}; duplikat: {duplicates}; dilewati: {skipped}.",
   "Watching {artist}.": "Mengikuti {artist}.",
   "Wishlist request review copied.": "Tinjauan permintaan Wishlist disalin.",

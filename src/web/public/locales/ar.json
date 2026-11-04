@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "غير قادر على إرسال عمليات الاستماع الأخيرة إلى ListenBrainz.",
   "Unable to {action}.": "غير قادر على {action}.",
   "Users associated with {item} loaded.": "تم تحميل المستخدمين المرتبطين بـ {item}.",
-  "Wanted pull is not ready; no Servarr action was run.": "السحب المطلوب غير جاهز؛ لم يتم تشغيل أي إجراء Servarr.",
+  "Wanted pull is not ready; no Servarr action was run.": "مزامنة العناصر المطلوبة غير جاهزة بعد؛ لم يتم تنفيذ أي إجراء من Servarr.",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "انتهت المزامنة المطلوبة. تم الإنشاء: {created}; التكرارات: {duplicates}؛ تم تخطي: {skipped}.",
   "Watching {artist}.": "أتابع {artist}.",
   "Wishlist request review copied.": "تم نسخ مراجعة طلبات قائمة الأمنيات.",

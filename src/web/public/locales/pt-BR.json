@@ -4799,7 +4799,7 @@
   "Unable to submit recent listens to ListenBrainz.": "Não foi possível enviar escutas recentes de ListenBrainz.",
   "Unable to {action}.": "Não é possível {action}.",
   "Users associated with {item} loaded.": "Usuários associados a {item} carregados.",
-  "Wanted pull is not ready; no Servarr action was run.": "O pull desejado não está pronto; nenhuma ação Servarr foi executada.",
+  "Wanted pull is not ready; no Servarr action was run.": "A sincronização de itens desejados ainda não está pronta; nenhuma ação do Servarr foi executada.",
   "Wanted sync finished. Created: {created}; duplicates: {duplicates}; skipped: {skipped}.": "Sincronização desejada concluída. Criado: {created}; duplicatas: {duplicates}; ignorado: {skipped}.",
   "Watching {artist}.": "Acompanhando {artist}.",
   "Wishlist request review copied.": "A revisão das solicitações foi copiada.",
