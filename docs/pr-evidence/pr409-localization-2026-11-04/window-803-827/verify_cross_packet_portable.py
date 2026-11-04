@@ -27,6 +27,10 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def run(args):
+    return subprocess.check_output(args, text=True).strip()
+
+
 def check_sums(folder, filename):
     subprocess.run(['sha256sum', '-c', filename], cwd=folder, check=True, stdout=subprocess.DEVNULL)
     listed = {}
@@ -46,6 +50,7 @@ def check_sums_allow_nested(folder, filename):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--source-checkout', type=Path, required=True, help='clean exact-head checkout for candidate-free/primary verifiers')
+    ap.add_argument('--historical-offline', action='store_true', help='replay sealed evidence after the live PR head has advanced')
     args = ap.parse_args()
     source = args.source_checkout.resolve()
     cf = ROOT / 'candidate-free/input'
@@ -60,8 +65,15 @@ def main():
     check_sums(cross, 'SHA256SUMS.txt')
     assert (cf / 'PACKET-SHA256SUMS.txt').read_bytes() == (blind / 'candidate-free/input/PACKET-SHA256SUMS.txt').read_bytes()
 
-    candidate_result = json.loads(subprocess.check_output(['python3', str(cf / 'verify_input.py'), '--repo', str(source)], text=True))
-    primary_result = json.loads(subprocess.check_output(['python3', str(primary / 'verify_primary.py'), '--repo', str(source)], text=True))
+    if args.historical_offline:
+        candidate_result = readj(cross / 'candidate-free-verifier.json')
+        primary_result = readj(cross / 'primary-verifier.json')
+        assert run(['git','-C',str(source),'rev-parse','HEAD']) == HEAD
+        assert run(['git','-C',str(source),'rev-parse','HEAD^{tree}']) == TREE
+        assert not run(['git','-C',str(source),'status','--porcelain=v1'])
+    else:
+        candidate_result = json.loads(subprocess.check_output(['python3', str(cf / 'verify_input.py'), '--repo', str(source)], text=True))
+        primary_result = json.loads(subprocess.check_output(['python3', str(primary / 'verify_primary.py'), '--repo', str(source)], text=True))
     assert candidate_result['result'] == primary_result['result'] == 'PASS'
     assert candidate_result['head'] == primary_result['head'] == HEAD
     assert candidate_result['tree'] == primary_result['tree'] == TREE
@@ -157,7 +169,8 @@ def main():
         assert branch['object']['sha']==HEAD and pull['head']['sha']==HEAD and pull['state']=='open'
     print(json.dumps({'result':'PASS','head':HEAD,'tree':TREE,'cells':300,'updates':52,
                       'retained':236,'textFreeHolds':12,'blindHoldsResolved':20,
-                      'candidateFreePrimaryBlindCrossChecksums':'PASS'},indent=2))
+                      'candidateFreePrimaryBlindCrossChecksums':'PASS',
+                      'reviewVerifierMode':'historical-offline' if args.historical_offline else 'live-ref-attested'},indent=2))
 
 
 if __name__ == '__main__':

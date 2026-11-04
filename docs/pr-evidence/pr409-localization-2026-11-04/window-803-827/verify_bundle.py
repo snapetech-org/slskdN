@@ -41,7 +41,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--repo', type=Path, required=True, help='checkout containing product and evidence commits')
     ap.add_argument('--source-checkout', type=Path, required=True, help='clean checkout at the pinned review source head')
-    ap.add_argument('--stage', choices=('pre-push','final'), required=True)
+    ap.add_argument('--stage', choices=('pre-push','historical','final'), required=True)
     args = ap.parse_args()
     repo, source = args.repo.resolve(), args.source_checkout.resolve()
 
@@ -54,9 +54,10 @@ def main():
     verify_sums(ROOT / 'fresh-blind/candidate-free/input', 'PACKET-SHA256SUMS.txt')
     verify_sums(ROOT / 'cross-review', 'SHA256SUMS.txt')
 
-    cross_result = json.loads(subprocess.check_output([
-        'python3', str(ROOT / 'verify_cross_packet_portable.py'), '--source-checkout', str(source)
-    ], text=True))
+    cross_command = ['python3', str(ROOT / 'verify_cross_packet_portable.py'), '--source-checkout', str(source)]
+    if args.stage in ('historical','final'):
+        cross_command.append('--historical-offline')
+    cross_result = json.loads(subprocess.check_output(cross_command, text=True))
     assert cross_result['result'] == 'PASS'
     app_result = json.loads(subprocess.check_output([
         'python3', str(ROOT / 'application/verify_application.py'),
@@ -80,11 +81,12 @@ def main():
     assert all(p.startswith('src/web/public/locales/') and p.endswith('.json') for p in product_paths)
 
     current_head = run(['git','-C',str(repo),'rev-parse','HEAD'])
-    evidence_parent = run(['git','-C',str(repo),'rev-parse','HEAD^']) if current_head != product_sha else None
     if current_head != product_sha:
-        assert evidence_parent == product_sha
-        evidence_paths = set(run(['git','-C',str(repo),'diff-tree','--no-commit-id','--name-only','-r',current_head]).splitlines())
-        assert evidence_paths and all(p.startswith('docs/pr-evidence/pr409-localization-2026-11-04/window-803-827/') for p in evidence_paths)
+        evidence_commits = run(['git','-C',str(repo),'rev-list','--first-parent','--reverse',f'{product_sha}..{current_head}']).splitlines()
+        assert evidence_commits
+        for commit in evidence_commits:
+            evidence_paths = set(run(['git','-C',str(repo),'diff-tree','--no-commit-id','--name-only','-r',commit]).splitlines())
+            assert evidence_paths and all(p.startswith('docs/pr-evidence/pr409-localization-2026-11-04/window-803-827/') for p in evidence_paths)
     assert not run(['git','-C',str(repo),'status','--porcelain=v1']) if args.stage == 'final' else True
 
     hooks = readj(ROOT / 'application/local-hooks-policy.json')
@@ -118,7 +120,7 @@ def main():
     print(json.dumps({'result':'PASS','stage':args.stage,'productCommit':product_sha,
                       'branchHead':live_head,'cellsReadBack':300,'updates':52,
                       'retained':236,'textFreeHolds':12,'localeKeyOrder':'PASS',
-                      'PRBody':'PASS' if args.stage=='final' else 'original bytes intact'},indent=2))
+                      'PRBody':'PASS' if args.stage in ('historical','final') else 'original bytes intact'},indent=2))
 
 
 if __name__ == '__main__':

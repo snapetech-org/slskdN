@@ -1,0 +1,20 @@
+{
+  "allRefsAligned": true,
+  "attestedAtStage": "after product and first evidence commits were pushed; before the offline-verifier follow-up commit",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "branchSha": "9d3e7d948def6d218f3030f4b4e4abc918fde504",
+  "isDraft": true,
+  "liveBodyBytes": 106305,
+  "liveBodySha256": "ed5c3387c83d14378e06864535cd0eeb51a217be595b4366f3587b776e81db9d",
+  "originalBodyBytes": 105845,
+  "originalBodySha256": "8a1688e0f7c7e50bea134c3e232f83c17a845e5a829d637ce6c9b5d65a849478",
+  "originalPrefixPreservedExceptTerminalNewlines": true,
+  "pr": 409,
+  "prHeadSha": "9d3e7d948def6d218f3030f4b4e4abc918fde504",
+  "pullHeadSha": "9d3e7d948def6d218f3030f4b4e4abc918fde504",
+  "result": "PASS",
+  "state": "OPEN",
+  "updateTargetMatchesLiveBodyExceptTerminalNewlines": true,
+  "updateTargetSha256": "ed5c3387c83d14378e06864535cd0eeb51a217be595b4366f3587b776e81db9d",
+  "w77SectionCount": 1
+}
