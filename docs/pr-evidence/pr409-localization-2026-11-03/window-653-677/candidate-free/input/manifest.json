@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W71 ranks 653-677 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "remainingQueueRankRange": [
+    553,
+    577
+  ],
+  "continuationRankRange": [
+    653,
+    677
+  ],
+  "previousWindow": "W70",
+  "nextUnselectedContinuationRank": 678,
+  "nextUnselectedSourceId": "src_2a1f7f474af1cdd0",
+  "priorSelectedIdsExcluded": 1757,
+  "priorHeldCellsReattested": 140,
+  "priorHoldLineage": {
+    "preW69": 128,
+    "w69": 12
+  },
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 2,
+    "protectedLiteral": 1
+  },
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1701,
+      "sha256": "b7bedc8c0c64b8a8f4fa8bd8d49784bce8e21d3bf75245a4ce5819de6422bf75"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 129,
+      "sha256": "bdb204cda5e01ac3a9d3c0cb596038760876db581a2a24ba499ff95d5b1a24b1"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 46837,
+      "sha256": "d61decc868999243b8bb53704240c4b8d99b3bdefa93031ebfd3386b4b49cba1"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "e2fbf4c51f1eab4630ea41d66bb5ff8affa652a970b19a8b7ea8b6988d11032d"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 641,
+      "sha256": "3dc50305510c5335b117b252c51dfe2e00d1b869f49c939e184dfdc103099c74"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 254,
+      "sha256": "389684fd8bfd607fa44f7fc116ab147d65354f757a3e6274947a55945105d364"
+    },
+    {
+      "path": "prior-held-cell-reattestation.jsonl",
+      "bytes": 186863,
+      "sha256": "e6a801b1840e7560adad9bbdc431578d4a2d798f1191f296b2fe98379d3b5dec"
+    },
+    {
+      "path": "prior-selected-id-exclusions.jsonl",
+      "bytes": 548958,
+      "sha256": "76c6aec659673d537edbac9529cdebb6a0f7fd9249cf02db3c3bf0479e5aee28"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1895,
+      "sha256": "5d34e3d1b4365dd71aaf525e42df81039b5d9ba0c4a24a076af7e6057c5ae977"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8300,
+      "sha256": "a63331163f7661c7e0bbf0904fb131ffa7d3e4d701fd1f571c1fbb4b7579df02"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 509853,
+      "sha256": "1e55e94a2de97f32c69f8d2c98c66a05f295f69d8dc8f476ef7dedf463e4d035"
+    },
+    {
+      "path": "source-inventory-pinned.jsonl",
+      "bytes": 1800171,
+      "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7021,
+      "sha256": "6a7a0bbf3daa68f61a24991edb756f830e66e3d49c364c9b191af93abce8cd49"
+    },
+    {
+      "path": "source-tree-attestation.json",
+      "bytes": 318,
+      "sha256": "1400f74d38aaaba2f46c14af821c994ff0b2d0e7e4c80d168a406561df12cb65"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 7278,
+      "sha256": "6e5fe8b7823eac3d1f0a7d0a3aff3579a9d35b2245d012a7db5912b41a132652"
+    }
+  ]
+}

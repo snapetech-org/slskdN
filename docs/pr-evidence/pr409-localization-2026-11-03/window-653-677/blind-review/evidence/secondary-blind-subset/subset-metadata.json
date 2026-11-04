@@ -1,0 +1,78 @@
+{
+  "artifact": "SlskdN PR #409 W71 independent blind subset review",
+  "candidateFreeInput": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-653-677-20261103/candidate-free-packet/input",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "window": "W71",
+  "continuationRankRange": [
+    653,
+    677
+  ],
+  "remainingQueueRankRange": [
+    553,
+    577
+  ],
+  "locales": [
+    "es",
+    "hi",
+    "vi"
+  ],
+  "cellCount": 75,
+  "dispositionCounts": {
+    "accept": 51,
+    "hold_context": 3,
+    "revise": 21
+  },
+  "nativeSpeakerSignoff": false,
+  "inputChecksumStatus": "PASS",
+  "inputChecksumFilesVerified": 16,
+  "inputVerifier": {
+    "verifier": "PASS",
+    "filesHashed": 16,
+    "sourceInventoryRows": 6176,
+    "selectedSources": 25,
+    "currentCells": 300,
+    "priorExcludedIds": 1757,
+    "priorHolds": 140,
+    "priorHoldTargetMatches": 140,
+    "catalogs": 12,
+    "callerContexts": 25,
+    "tokenMismatches": {
+      "placeholder": 0,
+      "markup": 0,
+      "numeric": 2,
+      "protectedLiteral": 1
+    }
+  },
+  "inputSha256": {
+    "manifest.json": "176281ea6b89fb04adf31f47f8bdf297964baa8fb0cf3cbc2981c89c5d68d690",
+    "selection-boundary.jsonl": "a63331163f7661c7e0bbf0904fb131ffa7d3e4d701fd1f571c1fbb4b7579df02",
+    "source-current-cells.jsonl": "1e55e94a2de97f32c69f8d2c98c66a05f295f69d8dc8f476ef7dedf463e4d035",
+    "caller-contexts.jsonl": "d61decc868999243b8bb53704240c4b8d99b3bdefa93031ebfd3386b4b49cba1",
+    "prior-held-cell-reattestation.jsonl": "e6a801b1840e7560adad9bbdc431578d4a2d798f1191f296b2fe98379d3b5dec"
+  },
+  "priorHeldCellReattestation": {
+    "count": 140,
+    "targetHashMatches": 140,
+    "targetHashMismatches": 0,
+    "targetTextEmitted": false
+  },
+  "selectionReattestation": {
+    "selectedSourceCount": 25,
+    "continuationRankRange": [
+      653,
+      677
+    ],
+    "selectedSourceIdsSha256": "12f765b3ae13adbf620b9d6116581d50e5a2712aa2d836eb9ad7e9015353465f",
+    "selectionBoundarySha256": "a63331163f7661c7e0bbf0904fb131ffa7d3e4d701fd1f571c1fbb4b7579df02",
+    "sourceTextHashMismatches": 0,
+    "selectedSourceTextEmitted": false
+  },
+  "assignedSubsetCurrentLiteralMismatches": {
+    "protectedLiteral": 1
+  },
+  "reviewedTargetLiteralMismatches": {},
+  "reviewedTargetLiteralAuditStatus": "PASS"
+}

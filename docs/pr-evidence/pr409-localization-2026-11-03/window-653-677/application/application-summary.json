@@ -1,0 +1,29 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W71 ranks 653-677",
+  "reviewHead": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "applicationCommit": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+  "applicationParent": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "applicationTree": "a6b6e84f512e21b7f0bf3a44879ccf81815d3bcc",
+  "cellsReviewed": 300,
+  "selectedChanges": 57,
+  "correct": 40,
+  "refine": 17,
+  "acceptCurrent": 231,
+  "hashOnlyCallerlessHolds": 12,
+  "actualReadbackMatches": 57,
+  "readbackMismatches": 0,
+  "localeCatalogsChanged": 12,
+  "keysPerCatalog": 6176,
+  "catalogSha256DeltasReconciledInFinalPlan": [
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/vi.json"
+  ],
+  "priorHeldCellsHashOnly": 140,
+  "priorSelectedSourceIdsHashOnly": 1757,
+  "nativeSpeakerSignoff": "pending; the semantic review records machine-assisted recommendations",
+  "workflowFilesChanged": 0,
+  "testsBuildsScansCIReleaseTagsRun": false
+}

@@ -1,0 +1,27 @@
+{
+  "verifier": "PASS",
+  "inputChecksumsVerified": 16,
+  "inputVerifier": "PASS",
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "subsetCells": 75,
+  "locales": [
+    "es",
+    "hi",
+    "vi"
+  ],
+  "continuationRankRange": [
+    653,
+    677
+  ],
+  "dispositionCounts": {
+    "accept": 51,
+    "hold_context": 3,
+    "revise": 21
+  },
+  "priorHeldTargetHashMatches": 140,
+  "priorHeldTargetHashMismatches": 0,
+  "selectionSourceHashMismatches": 0,
+  "reviewedTargetLiteralMismatches": {},
+  "priorTargetTextEmitted": false
+}

@@ -1,0 +1,89 @@
+{
+  "artifact": "slskdN PR #409 W71 cross-review panel",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "scope": {
+    "window": "W71",
+    "continuationRankStart": 653,
+    "continuationRankEnd": 677,
+    "sourceIds": 25,
+    "locales": 12,
+    "cells": 300
+  },
+  "candidateFreeInput": {
+    "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-653-677-20261103/candidate-free-packet/input",
+    "checksumListSha256": "be3d9a9f300d15caabaffafb03fdbbb32217e01be6b808cdd71a0e691e99e3ea",
+    "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "verifier": "PASS"
+  },
+  "primaryInput": {
+    "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-653-677-20261103/primary-packet/output",
+    "checksumListSha256": "1d46062baf7dc427fae8ac432d909894114d4f10604c2794fe322dfefe5b25e3",
+    "verifier": "PASS"
+  },
+  "blindInput": {
+    "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-blind-review-20261103",
+    "checksumListSha256": "ee10d28b3346459817966df379cfa4542d064976bc407752379605b01f83a484",
+    "verifier": "PASS"
+  },
+  "finalDispositionCounts": {
+    "accept-current": 231,
+    "hold": 12,
+    "correct": 40,
+    "refine": 17
+  },
+  "primaryDispositionCounts": {
+    "accept-current": 257,
+    "hold": 12,
+    "correct": 21,
+    "refine": 10
+  },
+  "blindDispositionCounts": {
+    "accept-current": 227,
+    "hold": 12,
+    "correction": 44,
+    "refinement": 17
+  },
+  "primaryBlindComparison": {
+    "cellsWithNormalizedDispositionDifference": 44,
+    "proposalsBoth": 28,
+    "primaryOnlyProposals": 3,
+    "blindOnlyProposals": 33,
+    "selectedPrimaryFlaggedChanges": 28,
+    "selectedBlindFlaggedChanges": 57,
+    "selectedBlindOnlyChanges": 29,
+    "primaryOnlyFlagsRetainedAsCurrent": 3,
+    "blindOnlyFlagsRetainedAsCurrent": 4,
+    "cellsWithExactDispositionLabelDifference": 64,
+    "cellsWithAcceptVersusChangeDifference": 36
+  },
+  "baselineTokenMismatches": {
+    "placeholderMismatch": 0,
+    "markupMismatch": 0,
+    "numericMismatch": 2,
+    "protectedLiteralMismatch": 1
+  },
+  "recommendedTargetTokenFailures": 0,
+  "hashOnlyLineage": {
+    "priorHeldCells": 140,
+    "priorSelectedSourceIds": 1757,
+    "containsPriorSourceText": false,
+    "containsPriorTargetText": false,
+    "newCallerlessRank654Holds": 12
+  },
+  "targetTextIncludedForSelectedChanges": 57,
+  "supplementalPinnedCallerFile": {
+    "path": "src/web/src/components/Player/Visualizer.jsx",
+    "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+    "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5"
+  },
+  "reviewLimit": "Machine-assisted cross-review based on pinned source, target, caller context, and both sealed dispositions; native-speaker signoff is not recorded.",
+  "reviewedUtc": "2026-11-04T01:22:03+00:00",
+  "liveAttestations": {
+    "beforeUtc": "2026-11-04T01:05:44+00:00",
+    "afterUtc": "2026-11-04T01:26:32+00:00",
+    "headTreeUnchanged": true
+  }
+}

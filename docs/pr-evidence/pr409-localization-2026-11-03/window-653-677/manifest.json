@@ -1,0 +1,69 @@
+{
+  "artifact": "PR #409 W71 localization evidence bundle",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "baseRef": "main",
+  "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "reviewHead": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "reviewTree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "applicationCommit": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+  "applicationParent": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "applicationTree": "a6b6e84f512e21b7f0bf3a44879ccf81815d3bcc",
+  "evidenceOnlyCommitParent": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+  "pushPerformed": false,
+  "scope": {
+    "window": "W71",
+    "continuationRankStart": 653,
+    "continuationRankEnd": 677,
+    "sourceIds": 25,
+    "locales": 12,
+    "cells": 300
+  },
+  "reviewDispositionCounts": {
+    "accept-current": 231,
+    "correct": 40,
+    "refine": 17,
+    "hold": 12
+  },
+  "application": {
+    "selectedCells": 57,
+    "catalogFiles": 12,
+    "keysPerCatalog": 6176,
+    "readbackMatches": 57,
+    "readbackMismatches": 0,
+    "holdRowsHashOnly": 12,
+    "priorHeldCellsHashOnly": 140,
+    "priorSelectedSourceIdsHashOnly": 1757
+  },
+  "sourcePackets": {
+    "candidateFreePacketChecksumListSha256": "be3d9a9f300d15caabaffafb03fdbbb32217e01be6b808cdd71a0e691e99e3ea",
+    "primaryPacketChecksumListSha256": "1d46062baf7dc427fae8ac432d909894114d4f10604c2794fe322dfefe5b25e3",
+    "canonicalFullBlindPacketChecksumListSha256": "ee10d28b3346459817966df379cfa4542d064976bc407752379605b01f83a484",
+    "sealedCrossReviewChecksumListSha256": "f7f2b03a079a6871396ce678d7fd8e4ce1b34ff785edf2a6c8c12e5a37a710e4",
+    "secondPersonAuditChecksumListSha256": "67ca2604f2f01426dd6a73e01f50478f287e3fbd313e2f398e73f5c97ce2af09",
+    "concernResolutionAddendumChecksumListSha256": "af6ac8fffa006afb560b4727a2a7816870819f35394024014b44d8173e35b820"
+  },
+  "applicationPlan": {
+    "finalPlan": "application/application-plan.json",
+    "preservedSourcePlan": "application/application-plan-source.json",
+    "sourcePlanSha256": "4f088f16b7403108c9887720e69ca9a55df011c2dabc34b1975325f10e0e13ad",
+    "addendumTargetsApplied": 3,
+    "wholeCatalogShaDeltasReconciled": [
+      "src/web/public/locales/fr.json",
+      "src/web/public/locales/ja.json",
+      "src/web/public/locales/vi.json"
+    ]
+  },
+  "blindPacket": "canonical full packet only; no standalone partial-language subset included",
+  "workflowFilesIncluded": 0,
+  "testsBuildsScansCIReleaseTagsRun": false,
+  "status": "PR refs re-attested at f120; evidence-only commit ready",
+  "createdUtc": "2026-11-04T02:07:22+00:00",
+  "livePRBeforeEvidenceCommit": {
+    "head": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+    "tree": "a6b6e84f512e21b7f0bf3a44879ccf81815d3bcc",
+    "attestedUtc": "2026-11-04T02:13:43+00:00"
+  },
+  "inventoryRowCount": 90,
+  "rootChecksumEntryCount": 91
+}

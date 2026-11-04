@@ -1,0 +1,30 @@
+{
+  "result": "PASS",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "window": "W71 ranks 653-677",
+  "cellsReviewed": 300,
+  "dispositionCounts": {
+    "accept-current": 227,
+    "hold": 12,
+    "correction": 44,
+    "refinement": 17
+  },
+  "proposals": 61,
+  "newHolds": 12,
+  "carriedHoldsReattestedHashOnly": 140,
+  "priorSelectedIdExclusionsReattestedHashOnly": 1757,
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 2,
+    "protectedLiteral": 1
+  },
+  "proposalTokenOrLiteralFailures": 0,
+  "nativeSpeakerReviewPerformed": false,
+  "catalogValuesApplied": false,
+  "repositoryOrPRFilesChanged": false,
+  "reviewType": "independent machine blind review with a candidate-free secondary blind subset; qualified native-language review pending"
+}

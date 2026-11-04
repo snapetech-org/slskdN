@@ -1,0 +1,30 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "commit": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+  "tree": "a6b6e84f512e21b7f0bf3a44879ccf81815d3bcc",
+  "parent": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "subject": "fix(i18n): refine reviewed slskdN labels",
+  "author": "snapetech <snapetech@users.noreply.github.com>",
+  "committerDate": "2026-11-04T01:51:19Z",
+  "changedFiles": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "changedFileCount": 12,
+  "workflowFilesChanged": 0,
+  "catalogCellsReadBack": 57,
+  "readbackMatches": 57,
+  "evidenceOnlyCommitParent": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+  "pushPerformed": false
+}

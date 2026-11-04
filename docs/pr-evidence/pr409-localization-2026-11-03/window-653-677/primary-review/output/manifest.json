@@ -1,0 +1,147 @@
+{
+  "packet": "slskdN PR #409 W71 primary translation review",
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "candidateFreeInputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-653-677-20261103/candidate-free-packet/input",
+  "candidateFreeChecksumListSha256": "be3d9a9f300d15caabaffafb03fdbbb32217e01be6b808cdd71a0e691e99e3ea",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "selectedSources": 25,
+  "reviewedCells": 300,
+  "dispositions": {
+    "accept-current": 257,
+    "hold": 12,
+    "correct": 21,
+    "refine": 10
+  },
+  "proposedCells": 31,
+  "perLocale": {
+    "ar": {
+      "accept-current": 21,
+      "correct": 3,
+      "refine": 0,
+      "hold": 1
+    },
+    "de": {
+      "accept-current": 20,
+      "correct": 3,
+      "refine": 1,
+      "hold": 1
+    },
+    "es": {
+      "accept-current": 21,
+      "correct": 2,
+      "refine": 1,
+      "hold": 1
+    },
+    "fr": {
+      "accept-current": 21,
+      "correct": 1,
+      "refine": 2,
+      "hold": 1
+    },
+    "hi": {
+      "accept-current": 23,
+      "correct": 1,
+      "refine": 0,
+      "hold": 1
+    },
+    "id": {
+      "accept-current": 21,
+      "correct": 2,
+      "refine": 1,
+      "hold": 1
+    },
+    "ja": {
+      "accept-current": 22,
+      "correct": 1,
+      "refine": 1,
+      "hold": 1
+    },
+    "ko": {
+      "accept-current": 22,
+      "correct": 2,
+      "refine": 0,
+      "hold": 1
+    },
+    "pt-BR": {
+      "accept-current": 21,
+      "correct": 2,
+      "refine": 1,
+      "hold": 1
+    },
+    "vi": {
+      "accept-current": 21,
+      "correct": 2,
+      "refine": 1,
+      "hold": 1
+    },
+    "zh-Hans": {
+      "accept-current": 22,
+      "correct": 1,
+      "refine": 1,
+      "hold": 1
+    },
+    "zh-Hant": {
+      "accept-current": 22,
+      "correct": 1,
+      "refine": 1,
+      "hold": 1
+    }
+  },
+  "priorExcludedSourceIds": 1757,
+  "priorHeldCells": 140,
+  "priorHoldTargetMismatches": 0,
+  "callerContexts": 25,
+  "callerlessRank654Cells": 12,
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 2,
+    "protectedLiteral": 1
+  },
+  "baselineFlaggedCells": [
+    {
+      "continuationRank": 654,
+      "sourceId": "src_2926cf4335cfbd8d",
+      "locale": "ja",
+      "checks": [
+        "numericTokens"
+      ]
+    },
+    {
+      "continuationRank": 654,
+      "sourceId": "src_2926cf4335cfbd8d",
+      "locale": "ko",
+      "checks": [
+        "numericTokens"
+      ]
+    },
+    {
+      "continuationRank": 672,
+      "sourceId": "src_2a082489c535d363",
+      "locale": "hi",
+      "checks": [
+        "protectedLiterals"
+      ]
+    }
+  ],
+  "proposedTokenMismatches": 0,
+  "nativeSpeakerSignoff": "not claimed; not performed",
+  "reviewBasis": "Candidate-free pinned English sources, exact caller contexts, and current target catalog cells only; no blind or cross-review material used.",
+  "primaryReviewSha256": "bbc2ed31e2f04b4967e960e210572fbd5f3aee14a3a26a78d5fd566cc92259fd",
+  "primaryReviewBytes": 583911
+}

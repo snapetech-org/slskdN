@@ -1,0 +1,32 @@
+{
+  "artifact": "W71 three-cell wording concern resolution addendum",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "preservesOriginalPacket": true,
+  "cells": 3,
+  "resolvedCells": 3,
+  "nativeSpeakerSignoffBeforeApplication": true,
+  "applicationRecommendation": "Update the application with these three revised targets after native-speaker signoff; this addendum does not apply catalog edits.",
+  "crossReviewChecksumListSha256": "f7f2b03a079a6871396ce678d7fd8e4ce1b34ff785edf2a6c8c12e5a37a710e4",
+  "candidateFreeChecksumListSha256": "be3d9a9f300d15caabaffafb03fdbbb32217e01be6b808cdd71a0e691e99e3ea",
+  "secondPersonAuditChecksumListSha256": "67ca2604f2f01426dd6a73e01f50478f287e3fbd313e2f398e73f5c97ce2af09",
+  "crossReviewExpectedHead": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "crossReviewExpectedTree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "liveBeforeUtc": "2026-11-04T01:44:19+00:00",
+  "status": "finalized",
+  "reviewedUtc": "2026-11-04T01:45:28+00:00",
+  "crossReviewPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-cross-panel-20261103",
+  "candidateFreePath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-653-677-20261103/candidate-free-packet/input",
+  "primaryPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-653-677-20261103/primary-packet/output",
+  "blindPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-blind-review-20261103",
+  "secondPersonAuditPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w71-cross-panel-20261103/second-person-audit",
+  "expectedTargetHashes": {
+    "659|fr": "ad447655594195662e74a6ea80101037042f7d863ff850d593f29c911b39c060",
+    "662|vi": "4e4dc228ebc474e13064816f97aa0d2257da6fd767ad1097a9c81f2fed8c6d5f",
+    "664|ja": "8dc464133bbdf0adf61723e01a0b83d94b05454b0ce0eba93173ebb93be2fe83"
+  },
+  "liveAfterUtc": "2026-11-04T01:47:52+00:00",
+  "refsUnchanged": true
+}

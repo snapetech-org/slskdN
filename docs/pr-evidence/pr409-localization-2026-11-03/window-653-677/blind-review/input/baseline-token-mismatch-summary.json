@@ -1,0 +1,9 @@
+{
+  "cellCount": 300,
+  "mismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 2,
+    "protectedLiteral": 1
+  }
+}
