@@ -1,0 +1,138 @@
+{
+  "cellCount": 300,
+  "mismatchCellCount": 21,
+  "mismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 21
+  },
+  "mismatchExamples": [
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "ar",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "es",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "id",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "ja",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "ko",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "vi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "zh-Hans",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 795,
+      "sourceId": "src_2f9acb02faa121bb",
+      "locale": "zh-Hant",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "ar",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "de",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "es",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "fr",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "id",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "ja",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "ko",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "pt-BR",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "vi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "zh-Hans",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 802,
+      "sourceId": "src_2ffd651e794ecb60",
+      "locale": "zh-Hant",
+      "kind": "protectedLiteral"
+    }
+  ]
+}

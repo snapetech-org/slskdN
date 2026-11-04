@@ -1,0 +1,11 @@
+{
+  "head": "674156749ee86021ef91d896b1824be62cff9a93",
+  "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450",
+  "sourceRoot": "src/web/src",
+  "treeEnumeration": "git ls-tree -r -z at exact pinned commit",
+  "treeEntryCount": 7281,
+  "productionFileCount": 279,
+  "callerScan": "exact single- or double-quoted source literal scan",
+  "testAndSpecFilesExcluded": true,
+  "runtimeFilePinsSha256": "e19067df0a83844866a5a38242b466e7b2b2c673e451820278fb1c1394d00fbe"
+}

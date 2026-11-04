@@ -1,0 +1,18 @@
+{
+  "previousWindow": "W75",
+  "previousHead": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "previousTree": "f21cb5cde009ac35f5531ddc40612821aee6f471",
+  "previousCandidateFreeManifestSha256": "f992ad8d7adf4615b91156a5579f16431465298485bbd1436ed6ebe03c0cc2c1",
+  "previousCandidateFreeChecksumListSha256": "e8578fd8e37d556f075da8d6eb53135929db3f07c40d8cc1de0302a3b05fe6c0",
+  "priorSelectedIdExclusionRows": 1857,
+  "priorHeldCells": 271,
+  "priorResolvedHoldHistoryRows": 13,
+  "priorSelectedIdsSha256": "6b7a642927d722d242b342aac4d4f7f085da608fadbbefe634746a0409fad960",
+  "priorHoldInputSha256": "0cbd3def105db07fb0b2ed0491c7ab1dca1297e1ee4257d6ef9af3ba55a6a6d3",
+  "priorResolutionInputSha256": "ab7098de6f70b2d0c6eb27398907796282aa77e9c0264aaebd51e8d9fef2ba43",
+  "w75CrossHoldInputSha256": "592b581d2bc4b393d16ce1b8be886110f5e68de4ffc46b4f518e4b99e975beb1",
+  "w75SelectedIdInputSha256": "4f7c285355ee9391adc333464427ce65a21cef687c681d2432144c094fc8a640",
+  "priorPrimaryReviewUsed": false,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false
+}

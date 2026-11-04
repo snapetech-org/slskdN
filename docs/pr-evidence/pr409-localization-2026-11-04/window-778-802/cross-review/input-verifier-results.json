@@ -1,0 +1,27 @@
+{
+  "blind": {
+    "cells": 300,
+    "head": "674156749ee86021ef91d896b1824be62cff9a93",
+    "result": "PASS",
+    "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450"
+  },
+  "candidateFree": {
+    "cells": 300,
+    "head": "674156749ee86021ef91d896b1824be62cff9a93",
+    "result": "PASS",
+    "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450"
+  },
+  "checksums": {
+    "blind": "PASS",
+    "candidateFree": "PASS",
+    "primary": "PASS"
+  },
+  "livePRBeforeReview": "PASS",
+  "primary": {
+    "cells": 300,
+    "head": "674156749ee86021ef91d896b1824be62cff9a93",
+    "result": "PASS",
+    "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450"
+  },
+  "sourceWorktreeCleanAtPinnedHead": true
+}

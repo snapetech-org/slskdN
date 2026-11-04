@@ -1,0 +1,20 @@
+{
+  "automaticPRLabelValidationExpected": false,
+  "automaticPushValidationExpected": false,
+  "branchWorkflowTriggers": {
+    "build-on-tag.yml": "workflow_dispatch only",
+    "ci-enhancements.yml": "workflow_dispatch only",
+    "ci.yml": "workflow_dispatch only",
+    "e2e-tests.yml": "workflow_dispatch only",
+    "feature-coherence-validation.yml": "workflow_call; guarded to public fork heads only",
+    "local-identity-leaks.yml": "workflow_dispatch only",
+    "public-fork-pr.yml": "pull_request labeled; guarded to public fork heads only",
+    "semgrep-community.yml": "workflow_dispatch only",
+    "trivy-filesystem.yml": "workflow_dispatch only"
+  },
+  "checkedUtc": "2026-11-04 16:54 UTC",
+  "codeQLRunsOnHead": 0,
+  "defaultCodeQLSetup": "not-configured",
+  "head": "7bfcab0e1eae810f8af1e1398f0e429c862b42ee",
+  "reason": "The PR head is same-repository (not a fork), and the only pull_request workflow requires a labeled public fork. Other validation and release workflows are workflow_dispatch or scheduled; no schedule was dispatched by this task."
+}

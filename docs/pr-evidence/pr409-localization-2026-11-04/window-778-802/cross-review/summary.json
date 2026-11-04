@@ -1,0 +1,41 @@
+{
+  "applicationPerformed": false,
+  "baselineProtectedLiteralMismatchCells": 21,
+  "baselineProtectedLiteralMismatchDisposition": "All 21 are within the 48 callerless cells and remain text-free holds.",
+  "blindProposals": 52,
+  "blindSelectedTargets": [
+    "781::zh-Hant",
+    "786::zh-Hant",
+    "798::vi"
+  ],
+  "browserReview": false,
+  "cells": 300,
+  "crossHashOnlyHolds": 48,
+  "differentTargetProposals": 21,
+  "head": "674156749ee86021ef91d896b1824be62cff9a93",
+  "keepCurrent": 183,
+  "livePRAfter": "PASS",
+  "livePRAfterAttestedUtc": "2026-11-04 16:41:00 UTC",
+  "livePRBefore": "PASS",
+  "mainBaseDriftContainsLocalizationOrCatalogChanges": false,
+  "nativeSpeakerSignoff": false,
+  "primaryOnlyAgainstBlindHold": 12,
+  "primaryOnlyAgainstBlindKeep": 5,
+  "primaryProposals": 69,
+  "priorHeldCellsPreservedHashOnly": 271,
+  "priorHoldResolutionRowsPreservedHashOnly": 13,
+  "proposalDisagreementRows": 38,
+  "proposalUnion": 69,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "sameTargetProposals": 31,
+  "schemaVersion": 1,
+  "selectedCorrections": 69,
+  "selectedProposalSourceCounts": {
+    "blind": 3,
+    "primary": 35,
+    "primary+blind": 31
+  },
+  "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450",
+  "window": "W76"
+}

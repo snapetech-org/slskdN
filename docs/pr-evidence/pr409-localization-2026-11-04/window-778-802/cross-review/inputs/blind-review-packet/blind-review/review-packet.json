@@ -1,0 +1,50 @@
+{
+  "schema": "slskdn-blind-review-packet-v1",
+  "repo": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W76",
+  "continuationRanks": [
+    778,
+    802
+  ],
+  "remainingQueueRanks": [
+    678,
+    702
+  ],
+  "sourceCount": 25,
+  "cellCount": 300,
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "inputHead": "674156749ee86021ef91d896b1824be62cff9a93",
+  "inputTree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450",
+  "prBaseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "prBaseTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "candidateFreeManifestSha256": "36aa3e5f8ea59a45aaefbd7e41ab0094c2fdacb58e855cb695b5f9f0136ba0d4",
+  "candidateFreeChecksumsSha256": "6f1ff444313b6bdcc266b6a30309031f45f507ed6924cd6cc5b293f1003a2ec3",
+  "reviewMethod": "Independent cell-by-cell review against pinned source, locale target, exact production callers, and placeholder/numeric/protected-literal evidence; primary-review material was not opened.",
+  "counts": {
+    "keep": 188,
+    "propose": 52,
+    "hold": 60
+  },
+  "callerlessTextFreeHolds": 48,
+  "contextualHolds": 12,
+  "priorHeldCellsPreserved": 271,
+  "baselineProtectedLiteralMismatchCells": 21,
+  "baselineMismatchDisposition": "All baseline protected-literal mismatch cells are callerless and remain text-free holds.",
+  "nativeSpeakerReview": "Not claimed."
+}
