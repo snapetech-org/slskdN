@@ -1,0 +1,157 @@
+{
+  "artifact": "slskdN PR #409 W78 sealed independent cross-audit packet",
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W78",
+  "continuationRankRange": [
+    828,
+    852
+  ],
+  "head": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "tree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFreeInputManifestSha256": "fd56e9b4d4589cd8a51b8890770dd66bc5fa7298feec2c1645ad4584720827b2",
+  "candidateFreeInputChecksumListSha256": "8380e83dd759c16b2a0177aba334c9a5c6ee315583cb3f23ee2dfc030465ed88",
+  "primaryManifestSha256": "3c5797264df253f41fb6019451f60796b4caf40511abe58d933e4e191d10242a",
+  "primaryChecksumListSha256": "2ce4013c3a1804727416eba05ba456c846232ac1e5b95abb0c26a80b7b06548c",
+  "blindManifestSha256": "53491852e3e68f05ec3964472b8a66c197d51698c2afc971c48f37b679f57100",
+  "blindChecksumListSha256": "e4300515158d16155b09b6bc256a6bfb47426cc24a31958cdf212667996486ae",
+  "sourceWorktreePath": "/mnt/disks/scratch/task-worktrees/localization-20261104/slskdn-pr409-w78-828-852-source",
+  "sourceWorktreeHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "sourceWorktreeTree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "sourceWorktreeClean": true,
+  "sourceWorktreeCheckoutState": "detached",
+  "sourceWorktreeAttestation": "source-worktree-attestation.json",
+  "sourceBranchRefStatus": "stale local ref; not refreshed or rewritten",
+  "liveGitHubApiAttestation": "live-github-api-attestation.json",
+  "liveRefsMatchPin": true,
+  "localRefsStale": {
+    "refs/remotes/origin/pr/409": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "refs/remotes/origin/main": "e6203f3cb16457bdb3a35678163adce01371be40",
+    "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030": "53af3400b46c8a30cb2b021b9e7edf0ac6086f86"
+  },
+  "sourceRefAssessmentNote": "Pinned detached worktree is valid. Blind manifest claim that a matching local source branch ref agrees with the pin is inaccurate; refs are recorded as observed and unchanged.",
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "primaryDecisionCounts": {
+    "accept-current": 232,
+    "correct": 56,
+    "hold": 12
+  },
+  "blindDecisionCounts": {
+    "hold": 12,
+    "keep": 254,
+    "propose": 34
+  },
+  "crossDecisionCounts": {
+    "hold": 12,
+    "keep": 225,
+    "propose": 63
+  },
+  "selectedProposalCount": 63,
+  "noOpCount": 225,
+  "unresolvedHoldCount": 12,
+  "callerlessHoldCount": 12,
+  "priorHeldCellsCarried": 331,
+  "priorHoldResolutionHistoryRows": 13,
+  "priorHeldTargetHashesAllMatch": true,
+  "priorHeldCallerEvidenceChanged": 0,
+  "noRepositoryEdits": true,
+  "noPullRequestEdits": true,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1867,
+      "sha256": "bbbd8e59b1905d980649c5d8089ecfa97808c2d76c993cd3b0e093f4101f7ce5"
+    },
+    {
+      "path": "build_cross_packet.py",
+      "bytes": 30838,
+      "sha256": "b28e8c049b3007f2c07ad27184ea1fe1dfaa5aac830aec671f7928387b6c085d"
+    },
+    {
+      "path": "cross-review-decisions.jsonl",
+      "bytes": 704843,
+      "sha256": "ae69e0c0ab6e6d2bfc661058efa8306d965517627d110bc5428587324b8b97b7"
+    },
+    {
+      "path": "live-github-api-attestation.json",
+      "bytes": 877,
+      "sha256": "227287616ba4f284166c69b92656bbb20d1ef031f4741318ae31bf6a5a075e71"
+    },
+    {
+      "path": "no-op-ledger.jsonl",
+      "bytes": 343932,
+      "sha256": "f439c402245e91c40df108fb964b63fc635f9a62694f17a168a984dcc0858ffb"
+    },
+    {
+      "path": "previous-window-hold-resolutions-hash-only.jsonl",
+      "bytes": 32718,
+      "sha256": "92e011d34e72170f0d4243a75e6139722f66070481a43568cbad442738e5f3ab"
+    },
+    {
+      "path": "previous-window-prior-holds-hash-only.jsonl",
+      "bytes": 778894,
+      "sha256": "7e254d58a4df3f09937ad17692d8bdcf0f6b2e79643a0def3f81c31bc15127e5"
+    },
+    {
+      "path": "previous-window-selection-hash-only.jsonl",
+      "bytes": 12125,
+      "sha256": "0cf3222a0bccf6931ad1a47f873ccbc33e7289137f24b6550acaa5762bb3028e"
+    },
+    {
+      "path": "prior-held-cell-reattestation-hash-only.jsonl",
+      "bytes": 780791,
+      "sha256": "b850346a56ea3473ab70e309148ed0e0bced3b7ca8060a80b78df284911b0bc1"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 224,
+      "sha256": "a79507c409ed294a049619a92a6f7922baf219af73d4d6597881ad8d7f22dc1e"
+    },
+    {
+      "path": "prior-hold-lineage-summary.json",
+      "bytes": 339,
+      "sha256": "c680f446362e370820d100547865b6be63998aa3e4311ce3e74a2ac31a9b6df8"
+    },
+    {
+      "path": "prior-hold-resolution-history-hash-only.jsonl",
+      "bytes": 32718,
+      "sha256": "a341f858e1f070ad1abc61b5184639c0766211bb559f2252ebff2a79195ba93e"
+    },
+    {
+      "path": "prior-selected-id-exclusions-hash-only.jsonl",
+      "bytes": 813988,
+      "sha256": "aa92802fa1fa45d1995323a3705f573933f837d41fd8c44980f864199a9dc29e"
+    },
+    {
+      "path": "selected-proposal-apply-plan.jsonl",
+      "bytes": 130143,
+      "sha256": "46d72ba0d2f26a720f788f9b742b0785c574c44eeedf5bb8468032f23aa89097"
+    },
+    {
+      "path": "source-worktree-attestation.json",
+      "bytes": 1032,
+      "sha256": "0208d270a003224a63d56de779db30067497214af5e1bda137f59dee7664310b"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1522,
+      "sha256": "6f66b4cb37d9ce92d56f6a4ea0cd5e9b1e52d7642d328da66e10d74607024530"
+    },
+    {
+      "path": "unresolved-holds-hash-only.jsonl",
+      "bytes": 6937,
+      "sha256": "7477a6ec538ede42c98d7a7ad4afbe7837f23b2b259cd207641ca440bf6c2b4c"
+    },
+    {
+      "path": "verify_cross_packet.py",
+      "bytes": 10042,
+      "sha256": "b605f28c2623594ba144eef46bbd08d714a391147e73909715feea5758ced64f"
+    }
+  ]
+}

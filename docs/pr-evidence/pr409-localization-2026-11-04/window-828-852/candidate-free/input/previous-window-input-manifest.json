@@ -1,0 +1,256 @@
+{
+  "artifact": "slskdN PR #409 W77 ranks 803-827 candidate-free exact-head input",
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "window": "W77",
+  "candidateFree": true,
+  "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "branchRefOid": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "pullRefOid": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+    "mergeableState": "clean",
+    "attestedUtc": "2026-11-04 17:13:01 UTC"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "branchRefOid": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "pullRefOid": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+    "mergeableState": "clean",
+    "attestedUtc": "2026-11-04 17:13:01 UTC"
+  },
+  "continuationRankRange": [
+    803,
+    827
+  ],
+  "remainingQueueRankRange": [
+    703,
+    727
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "catalogEntryCountPerLocale": 6176,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventoryRows": 6176,
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "orderedCatalogKeySha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+  "productionCallerFileCount": 279,
+  "callerlessSourceCount": 1,
+  "priorSelectedIdsExcluded": 1882,
+  "priorHeldCellsReattested": 319,
+  "priorHoldResolutionHistoryRows": 13,
+  "priorHoldLineage": {
+    "W57": 12,
+    "W59": 24,
+    "W62": 24,
+    "W63": 13,
+    "W64": 12,
+    "W65": 6,
+    "W66": 24,
+    "W69": 12,
+    "W71": 12,
+    "W72": 108,
+    "W73": 12,
+    "W75": 12,
+    "W76": 48
+  },
+  "priorHeldTargetHashesAllMatch": true,
+  "priorHeldCallerEvidenceUnchanged": 319,
+  "priorHeldCallerEvidenceChanged": 0,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false,
+  "liveMainBefore": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainAfter": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "mainBaseDriftSha256": "5605141330933327c4deed6b7c70a3203e7ec7568aead14b87e602d6ccdfebd7",
+  "previousWindowCrossHoldRows": 48,
+  "continuitySourceManifestSha256": "36aa3e5f8ea59a45aaefbd7e41ab0094c2fdacb58e855cb695b5f9f0136ba0d4",
+  "continuitySourceChecksumListSha256": "6f1ff444313b6bdcc266b6a30309031f45f507ed6924cd6cc5b293f1003a2ec3",
+  "files": [
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 185,
+      "sha256": "5024eb6045712007533af4602464ac3141147b8cfb045ec6203ec41bb3a7b7ad"
+    },
+    {
+      "path": "build_input.py",
+      "bytes": 29012,
+      "sha256": "136539e0fe3d4baac02307ef6a59ed1a6f7de3fe5bd275414efa55acfe3058d2"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 45512,
+      "sha256": "cc58649d6fb0214d084313520708ddf440a87536d4d1d65b4063a01d712cc117"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "f87f00dd724cef6842e73155dd68ace9e2f90fc84c9efd065f8f65ba196f8703"
+    },
+    {
+      "path": "continuity-provenance.json",
+      "bytes": 1133,
+      "sha256": "a69bd1a5aa3226d6ee6de9afe1644dcf08887cfc7b6f07d1a076acdb0c746b8a"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 2100,
+      "sha256": "b00b0dcd969f3a986c66f619895640838f509779d69f629ac47509a865c026e9"
+    },
+    {
+      "path": "live-after.json",
+      "bytes": 651,
+      "sha256": "11f26df0ba9c2863c0d4f61020341d36058463dc1af2a1300c9410fa0e793c2d"
+    },
+    {
+      "path": "live-before.json",
+      "bytes": 651,
+      "sha256": "11f26df0ba9c2863c0d4f61020341d36058463dc1af2a1300c9410fa0e793c2d"
+    },
+    {
+      "path": "main-drift.json",
+      "bytes": 2439,
+      "sha256": "5605141330933327c4deed6b7c70a3203e7ec7568aead14b87e602d6ccdfebd7"
+    },
+    {
+      "path": "previous-window-hold-resolutions-hash-only.jsonl",
+      "bytes": 32718,
+      "sha256": "1172df9108f3e0350062f62fb55e24143866da346c4ec9df44e75e67527409d6"
+    },
+    {
+      "path": "previous-window-input-checksums.txt",
+      "bytes": 2692,
+      "sha256": "6f1ff444313b6bdcc266b6a30309031f45f507ed6924cd6cc5b293f1003a2ec3"
+    },
+    {
+      "path": "previous-window-input-manifest.json",
+      "bytes": 7948,
+      "sha256": "36aa3e5f8ea59a45aaefbd7e41ab0094c2fdacb58e855cb695b5f9f0136ba0d4"
+    },
+    {
+      "path": "previous-window-prior-holds-hash-only.jsonl",
+      "bytes": 758909,
+      "sha256": "044f472a23e5fdf16eabdd16a0141929d60b51d0d904f06d0d079e8ba115baec"
+    },
+    {
+      "path": "previous-window-selection-hash-only.jsonl",
+      "bytes": 12125,
+      "sha256": "909cb977a76310246a83681c2dcc075f86ff4d0770710bfd805e0ed31bbcf990"
+    },
+    {
+      "path": "prior-held-cell-reattestation-hash-only.jsonl",
+      "bytes": 766497,
+      "sha256": "7f3867b92759e6f9b666c0c5dd5d03be74fa828d53e6f6a23af2e6c1e18f97fb"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 224,
+      "sha256": "9f9575bd9c42a7b77ae0947090ee87f3ddff6c51d2c4f18251c8fb0b9ea782ef"
+    },
+    {
+      "path": "prior-hold-lineage-summary.json",
+      "bytes": 324,
+      "sha256": "360343213b4684f13de3aed88733cb368fb8f6b69d9be2fd00a749b79ee0a960"
+    },
+    {
+      "path": "prior-hold-resolution-history-hash-only.jsonl",
+      "bytes": 32718,
+      "sha256": "92e011d34e72170f0d4243a75e6139722f66070481a43568cbad442738e5f3ab"
+    },
+    {
+      "path": "prior-selected-id-exclusions-hash-only.jsonl",
+      "bytes": 801863,
+      "sha256": "e5ff5aa1a1a57b3a7269857a06cc4bd0a4ab56d2b8bd9c29f84a397bb51b7b42"
+    },
+    {
+      "path": "runtime-file-pins.jsonl",
+      "bytes": 55174,
+      "sha256": "e19067df0a83844866a5a38242b466e7b2b2c673e451820278fb1c1394d00fbe"
+    },
+    {
+      "path": "seal_input.py",
+      "bytes": 8420,
+      "sha256": "eeb4debc0e1cf18a400b210ba979ee3ffcf2dde31b7c6e961093f39fed453749"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1118,
+      "sha256": "13e585b0fb5e41f3d49b61a66c05b3e9e0577474e49f74cc73e74f15df3e927d"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8738,
+      "sha256": "73cd345fc3ade772ef9b309dc1aca67a9f76f042e42c7b3cea6fac521ba312ed"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 515002,
+      "sha256": "9c90ea99251f5d10a3a038e26c9091c5ce9967157b217d39bea1e06a78d47d1b"
+    },
+    {
+      "path": "source-inventory-pinned.jsonl",
+      "bytes": 1800171,
+      "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7305,
+      "sha256": "6ce5fab4dafe2e1bcf6fab540c1844b0e2f9df8b77093ebf19cb8e455dc0f96b"
+    },
+    {
+      "path": "source-tree-attestation.json",
+      "bytes": 464,
+      "sha256": "19563817834aa5339a11251cdbeb152d529f73e933dc24759a6fcb5ce8725c05"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 24967,
+      "sha256": "197b8f32e08a92b8bbaf1934c061586c33f5ec9810946546a1470204d351d228"
+    }
+  ]
+}

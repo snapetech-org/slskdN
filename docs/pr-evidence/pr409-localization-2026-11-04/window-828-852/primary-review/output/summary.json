@@ -1,0 +1,512 @@
+{
+  "artifact": "slskdN PR #409 W78 independent primary semantic review",
+  "head": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "tree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositions": {
+    "accept-current": 232,
+    "correct": 56,
+    "hold": 12
+  },
+  "proposedTargetCount": 56,
+  "holds": 12,
+  "callerlessSources": 1,
+  "callerlessCells": 12,
+  "candidateFreeInputManifestSha256": "fd56e9b4d4589cd8a51b8890770dd66bc5fa7298feec2c1645ad4584720827b2",
+  "candidateFreeInputChecksumListSha256": "8380e83dd759c16b2a0177aba334c9a5c6ee315583cb3f23ee2dfc030465ed88",
+  "selectionBoundarySha256": "c280bdc9c4db6dbe76f51abc0c7bdab40a13698fd7eb7037df5dd7c993bf9b3b",
+  "sourceInventorySelectionSha256": "af31014747697aa33e0a410b4fe588de2b7e34d99748628856a0013949f3ae40",
+  "callerContextSha256": "60e77455b925d7ad2f58f703e05c7707c2c054f6048f30866591c3073794e0d8",
+  "mainDriftSha256": "77938dc05dd87e2ded9f2bd566e549159e0d74af85439fd135a65589a321235b",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "baseApiSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "priorHeldCellsCarried": 331,
+  "priorHoldResolutionHistoryRows": 13,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "sourceRewritesRecommended": 0,
+  "proposals": [
+    {
+      "continuationRank": 830,
+      "sourceId": "src_30f84002403ca166",
+      "locale": "es",
+      "target": "Ampliar los resultados de búsqueda de {username}",
+      "targetSha256": "4f21f4656cdfca316ebf4afef83e18dd7e7313cf327893b9613025df68b3f397"
+    },
+    {
+      "continuationRank": 830,
+      "sourceId": "src_30f84002403ca166",
+      "locale": "fr",
+      "target": "Développer les résultats de recherche de {username}",
+      "targetSha256": "54fce15028ed529428685886a3664a85dae29134f895a384db9c4ceaf2b7aa2e"
+    },
+    {
+      "continuationRank": 830,
+      "sourceId": "src_30f84002403ca166",
+      "locale": "pt-BR",
+      "target": "Expandir os resultados da pesquisa de {username}",
+      "targetSha256": "893cb28dd3ba63b28cecb2211b20027a59d859ac77efffcdebd904cef4713ef5"
+    },
+    {
+      "continuationRank": 833,
+      "sourceId": "src_310b993f07ab828f",
+      "locale": "es",
+      "target": "Lista de direcciones CIDR permitidas para la clave de API",
+      "targetSha256": "b9d9961e4cba354d92655a2cb41c980d3ca5f5093d4554eb82d23d4b184e7401"
+    },
+    {
+      "continuationRank": 833,
+      "sourceId": "src_310b993f07ab828f",
+      "locale": "fr",
+      "target": "Liste d’autorisation CIDR pour clé API",
+      "targetSha256": "0cd0f93f2efa0abb7f5c2e31f6794fdba3a465efa656c7d19816384091f71648"
+    },
+    {
+      "continuationRank": 835,
+      "sourceId": "src_311ed25d5fa9a11d",
+      "locale": "es",
+      "target": "Selecciona uno o más archivos antes de iniciar una descarga P2P.",
+      "targetSha256": "e10ba0c2bff15f06622562ee7f6f8baf795b03392810d9cd2124230025c7b5bf"
+    },
+    {
+      "continuationRank": 835,
+      "sourceId": "src_311ed25d5fa9a11d",
+      "locale": "pt-BR",
+      "target": "Selecione um ou mais arquivos antes de iniciar uma transferência P2P.",
+      "targetSha256": "710a354b06b0787355eab24a0d35b522a0479badf858cb6e7aa5fc0855bde0ac"
+    },
+    {
+      "continuationRank": 838,
+      "sourceId": "src_3151b73ca0d7f79a",
+      "locale": "pt-BR",
+      "target": "Limite de tamanho %",
+      "targetSha256": "3c50c13aa0c6eebb7f46ab7879d3743a3eecb7e8495b8b7b9817f002e99023ce"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "ar",
+      "target": "تأكيد إجراء {actionLabel} على التطبيق.",
+      "targetSha256": "8e2807241e0621306e65c9246b39384b7069657514e54103bf91287f1ef30474"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "de",
+      "target": "Die Anwendungsaktion „{actionLabel}“ ausführen.",
+      "targetSha256": "c112fcb9cf056ca1d176c877a254290772cc53d393a24224ebe80b4ad2fd7c22"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "es",
+      "target": "Ejecutar la acción «{actionLabel}» en la aplicación.",
+      "targetSha256": "4d1b983102dfe04817524d62ffe8390b6346c446fb88b0e6d06f3dd59495014e"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "fr",
+      "target": "Exécuter l’action « {actionLabel} » sur l’application.",
+      "targetSha256": "15ae40da0d5e23172f95ab6056ec9481a76a83db6bf4eba8aa1f23e2de24522a"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "hi",
+      "target": "एप्लिकेशन पर “{actionLabel}” कार्रवाई करें।",
+      "targetSha256": "e11ac146d6f91df1a6f13986648576c0b148a8a54050823a8a1e7d8de5be39b0"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "id",
+      "target": "Jalankan tindakan “{actionLabel}” pada aplikasi.",
+      "targetSha256": "33d1d08654fccc5d4496928fa79167d5dc850878f7a11511af5e36f7165dfe82"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "ja",
+      "target": "アプリケーションで「{actionLabel}」を実行します。",
+      "targetSha256": "6210b218b171f13b9893192716d6ce96cc93129be757490694d943dbf18ff1a5"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "ko",
+      "target": "애플리케이션에서 “{actionLabel}” 작업을 실행합니다.",
+      "targetSha256": "9a2b35451fba4b1d167703f7a9c44d48fc1f54e0f0329d8fa743a1815aff68e8"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "pt-BR",
+      "target": "Executar a ação “{actionLabel}” no aplicativo.",
+      "targetSha256": "f56fca3e8f611b939025976f5ab5bb3652b744ef49f6e8004a7a753037ae4b9c"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "vi",
+      "target": "Thực hiện hành động “{actionLabel}” trên ứng dụng.",
+      "targetSha256": "154be2ae95a5c10a5bd0e6960c3162b4f1e7f4c8e698f2607dc643bcca1695bc"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "zh-Hans",
+      "target": "在应用程序中执行“{actionLabel}”操作。",
+      "targetSha256": "d261b55431d47e7bc5e6ccd1afd48fd6365a5726d8be89e654d1c8468d731d96"
+    },
+    {
+      "continuationRank": 839,
+      "sourceId": "src_3152b873a3f79771",
+      "locale": "zh-Hant",
+      "target": "在應用程式中執行「{actionLabel}」操作。",
+      "targetSha256": "f1dffaaaa68b9c36f843d5a511f04082b5ee71f6293f2862d70b2b1d21428de4"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "ar",
+      "target": "تعذّر ضغط قاعدة البيانات: {message}",
+      "targetSha256": "c95ffc3ad9fc3d93f2fc3dc90c8e5061d1f891b866cc70516c23ce6f798e5a10"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "de",
+      "target": "Fehler beim Komprimieren der Datenbank: {message}",
+      "targetSha256": "c2b1aae64d311f4c524ce251f6a17ed3071c92dc8cbe987f903c867344b05ed8"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "es",
+      "target": "No se pudo compactar la base de datos: {message}",
+      "targetSha256": "beef564b90f03a1c775cfca122716b36d6b41d525284b30d82869a028e224b4e"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "fr",
+      "target": "Échec de la compaction de la base de données : {message}",
+      "targetSha256": "9c6fffc5ca643983cbebb7aea4e8ef2f2df298c407d994cc80fdd95bb5233d2d"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "hi",
+      "target": "डेटाबेस को कॉम्पैक्ट करने में विफल: {message}",
+      "targetSha256": "40c2982072993d281ebfb58713cfd86db05be53513aaea4a2c25997b018e5203"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "id",
+      "target": "Gagal memadatkan basis data: {message}",
+      "targetSha256": "f104fd229ca951ea70862d93e3d365b05f33392528d0617d3c3d9326ca9adae3"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "ko",
+      "target": "데이터베이스 압축에 실패했습니다: {message}",
+      "targetSha256": "6f05bd4a336bcc44cad77a08a5ede40ea1759efd50d8d4586693025d77b2fdb6"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "pt-BR",
+      "target": "Falha ao compactar o banco de dados: {message}",
+      "targetSha256": "1f7cfa0fc0ef49c552f4dd4584165c88aacf4d68af8fb2ca997355e44a84be04"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "vi",
+      "target": "Không thể nén cơ sở dữ liệu: {message}",
+      "targetSha256": "ed0237a343ffc3382688c5546aeadec4be998d1798ba1540abaf6c119d189966"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "zh-Hans",
+      "target": "无法压缩数据库：{message}",
+      "targetSha256": "1af8c12d204c2ac870927a074a35464e4cc73487cfe9c7e56a8eaf641f8a464e"
+    },
+    {
+      "continuationRank": 842,
+      "sourceId": "src_316cfce013499533",
+      "locale": "zh-Hant",
+      "target": "無法壓縮資料庫：{message}",
+      "targetSha256": "3ba3eba87e0db72f3724dc805d349f6f4e333f821a028167415e15b2706031b5"
+    },
+    {
+      "continuationRank": 844,
+      "sourceId": "src_317b1fbc1e13beeb",
+      "locale": "hi",
+      "target": "अस्वस्थ",
+      "targetSha256": "3220cbeae0a476008d8aa1fb92098a96b1169f8bbde8babbd2a4af392c9fbcf5"
+    },
+    {
+      "continuationRank": 844,
+      "sourceId": "src_317b1fbc1e13beeb",
+      "locale": "ko",
+      "target": "건강하지 않음",
+      "targetSha256": "8ee2815766daa100ef069e9e5ab309035724704ac3546bae423487e68a39662c"
+    },
+    {
+      "continuationRank": 844,
+      "sourceId": "src_317b1fbc1e13beeb",
+      "locale": "vi",
+      "target": "Không khỏe",
+      "targetSha256": "c56cce0bcc1b1bdeb435e3029dda4a74f056e300f64c0d28e6f44b4cae7cc57d"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "ar",
+      "target": "صفحة المشاركات الواردة التالية",
+      "targetSha256": "c6dc7165a62c33e2dcd73af22d5e621f78088fb6144eac718511d716326dc4d0"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "es",
+      "target": "Siguiente página de archivos compartidos recibidos",
+      "targetSha256": "4486df3269122cd2dee5d07af4ee9c85cb0b367e46027796917ed489c018e3fe"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "fr",
+      "target": "Page suivante des partages entrants",
+      "targetSha256": "597f64762f611b0ad791c77ac8fc5862ada24c0667cd03bb0aee4597446ece80"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "hi",
+      "target": "आने वाली साझा फ़ाइलों का अगला पृष्ठ",
+      "targetSha256": "7b31e66806b507cfeee7e2dc1c7dd99c42ef112a1b3cf095b9a77273bf410479"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "id",
+      "target": "Halaman berikutnya untuk berkas yang dibagikan kepada saya",
+      "targetSha256": "63b071d27b96aa76ba1c03622e8ebc38117053e3cb696e164608cae6c23dd053"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "ja",
+      "target": "受信した共有の次のページ",
+      "targetSha256": "cf10475ef44bc99263c708056947952e9c29eab5aeb04b49176f80e2c1b32874"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "ko",
+      "target": "받은 공유의 다음 페이지",
+      "targetSha256": "a50ecfdd6c7f22410b5175b4352f4850a0b91f58c9e59022696bfcf36a8558ac"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "vi",
+      "target": "Trang tiếp theo của các mục được chia sẻ đến",
+      "targetSha256": "a2b2f9feb81d47de2da96781ea2b2a28d8de4f03ebf51ee04fc0dad0eff2974d"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "zh-Hans",
+      "target": "下一页收到的共享内容",
+      "targetSha256": "6fe397324dee05929b55f59f0d807544865005e8baabccac50792f20c62e4b39"
+    },
+    {
+      "continuationRank": 845,
+      "sourceId": "src_31ca26c85e632d29",
+      "locale": "zh-Hant",
+      "target": "下一頁收到的分享內容",
+      "targetSha256": "7de38bd00f3e5ba5d1a9859c34f730d89f3ee0601b45471cf0d7921783b9c265"
+    },
+    {
+      "continuationRank": 849,
+      "sourceId": "src_31df66dc9f060166",
+      "locale": "ar",
+      "target": "وحدة التحكم",
+      "targetSha256": "1331b6c1c5c504a56fbf9d27487ff52e8a5160694114cdb107c05c1e941bf938"
+    },
+    {
+      "continuationRank": 850,
+      "sourceId": "src_31eeaf8d203a72b5",
+      "locale": "vi",
+      "target": "Tắt việc công bố {label}",
+      "targetSha256": "f9f788f9602a5f616cea9db7b2c675921ae39c763a086e156e57a9c966a7b403"
+    },
+    {
+      "continuationRank": 851,
+      "sourceId": "src_31f24684b3973583",
+      "locale": "id",
+      "target": "Tidak ada berkas yang dibagikan oleh pengguna untuk ditampilkan",
+      "targetSha256": "b7ef72a0e0fb61173dd339cc305549e0448695b2f2f141c48f38a69ac303c446"
+    },
+    {
+      "continuationRank": 851,
+      "sourceId": "src_31f24684b3973583",
+      "locale": "ja",
+      "target": "表示できるユーザーの共有ファイルはありません",
+      "targetSha256": "c81eb234513bd5972cafe85454521467acc9e5eac7d0f7ab24f43383999d9699"
+    },
+    {
+      "continuationRank": 852,
+      "sourceId": "src_31fbef162594de01",
+      "locale": "ar",
+      "target": "تابع",
+      "targetSha256": "13e7c50c2356ea2ad14427af81873e7c0037eca73f4f2d0443a057bf8ce5b2ee"
+    },
+    {
+      "continuationRank": 852,
+      "sourceId": "src_31fbef162594de01",
+      "locale": "de",
+      "target": "Fortsetzen",
+      "targetSha256": "76f6db6d9811aab192ead2deb65cc01b155ac1e57bc5a520cf5456f278600207"
+    },
+    {
+      "continuationRank": 852,
+      "sourceId": "src_31fbef162594de01",
+      "locale": "hi",
+      "target": "जारी रखें",
+      "targetSha256": "5318c134abaf15c36884839feeadb708afda0cc1d496bae4aa9bd1db4c6aba06"
+    },
+    {
+      "continuationRank": 852,
+      "sourceId": "src_31fbef162594de01",
+      "locale": "id",
+      "target": "Lanjutkan",
+      "targetSha256": "bae9e3381b9043fea423e039aa4dc49eafa8dfd321755b34095cfc7c4d2a4be5"
+    },
+    {
+      "continuationRank": 852,
+      "sourceId": "src_31fbef162594de01",
+      "locale": "ja",
+      "target": "続行",
+      "targetSha256": "4d2dfdf6dd1f48d4c73f93f8758c84f20e0cc475ee8ac00e047ca352cb6c8537"
+    },
+    {
+      "continuationRank": 852,
+      "sourceId": "src_31fbef162594de01",
+      "locale": "ko",
+      "target": "계속",
+      "targetSha256": "23a9f0224cc40ec08adbcb959e34e7dca175fbfa6b79e8a24adc18ce7d8bb608"
+    },
+    {
+      "continuationRank": 837,
+      "sourceId": "src_31458506a6a11770",
+      "locale": "hi",
+      "target": "जुड़े हुए क्लाइंट (",
+      "targetSha256": "932264fdb8b1f2f99455202c92d30c33481458efb1b8472710a0f9098a56c829"
+    },
+    {
+      "continuationRank": 848,
+      "sourceId": "src_31d6dd1efa458b9a",
+      "locale": "ja",
+      "target": "診断バンドルのウィンドウをコピーせずに閉じます。",
+      "targetSha256": "cc2acf9f0140f350dadad443bc6f7d02837fa753228be75229bca91d9e451bde"
+    }
+  ],
+  "heldCells": [
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "ar",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "bafbc6d09d43a5812767a35e29212bddd86c3423a70efcfca5ac39964d81fce3"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "de",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "91d3522e988fd9e3f896d5a78f82c7aab93136bcbe85287ba376c2c7a88799d5"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "es",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "44b6b4a865ee3e1591a34af33be5c57b10471dbf418e6673f23797fac20b06ca"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "fr",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "e27aee169160b0ed8bf551f7f2abc155b2722c65a8297a46fe90947753aedadf"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "hi",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "83b4423cb51cdb87dc96eb807bf6e0ae520f946cf5fcbde23c896e76989c7bb8"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "id",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "3558d3a15bd6739e326652a4a6752584969647e844b012af155bad9f97b78560"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "ja",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "eed967a2611319276faeeb77bbdd44640c117da507e4bee272fda93476e44d11"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "ko",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "154f017609157a7666816a36b629a4fd42d2af0c5b59bfde0c934aa9ec1ba8c4"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "pt-BR",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "3d7a75b6bc00a1a14947448843acb2b5f814d2b9593f15841e5375e6f8489773"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "vi",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "d366b4233f9ae3ccdd8815a63c5dcaf9e3e04092601d5b27d79de286c20b0861"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "zh-Hans",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "584dc1b974b751674b03ea7dbc134f8ada19a3e7e9f1af66a2e92871e2fb6129"
+    },
+    {
+      "continuationRank": 829,
+      "sourceId": "src_30f52f173d34e0f4",
+      "locale": "zh-Hant",
+      "sourceSha256": "30f52f173d34e0f4bf62622153472aeee0ec6bfbfe18d62190fdcd77d6dd8912",
+      "currentTargetSha256": "2613c0bb2991c5536f8b39b98c9668e4a4ffe72a37bed6b2f4f2f01f51cec70b"
+    }
+  ]
+}

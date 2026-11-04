@@ -1,0 +1,158 @@
+{
+  "artifact": "slskdN PR #409 W78 independent primary semantic review",
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W78",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFree": true,
+  "head": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "tree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "candidateFreeInputManifestSha256": "fd56e9b4d4589cd8a51b8890770dd66bc5fa7298feec2c1645ad4584720827b2",
+  "candidateFreeInputChecksumListSha256": "8380e83dd759c16b2a0177aba334c9a5c6ee315583cb3f23ee2dfc030465ed88",
+  "sourceInventorySelectionSha256": "af31014747697aa33e0a410b4fe588de2b7e34d99748628856a0013949f3ae40",
+  "callerContextSha256": "60e77455b925d7ad2f58f703e05c7707c2c054f6048f30866591c3073794e0d8",
+  "baseApiSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "dispositions": {
+    "accept-current": 232,
+    "correct": 56,
+    "hold": 12
+  },
+  "proposalCount": 56,
+  "textFreeHoldCount": 12,
+  "priorHeldCellsCarried": 331,
+  "priorHoldResolutionHistoryRows": 13,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "sourceRewriteRecommendations": 0,
+  "worktreeHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "worktreeTree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "worktreeClean": true,
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "branchRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "pullRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+    "mergeableState": "clean",
+    "attestedUtc": "2026-11-04 18:46:52 UTC"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "branchRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "pullRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+    "mergeableState": "clean",
+    "attestedUtc": "2026-11-04 18:57:48 UTC"
+  },
+  "mainDriftSha256": "77938dc05dd87e2ded9f2bd566e549159e0d74af85439fd135a65589a321235b",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1557,
+      "sha256": "5c1263783e05afdac4684022ef8c0ff52ff17a193c8ca289c4f5be798a83d5f5"
+    },
+    {
+      "path": "build_primary.py",
+      "bytes": 10342,
+      "sha256": "4c475ea47ccbee132aaaa4b817d2aa7d1e8135a4410e92cdc9e11129469b4a2a"
+    },
+    {
+      "path": "corrections.jsonl",
+      "bytes": 142395,
+      "sha256": "f38ddc58e33ace4bb1f62e1cc2b20bb28709f36584c3fd4c1cd8c58d00d9fddb"
+    },
+    {
+      "path": "holds-hash-only.jsonl",
+      "bytes": 16862,
+      "sha256": "91914ecfa8c0d1bb9e97e60ae1cea6d0e6262c7075ddd14803883140ce149429"
+    },
+    {
+      "path": "live-after.json",
+      "bytes": 651,
+      "sha256": "0d61b370622beef3731d25b73a24bfc9b96bff9c2729c7e09ded2593ea67a0b6"
+    },
+    {
+      "path": "live-before.json",
+      "bytes": 651,
+      "sha256": "c15eae25968ae221c3adb4ef756473b259ad00e271ff41c289db3a00effedefe"
+    },
+    {
+      "path": "main-drift.json",
+      "bytes": 2439,
+      "sha256": "77938dc05dd87e2ded9f2bd566e549159e0d74af85439fd135a65589a321235b"
+    },
+    {
+      "path": "primary-review.jsonl",
+      "bytes": 648282,
+      "sha256": "6136e524e6bf19a27830510f0573f61aa18fbe77fbacd11d38082045ff432b22"
+    },
+    {
+      "path": "proposal-map.json",
+      "bytes": 3555,
+      "sha256": "b9dbe2c2aee7502e347bc0f5966ea42c864e2a479ca5390fdf8f77823b8055bc"
+    },
+    {
+      "path": "rationale-map.json",
+      "bytes": 6251,
+      "sha256": "bd7628a91c5d21b01e091367d2fa8a996c6ce23fc633bf8d18f72c29d8ae8c7f"
+    },
+    {
+      "path": "seal_primary.py",
+      "bytes": 5378,
+      "sha256": "245b7f4d3a83c3cd4b5ca1a4496281a3179a1162416795bbcb4ce07dd1f4d1cb"
+    },
+    {
+      "path": "source-rewrite-recommendations.json",
+      "bytes": 50,
+      "sha256": "aac38e52cd548a104214321dea8ab42f026f8f52f21b1f8ac924654d194563d8"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 19758,
+      "sha256": "640c77ac9b3ec0bb164c31bcc74b3384914d799dd8168073d657b26062f8bd7a"
+    },
+    {
+      "path": "verify_primary.py",
+      "bytes": 16015,
+      "sha256": "4c7fe51a946ba35575af3482a15f634dad65ad91a312d7a5c1057bc19473e0cb"
+    }
+  ]
+}

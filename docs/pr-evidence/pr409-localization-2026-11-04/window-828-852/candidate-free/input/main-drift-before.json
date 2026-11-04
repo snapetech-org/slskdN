@@ -1,0 +1,96 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "baseRef": "main",
+  "baseApiSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baseApiTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f",
+  "liveMainBeforeSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainBeforeTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "liveMainAfterSha": null,
+  "liveMainAfterTree": null,
+  "compareStatus": "ahead",
+  "aheadBy": 4,
+  "behindBy": 0,
+  "totalCommits": 4,
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "status": "modified",
+      "additions": 198,
+      "deletions": 26,
+      "changes": 224
+    },
+    {
+      "path": ".github/workflows/feature-coherence-validation.yml",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1
+    },
+    {
+      "path": ".github/workflows/local-identity-leaks.yml",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1
+    },
+    {
+      "path": ".github/workflows/semgrep-community.yml",
+      "status": "modified",
+      "additions": 7,
+      "deletions": 6,
+      "changes": 13
+    },
+    {
+      "path": ".github/workflows/trivy-filesystem.yml",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1
+    },
+    {
+      "path": "AGENTS.md",
+      "status": "modified",
+      "additions": 19,
+      "deletions": 16,
+      "changes": 35
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 0,
+      "changes": 1
+    },
+    {
+      "path": "scripts/check-codeql-dotnet-version.sh",
+      "status": "removed",
+      "additions": 0,
+      "deletions": 85,
+      "changes": 85
+    },
+    {
+      "path": "scripts/check-dotnet-runtime-matrix.sh",
+      "status": "modified",
+      "additions": 63,
+      "deletions": 167,
+      "changes": 230
+    },
+    {
+      "path": "scripts/check-remediation-baseline.sh",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 1,
+      "changes": 1
+    },
+    {
+      "path": "scripts/check-workflow-trigger-policy.sh",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 49,
+      "changes": 54
+    }
+  ],
+  "localizationOrCatalogChanges": false,
+  "attestedUtc": "2026-11-04 18:44:09 UTC"
+}

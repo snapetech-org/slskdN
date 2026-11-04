@@ -1,0 +1,42 @@
+{
+  "attestation": "post-review source/worktree attestation",
+  "callerlessHoldCount": 12,
+  "capturedUtc": "2026-11-04T19:16:55+00:00",
+  "decisionCounts": {
+    "hold": 12,
+    "keep": 254,
+    "propose": 34
+  },
+  "inputChecksumListSha256": "8380e83dd759c16b2a0177aba334c9a5c6ee315583cb3f23ee2dfc030465ed88",
+  "inputChecksumsStillMatch": true,
+  "localRefs": {
+    "refs/heads/task/slskdn-pr409-w77-apply-20261104": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "refs/remotes/origin/codex/slskdn-oidc-tooltip-localization-20261030": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "refs/remotes/origin/main": "e6203f3cb16457bdb3a35678163adce01371be40",
+    "refs/remotes/origin/pr/409": "32afa31caca42b17ac89c9ee91e54ed94cad0411"
+  },
+  "portableVerifierSha256": "d77f1f19761ed39b713fcebf1eb6f50ee0e9b011289fcef054d0825a2fade534",
+  "reviewPacketSha256": "e09cd68a037dd98e29f4c494e7773b3ac38add12e0cfa54ffa2c1f2bdb1b2a67",
+  "sourceHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "sourceTree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "summarySha256": "e3ae78f557048d263b39866bc6f3aa729303e692cd6ebe5f852b56647d166ad6",
+  "suppliedLiveAfterAttestation": {
+    "attestedUtc": "2026-11-04 18:46:52 UTC",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "branchRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "draft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+    "mergeableState": "clean",
+    "merged": false,
+    "pullRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "pullRequest": 409,
+    "repository": "snapetech-org/slskdN",
+    "state": "OPEN"
+  },
+  "worktreeClean": true,
+  "worktreeStatus": "## HEAD (no branch)"
+}

@@ -1,0 +1,43 @@
+{
+  "checkedAgainstHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "workflowFileCountAtPinnedHead": 23,
+  "pushEventWorkflowCount": 0,
+  "pullRequestEventWorkflows": [
+    {
+      "path": ".github/workflows/public-fork-pr.yml",
+      "types": [
+        "labeled"
+      ],
+      "branches": [
+        "main"
+      ],
+      "additionalJobGuards": [
+        "label action:ci",
+        "pool:public or pool:hybrid",
+        "head repository is a fork",
+        "actor snapetech"
+      ]
+    }
+  ],
+  "workflowRunEventWorkflows": [
+    {
+      "path": ".github/workflows/sync-unraid-legacy-ghcr.yml",
+      "workflows": [
+        "Build on Tag"
+      ],
+      "types": [
+        "completed"
+      ],
+      "upstreamWorkflowPath": ".github/workflows/build-on-tag.yml",
+      "upstreamEvents": [
+        "workflow_dispatch"
+      ]
+    }
+  ],
+  "pullRequestEditedOrSynchronizeTriggers": [],
+  "prBranchActiveRunCount": 0,
+  "unrelatedGlobalQueuedRuns": 13,
+  "unrelatedGlobalInProgressRuns": 1,
+  "unrelatedRunsLeftUntouched": true,
+  "pushOrBodyUpdateWillDispatchWorkflow": false
+}

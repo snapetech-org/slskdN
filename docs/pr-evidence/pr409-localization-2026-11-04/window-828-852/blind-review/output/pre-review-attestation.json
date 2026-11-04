@@ -1,0 +1,221 @@
+{
+  "attestation": "candidate-free pre-review source attestation",
+  "candidateFreeInputManifestSha256": "fd56e9b4d4589cd8a51b8890770dd66bc5fa7298feec2c1645ad4584720827b2",
+  "inputChecksumListSha256": "8380e83dd759c16b2a0177aba334c9a5c6ee315583cb3f23ee2dfc030465ed88",
+  "inputFiles": [
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "sha256": "cb4c5489b482646122e0b0204d3e66529211f0a66f48cfea75752c8e6ec13e53"
+    },
+    {
+      "path": "build_input.py",
+      "sha256": "095491adb04ae79a222b9faf7fc289ba734d1ad668ecc028af28d13b97586e6b"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "sha256": "60e77455b925d7ad2f58f703e05c7707c2c054f6048f30866591c3073794e0d8"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "sha256": "0c5a9460053762ae803ae650c003df0426dbf4a6131cb894ba9bdd981d9dd5f2"
+    },
+    {
+      "path": "continuity-provenance.json",
+      "sha256": "185089c9cc9843d96947904eb905a0cadc3eb140a4ae4d3cd2200230d1d55b4e"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "sha256": "12e66f6c66925ff8e7dcabe44b0c58d683498e6ef5c7c4e4707199a63b366b2a"
+    },
+    {
+      "path": "live-after.json",
+      "sha256": "c15eae25968ae221c3adb4ef756473b259ad00e271ff41c289db3a00effedefe"
+    },
+    {
+      "path": "live-before.json",
+      "sha256": "d3778e718ba7f199d6a0319c6ae96711cc0ce693e8b62dcd02b0fc755767105c"
+    },
+    {
+      "path": "main-drift-before.json",
+      "sha256": "cfc176ac0a28c56f36076bd19bad09ef19984d40e4bb43ba919f99b7583023b4"
+    },
+    {
+      "path": "main-drift.json",
+      "sha256": "77938dc05dd87e2ded9f2bd566e549159e0d74af85439fd135a65589a321235b"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "fd56e9b4d4589cd8a51b8890770dd66bc5fa7298feec2c1645ad4584720827b2"
+    },
+    {
+      "path": "previous-window-hold-resolutions-hash-only.jsonl",
+      "sha256": "92e011d34e72170f0d4243a75e6139722f66070481a43568cbad442738e5f3ab"
+    },
+    {
+      "path": "previous-window-input-checksums.txt",
+      "sha256": "6c4e088c1f54a4a03261575b008eb3185aa21750455c75740d47144bf5074474"
+    },
+    {
+      "path": "previous-window-input-manifest.json",
+      "sha256": "0a04484d9130c465ebe18960492b6cc5ecdce8bb6e6613baf98273bf4debd9f5"
+    },
+    {
+      "path": "previous-window-prior-holds-hash-only.jsonl",
+      "sha256": "7e254d58a4df3f09937ad17692d8bdcf0f6b2e79643a0def3f81c31bc15127e5"
+    },
+    {
+      "path": "previous-window-selection-hash-only.jsonl",
+      "sha256": "0cf3222a0bccf6931ad1a47f873ccbc33e7289137f24b6550acaa5762bb3028e"
+    },
+    {
+      "path": "prior-held-cell-reattestation-hash-only.jsonl",
+      "sha256": "b850346a56ea3473ab70e309148ed0e0bced3b7ca8060a80b78df284911b0bc1"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "sha256": "a79507c409ed294a049619a92a6f7922baf219af73d4d6597881ad8d7f22dc1e"
+    },
+    {
+      "path": "prior-hold-lineage-summary.json",
+      "sha256": "c680f446362e370820d100547865b6be63998aa3e4311ce3e74a2ac31a9b6df8"
+    },
+    {
+      "path": "prior-hold-resolution-history-hash-only.jsonl",
+      "sha256": "a341f858e1f070ad1abc61b5184639c0766211bb559f2252ebff2a79195ba93e"
+    },
+    {
+      "path": "prior-selected-id-exclusions-hash-only.jsonl",
+      "sha256": "aa92802fa1fa45d1995323a3705f573933f837d41fd8c44980f864199a9dc29e"
+    },
+    {
+      "path": "runtime-file-pins.jsonl",
+      "sha256": "e19067df0a83844866a5a38242b466e7b2b2c673e451820278fb1c1394d00fbe"
+    },
+    {
+      "path": "seal_input.py",
+      "sha256": "ea9adeb540e6b8669310d7cc91442353c99de5b06e507259d452983674fc8118"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "sha256": "181c483872d78b973848dd6dabf212eecad304080978a02174fff130c788ad59"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "sha256": "c280bdc9c4db6dbe76f51abc0c7bdab40a13698fd7eb7037df5dd7c993bf9b3b"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "sha256": "fb704e6de480e89fd875d0a1a25fccb69023f36b4a4c2f6490ef8349dafaa0e0"
+    },
+    {
+      "path": "source-inventory-pinned.jsonl",
+      "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "sha256": "af31014747697aa33e0a410b4fe588de2b7e34d99748628856a0013949f3ae40"
+    },
+    {
+      "path": "source-tree-attestation.json",
+      "sha256": "7f6c3e9e6399a801c88e1a300a1a803cbe07a002e683ccb0356b7e389eb9d33d"
+    },
+    {
+      "path": "verify_input.py",
+      "sha256": "4f0cbf2b3f120f3c1cd86051e7646f932a39cf153a067d6fce38dff26e3225c3"
+    }
+  ],
+  "inputVerification": "PASS: sha256sum -c PACKET-SHA256SUMS.txt and verify_input.py --repo <source-worktree>",
+  "localRefs": {
+    "refs/heads/task/slskdn-pr409-w77-apply-20261104": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "refs/remotes/origin/codex/slskdn-oidc-tooltip-localization-20261030": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "refs/remotes/origin/main": "e6203f3cb16457bdb3a35678163adce01371be40",
+    "refs/remotes/origin/pr/409": "32afa31caca42b17ac89c9ee91e54ed94cad0411"
+  },
+  "refAssessment": "The checked-out HEAD and the matching local source branch agree with the pin. Local origin/pr/409 and origin/main are stale relative to the supplied live-before/live-after attestation; no remote refresh was made.",
+  "reviewDecisionOutputCreatedAfterSuppliedAttestation": true,
+  "selectedSourceCellCount": 300,
+  "selectedSourceCount": 25,
+  "sourceHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "sourceTree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "sourceTreeAttestationSha256": "7f6c3e9e6399a801c88e1a300a1a803cbe07a002e683ccb0356b7e389eb9d33d",
+  "suppliedHeadTreeAttestation": {
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "branchRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "draft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "liveAfter": {
+      "attestedUtc": "2026-11-04 18:46:52 UTC",
+      "baseRefName": "main",
+      "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+      "branchRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+      "draft": true,
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+      "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+      "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+      "mergeableState": "clean",
+      "merged": false,
+      "pullRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+      "pullRequest": 409,
+      "repository": "snapetech-org/slskdN",
+      "state": "OPEN"
+    },
+    "liveBefore": {
+      "attestedUtc": "2026-11-04 18:44:09 UTC",
+      "baseRefName": "main",
+      "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+      "branchRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+      "draft": true,
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+      "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+      "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+      "mergeableState": "clean",
+      "merged": false,
+      "pullRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+      "pullRequest": 409,
+      "repository": "snapetech-org/slskdN",
+      "state": "OPEN"
+    },
+    "localHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "localTree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+    "pullMergeRefOid": "aecc15bd0d24bc0abf77e209fddf8ddfb86ebb13",
+    "pullRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "pullRequest": 409,
+    "repository": "snapetech-org/slskdN",
+    "state": "OPEN",
+    "treeOid": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+    "worktreeClean": true
+  },
+  "suppliedLiveAfterAttestation": {
+    "attestedUtc": "2026-11-04 18:46:52 UTC",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "branchRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "draft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+    "mergeableState": "clean",
+    "merged": false,
+    "pullRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "pullRequest": 409,
+    "repository": "snapetech-org/slskdN",
+    "state": "OPEN"
+  },
+  "suppliedSourceTreeAttestation": {
+    "callerScan": "exact single- or double-quoted source literal scan",
+    "head": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "productionFileCount": 279,
+    "runtimeFilePinsSha256": "e19067df0a83844866a5a38242b466e7b2b2c673e451820278fb1c1394d00fbe",
+    "sourceRoot": "src/web/src",
+    "testAndSpecFilesExcluded": true,
+    "tree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+    "treeEntryCount": 7533,
+    "treeEnumeration": "git ls-tree -r -z at exact pinned commit"
+  },
+  "worktreeStatus": "clean"
+}

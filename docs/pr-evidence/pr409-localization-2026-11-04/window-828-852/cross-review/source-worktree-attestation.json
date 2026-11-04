@@ -1,0 +1,19 @@
+{
+  "path": "/mnt/disks/scratch/task-worktrees/localization-20261104/slskdn-pr409-w78-828-852-source",
+  "head": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "tree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "checkoutState": "detached",
+  "statusPorcelain": "",
+  "clean": true,
+  "localRefsReadOnly": {
+    "refs/remotes/origin/pr/409": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+    "refs/remotes/origin/main": "e6203f3cb16457bdb3a35678163adce01371be40",
+    "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030": "53af3400b46c8a30cb2b021b9e7edf0ac6086f86"
+  },
+  "localRefAssessment": {
+    "refs/remotes/origin/pr/409": "stale; left untouched",
+    "refs/remotes/origin/main": "stale; left untouched",
+    "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030": "stale relative to detached pinned source worktree; left untouched"
+  },
+  "manifestAssessment": "Blind manifest sourceRefAssessment overstates local branch agreement: worktree HEAD is pinned and clean, but the named local branch ref is stale."
+}
