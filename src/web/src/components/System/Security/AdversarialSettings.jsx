@@ -1258,7 +1258,7 @@ const AdversarialSettings = () => {
             )}
            {...interfaceTextProps("Check whether the configured Tor service is reachable.")}/>
           <Popup
-            content={interfaceText("Save the current adversarial settings to this server.")}
+            content={interfaceText("Save the current privacy and anonymity settings to this server.")}
             position="top center"
             trigger={(
               <Button
@@ -1271,7 +1271,7 @@ const AdversarialSettings = () => {
                {...interfaceTextProps("Save adversarial settings")}>
                 <LocalizedText source={"Save Changes"} /></Button>
             )}
-           {...interfaceTextProps("Save the current adversarial settings to this server.")}/>
+           {...interfaceTextProps("Save the current privacy and anonymity settings to this server.")}/>
         </div>
       </div>
 
