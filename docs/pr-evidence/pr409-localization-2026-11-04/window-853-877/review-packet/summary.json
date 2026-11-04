@@ -1,0 +1,76 @@
+{
+  "artifact": "slskdN PR #409 W79 independent cross-review",
+  "schemaVersion": 1,
+  "window": "W79",
+  "continuationRankRange": [
+    853,
+    877
+  ],
+  "remainingQueueRankRange": [
+    753,
+    777
+  ],
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "tree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "cellCount": 300,
+  "crossDecisionCounts": {
+    "keep": 215,
+    "hold": 39,
+    "propose": 46
+  },
+  "crossProposalCount": 46,
+  "noOpCount": 215,
+  "crossHoldCount": 39,
+  "callerlessHoldCount": 24,
+  "callerlessSourceCount": 2,
+  "primaryProposalCountAudited": 32,
+  "primaryProposalVerdicts": {
+    "adopt": 30,
+    "revise": 2
+  },
+  "newProposalCountBeyondPrimary": 14,
+  "blindHoldCountAudited": 71,
+  "blindHoldCrossDispositionCounts": {
+    "hold": 27,
+    "propose": 44
+  },
+  "localeTermEvidenceRows": 96,
+  "pinnedDocumentationEvidenceRows": 2,
+  "priorHeldCellsReattested": 343,
+  "priorHoldResolutionHistoryRows": 13,
+  "candidateFreeInputManifestSha256": "d1b346ed7a666de91033c4fa83e225e5f4768a60ecda378e86aa464fdcabaf01",
+  "primaryReviewManifestSha256": "92b8a9154098508250d776dbdc08783b39b857c33e1ac9770115fc9a61bf960d",
+  "blindReviewManifestSha256": "48894518fa81986aaa64528a35b2e3bcacf175073a08f1647b6b7adb9a1e3afc",
+  "candidateFreeVerifier": "PASS",
+  "primaryVerifier": "PASS",
+  "liveRefsMatchPin": true,
+  "liveBeforeSha256": "44f22f577645fcae9fec73588a5514aa507a85f38e291f412a1bade42b684e27",
+  "liveAfterSha256": "91ac327cb2757bfbc6189518f0eda3d783e660261b95715c4728c8864c3f6743",
+  "sourceWorktreeHead": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "sourceWorktreeTree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "sourceWorktreeCleanAtBuild": true,
+  "sourceWorktreeRetained": false,
+  "appliedToRepository": false,
+  "repositoryOrPrEdited": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false
+}

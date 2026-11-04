@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "pinnedHead": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "pinnedTree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "candidateFreeVerifier": {
+    "command": "python3 candidate-free/input/verify_input.py --repo <clean pinned worktree>",
+    "result": "PASS",
+    "sourceCount": 25,
+    "localeCount": 12,
+    "cellCount": 300,
+    "callerBackedSources": 23,
+    "callerlessSources": 2,
+    "priorSelectedIds": 1932,
+    "priorHeldCells": 343,
+    "priorHoldResolutionRows": 13,
+    "W78AppliedTargets": 63,
+    "tokenMismatchCounts": {
+      "placeholder": 0,
+      "markup": 0,
+      "numeric": 0,
+      "protectedLiteral": 0
+    },
+    "packetChecksumMembers": 35
+  },
+  "primaryVerifier": {
+    "command": "python3 primary-review/output/verify_primary.py --repo <clean pinned worktree>",
+    "result": "PASS",
+    "sourceCount": 25,
+    "localeCount": 12,
+    "cellCount": 300,
+    "acceptCurrent": 244,
+    "correct": 32,
+    "callerlessTextFreeHolds": 24,
+    "candidateFreeVerifier": "PASS",
+    "freshLiveApiAndRefs": "PASS",
+    "priorHeldCellsReattested": 343,
+    "priorHoldResolutionHistoryRows": 13,
+    "W78AppliedTargetsReattested": 63,
+    "checksumMembers": 18
+  },
+  "catalogsModified": false,
+  "testsOrBuildsRun": false
+}

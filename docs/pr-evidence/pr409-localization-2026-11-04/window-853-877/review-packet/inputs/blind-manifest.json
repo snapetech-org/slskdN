@@ -1,0 +1,93 @@
+{
+  "artifact": "slskdN PR #409 W79 blind semantic review packet",
+  "blindReview": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "callerlessCellCount": 24,
+  "callerlessSourceIds": [
+    "src_327bb9a9075e918b",
+    "src_3287656b5b4d7d62"
+  ],
+  "callerlessTargetTextIncluded": false,
+  "candidateFree": true,
+  "candidateFreeInputChecksumListSha256": "0427c3aaf306abac1638780c329288f7236e8ab21ee8e2591f7ad16e461af476",
+  "candidateFreeInputChecksumListVerified": true,
+  "candidateFreeInputChecksums": {
+    "callerContextsSha256": "3d2e1b164b5bf23f4361b318e0a4d58b00fdc209f9bb37c4c82eb73a4d77a898",
+    "headTreeAttestationSha256": "619f3493ec518cb7f720f7754b31e9d6683557045fbfb13fe9823e88474c5024",
+    "sourceCurrentCellsSha256": "3370456891af28da61e9a3cc0154fa3995cd8719092bbc980525bda31d3fca4a",
+    "sourceInventorySelectionSha256": "8a669f25a9bc2bc65e64be63c22dd7dd391f3d28fc1d485f7e7b4d66ebc0010f"
+  },
+  "candidateFreeInputDirectory": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w79-853-877-primary-20261104/candidate-free/input",
+  "candidateFreeInputManifestSha256": "d1b346ed7a666de91033c4fa83e225e5f4768a60ecda378e86aa464fdcabaf01",
+  "candidateProposalsIncluded": false,
+  "candidateProposalsInspected": false,
+  "cellCount": 300,
+  "continuationRankRange": [
+    853,
+    877
+  ],
+  "createdAtUtc": "2026-11-04T21:25:38Z",
+  "decisionCounts": {
+    "accept": 229,
+    "hold": 71
+  },
+  "files": {
+    "review-cells.jsonl": {
+      "bytes": 208261,
+      "sha256": "5e239b9d9c107d9032b534e95c7d25ce8095f1f081a9b36828b725f513a2e8c6"
+    },
+    "review-summary.md": {
+      "bytes": 3167,
+      "sha256": "d2620dceede69789da58731e32f02db8360bae2a162aa5439398efbd936a3c44"
+    },
+    "sources.jsonl": {
+      "bytes": 59306,
+      "sha256": "8f5d9cdcbb1ec046c67a6c1b54bea05e193fad283d741764e7626a16ff4f1c13"
+    }
+  },
+  "head": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "primaryReviewOutputsInspected": false,
+  "proposedReplacementsIncluded": false,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "reviewedCellCount": 300,
+  "schemaVersion": 1,
+  "scopeNotes": [
+    "No repository edits, tests, builds, scans, CI, workflow changes, browser, or application were performed.",
+    "Callerless target strings were used for semantic assessment but are represented only by SHA-256 in this packet."
+  ],
+  "sourceCount": 25,
+  "targetTextIncludedCellCount": 276,
+  "tokenCheckSummary": {
+    "markupMismatches": 0,
+    "numericTokenMismatches": 0,
+    "placeholderMismatches": 0,
+    "protectedLiteralMismatches": 0
+  },
+  "tree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "verification": {
+    "allTargetHashesMatchedPinnedCatalogs": true,
+    "callerFileAndGitBlobPinsVerified": 51,
+    "callerLineAndContextLinesVerified": true,
+    "selectedSourceRanksAndHashesVerified": true,
+    "worktreeStatusPorcelainEmpty": true
+  },
+  "window": "W79",
+  "worktreeClean": true,
+  "worktreePath": "/mnt/disks/scratch/task-worktrees/localization-20261104/slskdn-pr409-w79-853-877-source"
+}

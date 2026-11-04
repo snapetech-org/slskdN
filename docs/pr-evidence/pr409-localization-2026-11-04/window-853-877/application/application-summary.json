@@ -1,0 +1,84 @@
+{
+  "artifact": "slskdN PR #409 W79 localization application readback",
+  "schemaVersion": 1,
+  "window": "W79",
+  "headBeforeApply": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "treeBeforeApply": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "productCommit": "7317d8fa46a54746f09853da18c16a8ef1845291",
+  "proposalCount": 46,
+  "keepCount": 215,
+  "holdCount": 39,
+  "callerlessHashOnlyHoldCount": 24,
+  "callerBackedHoldCount": 15,
+  "readbackCellCount": 300,
+  "catalogCount": 12,
+  "catalogKeyCountPerLocale": 6176,
+  "catalogKeyOrderUnchanged": true,
+  "cellsByLocale": {
+    "ar": {
+      "keep": 17,
+      "hold": 3,
+      "propose": 5
+    },
+    "de": {
+      "keep": 20,
+      "hold": 3,
+      "propose": 2
+    },
+    "es": {
+      "keep": 16,
+      "hold": 3,
+      "propose": 6
+    },
+    "fr": {
+      "keep": 16,
+      "hold": 3,
+      "propose": 6
+    },
+    "hi": {
+      "keep": 20,
+      "hold": 3,
+      "propose": 2
+    },
+    "id": {
+      "keep": 18,
+      "hold": 3,
+      "propose": 4
+    },
+    "ja": {
+      "keep": 20,
+      "hold": 4,
+      "propose": 1
+    },
+    "ko": {
+      "keep": 17,
+      "hold": 3,
+      "propose": 5
+    },
+    "pt-BR": {
+      "keep": 19,
+      "hold": 3,
+      "propose": 3
+    },
+    "vi": {
+      "keep": 18,
+      "hold": 3,
+      "propose": 4
+    },
+    "zh-Hans": {
+      "keep": 17,
+      "hold": 4,
+      "propose": 4
+    },
+    "zh-Hant": {
+      "keep": 17,
+      "hold": 4,
+      "propose": 4
+    }
+  },
+  "repositoryEditsOutsideLocaleCatalogs": false,
+  "workflowPathsChanged": 0,
+  "testsBuildsScansCiRun": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false
+}
