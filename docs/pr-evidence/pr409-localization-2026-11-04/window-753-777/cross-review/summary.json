@@ -1,0 +1,52 @@
+{
+  "applicationPerformed": false,
+  "artifact": "slskdN PR #409 W75 ranks 753-777 independent cross review",
+  "baseRef": "main",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baselineProtectedLiteralFlags": 23,
+  "blindOnlyProposals": 29,
+  "blindRevisions": 44,
+  "browserReview": false,
+  "cells": 300,
+  "confidence": "moderate",
+  "continuationRankRange": [
+    753,
+    777
+  ],
+  "crossHashOnlyHolds": 12,
+  "crossHoldPositions": [
+    754
+  ],
+  "differentTargetProposalDisagreements": 11,
+  "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "inputVerifiers": "PASS",
+  "keepCurrent": 239,
+  "livePRAfter": "PASS",
+  "livePRBefore": "PASS",
+  "localeCount": 12,
+  "localizedWishlistBaselineExceptionsAccepted": 23,
+  "nativeSpeakerSignoff": false,
+  "primaryCorrections": 20,
+  "primaryHashOnlyHolds": 12,
+  "primaryOnlyProposals": 5,
+  "priorActiveHeldCellsPreservedHashOnly": 259,
+  "priorHoldResolutionRowsPreservedHashOnly": 13,
+  "proposalUnion": 49,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    653,
+    677
+  ],
+  "repository": "snapetech-org/slskdN",
+  "sameTargetProposalAgreements": 4,
+  "schemaVersion": 1,
+  "selectedProposalSourceCounts": {
+    "blind": 34,
+    "primary": 11,
+    "primary+blind": 4
+  },
+  "selectedReviewedTargets": 49,
+  "sourceCount": 25,
+  "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471",
+  "window": "W75"
+}

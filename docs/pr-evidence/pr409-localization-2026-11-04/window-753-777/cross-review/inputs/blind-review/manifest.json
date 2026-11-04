@@ -1,0 +1,48 @@
+{
+  "candidateFreeInput": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w75-753-777-primary-20261104/candidate-free/input",
+  "continuationRankEnd": 777,
+  "continuationRankStart": 753,
+  "counts": {
+    "accept": 256,
+    "allCellsHavePinnedCallers": true,
+    "baselineProtectedLiteralMismatches": 23,
+    "cells": 300,
+    "holds": 0,
+    "locales": 12,
+    "localizedFeatureNameMismatchesAccepted": 23,
+    "otherPlaceholderMarkupNumericMismatchCount": 0,
+    "revise": 44,
+    "sourceKeys": 25
+  },
+  "files": [
+    "README.md",
+    "manifest.json",
+    "blind-decisions.jsonl",
+    "protected-literal-assessments.json",
+    "review-notes.json",
+    "verify_blind.py",
+    "SHA256SUMS.txt"
+  ],
+  "inputChecksumsFileSha256": "e8578fd8e37d556f075da8d6eb53135929db3f07c40d8cc1de0302a3b05fe6c0",
+  "inputManifestSha256": "f992ad8d7adf4615b91156a5579f16431465298485bbd1436ed6ebe03c0cc2c1",
+  "packet": "slskdN PR #409 W75 clean blind review",
+  "pr": {
+    "base": "main",
+    "baseOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "draft": true,
+    "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "mergeState": "CLEAN",
+    "number": 409,
+    "repository": "snapetech-org/slskdN",
+    "state": "OPEN",
+    "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471"
+  },
+  "reviewerLimitations": [
+    "No native-speaker signoff",
+    "No browser review",
+    "No repository/PR edits or tests/builds/CI"
+  ],
+  "scope": "Every cell reviewed against exact source/current target and pinned caller context. All 23 “Wishlist” protected-literal flags independently assessed as valid localization of the feature label; one non-mismatch Indonesian cell is proposed to use its localized feature label.",
+  "window": "W75"
+}

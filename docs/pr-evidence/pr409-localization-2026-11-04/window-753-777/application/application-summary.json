@@ -1,0 +1,127 @@
+{
+  "acceptCurrentCount": 239,
+  "allTargetReadbacks": "PASS",
+  "allTwelveCatalogPreimagesMatched": "PASS",
+  "cellCount": 300,
+  "commitSequence": "product/catalog commit first; review/readback evidence commit second",
+  "countsByLocale": {
+    "ar": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 20,
+      "selected": 4
+    },
+    "de": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 20,
+      "selected": 4
+    },
+    "es": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 20,
+      "selected": 4
+    },
+    "fr": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 19,
+      "selected": 5
+    },
+    "hi": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 18,
+      "selected": 6
+    },
+    "id": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 20,
+      "selected": 4
+    },
+    "ja": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 20,
+      "selected": 4
+    },
+    "ko": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 22,
+      "selected": 2
+    },
+    "pt-BR": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 21,
+      "selected": 3
+    },
+    "vi": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 19,
+      "selected": 5
+    },
+    "zh-Hans": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 20,
+      "selected": 4
+    },
+    "zh-Hant": {
+      "hashOnlyHolds": 1,
+      "keepCurrent": 20,
+      "selected": 4
+    }
+  },
+  "hashOnlyHoldCount": 12,
+  "hashOnlyHoldPositions": [
+    {
+      "continuationRank": 754,
+      "locale": "ar"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "de"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "es"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "fr"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "hi"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "id"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "ja"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "ko"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "pt-BR"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "vi"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "zh-Hans"
+    },
+    {
+      "continuationRank": 754,
+      "locale": "zh-Hant"
+    }
+  ],
+  "keySequencesPreserved": "PASS",
+  "onlySelectedValuesChanged": "PASS",
+  "result": "PASS",
+  "reviewHead": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "reviewTree": "f21cb5cde009ac35f5531ddc40612821aee6f471",
+  "selectedCatalogUpdateCount": 49,
+  "window": "W75"
+}

@@ -1,0 +1,85 @@
+{
+  "applicationBundlePreEvidenceCommit": {
+    "applicationChecksumEntries": 9,
+    "catalogEntriesPerLocale": 6176,
+    "catalogFiles": 12,
+    "cells": 300,
+    "deliveryChecksumEntries": 2,
+    "hashOnlyHolds": 12,
+    "head": "dd49c37bc70a09b552fb66a435a04e500d0ca012",
+    "keepCurrent": 239,
+    "result": "PASS",
+    "rootChecksumEntries": 76,
+    "selected": 49
+  },
+  "applicationPrecommit": {
+    "cells": 300,
+    "gitDiffCheck": "PASS",
+    "hashOnlyHolds": 12,
+    "keepCurrent": 239,
+    "keyCountsPerLocale": 6176,
+    "localeFiles": 12,
+    "result": "PASS",
+    "selected": 49
+  },
+  "blind": {
+    "accept": 256,
+    "baselineProtectedLiteralMismatches": 23,
+    "cells": 300,
+    "holds": 0,
+    "independentlyAcceptedLocalizedNameExceptions": 23,
+    "inputManifestSha256": "f992ad8d7adf4615b91156a5579f16431465298485bbd1436ed6ebe03c0cc2c1",
+    "ledgerSha256": "84a919dcc7870d92fe2587fec49de024e601a036ee76f0e688d77c2014569bb8",
+    "result": "PASS",
+    "revise": 44
+  },
+  "candidateFree": {
+    "catalogEntriesPerLocale": 6176,
+    "catalogs": 12,
+    "cells": 300,
+    "checksums": 28,
+    "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "locales": 12,
+    "priorHeldCellsHashOnly": 259,
+    "priorHeldTargetHashesMatch": true,
+    "priorHoldResolutionsHashOnly": 13,
+    "priorSelectedIdsHashOnly": 1832,
+    "result": "PASS",
+    "runtimeFilesPinned": 279,
+    "sources": 25,
+    "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471"
+  },
+  "cross": {
+    "cells": 300,
+    "differentTargetDisagreements": 11,
+    "hashOnlyHolds": 12,
+    "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "inputAndRootChecksums": "PASS",
+    "keepCurrent": 239,
+    "priorHeldCellsPreservedHashOnly": 259,
+    "result": "PASS",
+    "sameTargetAgreements": 4,
+    "selectedReviewedTargets": 49,
+    "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471"
+  },
+  "liveAfterProductPush": {
+    "branchAndPullRefsMatch": true,
+    "checkRuns": 0,
+    "deployments": 0,
+    "draft": true,
+    "result": "PASS",
+    "state": "OPEN"
+  },
+  "primary": {
+    "acceptCurrent": 268,
+    "cells": 300,
+    "checksums": 11,
+    "correct": 20,
+    "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "inputVerifier": "PASS",
+    "proposalTokenMismatches": 0,
+    "result": "PASS",
+    "textFreeHolds": 12,
+    "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471"
+  }
+}

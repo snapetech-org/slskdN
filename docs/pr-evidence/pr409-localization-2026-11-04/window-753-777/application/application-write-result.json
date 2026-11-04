@@ -1,0 +1,153 @@
+{
+  "baseHead": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "baseTree": "f21cb5cde009ac35f5531ddc40612821aee6f471",
+  "catalogFiles": 12,
+  "preimages": [
+    {
+      "catalogPath": "src/web/public/locales/ar.json",
+      "changedKeys": 4,
+      "entryCount": 6176,
+      "locale": "ar",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 644297,
+      "postimageSha256": "d81aba087bbbcd1963e5dbd3b58d2748d95cb1c5e7ef46ceb6afa51ef8cb88c4",
+      "preimageBytes": 644251,
+      "preimageGitBlob": "9f252d89fec9840d6dcd9ce0dc80451bec23c4ec",
+      "preimageSha256": "f7b7f5c9c8dcc45eedc3f023767b48d324e277fd5c76718f91fe803d329d20fb"
+    },
+    {
+      "catalogPath": "src/web/public/locales/de.json",
+      "changedKeys": 4,
+      "entryCount": 6176,
+      "locale": "de",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 559120,
+      "postimageSha256": "9b1ebe8a1e826be9edfa67324d7c42a582d71621add4d5d5fb0a8966c2eb4db3",
+      "preimageBytes": 559126,
+      "preimageGitBlob": "396ea233f943ae69d16495c4c53de4c825cb8ffb",
+      "preimageSha256": "b04239ccc58e42847a99389782e42b908d3c35b6ebffa9a11b50343be09c8c99"
+    },
+    {
+      "catalogPath": "src/web/public/locales/es.json",
+      "changedKeys": 4,
+      "entryCount": 6176,
+      "locale": "es",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 557955,
+      "postimageSha256": "e028164e1836dd767efbe167d2a7f029ebe2db32648375fa32d17cf9052139a0",
+      "preimageBytes": 557920,
+      "preimageGitBlob": "a25a52921a131840e0b23ced40d7ff1572f9b55f",
+      "preimageSha256": "37050241e0c274f37711676af1c7879c996df614256af3446d1d4eb54dc9329b"
+    },
+    {
+      "catalogPath": "src/web/public/locales/fr.json",
+      "changedKeys": 5,
+      "entryCount": 6176,
+      "locale": "fr",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 572378,
+      "postimageSha256": "485f79a27170fba11232415ecda2864d321f021562c1900a10592e2b617fe50d",
+      "preimageBytes": 572348,
+      "preimageGitBlob": "fd3db020aecde28e3d51590196b603b79b47503c",
+      "preimageSha256": "f4c191c35c292a72b3937d84b69fbe0832c1b4e10b488f0eb2f7971736b4161c"
+    },
+    {
+      "catalogPath": "src/web/public/locales/hi.json",
+      "changedKeys": 6,
+      "entryCount": 6176,
+      "locale": "hi",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 858941,
+      "postimageSha256": "69e53e80958038a6c801e3bd2c3a3bbd1fd903bf94cb96d91e16579cdd049619",
+      "preimageBytes": 858836,
+      "preimageGitBlob": "dc7fadbff30d7861a562a780b36d8fded7526fe5",
+      "preimageSha256": "67df570f75780d769f3724714e40538f470afcba73fb76c36dd6b15f61c00f1b"
+    },
+    {
+      "catalogPath": "src/web/public/locales/id.json",
+      "changedKeys": 4,
+      "entryCount": 6176,
+      "locale": "id",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 518422,
+      "postimageSha256": "9a9caf6efef4e1d8c16996e5dff89513003ffad80e08daebfe9bef2569d232a7",
+      "preimageBytes": 518408,
+      "preimageGitBlob": "c085fcd0f17ac4f0736fe0068b908dd4103d3b2f",
+      "preimageSha256": "e72b80800cf6a578297e7d16a66a5fc7a66d6c6caa0b8c9ce6026d8d94d60442"
+    },
+    {
+      "catalogPath": "src/web/public/locales/ja.json",
+      "changedKeys": 4,
+      "entryCount": 6176,
+      "locale": "ja",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 617392,
+      "postimageSha256": "7f45ec8db1cffa0a851728a533bddefd876453403c7afb4a9afe55ae2f373733",
+      "preimageBytes": 617353,
+      "preimageGitBlob": "1d8b5fcf3f63fb14567190787b71759c0bac8716",
+      "preimageSha256": "213127fe4c5514223ed998dc2733693abc31850799d675a4415cda4e599101f7"
+    },
+    {
+      "catalogPath": "src/web/public/locales/ko.json",
+      "changedKeys": 2,
+      "entryCount": 6176,
+      "locale": "ko",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 554461,
+      "postimageSha256": "72340e4b5d0c60bc079613ee740d9bea0d28aaf47cad5dbaa675863b7c8c7d0e",
+      "preimageBytes": 554429,
+      "preimageGitBlob": "08ab4d815c98face24aa9ea081d4afe791ad0a8a",
+      "preimageSha256": "51814f4115e9f954bb4d9cdbae0f0dda04b57c0d58312f9e69c8d830f816573b"
+    },
+    {
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "changedKeys": 3,
+      "entryCount": 6176,
+      "locale": "pt-BR",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 549863,
+      "postimageSha256": "29003834c37a62d9fbcd06ea07867b93b0bce0eb226e30004c3a0e4f70fab2bd",
+      "preimageBytes": 549832,
+      "preimageGitBlob": "c674953300afeb61110b8254514aaeb363154880",
+      "preimageSha256": "f942a6a683c60abf30e88d54c2b64566003785a35b0c395cb82a85156e2a36df"
+    },
+    {
+      "catalogPath": "src/web/public/locales/vi.json",
+      "changedKeys": 5,
+      "entryCount": 6176,
+      "locale": "vi",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 598930,
+      "postimageSha256": "eeb3c233ddef5d408cac3928e0b5404f01949c8757dc6ef6fe6eefa9c3290c96",
+      "preimageBytes": 598879,
+      "preimageGitBlob": "8fffea8a2a19c231c78996c2cc1947eab4153e35",
+      "preimageSha256": "8e4e47e25ed30e4a9d1689f27cbf6101514e03510d838e9c2ae4d851dc4fa04e"
+    },
+    {
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "changedKeys": 4,
+      "entryCount": 6176,
+      "locale": "zh-Hans",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 482170,
+      "postimageSha256": "52b2afe6fa6a548ac6bb7d24476bb34916e204acca7966ce384b57e628f0298a",
+      "preimageBytes": 482122,
+      "preimageGitBlob": "ae47b0c3a6cfe7002b8b5d41c686c3709cb3f859",
+      "preimageSha256": "7bb88e41fc1e6e5cbb60b7e83ac0800a9633ec6340ebc730d0a189d6c9cadd6d"
+    },
+    {
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "changedKeys": 4,
+      "entryCount": 6176,
+      "locale": "zh-Hant",
+      "orderedKeySha256": "f93ed999b638ef54934c5419e1f673e1bf95e5ded48cb20d720ead1646cacf55",
+      "postimageBytes": 483599,
+      "postimageSha256": "d1f8d15d6ba0f92566254205c472431984740ac9be2db7259c0f86ec5e483eb5",
+      "preimageBytes": 483545,
+      "preimageGitBlob": "516d9928bd77e76ed9f3fa7489611c4c4a9c0e94",
+      "preimageSha256": "69dcbbdf65a989cd48f1fb1d26c03b76d6e1538d6de7450df30a4931331dbc81"
+    }
+  ],
+  "result": "PASS",
+  "selectedCells": 49
+}

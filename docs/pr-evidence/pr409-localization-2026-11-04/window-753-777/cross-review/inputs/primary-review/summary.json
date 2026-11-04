@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "reviewPass": "independent-primary",
+  "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471",
+  "continuationRankRange": [
+    753,
+    777
+  ],
+  "remainingQueueRankRange": [
+    653,
+    677
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositions": {
+    "accept-current": 268,
+    "hold": 12,
+    "correct": 20
+  },
+  "proposedTargetCount": 20,
+  "holds": 12,
+  "callerlessCells": 0,
+  "sourceRewriteRecommendations": 0,
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 23
+  },
+  "localizedWishlistFalsePositiveCells": 23,
+  "tokenMismatchesAmongProposals": 0,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "blindOrCrossReviewUsed": false,
+  "inputManifestSha256": "f992ad8d7adf4615b91156a5579f16431465298485bbd1436ed6ebe03c0cc2c1",
+  "inputChecksumListSha256": "e8578fd8e37d556f075da8d6eb53135929db3f07c40d8cc1de0302a3b05fe6c0",
+  "selectionBoundarySha256": "aba327d054ac59383bed048a354d503ee920023a44c7bd4d6dfcb466dd7b4f6b"
+}

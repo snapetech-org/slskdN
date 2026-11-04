@@ -1,0 +1,19 @@
+{
+  "capturedAtUtc": "2026-11-04T10:46:15Z",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": {
+    "number": 409,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRepository": "snapetech-org/slskdN",
+    "headSha": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "baseRef": "main",
+    "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356"
+  },
+  "commitTree": "f21cb5cde009ac35f5531ddc40612821aee6f471",
+  "branchRefSha": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "pullRefSha": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "deploymentCountAtExpectedHead": 0
+}
