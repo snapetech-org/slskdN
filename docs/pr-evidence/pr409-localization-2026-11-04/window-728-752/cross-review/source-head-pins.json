@@ -1,0 +1,39 @@
+{
+  "allRowsIncludeExactSourceCurrentCallerAndCatalogPins": true,
+  "baseRefName": "main",
+  "blindChecksumListSha256": "2dc7ec6876b43f451fc6aaa9d444cbcc18c2b30df777d292428e2daf4f70ff61",
+  "blindSummarySha256": "eafc78b77b06a43d045addb3bd46794cc81d6c855bde7bf4cb131d4a7bd1f8a9",
+  "candidateFreeChecksumListSha256": "e4ecbabc1d37d08f5df2ae86cf6ee785e97c1dcc5c2a63598297d7e9537e73ee",
+  "candidateFreeManifestSha256": "b9ad370953c7afb4f6406b8f49d95a1d4f4c6deb90e6f03e4141cd957387fb1b",
+  "cellCount": 300,
+  "continuationRankRange": [
+    728,
+    752
+  ],
+  "head": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "inputOrigins": {
+    "blind": "evidence/blind-review/output/",
+    "candidateFree": "evidence/candidate-free/input/",
+    "primary": "evidence/primary-review/output/"
+  },
+  "isDraft": true,
+  "livePrAfterReviewIsDraft": true,
+  "livePrAfterReviewState": "OPEN",
+  "livePrAttestationAfterReview": "live-pr-attestation-after.json",
+  "localeCount": 12,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "primaryChecksumListSha256": "32c7e0ffeb01cd2b2d5466cfa0135257394cbba94f9193b6742a1aae622af232",
+  "primaryManifestSha256": "0164d1cee5e2663cb9a85488159ad063adf5440f59a97c14c265f61023d456ed",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "remainingQueueRankRange": [
+    628,
+    652
+  ],
+  "repository": "snapetech-org/slskdN",
+  "sourceCount": 25,
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "state": "OPEN",
+  "tree": "14620c63bee971428fa1cd6cf1f4e944b86056a7",
+  "window": "W74"
+}

@@ -1,0 +1,10 @@
+{
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "OPEN",
+  "draft": true,
+  "head": "b5311aea54dedefbc0b9b9fbc6adf091cc55b5c6",
+  "base": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "checks": "none reported",
+  "reviewedSourceHead": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "applicationCommitIsDirectChildOfReviewedHead": true
+}

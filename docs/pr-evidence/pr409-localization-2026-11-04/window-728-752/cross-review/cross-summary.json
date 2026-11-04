@@ -1,0 +1,48 @@
+{
+  "baseRefName": "main",
+  "blindChecksums": "PASS",
+  "blindVerifier": "PASS",
+  "browserReviewClaimed": false,
+  "candidateFreeChecksums": "PASS",
+  "candidateFreeVerifier": "PASS",
+  "cellCount": 300,
+  "continuationRankRange": [
+    728,
+    752
+  ],
+  "counts": {
+    "accept-current": 206,
+    "hold-text-free": 0,
+    "select-update": 94
+  },
+  "crossCustomAdjudicationCount": 8,
+  "crossVerifier": "PASS",
+  "head": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "holdCount": 0,
+  "isDraft": true,
+  "livePrReattestationAfterReview": "PASS",
+  "localeCount": 12,
+  "nativeSpeakerApproval": false,
+  "notes": [
+    "Independent decisions were made from candidate-free source/current/caller context before examining primary and blind candidate wording.",
+    "Primary/blind candidates are recorded per cell for audit; selection is based on semantic and contextual review, not vote count.",
+    "Source rewrites at ranks 732 and 750 require corresponding English source/caller updates before applying selected locale translations.",
+    "No repository or PR files were changed; no tests, builds, scans, CI, browser, or native-speaker review were performed."
+  ],
+  "packet": "slskdN PR #409 W74 independent cross-audit ranks 728-752",
+  "primaryChecksums": "PASS",
+  "primaryVerifier": "PASS",
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    628,
+    652
+  ],
+  "repository": "snapetech-org/slskdN",
+  "reviewConfidence": "moderate",
+  "selectedUpdateCount": 94,
+  "sourceCount": 25,
+  "sourceRewriteCount": 2,
+  "sourceRewriteTranslationCells": 24,
+  "state": "OPEN",
+  "tree": "14620c63bee971428fa1cd6cf1f4e944b86056a7"
+}

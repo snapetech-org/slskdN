@@ -1,0 +1,48 @@
+{
+  "result": "SEALED",
+  "window": "W74",
+  "rankRange": [
+    728,
+    752
+  ],
+  "remainingQueueRange": [
+    628,
+    652
+  ],
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "reviewedHead": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "reviewedTree": "14620c63bee971428fa1cd6cf1f4e944b86056a7",
+  "cellsReviewed": 300,
+  "sourcesReviewed": 25,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "counts": {
+    "accept-current": 224,
+    "revise-current": 76,
+    "hold-text-free": 0
+  },
+  "proposalCount": 76,
+  "holdCount": 0,
+  "holdPolicy": "No text-free holds; the copied caller context was sufficient to make a bounded disposition for every cell.",
+  "reviewMethod": "Independent clean-blind review of copied candidate-free source cells and their included caller context. No other review outputs or repository files were consulted.",
+  "nativeSpeakerApproval": false,
+  "browserReviewClaimed": false,
+  "reviewConfidence": "moderate",
+  "sealedAtUtc": "2026-11-04T07:46:21+00:00",
+  "prAttestationBefore": "PR-attestation-before.json",
+  "prAttestationAfter": "PR-attestation-after.json",
+  "inputDirectory": "input/"
+}

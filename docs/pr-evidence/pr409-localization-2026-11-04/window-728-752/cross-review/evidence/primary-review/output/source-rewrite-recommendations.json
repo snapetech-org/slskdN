@@ -1,0 +1,96 @@
+[
+  {
+    "continuationRank": 732,
+    "remainingQueueRank": 632,
+    "sourceId": "src_2c367aa22044c2c6",
+    "currentSource": "Save the current adversarial settings to this server.",
+    "currentSourceSha256": "2c367aa22044c2c6a856d93fe57ff1578cc38c0d4a040fbe604bf49b6851458b",
+    "proposedSource": "Save the current privacy and anonymity settings to this server.",
+    "callerRefs": [
+      {
+        "path": "src/web/src/components/System/Security/AdversarialSettings.jsx",
+        "line": 1261,
+        "lineSha256": "d4f5c00e1c1605721a049635236f874b4e405b2b9c1f2c4e3c7becc434408db3",
+        "contextSha256": "5c53ed9ff9cb8e0d17581d4be6fc8a3df6a0980626b32bad70eaf2c7c325f1c7",
+        "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+        "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec"
+      },
+      {
+        "path": "src/web/src/components/System/Security/AdversarialSettings.jsx",
+        "line": 1274,
+        "lineSha256": "53f915b7c80488bd8ad2bd1f49d2e274c760417e12a70c3c55f23d9c3e1f7f73",
+        "contextSha256": "82c915c82850c3d009e8b9a9b61bf7bd6ffa19d65df69454bf91c6227956e860",
+        "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+        "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec"
+      }
+    ],
+    "rationale": "The caller is in AdversarialSettings.jsx; its section describes advanced privacy and anonymity features and covers Tor/anonymity configuration. The old English adversarial label induces false-friend translations (opposition/hostility). Reword the source to describe the settings actually saved.",
+    "translations": {
+      "ar": "احفظ إعدادات الخصوصية وإخفاء الهوية الحالية على هذا الخادم.",
+      "de": "Speichern Sie die aktuellen Datenschutz- und Anonymitätseinstellungen auf diesem Server.",
+      "es": "Guarde la configuración actual de privacidad y anonimato en este servidor.",
+      "fr": "Enregistrez les paramètres actuels de confidentialité et d’anonymat sur ce serveur.",
+      "hi": "वर्तमान गोपनीयता और गुमनामी सेटिंग्स इस सर्वर पर सहेजें।",
+      "id": "Simpan pengaturan privasi dan anonimitas saat ini ke server ini.",
+      "ja": "現在のプライバシー設定と匿名性の設定をこのサーバーに保存します。",
+      "ko": "현재 개인정보 보호 및 익명성 설정을 이 서버에 저장합니다.",
+      "pt-BR": "Salve as configurações atuais de privacidade e anonimato neste servidor.",
+      "vi": "Lưu các cài đặt quyền riêng tư và ẩn danh hiện tại lên máy chủ này.",
+      "zh-Hans": "将当前隐私和匿名设置保存到此服务器。",
+      "zh-Hant": "將目前的隱私與匿名設定儲存到此伺服器。"
+    },
+    "translationCount": 12,
+    "requiresSourceKeyAndCallerUpdateBeforeTranslationApplication": true
+  },
+  {
+    "continuationRank": 750,
+    "remainingQueueRank": 650,
+    "sourceId": "src_2d4bc8b68054a858",
+    "currentSource": "Close the share contents window.",
+    "currentSourceSha256": "2d4bc8b68054a858e8c24e1a1423db5bc284f0630410bf60d8fc65ec140f5629",
+    "proposedSource": "Close the window showing the contents of the selected share.",
+    "callerRefs": [
+      {
+        "path": "src/web/src/components/System/Shares/ContentsModal.jsx",
+        "line": 90,
+        "lineSha256": "6c942a89b733a7d4c248ea94a30edfa6e409fad71dd3ed6e47de45ef2dd1d91c",
+        "contextSha256": "e3a45c279b91c737e72315b8167369070fdc6206aa25a67970c19e4b321f69b3",
+        "fileSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+        "gitBlob": "737d36838b7e08e16dc6f3ec652467afeed0deea"
+      },
+      {
+        "path": "src/web/src/components/System/Shares/ContentsModal.jsx",
+        "line": 95,
+        "lineSha256": "b953346eba53ed8c88c9e3ea652eb96acebb1ae465e3e1b3520b9d5d1ebb7434",
+        "contextSha256": "251dafc0933772800c247cc398365564ee2d0cbf0d4b140657a8d7c7060a9ce5",
+        "fileSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+        "gitBlob": "737d36838b7e08e16dc6f3ec652467afeed0deea"
+      },
+      {
+        "path": "src/web/src/components/System/Shares/ContentsModal.jsx",
+        "line": 99,
+        "lineSha256": "409a8318a8564bedda7ad8030a3bc98f9c7c2e3fa5fdad1e9841da29cacebd38",
+        "contextSha256": "a60e6b6cb1b57cf753139232c7df6adcfffb569727d9e82675d2f9694fd86d7a",
+        "fileSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+        "gitBlob": "737d36838b7e08e16dc6f3ec652467afeed0deea"
+      }
+    ],
+    "rationale": "ContentsModal displays the selected share's path contents. Existing translations frequently parse share contents as the action of sharing content. This wording identifies the window as showing the contents belonging to a share.",
+    "translations": {
+      "ar": "أغلق النافذة التي تعرض محتويات المجلد المشترك المحدد.",
+      "de": "Schließen Sie das Fenster, das den Inhalt der ausgewählten Freigabe anzeigt.",
+      "es": "Cierra la ventana que muestra el contenido del recurso compartido seleccionado.",
+      "fr": "Fermez la fenêtre qui affiche le contenu du partage sélectionné.",
+      "hi": "चुने गए साझा फ़ोल्डर की सामग्री दिखाने वाली विंडो बंद करें।",
+      "id": "Tutup jendela yang menampilkan isi folder bersama yang dipilih.",
+      "ja": "選択した共有フォルダーの内容を表示するウィンドウを閉じます。",
+      "ko": "선택한 공유 폴더의 내용을 표시하는 창을 닫습니다.",
+      "pt-BR": "Feche a janela que mostra o conteúdo da pasta compartilhada selecionada.",
+      "vi": "Đóng cửa sổ hiển thị nội dung của thư mục được chia sẻ đã chọn.",
+      "zh-Hans": "关闭显示所选共享文件夹内容的窗口。",
+      "zh-Hant": "關閉顯示所選共享資料夾內容的視窗。"
+    },
+    "translationCount": 12,
+    "requiresSourceKeyAndCallerUpdateBeforeTranslationApplication": true
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "reviewPass": "independent-primary",
+  "head": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "tree": "14620c63bee971428fa1cd6cf1f4e944b86056a7",
+  "inputRoot": "../../candidate-free/input/",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 970,
+      "sha256": "29859ca3a9724e80a99858f0a004823b9e0016ff9ff64fab869c91b7d7396b42"
+    },
+    {
+      "path": "corrections.jsonl",
+      "bytes": 180500,
+      "sha256": "0e5de74a1f083ff15ea4885863350db0aa48a9bf90dc633523b890b99fc57f7b"
+    },
+    {
+      "path": "live-after.json",
+      "bytes": 257,
+      "sha256": "e0ade297f1310ecf3e2db979290ccc5a083a63dbc9c686fbe6385e9dec0e74d9"
+    },
+    {
+      "path": "live-before.json",
+      "bytes": 257,
+      "sha256": "e0ade297f1310ecf3e2db979290ccc5a083a63dbc9c686fbe6385e9dec0e74d9"
+    },
+    {
+      "path": "primary-review.jsonl",
+      "bytes": 638379,
+      "sha256": "ee286c9272fac4bc1bb1b21103831fdb9b0081799ecec280499d3ecf90bb4226"
+    },
+    {
+      "path": "source-rewrite-recommendations.json",
+      "bytes": 6248,
+      "sha256": "aaeb2d2591ef7d78fda1c0a29b15c1da9c72594f6858a5718710d0c9056104ae"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 956,
+      "sha256": "3272243fefd30fe39ca684dba7911c49b2539d3eab869763bc91d77b012ac35e"
+    },
+    {
+      "path": "verify_primary.py",
+      "bytes": 8219,
+      "sha256": "134891caea9b793993a9bc8cd668bfe0ca7b85df156a91ce273a14b72e2c15ed"
+    }
+  ]
+}

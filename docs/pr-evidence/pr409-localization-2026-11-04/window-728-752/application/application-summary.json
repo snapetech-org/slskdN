@@ -1,0 +1,31 @@
+{
+  "counts": {
+    "accept-current": 206,
+    "select-update": 94
+  },
+  "cellCount": 300,
+  "selectedUpdateCount": 94,
+  "holdCount": 0,
+  "sourceRewriteCount": 2,
+  "sourceRewriteTranslationCellCount": 24,
+  "changedCatalogLocales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "changedCatalogCount": 12,
+  "sourceFilesChanged": [
+    "src/web/src/components/System/Security/AdversarialSettings.jsx",
+    "src/web/src/components/System/Shares/ContentsModal.jsx"
+  ],
+  "allTargetReadbacks": "PASS"
+}
