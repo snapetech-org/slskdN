@@ -1,0 +1,77 @@
+{
+  "artifact": "slskdN PR #409 W72 cross-review",
+  "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "cells": 300,
+  "primaryDispositions": {
+    "accept-current": 170,
+    "correct": 21,
+    "hold": 108,
+    "refine": 1
+  },
+  "blindDispositions": {
+    "accept-current": 161,
+    "correct": 24,
+    "hold": 108,
+    "refine": 7
+  },
+  "finalDispositions": {
+    "accept-current": 161,
+    "correct": 24,
+    "hold": 108,
+    "refine": 7
+  },
+  "selectedTargets": 31,
+  "primaryBlindComparison": {
+    "cellsWithExactDispositionDifference": 9,
+    "cellsWithNormalizedDispositionDifference": 9,
+    "cellsWithAcceptVersusChangeDifference": 9,
+    "proposalsBoth": 22,
+    "primaryOnlyProposals": 0,
+    "blindOnlyProposals": 9,
+    "selectedPrimaryFlaggedChanges": 22,
+    "selectedBlindFlaggedChanges": 31,
+    "selectedBlindOnlyChanges": 9,
+    "rootReviewCorrections": 1
+  },
+  "callerlessHolds": 108,
+  "priorHeldCellsHashOnly": 152,
+  "priorSelectedIdsHashOnly": 1782,
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 8
+  },
+  "selectedTargetTokenFailures": 0,
+  "rootReviewCorrectionNote": "Parent root audit corrected the Hindi rank-697 punctuation by selecting the blind target; both original reviews remain unchanged.",
+  "nativeSpeakerSignoff": "not claimed; not performed",
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:50:51+00:00"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:50:55+00:00"
+  }
+}
