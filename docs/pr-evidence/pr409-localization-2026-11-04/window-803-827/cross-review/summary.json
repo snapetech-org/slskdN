@@ -1,0 +1,101 @@
+{
+  "baseDrift": "Live main is 4 commits ahead and 0 behind PR base; compare contains no localization/catalog/source changes. Workflows remain outside this task.",
+  "blindHolds": 20,
+  "blindHoldsByLocale": {
+    "ar": 2,
+    "de": 1,
+    "es": 3,
+    "fr": 3,
+    "hi": 2,
+    "id": 1,
+    "pt-BR": 3,
+    "vi": 3,
+    "zh-Hans": 1,
+    "zh-Hant": 1
+  },
+  "blindHoldsByRank": {
+    "805": 6,
+    "806": 7,
+    "808": 1,
+    "812": 1,
+    "816": 4,
+    "821": 1
+  },
+  "blindHoldsResolvedByCrossProposal": 2,
+  "blindHoldsResolvedByPrimaryProposal": 18,
+  "blindVerdictCounts": {
+    "HOLD": 20,
+    "PASS": 280
+  },
+  "callerlessHashOnlyHolds": 12,
+  "cellCount": 300,
+  "checksums": {
+    "blind": "PASS; all listed hashes verified",
+    "blindCandidateFreeCopy": "PASS; byte-identical checksum manifest and all listed hashes verified",
+    "candidateFree": "PASS; all listed hashes verified",
+    "primary": "PASS; all listed hashes verified"
+  },
+  "crossDispositionCounts": {
+    "accept-current": 236,
+    "hold-hash-only": 12,
+    "select-update": 52
+  },
+  "localeCount": 12,
+  "pr": 409,
+  "primaryCorrectionsWhereBlindPassed": 32,
+  "primaryDispositionCounts": {
+    "accept-current": 238,
+    "correct": 50,
+    "hold": 12
+  },
+  "primaryProposals": 50,
+  "proposalDisagreements": {
+    "cross-authored-additions": 2,
+    "primary-correction-and-blind-pass": 32
+  },
+  "repositoryOrPrEdits": 0,
+  "result": "PASS",
+  "reviewProvenance": "Non-blind cross-audit. Prior task context exposed primary aggregate counts and one callerless source ID; no claim of blind review is made.",
+  "selectedCrossAuthoredProposals": 2,
+  "selectedPrimaryProposals": 50,
+  "selectedUpdates": 52,
+  "sourceCount": 25,
+  "sourcePin": {
+    "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "tree": "b8692bb066cede93b6668806d0b97816135ce647"
+  },
+  "sourcePinRecheck": {
+    "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "tree": "b8692bb066cede93b6668806d0b97816135ce647"
+  },
+  "unresolvedContextualHolds": 0,
+  "updatesByLocale": {
+    "ar": 6,
+    "de": 3,
+    "es": 5,
+    "fr": 4,
+    "hi": 4,
+    "id": 4,
+    "ja": 3,
+    "ko": 4,
+    "pt-BR": 5,
+    "vi": 4,
+    "zh-Hans": 5,
+    "zh-Hant": 5
+  },
+  "updatesByRank": {
+    "805": 6,
+    "806": 8,
+    "807": 1,
+    "808": 12,
+    "809": 1,
+    "811": 2,
+    "812": 1,
+    "815": 2,
+    "816": 10,
+    "817": 1,
+    "821": 1,
+    "825": 7
+  },
+  "window": "W77"
+}

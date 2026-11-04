@@ -1,0 +1,43 @@
+{
+  "application": {
+    "cellsReadBack": 300,
+    "hashOnlyHolds": 12,
+    "localeCatalogs": 12,
+    "orderedKeysPerCatalog": 6176,
+    "productFilesChanged": 12,
+    "result": "PASS",
+    "selectedUpdates": 52,
+    "sourceHead": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "sourceTree": "b8692bb066cede93b6668806d0b97816135ce647",
+    "unchanged": 236
+  },
+  "bundlePrePush": {
+    "PRBody": "original bytes intact",
+    "branchHead": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "cellsReadBack": 300,
+    "localeKeyOrder": "PASS",
+    "productCommit": "572150c0f7a9e506d3251ea14490ad5f7967507f",
+    "result": "PASS",
+    "retained": 236,
+    "stage": "pre-push",
+    "textFreeHolds": 12,
+    "updates": 52
+  },
+  "candidateFree": "PASS (29 file checksums; source verifier passed)",
+  "crossReview": {
+    "blindHoldsResolved": 20,
+    "candidateFreePrimaryBlindCrossChecksums": "PASS",
+    "cells": 300,
+    "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "result": "PASS",
+    "retained": 236,
+    "textFreeHolds": 12,
+    "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+    "updates": 52
+  },
+  "freshBlind": "PASS (3 sealed files plus candidate-free copy checksums)",
+  "noTestsBuildsScansCi": true,
+  "primary": "PASS (13 file checksums; primary verifier passed)",
+  "result": "PASS",
+  "workflowFilesTouched": false
+}

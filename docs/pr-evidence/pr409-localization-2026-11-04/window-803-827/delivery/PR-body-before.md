@@ -1,0 +1,629 @@
+<!-- slskdn-pr409-w73-application -->
+## Latest localization application — W73 ranks 703–727 (2026-11-04)
+
+Applied in catalog commit [b0f57deaa7e166932eb3923646814b6009acf4bb](https://github.com/snapetech-org/slskdN/commit/b0f57deaa7e166932eb3923646814b6009acf4bb) and portable evidence commit [70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f](https://github.com/snapetech-org/slskdN/commit/70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f).
+
+- The candidate-free, primary, blind, and independent cross-adjudication packets cover 300 cells across 25 source strings and all 12 locales. The cross result selected 72 corrections, accepted 216 current values unchanged, and left 12 ambiguous-realm cells held and unchanged. Held values are represented only by opaque IDs and hashes in the evidence.
+- Exact readback of all 300 cells passed against the committed catalogs. Each locale retains 6,176 entries. Placeholder, markup, number/comparator, protected-literal, and exact `alice` example-ID parity passed.
+- The portable review and application evidence is in [W73 ranks 703–727](docs/pr-evidence/pr409-catalog-correction-application-window73-2026-11-04/). The commits change the 12 locale JSON catalogs, `CHANGELOG.md`, and this evidence directory; no workflow paths changed.
+- No tests, builds, scans, or CI jobs were run by this task. Browser review and native-speaker signoff are not claimed. PR #409 remains open and draft; no merge, release, or tag was made.
+
+---
+
+<!-- w65-cross-audit -->
+### W65 catalog review — 2026-11-03
+
+Independent cross-audit completed the exact-head review for ranks 503–527 (300 cells). It selected 83 catalog updates across 12 locales: 73 corrections and 10 refinements; 211 cells were accepted unchanged. The 98 prior holds remain unchanged, and six rank-504 cells remain held because the caller context does not identify the recording subject.
+
+The catalogs and complete primary, blind, and cross-audit evidence are committed under `docs/pr-evidence/pr409-localization-2026-11-03/window-503-527/`. Catalog application commit: `ed63a36e37f12b1061bed90418d52044e5bff410`; evidence verification follow-up: `c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1`. The exact-head verifier passes all 300 cells, token checks, key-order and non-target preservation, and live PR refs.
+
+Exact-head browser review and qualified native-speaker review remain outstanding. No tests, builds, scans, CI, workflow edits, merge, release, or tag were performed.
+
+---
+
+### Current-head static localization code review — 2026-11-03
+
+The pushed head c64d57a0322897bbaac77fa88a1327dd2f687db7 adds two focused fixes from the W64 code review:
+
+- SLC-001 (P2): the client waits for applyInitialInterfaceLanguage() before mounting React, so the preferred catalog is ready before the first app render. A failed catalog load keeps the existing English fallback.
+- SLC-002 (P3): Chinese Hans/Hant script subtags take precedence over territory when selecting Simplified or Traditional Chinese.
+
+The pinned source and evidence verifier, evidence checksums, and git diff --check pass. The UI may appear later while the preferred catalog loads. No tests, builds, scans, CI, workflow edits, or runtime/browser review were performed; exact-head browser and native-speaker review remain outstanding. The previous PR description follows unchanged.
+
+---
+
+<!-- w64-root-cross-audit-body-correction -->
+### W64 root cross-audit classification correction
+
+The independent root audit validates the same 86 selected target values against the pinned applied commit and exact catalog readback. It classifies them as 76 corrections and 10 refinements; the prior W64 section's 79 corrections and 7 refinements are a label-only difference. All 12 callerless rank-486 cells remain held, and all 86 prior held cells remain unchanged. The [portable root cross-audit packet](docs/pr-evidence/pr409-localization-2026-11-03/window-478-502/root-cross-audit/README.md) verifies all 300 cells against pinned Git objects, with zero non-target catalog changes.
+
+<!-- localization-window-478-502 -->
+## Latest localization review — W64 ranks 478–502 (2026-11-03)
+
+Applied in commit [1d45cb002e206b0f611e27d3a17f4663aefc6eb7](https://github.com/snapetech-org/slskdN/commit/1d45cb002e206b0f611e27d3a17f4663aefc6eb7), tree dec2f192c0dce1c8eb1c6caab35cb29fb1c5005d.
+
+- Candidate-free input, primary, independent blind, and root cross-audit cover 300 cells across 25 sources and all 12 direct locales. The root audit reconciled 79 primary/blind target differences and selected 86 updates: 79 corrections and 7 refinements. It retained 202 current values and held all 12 callerless rank-486 values.
+- Exact readback matched all 86 selected targets. All 12 locale catalogs retain their ordered 6,176-key sets; no non-target catalog values changed. All 86 prior held cells remain unchanged.
+- Source, caller, catalog, token, decision, and readback evidence is in [W64 ranks 478–502](docs/pr-evidence/pr409-localization-2026-11-03/window-478-502/).
+- No workflow files changed. No tests, builds, scans, or CI jobs were run. This exact head has zero check runs and no deployment, so exact-head product browser acceptance is not claimed. Qualified native-speaker approval remains outstanding. PR #409 remains open and draft; no merge, release, or tag was made.
+
+
+<!-- localization-window-453-477 -->
+### Latest localization review — W63 ranks 453–477 (2026-11-03)
+
+Applied in commit [3cc9db334cfb1693dd6bd93bb83cfeba65930adb](https://github.com/snapetech-org/slskdN/commit/3cc9db334cfb1693dd6bd93bb83cfeba65930adb), from parent 1979c8dc4e59d5ca397251bcde73216a888aa9c9 (tree 8b5c0ef640f487741f0a08086cc6d60d5eef43a4).
+
+- Primary, independent blind, and third-party cross-audit reviews covered 300 cells across 25 source strings and all 12 direct locales. The final reconciliation selected 55 updates (37 corrections and 18 refinements), retained 231 values, and held 14 cells; all 59 primary/blind differences were reconciled with zero unresolved disagreements.
+- Applied exactly the 55 reviewed targets. All 300 cells read back, all locale catalogs retained their ordered 6,176-key set, and no non-target values changed.
+- Held all 12 rank-476 values because the fragment has no exact production caller. Arabic at ranks 459 and 475 remains held for unresolved “resolve” and “codec” terminology. All 72 prior held cells outside this window were reattested unchanged.
+- Evidence: [W63 review and application packet](https://github.com/snapetech-org/slskdN/tree/3cc9db334cfb1693dd6bd93bb83cfeba65930adb/docs/pr-evidence/pr409-localization-2026-11-03/window-453-477/README.md).
+- Qualified native-speaker approval and exact-head headed-browser review remain outstanding. This exact head has no check runs or deployment. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were performed for W63.
+
+\n\n<!-- localization-window-403-427 -->
+### Localization review W61 (ranks 403–427)
+
+Applied in commit [9674df03ab94a39da1eafe265c95d85a28be96c9](https://github.com/snapetech-org/slskdN/commit/9674df03ab94a39da1eafe265c95d85a28be96c9), from parent 0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169 (tree fad129065c1ccbdaaabe99c1054649dc426ea94b).
+
+- Primary, independent blind, and third-party cross-audit reviews covered 300 cells across 25 source strings and all 12 locales. Cross-audit dispositions: 211 accept-current, 57 corrections, 20 refinements, and 12 holds.
+- Applied the 77 selected exact-hash changes (57 corrections and 20 refinements). All 300 W61 values were read back; all catalogs retain the ordered 6,176-key set, and the other 223 W61 cells are unchanged.
+- Held all 12 rank-409 cells for “Wanted pull” unchanged because its caller only checks support and reports that no Servarr action ran; it does not establish whether the operation imports, syncs, searches, or downloads.
+- Reattested the 24 W59 callerless holds and all 300 W60 disposition cells; the prior W59 holds remain unchanged.
+- Evidence: [W61 application summary](https://github.com/snapetech-org/slskdN/blob/9674df03ab94a39da1eafe265c95d85a28be96c9/docs/pr-evidence/pr409-localization-2026-11-03/window-403-427/APPLICATION-SUMMARY.md), [full evidence directory](https://github.com/snapetech-org/slskdN/tree/9674df03ab94a39da1eafe265c95d85a28be96c9/docs/pr-evidence/pr409-localization-2026-11-03/window-403-427), and [cross-audit report](https://github.com/snapetech-org/slskdN/blob/9674df03ab94a39da1eafe265c95d85a28be96c9/docs/pr-evidence/pr409-localization-2026-11-03/window-403-427/cross-audit/report.md).
+- Candidate-free checksum-list SHA-256: 418735698e3e789a8c14005d531980631980bdccb993fe9ae669b65735e4ace7; separate manifest.json SHA-256: 3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903. Primary and blind checksum-list SHA-256 values are recorded in the application verification file.
+- Qualified native-speaker approval and exact-head headed-browser review remain pending. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were performed for W61; local hooks were bypassed because they can run scans outside private ephemeral JIT.
+
+<!-- localization-window-378-402 -->
+### Localization review W60 (ranks 378–402)
+
+Applied in commit `0040a71065057e7aa5c2f723a8a510e6da34b65a` (parent `3fbcea3185c02efca7c45d03a195acf488e70587`; tree `699e5fc651f75584b79a6be5d11b1c7c3f05bbf1`). Primary, independent blind, and third-party cross-audit reviews covered 300 cells for 25 source strings across all 12 locales: 216 accept-current, 57 corrections, and 27 refinements, with no held cells. All review disagreements were reconciled.
+
+- Applied 84 selected target updates across the 12 locale catalogs. Readback matched all 300 cells, preserved each ordered 6,176-key catalog, and found zero non-target value changes.
+- A docs-only follow-up, `0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169`, clarifies both candidate-free input hashes in the blind-review metadata and records a fresh 300-cell application verification. The checksum-list SHA-256 is `b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91`; the separate `manifest.json` SHA-256 is `d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797`.
+- The complete candidate-free input, primary and blind reviews, cross-audit, 300-cell apply plan, readback, and checksums are in [the W60 evidence packet](https://github.com/snapetech-org/slskdN/blob/0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169/docs/pr-evidence/pr409-localization-2026-11-03/window-378-402/application/README.md).
+- Qualified native-speaker approval and exact-head headed-browser review remain pending. The pushed head has no check runs, status contexts, or deployments. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were performed for W60.
+
+<!-- localization-window-328-352 -->
+### Latest localization review — W58 ranks 328–352 (2026-11-03)
+
+PR #409 remains open and draft at exact head [fd6bf5c72a668eecac8cc57e4587bced7e4d9aad](https://github.com/snapetech-org/slskdN/commit/fd6bf5c72a668eecac8cc57e4587bced7e4d9aad), tree 01c4bb4ea231e6ba72c3087d133b6e3e669853d9.
+
+- Primary, independent blind, and third-party cross-audit reviews covered 300 cells across 25 source strings and 12 direct locales: 242 accept-current, 36 corrections, 22 refinements, and no holds. All 48 primary/blind disagreements were reconciled.
+- Applied 58 exact-hash catalog changes across all 12 locale files. All 300 final values read back with zero mismatches and the 6,176-key ordered catalogs were preserved.
+- Input, primary, blind, cross-audit, application plan, readback, and checksums are in [the W58 evidence packet](https://github.com/snapetech-org/slskdN/blob/fd6bf5c72a668eecac8cc57e4587bced7e4d9aad/docs/pr-evidence/pr409-localization-2026-11-03/window-328-352/README.md).
+- Machine review does not establish qualified native-speaker approval. Exact-head headed-browser acceptance remains pending because the isolated desktop-pool coordinator is unavailable; this head has no deployment or status checks. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were performed for this window. Local hooks were bypassed because they run scans outside the required private ephemeral JIT.
+
+## Latest localization checkpoint — W56 and W57
+
+PR #409 remains open and draft at exact head `47735fbdb8df3de8dc5fd297c2717dc332764431`. W56 reviewed ranks 301–302 (24 cells): 13 accept-current, 6 corrections, and 5 refinements; 11 exact-hash changes were applied and all 24 targets read back. W57 reviewed ranks 303–327 (300 cells): 276 accept-current, 11 corrections, 1 refinement, and 12 holds. Twelve exact-hash changes were applied; all 300 targets read back and each locale retains the ordered 6,176-key catalog. W57 holds rank 319 (“recommendation seeds”) across all locales pending product terminology guidance. Evidence: [W56](docs/pr-evidence/pr409-localization-2026-11-03/window56/README.md) and [W57](docs/pr-evidence/pr409-localization-2026-11-03/window57/README.md).
+
+The W57 packet records a boundary-metadata correction: selected ranks are 303–327, with 328 as the next boundary. Exact-head product-browser acceptance and qualified native-speaker review remain outstanding. The isolated headed-browser pool coordinator is unavailable. No tests, builds, scans, CI jobs, workflow edits, merges, releases, or tags were performed for W56/W57.
+
+<!-- localization-window-55 -->
+### Historical localization semantic review W55 (2026-11-03)
+
+At the W55 checkpoint, PR #409 was open and draft at head `32afa31caca42b17ac89c9ee91e54ed94cad0411`, tree `0111bd0c279534b972fcbc5f36dd7a32baf86909`.
+
+- Reviewed the next 25 stable source IDs (W49 continuation ranks 276–300) across all 12 locales: 300 cells. Historical source ordinals remain unavailable and are not claimed.
+- Primary, independent blind, and third-party reviews reconciled to 193 accept-current, 59 corrections, 12 refinements, and 36 terminology holds. The 15 candidate-text and 2 disposition disagreements are resolved, with zero unresolved disagreements.
+- Applied 71 exact-hash catalog changes: ar 7, de 7, es 7, fr 5, hi 3, id 6, ja 7, ko 6, pt-BR 7, vi 6, zh-Hans 5, zh-Hant 5. All 300 targets read back with zero mismatches; each locale catalog retains its ordered 6,176-key set.
+- The 36 held cells are ranks 278, 282, and 289 across all locales. Their current values remain unchanged pending an approved localized product term for “Pod.” Ranks 301–302 were not touched.
+- Candidate-free input, both semantic reviews, corrected cross-audit, root adjudication, exact apply plan, readback, and checksums are in [W55 evidence](docs/pr-evidence/pr409-localization-2026-11-03/window55/README.md).
+- Qualified native-speaker review remains pending. Exact-head headed-browser acceptance could not be completed: the Agentic VM preview at `http://192.168.50.148:5067/login` returned `ERR_CONNECTION_REFUSED` before page load; see [browser attempt](docs/pr-evidence/pr409-localization-2026-11-03/window55/review/browser-review-attempt.json). No service restart, tests, builds, scans, CI dispatches, or workflow edits were made for W55.
+
+<!-- localization-window-54 -->
+### Localization semantic review W54 (2026-11-03)
+
+PR #409 remains open and draft at head `6a46b8f1dc87d899308fee141fa0db392e49e098`, tree `a22e9a896aae12aa89a1502d9748b12816d491ed`.
+
+- Reviewed 25 stable IDs at continuation ranks 251–275 across all 12 locales: 300 cells. Final dispositions are 207 accept-current, 43 corrections, 7 refinements, and 43 held cells.
+- Applied 50 exact-hash changes across all 12 catalogs. All 300 values read back with zero mismatches; each catalog retains the ordered 6,176-key set.
+- The holds include 24 cells without direct localized callers (`waves ·` and raw JSX `Certificate password`), 12 unresolved `Publish Pod` glossary cells, and 7 retrieval, peer, descriptor, or native-preset terminology cells. Held targets were unchanged.
+- Candidate-free input, primary review, independent blind review, cross-audit, root adjudication, apply plan, readback, and checksums are in [W54 evidence](docs/pr-evidence/pr409-localization-2026-11-03/window54/README.md).
+- Exact-head product-browser acceptance and qualified native-speaker approval remain outstanding. The Agentic VM preview at `http://192.168.50.148:5067/login` refused the connection.
+- No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made for W54.
+
+<!-- localization-window-53 -->
+### Localization semantic review W53 (2026-11-03)
+
+PR #409 remains open and draft at head 5812e90c3018f0a8b563bff2ba95b5fd19076908, tree 632924177388e15b594976774d2d879a098e8a72.
+
+- Reviewed the next 25 disjoint stable source IDs (ranks 226-250) across all 12 locales: 300 cells total. Final dispositions are 194 accept-current, 68 corrections, 14 refinements, and 24 caller-context holds.
+- Applied 82 exact-hash catalog changes. All 300 values read back with zero mismatches; the 24 no-caller cells were left unchanged. All 12 catalogs retain the ordered 6,176-key set.
+- Review, adjudication, independent hash guards, exact apply plan, and readback are in docs/pr-evidence/pr409-localization-2026-11-03/window53/; the evidence checksum manifest verifies.
+- A separate semantic audit found no actionable concerns. Placeholder, markup, numeric-token, and protected-literal checks passed.
+- The exact-head query found no check runs, status contexts, or deployments. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made.
+- Commit hooks were bypassed: pre-commit runs Semgrep outside private ephemeral JIT; pre-push runs a local secret scan and may synchronize package files.
+- Qualified native-speaker review and exact-head headed-browser acceptance remain outstanding.
+
+<!-- localization-window-52 -->
+### Localization semantic review W52 (2026-11-03)
+
+- Applied 100 exact-hash adjudicated catalog changes across all 12 locales from 300 reviewed cells: 200 accept-current, 66 corrections, 34 refinements, and no holds. Per-locale change counts: ar 9, de 7, es 10, fr 9, hi 5, id 8, ja 7, ko 9, pt-BR 8, vi 10, zh-Hans 9, zh-Hant 9. The catalogs retain the same ordered 6,176-key set.
+- The ratified decisions, frozen source, primary, independent, and cross-review packets, caller resolution, exact-hash apply plan, and readback are in [W52 evidence](docs/pr-evidence/pr409-localization-2026-11-03/window52/README.md).
+- Qualified native-speaker and current-head headed-browser reviews remain outstanding. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made for W52; PR #409 remains open and draft.
+
+<!-- localization-window-51 -->
+## Latest localization review: W51 (W49 stable-ID ranks 176–200)
+
+Reviewed the next 25 disjoint stable source IDs across all 12 locales: 300 cells. Root adjudication proposes 201 accept-current, 33 corrections, 66 refinements, and no holds. Apply 99 exact-hash catalog changes across all twelve locale catalogs; per-locale counts are ar 9, de 7, es 8, fr 7, hi 9, id 8, ja 9, ko 9, pt-BR 8, vi 10, zh-Hans 7, zh-Hant 8. The catalogs keep the same ordered 6,176-key set.
+
+The exact-ID primary and strict-blind packets share the same source/current hashes, catalog pins, caller refs, and PR head/tree. Full primary, corrected blind, root adjudication, exact-hash apply plan, and readback evidence: [W51 evidence](docs/pr-evidence/pr409-localization-2026-11-03/window51/README.md).
+
+### W50 rank-basis correction
+
+W50's historical packet retains its original 126–150 label. Cross-referencing its selected stable IDs against the pinned W49 inventory places those IDs at ranks 151–175. W51 continues with the next disjoint IDs at ranks 176–200. W49 stable-ID ranks 126–150 remain unreviewed and were not duplicated.
+
+Qualified native-speaker and exact-head headed-browser review remain outstanding. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made for W51; PR #409 remains open and draft.
+
+<!-- localization-window-50 -->
+## Latest localization review: W50 (reconstructed stable-ID ranks 126–150)
+
+Pushed exact head `45664e79a6d9bd41519b674d33464e5f7cb9ce2c` (tree `dc5f6ab2aab3668f674dd583451d3464a3a1c081`). The 300-cell root adjudication records 229 accept-current, 41 corrections, 30 refinements, and no holds. Applied 71 exact-hash catalog changes across all 12 locale catalogs; the identical ordered 6,176-key catalog sets remain intact. Primary and corrected independent review covered the same 25 stable IDs. The first blind packet selected a disjoint ID set and was excluded from adjudication.
+
+Review evidence, including the exact-ID primary and blind packets, root decisions, apply plan, and readback: [W50 evidence](docs/pr-evidence/pr409-localization-2026-11-03/window50/README.md).
+
+Qualified native-speaker and exact-head headed-browser review remain outstanding. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made for W50; the PR remains open and draft.
+
+### W49 review record (reconstructed ranks 101–125)
+
+W49 covered 300 cells, retained 189 current values, and recorded 83 corrections, 16 refinements, and 12 holds. It applied 99 exact-hash changes; the twelve rank-105 parser-like filter placeholders remain held. [W49 evidence](docs/pr-evidence/pr409-localization-2026-11-03/window49/).
+
+## Previous delivery snapshot — 2026-11-02
+
+PR #409 remains open and draft at head `a0f97a65f75df32a196338bea7a176b23b126cc4`, tree `a5cb30af29a947edbf76721bbc29b59e4330f970`. The twelve direct locale catalogs share the same ordered set of 6,176 keys.
+
+- W48 reviewed 300 cells for 25 reconstructed pending source IDs across all 12 locales. Final dispositions are 228 retain-current, 67 accepted proposals, one German terminology revision, and four upheld protected-name holds. Applied 68 exact-hash changes across the twelve catalogs; all 300 cells read back exactly, and placeholder, markup, and protected-literal mismatches are zero.
+- The German Realm sentence uses the established catalog term `Bereich`. Four `Quarantine Jury updated` cells in Japanese, Korean, Simplified Chinese, and Traditional Chinese remain held and unchanged pending resolution of the protected-name decision.
+- Primary and independent review packets, caller pins, final adjudication, exact-hash apply plan, readback, and checksums are in [W48 reconstructed ranks 76–100](docs/pr-evidence/pr409-localization-2026-11-02/window48-reconstructed-ranks76-100/).
+- W47 and its runtime and rich-text follow-ups remain recorded in [W47](docs/pr-evidence/pr409-localization-2026-11-02/window47-reconstructed-ranks51-75/), [runtime follow-up](docs/pr-evidence/pr409-localization-2026-11-02/window47-runtime-followup/), and [rich-text follow-up](docs/pr-evidence/pr409-localization-2026-11-02/window47-rich-text-followup/).
+
+Machine review does not establish qualified native-speaker approval; that review and exact-head headed-browser review remain outstanding. The commit adds an Unreleased changelog note. No tests, builds, CI jobs, workflow changes, releases, tags, or merges were made. The initial local pre-commit Semgrep run flagged the evidence generator's direct Git-blob SHA-1 calculation; the committed helper now calls `git hash-object --stdin`. The final commit skipped local scan hooks under the private-JIT scan policy; the staged changelog validator and whitespace check passed.
+
+## Changes in this PR
+
+- Localize app-authored interface labels, accessibility text, notifications, generated reports, status messages, and fixed diagnostics across twelve locales.
+- Preserve API and provider values, user content, paths, and unknown diagnostics. Known API errors and fixed Content ID, mesh-sync, Quarantine Jury, and Library Health messages use exact mappings or messages.
+- Keep translated placeholders and dynamic content inside the existing bidi presentation boundaries, including LTR and English-fallback output. Native attributes use presentation-only isolation; persisted and API values stay unchanged.
+- Add regional number/date formatting and preserve language/direction metadata for translated Arabic labels.
+- Update the localization inventory and roadmap to identify the frozen source bundle and current review status.
+
+## Validation
+
+- Structural catalog validation passed: twelve matching key sets, 6,169 nonempty entries per locale, and placeholder parity across all 74,028 values (6,169 × 12 = 74,028 checks).
+- All 5,424 reviewed targets passed source/hash, placeholder, protected-literal, and numeric checks before application; applied values were rechecked against the frozen source and draft hashes.
+- `git diff --check` passed.
+- No tests, builds, or CI jobs were run for this catalog update. The commit hook ran Semgrep on the packaged verifier and reported zero findings.
+
+## Remaining review
+
+- The populated-cell review covers the frozen 67,080-cell backlog. Through W34, 34 disjoint manual windows cover 847 source keys / 10,052 cells. Raw packet dispositions are 8,405 keep, 1,367 correction candidates, and 280 initially uncertain; the W34 independent cross-review resolved its French uncertainty as unchanged, and the Realm follow-up resolved 12, leaving 267 uncertain. Including the separate Realm rows, 1,379 correction dispositions yield 1,373 applied corrections across 324 source keys; six earlier exact-context correction decisions remain held. W33’s 11 source-context-mismatched cells remain unchanged. Of 67,080 frozen cells, 4,800 remain in the formal lane, 10,052 in manual windows, and 52,228 outside both. See the [W34 review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window34/README.md) and [W34 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window34-2026-11-02/README.md), plus the [W33 review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window33/README.md) and [W33 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window33-2026-11-02/README.md).
+- Native-speaker review is outstanding. Headed-browser review of the current catalog set is not claimed; earlier Arabic checks covered only `/system/metrics` and `/downloads` and do not establish app-wide RTL support.
+- The PR remains open and draft. No merge, release, tag, or workflow change was made.
+
+
+### Populated-catalog manual review and correction application — 2026-11-02
+
+The frozen populated-catalog backlog is 67,080 cells. Thirty-one exact-head, disjoint manual windows cover 772 source keys / 9,238 cells (7,706 keep, 1,264 correction decisions, and 268 originally uncertain). Independent contextual review resolved 12 Realm cells from window20. Root accepted all 36 window31 targets as proposed, with no refinements or holds. Across manual corrections and separate Realm rows, 1,276 correction dispositions are recorded: 1,270 applied and six held because exact source context is missing. The 12 Realm cells are no longer uncertain; 256 other uncertain cells remain unchanged, and 57,842 cells remain unreviewed.
+
+The exact-current catalog census at W31 application commit `b38a95fb75ec4ac691ad02c4b2c7393f8a1389b7` / tree `f2e7a734d60555964f0487377066a955308fd8c9` contains 6,169 nonempty values in each of twelve catalogs (74,028 total) with matching key sets; exactly 1,270 cells differ from the frozen baseline and reconcile to the correction ledgers. Per-locale changed counts are ar 139, de 72, es 105, fr 105, hi 105, id 109, ja 73, ko 96, pt-BR 93, vi 126, zh-Hans 124, zh-Hant 123. The cumulative verifier reconciled all 9,238 manual decisions, the separate Realm review, formal results, source/caller/target hashes, and catalog paths with zero overlaps or unexplained changes at latest pushed docs head `dfb9707f946bf2686210bcf1072b9d70c8442a62` / tree `9458e836ae12c02573535b5c9dc052f055b7820d`; both exact-current verifiers passed there. Application commits change locale catalogs and `docs/CHANGELOG.md` only. No tests, builds, CI, releases, or tags ran for these correction batches.
+
+See the [window31 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window31-2026-11-02/README.md), [window31 manual-review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window31/README.md), [window29 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window29-2026-11-02/README.md), [window29 manual-review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window29/README.md), the [window28 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window28-2026-11-02/README.md), [window28 manual-review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window28/README.md), [window27 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window27-2026-11-02/README.md), [window27 manual-review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window27/README.md), [window26 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window26-2026-11-02/README.md), [window25 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window25-2026-11-02/README.md), [window24 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window24-2026-11-02/README.md), [windows22–23 application and cross-review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/README.md), [windows20–21 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-windows20-21-2026-11-02/README.md), [windows18–19 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-windows18-19-2026-11-02/README.md), and the [initial application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/README.md). Native-speaker and headed-browser review remain outstanding.
+
+Window 1 covers 25 keys / 300 cells (267 keep, 33 correction candidates); manifest `30bc07c74d23d823c441811a559eb9a4677bc9304e6b5183d4b9cf71a229cb4e`, input `11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2`, decisions `2914f53ec1e807edaeb033deefa81661a5133c1da9b269704971e87c79c1dcb6`.
+
+Window 2 covers 25 keys / 300 cells (221 keep, 51 correction candidates, 28 uncertain); manifest `32a567b651ced306e08287b731585f29f1c953e475a3f57da700a929855bb2fa`, input `c8507f897140d5c9bbd38cd8b238228407541c971822ff55c55415242fc25af9`, decisions `965201e7bb42959fd262f22eb1132db8cdb6558c9f1f5e1cea0bb31697677d3d`.
+
+Window 3 covers 25 keys / 300 cells (233 keep, 66 correction candidates, 1 uncertain); manifest `ae814abc687882d941082139eb039ef7bae053b05f839dc8550cc8c8a06d70b9`, input `82c267214443adddd832221240762f4fc3d178ec39639e7d4dce250eca0aeb87`, decisions `4720deeaf0598e20d974701b65e9c9b1712c7740bdd11d8c6d2a452b1fe54d2c`.
+
+Window 4 covers 25 keys / 300 cells (262 keep, 26 correction candidates, 12 uncertain); manifest `ea5d19ea1afe85ab17be9d559592e38868f3f5f690c9dc0ebc82fd9083c901e2`, input `b1005dd04403787fbc7929dd1bb792fe601e5de462c31e830195c00ffdb70c72`, decisions `cbb9b148015764073c9c3c56fa4fdb0505dbb93238e275a2561431978d3ed143`. “Playing” remains uncertain across all locales because the frozen source contains no callsite or surrounding context.
+
+Window 5 covers 25 keys / 300 cells (226 keep, 62 correction candidates, 12 uncertain); manifest `a687c46b9b6ae22be2baaa79ab3ccb0002201d03b77dc2ffc5db22fa77a39979`, input `cb4d4cd094fc666104fdcd88c6f2f3c4e6d63be7df7d5ca47b429cf566eab795`, decisions `35bbda5c1ea44a70744abe134cc62b3ed7e84c914223737b73af80655d09b4cc`. The single-word `Release` tally remains uncertain across all locales because its category/action reading depends on locale-specific compact-label conventions.
+
+Window 6 covers 25 keys / 300 cells (254 keep, 46 correction candidates, 0 uncertain); manifest `13f14a2e8ee34e14becb89ebeb9c68d538b62d4085e03903f8103ebeab3c7ab0`, input `3fd36a787003b2a8ce1c66365135bf1b90c3e6aa30d1c3856c51dfd7f43c2664`, decisions `c8369e8daf83fb99363774e92c4f05c580fc0c26df3f5ada19ccccecdd3f89cc`.
+
+Window 7 covers 25 keys / 300 cells (228 keep, 60 correction candidates, 12 uncertain); manifest `30b193dd2173898e7e5b7af8fa4738d0347af422a11520991f112f3a43e284d0`, input `77197eb0cdb8943910ad35fbedab2ba1c41db7ae36017747b3cdeb87d90ed961`, decisions `18a43c82e2e0fb3df7111970876bce83741094bdf293099e56f8b06211f67a20`. “Realm” remains uncertain across all locales pending locale-standard trust-tier terminology. The evidence verifier confirmed zero formal-result overlap and zero overlap with the six earlier windows.
+
+Window 8 covers 25 keys / 300 cells (233 keep, 55 correction candidates, 12 uncertain); manifest `809339be633ebc36a88453d54a53cdccc51cf700040b23af14e715b7db993e96`, input `73b80fc7fec7e9f9d8044ba78605ee3e675cd256590826ba00267f0332e3e176`, decisions `740126ca575defdc6d070ee92824dba260e62b8ac6cb4bc1136d83cd2ebf6cbd`. The local discovery “review shelf” wording remains uncertain in all locales pending native UX terminology. Verification found zero formal-result overlap and zero overlap with the seven prior windows.
+
+Window 9 covers 25 keys / 300 cells (239 keep, 49 correction candidates, 12 uncertain); manifest `fdfe97bb58fecebf3c755cb82f82332b0958cea0a89aa1ec6d7183f0284f974b`, input `7d4f73d3bca269185ef7a1ac460b1b6d8bfdd8202951ffa7b2afb44acec571cb`, decisions `814d541e36b2b6c4884695c0f4bca70f52077d9d96a1f0e9f68fd4b04a931bb8`. “Management” remains uncertain in all locales because its callsite/context is missing. Verification found zero formal-result overlap and zero overlap with the eight prior windows.
+
+Window 10 covers 25 keys / 300 cells (247 keep, 41 correction candidates, 12 uncertain); manifest `6339cdba5b142a0e1cddc57c1ad06f9a20680ce7a57f3b0ad8ad6f9d95054af9`, input `dc18ddabcf1e49e8283532bd9fb597e55d5f27682f3af93edff6027ff487dfed`, decisions `dc3ecff9c141fa4c06159c90180beb8d46bcc9ea665e335859a059a373078a3c`. “Native playlist” remains uncertain across all locales pending a native term for the local MilkDrop preset list. Verification found zero formal-result overlap and zero overlap with the nine prior windows.
+
+All 23 review windows passed exact-head, catalog, checksum, formal-result, and inter-window overlap verification. Evidence is committed at `docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window1/` through `window23/`; exact-head review verifiers and their provenance remain in scratch and the PR bundles record the checks. The frozen formal-result scan reports 150 valid jobs, 1,951 missing jobs, and zero invalid jobs. Exact-hash catalog application commit `740ae56ebe31893319648edadfc7da087ba5dfe3` / tree `b3b70ef49cc4ba2556c9960868231505fb57d1df` applies 934 correction cells. No non-catalog source-code or workflow changes were made.
+
+Window 11 covers 25 keys / 300 cells (267 keep, 31 correction candidates, 2 uncertain); manifest `65e317f6dbca32d1f3350c0e107170fe28d1e9fbd195a74f1bc749775b967efa`, input `90d593959e210ffdc8ca8fdf7e8a933293106829d1aa3827131dd65309418a82`, decisions `f12d3f0e14d18c8d129bc3ddc7f405e0fe2f692e146a2b43f84e52b1a0a9a098`. Corrections cover lyrics/forensic labels, parser fixtures, Realm and Pod terminology, share-group membership, application status, and several UI labels; Spanish and Vietnamese status phrases remain uncertain. Verification found zero formal-result overlap, zero overlap with the ten prior windows, and compared all 3,000 previous input/decision rows. The review was pinned to PR head `061d9d4d10a7595edc1de6717228bbd5f385fc78` / tree `47a7c87f07c9046ed5a3201fd58ac8ee1effdba4`; the current packaging commit changes docs only.
+
+Window 12 covers 25 keys / 300 cells (255 keep, 44 correction candidates, 1 uncertain); manifest `28dd658c1a245f9a6a65597ec35f8a3ca1a6f6e24a2de3b05c9f80c319bde458`, input `4db161920d006dfa3ca1dcd09f8504b57689ffdc9bf55e52c3838b49a5a1ba57`, decisions `85b9121d358c023ec6402539c62eb55d6ea5950255a837f3afa88232272344e4`. Corrections address graph-structure terms, publishing-stat headings, configured file-share scanning, the Smart Radio feature name, file-write impact wording, lossless-exact profile labels, recommendation-seed grammar, Pushbullet room mentions, local readiness, and membership-record terms. The Vietnamese file-impact label remains uncertain. Verification found zero formal-result overlap, zero overlap with the eleven prior windows, and compared all 3,300 previous input/decision rows. The review was pinned to PR head `45645893ab0af3b7cc15556c27496bb9bb699b73` / tree `019bcabdb9d0ef709e7d3a2dd1b9da7f3ed59017`; the current packaging commit changes docs only.
+
+Window 13 covers 25 keys / 300 cells (240 keep, 36 correction candidates, 24 uncertain); manifest `a4b46faeedb1a78c131df0a275da6560f779773e9a28245b9e11453961c56cbe`, input `638d45f1b44d5d37d79e0f78828b99fe9eb93a5bd00ebdeebaebae5b07bcb2a1`, decisions `556b4791e022bcf442589345ea88dec95f47456c565831cb7ba48ea1552a6912`. Corrections address search-hit counts, Mesh overlay sessions, imported-search count grammar, Smart Radio labels in three locales, Arabic fast-forward, Lidarr software imports, and local-disable terms. “Playlist collection” and “native Soulseek interests” remain uncertain across all locales. Verification found zero formal-result overlap, zero overlap with the twelve prior windows, and compared all 3,600 previous input/decision rows. The review was pinned to PR head `b4b66f815240a7b8636a61d02a208efc314f8e10` / tree `853677967f0691c53c10cb52d565c5c046ae68e9`; the current packaging commit changes docs only.
+
+Window 14 covers 25 keys / 300 cells (238 keep, 44 correction candidates, 18 uncertain); manifest `0f710896ab5fa8f5321de43a48462b58c3eb77ae41f876d32b39c26f63d3ddbb`, input `bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8`, decisions `2c75706a2e1e9e330ab7ae351e1d1f2bd5d912aaa844af716537978c95dcd905`. The review covers Smart Radio naming, MilkDrop composite-shader terminology, port-field grammar, content-registry terms, status labels, Pod and peer terminology, access categories, selected-search labels, color values, and perceptual similarity; four Chinese/Japanese/Korean “Quarantine Jury” values remain uncertain because the phrase is a protected literal. Verification found zero formal-result overlap, zero overlap with the thirteen prior windows, and compared all 3,900 prior input/decision rows. The review was pinned to PR head `3b5060fa630836b7bdb467f61d73d5e52f907dbb` / tree `283aa0efedacd4df8528853ea31a4e38db5095a3`; the current packaging commit changes docs only.
+
+Window 15 covers 25 keys / 300 cells (253 keep, 46 correction candidates, 1 uncertain); manifest `7f34a7d568a9545abd59e1003c3103be06e7db677c6c35f44cb55e370c729e05`, input `dbfd4aa6418be05df35c70c842aca5ccb2b4c9cfc578b41978be25d911dcfbe4`, decisions `01794ece71d9ddfe25dc515c48202088186848f4f25f84d4eede290f0a8799ec`. Corrections cover start-time table headings, Pod naming, setup health-check wording, Chinese note/lookup terminology, Arabic installation wording, Korean verification-error punctuation, local match-confidence terms, transfer-table labels, Chinese DHT publishing, replacement-size thresholds, and Hindi Mesh transliteration. Arabic “Mesh Sync Security” remains uncertain. Verification found zero formal-result overlap, zero overlap with the fourteen prior windows, and compared all 4,200 prior input/decision rows. The review was pinned to PR head `6e5658684ff16dffe267d27a3323c46a9120ab45` / tree `32a78530979e5a852d712a86721533809adb6604`; the current packaging commit changes docs only.
+
+Window 16 covers 25 keys / 300 cells (283 keep, 17 correction candidates, 0 uncertain); manifest `fc453431e0f182af16d8bd0472f035066521219755aae3f58b2c11e8fd6324f0`, input `849a840e92656c5782e92ee6380f3d0a442f3fc48118917e2f545a3c00eea2b3`, decisions `40c30305647b29d48386a6285d7ff13e71ac18ec39a06a78b9877b12ae23427d`. Corrections address Hindi profile/technical terms, Vietnamese Pod labels, Arabic confirmation and Mesh Pods labels, computing thread counts, playback buffering, transfer-history retention, Korean retrieval terminology, and Hindi/Korean theme labels. Verification found zero formal-result overlap, zero overlap with the fifteen prior windows, and compared all 4,500 prior input/decision rows. The review was pinned to PR head `7c111b332060cf23c6c283f3437cb8fc5fb17370` / tree `8857a0cd9d25298a4fa7c6425ce5b7d7ac62f4b6`; the current packaging commit changes docs only.
+
+Window 17 covers 25 keys / 300 cells (241 keep, 35 correction candidates, 24 uncertain); manifest `2f607cf9329a41bf7d822408d9e1d169699f07afd7f74c4a1c020ecc11d1fac6`, input `5c8aa2d11b2fc4d452497b5975d71cf85672925f5ab8a398e6a8e445cbeb9b55`, decisions `70bd71fa0b37cd7f83172fde81fbf9587d623a316256e8a3a1dec7eb89417bd8`. Corrections cover Hindi automatic-replacement wording and service-name examples, Chinese similarity headings, security settings for adversarial environments, Vietnamese Discovery Inbox naming, completed-transfer filter labels, and successful-transfer counts. “Unknown Seed” and the incomplete “Edit Filter for” phrase remain uncertain across all locales. Verification found zero formal-result overlap, zero overlap with the sixteen prior windows, and compared all 4,800 prior input/decision rows. The review was pinned to PR head `b488c6e3a383824f30702ab469fc74972b647b80` / tree `5f41148487d822b8c6fd51339336928018839226`; the current packaging commit changes docs only.
+
+
+
+
+Window 18 covers 25 keys / 300 cells (274 keep, 25 correction candidates, 1 uncertain); manifest `3ad326433061518700941cef3eb2c014e659eb2a761e507079a5e4ee9491a11d`, input `124a993a8f50ae4adaa57858c6426c8a36a57b2f789d96e7fefa960ed661c5cf`, decisions `d83201fdb2a63fee0ab8fdfed5bae479707a3cc75d30626788c07621bc7e1157`. It was pinned to PR head `5e2c0cb7a8fa3711a5e3ac231a22699fcc86f44f` / tree `a47479dc9625f7dd13c99e6c4febb121e6c56769`; the exact-head scratch verifier found zero formal overlap, zero overlap with the seventeen previous windows, and zero overlap with the applied correction ledger. Corrections cover Hindi active-search wording, network-peer terms, Chinese history and acceptance labels, Arabic dashboard controls, missed-message backfill, reminder titles, pinned-state agreement, automation workflow wording, and draft allowlist phrasing. The Japanese “DHT nodes and” fragment remains uncertain pending adjacent-fragment context. All 25 correction candidates were subsequently applied in commit `6045f46102ed582a60ad11088bd9209f63b15f33`. See [window 18 evidence](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window18/).
+
+
+
+Window 19 covers 25 keys / 300 cells (243 keep, 57 correction candidates, 0 uncertain); manifest `b176c70b8c1711395a0bd806f69ace6a6e6cc1ae5e2cd358437b29d0bc49476c`, input `675a23d87cb111538504af36d39cb5b6efe395248503c4f5165c53b29aa3cf8a`, decisions `5074f55c96eef5782e9d002676fc6214902baf207fbedf837b932d58c53c2fee`. It was pinned to PR head `4ebd4591994ee709051156df9c9d42160da0b165` / tree `89658bbd1e5ae93080d8fd61ef71beea811e99a2`; the exact-head scratch verifier found zero formal overlap, zero overlap with the eighteen prior windows, and zero overlap with the applied correction ledger. All 57 correction candidates were subsequently applied in commit `6045f46102ed582a60ad11088bd9209f63b15f33`. See [window 19 evidence](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window19/).
+
+
+
+
+Window 20 covers 25 keys / 300 cells (266 keep, 22 high-confidence correction candidates, 12 initially uncertain). Corrections cover import-success status wording in Chinese and Korean, quality filters, discovery count agreement, the Arabic Pushover service name, Hindi plural file actions, Chinese “remaining” transfer labels, and the Load Portability Stats button verb. A separate context-informed independent review resolved the Realm-governance phrase in all 12 locales: “local” modifies browser-only disabling of index authority keys, and does not refer to local-government authorities or change backend realm governance. See the separate Realm ledger in the [windows 22–23 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/README.md). Evidence: [window 20 bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window20/README.md). Input SHA-256 `de9c4ac3cb20993b9eca04a8188520f98de9e739d3d280ef7e4ce22cce09ada2`; decisions SHA-256 `ac2d261c4d62f1844753670fef2354dd58151f6a774a908c04877a15f7f1a024`. Review pin: PR head `17f8c15c9d35d75819e39383d751eb255e8bdedb` / tree `db85d8b825f7510a58384f11ee3ce1a9472e415a`. The exact-head verifier confirmed zero formal, prior-window, and applied-correction overlap.
+
+
+
+Window 21 covers 25 keys / 300 cells (247 keep, 29 high-confidence correction candidates, 24 uncertain). Corrections address the Japanese descriptor-age unit, file-transfer cancellation terms in Chinese and Vietnamese, transcript-segment labels in Chinese, Wishlist-entry wording in Chinese, cryptographic-signing terminology in Chinese and Vietnamese, active-process status wording, Chinese message-registration errors and validity results, and recording-metadata terms in Chinese, Portuguese, and Vietnamese. “Showing latest” remains uncertain in all locales because the UI assembles it with counts and separate “of” and “messages…” fragments in fixed English order. The ListenBrainz listen-count key remains uncertain in all locales because the frozen source has no caller/context to establish the product-specific event term. Evidence: [window 21 bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window21/README.md). Input SHA-256 `50eccb5239402dc25d2f27988f4541e90d66a3908e6273a204509542aa81d974`; decisions SHA-256 `caab2a60a2023206004b09e0b2e16eb3d444d09d4cc57b3bb003a9829398906b`. Review pin: PR head `a098c95c814a555454c11eaf2478ca5ae628a933` / tree `dedfcc3c93b1b3a67e7d582a9eeaa0df052ccf42`. The exact-head verifier confirmed zero formal, prior-window, and applied-correction overlap.
+
+
+
+
+
+Window 22 covers 25 keys / 300 cells (265 keep, 23 high-confidence correction candidates, 12 uncertain). Its 23 correction targets were applied and all 53 targets from windows 22–23 were accepted as proposed by independent cross-review. Corrections address Spanish, Brazilian Portuguese, and Arabic “Not rated”; French and Japanese “Copy Review”; the Japanese Spotify redirect instruction; Spanish and Arabic DHT rendezvous terms; the Arabic visualizer label; base-URL phrasing in nine locales; “Send” action labels in four locales; and a Korean JSON particle. “Showing first 20 of” remains uncertain in all locales because no source callsite/context was found for the incomplete fragment. Evidence: [window 22 bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window22/README.md). Input SHA-256 `626b0b83a25d9494714ec23f308fd34b5b415eebcbbdcb4857b0d1b96b9c0ca4`; decisions SHA-256 `95be1e51294ab721e819701aa0a21a4d6059e45ca62c6593a30490fce2e80031`. Review pin: PR head `d3227259db9a485c75d39f5017ac9966a1a17bd1` / tree `dffdaf8b5cad7387a9de17fee1aac92eabe98b37` / source tree `444662a240631d9b1ba4e8358e70d1a27b14469d`. The exact-head verifier confirmed zero formal, prior-window, and applied-correction overlap.
+
+Window 23 covers 25 keys / 300 cells (270 keep and 30 high-confidence correction candidates). Its 30 correction targets were applied and independently accepted as proposed. The windows 22–23 exact-hash application bundle records the 53-row cross-review, the separately stored 12-row Realm review, the final 74,028-value catalog census, and the reconciliation of 6,900 manual cells: [application and cross-review evidence](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/README.md). No tests, builds, CI jobs, releases, or tags ran for this correction batch.
+
+
+
+
+### Window 24 exact-hash review and application
+
+Window24 reviewed 25 keys / 300 cells: 255 keep, 45 corrections, 0 holds, and 0 uncertain. Root cross-review accepted 43 proposed targets and refined 2; the exact-hash application changed 45 values in commit `00ee3b76686a3b4cdafd4d9a24a02342d5f36bb2` / tree `d0a640b4716f3363264cf96ee5fa9aea0e417a20`. Review base: `805246b87e208cedcbdd0e2f33a83f912f4ad84b` / tree `4377ade660fa379731a41b54ba387c4eff2bcf32`. Review input SHA-256 `c8b6b51bb57d476b9272d05f27386f7f7829bacaa14f077db91003eac7898270`; corrected proposal `a32015312fd7bb99e8428bbc0d42e0d5e5794c9f06d29203d4c03dadf531cfce`; root exact apply plan `e4181de90b344aea2ea13c199852886969a2a65088689fce4363f87c5ea87d2d`; independent root ledger `2afa2c49dcfbf885afc70c40e8341ec8cdd4b91429825a743b460159da8c53e6`; applied-row ledger `e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df`. The application verifier passed the 979-cell cumulative census and all 24-window/formal overlap checks. Current totals are 979 applied, six earlier-window holds, 208 earlier-window uncertain values, and 59,880 still-unreviewed cells. Native-speaker review remains outstanding, and headed-browser review of the current catalog set is not claimed. No workflow, release, or tag changes were made.
+
+
+### Window 25 exact-hash review and application
+
+Window25 reviewed the next 25 keys / 300 cells: 257 keep, 43 corrections, 0 holds, and 0 uncertain. Root independently accepted all 43 exact-hash proposals as written. The application is commit `71a9d336b5147ad6fdfd9e769c236811f19993d8` / tree `64a21bc6410161e1264879ab70c7e035e411027e`, parent `5aba995a65d5901d9b92bd760072e1763d05c47d`. Review base tree `b950c5e51b38b49033f1d85ab03609d70a2fd90f`, source subtree `a518acd202aebcfe7f17372017cba519e432ab9a`. Input SHA-256 `e3763d124513fde73ddc786fdf32ec17bce713d5ced15f26e14d62c1fc13e79e`; decisions `eb40c90a6cf2d2e2b63b9f0ccd738ab8c8e1ce5da1930df52d246193f7346aaf`; proposal plan `e91822aa4846ad711ba9fd2393d87ad87ade9a7ec024c3307ab4a082441b0764`; root apply plan `d2cb37641191d7d8bfcfd64a870e563aa13c4403432a35cda92e0d60fba0340e`; independent root ledger `aabde10757dcfd577082d58c40a15c356c42c0b3ff01c853f84a30ed57658e33`. See the [window25 review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window25/README.md) and [application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window25-2026-11-02/README.md). Across 25 windows the application verifier reports 1,022 applied corrections, six earlier-window holds, 208 uncertain values, and 59,580 unreviewed cells. Native-speaker and headed-browser review remain outstanding.
+
+
+
+Window26 covers 25 keys / 300 cells (240 keep, 48 correction candidates, 12 uncertain). Root accepted all 48 proposed targets; the 12 no-caller `Smart-radio Wishlist seeds added: {count}.` rows remain unchanged. The application is commit `792f19f3ecf0370ff0cc65307cab376dd5512498` / tree `bb05bd2fb2d71937d12e2123237051ef02563013`, parent `7c3283a340324e19577a486bfc427eb40b6eb5f2`. Review input `14c65ba66c5ffd4d6074bc8b689d582b522cafe44906f1d3d6c468709604dfbb`; decisions `44a724fff8734b42557997dfa2e8476c1159c625a23db4c35821d5e3b1ddd44c`; proposal plan `c03732e03badefc2c8952d985c2dc89b5453b7dd3028b85d6ae75d71b08aaea5`; independent root ledger `bbe17de3a97b1417bba86683ac795b1b3708fc288d3ea87527acf6149ede9da3`; exact apply plan `abc2142cec0e7d54f45690108f4678bc78929a20365cb816a11337546745050a`.
+
+Window27 reviewed the next 25 source keys / 300 locale cells: 256 keep, 44 correction decisions, and no uncertainty. Root independently accepted 30 targets as proposed and refined 14; all 44 were applied. Review pin: PR head `11e7971bc33513c7aad65f2831e1d474e541a5e0` / tree `97b609cdbf423f55d595a77220b7362b9fd3d8ef` / source tree `ee5969020b2184b7a6179e8e7b9805041c782fb7`. Input SHA-256 `8a4954b9d45056abafb1646eb547c3aeccaba2a57b359289ac929d15d0fc0f86`; decisions `5404625d7ff6b26dbe557aee95e1716b4854c892c832cc2e384fbf554d4ed858`; proposal plan `c0fee30c06711138405301f4bd781fef1b12d3387a3bfd6f433a1ca457797c69`; root ledger `64d248714be02c9ee6f246b91f835193794eec8e946d726aadb9a35dba98af00`; exact apply plan `7b901948fb2fe6ec473d7f961b18c89a07767d215dcb4f741071780e7e662227`. Application commit `3c25504c8c475ae40dab1acef2a85bdb37f1a620` is a direct child of the review head; evidence and cumulative verification are in the linked bundles above.
+
+Window28 reviewed 25 source keys / 300 locale cells: 237 keep, 39 correction decisions, and 24 uncertain. The 24 uncertain cells are two source strings without callers and remain unchanged. Root cross-review accepted all 39 targets as proposed, with no refinements or holds. Review pin: PR head `17e8d8b829867065b882423ef81c69f1f31c7d07` / tree `7562b0dd09a92398a898d84e1c936119492015be` / source tree `6d80c43cea32f0a5721f31235ec80e6eaa6d1896`. Input SHA-256 `44b2c98fba43c0e3cffea0ad9e4cb14c7a844fcc0a11a2ad54751422f9ed3731`; decisions `cc7b85e6324e04fb232691cbdab41fa9e649900f6bc7ffd8b4ce1d305233dd34`; candidate plan `f5ac0b1afa7ac50c6138dfbb11297f09c51a61e99fa52344519ea06c8750d574`; root ledger `2e913a85844b83658c057667a65831f50bb3897bc61255a6196d29cbe865259b`; exact apply plan `ade3ade63ee11a972eb95c175b48ad38161ab4883e0f14c97e417425be8ea161`. Application commit `c420ebc057d675586eaf931d6f5daeb152a16c78` is a direct child of the review head. Its 39 changes cover all locales; cumulative exact-hash verification passed. Native-speaker and headed-browser review remain outstanding.
+
+### Window 29 exact-hash review and application
+
+Window29 reviewed the next 25 all-locale keys / 300 cells: 258 keep and 42 corrections, with no uncertainty. Root cross-review accepted 38 targets as proposed and refined 4; all 42 were applied. The review was pinned to PR head `3aac5309e1dba8265ac8736aea74723ff0f6ef31` / tree `8070731f8ee7529b9f4353720ca6214941b1ae21` / source subtree `299b4318cd8fc2a03173ab510ee265a779964034`. Application commit `dff0b0281483d777c01c5e7dd68e24b51fdc67f8` is a direct child of that head; evidence commit `f11dc7199b662a49c5e84794730043af29d6830b` is the current pushed head / tree `14fc14f856f6335c17d87e78e33963ad1c219735`.
+
+Input SHA-256 `fc41b5f62ac2feaad4c5184d1d09d481b114703596f734804718d5a651942307`; decisions `99c398c8439ed2d41870be80940ad5e0409e18d021e9e66d566bd863950375af`; candidate plan `b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568`; root ledger and exact apply plan `005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee`; applied-row ledger `a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9`. The post-push cumulative verifier passed with 29 windows / 8,700 cells, 1,195 applied values, six held, 244 remaining uncertain, 58,380 unreviewed, 4,800 formal cells, and zero overlap. PR #409 remains OPEN/DRAFT/CLEAN. Native-speaker and headed-browser reviews remain outstanding. No workflow, release, or tag changes were made.
+
+
+
+### Window 30 exact-hash review and application
+
+Window30 reviewed the final 22 eligible all-locale keys / 264 cells: 213 keep, 39 corrections, and 12 uncertain cells that remain unchanged because the duplicated bounded-search status key lacks a verified caller. Root cross-review accepted 37 proposed values and refined 2; all 39 were applied. The exact review pin was PR head `f11dc7199b662a49c5e84794730043af29d6830b` / tree `14fc14f856f6335c17d87e78e33963ad1c219735` / source-catalog subtree `f55419446a34ba4c6cd666aedd1b192d004e88c3`. Application commit `0188e7f2b3ca5d57fd91409159a42495cbbac763` changed only the 12 locale catalogs and `docs/CHANGELOG.md`; the evidence commits bring the current PR head to `fbafaae2e05af8ce51a263c7be2a92a8728ceb94`.
+
+Input SHA-256 `cdddce2d0a1eb4b24ac1dced73273ecedb23ef7ff7cc1feb6c426df35a8e8311`; decision ledger `5b47f3a50bfd3206ee3847eebf5890d89f3c0e793124a20840837d4508c6bdb1`; candidate plan `a4754dbb630a91f612013e11feba2d2d27f38587eb17411ebeafde9a32eaee66`; root cross-review ledger `6a1d408e2c2d513d0b9dfd3ccd7708f00331d3bb36c67093791667a747510c12`; root exact apply plan `c38e7b567bab2a38f4897c2ba7364bd475ac6f8d03c78f8612f807cfb7d3b155`; applied ledger `175dfca5f3348b6deb8e512c5f6fd79fe35b649f2f5872e6dff3c22ea1fde456`. The post-push cumulative verifier passed at current head: 30 windows / 8,964 cells, 1,234 applied corrections, six held, 256 remaining uncertain, 58,116 unreviewed, 4,800 formal cells, zero manual/formal overlap, and zero workflow changes. Native-speaker and headed-browser reviews remain outstanding. The PR remains OPEN/DRAFT/CLEAN; no tests, builds, CI, releases, tags, or workflow edits were made.
+
+See the [window30 review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window30/README.md) and [application evidence bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window30-2026-11-02/README.md).
+
+
+
+### Window 31 exact-hash review and application
+
+Window31 reviewed the next 25 pending source keys / 274 cells across 11 locales: 238 keep, 36 correction candidates, and no uncertain cells. Spanish cells were already covered by formal or reusable exact decisions. Root cross-review accepted all 36 proposed targets as written, with no refinements or holds. The review was pinned to PR head `fbafaae2e05af8ce51a263c7be2a92a8728ceb94` / tree `ee4d11c5cf5b3c1053fcbdafff69dee9d2cb09d9` / source subtree `150c9fc80ce9a8f491926aa25f4397a12c8efc73`.
+
+Application commit `b38a95fb75ec4ac691ad02c4b2c7393f8a1389b7` is a direct child of that reviewed head and changes 36 values across 11 locale catalogs plus `docs/CHANGELOG.md`; no source or workflow paths changed. Candidate plan SHA-256 `320f88df56d7f9f1f1ec2fe20fab467235ab59471fe7812b63f8ba8979de5bba`; input SHA-256 `d5017efef0c3e063458c6271bb4b27d40b35bdf91cd8379e598648e9bfd0c1be`; decision ledger `5395a5a3e2d205db02560c351a98bbee6420a5b845f6d35a1e5088b0e55840be`; root ledger `4e0809fcad3782ab73027cb22f2dea97ce18a3c891e91a7ad872a1ee74d67005`; exact apply plan `70067d1a6a13349d1d72db7227d3e79fae1757cc97e50e37330456d3121a64ca`; applied ledger `2704474b3d89611ab953246fa99e3230a82e3214bf09ff707dda6bf5939011f7`.
+
+
+### Window 32 exact-hash review and application
+
+W32 reviewed 25 source IDs / 266 pending locale cells at PR review base `dfb9707f946bf2686210bcf1072b9d70c8442a62` / tree `9458e836ae12c02573535b5c9dc052f055b7820d` / source subtree `469e060d9e0a3fd6f54bc75a69993ee2651d3e4b`. The manual dispositions were 237 keep and 29 correction candidates, with no uncertain cells. Independent review and root cross-review accepted 22 proposals and refined 7; all 29 final targets were applied. Evidence: [W32 review and cross-review](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window32/README.md) and [W32 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window32-2026-11-02/README.md).
+
+W32 input SHA-256 `09d534acad981c383c42c2da15b0c26a667af529cf108430ae7c388294c1f988`; decision ledger `cfee536d726295c1560d7e691a9bbe36a6948b50a5a0d6eafbfa5a27cf04d711`; candidate plan `ac67de5559bea50e815a729f95ff8a3c6e54bdd4751fc3d1278fd4add7808109`; independent ledger `18dcbf5ae633336bf3cb423dc7c470adc38636aba9b2f17eb66c1d1d65f8204a`; root ledger `5ff63d8e936e7640febc50847ece6f1a3eee4928530dbaa03cacddfc070af7db`; root apply plan `7902629320d3e3ed1a5e540321b57b5445a1e1ffa8527b01fa7c2aaa7f2ae2b5`; applied ledger `9210eb8998d661e19cc73a033d15c2adcd16ff502d7f66f6fc1bee5b030d0602`. Application commit `0abf10ae9f49d27d7cfef823cfe5d70765ee29f4` is a direct child of the reviewed head; its tree is `8ac49de1cde7dc242484eadc597781819e26e1d2`. It changes 29 target values in 11 locale catalogs and the cumulative changelog, plus checksummed review/application evidence. No workflow paths changed.
+
+### Window 33 exact-hash review and application
+
+W33 reviewed 25 new source keys / 274 pending locale cells at PR head `0abf10ae9f49d27d7cfef823cfe5d70765ee29f4` / tree `8ac49de1cde7dc242484eadc597781819e26e1d2` / caller subtree `594e56c3f439bad476b1bd57e0de1665c62fa1bb`. Manual review recorded 222 keep, 41 correction candidates, and 11 context-mismatched uncertain cells. Root cross-review accepted 40 candidates as proposed and refined one; 0 of the candidate rows were held. The 11 separate context-mismatched cells remain unchanged and are documented as held.
+
+Catalog commit `b7a027fcfc15d04ee661d1f3142f10fc1e95bb9b` / tree `009a65194784c052dd14a5e3f5e10d9ace9d199b` is a direct child of the W33 review base. It applies 41 root-final values in 11 catalogs: ar 4, de 1, fr 7, hi 4, id 5, ja 2, ko 4, pt-BR 4, vi 2, zh-Hans 4, and zh-Hant 4. The French DHT overlay port uses the root-refined `Port TCP du réseau de recouvrement DHT`. The read-only verifier confirmed exactly these 41 catalog changes, all 11 held values unchanged, 6,169 keys in each locale catalog, unchanged `src/web/src`, and zero workflow changes.
+
+Review evidence is in the [W33 manual-review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window33/README.md) and [W33 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window33-2026-11-02/README.md). Input SHA-256 `9b919f98102d88f2c8de56b23a187531453ed38eac9034657b9f968b8412bcec`; review decisions `4484dd487cfbfd75b2e9e9e4895b2811af6c76f6de65de241050b0d90be4d2c3`; candidate plan `906c3e8bb45b08e9bc9d26d9ac286def387a132c741e4e7f0be68deb0094df06`; independent ledger `647fcf26d3029795ca7e7763df68448a72c474f47db55d9db989360066e469b9`; root ledger `2c4ca97f6df7cd87e4ba5e6bbec52ec135ebd12578eec163f8c398365b5e3dc0`; root apply plan `e6c79a5d0550c0265af5c073bf3e9747735656bdf6aaaacbd6409e4c067cc166`; applied ledger `b0e54802166f2a98e42ecfa6d79e364af14c30b8e69e0dfb079f4b3da18c7c78`; held ledger `573bdce1bb61c7ea2037d462cf78fcc4be265ff07f0317db0cba7bd0a7697b66`.
+
+Evidence commit `dc8ed2406a2247600d487df1ae3128ce08cc7faa` / tree `9909f5d6e32dfcc78ba53aa0c838f95e9ba246d3` is now the pushed PR head. PR #409 remains open and draft. Native-speaker and headed-browser review remain outstanding. No tests, builds, security scans, or CI ran for W33; no workflow, release, tag, or merge change was made.
+
+### Window 34 exact-hash review and application
+
+W34 reviewed 25 source keys / 274 cells. Its frozen packet records 240 keep, 33 correction candidates, and one initially uncertain French Transfer Policy summary. Independent cross-review covered all 274 cells and concluded 241 keep-current, 32 accept-proposed, and one refine-proposed. Root reviewed 34 exact rows: 32 accept, one refine, and one keep-current; the French summary remains `Emplacements, plafonds de vitesse, remplacement automatique et activation de la planification.` because adjacent Upload Slots and Download Slots fields use `Emplacements d’envoi` and `Emplacements de téléchargement`.
+
+Catalog commit `10fc341aa2bada1f0ee5be6d6119e31858c36aca` is a direct child of review head `dc8ed2406a2247600d487df1ae3128ce08cc7faa`; it changes 33 values across 11 locale catalogs. Evidence commit `917273260c49cca1c14576a0720fc84998d2846d` is the current pushed PR head / tree `1cdd8c831d224a5706ac6f3e465add4fd249d2be`. The source/caller subtree remains `594e56c3f439bad476b1bd57e0de1665c62fa1bb`. All twelve catalogs retain 6,169 keys; changed-cell hashes, placeholders, protected literals, source/caller pins, key parity, workflow scope, and checksums passed. No full-catalog placeholder scan was run for this batch.
+
+Root ledger SHA-256 `da7bccd982e54172209375534b9a9309b04a2a6c3a20ce87a4b9df4e08a7cc59`; independent 274-row ledger SHA-256 `7a9da225deb033f6cacfa7306c0051e0d66dd899df11051249c50fe600a4fc40`; application plan SHA-256 `d9232fb9d91ed34d44012fc40d54e6c98ff8bb3f5792ca7551096e65973d21bb`; applied ledger SHA-256 `b75f7de69ae63f8ce95f37b1f24072fe999bfca9c7291dc0d2df4b5fecc80810`. The formal-overlap manifest claims zero overlap, but raw formal rows were not provided for independent reconstruction; exact overlap with prior manual windows and applied corrections is zero.
+
+### Cumulative status through W34
+
+At PR head `917273260c49cca1c14576a0720fc84998d2846d` / tree `1cdd8c831d224a5706ac6f3e465add4fd249d2be`, 34 disjoint manual windows cover 10,052 cells / 847 source keys. The raw manual verdicts are 8,405 keep, 1,367 correction candidates, and 280 initially uncertain; 13 uncertainties have been resolved (12 in the Realm follow-up and the W34 French cell), leaving 267. Cumulative applied corrections total 1,373 across 324 source keys. Six earlier exact-context correction decisions and eleven W33 context-mismatched cells remain unchanged. Of 67,080 frozen cells, 4,800 are in the formal lane, 10,052 in manual windows, and 52,228 remain outside both. The formal lane claims no overlap, but its raw result rows were not attached; manual-window and applied-ledger overlap checks pass.
+
+PR #409 remains OPEN/DRAFT/CLEAN. Native-speaker approval and headed-browser review remain outstanding. No tests, builds, scans, or CI jobs were run for W34; no merge, release, tag, or workflow change was made.
+
+### Window 35 exact-hash review and application
+
+W35 reviewed 25 disjoint source keys / 274 populated locale cells: 236 retain-current, 38 correction candidates, and no uncertain or held cells. Independent review disposition and root cross-review matched for all 38 proposals. The packet is pinned to exact PR head `917273260c49cca1c14576a0720fc84998d2846d` / tree `1cdd8c831d224a5706ac6f3e465add4fd249d2be` / `src/web/src` subtree `594e56c3f439bad476b1bd57e0de1665c62fa1bb`.
+
+Catalog commit `99a46e9cff5caad834243d7801245b3f94ad433a` is a direct child of that base and changes exactly 38 cells across 11 locale catalogs; all twelve catalogs retain 6,169 keys and key parity. Evidence commits `754232e58e5e996ef83073629447b4c535ca52f8` and `370c172e91935d7753c398eaf1b1fbc2e82f65ba` preserve the review and application bundles. The application verifier rechecked all source/current/final hashes, placeholders, protected literals, eight caller files / 49 caller-line pins, exact changed cells, catalog key parity, path scope, and `git diff --check`.
+
+Root ledger SHA-256 `9370973a90aaef1e6a597a4aa31d6bd21fedd4b7f8ded71f4d93ee0533d0f749`; independent 274-row ledger `6053ad16c8c19ecccfcfb330987810b6f3fd30c19538b67e48488195e190a36f`; exact root apply plan `fff13fd0e44f61ce78bf21d53136dd99bd8bcb2258662f4bf61ecfe454bc39fc`; applied-row ledger `86697c9ce74c9c333c6c3b38ab874a6a98ee93c6a582303816bfea994684fa15`; application-bundle checksums file `7d6fe019d8835ff6d6f4861e5ebbc64fdd625d5313de41f04814eec06f7ab3f2`. See the [W35 manual review bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-manual-semantic-review-2026-11-01/window35/README.md) and [W35 application bundle](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-catalog-correction-application-window35-2026-11-02/README.md).
+
+Cumulatively through W35, 35 disjoint manual windows cover 872 source keys / 10,326 cells: 8,641 keep, 1,405 correction candidates, and 280 initially uncertain dispositions. Thirteen uncertainties have been resolved separately or by cross-review, leaving 267 unchanged; six earlier exact-context correction decisions and eleven W33 context-mismatched cells remain unchanged. Cumulative applied corrections total 1,411 across 333 source keys. Of 67,080 frozen populated cells, 4,800 are in the formal lane, 10,326 in manual windows, and 51,954 outside both. The formal lane still lacks attached raw result rows for independent overlap reconstruction. The PR remains OPEN/DRAFT/CLEAN. Native-speaker approval and headed-browser review remain outstanding. No tests, builds, scans, CI, workflow changes, releases, tags, or merge were made for W35.
+
+
+### Window 36 exact-hash review and application
+
+W36 reviewed 25 new source keys / 275 pending cells at PR head `370c172e91935d7753c398eaf1b1fbc2e82f65ba` / tree `61bd0c6af797b0e810fdf9fad82c7d3a95c88b9c`. The primary review recorded 236 keeps and 39 correction proposals. Independent cross-review accepted 36 proposals, refined 3, agreed with 228 keeps, found 5 additional corrections, and held 3 terminology items for native review. The 44 exact-hash changes are applied across 11 catalogs; all 12 retain 6,169 keys. The 25 Spanish values stayed in their existing formal lane.
+
+The primary packet says 34 earlier windows, but independent reconstruction finds 35 disjoint pinned windows totaling 10,326 cells / 872 keys. W36 was also disjoint, bringing coverage to 36 windows / 10,601 cells / 897 keys. The packet preserves and documents that metadata discrepancy. Evidence and apply readback are in [window36](https://github.com/snapetech-org/slskdN/blob/codex/slskdn-oidc-tooltip-localization-20261030/docs/pr-evidence/pr409-localization-2026-11-02/window36/README.md). Commit: `2be3fa4dd46a0f0f49adad342f289721e4777035`.
+
+The three holds remain unchanged pending native-language review; machine semantic review does not establish native-speaker approval. This PR remains open and draft. No tests, builds, scans, CI jobs, workflow changes, merge, release, or tag were made for W36.
+
+## Semantic review window 37
+
+At input head `2be3fa4dd46a0f0f49adad342f289721e4777035`, primary review covered 273 pending cells across 11 locales. Independent review accepted 226 current values and 41 proposals, refined one proposal, and found five missed corrections. Applied 47 exact-hash corrections across the 11 non-Spanish catalogs; all 12 catalogs retain 6,169 keys, and all 273 cells read back against the cross-review. Evidence: [primary, independent review, exact apply plan, and readback](docs/pr-evidence/pr409-localization-2026-11-02/window37/README.md). Commit: `36084c57b5a0e26804bc497c32d51c321258176d`.
+
+Qualified native-speaker and browser review remain outstanding. No tests, builds, scans, CI, workflow changes, merges, releases, or tags. The PR remains open and draft.
+
+## Semantic review window 38
+
+The primary packet covered 269 cells across 11 locales and 54 correction candidates at input head `2be3fa4dd46a0f0f49adad342f289721e4777035`. After W37 advanced the PR, independent cross-review re-attested all source/current target hashes, candidate hashes, and 498 row-to-caller references at `36084c57b5a0e26804bc497c32d51c321258176d`.
+
+Cross-review accepted 48 primary proposals, refined 3, found 8 missed corrections, and held 3 Pod help fragments for complete sentence review; 207 other cells were accepted unchanged. Applied 59 exact-hash corrections across 11 locale catalogs. All 12 retain 6,169 keys, and all 59 target hashes read back exactly. Fifty previously held rows remain separately preserved. The 25 Spanish formal-lane values were excluded.
+
+Evidence, including the primary packet, updated-head cross-review, exact apply plan, and readback, is in [window 38](docs/pr-evidence/pr409-localization-2026-11-02/window38/README.md). Commit: `54bbece42`.
+
+The three Pod fragments remain held because the caller concatenates them after localized `Enable` and literal `feature.Pods`; the complete localized sentence needs review. Qualified native-speaker approval and headed browser review remain outstanding. No tests, builds, scans, CI, workflow changes, merges, releases, or tags were made for W38. The PR remains open and draft.
+
+## Semantic review window 39
+
+W39 covered 275 non-Spanish cells across 25 source IDs at input head `54bbece421b44fae0cc9156c42a859848db8be5e`. Independent cross-review accepted 238 current values and all 35 primary proposals (25 corrections and 10 refinements), and found two missed issues: zero-width spaces in the Vietnamese `Publish New Opinion` heading and transliterated `FTP` in the Hindi settings-success message.
+
+Applied 37 exact-hash corrections across 11 locale catalogs. All 12 catalogs retain the same ordered 6,169 keys. The 25 Spanish formal-lane rows were re-attested unchanged, and 50 prior holds remain preserved. Evidence and readback are in [window 39](docs/pr-evidence/pr409-localization-2026-11-02/window39-root-crossreview/README.md); commit `67e40aaa5b89db51397953dc89730316b1ab8bbc`.
+
+Native-speaker and exact-head browser review remain outstanding. No tests, builds, scans, CI, workflow changes, merges, releases, or tags were made for W39. The PR remains open and draft.
+
+## Semantic review window 40
+
+At input head `67e40aaa5b89db51397953dc89730316b1ab8bbc`, primary review covered 275 non-Spanish cells across 11 locales, 25 Spanish formal-lane preservation cells, and 50 prior holds. Independent cross-review accepted 212 current values and all 63 primary proposals (44 corrections and 19 refinements), while preserving all Spanish cells and all prior holds. It reattested 12 catalogs, 25 source rows, and 38 caller-line pins; placeholders, markup, and protected literals passed.
+
+Applied 63 exact-hash corrections/refinements across 11 locale catalogs. All 12 retain 6,169 ordered keys. Primary review, independent cross-review, exact apply plan, readback, and checksums are in [window 40](docs/pr-evidence/pr409-localization-2026-11-02/window40/README.md). Commit: `ab6f8fd9f`.
+
+Three prior holds with exact callers remain held pending terminology review. Native-speaker and headed-browser review remain outstanding. No tests, builds, scans, CI, workflow changes, releases, tags, or merges were made for W40; the local Semgrep hook skipped because only catalogs and documentation were staged. The PR remains open and draft.
+
+### slskdN semantic review W41 (2026-11-02)
+
+- Primary and independent cross-review covered 275 non-Spanish cells across source ordinals 26–50 at input head `ab6f8fd9fe94d222834f7e4720fd153af4e0649b` / tree `bebc34f8806f57158140d8b831c7a17c1fc6f8f1`. The review also reattested 25 formal Spanish cells and 50 prior held rows.
+- Applied 70 exact-hash changes: 69 accepted primary targets and one refined German target. The 11 “listening seeds” proposals remain held because the source includes artists, genres, tracks, and forgotten favorites; track-specific wording would narrow the meaning. The other 194 cells remain as reviewed current values. All 12 locales retain the same 6,169-key set.
+- Review packets, apply plan, readback, and checksums: [W41 review evidence](docs/pr-evidence/pr409-localization-2026-11-02/window41/README.md). Commit: `1b518a69d099032c497149102751271eddb0fa57`.
+- PR #409 is open and draft at head `1b518a69d099032c497149102751271eddb0fa57` / tree `c7f351a3507a3758a10369632feeb7a001e83aeb`. Current-head browser review and qualified native-speaker review remain outstanding.
+
+No tests, builds, scans, CI, workflow changes, releases, tags, or merges were performed for this window.
+
+
+
+## Localization semantic review W42 — 2026-11-02
+
+Reviewed 25 source strings across 11 non-Spanish locales (275 cells) at input head `1b518a69d099032c497149102751271eddb0fa57`. Independent cross-review accepted all 47 primary correction/refinement proposals and found one additional Hindi correction for W57. Applied 48 exact-hash changes across 11 locale catalogs; 227 other reviewed cells remain unchanged. All 12 catalogs keep the ordered 6,169-key set.
+
+W41 cells, 70 applied readbacks, 50 prior holds, the W41 and W42 Spanish formal rows, and the W43 boundary were reattested and preserved. Evidence and checksums: [W42 review and application](docs/pr-evidence/pr409-localization-2026-11-02/window42/README.md). Commit: `9071dcb9b4a96b476ecbaec9d5643236846ac2f8`; tree: `25282a0cd8197815b3ffcbec9dbea8a03a5c8725`.
+
+No tests, builds, scans, CI, workflow edits, browser actions, merges, releases, or tags were performed. Current-head browser review and qualified native-speaker review remain outstanding; this machine-assisted review is not native-speaker signoff. PR #409 remains open and draft.
+
+### W43 exact-head review and application (2026-11-02)
+
+- Independent review covered 275 non-Spanish cells across source ordinals 76–100: 45 proposals accepted (21 corrections, 24 refinements), 219 values retained, and 11 W98 cells held for a caller refactor.
+- Applied 45 exact-hash targets across 11 non-Spanish catalogs; each retains 6,169 keys. The Arabic and Hindi FTP address labels now preserve the `FTP` protocol literal. The 25 Spanish values were preserved unchanged in the W43 primary pass; a later exact-head follow-up independently reviewed the 30D filter label without changing its value.
+- [Primary, independent cross-review, apply plan, and readbacks](https://github.com/snapetech-org/slskdN/blob/490983c336d4958f11518c73268de2788c8858cb/docs/pr-evidence/pr409-localization-2026-11-02/window43/README.md). Commit: `490983c336d4958f11518c73268de2788c8858cb`. The Unreleased changelog is updated.
+- W97 source-label clarification and W98 caller refactor remain queued. The W40 frozen bundle is absent, limiting full pending-queue provenance; W43 was checked against W42 boundary evidence. The previous formal-lane gap for `es:src_0ef5849949bcf7b6` is closed: the Spanish `30 d` label was accepted as a register-neutral duration symbol in the adjacent 7D/90D filter. Evidence: [W43 Spanish formal-lane review](docs/pr-evidence/pr409-localization-2026-11-02/window43/spanish-formal-review/).
+
+Qualified native-speaker review and current-head browser acceptance remain outstanding. No tests, builds, CI, workflow changes, releases, tags, or merges were performed for this window.
+
+### W43 Spanish formal-lane follow-up
+
+- Independently reviewed Spanish `30 d` for source `30D` at the PlayerBar filter. It is a register-neutral numeric unit label that matches the adjacent `7 d` and `90 d` options; BIPM lists `d` as the day symbol and requires a separating space. No catalog value changed.
+- Primary and independent exact-head evidence is committed at `docs/pr-evidence/pr409-localization-2026-11-02/window43/spanish-formal-review/` (commit `f3fbd3f8d`). This closes the one W43 Spanish formal-lane evidence gap.
+- Native-speaker and headed-browser review remain outstanding.
+
+### Localization continuation: Pod help composition
+
+- Replaced the untranslated fragment composition with one complete translatable sentence. `feature.Pods` remains a single left-to-right code token rendered through `LocalizedRichText`.
+- Added the reviewed sentence to all 12 direct locale catalogs; each ordered catalog now has 6,170 keys.
+- Independent cross-review accepted all 12 locale targets with no revisions or holds. Evidence is committed under `docs/pr-evidence/pr409-localization-2026-11-02/pod-help-composition/`.
+- This milestone has static exact-head review and readback. Native-speaker and headed-browser review remain outstanding; no tests, builds, or CI were run, and workflows remain untouched.
+
+### W44 reconstructed ranking slice — 2026-11-02
+
+- Reviewed 300 cells for 25 pending source IDs across all 12 locales. Because the historical W44 boundary and W40 queue are unavailable, the slice uses reconstructed ranks 1–25 and does not claim an original ordinal range.
+- Applied 35 exact-hash changes. All 300 targets read back; each catalog retains the same 6,170-key ordered set. Independent cross-review plus separate adjudication accepted 15 primary corrections, 16 primary refinements, and four additional wording proposals.
+- The 24 cells for `pods` and `Private Message from {username}` remain held because those strings have no production localization caller. Eleven separate W98 holds were reattested and remain outstanding. Evidence: [W44 review packet](docs/pr-evidence/pr409-localization-2026-11-02/window44-reconstructed-ranks1-25/README.md). Commit `6a082138c09fa8af40aee3258beb98523ee821d9`; tree `90142bfd8904d2a4428ea5f144848ba1c743bdd7`.
+- The PR remains open and draft. Exact-SHA deployment query returned zero, so headed-browser acceptance is blocked; qualified native-speaker approval remains outstanding. No tests, builds, scans, CI, workflow edits, merges, releases, or tags were made. Local Semgrep/secret-scan hooks were skipped because they run outside the private-JIT route.
+
+
+
+### W45 reconstructed ranking slice — 2026-11-02
+
+- Reviewed 300 cells for the next 25 pending stable IDs after excluding W1–W44 IDs. This uses the current lexicographic pending-ID set; the historical W45 queue and source ordinals are unavailable, so no historical ordinal claim is made.
+- Independent cross-review retained 265 current values, accepted 34 proposals, and revised one Spanish security-settings prompt. Applied 35 exact-hash changes, including restoration of the exact ASCII `ContentID` protected literal in Hindi.
+- All 300 targets read back, all twelve locale catalogs retain the same ordered 6,170-key set, and the current 300-cell W44 result was reattested. The review rechecked 72 caller lines and 72 context references with no production caller gaps or placeholder, markup, or protected-literal mismatches.
+- [W45 primary, cross-review, apply plan, and readback](https://github.com/snapetech-org/slskdN/blob/31544a6ef15db2f8481dd76aa9c10844ec3164ba/docs/pr-evidence/pr409-localization-2026-11-02/window45-reconstructed-ranks1-25/README.md). Commit `31544a6ef15db2f8481dd76aa9c10844ec3164ba`; tree `fe94582c3e13f0f567fbfa6c3abac6e8558ba17d`.
+- PR #409 remains open and draft. Exact-SHA deployment query returned zero and the new head has no check runs, so headed-browser acceptance remains unavailable. Qualified native-speaker review remains outstanding. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made.
+
+
+### W46 reconstructed ranking slice — 2026-11-02
+
+- Reviewed 300 cells across 25 stable source IDs and 12 locales. Ranks 26–50 continue the deterministic reconstructed pending-ID queue after W45; historical source ordinals remain unavailable and are not claimed.
+- Applied 44 reviewed catalog changes, retained 220 current values, and held 36 cells for three caller/count-context issues. All 300 row targets and catalog file pins were read back; all catalogs retain 6,170 keys and their existing key order.
+- Independent review corrected formal Spanish addressing, Arabic web-security and software-policy wording, the exact `ContentID` placeholder, German `DHT-Schlüssel`, and Arabic “unrated” wording. Held contexts: the callerless download-confirmation source, `tracks,` after a dynamic count, and `new` shared between a message separator and a count-bearing Wishlist suffix.
+- Primary, cross-review, adjudication, apply/readback evidence: [W46 review packet](docs/pr-evidence/pr409-localization-2026-11-02/window46-reconstructed-ranks26-50/README.md). Commit `fa097f9aa044a63981d0c16f6daa53837f815333`; tree `4b1cb71342879581b5422de43450e4b0fc820a18`.
+- PR #409 remains open and draft. Qualified native-speaker and current-head headed-browser reviews remain outstanding. No tests, builds, scans, CI, workflow edits, merges, releases, or tags were made.
+
+## Localization follow-up: W46 count-aware messages
+
+Applied five new source keys and all 60 reviewed target cells across the twelve locale catalogs. Production callers now localize playlist approval counts, wishlist result counts, the message-stream separator, and the browse download confirmation. Cardinal selectors retain numeric counts for locale-aware plural and number formatting; the native dialog isolates the directory name.
+
+The rank37 `BrowseSession` message is confirmed at its production `window.confirm` caller with file count and directory name. This evidence supersedes only the 12 cross-review and 12 adjudication holds that incorrectly classified it as callerless; sealed historical packets remain unchanged. Current caller pins, review, adjudication, exact-hash readback, and source inventory: `docs/pr-evidence/pr409-localization-2026-11-02/window46-caller-aware-runtime-followup/`.
+
+Independent code review passed. Qualified native-speaker and headed-browser application review remain outstanding. No tests, builds, scans, or CI ran for this follow-up.
+
+### slskdN localization W56 — ranks 301–302
+
+Pushed as `6b09b3c7bf7de69c316ba3e2503dc450004c9b59` (tree `a5f9b792875d341a49208d0785bfff28aa9092d7`). Primary, independent blind, third-party cross-audit, and root review covered 24 cells and the two pinned callers. Final dispositions: 13 accept-current, 6 corrections, and 5 refinements. Applied 11 exact-hash changes to the “Job Types” label; the `{warning}` runtime token and locale-specific list markers remain unchanged in all 12 locales.
+
+All 24 targets were read back, all 12 catalogs retained their 6,176 ordered keys, and there were no non-target value changes or placeholder/markup mismatches. Evidence: [W56 review and application](https://github.com/snapetech-org/slskdN/tree/6b09b3c7bf7de69c316ba3e2503dc450004c9b59/docs/pr-evidence/pr409-localization-2026-11-03/window56/README.md).
+
+Machine review is not qualified native-speaker approval. Exact-head headed-browser acceptance remains pending because the isolated Agent Pool coordinator is unavailable. The PR remains open and draft; no tests, builds, scans, CI dispatches, workflow edits, merge, release, or tag were made for W56.
+
+### W57 ranks 303–327
+
+Pushed as `47735fbdb8df3de8dc5fd297c2717dc332764431` (tree `b29397903a036d40af1c6551dedbe070e735cfed`). Primary, independent blind, third-party cross-audit, and root review covered 300 cells across 25 strings and 42 pinned caller occurrences. Root dispositions: 276 accept-current, 11 corrections, 1 refinement, and 12 holds. Applied 12 catalog changes across seven locales. All 300 targets were read back; all catalogs retain 6,176 ordered keys.
+
+The sealed candidate packet had incorrect `lastSelected` and `nextBoundary` summary ranks. The full boundary list, selected inventory, and all cell rows establish ranks 303–327 with rank 328 next; root recorded this correction without altering the sealed packet. Rank 319 “recommendation seeds” remains held in all locales until product terminology is clarified. Evidence: [W57 review and application](https://github.com/snapetech-org/slskdN/tree/47735fbdb8df3de8dc5fd297c2717dc332764431/docs/pr-evidence/pr409-localization-2026-11-03/window57/README.md).
+
+Qualified native-speaker approval and exact-head product-browser acceptance remain outstanding. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were performed for W57. The PR remains open and draft.
+
+### Localization review W59 (ranks 353–377)
+
+Applied 69 selected target updates across 12 locale catalogs after primary, independent blind, and cross-audit review of 300 cells for 25 stable source IDs. Final dispositions were 207 accept-current, 54 corrections, 15 refinements, and 24 caller-context holds. Ranks 356 (“Add Torrent”) and 366 (“Searches”) remain unchanged in all locales because neither has a pinned production caller.
+
+Application readback matched all 300 reviewed cells, preserved all 12 ordered 6,176-key catalogs, and found zero non-target changes. Evidence: [`window-353-377`](docs/pr-evidence/pr409-localization-2026-11-03/window-353-377/application/README.md) and [cross-audit report](docs/pr-evidence/pr409-localization-2026-11-03/window-353-377/third-party-cross-audit/report.md). Commit: `3fbcea3185c02efca7c45d03a195acf488e70587`.
+
+Qualified native-speaker approval and exact-head browser review remain pending. No release or tag is part of this change.
+
+### Localization review W62 (ranks 428–452)
+
+Applied 76 selected values across the 12 locale catalogs: 45 corrections and 31 refinements. The 300-cell primary, independent blind, and root cross-audit review retained 200 current values and held 24 callerless values at ranks 438 and 452; all holds remain unchanged.
+
+The application read back all 300 cells, preserved each catalog’s ordered 6,176-key set, and changed only the 76 selected values. Placeholder, markup, numeric-token, and protected-literal checks passed. Evidence: [W62 review and application](docs/pr-evidence/pr409-localization-2026-11-03/window-428-452/APPLICATION-SUMMARY.md). Commit `1979c8dc4e59d5ca397251bcde73216a888aa9c9` (tree `8b5c0ef640f487741f0a08086cc6d60d5eef43a4`).
+
+Qualified native-speaker approval and exact-head browser review remain outstanding. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were performed for W62.
+
+---
+
+<!-- localization-window-w66-20261103 -->
+### Localization review — W66 (ranks 528–552)
+
+Applied commit [`2dc64b9d00f6611aeb72713af81db53ccc5a4084`](https://github.com/snapetech-org/slskdN/commit/2dc64b9d00f6611aeb72713af81db53ccc5a4084) at the live PR head. The primary, independent blind, and third-party cross-audit reviews covered 300 cells across 25 source strings and 12 locales: 217 accepted unchanged, 41 corrections, 18 refinements, and 24 callerless holds at ranks 533 and 541.
+
+Applied 59 exact-hash catalog updates. The readback covers all 300 cells; all 12 catalogs retain their 6,176-key sets and key order. The review corrected five protected-literal gaps and adjudicated one Japanese numeric surface form. The 104 earlier held cells and 24 current callerless holds remain unchanged. Evidence: [`docs/pr-evidence/pr409-localization-2026-11-03/window-66`](https://github.com/snapetech-org/slskdN/tree/2dc64b9d00f6611aeb72713af81db53ccc5a4084/docs/pr-evidence/pr409-localization-2026-11-03/window-66).
+
+Exact-head browser review and qualified native-speaker review remain pending. No tests, builds, scans, CI, workflow edits, releases, tags, or merges were performed. PR #409 remains open and draft.
+
+<!-- localization-window-w67-20261103 -->
+## Localization review — W67 ranks 553–577 (2026-11-03)
+
+Applied in commit [973a65312a475de4d8aa39aee837249553fd884e](https://github.com/snapetech-org/slskdN/commit/973a65312a475de4d8aa39aee837249553fd884e), tree 2a7b200dd1fe96f894bfdb663f656d6ffd48f487.
+
+- Candidate-free input, primary, independent blind, and cross-audit reviews covered 300 cells across 25 source strings and 12 locales. The cross-audit reconciled 105 differing target hashes and selected 111 updates: 72 corrections and 39 refinements. It retained 189 current values, added no new holds, and reattested all 128 prior holds unchanged.
+- Readback matched all 300 cells. All 12 catalogs retain ordered 6,176-key sets with zero non-target value changes. Placeholder, markup, numeric, and protected-literal checks pass; the 10 protected-literal gaps in the baseline (MilkDrop in two cells and AI in eight) are corrected.
+- Complete candidate-free input, primary and blind reviews, cross-audit, application plan, readback, catalog invariants, and portable verifier: [W67 evidence](https://github.com/snapetech-org/slskdN/blob/973a65312a475de4d8aa39aee837249553fd884e/docs/pr-evidence/pr409-localization-2026-11-03/window-553-577/README.md). The blind review used current targets included in the candidate-free input and did not see primary proposals.
+- Qualified native-speaker and exact-head browser review were not performed. No project tests, builds, scans, CI, workflow edits, releases, merges, or tags were performed. PR #409 remains open and draft.
+
+---
+
+<!-- localization-window-w68-578-602 -->
+### Localization review — W68 ranks 578–602 (2026-11-03)
+
+Applied in commit [9ef252a53d2c](https://github.com/snapetech-org/slskdN/commit/9ef252a53d2c14201c736de41efd0531bc00965a). The primary, independent blind, and cross-audit reviews cover 300 cells across 25 source strings and all 12 direct locales.
+
+- Final decisions: 271 current values retained and 29 corrections applied. The cross-audit reconciled 18 differences (2 disposition differences and 16 wording differences); no holds were added.
+- All 9 baseline protected-literal flags were resolved using caller context. Placeholder, markup, numeric, and protected-literal checks pass at the applied targets.
+- All 128 earlier held cells remain unchanged. Each of the 12 catalogs retains 6,176 keys and the same key order; readback confirms no non-target changes.
+- Complete candidate-free, primary, blind, cross-audit, application, and readback evidence: [W68 packet](https://github.com/snapetech-org/slskdN/tree/9ef252a53d2c14201c736de41efd0531bc00965a/docs/pr-evidence/pr409-localization-2026-11-03/window-578-602).
+
+Exact-head browser review and qualified native-speaker review remain outstanding. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were performed.
+
+---
+
+<!-- localization-window-w69-603-627 -->
+### Localization review — W69 ranks 603–627 (2026-11-03)
+
+Applied in commit [335a96a9ec125b30c20c31be219da4e27db1ab03](https://github.com/snapetech-org/slskdN/commit/335a96a9ec125b30c20c31be219da4e27db1ab03).
+
+- Candidate-free, primary, independent blind, and third-party cross-audit reviews cover 300 cells across 25 source strings and all 12 locales. The cross-audit reconciled 76 target-hash disagreements and 64 disposition differences.
+- Applied the 68 selected exact-hash changes: 34 corrections and 34 refinements. The 220 accepted values and 12 callerless rank-615 holds remain unchanged. The 128 carried holds also remain unchanged.
+- Readback matched all 300 selected values. Each locale catalog retains its ordered 6,176-key set, with zero non-target changes.
+- Caller-backed protected-literal repairs preserve exact ID in Arabic and Hindi at rank 612, and exact SongID in Hindi at rank 619. The rank-611 caller confirms these are native Soulseek interest lists; the cross-audit corrected the French false friend and Chinese local-device wording.
+- Evidence: [W69 review and application](docs/pr-evidence/pr409-localization-2026-11-03/window-603-627/README.md) and [portable cross-audit](docs/pr-evidence/pr409-localization-2026-11-03/window-603-627/cross-audit/README.md).
+
+No tests, builds, scans, CI, workflow changes, browser review, native-speaker review, merge, release, or tag were performed. The commit includes a skip-CI marker.
+
+<!-- slskdn-pr409-window-70 -->
+### Localization window W70 - ranks 628-652
+
+Applied 97 exact-hash updates across 12 locale catalogs: 47 corrections and 50 refinements; 203 cells retained their current values. All 300 cells passed readback, all 140 carried holds were preserved, and all 1,732 prior source IDs remain excluded. Selected targets pass placeholder, markup, numeric, and protected-literal checks; they repair the Arabic GPU, Hindi MilkDrop, and Arabic numeric-token baseline mismatches.
+
+Evidence: [window README](https://github.com/snapetech-org/slskdN/blob/d0317d8258a31d05b7f163921c2e39f93deabfca/docs/pr-evidence/pr409-localization-2026-11-03/window-628-652/README.md) · [portable verifier](https://github.com/snapetech-org/slskdN/blob/d0317d8258a31d05b7f163921c2e39f93deabfca/docs/pr-evidence/pr409-localization-2026-11-03/window-628-652/verify_window_bundle.py).
+
+Base divergence at the pinned parent: the PR API base is f25d263a2a7cdb2c8f76c40c346cb10f749a9356 and current main is bc6251ff4ea5a7e59f2d86e2400c90520601f46e; the branch was 142 commits ahead and 4 behind current main, with the PR API base as merge base. No rebase was performed.
+
+Qualified native-speaker review and exact-head browser review remain pending. No tests, builds, scans, CI, browser review, workflow edits, merge, release, or tag were performed for this window.
+
+
+<!-- slskdn-pr409-window-653-677 -->
+### Localization review: W71 ranks 653–677
+
+Primary, independent blind, and cross-review covered 300 cells across 25 source strings and all 12 locales: 231 accept-current, 40 corrections, 17 refinements, and 12 callerless holds. Applied 57 exact catalog updates across 12 locales; all 57 values read back, with per-locale key order and non-target values preserved.
+
+The 12 rank-654 cells remain hash-only holds because no exact production caller establishes context. Japanese and Korean retain the known digit-7 numeric mismatch in those held cells. A second-person wording addendum refined three selected targets in French, Vietnamese, and Japanese; its original recommendation remains in the evidence, and qualified native-speaker approval is not claimed.
+
+Catalog commit: [`f120ea1`](https://github.com/snapetech-org/slskdN/commit/f120ea15892aa1bd8e17ab43965822ac459e4a71). Evidence commit: [`311127d`](https://github.com/snapetech-org/slskdN/commit/311127db7f4d5097dfd1dde5eaa2150f82f48f30). The [complete W71 evidence bundle](https://github.com/snapetech-org/slskdN/tree/311127db7f4d5097dfd1dde5eaa2150f82f48f30/docs/pr-evidence/pr409-localization-2026-11-03/window-653-677/README.md) includes portable verifiers and hash-only continuity records.
+
+Exact-head headed-browser acceptance and qualified native-speaker review remain outstanding. No tests, builds, scans, CI, workflow edits, merge, release, or tag were performed for this window; PR #409 remains open and draft.
+
+<!-- slskdn-pr409-window-678-702 -->
+### Localization review: W72 ranks 678–702
+
+Primary, independent blind, and cross-review covered 300 cells across 25 source strings and all 12 locales: 161 accept-current, 24 corrections, 7 refinements, and 108 callerless holds. The cross-review selected 31 exact catalog updates across 10 locales; all 31 values read back, and whole-file diffs contained only those selected keys. Nine selected changes were blind-only proposals.
+
+The 108 callerless cells remain hash-only holds; prior lineage includes 152 held cells and 1,782 selected source IDs, also hash-only. Parent review corrected rank 697 Hindi punctuation to the Devanagari danda U+0964 and independently confirmed all 31 selected targets. Native-speaker signoff is not claimed.
+
+Catalog commit: [`3aebbc9`](https://github.com/snapetech-org/slskdN/commit/3aebbc99f2de17da71971edf9602503dca747658). Evidence commit: [`03c73e7`](https://github.com/snapetech-org/slskdN/commit/03c73e7b6706d8a034d7a24d6984763134f61bac). The [complete W72 evidence bundle](https://github.com/snapetech-org/slskdN/tree/03c73e7b6706d8a034d7a24d6984763134f61bac/docs/pr-evidence/pr409-localization-2026-11-03/window-678-702/README.md) contains the canonical full blind packet, sealed reviews, application readback, and portable verifiers. PR #409 remains open and draft; no deployments were recorded. No tests, builds, scans, CI, workflow edits, merge, release, or tag were performed for this window.
+
+<!-- slskdn-pr409-hold19-20261104 -->
+### Hold19 root-cross application
+
+- Applied the 12 root-selected rank-409 terminology corrections across all 12 locales, reusing the established localized “Wanted Pull” term. Rank-475 Arabic remains accepted-current; all six rank-504 rows remain text-free holds.
+- Catalog commit: [`2a8bed9`](https://github.com/snapetech-org/slskdN/commit/2a8bed93f3b65dcc9fc858dc3bdee04a4bb3851a). Evidence commit: [`871330c`](https://github.com/snapetech-org/slskdN/commit/871330ca37a40c15172d3be040271e3944f6f628).
+- The [full root-cross packet and exact-commit readback](https://github.com/snapetech-org/slskdN/tree/871330ca37a40c15172d3be040271e3944f6f628/docs/pr-evidence/pr409-hold19-root-cross-2026-11-04/) includes a portable application verifier. It passes for all 19 rows, including the six hash-only holds.
+- Exact final head `871330ca37a40c15172d3be040271e3944f6f628` has zero deployments, check runs, and Actions runs. Browser acceptance and native-speaker signoff are not claimed.
+- No tests, builds, scans, CI dispatches, workflow edits, merge, release, or tag were made. PR remains open and draft.
+
+
+
+<!-- slskdn-pr409-w74-728-752-20261104 -->
+### Localization review: W74 ranks 728–752
+
+Primary, independent clean-blind, and cross-review covered 300 cells across 12 locales: 206 accept-current, 94 selected updates, and 0 holds. The parent review corrected one cross-rank French target/rationale mismatch at rank 741; the current retry wording was retained. Two source clarifications at ranks 732 and 750 update their English keys/callers and 24 locale targets; the other 70 selected updates retain their source keys.
+
+All 300 target cells read back by exact value and SHA-256. The 12 catalogs preserve their existing key sequence, and only the two reviewed callsite files changed outside the catalogs. The [complete W74 evidence bundle](docs/pr-evidence/pr409-localization-2026-11-04/window-728-752/README.md) contains candidate-free, primary, blind, cross-review, application pre/postimages, the portable verifier, and checksums.
+
+Catalog/source commit: [`b5311aea`](https://github.com/snapetech-org/slskdN/commit/b5311aea54dedefbc0b9b9fbc6adf091cc55b5c6). Evidence commit: [`99d6afbf`](https://github.com/snapetech-org/slskdN/commit/99d6afbfb8cca4dccc018e72c01950bc304240db).
+
+The PR remains open and draft. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made. Browser acceptance and qualified native-speaker signoff are not claimed.
+
+<!-- slskdn-pr409-w75-753-777-application-20261104 -->
+### Localization application: W75 ranks 753–777
+
+Applied 49 selected catalog targets across all 12 locales. The 300-cell readback confirms 239 current values retained and 12 rank-754 cells held unchanged with hash-only hold evidence.
+
+- Catalog commit: [`dd49c37`](https://github.com/snapetech-org/slskdN/commit/dd49c37bc70a09b552fb66a435a04e500d0ca012)
+- Separate review and readback evidence commit: [`6741567`](https://github.com/snapetech-org/slskdN/commit/674156749ee86021ef91d896b1824be62cff9a93)
+- [Complete W75 evidence packet](docs/pr-evidence/pr409-localization-2026-11-04/window-753-777/README.md) includes the candidate-free, primary, blind, and cross-review inputs, exact proposal linkage, portable verifiers, checksums, and per-cell application readback.
+- The PR remains open and draft. No tests, builds, scans, or CI jobs were run; browser acceptance and native-speaker signoff are not claimed.
+
+
+<!-- slskdn-pr409-w76-778-802-application-20261104 -->
+### Localization application: W76 ranks 778–802
+
+Applied 69 reviewed translation updates across the 12 locale catalogs. Exact readback covered 300 cells: 183 current translations retained and 48 callerless cells left unchanged with hash-only holds. Three selected variants use the blind review wording where it better fits the caller context.
+
+- Catalog commit: [`7bfcab0e`](https://github.com/snapetech-org/slskdN/commit/7bfcab0e1eae810f8af1e1398f0e429c862b42ee)
+- [Complete W76 evidence packet](docs/pr-evidence/pr409-localization-2026-11-04/window-778-802/README.md) includes the candidate-free, primary, blind, and cross-review packets, proposal reconciliation, hash-only hold lineage, and exact 300-cell application readback.
+- The PR remains open and draft. No tests, builds, scans, CI, workflow edits, merges, releases, or tags were made. Browser acceptance and qualified native-speaker signoff are not claimed.

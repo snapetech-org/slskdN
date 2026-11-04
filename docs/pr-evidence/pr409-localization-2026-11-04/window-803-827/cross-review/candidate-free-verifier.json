@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+  "window": "W77",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "catalogs": 12,
+  "catalogEntriesPerLocale": 6176,
+  "runtimeFilesPinned": 279,
+  "selectedSourcesWithCallers": 24,
+  "callerlessSelectedSources": 1,
+  "priorSelectedIdsHashOnly": 1882,
+  "priorHeldCellsHashOnly": 319,
+  "priorHoldResolutionsHashOnly": 13,
+  "priorHeldTargetHashesMatch": true,
+  "priorHeldCallerEvidenceUnchanged": 319,
+  "priorHeldCallerEvidenceChanged": 0,
+  "tokenMismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "checksums": 29
+}

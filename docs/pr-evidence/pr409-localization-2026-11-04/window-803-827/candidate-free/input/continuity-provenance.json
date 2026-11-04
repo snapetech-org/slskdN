@@ -1,0 +1,20 @@
+{
+  "previousWindow": "W76",
+  "previousHead": "674156749ee86021ef91d896b1824be62cff9a93",
+  "previousTree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450",
+  "previousCandidateFreeManifestSha256": "36aa3e5f8ea59a45aaefbd7e41ab0094c2fdacb58e855cb695b5f9f0136ba0d4",
+  "previousCandidateFreeChecksumListSha256": "6f1ff444313b6bdcc266b6a30309031f45f507ed6924cd6cc5b293f1003a2ec3",
+  "priorSelectedIdExclusionRows": 1882,
+  "priorHeldCells": 319,
+  "priorResolvedHoldHistoryRows": 13,
+  "priorSelectedIdsSha256": "e5ff5aa1a1a57b3a7269857a06cc4bd0a4ab56d2b8bd9c29f84a397bb51b7b42",
+  "priorHoldInputSha256": "044f472a23e5fdf16eabdd16a0141929d60b51d0d904f06d0d079e8ba115baec",
+  "priorResolutionInputSha256": "1172df9108f3e0350062f62fb55e24143866da346c4ec9df44e75e67527409d6",
+  "w76CrossHoldInputSha256": "a56322721d3a2a782d295e8201e65386b38095d7a5304c34dadda07b87da1208",
+  "w76SelectedIdInputSha256": "909cb977a76310246a83681c2dcc075f86ff4d0770710bfd805e0ed31bbcf990",
+  "previousCrossHoldRows": 48,
+  "previousPrimaryProposalTargetsUsed": false,
+  "priorPrimaryReviewUsed": false,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false
+}
