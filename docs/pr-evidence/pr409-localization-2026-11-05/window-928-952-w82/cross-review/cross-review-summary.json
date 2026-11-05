@@ -1,0 +1,106 @@
+{
+  "artifact": "slskdN PR #409 W82 cross-review",
+  "schemaVersion": 1,
+  "sealed": true,
+  "sealedAt": "2026-11-05T04:14:51Z",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W82",
+  "head": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "tree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5",
+  "continuationRankRange": [
+    928,
+    952
+  ],
+  "remainingQueueRankRange": [
+    828,
+    852
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "inputChecksumsSha256": {
+    "candidateFree": "fa0f397a2c146b9e8697060b4489ba2dc53af5587a8ad690c6b32e624f4e5ec0",
+    "primary": "687acf88a5179ffed32f227e1f7b5cba9c2892ee5cfb566e1dd4fa920ba8d8d3",
+    "blind": "53728890dc37a0e45a478164687ad7d7ef0dc8ca758fb0510d242d27971f428e"
+  },
+  "inputManifestSha256": "761a6274c2234f2db6edfb869848482c9e445cb3b8228918ef894f5ad27f616b",
+  "primaryProposalCount": 37,
+  "primaryBlindAgreement": {
+    "sharedRevisions": 20,
+    "primaryProposalsAcceptedAfterCrossReview": 14,
+    "languageHolds": 3,
+    "callerlessHolds": 12
+  },
+  "crossDispositionCounts": {
+    "accept-current": 251,
+    "correction": 30,
+    "hold": 15,
+    "refinement": 4
+  },
+  "selectedChanges": 34,
+  "rootAdjudicationRequired": true,
+  "nativeSpeakerValidationClaimed": false,
+  "browserReviewClaimed": false,
+  "sourceCatalogPrEditsMade": false,
+  "testsBuildsScansCiRun": false,
+  "workflowChanges": 0,
+  "tokenFindings": {
+    "candidateProtectedLiteralMismatches": 17,
+    "additionalSoulfindPrefixSemanticIssue": 1,
+    "affectedCells": 18,
+    "placeholdersMarkupAndNumbers": "blind audit reports zero mismatches across all 300 cells",
+    "literalGroups": {
+      "JWT": {
+        "rank": 936,
+        "localeCount": 3
+      },
+      "soulfind": {
+        "rank": 939,
+        "localeCount": 12,
+        "missing": 11,
+        "unsupportedPrefix": 1
+      },
+      "PodCore": {
+        "rank": 941,
+        "localeCount": 3
+      }
+    }
+  },
+  "rank944": {
+    "callerCount": 0,
+    "cells": 12,
+    "disposition": "hold",
+    "sourceTextIncluded": false,
+    "currentTargetTextIncluded": false
+  },
+  "rank950LanguageHolds": {
+    "locales": [
+      "de",
+      "fr",
+      "hi"
+    ],
+    "cells": 3,
+    "sourceTextIncluded": false,
+    "currentTargetTextIncluded": false,
+    "qualifiedLanguageReviewPending": true
+  },
+  "nextWindow": {
+    "continuationRanks": [
+      953,
+      977
+    ],
+    "remainingQueueRanks": [
+      853,
+      877
+    ],
+    "firstSourceId": "src_358f9860b3f4e247"
+  },
+  "ledgerSha256": "2a4edeca71ad3e35098fd85068bfb5d27578d0f5e6d5a72f126f494fa07a1b1c",
+  "ledgerCounts": {
+    "accept-current": 251,
+    "correction": 30,
+    "hold": 15,
+    "refinement": 4
+  }
+}

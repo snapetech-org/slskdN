@@ -1,0 +1,139 @@
+{
+  "result": "PASS",
+  "sourcePin": {
+    "head": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+    "tree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5"
+  },
+  "candidateCells": 300,
+  "selectedChanges": 34,
+  "changedCatalogCount": 12,
+  "changedCatalogPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "workflowChanges": 0,
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "preimageSha256": "6b97a019e7fb63952a7be231b1c456f56a8734b9cf05223edbb70d73d5d68450",
+      "postimageSha256": "0a2fce139ba8b474c88fdda493adf322d753a50cb35ccf2fe996dc1808a09b20",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 4
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "preimageSha256": "21fcecf863c6383cc0c2a898650237d6bed2748ee32f411e7de01367fecace2e",
+      "postimageSha256": "abbbf9bb42bbbc6a1ee2e77c0f4da2768a43ee06507b6520c850adf9f0e2ffd8",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 2
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "preimageSha256": "5fc6b0e2dd8c083e2a0f5afcb87ec1c267e8dca2c7e122d81ec1bd5ef66d98a6",
+      "postimageSha256": "9f29bafadcb222b1d810ad75d43dd72aee00dcf945efbdf95144faf3ea0b4ead",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 4
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "preimageSha256": "d4a267dd500c7a7920bc722f0e9b1c0a8abb524ebff1755ddaf06febe4c0968d",
+      "postimageSha256": "9ea46558a2300bc99f1e4a03c0a78acdd98dd625a3ece4932734cd118cfc97a2",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 3
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "preimageSha256": "e9330a9d6f2b9f7d85a78c17cae900d8b3ebd3a6bd357411ec6836f214fa93e5",
+      "postimageSha256": "38f4372f7bcb54a6b0fe59029d2f63ec0ac3faa68f0d0caf5240a3d8b2a07ae7",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 3
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "preimageSha256": "8a1c1b088fec2fc05956955f8fef98895430bb21858518085519459c1a82a907",
+      "postimageSha256": "6624f9c649f28da9f6b4f4d8a61c6a678d6ca46cab346427a60fe518e1b7a124",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 3
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "preimageSha256": "8c0a214c8b27bc85848ce2407a55f686541bb71dc47c4c3e3c37ce98c6c48f48",
+      "postimageSha256": "e114c75028c6bca4fdaba4c99e2fd8c8856eb97219a25d0e8398c57875951f86",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 3
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "preimageSha256": "accae5b0bc93581658db6d1b3f5ab49d3621a981865d3c0a5ef1a64867394087",
+      "postimageSha256": "19b703f2436ab51d20dec0789d8642bc008122aa5dcb5a0209625849489c852f",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 3
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "preimageSha256": "8e3c8f56e9030bff71843a5d76163f34504879dccd4e5f1fa4d1f7f1b09da8df",
+      "postimageSha256": "c155830cee95a3f842db5e1e480225bc6795569c47f2edf77840eb5f41c3c986",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 1
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "preimageSha256": "44864b6d871f0c3a4d1f75fbbd7ece4f062a1d48cb54851f5b53264163b69de6",
+      "postimageSha256": "5afa4ceca69044f4d7e698c8ef0225a21e154df6582d7788e1b5c139c2af4afd",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 4
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "preimageSha256": "da81c7985c9a276b0cc309f740707f39cada1a0f6eab3b3bda33b9f74e8bde94",
+      "postimageSha256": "851380ac8da8408dfb04d1605ae68e6c714dabd7a0dcbd83a89229a599320012",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 2
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "preimageSha256": "e7d1e797b2dec133ce2fc0df158efdcf3bf4f754551f793042ece208208d8045",
+      "postimageSha256": "f8f374c202fb8ad5e285981a18f8372da98b9bd9fb3fae2b64fe9850ac2c847d",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 2
+    }
+  ],
+  "hooks": {
+    "preCommit": "not run; commit with hooks disabled because scans/tests are not authorized",
+    "prePush": "not run; push with hooks disabled because scans/tests are not authorized"
+  }
+}

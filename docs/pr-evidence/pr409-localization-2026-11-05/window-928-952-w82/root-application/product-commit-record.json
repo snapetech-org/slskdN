@@ -1,0 +1,22 @@
+{
+  "commit": "807e0f1b6b21f8783483224aac01c159ccac08a5",
+  "parent": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "tree": "80bdc60197d1549536a96fc52d071d8c2c44893c",
+  "changedPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "changedPathCount": 12,
+  "selectedCells": 34,
+  "readbackSha256": "7c4d1e06477089b70457220eb69deefbc25eb7415f56ba98b348fe9c0f9686c5"
+}

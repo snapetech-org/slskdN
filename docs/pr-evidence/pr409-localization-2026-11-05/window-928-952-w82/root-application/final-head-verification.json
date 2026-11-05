@@ -1,0 +1,51 @@
+{
+  "result": "PASS",
+  "inputHead": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "inputTree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5",
+  "head": "807e0f1b6b21f8783483224aac01c159ccac08a5",
+  "tree": "80bdc60197d1549536a96fc52d071d8c2c44893c",
+  "candidateCells": 300,
+  "observedChangedCells": 34,
+  "dispositionCounts": {
+    "accept-current": 251,
+    "accept-correction": 30,
+    "accept-refinement": 4,
+    "hold-callerless": 12,
+    "hold-qualified-language-review": 3
+  },
+  "changedCatalogCount": 12,
+  "changedPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "allCatalogKeysPreserved": true,
+  "allNonTargetCatalogValuesPreserved": true,
+  "all12CatalogsReadBack": true,
+  "callerlessAndLanguageHoldsTextFree": true,
+  "workflowChanges": 0,
+  "readbackSha256": "7c4d1e06477089b70457220eb69deefbc25eb7415f56ba98b348fe9c0f9686c5",
+  "postimageHashes": {
+    "src/web/public/locales/ar.json": "0a2fce139ba8b474c88fdda493adf322d753a50cb35ccf2fe996dc1808a09b20",
+    "src/web/public/locales/de.json": "abbbf9bb42bbbc6a1ee2e77c0f4da2768a43ee06507b6520c850adf9f0e2ffd8",
+    "src/web/public/locales/es.json": "9f29bafadcb222b1d810ad75d43dd72aee00dcf945efbdf95144faf3ea0b4ead",
+    "src/web/public/locales/fr.json": "9ea46558a2300bc99f1e4a03c0a78acdd98dd625a3ece4932734cd118cfc97a2",
+    "src/web/public/locales/hi.json": "38f4372f7bcb54a6b0fe59029d2f63ec0ac3faa68f0d0caf5240a3d8b2a07ae7",
+    "src/web/public/locales/id.json": "6624f9c649f28da9f6b4f4d8a61c6a678d6ca46cab346427a60fe518e1b7a124",
+    "src/web/public/locales/ja.json": "e114c75028c6bca4fdaba4c99e2fd8c8856eb97219a25d0e8398c57875951f86",
+    "src/web/public/locales/ko.json": "19b703f2436ab51d20dec0789d8642bc008122aa5dcb5a0209625849489c852f",
+    "src/web/public/locales/pt-BR.json": "c155830cee95a3f842db5e1e480225bc6795569c47f2edf77840eb5f41c3c986",
+    "src/web/public/locales/vi.json": "5afa4ceca69044f4d7e698c8ef0225a21e154df6582d7788e1b5c139c2af4afd",
+    "src/web/public/locales/zh-Hans.json": "851380ac8da8408dfb04d1605ae68e6c714dabd7a0dcbd83a89229a599320012",
+    "src/web/public/locales/zh-Hant.json": "f8f374c202fb8ad5e285981a18f8372da98b9bd9fb3fae2b64fe9850ac2c847d"
+  }
+}

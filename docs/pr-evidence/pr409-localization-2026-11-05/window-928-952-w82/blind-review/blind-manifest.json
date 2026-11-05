@@ -1,0 +1,111 @@
+{
+  "artifact": "slskdN PR #409 W82 sealed blind semantic review",
+  "schemaVersion": 1,
+  "sealed": true,
+  "sealedAt": "2026-11-05T04:00:48Z",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W82",
+  "head": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "tree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5",
+  "continuationRankRange": [
+    928,
+    952
+  ],
+  "remainingQueueRankRange": [
+    828,
+    852
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "inputPacket": "candidate-free exact-head input",
+  "inputManifestSha256": "761a6274c2234f2db6edfb869848482c9e445cb3b8228918ef894f5ad27f616b",
+  "inputSha256SumsSha256": "fa0f397a2c146b9e8697060b4489ba2dc53af5587a8ad690c6b32e624f4e5ec0",
+  "inputChecksumEntryCount": 23,
+  "sourceTreeAttestationSha256": "8345c34001b6486ec15d6887696c079886e55c58cb1a0e1f6a09bde0da16243e",
+  "sourceInventorySha256": "083bd4dc36e72125a819268ac36baf4b79707a1fc24d68ceef3ab5a6366887d9",
+  "runtimeFilePinsSha256": "7fd4f980607d8822ecb5963010d9cfa04add32dc6243aa10c2e17ed78ce46d04",
+  "ledgerSha256": "d5d6f0c9b710dfd3001679df643ea6b28adb5d4d65e15e744ca310476924c61b",
+  "sourceTextIncluded": false,
+  "currentTargetTextIncluded": false,
+  "proposedTargetIncluded": false,
+  "blindReviewUsed": true,
+  "crossReviewUsed": false,
+  "nativeSpeakerValidationClaimed": false,
+  "liveAppOrBrowserReviewClaimed": false,
+  "sourceCatalogPrEditsMade": false,
+  "dispositionDefinitions": {
+    "accept": "Existing translation appears semantically adequate in the supplied pinned context.",
+    "revise": "Clear semantic or protected-literal issue; no replacement wording is proposed.",
+    "hold": "Not cleared for use because context or language-level wording cannot be resolved here."
+  },
+  "dispositionCounts": {
+    "accept": 265,
+    "revise": 20,
+    "hold": 15
+  },
+  "tokenAuditCounts": {
+    "cellsAudited": 300,
+    "markupMismatchCells": 0,
+    "placeholderMismatchCells": 0,
+    "numberPreservationFailures": 0,
+    "protectedLiteralMismatchCells": 17,
+    "additionalProtectedLiteralSemanticFlags": 1
+  },
+  "rank944": {
+    "sourceId": "src_35329d50b42eef12",
+    "cells": 12,
+    "callerCount": 0,
+    "disposition": "hold",
+    "reasonCode": "callerless_context_unresolved",
+    "sourceTextIncluded": false,
+    "currentTargetTextIncluded": false,
+    "pinnedContextResolves": false
+  },
+  "reasonCodeDefinitions": {
+    "semantic_alignment": "No material meaning or usage issue found in this desk review.",
+    "callerless_context_unresolved": "Pinned caller scan has no production caller; hold text-free.",
+    "protected_jwt_literal_missing": "Required JWT identifier is translated instead of preserved.",
+    "protected_soulfind_literal_missing": "Required soulfind command literal is translated instead of preserved.",
+    "soulfind_literal_altered_with_unexpected_prefix": "Command literal appears with an unsupported added prefix despite containing the protected substring.",
+    "protected_podcore_literal_missing": "Required PodCore product identifier is translated instead of preserved.",
+    "queue_position_rendered_as_time_or_removal": "Pinned queue-control context is a move-up action; target wording shifts toward time or leaving the queue.",
+    "mark_viewed_action_mistranslated": "Pinned context is an action to mark search results as viewed; target reads as a display event.",
+    "mark_viewed_wording_needs_language_validation": "Pinned context is an action to mark results viewed; target wording is too doubtful to clear without language validation."
+  },
+  "files": {
+    "README.md": {
+      "sha256": "15a00128cb7b682f863284610f50e082e6f2396a04e6bd4f01cbecd75958d507",
+      "bytes": 1192
+    },
+    "blind-ledger.jsonl": {
+      "sha256": "d5d6f0c9b710dfd3001679df643ea6b28adb5d4d65e15e744ca310476924c61b",
+      "bytes": 219370
+    },
+    "verify_blind_review.py": {
+      "sha256": "098be59319a849fd7e087305a0c06146d468876ae182f3e8922cee6c9510cba9",
+      "bytes": 12134
+    }
+  },
+  "verifierSha256": "098be59319a849fd7e087305a0c06146d468876ae182f3e8922cee6c9510cba9",
+  "outputChecksumEntries": {
+    "README.md": "15a00128cb7b682f863284610f50e082e6f2396a04e6bd4f01cbecd75958d507",
+    "blind-ledger.jsonl": "d5d6f0c9b710dfd3001679df643ea6b28adb5d4d65e15e744ca310476924c61b",
+    "verify_blind_review.py": "098be59319a849fd7e087305a0c06146d468876ae182f3e8922cee6c9510cba9"
+  }
+}
