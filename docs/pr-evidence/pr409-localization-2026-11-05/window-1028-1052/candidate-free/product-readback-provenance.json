@@ -1,0 +1,14 @@
+{
+  "allProductRowsMatchCurrentHead": true,
+  "applicationSummarySha256": "05624c1edc74dc438372c3cae4e223ff13501f424179e7ac6b2940d411fff3da",
+  "changedProductRows": 71,
+  "currentHead": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "finalHeadReadbackSha256": "f6f0e9bdf6906fefa16d68baf8f14312c7e67004fb63480c6a12ff1c528a93a2",
+  "productCommit": "1f93b356f08b7c4bf7b2876d9d541b97dc03b82f",
+  "productTree": "d4a5382b43aca57adb2db7570d61b9bb3d03b80e",
+  "readbackRows": 300,
+  "reviewLedgerRead": false,
+  "sourceTextIncluded": false,
+  "sourceWindow": "W1003-W1027",
+  "targetTextIncluded": false
+}

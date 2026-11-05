@@ -1,0 +1,39 @@
+{
+  "W1003W1027RecommendationsOrProposalsRead": false,
+  "artifact": "slskdN PR #409 W1028-W1052 independent blind review",
+  "baselineNumericExceptionCell": "src_39639ee9d9b7cce1::ar",
+  "baselineNumericExceptionCount": 1,
+  "callerBackedCells": 288,
+  "candidateFreeChecksumEntries": 27,
+  "candidateFreeChecksumListSha256": "0b2df168c6512fd218541567c0f882760a34ef93185aac1772c06d0ee9829f89",
+  "candidateFreeVerifier": "PASS",
+  "catalogsEdited": false,
+  "cells": 300,
+  "continuationRankRange": [
+    1028,
+    1052
+  ],
+  "currentWindowHashOnlyHolds": 12,
+  "decisions": {
+    "accept": 264,
+    "hold_hash_only": 12,
+    "revise": 24
+  },
+  "hashOnlyCells": 12,
+  "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "localeCount": 12,
+  "primaryPacketRead": false,
+  "priorActiveHoldsCarriedHashOnly": 421,
+  "priorHoldResolutionRowsCarriedHashOnly": 25,
+  "recommendationTokenFailures": 0,
+  "recommendations": 24,
+  "remainingQueueRankRange": [
+    928,
+    952
+  ],
+  "result": "PASS",
+  "resultingActiveHashOnlyHolds": 433,
+  "sourceCount": 25,
+  "testsBuildsScansCiRun": false,
+  "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1"
+}

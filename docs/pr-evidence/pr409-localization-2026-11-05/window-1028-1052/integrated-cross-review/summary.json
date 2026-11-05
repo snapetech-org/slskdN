@@ -1,0 +1,75 @@
+{
+  "packet": "slskdN PR #409 W1028-W1052 integrated cross-review",
+  "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1",
+  "window": "W86 / W1028-W1052",
+  "remaining_queue_ranks": [
+    928,
+    952
+  ],
+  "source_count": 25,
+  "locale_count": 12,
+  "cell_count": 300,
+  "caller_backed_cells": 288,
+  "caller_references": 39,
+  "caller_occurrences": 40,
+  "caller_files": 13,
+  "primary_decisions": {
+    "retain": 244,
+    "proposal": 44,
+    "hold": 12
+  },
+  "blind_decisions": {
+    "accept": 264,
+    "revise": 24,
+    "hold_hash_only": 12
+  },
+  "integrated_decisions": {
+    "retain_current": 244,
+    "accept_primary_proposal": 23,
+    "accept_agreed_proposal": 9,
+    "select_blind_variant": 10,
+    "hold_hash_only": 12,
+    "cross_refinement": 2
+  },
+  "integrated_proposal_cells": 44,
+  "primary_blind_comparison": {
+    "both_accept_current": 244,
+    "primary_proposal_vs_blind_accept": 20,
+    "both_revise_same_target": 9,
+    "both_revise_different_wording": 15,
+    "both_hold": 12
+  },
+  "primary_only_proposals_reviewed": 20,
+  "blind_revisions_outside_primary_proposals": 0,
+  "primary_blind_different_targets": 15,
+  "cross_refinements": 2,
+  "prior_active_holds_preserved_hash_only": 421,
+  "current_window_hash_only_holds": 12,
+  "resulting_active_hash_only_holds": 433,
+  "selected_target_token_audit": {
+    "placeholder_markup_protected_literal_mismatches": 0,
+    "unexplained_numeric_mismatches": 0,
+    "documented_numeric_semantic_exceptions": 1,
+    "exception": "src_39639ee9d9b7cce1::ar spells source quantity 1 as واحد"
+  },
+  "prior_product_readback_rows": 300,
+  "prior_product_readback_all_match_current_head": true,
+  "repository_worktree_inspected": false,
+  "catalogs_modified": false,
+  "tests_builds_ci_run": false,
+  "input_pins": {
+    "candidate_free": {
+      "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+      "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1"
+    },
+    "primary": {
+      "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+      "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1"
+    },
+    "blind": {
+      "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+      "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1"
+    }
+  }
+}

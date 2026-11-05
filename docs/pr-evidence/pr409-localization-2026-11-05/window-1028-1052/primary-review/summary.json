@@ -1,0 +1,57 @@
+{
+  "activeHoldsReattestedHashOnly": 421,
+  "artifact": "slskdN PR #409 W1028-W1052 independent primary review",
+  "callerBackedCells": 288,
+  "callerFiles": 20,
+  "callerOccurrences": 40,
+  "callerReferences": 39,
+  "callerlessHashOnlyCells": 12,
+  "cellCount": 300,
+  "confidenceNote": "High for direct meaning and clear errors; moderate where the best localized technical phrasing involves terminology judgment.",
+  "continuationRankRange": [
+    1028,
+    1052
+  ],
+  "decisions": {
+    "hold": 12,
+    "proposal": 44,
+    "retain": 244
+  },
+  "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "inputHashes": {
+    "callerContextsSha256": "52ff6d86a6634fc0d54211b57ae0be2302feaab232ab2b50920525572ce3329d",
+    "candidateFreeChecksumListSha256": "0b2df168c6512fd218541567c0f882760a34ef93185aac1772c06d0ee9829f89",
+    "candidateFreeManifestSha256": "65577309489a4a31e3e59e3df4e085bdec2738cb50d0a220ad3425ee5645aab3",
+    "catalogStructureSha256": "db82d4642766ad082355eb3f43abf0f05aa068bbc651d138e1a881d2f38c96a7",
+    "sourceCurrentCellsSha256": "5383169215764e0ce519771c9ab600d5267d401eab8d68543483f6c53f8104e4"
+  },
+  "localeCount": 12,
+  "method": "Independent semantic review of W1028-W1052 candidate-free caller contexts and current targets. Prior primary, blind, cross, and root review recommendations were not used for these ranks.",
+  "priorW1003ProductReadbackMatchesCurrent": true,
+  "priorW1003ProductReadbacksReattestedHashOnly": 300,
+  "proposalRanks": [
+    "1028",
+    "1029",
+    "1030",
+    "1031",
+    "1037",
+    "1039",
+    "1042",
+    "1045",
+    "1046",
+    "1047",
+    "1048",
+    "1050",
+    "1051",
+    "1052"
+  ],
+  "proposalTokenMismatches": 0,
+  "remainingQueueRankRange": [
+    928,
+    952
+  ],
+  "runtimeFilesScanned": 279,
+  "sourceCount": 25,
+  "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1",
+  "window": "W86"
+}

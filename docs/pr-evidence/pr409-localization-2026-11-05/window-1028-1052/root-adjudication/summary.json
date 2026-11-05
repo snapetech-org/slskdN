@@ -1,0 +1,22 @@
+{
+  "result": "PASS_ROOT_ADJUDICATION",
+  "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1",
+  "window": "W1028-W1052",
+  "cells": 300,
+  "dispositions": {
+    "accept-current": 244,
+    "correction": 42,
+    "hold-hash-only": 12,
+    "refinement": 2
+  },
+  "selectedChanges": 44,
+  "rootOverrides": 1,
+  "catalogs": 12,
+  "entriesPerCatalog": 6175,
+  "priorActiveHolds": 421,
+  "newHashOnlyHolds": 12,
+  "activeHoldsAfter": 433,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReview": false
+}

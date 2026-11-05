@@ -1,0 +1,1 @@
+The W1028-W1052 semantic decisions use only the sealed candidate-free input and exact pinned source/caller evidence. A separate inspection command earlier in this task inadvertently emitted two prior-window root-review records (ranks 1003-1004); those records are outside this window and were not used in these decisions. No contents from that prior review are reproduced here.
