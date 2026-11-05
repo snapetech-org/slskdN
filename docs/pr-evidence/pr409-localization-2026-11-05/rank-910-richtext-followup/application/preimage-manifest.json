@@ -1,0 +1,193 @@
+{
+  "artifact": "slskdN PR #409 rank-910 source/catalog preimage",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "c9e1568d9ae55fb32df2d9f686971d17b67bba7f",
+  "tree": "64918d81cfa55e37554fe8d60277d7a30206dd48",
+  "currentMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "sourceId": "src_c04ff600b79f3317",
+  "source": "In {mode} mode, each signature must follow the {signature} format and be verifiable against the canonical join/leave payload using the supplied public key.",
+  "sourceSha256": "c04ff600b79f3317398c9834ded6c626b42c382a13ff9fea086f0ebd72c53353",
+  "callerPath": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+  "callerSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+  "callerGitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+  "localizedRichTextRuntimePath": "src/web/src/components/Shared/LocalizedText.jsx",
+  "localizedRichTextRuntimeSha256": "dceb5b8d9f3dd803cef823a6756248f17d4f4b2600498be64e142c3c630a6c81",
+  "oldSplitKeys": [
+    {
+      "key": "In Enforce mode, signatures must use the",
+      "sourceCallers": [
+        "src/web/src/components/System/MediaCore/MediaCorePods.jsx"
+      ]
+    },
+    {
+      "key": "format over the canonical join/leave payload and the supplied public key.",
+      "sourceCallers": [
+        "src/web/src/components/System/MediaCore/MediaCorePods.jsx"
+      ]
+    }
+  ],
+  "decision": "Both split keys have a single call site in the target paragraph; replace the first key with the complete sentence and remove both obsolete keys.",
+  "currentBodyBytes": 110822,
+  "currentBodySha256": "4d8e8397619c941ef1060ccd3e49c3f7b07e113c7c35014020835f57956f9869",
+  "acceptedTranslationsPath": "docs/pr-evidence/pr409-localization-2026-11-05/window-903-927/rank-910-richtext-review/root-manual-review/accepted-translations.jsonl",
+  "acceptedTranslationsSha256": "572191b27aba1b2d100d930451eb6817ee33176a6c57c16614dc542a6f86176e",
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "sha256": "e795a91a000aec36507872bc225b2473dc3b30f0df42a7234d8fb12f28034742",
+      "gitBlob": "5446271cb03511a710878149c3bb74738a7c2204",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "sha256": "2d5445218a7f62a33a2b24336af0c3bd76f27f514e9e1b45b86a8a1bed4dba9b",
+      "gitBlob": "448a4531dcc8ddef4c41d8f94f795cb2ae54fad9",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "sha256": "4f17b1a2af1cf3e5b5b0f0377ed11b36fd68c7d53a693640efd0bdb9c0373fa6",
+      "gitBlob": "399b2fd1570129753e8a117df9b9afc76c0e5ca6",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "sha256": "e500dbb54a76eeac54b03b1245326dce3593740429fb6ce7e128dd3d34bf6760",
+      "gitBlob": "16f5da72d67a26e57521ccf040518ebeb0bf3e94",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "sha256": "78dd6720475a8c45f0670dcb39b5336778e2f27830731f7925c082c4bfb69ddd",
+      "gitBlob": "c16597c7692c789533c2f38efb096f902638cd62",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "sha256": "47f8d24e155d986a9bce6dff79ad64e91bf2dabe5f27c6e1230a67933844d5d1",
+      "gitBlob": "1d9092215a804385508521637b111c3d43cdfeeb",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "sha256": "d5fa5e1ffb26ed4a7faf93612f873e6accd0edfa2e8910fcd73b4640686f095a",
+      "gitBlob": "4033e712dc8707072383edf4296bb9439170bbac",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "sha256": "c61a543658696413ec7a8a72f1cb3cf0bdcc7ad73c449e1a8bc7c7debe492f88",
+      "gitBlob": "95bad0450e13ed3a1764e152efc0d5a1e698e1b6",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "sha256": "f51f3a7837bbcd06ee5d99775cdcc041c87052aa5a29a46f0ae8fe89d6690d7d",
+      "gitBlob": "9f5c8a6ebb4f7cfab32db2653d44d2686b95f0fd",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "sha256": "0d565ee1adbdd9f02439737cab6949f691e1074e2b6e03a4ecbb68819beee7e4",
+      "gitBlob": "3e2e0bddda03b10376246345276a7bf31e569ee9",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "sha256": "65cb2c367eee78cf3da65e340a0b20b4b92fa36c27ac80ce727eccddb4c6f87b",
+      "gitBlob": "ddd338945b0bd70d9f6c3b325f8a0070c27c86b4",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "sha256": "07f30de727c896603e53a3c206ff936b52ae36e8c37d7f37b437dc8d1b01f088",
+      "gitBlob": "07df86df50f70d821e1f14f735d65e35be12215b",
+      "keyCount": 6176,
+      "orderedKeysSha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+      "splitKeyPositions": [
+        1885,
+        4038
+      ],
+      "newSourceAbsent": true
+    }
+  ]
+}

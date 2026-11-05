@@ -1,0 +1,87 @@
+{
+  "artifact": "slskdN PR #409 rank-910 rich-text source/catalog product commit",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "commit": "1e33696072e322d98827c022c4432a57a76be2db",
+  "tree": "0c47bca06d66935576d3b8b784c809242fb4584e",
+  "parent": "c9e1568d9ae55fb32df2d9f686971d17b67bba7f",
+  "paths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json",
+    "src/web/src/components/System/MediaCore/MediaCorePods.jsx"
+  ],
+  "catalogCount": 12,
+  "catalogKeyCount": 6175,
+  "appliedTranslations": 12,
+  "removedUnusedSplitKeysPerLocale": 2,
+  "selectedTargetsMatchRootHashes": true,
+  "orderedKeysPreservedExceptPlannedReplacementAndRemoval": true,
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "pins": [
+    {
+      "name": "caller",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "productHeadSha256": "849f152db2ed0ebbfa628d5f4ea4c2fc521b74a82ccff7b895832b2b72edf1a6",
+      "productHeadGitBlob": "c94043d478085e3e2df432c19d4dbd087d94cf29",
+      "sameAsPre-W910Pin": false,
+      "mainSha256": "c819cb67c1ec403a6e65f9578a32a085d18b418f6de72b96325b6f5d7ed0c8ff",
+      "sameAsMain": false
+    },
+    {
+      "name": "richTextRuntime",
+      "path": "src/web/src/components/Shared/LocalizedText.jsx",
+      "productHeadSha256": "dceb5b8d9f3dd803cef823a6756248f17d4f4b2600498be64e142c3c630a6c81",
+      "productHeadGitBlob": "bd886e3838b3ebf69a4ccf52d4cf5e0663e52abe",
+      "sameAsPre-W910Pin": true,
+      "mainSha256": "5dd498b96b172c7b163067fe0e1b8e3c1b4d9b110eb9ab42f3da80113e1a5a73",
+      "sameAsMain": false
+    },
+    {
+      "name": "signatureModeEnum",
+      "path": "src/slskd/PodCore/PodMessageSignerOptions.cs",
+      "productHeadSha256": "c0cff69ea19915e7d00404f99c4a8355b6995b08dc175b4315e085579f4333f0",
+      "productHeadGitBlob": "7e399386fc1a6471e504e1286816a18f3b40d5fb",
+      "sameAsPre-W910Pin": true,
+      "mainSha256": "c0cff69ea19915e7d00404f99c4a8355b6995b08dc175b4315e085579f4333f0",
+      "sameAsMain": true
+    },
+    {
+      "name": "joinOptions",
+      "path": "src/slskd/PodCore/PodJoinOptions.cs",
+      "productHeadSha256": "49b0fcaa71b0aa446a5e6df84359c2cb2619a1458db0a2338f31e0187b531b79",
+      "productHeadGitBlob": "66af753d60d2b8a4259887496bcacbab3b95b3f0",
+      "sameAsPre-W910Pin": true,
+      "mainSha256": "49b0fcaa71b0aa446a5e6df84359c2cb2619a1458db0a2338f31e0187b531b79",
+      "sameAsMain": true
+    },
+    {
+      "name": "signatureVerification",
+      "path": "src/slskd/PodCore/PodJoinLeaveService.cs",
+      "productHeadSha256": "c917846757571639e2cacef090746f595b6200ab0cc02691b088b45cfee84194",
+      "productHeadGitBlob": "e7b3065e627aeb7987200359418428936e48454f",
+      "sameAsPre-W910Pin": true,
+      "mainSha256": "c917846757571639e2cacef090746f595b6200ab0cc02691b088b45cfee84194",
+      "sameAsMain": true
+    }
+  ],
+  "sourceCommit": {
+    "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+    "gitBlob": "c94043d478085e3e2df432c19d4dbd087d94cf29",
+    "fileSha256": "849f152db2ed0ebbfa628d5f4ea4c2fc521b74a82ccff7b895832b2b72edf1a6",
+    "sourceId": "src_c04ff600b79f3317",
+    "sourceText": "In {mode} mode, each signature must follow the {signature} format and be verifiable against the canonical join/leave payload using the supplied public key.",
+    "sourceTextSha256": "c04ff600b79f3317398c9834ded6c626b42c382a13ff9fea086f0ebd72c53353",
+    "richTextCallCount": 1,
+    "oldSplitCallersRemaining": 0
+  }
+}

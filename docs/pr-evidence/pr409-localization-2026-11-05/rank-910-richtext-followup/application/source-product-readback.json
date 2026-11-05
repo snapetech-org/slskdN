@@ -1,0 +1,10 @@
+{
+  "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+  "gitBlob": "c94043d478085e3e2df432c19d4dbd087d94cf29",
+  "fileSha256": "849f152db2ed0ebbfa628d5f4ea4c2fc521b74a82ccff7b895832b2b72edf1a6",
+  "sourceId": "src_c04ff600b79f3317",
+  "sourceText": "In {mode} mode, each signature must follow the {signature} format and be verifiable against the canonical join/leave payload using the supplied public key.",
+  "sourceTextSha256": "c04ff600b79f3317398c9834ded6c626b42c382a13ff9fea086f0ebd72c53353",
+  "richTextCallCount": 1,
+  "oldSplitCallersRemaining": 0
+}
