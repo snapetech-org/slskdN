@@ -1,0 +1,50 @@
+{
+  "artifact": "slskdN PR #409 W80 localization application readback",
+  "schemaVersion": 1,
+  "window": "W80",
+  "continuationRanks": [
+    878,
+    902
+  ],
+  "remainingQueueRanks": [
+    778,
+    802
+  ],
+  "baseHead": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+  "baseTree": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+  "proposalCount": 81,
+  "keepCount": 219,
+  "newHoldCount": 0,
+  "priorW79HoldsRetained": 39,
+  "priorHoldLineageCount": 382,
+  "readbackCellCount": 300,
+  "catalogCount": 12,
+  "catalogKeyCountPerLocale": 6176,
+  "catalogKeyOrderUnchanged": true,
+  "onlySelectedKeysChanged": true,
+  "changedCellsByLocale": {
+    "ar": 9,
+    "de": 6,
+    "es": 7,
+    "fr": 5,
+    "hi": 4,
+    "id": 5,
+    "ja": 6,
+    "ko": 9,
+    "pt-BR": 5,
+    "vi": 7,
+    "zh-Hans": 9,
+    "zh-Hant": 9
+  },
+  "baselineProtectedLiteralMismatch": {
+    "rank": 885,
+    "locale": "ar",
+    "literal": "ID",
+    "resolvedBySelectedTarget": true
+  },
+  "productPathsOutsideLocaleCatalogs": false,
+  "workflowPathsChanged": 0,
+  "nativeSpeakerApproval": false,
+  "browserReview": false,
+  "testsBuildsScansCiRun": false
+}

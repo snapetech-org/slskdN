@@ -1,0 +1,26 @@
+{
+  "artifact": "W80 application verification",
+  "result": "PASS",
+  "verifiedAtUtc": "2026-11-05 00:14:14 UTC",
+  "verifierSha256": "92427ccdc5ab8d4dc9256568ca2b1aa332cf89bebf563c9cb5a34a0a5b478b8b",
+  "verification": {
+    "result": "PASS",
+    "window": "W80",
+    "baseHead": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+    "productCommit": "81a2428c5ffc81100f07762f232d27150d1434ec",
+    "planSha256": "b6a55ca7c871b87977879dc7dbea043d9fb7751ba37619e4f2fef09cb27bb0fa",
+    "selectedTargets": 81,
+    "keeps": 219,
+    "newHolds": 0,
+    "priorW79Holds": 39,
+    "readbackCells": 300,
+    "catalogs": 12,
+    "entriesPerCatalog": 6176,
+    "mainDriftOverlapPaths": 0,
+    "nestedChecksumEntries": 203,
+    "manifestEntries": 119,
+    "nativeSpeakerApproval": false,
+    "browserReview": false,
+    "testsBuildsScansCiRun": false
+  }
+}

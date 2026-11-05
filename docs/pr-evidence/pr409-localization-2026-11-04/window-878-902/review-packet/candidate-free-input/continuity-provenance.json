@@ -1,0 +1,29 @@
+{
+  "previousWindow": "W79",
+  "previousHead": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "previousTree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "previousCandidateFreeManifestSha256": "d1b346ed7a666de91033c4fa83e225e5f4768a60ecda378e86aa464fdcabaf01",
+  "previousCandidateFreeChecksumListSha256": "0427c3aaf306abac1638780c329288f7236e8ab21ee8e2591f7ad16e461af476",
+  "priorSelectedIdExclusionRows": 1957,
+  "w79SelectedIdsAdded": 25,
+  "priorHeldCells": 382,
+  "w79HoldsAdded": 39,
+  "priorResolvedHoldHistoryRows": 13,
+  "priorSelectedIdsSha256": "4c10383a5c38aec1d1c42a19302b262a5be50af722d3a3680ae242838f1673ff",
+  "activeHoldLedgerSha256": "82fca61ef603a47e6d8e1e32308802628e201df35dbfae446e1a4b0ca77e9b24",
+  "priorHoldReattestationSha256": "9b79dcbb10a361da6e377d8f78a754de7820d560b8f48e9643db5a6e8618f0ab",
+  "priorResolutionReattestationSha256": "bb3bdac2aafab9913447b8175bbb786796130bf69e116218220f643cc25db3cf",
+  "w79ApplicationPlanSha256": "caf8f2156bc1e19064157777a69379769c42270aa650b6e0f84aa495985be59d",
+  "w79ApplicationHoldsSha256": "2228878f72d11b2c4b8861bd9c1ac283422b8ae5e83fc19acb79ba46a62ea5f5",
+  "w79ProductCommitSha256": "d0e042c299e21aca205b367b3515172d6ff5f651c717659b0379418a4459519c",
+  "w79AppliedTargetHashLedgerSha256": "806e97f585a2ae45e992af10d23dbdc4dc797ef1f483e37f8fe0d8a91f127971",
+  "priorAppliedTargetsReattested": 109,
+  "previousAppliedTargetsByWindow": {
+    "W78": 63,
+    "W79": 46
+  },
+  "previousPrimaryReviewTargetsUsed": false,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false,
+  "prBodyQueried": false
+}

@@ -1,0 +1,31 @@
+{
+  "baseApiSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "compareStatus": "ahead",
+  "aheadBy": 4,
+  "behindBy": 0,
+  "totalCommits": 4,
+  "commits": [
+    "9b74eb5cbc73c41bfabc7daf841037b4cbe249f9",
+    "2721c0548cf2c46c523db664b604da83a9d6e90d",
+    "e6203f3cb16457bdb3a35678163adce01371be40",
+    "bc6251ff4ea5a7e59f2d86e2400c90520601f46e"
+  ],
+  "changedPaths": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/feature-coherence-validation.yml",
+    ".github/workflows/local-identity-leaks.yml",
+    ".github/workflows/semgrep-community.yml",
+    ".github/workflows/trivy-filesystem.yml",
+    "AGENTS.md",
+    "docs/CHANGELOG.md",
+    "scripts/check-codeql-dotnet-version.sh",
+    "scripts/check-dotnet-runtime-matrix.sh",
+    "scripts/check-remediation-baseline.sh",
+    "scripts/check-workflow-trigger-policy.sh"
+  ],
+  "localizationOrCatalogChanges": false,
+  "comparisonCheckedAtUtc": "2026-11-04T23:04:12.539511+00:00",
+  "liveMainBeforeSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainAfterSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e"
+}
