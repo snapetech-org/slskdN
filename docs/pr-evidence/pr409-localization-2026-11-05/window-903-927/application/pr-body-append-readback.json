@@ -1,0 +1,16 @@
+{
+  "pr": 409,
+  "updatedAt": "2026-11-05T02:44:47Z",
+  "headSha": "9ffa7617aa7b4609611584d80848bcb40eaf559a",
+  "headBranch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "state": "open",
+  "draft": true,
+  "prefixUtf8Bytes": 109460,
+  "prefixSha256": "c90e3ef7516b4216b23a781887b1283677caaec68248246240d0a14dc449945d",
+  "appendUtf8Bytes": 1362,
+  "appendSha256": "768bb107823cfab08c4d20c5fcffc544b1b922bdfb84d327471765c729792b52",
+  "readbackUtf8Bytes": 110822,
+  "readbackSha256": "4d8e8397619c941ef1060ccd3e49c3f7b07e113c7c35014020835f57956f9869",
+  "prefixPreservedByteExact": true,
+  "preparedBodyMatchesReadback": true
+}
