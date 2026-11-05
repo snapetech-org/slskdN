@@ -1,6 +1,6 @@
 import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import { interfaceDialogText, interfaceToastText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
-import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText, LocalizedRichText } from "../../Shared/LocalizedText";
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
@@ -2860,7 +2860,18 @@ const MediaCorePods = ({ isPodWorkflowVisible, supportedAlgorithms }) => {
                 <p>
                   <LocalizedText source={"Loading pending join and leave requests only reads local pod state. The signed request and approval actions below publish membership events."} /></p>
                 <p>
-                  <LocalizedText source={"In Enforce mode, signatures must use the"} /><code>ed25519:&lt;base64 signature&gt;</code> <LocalizedText source={"format over the canonical join/leave payload and the supplied public key."} /></p>
+                  <LocalizedRichText
+                    source={"In {mode} mode, each signature must follow the {signature} format and be verifiable against the canonical join/leave payload using the supplied public key."}
+                    values={{
+                      mode: <bdi dir="ltr" lang="en">Enforce</bdi>,
+                      signature: (
+                        <bdi dir="ltr" lang="en">
+                          <code>ed25519:&lt;base64 signature&gt;</code>
+                        </bdi>
+                      ),
+                    }}
+                  />
+                </p>
               </Message>
               <Form>
                 <Form.Input
