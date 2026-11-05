@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "candidateFreeManifestSha256": "81270ec9cda1c0965c620c52eb08568fcd77346d6e303bb8c92d6eb609097147",
+  "primaryManifestSha256": "468ae90cf44e23c304746105e4d8e6e65c713f87a8b11ef7cbbcf3428df6ffb7",
+  "blindAttestationSha256": "bdd138cccd53aae5e67366525b7e313666d81186086ba916799c0b95e2e22ace",
+  "inputs": {
+    "candidate-free": {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w978-1002-20261105/candidate-free/input",
+      "files": {
+        "README.md": "4bd11df7a814a09cc2d97f995350aa48b02884b5f8b551c17977bcd42e9a093c",
+        "SHA256SUMS.txt": "7bb255b4a34aff438a4f1b101fbff3ab959be69fe1a3f0c8d48ca6a711f94500",
+        "baseline-token-mismatch-summary.json": "69c218bb84e38e547daecf73f5b30cc49200703464b707a8c4e34b7ae2ec1041",
+        "build_candidate_free.py": "be40d2c59d5f08583a0f20caaaece53c142d82f288a76bc81bfb9646f5e6f775",
+        "caller-contexts.jsonl": "55367caa454086551aacd4e0b950f6c692dadd5e7d3538d76e669b86220408e2",
+        "catalog-key-order-attestation.json": "d7e1812f38e196d8b393a0f228abfc397a6e3be58e2133bdc81a3ec3ce19a829",
+        "catalog-structure.jsonl": "05daf0328c3aae768e6549e34453f5e9830e0078b6bf2546e5ae8eac50500674",
+        "continuity-provenance.json": "19ba6eed250b078ff7cfad7f83fd5bfb48d860a983e9ac464c199cfe7599facb",
+        "live-after.json": "3a304c3194d772dfb5cece61db3d76a9f507aef065c1fb863e1c62ab8bfcbf82",
+        "live-before.json": "030ed175906ea087eae3d59edd8bc8ebc854f9706e4dc238d9170d64caa7f345",
+        "manifest.json": "81270ec9cda1c0965c620c52eb08568fcd77346d6e303bb8c92d6eb609097147",
+        "prior-applied-targets-reattestation-hash-only.jsonl": "925c93142d2f3edb3138e444845bf991773f44b0b476ffc8d20334df3747af43",
+        "prior-held-cell-reattestation-hash-only.jsonl": "289d066a06f1ed788b095668bbe5964a90ae07a2888faa10104d706f2140c1d6",
+        "prior-hold-resolution-history-hash-only.jsonl": "b567fb0d259a030d3df345d2b52ee09bb6c7d3193411ce1ec99d6dd45b40825a",
+        "prior-selected-id-exclusions-hash-only.jsonl": "33ecec652c43b937ba72113985693220fd5da8bfcf1cccebfe8e9e94e38a193e",
+        "runtime-file-pins.jsonl": "8d3017922f219203337a32859d01f4bb36e322600ed456ab4740aa38c6f87ed7",
+        "selected-sources.jsonl": "976f8269e9dd6ff33ff65814e46fdf679f55f683392d564ae9bc776e5076e537",
+        "selection-and-boundary.json": "2167bc5c9d1ef2c6518faa0f0adbc804400f44eba4e6d4b57a263241af4be955",
+        "source-current-cells.jsonl": "359a9389a3f58d394f1c4c08344f892949fbb38f825d459c07a2751707482735",
+        "source-inventory-pinned.jsonl": "b98d3b478ea194533e34e55b249d9d68e12591980fcc95964e3a068a9051937c",
+        "source-inventory-selection.jsonl": "21607bf13cb2ebd9bfebde17a20f44522575815a0bd086008c06334c1f951339",
+        "summary.json": "cbb6f64415aeb324da08a7d5ff6ed03f46cc6453b2ef7662259aa4fc3930e3ba",
+        "verify_candidate_free.py": "f3f1a7e57880bd65b5d176984f6fc3fc77a43a1f005dce7158ce61671b4282c8",
+        "window-application-readback-hash-only.jsonl": "0a9fed02f8aaf3d3d4e8cfb7b93c2ef889ed551a44a9e3a68f7dddbe1ab9a0f8",
+        "window-applied-targets-reattestation-hash-only.jsonl": "b8c2c88183bea7bf5d3dc11c1e1e2bf6520e44eb9b2ffa44d2cef650568c5c8a",
+        "window-holds-hash-only.jsonl": "97dadb0829d9c7ed29e4d34a7c5f9d91f79c7e7b402def63e45187a75504091a"
+      }
+    },
+    "primary-review": {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w978-1002-20261105/primary-review",
+      "files": {
+        "README.md": "c4fe67a7fc02f32d3e19c563049353538f12ac16b7c2277bc74ebafdf8179a3c",
+        "SHA256SUMS.txt": "b4d25bafc4d41f88990d8c40939ebe7d3bbe984ddd8b8aa429bd510c7bf7a06e",
+        "build_primary.py": "dcd68758b4a8ede348c0e32bca33a4ac6fd090a6d625afdd348517c5e7cd0222",
+        "corrections.jsonl": "87ff8f5ea3e45de85d5f298b5a46bee98a42726e0392377bd1014073039a5998",
+        "manifest.json": "468ae90cf44e23c304746105e4d8e6e65c713f87a8b11ef7cbbcf3428df6ffb7",
+        "primary-review.jsonl": "4068800829c0c2aadf5e394de1adb121ca7e59b12b00ee56a7ce4300bfd863a8",
+        "summary.json": "1c7c9a1d79762a9df8c5b5d9d14bf97967fc50904f992a8df0280ced234c0cf7",
+        "verify_primary.py": "9571133c08d178491597ddc6dfe98078f5ee88fb01e9fc7ab371aebaeaed6f40"
+      }
+    },
+    "blind-review": {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w978-1002-20261105-blind-review-independent",
+      "files": {
+        "README.md": "85ca5754702e2aafee4c95859eed178fabdac4b73c7fcff13f0f9400b5e2875e",
+        "SHA256SUMS.txt": "1e4de0d0bb40a7237ce6e52f799f9ea341ebda05246cec428fc6576084bf5af9",
+        "review-attestation.json": "bdd138cccd53aae5e67366525b7e313666d81186086ba916799c0b95e2e22ace",
+        "review-decisions.jsonl": "00494d59b22f7f0015c405551f1b0e654c5875c7617d50f3980d2ed6847366c0",
+        "review-summary.json": "2d67d994d62570e1c49041740efa46511ec947b67f55267a3602afa97532359b",
+        "source-caller-bindings.jsonl": "55367caa454086551aacd4e0b950f6c692dadd5e7d3538d76e669b86220408e2",
+        "verifier.py": "04d98ba4b3b765787bc9d485cc58d10519e97b14847d6efee4b0459cfb184eb8"
+      }
+    }
+  }
+}

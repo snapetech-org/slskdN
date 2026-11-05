@@ -1,0 +1,21 @@
+{
+  "artifact": "slskdN PR #409 W978-W1002 root-adjudicated application",
+  "inputHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "inputTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "productHead": "e18feff151531142bd4d76b394711aaca57861c6",
+  "productTree": "d50f37309c673d916b757831edcc105b60473ace",
+  "review": {
+    "candidateFree": {"result": "PASS", "cells": 300, "sources": 25, "sourcesWithCallers": 25, "callerReferences": 37},
+    "primary": {"result": "PASS", "corrections": 89, "acceptCurrent": 211, "tokenMismatches": 0},
+    "blind": {"result": "PASS", "proposals": 60, "retains": 240, "cells": 300},
+    "cross": {"result": "PASS", "corrections": 89, "acceptCurrent": 211, "rootAdjudicationFlags": 64},
+    "rootOpinion": {"result": "PASS", "rows": 64, "selected": {"primary": 50, "blind": 9, "agreement": 1, "refinement": 4}, "rootFinalAdjudication": true},
+    "application": {"result": "PASS", "exactHashEdits": 89, "protectedLiteralRepairs": 5},
+    "readback": {"result": "PASS", "reviewedCells": 300, "unchangedCells": 211, "catalogs": 12, "entriesPerLocale": 6175, "outsideSelectedCells": "byte-identical to pinned parent serialization"}
+  },
+  "nativeSpeakerApproval": false,
+  "exactHeadBrowserAcceptance": false,
+  "testsBuildsScansCiDeploymentsRun": false,
+  "workflowChanges": 0,
+  "mergeReleaseOrTag": false
+}

@@ -1,0 +1,67 @@
+{
+  "result": "PASS",
+  "verifier": "exact-worktree",
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "sources": 25,
+  "cells": 300,
+  "locales": 12,
+  "catalogKeysPerLocale": 6175,
+  "runtimeFiles": 279,
+  "callerReferences": 37,
+  "priorActiveHolds": 409,
+  "priorAppliedTargets": 588,
+  "priorW953ReadbackCells": 300,
+  "sourceExclusions": 2085,
+  "checksummedFiles": 25
+}
+{
+  "result": "PASS",
+  "verifier": "exact-worktree",
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "sources": 25,
+  "cells": 300,
+  "locales": 12,
+  "catalogKeysPerLocale": 6175,
+  "runtimeFiles": 279,
+  "callerReferences": 37,
+  "priorActiveHolds": 409,
+  "priorAppliedTargets": 588,
+  "priorW953ReadbackCells": 300,
+  "sourceExclusions": 2085,
+  "checksummedFiles": 25
+}
+{
+  "result": "PASS",
+  "verifier": "exact-worktree-primary",
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "sources": 25,
+  "cells": 300,
+  "corrections": 89,
+  "acceptCurrent": 211,
+  "candidateTokenMismatches": {},
+  "checksummedFiles": 7,
+  "candidateFreeInputManifestSha256": "4bd11df7a814a09cc2d97f995350aa48b02884b5f8b551c17977bcd42e9a093c"
+}
+PASS: 300 cells; 240 retain, 60 propose; 25 sources × 12 locales; caller bindings and final token checks verified.
+{
+  "result": "PASS",
+  "verifier": "independent-cross-review",
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "cells": 300,
+  "proposalComparison": {
+    "both-keep": 211,
+    "primary-only": 29,
+    "exact-agreement": 28,
+    "conflicting-targets": 32
+  },
+  "independentCounts": {
+    "accept-current": 211,
+    "correction": 89
+  },
+  "rootAdjudicationFlags": 64,
+  "baselineProtectedLiteralMismatches": 5
+}

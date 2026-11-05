@@ -1,0 +1,48 @@
+{
+  "acceptCurrentCount": 211,
+  "artifact": "slskdN PR #409 W978-W1002 primary semantic review",
+  "baselineProtectedLiteralMismatches": {
+    "protectedLiteral": 5
+  },
+  "blindReviewUsed": false,
+  "candidateFreeInputChecksumsSha256": "7bb255b4a34aff438a4f1b101fbff3ab959be69fe1a3f0c8d48ca6a711f94500",
+  "candidateFreeInputManifestSha256": "81270ec9cda1c0965c620c52eb08568fcd77346d6e303bb8c92d6eb609097147",
+  "candidateTokenMismatches": {},
+  "catalogsEdited": false,
+  "cells": 300,
+  "continuationRankRange": [
+    978,
+    1002
+  ],
+  "correctionCount": 89,
+  "correctionsByLocale": {
+    "ar": 11,
+    "de": 5,
+    "es": 5,
+    "fr": 7,
+    "hi": 11,
+    "id": 8,
+    "ja": 6,
+    "ko": 5,
+    "pt-BR": 7,
+    "vi": 10,
+    "zh-Hans": 7,
+    "zh-Hant": 7
+  },
+  "crossReviewUsed": false,
+  "dispositions": {
+    "accept-current": 211,
+    "correction": 89
+  },
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "locales": 12,
+  "remainingQueueRankRange": [
+    878,
+    902
+  ],
+  "result": "PASS",
+  "rootAdjudicationPerformed": false,
+  "sourceIds": 25,
+  "testsBuildsScansCiRun": false,
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e"
+}

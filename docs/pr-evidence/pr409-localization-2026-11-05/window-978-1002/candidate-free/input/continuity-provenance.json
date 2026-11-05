@@ -1,0 +1,14 @@
+{
+  "newlySelectedIdsExcluded": 25,
+  "priorActiveHolds": 409,
+  "priorAppliedTargets": 588,
+  "priorLiveHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "priorLiveTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "priorPacketChecksumsSha256": "2c12dd02bbf70dbb7896371c30abfa0982aa40fef3c6123b3b11b180918e6ba8",
+  "priorPacketManifestSha256": "d070a66147ce698760e85318cc0caf0385bdb7eac427ba866a9088be800f85c6",
+  "priorPacketPath": "docs/pr-evidence/pr409-localization-2026-11-05/w853-877-reattestation/candidate-free/input",
+  "priorSourceExclusions": 2060,
+  "priorW953ApplicationReadbackRows": 300,
+  "sourceTextIncluded": false,
+  "targetTextIncluded": false
+}

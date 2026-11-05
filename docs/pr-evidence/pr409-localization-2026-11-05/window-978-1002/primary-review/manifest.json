@@ -1,0 +1,63 @@
+{
+  "acceptCurrentCount": 211,
+  "blindReviewUsed": false,
+  "candidateFreeInputChecksumsSha256": "7bb255b4a34aff438a4f1b101fbff3ab959be69fe1a3f0c8d48ca6a711f94500",
+  "candidateFreeInputManifestSha256": "81270ec9cda1c0965c620c52eb08568fcd77346d6e303bb8c92d6eb609097147",
+  "cellCount": 300,
+  "continuationRankRange": [
+    978,
+    1002
+  ],
+  "correctionCount": 89,
+  "crossReviewUsed": false,
+  "dispositions": {
+    "accept-current": 211,
+    "correction": 89
+  },
+  "files": [
+    {
+      "bytes": 635,
+      "path": "README.md",
+      "sha256": "c4fe67a7fc02f32d3e19c563049353538f12ac16b7c2277bc74ebafdf8179a3c"
+    },
+    {
+      "bytes": 20917,
+      "path": "build_primary.py",
+      "sha256": "dcd68758b4a8ede348c0e32bca33a4ac6fd090a6d625afdd348517c5e7cd0222"
+    },
+    {
+      "bytes": 62460,
+      "path": "corrections.jsonl",
+      "sha256": "87ff8f5ea3e45de85d5f298b5a46bee98a42726e0392377bd1014073039a5998"
+    },
+    {
+      "bytes": 904572,
+      "path": "primary-review.jsonl",
+      "sha256": "4068800829c0c2aadf5e394de1adb121ca7e59b12b00ee56a7ce4300bfd863a8"
+    },
+    {
+      "bytes": 1160,
+      "path": "summary.json",
+      "sha256": "1c7c9a1d79762a9df8c5b5d9d14bf97967fc50904f992a8df0280ced234c0cf7"
+    },
+    {
+      "bytes": 7259,
+      "path": "verify_primary.py",
+      "sha256": "9571133c08d178491597ddc6dfe98078f5ee88fb01e9fc7ab371aebaeaed6f40"
+    }
+  ],
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "localeCount": 12,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    878,
+    902
+  ],
+  "repository": "snapetech-org/slskdN",
+  "reviewPass": "primary",
+  "rootAdjudicationPerformed": false,
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "window": "W84"
+}

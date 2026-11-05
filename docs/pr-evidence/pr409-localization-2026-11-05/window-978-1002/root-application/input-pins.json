@@ -1,0 +1,41 @@
+{
+  "window": "W978-W1002",
+  "continuationRankRange": [
+    978,
+    1002
+  ],
+  "remainingQueueRankRange": [
+    878,
+    902
+  ],
+  "inputHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "inputTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "catalogCount": 12,
+  "sourceCount": 25,
+  "reviewedCellCount": 300,
+  "rootAdjudicatedCellCount": 64,
+  "exactHashEditCount": 89,
+  "protectedLiteralRepairs": 5,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "reviewEvidence": {
+    "candidateFree": "candidate-free/input",
+    "primary": "primary-review",
+    "blind": "blind-review",
+    "crossReview": "cross-review",
+    "rootAdvisory": "root-adjudication/root-adjudication-opinion.jsonl"
+  },
+  "exactHeadBinding": "all inputs at the same original product head/tree; product commit follows catalog application"
+}
