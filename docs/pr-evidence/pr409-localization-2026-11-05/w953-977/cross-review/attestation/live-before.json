@@ -1,0 +1,33 @@
+{
+  "apiBaseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "apiBaseTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f",
+  "capturedAtUtc": "2026-11-05T09:01:12.236287Z",
+  "exactWorktree": "/mnt/disks/scratch/task-worktrees/localization-20261105/slskdn-pr409-w928-952-pinned",
+  "exactWorktreeClean": true,
+  "exactWorktreeHead": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "exactWorktreeStatusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "exactWorktreeTree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "headSha": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "headTree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "label": "before",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "prApi": {
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+    "isDraft": true,
+    "number": 409,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "pullRequest": 409,
+  "remoteRefs": {
+    "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+    "refs/heads/main": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "refs/pull/409/head": "fc8e42a06363ceee762ae084bbe716953d4a5d94"
+  },
+  "repository": "snapetech-org/slskdN",
+  "schemaVersion": 1
+}

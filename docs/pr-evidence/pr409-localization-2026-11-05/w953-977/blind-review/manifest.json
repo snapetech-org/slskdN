@@ -1,0 +1,69 @@
+{
+  "artifact": "slskdN PR #409 W953-W977 blind review packet",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFreeChecksumListSha256": "a1731c5e6616f1c223875f25c976131b013361d299b5cb133174b2015f79f3ce",
+  "cellCount": 300,
+  "decisionCounts": {
+    "accept-current": 222,
+    "correction": 56,
+    "hold": 12,
+    "refinement": 10
+  },
+  "files": [
+    {
+      "bytes": 1314,
+      "path": "README.md",
+      "sha256": "060a537cd4cb109b7877ea96717d7a2f111aabd10785f24ddff8acff1d955271"
+    },
+    {
+      "bytes": 380200,
+      "path": "blind-ledger.jsonl",
+      "sha256": "c67d163cb773109ef5ed327387a3e7b0d57482a77140683dda0ec335a7926e1c"
+    },
+    {
+      "bytes": 35804,
+      "path": "build_blind_review.py",
+      "sha256": "43a6fdc661a7de8bce64a7588362a81309aa2ae9f2d54f0d25c50e52e15a1b70"
+    },
+    {
+      "bytes": 11053,
+      "path": "holds-hash-only.jsonl",
+      "sha256": "f7aa1071ea94fd242ba731bc7bf20c8de3368a970fe8547670cd605336dcd3ff"
+    },
+    {
+      "bytes": 1999,
+      "path": "input-inventory-note.json",
+      "sha256": "31d9418dc1a2fca6d49bb078479cc69fe3d7ebaa64401b3b5b14a1b0a493b80c"
+    },
+    {
+      "bytes": 783,
+      "path": "pin-attestation.json",
+      "sha256": "0700fd21112a7d0f80cd41b41f22d737be028d57a5de8deac7fb0de6026930d2"
+    },
+    {
+      "bytes": 63430,
+      "path": "proposals.jsonl",
+      "sha256": "7aafa65d4f2aaabd3d11be0e8cba8bc9c4621d0fbeba6cecda5802f5ab4b4a16"
+    },
+    {
+      "bytes": 1449,
+      "path": "summary.json",
+      "sha256": "c826fb28a0c910214d92c7180dc05947114aa5999e1a3a93951fc651a7573058"
+    },
+    {
+      "bytes": 11101,
+      "path": "verify_blind_review.py",
+      "sha256": "643040676f5899c4be8d10b9d77ae8d251cad293eba4c46059bb677bac525ace"
+    }
+  ],
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "holdCellCount": 12,
+  "localeCount": 12,
+  "primaryReviewAccessed": false,
+  "proposalCount": 66,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "sourceCount": 25,
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "window": "W953-W977"
+}

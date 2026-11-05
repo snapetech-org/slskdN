@@ -1,0 +1,52 @@
+{
+  "result": "PASS",
+  "inputHead": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "inputTree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "productHead": "892ff7ff72b211bf56c7d84cbd209184071cc638",
+  "productTree": "0e504c909a779c66e960b2595d699934b13996ae",
+  "finalHead": "892ff7ff72b211bf56c7d84cbd209184071cc638",
+  "candidateCells": 300,
+  "observedChangedCells": 114,
+  "dispositionCounts": {
+    "accept-correction": 110,
+    "accept-current": 174,
+    "hold-hash-only": 12,
+    "accept-refinement": 3,
+    "root-manual-adjustment": 1
+  },
+  "changedCatalogCount": 12,
+  "changedCatalogPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "allCatalogKeysPreserved": true,
+  "allNonTargetCatalogValuesPreserved": true,
+  "all12CatalogsReadBack": true,
+  "hashOnlyHoldsTextFree": true,
+  "workflowChanges": 0,
+  "readbackSha256": "986d5284be9507973f403800298c376b8bdf793e367f09a2748215e7dd78c9ed",
+  "postimageHashes": {
+    "src/web/public/locales/ar.json": "f5c696e494bdabd0c0003459062713534ae0fcbd2bcae1b2155599731fd828b2",
+    "src/web/public/locales/de.json": "100c81d9431a06c3bf542f4cd469ae2d1fd0d3a1cbdc2bd86d35e1c705699394",
+    "src/web/public/locales/es.json": "4757d4d5fb2ceb6fe16b88060d5753af8102d94974f61a95bbaedb02ee3b2d71",
+    "src/web/public/locales/fr.json": "4c672e70436933d1d079556c96fe9e8d95c8ca2470cdf7c46b84d66815debaaa",
+    "src/web/public/locales/hi.json": "702a5d744a162764ce82c1a86629efbbc831778382c40dd1c815b5a442613340",
+    "src/web/public/locales/id.json": "39ecebef96b9289a179b51b970d141eacfbcf5f36c438d59f92af2cdb9ed1b39",
+    "src/web/public/locales/ja.json": "13b600e01c5a13dfda881ac027f9630fa0ff058d575c9a3167daf48b4ddcb0a0",
+    "src/web/public/locales/ko.json": "351c5dafd7bdeda170f3ee3938b8cb0e4ba3e7f075a561f80b96afe99eee657a",
+    "src/web/public/locales/pt-BR.json": "cf5cd6c263f2e4f2ea7934c8f3d67551998dad99a70e72babac0273c646839d9",
+    "src/web/public/locales/vi.json": "dc33a212b805dff655695369e67b305da795fe8bd2268380fb247ab159f2c5d2",
+    "src/web/public/locales/zh-Hans.json": "9a67b81b38a8acc2d655f95b471b2f8db6d722930c3ba6cf475f4a9a1e668456",
+    "src/web/public/locales/zh-Hant.json": "6fd2a2100ec9b7f09cbccaae6c4df90880df326cad83e24dba0537c6098eac47"
+  }
+}
