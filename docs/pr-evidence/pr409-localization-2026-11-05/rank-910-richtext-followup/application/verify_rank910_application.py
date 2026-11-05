@@ -100,13 +100,20 @@ def main():
 
     prefix = (APP / "pr-body-prefix-before-w910.txt").read_bytes()
     need(sha(prefix) == read_json(APP / "pr-body-prefix-before-w910.json")["bodySha256"], "saved PR body prefix hash")
+    append = (APP / "pr-body-append-w910.txt").read_bytes()
+    prepared_body = (APP / "pr-body-after-w910.txt").read_bytes()
+    saved_readback = (APP / "pr-body-after-w910-readback.txt").read_bytes()
+    body_proof = read_json(APP / "pr-body-append-readback.json")
+    need(prepared_body == prefix + append == saved_readback, "prepared and saved PR body")
     pr = json.loads(subprocess.check_output(["gh", "api", "repos/snapetech-org/slskdN/pulls/409"], text=True))
     branch = pr["head"]["ref"]
     branch_ref = json.loads(subprocess.check_output(["gh", "api", f"repos/snapetech-org/slskdN/git/ref/heads/{branch}"], text=True))["object"]["sha"]
     pull_ref = subprocess.check_output(["git", "-C", str(repo), "ls-remote", "origin", "refs/pull/409/head"], text=True).split()[0]
     need(pr["state"] == "open" and pr["draft"] and not pr["merged"], "PR state")
     need(pr["head"]["sha"] == branch_ref == pull_ref, "PR head refs")
-    need(pr["body"].encode("utf-8").startswith(prefix), "PR body prefix")
+    live_body = pr["body"].encode("utf-8")
+    need(live_body == saved_readback and live_body.startswith(prefix), "PR body readback/prefix")
+    need(body_proof["prefixPreservedByteExact"] and body_proof["preparedBodyMatchesReadback"], "PR body append proof")
     print(json.dumps({"result": "PASS", "productCommit": commit, "catalogs": 12, "translations": 12, "catalogKeys": 6175, "splitKeysRemoved": 2, "bodyPrefixBytes": len(prefix), "liveHead": pr["head"]["sha"], "prOpenDraft": True}, indent=2))
 
 
