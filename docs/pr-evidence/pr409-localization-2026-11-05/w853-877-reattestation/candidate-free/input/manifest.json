@@ -1,0 +1,176 @@
+{
+  "artifact": "slskdN PR #409 W853-W877 current-head candidate-free input",
+  "baseRef": "main",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baseTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "catalogCount": 12,
+  "catalogEntryCountPerLocale": 6175,
+  "cellCount": 300,
+  "continuationRankRange": [
+    953,
+    977
+  ],
+  "currentAppliedTargetCount": 288,
+  "currentCandidateTranslationReviewPerformed": false,
+  "currentHashOnlyHoldCount": 12,
+  "files": [
+    {
+      "bytes": 2204,
+      "path": "README.md",
+      "sha256": "7a4a16bc83b31abc08fe69718f81800f941a53b17edddc5ce9cde40e4a5f30b2"
+    },
+    {
+      "bytes": 275,
+      "path": "baseline-token-mismatch-summary.json",
+      "sha256": "d49596d6fca2590fc493929709c80146d6a71edb0ba446646603e884fdba6ef5"
+    },
+    {
+      "bytes": 38338,
+      "path": "build_candidate_free.py",
+      "sha256": "0b831fe7cc77e295f071528a16b4d8159d551e5bcf014793b2a4a794153bd9b2"
+    },
+    {
+      "bytes": 67024,
+      "path": "caller-contexts.jsonl",
+      "sha256": "1426a902320d69a161b8bdac864d4917f6e2e822fecffe66e034fe60fe40e95b"
+    },
+    {
+      "bytes": 469,
+      "path": "catalog-key-order-attestation.json",
+      "sha256": "c006e41b4aeff72879caebc7ae904b8a7318b7a6a20cd952dd133916d353b83f"
+    },
+    {
+      "bytes": 3674,
+      "path": "catalog-structure.jsonl",
+      "sha256": "05daf0328c3aae768e6549e34453f5e9830e0078b6bf2546e5ae8eac50500674"
+    },
+    {
+      "bytes": 1154,
+      "path": "live-after.json",
+      "sha256": "30faed7672a70b28f9adc86e1731ea537399fa7c476e8672e7547abb62875660"
+    },
+    {
+      "bytes": 1250,
+      "path": "live-before.json",
+      "sha256": "43a683690e8f94262e41fb99d82e55821643fde2a42e31a757bf65c1754264a2"
+    },
+    {
+      "bytes": 312227,
+      "path": "prior-applied-targets-reattestation-hash-only.jsonl",
+      "sha256": "925c93142d2f3edb3138e444845bf991773f44b0b476ffc8d20334df3747af43"
+    },
+    {
+      "bytes": 416914,
+      "path": "prior-held-cell-reattestation-hash-only.jsonl",
+      "sha256": "289d066a06f1ed788b095668bbe5964a90ae07a2888faa10104d706f2140c1d6"
+    },
+    {
+      "bytes": 19512,
+      "path": "prior-hold-resolution-history-hash-only.jsonl",
+      "sha256": "b567fb0d259a030d3df345d2b52ee09bb6c7d3193411ce1ec99d6dd45b40825a"
+    },
+    {
+      "bytes": 881135,
+      "path": "prior-selected-id-exclusions-hash-only.jsonl",
+      "sha256": "74fcd2c6c0bad8744ce65d2326c1f69891b5475701ca6f853e8b89a8905e55a3"
+    },
+    {
+      "bytes": 59546,
+      "path": "runtime-file-pins.jsonl",
+      "sha256": "8d3017922f219203337a32859d01f4bb36e322600ed456ab4740aa38c6f87ed7"
+    },
+    {
+      "bytes": 10761,
+      "path": "selected-sources.jsonl",
+      "sha256": "b692671b7a3501e6028f1fca2f48c335edd957739650a7f1b4c0c19989052048"
+    },
+    {
+      "bytes": 6013,
+      "path": "selection-and-boundary.json",
+      "sha256": "566160d8db95311cecedeb7ef3d12f30a708bc16d244f90f12966fb5f1f0c831"
+    },
+    {
+      "bytes": 420104,
+      "path": "source-current-cells.jsonl",
+      "sha256": "51432e75a02d1062f530162a3514bcbde71e7268c8a9ccc5ee5bf5920356e6d4"
+    },
+    {
+      "bytes": 2275370,
+      "path": "source-inventory-pinned.jsonl",
+      "sha256": "097e54d64e1c8e87daff201b6ec408c091ec011a674ddecd716fdcdabda71bdc"
+    },
+    {
+      "bytes": 6250,
+      "path": "source-inventory-selection.jsonl",
+      "sha256": "f286d76eb4eb070ae69dbfa2ddaddbafc520770172a36c0560456b9ad0c01c58"
+    },
+    {
+      "bytes": 3166,
+      "path": "summary.json",
+      "sha256": "e9ba5b37a423806394ec3ee49e2a87ba0ea004255d7a234ab431c6b304823d7c"
+    },
+    {
+      "bytes": 8465,
+      "path": "verify_candidate_free.py",
+      "sha256": "37dff837cf334021b00de71c76b157880a04efdf9c5f4c9da001f93212e51ceb"
+    },
+    {
+      "bytes": 12584,
+      "path": "verify_exact_worktree.py",
+      "sha256": "b2668edcf67e8c3c0dff9a3a5e35393d398a95705c423500a170cbd0a42a052c"
+    },
+    {
+      "bytes": 213409,
+      "path": "window-application-readback-hash-only.jsonl",
+      "sha256": "0a9fed02f8aaf3d3d4e8cfb7b93c2ef889ed551a44a9e3a68f7dddbe1ab9a0f8"
+    },
+    {
+      "bytes": 917,
+      "path": "window-application-reattestation.json",
+      "sha256": "4e6766eb378984b4842b24869a5e65784aa418cd81f95dd66ae34164d0e4323c"
+    },
+    {
+      "bytes": 274835,
+      "path": "window-applied-targets-reattestation-hash-only.jsonl",
+      "sha256": "b8c2c88183bea7bf5d3dc11c1e1e2bf6520e44eb9b2ffa44d2cef650568c5c8a"
+    },
+    {
+      "bytes": 7717,
+      "path": "window-holds-hash-only.jsonl",
+      "sha256": "97dadb0829d9c7ed29e4d34a7c5f9d91f79c7e7b402def63e45187a75504091a"
+    }
+  ],
+  "head": "cc600880606f374cebe3082789fa50f246ff614f",
+  "heldRank": 966,
+  "liveEntrySha256": "43a683690e8f94262e41fb99d82e55821643fde2a42e31a757bf65c1754264a2",
+  "liveExitSha256": "30faed7672a70b28f9adc86e1731ea537399fa7c476e8672e7547abb62875660",
+  "localeCount": 12,
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "mainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "packetType": "candidate-free-current-readback",
+  "primaryBlindOrCrossProposalsRead": false,
+  "priorCandidateFreeChecksumListSha256": "a1731c5e6616f1c223875f25c976131b013361d299b5cb133174b2015f79f3ce",
+  "priorCandidateFreeManifestSha256": "42e328ff08e489134f4207b74da7e2844ed51b2dbb88c6934ceb5ba8d6c96f07",
+  "priorHistoricalAppliedCount": 300,
+  "priorHistoricalHoldCount": 397,
+  "priorHoldResolutionHistoryCount": 25,
+  "priorHoldResolutionRowsSourceAbsent": 12,
+  "priorHoldResolutionRowsTargetReattested": 13,
+  "priorSelectedAndWindowExclusionCount": 2060,
+  "productionCallerFileCount": 279,
+  "proposedTargetsIncluded": false,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    853,
+    877
+  ],
+  "repository": "snapetech-org/slskdN",
+  "reviewDecisionsIncluded": false,
+  "rootReadbackFileSha256": "986d5284be9507973f403800298c376b8bdf793e367f09a2748215e7dd78c9ed",
+  "rootReadbackSha256": "986d5284be9507973f403800298c376b8bdf793e367f09a2748215e7dd78c9ed",
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "tree": "440b9842d914a391f77cbb03737261b8798cc6e3",
+  "window": "W853-W877"
+}

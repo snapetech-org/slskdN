@@ -1,0 +1,7 @@
+{
+  "cellCount": 300,
+  "mismatchCounts": {},
+  "mismatchExamples": [],
+  "note": "Token checks were computed against current catalog values at the exact current head; 12 existing held cells expose token hashes/check booleans only.",
+  "reviewCandidateTextIncluded": false
+}

@@ -1,0 +1,22 @@
+{
+  "allCurrentCatalogTargetsMatchReadback": true,
+  "allHoldTextsOmitted": true,
+  "appliedCells": 288,
+  "cells": 300,
+  "currentCatalogComparison": "verified exact target hashes for all 300 cells",
+  "currentCatalogsChangedSinceProductCommit": false,
+  "currentHead": "cc600880606f374cebe3082789fa50f246ff614f",
+  "currentTree": "440b9842d914a391f77cbb03737261b8798cc6e3",
+  "hashOnlyHeldCells": 12,
+  "heldRanks": [
+    966
+  ],
+  "inputHead": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "inputTree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "productCommitIsAncestor": true,
+  "productHead": "892ff7ff72b211bf56c7d84cbd209184071cc638",
+  "productTree": "0e504c909a779c66e960b2595d699934b13996ae",
+  "result": "PASS",
+  "rootReadbackFileSha256": "986d5284be9507973f403800298c376b8bdf793e367f09a2748215e7dd78c9ed",
+  "rootReadbackSha256": "986d5284be9507973f403800298c376b8bdf793e367f09a2748215e7dd78c9ed"
+}
