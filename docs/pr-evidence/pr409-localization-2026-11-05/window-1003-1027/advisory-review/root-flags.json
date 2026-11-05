@@ -1,0 +1,78 @@
+{
+  "count": 4,
+  "flags": [
+    {
+      "callerContextPins": [
+        {
+          "contextSha256": "3688b68d5a6b8d323b73732061e9391b1f5093cd2e49e45e2d7e9598f1cca4d7",
+          "fileSha256": "da3dedb802fcf0bf352da82d9c2830937ca30286f5e4593eaa5a1d526e716543",
+          "gitBlob": "71a741d168ac88f90f3173560a4aff6942ecc68b",
+          "line": 410,
+          "lineSha256": "13eb5867c5acff305448db52cde25ed6cb2f504ab4ac66c10a60e959a3483d17",
+          "path": "src/web/src/components/System/Bridge/index.jsx"
+        }
+      ],
+      "continuationRank": 1004,
+      "issue": "The proposal leaves “legacy” in English. Here it means clients running older software versions; French wording would be clearer for users who do not use the English loan term.",
+      "locale": "fr",
+      "severity": "low",
+      "source": "Maximum concurrent legacy clients",
+      "suggestedAlternative": "Nombre maximal de clients de versions antérieures pouvant se connecter simultanément"
+    },
+    {
+      "callerContextPins": [
+        {
+          "contextSha256": "3688b68d5a6b8d323b73732061e9391b1f5093cd2e49e45e2d7e9598f1cca4d7",
+          "fileSha256": "da3dedb802fcf0bf352da82d9c2830937ca30286f5e4593eaa5a1d526e716543",
+          "gitBlob": "71a741d168ac88f90f3173560a4aff6942ecc68b",
+          "line": 410,
+          "lineSha256": "13eb5867c5acff305448db52cde25ed6cb2f504ab4ac66c10a60e959a3483d17",
+          "path": "src/web/src/components/System/Bridge/index.jsx"
+        }
+      ],
+      "continuationRank": 1004,
+      "issue": "The proposal transliterates “legacy,” which may be opaque outside developer jargon. The caller concerns older client software versions.",
+      "locale": "hi",
+      "severity": "moderate",
+      "source": "Maximum concurrent legacy clients",
+      "suggestedAlternative": "पुराने संस्करण वाले क्लाइंटों की अधिकतम समवर्ती संख्या"
+    },
+    {
+      "callerContextPins": [
+        {
+          "contextSha256": "3688b68d5a6b8d323b73732061e9391b1f5093cd2e49e45e2d7e9598f1cca4d7",
+          "fileSha256": "da3dedb802fcf0bf352da82d9c2830937ca30286f5e4593eaa5a1d526e716543",
+          "gitBlob": "71a741d168ac88f90f3173560a4aff6942ecc68b",
+          "line": 410,
+          "lineSha256": "13eb5867c5acff305448db52cde25ed6cb2f504ab4ac66c10a60e959a3483d17",
+          "path": "src/web/src/components/System/Bridge/index.jsx"
+        }
+      ],
+      "continuationRank": 1004,
+      "issue": "The proposal keeps “legacy” in English. The caller means client software from older versions.",
+      "locale": "id",
+      "severity": "low",
+      "source": "Maximum concurrent legacy clients",
+      "suggestedAlternative": "Jumlah maksimum klien versi lama secara bersamaan"
+    },
+    {
+      "callerContextPins": [
+        {
+          "contextSha256": "343847698cdc01f809ebad9e93edb6cffd6c4ddd5e540bb93d67ebcd580faac1",
+          "fileSha256": "417c7cb3ffcfb5c94fa9a33d7a54adf7ea15f563f92d4a2f68f3248e0dcc1ea3",
+          "gitBlob": "c6e8b09b9071ae62a3a78f66ae8e2ea7f6a281f8",
+          "line": 323,
+          "lineSha256": "df429e705c0bb7ffe1b3b18b221ef5e2f883a6328e535dfbc9662a47efad61f9",
+          "path": "src/web/src/components/Transfers/TransferTable.jsx"
+        }
+      ],
+      "continuationRank": 1021,
+      "issue": "“Xóa” can imply deleting the transfer. The exact caller tooltip says this control removes the item from the list without changing the source file.",
+      "locale": "vi",
+      "severity": "moderate",
+      "source": "Remove transfer",
+      "suggestedAlternative": "Gỡ mục truyền khỏi danh sách"
+    }
+  ],
+  "scope": "Advisory flags for root adjudication; no translations applied."
+}

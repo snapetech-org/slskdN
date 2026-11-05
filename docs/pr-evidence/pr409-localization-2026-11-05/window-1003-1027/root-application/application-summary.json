@@ -1,0 +1,70 @@
+{
+  "artifact": "slskdN PR #409 W1003-W1027 exact-hash application",
+  "inputHead": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "inputTree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "changedCellCount": 71,
+  "changedCatalogCount": 12,
+  "reviewedCells": 300,
+  "callerBackedCells": 288,
+  "unchangedCallerBackedCells": 217,
+  "callerlessHashOnlyHolds": 12,
+  "catalogKeysPerLocale": 6175,
+  "allNonTargetValuesUnchanged": true,
+  "catalogKeyOrderPreserved": true,
+  "heldTextRedacted": true,
+  "activePriorHoldsReattested": 409,
+  "resultingActiveHolds": 421,
+  "rootOverridesApplied": 4,
+  "rootOverrideRanksLocales": [
+    {
+      "rank": 1004,
+      "locale": "fr"
+    },
+    {
+      "rank": 1004,
+      "locale": "hi"
+    },
+    {
+      "rank": 1004,
+      "locale": "id"
+    },
+    {
+      "rank": 1021,
+      "locale": "vi"
+    }
+  ],
+  "catalogHashesAfter": {
+    "src/web/public/locales/ar.json": "29d59a82455aaa93438f73b1d7c595dce75219a7f1b2c6f9a2822ec555d97345",
+    "src/web/public/locales/de.json": "14696590ba4a8423fbd622778349a73ad123858ae2f3ad540776beb763ad1558",
+    "src/web/public/locales/es.json": "eec2f79d8c1f0bcfdb129a4431d105a5f52a0e9568655f595b0bf8c4db9d795d",
+    "src/web/public/locales/fr.json": "33f875afa8630ef58a5c459d9997e319921983caea0770edf27899413e5d0ee0",
+    "src/web/public/locales/hi.json": "b20ce0287b6fb0d70471525692c25d244fd31a873071288e01c80e5fe7b5eda6",
+    "src/web/public/locales/id.json": "1f418d92a1904c6538a84e4df6efd360bc4cc2c98cccc1009e5e7fe23112c93c",
+    "src/web/public/locales/ja.json": "533ea7e18f7e84d0b271c626596d48275ae814b9c83e6846e13070c1751c22e8",
+    "src/web/public/locales/ko.json": "b112c83b662de74157ea250e3f8a73d6d05d2cd02705a7a9706cecca92c0ac8d",
+    "src/web/public/locales/pt-BR.json": "8c619405e844bb7d746f29c010a7ad15b0af1b83f7357ac4230cf6d4c8187e4c",
+    "src/web/public/locales/vi.json": "88abd1e6dfb655d78d74ffebcd4c5daecd8a30b0d58c1c0c86d2a4b0a8443327",
+    "src/web/public/locales/zh-Hans.json": "564f9641453f1f91850bd2b79bfe01c95d698ee3ea2ffd5a9f4419950dd706e0",
+    "src/web/public/locales/zh-Hant.json": "65d920cde0bb364b8929ffaa18db30ea798dfdd1215eb842c0ed61d6e21bd9b6"
+  },
+  "productCommitPending": false,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReviewPerformed": false,
+  "productCommit": "1f93b356f08b7c4bf7b2876d9d541b97dc03b82f",
+  "productTree": "d4a5382b43aca57adb2db7570d61b9bb3d03b80e",
+  "commitParent": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "productCommitNames": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ]
+}

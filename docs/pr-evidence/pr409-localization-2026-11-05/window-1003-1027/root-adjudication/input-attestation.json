@@ -1,0 +1,32 @@
+{
+  "artifact": "slskdN PR #409 W1003-W1027 root adjudication input attestation",
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "cellCount": 300,
+  "callerBackedCells": 288,
+  "selectedCorrections": 71,
+  "rootOverrides": 4,
+  "hashOnlyHolds": 12,
+  "inputHashes": {
+    "candidateFreeCellsSha256": "2c5ba3a2179802fd853d4fd61f0b7cd4d81235e1de51a1c6006f7026f1cc4e19",
+    "candidateFreeManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+    "primaryRowsSha256": "ed3a599fe69958db61dcc63d3418a2359faec7c173ab3847cc0232103e8e1c99",
+    "blindRowsSha256": "2b010aa43018f9b9e12ba070a4bed9ff351732d1cda8e59f9bf0ff6b8af20ecd",
+    "crossRowsSha256": "70c3cbc0535a464600dc8463bf70a87c92c801ab378ff87e3efc484598598388",
+    "advisoryFindingsSha256": "85fcca315a7eca9d389f9fdcd773ca36543b52623ec338f5b28cd89d17f9d60f",
+    "advisoryRootFlagsSha256": "b5906b3d85674f9b74e563ad2522c56260ceafca03b47b4a52998aec60881f15"
+  },
+  "independentAdvisoryCounts": {
+    "supported": 67,
+    "questioned": 4
+  },
+  "priorActiveHoldsReattested": 409,
+  "newCallerlessHolds": 12,
+  "resultingActiveHolds": 421,
+  "baselineProtectedLiteralMismatch": "Hindi FTP; selected target preserves FTP",
+  "rootAdjudicationPerformed": true,
+  "catalogsEdited": false,
+  "applicationPerformed": false,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReviewPerformed": false
+}

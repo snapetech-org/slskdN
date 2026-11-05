@@ -1,0 +1,327 @@
+{
+  "dispositions": {
+    "question": 4,
+    "support": 67
+  },
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "languageReviewCaveat": "Independent source/context and terminology review; no native-speaker signoff obtained.",
+  "preservedHashOnlyHolds": {
+    "callerless": true,
+    "continuationRank": 1024,
+    "count": 12,
+    "disposition": "preserved in sealed input; omitted from advisory findings",
+    "locales": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "sourceOrTargetTextIncluded": false
+  },
+  "recommendationCoverage": {
+    "blindProposalTargets": 59,
+    "bothReviewedWherePresent": true,
+    "primaryCandidateTargets": 57
+  },
+  "repositoryChanges": "none",
+  "result": "ADVISORY_COMPLETE",
+  "reviewCoverageByLocale": {
+    "ar": {
+      "cells": 9,
+      "questioned": 0,
+      "supported": 9
+    },
+    "de": {
+      "cells": 7,
+      "questioned": 0,
+      "supported": 7
+    },
+    "es": {
+      "cells": 7,
+      "questioned": 0,
+      "supported": 7
+    },
+    "fr": {
+      "cells": 4,
+      "questioned": 1,
+      "supported": 3
+    },
+    "hi": {
+      "cells": 8,
+      "questioned": 1,
+      "supported": 7
+    },
+    "id": {
+      "cells": 10,
+      "questioned": 1,
+      "supported": 9
+    },
+    "ja": {
+      "cells": 4,
+      "questioned": 0,
+      "supported": 4
+    },
+    "ko": {
+      "cells": 3,
+      "questioned": 0,
+      "supported": 3
+    },
+    "pt-BR": {
+      "cells": 3,
+      "questioned": 0,
+      "supported": 3
+    },
+    "vi": {
+      "cells": 6,
+      "questioned": 1,
+      "supported": 5
+    },
+    "zh-Hans": {
+      "cells": 5,
+      "questioned": 0,
+      "supported": 5
+    },
+    "zh-Hant": {
+      "cells": 5,
+      "questioned": 0,
+      "supported": 5
+    }
+  },
+  "reviewCoverageByRank": {
+    "1004": {
+      "cells": 4,
+      "locales": [
+        "fr",
+        "hi",
+        "id",
+        "vi"
+      ],
+      "questioned": 3,
+      "source": "Maximum concurrent legacy clients",
+      "supported": 1
+    },
+    "1005": {
+      "cells": 7,
+      "locales": [
+        "ar",
+        "de",
+        "es",
+        "hi",
+        "id",
+        "ja",
+        "vi"
+      ],
+      "questioned": 0,
+      "source": "Federation posture warnings",
+      "supported": 7
+    },
+    "1007": {
+      "cells": 4,
+      "locales": [
+        "ar",
+        "de",
+        "hi",
+        "id"
+      ],
+      "questioned": 0,
+      "source": "no warp",
+      "supported": 4
+    },
+    "1008": {
+      "cells": 8,
+      "locales": [
+        "ar",
+        "es",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "questioned": 0,
+      "source": "FTP retry attempts",
+      "supported": 8
+    },
+    "1011": {
+      "cells": 2,
+      "locales": [
+        "ar",
+        "es"
+      ],
+      "questioned": 0,
+      "source": "Complete base URL, token, and path-map readiness before live execution.",
+      "supported": 2
+    },
+    "1012": {
+      "cells": 12,
+      "locales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "questioned": 0,
+      "source": "Cleanup Expired",
+      "supported": 12
+    },
+    "1013": {
+      "cells": 2,
+      "locales": [
+        "de",
+        "id"
+      ],
+      "questioned": 0,
+      "source": "Impact: {impact}",
+      "supported": 2
+    },
+    "1014": {
+      "cells": 3,
+      "locales": [
+        "de",
+        "hi",
+        "id"
+      ],
+      "questioned": 0,
+      "source": "tracks",
+      "supported": 3
+    },
+    "1015": {
+      "cells": 1,
+      "locales": [
+        "de"
+      ],
+      "questioned": 0,
+      "source": "Get Membership Record",
+      "supported": 1
+    },
+    "1016": {
+      "cells": 3,
+      "locales": [
+        "es",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "questioned": 0,
+      "source": "YouTube API Key",
+      "supported": 3
+    },
+    "1018": {
+      "cells": 2,
+      "locales": [
+        "ar",
+        "id"
+      ],
+      "questioned": 0,
+      "source": "Bridge",
+      "supported": 2
+    },
+    "1021": {
+      "cells": 1,
+      "locales": [
+        "vi"
+      ],
+      "questioned": 1,
+      "source": "Remove transfer",
+      "supported": 0
+    },
+    "1022": {
+      "cells": 12,
+      "locales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "questioned": 0,
+      "source": "Complete Files min",
+      "supported": 12
+    },
+    "1023": {
+      "cells": 1,
+      "locales": [
+        "ar"
+      ],
+      "questioned": 0,
+      "source": "API Key Name",
+      "supported": 1
+    },
+    "1026": {
+      "cells": 9,
+      "locales": [
+        "ar",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "questioned": 0,
+      "source": "Overlay TCP Port",
+      "supported": 9
+    }
+  },
+  "rootFlagsByRankLocale": [
+    {
+      "locale": "fr",
+      "rank": 1004,
+      "severity": "low"
+    },
+    {
+      "locale": "hi",
+      "rank": 1004,
+      "severity": "moderate"
+    },
+    {
+      "locale": "id",
+      "rank": 1004,
+      "severity": "low"
+    },
+    {
+      "locale": "vi",
+      "rank": 1021,
+      "severity": "moderate"
+    }
+  ],
+  "scope": {
+    "callerBackedSources": 15,
+    "proposedTargetsReviewed": 71,
+    "rankRange": [
+      1003,
+      1027
+    ]
+  },
+  "technicalTokenChecks": {
+    "allCrossTargetsPass": true,
+    "checks": "sealed-input verifier enforces markup, numeric token, placeholder, and protected-literal checks"
+  },
+  "testsBuildsScansOrCI": "none run",
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c"
+}

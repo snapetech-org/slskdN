@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "window": "W1003-W1027",
+  "inputHead": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "inputTree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "productCommit": "1f93b356f08b7c4bf7b2876d9d541b97dc03b82f",
+  "rootDispositionCounts": {
+    "accept-current": 217,
+    "correction": 71,
+    "hold-hash-only": 12
+  },
+  "changedCells": 71,
+  "changedLocaleCatalogs": 12,
+  "reviewedCells": 300,
+  "rootOverrides": 4,
+  "hashOnlyHolds": 12,
+  "activeHolds": 421,
+  "catalogKeysPerLocale": 6175,
+  "packetChecksums": "PASS",
+  "exactCatalogReadback": "PASS",
+  "workflowChanges": "none"
+}

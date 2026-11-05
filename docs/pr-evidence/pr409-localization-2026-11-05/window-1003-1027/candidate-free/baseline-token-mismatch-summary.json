@@ -1,0 +1,10 @@
+{
+  "callerBackedCells": 288,
+  "cellCount": 300,
+  "mismatchCounts": {
+    "protectedLiteral": 1
+  },
+  "noCallerHashOnlyCells": 12,
+  "note": "Token checks are candidate-free evidence on exact-head current values; no-caller holds expose no source or target text.",
+  "proposedTargetsIncluded": false
+}

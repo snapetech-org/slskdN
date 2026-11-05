@@ -1,0 +1,70 @@
+{
+  "acceptCurrentCount": 231,
+  "blindReviewUsed": false,
+  "callerBackedSourceCount": 24,
+  "candidateFreeInputChecksumsSha256": "1fa74008666ad75fc7a1d670e4ca21cce16530dee15db71c5303a5357abefb8e",
+  "candidateFreeInputManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+  "continuationRankRange": [
+    1003,
+    1027
+  ],
+  "correctionCount": 57,
+  "crossReviewUsed": false,
+  "dispositions": {
+    "accept-current": 231,
+    "correction": 57
+  },
+  "files": [
+    {
+      "bytes": 700,
+      "path": "README.md",
+      "sha256": "668922fbb4f11bccab0406bcc43c5a1402890605afb8668e7f26b4883f31cde8"
+    },
+    {
+      "bytes": 19122,
+      "path": "build_primary.py",
+      "sha256": "811eba7d9124fc026a57dd546f34d1ca666f45e9f5a7ffa6774599f783486516"
+    },
+    {
+      "bytes": 40575,
+      "path": "corrections.jsonl",
+      "sha256": "9562c6681a299e49f264e9ba99507606d49a65f8eece768deb7d2d6851150b1c"
+    },
+    {
+      "bytes": 12109,
+      "path": "holds-hash-only.jsonl",
+      "sha256": "09a31a356c50268cc08705ab32e9acc63454e860a722c9ffb24ace5cfbff2302"
+    },
+    {
+      "bytes": 859904,
+      "path": "primary-review.jsonl",
+      "sha256": "ed3a599fe69958db61dcc63d3418a2359faec7c173ab3847cc0232103e8e1c99"
+    },
+    {
+      "bytes": 1223,
+      "path": "summary.json",
+      "sha256": "5bb0b00b3038dfd0b9c6c14017d6ef7c41406d7971a957ee0b104b29587ff305"
+    },
+    {
+      "bytes": 9284,
+      "path": "verify_primary.py",
+      "sha256": "c1a0ef746a7fc697271b56be0b10a4e15ed0b5c15358c7cf3700fe6cafe2d7ca"
+    }
+  ],
+  "hashOnlyHoldCellCount": 12,
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "localeCount": 12,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    903,
+    927
+  ],
+  "repository": "snapetech-org/slskdN",
+  "reviewPass": "primary",
+  "reviewedCellCount": 288,
+  "rootAdjudicationPerformed": false,
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "window": "W85"
+}

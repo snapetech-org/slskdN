@@ -1,0 +1,50 @@
+{
+  "acceptCurrentCount": 231,
+  "artifact": "slskdN PR #409 W1003-W1027 primary semantic review",
+  "baselineProtectedLiteralMismatches": {
+    "protectedLiteral": 1
+  },
+  "blindReviewUsed": false,
+  "callerBackedSources": 24,
+  "candidateFreeInputChecksumsSha256": "1fa74008666ad75fc7a1d670e4ca21cce16530dee15db71c5303a5357abefb8e",
+  "candidateFreeInputManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+  "candidateTokenMismatches": {},
+  "catalogsEdited": false,
+  "continuationRankRange": [
+    1003,
+    1027
+  ],
+  "correctionCount": 57,
+  "correctionsByLocale": {
+    "ar": 7,
+    "de": 5,
+    "es": 5,
+    "fr": 3,
+    "hi": 7,
+    "id": 7,
+    "ja": 3,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 4,
+    "zh-Hans": 5,
+    "zh-Hant": 5
+  },
+  "crossReviewUsed": false,
+  "dispositions": {
+    "accept-current": 231,
+    "correction": 57
+  },
+  "hashOnlyHoldCells": 12,
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "locales": 12,
+  "remainingQueueRankRange": [
+    903,
+    927
+  ],
+  "result": "PASS",
+  "reviewedCells": 288,
+  "rootAdjudicationPerformed": false,
+  "sourceIds": 25,
+  "testsBuildsScansCiRun": false,
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c"
+}

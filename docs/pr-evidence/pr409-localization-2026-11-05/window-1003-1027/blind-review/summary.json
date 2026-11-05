@@ -1,0 +1,64 @@
+{
+  "artifact": "slskdN PR #409 W1003-W1027 independent blind semantic review",
+  "schemaVersion": 1,
+  "blindReviewUsed": true,
+  "crossReviewUsed": false,
+  "rootAdjudicationPerformed": false,
+  "inputPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/candidate-free",
+  "inputManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+  "inputChecksumsFileSha256": "1fa74008666ad75fc7a1d670e4ca21cce16530dee15db71c5303a5357abefb8e",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "window": "W85",
+  "continuationRankRange": [
+    1003,
+    1027
+  ],
+  "remainingQueueRankRange": [
+    903,
+    927
+  ],
+  "cellCount": 300,
+  "callerBackedCellCount": 288,
+  "callerlessHashOnlyHoldCellCount": 12,
+  "decisionCounts": {
+    "retain": 229,
+    "proposal": 59,
+    "hold": 12
+  },
+  "proposalCountsByLocale": {
+    "ar": 5,
+    "de": 5,
+    "es": 6,
+    "fr": 4,
+    "hi": 7,
+    "id": 7,
+    "ja": 4,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 5,
+    "zh-Hans": 5,
+    "zh-Hant": 5
+  },
+  "inputTokenResults": {
+    "callerBackedCellsChecked": 288,
+    "passingCells": 287,
+    "mismatchingCells": 1,
+    "mismatchCounts": {
+      "protectedLiteral": 1
+    },
+    "callerlessHoldsNotChecked": 12
+  },
+  "proposalTokenResults": {
+    "proposalsChecked": 59,
+    "passingProposals": 59,
+    "failingProposals": 0,
+    "mismatchCounts": {}
+  },
+  "confidence": "moderate",
+  "confidenceNote": "Semantic recommendations are based only on the packet’s source strings, exact-head current values, and pinned caller context; language-specific phrasing is not native-speaker validated.",
+  "textRedaction": "Callerless records contain identifiers and hashes only; source, current-target, proposal, and rationale text are omitted.",
+  "tokenMethod": "Same protected-literal, placeholder, markup, and numeric token rules included in the candidate-free packet verifier."
+}
