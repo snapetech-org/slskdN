@@ -1,0 +1,24 @@
+{
+  "cellCount": 300,
+  "mismatchCellCount": 2,
+  "mismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 2
+  },
+  "mismatchExamples": [
+    {
+      "continuationRank": 921,
+      "sourceId": "src_349102fe2a438f4c",
+      "locale": "ar",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 921,
+      "sourceId": "src_349102fe2a438f4c",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    }
+  ]
+}

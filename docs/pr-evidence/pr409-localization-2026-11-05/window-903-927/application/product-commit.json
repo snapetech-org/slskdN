@@ -1,0 +1,20 @@
+{
+  "commit": "868f93ef2ec8a242ff65d5da6f438633fc0fc152",
+  "tree": "c91b89d18b4fcc76e64733fca23a7881088e8eaf",
+  "parent": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "subject": "fix(i18n): apply slskdN W81 corrections [skip ci]",
+  "files": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ]
+}

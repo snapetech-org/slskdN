@@ -1,0 +1,559 @@
+{
+  "artifact": "W81 primary supplemental exact-head context",
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "relatedFragments": [
+    {
+      "role": "rank-910 following fragment",
+      "source": "format over the canonical join/leave payload and the supplied public key.",
+      "sourceId": "src_16d9b529ed6a96b4",
+      "sourceSha256": "16d9b529ed6a96b46e8c6ba91abc9a8013b7856793eb8fafbb700e6f2882a052",
+      "continuationRank": 185,
+      "remainingQueueRank": 85,
+      "outsideCurrentWindow": true,
+      "localeTargets": {
+        "ar": {
+          "text": "التنسيق عبر حمولة الانضمام/المغادرة الأساسية والمفتاح العام المتوفر.",
+          "sha256": "ffc4d1bf2cc81ffe32b44cf50829e045bf931c61a253e4ad3b8348007c1bac5e"
+        },
+        "de": {
+          "text": "Format über die kanonische Join/Leave-Nutzlast und den bereitgestellten öffentlichen Schlüssel.",
+          "sha256": "60ee7bd798b7d1a4055cd2b2084873e0c5624b10451684ba8869ef9525192650"
+        },
+        "es": {
+          "text": "formato aplicado a la carga útil canónica de unión/salida y a la clave pública proporcionada.",
+          "sha256": "a9b1f1a5fbfc422e70e6d27757903c38468b683052813c9111f7a252444998a2"
+        },
+        "fr": {
+          "text": "format sur la charge utile canonique de jointure/sortie et la clé publique fournie.",
+          "sha256": "8ea85f8cb042676108cc6e1af74e57e2809990354ba1e4c191749bde073b6bc1"
+        },
+        "hi": {
+          "text": "ऐसा प्रारूप जो कैनोनिकल जॉइन/लीव पेलोड और दी गई सार्वजनिक कुंजी पर आधारित हो।",
+          "sha256": "5628aebe0be527ce706786c0e9b50035ca236da5d00eb699e619b41ff48ef053"
+        },
+        "id": {
+          "text": "format pada payload gabung/keluar kanonik dan kunci publik yang disediakan.",
+          "sha256": "97456c4ce6d243135ef8d30d650ed301a72da8d4df9ffc7637e292b3f1fea575"
+        },
+        "ja": {
+          "text": "正規の参加/離脱ペイロードと提供された公開鍵に基づく形式です。",
+          "sha256": "0e8c3d2ef6837a66cbdd514a4f87b166748c79adcb6bc59d00433e2189411ec5"
+        },
+        "ko": {
+          "text": "정규 가입/탈퇴 페이로드와 제공된 공개 키를 기반으로 한 형식입니다.",
+          "sha256": "b5384d062bd831ab17015f6dca287f99338b5ebf8a886637e924f6d070a1d15f"
+        },
+        "pt-BR": {
+          "text": "formato sobre a carga útil canônica de entrada/saída e a chave pública fornecida.",
+          "sha256": "83020161b3461b49b268aef56ec9076f255056a696befab4232019ba6d0d11ca"
+        },
+        "vi": {
+          "text": "định dạng dựa trên payload tham gia/rời nhóm chính tắc và khóa công khai được cung cấp.",
+          "sha256": "089816dbbd7fb504759af2e40ffd5d2c403530850e6565336e65bd8c032ea136"
+        },
+        "zh-Hans": {
+          "text": "规范的加入/离开有效负载和提供的公钥的格式。",
+          "sha256": "3c89d98cd2eb77305864de1dfa655a1462cc4706b5e38c16f45357d2d8090514"
+        },
+        "zh-Hant": {
+          "text": "規範的加入/離開有效負載和提供的公鑰的格式。",
+          "sha256": "4815d1ef0f842bc9e3987dca9efc2c30b716fc58705cb40617d14cf7d9449e5f"
+        }
+      }
+    },
+    {
+      "role": "rank-925 dynamic type",
+      "source": "file",
+      "sourceId": "src_3b9c358f36f0a31b",
+      "sourceSha256": "3b9c358f36f0a31b6ad3e14f309c7cf198ac9246e8316f9ce543d5b19ac02b80",
+      "continuationRank": 1104,
+      "remainingQueueRank": 1004,
+      "outsideCurrentWindow": true,
+      "localeTargets": {
+        "ar": {
+          "text": "ملف",
+          "sha256": "b0984be77b5fdc4788477a6ce74e5d4ad13ab159ca2fbe2dd95cf48898621d97"
+        },
+        "de": {
+          "text": "Datei",
+          "sha256": "e9028a569297f9f3f12231cea5ab723631acc83b7d0b52fdd9079ba5c3ee3143"
+        },
+        "es": {
+          "text": "archivo",
+          "sha256": "247a8174ec0c61e4f6c2f0299b27648c9ef3dc8482f7083d01c8a389976a6a76"
+        },
+        "fr": {
+          "text": "fichier",
+          "sha256": "a1e95e8d498edecba29f57dadb14c7b44c7951bd1c57f02761ee80217ccb7819"
+        },
+        "hi": {
+          "text": "फ़ाइल",
+          "sha256": "e3cfd9fa28ca2237a4d4bdc23ba70c82c7f2bc981bc32b791b1b66a86488b7b8"
+        },
+        "id": {
+          "text": "berkas",
+          "sha256": "f262468bb6f890b17959116504c2360023ad790f7bc6d02a00e7be085c514d57"
+        },
+        "ja": {
+          "text": "ファイル",
+          "sha256": "2b39ec3da17eef3982b84bc544c1ee0010438b9f7480914d7382fad80c8504d1"
+        },
+        "ko": {
+          "text": "파일",
+          "sha256": "0c8354d0e51a08b2736d7f2f10f61d6badc76252de2609d2c7df9b8d85670187"
+        },
+        "pt-BR": {
+          "text": "arquivo",
+          "sha256": "9cc50439b3aee8afb5b8a6bb206fd44c82abcff4eede668df401f17d982b3f39"
+        },
+        "vi": {
+          "text": "tệp",
+          "sha256": "851819e02070ac3c99ced4ee6223218b9d7f6c8b128be86b1832d02148e0670b"
+        },
+        "zh-Hans": {
+          "text": "文件",
+          "sha256": "39932f24fe11a6baf55145a8ea05e1abd8f773d4a98a0785ca27183f2ececedb"
+        },
+        "zh-Hant": {
+          "text": "檔案",
+          "sha256": "a11ac5efe91d04d2016660dc10df5a7ca22d85329a8948c7d69cf07214a82ebe"
+        }
+      }
+    },
+    {
+      "role": "rank-925 dynamic type",
+      "source": "directory",
+      "sourceId": "src_333178788eae3e0b",
+      "sourceSha256": "333178788eae3e0b14c9b07bbbb6232bfa4689c7f134eeaa9daae60aba96de53",
+      "continuationRank": 884,
+      "remainingQueueRank": 784,
+      "outsideCurrentWindow": true,
+      "localeTargets": {
+        "ar": {
+          "text": "مجلد",
+          "sha256": "bc906b885b563a6b5c9f65d42a9b7772d5e48f054928cfc1ec3bc01eb8b0e185"
+        },
+        "de": {
+          "text": "Verzeichnis",
+          "sha256": "49d7690f3cac715ad890f249868083f586c2a27e9b85e7fefbb045fdff471f4f"
+        },
+        "es": {
+          "text": "directorio",
+          "sha256": "2ead5b3db5f2652c8591e40d6b3be002dbf3fd792f5f9d18e4dc2e0c0b73d2d2"
+        },
+        "fr": {
+          "text": "répertoire",
+          "sha256": "504a792bbbf0ab699a979b14e0462b9d7362cc1253aedd90ac2cfc89d1b15ee6"
+        },
+        "hi": {
+          "text": "निर्देशिका",
+          "sha256": "0db98f97bd3d01b0419b8cdcd7f9a29e80cbbc6f5b1d88ccdef9b2cb5e20ceb8"
+        },
+        "id": {
+          "text": "direktori",
+          "sha256": "554b92b3fd4c8e7048abb6c87cbedbe9bde68aad32ed739aaa0a317c6e9a413f"
+        },
+        "ja": {
+          "text": "ディレクトリ",
+          "sha256": "c1c2fa90ca17ee876eee23cbf26f663fb14e9fc1d8d3a822ec51452b53d29091"
+        },
+        "ko": {
+          "text": "디렉터리",
+          "sha256": "2cdb8ed2091a0e7e9e660bd4df5699cb10ee6fc8a8b1517620e51697e437d1e6"
+        },
+        "pt-BR": {
+          "text": "diretório",
+          "sha256": "5dfd7ea83a6114adedb7cbd01bb4ee2a82f80b881e7e016b4f62ea449c132df7"
+        },
+        "vi": {
+          "text": "thư mục",
+          "sha256": "659b56b0a2f41affebee3361fe280d0381ee3d741f1587405dc125ea74358e74"
+        },
+        "zh-Hans": {
+          "text": "目录",
+          "sha256": "52daa71ebc31058156b21dc21c01ed18eb4e9a723749259cacd1558afe32dfea"
+        },
+        "zh-Hant": {
+          "text": "目錄",
+          "sha256": "4c9dda33d3e13f31629a9c9f61d62dc84fe8158a5dcc84b56c5c83da00fef678"
+        }
+      }
+    },
+    {
+      "role": "rank-926 adjacent tooltip; outside W81",
+      "source": "Enter true fullscreen.",
+      "sourceId": "src_628bfbd7dc7587dd",
+      "sourceSha256": "628bfbd7dc7587ddbcd56989cda90fa59335fe152fcea67346cafb0eae7d339b",
+      "continuationRank": 1999,
+      "remainingQueueRank": 1899,
+      "outsideCurrentWindow": true,
+      "localeTargets": {
+        "ar": {
+          "text": "أدخل ملء الشاشة الحقيقي.",
+          "sha256": "27df6160397e7bcbcaf42208ae39d6e0b535abf67cd2e40b58aee55918ff0d87"
+        },
+        "de": {
+          "text": "Geben Sie echten Vollbildmodus ein.",
+          "sha256": "b4a036103ae6b7a1ac806879536b3dcbbba2beeba45f4ed359c2c1d1cdb56a5e"
+        },
+        "es": {
+          "text": "Ingrese a pantalla completa verdadera.",
+          "sha256": "02eb6218c15699b46389b6d5dd37a15b8402cdd30986559093ec6b47f29aef92"
+        },
+        "fr": {
+          "text": "Entrez en vrai plein écran.",
+          "sha256": "23bf7bd8bce5494db0178e6f62ebd9d1668e5b83139b78f2c06d24b9923dc36a"
+        },
+        "hi": {
+          "text": "वास्तविक फ़ुलस्क्रीन दर्ज करें.",
+          "sha256": "6fa6e51736fa732c8aec139088b4600d073f697e2d100655ac3df56dc4a170d9"
+        },
+        "id": {
+          "text": "Masukkan layar penuh yang sebenarnya.",
+          "sha256": "0bcaf6be4b3fd2168b9b82498e2b2c258b062c03597457ac026af4b95d09205e"
+        },
+        "ja": {
+          "text": "真のフルスクリーンを入力してください。",
+          "sha256": "d577742edd7ad85b9f2ef34a2f52ef01a57446ba62fa24065f387e6fb28d2eda"
+        },
+        "ko": {
+          "text": "진정한 전체 화면을 입력하세요.",
+          "sha256": "e4da091ad0761307799b90a49278ed3bf7fd84bedbec35551634d95a4c737f14"
+        },
+        "pt-BR": {
+          "text": "Entre em tela cheia verdadeira.",
+          "sha256": "b158f9ee34e5328f0388d781758c698722f14fc7842fd8dbbac2d3f48eb78972"
+        },
+        "vi": {
+          "text": "Nhập toàn màn hình thực sự.",
+          "sha256": "8ab93fd16dc30e031e39cf1568b6d89219e1f59e91843cc681335b199ce8f7c4"
+        },
+        "zh-Hans": {
+          "text": "输入真正的全屏。",
+          "sha256": "cb13802e01bc7321dd97c98b53141c30bbddfa0bd7af8604fa428624d6339956"
+        },
+        "zh-Hant": {
+          "text": "輸入真正的全螢幕。",
+          "sha256": "fc29d29ed653aa14201af5d573e4ba328befeb3be23aebd7ab58ce8e29d40ec8"
+        }
+      }
+    }
+  ],
+  "callerFilePins": [
+    {
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "fileBytes": 215588,
+      "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+      "lineStart": 2858,
+      "lineEnd": 2866,
+      "lines": [
+        {
+          "line": 2858,
+          "text": "              <Message info>",
+          "sha256": "3bd7edfc0cc44761e5a1c7424da8195937ef9a919def3081310d90462fc7cae9"
+        },
+        {
+          "line": 2859,
+          "text": "                <Message.Header><LocalizedText source={\"Review pending requests first\"} /></Message.Header>",
+          "sha256": "e83e80cce675596eb631a991e053ac01c2f848beccb8cd9ea1b4b7f9ca79658e"
+        },
+        {
+          "line": 2860,
+          "text": "                <p>",
+          "sha256": "c6a6e498a244a7e483d471c20e997bc72456b2c4e3b5e3ddc778a5a1edf2efb3"
+        },
+        {
+          "line": 2861,
+          "text": "                  <LocalizedText source={\"Loading pending join and leave requests only reads local pod state. The signed request and approval actions below publish membership events.\"} /></p>",
+          "sha256": "6e11129afd0b4ed8fec101ed03c824114de20a8716ff066302a09eccfcc1c01c"
+        },
+        {
+          "line": 2862,
+          "text": "                <p>",
+          "sha256": "c6a6e498a244a7e483d471c20e997bc72456b2c4e3b5e3ddc778a5a1edf2efb3"
+        },
+        {
+          "line": 2863,
+          "text": "                  <LocalizedText source={\"In Enforce mode, signatures must use the\"} /><code>ed25519:&lt;base64 signature&gt;</code> <LocalizedText source={\"format over the canonical join/leave payload and the supplied public key.\"} /></p>",
+          "sha256": "c8638b63d38ca3d57eef1e7018df207722796d43687942777401a9744b349d70"
+        },
+        {
+          "line": 2864,
+          "text": "              </Message>",
+          "sha256": "dc7425657bb5cd929566a3c684e913357434e4ca2a4a799ed0512eb30a013eda"
+        },
+        {
+          "line": 2865,
+          "text": "              <Form>",
+          "sha256": "d74e6b4815f723cfbb30802f5d37e3a3a7874673b96aadb0f7996b735e1a6126"
+        },
+        {
+          "line": 2866,
+          "text": "                <Form.Input",
+          "sha256": "ea2876674bce09389772e4a610cf9077ac2f67bd7a33de27bb247324b3c30c9f"
+        }
+      ]
+    },
+    {
+      "path": "src/web/src/components/System/Files/Explorer.jsx",
+      "fileBytes": 25323,
+      "fileSha256": "b875d9ebdfb98ae5edd097a554db12d8285f7151be3da1c6fd2ea2921261b822",
+      "gitBlob": "fad0ae65a331731c9c09f47c965b966b1cfe4a3e",
+      "lineStart": 30,
+      "lineEnd": 47,
+      "lines": [
+        {
+          "line": 30,
+          "text": "  const [open, setOpen] = useState(false);",
+          "sha256": "51638302b51eb580d4cdb5fb41bea544f1f3bd9373c2125fd61ddcfba620763c"
+        },
+        {
+          "line": 31,
+          "text": "  const [deleting, setDeleting] = useState(false);",
+          "sha256": "edb960c99a3435e828efab60e4624fbc2e6b54f5e7dfea506d8221a592b3a569"
+        },
+        {
+          "line": 32,
+          "text": "  const [error, setError] = useState(null);",
+          "sha256": "8128b4e9792bc2e665797a984998d38d55d828763caf46b8b48186281d5d7010"
+        },
+        {
+          "line": 33,
+          "text": "  const itemType = isDirectory ? 'directory' : 'file';",
+          "sha256": "14ad74ba1d086e10a151f1b34893b7a5780669e291919979de45cda73c4f6498"
+        },
+        {
+          "line": 34,
+          "text": "  const itemTypeLabel = interfaceText(isDirectory ? 'directory' : 'file');",
+          "sha256": "a3adb52627176ef8571e6e591184083426666e115d2738f82625c64164144e4c"
+        },
+        {
+          "line": 35,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 36,
+          "text": "  const remove = async () => {",
+          "sha256": "a7d32de896eadc2097ffd35232c41083d6ae29995738f07ce4cb34f8a16921e8"
+        },
+        {
+          "line": 37,
+          "text": "    setDeleting(true);",
+          "sha256": "93c28fb9c4e5ac44107c4041d3ce2ecbeece1cebb6192979db7f98a73c152cdf"
+        },
+        {
+          "line": 38,
+          "text": "    setError(null);",
+          "sha256": "b39b3278337793c793a209f4ebd3a7a78eb5295a69a98144584bc13fba491b62"
+        },
+        {
+          "line": 39,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 40,
+          "text": "    try {",
+          "sha256": "5d642f28a5cdc0e7ff346c14538f7665b17969dd19cc7e33169cf5666669d740"
+        },
+        {
+          "line": 41,
+          "text": "      const removeItem = isDirectory ? deleteDirectory : deleteFile;",
+          "sha256": "f3721c87c418deae3cb47019b8809062b47dc483c9bf397865342f8dcb766c84"
+        },
+        {
+          "line": 42,
+          "text": "      await removeItem({ path, root });",
+          "sha256": "1327b85e46ca6667a275ffbd440cbb534ee5504e5d6f7eb54284b0971095ffee"
+        },
+        {
+          "line": 43,
+          "text": "      setOpen(false);",
+          "sha256": "83a81cec0c88a8406a5b5730f08df4c24b2b2e562d0190252da052ce144763eb"
+        },
+        {
+          "line": 44,
+          "text": "      onDeleted({ name: fullName, type: itemType });",
+          "sha256": "8b57bff632dd8e9c1beafc880200b4daeb68dbd14dc0514fe9bd5b52e26bd1ba"
+        },
+        {
+          "line": 45,
+          "text": "    } catch (error_) {",
+          "sha256": "68644c2b54f94cb00f1cefa329597dd44bc562ba595ca03717accad95e0a0ff2"
+        },
+        {
+          "line": 46,
+          "text": "      setError(getErrorMessage(error_, interfaceTextOutput('Unable to delete this {itemType}.', {",
+          "sha256": "cb31de9a135012afae045f0d3e97eddff637b0507f308b23ea253a867ced6544"
+        },
+        {
+          "line": 47,
+          "text": "        itemType: interfaceTextOutput(itemType),",
+          "sha256": "ec5897e06eac00053c8108fbc930f4a801e6a6f751aff066a62d80dde7de0542"
+        }
+      ]
+    },
+    {
+      "path": "src/web/src/components/Player/Visualizer.jsx",
+      "fileBytes": 101527,
+      "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+      "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+      "lineStart": 2409,
+      "lineEnd": 2420,
+      "lines": [
+        {
+          "line": 2409,
+          "text": "              <Popup",
+          "sha256": "adcddaa5e8c3dce7e2a018b8f13bb100a283c0a9d4b31d9c5002dfb4d30c11fc"
+        },
+        {
+          "line": 2410,
+          "text": "                content={interfaceText(\"Enter true fullscreen.\")}",
+          "sha256": "173c74d79801f26036181c79e520c53e3815e9c6ba4ba7a2c2720c7d970dead0"
+        },
+        {
+          "line": 2411,
+          "text": "                trigger={",
+          "sha256": "d57cb46f1b77eafd635b7c5f6b784a5a98e5387f1db79a9c058910fdb30be2ab"
+        },
+        {
+          "line": 2412,
+          "text": "                  <Button",
+          "sha256": "33c2e35f18b5a30c5e21844064a72a70671b6555a52e84cfba539490e8618e64"
+        },
+        {
+          "line": 2413,
+          "text": "                    aria-label={interfaceText(\"Enter fullscreen visualizer\")}",
+          "sha256": "0b3634a0feb2c896f223df85c5f625b27eb83cc405f063f33e2204f2c03862e6"
+        },
+        {
+          "line": 2414,
+          "text": "                    data-testid=\"visualizer-fullscreen\"",
+          "sha256": "485b6e9a2a8c13296544463a9f72e94310ad2f6fc59d03cce4cc46b55ba599bd"
+        },
+        {
+          "line": 2415,
+          "text": "                    icon",
+          "sha256": "c9236a3b990854dee0c0477bf942a5cf21637a9e6d4612b9470c5287001e5e2d"
+        },
+        {
+          "line": 2416,
+          "text": "                    onClick={enterFullscreen}",
+          "sha256": "d0e526fc46ea2a3caae5a504aac66209be340da1554ecacccf2ba8920a567528"
+        },
+        {
+          "line": 2417,
+          "text": "                    size=\"mini\"",
+          "sha256": "6af7e1e16cc704fe79ead9cafd904c61aa53b0cc187fbe5fa05338228b9e26c0"
+        },
+        {
+          "line": 2418,
+          "text": "                   {...interfaceTextProps(\"Enter fullscreen visualizer\")}>",
+          "sha256": "62995f87eddf676f2c4fc702fb7aee6ca34aac0c73a4c7a94749c1ec55b9415e"
+        },
+        {
+          "line": 2419,
+          "text": "                    <Icon name=\"expand\" />",
+          "sha256": "2621125fa319b38354fa8887017f8e197aeea210bd3a19564b43b4637ab48919"
+        },
+        {
+          "line": 2420,
+          "text": "                  </Button>",
+          "sha256": "509e260b25587d00367b4a7d0eef2f09f205384cb221ecfc70254278ba52abc4"
+        }
+      ]
+    }
+  ],
+  "catalogFilePins": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "bytes": 644607,
+      "sha256": "b1d16611acdd86c0817e3f5f9d37581afe003b0b64bb1be55e4d8c010a68c766",
+      "gitBlob": "8ec8dfec7422d98cccacca5c338b79c806247b84"
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "bytes": 559246,
+      "sha256": "d927ad16b734d6e9b9b2bd7f8490e993c5efcc9cf6af97d60d4db90289ad0baf",
+      "gitBlob": "6fe232f0aec422a143c1410d72f95ed365a3d5c4"
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "bytes": 558247,
+      "sha256": "116a98ae874de204069568f98ccf48bb514a44a0f3c276a4aeeebc9a00f3d596",
+      "gitBlob": "5b4a237527ae3249008f4789214467e770629ec2"
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "bytes": 572579,
+      "sha256": "626e78445acbae73c6f186430327deea65f94c6892776cc0897a7dde6dccfd0f",
+      "gitBlob": "ad0b4d95f2f4a7ebe29219ca38f3baab986a1686"
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "bytes": 859201,
+      "sha256": "518d08c6b312f0f1707a081fb8bf04b5e62f53f2ecb906716c6b034ec89b8438",
+      "gitBlob": "9fa9c2d60de988d5607e23c314e05546835d97c2"
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "bytes": 518631,
+      "sha256": "8d9be2b6e94483fce9159beb510cc4ede2f26baef3c836b3d71cd39ebd6efba2",
+      "gitBlob": "94f6db053f87573f0a75c2646d10389c9ca6bf47"
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "bytes": 617528,
+      "sha256": "1c2470e989ad738e5773e67b4315940d2b7ec334b46171bf5da6df3928976bbb",
+      "gitBlob": "e2c589f6a171ad259ba801595038821a2245e7a7"
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "bytes": 554665,
+      "sha256": "2a37bf6d50f64679629e771cd8f410fce494754e4dcbf1b6e2f93feccdd01d02",
+      "gitBlob": "87caf5a2e18bb16dfe5042282d44cdf885501398"
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "bytes": 550082,
+      "sha256": "5d16d57d9551144b43a78e0b01a4123616866833274130cddac19fca3299cbd0",
+      "gitBlob": "cee019ce395ff8e6c47339111eca34b6db408e25"
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "bytes": 599187,
+      "sha256": "acc6c299f86a6d04c93984d67723a6cd31904934dddd282144da2c5488b566a1",
+      "gitBlob": "095a0362971ed68733d9148e20fab9f271e692b6"
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "bytes": 482327,
+      "sha256": "6c11949615a0f924bb7eb0545d8aa96cd8b794eb2236e0a1c861730391eb8bf7",
+      "gitBlob": "4e93492db2816a36af72df7228b657480290006b"
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "bytes": 483771,
+      "sha256": "bdd835dd6ea951961aa0b82527cbb05190d80c4d4cb500d64c6b487dc850effe",
+      "gitBlob": "54ed0d62a7fb24ad33ac05e2d9d131bc5385e991"
+    }
+  ],
+  "scopeNote": "Rank 1999 Enter true fullscreen. is adjacent to a selected caller but outside W81; its translations are supplied only as context and receive no W81 disposition."
+}

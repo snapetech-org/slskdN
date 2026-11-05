@@ -1,0 +1,3 @@
+a0be9c46e87657d73fd7ebf00db7c4f4818f756a68285807c71902c3c095bf6d  PRE-PROPOSAL-SEAL.txt
+0394fbcc273b250e67f242a54d038ca4bf6db543aefbc14643fb74079d5042ca  independent-decisions.jsonl
+80f84dc5566e402391c8486f2ea7e693dc2459283cd9ed7d90095f3d090c335c  independent-pass-summary.json

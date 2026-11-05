@@ -1,0 +1,70 @@
+{
+  "artifact": "slskdN PR #409 W903-W927 cross-review output seal",
+  "schemaVersion": 1,
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "candidateFreeManifestSha256": "0a405f656e91557ca46a5fef38cda826f5d34e9426186c12eba042b02f97167f",
+  "primaryManifestSha256": "4bbb80538e05704a8353746ce5b218c54cf161fd3759070a360e6ccbf5cd7f5b",
+  "blindManifestSha256": "1fec02e24bff6a5e57e33908308a6152100755c9c3cc03560055c1a6584b619d",
+  "independentLedgerSha256": "0394fbcc273b250e67f242a54d038ca4bf6db543aefbc14643fb74079d5042ca",
+  "crossReviewLedgerSha256": "87fb5819c31afcdf04958bd31f908c1263d528ea82c3ffcd4f2d2af23cee9c38",
+  "cellCount": 300,
+  "finalCounts": {
+    "retain-current": 224,
+    "refinement": 14,
+    "correct": 50,
+    "hold": 12
+  },
+  "files": [
+    {
+      "path": "PRE-PROPOSAL-SEAL.txt",
+      "bytes": 152,
+      "sha256": "a0be9c46e87657d73fd7ebf00db7c4f4818f756a68285807c71902c3c095bf6d"
+    },
+    {
+      "path": "PRE-PROPOSAL-SHA256SUMS.txt",
+      "bytes": 278,
+      "sha256": "2344501b2b94130da21c88c040002512a226ca8e5c32cd4f52435f7ba5cd6cd3"
+    },
+    {
+      "path": "build_cross_review.py",
+      "bytes": 23430,
+      "sha256": "a3c3269ff0008427e8cf23a6873f929f38a925c05565415d1a2269db6033e9e6"
+    },
+    {
+      "path": "build_independent_pass.py",
+      "bytes": 14830,
+      "sha256": "6be708fe32f2e799448a25d68166ff829967eb00878a112a6dbd93afa08ce1fa"
+    },
+    {
+      "path": "cross-review-ledger.jsonl",
+      "bytes": 930736,
+      "sha256": "87fb5819c31afcdf04958bd31f908c1263d528ea82c3ffcd4f2d2af23cee9c38"
+    },
+    {
+      "path": "independent-decisions.jsonl",
+      "bytes": 656520,
+      "sha256": "0394fbcc273b250e67f242a54d038ca4bf6db543aefbc14643fb74079d5042ca"
+    },
+    {
+      "path": "independent-pass-summary.json",
+      "bytes": 2093,
+      "sha256": "80f84dc5566e402391c8486f2ea7e693dc2459283cd9ed7d90095f3d090c335c"
+    },
+    {
+      "path": "process-exposure.txt",
+      "bytes": 1184,
+      "sha256": "99a1d7b5f9d903d12213791139888c94918317b8e17c9972ed190612d58d8130"
+    },
+    {
+      "path": "proposal-reconciliation-summary.json",
+      "bytes": 5220,
+      "sha256": "35d960da414a0f1d446c87a727215b5485f80024c15ebb86ee33bd35d7f1b7cb"
+    },
+    {
+      "path": "verify_cross_review.py",
+      "bytes": 10421,
+      "sha256": "64222e24413f84286c26c744419c91d4834f99acb8855f78995fde37eee4e1a8"
+    }
+  ]
+}

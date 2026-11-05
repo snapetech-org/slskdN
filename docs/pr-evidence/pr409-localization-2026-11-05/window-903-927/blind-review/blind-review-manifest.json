@@ -1,0 +1,68 @@
+{
+  "artifact": "Blind independent semantic review of slskdN PR #409 W903-W927",
+  "schemaVersion": 1,
+  "reviewMode": "blind candidate-free source/caller review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "window": "W81",
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "continuationRankRange": [
+    903,
+    927
+  ],
+  "remainingQueueRankRange": [
+    803,
+    827
+  ],
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "inputPath": "../candidate-free/input",
+  "inputTreeSha256": "cef90cf08a4e68e80416b9295835a4dca0a36b62fe35727dd8a03f67bc41de27",
+  "inputManifestSha256": "0a405f656e91557ca46a5fef38cda826f5d34e9426186c12eba042b02f97167f",
+  "inputChecksumFileSha256": "3069af0068d13ce6addaf3f64ca6d3f4384f3f47bf94e41f46ccd3104d3a1002",
+  "inputFileCount": 37,
+  "decisionCounts": {
+    "accept": 239,
+    "correction": 26,
+    "refinement": 35,
+    "hold": 0
+  },
+  "baselineTokenAudit": {
+    "placeholderMismatches": 0,
+    "markupMismatches": 0,
+    "numericMismatches": 0,
+    "protectedLiteralMismatches": 2,
+    "independentAdditionalLiteralFindings": [
+      "rank 918: Hash B field label translated instead of preserving Latin B in ar and hi",
+      "rank 921: canonical sample identifier localized or reformatted in es, hi, id, zh-Hans, zh-Hant",
+      "rank 927: SongID transliterated in hi"
+    ]
+  },
+  "liveRefsIndependentlyRechecked": false,
+  "repositoryOrWorktreeInspected": false,
+  "prBodyInspected": false,
+  "externalSourcesUsed": false,
+  "browserReviewClaimed": false,
+  "nativeSpeakerSignoffClaimed": false,
+  "reviewerNote": "All target judgments are an offline blind review. Locale recommendations are editorial proposals, not native-speaker certification.",
+  "ledgerSha256": "a47f863e5ff506e9bc76573721e9cbe4954328782f778ce80029697bad662812",
+  "verifierSha256": "49e7eb571481fe6ac5d388f8865d12fdca3349a68959f86c4f67e1e80171b16c",
+  "readmeSha256": "c85f7e9325ff339ef00d1ea97ddf02dfecc17cd58800a4d2477b9a228869b25c",
+  "cellStructuralSignatureAlgorithm": "SHA-256 of canonical UTF-8 JSON over head/tree, ranks, source identity/text/hash, locale, catalog identity/pins, caller refs/context hash, and current target hash."
+}

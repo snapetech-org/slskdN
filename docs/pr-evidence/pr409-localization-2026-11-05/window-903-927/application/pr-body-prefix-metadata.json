@@ -1,0 +1,14 @@
+{
+  "pr": 409,
+  "capturedAtUtc": "2026-11-05",
+  "headSha": "868f93ef2ec8a242ff65d5da6f438633fc0fc152",
+  "headBranch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "baseBranch": "main",
+  "state": "open",
+  "draft": true,
+  "merged": false,
+  "bodyUtf8Bytes": 109460,
+  "bodySha256": "c90e3ef7516b4216b23a781887b1283677caaec68248246240d0a14dc449945d",
+  "prefixFile": "pr-body-prefix-before-w903.txt",
+  "prefixRequirement": "The full saved body must remain an exact byte prefix of the post-append PR body."
+}

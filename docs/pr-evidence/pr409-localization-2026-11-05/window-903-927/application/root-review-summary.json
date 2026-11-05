@@ -1,0 +1,9 @@
+{
+  "rootReviewArtifact": "root-manual-review/review.json",
+  "crossReviewLedgerSha256": "87fb5819c31afcdf04958bd31f908c1263d528ea82c3ffcd4f2d2af23cee9c38",
+  "selectedTargetCount": 64,
+  "retainedCount": 224,
+  "holdCount": 12,
+  "rank910SourceRewritePacket": "rank-910-richtext-review/",
+  "rank910SourceAndCallerPinsNeedReattestationAtFinalHead": true
+}

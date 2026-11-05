@@ -1,0 +1,16 @@
+{
+  "artifact": "slskdN PR #409 W81 application readback",
+  "headBefore": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "productCommit": "868f93ef2ec8a242ff65d5da6f438633fc0fc152",
+  "productTree": "c91b89d18b4fcc76e64733fca23a7881088e8eaf",
+  "cellCount": 300,
+  "selectedApplied": 64,
+  "acceptedCurrentRetained": 224,
+  "rank910HeldUnchanged": 12,
+  "catalogCount": 12,
+  "catalogKeyCountEach": 6176,
+  "catalogKeyOrderPreserved": true,
+  "sourceCallerFilesChanged": false,
+  "workflowFilesChanged": false,
+  "testsBuildsScansRun": false
+}

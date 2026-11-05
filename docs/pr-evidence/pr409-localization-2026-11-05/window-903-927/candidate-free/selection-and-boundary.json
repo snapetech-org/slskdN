@@ -1,0 +1,47 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W81",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "candidateFree": true,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "sourceCount": 25,
+  "cellCount": 300,
+  "continuationRankRange": [
+    903,
+    927
+  ],
+  "remainingQueueRankRange": [
+    803,
+    827
+  ],
+  "previousWindow": "W80",
+  "previousWindowFinalContinuationRank": 902,
+  "previousWindowFinalSourceId": "src_33cc9fde1cc293be",
+  "firstSelectedSourceId": "src_33d5f66ad02dfda9",
+  "nextUnselectedContinuationRank": 928,
+  "nextUnselectedSourceId": "src_34d377003cda3603",
+  "orderedCatalogKeySha256": "1570ba239a61854e99e769213e87250c3c2151ff0d63442895482e748ad64087",
+  "catalogEntryCountPerLocale": 6176,
+  "priorSelectedIdsExcluded": 1982,
+  "priorHeldCellsReattested": 382,
+  "priorHoldResolutionHistoryRows": 13,
+  "priorAppliedTargetsReattested": 190,
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false
+}

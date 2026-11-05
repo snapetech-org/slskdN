@@ -1,0 +1,50 @@
+{
+  "artifact": "slskdN PR #409 rank 910 blind translation/review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "sourceId": "src_c04ff600b79f3317",
+  "sourceSha256": "c04ff600b79f3317398c9834ded6c626b42c382a13ff9fea086f0ebd72c53353",
+  "cellCount": 12,
+  "locales": [
+    "es",
+    "zh-Hans",
+    "hi",
+    "de",
+    "ja",
+    "fr",
+    "pt-BR",
+    "ar",
+    "ko",
+    "zh-Hant",
+    "vi",
+    "id"
+  ],
+  "expectedPlaceholders": {
+    "mode": 1,
+    "signature": 1
+  },
+  "placeholderMismatches": 0,
+  "modeLiteral": "Enforce preserved exactly as a caller-owned LTR mode value; conservative inference because enum declaration is outside supplied excerpt",
+  "protectedCode": "ed25519:<base64 signature> is a caller-owned LTR bdi/code node outside translated catalogs",
+  "holdCount": 0,
+  "confidenceByLocale": {
+    "es": "moderate",
+    "zh-Hans": "moderate",
+    "hi": "low",
+    "de": "moderate",
+    "ja": "moderate",
+    "fr": "moderate",
+    "pt-BR": "moderate",
+    "ar": "moderate",
+    "ko": "moderate",
+    "zh-Hant": "moderate",
+    "vi": "moderate",
+    "id": "moderate"
+  },
+  "overallConfidence": "moderate for markup-safe source rewrite and interpolation; low for Hindi pending native-speaker review",
+  "browserReview": false,
+  "nativeSpeakerSignoff": false,
+  "catalogOnlyHeadAdvanceNote": "MediaCorePods.jsx and LocalizedText.jsx file SHA-256 values and git blobs are pinned. Commits changing only locale JSON files will preserve those file pins, but change the PR head/tree; reattest both blobs and full caller/context before applying any source change."
+}

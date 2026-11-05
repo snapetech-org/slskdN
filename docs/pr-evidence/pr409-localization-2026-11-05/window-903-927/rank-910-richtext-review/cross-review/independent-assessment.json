@@ -1,0 +1,17 @@
+{
+  "artifact": "slskdN rank 910 independent pre-proposal cross-review assessment",
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "candidateFreeInputSha256": "f5a8adf0f505bb32d8235f9ea9034aa61c926f974257e0afd14c99b94bacdcb3",
+  "proposedSourceId": "src_c04ff600b79f3317",
+  "proposedSourceSha256": "c04ff600b79f3317398c9834ded6c626b42c382a13ff9fea086f0ebd72c53353",
+  "independentSourceDecision": "accept-with-mode-literal-caveat",
+  "sourceMeaningAssessment": "The rewrite keeps the Enforce-mode condition, the required ed25519 signature format, the canonical join/leave payload, and the supplied public key. “Verifiable against the payload using the public key” makes the key/payload roles more explicit than the split source sentence. It is a faithful clarification of the intended verification requirement, with moderate confidence.",
+  "modeLiteralAssessment": "Preserving Enforce exactly is conservative because the pinned source capitalizes it as a mode name. The supplied excerpt does not show an enum or its localization policy, so its status as a formal product literal is unverified. Keep the text isolated as an LTR runtime value, and record this as an inference pending fuller caller/product evidence.",
+  "runtimeAssessment": "The pinned LocalizedRichText implementation splits translated text on named placeholders and inserts non-string React-node values as React children. It derives outer direction from the translated source; child bdi elements force LTR for Enforce and the ed25519 sample. Translators can place {mode} and {signature} in locale-appropriate order without translating or corrupting either node. This supports Arabic RTL layout.",
+  "rtlAssessment": "The Arabic sentence may flow RTL around embedded LTR nodes; each technical node remains isolated with dir=\"ltr\". The code element is nested inside an LTR bdi, which should keep punctuation and the angle-bracket sample together.",
+  "independentLocaleTargetReview": "Not yet performed; translation proposals have not been opened.",
+  "confidence": "moderate for source meaning and interpolation design; low/unknown for whether Enforce is formally an opaque enum literal.",
+  "browserReview": false,
+  "nativeSpeakerSignoff": false
+}

@@ -1,0 +1,47 @@
+{
+  "artifact": "slskdN PR #409 rank 910 rich-text rewrite cross-review",
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "sourceId": "src_c04ff600b79f3317",
+  "sourceSha256": "c04ff600b79f3317398c9834ded6c626b42c382a13ff9fea086f0ebd72c53353",
+  "candidateFreeInputSha256": "f5a8adf0f505bb32d8235f9ea9034aa61c926f974257e0afd14c99b94bacdcb3",
+  "independentAssessmentSha256": "c4a34c67c128334c3c30a9382258439cc3abaab0a13ed5c5084edb07fc6834bf",
+  "independentSealSha256": "cea42a0e7bae1f7c5186c6dee1c07836b223f4a67023274ca16f0de8799698ba",
+  "translationProposalSha256": "19e286489e34dc83c6dc63dcff4b976821db4bbb751f7fb96488f9c97d18f7fd",
+  "cellCount": 12,
+  "localeOrder": [
+    "es",
+    "zh-Hans",
+    "hi",
+    "de",
+    "ja",
+    "fr",
+    "pt-BR",
+    "ar",
+    "ko",
+    "zh-Hant",
+    "vi",
+    "id"
+  ],
+  "counts": {
+    "accept": 12,
+    "hold": 0
+  },
+  "confidenceCounts": {
+    "moderate": 11,
+    "low": 1
+  },
+  "lowConfidenceLocales": [
+    "hi"
+  ],
+  "sourceMeaning": "Accept with moderate confidence: the source retains Enforce mode, ed25519 signature format, canonical membership payload, and supplied public-key verification. The proposal makes payload/key roles explicit.",
+  "interpolation": "Accept: LocalizedRichText supports inserting React-node values at named placeholders; translators can reorder them. Each technical node is bdi dir=ltr, so the Arabic translation can flow RTL around both nodes.",
+  "modeTermCaveat": "The pinned excerpt capitalizes Enforce as a mode label but does not include the enum declaration or localization policy. Preserving Enforce as a caller-owned literal is conservative but unverified; confirm the mode-label policy before application and do not represent this as enum-verified.",
+  "translationReview": "All 12 blind target proposals pass the cross review for meaning, one {mode} and one {signature} placeholder, and exact target hashes. Hindi is low confidence and needs native-speaker validation.",
+  "browserReview": false,
+  "nativeSpeakerSignoff": false,
+  "repositoryOrWorktreeInspected": false,
+  "prBodyInspected": false,
+  "externalSourcesUsed": false,
+  "catalogOrPullRequestEdited": false
+}
