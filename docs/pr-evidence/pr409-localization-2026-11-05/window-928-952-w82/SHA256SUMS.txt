@@ -1,4 +1,4 @@
-44364edb6051f34dfd116b54348bb87a296557547de8eee98347f37d9374f763  ./README.md
+938bd6f25b30f7e87af0ea2a5c68b564877a903271986a0ab3a42061cf759b3c  ./README.md
 15a00128cb7b682f863284610f50e082e6f2396a04e6bd4f01cbecd75958d507  ./blind-review/README.md
 d5d6f0c9b710dfd3001679df643ea6b28adb5d4d65e15e744ca310476924c61b  ./blind-review/blind-ledger.jsonl
 6bee3af134afe77d1d374013934a8e8e328d4eddda9bf859937ab4a826f9d3b3  ./blind-review/blind-manifest.json
@@ -31,6 +31,13 @@ f915f5b9610d0154e9100d9d5b5735f4191040c64fbf0a874474bfd195d5f2b8  ./candidate-fr
 2a4edeca71ad3e35098fd85068bfb5d27578d0f5e6d5a72f126f494fa07a1b1c  ./cross-review/cross-ledger.jsonl
 98063da9aeaee756a380f86bf61e7b5033666a884fe53e6c3b3619671fa90cef  ./cross-review/cross-review-summary.json
 3db89f8bb5c4a5419f180e40dbc010a685643e6bd2a184199bbbeff27d2f51c1  ./cross-review/verify_cross_review.py
+004817d37a55d2d8d71183772b707e23732686282485faa0473f8334bb4f178f  ./delivery/body-prefix-proof-before.json
+ba2ba57fbc6828ba629ac245e2f70c1bf5b84524be086962aa001f3824e230b1  ./delivery/body-prefix-verification-after.json
+c3beda9d51b00e8d7d4c11218ba2058109e743be9cca7760803eaab7c86c6a4b  ./delivery/pr-body-after.txt
+c3beda9d51b00e8d7d4c11218ba2058109e743be9cca7760803eaab7c86c6a4b  ./delivery/pr-body-expected.txt
+cd021dc25cacd125332046b4019607683bd056d8bf6d5dc7d8bf624af81fb54e  ./delivery/pr-body-original.txt
+3c97cb287596086738715855b4cf21e840d7a1a7c81b70ec7c7608d250f9884c  ./delivery/pr-body-suffix.md
+743b38952007027bb9e59e7f4bc82ca7c18d771d1bd8a0869f808714ce176f94  ./delivery/pr-metadata-after.json
 a6f659564e32fa389af3a47db3520ad35215b161b8cb2c9ad77b2e678a98937f  ./primary-review/README.md
 4e1e8115a7b8504bc718bd7394a32208fa73df6a2fb003391a292dc9615c722e  ./primary-review/build_primary.py
 2f4213f72434f38a9b3c4aa182f978b6765559c1c68058cc18c27d81921b2519  ./primary-review/corrections.jsonl

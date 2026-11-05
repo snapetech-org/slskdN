@@ -1,0 +1,14 @@
+{
+  "pr": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "open",
+  "isDraft": true,
+  "headSha": "6d169ea1caeb6ea6a1b1aae4c6adf6cad985128d",
+  "actualBytes": 113135,
+  "actualSha256": "c3beda9d51b00e8d7d4c11218ba2058109e743be9cca7760803eaab7c86c6a4b",
+  "expectedBytes": 113135,
+  "expectedSha256": "c3beda9d51b00e8d7d4c11218ba2058109e743be9cca7760803eaab7c86c6a4b",
+  "actualMatchesExpected": true,
+  "originalBytes": 112279,
+  "originalSha256": "cd021dc25cacd125332046b4019607683bd056d8bf6d5dc7d8bf624af81fb54e",
+  "originalIsExactPrefix": true
+}

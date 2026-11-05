@@ -18,6 +18,6 @@ Product commit `807e0f1b6b21f8783483224aac01c159ccac08a5` changes exactly the 12
 
 ## Evidence and validation
 
-`candidate-free/`, `primary-review/`, `blind-review/`, `cross-review/`, and `root-application/` retain sealed review inputs, hash-bound ledgers, the exact application plan, full-window readback, and portable verifiers. `SHA256SUMS.txt` covers every file in this directory except itself.
+`candidate-free/`, `primary-review/`, `blind-review/`, `cross-review/`, and `root-application/` retain sealed review inputs, hash-bound ledgers, the exact application plan, full-window readback, and portable verifiers. `delivery/` records the original PR body, exact appended suffix, API readback, and prefix proof: the original 112,279-byte body remains the exact prefix of the 113,135-byte open, draft body. `SHA256SUMS.txt` covers every file in this directory except itself.
 
 This is moderate-confidence machine review, not native-speaker or browser approval. No tests, builds, scans, CI dispatches, workflow edits, merges, releases, or tags were made. The PR remains open and draft. The next continuation window is ranks 953–977 (remaining-queue ranks 853–877), beginning with source `src_358f9860b3f4e247`.
