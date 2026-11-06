@@ -1,0 +1,60 @@
+{
+  "artifact": "slskdN PR #409 W78 ranks 828-852 independent cross-audit",
+  "schemaVersion": 1,
+  "window": "W78",
+  "continuationRankRange": [
+    828,
+    852
+  ],
+  "remainingQueueRankRange": [
+    728,
+    752
+  ],
+  "head": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "tree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "primaryDecisionCounts": {
+    "accept-current": 232,
+    "correct": 56,
+    "hold": 12
+  },
+  "blindDecisionCounts": {
+    "hold": 12,
+    "keep": 254,
+    "propose": 34
+  },
+  "crossDecisionCounts": {
+    "hold": 12,
+    "keep": 225,
+    "propose": 63
+  },
+  "selectedProposalCount": 63,
+  "noOpCount": 225,
+  "unresolvedHoldCount": 12,
+  "callerlessHoldCount": 12,
+  "selectedTokenMismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "candidateFreeCurrentTokenMismatchCounts": {
+    "protectedLiteral": 1
+  },
+  "priorHeldCellsCarried": 331,
+  "priorHeldTargetHashesAllMatch": true,
+  "priorHeldCallerEvidenceUnchanged": 331,
+  "priorHeldCallerEvidenceChanged": 0,
+  "priorHoldResolutionHistoryRows": 13,
+  "sourceIdsWithPriorHoldLineageOverlap": 0,
+  "liveRefsMatchPin": true,
+  "sourceWorktreeHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "sourceWorktreeTree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "sourceWorktreeClean": true,
+  "appliedToRepository": false,
+  "repositoryOrPrEdited": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false
+}

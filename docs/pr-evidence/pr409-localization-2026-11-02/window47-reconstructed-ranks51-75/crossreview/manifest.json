@@ -1,0 +1,68 @@
+{
+  "allSevenHeadTreeSnapshots": {
+    "endSnapshotSha256": "fe1d8741116a2516444bbdbde4e681708bd35aeac2456546fb8b4aa63b4b981f",
+    "endUtc": [
+      "2026-11-02T22:18:12.662157+00:00",
+      "2026-11-02T22:18:14.253802+00:00"
+    ],
+    "startSnapshotSha256": "a48ad885be8b25624fcacee783add00d507a6e394bf8687aec8d3de186b1c8d7",
+    "startUtc": [
+      "2026-11-02T22:13:13.256367+00:00",
+      "2026-11-02T22:13:14.144176+00:00"
+    ],
+    "unchanged": true
+  },
+  "cellCount": 300,
+  "contents": [
+    {
+      "bytes": 4194,
+      "path": "README.md",
+      "sha256": "eaf83990aa05067f2c273600b0d6f877c56aed189722a7e15bee1d759d03f40e"
+    },
+    {
+      "bytes": 634568,
+      "path": "crossreview-ledger.jsonl",
+      "sha256": "ece3cabbd4b4acf1b937a668691be4374da01a34f14dae31b674a1edb9c2f571"
+    },
+    {
+      "bytes": 2387,
+      "path": "crossreview-summary.json",
+      "sha256": "b47195f1b452795d05787ea99579b91a00fa8feb62cce0c42bf4baaaa913b3d2"
+    },
+    {
+      "bytes": 5172,
+      "path": "input-reattestation.json",
+      "sha256": "9ef26f9627c01c02639f7dfe2658243cf4f1ea814774750fc9d81c68a36125dc"
+    },
+    {
+      "bytes": 9376,
+      "path": "missed-items.jsonl",
+      "sha256": "7b5705c78c9a680b6179c25d9fdc03537e851a122c0458b50edc8b0c4466ce8f"
+    },
+    {
+      "bytes": 6830,
+      "path": "runtime-gap-crossreview.jsonl",
+      "sha256": "bea5a961e9993bddc9f1feb7610236b8ff059accd9ab512bddea9c904ecb6a85"
+    },
+    {
+      "bytes": 8032,
+      "path": "snapshots/end-all-seven-pr-heads.json",
+      "sha256": "fe1d8741116a2516444bbdbde4e681708bd35aeac2456546fb8b4aa63b4b981f"
+    },
+    {
+      "bytes": 8034,
+      "path": "snapshots/start-all-seven-pr-heads.json",
+      "sha256": "a48ad885be8b25624fcacee783add00d507a6e394bf8687aec8d3de186b1c8d7"
+    }
+  ],
+  "exactHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "exactTree": "a0946207555e494a558707008ba051013964b447",
+  "nativeSpeakerApproval": false,
+  "primaryPacketSha256SumsFileSha256": "ec371ba11c72bf55a74613099efb87eb8133d7034d95edd7425ceed2efff9488",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "task": "Independent cross-review of slskdN PR #409 W47 primary review",
+  "window": "W47 reconstructed pending stable-ID ranks 51–75; historical source ordinal unavailable"
+}

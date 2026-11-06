@@ -1,0 +1,300 @@
+{"id":"es:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"zh-Hans:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"hi:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"de:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"ja:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"fr:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"pt-BR:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"ar:src_daec6ecec51e98a5","verdict":"correct","target":"يرسل رسائل بود","confidence":"high","reason":"Arabic جراب means a pouch/container; بود preserves the technical network entity Pod."}
+{"id":"ko:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"zh-Hant:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"vi:src_daec6ecec51e98a5","verdict":"correct","target":"Gửi tin nhắn Pod","confidence":"high","reason":"Pod is a network entity; nhóm changes this to group messages."}
+{"id":"id:src_daec6ecec51e98a5","verdict":"keep"}
+{"id":"es:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"zh-Hans:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"hi:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"de:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"ja:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"fr:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"pt-BR:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"ar:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"ko:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"zh-Hant:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"vi:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"id:src_daee7606b339f3c3","verdict":"keep"}
+{"id":"es:src_daeee98f77070b40","verdict":"keep"}
+{"id":"zh-Hans:src_daeee98f77070b40","verdict":"keep"}
+{"id":"hi:src_daeee98f77070b40","verdict":"keep"}
+{"id":"de:src_daeee98f77070b40","verdict":"keep"}
+{"id":"ja:src_daeee98f77070b40","verdict":"keep"}
+{"id":"fr:src_daeee98f77070b40","verdict":"keep"}
+{"id":"pt-BR:src_daeee98f77070b40","verdict":"keep"}
+{"id":"ar:src_daeee98f77070b40","verdict":"keep"}
+{"id":"ko:src_daeee98f77070b40","verdict":"keep"}
+{"id":"zh-Hant:src_daeee98f77070b40","verdict":"keep"}
+{"id":"vi:src_daeee98f77070b40","verdict":"keep"}
+{"id":"id:src_daeee98f77070b40","verdict":"keep"}
+{"id":"es:src_db21ca961da0193a","verdict":"keep"}
+{"id":"zh-Hans:src_db21ca961da0193a","verdict":"keep"}
+{"id":"hi:src_db21ca961da0193a","verdict":"keep"}
+{"id":"de:src_db21ca961da0193a","verdict":"keep"}
+{"id":"ja:src_db21ca961da0193a","verdict":"keep"}
+{"id":"fr:src_db21ca961da0193a","verdict":"keep"}
+{"id":"pt-BR:src_db21ca961da0193a","verdict":"keep"}
+{"id":"ar:src_db21ca961da0193a","verdict":"keep"}
+{"id":"ko:src_db21ca961da0193a","verdict":"keep"}
+{"id":"zh-Hant:src_db21ca961da0193a","verdict":"keep"}
+{"id":"vi:src_db21ca961da0193a","verdict":"keep"}
+{"id":"id:src_db21ca961da0193a","verdict":"keep"}
+{"id":"es:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"zh-Hans:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"hi:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"de:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"ja:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"fr:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"pt-BR:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"ar:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"ko:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"zh-Hant:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"vi:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"id:src_db4cee2b6eee6372","verdict":"keep"}
+{"id":"es:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"zh-Hans:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"hi:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"de:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"ja:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"fr:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"pt-BR:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"ar:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"ko:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"zh-Hant:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"vi:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"id:src_db59e0d157eeb776","verdict":"keep"}
+{"id":"es:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"zh-Hans:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"hi:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"de:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"ja:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"fr:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"pt-BR:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"ar:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"ko:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"zh-Hant:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"vi:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"id:src_db79aaef7be625bc","verdict":"keep"}
+{"id":"es:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"zh-Hans:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"hi:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"de:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"ja:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"fr:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"pt-BR:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"ar:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"ko:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"zh-Hant:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"vi:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"id:src_db9d7f5a6ed28278","verdict":"keep"}
+{"id":"es:src_dbb8255950313817","verdict":"keep"}
+{"id":"zh-Hans:src_dbb8255950313817","verdict":"keep"}
+{"id":"hi:src_dbb8255950313817","verdict":"keep"}
+{"id":"de:src_dbb8255950313817","verdict":"keep"}
+{"id":"ja:src_dbb8255950313817","verdict":"keep"}
+{"id":"fr:src_dbb8255950313817","verdict":"keep"}
+{"id":"pt-BR:src_dbb8255950313817","verdict":"keep"}
+{"id":"ar:src_dbb8255950313817","verdict":"keep"}
+{"id":"ko:src_dbb8255950313817","verdict":"keep"}
+{"id":"zh-Hant:src_dbb8255950313817","verdict":"keep"}
+{"id":"vi:src_dbb8255950313817","verdict":"keep"}
+{"id":"id:src_dbb8255950313817","verdict":"keep"}
+{"id":"es:src_dbcd5e7bb7a0f538","verdict":"correct","target":"Claro","confidence":"high","reason":"The source is the Light UI theme option; Luz names illumination rather than a light color theme."}
+{"id":"zh-Hans:src_dbcd5e7bb7a0f538","verdict":"correct","target":"浅色","confidence":"high","reason":"The source is the Light UI theme option; 光 names illumination rather than a light color theme."}
+{"id":"hi:src_dbcd5e7bb7a0f538","verdict":"correct","target":"लाइट","confidence":"high","reason":"The source is the Light UI theme option; रोशनी names illumination. लाइट is the established theme-label loan."}
+{"id":"de:src_dbcd5e7bb7a0f538","verdict":"correct","target":"Hell","confidence":"high","reason":"The source is the Light UI theme option; Hell names a bright/light theme, while Licht names illumination."}
+{"id":"ja:src_dbcd5e7bb7a0f538","verdict":"keep"}
+{"id":"fr:src_dbcd5e7bb7a0f538","verdict":"correct","target":"Clair","confidence":"high","reason":"The source is the Light UI theme option; Clair names the light color theme, while Lumière names illumination."}
+{"id":"pt-BR:src_dbcd5e7bb7a0f538","verdict":"correct","target":"Claro","confidence":"high","reason":"The source is the Light UI theme option; Claro names the light color theme, while Luz names illumination."}
+{"id":"ar:src_dbcd5e7bb7a0f538","verdict":"correct","target":"فاتح","confidence":"high","reason":"The source is the Light UI theme option; فاتح names a light color theme, while ضوء names illumination."}
+{"id":"ko:src_dbcd5e7bb7a0f538","verdict":"correct","target":"라이트","confidence":"high","reason":"The source is the Light UI theme option; 라이트 is the conventional theme label, while 빛 names illumination."}
+{"id":"zh-Hant:src_dbcd5e7bb7a0f538","verdict":"correct","target":"淺色","confidence":"high","reason":"The source is the Light UI theme option; 光 names illumination rather than a light color theme."}
+{"id":"vi:src_dbcd5e7bb7a0f538","verdict":"correct","target":"Sáng","confidence":"high","reason":"The source is the Light UI theme option; Sáng names the bright/light theme, while Ánh sáng names illumination."}
+{"id":"id:src_dbcd5e7bb7a0f538","verdict":"correct","target":"Terang","confidence":"high","reason":"The source is the Light UI theme option; Terang describes a bright/light theme, while Lampu means a lamp."}
+{"id":"es:src_dbd3306ada131909","verdict":"keep"}
+{"id":"zh-Hans:src_dbd3306ada131909","verdict":"keep"}
+{"id":"hi:src_dbd3306ada131909","verdict":"keep"}
+{"id":"de:src_dbd3306ada131909","verdict":"keep"}
+{"id":"ja:src_dbd3306ada131909","verdict":"keep"}
+{"id":"fr:src_dbd3306ada131909","verdict":"keep"}
+{"id":"pt-BR:src_dbd3306ada131909","verdict":"keep"}
+{"id":"ar:src_dbd3306ada131909","verdict":"keep"}
+{"id":"ko:src_dbd3306ada131909","verdict":"keep"}
+{"id":"zh-Hant:src_dbd3306ada131909","verdict":"keep"}
+{"id":"vi:src_dbd3306ada131909","verdict":"keep"}
+{"id":"id:src_dbd3306ada131909","verdict":"keep"}
+{"id":"es:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"zh-Hans:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"hi:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"de:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"ja:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"fr:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"pt-BR:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"ar:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"ko:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"zh-Hant:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"vi:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"id:src_dbe120d692f63b6f","verdict":"keep"}
+{"id":"es:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"zh-Hans:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"hi:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"de:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"ja:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"fr:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"pt-BR:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"ar:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"ko:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"zh-Hant:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"vi:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"id:src_dbf813eb0a0fcc09","verdict":"keep"}
+{"id":"es:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"zh-Hans:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"hi:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"de:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"ja:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"fr:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"pt-BR:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"ar:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"ko:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"zh-Hant:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"vi:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"id:src_dc17351d51c0fe57","verdict":"keep"}
+{"id":"es:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"zh-Hans:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"hi:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"de:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"ja:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"fr:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"pt-BR:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"ar:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"ko:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"zh-Hant:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"vi:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"id:src_dc20b3d5d2cddf82","verdict":"keep"}
+{"id":"es:src_dc273117482b4429","verdict":"keep"}
+{"id":"zh-Hans:src_dc273117482b4429","verdict":"keep"}
+{"id":"hi:src_dc273117482b4429","verdict":"keep"}
+{"id":"de:src_dc273117482b4429","verdict":"keep"}
+{"id":"ja:src_dc273117482b4429","verdict":"keep"}
+{"id":"fr:src_dc273117482b4429","verdict":"keep"}
+{"id":"pt-BR:src_dc273117482b4429","verdict":"keep"}
+{"id":"ar:src_dc273117482b4429","verdict":"keep"}
+{"id":"ko:src_dc273117482b4429","verdict":"keep"}
+{"id":"zh-Hant:src_dc273117482b4429","verdict":"keep"}
+{"id":"vi:src_dc273117482b4429","verdict":"keep"}
+{"id":"id:src_dc273117482b4429","verdict":"keep"}
+{"id":"es:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"zh-Hans:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"hi:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"de:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"ja:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"fr:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"pt-BR:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"ar:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"ko:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"zh-Hant:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"vi:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"id:src_dc380888c4e2c776","verdict":"keep"}
+{"id":"es:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"zh-Hans:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"hi:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"de:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"ja:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"fr:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"pt-BR:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"ar:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"ko:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"zh-Hant:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"vi:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"id:src_dc5277599f2c6bf7","verdict":"keep"}
+{"id":"es:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"zh-Hans:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"hi:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"de:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"ja:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"fr:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"pt-BR:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"ar:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"ko:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"zh-Hant:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"vi:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"id:src_dc53f4237cf562d9","verdict":"keep"}
+{"id":"es:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"zh-Hans:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"hi:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"de:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"ja:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"fr:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"pt-BR:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"ar:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"ko:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"zh-Hant:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"vi:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"id:src_dc84d82ebea46598","verdict":"keep"}
+{"id":"es:src_dc887156e0175758","verdict":"keep"}
+{"id":"zh-Hans:src_dc887156e0175758","verdict":"keep"}
+{"id":"hi:src_dc887156e0175758","verdict":"keep"}
+{"id":"de:src_dc887156e0175758","verdict":"keep"}
+{"id":"ja:src_dc887156e0175758","verdict":"keep"}
+{"id":"fr:src_dc887156e0175758","verdict":"keep"}
+{"id":"pt-BR:src_dc887156e0175758","verdict":"keep"}
+{"id":"ar:src_dc887156e0175758","verdict":"keep"}
+{"id":"ko:src_dc887156e0175758","verdict":"keep"}
+{"id":"zh-Hant:src_dc887156e0175758","verdict":"keep"}
+{"id":"vi:src_dc887156e0175758","verdict":"keep"}
+{"id":"id:src_dc887156e0175758","verdict":"keep"}
+{"id":"es:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"zh-Hans:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"hi:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"de:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"ja:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"fr:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"pt-BR:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"ar:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"ko:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"zh-Hant:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"vi:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"id:src_dca67c5c12d871a6","verdict":"keep"}
+{"id":"es:src_dc937b59892604f5","verdict":"keep"}
+{"id":"zh-Hans:src_dc937b59892604f5","verdict":"keep"}
+{"id":"hi:src_dc937b59892604f5","verdict":"keep"}
+{"id":"de:src_dc937b59892604f5","verdict":"keep"}
+{"id":"ja:src_dc937b59892604f5","verdict":"keep"}
+{"id":"fr:src_dc937b59892604f5","verdict":"keep"}
+{"id":"pt-BR:src_dc937b59892604f5","verdict":"keep"}
+{"id":"ar:src_dc937b59892604f5","verdict":"correct","target":"لا شيء","confidence":"high","reason":"In these contexts None is the absence of a value/state; لا أحد means 'nobody'."}
+{"id":"ko:src_dc937b59892604f5","verdict":"keep"}
+{"id":"zh-Hant:src_dc937b59892604f5","verdict":"keep"}
+{"id":"vi:src_dc937b59892604f5","verdict":"keep"}
+{"id":"id:src_dc937b59892604f5","verdict":"keep"}
+{"id":"es:src_dbee8fc434cf3e45","verdict":"correct","target":"Lista compartida","confidence":"high","reason":"This key names a ShareList collection type, not the command 'share list'."}
+{"id":"zh-Hans:src_dbee8fc434cf3e45","verdict":"correct","target":"共享列表","confidence":"high","reason":"This key names a ShareList collection type; 共享列表 is the noun for a shared list."}
+{"id":"hi:src_dbee8fc434cf3e45","verdict":"correct","target":"साझा सूची","confidence":"high","reason":"This key names a ShareList collection type, not the command 'share a list'."}
+{"id":"de:src_dbee8fc434cf3e45","verdict":"keep"}
+{"id":"ja:src_dbee8fc434cf3e45","verdict":"keep"}
+{"id":"fr:src_dbee8fc434cf3e45","verdict":"correct","target":"Liste partagée","confidence":"high","reason":"This key names a ShareList collection type, not the command 'share the list'."}
+{"id":"pt-BR:src_dbee8fc434cf3e45","verdict":"keep"}
+{"id":"ar:src_dbee8fc434cf3e45","verdict":"keep"}
+{"id":"ko:src_dbee8fc434cf3e45","verdict":"keep"}
+{"id":"zh-Hant:src_dbee8fc434cf3e45","verdict":"correct","target":"共享清單","confidence":"high","reason":"This key names a ShareList collection type; 共享清單 is the noun for a shared list."}
+{"id":"vi:src_dbee8fc434cf3e45","verdict":"correct","target":"Danh sách được chia sẻ","confidence":"high","reason":"This key names a ShareList collection type, not the command 'share the list'."}
+{"id":"id:src_dbee8fc434cf3e45","verdict":"correct","target":"Daftar yang dibagikan","confidence":"high","reason":"This key names a ShareList collection type, not the command 'share the list'."}
+{"id":"es:src_db40e9a8ef94cdbb","verdict":"correct","target":"Transportes disponibles","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"zh-Hans:src_db40e9a8ef94cdbb","verdict":"correct","target":"可用传输","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"hi:src_db40e9a8ef94cdbb","verdict":"correct","target":"उपलब्ध ट्रांसपोर्ट","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"de:src_db40e9a8ef94cdbb","verdict":"correct","target":"Verfügbare Transportwege","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"ja:src_db40e9a8ef94cdbb","verdict":"correct","target":"利用可能なトランスポート","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"fr:src_db40e9a8ef94cdbb","verdict":"correct","target":"Transports disponibles","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"pt-BR:src_db40e9a8ef94cdbb","verdict":"correct","target":"Transportes disponíveis","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"ar:src_db40e9a8ef94cdbb","verdict":"correct","target":"وسائل النقل المتاحة","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"ko:src_db40e9a8ef94cdbb","verdict":"correct","target":"사용 가능한 전송 방식","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"zh-Hant:src_db40e9a8ef94cdbb","verdict":"correct","target":"可用傳輸","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"vi:src_db40e9a8ef94cdbb","verdict":"correct","target":"Các phương thức truyền tải khả dụng","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}
+{"id":"id:src_db40e9a8ef94cdbb","verdict":"correct","target":"Transport yang tersedia","confidence":"high","reason":"The UI displays AvailableTransports/TotalTransports; Up means available, not upward motion."}

@@ -1,0 +1,20 @@
+{
+  "review": "W55 exact-head product-browser acceptance",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestState": "OPEN",
+  "isDraft": true,
+  "reviewedHead": "105505001bb4193d83519b8d7016ef8cf1df4652",
+  "reviewedTree": "6d74f9510b0383423bb980bf9a765a09af9fa183",
+  "browser": "Agentic VM isolated headed Chrome",
+  "targetUrl": "http://192.168.50.148:5067/login",
+  "operation": "browser_session_start with visible headed session",
+  "result": "failed before page load",
+  "error": "ERR_CONNECTION_REFUSED",
+  "pageRendered": false,
+  "acceptance": "pending; no current-head product UI was available to inspect",
+  "otherBrowserTabsChanged": false,
+  "serviceRestarted": false,
+  "testsBuildsScansOrCiRun": false,
+  "nativeSpeakerApproval": false
+}

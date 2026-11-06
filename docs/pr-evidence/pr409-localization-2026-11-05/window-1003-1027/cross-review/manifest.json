@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "window": "W85",
+  "continuationRankRange": [
+    1003,
+    1027
+  ],
+  "remainingQueueRankRange": [
+    903,
+    927
+  ],
+  "cellCount": 300,
+  "crossCorrectionCount": 71,
+  "crossRetainCount": 217,
+  "hashOnlyHoldCellCount": 12,
+  "blindReviewUsed": true,
+  "crossReviewUsed": true,
+  "rootAdjudicationPerformed": false,
+  "catalogsEdited": false,
+  "translationsApplied": false,
+  "candidateFreeInputManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+  "primaryInputManifestSha256": "314d3b9c8b0f2179906ab0319cac66c2bd48bff913cf108e056b30db1750f24f",
+  "blindInputChecksumsSha256": "d7381aa88a5de0463d05021ad00f2cf4350383d3d0d5a0597e04c2ffe4db142c",
+  "inputPins": {
+    "candidateFreeManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+    "candidateFreeChecksumsSha256": "1fa74008666ad75fc7a1d670e4ca21cce16530dee15db71c5303a5357abefb8e",
+    "candidateFreeCellsSha256": "2c5ba3a2179802fd853d4fd61f0b7cd4d81235e1de51a1c6006f7026f1cc4e19",
+    "candidateFreeCallerContextsSha256": "447a9d3f36e0a2f2658170e52ef8545fec175b5b21fa42baebf58b06c9d28bec",
+    "primaryManifestSha256": "314d3b9c8b0f2179906ab0319cac66c2bd48bff913cf108e056b30db1750f24f",
+    "primaryChecksumsSha256": "d03cee16dea794fc90362e1e1ee006b9bdba7591db4197a692cf3abc6364a83d",
+    "primaryReviewRowsSha256": "ed3a599fe69958db61dcc63d3418a2359faec7c173ab3847cc0232103e8e1c99",
+    "blindChecksumsSha256": "d7381aa88a5de0463d05021ad00f2cf4350383d3d0d5a0597e04c2ffe4db142c",
+    "blindReviewRowsSha256": "2b010aa43018f9b9e12ba070a4bed9ff351732d1cda8e59f9bf0ff6b8af20ecd",
+    "previousActiveHoldsInputSha256": "289d066a06f1ed788b095668bbe5964a90ae07a2888faa10104d706f2140c1d6",
+    "priorWindowHoldsInputSha256": "05df79b77505fad29bf81ac887f48b8ba9f894884feee1c60003ee7b07975f7e"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1496,
+      "sha256": "feb0a606ff125e09cda8429d15773ab6f565e1ae194bae136c2dd42d3e20f45b"
+    },
+    {
+      "path": "build_cross_review.py",
+      "bytes": 26517,
+      "sha256": "d32959595ffd4f1e660f65431cc0aa065ae6706b149b56fa8667a45391258630"
+    },
+    {
+      "path": "cross-review.jsonl",
+      "bytes": 941053,
+      "sha256": "70c3cbc0535a464600dc8463bf70a87c92c801ab378ff87e3efc484598598388"
+    },
+    {
+      "path": "prior-active-holds-hash-only.jsonl",
+      "bytes": 424631,
+      "sha256": "de68ebbcc4008010b3c295282b57ca04243d60f77cf7c4bd40d3e8f1a1f7cde2"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 3835,
+      "sha256": "e0874194a57de80b1dbc95ce76854125e0df4b55148003057c4b1afedf544f2d"
+    },
+    {
+      "path": "verify_cross_review.py",
+      "bytes": 13983,
+      "sha256": "b465de6cbdb3f8c6cf52ea6dfe0dfe77fc1854413505a3bf276737a5915ca1f6"
+    }
+  ]
+}

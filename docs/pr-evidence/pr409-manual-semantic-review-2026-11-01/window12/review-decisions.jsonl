@@ -1,0 +1,300 @@
+{"id": "es:src_e8893bbc114fd281", "verdict": "correct", "target": "Total de grafos:", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “Gráficos” usually means charts; name graph structures."}
+{"id": "zh-Hans:src_e8893bbc114fd281", "verdict": "correct", "target": "图总数：", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “图表” means visual charts; the count is of graph data structures."}
+{"id": "hi:src_e8893bbc114fd281", "verdict": "keep"}
+{"id": "de:src_e8893bbc114fd281", "verdict": "correct", "target": "Gesamtzahl der Graphen:", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “Diagramme” means charts; the count is of graph data structures."}
+{"id": "ja:src_e8893bbc114fd281", "verdict": "correct", "target": "グラフの総数:", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “合計グラフ” reads as a total graph/chart, not the number of graph structures."}
+{"id": "fr:src_e8893bbc114fd281", "verdict": "correct", "target": "Nombre total de graphes :", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “Graphiques” means charts; use the graph-theory/data-structure term."}
+{"id": "pt-BR:src_e8893bbc114fd281", "verdict": "correct", "target": "Total de grafos:", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “Gráficos” means charts; use the graph data-structure term."}
+{"id": "ar:src_e8893bbc114fd281", "verdict": "keep"}
+{"id": "ko:src_e8893bbc114fd281", "verdict": "keep"}
+{"id": "zh-Hant:src_e8893bbc114fd281", "verdict": "correct", "target": "圖的總數：", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “圖表” means visual charts; the count is of graph data structures."}
+{"id": "vi:src_e8893bbc114fd281", "verdict": "keep"}
+{"id": "id:src_e8893bbc114fd281", "verdict": "correct", "target": "Jumlah graf:", "confidence": "high", "reason": "The IPLD Mapping card reports graph-structure and link statistics. “Grafik” means charts; use “graf” for graph data structures."}
+{"id": "es:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "zh-Hans:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "hi:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "de:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "ja:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "fr:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "pt-BR:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "ar:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "ko:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "zh-Hant:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "vi:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "id:src_e88c9f2f4d912483", "verdict": "keep"}
+{"id": "es:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "zh-Hans:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "hi:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "de:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "ja:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "fr:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "pt-BR:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "ar:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "ko:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "zh-Hant:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "vi:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "id:src_e8900ca07d3af601", "verdict": "keep"}
+{"id": "es:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "zh-Hans:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "hi:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "de:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "ja:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "fr:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "pt-BR:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "ar:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "ko:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "zh-Hant:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "vi:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "id:src_e8af068d3c863cc1", "verdict": "keep"}
+{"id": "es:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "zh-Hans:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "hi:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "de:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "ja:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "fr:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "pt-BR:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "ar:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "ko:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "zh-Hant:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "vi:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "id:src_e8b99a0564989751", "verdict": "keep"}
+{"id": "es:src_e8c009648c0e760d", "verdict": "correct", "target": "Estadísticas de publicación", "confidence": "high", "reason": "The callsite lists total published descriptors, active publications, expirations, TTL, and storage. “Editoriales” suggests publishing-house/editorial statistics rather than publication activity."}
+{"id": "zh-Hans:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "hi:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "de:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "ja:src_e8c009648c0e760d", "verdict": "correct", "target": "公開統計", "confidence": "high", "reason": "The callsite lists publication counts, active publications, expirations, TTL, and storage. “統計の公開” means making statistics public, reversing the relationship."}
+{"id": "fr:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "pt-BR:src_e8c009648c0e760d", "verdict": "correct", "target": "Estatísticas de publicação", "confidence": "high", "reason": "The callsite reports publication counts and status. “Publicação de estatísticas” means publishing statistics rather than statistics about publication."}
+{"id": "ar:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "ko:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "zh-Hant:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "vi:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "id:src_e8c009648c0e760d", "verdict": "keep"}
+{"id": "es:src_e8c411013fce4736", "verdict": "correct", "target": "Volver a escanear las carpetas compartidas", "confidence": "high", "reason": "The tooltip says this recounts files in configured shares. “Acciones” means company stocks/shares, not file shares."}
+{"id": "zh-Hans:src_e8c411013fce4736", "verdict": "correct", "target": "重新扫描共享文件夹", "confidence": "high", "reason": "The tooltip says this recounts files in configured shares. “股票” means stocks, not shared folders."}
+{"id": "hi:src_e8c411013fce4736", "verdict": "correct", "target": "साझा किए गए फ़ोल्डर फिर से स्कैन करें", "confidence": "high", "reason": "The tooltip says this recounts files in configured shares. “शेयरों” reads as financial shares; name shared folders."}
+{"id": "de:src_e8c411013fce4736", "verdict": "keep"}
+{"id": "ja:src_e8c411013fce4736", "verdict": "keep"}
+{"id": "fr:src_e8c411013fce4736", "verdict": "keep"}
+{"id": "pt-BR:src_e8c411013fce4736", "verdict": "keep"}
+{"id": "ar:src_e8c411013fce4736", "verdict": "correct", "target": "أعد فحص المجلدات المشتركة", "confidence": "high", "reason": "The tooltip says this recounts files in configured shares. “الأسهم” means stocks/shares, not shared folders."}
+{"id": "ko:src_e8c411013fce4736", "verdict": "keep"}
+{"id": "zh-Hant:src_e8c411013fce4736", "verdict": "correct", "target": "重新掃描共享資料夾", "confidence": "high", "reason": "The tooltip says this recounts files in configured shares. “股票” means stocks, not shared folders."}
+{"id": "vi:src_e8c411013fce4736", "verdict": "keep"}
+{"id": "id:src_e8c411013fce4736", "verdict": "correct", "target": "Pindai ulang folder bersama", "confidence": "high", "reason": "The tooltip says this recounts files in configured shares. “Saham” means company stocks, not shared folders."}
+{"id": "es:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "zh-Hans:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "hi:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "de:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "ja:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "fr:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "pt-BR:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "ar:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "ko:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "zh-Hant:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "vi:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "id:src_e8d291bb9e66f034", "verdict": "keep"}
+{"id": "es:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "zh-Hans:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "hi:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "de:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "ja:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "fr:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "pt-BR:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "ar:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "ko:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "zh-Hant:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "vi:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "id:src_e8e5121babe640d6", "verdict": "keep"}
+{"id": "es:src_e8e975ba638985cd", "verdict": "correct", "target": "Copia como texto sin formato el plan de búsqueda generado por Smart Radio.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “Búsqueda de radio” suggests broadcast radio rather than the named search feature."}
+{"id": "zh-Hans:src_e8e975ba638985cd", "verdict": "correct", "target": "将 Smart Radio 生成的搜索计划复制为纯文本。", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “无线电搜索” suggests broadcast/wireless radio rather than the named search feature."}
+{"id": "hi:src_e8e975ba638985cd", "verdict": "correct", "target": "Smart Radio द्वारा बनाई गई खोज योजना को सादे पाठ के रूप में कॉपी करें।", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “रेडियो खोज” suggests broadcast radio rather than the named search feature."}
+{"id": "de:src_e8e975ba638985cd", "verdict": "correct", "target": "Den von Smart Radio erstellten Suchplan als Klartext kopieren.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “Funksuchplan” means radio transmission search rather than the named search feature."}
+{"id": "ja:src_e8e975ba638985cd", "verdict": "correct", "target": "Smart Radio が生成した検索プランをプレーンテキストとしてコピーします。", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “無線検索” suggests radio transmission rather than the named search feature."}
+{"id": "fr:src_e8e975ba638985cd", "verdict": "correct", "target": "Copiez en texte brut le plan de recherche généré par Smart Radio.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “Recherche radio” suggests broadcast radio rather than the named search feature."}
+{"id": "pt-BR:src_e8e975ba638985cd", "verdict": "correct", "target": "Copie o plano de busca gerado pelo Smart Radio como texto simples.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “Pesquisa de rádio” suggests broadcast radio rather than the named search feature."}
+{"id": "ar:src_e8e975ba638985cd", "verdict": "correct", "target": "انسخ خطة البحث التي أنشأها Smart Radio كنص عادي.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “بحث الراديو” suggests broadcast radio rather than the named search feature."}
+{"id": "ko:src_e8e975ba638985cd", "verdict": "correct", "target": "Smart Radio가 생성한 검색 계획을 일반 텍스트로 복사합니다.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “라디오 검색” suggests broadcast radio rather than the named search feature."}
+{"id": "zh-Hant:src_e8e975ba638985cd", "verdict": "correct", "target": "將 Smart Radio 產生的搜尋計畫複製為純文字。", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “無線電搜尋” suggests broadcast/wireless radio rather than the named search feature."}
+{"id": "vi:src_e8e975ba638985cd", "verdict": "correct", "target": "Sao chép kế hoạch tìm kiếm do Smart Radio tạo ở dạng văn bản thuần túy.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “radio” here is the feature name, not broadcast radio."}
+{"id": "id:src_e8e975ba638985cd", "verdict": "correct", "target": "Salin rencana pencarian yang dibuat oleh Smart Radio sebagai teks biasa.", "confidence": "high", "reason": "The PlayerBar callsite is the Smart Radio search planner. “radio” here is the feature name, not broadcast radio."}
+{"id": "es:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "zh-Hans:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "hi:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "de:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "ja:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "fr:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "pt-BR:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "ar:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "ko:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "zh-Hant:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "vi:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "id:src_e8fc11af5ee3a0d6", "verdict": "keep"}
+{"id": "es:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "zh-Hans:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "hi:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "de:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "ja:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "fr:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "pt-BR:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "ar:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "ko:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "zh-Hant:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "vi:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "id:src_e8fd0a196268e63b", "verdict": "keep"}
+{"id": "es:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "zh-Hans:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "hi:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "de:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "ja:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "fr:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "pt-BR:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "ar:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "ko:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "zh-Hant:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "vi:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "id:src_e92c9e1a7c9a0e65", "verdict": "keep"}
+{"id": "es:src_e940d85a6f9308e8", "verdict": "correct", "target": "Sin escrituras de archivos", "confidence": "high", "reason": "This is a file-impact category. “Ningún archivo escribe” makes the file the actor; describe that no file write occurs."}
+{"id": "zh-Hans:src_e940d85a6f9308e8", "verdict": "keep"}
+{"id": "hi:src_e940d85a6f9308e8", "verdict": "correct", "target": "फ़ाइल में कोई लेखन नहीं", "confidence": "high", "reason": "This is a file-impact category. The current target says that a file does not write; describe the absence of file writes."}
+{"id": "de:src_e940d85a6f9308e8", "verdict": "correct", "target": "Keine Schreibvorgänge an Dateien", "confidence": "high", "reason": "This is a file-impact category. “Keine Datei schreibt” makes the file the actor; describe the absence of write operations."}
+{"id": "ja:src_e940d85a6f9308e8", "verdict": "keep"}
+{"id": "fr:src_e940d85a6f9308e8", "verdict": "correct", "target": "Aucune écriture de fichier", "confidence": "high", "reason": "This is a file-impact category. “Aucun fichier n’écrit” makes the file the actor; describe the absence of file writes."}
+{"id": "pt-BR:src_e940d85a6f9308e8", "verdict": "keep"}
+{"id": "ar:src_e940d85a6f9308e8", "verdict": "correct", "target": "لا توجد أي عمليات كتابة على الملفات", "confidence": "high", "reason": "This is a file-impact category. The current target makes the file the actor; describe the absence of file write operations."}
+{"id": "ko:src_e940d85a6f9308e8", "verdict": "keep"}
+{"id": "zh-Hant:src_e940d85a6f9308e8", "verdict": "keep"}
+{"id": "vi:src_e940d85a6f9308e8", "verdict": "uncertain", "reason": "The current phrase is too compressed to distinguish “no file writes” from “there are no files to write.” This is a file-impact category; confirm the concise locale-native label with a Vietnamese reviewer."}
+{"id": "id:src_e940d85a6f9308e8", "verdict": "keep"}
+{"id": "es:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "zh-Hans:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "hi:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "de:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "ja:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "fr:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "pt-BR:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "ar:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "ko:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "zh-Hant:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "vi:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "id:src_e9554ac25ab70ec0", "verdict": "keep"}
+{"id": "es:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "zh-Hans:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "hi:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "de:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "ja:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "fr:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "pt-BR:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "ar:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "ko:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "zh-Hant:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "vi:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "id:src_e96fe21edd9a22e0", "verdict": "keep"}
+{"id": "es:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "zh-Hans:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "hi:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "de:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "ja:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "fr:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "pt-BR:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "ar:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "ko:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "zh-Hant:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "vi:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "id:src_e971736d3c8c6227", "verdict": "keep"}
+{"id": "es:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "zh-Hans:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "hi:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "de:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "ja:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "fr:src_e97faadf53f02d2f", "verdict": "correct", "target": "Correspondance exacte sans perte", "confidence": "high", "reason": "The Lossless Exact search profile uses strict metadata and duration matching. The current phrase is grammatically incomplete and does not clearly name exact matching."}
+{"id": "pt-BR:src_e97faadf53f02d2f", "verdict": "correct", "target": "Correspondência exata sem perdas", "confidence": "high", "reason": "The Lossless Exact search profile uses strict metadata and duration matching. The current phrase is grammatically awkward and does not clearly name exact matching."}
+{"id": "ar:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "ko:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "zh-Hant:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "vi:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "id:src_e97faadf53f02d2f", "verdict": "keep"}
+{"id": "es:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "zh-Hans:src_e98a7249fb83e608", "verdict": "correct", "target": "已为{item}加载相关推荐种子。", "confidence": "high", "reason": "The success message says related recommendation seeds were loaded for the item. “加载为{item}” says they were loaded as the item."}
+{"id": "hi:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "de:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "ja:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "fr:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "pt-BR:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "ar:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "ko:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "zh-Hant:src_e98a7249fb83e608", "verdict": "correct", "target": "已為{item}載入相關推薦種子。", "confidence": "high", "reason": "The success message says related recommendation seeds were loaded for the item. “載入為{item}” says they were loaded as the item."}
+{"id": "vi:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "id:src_e98a7249fb83e608", "verdict": "keep"}
+{"id": "es:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "zh-Hans:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "hi:src_e98d1a0acd5f9022", "verdict": "correct", "target": "Pushbullet चैट रूम में उल्लेख की सूचनाएँ", "confidence": "high", "reason": "The checkbox enables Pushbullet alerts when a user is mentioned in a chat room. The current Hindi target is Japanese text, not Hindi."}
+{"id": "de:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "ja:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "fr:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "pt-BR:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "ar:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "ko:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "zh-Hant:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "vi:src_e98d1a0acd5f9022", "verdict": "correct", "target": "Thông báo khi có lượt nhắc tên trong phòng trên Pushbullet", "confidence": "high", "reason": "The checkbox enables alerts for mentions in a room on Pushbullet. The current wording reads as notifications that mention the Pushbullet room."}
+{"id": "id:src_e98d1a0acd5f9022", "verdict": "keep"}
+{"id": "es:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "zh-Hans:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "hi:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "de:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "ja:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "fr:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "pt-BR:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "ar:src_e98ebe076d4c6c81", "verdict": "correct", "target": "مراجعات الجاهزية المحلية لـ Plex وJellyfin/Emby وNavidrome. لا شيء هنا يحفظ بيانات الاعتماد أو يتصل بخادم وسائط.", "confidence": "high", "reason": "The card describes local readiness reviews and explicitly says the UI does not contact a media server. The target uses “contacts” as a noun rather than the verb “contact.”"}
+{"id": "ko:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "zh-Hant:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "vi:src_e98ebe076d4c6c81", "verdict": "correct", "target": "Đánh giá mức độ sẵn sàng cục bộ cho Plex, Jellyfin/Emby và Navidrome. Không có gì ở đây lưu thông tin xác thực hoặc liên hệ với máy chủ phương tiện.", "confidence": "high", "reason": "The card describes checks performed locally. “Của địa phương” means belonging to a locality/municipality, not local/on-device."}
+{"id": "id:src_e98ebe076d4c6c81", "verdict": "keep"}
+{"id": "es:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "zh-Hans:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "hi:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "de:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "ja:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "fr:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "pt-BR:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "ar:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "ko:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "zh-Hant:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "vi:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "id:src_e9b124b0cf4aef62", "verdict": "keep"}
+{"id": "es:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "zh-Hans:src_e9b72516f8a7536c", "verdict": "correct", "target": "已找到成员资格记录", "confidence": "high", "reason": "The success panel shows a found signed membership record with Pod ID, Peer ID, role, ban status, and signature validity. “会员” says a member/person was found."}
+{"id": "hi:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "de:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "ja:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "fr:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "pt-BR:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "ar:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "ko:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "zh-Hant:src_e9b72516f8a7536c", "verdict": "correct", "target": "已找到成員資格記錄", "confidence": "high", "reason": "The success panel shows a found signed membership record with Pod ID, Peer ID, role, ban status, and signature validity. “會員” says a member/person was found."}
+{"id": "vi:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "id:src_e9b72516f8a7536c", "verdict": "keep"}
+{"id": "es:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "zh-Hans:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "hi:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "de:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "ja:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "fr:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "pt-BR:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "ar:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "ko:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "zh-Hant:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "vi:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "id:src_e9b7923433a7e13b", "verdict": "keep"}
+{"id": "es:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "zh-Hans:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "hi:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "de:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "ja:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "fr:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "pt-BR:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "ar:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "ko:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "zh-Hant:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "vi:src_e9ba4ae1125c4b4e", "verdict": "keep"}
+{"id": "id:src_e9ba4ae1125c4b4e", "verdict": "keep"}

@@ -1,0 +1,61 @@
+{
+  "artifact": "slskdN PR #409 W1003-W1027 pre-application verifier results",
+  "verificationStage": "before product catalog changes at exact input head",
+  "candidateFree": {
+    "checksums": "PASS",
+    "result": "PASS",
+    "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+    "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+    "sources": 25,
+    "cells": 300,
+    "callerReferences": 34,
+    "priorActiveHolds": 409,
+    "newHashOnlyHolds": 12,
+    "resultingActiveHolds": 421,
+    "catalogKeysPerLocale": 6175
+  },
+  "primary": {
+    "checksums": "PASS",
+    "result": "PASS",
+    "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+    "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+    "reviewedCells": 288,
+    "hashOnlyHoldCells": 12,
+    "corrections": 57,
+    "acceptCurrent": 231,
+    "candidateTokenMismatches": {}
+  },
+  "blind": {
+    "checksums": "PASS",
+    "candidateFreeInputChecksums": "PASS",
+    "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+    "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+    "reviewedCells": 300,
+    "proposals": 59,
+    "retains": 229,
+    "hashOnlyHolds": 12,
+    "proposalTokenChecksPassing": true
+  },
+  "cross": {
+    "checksums": "PASS",
+    "result": "PASS",
+    "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+    "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+    "reviewedCells": 300,
+    "callerBackedCells": 288,
+    "crossCorrections": 71,
+    "retainedCurrent": 217,
+    "hashOnlyHolds": 12,
+    "allSelectedTargetsPassTokenChecks": true,
+    "previousActiveHoldsReattested": 409,
+    "resultingActiveHolds": 421
+  },
+  "advisory": {
+    "checksums": "PASS",
+    "result": "PASS",
+    "reviewedCells": 71,
+    "supported": 67,
+    "questioned": 4,
+    "hashOnlyHoldsPreserved": 12
+  }
+}

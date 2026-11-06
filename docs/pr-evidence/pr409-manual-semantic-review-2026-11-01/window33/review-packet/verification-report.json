@@ -1,0 +1,43 @@
+{
+  "result": "PASS",
+  "window": 33,
+  "livePrState": "OPEN",
+  "livePrDraft": true,
+  "liveHead": "0abf10ae9f49d27d7cfef823cfe5d70765ee29f4",
+  "liveTree": "8ac49de1cde7dc242484eadc597781819e26e1d2",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "remoteHead": "0abf10ae9f49d27d7cfef823cfe5d70765ee29f4",
+  "repositoryClean": true,
+  "inputRows": 274,
+  "sourceKeys": 25,
+  "callerLinesRechecked": 467,
+  "decisionRows": 274,
+  "candidateRows": 41,
+  "verdicts": {
+    "correct": 41,
+    "keep": 222,
+    "uncertain": 11
+  },
+  "reviewInputSha256": "9b919f98102d88f2c8de56b23a187531453ed38eac9034657b9f968b8412bcec",
+  "decisionLedgerSha256": "4484dd487cfbfd75b2e9e9e4895b2811af6c76f6de65de241050b0d90be4d2c3",
+  "candidatePlanSha256": "906c3e8bb45b08e9bc9d26d9ac286def387a132c741e4e7f0be68deb0094df06",
+  "catalogHashes": {
+    "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+    "zh-Hans": "1e7cc620d7ae3f930b9d5cc0f14b181f0dcb1ae49199709cc5161d62a6a1864a",
+    "hi": "8a16c53d79a861fb0c5fadd15ffbe50a1a8d5f0c500eaa2f1543677eb1634f74",
+    "de": "14b8436a948506fd51bd9f385ade5c738a7cc5c0d2dddb5a333516980e66c5df",
+    "ja": "c1347a69945e2aae94c6cc25d3e7955e1f622f7d4697257d47a79e9baffc354d",
+    "fr": "5a24596ace3952bfa6518bea5df85b3efa91af1fef13abf07edf85cb68f9767d",
+    "pt-BR": "ebcdddf28e64f57e12fe631feb68af0a9caa112a6c193839f4554a82c538e7ac",
+    "ar": "8922f03545a9edebd323f4f2692c549fa1f007a2fba923b29e795510d338b22a",
+    "ko": "46e2c58e51bbdcce06e82aeb604a9103a3a814e1232887869545c50e4146847a",
+    "zh-Hant": "ea7e3c187358537322df7e9392c3a3b2a3c29dc61223964ade57e32a9b602914",
+    "vi": "a26ea14df241076087d3c8a7665f557320b200fb46af3bf70d063209b04b5fea",
+    "id": "ef7e4528f0fd368d1bc10e78ac991f7f0578032391ddf4c0d3c3de376019f424"
+  },
+  "crossReview": "pending",
+  "nativeSpeakerReview": "outstanding",
+  "catalogsEdited": false,
+  "repositoryDocsEdited": false
+}

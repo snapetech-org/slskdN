@@ -1,0 +1,74 @@
+{
+  "apiBase": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "applicationPerformed": false,
+  "artifact": "slskdN PR #409 W953-W977 independent semantic cross-review",
+  "attestationAfterSha256": "843686d12e4319c4639e7e097975e1ca6ab835cf5b3194f913cafd306c925b7a",
+  "attestationBeforeSha256": "2cafdeda3bc854230d9990f59aa1f13fc6578db74e3d80fc51cb3ab01f261983",
+  "blindHashOnlyHolds": 12,
+  "blindProposalsReviewed": 66,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "callerAndSourcePins": "PASS; candidate-free verifier checked exact pinned worktree",
+  "cellCount": 300,
+  "confidence": "moderate",
+  "continuationRankRange": [
+    953,
+    977
+  ],
+  "crossHoldCount": 12,
+  "crossHoldSourceIds": [
+    "sha256:c9a750cfd5932c29b0c4879eab11b1de4482e8fd6f8560066733376cc2997c3c"
+  ],
+  "exactTargetReadyNonHoldCells": 288,
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "limitations": "Machine-assisted semantic review. No native-speaker signoff or browser review. All 12 cells for source rank 966 remain text-free/hash-only because pinned production references are layout alignment attributes, not user-facing localization calls.",
+  "liveMainAtAfter": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainAtBefore": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainChangedDuringReview": false,
+  "liveMainTreeAtAfter": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "liveMainTreeAtBefore": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "localeCount": 12,
+  "mainDrift": {
+    "callerPathChanges": [],
+    "catalogPathChanges": [],
+    "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+    "localizationAndRuntimePathChangesOnMain": [],
+    "main": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "mainWasNotMerged": true
+  },
+  "nativeSpeakerSignoff": false,
+  "primaryCorrectionsReviewed": 111,
+  "primaryHashOnlyHolds": 0,
+  "proposalInputsReadOnly": true,
+  "proposalOutcomes": {
+    "held-hash-only": 1,
+    "reviewer-option-not-selected": 52,
+    "selected": 121,
+    "superseded-by-cross-adjustment": 2,
+    "superseded-by-current": 1
+  },
+  "proposalRecordsReconciled": 177,
+  "pullRequest": 409,
+  "recommendationCounts": {
+    "accept-agreement": 8,
+    "accept-blind": 22,
+    "accept-current": 174,
+    "accept-primary": 83,
+    "adjust": 1,
+    "hold-hash-only": 12
+  },
+  "recommendedChanges": 114,
+  "recommendedCurrentRetained": 174,
+  "remainingQueueRankRange": [
+    853,
+    877
+  ],
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPREdited": false,
+  "result": "PASS",
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "testsBuildsScansCiRun": false,
+  "tokenIntegrity": "PASS for all 288 non-hold targets and all 177 candidate proposals",
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "window": "W83"
+}

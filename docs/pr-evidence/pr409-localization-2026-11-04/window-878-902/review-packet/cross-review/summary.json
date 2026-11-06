@@ -1,0 +1,77 @@
+{
+  "artifact": "slskdN PR #409 W80 independent cross-review",
+  "schemaVersion": 1,
+  "window": "W80",
+  "continuationRankRange": [
+    878,
+    902
+  ],
+  "remainingQueueRankRange": [
+    778,
+    802
+  ],
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+  "tree": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "cellCount": 300,
+  "crossDecisionCounts": {
+    "keep": 219,
+    "propose": 81
+  },
+  "crossProposalCount": 81,
+  "noOpCount": 219,
+  "crossHoldCount": 0,
+  "callerlessCellCount": 0,
+  "primaryProposalCountAudited": 55,
+  "primaryProposalVerdicts": {
+    "adopt": 25,
+    "revise": 28,
+    "reject": 2
+  },
+  "newProposalsBeyondPrimary": 28,
+  "blindSuggestionCountAudited": 79,
+  "blindSuggestionVerdicts": {
+    "adopt": 75,
+    "revise": 4,
+    "reject": 0
+  },
+  "catalogCurrentValuesReadBack": 300,
+  "proposalTargetHashesVerified": 81,
+  "baselineCurrentTokenMismatch": {
+    "rank": 885,
+    "locale": "ar",
+    "protectedLiteral": "ID",
+    "resolvedByCrossTarget": true
+  },
+  "candidateFreeVerifier": "PASS",
+  "primaryVerifier": "PASS",
+  "blindChecksums": "PASS",
+  "inputAttestationSha256": "c8a2c7680ff88de72689ab2f9012b1c8b7d20700ea0417de7e01e162a30f39d8",
+  "sourceWorktreeHeadAtSeal": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+  "sourceWorktreeTreeAtSeal": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+  "sourceWorktreeCleanAtSeal": true,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "prBodyQueried": false,
+  "catalogChangesMade": false,
+  "repositoryOrPrEdited": false,
+  "appliedToRepository": false
+}

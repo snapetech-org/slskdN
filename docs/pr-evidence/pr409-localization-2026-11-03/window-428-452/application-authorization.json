@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "recordType": "post-cross-audit application authorization",
+  "applicationApproved": true,
+  "authorizedBy": "root agent (explicit follow-up instruction to apply W62)",
+  "authorizedAtUtc": "2026-11-03T12:12:47.505596+00:00",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "pinnedParentHead": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "pinnedParentTree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "rootCrossAuditPath": "root-cross-audit/cross-audit/",
+  "rootCrossAuditChecksumListSha256": "b735d3575066db9696b0de1aed59155fed078476cedf396495b88f34635cdca8",
+  "candidateFreeManifestJsonSha256": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+  "candidateFreeChecksumListSha256": "005097b25bd89a302b4caebd4478013fbc5b239c210f841613b5edb6d706660b",
+  "primaryChecksumListSha256": "6057ebfea2c6d4d527059b414f1e91768b7b7fcf72709089d34b5092dfdeee28",
+  "blindChecksumListSha256": "a24a3708b562a6219eb47559f4747bd8b42702b884d2b56029348a96e7df3464",
+  "applicationPlanSha256": "3713292efc9bee8c418fa8d7642069ca461268c47ff21c5d34ba3413a9c7fe5c",
+  "selectedUpdates": 76,
+  "corrections": 45,
+  "refinements": 31,
+  "holdCount": 24,
+  "heldRanks": [
+    438,
+    452
+  ],
+  "scope": "Apply exactly application-plan.jsonl selectedTarget values; preserve all 24 callerless holds at ranks 438 and 452, all other window cells, all prior holds, and ordered catalog keys.",
+  "browserReviewIncluded": false,
+  "nativeSpeakerSignoff": false
+}

@@ -1,0 +1,141 @@
+{
+  "exactHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "exactTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "window": "W49 pending stable-ID continuation ranks 101-125; historical source ordinals unavailable",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "correction": 63,
+    "accept-current": 209,
+    "refinement": 16,
+    "hold": 12
+  },
+  "correctionOrRefinementCount": 79,
+  "holdSourceIds": [
+    "src_131da8f86d4d7a45"
+  ],
+  "heldCellCount": 12,
+  "placeholderMismatches": 0,
+  "markupMismatches": 0,
+  "currentProtectedLiteralMismatchCount": 21,
+  "currentProtectedLiteralMismatchExamples": [
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "islossless"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "islossy"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "minbr"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "minfilesize"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "maxfilesize"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "minfilesinfolder"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "minlength"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "100mb"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "ar",
+      "literal": "2gb"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "es",
+      "literal": "minfilesinfolder"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "iscbr"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "isvbr"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "islossless"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "islossy"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "minbr"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "minfilesize"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "maxfilesize"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "minfilesinfolder"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "minlength"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "100mb"
+    },
+    {
+      "sourceId": "src_131da8f86d4d7a45",
+      "locale": "hi",
+      "literal": "2gb"
+    }
+  ],
+  "candidateProtectedLiteralMismatchCount": 0,
+  "searchPlaceholderHeldAllLocales": true,
+  "catalogCoverageCells": 300,
+  "nativeSpeakerApproval": false,
+  "semanticConfidence": "moderate machine-assisted primary review",
+  "localeQualityConfidence": "moderate machine-assisted; native-speaker review outstanding",
+  "headedBrowserReview": false,
+  "testsBuildScansCiRun": false,
+  "remoteMutation": false,
+  "repositoryModified": false,
+  "finalPrHeadStillPinned": true,
+  "scratchPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window49-primary-20261102"
+}

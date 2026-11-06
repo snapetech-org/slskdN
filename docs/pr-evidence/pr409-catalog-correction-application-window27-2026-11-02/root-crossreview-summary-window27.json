@@ -1,0 +1,20 @@
+{
+  "applyCount": 44,
+  "applyPlanSha256": "7b901948fb2fe6ec473d7f961b18c89a07767d215dcb4f741071780e7e662227",
+  "callerFileAndLinePinsVerified": true,
+  "candidateCount": 44,
+  "candidatePlanSha256": "c0fee30c06711138405301f4bd781fef1b12d3387a3bfd6f433a1ca457797c69",
+  "decisionCounts": {
+    "accepted": 30,
+    "refined": 14
+  },
+  "exactHead": "11e7971bc33513c7aad65f2831e1d474e541a5e0",
+  "nativeSpeakerApproval": false,
+  "placeholdersVerified": true,
+  "rootLedgerSha256": "64d248714be02c9ee6f246b91f835193794eec8e946d726aadb9a35dba98af00",
+  "schemaVersion": 1,
+  "sourceSubtreeTree": "ee5969020b2184b7a6179e8e7b9805041c782fb7",
+  "tree": "97b609cdbf423f55d595a77220b7362b9fd3d8ef",
+  "uncertain": 0,
+  "window": 27
+}

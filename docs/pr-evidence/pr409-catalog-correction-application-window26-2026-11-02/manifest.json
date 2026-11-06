@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "exact-hash catalog correction application evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "reviewBaseHead": "7c3283a340324e19577a486bfc427eb40b6eb5f2",
+  "reviewBaseTree": "cf5e11244515bcd78b3bdea08226a52192b5aae3",
+  "reviewSourceSubtree": "4d8da43318bdd313ce7c05dcb751c0b5beb9015f",
+  "applicationCommit": "792f19f3ecf0370ff0cc65307cab376dd5512498",
+  "applicationTree": "bb05bd2fb2d71937d12e2123237051ef02563013",
+  "applicationParent": "7c3283a340324e19577a486bfc427eb40b6eb5f2",
+  "applicationLedger": {
+    "path": "applied-corrections-window26.jsonl",
+    "sha256": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd",
+    "rows": 48,
+    "uniqueSourceKeys": 10
+  },
+  "rootCrossReview": {
+    "ledgerPath": "root-independent-cross-review-window26.jsonl",
+    "ledgerSha256": "bbe17de3a97b1417bba86683ac795b1b3708fc288d3ea87527acf6149ede9da3",
+    "applyPlanPath": "root-exact-hash-apply-plan-window26.jsonl",
+    "applyPlanSha256": "abc2142cec0e7d54f45690108f4678bc78929a20365cb816a11337546745050a",
+    "acceptedAsProposed": 48,
+    "refined": 0,
+    "held": 0
+  },
+  "unchangedUncertainRows": {
+    "path": "uncertain-review-rows.jsonl",
+    "sha256": "ab7eb12c6549e280815700c252f3809f95ba1b90f00104d311df0d12f5d4ca29",
+    "rows": 12,
+    "reason": "no caller context for Smart-radio Wishlist seeds"
+  },
+  "applicationResult": "exactly 48 catalog values changed; 12 uncertain values unchanged",
+  "cumulativeAfterApplication": {
+    "manualWindows": 26,
+    "manualKeys": 650,
+    "manualCells": 7800,
+    "appliedValues": 1070,
+    "appliedSourceKeys": 257,
+    "held": 6,
+    "remainingUncertain": 220,
+    "unreviewedCells": 59280,
+    "formalCells": 4800,
+    "formalOverlap": 0,
+    "manualOverlap": 0
+  },
+  "confidence": {
+    "semantic": "high for accepted proposals",
+    "localeQuality": "moderate",
+    "nativeSpeakerReview": "outstanding",
+    "headedBrowserReview": "outstanding"
+  },
+  "noTestsBuildCiReleaseOrTag": true,
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0,
+  "verificationReport": {
+    "path": "verification.json",
+    "sha256": "f1a38006689b6c12182bda0bc849cbf70e66fd70df722c036df73f5cca6f223e",
+    "generatedAtHead": "792f19f3ecf0370ff0cc65307cab376dd5512498",
+    "result": "PASS"
+  },
+  "evidenceFiles": {
+    "README.md": "4888a98c258789a464e78c6fb866b0f32ec02c7d3aa812b2519df2216a15c63c",
+    "application-ledger-summary.json": "5dbecb9c05d1b724a6caa09fd3bf6b0645c67cab0fcc7f9effa036c087189399",
+    "applied-corrections-window26.jsonl": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd",
+    "apply-result.json": "a92af87251dc004676934467dfa4fb45b59ee69273912c073d759439df06ee85",
+    "post-apply-verification.json": "13884ff4b8e6e5407aa7b4254e149b12d28aeb13154019eaf9f4ccd7ea34220e",
+    "preflight.json": "7897d8ab017e4d4f534d1d4854fcde24f6db6f720ed975f0c4c17499e60575ce",
+    "root-cross-review-summary-window26.json": "893c1dbe556c32c86678669b26ff915b352b7ee2481983174ec947e5ec54d7b9",
+    "root-exact-hash-apply-plan-window26.jsonl": "abc2142cec0e7d54f45690108f4678bc78929a20365cb816a11337546745050a",
+    "root-independent-cross-review-window26.jsonl": "bbe17de3a97b1417bba86683ac795b1b3708fc288d3ea87527acf6149ede9da3",
+    "uncertain-review-rows.jsonl": "ab7eb12c6549e280815700c252f3809f95ba1b90f00104d311df0d12f5d4ca29",
+    "verification.json": "f1a38006689b6c12182bda0bc849cbf70e66fd70df722c036df73f5cca6f223e",
+    "verify_application.py": "098a1ec5de319e28196f7d5fdb28fa7542cb6bafaa702703d8fd519d765055f2"
+  }
+}

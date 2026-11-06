@@ -1,0 +1,70 @@
+{
+  "artifact": "slskdN PR #409 W57 primary semantic review",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFreeChecksumListSha256": "84b6fcf416116a557decda2efca0f6c680055aab6726eecf75cf9742e3d4d90f",
+  "candidateFreeInputManifestSha256": "6f1594ec6eb071b29be0081753b86ab7a3e50c8fe98a6209e55f123e353d1f5f",
+  "changesByLocale": {
+    "es": 2,
+    "hi": 1,
+    "id": 2,
+    "pt-BR": 1,
+    "vi": 3,
+    "zh-Hant": 1
+  },
+  "changesByRank": {
+    "310": 2,
+    "315": 2,
+    "317": 1,
+    "318": 4,
+    "322": 1
+  },
+  "decisionCounts": {
+    "accept-current": 278,
+    "correction": 10,
+    "hold": 12
+  },
+  "edgeWhitespaceChecks": 300,
+  "edgeWhitespaceMismatchCount": 0,
+  "head": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "holdCount": 12,
+  "holdsByRank": {
+    "319": 12
+  },
+  "isDraft": true,
+  "localeCount": 12,
+  "markupChecks": 300,
+  "markupMismatchCount": 0,
+  "nativeSpeakerApproval": false,
+  "numericTokenChecks": 300,
+  "numericTokenMismatchCount": 0,
+  "packetBoundaryIssue": {
+    "file": "input/selection-and-boundary.json",
+    "finding": "lastSelected is rank 304 and nextBoundary is rank 305 (also labeled selected-W57); the complete selection-boundary.jsonl instead lists selected ranks 303–327 and next boundary 328.",
+    "requiresPacketCorrectionBeforeApplication": true,
+    "resolutionForThisReview": "The rank set is independently confirmed by all 300 source-current cells and all 25 source-inventory-selection rows, plus the 27-row selection-boundary.jsonl. The discrepancy is retained as a packet defect and does not change the reviewed 303–327 cells."
+  },
+  "placeholderChecks": 300,
+  "placeholderMismatchCount": 0,
+  "productionCallerOccurrencesVerified": 42,
+  "protectedLiteralCandidateIssues": 0,
+  "protectedLiteralCurrentIssueDetails": [],
+  "protectedLiteralCurrentIssues": 0,
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "recommendedChanges": 10,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPREdited": false,
+  "reviewMode": "primary semantic review from candidate-free exact-head input only; no later reviewer output inspected",
+  "reviewedCells": 300,
+  "runtimeExpressionsEvaluated": false,
+  "sourceCount": 25,
+  "sourceInventoryRanks": "303–327",
+  "sourceRows": 25,
+  "sourceRowsWithPinnedCallerContext": 25,
+  "state": "OPEN",
+  "testsBuildsScansCIWorkflowBrowserMergeReleaseOrTagActions": false,
+  "tree": "a5f9b792875d341a49208d0785bfff28aa9092d7",
+  "unresolvedTerminology": "Rank 319 “recommendation seeds” held in all 12 locales pending product meaning/glossary.",
+  "verifiedInputFiles": 9,
+  "window": "W57 ranks 303–327"
+}

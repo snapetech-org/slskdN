@@ -1,0 +1,117 @@
+{
+  "apiBase": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "applicationPerformed": false,
+  "artifactPins": {
+    "README.md": {
+      "path": "README.md",
+      "sha256": "355f7df7170b8939e98f04836c04333702157785d18e9fa09a60ec7564212afe"
+    },
+    "attestation/attest_live_refs.py": {
+      "path": "attestation/attest_live_refs.py",
+      "sha256": "cd5c03fc9da781c4364422e44319640b7fa1e92adaeec05909b2c04b2482d10a"
+    },
+    "attestation/live-after.json": {
+      "path": "attestation/live-after.json",
+      "sha256": "843686d12e4319c4639e7e097975e1ca6ab835cf5b3194f913cafd306c925b7a"
+    },
+    "attestation/live-before.json": {
+      "path": "attestation/live-before.json",
+      "sha256": "2cafdeda3bc854230d9990f59aa1f13fc6578db74e3d80fc51cb3ab01f261983"
+    },
+    "attestation/live-final.json": {
+      "path": "attestation/live-final.json",
+      "sha256": "843686d12e4319c4639e7e097975e1ca6ab835cf5b3194f913cafd306c925b7a"
+    },
+    "build_cross_review.py": {
+      "path": "build_cross_review.py",
+      "sha256": "c98b640a751f9c38fda1ebde6e48635fc361130c5952e098d59f0c15024a26e7"
+    },
+    "cross-review-ledger.jsonl": {
+      "path": "cross-review-ledger.jsonl",
+      "sha256": "f10d6b325c6c878dbcf4fb4257576d524587e2859186427661f593e7db459fae"
+    },
+    "finalize_cross_review.py": {
+      "path": "finalize_cross_review.py",
+      "sha256": "eb880bda378b9b5f56e03a112dd1d705684bb32ae61d65d152c9ff3004352764"
+    },
+    "holds-hash-only.jsonl": {
+      "path": "holds-hash-only.jsonl",
+      "sha256": "225da24c49f5519f6ee9a3a2671d6597b4bb1124bfc00cdd2ed32d33a08533ff"
+    },
+    "input-pins.json": {
+      "path": "input-pins.json",
+      "sha256": "72d3b9bd4b8af35eae384dab69e84ce9b086edcfe8b500b6d4c220aacc8ad3c5"
+    },
+    "proposal-reconciliation.jsonl": {
+      "path": "proposal-reconciliation.jsonl",
+      "sha256": "1844ef996c0f29b395f6619ae5f4060c264c7ff4df4d9456b9c47c206b8f3ec8"
+    },
+    "summary.json": {
+      "path": "summary.json",
+      "sha256": "90296e311b92510d44378c4128bcf3d97a9797dda2b7c0b295fc4336eef24a71"
+    },
+    "verifier-results.json": {
+      "path": "verifier-results.json",
+      "sha256": "651db58371878b1d3825bdd775a86c7be54ddae6397af984bb6409354ec680b8"
+    },
+    "verify_cross_review.py": {
+      "path": "verify_cross_review.py",
+      "sha256": "0451b5c752edec1864254e8a026c6e40a7ff2b4a26ebaa248490bbd81be5f51a"
+    }
+  },
+  "blindManifestSha256": "373d1d5d4f8c01515680ddbf588aa3b8fcc69b94314aff194fb47c82034a9a9c",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFreeManifestSha256": "42e328ff08e489134f4207b74da7e2844ed51b2dbb88c6934ceb5ba8d6c96f07",
+  "candidateFreeOnlySourceInputs": true,
+  "hashOnlyHolds": 12,
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "liveMainAfter": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainBefore": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "liveMainChangedDuringReview": false,
+  "liveMainTreeAfter": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "liveMainTreeBefore": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "nativeSpeakerSignoff": false,
+  "primaryManifestSha256": "be142973398dfe4162291733222ee9494ffab498a3395a9c522516462668261f",
+  "proposalRecordsReconciled": 177,
+  "pullRequest": 409,
+  "recommendationCounts": {
+    "accept-agreement": 8,
+    "accept-blind": 22,
+    "accept-current": 174,
+    "accept-primary": 83,
+    "adjust": 1,
+    "hold-hash-only": 12
+  },
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPullRequestEdited": false,
+  "result": "PASS",
+  "schemaVersion": 1,
+  "scope": {
+    "cells": 300,
+    "continuationRanks": [
+      953,
+      977
+    ],
+    "locales": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "remainingQueueRanks": [
+      853,
+      877
+    ],
+    "sourceIds": 25
+  },
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "window": "W83"
+}

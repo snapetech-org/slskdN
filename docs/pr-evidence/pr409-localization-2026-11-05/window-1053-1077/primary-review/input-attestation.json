@@ -1,0 +1,12 @@
+{
+  "callerFileSha256": "1704056523d9f525f758c1de59174165cb86358aaba2707fdd9d850d5972a4af",
+  "candidateFreeChecksumListSha256": "2170ea00e2bcb8c5c79f23f86ce5acef8a31f4270813e222fea7e2f171cec1be",
+  "candidateFreeChecksummedFiles": 27,
+  "candidateFreePacket": "candidate-free",
+  "cellFileSha256": "369563dd43c8941eb472bd22a0ac9b6688b24fff36b871f8db88a6864c03887d",
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "manifestSha256": "63a1f8d51f61ca02a418528c6ec9e9177ae2d267926b14d8e5a602b6787718e8",
+  "reviewedNoOtherProposalPackets": true,
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W87"
+}

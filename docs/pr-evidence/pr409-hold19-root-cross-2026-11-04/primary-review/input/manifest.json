@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "candidateFree": true,
+  "sourceCount": 3,
+  "cellCount": 19,
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "historicalDispositionsIncluded": false,
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 316,
+      "sha256": "9a8d07e084a1d747c0afd8911d0613372b64aae31a02557bd880f0d87efe4b4b"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 128,
+      "sha256": "d2f667972a0d71dc21d20510575bd1684f51fe51109f8274a7bcfef5cf48c3a6"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 4624,
+      "sha256": "41a989b505161e356461e30af121f0a17e7a6cdf1226b305db0a2410eaec1908"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "774247038b0cb2405c56810674e827114a0f13540de60f761f9eb47453d9d6d0"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 621,
+      "sha256": "c9691e50f828b3be8e64e1aa6baa38042f65d7d61e9ec54b02b2f98e37674e04"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 639,
+      "sha256": "548f117b5b8adb566dad6770d606f0f9f7ce28e66a806e9bbecb36b84e325584"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 32563,
+      "sha256": "f2cda1cad8f752bc1b018a597a9209603e8019709bb40d733a7a3ebe6fd4f4c8"
+    },
+    {
+      "path": "source-tree-attestation.json",
+      "bytes": 506,
+      "sha256": "420e20723c89555d723f33693442599be3cf4ae59a3764c45cd741009a77ecfa"
+    },
+    {
+      "path": "verify_clean_input.py",
+      "bytes": 3164,
+      "sha256": "ced61e1448745192c3e3976e79805889ef42a115dc2e049805cf6386408d5245"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "kind": "exact-head reattestation of existing primary semantic review",
+  "reattestedAt": "2026-11-03",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "open",
+  "draft": true,
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "exactHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "exactTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "previousWindow": {
+    "label": "W48 reconstructed ranks 76-100",
+    "sourceIdCount": 25,
+    "checksumEntries": 14,
+    "packet": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window48-primary-20261102"
+  },
+  "primaryReview": {
+    "label": "W49 reconstructed pending stable-ID continuation ranks 101-125; historical source ordinals unavailable and not claimed",
+    "sourceIds": 25,
+    "localeCount": 12,
+    "cells": 300,
+    "catalogKeysEach": 6176,
+    "callerRows": 25,
+    "callerReferences": 39,
+    "callerFiles": 23,
+    "dispositions": {
+      "accept-current": 209,
+      "correction": 63,
+      "refinement": 16,
+      "hold": 12
+    },
+    "placeholderMismatches": 0,
+    "markupMismatches": 0,
+    "heldCells": "12 values for one search-filter placeholder held because the source is parser syntax; exact parser implementation is pinned in the original packet"
+  },
+  "sourcePacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window49-primary-20261102",
+  "sourcePacketChecksumManifestSha256": "251ee3e42d92e7acf33c992ac3b112d6a54ad30ef3b35c688bb700c2a4108805",
+  "sourcePacketManifestSha256": "a4b0d331ae310a881f8dac1ec672592d367473e1c200033f0ef0519f769f82b8",
+  "sourcePacketPrimaryDecisionsSha256": "04fad26151ed34953441ced4d49de8430bbbd9281cb551d032bf7a2844977782",
+  "sourcePacketCellsSha256": "f1a81685eed49b37e4d2e4b20df4d2b29ad8fe87732c44abcdf84a8910488098",
+  "sourcePacketCallerPinsSha256": "6467ce17212a3e30e5c08fee7bdf7153f2ae3778324998f57889e1d717882bb3",
+  "sourcePacketCatalogStructureSha256": "f801faba83199a4a303fdf363e9a42cc5c8df78f813d48bd81e1028eefcf806d",
+  "reattestation": {
+    "livePrHeadMatchesPacket": true,
+    "liveTreeMatchesPacket": true,
+    "allSourceCurrentTargetsCatalogFilesAndGitBlobsMatch": true,
+    "allCallerFileLineAndContextPinsMatch": true,
+    "all12CatalogKeySetsIdentical": true,
+    "worktreeClean": true,
+    "packetChecksumFilesPass": true
+  },
+  "acceptanceLimits": {
+    "nativeSpeakerApproval": false,
+    "headedBrowserReview": false,
+    "testsBuildScansCiRun": false,
+    "repositoryModified": false
+  }
+}

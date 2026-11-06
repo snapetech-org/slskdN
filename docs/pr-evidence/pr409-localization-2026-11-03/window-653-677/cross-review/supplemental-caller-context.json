@@ -1,0 +1,42 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "path": "src/web/src/components/Player/Visualizer.jsx",
+  "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+  "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+  "fileSize": 101527,
+  "excerpts": [
+    {
+      "line": 129,
+      "text": "const getNativeAutomationLabel = (mode) => {"
+    },
+    {
+      "line": 130,
+      "text": "  if (mode === 'beat') return interfaceText('Beat');"
+    },
+    {
+      "line": 131,
+      "text": "  if (mode === 'timed') return interfaceText('Timed');"
+    },
+    {
+      "line": 132,
+      "text": "  return interfaceText('Off');"
+    },
+    {
+      "line": 2319,
+      "text": "              <Popup"
+    },
+    {
+      "line": 2320,
+      "text": "                content={interfaceText('Native automatic preset changes: {mode}. Beat mode advances after repeated detected bass beats; timed mode advances on an interval.', {"
+    },
+    {
+      "line": 2321,
+      "text": "                  mode: getNativeAutomationLabel(nativeAutomationMode),"
+    },
+    {
+      "line": 2322,
+      "text": "                })}"
+    }
+  ]
+}

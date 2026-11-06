@@ -1,0 +1,217 @@
+[
+  {
+    "catalogPath": "src/web/public/locales/ar.json",
+    "catalogSha256Before": "9fcec556bc0ebdfd35428513cfdbd431b83093f11bf4c7e2472bf68daafd8356",
+    "catalogSha256After": "85a8c600e9d340732a98eb12184d11085ae66008cd3196c121351ce428327121",
+    "catalogGitBlobBefore": "ef507f6594c90da49efcf4d95513180b554cfeb1",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Already known",
+      "Content ID",
+      "Mesh streaming",
+      "Revoke Gold Star",
+      "Summary:",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 6
+  },
+  {
+    "catalogPath": "src/web/public/locales/de.json",
+    "catalogSha256Before": "3fc9534e4ef86aa22702c2baba7728ce30ee0824c047d663a2a3df625623ebcb",
+    "catalogSha256After": "09c17ddf189a28729d3328d4835ff806762ee0b38c4667950e4668a5c88a91db",
+    "catalogGitBlobBefore": "7ead5957bc943ad22125b64f27e59729589b388f",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Advanced ContentID registration controls",
+      "Adversarial settings updated successfully",
+      "Summary:"
+    ],
+    "changedEntryCount": 3
+  },
+  {
+    "catalogPath": "src/web/public/locales/es.json",
+    "catalogSha256Before": "4d30ea21b06a0f29ca94dfdf9170684bcb386b360a40c2c6a44a935b01b09358",
+    "catalogSha256After": "13224151e2f353eee0a5ac87b61ff434e3502d4a02f5d0717db9cdff7d8f0b32",
+    "catalogGitBlobBefore": "466a81f93b0a2c4ac36626d9b04729ae24da487b",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Content ID",
+      "Resume status checks for the current server-side scan. This does not start a second scan.",
+      "Revoke Gold Star",
+      "Webhook retry attempts",
+      "in configuration before long-term operation."
+    ],
+    "changedEntryCount": 5
+  },
+  {
+    "catalogPath": "src/web/public/locales/fr.json",
+    "catalogSha256Before": "df5020f1073e501ffe863fba9e6164c5de2df995ad037404614fb0f03f7078ab",
+    "catalogSha256After": "67d19ddedfea49d91931cf5e1c62cab3ecd8bade3834d8609acdac8ae70e254b",
+    "catalogGitBlobBefore": "f40e4a93e051df2838af5454c68570c2d00124bf",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Adversarial settings updated successfully",
+      "Revoke Gold Star"
+    ],
+    "changedEntryCount": 2
+  },
+  {
+    "catalogPath": "src/web/public/locales/hi.json",
+    "catalogSha256Before": "060ef07e960cf97c287ddaaa775f5945f3a6b958ed5409ff45f40d6a5cc631bc",
+    "catalogSha256After": "7df6a72a80b809b142c2415774fe3e7ec79e62566bc1facbc171e32e2f66fe69",
+    "catalogGitBlobBefore": "ada0b95b0544283daae0483fa180709d8a99ffd1",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Advanced ContentID registration controls",
+      "Adversarial settings updated successfully",
+      "Choose how many detected bass beats should pass before native MilkDrop advances to another preset.",
+      "Contacts could not be loaded",
+      "Content ID",
+      "Revoke Gold Star",
+      "Summary:",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 8
+  },
+  {
+    "catalogPath": "src/web/public/locales/id.json",
+    "catalogSha256Before": "4367f582473e6e8fcebbd336c6736780b91f58e71ceb68af0097a51552ea2d16",
+    "catalogSha256After": "3f99227a3d681de43fb193476feea132c604d619f78ed51642a299b0441e613d",
+    "catalogGitBlobBefore": "79f9c79f6ce4eb4623e153e78b3aa5f0c261e384",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Adversarial settings updated successfully",
+      "Mesh streaming",
+      "Remove this pod’s metadata from the DHT so discovery no longer advertises it. Use this when you want to withdraw a listing.",
+      "Revoke Gold Star",
+      "Summary:",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 6
+  },
+  {
+    "catalogPath": "src/web/public/locales/ja.json",
+    "catalogSha256Before": "feac472de2f1fcb2debf604206bc6eef3fe6e035f5e729ba032685c8605eaa9c",
+    "catalogSha256After": "cc8d9455dbd85a17fe36770178ba9f5046c669ea1f233778e1d3ac33776809c2",
+    "catalogGitBlobBefore": "01afddd3624d8f07444f881ff6abd0c00e7e2980",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Choose how many detected bass beats should pass before native MilkDrop advances to another preset.",
+      "Play this collection item in the browser player.",
+      "Resume status checks for the current server-side scan. This does not start a second scan.",
+      "Revoke Gold Star",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 5
+  },
+  {
+    "catalogPath": "src/web/public/locales/ko.json",
+    "catalogSha256Before": "cb4a6c93d5bddeabdf5a0875a5c688b078032aab0f87aa08bab053c41b47e50a",
+    "catalogSha256After": "65ac2d92fd9d38ae7e03a037b8baef033d090dffc72d9175dd212bdf093614ae",
+    "catalogGitBlobBefore": "c589dea1cbf4d19a072b6d4e991fbb148ab3dbf4",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Choose how many detected bass beats should pass before native MilkDrop advances to another preset.",
+      "Remove this pod’s metadata from the DHT so discovery no longer advertises it. Use this when you want to withdraw a listing.",
+      "Revoke Gold Star",
+      "Summary:",
+      "Webhook retry attempts",
+      "in configuration before long-term operation."
+    ],
+    "changedEntryCount": 6
+  },
+  {
+    "catalogPath": "src/web/public/locales/pt-BR.json",
+    "catalogSha256Before": "9153763d44222e867e905a276a25d396ab60eafb769e932d85f97d9ae4da07dc",
+    "catalogSha256After": "fbee5cbbc79b4d7d6f7b3e8ed5efd2e88e86c3b488ebd19938218b1c2a5c05b3",
+    "catalogGitBlobBefore": "90a060523c8cd1718fa2088542763f02115b8e27",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Adversarial settings updated successfully",
+      "Already known",
+      "Auto-tagging failed ({exceptionType})",
+      "Play this collection item in the browser player.",
+      "Resume status checks for the current server-side scan. This does not start a second scan.",
+      "Revoke Gold Star",
+      "Summary:",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 8
+  },
+  {
+    "catalogPath": "src/web/public/locales/vi.json",
+    "catalogSha256Before": "bbb898a90294772dd836442bb3dfced459d01c519f2ea66d9ddd2de06029e660",
+    "catalogSha256After": "4c6e826ba7948559a2c080930b583527d64b2eb2ca245390aae49e98770625c4",
+    "catalogGitBlobBefore": "22ffd63134415120179dcb1bec39a3b47fe8ddfa",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Adversarial settings updated successfully",
+      "Mesh streaming",
+      "Play this collection item in the browser player.",
+      "Revoke Gold Star",
+      "Summary:",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 6
+  },
+  {
+    "catalogPath": "src/web/public/locales/zh-Hans.json",
+    "catalogSha256Before": "44a594d77c4bc063497ac10c0f9ddcb0573ef873486e39a012e1f0937ff34814",
+    "catalogSha256After": "b7a12fd82910b483b3b73862ad9843fb7678b1afa01bce74c0b9cb4c075de4ee",
+    "catalogGitBlobBefore": "2298931b466919e9ff5becd665c62b592afb2f4c",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Revoke Gold Star",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 2
+  },
+  {
+    "catalogPath": "src/web/public/locales/zh-Hant.json",
+    "catalogSha256Before": "2c775bac7a696a61a1f41d1b1ed40cc066b27222e9e2559dd5c7f0c2a6585898",
+    "catalogSha256After": "49c983d4968add74052cf60a3556705319fac24704fc9106462a84881222b7e2",
+    "catalogGitBlobBefore": "8c53d9b491943723c39c984845597804572ba348",
+    "keyCountBefore": 6176,
+    "keyCountAfter": 6176,
+    "keySetPreserved": true,
+    "keyOrderPreserved": true,
+    "changedCatalogKeys": [
+      "Revoke Gold Star",
+      "Webhook retry attempts"
+    ],
+    "changedEntryCount": 2
+  }
+]

@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "slskdN W34 exact localization correction application",
+  "pullRequest": 409,
+  "reviewBaseHead": "dc8ed2406a2247600d487df1ae3128ce08cc7faa",
+  "reviewBaseTree": "9909f5d6e32dfcc78ba53aa0c838f95e9ba246d3",
+  "reviewBaseSourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "remotePrBranch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "catalogCommit": "10fc341aa2bada1f0ee5be6d6119e31858c36aca",
+  "catalogCommitTree": "58cf85492948a6d0dfc6775fa69c539deb54a019",
+  "reviewInputSha256": "549f8edf997aebcbf5ca8de93144fc9dd5331ac8177beea2b01ba8beaf29e874",
+  "reviewDecisionSha256": "aaaf65b5c31c6e016622274ba6cfb9c844db6b23b5e5c9b70ff27dfa918bfe8b",
+  "candidatePlanSha256": "e4000f1998a82c0018a266e149ed43df1e11f66be8e7e892d310ef0b0d90876a",
+  "independentSummarySha256": "bc57b2899466f943cd710ef1aefda60dcb246a251c24e1dfeb6ece9fa13159cd",
+  "independentPreflightSha256": "3d72343766e681d5761fc3c036db824f7266993cbb2ec9b0214345ad57ba3ab2",
+  "manualReviewBundleChecksumsSha256": "c3b5e4d85c59643f71fd8f2c204da0869f0d4b7cfe01163cd33f15809f4ef012",
+  "reviewPacketChecksumsSha256": "352235b0c204858502342e71b2505cdac1f7e8f1e4d32d2f184ace86098dcf11",
+  "independentReviewChecksumsSha256": "4e0a2e4f2ee64a39e39de130a2890d9816bd3937de0d7bfba21fb964e5f6bb31",
+  "rootReviewChecksumsSha256": "a4e11be5f8b81b5ed69f75c4148869dc1f5aaf2c189d398abd5b7180b9fb7942",
+  "rootCrossReviewLedgerSha256": "da7bccd982e54172209375534b9a9309b04a2a6c3a20ce87a4b9df4e08a7cc59",
+  "independentCrossReviewLedgerSha256": "7a9da225deb033f6cacfa7306c0051e0d66dd899df11051249c50fe600a4fc40",
+  "rootApplyPlanSha256": "d9232fb9d91ed34d44012fc40d54e6c98ff8bb3f5792ca7551096e65973d21bb",
+  "appliedLedgerSha256": "b75f7de69ae63f8ce95f37b1f24072fe999bfca9c7291dc0d2df4b5fecc80810",
+  "rootDispositionCounts": {
+    "accept": 32,
+    "refine": 1,
+    "keep-current": 1
+  },
+  "independentDispositionCounts": {
+    "keep-current": 241,
+    "accept-proposed": 32,
+    "refine-proposed": 1
+  },
+  "reviewedCells": 274,
+  "reviewedSourceKeys": 25,
+  "packetCallerLineReferences": 514,
+  "appliedTargets": 33,
+  "uniqueAppliedSourceKeysThisWindow": 13,
+  "catalogFilesChanged": {
+    "ar": {
+      "baseSha256": "d11e67c44773aa14e21f96c40a59787dab5969af76e962706af6b48abd76e093",
+      "resultSha256": "1ffa562a8599a5e601e52bfb4a8255ba8ce7763bf735b2b3bd7be172eb5cf681",
+      "changedKeys": [
+        "AI Heuristics",
+        "Evidence",
+        "Scrobble and rating export"
+      ],
+      "changedCellCount": 3
+    },
+    "de": {
+      "baseSha256": "4a2a713bfd278878589cb9b0c8fa562f0b577c1f154a3c68a457a11e54d8c7d9",
+      "resultSha256": "b7e4bb7c4e140e2867b750b6f6560dde1e132f87f213e13654610fac020edcde",
+      "changedKeys": [
+        "Get Opinions",
+        "Target Peers:"
+      ],
+      "changedCellCount": 2
+    },
+    "fr": {
+      "baseSha256": "d75067aab51d88766860e7916977f1d96830cea290e95995b5b61e02b63c059c",
+      "resultSha256": "279dacc92b19a336ddc4af3fd247a9f4fb1f355dfd8015fb6195ac47bcd4c6e5",
+      "changedKeys": [
+        "Failed"
+      ],
+      "changedCellCount": 1
+    },
+    "hi": {
+      "baseSha256": "c50bb72b4188b9e6bd68ec09f8423ce4a09e3c45833392752ec3d8f78d566bf1",
+      "resultSha256": "a63687779c326c694d5f118b71f866d37fb68b7232d797b2e1eb4d581463d433",
+      "changedKeys": [
+        "AI Heuristics",
+        "Checking PodCore availability…",
+        "Duplicates Detected:",
+        "Load metadata export, import, and conflict-resolution metrics.",
+        "Peer unavailable",
+        "Target Peers:"
+      ],
+      "changedCellCount": 6
+    },
+    "id": {
+      "baseSha256": "e6aeb7c84459cfaa50d6a195be5f5628f796c5bbde45cbc7327396805a49806a",
+      "resultSha256": "a351e538a86058cd38caa59d76eb91da7cc3e50b484a5408aad353b14394aa60",
+      "changedKeys": [
+        "Peer unavailable",
+        "Scrobble and rating export",
+        "Target Peers:"
+      ],
+      "changedCellCount": 3
+    },
+    "ja": {
+      "baseSha256": "3688a4c1a265d15882d49c30b82e5d5dad6dbf25d1437003b81a85de380a82b4",
+      "resultSha256": "96a12d791534fa723abf19cc998f3bca97dbd98df7194b6f1444cf9fa2626f3b",
+      "changedKeys": [
+        "Get Opinions",
+        "Slots, speed ceilings, auto-replace, and schedule enablement."
+      ],
+      "changedCellCount": 2
+    },
+    "ko": {
+      "baseSha256": "c2b098158c295225197cf03e41c861dfeba5d01d4439965d6047600802825b90",
+      "resultSha256": "bb35acb29e336df279a70b5d60b932cd4bf72e31b7286e12f8d276b23b48d985",
+      "changedKeys": [
+        "Random imported native preset",
+        "Target Peers:"
+      ],
+      "changedCellCount": 2
+    },
+    "pt-BR": {
+      "baseSha256": "1284806e6358b8ea88473fe87e7acaccb91451322b60fea9584a54c54c592d1b",
+      "resultSha256": "57bb2a459e78b6d34ae26431ab1983088ea263de1da07eb2fc0df50534bba52e",
+      "changedKeys": [
+        "Failed",
+        "Scrobble and rating export"
+      ],
+      "changedCellCount": 2
+    },
+    "vi": {
+      "baseSha256": "7a0acbc296da7219da71617f7ab0e7345d1828e71461263d97db45d781ae512b",
+      "resultSha256": "d9c138e17bd7cc25d702eeb63ab72e5aa3e28fe6c2513bae153b11d29e27b654",
+      "changedKeys": [
+        "AI Heuristics",
+        "Peer unavailable",
+        "Scrobble and rating export",
+        "Target Peers:"
+      ],
+      "changedCellCount": 4
+    },
+    "zh-Hans": {
+      "baseSha256": "e479486bbed7aea5039739189afa33301c854076ec0eb7fd61fb093eac99efc9",
+      "resultSha256": "c713f0cbc4d260eec93527ca8ff50f6c260d5be71bcc093a7a245e4fbcacdc15",
+      "changedKeys": [
+        "Overlay Peers: {count}",
+        "Peer unavailable",
+        "Scrobble and rating export",
+        "Target Peers:"
+      ],
+      "changedCellCount": 4
+    },
+    "zh-Hant": {
+      "baseSha256": "ab2d33a32042c001c6cf0d82a11365653716bfdc9721cca385974b33ffc04ddc",
+      "resultSha256": "5d7150ccf7b077f80fb673369631c2f1c26bdc9b9c461e0e2cff46fb2a526619",
+      "changedKeys": [
+        "Overlay Peers: {count}",
+        "Peer unavailable",
+        "Scrobble and rating export",
+        "Target Peers:"
+      ],
+      "changedCellCount": 4
+    }
+  },
+  "nativeSpeakerApproval": false,
+  "testsBuildScansCiRun": false,
+  "workflowChanges": false,
+  "releaseTagMerge": false
+}

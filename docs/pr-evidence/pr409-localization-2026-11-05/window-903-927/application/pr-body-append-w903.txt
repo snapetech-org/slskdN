@@ -1,0 +1,15 @@
+
+
+<!-- slskdn-pr409-w903-delivery -->
+## Localization delivery — W903–W927 (2026-11-05)
+
+Applied in catalog commit [868f93ef2ec8a242ff65d5da6f438633fc0fc152](https://github.com/snapetech-org/slskdN/commit/868f93ef2ec8a242ff65d5da6f438633fc0fc152), with the complete review and application evidence in [9ffa7617aa7b4609611584d80848bcb40eaf559a](https://github.com/snapetech-org/slskdN/commit/9ffa7617aa7b4609611584d80848bcb40eaf559a).
+
+- Primary, blind, independent cross-review, and root review cover 300 cells: 25 source strings across all 12 locales. Root selected 64 exact catalog updates; 224 current translations were retained and all 12 rank-910 cells remain unchanged.
+- Readback verified all 300 values against the pushed catalogs. Each locale retains 6,176 keys in the original order.
+- The current-main advance has no overlap with these locale catalogs or their pinned sources/callers. No workflow files changed.
+- The rank-910 rich-text review and source-rewrite packet is included for separate exact-head reattestation. That source rewrite is not part of this delivery.
+- No tests, builds, scans, or manual CI dispatches were run for this delivery. PR #409 remains open and draft; no merge, release, or tag was made.
+
+Evidence: [W903–W927 review and application packet](docs/pr-evidence/pr409-localization-2026-11-05/window-903-927/README.md)
+

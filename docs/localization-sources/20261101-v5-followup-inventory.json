@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "f4d55aee6c709579bcc67b10c1e8b880c1777630",
+  "state": "source-wired; translation targets pending",
+  "targetLocales": [
+    "es",
+    "zh-Hans",
+    "hi",
+    "de",
+    "ja",
+    "fr",
+    "pt-BR",
+    "ar",
+    "ko",
+    "zh-Hant",
+    "vi",
+    "id"
+  ],
+  "sourceReferenceCount": 5,
+  "uniqueSourceCount": 5,
+  "pendingSourceCount": 5,
+  "pendingTargetCells": 60,
+  "englishIdenticalPlaceholderSourceCount": 1,
+  "englishIdenticalPlaceholderTargetCells": 12,
+  "totalFollowupTranslationCells": 72,
+  "records": [
+    {
+      "id": "ui-copy.fcafc309f860",
+      "source": "Could not enable the equalizer for this track.",
+      "sourceSha256": "fcafc309f860127faa04dd17bfc6254870bbab8a5416b04a9c2ee440e451b1e2",
+      "parameters": [],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source wired; target translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/Equalizer.jsx",
+          "line": 54,
+          "lineText": "          onAudioError(interfaceTextOutput('Could not enable the equalizer for this track.'));",
+          "lineTextSha256": "8e471a79f4328a743b717e6849682715013a253fcb63db95418d12545ef04545",
+          "fileSha256": "6765f85cc840423e48a77b9756b15b024c71dd7049b0edd9dd8c2276366726af"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.34b423a2be26",
+      "source": "Unable to delete this {itemType}.",
+      "sourceSha256": "34b423a2be26de48e5af94ee26ea6f988ef7d50e53e5d2d1a9fe0fbd8b005c0b",
+      "parameters": [
+        "itemType"
+      ],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source wired; target translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/System/Files/Explorer.jsx",
+          "line": 42,
+          "lineText": "      setError(getErrorMessage(error_, interfaceTextOutput('Unable to delete this {itemType}.', {",
+          "lineTextSha256": "cb31de9a135012afae045f0d3e97eddff637b0507f308b23ea253a867ced6544",
+          "fileSha256": "e62126f034ed814afeafacf1d40e73b9345e361bdad69f2553e4737605a68f5f"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.8f1e8ca6fec3",
+      "source": "Could not leave room {roomName}",
+      "sourceSha256": "8f1e8ca6fec3e5ecf2d99b5f982d5639c18a5478613a1309e386f122ac0c40ee",
+      "parameters": [
+        "roomName"
+      ],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source wired; target translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Messaging/MessagingV2.jsx",
+          "line": 789,
+          "lineText": "        reportActionFailure(interfaceTextOutput('Could not leave room {roomName}', { roomName }), error);",
+          "lineTextSha256": "8f182d294a032823ee958fe2fd9cf4d2d4afd111699edced9a1013d4383d1647",
+          "fileSha256": "04f63230778aa43592f3901bda91cc112fde4dbed9f4c63f41b01c11e9add2c2"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.9abf1d4a0ab7",
+      "source": "Could not leave pod {podName}",
+      "sourceSha256": "9abf1d4a0ab7c1a34fdd57b8e5fa59e931c31a5d91d6dbb3e17211850a877acd",
+      "parameters": [
+        "podName"
+      ],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source wired; target translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Messaging/MessagingV2.jsx",
+          "line": 832,
+          "lineText": "        reportActionFailure(interfaceTextOutput('Could not leave pod {podName}', { podName }), error);",
+          "lineTextSha256": "66f0eca33e76c6d6af1ee1d090c3518447bd0d0924d71ad8dff98c72789787f7",
+          "fileSha256": "04f63230778aa43592f3901bda91cc112fde4dbed9f4c63f41b01c11e9add2c2"
+        }
+      ]
+    },
+    {
+      "id": "ui-copy.7ca1dc12a2e6",
+      "source": "Could not join discovered pod {name}",
+      "sourceSha256": "7ca1dc12a2e619767d2f344c97cd92dec7e206aa309ed894f52e498422a9e787",
+      "parameters": [
+        "name"
+      ],
+      "missingLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "status": "source wired; target translations pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Messaging/MessagingV2.jsx",
+          "line": 937,
+          "lineText": "      reportActionFailure(interfaceTextOutput('Could not join discovered pod {name}', { name }), error);",
+          "lineTextSha256": "21608e6b45ab763fa51bc87ca91b166c8f72d0d3f38746a76d580de081d0bdc5",
+          "fileSha256": "04f63230778aa43592f3901bda91cc112fde4dbed9f4c63f41b01c11e9add2c2"
+        }
+      ]
+    }
+  ],
+  "englishIdenticalPlaceholderRecords": [
+    {
+      "id": "ui-copy.d90f6386096c",
+      "source": "Playback stopped.",
+      "sourceSha256": "d90f6386096cd5735970ed022bcc1c3c0c24e7ff276f41d0d1b69623466be7a8",
+      "parameters": [],
+      "status": "source wired; all targets remain English-identical",
+      "englishIdenticalLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "englishIdenticalValue": "Playback stopped.",
+      "callers": [
+        {
+          "path": "src/web/src/components/Player/PlayerBar.jsx",
+          "line": 2652,
+          "lineText": "            setPlaybackAnnouncement(interfaceTextOutput('Playback stopped.'));",
+          "lineTextSha256": "fd0c2bf835096ce63be283006e99897a0961a68b391a74fd3a3c8ddaf6cdd080",
+          "fileSha256": "9136ea364f2ebbee42328434a2a9cf271473f66d05c4c74094960e5f75dfb40a"
+        }
+      ]
+    }
+  ]
+}

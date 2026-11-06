@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "exactHead": "0a6cbdcb606de1888045df358427eb2b81c85546",
+  "exactTree": "dcef8f70ea7c10926058c5db7430611b5faa07db",
+  "window": "W48 reconstructed pending stable-ID ranks 76-100",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 2281,
+      "sha256": "62273065125bedb966ef55c5f0712c32a49070744675817b2151a98fbc746692"
+    },
+    {
+      "path": "build_w48_primary.py",
+      "bytes": 34072,
+      "sha256": "608f84f101bdecf848d1c950ea0b05d231458ae76fdb71116e14d0bd72800a9f"
+    },
+    {
+      "path": "caller-context.jsonl",
+      "bytes": 43485,
+      "sha256": "f9bafd5a7bd202e417948a84a5598d454c06ffd4bd83bebc6efd514e0ab99350"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 3698,
+      "sha256": "54e9365e6a7464e1560889d89d234f9a098bffb32738ddecac9aa70f657064ad"
+    },
+    {
+      "path": "prior-excluded-source-ids.jsonl",
+      "bytes": 231099,
+      "sha256": "5df81adab31719b886fc9745ce8d817d8c40f7607a52a1a31b38fdf6443f29ea"
+    },
+    {
+      "path": "review-decisions.jsonl",
+      "bytes": 649983,
+      "sha256": "9b9de2fa7c5693dff3d538158e5c03ad82c36e153dee1fde496e951ffb33f389"
+    },
+    {
+      "path": "review-summary.json",
+      "bytes": 1247,
+      "sha256": "dfcf2eb9d078af496e36e85daad9a9b05f16c2fb77ea9cacc949a8570e4224ce"
+    },
+    {
+      "path": "runtime-followup-boundary.json",
+      "bytes": 3498,
+      "sha256": "9f0d41df48bce7ab4d477243917c46488c879582bc2815ff94797b8c7a4dbcf2"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 7859,
+      "sha256": "859ca2c111407fc33e6287802d9126397f2b36bf1ded56388895de6775b18c20"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 6234,
+      "sha256": "fc9bbfeda9b707bea64872f13f89d4301788f541fe2ba9c70a4b8950c77e2023"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 153829,
+      "sha256": "a594bc2590f78d914dbd9a17b0d5484a13959c2024f675a593a521518965772d"
+    },
+    {
+      "path": "source-inventory.jsonl",
+      "bytes": 1798799,
+      "sha256": "eef85e32e312c6f1edff48cc166940970e8ff3cdb741a6f42ad1df60f206be57"
+    },
+    {
+      "path": "w47-runtime-followup-reattestation.json",
+      "bytes": 31439,
+      "sha256": "78ff90833987eb9f5b72d291aeab3c672197861d1280312feb22217661eebf81"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "result": "PASS",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestState": "OPEN",
+  "pullRequestDraft": true,
+  "liveHead": "9b8e87ccc6fbcb77e82681aced4597ecc94d980f",
+  "liveTree": "dab884c9337715644efd6cbd8ce7efc3b2467ce9",
+  "sourceSubtreeTree": "a50cd94b2bc8d0f09de0882600207a4b82293108",
+  "catalogBaselineHead": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+  "catalogBaselineTree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+  "reviewPins": {
+    "window20": {
+      "head": "17f8c15c9d35d75819e39383d751eb255e8bdedb",
+      "tree": "db85d8b825f7510a58384f11ee3ce1a9472e415a"
+    },
+    "window21": {
+      "head": "a098c95c814a555454c11eaf2478ca5ae628a933",
+      "tree": "dedfcc3c93b1b3a67e7d582a9eeaa0df052ccf42"
+    }
+  },
+  "priorApplications": {
+    "initial736Rows": 736,
+    "initial736Sha256": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+    "windows18_19Rows": 82,
+    "windows18_19Sha256": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+    "appliedCells": 818,
+    "heldRows": 6,
+    "heldSha256": "4d41c7f5d4b04af8a64013b92c72daee8eb7c358bce88b7cc7005d146a201ef6"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "manualCoverage": {
+    "windows": 21,
+    "cells": 6300,
+    "sourceKeys": 525,
+    "verdicts": {
+      "keep": 5217,
+      "correct": 875,
+      "uncertain": 208
+    },
+    "formalOverlap": 0,
+    "manualOverlap": 0
+  },
+  "newWindows": [
+    20,
+    21
+  ],
+  "newCorrectionRows": 51,
+  "newSourceKeys": 16,
+  "newPerLocaleCellCounts": {
+    "ar": 3,
+    "es": 4,
+    "fr": 1,
+    "hi": 4,
+    "id": 1,
+    "ja": 3,
+    "ko": 5,
+    "pt-BR": 5,
+    "vi": 3,
+    "zh-Hans": 11,
+    "zh-Hant": 11
+  },
+  "priorAppliedOverlap": 0,
+  "heldOverlap": 0,
+  "formalOverlapNew": 0,
+  "manualOverlapNew": 0,
+  "beforeCatalogFileSha256": {
+    "ar": "a0bd7e5c8345a630813f327a046b5fd96b0cda5aec81ea11fc8ab5a0d94c2004",
+    "de": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75",
+    "es": "f8af7ac6bb5f6175da30cb4eee8ea5c01e17fd39c207c08bcf8b1ef7f33a1f9e",
+    "fr": "ee7c668874726114f7fd95933afa2b4ddc5fd69120d2f3baf6a2b1627ebb1776",
+    "hi": "2c284b5922e8c0a76b9eabdf48c61705010754427f78652eed49a3b5c6293684",
+    "id": "251daff9b3bebb2610d23362be51c56b117ec656382fe452441594eb31854575",
+    "ja": "005eec08f85635384634ab01a55b69572672d640f639c67e052b84a32f40c673",
+    "ko": "612a7677736cce13ce2a28b90e7360aaab43931f9dbecf0b7bddb52a415b127f",
+    "pt-BR": "8d8d80ff0cb7956a5b1ab898b4afa483f25d5fd6493ccaafbcc7bec4384c2a89",
+    "vi": "6bdddf7ba57a975ab1efa6c3ef187263fc5ea4ad7e5653c8a330f4da6ba0cc61",
+    "zh-Hans": "26ee514e596a1f6ad5624065d4973c00435bcdfae7322a49aa66e335676cc42f",
+    "zh-Hant": "dd2ad7209d9a9bc419075b256d867fe994c833a62a7872a02fb818fd33a13763"
+  },
+  "catalogChangeCellCounts": {
+    "src/web/public/locales/ar.json": 3,
+    "src/web/public/locales/es.json": 4,
+    "src/web/public/locales/fr.json": 1,
+    "src/web/public/locales/hi.json": 4,
+    "src/web/public/locales/id.json": 1,
+    "src/web/public/locales/ja.json": 3,
+    "src/web/public/locales/ko.json": 5,
+    "src/web/public/locales/pt-BR.json": 5,
+    "src/web/public/locales/vi.json": 3,
+    "src/web/public/locales/zh-Hans.json": 11,
+    "src/web/public/locales/zh-Hant.json": 11
+  },
+  "newApplicationRowsSha256": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02"
+}

@@ -1,0 +1,112 @@
+{
+  "result": "PRIMARY_REVIEW_COMPLETE_PENDING_CROSS_REVIEW_AND_NATIVE_SPEAKER_REVIEW",
+  "window": 39,
+  "pullRequest": 409,
+  "headCommit": "54bbece421b44fae0cc9156c42a859848db8be5e",
+  "tree": "c9c5ea9d9cd444a677d5f3428a3e3d94c49c67f2",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "pendingCells": 275,
+  "pendingCellCounts": {
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "perLocaleVerdicts": {
+    "zh-Hans": {
+      "accept-current": 24,
+      "propose-refinement": 1
+    },
+    "hi": {
+      "accept-current": 21,
+      "propose-correction": 3,
+      "propose-refinement": 1
+    },
+    "de": {
+      "accept-current": 22,
+      "propose-correction": 2,
+      "propose-refinement": 1
+    },
+    "ja": {
+      "accept-current": 21,
+      "propose-correction": 3,
+      "propose-refinement": 1
+    },
+    "fr": {
+      "accept-current": 23,
+      "propose-correction": 2
+    },
+    "pt-BR": {
+      "accept-current": 22,
+      "propose-refinement": 1,
+      "propose-correction": 2
+    },
+    "ar": {
+      "accept-current": 21,
+      "propose-correction": 2,
+      "propose-refinement": 2
+    },
+    "ko": {
+      "accept-current": 22,
+      "propose-correction": 3
+    },
+    "zh-Hant": {
+      "accept-current": 24,
+      "propose-correction": 1
+    },
+    "vi": {
+      "accept-current": 19,
+      "propose-correction": 5,
+      "propose-refinement": 1
+    },
+    "id": {
+      "accept-current": 21,
+      "propose-refinement": 2,
+      "propose-correction": 2
+    }
+  },
+  "verdictCounts": {
+    "accept-current": 240,
+    "propose-correction": 25,
+    "propose-refinement": 10
+  },
+  "correctionRows": 35,
+  "correctionCellsByLocale": {
+    "zh-Hans": 1,
+    "hi": 4,
+    "de": 3,
+    "ja": 4,
+    "fr": 2,
+    "pt-BR": 3,
+    "ar": 4,
+    "ko": 3,
+    "zh-Hant": 1,
+    "vi": 6,
+    "id": 4
+  },
+  "refinementCells": 10,
+  "priorInventoryExactReuseRowsIndependentlyReviewed": 1,
+  "formalSpanishRowsPreserved": 25,
+  "priorHoldRowsPreservedAndReattested": 50,
+  "priorHoldRowsMissingOriginalCallers": 47,
+  "uniqueCallerLinesPinned": 33,
+  "catalogFilesPinned": 12,
+  "sourceCurrentTargetsCallersPinnedAtExactHead": true,
+  "allPlaceholderSetsPreserved": true,
+  "allRequiredTechnicalAndProductLiteralsPreservedInCandidates": true,
+  "candidateNoOpRows": 0,
+  "nativeSpeakerReview": "not performed; remains required",
+  "testsBuildsScansCiOrReleasesRun": false,
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "repositoryOrPullRequestMutated": false
+}

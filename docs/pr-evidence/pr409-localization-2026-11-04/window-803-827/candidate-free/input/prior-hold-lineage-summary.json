@@ -1,0 +1,20 @@
+{
+  "carriedHoldCells": 319,
+  "holdLineage": {
+    "W57": 12,
+    "W59": 24,
+    "W62": 24,
+    "W63": 13,
+    "W64": 12,
+    "W65": 6,
+    "W66": 24,
+    "W69": 12,
+    "W71": 12,
+    "W72": 108,
+    "W73": 12,
+    "W75": 12,
+    "W76": 48
+  },
+  "previouslyResolvedHistoricalRows": 13,
+  "resolutionRowsTextFree": true
+}

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W67 ranks 553-577 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "tree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "sourceInventoryPath": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceInventoryRows": 6176,
+  "remainingQueueRankRange": [
+    453,
+    477
+  ],
+  "continuationRankRange": [
+    553,
+    577
+  ],
+  "priorSelectedIdsExcluded": 1657,
+  "priorHeldCellsReattested": 128,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "catalogEntryCountPerLocale": 6176,
+  "baselineTokenMismatchSummary": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 10
+  },
+  "previousWindow": "W66",
+  "nextUnselectedContinuationRank": 578,
+  "nextUnselectedSourceId": "src_25ba5fed1e9160d1",
+  "priorLineagePins": {
+    "W66CandidateFreeChecksumsSha256": "f4501c8d88e0e9854cec1c06b5632f1ee9f8aea1ae5934bc7ee82347b10dee63",
+    "W66CrossAuditManifestSha256": "0605baf6d58098c0ff3e71cf3d9a1aeb4614549c2103b370fde426b196dfa8a4",
+    "W66CrossAuditChecksumsSha256": "ff9b59e7530602d858694f5c0539f1ac539ff9794b38c4ce584102d95adb7dae"
+  },
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1241,
+      "sha256": "7a8163bec3955e6cba85314fcfa921d5d227b443a9c4c8124b3422dfa612990b"
+    },
+    {
+      "path": "baseline-token-mismatch-summary.json",
+      "bytes": 130,
+      "sha256": "34c2a00dc76b7abdfc570b837d3b501181850de3fa5552411b2a68053d1b1d1c"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 45907,
+      "sha256": "c3cc836e9fa0921dbb53bef6cf6e7ba13c2b69ce062861097372574f4320c08a"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "0a9ae34f438b527c6dfa17664c4fce086cef7a25c0ddc1810665d931bcaaf752"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 596,
+      "sha256": "ca614aa76c55ab917bec410703cb81e4293f0388ff7dc34e8b5831ae455db41d"
+    },
+    {
+      "path": "prior-held-cell-reattestation-summary.json",
+      "bytes": 197,
+      "sha256": "45d20f85e377cfc3008815d414d0c101f98d25502ecc448f79fced9dabb87805"
+    },
+    {
+      "path": "prior-held-cell-reattestation.jsonl",
+      "bytes": 160155,
+      "sha256": "cab68a93cb329b138716a21118b2ee24b8d0d759ad1579515f088ba29583bad1"
+    },
+    {
+      "path": "prior-selected-id-exclusions.jsonl",
+      "bytes": 521630,
+      "sha256": "65b99a9b96dc710a7b8f053a7a214d1e98db59aaec294df7bad30afdcf7c897d"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 1789,
+      "sha256": "fa72037007ac2819721d9dc46d1fbe34cbc321dffb4957e31f2c5bf243110fbb"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 8568,
+      "sha256": "717ba86773bcea33521baa2bbb628614c70b81033eb9dcf8d5d61df7cc53450a"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 455771,
+      "sha256": "ece3d06da7f0476b724ff1824f6a0bcb5f0c0f51b5500a1dfe331404745557a4"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 7314,
+      "sha256": "f2ff698f4749ef49208edc5889e4dc648f7a2fe342baf7bf26dd99ae7869cf71"
+    },
+    {
+      "path": "verify_input.py",
+      "bytes": 13803,
+      "sha256": "f429d47073682bd109303b7a81c4b7bb1858a1110135b1475dc77dbb16ee87a1"
+    }
+  ]
+}

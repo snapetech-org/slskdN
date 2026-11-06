@@ -1,0 +1,16 @@
+{
+  "currentAttestedHead": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "newlySelectedIdsExcluded": 25,
+  "priorActiveHolds": 421,
+  "priorAppliedTargets": 677,
+  "priorLiveHead": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "priorLiveTree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "priorPacketChecksumsSha256": "1fa74008666ad75fc7a1d670e4ca21cce16530dee15db71c5303a5357abefb8e",
+  "priorPacketManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+  "priorPacketPath": "task-scratch/slskdn-pr409-w1003-1027-20261105/candidate-free",
+  "priorSourceExclusions": 2110,
+  "priorWindowProductReadbackRows": 300,
+  "productionRuntimeFilesUnchangedSincePriorScan": true,
+  "sourceTextIncluded": false,
+  "targetTextIncluded": false
+}

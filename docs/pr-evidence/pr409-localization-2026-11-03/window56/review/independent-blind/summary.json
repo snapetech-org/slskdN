@@ -1,0 +1,61 @@
+{
+  "artifact": "slskdN PR #409 independent blind semantic review W56 ranks 301-302",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "callerReferences": 2,
+  "candidateFreeInputManifestSha256": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+  "candidateFreePacketChecksumListSha256": "b46194d9825ebd1e2e12283a2553361975a223096908e356378c2f83754f09fd",
+  "decisionCounts": {
+    "accept-current": 13,
+    "correction": 7,
+    "refinement": 4
+  },
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "localeCount": 12,
+  "markupCheckCount": 24,
+  "markupMismatchCount": 0,
+  "nativeSpeakerApproval": false,
+  "numericTokenCheckCount": 24,
+  "numericTokenMismatchCount": 0,
+  "placeholderCheckCount": 24,
+  "placeholderMismatchCount": 0,
+  "proposalsByPosition": {
+    "301": 0,
+    "302": 11
+  },
+  "proposedChanges": 11,
+  "protectedWarningTokenCheckCount": 12,
+  "protectedWarningTokenFailures": 0,
+  "pullRequest": 409,
+  "rank301": {
+    "decision": "accept-current in all locales",
+    "exactWarningPlaceholderRequired": "{warning}",
+    "listMarkerRationale": "caller emits one warning per line; current locale list marker is preserved",
+    "placeholderPreservationFailures": 0
+  },
+  "rank302": {
+    "caller": "System > Jobs statistic over Object.keys(analytics.byType).length",
+    "changeLocales": [
+      "ar",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "meaning": "system/background job categories, not employment categories"
+  },
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPREdited": false,
+  "reviewMode": "blind; used only the candidate-free packet and live PR pin verification",
+  "reviewedCells": 24,
+  "sourceCount": 2,
+  "testsBuildsScansCIWorkflowBrowserMergeReleaseOrTagActions": false,
+  "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909",
+  "verifiedInputFiles": 8,
+  "window": "W56"
+}

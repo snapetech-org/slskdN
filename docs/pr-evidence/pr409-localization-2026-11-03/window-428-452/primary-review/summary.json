@@ -1,0 +1,212 @@
+{
+  "artifact": "slskdN PR #409 W62 primary semantic review",
+  "window": "W62 ranks 428-452",
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "candidateFreePacketChecksumListSha256": "005097b25bd89a302b4caebd4478013fbc5b239c210f841613b5edb6d706660b",
+  "candidateFreeManifestJsonSha256": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+  "inputChecksumVerification": [
+    "README.md: OK",
+    "caller-contexts.jsonl: OK",
+    "catalog-structure.jsonl: OK",
+    "head-tree-attestation.json: OK",
+    "manifest.json: OK",
+    "prior-rank-disposition-reattestation-summary.json: OK",
+    "prior-rank-disposition-reattestation.jsonl: OK",
+    "selection-and-boundary.json: OK",
+    "selection-boundary.jsonl: OK",
+    "source-current-cells.jsonl: OK",
+    "source-inventory-selection.jsonl: OK"
+  ],
+  "rowCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "verdictCounts": {
+    "accept-current": 216,
+    "correction": 34,
+    "hold": 24,
+    "refinement": 26
+  },
+  "proposedTargetCount": 60,
+  "selectedTargetCount": 60,
+  "semanticHolds": [
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "ar",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "de",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "es",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "fr",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "hi",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "id",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "ja",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "ko",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "pt-BR",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "vi",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "zh-Hans",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 438,
+      "sourceId": "src_1fde45c1ae57aa58",
+      "locale": "zh-Hant",
+      "source": "Similar users loaded: {count}.",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "ar",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "de",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "es",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "fr",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "hi",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "id",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "ja",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "ko",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "pt-BR",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "vi",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "zh-Hans",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    },
+    {
+      "rank": 452,
+      "sourceId": "src_2063789a98916996",
+      "locale": "zh-Hant",
+      "source": "Download complete",
+      "reason": "No production caller is pinned for this source; retain the current value on hold until its labeled event or action is established."
+    }
+  ],
+  "callerlessSourceIds": 2,
+  "callerlessHoldCells": 24,
+  "allCellsCallerBacked": false,
+  "structuralChecksAllPass": true,
+  "candidateFreeProtectedProbeMismatches": 18,
+  "protectedProbeDisposition": "The candidate-free heuristic flags localized Wishlist labels and pre-correction Pod translations; Wishlist is a localizable feature name, while Pod corrections restore exact spelling.",
+  "candidateFreeInputModified": false,
+  "repositoryOrPRModified": false,
+  "qualifiedNativeSpeakerApproval": false
+}

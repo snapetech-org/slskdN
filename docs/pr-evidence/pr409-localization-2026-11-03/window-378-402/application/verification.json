@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "appliedCommit": "0040a71065057e7aa5c2f723a8a510e6da34b65a",
+  "parentHead": "3fbcea3185c02efca7c45d03a195acf488e70587",
+  "window": "W60 ranks 378-402",
+  "catalogFilesVerified": 12,
+  "catalogKeysPerLocale": 6176,
+  "orderedCatalogKeysPreserved": true,
+  "reviewedCells": 300,
+  "readbackMatches": 300,
+  "selectedChanges": 84,
+  "unplannedNonTargetChanges": 0,
+  "applicationPlanAndReadbackReverified": true,
+  "candidateFreePacketChecksumListSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "candidateFreeManifestJsonSha256": "d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797"
+}

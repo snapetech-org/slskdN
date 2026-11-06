@@ -1,0 +1,14 @@
+{
+  "candidateFreeManifestFile": "PACKET-SHA256SUMS.txt",
+  "candidateFreeManifestSha256": "b9ee90713942e94f801c019690b279c4ce01dc2a34c096dc826b684d4e53a839",
+  "head": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+  "ledgerRows": 300,
+  "ledgerSha256": "227f56ed3da17276cc6071bb218fbdc93077c4d414a55e92ecf48d571a5005ab",
+  "nativeSpeakerApproval": false,
+  "primaryLedgerConsultedBeforeSeal": false,
+  "pullRequest": 409,
+  "recordType": "blind-review-seal",
+  "repository": "snapetech-org/slskdN",
+  "tree": "b29397903a036d40af1c6551dedbe070e735cfed",
+  "window": "W58-ranks-328-352"
+}

@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "17f8c15c9d35d75819e39383d751eb255e8bdedb",
+  "tree": "db85d8b825f7510a58384f11ee3ce1a9472e415a",
+  "sourceSubtreeTree": "a50cd94b2bc8d0f09de0882600207a4b82293108",
+  "generatedUtc": "2026-11-02T01:16:50Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 19,
+    "cells": 5700,
+    "keys": 475,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 818,
+    "ids": 818,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_f3677ae8bb7f1d69",
+      "src_f3686bb328c6d408",
+      "src_f36dff2d475ece34",
+      "src_f380df1323e4024f",
+      "src_f389f82299ec5ff5",
+      "src_f399cf280654e29c",
+      "src_f3a8804d7e386e5e",
+      "src_f3b42c83ca64ccdc",
+      "src_f3c1749ec1bbc236",
+      "src_f3c457197e53da9a",
+      "src_f3c4cac5c6935a84",
+      "src_f3cbc1a88a06a2a0",
+      "src_f3d19541f3a5a842",
+      "src_f3de59bd1ade94d8",
+      "src_f3e4352a5df650e5",
+      "src_f3fccc06b528a38d",
+      "src_f40236c9df2afa26",
+      "src_f41358bab4c355de",
+      "src_f41792666b3f8d5b",
+      "src_f42a8e2057ce2c9f",
+      "src_f42ca9740749dba9",
+      "src_f42e0f66017d9937",
+      "src_f44034a1c79947cd",
+      "src_f452afa2f6b9cd3c",
+      "src_f45850b2e8fbc954"
+    ],
+    "sourceIdListSha256": "90186ca140282b43ffc7b9335bc8d0561779e8e23b52922238c1f3aaaba5d397",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 272,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "f8af7ac6bb5f6175da30cb4eee8ea5c01e17fd39c207c08bcf8b1ef7f33a1f9e",
+    "zh-Hans": "26ee514e596a1f6ad5624065d4973c00435bcdfae7322a49aa66e335676cc42f",
+    "hi": "2c284b5922e8c0a76b9eabdf48c61705010754427f78652eed49a3b5c6293684",
+    "de": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75",
+    "ja": "005eec08f85635384634ab01a55b69572672d640f639c67e052b84a32f40c673",
+    "fr": "ee7c668874726114f7fd95933afa2b4ddc5fd69120d2f3baf6a2b1627ebb1776",
+    "pt-BR": "8d8d80ff0cb7956a5b1ab898b4afa483f25d5fd6493ccaafbcc7bec4384c2a89",
+    "ar": "a0bd7e5c8345a630813f327a046b5fd96b0cda5aec81ea11fc8ab5a0d94c2004",
+    "ko": "612a7677736cce13ce2a28b90e7360aaab43931f9dbecf0b7bddb52a415b127f",
+    "zh-Hant": "dd2ad7209d9a9bc419075b256d867fe994c833a62a7872a02fb818fd33a13763",
+    "vi": "6bdddf7ba57a975ab1efa6c3ef187263fc5ea4ad7e5653c8a330f4da6ba0cc61",
+    "id": "251daff9b3bebb2610d23362be51c56b117ec656382fe452441594eb31854575"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "de9c4ac3cb20993b9eca04a8188520f98de9e739d3d280ef7e4ce22cce09ada2"
+  },
+  "reviewerMethod": "independent semantic review of pinned source context and code callsites; no local translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "ac2d261c4d62f1844753670fef2354dd58151f6a774a908c04877a15f7f1a024"
+  },
+  "decisionCounts": {
+    "keep": 266,
+    "correct": 22,
+    "uncertain": 12
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "zh-Hans": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "hi": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "de": {
+      "keep": 24,
+      "correct": 0,
+      "uncertain": 1
+    },
+    "ja": {
+      "keep": 23,
+      "correct": 1,
+      "uncertain": 1
+    },
+    "fr": {
+      "keep": 23,
+      "correct": 1,
+      "uncertain": 1
+    },
+    "pt-BR": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "ar": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "zh-Hant": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "vi": {
+      "keep": 24,
+      "correct": 0,
+      "uncertain": 1
+    },
+    "id": {
+      "keep": 24,
+      "correct": 0,
+      "uncertain": 1
+    }
+  },
+  "overallConfidence": "moderate",
+  "correctionFindings": [
+    {
+      "sourceId": "src_f3686bb328c6d408",
+      "source": "Successful",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant",
+        "ko"
+      ],
+      "finding": "The Chinese adjective form 成功的 requires a following noun; this standalone import-status badge is simply 成功."
+    },
+    {
+      "sourceId": "src_f36dff2d475ece34",
+      "source": "Clear Quality",
+      "affectedLocales": [
+        "es",
+        "pt-BR",
+        "ar",
+        "ko"
+      ],
+      "finding": "The button resets the bitrate, lossless, bit-depth, and sample-rate filters; the current wording says to erase quality itself."
+    },
+    {
+      "sourceId": "src_f3b42c83ca64ccdc",
+      "source": "Discovery refresh completed: {entriesRefreshed} refreshed, {entriesExpired} expired",
+      "affectedLocales": [
+        "es",
+        "hi",
+        "fr",
+        "pt-BR",
+        "ko"
+      ],
+      "finding": "The placeholders are entry counts; include the counted entries and use plural agreement."
+    },
+    {
+      "sourceId": "src_f3c1749ec1bbc236",
+      "source": "Send Pushover notifications when your username is mentioned in a joined room.",
+      "affectedLocales": [
+        "ar"
+      ],
+      "finding": "Pushover is the notification service name; the current Arabic translates it as الانتقال (“transition”)."
+    },
+    {
+      "sourceId": "src_f3cbc1a88a06a2a0",
+      "source": "Confirmed file actions",
+      "affectedLocales": [
+        "hi"
+      ],
+      "finding": "The source labels a category of multiple confirmed file actions; the current Hindi uses a singular action noun."
+    },
+    {
+      "sourceId": "src_f3e4352a5df650e5",
+      "source": "Remaining",
+      "affectedLocales": [
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "This is a numeric transfer-table column for bytes still remaining, so use the amount/status term 剩余 instead of 其余的 (“the rest”)."
+    },
+    {
+      "sourceId": "src_f42a8e2057ce2c9f",
+      "source": "Load Portability Stats",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "ja",
+        "pt-BR",
+        "zh-Hant"
+      ],
+      "finding": "This is a button command whose handler loads statistics; carga is read as the noun “load/weight” here."
+    }
+  ],
+  "uncertaintyFindings": [
+    {
+      "sourceId": "src_f41792666b3f8d5b",
+      "source": "Copy the visible conflict report, including local authority disable selections. This does not change backend realm governance.",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "Realm is an unresolved Mesh identity/governance term in the existing terminology review; exact context is available, but the cross-locale product term has not been standardized, so preserve each current value."
+    }
+  ],
+  "tools": {
+    "preflight_window20.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window20-17f8c15c-20261101/preflight_window20.py",
+      "sha256": "fbd2bc20e9be0cefa819bac668a3a008505216dc3d0d8bba0b1426001e483f58"
+    },
+    "verify_evidence.py": {
+      "scratchPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window20-17f8c15c-20261101/verify_evidence.py",
+      "sha256": "53121eb5e496740238680c67d5d9fc282c0f17ef6ed352d90f8c59905669d7b0"
+    }
+  }
+}

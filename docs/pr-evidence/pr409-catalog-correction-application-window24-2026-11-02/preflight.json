@@ -1,0 +1,64 @@
+{
+  "result": "PASS",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePrState": "OPEN",
+  "livePrDraft": true,
+  "liveHead": "805246b87e208cedcbdd0e2f33a83f912f4ad84b",
+  "liveTree": "4377ade660fa379731a41b54ba387c4eff2bcf32",
+  "sourceSubtreeTree": "c3d06e298da7f7e04e69bee3c2596805a03d1e4b",
+  "window24": {
+    "keys": 25,
+    "cells": 300,
+    "verdicts": {
+      "keep": 255,
+      "correct": 45
+    },
+    "correctionRows": 45,
+    "correctionsByLocale": {
+      "ar": 4,
+      "de": 3,
+      "es": 6,
+      "fr": 3,
+      "hi": 2,
+      "id": 2,
+      "ja": 4,
+      "ko": 4,
+      "pt-BR": 4,
+      "vi": 5,
+      "zh-Hans": 4,
+      "zh-Hant": 4
+    },
+    "rootCrossReview": {
+      "accepted-proposal": 43,
+      "refined": 2
+    },
+    "rootLedgerSha256": "2afa2c49dcfbf885afc70c40e8341ec8cdd4b91429825a743b460159da8c53e6",
+    "rootApplyPlanSha256": "e4181de90b344aea2ea13c199852886969a2a65088689fce4363f87c5ea87d2d",
+    "reviewInputSha256": "c8b6b51bb57d476b9272d05f27386f7f7829bacaa14f077db91003eac7898270",
+    "reviewDecisionsSha256": "b0a2e8e9a082db42423fbc08dccaed95a72f0aee5c24f48d92b56b31f2c94d69",
+    "proposalPlanSha256": "a32015312fd7bb99e8428bbc0d42e0d5e5794c9f06d29203d4c03dadf531cfce"
+  },
+  "priorManual": {
+    "windows": 23,
+    "keys": 575,
+    "cells": 6900,
+    "overlap": 0
+  },
+  "priorApplied": {
+    "cells": 934,
+    "overlap": 0
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800,
+    "overlap": 0
+  },
+  "hashesAndPlaceholders": "PASS",
+  "callerPinsRechecked": 77,
+  "sourceSubtreeChanged": false,
+  "catalogsEdited": false,
+  "workflowsEdited": false
+}

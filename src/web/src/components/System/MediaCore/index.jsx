@@ -1,10 +1,11 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceTextOutput, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 import * as mediacore from '../../../lib/mediacore';
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
+import { getMediaCoreMatchReasonPresentation } from '../../../lib/appGeneratedReasonText';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
 import Button from './MediaCoreButton';
@@ -17,7 +18,7 @@ import {
   podWorkflowSections,
 } from './mediaCoreWorkflows';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Card,
   Checkbox,
@@ -199,7 +200,7 @@ const MediaCore = () => {
     } catch (error_) {
       if (!mountedRef.current) return;
       if (document.hidden) return;
-      setError(getApiErrorMessage(error_, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }));
     } finally {
       statsInFlightRef.current = false;
       if (mountedRef.current && !document.hidden) {
@@ -261,7 +262,7 @@ const MediaCore = () => {
       const data = await mediacore.getContentIdStats();
       setStats(data);
     } catch (error_) {
-      setError(interfaceText("Failed to register: {message}", { "message": (getApiErrorMessage(error_, { t: interfaceText })) }));
+      setError(interfaceTextOutput("Failed to register: {message}", { "message": (getApiErrorMessageOutput(error_, { t: interfaceText })) }));
     } finally {
       setRegistering(false);
     }
@@ -276,7 +277,7 @@ const MediaCore = () => {
       const result = await mediacore.resolveContentId(resolveId.trim());
       setResolvedContent(result);
     } catch (error_) {
-      setResolvedContent({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setResolvedContent({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setResolving(false);
     }
@@ -293,7 +294,7 @@ const MediaCore = () => {
       );
       setValidatedContent(result);
     } catch (error_) {
-      setValidatedContent({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setValidatedContent({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setValidating(false);
     }
@@ -313,7 +314,7 @@ const MediaCore = () => {
         : await mediacore.findContentIdsByDomain(domain.trim());
       setDomainResults(result);
     } catch (error_) {
-      setDomainResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setDomainResults({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setSearchingDomain(false);
     }
@@ -341,7 +342,7 @@ const MediaCore = () => {
       );
       setTraversalResults(result);
     } catch (error_) {
-      setTraversalResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setTraversalResults({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setTraversing(false);
     }
@@ -356,7 +357,7 @@ const MediaCore = () => {
       const result = await mediacore.getContentGraph(graphContentId.trim());
       setGraphResults(result);
     } catch (error_) {
-      setGraphResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setGraphResults({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setGettingGraph(false);
     }
@@ -371,7 +372,7 @@ const MediaCore = () => {
       const result = await mediacore.findInboundLinks(inboundTargetId.trim());
       setInboundResults(result);
     } catch (error_) {
-      setInboundResults({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setInboundResults({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setFindingInbound(false);
     }
@@ -410,7 +411,7 @@ const MediaCore = () => {
       );
       setAudioHashResult(result);
     } catch (error_) {
-      setAudioHashResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setAudioHashResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setComputingAudioHash(false);
     }
@@ -441,7 +442,7 @@ const MediaCore = () => {
       );
       setImageHashResult(result);
     } catch (error_) {
-      setImageHashResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setImageHashResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setComputingImageHash(false);
     }
@@ -460,7 +461,7 @@ const MediaCore = () => {
       );
       setSimilarityResult(result);
     } catch (error_) {
-      setSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setSimilarityResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setComputingSimilarity(false);
     }
@@ -479,7 +480,7 @@ const MediaCore = () => {
       );
       setPerceptualSimilarityResult(result);
     } catch (error_) {
-      setPerceptualSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPerceptualSimilarityResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setComputingPerceptualSimilarity(false);
     }
@@ -500,7 +501,7 @@ const MediaCore = () => {
       );
       setFindSimilarResult(result);
     } catch (error_) {
-      setFindSimilarResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setFindSimilarResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setFindingSimilarContent(false);
     }
@@ -518,7 +519,7 @@ const MediaCore = () => {
       );
       setTextSimilarityResult(result);
     } catch (error_) {
-      setTextSimilarityResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setTextSimilarityResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setComputingTextSimilarity(false);
     }
@@ -537,7 +538,7 @@ const MediaCore = () => {
       const result = await mediacore.exportMetadata(contentIds, includeLinks);
       setExportResult(result);
     } catch (error_) {
-      setExportResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setExportResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setExportingMetadata(false);
     }
@@ -564,7 +565,7 @@ const MediaCore = () => {
       );
       setImportResult(result);
     } catch (error_) {
-      setImportResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setImportResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setImportingMetadata(false);
     }
@@ -587,7 +588,7 @@ const MediaCore = () => {
       const result = await mediacore.analyzeMetadataConflicts(packageData);
       setConflictAnalysis(result);
     } catch (error_) {
-      setConflictAnalysis({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setConflictAnalysis({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setAnalyzingConflicts(false);
     }
@@ -610,7 +611,7 @@ const MediaCore = () => {
       const result = await mediacore.publishContentDescriptor(descriptor);
       setPublishResult(result);
     } catch (error_) {
-      setPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPublishResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setPublishingDescriptor(false);
     }
@@ -641,7 +642,7 @@ const MediaCore = () => {
         await mediacore.publishContentDescriptorsBatch(descriptors);
       setBatchPublishResult(result);
     } catch (error_) {
-      setBatchPublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setBatchPublishResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setPublishingBatch(false);
     }
@@ -670,7 +671,7 @@ const MediaCore = () => {
       );
       setUpdateResult(result);
     } catch (error_) {
-      setUpdateResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setUpdateResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setUpdatingDescriptor(false);
     }
@@ -683,7 +684,7 @@ const MediaCore = () => {
       const result = await mediacore.republishExpiringDescriptors();
       setRepublishResult(result);
     } catch (error_) {
-      setRepublishResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRepublishResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRepublishing(false);
     }
@@ -696,7 +697,7 @@ const MediaCore = () => {
       const result = await mediacore.getPublishingStats();
       setPublishingStats(result);
     } catch (error_) {
-      setPublishingStats({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setPublishingStats({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setLoadingStats(false);
     }
@@ -714,7 +715,7 @@ const MediaCore = () => {
       );
       setRetrievalResult(result);
     } catch (error_) {
-      setRetrievalResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setRetrievalResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRetrievingDescriptor(false);
     }
@@ -734,7 +735,7 @@ const MediaCore = () => {
         await mediacore.retrieveContentDescriptorsBatch(contentIds);
       setBatchRetrievalResult(result);
     } catch (error_) {
-      setBatchRetrievalResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setBatchRetrievalResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setRetrievingBatch(false);
     }
@@ -753,7 +754,7 @@ const MediaCore = () => {
       );
       setQueryResult(result);
     } catch (error_) {
-      setQueryResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setQueryResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setQueryingDescriptors(false);
     }
@@ -776,7 +777,7 @@ const MediaCore = () => {
       const result = await mediacore.verifyContentDescriptor(descriptor);
       setDescriptorVerificationResult(result);
     } catch (error_) {
-      setDescriptorVerificationResult({ error: getApiErrorMessage(error_, { t: interfaceText }) });
+      setDescriptorVerificationResult({ error: getApiErrorMessageOutput(error_, { t: interfaceText }) });
     } finally {
       setVerifyingDescriptor(false);
     }
@@ -820,7 +821,7 @@ const MediaCore = () => {
     return (
       <Message error>
         <Message.Header><LocalizedText source={"Failed to load MediaCore statistics"} /></Message.Header>
-        <p>{error}</p>
+        <p><LocalizedOutputText output={error} /></p>
       </Message>
     );
   }
@@ -1028,7 +1029,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {resolvedContent.error ? (
                     <Message error>
-                      <p>{resolvedContent.error}</p>
+                      <p><LocalizedOutputText output={resolvedContent.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1083,7 +1084,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {validatedContent.error ? (
                     <Message error>
-                      <p>{validatedContent.error}</p>
+                      <p><LocalizedOutputText output={validatedContent.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1154,7 +1155,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {domainResults.error ? (
                     <Message error>
-                      <p>{domainResults.error}</p>
+                      <p><LocalizedOutputText output={domainResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1261,7 +1262,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {traversalResults.error ? (
                     <Message error>
-                      <p>{traversalResults.error}</p>
+                      <p><LocalizedOutputText output={traversalResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1335,7 +1336,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {graphResults.error ? (
                     <Message error>
-                      <p>{graphResults.error}</p>
+                      <p><LocalizedOutputText output={graphResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1422,7 +1423,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {inboundResults.error ? (
                     <Message error>
-                      <p>{inboundResults.error}</p>
+                      <p><LocalizedOutputText output={inboundResults.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1523,7 +1524,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {audioHashResult.error ? (
                     <Message error>
-                      <p>{audioHashResult.error}</p>
+                      <p><LocalizedOutputText output={audioHashResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1617,7 +1618,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {imageHashResult.error ? (
                     <Message error>
-                      <p>{imageHashResult.error}</p>
+                      <p><LocalizedOutputText output={imageHashResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -1694,7 +1695,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {similarityResult.error ? (
                     <Message error>
-                      <p>{similarityResult.error}</p>
+                      <p><LocalizedOutputText output={similarityResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -1785,7 +1786,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {findSimilarResult.error ? (
                     <Message error>
-                      <p>{findSimilarResult.error}</p>
+                      <p><LocalizedOutputText output={findSimilarResult.error} /></p>
                     </Message>
                   ) : (
                     <div>
@@ -1811,7 +1812,9 @@ const MediaCore = () => {
                           relaxed
                           style={{ maxHeight: '200px', overflow: 'auto' }}
                         >
-                          {asArray(findSimilarResult.matches).map((match, index) => (
+                          {asArray(findSimilarResult.matches).map((match, index) => {
+                            const reasonCopy = getMediaCoreMatchReasonPresentation(match.reason);
+                            return (
                             <List.Item key={index}>
                               <List.Content>
                                 <List.Header style={{ fontSize: '0.9em' }}>
@@ -1819,11 +1822,15 @@ const MediaCore = () => {
                                 </List.Header>
                                 <List.Description>
                                   <LocalizedText source={"Confidence:"} />{' '}
-                                  {(match.confidence * 100).toFixed(1)}<LocalizedText source={"% | Reason:"} />{" "}{match.reason}
+                                  {(match.confidence * 100).toFixed(1)}<LocalizedText source={"% | Reason:"} />{" "}
+                                  {reasonCopy.source
+                                    ? <LocalizedText source={reasonCopy.source} values={reasonCopy.values} />
+                                    : reasonCopy.text}
                                 </List.Description>
                               </List.Content>
                             </List.Item>
-                          ))}
+                            );
+                          })}
                         </List>
                       )}
                     </div>
@@ -1893,7 +1900,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {perceptualSimilarityResult.error ? (
                     <Message error>
-                      <p>{perceptualSimilarityResult.error}</p>
+                      <p><LocalizedOutputText output={perceptualSimilarityResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -1974,7 +1981,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {textSimilarityResult.error ? (
                     <Message error>
-                      <p>{textSimilarityResult.error}</p>
+                      <p><LocalizedOutputText output={textSimilarityResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2050,7 +2057,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {exportResult.error ? (
                     <Message error>
-                      <p>{exportResult.error}</p>
+                      <p><LocalizedOutputText output={exportResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2167,7 +2174,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {conflictAnalysis.error ? (
                     <Message error>
-                      <p>{conflictAnalysis.error}</p>
+                      <p><LocalizedOutputText output={conflictAnalysis.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2195,7 +2202,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {importResult.error ? (
                     <Message error>
-                      <p>{importResult.error}</p>
+                      <p><LocalizedOutputText output={importResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2226,7 +2233,7 @@ const MediaCore = () => {
                           </summary>
                           <List bulleted>
                             {asArray(importResult.errors).map((error, index) => (
-                              <List.Item key={index}>{error}</List.Item>
+                              <List.Item key={index}><LocalizedOutputText output={error} /></List.Item>
                             ))}
                           </List>
                         </details>
@@ -2296,7 +2303,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {publishResult.error ? (
                     <Message error>
-                      <p>{publishResult.error}</p>
+                      <p><LocalizedOutputText output={publishResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2359,7 +2366,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {batchPublishResult.error ? (
                     <Message error>
-                      <p>{batchPublishResult.error}</p>
+                      <p><LocalizedOutputText output={batchPublishResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2454,7 +2461,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {updateResult.error ? (
                     <Message error>
-                      <p>{updateResult.error}</p>
+                      <p><LocalizedOutputText output={updateResult.error} /></p>
                     </Message>
                   ) : (
                     <Message success>
@@ -2514,7 +2521,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {republishResult.error ? (
                     <Message error>
-                      <p>{republishResult.error}</p>
+                      <p><LocalizedOutputText output={republishResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2542,7 +2549,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {publishingStats.error ? (
                     <Message error>
-                      <p>{publishingStats.error}</p>
+                      <p><LocalizedOutputText output={publishingStats.error} /></p>
                     </Message>
                   ) : (
                     <Message>
@@ -2641,7 +2648,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {retrievalResult.error ? (
                     <Message error>
-                      <p>{retrievalResult.error}</p>
+                      <p><LocalizedOutputText output={retrievalResult.error} /></p>
                     </Message>
                   ) : !retrievalResult.found ? (
                     <Message warning>
@@ -2736,7 +2743,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {batchRetrievalResult.error ? (
                     <Message error>
-                      <p>{batchRetrievalResult.error}</p>
+                      <p><LocalizedOutputText output={batchRetrievalResult.error} /></p>
                     </Message>
                   ) : (
                     <Message info>
@@ -2827,7 +2834,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {queryResult.error ? (
                     <Message error>
-                      <p>{queryResult.error}</p>
+                      <p><LocalizedOutputText output={queryResult.error} /></p>
                     </Message>
                   ) : (
                     <Message>
@@ -2894,7 +2901,7 @@ const MediaCore = () => {
                 <div style={{ marginTop: '1em' }}>
                   {descriptorVerificationResult.error ? (
                     <Message error>
-                      <p>{descriptorVerificationResult.error}</p>
+                      <p><LocalizedOutputText output={descriptorVerificationResult.error} /></p>
                     </Message>
                   ) : (
                     <Message

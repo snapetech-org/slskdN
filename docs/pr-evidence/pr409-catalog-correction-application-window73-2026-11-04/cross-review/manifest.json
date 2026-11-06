@@ -1,0 +1,54 @@
+{
+  "artifact": "slskdN PR #409 W73 independent cross-audit result",
+  "blindInputManifestSha256": "aba62611a48eaac2d4c135402ea24ac2a5fa145fcb13809be2af09965f6f9543",
+  "blindOutputSummarySha256": "c75c9c4f4dba3d6575e00129d5a0c6695b57077842694dac961b2001d0a0e1b1",
+  "blindOutputVerificationSha256": "b9d9a82fbde42c7804f91739063be0ba596082e03b181e5fe545f8d3dd66b8e8",
+  "candidateFreeBlindInputChecksumListSha256": "f961bd1dbf881d684ff352c80f37045f74091875c3b363355043537424e6b6ed",
+  "candidateFreeManifestSha256": "aba62611a48eaac2d4c135402ea24ac2a5fa145fcb13809be2af09965f6f9543",
+  "cellCount": 300,
+  "continuationRankRange": [
+    703,
+    727
+  ],
+  "files": [
+    {
+      "bytes": 1593,
+      "path": "README.md",
+      "sha256": "36917f5ac0a6e48bc7347c5c08a1b2c7e9a132f9812803cdf66ee5e48df10f4d"
+    },
+    {
+      "bytes": 207111,
+      "path": "corrections.jsonl",
+      "sha256": "bf6e620f4599e6b488f51d2628482c83cd8f890d301446f1b961ecbfea320db5"
+    },
+    {
+      "bytes": 945282,
+      "path": "cross-review-ledger.jsonl",
+      "sha256": "acd246073ed64e6175232196bcd466d27129c6b318c87e1aae51b8b51ff9d64c"
+    },
+    {
+      "bytes": 13741,
+      "path": "holds-hash-only.jsonl",
+      "sha256": "f82b6e36275f75f6efb76645bf0d736be71005943197b11fe34d9b1cd016ee40"
+    },
+    {
+      "bytes": 5107,
+      "path": "summary.json",
+      "sha256": "a94c0ea84a06d36641086b9f6fefdacd27260c4e142f8057d5eb713271b3d6fa"
+    },
+    {
+      "bytes": 2906,
+      "path": "verify_cross_audit.py",
+      "sha256": "6dee364fa9220374d5674b09d24744a5871b25bc1334e806fcba9da083f2e2d4"
+    }
+  ],
+  "head": "871330ca37a40c15172d3be040271e3944f6f628",
+  "localeCount": 12,
+  "primaryOutputManifestSha256": "4e76a66b7a7cd3da65e77d1d065a9478159a8e952de48d15c0d605cd12de82b4",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "tree": "965be29857c8476224307e5dd70c8117d31c2536",
+  "window": "W73"
+}

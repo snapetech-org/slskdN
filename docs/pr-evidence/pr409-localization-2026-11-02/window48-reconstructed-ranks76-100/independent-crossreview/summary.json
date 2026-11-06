@@ -1,0 +1,55 @@
+{
+  "browserReview": false,
+  "callerContexts": 25,
+  "callerFiles": 27,
+  "callerLineReferences": 42,
+  "catalogKeyCount": 6176,
+  "catalogKeySetsAndOrderIdentical": true,
+  "catalogsReattested": 12,
+  "cellCount": 300,
+  "exactHead": "0a6cbdcb606de1888045df358427eb2b81c85546",
+  "exactTree": "dcef8f70ea7c10926058c5db7430611b5faa07db",
+  "heldLocales": [
+    "ja",
+    "ko",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "heldSourceIds": [
+    "src_1223810b95b7b104"
+  ],
+  "holdsUpheld": 4,
+  "independentDispositionCounts": {
+    "accept-current": 228,
+    "accept-proposal": 67,
+    "revise-proposal": 1,
+    "uphold-hold": 4
+  },
+  "inputWindowTreePinNote": "Task text provided a 33-character tree prefix; the PR head matches exactly and primary packet/local/remote all attest the full tree dcef8f70ea7c10926058c5db7430611b5faa07db.",
+  "isDraft": true,
+  "localeCount": 12,
+  "markupMismatches": 0,
+  "nativeSpeakerApproval": false,
+  "nativeSpeakerReviewOutstanding": true,
+  "placeholderMismatches": 0,
+  "prState": "OPEN",
+  "primaryDispositionCounts": {
+    "accept-current": 228,
+    "hold": 4,
+    "propose-correction": 68
+  },
+  "primaryProposalsAccepted": 67,
+  "primaryProposalsRejected": 0,
+  "primaryProposalsRevised": 1,
+  "protectedLiteralFailures": 0,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPrEdited": false,
+  "schemaVersion": 1,
+  "semanticConfidence": "moderate machine-assisted exact-head cross-review",
+  "sourceCount": 25,
+  "sourcePositions": [
+    "ranks 76-100 reconstructed pending stable-ID lane"
+  ],
+  "testsBuildScansCiRun": false
+}

@@ -1,0 +1,84 @@
+{
+  "artifact": "slskdN PR #409 W61 ranks 403-427 candidate-free exact-head input",
+  "candidateFree": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+  "tree": "fad129065c1ccbdaaabe99c1054649dc426ea94b",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1451,
+      "sha256": "8b21376693661ad1c698b749e2253acd4c9889a8396b5db22803eccada2bb5a5"
+    },
+    {
+      "path": "caller-contexts.jsonl",
+      "bytes": 78573,
+      "sha256": "420040799b7ee916aeec493fe8bca0cc0e3bcb5d3a1feac53c4ed043a46f232c"
+    },
+    {
+      "path": "catalog-structure.jsonl",
+      "bytes": 4070,
+      "sha256": "fbb08f0beb0dda19fe4fb34a3e0727935311e161426f6fad2d2de04b05ed68cb"
+    },
+    {
+      "path": "head-tree-attestation.json",
+      "bytes": 515,
+      "sha256": "0df81ac084faba488cfc65ca261d2cdfe64a1132e87e62bda5a713400dbe5cf2"
+    },
+    {
+      "path": "prior-rank-disposition-reattestation-summary.json",
+      "bytes": 988,
+      "sha256": "71d46194523deebe8e40bb30b1a96348304142dc8b9edcb0a031222f9f6973c2"
+    },
+    {
+      "path": "prior-rank-disposition-reattestation.jsonl",
+      "bytes": 510468,
+      "sha256": "e1b687095385a383185a8f32c34e216ee7a165abb6ad4e39f0a3ec1622dcdabd"
+    },
+    {
+      "path": "selection-and-boundary.json",
+      "bytes": 8043,
+      "sha256": "ed53a589515d541cbf4f556388d7743c4a0dbf54b8da25256c1dec6c7f43af77"
+    },
+    {
+      "path": "selection-boundary.jsonl",
+      "bytes": 6246,
+      "sha256": "a125a9844eff2d41d86ec1cd59f3199baa451421fc76d0b32dadb31993b5a764"
+    },
+    {
+      "path": "source-current-cells.jsonl",
+      "bytes": 496280,
+      "sha256": "a8819bf146f5fec55fcff917e30c1dc5f5d75c4e884cb3989c3388d259f89dde"
+    },
+    {
+      "path": "source-inventory-selection.jsonl",
+      "bytes": 6869,
+      "sha256": "f68905811e302a8b22a79b4b85e9d6cd864bf4cdda624c176387545b3751789b"
+    }
+  ],
+  "priorRankDispositionReattestation": {
+    "summaryPath": "prior-rank-disposition-reattestation-summary.json",
+    "summarySha256": "71d46194523deebe8e40bb30b1a96348304142dc8b9edcb0a031222f9f6973c2",
+    "rowsPath": "prior-rank-disposition-reattestation.jsonl",
+    "rowsSha256": "e1b687095385a383185a8f32c34e216ee7a165abb6ad4e39f0a3ec1622dcdabd",
+    "W59PreservedHolds": 24,
+    "W60DispositionCellsReattested": 300
+  }
+}

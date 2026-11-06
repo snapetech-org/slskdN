@@ -1,0 +1,12 @@
+{
+  "appendSection": "## W77 localization (ranks 803–827)\n\nApplied 52 reviewed updates across 12 locale catalogs; 236 current translations were retained, and 12 callerless entries remain unchanged as text-free holds. All 300 cells were read back, and the 20 contextual blind holds were resolved. The cross-audit was non-blind; the evidence README discloses prior task-context exposure. See [W77 evidence](docs/pr-evidence/pr409-localization-2026-11-04/window-803-827/README.md).\n",
+  "operation": "append-w77-section",
+  "originalBodyBytes": 105845,
+  "originalBodyIsExactPrefix": true,
+  "originalBodySha256": "8a1688e0f7c7e50bea134c3e232f83c17a845e5a829d637ce6c9b5d65a849478",
+  "pr": 409,
+  "schemaVersion": 1,
+  "targetBodyBytes": 106305,
+  "targetBodySha256": "ed5c3387c83d14378e06864535cd0eeb51a217be595b4366f3587b776e81db9d",
+  "terminalNewlineNormalizationAllowed": true
+}

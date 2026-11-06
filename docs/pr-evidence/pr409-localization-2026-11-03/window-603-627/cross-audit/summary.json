@@ -1,0 +1,83 @@
+{
+  "artifact": "slskdN PR #409 W69 ranks 603-627 independent cross-audit",
+  "baselineTokenMismatchCounts": {
+    "markup": 0,
+    "numeric": 0,
+    "placeholder": 0,
+    "protectedLiteral": 3
+  },
+  "boundary": {
+    "nextUnselected": 628,
+    "w68End": 602,
+    "w69End": 627,
+    "w69Start": 603
+  },
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "browserReview": "not performed",
+  "cellCount": 300,
+  "comparisonCounts": {
+    "agree_changed": 4,
+    "agree_current": 220,
+    "blind_only": 49,
+    "both_different": 13,
+    "primary_only": 14
+  },
+  "confidence": {
+    "caller_context": "high",
+    "head_tree_checksums_token_checks": "high",
+    "linguistic_adjudication": "moderate"
+  },
+  "expectedHead": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "expectedTree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "livePrStateAfter": "OPEN/DRAFT at exact expected branch/head/tree and matching branch/pull refs; see live-pr-after.json",
+  "livePrStateAfterCheckedAtUtc": "2026-11-03T19:56:52.045373+00:00",
+  "livePrStateBefore": "OPEN/DRAFT at exact expected branch/head; see live-pr-before.json",
+  "localeCount": 12,
+  "nativeSpeakerReview": "not performed",
+  "primaryBlindDispositionDifferences": 64,
+  "priorHoldHashesMatchAcrossW68W69": true,
+  "priorHoldsReattested": 128,
+  "pullRequest": 409,
+  "rank612ProtectedLiteralRepairs": {
+    "cells": 2,
+    "disposition": "correction",
+    "literal": "ID",
+    "locales": [
+      "ar",
+      "hi"
+    ]
+  },
+  "rank615": {
+    "cells": 12,
+    "currentTargetPreserved": true,
+    "held": 12,
+    "productionCallerCount": 0
+  },
+  "rank619ProtectedLiteralRepairs": {
+    "cells": 1,
+    "disposition": "correction",
+    "literal": "SongID",
+    "locales": [
+      "hi"
+    ]
+  },
+  "rationaleTextDifferences": 300,
+  "rawPinnedSourceFiles": 32,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPullRequestModified": false,
+  "selectedChangedTargetCount": 68,
+  "selectedDispositionCounts": {
+    "accept-current": 220,
+    "correction": 34,
+    "hold": 12,
+    "refinement": 34
+  },
+  "selectedTargetSourceCounts": {
+    "blind": 66,
+    "cross-audit-synthesized": 2,
+    "current": 232
+  },
+  "selectedTokenFailures": 0,
+  "sourceCount": 25,
+  "targetHashDisagreements": 76
+}

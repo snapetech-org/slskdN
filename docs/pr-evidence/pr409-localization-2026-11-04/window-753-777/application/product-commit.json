@@ -1,0 +1,25 @@
+{
+  "commit": "dd49c37bc70a09b552fb66a435a04e500d0ca012",
+  "commitMessage": "Apply W75 localization decisions",
+  "parent": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+  "paths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "pathsChanged": 12,
+  "reviewedCells": 300,
+  "schemaVersion": 1,
+  "selectedCatalogCells": 49,
+  "tree": "fe2a8369fcd57b0e46d2ce69c7445ec8afbabf02",
+  "workflowPathsChanged": 0
+}

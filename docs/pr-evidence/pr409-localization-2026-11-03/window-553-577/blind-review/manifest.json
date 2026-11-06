@@ -1,0 +1,38 @@
+{
+  "schema": "slskdn-w67-blind-review-manifest/v1",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "tree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "window": "W67 continuation ranks 553-577 (remaining queue ranks 453-477)",
+  "candidateFreeInputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w67-ranks553-577-candidate-free-20261103/input",
+  "candidateFreeInputManifestSha256": "4ebd8174467382461e3190b76b791406b197e45e3576004940a89b11fdf98dca",
+  "candidateFreeInputChecksumListSha256": "f486f9010a4c026988e6dc1c2b952da7d3d53b9f43fcf6e9bd3ab9761ec7284f",
+  "inputChecksumsVerified": true,
+  "candidateFreeVerifierResult": "PASS",
+  "livePRState": {
+    "state": "OPEN",
+    "isDraft": true,
+    "headRefOid": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "liveRefs": {
+    "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+    "refs/pull/409/head": "2dc64b9d00f6611aeb72713af81db53ccc5a4084"
+  },
+  "liveTree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "priorHoldsReattested": 128,
+  "primaryMaterialOpened": false,
+  "primaryMaterialUsed": false,
+  "currentTargetsAvailableInCandidateFreeInput": true,
+  "nativeSpeakerApproval": "not performed",
+  "browserReview": "not performed",
+  "repositoryOrPRFilesEdited": false,
+  "testsBuildsScansCiReleaseTagsOrMergesRun": false,
+  "liveRefsRecheckedAtUtc": "2026-11-03T18:20:36+00:00",
+  "liveRefAttestationSha256": "796a9c309ed5c35f258bac45fd88101ab81b15781708f920f554a45a67ee5240"
+}

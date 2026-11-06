@@ -1,4 +1,4 @@
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import BrowseSession from './BrowseSession';
 import { getLocalStorageItem, setLocalStorageItem } from '../../lib/storage';
 import TooltipButton from '../Shared/TooltipButton';
@@ -183,7 +183,7 @@ const Browse = () => {
         {tab.label}
         {tabs.length > 1 && (
           <TooltipButton
-            aria-label={interfaceText("Close {label} browse tab", { "label": (tab.label) })}
+            aria-label={interfaceAttributeText("Close {label} browse tab", { "label": (tab.label) })}
             basic
             className="browse-tab-close"
             compact
@@ -195,7 +195,7 @@ const Browse = () => {
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
             tooltip="Close the {label} browse tab without changing the user's shared files."
-           {...interfaceTextProps("Close {label} browse tab", { label: tab.label })}>
+           {...interfaceAttributeTextProps("Close {label} browse tab", { label: tab.label })}>
             <Icon name="close" />
           </TooltipButton>
         )}

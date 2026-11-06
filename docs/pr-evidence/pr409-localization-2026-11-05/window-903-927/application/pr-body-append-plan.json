@@ -1,0 +1,20 @@
+{
+  "pr": 409,
+  "headShaBeforeAppend": "9ffa7617aa7b4609611584d80848bcb40eaf559a",
+  "headBranch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "branchRefOid": "9ffa7617aa7b4609611584d80848bcb40eaf559a",
+  "pullRefOid": "9ffa7617aa7b4609611584d80848bcb40eaf559a",
+  "state": "open",
+  "draft": true,
+  "baseBranch": "main",
+  "prefixUtf8Bytes": 109460,
+  "prefixSha256": "c90e3ef7516b4216b23a781887b1283677caaec68248246240d0a14dc449945d",
+  "appendUtf8Bytes": 1362,
+  "appendSha256": "768bb107823cfab08c4d20c5fcffc544b1b922bdfb84d327471765c729792b52",
+  "resultUtf8Bytes": 110822,
+  "resultSha256": "4d8e8397619c941ef1060ccd3e49c3f7b07e113c7c35014020835f57956f9869",
+  "prefixPreserved": true,
+  "prefixFile": "pr-body-prefix-before-w903.txt",
+  "appendFile": "pr-body-append-w903.txt",
+  "preparedBodyFile": "pr-body-after-w903.txt"
+}

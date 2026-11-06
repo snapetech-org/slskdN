@@ -1,0 +1,28 @@
+{
+  "purpose": "Separate provenance hashes for the copied candidate-free input packet and this independent blind ledger.",
+  "inputOnly": {
+    "copiedInputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w54-independent-blind-20261103/input",
+    "packetChecksumListSha256": "8d9fe2f15b2761cd23f22f00cc734dd1eb6791b06f8e12341cc91ac14cb59f0d",
+    "files": {
+      "README.md": "aa75bbca5fcd5e578ff987ef0aef2ec7611583ded3ea568bbfd71314264f184d",
+      "caller-contexts.jsonl": "96a0670c98b53d5aeb32c57392a99896d905fa9ce424dc31ac76ce3fc1e4eba4",
+      "catalog-structure.jsonl": "d24f641c1e69efae63e918bc05fc01709d48df0a8c64ecc63406ae1d444bb473",
+      "head-tree-attestation.json": "6742e380c540c516e253cd88197acf1d63994fe8d8165ef7ab2a3e5de8272f1a",
+      "protected-literals.jsonl": "7c20d382cb49ccd37e571002292980444f3e11477aca5b963d1725af64bbbc14",
+      "selection-and-boundary.json": "2ba1daa7d182aa5717d285f3d705a277a32d5a6ba8e42821b34edf8e2dadb872",
+      "selection-boundary.jsonl": "32b6de80eaaaa5273d9bc4e118f86c282536ca31445b63c3fd417f48fc58b4a9",
+      "source-current-cells.jsonl": "35ed9874dd6fb70dfe5708e325b782d574e1a91740c05ca979e428da78d417d5"
+    },
+    "head": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+    "tree": "632924177388e15b594976774d2d879a098e8a72",
+    "inputContainsCandidates": false
+  },
+  "independentLedger": {
+    "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w54-independent-blind-20261103/review-ledger.jsonl",
+    "sha256": "a0f482e5457d5803c9eb2e6f9e8c742cf5a7f8109d1954f8ec5d53f65fa742c9",
+    "summaryPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w54-independent-blind-20261103/summary.md",
+    "summarySha256": "28f446f2214e4f5acd594915eb63605f409d67401fdfdd10ef4a2f01de671d7b",
+    "cellCount": 300
+  },
+  "relationship": "The ledger was generated only from the checksummed input-only packet; it contains independent proposed strings and no primary candidates."
+}

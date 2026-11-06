@@ -1,0 +1,88 @@
+{
+  "acceptedFinalStructuralMismatches": 0,
+  "adjudicatedCounts": {
+    "accept-current": 220,
+    "accept-reviewed-correction": 38,
+    "adopt-crossreview-revision": 6,
+    "hold": 36
+  },
+  "allSevenPrHeadsAndStatusesRequeried": true,
+  "callerReferences": 41,
+  "callerRows": 20,
+  "callerlessSourceRanks": [
+    29,
+    33,
+    37,
+    44,
+    46
+  ],
+  "catalogStructure": "all 12 catalogs have 6,170 keys; identical key sets and per-locale ordering preserved; no repo catalog changed.",
+  "cellCount": 300,
+  "crossReviewCounts": {
+    "accept-current": 220,
+    "accept-proposal": 38,
+    "hold": 36,
+    "revise-proposal": 6
+  },
+  "draft": true,
+  "finalAcceptedChanges": 44,
+  "head": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "headedBrowserReview": false,
+  "heldCells": 36,
+  "holdRanks": {
+    "37": "Download {count} files from {directory}? has no production caller; locale plural/count grammar cannot be pinned.",
+    "42": "tracks, is concatenated after a dynamic count without locale plural handling.",
+    "49": "new is shared by a standalone message separator and count-bearing Wishlist badge."
+  },
+  "localeCount": 12,
+  "mergeReleaseOrTag": false,
+  "nativeSpeakerApproval": false,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryModified": false,
+  "retainedCurrent": 220,
+  "revisedProposalsAdopted": [
+    {
+      "locale": "es",
+      "note": "formal usted imperative Abra.",
+      "rank": 29
+    },
+    {
+      "locale": "ar",
+      "note": "idiomatic web-security strengthening.",
+      "rank": 30
+    },
+    {
+      "locale": "ar",
+      "note": "removes dangling preposition; preserves ContentID.",
+      "rank": 32
+    },
+    {
+      "locale": "ar",
+      "note": "uses software-conflict terminology.",
+      "rank": 34
+    },
+    {
+      "locale": "de",
+      "note": "German compound DHT-Schlüssel.",
+      "rank": 45
+    },
+    {
+      "locale": "ar",
+      "note": "uses unrated/evaluated rather than unclassified.",
+      "rank": 47
+    }
+  ],
+  "sourceAndCurrentCellReattestation": "300/300 exact against head/tree; target values and catalog file hashes/blob IDs rechecked.",
+  "sourceCount": 25,
+  "sourcePacketHashes": {
+    "crossManifest": "1d478c9dbaec0a501815efac259db62e4c11652399c6b971d2dc316319e70fae",
+    "crossSums": "c146c0feb2295302ec8a92c4ef887b3e93c53bb126904889525d760b1584f443",
+    "primaryManifest": "52c0d2f6e314eb047c9fd23aadbf4f32e496999988d33c8ff41ae3603f321215",
+    "primarySums": "2040e66635e5c5d239533ba40b41a858ee73dccc2e2377be0d2fed40ba8f0362"
+  },
+  "state": "OPEN",
+  "testsBuildScansCiRun": false,
+  "tree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "window": "W46 reconstructed ranks 26–50; historical source ordinal unavailable"
+}

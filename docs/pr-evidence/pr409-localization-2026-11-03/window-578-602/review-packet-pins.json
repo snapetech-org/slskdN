@@ -1,0 +1,13 @@
+{
+  "blindChecksumSha256": "54cad89e63a52bad83f4833c16c7c8104a834ffb5ab7948cd195e2b071a6928f",
+  "blindManifestSha256": "042c0cb34f87a64e7f1c5592d3e3ff0aabb785937c55d30d51249519defc7ac4",
+  "candidateFreeChecksumSha256": "0ddb2a00cefbe6dbc16c883bb43b316ee316638d014e57c4d24441af774ed2ca",
+  "candidateFreeManifestSha256": "a9f4ebf9dd435faf2330fce08d0f90ef131bc0c8d694f54475a4450e11ce568f",
+  "crossAuditChecksumSha256": "8e4305fb97f6d188f061dae0e63aeaf2fc8a3b4f3d29c7353030767c6050c62a",
+  "crossAuditHoldLedgerSha256": "280436356bf94522f3be9617756f0b80fbd2fb350e9fbdd6fc534ed1dae13e61",
+  "crossAuditLedgerSha256": "00a94360475b028ca49b5ac8bce7ea9984206ede9b00be0156c3b18b71012d03",
+  "crossAuditManifestSha256": "7831cf2e0928df0084bbed08345771840408bda090810178154ec6a8be8a1775",
+  "crossAuditScratchPathAtCreation": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w68-ranks578-602-cross-audit-20261103",
+  "primaryChecksumSha256": "82816415ccd7b0531ed328b273ed9fc95ca57a8fb328c4c2beb376929738a848",
+  "primaryManifestSha256": "0986395655f3aae1d95c24f787d717de14e143ad71ca4f6f47a1b117c85d8569"
+}

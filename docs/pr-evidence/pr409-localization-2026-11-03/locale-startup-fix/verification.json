@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "parentHead": "35977fdf9f07c52ba7becf793c9f7de7381c4e34",
+  "parentTree": "97749fb317a2704cdb5940ad2bb0a2ed008bfebe",
+  "sourceBlobsBefore": {
+    "src/web/src/index.jsx": "5757d02ec6cbd4babef180762585beb6dd786221",
+    "src/web/src/lib/interfaceLocale.js": "c2d6ee23385fdaa3c6abbff70c0176ea636b2b5d"
+  },
+  "sourceSha256Before": {
+    "src/web/src/index.jsx": "ddeaeec3a2a0b1bc0b42bc96137508bbd91a90f612ae93eb408273153eed2e5b",
+    "src/web/src/lib/interfaceLocale.js": "89c60e399dc16015f82dc92bf8c8a9e090dbdc59f21e2d3e2f1716dcb3443285"
+  },
+  "sourceBlobsAfter": {
+    "src/web/src/index.jsx": "e1028bdf99229e3d482e7afc2d525b7a669af4e9",
+    "src/web/src/lib/interfaceLocale.js": "df8e7c6d66c7b24ad8674de41886d2edd24e03d1"
+  },
+  "sourceSha256After": {
+    "src/web/src/index.jsx": "fad4cab93e4fcbb3d4bf77ca08843ddc689f38e62d64ad86a485851c68c94d0b",
+    "src/web/src/lib/interfaceLocale.js": "c0a0d3a731f06c76e9876acaef3714685ea148e852d4bcc8b5e19271549e5c99"
+  },
+  "findings": {
+    "SLC-001": "P2: wait for initial preferred locale catalog before mounting React; preserve English fallback.",
+    "SLC-002": "P3: explicit Chinese Hans/Hant script subtag takes precedence over region."
+  },
+  "expectedChineseMappings": {
+    "zh-Hans-TW": "zh-Hans",
+    "zh-Hant-CN": "zh-Hant",
+    "zh-TW": "zh-Hant",
+    "zh-CN": "zh-Hans"
+  },
+  "changedSourceFiles": [
+    "src/web/src/index.jsx",
+    "src/web/src/lib/interfaceLocale.js"
+  ],
+  "workflowFilesChanged": false,
+  "testsRun": false,
+  "buildsRun": false,
+  "scansRun": false,
+  "ciDispatched": false,
+  "browserRuntimeReviewed": false,
+  "noMergeReleaseOrTag": true
+}

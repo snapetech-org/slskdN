@@ -1,0 +1,49 @@
+{
+  "artifact": "slskdN PR #409 W1003-W1027 candidate-free exact-head input",
+  "baseRef": "main",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baseTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f",
+  "baselineTokenMismatchCounts": {
+    "protectedLiteral": 1
+  },
+  "blindReviewUsed": false,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "catalogCount": 12,
+  "catalogEntryCountPerLocale": 6175,
+  "catalogsEdited": false,
+  "cellCount": 300,
+  "continuationRankRange": [
+    1003,
+    1027
+  ],
+  "crossReviewUsed": false,
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "localeCount": 12,
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "mainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "newWindowHashOnlyHoldCells": 12,
+  "priorActiveHoldsReattested": 409,
+  "priorAppliedTargetsReattested": 677,
+  "priorSelectedIdsAndNewWindowExclusions": 2110,
+  "priorWindowReadbackRows": 600,
+  "productionRuntimeFileCount": 279,
+  "proposedTargetsIncluded": false,
+  "remainingQueueRankRange": [
+    903,
+    927
+  ],
+  "repoEdited": false,
+  "result": "PASS",
+  "resultingActiveHashOnlyHoldCells": 421,
+  "reviewDecisionsIncluded": false,
+  "rootAdjudicationPerformed": false,
+  "sourceCallerReferenceCount": 34,
+  "sourceCount": 25,
+  "sourceInventoryRows": 6175,
+  "sourcesWithCallers": 24,
+  "sourcesWithoutCallers": 1,
+  "testsBuildsScansCiRun": false,
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "window": "W85",
+  "workflowChanges": 0
+}

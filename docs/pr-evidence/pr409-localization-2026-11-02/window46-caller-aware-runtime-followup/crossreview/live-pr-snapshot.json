@@ -1,0 +1,76 @@
+{
+  "capturedAtUtc": "2026-11-02T21:29:18Z",
+  "queryMethod": "gh pr view --json number,state,isDraft,headRefOid,headRefName,baseRefName,url",
+  "pullRequests": [
+    {
+      "repository": "snapetech-org/seerrng",
+      "number": 418,
+      "state": "OPEN",
+      "isDraft": true,
+      "headRefOid": "9242898e23f7f25d515d10b5b0b51df322e395fb",
+      "headRefName": "codex/seerrng-localization-overhaul-20261028",
+      "baseRefName": "main",
+      "url": "https://github.com/snapetech-org/seerrng/pull/418"
+    },
+    {
+      "repository": "snapetech-org/chaptarrng",
+      "number": 190,
+      "state": "OPEN",
+      "isDraft": true,
+      "headRefOid": "961d3102ad3098ee188a6c87a0c88eea5f5ab332",
+      "headRefName": "codex/chaptarrng-localization-complete-20261031",
+      "baseRefName": "main",
+      "url": "https://github.com/snapetech-org/chaptarrng/pull/190"
+    },
+    {
+      "repository": "snapetech-org/QuestarrNG",
+      "number": 155,
+      "state": "OPEN",
+      "isDraft": false,
+      "headRefOid": "be131f2d42988bb8f4a271e4df428985da15b53b",
+      "headRefName": "codex/localization-foundations-20261028",
+      "baseRefName": "main",
+      "url": "https://github.com/snapetech-org/QuestarrNG/pull/155"
+    },
+    {
+      "repository": "snapetech-org/ROMarrNG",
+      "number": 70,
+      "state": "OPEN",
+      "isDraft": true,
+      "headRefOid": "8e3820252b0c362e18e421b3a73e7ff1478d32a0",
+      "headRefName": "task/localization-translation-review-20261030",
+      "baseRefName": "main",
+      "url": "https://github.com/snapetech-org/ROMarrNG/pull/70"
+    },
+    {
+      "repository": "snapetech-org/slskr",
+      "number": 204,
+      "state": "OPEN",
+      "isDraft": true,
+      "headRefOid": "5f295feea832b3078c52d92d9268cd6446f804a5",
+      "headRefName": "codex/slskr-l10n-audit-20261030",
+      "baseRefName": "main",
+      "url": "https://github.com/snapetech-org/slskr/pull/204"
+    },
+    {
+      "repository": "snapetech-org/slskdN",
+      "number": 409,
+      "state": "OPEN",
+      "isDraft": true,
+      "headRefOid": "fa097f9aa044a63981d0c16f6daa53837f815333",
+      "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "baseRefName": "main",
+      "url": "https://github.com/snapetech-org/slskdN/pull/409"
+    },
+    {
+      "repository": "snapetech-org/TorrentNG",
+      "number": 243,
+      "state": "OPEN",
+      "isDraft": true,
+      "headRefOid": "11ff6fa2618e842e92716b7e92867769200e32e5",
+      "headRefName": "codex/torrentng-localization-audit-20261030",
+      "baseRefName": "main",
+      "url": "https://github.com/snapetech-org/TorrentNG/pull/243"
+    }
+  ]
+}

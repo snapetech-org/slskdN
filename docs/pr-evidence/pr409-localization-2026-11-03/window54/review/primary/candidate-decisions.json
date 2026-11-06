@@ -1,0 +1,308 @@
+{
+  "251|zh-Hans": {
+    "target": "棕色",
+    "disposition": "refinement",
+    "rationale": "The caller uses this as a color option (`color: brown`). The color noun is appropriate; remove 的, which makes the label adjectival.",
+    "confidence": "moderate"
+  },
+  "251|zh-Hant": {
+    "target": "棕色",
+    "disposition": "refinement",
+    "rationale": "The caller uses this as a color option (`color: brown`). The color noun is appropriate; remove 的, which makes the label adjectival.",
+    "confidence": "moderate"
+  },
+  "254|ar": {
+    "target": "ضوابط متقدمة لذاكرة التخزين المؤقت لعمليات الاسترجاع",
+    "disposition": "correction",
+    "rationale": "The pinned caller is an expandable heading for advanced retrieval-cache controls. The current Arabic omits retrieval; this specifies the cache used for retrieval operations.",
+    "confidence": "moderate"
+  },
+  "255|ko": {
+    "target": "피어:",
+    "disposition": "correction",
+    "rationale": "The caller labels a Soulseek peer ID alongside affinity and trust scores. 또래 means an age-group peer; 피어 is the network term.",
+    "confidence": "moderate"
+  },
+  "255|zh-Hans": {
+    "target": "对等节点：",
+    "disposition": "correction",
+    "rationale": "The caller labels a P2P peer ID alongside affinity and trust scores. 同行 suggests a colleague or industry peer; 对等节点 identifies a network peer.",
+    "confidence": "moderate"
+  },
+  "255|zh-Hant": {
+    "target": "對等節點：",
+    "disposition": "correction",
+    "rationale": "The caller labels a P2P peer ID alongside affinity and trust scores. 同行 suggests a colleague or industry peer; 對等節點 identifies a network peer.",
+    "confidence": "moderate"
+  },
+  "256|ja": {
+    "target": "ディスクリプター統計を読み込む",
+    "disposition": "correction",
+    "rationale": "The pinned tooltip identifies descriptor retrieval and cache performance metrics. The current Japanese mixes transliterated “load” and “descriptor” without expressing the button action naturally.",
+    "confidence": "moderate"
+  },
+  "256|ko": {
+    "target": "디스크립터 통계 불러오기",
+    "disposition": "refinement",
+    "rationale": "The caller is a button that loads descriptor retrieval and cache performance metrics. 디스크립터 is the established technical term here; 불러오기 makes the action clear.",
+    "confidence": "moderate"
+  },
+  "256|vi": {
+    "target": "Tải thống kê descriptor",
+    "disposition": "correction",
+    "rationale": "The caller is a button for loading descriptor retrieval and cache metrics. Mô tả means descriptive/description and changes the technical term; retain descriptor as a technical loanword.",
+    "confidence": "moderate"
+  },
+  "258|ar": {
+    "target": "إظهار كل الإعدادات المسبقة الأصلية",
+    "disposition": "correction",
+    "rationale": "The caller toggles the native MilkDrop preset library between all presets and favorites. The current phrase says original settings and loses the preset concept.",
+    "confidence": "moderate"
+  },
+  "258|es": {
+    "target": "Mostrar todos los preajustes nativos",
+    "disposition": "correction",
+    "rationale": "The caller toggles the native MilkDrop preset library between all presets and favorites. Ajustes means settings; preajustes names the selectable presets.",
+    "confidence": "moderate"
+  },
+  "258|id": {
+    "target": "Tampilkan semua preset native",
+    "disposition": "refinement",
+    "rationale": "The caller toggles the native MilkDrop preset library, not a default or built-in preset set. Native preserves that renderer/library distinction.",
+    "confidence": "moderate"
+  },
+  "258|ko": {
+    "target": "모든 네이티브 프리셋 표시",
+    "disposition": "correction",
+    "rationale": "The caller toggles the native MilkDrop preset library. 기본 means default, while native identifies the renderer/library distinction.",
+    "confidence": "moderate"
+  },
+  "258|vi": {
+    "target": "Hiển thị tất cả preset native",
+    "disposition": "correction",
+    "rationale": "The caller toggles the native MilkDrop preset library. Thiết lập gốc reads as original settings and omits the preset concept; retain native as the renderer term.",
+    "confidence": "moderate"
+  },
+  "259|vi": {
+    "target": "Bản đồ nhiệt tiến độ từng khối dữ liệu",
+    "disposition": "refinement",
+    "rationale": "The subheader says this visualizes chunk completion status. Khối dữ liệu is a clear Vietnamese term for each data chunk and avoids leaving Chunk untranslated.",
+    "confidence": "moderate"
+  },
+  "260|ja": {
+    "target": "外向きリンク",
+    "disposition": "correction",
+    "rationale": "The caller displays the count from node.outgoingLinks. 発信 means broadcasting/transmitting; 外向き expresses links directed outward from the node.",
+    "confidence": "moderate"
+  },
+  "261|ar": {
+    "target": "ثبّت مركز الرسم الشبكي الحالي حتى تتمكن من مقارنة عقدة أخرى أو إعادة فتح هذا الفرع لاحقًا.",
+    "disposition": "refinement",
+    "rationale": "The caller is a tooltip for pinning a node-graph center. الرسم الشبكي makes the network-graph sense explicit while retaining the action and purpose.",
+    "confidence": "moderate"
+  },
+  "261|de": {
+    "target": "Fixieren Sie den Mittelpunkt des aktuellen Graphen, damit Sie einen anderen Knoten vergleichen oder diesen Zweig später erneut öffnen können.",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "261|es": {
+    "target": "Fije el centro del grafo actual para poder comparar otro nodo o volver a abrir esta rama más tarde.",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "261|fr": {
+    "target": "Épinglez le centre du graphe actuel afin de pouvoir comparer un autre nœud ou rouvrir cette branche plus tard.",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "261|id": {
+    "target": "Sematkan pusat graf saat ini agar Anda dapat membandingkan simpul lain atau membuka kembali cabang ini nanti.",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "261|pt-BR": {
+    "target": "Fixe o centro do grafo atual para comparar outro nó ou reabrir este ramo mais tarde.",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "261|vi": {
+    "target": "Ghim tâm đồ thị hiện tại để bạn có thể so sánh nút khác hoặc mở lại nhánh này sau.",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "261|zh-Hans": {
+    "target": "固定当前图的中心，以便比较另一个节点或稍后重新打开此分支。",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "261|zh-Hant": {
+    "target": "固定目前圖的中心，以便比較另一個節點或稍後重新開啟此分支。",
+    "disposition": "correction",
+    "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned.",
+    "confidence": "moderate"
+  },
+  "267|ar": {
+    "target": "راقب أحدث سجلات التطبيق فور وصولها.",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|de": {
+    "target": "Überwachen Sie die neuesten Anwendungseinträge, sobald sie eintreffen.",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|es": {
+    "target": "Supervise los registros más recientes de la aplicación a medida que llegan.",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|fr": {
+    "target": "Surveillez les entrées les plus récentes du journal de l’application à mesure qu’elles arrivent.",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|ja": {
+    "target": "アプリケーションの最新記録を受信し次第、監視します。",
+    "disposition": "refinement",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|ko": {
+    "target": "최신 애플리케이션 기록이 도착하는 대로 모니터링하세요.",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|vi": {
+    "target": "Theo dõi các bản ghi ứng dụng mới nhất ngay khi chúng được ghi nhận.",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|zh-Hans": {
+    "target": "实时监控最新到达的应用程序记录。",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "267|zh-Hant": {
+    "target": "即時監控最新到達的應用程式記錄。",
+    "disposition": "correction",
+    "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request.",
+    "confidence": "moderate"
+  },
+  "269|ar": {
+    "target": "عدادات التوقيعات والسمعة وحدود معدل الطلبات والعزل",
+    "disposition": "correction",
+    "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios.",
+    "confidence": "moderate"
+  },
+  "269|es": {
+    "target": "Contadores de firmas, reputación, límites de frecuencia y cuarentena",
+    "disposition": "correction",
+    "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios.",
+    "confidence": "moderate"
+  },
+  "269|hi": {
+    "target": "हस्ताक्षर, प्रतिष्ठा, अनुरोध-दर सीमाओं और क्वारंटीन के काउंटर",
+    "disposition": "refinement",
+    "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios.",
+    "confidence": "moderate"
+  },
+  "269|id": {
+    "target": "Penghitung tanda tangan, reputasi, batas laju permintaan, dan karantina",
+    "disposition": "correction",
+    "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios.",
+    "confidence": "moderate"
+  },
+  "269|ko": {
+    "target": "서명, 평판, 요청 빈도 제한 및 격리 카운터",
+    "disposition": "correction",
+    "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios.",
+    "confidence": "moderate"
+  },
+  "269|pt-BR": {
+    "target": "Contadores de assinaturas, reputação, limites de frequência e quarentena",
+    "disposition": "correction",
+    "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios.",
+    "confidence": "moderate"
+  },
+  "269|vi": {
+    "target": "Bộ đếm chữ ký, danh tiếng, giới hạn tần suất và cách ly",
+    "disposition": "correction",
+    "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios.",
+    "confidence": "moderate"
+  },
+  "271|id": {
+    "target": "Cari secara manual di Soulseek untuk menemukan hasil yang cocok saat ini. Ini menghubungi peer sekarang alih-alih menunggu jadwal berikutnya.",
+    "disposition": "correction",
+    "rationale": "The caller is a wishlist action that searches Soulseek now and contacts peers. “Matches” means matching search results, not sports matches.",
+    "confidence": "moderate"
+  },
+  "271|vi": {
+    "target": "Tìm kiếm thủ công trên Soulseek để tìm các kết quả phù hợp hiện tại. Thao tác này liên hệ với các peer ngay bây giờ thay vì chờ lần chạy theo lịch tiếp theo.",
+    "disposition": "correction",
+    "rationale": "The caller is a wishlist action that searches Soulseek now and contacts peers. “Matches” means matching search results, not sports matches.",
+    "confidence": "moderate"
+  },
+  "275|ar": {
+    "target": "لن يُكتب ملف الغلاف الجانبي إلا إذا تمت الموافقة صراحةً على الاستيراد.",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  },
+  "275|hi": {
+    "target": "केवल आयात की स्पष्ट मंज़ूरी मिलने पर कवर की साइडकार फ़ाइल लिखी जाएगी।",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  },
+  "275|id": {
+    "target": "Berkas sampul pendamping hanya akan ditulis jika impor disetujui secara eksplisit.",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  },
+  "275|ja": {
+    "target": "インポートが明示的に承認された場合にのみ、サイドカーのカバーファイルが書き込まれます。",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  },
+  "275|ko": {
+    "target": "가져오기를 명시적으로 승인한 경우에만 보조 커버 파일이 작성됩니다.",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  },
+  "275|vi": {
+    "target": "Chỉ ghi tệp bìa đi kèm nếu việc nhập được phê duyệt rõ ràng.",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  },
+  "275|zh-Hans": {
+    "target": "只有在明确批准导入后，才会写入配套封面文件。",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  },
+  "275|zh-Hant": {
+    "target": "只有在明確核准匯入後，才會寫入附屬封面檔案。",
+    "disposition": "correction",
+    "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write.",
+    "confidence": "moderate"
+  }
+}

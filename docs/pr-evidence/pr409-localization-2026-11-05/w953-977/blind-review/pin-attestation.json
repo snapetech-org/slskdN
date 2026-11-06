@@ -1,0 +1,17 @@
+{
+  "apiHeadSha": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "baseApiSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baseRef": "main",
+  "checkedBeforeReview": true,
+  "draft": true,
+  "evidence": "gh API pull 409, origin refs/heads/codex/slskdn-oidc-tooltip-localization-20261030, refs/pull/409/head, refs/heads/main, and exact clean detached source worktree.",
+  "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "headTree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "liveMainRefSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "merged": false,
+  "pullRefSha": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "pullRequest": 409,
+  "remoteBranchSha": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "repository": "snapetech-org/slskdN",
+  "state": "open"
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "source": "copied from verified candidate-free input; no PR body was queried",
+  "head": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+  "tree": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+  "liveBeforeSha256": "c3428679ecd244c40919776a1246f39d20ec19c60bd3a3e39404cf8879733146",
+  "liveAfterSha256": "1100ab387eb965acdcc5aaf4ab7f8a42a5a060c849dcec8134f46e775229fcb1",
+  "prBodyQueried": false
+}

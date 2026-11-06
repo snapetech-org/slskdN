@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W67 primary semantic review ledger",
+  "reviewType": "primary-semantic",
+  "sealed": true,
+  "candidateFreeInput": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "window": "W67",
+  "head": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "tree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "inputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w67-ranks553-577-candidate-free-20261103/input",
+  "inputManifestSha256": "4ebd8174467382461e3190b76b791406b197e45e3576004940a89b11fdf98dca",
+  "inputChecksumListSha256": "f486f9010a4c026988e6dc1c2b952da7d3d53b9f43fcf6e9bd3ab9761ec7284f",
+  "inputLedgerSha256": "ece3d06da7f0476b724ff1824f6a0bcb5f0c0f51b5500a1dfe331404745557a4",
+  "priorHeldCellsReattested": 128,
+  "dispositionCounts": {
+    "refinement": 41,
+    "correction": 33,
+    "accept-current": 226
+  },
+  "proposalCount": 74,
+  "blindPacketAccessed": false,
+  "nativeSpeakerReview": "not performed",
+  "browserReview": "not performed",
+  "createdAtUtc": "2026-11-03T18:05:53.306624+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 915,
+      "sha256": "24c75af94d06555add2a982ea4172afe12bbb64ad7ab25db5eb08b4de1050075"
+    },
+    {
+      "path": "build_primary_review.py",
+      "bytes": 21348,
+      "sha256": "a98e66b6f656ffe63f1b60accd8033f612acdcf5337c8c6f8ba3b1417f794a5e"
+    },
+    {
+      "path": "input-verification.txt",
+      "bytes": 751,
+      "sha256": "f67475891c50595d797d8b7bc26cce14668ee939d06ee9ec3093aae973e4a192"
+    },
+    {
+      "path": "primary-ledger.jsonl",
+      "bytes": 1097543,
+      "sha256": "01290962db41d089813a1f8bdfacb78b221fa4d5cf08b46852536efa872bdb62"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1324,
+      "sha256": "bfb139ca458b1251097d027c588b4b735fbbe7a28483ea161f438b87285b19ce"
+    },
+    {
+      "path": "verify_primary.py",
+      "bytes": 11129,
+      "sha256": "59500f90d2e02444a07b742e1e85d166c0f108a5927ff2a75fda77ea6d618880"
+    }
+  ]
+}

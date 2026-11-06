@@ -1,0 +1,7 @@
+# slskdN PR #409 manual semantic review: twelfth 25-key slice
+
+The original scratch bundle passed its exact-head verifier at PR head `45645893ab0af3b7cc15556c27496bb9bb699b73` / tree `019bcabdb9d0ef709e7d3a2dd1b9da7f3ed59017`. The source/catalog `src` tree `fff1ef49df31a8d1095cd43148c186fbcd7f5089` matches baseline `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`.
+
+This disjoint slice covers 25 keys / 300 cells across all twelve locales: 255 keep, 44 high-confidence correction candidates, and 1 uncertain. Corrections address graph-structure terms, publication-stat headings, configured file-share scanning, the Smart Radio feature name, file-write impact wording, lossless-exact search labels, recommendation-seed grammar, Pushbullet room mentions, local readiness, and membership-record labels. Vietnamese wording for the compressed file-impact label remains uncertain.
+
+The original scratch verifier checked checksums, exact source/catalog state, pending rows, placeholders/protected literals, formal overlap, and all eleven previous windows; it found zero formal-result overlap and zero overlap with prior manual evidence. The sibling-sensitive verifier remains in scratch because its scan treats committed copies as duplicate reviews. The manifest retains scratch hashes and packaging provenance. Suggestions remain unapplied; native-speaker review is still required.

@@ -1,0 +1,10 @@
+{
+  "state": "OPEN",
+  "isDraft": true,
+  "headRefOid": "1b518a69d099032c497149102751271eddb0fa57",
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "title": "fix(i18n): close tooltip and catalog copy gaps",
+  "bodySha256": "d7c206d7d297fe7fa3a281dacaab065ce9f5d3740d60c449785e2f8ba5969dec",
+  "verifiedAtUtc": "2026-11-02T17:00:55Z"
+}

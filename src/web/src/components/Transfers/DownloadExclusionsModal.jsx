@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import * as optionsApi from '../../lib/options';
 import {
   formatDownloadExclusions,
@@ -14,7 +14,7 @@ import TooltipButton from '../Shared/TooltipButton';
 import React, { useEffect, useRef, useState } from 'react';
 import * as YAML from 'yaml';
 import { Icon, Message, Modal } from 'semantic-ui-react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 
 const getOption = (source, ...keys) => {
   for (const key of keys) {
@@ -27,7 +27,7 @@ const getOption = (source, ...keys) => {
 };
 
 const getErrorMessage = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'Failed to save download filters.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to save download filters.');
 
 const DownloadExclusionsModal = ({
   onClose,
@@ -76,7 +76,7 @@ const DownloadExclusionsModal = ({
 
       await optionsApi.updateYaml({ yaml: document.toString() });
       onSaved?.(exclusions);
-      toast.success(interfaceText("Download filters saved"));
+      toast.success(interfaceToastText("Download filters saved"));
       onClose();
     } catch (saveError) {
       setError(getErrorMessage(saveError));
@@ -109,7 +109,7 @@ const DownloadExclusionsModal = ({
             negative
             size="small"
           >
-            {error}
+            <LocalizedOutputText output={error} />
           </Message>
         )}
         <DownloadExclusionsField

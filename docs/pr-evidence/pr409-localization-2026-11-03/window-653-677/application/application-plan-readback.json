@@ -1,0 +1,162 @@
+{
+  "applicationCommit": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+  "tree": "a6b6e84f512e21b7f0bf3a44879ccf81815d3bcc",
+  "sourceApplicationPlanSha256": "4f088f16b7403108c9887720e69ca9a55df011c2dabc34b1975325f10e0e13ad",
+  "readbackRows": 57,
+  "readbackMatches": 57,
+  "readbackMismatches": 0,
+  "catalogs": [
+    {
+      "path": "src/web/public/locales/ar.json",
+      "changes": 4,
+      "keys": 6176,
+      "plannedSha256": "cfff9f62382da11f97b44492653b3213063c7b85e8461052ef6ae6dab46ff585",
+      "actualSha256": "cfff9f62382da11f97b44492653b3213063c7b85e8461052ef6ae6dab46ff585",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/de.json",
+      "changes": 5,
+      "keys": 6176,
+      "plannedSha256": "0bbaaeec6476610d9836f50ba8b98878569989aadf7b1ba24460cee0361be64a",
+      "actualSha256": "0bbaaeec6476610d9836f50ba8b98878569989aadf7b1ba24460cee0361be64a",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/es.json",
+      "changes": 5,
+      "keys": 6176,
+      "plannedSha256": "f2c9eedeac57362f8e3714203a7a5d4a3e234b587c7bd3234cf270fe3fe142d0",
+      "actualSha256": "f2c9eedeac57362f8e3714203a7a5d4a3e234b587c7bd3234cf270fe3fe142d0",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/fr.json",
+      "changes": 4,
+      "keys": 6176,
+      "plannedSha256": "45c01a797de569100bd66312f8d9f24869d556932c8d450374bf201f78538c33",
+      "actualSha256": "3df54226fff65ef8f3f0ef1879d1509c252d830e70ba372b98186f4f928e38a7",
+      "matchesSourcePlan": false
+    },
+    {
+      "path": "src/web/public/locales/hi.json",
+      "changes": 3,
+      "keys": 6176,
+      "plannedSha256": "6d602274796bec75a143cda9771701fed4b02aca3d4dcbd0ee052dfceda9d263",
+      "actualSha256": "6d602274796bec75a143cda9771701fed4b02aca3d4dcbd0ee052dfceda9d263",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/id.json",
+      "changes": 5,
+      "keys": 6176,
+      "plannedSha256": "cebf05f2c18baf3df5890b2e130d7f52f85ff2c882f3431ff0b7d56a499fdb8e",
+      "actualSha256": "cebf05f2c18baf3df5890b2e130d7f52f85ff2c882f3431ff0b7d56a499fdb8e",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/ja.json",
+      "changes": 5,
+      "keys": 6176,
+      "plannedSha256": "ff9a8d9046d62c8fc36a6bd1913cfb0e4c6aee93242ee574ffd4897b5e9ba104",
+      "actualSha256": "dd08d993cfd5b7b9ffc9a1acdafc8c6415bcd1ea2ef95d16ed19c9ed04813a81",
+      "matchesSourcePlan": false
+    },
+    {
+      "path": "src/web/public/locales/ko.json",
+      "changes": 5,
+      "keys": 6176,
+      "plannedSha256": "86ef0d05b9f62f6702b742194421dbf0e4a32a61e9ee71fe8889a916adcf39ec",
+      "actualSha256": "86ef0d05b9f62f6702b742194421dbf0e4a32a61e9ee71fe8889a916adcf39ec",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/pt-BR.json",
+      "changes": 4,
+      "keys": 6176,
+      "plannedSha256": "b354b1079172477b9c141f0e4701faf0dd47d2a01eb326844992412ad7d34b9a",
+      "actualSha256": "b354b1079172477b9c141f0e4701faf0dd47d2a01eb326844992412ad7d34b9a",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/vi.json",
+      "changes": 10,
+      "keys": 6176,
+      "plannedSha256": "f2e30cc7e8a45230c097b9589d5277fb34da8fa17bbe6dbb2e8c60a6bef9ee43",
+      "actualSha256": "c0f082b22b3dc9a798e7ae4fc07a3a30ba4230fa012d55107154ff21271ecedc",
+      "matchesSourcePlan": false
+    },
+    {
+      "path": "src/web/public/locales/zh-Hans.json",
+      "changes": 3,
+      "keys": 6176,
+      "plannedSha256": "e081d84cf696e718b2d15c10974b728d77b928b979b5102636d776eb4b56d182",
+      "actualSha256": "e081d84cf696e718b2d15c10974b728d77b928b979b5102636d776eb4b56d182",
+      "matchesSourcePlan": true
+    },
+    {
+      "path": "src/web/public/locales/zh-Hant.json",
+      "changes": 4,
+      "keys": 6176,
+      "plannedSha256": "2506e43f4d5dd67eac78445d9ae7240f9a9f3b1a5c255def2b4979ea2e256368",
+      "actualSha256": "2506e43f4d5dd67eac78445d9ae7240f9a9f3b1a5c255def2b4979ea2e256368",
+      "matchesSourcePlan": true
+    }
+  ],
+  "sourcePlanCatalogHashDeltas": [
+    {
+      "path": "src/web/public/locales/fr.json",
+      "sourcePlanSha256": "45c01a797de569100bd66312f8d9f24869d556932c8d450374bf201f78538c33",
+      "actualF120Sha256": "3df54226fff65ef8f3f0ef1879d1509c252d830e70ba372b98186f4f928e38a7",
+      "changedTargetsAfterInitialPlan": [
+        {
+          "sourceId": "src_295c95b6c76e1f4c",
+          "locale": "fr",
+          "targetSha256": "ad447655594195662e74a6ea80101037042f7d863ff850d593f29c911b39c060"
+        }
+      ]
+    },
+    {
+      "path": "src/web/public/locales/ja.json",
+      "sourcePlanSha256": "ff9a8d9046d62c8fc36a6bd1913cfb0e4c6aee93242ee574ffd4897b5e9ba104",
+      "actualF120Sha256": "dd08d993cfd5b7b9ffc9a1acdafc8c6415bcd1ea2ef95d16ed19c9ed04813a81",
+      "changedTargetsAfterInitialPlan": [
+        {
+          "sourceId": "src_29867e83bc53ef14",
+          "locale": "ja",
+          "targetSha256": "8dc464133bbdf0adf61723e01a0b83d94b05454b0ce0eba93173ebb93be2fe83"
+        }
+      ]
+    },
+    {
+      "path": "src/web/public/locales/vi.json",
+      "sourcePlanSha256": "f2e30cc7e8a45230c097b9589d5277fb34da8fa17bbe6dbb2e8c60a6bef9ee43",
+      "actualF120Sha256": "c0f082b22b3dc9a798e7ae4fc07a3a30ba4230fa012d55107154ff21271ecedc",
+      "changedTargetsAfterInitialPlan": [
+        {
+          "sourceId": "src_297668c7b11a2253",
+          "locale": "vi",
+          "targetSha256": "4e4dc228ebc474e13064816f97aa0d2257da6fd767ad1097a9c81f2fed8c6d5f"
+        }
+      ]
+    }
+  ],
+  "addendumTargetsApplied": [
+    {
+      "sourceId": "src_295c95b6c76e1f4c",
+      "locale": "fr",
+      "targetSha256": "ad447655594195662e74a6ea80101037042f7d863ff850d593f29c911b39c060"
+    },
+    {
+      "sourceId": "src_297668c7b11a2253",
+      "locale": "vi",
+      "targetSha256": "4e4dc228ebc474e13064816f97aa0d2257da6fd767ad1097a9c81f2fed8c6d5f"
+    },
+    {
+      "sourceId": "src_29867e83bc53ef14",
+      "locale": "ja",
+      "targetSha256": "8dc464133bbdf0adf61723e01a0b83d94b05454b0ce0eba93173ebb93be2fe83"
+    }
+  ],
+  "hashOnlyHolds": 12
+}

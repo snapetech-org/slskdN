@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "window": "W79",
+  "commit": "7317d8fa46a54746f09853da18c16a8ef1845291",
+  "tree": "e707454696b9dcf8a9800f0920dd3d67dc74bcd3",
+  "parent": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "expectedParent": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "subject": "fix(i18n): apply W79 corrections [skip ci]",
+  "changedPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "changedValueCount": 46,
+  "catalogCount": 12,
+  "skipCiMarkerPresent": true
+}

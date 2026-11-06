@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "window": 33,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "0abf10ae9f49d27d7cfef823cfe5d70765ee29f4",
+  "tree": "8ac49de1cde7dc242484eadc597781819e26e1d2",
+  "remoteBranchHead": "0abf10ae9f49d27d7cfef823cfe5d70765ee29f4",
+  "pullRequestMergeStateStatus": "CLEAN",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "compositeSrcTree": "84386d98db1414c4055fa1cd4f6fb0348dba0ad3",
+  "localeCatalogTree": "1ea417e3fcda977b3593b4285f71ec7773f28235",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "bundleManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+    "batchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 32,
+    "cells": 9504,
+    "sourceKeys": 797,
+    "windowCounts": [
+      {
+        "window": 1,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 2,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 3,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 4,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 5,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 6,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 7,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 8,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 9,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 10,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 11,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 12,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 13,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 14,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 15,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 16,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 17,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 18,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 19,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 20,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 21,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 22,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 23,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 24,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 25,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 26,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 27,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 28,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 29,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 30,
+        "cells": 264,
+        "sourceKeys": 22
+      },
+      {
+        "window": 31,
+        "cells": 274,
+        "sourceKeys": 25
+      },
+      {
+        "window": 32,
+        "cells": 266,
+        "sourceKeys": 25
+      }
+    ],
+    "overlapPairs": 0
+  },
+  "priorAppliedCorrectionLedger": {
+    "rows": 1299,
+    "uniqueIds": 1299,
+    "perFileSha256": {
+      "docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/applied-corrections.jsonl": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows18-19-2026-11-02/applied-corrections.jsonl": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows20-21-2026-11-02/applied-corrections.jsonl": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/applied-corrections-windows22-23.jsonl": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/applied-corrections-realm-window20.jsonl": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+      "docs/pr-evidence/pr409-catalog-correction-application-window24-2026-11-02/applied-corrections-window24.jsonl": "e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df",
+      "docs/pr-evidence/pr409-catalog-correction-application-window25-2026-11-02/applied-corrections-window25.jsonl": "030269709bebedf67f60d6c367bcd8e43ea92f7d9c9824ae6b9217b3afefdeb3",
+      "docs/pr-evidence/pr409-catalog-correction-application-window26-2026-11-02/applied-corrections-window26.jsonl": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd",
+      "docs/pr-evidence/pr409-catalog-correction-application-window27-2026-11-02/applied-corrections-window27.jsonl": "5af4b16894f7aed5b571c8dcb8b7572ae2e14eb6f3f507ce324bbc184450b8d1",
+      "docs/pr-evidence/pr409-catalog-correction-application-window28-2026-11-02/applied-corrections-window28.jsonl": "943fd894ad0d17b194d8ec426dce5457c1a2e3378292fd1cbe0bb1873f26b7b6",
+      "docs/pr-evidence/pr409-catalog-correction-application-window29-2026-11-02/applied-corrections-window29.jsonl": "a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9",
+      "docs/pr-evidence/pr409-catalog-correction-application-window30-2026-11-02/applied-corrections-window30.jsonl": "175dfca5f3348b6deb8e512c5f6fd79fe35b649f2f5872e6dff3c22ea1fde456",
+      "docs/pr-evidence/pr409-catalog-correction-application-window31-2026-11-02/applied-corrections-window31.jsonl": "2704474b3d89611ab953246fa99e3230a82e3214bf09ff707dda6bf5939011f7",
+      "docs/pr-evidence/pr409-catalog-correction-application-window32-2026-11-02/applied-corrections-window32.jsonl": "9210eb8998d661e19cc73a033d15c2adcd16ff502d7f66f6fc1bee5b030d0602"
+    }
+  },
+  "scope": {
+    "selectedSourceIds": [
+      "src_01d9ffd7eb813dec",
+      "src_01de77717ad6d8ac",
+      "src_01ee45e5e1895f77",
+      "src_01f15db89c14092f",
+      "src_01fc458784339935",
+      "src_02220514c8865329",
+      "src_02260973ad573612",
+      "src_022b431a245e7a24",
+      "src_0237d4f322c6af78",
+      "src_0240829060eab635",
+      "src_0256ddb35e9fe4e9",
+      "src_025e9fb1391ea956",
+      "src_0264d7b0ccb8d48b",
+      "src_0281c5055613ba4f",
+      "src_0286249762f7c943",
+      "src_029c1853243a12a3",
+      "src_02a0efa2ad099cff",
+      "src_02c345586b79402d",
+      "src_02c7594d08c46d3d",
+      "src_02d19b1532d820d5",
+      "src_02d2e2581dd8d687",
+      "src_02d3fb4df0f85650",
+      "src_02dd5a163cea941d",
+      "src_02e445ae370faf7c",
+      "src_02f11f49e4c1b6fa"
+    ],
+    "sourceKeyCount": 25,
+    "cells": 274,
+    "pendingCellsFrozen": 67080,
+    "remainingNonOverlappingCellsBeforeSelection": 52776,
+    "remainingSourceIdsBeforeSelection": 4853,
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "perLocaleCells": {
+      "ar": 25,
+      "de": 25,
+      "fr": 24,
+      "hi": 25,
+      "id": 25,
+      "ja": 25,
+      "ko": 25,
+      "pt-BR": 25,
+      "vi": 25,
+      "zh-Hans": 25,
+      "zh-Hant": 25
+    },
+    "allSelectedRowsPending": true,
+    "allSelectedTargetsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 274,
+    "sha256": "9b919f98102d88f2c8de56b23a187531453ed38eac9034657b9f968b8412bcec"
+  },
+  "currentCatalogFileSha256": {
+    "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+    "zh-Hans": "1e7cc620d7ae3f930b9d5cc0f14b181f0dcb1ae49199709cc5161d62a6a1864a",
+    "hi": "8a16c53d79a861fb0c5fadd15ffbe50a1a8d5f0c500eaa2f1543677eb1634f74",
+    "de": "14b8436a948506fd51bd9f385ade5c738a7cc5c0d2dddb5a333516980e66c5df",
+    "ja": "c1347a69945e2aae94c6cc25d3e7955e1f622f7d4697257d47a79e9baffc354d",
+    "fr": "5a24596ace3952bfa6518bea5df85b3efa91af1fef13abf07edf85cb68f9767d",
+    "pt-BR": "ebcdddf28e64f57e12fe631feb68af0a9caa112a6c193839f4554a82c538e7ac",
+    "ar": "8922f03545a9edebd323f4f2692c549fa1f007a2fba923b29e795510d338b22a",
+    "ko": "46e2c58e51bbdcce06e82aeb604a9103a3a814e1232887869545c50e4146847a",
+    "zh-Hant": "ea7e3c187358537322df7e9392c3a3b2a3c29dc61223964ade57e32a9b602914",
+    "vi": "a26ea14df241076087d3c8a7665f557320b200fb46af3bf70d063209b04b5fea",
+    "id": "ef7e4528f0fd368d1bc10e78ac991f7f0578032391ddf4c0d3c3de376019f424"
+  },
+  "catalogKeyCounts": {
+    "es": 6169,
+    "zh-Hans": 6169,
+    "hi": 6169,
+    "de": 6169,
+    "ja": 6169,
+    "fr": 6169,
+    "pt-BR": 6169,
+    "ar": 6169,
+    "ko": 6169,
+    "zh-Hant": 6169,
+    "vi": 6169,
+    "id": 6169
+  },
+  "sourceCallerLinesPreflighted": 467,
+  "reviewerMethod": "manual semantic review against exact source callsites and UI context; no translation model or API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "reviewDecisionLedger": {
+    "path": "review-decisions.jsonl",
+    "rows": 274,
+    "sha256": "4484dd487cfbfd75b2e9e9e4895b2811af6c76f6de65de241050b0d90be4d2c3"
+  },
+  "candidatePlan": {
+    "path": "crossreview-plan.jsonl",
+    "rows": 41,
+    "sha256": "906c3e8bb45b08e9bc9d26d9ac286def387a132c741e4e7f0be68deb0094df06"
+  },
+  "manualReviewSummary": {
+    "path": "review-summary.json",
+    "sha256": "38d7a3e197295b21128aa1f47013eac78c0cd7d3eb97ac6aa0cd28b504d0dbcf"
+  },
+  "reviewDecisions": {
+    "correct": 41,
+    "keep": 222,
+    "uncertain": 11
+  },
+  "independentCrossReview": "pending",
+  "rootCrossReview": "pending"
+}

@@ -1,0 +1,7 @@
+# slskdN PR #409 manual semantic review: third 25-key slice
+
+This evidence-only review is pinned to PR head `124890bf437d5aafda4282f11a15ec329a294832` / tree `eeba2bed1014814d7d9e4b6ab86cb1e640ec4f10`. The `src` subtree matches the frozen catalog/source snapshot at `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`; intervening PR commits changed only docs/evidence.
+
+The 25-key slice covers 300 cells across all 12 direct locales, selected after the formal accumulator and two prior manual windows. Outcomes: 233 keep, 66 high-confidence correction candidates, 1 uncertain. Topics include music-scene terminology, usernames, technical forensics, history backfill, spectral centroid, channel controls, Soulseek interests, queued tracks, Type labels, Arabic Pod terminology, file paths, pipeline stages, and a Korean contact-name label. One Hindi Backfill label remains uncertain because no locale-standard term could be confirmed from the available context.
+
+The original scratch bundle passed its SHA256 and frozen-head/source/cross-window verifier before packaging. The verifier is kept only in task scratch because running it from this committed copy would make its sibling-window scan count committed copies as prior decisions. The manifest retains the exact input, decision, source, catalog, and overlap hashes. No catalog, source, shared ledger, or PR body was changed by this evidence pass. Machine review is not native-speaker approval.

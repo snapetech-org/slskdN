@@ -1,0 +1,78 @@
+{
+  "rows": 300,
+  "verdicts": {
+    "keep": 256,
+    "correct": 44
+  },
+  "correctionRows": 44,
+  "correctionsByLocale": {
+    "ar": 4,
+    "de": 3,
+    "es": 3,
+    "fr": 4,
+    "hi": 3,
+    "id": 3,
+    "ja": 2,
+    "ko": 4,
+    "pt-BR": 3,
+    "vi": 4,
+    "zh-Hans": 5,
+    "zh-Hant": 6
+  },
+  "inputSha256": "8a4954b9d45056abafb1646eb547c3aeccaba2a57b359289ac929d15d0fc0f86",
+  "decisionsSha256": "5404625d7ff6b26dbe557aee95e1716b4854c892c832cc2e384fbf554d4ed858",
+  "crossReviewPlanSha256": "c0fee30c06711138405301f4bd781fef1b12d3387a3bfd6f433a1ca457797c69",
+  "correctionSourceKeys": 8,
+  "perLocale": {
+    "es": {
+      "keep": 22,
+      "correct": 3
+    },
+    "zh-Hans": {
+      "keep": 20,
+      "correct": 5
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 3
+    },
+    "de": {
+      "keep": 22,
+      "correct": 3
+    },
+    "ja": {
+      "keep": 23,
+      "correct": 2
+    },
+    "fr": {
+      "correct": 4,
+      "keep": 21
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 3
+    },
+    "ar": {
+      "keep": 21,
+      "correct": 4
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 4
+    },
+    "zh-Hant": {
+      "keep": 19,
+      "correct": 6
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 4
+    },
+    "id": {
+      "keep": 22,
+      "correct": 3
+    }
+  },
+  "placeholdersProtectedLiterals": "PASS",
+  "proposedTargetHashes": "PASS"
+}

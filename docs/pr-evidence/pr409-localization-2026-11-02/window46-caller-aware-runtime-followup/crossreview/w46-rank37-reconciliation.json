@@ -1,0 +1,69 @@
+{
+  "w46Packet": "docs/pr-evidence/pr409-localization-2026-11-02/window46-reconstructed-ranks26-50",
+  "sealedPacketModified": false,
+  "sealedChecksumsVerified": true,
+  "sealedRootSHA256SUMS.txtSha256": "36605235af573c9b053f6d1d904a3e1f1ad1b198f1c0e59f3cabc7fd4ecbf4a8",
+  "priorRank37Rows": {
+    "primary": {
+      "file": "primary/review-decisions.jsonl",
+      "rank37Rows": 12,
+      "dispositionField": "disposition",
+      "disposition": "accept-current",
+      "fileSha256": "a7366e3add2dc2adf6c8278f741286af1884d3577649787f6bb8c02ad341cc17"
+    },
+    "crossreview": {
+      "file": "crossreview/crossreview-decisions.jsonl",
+      "rank37Rows": 12,
+      "dispositionField": "crossReviewDisposition",
+      "disposition": "hold",
+      "fileSha256": "13efcc92ca5010a0a9c96ae9e47376ade39b7031301333d7e4255f39aaeb370c"
+    },
+    "adjudication": {
+      "file": "adjudication/final-adjudication-ledger.jsonl",
+      "rank37Rows": 12,
+      "dispositionField": "adjudicatedDisposition",
+      "disposition": "hold",
+      "fileSha256": "40ca132903e3d4489714f151582f6f8fdd0d1b309f5b9a9f6df35b4d3786e328"
+    },
+    "callerMetadataMisclassification": {
+      "callerReferenceCount": 1,
+      "productionLocalizationReferenceCount": 0,
+      "callerUseStatus": "no-production-localization-caller-found",
+      "referenceRole": "exact-literal-reference",
+      "exactLiteralMatch": true,
+      "line": 558,
+      "lineText": "        'Download {count} files from {directory}?',",
+      "contextBefore": [
+        "    if (",
+        "      // eslint-disable-next-line no-alert",
+        "      window.confirm(interfaceText("
+      ],
+      "contextAfter": [
+        "        { count: filesToDownload.length, directory: directory.name },",
+        "      ))",
+        "    ) {"
+      ]
+    }
+  },
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "baseProductionCaller": {
+    "path": "src/web/src/components/Browse/BrowseSession.jsx",
+    "line": 558,
+    "lineText": "'Download {count} files from {directory}?',",
+    "directlyInside": "window.confirm(interfaceText(...))",
+    "values": {
+      "count": "filesToDownload.length",
+      "directory": "directory.name"
+    },
+    "baseFileSha256": "57a45bf75d9ac26c0200b1db9621465c70b04bb71500a90d171296a4235fb0fe",
+    "baseGitBlobOid": "57bf4b9b3c1e9dac776512d8f0c547f9efa2f1cd"
+  },
+  "callerMisclassification": "The sealed caller-context row contains the exact matching production source line and the window.confirm/interfaceText context, yet labels its role exact-literal-reference, productionLocalizationReferenceCount 0, and callerUseStatus no-production-localization-caller-found. The source and context prove this classification wrong.",
+  "supersession": "Supersede exactly the 12 rank37 W46 crossreview hold decisions and 12 rank37 W46 adjudication hold decisions whose blocker is the false no-caller classification. Do not alter sealed W46 artifacts.",
+  "primaryRows": "W46 primary accept-current rows remain valid for the old source text and catalog key. They are not the current translation of the new ICU-keyed source; this packet separately reviews all 12 current proposals.",
+  "currentSourceId": "src_6845751a223bdec1",
+  "currentSourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+  "currentSourceSha256": "6845751a223bdec1f1c63b7645f03eb63ecf64c711f7bc1ba0838e100a97bcc5",
+  "currentCallerLine": "'{count, plural, one {Download # file} other {Download # files}} from {directory}?',"
+}

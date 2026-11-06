@@ -1,0 +1,300 @@
+{"id":"es:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"es:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"es:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"es:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"es:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"es:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"es:src_f039d15b3b269781","verdict":"correct","target":"Guardar la configuración para entornos hostiles","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"es:src_f043800f1e25a836","verdict":"keep"}
+{"id":"es:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"es:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"es:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"es:src_f07080576456f678","verdict":"keep"}
+{"id":"es:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"es:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"es:src_f0896efd2bf4038d","verdict":"correct","target":"Ocultar completados","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"es:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"es:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"es:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"es:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"es:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"es:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"es:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"es:src_f0da1aa672225f34","verdict":"correct","target":"{count} archivo transferido correctamente","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"es:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"es:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"zh-Hans:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"zh-Hans:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"zh-Hans:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"zh-Hans:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"zh-Hans:src_f017fe1916ffdb89","verdict":"correct","target":"是否相似：","confidence":"high","reason":"The heading is immediately followed by Yes/No values for a boolean comparison result. 相似之处 means “similarities” rather than asking whether the compared items are similar."}
+{"id":"zh-Hans:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"zh-Hans:src_f039d15b3b269781","verdict":"keep"}
+{"id":"zh-Hans:src_f043800f1e25a836","verdict":"keep"}
+{"id":"zh-Hans:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"zh-Hans:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"zh-Hans:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"zh-Hans:src_f07080576456f678","verdict":"keep"}
+{"id":"zh-Hans:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"zh-Hans:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"zh-Hans:src_f0896efd2bf4038d","verdict":"correct","target":"隐藏已完成项","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"zh-Hans:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"zh-Hans:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"zh-Hans:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"zh-Hans:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"zh-Hans:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"zh-Hans:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"zh-Hans:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"zh-Hans:src_f0da1aa672225f34","verdict":"correct","target":"{count} 个成功传输的文件","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"zh-Hans:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"zh-Hans:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"hi:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"hi:src_efe7274ae79f81ea","verdict":"correct","target":"अटके हुए डाउनलोड का स्वचालित प्रतिस्थापन सक्षम करें","confidence":"high","reason":"This aria-label enables an option to replace stuck downloads automatically. The Hindi target places “enable” after a standalone imperative and is ungrammatical; use a direct label for enabling automatic replacement."}
+{"id":"hi:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"hi:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"hi:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"hi:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"hi:src_f039d15b3b269781","verdict":"correct","target":"शत्रुतापूर्ण वातावरण के लिए सेटिंग सहेजें","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"hi:src_f043800f1e25a836","verdict":"correct","target":"उदाहरण के लिए, postgres-db","confidence":"high","reason":"This is a placeholder example for a service name that users may copy into the field. The Hindi target transliterates the identifier; preserve the exact usable value postgres-db."}
+{"id":"hi:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"hi:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"hi:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"hi:src_f07080576456f678","verdict":"keep"}
+{"id":"hi:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"hi:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"hi:src_f0896efd2bf4038d","verdict":"correct","target":"पूर्ण हो चुके आइटम छिपाएँ","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"hi:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"hi:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"hi:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"hi:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"hi:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"hi:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"hi:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"hi:src_f0da1aa672225f34","verdict":"keep"}
+{"id":"hi:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"hi:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"de:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"de:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"de:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"de:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"de:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"de:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"de:src_f039d15b3b269781","verdict":"correct","target":"Einstellungen für feindliche Umgebungen speichern","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"de:src_f043800f1e25a836","verdict":"keep"}
+{"id":"de:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"de:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"de:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"de:src_f07080576456f678","verdict":"keep"}
+{"id":"de:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"de:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"de:src_f0896efd2bf4038d","verdict":"correct","target":"Abgeschlossene ausblenden","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"de:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"de:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"de:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"de:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"de:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"de:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"de:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"de:src_f0da1aa672225f34","verdict":"correct","target":"{count} erfolgreich übertragene Datei","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"de:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"de:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"ja:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"ja:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"ja:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"ja:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"ja:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"ja:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"ja:src_f039d15b3b269781","verdict":"keep"}
+{"id":"ja:src_f043800f1e25a836","verdict":"keep"}
+{"id":"ja:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"ja:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"ja:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"ja:src_f07080576456f678","verdict":"keep"}
+{"id":"ja:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"ja:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"ja:src_f0896efd2bf4038d","verdict":"correct","target":"完了した項目を非表示","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"ja:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"ja:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"ja:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"ja:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"ja:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"ja:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"ja:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"ja:src_f0da1aa672225f34","verdict":"correct","target":"正常に転送されたファイル {count} 件","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"ja:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"ja:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"fr:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"fr:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"fr:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"fr:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"fr:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"fr:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"fr:src_f039d15b3b269781","verdict":"correct","target":"Enregistrer les paramètres pour les environnements hostiles","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"fr:src_f043800f1e25a836","verdict":"keep"}
+{"id":"fr:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"fr:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"fr:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"fr:src_f07080576456f678","verdict":"keep"}
+{"id":"fr:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"fr:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"fr:src_f0896efd2bf4038d","verdict":"correct","target":"Masquer les éléments terminés","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"fr:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"fr:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"fr:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"fr:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"fr:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"fr:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"fr:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"fr:src_f0da1aa672225f34","verdict":"correct","target":"{count} fichier transféré avec succès","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"fr:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"fr:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"pt-BR:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"pt-BR:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"pt-BR:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"pt-BR:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"pt-BR:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"pt-BR:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"pt-BR:src_f039d15b3b269781","verdict":"correct","target":"Salvar configurações para ambientes hostis","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"pt-BR:src_f043800f1e25a836","verdict":"keep"}
+{"id":"pt-BR:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"pt-BR:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"pt-BR:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"pt-BR:src_f07080576456f678","verdict":"keep"}
+{"id":"pt-BR:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"pt-BR:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"pt-BR:src_f0896efd2bf4038d","verdict":"correct","target":"Ocultar concluídos","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"pt-BR:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"pt-BR:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"pt-BR:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"pt-BR:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"pt-BR:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"pt-BR:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"pt-BR:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"pt-BR:src_f0da1aa672225f34","verdict":"correct","target":"{count} arquivo transferido com sucesso","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"pt-BR:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"pt-BR:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"ar:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"ar:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"ar:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"ar:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"ar:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"ar:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"ar:src_f039d15b3b269781","verdict":"correct","target":"حفظ إعدادات البيئات المعادية","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"ar:src_f043800f1e25a836","verdict":"keep"}
+{"id":"ar:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"ar:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"ar:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"ar:src_f07080576456f678","verdict":"keep"}
+{"id":"ar:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"ar:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"ar:src_f0896efd2bf4038d","verdict":"correct","target":"إخفاء العناصر المكتملة","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"ar:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"ar:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"ar:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"ar:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"ar:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"ar:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"ar:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"ar:src_f0da1aa672225f34","verdict":"keep"}
+{"id":"ar:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"ar:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"ko:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"ko:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"ko:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"ko:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"ko:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"ko:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"ko:src_f039d15b3b269781","verdict":"keep"}
+{"id":"ko:src_f043800f1e25a836","verdict":"keep"}
+{"id":"ko:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"ko:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"ko:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"ko:src_f07080576456f678","verdict":"keep"}
+{"id":"ko:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"ko:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"ko:src_f0896efd2bf4038d","verdict":"correct","target":"완료된 항목 숨기기","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"ko:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"ko:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"ko:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"ko:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"ko:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"ko:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"ko:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"ko:src_f0da1aa672225f34","verdict":"correct","target":"성공적으로 전송된 파일 {count}개","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"ko:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"ko:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"zh-Hant:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"zh-Hant:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"zh-Hant:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"zh-Hant:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"zh-Hant:src_f017fe1916ffdb89","verdict":"correct","target":"是否相似：","confidence":"high","reason":"The heading is immediately followed by Yes/No values for a boolean comparison result. 相似之处 means “similarities” rather than asking whether the compared items are similar."}
+{"id":"zh-Hant:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"zh-Hant:src_f039d15b3b269781","verdict":"keep"}
+{"id":"zh-Hant:src_f043800f1e25a836","verdict":"keep"}
+{"id":"zh-Hant:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"zh-Hant:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"zh-Hant:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"zh-Hant:src_f07080576456f678","verdict":"keep"}
+{"id":"zh-Hant:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"zh-Hant:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"zh-Hant:src_f0896efd2bf4038d","verdict":"correct","target":"隱藏已完成項目","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"zh-Hant:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"zh-Hant:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"zh-Hant:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"zh-Hant:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"zh-Hant:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"zh-Hant:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"zh-Hant:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"zh-Hant:src_f0da1aa672225f34","verdict":"correct","target":"{count} 個成功傳輸的檔案","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"zh-Hant:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"zh-Hant:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"vi:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"vi:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"vi:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"vi:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"vi:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"vi:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"vi:src_f039d15b3b269781","verdict":"correct","target":"Lưu cài đặt cho môi trường thù địch","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"vi:src_f043800f1e25a836","verdict":"keep"}
+{"id":"vi:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"vi:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"vi:src_f059353949e9b0b7","verdict":"correct","target":"Kế hoạch chạy thử được tạo từ một ứng viên Discovery Inbox đã được phê duyệt. Cần xem xét và xác nhận thực hiện rõ ràng trước khi có bất kỳ hoạt động mạng nào.","confidence":"high","reason":"Discovery Inbox is the named feature and is kept untranslated in the other locale targets. The Vietnamese target translates it as a generic “Exploration Inbox”; retain the feature name while translating the rest."}
+{"id":"vi:src_f07080576456f678","verdict":"keep"}
+{"id":"vi:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"vi:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"vi:src_f0896efd2bf4038d","verdict":"correct","target":"Ẩn các mục đã hoàn tất","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"vi:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"vi:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"vi:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"vi:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"vi:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"vi:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"vi:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"vi:src_f0da1aa672225f34","verdict":"correct","target":"{count} tệp đã chuyển thành công","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"vi:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"vi:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}
+{"id":"id:src_efbce6c01bf75481","verdict":"keep"}
+{"id":"id:src_efe7274ae79f81ea","verdict":"keep"}
+{"id":"id:src_effa2ec83ddb8a9e","verdict":"keep"}
+{"id":"id:src_f00b3dbede48f405","verdict":"keep"}
+{"id":"id:src_f017fe1916ffdb89","verdict":"keep"}
+{"id":"id:src_f020b15ccd6e7eb5","verdict":"keep"}
+{"id":"id:src_f039d15b3b269781","verdict":"correct","target":"Simpan pengaturan untuk lingkungan bermusuhan","confidence":"high","reason":"The settings belong to advanced security options for users in adversarial environments. These targets mean adverse/contradictory/hostility-related settings rather than settings for hostile environments."}
+{"id":"id:src_f043800f1e25a836","verdict":"keep"}
+{"id":"id:src_f0514e8df84107f4","verdict":"keep"}
+{"id":"id:src_f052d9cf76a73dec","verdict":"keep"}
+{"id":"id:src_f059353949e9b0b7","verdict":"keep"}
+{"id":"id:src_f07080576456f678","verdict":"keep"}
+{"id":"id:src_f0853cf431fc9fd3","verdict":"keep"}
+{"id":"id:src_f0887d7a8ffe04b5","verdict":"keep"}
+{"id":"id:src_f0896efd2bf4038d","verdict":"correct","target":"Sembunyikan yang selesai","confidence":"high","reason":"This checkbox hides completed transfers in the transfer list. These labels read as “hide completely” or omit the items being hidden; explicitly name completed items/transfers."}
+{"id":"id:src_f08f130455b61a95","verdict":"uncertain","reason":"The callsite presents this as a discovery-graph scope option, but the exact domain meaning of “Unknown Seed” is not established in the frozen context. Confirm whether “seed” is a technical source/entity label or should use a locale-specific starting-point term before changing the literal-seed translations."}
+{"id":"id:src_f0af8807d44be45a","verdict":"keep"}
+{"id":"id:src_f0b0738f75b8bcd1","verdict":"keep"}
+{"id":"id:src_f0b17c568b2fac39","verdict":"keep"}
+{"id":"id:src_f0cae79a3657c1db","verdict":"keep"}
+{"id":"id:src_f0ce914b7c6a04c2","verdict":"keep"}
+{"id":"id:src_f0d5968f615ed7ab","verdict":"keep"}
+{"id":"id:src_f0da1aa672225f34","verdict":"correct","target":"{count} berkas berhasil ditransfer","confidence":"high","reason":"Dashboard count appears under Downloads or Uploads and counts successful transfers. These targets say files were moved; use the transfer/receive/send sense instead."}
+{"id":"id:src_f0dceea9506cbd44","verdict":"keep"}
+{"id":"id:src_f0e6be7fdbf0c0fe","verdict":"uncertain","reason":"The frozen input has no callsite or surrounding source context for this incomplete fragment (“Edit Filter for”). The object and resulting grammar are unknown, so its locale-specific phrasing cannot be judged safely."}

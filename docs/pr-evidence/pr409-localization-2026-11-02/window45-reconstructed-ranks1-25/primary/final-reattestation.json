@@ -1,0 +1,32 @@
+{
+  "allSevenPrHeadTreeChangesDuringReview": [
+    {
+      "finalHead": "a9a74f6ba733e8c1f06a2d260bd802d4fde2da0e",
+      "finalTree": "d9d25f309f3a7256056b4ed8deb1dabee58b64fe",
+      "number": 190,
+      "repository": "snapetech-org/ChaptarrNG",
+      "startHead": "722c0aaab4eda88bb507ba4a165e2f6bb22901fa",
+      "startTree": "d162735f61d934389634111229b42beae04aaeea"
+    }
+  ],
+  "allSevenPrHeadsQueriedAfterReview": true,
+  "capturedAtUtc": "2026-11-02T20:34:51.073430+00:00",
+  "commitPushOrPrMutation": false,
+  "liveSevenFinalSha256": "d7651563c465649e76b4286598afc9508baf14bf20abf9d6655134959d793b51",
+  "liveSevenStartSha256": "cfe0e0fe1e0d3ee501d3932275590f7f639e3c3810266a4c598e531b4e867c0c",
+  "pr409IsDraft": true,
+  "pr409RemoteBranchMatchesHead": true,
+  "pr409State": "OPEN",
+  "pr409StillAtExpectedHeadTree": true,
+  "repoEditsByThisPacket": false,
+  "worktreeAfterReview": {
+    "branch": "codex/slskdn-localization-apply-20261102",
+    "capturedAtUtc": "2026-11-02T20:34:51.073430+00:00",
+    "head": "6a082138c09fa8af40aee3258beb98523ee821d9",
+    "remotePrBranchOid": "6a082138c09fa8af40aee3258beb98523ee821d9",
+    "statusPorcelain": "",
+    "tree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+    "worktree": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn"
+  },
+  "worktreeCleanAfterReview": true
+}

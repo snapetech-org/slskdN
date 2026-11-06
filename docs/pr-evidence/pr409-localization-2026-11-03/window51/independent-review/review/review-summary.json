@@ -1,0 +1,31 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W51",
+  "continuationRanks": [
+    176,
+    200
+  ],
+  "sourceIds": 25,
+  "locales": 12,
+  "cellsReviewed": 300,
+  "inputPacketDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window51-blind-input-20261103",
+  "inputPacketManifestSha256": "f1c23a687dbe529e456f321dcb64b27caf05f52e69c15af926ada1f0b7651674",
+  "exactInputHead": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+  "exactInputTree": "dc5f6ab2aab3668f674dd583451d3464a3a1c081",
+  "dispositions": {
+    "accept-current": 206,
+    "correction": 49,
+    "refinement": 45
+  },
+  "changedProposals": 94,
+  "sourceHashMismatches": 0,
+  "currentTargetHashMismatches": 0,
+  "catalogFilePinMismatches": 0,
+  "placeholderMismatches": 0,
+  "protectedLiteralMismatches": 0,
+  "repositoryOrApiInspected": false,
+  "primaryProposalsRead": false,
+  "nativeSpeakerApproval": false,
+  "historicalSourceOrdinalsInferred": false
+}

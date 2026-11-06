@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": 38,
+  "inputHead": "36084c57b5a0e26804bc497c32d51c321258176d",
+  "inputTree": "a79ceb485188d131d93315718278d52d79e5ff8a",
+  "independentReviewRows": 269,
+  "independentDispositionCounts": {
+    "accept-current": 207,
+    "endorse-primary-correction": 48,
+    "additional-correction": 11,
+    "hold-composed-sentence": 3
+  },
+  "independentCorrectionProposalCount": 11,
+  "primaryProposalCellsSeenInReadme": 54,
+  "primaryREADMEReadBeforeFreeze": true,
+  "primaryDecisionRowsReadBeforeFreeze": 1,
+  "primaryCandidateJsonlRowsReadBeforeFreeze": 1,
+  "primaryReviewWasBlind": false,
+  "exposureReason": "The primary README contains the full candidate list; it was read before independent dispositions were frozen. Only the first row of each primary JSONL ledger was sampled for schema, not the row-level ledgers as a whole.",
+  "nativeSpeakerApprovals": 0,
+  "nativeReviewRequired": true,
+  "ledgerSha256": "0385f4fffcdf39734257fa0185f69f5ec7093c4173b5699bbccd0f597b63052d",
+  "catalogRawHashesChangedAfterW37": true,
+  "all269SourceCurrentValuesReattestedAtUpdatedHead": true
+}

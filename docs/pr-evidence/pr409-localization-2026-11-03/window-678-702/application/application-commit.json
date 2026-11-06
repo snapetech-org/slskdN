@@ -1,0 +1,39 @@
+{
+  "artifact": "W72 catalog application commit record",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "commit": "3aebbc99f2de17da71971edf9602503dca747658",
+  "parent": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "tree": "42cd101d3ec0d43fa6da35e92da3e33662f4b215",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "changedFileCount": 10,
+  "changedCellCount": 31,
+  "workflowFilesChanged": 0,
+  "changedFiles": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "applicationReadbackSha256": "852c0196037ebf6aee57b7855c91d5c18094b92637def01788dfd0ad1d31af11",
+  "applicationPlanSha256": "8f93c6ed1b621e66f8455506f218cbc6971ae1828337d42de346e702b65a4ec9",
+  "applicationSummarySha256": "75a0dc79104bcbd8330ae0d005db7a5435011fcc273721dd28a21b8995d67d66",
+  "targetPostimageFileSha256": {
+    "ar": "246208c030222de4bb69cf42fc1ed2575531354bd909da6add406fc601bc5a62",
+    "es": "3da8148e746a01216654e5d6e1e78ed9559fc764dc172e788a867a3ec7175820",
+    "fr": "e58c6765001653fe64979636142ae35a8824a0faabb24c40f96b0909edce920b",
+    "hi": "05eb194d0bfa87531541b3ff35bbbbb5c9c0a4650de71d54e2f8f5e6fbfe9a1c",
+    "id": "89b2e89a3bf9bb4cfbb75b24948ce03a10a380c3372e8e43d96771ea26059426",
+    "ja": "670fa1a745dbcb86847d39f41702be8eb4bb3ca69707a34b3d5c5a4bc9c33868",
+    "ko": "bd81320c32e9dc730feaaf7e0e9bbd74ddba43c476f35fcb82cebfabe1f03323",
+    "vi": "0826ab1bccc1b85ee32988c1d8a359564c4aa6ad51f2820415effe0b1fe6f1ae",
+    "zh-Hans": "f237c26ce803c4f0554fc9c4a55d80188a78cdd781953acc40611ea1202cee81",
+    "zh-Hant": "fba56962703678b7548d717144be99b7ca4536ea2f1faea4926388b304ef6487"
+  }
+}

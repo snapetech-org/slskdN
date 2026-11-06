@@ -1,0 +1,18 @@
+{
+  "result": "PRIMARY_REVIEW_COMPLETE_PENDING_INDEPENDENT_CROSS_REVIEW",
+  "window": 43,
+  "pullRequest": 409,
+  "head": "7fa557e4b3c433708bd490bd1fc9279c0539bc8f",
+  "tree": "fd4f7b6f33398fec278173fcf68a04d9c15bc94b",
+  "sourceOrdinal": 87,
+  "sourceId": "src_0ef5849949bcf7b6",
+  "source": "30D",
+  "locale": "es",
+  "currentTarget": "30 d",
+  "disposition": "accept-current",
+  "formalRegisterApplicable": false,
+  "callerReattested": true,
+  "nativeSpeakerApproval": false,
+  "repositoryModified": false,
+  "testsBuildsCiRun": false
+}

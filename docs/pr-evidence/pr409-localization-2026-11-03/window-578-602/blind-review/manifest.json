@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W68 ranks 578-602 blind translation review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "973a65312a475de4d8aa39aee837249553fd884e",
+  "tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "previousWindow": "W67",
+  "continuationRankRange": [
+    578,
+    602
+  ],
+  "remainingQueueRankRange": [
+    478,
+    502
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "inputPath": "../slskdn-pr409-w68-ranks578-602-candidate-free-20261103/input",
+  "inputCandidateFree": true,
+  "inputManifestSha256": "a9f4ebf9dd435faf2330fce08d0f90ef131bc0c8d694f54475a4450e11ce568f",
+  "inputPacketChecksumsSha256": "0ddb2a00cefbe6dbc16c883bb43b316ee316638d014e57c4d24441af774ed2ca",
+  "candidateFileUsed": false,
+  "primaryPacketOpened": false,
+  "priorProposalsUsed": false,
+  "priorHeldCellsExpected": 128,
+  "priorHeldCellsReattested": 128,
+  "verdictCounts": {
+    "accept": 273,
+    "revise": 27,
+    "hold": 0
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1843,
+      "sha256": "fa5f6c8d0bccc538193e1638b3aab0afc4f4e76ec2c946f3eda5f933e3c9673f"
+    },
+    {
+      "path": "review-ledger.jsonl",
+      "bytes": 637532,
+      "sha256": "dc961a5b981ce0fd8559704e84fad007dc2cba8c950ea4c62c8a8be4d42f6f15"
+    },
+    {
+      "path": "held-cell-reattestation.jsonl",
+      "bytes": 116039,
+      "sha256": "de223a7bfc905b17d8ab55edcafab0ee37b690eaf3974aa486b7790d87f66f42"
+    },
+    {
+      "path": "review-summary.json",
+      "bytes": 11339,
+      "sha256": "d01814463339f10e8e85b4ade8c5537527b15ae668492b3d8a5b9a48d191b530"
+    },
+    {
+      "path": "verify_review.py",
+      "bytes": 2532,
+      "sha256": "1fcdd7b083f54e8520359892195feb60b4bcaa6762147acc8efd025afb0c533d"
+    }
+  ]
+}

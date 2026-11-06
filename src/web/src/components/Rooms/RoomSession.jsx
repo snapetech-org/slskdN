@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import * as rooms from '../../lib/rooms';
 import React, { Component, createRef } from 'react';
 import UserCard from '../Shared/UserCard';
@@ -444,7 +444,7 @@ class RoomSession extends Component {
                 />
                 {roomName}
                 <TooltipButton
-                  aria-label={interfaceText("Leave {roomName}", { "roomName": (roomName) })}
+                  aria-label={interfaceAttributeText("Leave {roomName}", { "roomName": (roomName) })}
                   basic
                   className="close-button"
                   compact
@@ -475,7 +475,7 @@ class RoomSession extends Component {
               />
               {roomName}
               <TooltipButton
-                aria-label={interfaceText("Leave {roomName}", { "roomName": (roomName) })}
+                aria-label={interfaceAttributeText("Leave {roomName}", { "roomName": (roomName) })}
                 basic
                 className="close-button"
                 compact

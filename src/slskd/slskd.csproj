@@ -93,6 +93,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="slskd.Tests.Unit" />
+    <EmbeddedResource Include="..\web\public\locales\*.json" LogicalName="slskd.NotificationLocales.%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="10.2.1" />

@@ -1,0 +1,300 @@
+{"id": "es:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "zh-Hans:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "hi:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "de:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "ja:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "fr:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "pt-BR:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "ar:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "ko:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "zh-Hant:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "vi:src_df9532cb5d25909e", "verdict": "keep"}
+{"id": "id:src_df9532cb5d25909e", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Ruta de Soulfind", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Soulfind 路径", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Soulfind पथ", "verdict": "correct"}
+{"confidence": "high", "id": "de:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Soulfind-Pfad", "verdict": "correct"}
+{"confidence": "high", "id": "ja:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Soulfind のパス", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Chemin Soulfind", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Caminho do Soulfind", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "مسار Soulfind", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Soulfind 경로", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hant:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Soulfind 路徑", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Đường dẫn Soulfind", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_dfb3573f461d02ec", "reason": "Soulfind is the named service/protocol in this configuration field. Translating the name as soul-finding changes the product term; keep Soulfind and translate Path.", "target": "Jalur Soulfind", "verdict": "correct"}
+{"id": "es:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "zh-Hans:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "hi:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "de:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "ja:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "fr:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "pt-BR:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "ar:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "ko:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "zh-Hant:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "vi:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "id:src_dfb821e9d630fd6a", "verdict": "keep"}
+{"id": "es:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "zh-Hans:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "hi:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "de:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "ja:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "fr:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "pt-BR:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "ar:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "ko:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "zh-Hant:src_dfc00488d59f4984", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_dfc00488d59f4984", "reason": "In this federation UI, Pod is a technical entity. “Nhóm” means a generic group and changes the object being published.", "target": "Không thể xuất bản Pod:", "verdict": "correct"}
+{"id": "id:src_dfc00488d59f4984", "verdict": "keep"}
+{"id": "es:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "zh-Hans:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "hi:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "de:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "ja:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "fr:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "pt-BR:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "ar:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "ko:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "zh-Hant:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "vi:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"id": "id:src_dfdbbab85e5fc7ba", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_dff1e165673a30bd", "reason": "Here posture describes the system’s read-only status. This wording avoids the literal body-stance sense while retaining ActivityPub and the read-only state.", "target": "Estado de solo lectura para ActivityPub, la firma de pods y la publicación relacionada con la malla.", "verdict": "correct"}
+{"id": "zh-Hans:src_dff1e165673a30bd", "verdict": "keep"}
+{"confidence": "high", "id": "hi:src_dff1e165673a30bd", "reason": "Here posture describes the system’s read-only status. This wording avoids the literal body-stance sense while retaining ActivityPub and the read-only state.", "target": "ActivityPub, पॉड साइनिंग और मेश-संबंधित प्रकाशन के लिए केवल-पठन स्थिति।", "verdict": "correct"}
+{"id": "de:src_dff1e165673a30bd", "verdict": "keep"}
+{"confidence": "high", "id": "ja:src_dff1e165673a30bd", "reason": "Here posture describes the system’s read-only status. This wording avoids the literal body-stance sense while retaining ActivityPub and the read-only state.", "target": "ActivityPub、ポッド署名、およびメッシュ関連の公開機能は読み取り専用の状態です。", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_dff1e165673a30bd", "reason": "Here posture describes the system’s read-only status. This wording avoids the literal body-stance sense while retaining ActivityPub and the read-only state.", "target": "État en lecture seule pour ActivityPub, la signature des pods et la publication liée au maillage.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_dff1e165673a30bd", "reason": "Here posture describes the system’s read-only status. This wording avoids the literal body-stance sense while retaining ActivityPub and the read-only state.", "target": "Estado somente leitura para ActivityPub, assinatura de pods e publicação relacionada à malha.", "verdict": "correct"}
+{"id": "ar:src_dff1e165673a30bd", "verdict": "keep"}
+{"id": "ko:src_dff1e165673a30bd", "verdict": "keep"}
+{"id": "zh-Hant:src_dff1e165673a30bd", "verdict": "keep"}
+{"id": "vi:src_dff1e165673a30bd", "verdict": "keep"}
+{"confidence": "high", "id": "id:src_dff1e165673a30bd", "reason": "Here posture describes the system’s read-only status. This wording avoids the literal body-stance sense while retaining ActivityPub and the read-only state.", "target": "Status hanya baca untuk ActivityPub, penandatanganan pod, dan publikasi terkait mesh.", "verdict": "correct"}
+{"id": "es:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "zh-Hans:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "hi:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "de:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "ja:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "fr:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "pt-BR:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "ar:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "ko:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "zh-Hant:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "vi:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "id:src_dffd9e941c60a67e", "verdict": "keep"}
+{"id": "es:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "zh-Hans:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "hi:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "de:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "ja:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "fr:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "pt-BR:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "ar:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "ko:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "zh-Hant:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "vi:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "id:src_dfff3f25d246c193", "verdict": "keep"}
+{"id": "es:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "zh-Hans:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "hi:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "de:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "ja:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "fr:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "pt-BR:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "ar:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "ko:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "zh-Hant:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "vi:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "id:src_e0189cc5a60e4b55", "verdict": "keep"}
+{"id": "es:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "zh-Hans:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "hi:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "de:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "ja:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "fr:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "pt-BR:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "ar:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "ko:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "zh-Hant:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "vi:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"id": "id:src_e020e3c67bd0c312", "reason": "This single-word label is the count of ReleaseCandidate verdicts. In this compact UI position it may be read as an action or as a verdict category; confirm the locale-idiomatic noun/label with a native reviewer before changing it.", "verdict": "uncertain"}
+{"confidence": "high", "id": "es:src_e023102dfa2c9248", "reason": "Lidarr and Wishlist context identifies a music release directory. These targets avoid readings equivalent to a remote version, publication action, or release from custody.", "target": "Excluya el par rechazado exacto y el directorio del lanzamiento remoto del elemento original de la lista de deseos para que no vuelva a seleccionarse automáticamente.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_e023102dfa2c9248", "reason": "Lidarr and Wishlist context identifies a music release directory. These targets avoid readings equivalent to a remote version, publication action, or release from custody.", "target": "从发起操作的愿望清单项目中排除确切被拒绝的对等端和远程发行目录，避免系统再次自动选择它们。", "verdict": "correct"}
+{"id": "hi:src_e023102dfa2c9248", "verdict": "keep"}
+{"id": "de:src_e023102dfa2c9248", "verdict": "keep"}
+{"id": "ja:src_e023102dfa2c9248", "verdict": "keep"}
+{"confidence": "high", "id": "fr:src_e023102dfa2c9248", "reason": "Lidarr and Wishlist context identifies a music release directory. These targets avoid readings equivalent to a remote version, publication action, or release from custody.", "target": "Excluez le pair rejeté exact et le dossier de la sortie distante de l’élément de liste de souhaits d’origine afin qu’ils ne soient pas sélectionnés à nouveau automatiquement.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e023102dfa2c9248", "reason": "Lidarr and Wishlist context identifies a music release directory. These targets avoid readings equivalent to a remote version, publication action, or release from custody.", "target": "Exclua o par rejeitado exato e o diretório do lançamento remoto do item original da Lista de desejos, para que não sejam selecionados novamente automaticamente.", "verdict": "correct"}
+{"id": "ar:src_e023102dfa2c9248", "verdict": "keep"}
+{"id": "ko:src_e023102dfa2c9248", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hant:src_e023102dfa2c9248", "reason": "Lidarr and Wishlist context identifies a music release directory. These targets avoid readings equivalent to a remote version, publication action, or release from custody.", "target": "從發起操作的願望清單項目中排除確切遭拒的對等端與遠端發行目錄，避免系統再次自動選取它們。", "verdict": "correct"}
+{"id": "vi:src_e023102dfa2c9248", "verdict": "keep"}
+{"id": "id:src_e023102dfa2c9248", "verdict": "keep"}
+{"id": "es:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "zh-Hans:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "hi:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "de:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "ja:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "fr:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "pt-BR:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "ar:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "ko:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "zh-Hant:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "vi:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "id:src_e0355ef9c6fc9bfe", "verdict": "keep"}
+{"id": "es:src_e05f10ac129c2e97", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hans:src_e05f10ac129c2e97", "reason": "The source is a viewport control. The existing target only says to place/update the atlas and loses the explicit recenter action.", "target": "将图谱重新居中于这条建议的分支路线。", "verdict": "correct"}
+{"id": "hi:src_e05f10ac129c2e97", "verdict": "keep"}
+{"id": "de:src_e05f10ac129c2e97", "verdict": "keep"}
+{"id": "ja:src_e05f10ac129c2e97", "verdict": "keep"}
+{"id": "fr:src_e05f10ac129c2e97", "verdict": "keep"}
+{"id": "pt-BR:src_e05f10ac129c2e97", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e05f10ac129c2e97", "reason": "The source is a viewport control. The existing target only says to place/update the atlas and loses the explicit recenter action.", "target": "أعِد توسيط الأطلس على مسار التفرع المقترح هذا.", "verdict": "correct"}
+{"id": "ko:src_e05f10ac129c2e97", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hant:src_e05f10ac129c2e97", "reason": "The source is a viewport control. The existing target only says to place/update the atlas and loses the explicit recenter action.", "target": "將圖譜重新置中於這條建議的分支路線。", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e05f10ac129c2e97", "reason": "The source is a viewport control. The existing target only says to place/update the atlas and loses the explicit recenter action.", "target": "Căn giữa lại tập bản đồ trên tuyến nhánh được đề xuất này.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e05f10ac129c2e97", "reason": "The source is a viewport control. The existing target only says to place/update the atlas and loses the explicit recenter action.", "target": "Pusatkan kembali atlas pada rute cabang yang disarankan ini.", "verdict": "correct"}
+{"id": "es:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "zh-Hans:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "hi:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "de:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "ja:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "fr:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "pt-BR:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "ar:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "ko:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "zh-Hant:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "vi:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "id:src_e0620b4d065eadab", "verdict": "keep"}
+{"id": "es:src_e06b46a7141e6893", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hans:src_e06b46a7141e6893", "reason": "This is a list subheading for clients already connected for hash sync, not an instruction to connect clients.", "target": "用于哈希同步的已连接 slskdN 客户端", "verdict": "correct"}
+{"id": "hi:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "de:src_e06b46a7141e6893", "verdict": "keep"}
+{"confidence": "high", "id": "ja:src_e06b46a7141e6893", "reason": "This is a list subheading for clients already connected for hash sync, not an instruction to connect clients.", "target": "ハッシュ同期用に接続された slskdN クライアント", "verdict": "correct"}
+{"id": "fr:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "pt-BR:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "ar:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "ko:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "zh-Hant:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "vi:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "id:src_e06b46a7141e6893", "verdict": "keep"}
+{"id": "es:src_e071c917cb96a854", "verdict": "keep"}
+{"id": "zh-Hans:src_e071c917cb96a854", "verdict": "keep"}
+{"id": "hi:src_e071c917cb96a854", "verdict": "keep"}
+{"confidence": "high", "id": "de:src_e071c917cb96a854", "reason": "This label precedes the recommendation explanation. The existing target means argumentation, logic, deduction, or thought rather than the displayed rationale/reasoning.", "target": "Begründung:", "verdict": "correct"}
+{"id": "ja:src_e071c917cb96a854", "verdict": "keep"}
+{"id": "fr:src_e071c917cb96a854", "verdict": "keep"}
+{"id": "pt-BR:src_e071c917cb96a854", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e071c917cb96a854", "reason": "This label precedes the recommendation explanation. The existing target means argumentation, logic, deduction, or thought rather than the displayed rationale/reasoning.", "target": "التعليل:", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e071c917cb96a854", "reason": "This label precedes the recommendation explanation. The existing target means argumentation, logic, deduction, or thought rather than the displayed rationale/reasoning.", "target": "추론:", "verdict": "correct"}
+{"id": "zh-Hant:src_e071c917cb96a854", "verdict": "keep"}
+{"id": "vi:src_e071c917cb96a854", "verdict": "keep"}
+{"confidence": "high", "id": "id:src_e071c917cb96a854", "reason": "This label precedes the recommendation explanation. The existing target means argumentation, logic, deduction, or thought rather than the displayed rationale/reasoning.", "target": "Penalaran:", "verdict": "correct"}
+{"id": "es:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "zh-Hans:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "hi:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "de:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "ja:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "fr:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "pt-BR:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "ar:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "ko:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "zh-Hant:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "vi:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"id": "id:src_e083bd83e9d3e97e", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e083fb990e93d7fe", "reason": "Pushbullet is a product name; preserve its official capitalization.", "target": "Notificaciones de mensajes privados de Pushbullet", "verdict": "correct"}
+{"id": "zh-Hans:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "hi:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "de:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "ja:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "fr:src_e083fb990e93d7fe", "verdict": "keep"}
+{"confidence": "high", "id": "pt-BR:src_e083fb990e93d7fe", "reason": "Pushbullet is a product name; preserve its official capitalization.", "target": "Notificações de mensagens privadas do Pushbullet", "verdict": "correct"}
+{"id": "ar:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "ko:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "zh-Hant:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "vi:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "id:src_e083fb990e93d7fe", "verdict": "keep"}
+{"id": "es:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "zh-Hans:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "hi:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "de:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "ja:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "fr:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "pt-BR:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "ar:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "ko:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "zh-Hant:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "vi:src_e09072c430636cc8", "verdict": "keep"}
+{"id": "id:src_e09072c430636cc8", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e09a556368de3b51", "reason": "The toast reports counts of enabled searches that ran and failed. Existing wording omits the run action in several locales, and “secara acak” means randomly in Indonesian.", "target": "Se ejecutaron las búsquedas activadas de la lista de deseos: {ran}; fallaron: {failed}. Las descargas aún requieren la selección normal de resultados y la política habitual.", "verdict": "correct"}
+{"id": "zh-Hans:src_e09a556368de3b51", "verdict": "keep"}
+{"confidence": "high", "id": "hi:src_e09a556368de3b51", "reason": "The toast reports counts of enabled searches that ran and failed. Existing wording omits the run action in several locales, and “secara acak” means randomly in Indonesian.", "target": "सक्रिय इच्छा-सूची खोजें चलाई गईं: {ran}; विफल: {failed}। डाउनलोड के लिए अब भी सामान्य परिणाम चयन और नीति आवश्यक हैं।", "verdict": "correct"}
+{"id": "de:src_e09a556368de3b51", "verdict": "keep"}
+{"id": "ja:src_e09a556368de3b51", "verdict": "keep"}
+{"confidence": "high", "id": "fr:src_e09a556368de3b51", "reason": "The toast reports counts of enabled searches that ran and failed. Existing wording omits the run action in several locales, and “secara acak” means randomly in Indonesian.", "target": "Recherches actives de la liste de souhaits exécutées : {ran} ; échecs : {failed}. Les téléchargements nécessitent toujours une sélection normale des résultats et la politique habituelle.", "verdict": "correct"}
+{"id": "pt-BR:src_e09a556368de3b51", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e09a556368de3b51", "reason": "The toast reports counts of enabled searches that ran and failed. Existing wording omits the run action in several locales, and “secara acak” means randomly in Indonesian.", "target": "عمليات البحث المفعّلة في قائمة الرغبات التي تم تشغيلها: {ran}؛ الفاشلة: {failed}. لا تزال التنزيلات تتطلب اختيار النتائج المعتاد وتطبيق السياسة المعتادة.", "verdict": "correct"}
+{"id": "ko:src_e09a556368de3b51", "verdict": "keep"}
+{"id": "zh-Hant:src_e09a556368de3b51", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e09a556368de3b51", "reason": "The toast reports counts of enabled searches that ran and failed. Existing wording omits the run action in several locales, and “secara acak” means randomly in Indonesian.", "target": "Đã chạy các lượt tìm kiếm Danh sách mong muốn đang bật: {ran}; thất bại: {failed}. Tải xuống vẫn cần lựa chọn kết quả thông thường và chính sách thông thường.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e09a556368de3b51", "reason": "The toast reports counts of enabled searches that ran and failed. Existing wording omits the run action in several locales, and “secara acak” means randomly in Indonesian.", "target": "Pencarian Daftar Keinginan yang aktif dijalankan: {ran}; gagal: {failed}. Pengunduhan tetap memerlukan pemilihan hasil dan kebijakan normal.", "verdict": "correct"}
+{"id": "es:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "zh-Hans:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "hi:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "de:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "ja:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "fr:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "pt-BR:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e09ce0b4d9ea6644", "reason": "The button adds a Soulseek interest preference; الفائدة means a benefit, not an interest.", "target": "أضف اهتمامًا", "verdict": "correct"}
+{"id": "ko:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "zh-Hant:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "vi:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "id:src_e09ce0b4d9ea6644", "verdict": "keep"}
+{"id": "es:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "zh-Hans:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "hi:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "de:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "ja:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "fr:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "pt-BR:src_e09ea67aade00149", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e09ea67aade00149", "reason": "Pod is the federation entity. Arabic الكبسولة means capsule, and Vietnamese nhóm means a generic group; both change the technical object.", "target": "يؤدي تحميل طلبات الانضمام والمغادرة المعلّقة إلى قراءة حالة البود المحلي فقط. وتنشر إجراءات الطلب والموافقة الموقّعة أدناه أحداث العضوية.", "verdict": "correct"}
+{"id": "ko:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "zh-Hant:src_e09ea67aade00149", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e09ea67aade00149", "reason": "Pod is the federation entity. Arabic الكبسولة means capsule, and Vietnamese nhóm means a generic group; both change the technical object.", "target": "Việc tải các yêu cầu tham gia và rời khỏi đang chờ xử lý chỉ đọc trạng thái Pod cục bộ. Các thao tác yêu cầu và phê duyệt đã ký bên dưới sẽ xuất bản các sự kiện thành viên.", "verdict": "correct"}
+{"id": "id:src_e09ea67aade00149", "verdict": "keep"}
+{"id": "es:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "zh-Hans:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "hi:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "de:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "ja:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "fr:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "pt-BR:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "ar:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "ko:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "zh-Hant:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "vi:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"id": "id:src_e0aaaa0ccda7e176", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e0b80918faacf7da", "reason": "In this matching feature, fuzzy means approximate/similarity-based, not visually blurry or obscure.", "target": "Coincidencia aproximada de contenido", "verdict": "correct"}
+{"id": "zh-Hans:src_e0b80918faacf7da", "verdict": "keep"}
+{"id": "hi:src_e0b80918faacf7da", "verdict": "keep"}
+{"id": "de:src_e0b80918faacf7da", "verdict": "keep"}
+{"id": "ja:src_e0b80918faacf7da", "verdict": "keep"}
+{"confidence": "high", "id": "fr:src_e0b80918faacf7da", "reason": "In this matching feature, fuzzy means approximate/similarity-based, not visually blurry or obscure.", "target": "Correspondance approximative de contenu", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e0b80918faacf7da", "reason": "In this matching feature, fuzzy means approximate/similarity-based, not visually blurry or obscure.", "target": "Correspondência aproximada de conteúdo", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_e0b80918faacf7da", "reason": "In this matching feature, fuzzy means approximate/similarity-based, not visually blurry or obscure.", "target": "مطابقة تقريبية للمحتوى", "verdict": "correct"}
+{"id": "ko:src_e0b80918faacf7da", "verdict": "keep"}
+{"id": "zh-Hant:src_e0b80918faacf7da", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e0b80918faacf7da", "reason": "In this matching feature, fuzzy means approximate/similarity-based, not visually blurry or obscure.", "target": "So khớp nội dung gần đúng", "verdict": "correct"}
+{"id": "id:src_e0b80918faacf7da", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "Abra un paquete de diagnóstico con la información sensible oculta que puede copiar para obtener asistencia. Se eliminan secretos, tokens, contraseñas, cookies y claves API.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "打开一个已脱敏的诊断包，您可以复制它以获取支持。秘密、令牌、密码、cookie 和 API 密钥会被移除。", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "समर्थन के लिए कॉपी करने योग्य ऐसा डायग्नोस्टिक बंडल खोलें, जिसमें संवेदनशील जानकारी हटा दी गई है। सीक्रेट, टोकन, पासवर्ड, कुकीज़ और API कुंजियाँ हटा दी जाती हैं।", "verdict": "correct"}
+{"id": "de:src_e0bc649d02a58dd3", "verdict": "keep"}
+{"confidence": "high", "id": "ja:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "サポートのためにコピーできる、機密情報を取り除いた診断バンドルを開きます。シークレット、トークン、パスワード、Cookie、API キーは削除されています。", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "Ouvrez un dossier de diagnostic dont les informations sensibles ont été supprimées, que vous pouvez copier pour obtenir de l’aide. Les secrets, jetons, mots de passe, cookies et clés API sont supprimés.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "Abra um pacote de diagnóstico com informações confidenciais removidas, que você pode copiar para obter suporte. Segredos, tokens, senhas, cookies e chaves de API são removidos.", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "افتح حزمة تشخيصية أزيلت منها المعلومات الحساسة ويمكنك نسخها للحصول على الدعم. تُحذف الأسرار والرموز المميزة وكلمات المرور وملفات تعريف الارتباط ومفاتيح API.", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "지원을 위해 복사할 수 있는, 민감 정보가 제거된 진단 번들을 엽니다. 비밀, 토큰, 비밀번호, 쿠키 및 API 키가 제거됩니다.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hant:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "開啟已移除敏感資訊的診斷套件，您可以複製它以取得支援。秘密、權杖、密碼、cookie 和 API 金鑰都會移除。", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "Mở gói chẩn đoán đã loại bỏ thông tin nhạy cảm để bạn có thể sao chép nhằm nhận hỗ trợ. Bí mật, mã thông báo, mật khẩu, cookie và khóa API sẽ bị xóa.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e0bc649d02a58dd3", "reason": "Redacted means sensitive information is removed or concealed. The existing false-friend wording means edited/written in these locales; the proposed text states the privacy property directly and preserves API.", "target": "Buka bundel diagnostik yang informasi sensitifnya telah dihapus dan dapat Anda salin untuk meminta bantuan. Rahasia, token, kata sandi, cookie, dan kunci API akan dihapus.", "verdict": "correct"}

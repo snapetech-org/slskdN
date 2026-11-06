@@ -1,0 +1,209 @@
+{
+  "artifact": "slskdN PR #409 candidate-free exact-head review input W60 ranks 378-402",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
+    "tree": "95604b428133b5e52247c1f3f00900c2c7d5192f",
+    "remoteBranchHead": "3fbcea3185c02efca7c45d03a195acf488e70587",
+    "bodySha256": "54b7b25b5ac348ac5d7a7e830c7ac8a3e62871a51e41cf50b0dfdbdbcbb89ce3",
+    "localWorktreeClean": true
+  },
+  "window": "W60 continuation of the pinned W49 stable-ID inventory: ranks 378-402; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W59 candidate-free packet checksum-verifies its complete selection-boundary.jsonl, all 300 selected cells, and all 25 selected source-inventory rows. That boundary ledger ends at rank 377 and identifies rank 378 as next. Selected IDs and source hashes are re-attested against the W49 pinned source inventory and current catalogs, callers, and exact head. Prior W49 ranks 101-125 and W50-W59 ranks 151-377 are covered; the reserved W49 gap 126-150 remains excluded and unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W59",
+    "continuationRank": 377,
+    "sourceId": "src_1d432f58690c2b4a",
+    "source": "Conversations",
+    "sourceSha256": "1d432f58690c2b4a9737b0a97f04b70bb4f0d9950d5177619039afe139f3b31e",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W60",
+    "continuationRank": 378,
+    "sourceId": "src_1d4d2158be4824a6",
+    "source": "FTP ignore certificate errors",
+    "sourceSha256": "1d4d2158be4824a6f309db31c5d87c77ba938699a1245320c21de51a5e77d622",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W60",
+    "continuationRank": 402,
+    "sourceId": "src_1e563e877196fa0e",
+    "source": "Enable upload scheduled speed limits",
+    "sourceSha256": "1e563e877196fa0e1aea79e6f16ad7b61c9c16043036b13d57fda7b0658f2963",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W61",
+    "continuationRank": 403,
+    "sourceId": "src_1e5964d1c95953d1",
+    "source": "Stop this room broadcast while keeping your own playback available.",
+    "sourceSha256": "1e5964d1c95953d134cdcbf8a4b4c7559a27b3ce1cebd2dd6008231492eab8f2",
+    "historicalSourceOrdinal": null
+  },
+  "w59Input": {
+    "inputDirectory": "/mnt/disks/scratch/task-worktrees/localization-20261103/slskdn-pr409-w56-apply-20261103/docs/pr-evidence/pr409-localization-2026-11-03/window-353-377/candidate-free-input",
+    "checksumListSha256": "7283335c280db03cb764b911aa0542abbb6af5a27bd8574acd117f44850a1cf8",
+    "verifiedFiles": [
+      {
+        "path": "README.md",
+        "expected": "26f1da459a8a10eefcba34a323f236e5464a2ac5f1e5cad79ac643fe6fa865d9",
+        "actual": "26f1da459a8a10eefcba34a323f236e5464a2ac5f1e5cad79ac643fe6fa865d9",
+        "matches": true
+      },
+      {
+        "path": "caller-contexts.jsonl",
+        "expected": "c130ceddcb00311a130f8e838000f95d256dbb9b14588d33ea42cd8bcb8b1d52",
+        "actual": "c130ceddcb00311a130f8e838000f95d256dbb9b14588d33ea42cd8bcb8b1d52",
+        "matches": true
+      },
+      {
+        "path": "catalog-structure.jsonl",
+        "expected": "82f2aa9619e5125adc7862c0d588c35ee250dfe0805e83505f7f7a01e0518f47",
+        "actual": "82f2aa9619e5125adc7862c0d588c35ee250dfe0805e83505f7f7a01e0518f47",
+        "matches": true
+      },
+      {
+        "path": "head-tree-attestation.json",
+        "expected": "8f3e3fb26eff8d5d98fddf1069311ce996630b603e05f685336566b18f381c01",
+        "actual": "8f3e3fb26eff8d5d98fddf1069311ce996630b603e05f685336566b18f381c01",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "expected": "463ca62f877c64d98a160a979ece48319b153736fd4d174f123b6d8cfc391d86",
+        "actual": "463ca62f877c64d98a160a979ece48319b153736fd4d174f123b6d8cfc391d86",
+        "matches": true
+      },
+      {
+        "path": "selection-and-boundary.json",
+        "expected": "e2a5c6228079985430234f30a1a89f9b3731a818532ded1c26385dc296aabe5e",
+        "actual": "e2a5c6228079985430234f30a1a89f9b3731a818532ded1c26385dc296aabe5e",
+        "matches": true
+      },
+      {
+        "path": "selection-boundary.jsonl",
+        "expected": "fe9b570732660cd4c8d6790f6f32bbeb002fff5309c9382e7c52aa5fbe96f88d",
+        "actual": "fe9b570732660cd4c8d6790f6f32bbeb002fff5309c9382e7c52aa5fbe96f88d",
+        "matches": true
+      },
+      {
+        "path": "source-current-cells.jsonl",
+        "expected": "40cce465f20a16e35ca1efa5075434eb9f747ecabc9c62e5cb64d5a39295503c",
+        "actual": "40cce465f20a16e35ca1efa5075434eb9f747ecabc9c62e5cb64d5a39295503c",
+        "matches": true
+      },
+      {
+        "path": "source-inventory-selection.jsonl",
+        "expected": "0744e24e5e933c3c3f4736ad7085477af09cc21d1b005d649e0c74f2e6a4e316",
+        "actual": "0744e24e5e933c3c3f4736ad7085477af09cc21d1b005d649e0c74f2e6a4e316",
+        "matches": true
+      }
+    ],
+    "previousWindowLastSelected": {
+      "role": "selected-W59",
+      "continuationRank": 377,
+      "sourceId": "src_1d432f58690c2b4a",
+      "source": "Conversations",
+      "sourceSha256": "1d432f58690c2b4a9737b0a97f04b70bb4f0d9950d5177619039afe139f3b31e",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W60",
+      "continuationRank": 378,
+      "sourceId": "src_1d4d2158be4824a6",
+      "source": "FTP ignore certificate errors",
+      "sourceSha256": "1d4d2158be4824a6f309db31c5d87c77ba938699a1245320c21de51a5e77d622",
+      "historicalSourceOrdinal": null
+    }
+  },
+  "sourceInventory": {
+    "pathAtHead": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+    "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "selectedRanksExcluded": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "selectedRanksInW49": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "candidateFree": true,
+  "containsTranslationsBeyondCurrentValues": false,
+  "callerScan": "Exact quoted source-literal search across pinned src/web/src JavaScript/TypeScript production files; tests excluded; bounded six-line context spans retained for hits."
+}

@@ -1,0 +1,13 @@
+{
+  "allSevenSnapshotsStable": true,
+  "crossReviewManifestSha256": "671260a656828f6a281bf52af0e8a62905fac3c52f45d7505e85eba0a971182e",
+  "crossReviewRows": 300,
+  "exactHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "exactTree": "a0946207555e494a558707008ba051013964b447",
+  "missedItems": 8,
+  "primaryManifestSha256": "ec371ba11c72bf55a74613099efb87eb8133d7034d95edd7425ceed2efff9488",
+  "primaryRows": 300,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "window": "W47"
+}

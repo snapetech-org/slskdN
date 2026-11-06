@@ -1,0 +1,141 @@
+{
+  "rows": 264,
+  "verdicts": {
+    "keep": 213,
+    "correct": 39,
+    "uncertain": 12
+  },
+  "correctionRows": 39,
+  "correctionSourceKeys": 9,
+  "uncertainRows": 12,
+  "correctionsByLocale": {
+    "ar": 4,
+    "de": 2,
+    "es": 3,
+    "fr": 4,
+    "hi": 3,
+    "id": 2,
+    "ja": 3,
+    "ko": 4,
+    "pt-BR": 3,
+    "vi": 3,
+    "zh-Hans": 4,
+    "zh-Hant": 4
+  },
+  "perLocale": {
+    "es": {
+      "keep": 18,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "zh-Hans": {
+      "keep": 17,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "hi": {
+      "keep": 18,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "de": {
+      "keep": 19,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "ja": {
+      "keep": 18,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "fr": {
+      "keep": 17,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "pt-BR": {
+      "keep": 18,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "ar": {
+      "keep": 17,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "ko": {
+      "keep": 17,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "zh-Hant": {
+      "keep": 17,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "vi": {
+      "keep": 18,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "id": {
+      "keep": 19,
+      "correct": 2,
+      "uncertain": 1
+    }
+  },
+  "inputSha256": "cdddce2d0a1eb4b24ac1dced73273ecedb23ef7ff7cc1feb6c426df35a8e8311",
+  "decisionsSha256": "5b47f3a50bfd3206ee3847eebf5890d89f3c0e793124a20840837d4508c6bdb1",
+  "crossReviewPlanSha256": "a4754dbb630a91f612013e11feba2d2d27f38587eb17411ebeafde9a32eaee66",
+  "reviewedSourceKeys": [
+    "src_ff5ab6ce77a6c08f",
+    "src_ff6c640baa80b451",
+    "src_ff7fccf610a69326",
+    "src_ff8059dc6752afdd",
+    "src_ffa41c72b49df0ef",
+    "src_ffb77886abe0109d",
+    "src_ffcae7fc619081e1",
+    "src_ffe71b62c066a1c7",
+    "src_fff5ddd56887607a"
+  ],
+  "uncertainSourceKeys": [
+    "src_ffb251bba794320c"
+  ],
+  "placeholderAudit": "PASS",
+  "ContentIDExampleLiteralAudit": "PASS",
+  "semanticConfidence": "high for flagged semantic errors; locale-quality confidence moderate; native-speaker review outstanding",
+  "independentCrossReview": {
+    "reviewedCandidates": 39,
+    "acceptedAsProposed": 37,
+    "refinedAndAccepted": 2,
+    "held": 0,
+    "ledgerSha256": "6a1d408e2c2d513d0b9dfd3ccd7708f00331d3bb36c67093791667a747510c12",
+    "summarySha256": "e88a8173b52e8cc4ff5b402778f784a64cf7e2522936330bb2e7fc124e5cdc23",
+    "applyPlanSha256": "c38e7b567bab2a38f4897c2ba7364bd475ac6f8d03c78f8612f807cfb7d3b155",
+    "nativeSpeakerReview": "outstanding"
+  },
+  "application": {
+    "appliedRows": 39,
+    "accepted": 37,
+    "refined": 2,
+    "held": 0,
+    "commit": "0188e7f2b3ca5d57fd91409159a42495cbbac763",
+    "tree": "0909e7e881d99f9e181ae6ed34034e45d9eada7d",
+    "appliedLedgerSha256": "175dfca5f3348b6deb8e512c5f6fd79fe35b649f2f5872e6dff3c22ea1fde456",
+    "nativeSpeakerReview": "outstanding"
+  },
+  "cumulativeReconciliation": {
+    "manualWindows": 30,
+    "manualCells": 8964,
+    "manualSourceKeys": 747,
+    "appliedCorrections": 1234,
+    "appliedSourceKeys": 284,
+    "heldNoContext": 6,
+    "uncertainOriginally": 268,
+    "uncertainResolvedByRealm": 12,
+    "uncertainRemaining": 256,
+    "unreviewedCells": 58116,
+    "formalCells": 4800,
+    "formalAndManualOverlap": 0
+  }
+}

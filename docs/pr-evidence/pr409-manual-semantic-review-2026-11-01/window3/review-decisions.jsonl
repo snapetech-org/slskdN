@@ -1,0 +1,300 @@
+{"id":"es:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"zh-Hans:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"hi:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"de:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"ja:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"fr:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"pt-BR:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"ar:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"ko:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"zh-Hant:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"vi:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"id:src_dd50e4fdae3d5f6f","verdict":"keep"}
+{"id":"es:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"zh-Hans:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"hi:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"de:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"ja:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"fr:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"pt-BR:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"ar:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"ko:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"zh-Hant:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"vi:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"id:src_dd63f925421e2c97","verdict":"keep"}
+{"id":"es:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"zh-Hans:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"hi:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"de:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"ja:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"fr:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"pt-BR:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"ar:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"ko:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"zh-Hant:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"vi:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"id:src_dd9bacb7625cc339","verdict":"keep"}
+{"id":"es:src_dda7019817a3437a","verdict":"keep"}
+{"id":"zh-Hans:src_dda7019817a3437a","verdict":"correct","target":"流派、艺人、音乐圈、标签","confidence":"high","reason":"This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."}
+{"id":"hi:src_dda7019817a3437a","verdict":"correct","target":"शैली, कलाकार, संगीत जगत, टैग","confidence":"high","reason":"This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."}
+{"id":"de:src_dda7019817a3437a","verdict":"keep"}
+{"id":"ja:src_dda7019817a3437a","verdict":"keep"}
+{"id":"fr:src_dda7019817a3437a","verdict":"keep"}
+{"id":"pt-BR:src_dda7019817a3437a","verdict":"keep"}
+{"id":"ar:src_dda7019817a3437a","verdict":"correct","target":"النوع، الفنان، الساحة الموسيقية، الوسم","confidence":"high","reason":"This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."}
+{"id":"ko:src_dda7019817a3437a","verdict":"correct","target":"장르, 아티스트, 음악 씬, 태그","confidence":"high","reason":"This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."}
+{"id":"zh-Hant:src_dda7019817a3437a","verdict":"correct","target":"流派、藝人、音樂圈、標籤","confidence":"high","reason":"This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."}
+{"id":"vi:src_dda7019817a3437a","verdict":"correct","target":"thể loại, nghệ sĩ, cộng đồng âm nhạc, thẻ","confidence":"high","reason":"This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."}
+{"id":"id:src_dda7019817a3437a","verdict":"correct","target":"genre, artis, skena musik, tag","confidence":"high","reason":"This Soulseek music-interest search uses “scene” for the music scene/community; current terms are generic visual scenes, and Chinese “artist” is overly broad for music."}
+{"id":"es:src_ddb8493fbf2c4f41","verdict":"correct","target":"Nombre de usuario de Soulseek (antiguo)","confidence":"high","reason":"This is the old Soulseek username field; current wording has unnatural brand order or translates legacy as heritage rather than an older setting."}
+{"id":"zh-Hans:src_ddb8493fbf2c4f41","verdict":"keep"}
+{"id":"hi:src_ddb8493fbf2c4f41","verdict":"correct","target":"Soulseek उपयोगकर्ता नाम (पुराना)","confidence":"high","reason":"This is the old Soulseek username field; current wording has unnatural brand order or translates legacy as heritage rather than an older setting."}
+{"id":"de:src_ddb8493fbf2c4f41","verdict":"keep"}
+{"id":"ja:src_ddb8493fbf2c4f41","verdict":"keep"}
+{"id":"fr:src_ddb8493fbf2c4f41","verdict":"correct","target":"Nom d’utilisateur Soulseek (ancien)","confidence":"high","reason":"This is the old Soulseek username field; current wording has unnatural brand order or translates legacy as heritage rather than an older setting."}
+{"id":"pt-BR:src_ddb8493fbf2c4f41","verdict":"correct","target":"Nome de usuário do Soulseek (antigo)","confidence":"high","reason":"This is the old Soulseek username field; current wording has unnatural brand order or translates legacy as heritage rather than an older setting."}
+{"id":"ar:src_ddb8493fbf2c4f41","verdict":"correct","target":"اسم مستخدم Soulseek (قديم)","confidence":"high","reason":"This is the old Soulseek username field; current wording has unnatural brand order or translates legacy as heritage rather than an older setting."}
+{"id":"ko:src_ddb8493fbf2c4f41","verdict":"keep"}
+{"id":"zh-Hant:src_ddb8493fbf2c4f41","verdict":"keep"}
+{"id":"vi:src_ddb8493fbf2c4f41","verdict":"keep"}
+{"id":"id:src_ddb8493fbf2c4f41","verdict":"correct","target":"Nama pengguna Soulseek (lama)","confidence":"high","reason":"This is the old Soulseek username field; current wording has unnatural brand order or translates legacy as heritage rather than an older setting."}
+{"id":"es:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"zh-Hans:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"hi:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"de:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"ja:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"fr:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"pt-BR:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"ar:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"ko:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"zh-Hant:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"vi:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"id:src_ddc0fc6e0c7651c6","verdict":"keep"}
+{"id":"es:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"zh-Hans:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"hi:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"de:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"ja:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"fr:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"pt-BR:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"ar:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"ko:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"zh-Hant:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"vi:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"id:src_ddceb7adfdb8816e","verdict":"keep"}
+{"id":"es:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"zh-Hans:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"hi:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"de:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"ja:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"fr:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"pt-BR:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"ar:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"ko:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"zh-Hant:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"vi:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"id:src_ddd9818abacfde7a","verdict":"keep"}
+{"id":"es:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"zh-Hans:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"hi:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"de:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"ja:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"fr:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"pt-BR:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"ar:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"ko:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"zh-Hant:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"vi:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"id:src_dde95899d1facfb3","verdict":"keep"}
+{"id":"es:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"zh-Hans:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"hi:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"de:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"ja:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"fr:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"pt-BR:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"ar:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"ko:src_ddec0fc313b40614","verdict":"correct","target":"연락처 이름","confidence":"high","reason":"This placeholder labels the contact’s name; current Korean wording means the person responsible or in charge."}
+{"id":"zh-Hant:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"vi:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"id:src_ddec0fc313b40614","verdict":"keep"}
+{"id":"es:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"zh-Hans:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"hi:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"de:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"ja:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"fr:src_ddf3d9ee9666f2fe","verdict":"correct","target":"Matrice d’analyse forensique SongID copiée","confidence":"high","reason":"The copied SongID matrix is a technical forensic-analysis artifact; current French and Arabic wording points to forensic medicine rather than digital forensics."}
+{"id":"pt-BR:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"ar:src_ddf3d9ee9666f2fe","verdict":"correct","target":"تم نسخ مصفوفة التحليل الجنائي لـ SongID","confidence":"high","reason":"The copied SongID matrix is a technical forensic-analysis artifact; current French and Arabic wording points to forensic medicine rather than digital forensics."}
+{"id":"ko:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"zh-Hant:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"vi:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"id:src_ddf3d9ee9666f2fe","verdict":"keep"}
+{"id":"es:src_ddfbe4eb2a4b1067","verdict":"correct","target":"Sincronización del historial","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"zh-Hans:src_ddfbe4eb2a4b1067","verdict":"keep"}
+{"id":"hi:src_ddfbe4eb2a4b1067","verdict":"uncertain","reason":"Backfill is used for historical and missed-message catch-up, but the pinned context does not establish a broadly understood Hindi UI term; keep the cell unresolved rather than endorse the transliteration or guess a wording."}
+{"id":"de:src_ddfbe4eb2a4b1067","verdict":"correct","target":"Nachsynchronisierung","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"ja:src_ddfbe4eb2a4b1067","verdict":"correct","target":"履歴データの補完","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"fr:src_ddfbe4eb2a4b1067","verdict":"correct","target":"Rattrapage de l’historique","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"pt-BR:src_ddfbe4eb2a4b1067","verdict":"correct","target":"Sincronização do histórico","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"ar:src_ddfbe4eb2a4b1067","verdict":"correct","target":"استكمال السجل","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"ko:src_ddfbe4eb2a4b1067","verdict":"keep"}
+{"id":"zh-Hant:src_ddfbe4eb2a4b1067","verdict":"keep"}
+{"id":"vi:src_ddfbe4eb2a4b1067","verdict":"correct","target":"Bù dữ liệu lịch sử","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"id:src_ddfbe4eb2a4b1067","verdict":"correct","target":"Sinkronisasi riwayat","confidence":"high","reason":"Callers describe historical backfill and requests for missed messages; physical construction/refill terms misrepresent this data catch-up workflow."}
+{"id":"es:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"zh-Hans:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"hi:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"de:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"ja:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"fr:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"pt-BR:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"ar:src_ddfdaa723c03b4c8","verdict":"correct","target":"مركز ثقل الطيف","confidence":"high","reason":"The callsite displays the spectralCentroid audio metric; these targets say midpoint or generic center instead of a spectral centroid."}
+{"id":"ko:src_ddfdaa723c03b4c8","verdict":"correct","target":"스펙트럼 중심","confidence":"high","reason":"The callsite displays the spectralCentroid audio metric; these targets say midpoint or generic center instead of a spectral centroid."}
+{"id":"zh-Hant:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"vi:src_ddfdaa723c03b4c8","verdict":"correct","target":"trọng tâm phổ","confidence":"high","reason":"The callsite displays the spectralCentroid audio metric; these targets say midpoint or generic center instead of a spectral centroid."}
+{"id":"id:src_ddfdaa723c03b4c8","verdict":"keep"}
+{"id":"es:src_de07cd55dddb526a","verdict":"correct","target":". Use los controles avanzados de gestión de canales para crear el primer canal.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"zh-Hans:src_de07cd55dddb526a","verdict":"correct","target":"。使用高级频道管理控件创建第一个频道。","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"hi:src_de07cd55dddb526a","verdict":"correct","target":". पहला चैनल बनाने के लिए उन्नत चैनल प्रबंधन नियंत्रणों का उपयोग करें।","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"de:src_de07cd55dddb526a","verdict":"correct","target":". Verwenden Sie die erweiterten Steuerelemente zur Kanalverwaltung, um den ersten Kanal zu erstellen.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"ja:src_de07cd55dddb526a","verdict":"correct","target":"。高度なチャネル管理コントロールを使用して、最初のチャネルを作成します。","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"fr:src_de07cd55dddb526a","verdict":"correct","target":". Utilisez les commandes avancées de gestion des canaux pour créer le premier canal.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"pt-BR:src_de07cd55dddb526a","verdict":"correct","target":". Use os controles avançados de gerenciamento de canais para criar o primeiro canal.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"ar:src_de07cd55dddb526a","verdict":"correct","target":". استخدم عناصر التحكم المتقدمة في إدارة القنوات لإنشاء القناة الأولى.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"ko:src_de07cd55dddb526a","verdict":"correct","target":". 첫 번째 채널을 만들려면 고급 채널 관리 컨트롤을 사용하세요.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"zh-Hant:src_de07cd55dddb526a","verdict":"correct","target":"。使用進階頻道管理控制項建立第一個頻道。","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"vi:src_de07cd55dddb526a","verdict":"correct","target":". Dùng các điều khiển quản lý kênh nâng cao để tạo kênh đầu tiên.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"id:src_de07cd55dddb526a","verdict":"correct","target":". Gunakan kontrol pengelolaan saluran lanjutan untuk membuat saluran pertama.","confidence":"high","reason":"These are controls for creating and managing pod channels; “mutation” is developer language for changing state and reads as biological mutation in these interface labels."}
+{"id":"es:src_de08253a1f50b5af","verdict":"correct","target":"Cargando intereses de Soulseek","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"zh-Hans:src_de08253a1f50b5af","verdict":"correct","target":"正在加载 Soulseek 兴趣","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"hi:src_de08253a1f50b5af","verdict":"correct","target":"Soulseek की रुचियाँ लोड हो रही हैं","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"de:src_de08253a1f50b5af","verdict":"correct","target":"Soulseek-Interessen werden geladen","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"ja:src_de08253a1f50b5af","verdict":"correct","target":"Soulseek の興味を読み込み中","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"fr:src_de08253a1f50b5af","verdict":"correct","target":"Chargement des centres d’intérêt Soulseek","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"pt-BR:src_de08253a1f50b5af","verdict":"correct","target":"Carregando interesses do Soulseek","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"ar:src_de08253a1f50b5af","verdict":"correct","target":"جارٍ تحميل اهتمامات Soulseek","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"ko:src_de08253a1f50b5af","verdict":"correct","target":"Soulseek 관심사를 불러오는 중","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"zh-Hant:src_de08253a1f50b5af","verdict":"correct","target":"正在載入 Soulseek 興趣","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"vi:src_de08253a1f50b5af","verdict":"correct","target":"Đang tải sở thích Soulseek","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"id:src_de08253a1f50b5af","verdict":"correct","target":"Memuat minat Soulseek","confidence":"high","reason":"The adjacent source explicitly says these are native Soulseek interests; naming Soulseek removes the local/native ambiguity in the current targets."}
+{"id":"es:src_de0a33019496018b","verdict":"keep"}
+{"id":"zh-Hans:src_de0a33019496018b","verdict":"correct","target":"没有待播放的曲目。","confidence":"high","reason":"This is the empty state for the player queue; current Chinese wording suggests tracks about to be released rather than tracks queued for playback."}
+{"id":"hi:src_de0a33019496018b","verdict":"keep"}
+{"id":"de:src_de0a33019496018b","verdict":"keep"}
+{"id":"ja:src_de0a33019496018b","verdict":"keep"}
+{"id":"fr:src_de0a33019496018b","verdict":"keep"}
+{"id":"pt-BR:src_de0a33019496018b","verdict":"keep"}
+{"id":"ar:src_de0a33019496018b","verdict":"keep"}
+{"id":"ko:src_de0a33019496018b","verdict":"keep"}
+{"id":"zh-Hant:src_de0a33019496018b","verdict":"correct","target":"沒有待播放的曲目。","confidence":"high","reason":"This is the empty state for the player queue; current Chinese wording suggests tracks about to be released rather than tracks queued for playback."}
+{"id":"vi:src_de0a33019496018b","verdict":"keep"}
+{"id":"id:src_de0a33019496018b","verdict":"keep"}
+{"id":"es:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"zh-Hans:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"hi:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"de:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"ja:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"fr:src_de1b95b3c9a5e8e9","verdict":"correct","target":"• Type:","confidence":"high","reason":"This is a table heading for a channel kind; current French and Arabic words are verbs rather than the noun “Type”."}
+{"id":"pt-BR:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"ar:src_de1b95b3c9a5e8e9","verdict":"correct","target":"• النوع:","confidence":"high","reason":"This is a table heading for a channel kind; current French and Arabic words are verbs rather than the noun “Type”."}
+{"id":"ko:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"zh-Hant:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"vi:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"id:src_de1b95b3c9a5e8e9","verdict":"keep"}
+{"id":"es:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"zh-Hans:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"hi:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"de:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"ja:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"fr:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"pt-BR:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"ar:src_de35f519c71daa2c","verdict":"correct","target":"البحث عن المحتوى والتحقق منه للقراءة فقط. يمكن أن يؤدي إنشاء Pod مرتبط بالمحتوى إلى نشر معرّفات المحتوى وبيانات تعريف Pod، حسب إعدادات الرؤية.","confidence":"high","reason":"The source names the app’s Pod entity; Arabic currently translates it once as a container and once as a portfolio, while this UI preserves the product term Pod."}
+{"id":"ko:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"zh-Hant:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"vi:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"id:src_de35f519c71daa2c","verdict":"keep"}
+{"id":"es:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"zh-Hans:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"hi:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"de:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"ja:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"fr:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"pt-BR:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"ar:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"ko:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"zh-Hant:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"vi:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"id:src_de3d1150a1614a5d","verdict":"keep"}
+{"id":"es:src_de52404d31af08e1","verdict":"keep"}
+{"id":"zh-Hans:src_de52404d31af08e1","verdict":"keep"}
+{"id":"hi:src_de52404d31af08e1","verdict":"keep"}
+{"id":"de:src_de52404d31af08e1","verdict":"keep"}
+{"id":"ja:src_de52404d31af08e1","verdict":"keep"}
+{"id":"fr:src_de52404d31af08e1","verdict":"keep"}
+{"id":"pt-BR:src_de52404d31af08e1","verdict":"keep"}
+{"id":"ar:src_de52404d31af08e1","verdict":"keep"}
+{"id":"ko:src_de52404d31af08e1","verdict":"keep"}
+{"id":"zh-Hant:src_de52404d31af08e1","verdict":"keep"}
+{"id":"vi:src_de52404d31af08e1","verdict":"keep"}
+{"id":"id:src_de52404d31af08e1","verdict":"keep"}
+{"id":"es:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"zh-Hans:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"hi:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"de:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"ja:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"fr:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"pt-BR:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"ar:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"ko:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"zh-Hant:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"vi:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"id:src_de653f63dfc49f95","verdict":"keep"}
+{"id":"es:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"zh-Hans:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"hi:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"de:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"ja:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"fr:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"pt-BR:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"ar:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"ko:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"zh-Hant:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"vi:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"id:src_de744fb0f7e08df1","verdict":"keep"}
+{"id":"es:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"zh-Hans:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"hi:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"de:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"ja:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"fr:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"pt-BR:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"ar:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"ko:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"zh-Hant:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"vi:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"id:src_de7a89d52d70aa8a","verdict":"keep"}
+{"id":"es:src_de7b8cfec8d4483f","verdict":"correct","target":"Las rutas coinciden exactamente. Un análisis del servidor multimedia puede hacer referencia a los mismos archivos ya descargados por completo.","confidence":"high","reason":"The message concerns filesystem paths and completed downloads; Spanish uses “roads” for paths and Vietnamese says “similar” files instead of the same files."}
+{"id":"zh-Hans:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"hi:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"de:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"ja:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"fr:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"pt-BR:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"ar:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"ko:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"zh-Hant:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"vi:src_de7b8cfec8d4483f","verdict":"correct","target":"Đường dẫn khớp chính xác. Tác vụ quét của máy chủ đa phương tiện có thể tham chiếu đến cùng những tệp đã tải xong.","confidence":"high","reason":"The message concerns filesystem paths and completed downloads; Spanish uses “roads” for paths and Vietnamese says “similar” files instead of the same files."}
+{"id":"id:src_de7b8cfec8d4483f","verdict":"keep"}
+{"id":"es:src_de838855e4a6e04e","verdict":"correct","target":"Etapa","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}
+{"id":"zh-Hans:src_de838855e4a6e04e","verdict":"keep"}
+{"id":"hi:src_de838855e4a6e04e","verdict":"correct","target":"चरण","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}
+{"id":"de:src_de838855e4a6e04e","verdict":"correct","target":"Phase","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}
+{"id":"ja:src_de838855e4a6e04e","verdict":"keep"}
+{"id":"fr:src_de838855e4a6e04e","verdict":"correct","target":"Étape","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}
+{"id":"pt-BR:src_de838855e4a6e04e","verdict":"correct","target":"Etapa","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}
+{"id":"ar:src_de838855e4a6e04e","verdict":"correct","target":"المرحلة","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}
+{"id":"ko:src_de838855e4a6e04e","verdict":"keep"}
+{"id":"zh-Hant:src_de838855e4a6e04e","verdict":"keep"}
+{"id":"vi:src_de838855e4a6e04e","verdict":"correct","target":"Giai đoạn","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}
+{"id":"id:src_de838855e4a6e04e","verdict":"correct","target":"Tahap","confidence":"high","reason":"This table lists metadata-processing pipeline stages; several targets mean a theater stage or platform rather than a processing phase."}

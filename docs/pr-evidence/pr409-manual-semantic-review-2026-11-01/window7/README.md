@@ -1,0 +1,7 @@
+# slskdN PR #409 manual semantic review: seventh 25-key slice
+
+The original scratch bundle passed its exact-head verifier at PR head `ba5d2b6f0d480cd178f9df0dc330b564e1084af2` / tree `e46b6cb479825155390c2e159efed96c3032da9e`. The source/catalog `src` tree `fff1ef49df31a8d1095cd43148c186fbcd7f5089` matches baseline `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`.
+
+This disjoint slice covers 25 keys / 300 cells across all twelve locales: 228 keep, 60 high-confidence correction candidates, and 12 uncertain. Verification found zero formal-result overlap and zero overlap with the six prior windows (1,800 cells / 150 keys). Corrections address security modal wording, juror targets, MusicBrainz release-group terminology, visualizer collapse actions, wanted-item synchronization, quarantine release decisions, remote settings structure, and content-acquisition terminology. The best localized term for the Mesh trust tier “Realm” remains uncertain across all locales.
+
+The scratch bundle verifier passed checksum, exact source/catalog, pending-row, placeholder/protected-literal, formal-overlap, and cross-window checks. The sibling-sensitive verifier remains in scratch because its scan would treat committed copies as duplicate reviews. The manifest records scratch hashes and packaging provenance. No correction was applied; native-speaker review remains outstanding.

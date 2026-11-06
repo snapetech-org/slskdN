@@ -4,6 +4,8 @@
 
 import { getLocalStorageItem, setLocalStorageItem } from './storage';
 import { scoreMetadataCandidate } from './metadataMatcher';
+import { interfaceText } from './interfaceLocale';
+import { formatRegionalNumber } from './regionalFormat';
 import { v4 as uuidv4 } from 'uuid';
 
 export const playlistIntakeStorageKey = 'slskdn.playlistIntake.items';
@@ -751,49 +753,191 @@ export const previewPlaylistTagOrganizationPlan = (
   return savePlaylists(updated, setItem);
 };
 
+export const getPlaylistCoverArtActionSource = (action) => {
+  switch (action) {
+    case 'Cover art will not be changed.':
+    case 'Cover art would be embedded after explicit import approval.':
+    case 'A sidecar cover file would be written after explicit import approval.':
+      return action;
+    default:
+      return '';
+  }
+};
+
+export const getPlaylistReplayGainActionPresentation = (action) => {
+  if (action === 'ReplayGain will not run.') {
+    return { source: action, values: {} };
+  }
+  const match = /^(Album|Track) ReplayGain would run after explicit import approval\.$/.exec(action || '');
+  if (match) {
+    return {
+      source: '{scope} ReplayGain would run after explicit import approval.',
+      values: { scope: match[1] === 'Album' ? interfaceText('Album') : interfaceText('Track') },
+    };
+  }
+  return undefined;
+};
+
+export const getPlaylistNetworkImpactSource = (impact) =>
+  impact === 'Tag and organization dry run only; no tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download has started.'
+    ? impact
+    : '';
+
+export const getPlaylistChangedFieldSource = (field) => {
+  switch (field) {
+    case 'artist':
+      return 'Artist';
+    case 'title':
+      return 'Title';
+    case 'album':
+      return 'Album';
+    case 'trackNumber':
+      return 'Track number';
+    default:
+      return '';
+  }
+};
+
+export const getPlaylistSkippedReasonSource = (reason) =>
+  reason === 'Unmatched rows are not included in tag-write previews.' ? reason : '';
+
+const localizePlaylistCoverArtAction = (action) => {
+  switch (action) {
+    case 'Cover art will not be changed.':
+      return interfaceText('Cover art will not be changed.');
+    case 'Cover art would be embedded after explicit import approval.':
+      return interfaceText('Cover art would be embedded after explicit import approval.');
+    case 'A sidecar cover file would be written after explicit import approval.':
+      return interfaceText('A sidecar cover file would be written after explicit import approval.');
+    default:
+      return action;
+  }
+};
+
+const localizePlaylistReplayGainAction = (action) => {
+  if (action === 'ReplayGain will not run.') {
+    return interfaceText('ReplayGain will not run.');
+  }
+  const match = /^(Album|Track) ReplayGain would run after explicit import approval\.$/.exec(action || '');
+  if (match) {
+    const scope = match[1] === 'Album' ? interfaceText('Album') : interfaceText('Track');
+    return interfaceText('{scope} ReplayGain would run after explicit import approval.', { scope });
+  }
+  return action;
+};
+
+const localizePlaylistNetworkImpact = (impact) => {
+  if (impact === 'Tag and organization dry run only; no tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download has started.') {
+    return interfaceText('Tag and organization dry run only; no tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download has started.');
+  }
+  return impact;
+};
+
+const localizePlaylistChangedField = (field) => {
+  switch (field) {
+    case 'artist':
+      return interfaceText('Artist');
+    case 'title':
+      return interfaceText('Title');
+    case 'album':
+      return interfaceText('Album');
+    case 'trackNumber':
+      return interfaceText('Track number');
+    default:
+      return field;
+  }
+};
+
+const localizePlaylistSkippedReason = (reason) => {
+  if (reason === 'Unmatched rows are not included in tag-write previews.') {
+    return interfaceText('Unmatched rows are not included in tag-write previews.');
+  }
+  return reason;
+};
+
 export const formatPlaylistTagOrganizationReport = (
   playlist,
   plan = playlist.organizationPlan,
 ) => {
   if (!plan) {
-    return `slskdN tag and organization dry run\nPlaylist: ${playlist.name}\nNo dry-run plan has been prepared.`;
+    return [
+      interfaceText('slskdN tag and organization dry run'),
+      interfaceText('Playlist: {name}', { name: playlist.name }),
+      interfaceText('No dry-run plan has been prepared.'),
+    ].join('\n');
   }
 
+  const policyLabel = (value) => {
+    switch (value) {
+      case 'preserve':
+        return interfaceText('Preserve source text');
+      case 'split':
+        return interfaceText('Split on common separators');
+      case 'primary':
+        return interfaceText('Use primary artist');
+      default:
+        return value;
+    }
+  };
   const lines = [
-    'slskdN tag and organization dry run',
-    `Playlist: ${playlist.name}`,
-    `Generated: ${plan.generatedAt}`,
-    `Album title: ${plan.options.albumTitle}`,
-    `Path template: ${plan.options.pathTemplate}`,
-    `Multi-artist policy: ${plan.options.multiArtistPolicy}`,
-    `Cover art: ${plan.coverArtAction}`,
-    `ReplayGain: ${plan.replayGainAction}`,
-    `Summary: ${plan.summary.matched} matched, ${plan.summary.skipped} skipped, ${plan.summary.changedFieldCount} changed fields`,
-    `Impact: ${plan.networkImpact}`,
+    interfaceText('slskdN tag and organization dry run'),
+    interfaceText('Playlist: {name}', { name: playlist.name }),
+    interfaceText('Generated: {timestamp}', { timestamp: plan.generatedAt }),
+    interfaceText('Album title: {title}', { title: plan.options.albumTitle }),
+    interfaceText('Path template: {template}', { template: plan.options.pathTemplate }),
+    interfaceText('Multi-artist policy: {policy}', {
+      policy: policyLabel(plan.options.multiArtistPolicy),
+    }),
+    interfaceText('Cover art: {action}', { action: localizePlaylistCoverArtAction(plan.coverArtAction) }),
+    interfaceText('ReplayGain: {action}', { action: localizePlaylistReplayGainAction(plan.replayGainAction) }),
+    interfaceText('Summary: {matched} matched, {skipped} skipped, {changed} changed fields', {
+      changed: formatRegionalNumber(plan.summary.changedFieldCount),
+      matched: formatRegionalNumber(plan.summary.matched),
+      skipped: formatRegionalNumber(plan.summary.skipped),
+    }),
+    interfaceText('Impact: {impact}', { impact: localizePlaylistNetworkImpact(plan.networkImpact) }),
     '',
-    'Track previews:',
+    interfaceText('Track previews:'),
     ...plan.trackPreviews.map((preview) => {
       const source = preview.metadataSnapshot?.source || {};
       const proposed = preview.metadataSnapshot?.proposed || {};
       return [
-        `- Line ${preview.lineNumber}: ${preview.destinationPath}`,
-        `  Changed: ${preview.changedFields.join(', ')}`,
-        `  Source: ${source.artist || '-'} | ${source.title || '-'} | ${source.album || '-'} | ${source.trackNumber || '-'}`,
-        `  Proposed: ${Array.isArray(proposed.artist) ? proposed.artist.join('; ') : proposed.artist || '-'} | ${proposed.title || '-'} | ${proposed.album || '-'} | ${proposed.trackNumber || '-'}`,
+        interfaceText('- Line {line}: {path}', {
+          line: formatRegionalNumber(preview.lineNumber),
+          path: preview.destinationPath,
+        }),
+        interfaceText('  Changed: {fields}', {
+          fields: preview.changedFields.map(localizePlaylistChangedField).join(', '),
+        }),
+        interfaceText('  Source metadata: Artist: {artist} | Title: {title} | Album: {album} | Track number: {trackNumber}', {
+          album: source.album || '-',
+          artist: source.artist || '-',
+          title: source.title || '-',
+          trackNumber: source.trackNumber || '-',
+        }),
+        interfaceText('  Proposed tags: Artist: {artist} | Title: {title} | Album: {album} | Track number: {trackNumber}', {
+          album: proposed.album || '-',
+          artist: Array.isArray(proposed.artist) ? proposed.artist.join('; ') : proposed.artist || '-',
+          title: proposed.title || '-',
+          trackNumber: proposed.trackNumber || '-',
+        }),
       ].join('\n');
     }),
   ];
 
   if (plan.skippedTracks.length > 0) {
-    lines.push('', 'Skipped rows:');
+    lines.push('', interfaceText('Skipped rows:'));
     lines.push(
-      ...plan.skippedTracks.map((track) => `- ${track.title}: ${track.reason}`),
+      ...plan.skippedTracks.map((track) => interfaceText('- {title}: {reason}', {
+        reason: localizePlaylistSkippedReason(track.reason),
+        title: track.title,
+      })),
     );
   }
 
   lines.push(
     '',
-    'No tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download was started by this report.',
+    interfaceText('No tag write, cover-art write, ReplayGain run, file move, provider lookup, Soulseek search, peer browse, or download was started by this report.'),
   );
 
   return lines.join('\n');

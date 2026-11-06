@@ -1,0 +1,178 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pr": {
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "pins": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "livePrHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "remoteBranchHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "liveCommitTree": "12b1a85af7c036dc3716d2730dfef0fa18a220a8",
+    "localHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+    "localTree": "12b1a85af7c036dc3716d2730dfef0fa18a220a8",
+    "worktreeClean": true,
+    "allPinsMatch": true
+  },
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "bytes": 643201,
+      "sha256": "cd35acd3a73f73d9c3ccafa564798d63e73284d0eb9a5bc02467230c7fa91ab3",
+      "gitBlob": "a144cf5bb083e4354e7874988a7e7077e62e175c",
+      "gitBlobSha1Check": "a144cf5bb083e4354e7874988a7e7077e62e175c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "bytes": 558391,
+      "sha256": "0b06661b906ccde8877b8559b5f23ead6bd7a8477e0bbc271107140899a8aab2",
+      "gitBlob": "22c54ac99ca6816c7244b2b6f902b77cd4a40fcb",
+      "gitBlobSha1Check": "22c54ac99ca6816c7244b2b6f902b77cd4a40fcb",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "bytes": 557181,
+      "sha256": "a710349b6ee4e84d5031805e4fe1d3251ee5e20741ce2423e38832eae1d31f64",
+      "gitBlob": "05fd05052f0c4d24f8c130a7ad6c29ac1dd43f38",
+      "gitBlobSha1Check": "05fd05052f0c4d24f8c130a7ad6c29ac1dd43f38",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "bytes": 571450,
+      "sha256": "100fe00a6ab48423e1a41284d627b8cfd3c04077a289f07dc79347ddfb21ebc3",
+      "gitBlob": "d069c0d7ea2ae63faa6e723ab7511f1473aa8d1c",
+      "gitBlobSha1Check": "d069c0d7ea2ae63faa6e723ab7511f1473aa8d1c",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "bytes": 857197,
+      "sha256": "78cbd590111537ba128639406ad800eb2f5eaa849cd7a2df7b636d3f8a95275b",
+      "gitBlob": "07de318aa137c06c2da0c4bc4b70750905612602",
+      "gitBlobSha1Check": "07de318aa137c06c2da0c4bc4b70750905612602",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "bytes": 517718,
+      "sha256": "9367686f0c6e5e00d90905e783079ae1ed37eec4557af4882c6044e4e6d94319",
+      "gitBlob": "cdcf0f7fee6a2a1600c4db229d23f2da27ecd0ba",
+      "gitBlobSha1Check": "cdcf0f7fee6a2a1600c4db229d23f2da27ecd0ba",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "bytes": 617076,
+      "sha256": "bcf864370b20b1e77691b7eac9ba81520b03f61540b60d73abf4bbfd429a9fd9",
+      "gitBlob": "e2fc9c96705310fa2dd116640ba49b0277eb6f8a",
+      "gitBlobSha1Check": "e2fc9c96705310fa2dd116640ba49b0277eb6f8a",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "bytes": 553784,
+      "sha256": "e31feadb6bf3702567847f5bc67bd48ac513fcb81ff6b272ad0d39bd6427e048",
+      "gitBlob": "e9c142109b983ff4956f9439bdf2151fff0c0545",
+      "gitBlobSha1Check": "e9c142109b983ff4956f9439bdf2151fff0c0545",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "bytes": 549055,
+      "sha256": "9c87ada974002b5ff4ab56ebdaf846771f67be2862812bb4f5c9282b3206ab53",
+      "gitBlob": "05a81dbfc92cf7f2c4329e827d84e90f2bd5323f",
+      "gitBlobSha1Check": "05a81dbfc92cf7f2c4329e827d84e90f2bd5323f",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "bytes": 598061,
+      "sha256": "87e1dfcb3c8a3d795ecb529a2e5f3ee6684f34c280873337447acb47c0a534bd",
+      "gitBlob": "e3698c86e9b983ce457ebce34a0b9a9b76df4293",
+      "gitBlobSha1Check": "e3698c86e9b983ce457ebce34a0b9a9b76df4293",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "bytes": 481393,
+      "sha256": "642f9064c8eaaf1d446b777c42910895394c3d8d99ae531ee38eff827c9ede13",
+      "gitBlob": "36c6d227def15ecd4fbb7952cadfa07e07428854",
+      "gitBlobSha1Check": "36c6d227def15ecd4fbb7952cadfa07e07428854",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "bytes": 482757,
+      "sha256": "2f26604bcb814e5c0a8f13589e1b8c09b29891fb741a03834a7cffcb8ceeb284",
+      "gitBlob": "3a01624b46041cff283c7cd82dde9fa15ca8ec81",
+      "gitBlobSha1Check": "3a01624b46041cff283c7cd82dde9fa15ca8ec81",
+      "entryCount": 6176,
+      "nonemptyValueCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7"
+    }
+  ],
+  "catalogKeyCount": 6176,
+  "catalogOrderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "selectedSourceCount": 25,
+  "cellCount": 300,
+  "queueLabel": "W50 reconstructed pending stable-ID continuation ranks 126-150; historical source ordinals are unavailable and not claimed"
+}

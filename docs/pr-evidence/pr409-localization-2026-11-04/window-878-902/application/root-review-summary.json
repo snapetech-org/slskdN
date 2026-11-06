@@ -1,0 +1,10 @@
+{
+  "artifact": "slskdN PR #409 W80 root manual review reference",
+  "reviewPacket": "../review-packet/root-manual-review/",
+  "crossProposalPlanSha256": "b6a55ca7c871b87977879dc7dbea043d9fb7751ba37619e4f2fef09cb27bb0fa",
+  "selectedTargetsAccepted": 81,
+  "keepsRetained": 219,
+  "newHolds": 0,
+  "priorW79HoldsRetained": 39,
+  "manualReviewAttestationCopiedByteForByte": true
+}

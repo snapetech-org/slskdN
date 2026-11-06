@@ -1,0 +1,38 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W53",
+  "exactHead": "6d5723e244338a550e3dfa5182a45857156467a7",
+  "exactTree": "8435576260e9aa760609be6a28001b2bb38b8c11",
+  "inputManifestSha256": "e6aa0e93e693a317a02d33a853aeade7a70445ace9c69bf106a1b1ab76fbeab8",
+  "primaryReviewLedgerSha256": "2f272a6e20f2113cb2bcc3753d6b3e69c3fac19434d16363b1b03e3dc04d2096",
+  "independentLedgerSha256": "2a9bbf6e8774de40f499e55fcc78bebf5dd62a814e4feb929ee7634968070ff6",
+  "ratifiedLedgerSha256": "7dacb8c44d14eefff3b9c9eb30c09a3908d0fc41c65b043ecddea5595e3071ea",
+  "cells": 300,
+  "changedCells": 82,
+  "changedByLocale": {
+    "ar": 8,
+    "de": 4,
+    "es": 7,
+    "fr": 5,
+    "hi": 8,
+    "id": 6,
+    "ja": 6,
+    "ko": 7,
+    "pt-BR": 5,
+    "vi": 8,
+    "zh-Hans": 9,
+    "zh-Hant": 9
+  },
+  "finalDispositions": {
+    "hold-context": 24,
+    "accept-current": 194,
+    "refinement": 14,
+    "correction": 68
+  },
+  "placeholderErrors": 0,
+  "protectedLiteralErrors": 0,
+  "numericTokenErrors": 0,
+  "nativeSpeakerApproval": false,
+  "headedBrowserAcceptance": false
+}

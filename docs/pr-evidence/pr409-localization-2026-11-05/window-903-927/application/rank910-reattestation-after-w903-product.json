@@ -1,0 +1,48 @@
+{
+  "artifact": "slskdN W903 product-head reattestation for rank-910 rich-text review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "868f93ef2ec8a242ff65d5da6f438633fc0fc152",
+  "tree": "c91b89d18b4fcc76e64733fca23a7881088e8eaf",
+  "originalReviewHead": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "sourceAndRuntimePinsUnchanged": true,
+  "pins": [
+    {
+      "name": "caller",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "sha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+      "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+    },
+    {
+      "name": "richTextRuntime",
+      "path": "src/web/src/components/Shared/LocalizedText.jsx",
+      "sha256": "dceb5b8d9f3dd803cef823a6756248f17d4f4b2600498be64e142c3c630a6c81",
+      "gitBlob": "bd886e3838b3ebf69a4ccf52d4cf5e0663e52abe"
+    },
+    {
+      "name": "signatureModeEnum",
+      "path": "src/slskd/PodCore/PodMessageSignerOptions.cs",
+      "sha256": "c0cff69ea19915e7d00404f99c4a8355b6995b08dc175b4315e085579f4333f0",
+      "gitBlob": "7e399386fc1a6471e504e1286816a18f3b40d5fb"
+    },
+    {
+      "name": "joinOptions",
+      "path": "src/slskd/PodCore/PodJoinOptions.cs",
+      "sha256": "49b0fcaa71b0aa446a5e6df84359c2cb2619a1458db0a2338f31e0187b531b79",
+      "gitBlob": "66af753d60d2b8a4259887496bcacbab3b95b3f0"
+    },
+    {
+      "name": "signatureVerification",
+      "path": "src/slskd/PodCore/PodJoinLeaveService.cs",
+      "sha256": "c917846757571639e2cacef090746f595b6200ab0cc02691b088b45cfee84194",
+      "gitBlob": "e7b3065e627aeb7987200359418428936e48454f"
+    }
+  ],
+  "formalModeEvidence": "SignatureMode in PodMessageSignerOptions.cs includes Enforce=2; PodJoinOptions uses the same enum; VerifySignedPayload reads join mode and verifies payload bytes with signature and supplied public key bytes.",
+  "prState": "open",
+  "draft": true,
+  "branchRefOid": "868f93ef2ec8a242ff65d5da6f438633fc0fc152",
+  "pullRefOid": "868f93ef2ec8a242ff65d5da6f438633fc0fc152",
+  "currentMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "nextGate": "Evidence commit and PR-body append will advance the head again; reattest exact branch/API/pull head before the source rewrite is applied."
+}

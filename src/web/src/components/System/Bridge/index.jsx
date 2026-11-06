@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 
 
 import * as bridge from '../../../lib/bridge';
@@ -166,7 +166,7 @@ const Bridge = () => {
       } catch (error_) {
         if (!isCurrentLifecycle(lifecycle) || document.hidden) return;
         if (needsConfig) {
-          setError(getApiErrorMessage(error_, { t: interfaceText }));
+          setError(getApiErrorMessageOutput(error_, { t: interfaceText }));
         }
       } finally {
         if (configRequest && configRequestRef.current === configRequest) {
@@ -241,7 +241,7 @@ const Bridge = () => {
       );
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(getApiErrorMessage(error_, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setSaving(false);
@@ -259,7 +259,7 @@ const Bridge = () => {
       await requestDashboard(lifecycleRef.current, true);
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(getApiErrorMessage(error_, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setBridgeAction(null);
@@ -277,7 +277,7 @@ const Bridge = () => {
       await requestDashboard(lifecycleRef.current, true);
     } catch (error_) {
       if (!mountedRef.current) return;
-      setError(getApiErrorMessage(error_, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(error_, { t: interfaceText }));
     } finally {
       if (mountedRef.current) {
         setBridgeAction(null);
@@ -325,8 +325,8 @@ const Bridge = () => {
 
       {error && (
         <Message error>
-          <Message.Header><LocalizedText source={"Error"} /></Message.Header>
-          <p>{error}</p>
+          <Message.Header><LocalizedText source="Error" /></Message.Header>
+          <p><LocalizedOutputText output={error} /></p>
         </Message>
       )}
 

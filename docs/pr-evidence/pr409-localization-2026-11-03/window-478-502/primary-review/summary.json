@@ -1,0 +1,48 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W64",
+  "continuationRanks": [
+    478,
+    502
+  ],
+  "remainingQueueRanks": [
+    378,
+    402
+  ],
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "candidateFreeInputManifestJsonSha256": "4f428c69b3abec8db8ad9d7796f5c9a6e9e6da9234361cc644721b932de05456",
+  "candidateFreeInputChecksumListSha256": "2064eb36dcd2bc27344f73c57b62e8e3078d087da115fe04d52348a30855e5c8",
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "dispositionCounts": {
+    "accept-current": 214,
+    "correction": 74,
+    "hold": 12
+  },
+  "selectedTargetChanges": 74,
+  "corrections": 74,
+  "refinements": 0,
+  "acceptedCurrent": 214,
+  "holds": 12,
+  "callerlessHoldRanks": [
+    486
+  ],
+  "priorHeldCellsOutsideWindowReattested": 86,
+  "baselinePlaceholderMismatches": 0,
+  "baselineMarkupMismatches": 0,
+  "baselineNumericMismatches": 0,
+  "baselineProtectedLiteralMismatches": 23,
+  "protectedLiteralDisposition": {
+    "Wishlist": "All 12 rank 487 translations are corrected to retain the exact Wishlist feature name.",
+    "ACCEPT": "11 rank 501 localizations intentionally translate this user-facing status; pinned code passes it through interfaceText. One target remains a prefix match. No technical/product protected literal remains unresolved."
+  },
+  "postReviewUnresolvedProtectedLiteralMismatches": 0,
+  "reviewMethod": "Independent primary semantic review of all 300 candidate-free cells with exact caller and catalog context. No blind or cross-audit material was consulted.",
+  "notes": [
+    "All 12 rank 486 values are held because the source has no exact production caller.",
+    "All 86 preexisting held cells outside W64 were reattested unchanged in the candidate-free input."
+  ]
+}

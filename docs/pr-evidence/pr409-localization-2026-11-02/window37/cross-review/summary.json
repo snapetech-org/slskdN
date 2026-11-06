@@ -1,0 +1,56 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "OPEN",
+  "draft": true,
+  "head": "2be3fa4dd46a0f0f49adad342f289721e4777035",
+  "tree": "f838ae565086dec8639f8a54aa4c7d4572342b5f",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "window": 37,
+  "totalCurrentCells": 273,
+  "sourceIds": 25,
+  "locales": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "localeCatalogFilesHashChecked": 11,
+  "callerReferencesHashAndLineChecked": 383,
+  "uniqueCallerLinesChecked": 35,
+  "candidateRows": 42,
+  "candidateExactHashChecks": 42,
+  "sourceTargetCallerMismatchCount": 0,
+  "placeholderOrProtectedLiteralFailures": 0,
+  "primaryCandidateDispositions": {
+    "accepted": 41,
+    "refined": 1
+  },
+  "allCellDispositions": {
+    "accept-current": 226,
+    "accepted": 41,
+    "missed": 5,
+    "refined": 1
+  },
+  "nativeSpeakerReviewPerformed": false,
+  "browserReviewPerformed": false,
+  "privateJitValidationPerformed": false,
+  "repoOrPrMutated": false,
+  "testsBuildsScansCiWorkflowsReleasesOrTagsRun": false,
+  "notes": [
+    "All 42 primary candidate current/source/proposal hashes were independently verified against PR #409 head/tree and locale catalogs.",
+    "All 273 source/current cells and 383 caller references across 35 lines were re-attested at exact head; all 11 locale catalog file hashes matched the primary packet.",
+    "One primary candidate was refined to explicitly name the German opt-in feature.",
+    "Five primary keep cells were identified as missed corrections: German and Korean incoming-search count labels, Hindi timing obfuscation, and the Brazilian Portuguese and Vietnamese release-candidate recommendation strings.",
+    "No holds or no-op proposals were found among the 42 primary candidates.",
+    "Machine review does not establish native-speaker approval; headed-browser review remains separate."
+  ]
+}

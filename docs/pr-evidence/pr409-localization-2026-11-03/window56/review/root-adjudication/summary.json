@@ -1,0 +1,37 @@
+{
+  "allCallerAndCatalogPinsMatch": true,
+  "allPlaceholderMarkupChecksPass": true,
+  "appliedChangeCount": 11,
+  "artifact": "slskdN PR #409 root adjudication W56 ranks 301-302",
+  "blindLedgerSha256": "261d637402240e4d5fde0c42c2c0acce013c09f6a5b605a7f50a64738e4cc1eb",
+  "changesByLocale": {
+    "ar": 1,
+    "es": 1,
+    "fr": 1,
+    "hi": 1,
+    "id": 1,
+    "ja": 1,
+    "ko": 1,
+    "pt-BR": 1,
+    "vi": 1,
+    "zh-Hans": 1,
+    "zh-Hant": 1
+  },
+  "crossAuditLedgerSha256": "21aa76f4fb3f9d7d9eee2e9974168d546e7726cec96b8d456f029b32f91af2f8",
+  "dispositions": {
+    "accept-current": 13,
+    "correction": 6,
+    "refinement": 5
+  },
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "inputManifestSha256": "610e63e9358f8108f555c9b41f5c879b2cac5f3df7c5936e04e170743db93fad",
+  "localeCount": 12,
+  "primaryLedgerSha256": "d72c96d0efd282341f910645806d847fcd080976270e9702bdfab3f2824767a8",
+  "protectedWarningTokenPreservedInAll12": true,
+  "pullRequest": 409,
+  "qualifiedNativeSpeakerApproval": false,
+  "repository": "snapetech-org/slskdN",
+  "reviewedCells": 24,
+  "sourceCount": 2,
+  "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909"
+}

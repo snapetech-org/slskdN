@@ -1,0 +1,89 @@
+{
+  "advisoryPacketVerifier": {
+    "checks": [
+      "71 correction rows match sealed cross review",
+      "12 rank-1024 holds remain hash-only and absent from findings",
+      "caller pins match included evidence",
+      "root flags match questioned cells",
+      "artifact checksums pass"
+    ],
+    "result": "PASS",
+    "verifier": "verify_advisory.py"
+  },
+  "sealedInputVerifier": [
+    {
+      "callerReferences": 34,
+      "catalogKeysPerLocale": 6175,
+      "cells": 300,
+      "checksummedFiles": 25,
+      "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+      "locales": 12,
+      "newHashOnlyHolds": 12,
+      "newWindowHashOnlyCells": 12,
+      "priorActiveHolds": 409,
+      "priorAppliedTargets": 677,
+      "priorWindowReadbackCells": 600,
+      "result": "PASS",
+      "resultingActiveHashOnlyHoldCells": 421,
+      "runtimeFiles": 279,
+      "sourceExclusions": 2110,
+      "sources": 25,
+      "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+      "verifier": "exact-worktree"
+    },
+    {
+      "callerReferences": 34,
+      "catalogKeysPerLocale": 6175,
+      "cells": 300,
+      "checksummedFiles": 25,
+      "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+      "locales": 12,
+      "newHashOnlyHolds": 12,
+      "newWindowHashOnlyCells": 12,
+      "priorActiveHolds": 409,
+      "priorAppliedTargets": 677,
+      "priorWindowReadbackCells": 600,
+      "result": "PASS",
+      "resultingActiveHashOnlyHoldCells": 421,
+      "runtimeFiles": 279,
+      "sourceExclusions": 2110,
+      "sources": 25,
+      "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+      "verifier": "exact-worktree"
+    },
+    {
+      "acceptCurrent": 231,
+      "callerBackedSources": 24,
+      "candidateFreeInputManifestSha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100",
+      "candidateTokenMismatches": {},
+      "checksummedFiles": 8,
+      "corrections": 57,
+      "hashOnlyHoldCells": 12,
+      "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+      "result": "PASS",
+      "reviewedCells": 288,
+      "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+      "verifier": "exact-worktree-primary"
+    },
+    {
+      "baselineTokenMismatch": "Hindi FTP protected literal; corrected target preserves FTP",
+      "blindProposalTargets": 59,
+      "callerBacked": 288,
+      "cells": 300,
+      "checksummedFiles": 7,
+      "crossCorrections": 71,
+      "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+      "newHashOnlyHolds": 12,
+      "primaryCandidateTargets": 57,
+      "priorActiveHashOnlyHolds": 409,
+      "proposalUnionCells": 71,
+      "result": "PASS",
+      "resultingActiveHashOnlyHolds": 421,
+      "retainedCurrent": 217,
+      "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+      "upstreamBlindChecksummedFiles": 4,
+      "verifier": "sealed-cross-review"
+    }
+  ],
+  "sealedInputVerifierExitCode": 0
+}

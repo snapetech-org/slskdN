@@ -1,0 +1,14 @@
+{
+  "rows": 53,
+  "acceptedAsProposed": 53,
+  "refined": 0,
+  "holds": 0,
+  "applicationCommit": "740ae56ebe31893319648edadfc7da087ba5dfe3",
+  "currentPrHead": "740ae56ebe31893319648edadfc7da087ba5dfe3",
+  "currentPrTree": "b3b70ef49cc4ba2556c9960868231505fb57d1df",
+  "semanticConfidence": "high",
+  "localeQualityConfidence": "moderate",
+  "nativeSpeakerReview": "outstanding",
+  "artifact": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-windows22-23-root-cross-review-20261102.jsonl",
+  "sha256": "cc976e55113ede92e8d36370babcf37150ccc09929ceb5b6e38edad0cbe1087e"
+}

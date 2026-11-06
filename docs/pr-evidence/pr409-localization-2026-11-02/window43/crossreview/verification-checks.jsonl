@@ -1,0 +1,15 @@
+{"check":"primary-and-W42-manifests","detail":{"primaryFiles":20,"primarySumsSha256":"3572142f705cd95f0bd89f1030e2ea3e5843536bcb666f1956edbb0746ec6681","w42Files":21},"status":"pass"}
+{"check":"exact-live-PR-and-tree","detail":{"base":"main","draft":true,"head":"9071dcb9b4a96b476ecbaec9d5643236846ac2f8","state":"OPEN","tree":"25282a0cd8197815b3ffcbec9dbea8a03a5c8725"},"status":"pass"}
+{"check":"sources-and-275-current-cells","detail":{"W42BoundaryMatches":true,"cells":275,"ordinals":[76,100]},"status":"pass"}
+{"check":"catalog-blob-and-file-hashes","detail":{"SpanishSeparate":true,"catalogs":12,"reviewLocales":11},"status":"pass"}
+{"check":"caller-evidence","detail":{"files":24,"independentScanCoverage":true,"references":43},"status":"pass"}
+{"check":"placeholders-and-markup","detail":{"candidateMismatches":0,"currentMismatches":0},"status":"pass"}
+{"check":"protected-literals","detail":{"candidateMisses":0,"currentMisses":["ar:src_0efbd769ce16a42b FTP","hi:src_0efbd769ce16a42b FTP"]},"status":"finding"}
+{"check":"independent-semantic-review","detail":{"accept-current":219,"accept-proposal":45,"hold-source-caller-refactor":11},"status":"pass"}
+{"check":"W42-final-applied-hold-and-input-reattestations","detail":{"applied":48,"finalCells":275,"priorHolds":50,"priorInputFiles":41},"status":"pass"}
+{"check":"prior-Spanish-formal-lane","detail":50,"status":"pass"}
+{"check":"W43-Spanish-boundary-values","detail":25,"status":"pass"}
+{"check":"W43-Spanish-formal-ID-accumulator","detail":{"missing":["es:src_0ef5849949bcf7b6"],"present":24,"total":25},"status":"finding"}
+{"check":"frozen-queue-provenance","detail":{"fullFrozenPendingQueueReproduced":false,"limitation":"The task-named W40 bundle is absent, so the full frozen pending queue cannot be reconstructed. The older W40 primary packet is not used as current evidence.","primaryPacketPath":"/mnt/disks/scratch/task-scratch/slskdn-pr409-window43-primary-20261102","primarySumsSha256":"3572142f705cd95f0bd89f1030e2ea3e5843536bcb666f1956edbb0746ec6681","selectionSource":"W42 exact future-boundary snapshot, independently matched to current head and all 275 current targets","w38FormalAccumulatorPath":"/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window38/primary/formal-cell-ids.jsonl","w38PrimarySumsSha256":"db1b97b371dad4977e790168730d85666b7a0a647610cb6b19e603ef41a8d10d","w40BundlePath":"/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-w40-frozen-bundle","w40BundlePathPresent":false,"w42CrossreviewSumsSha256":"3b1024f3edb0d560aa6e7edd2ffc20ac45818ef693698e59c52ebda68ae8ce40"},"status":"finding"}
+{"check":"native-speaker-review","detail":"Machine review does not establish native-speaker signoff.","status":"outstanding"}
+{"check":"tests-builds-CI-browser","detail":"No tests, builds, CI dispatches, or browser actions were run.","status":"not-run"}

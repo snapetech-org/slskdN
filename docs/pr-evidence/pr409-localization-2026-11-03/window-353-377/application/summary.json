@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "appliedToParentHead": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "parentTree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+  "window": "W59 ranks 353-377",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositions": {
+    "accept-current": 207,
+    "correction": 54,
+    "hold": 24,
+    "refinement": 15
+  },
+  "selectedChanges": 69,
+  "readbackMatches": 300,
+  "unplannedNonTargetChanges": 0,
+  "orderedCatalogKeysPreserved": true,
+  "catalogCount": 12,
+  "callerlessHoldsPreserved": 24,
+  "callerlessHoldRanks": [
+    356,
+    366
+  ],
+  "qualifiedLocaleReviewRequired": true,
+  "qualifiedNativeSpeakerApproval": false,
+  "exactHeadBrowserReview": false,
+  "releaseApproved": false,
+  "crossAuditLedgerSha256": "afb7b587cdce0b615acc6fcac79ccaf73dd5b0260b5776911cdc5a3bbb72cfd4"
+}

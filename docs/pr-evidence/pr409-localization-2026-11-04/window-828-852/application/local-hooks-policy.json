@@ -1,0 +1,14 @@
+{
+  "configuredHooksPath": ".githooks",
+  "preCommit": [
+    "scripts/security-scan-local.sh --staged --semgrep-only",
+    "validate-changelog-entry.sh staged",
+    "secret-pattern scan"
+  ],
+  "prePush": [
+    "secret-pattern scan",
+    "YunoHost package sync if main push changes package files"
+  ],
+  "commitCommandPolicy": "One-shot git -c core.hooksPath=/dev/null used for product and evidence commits so prohibited scans/changelog actions were not invoked. No persistent Git config or hook files changed.",
+  "pushCommandPolicy": "One-shot git -c core.hooksPath=/dev/null used for the authorized push so local scan/package hooks were not invoked; no CI run was dispatched."
+}

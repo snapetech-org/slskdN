@@ -1,0 +1,8 @@
+{
+  "expectedHeldCells": 140,
+  "priorHeldCellsReattested": 140,
+  "preW69Holds": 128,
+  "w69Holds": 12,
+  "allTargetHashesMatchPrior": true,
+  "allCurrentCallerAndCatalogEvidenceRepinned": true
+}

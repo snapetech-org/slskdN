@@ -1,0 +1,132 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "baseHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "baseTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "window": "W49 reconstructed continuation ranks 101–125; historical source ordinals unavailable and not claimed",
+  "planRows": 99,
+  "appliedCells": 99,
+  "changedCatalogs": 12,
+  "localeCatalogCount": 12,
+  "orderedCatalogKeyCount": 6176,
+  "identicalOrderedKeyArrays": true,
+  "plannedValuesAndHashesReadBack": true,
+  "noUnplannedValueChanges": true,
+  "rank105HeldCellsApplied": 0,
+  "catalogs": [
+    {
+      "path": "src/web/public/locales/ar.json",
+      "baseSha256": "10156e777ab75324b9c61b107ab0fcc41751eb9c4b50774235af4e018edd0702",
+      "afterSha256": "cd35acd3a73f73d9c3ccafa564798d63e73284d0eb9a5bc02467230c7fa91ab3",
+      "plannedCells": 10,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/de.json",
+      "baseSha256": "e8ca3c1ce2e901b91b3624811ed194e4cbce7ef6c3061b3184fc25d933e432aa",
+      "afterSha256": "0b06661b906ccde8877b8559b5f23ead6bd7a8477e0bbc271107140899a8aab2",
+      "plannedCells": 8,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/es.json",
+      "baseSha256": "679832579a2a2214c1deda6ec2e8c68dee8e8e84bfef42108ff73ef443e10568",
+      "afterSha256": "a710349b6ee4e84d5031805e4fe1d3251ee5e20741ce2423e38832eae1d31f64",
+      "plannedCells": 7,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/fr.json",
+      "baseSha256": "96e4ed25e0226aa50e7198eb7f53dd2f5af5b7a67528c5df25c6ecd938384468",
+      "afterSha256": "100fe00a6ab48423e1a41284d627b8cfd3c04077a289f07dc79347ddfb21ebc3",
+      "plannedCells": 8,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/hi.json",
+      "baseSha256": "d5b111d8269e50da62ee3a17af8f9e34f140efedd3c11b835fee6c74ae9df080",
+      "afterSha256": "78cbd590111537ba128639406ad800eb2f5eaa849cd7a2df7b636d3f8a95275b",
+      "plannedCells": 7,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/id.json",
+      "baseSha256": "fbbac186fb10bdde58b581c502b98a2b65b9ad0336b55f995d81830d73269a46",
+      "afterSha256": "9367686f0c6e5e00d90905e783079ae1ed37eec4557af4882c6044e4e6d94319",
+      "plannedCells": 9,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/ja.json",
+      "baseSha256": "de45cbd8c3f5f5f6da34e9543c76ef1cbc4e742852452ac9c580c300bc2c1366",
+      "afterSha256": "bcf864370b20b1e77691b7eac9ba81520b03f61540b60d73abf4bbfd429a9fd9",
+      "plannedCells": 7,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/ko.json",
+      "baseSha256": "0c83ff8cac232ea5bb01699fdf760887af123ccc88e558afae6fe2b90e63d076",
+      "afterSha256": "e31feadb6bf3702567847f5bc67bd48ac513fcb81ff6b272ad0d39bd6427e048",
+      "plannedCells": 9,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/pt-BR.json",
+      "baseSha256": "0e2130ce8e6687feb07789aaedfd05942acdb127478164ad0fd52cba2794dcff",
+      "afterSha256": "9c87ada974002b5ff4ab56ebdaf846771f67be2862812bb4f5c9282b3206ab53",
+      "plannedCells": 7,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/vi.json",
+      "baseSha256": "bf1eb9e21a57347293aefd2e25aded3f290a4752dcc4f30b157e1bdf2d9232e7",
+      "afterSha256": "87e1dfcb3c8a3d795ecb529a2e5f3ee6684f34c280873337447acb47c0a534bd",
+      "plannedCells": 9,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/zh-Hans.json",
+      "baseSha256": "540991fe6ba19741188e36473e959a8a9c84cafa1c5aad9ab62827d81010e9f7",
+      "afterSha256": "642f9064c8eaaf1d446b777c42910895394c3d8d99ae531ee38eff827c9ede13",
+      "plannedCells": 9,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    },
+    {
+      "path": "src/web/public/locales/zh-Hant.json",
+      "baseSha256": "f64ba87ddee5e7f894216f3ab5529fb05bab07cae273bce937992f64e4bd08c4",
+      "afterSha256": "2f26604bcb814e5c0a8f13589e1b8c09b29891fb741a03834a7cffcb8ceeb284",
+      "plannedCells": 9,
+      "keyCount": 6176,
+      "orderedKeysPreserved": true,
+      "noUnplannedValueChanges": true
+    }
+  ],
+  "rootDispositions": {
+    "accept-current": 189,
+    "correction": 83,
+    "refinement": 16,
+    "hold": 12
+  }
+}

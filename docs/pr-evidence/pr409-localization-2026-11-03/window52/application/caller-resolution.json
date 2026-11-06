@@ -1,0 +1,62 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+  "tree": "ca9f1bf1d9f4373556476a51b863601668878eb3",
+  "path": "src/web/src/components/Player/PlayerBar.jsx",
+  "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+  "lineRange": [
+    1336,
+    1345
+  ],
+  "lines": [
+    {
+      "line": 1336,
+      "text": "            { label: interfaceText(\"7D\"), value: 7 },"
+    },
+    {
+      "line": 1337,
+      "text": "            { label: interfaceText(\"30D\"), value: 30 },"
+    },
+    {
+      "line": 1338,
+      "text": "            { label: interfaceText(\"90D\"), value: 90 },"
+    },
+    {
+      "line": 1339,
+      "text": "            { label: interfaceText(\"All\"), value: null },"
+    },
+    {
+      "line": 1340,
+      "text": "          ].map((range) => ("
+    },
+    {
+      "line": 1341,
+      "text": "            <Popup"
+    },
+    {
+      "line": 1342,
+      "text": "              content={range.value"
+    },
+    {
+      "line": 1343,
+      "text": "                ? interfaceText('Show listening statistics from the last {days} days.', { days: range.value })"
+    },
+    {
+      "line": 1344,
+      "text": "                : interfaceText('Show listening statistics from all recorded plays.')}"
+    },
+    {
+      "line": 1345,
+      "text": "              key={range.label}"
+    }
+  ],
+  "resolvedDaysDomain": [
+    7,
+    30,
+    90
+  ],
+  "allTimeValue": null,
+  "allTimeMessage": "Show listening statistics from all recorded plays.",
+  "conclusion": "The dynamic {days} string is used only with values 7, 30, or 90, and the all-time option uses a separate source string. The six pluralization holds were resolved as accept-current."
+}

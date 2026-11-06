@@ -1,0 +1,126 @@
+{
+  "result": "PASS",
+  "pullRequest": 409,
+  "livePrState": "OPEN",
+  "livePrDraft": true,
+  "mergeStateStatus": "CLEAN",
+  "pushState": "pushed-and-current",
+  "applicationCommit": "b38a95fb75ec4ac691ad02c4b2c7393f8a1389b7",
+  "applicationTree": "f2e7a734d60555964f0487377066a955308fd8c9",
+  "currentHead": "8e6387aeef2f81251622757f332a2ef32340cb4f",
+  "currentTree": "70c86ce3ec67844baa14db0095a11f2e62d22a59",
+  "currentRemoteHead": "8e6387aeef2f81251622757f332a2ef32340cb4f",
+  "manualCoverage": {
+    "windows": 31,
+    "sourceKeys": 772,
+    "cells": 9238,
+    "verdicts": {
+      "keep": 7706,
+      "correct": 1264,
+      "uncertain": 268
+    },
+    "formalOverlap": 0,
+    "manualWindowOverlap": 0
+  },
+  "window30RootReview": {
+    "rows": 39,
+    "acceptedAsProposed": 37,
+    "refinedAndAccepted": 2,
+    "held": 0,
+    "candidatePlanSha256": "a4754dbb630a91f612013e11feba2d2d27f38587eb17411ebeafde9a32eaee66",
+    "ledgerSha256": "6a1d408e2c2d513d0b9dfd3ccd7708f00331d3bb36c67093791667a747510c12",
+    "applyPlanSha256": "c38e7b567bab2a38f4897c2ba7364bd475ac6f8d03c78f8612f807cfb7d3b155"
+  },
+  "window31RootReview": {
+    "rows": 36,
+    "acceptedAsProposed": 36,
+    "refinedAndAccepted": 0,
+    "held": 0,
+    "candidatePlanSha256": "320f88df56d7f9f1f1ec2fe20fab467235ab59471fe7812b63f8ba8979de5bba",
+    "ledgerSha256": "4e0809fcad3782ab73027cb22f2dea97ce18a3c891e91a7ad872a1ee74d67005",
+    "applyPlanSha256": "70067d1a6a13349d1d72db7227d3e79fae1757cc97e50e37330456d3121a64ca"
+  },
+  "application": {
+    "previousApplied": 1234,
+    "newApplied": 36,
+    "totalApplied": 1270,
+    "uniqueSourceKeys": 290,
+    "heldNoContext": 6,
+    "uncertainOriginally": 268,
+    "uncertainResolvedByRealm": 12,
+    "uncertainRemaining": 256,
+    "unreviewedCells": 57842,
+    "byLocale": {
+      "ar": 139,
+      "de": 72,
+      "es": 105,
+      "fr": 105,
+      "hi": 105,
+      "id": 109,
+      "ja": 73,
+      "ko": 96,
+      "pt-BR": 93,
+      "vi": 126,
+      "zh-Hans": 124,
+      "zh-Hant": 123
+    },
+    "window31ByLocale": {
+      "ar": 4,
+      "de": 3,
+      "fr": 2,
+      "hi": 3,
+      "id": 4,
+      "ja": 3,
+      "ko": 4,
+      "pt-BR": 2,
+      "vi": 3,
+      "zh-Hans": 4,
+      "zh-Hant": 4
+    }
+  },
+  "catalogCensus": {
+    "locales": 12,
+    "keysPerLocale": 6169,
+    "totalValues": 74028,
+    "changedCellsSinceFrozenBaseline": 1270,
+    "placeholderChecks": 74028,
+    "catalogFileSha256": {
+      "ar": "632a362e55c207109f9088c34bde9643f2d6fcf42c06bf77c9ec6577a9d2ebd9",
+      "de": "42649d8f2bbb045766d05723865abf89e435e08266222e3c925d1642e83e0ed9",
+      "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+      "fr": "522d26cdd4ec9178b6af15f5bbac6c2f2c51d040a045d48e254113063a3cf7e9",
+      "hi": "dc7908ae1c1630fe108bc6757d735c2490555b08e1a217dca7c96e75b60e6854",
+      "id": "cb36c4a132a74be1f4d2301b196b85c506e94be004a1577bf763e5a24b275092",
+      "ja": "539304a14f416816c4a48ff95c048c558506e23dc815cfc6687d05f5715370ad",
+      "ko": "3d4673085d09239e34bd9aaf3af0cea95d1766cb2eda1722018603bd97efa2d3",
+      "pt-BR": "6bbc94eea7dc0c8043e5093ec4ddb53b87914bb297cec22cd0b86d36e99915c5",
+      "vi": "653d75e0264992a9cbd871899ddc9814d2ceca0bda8d27cc2e60318733ddc24c",
+      "zh-Hans": "94f6baa8d4a3d7c6b8fd18db2146635d3587d9b6834e8882836270c02e90b1c6",
+      "zh-Hant": "c4274a72f6229f6c78c09d7a04fe3e26c661aeeb93c0c7fb219e1756e146f1a4"
+    }
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "workflowChanges": 0,
+  "window31ChangedPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "nativeSpeakerReview": "outstanding",
+  "headedBrowserReview": "outstanding",
+  "testsBuildCiReleaseOrTag": "not run"
+}

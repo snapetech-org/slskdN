@@ -1,0 +1,23 @@
+{
+  "previousCandidateFreeWindow": "W82",
+  "previousHead": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "previousTree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5",
+  "W82PriorSelectedIdRows": 2010,
+  "W82SelectedIdsAdded": 25,
+  "priorSelectedIdsExcluded": 2035,
+  "activePriorHolds": 397,
+  "previousActiveHolds": 382,
+  "W82NewActiveHolds": 15,
+  "priorHoldResolutionHistoryRows": 25,
+  "priorAppliedTargetsReattested": 300,
+  "previousAppliedTargets": 266,
+  "W82AppliedTargetsAdded": 34,
+  "W82ProductCommit": "807e0f1b6b21f8783483224aac01c159ccac08a5",
+  "W82RootTargetHashesMatch": true,
+  "W82PacketChecksumCount": 58,
+  "W82CandidateInputChecksumCount": 23,
+  "sourceTextIncluded": false,
+  "targetTextIncluded": false,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false
+}

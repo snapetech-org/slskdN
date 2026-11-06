@@ -1,0 +1,102 @@
+{
+  "artifact": "slskdN PR #409 W80 base-to-live-main overlap check",
+  "pullRequest": 409,
+  "prBaseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "currentMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "baseIsAncestorOfCurrentMain": true,
+  "comparison": "git diff --name-status <PR base SHA> <current main SHA>",
+  "mainAdvanceChangedPaths": [
+    {
+      "status": "M",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "status": "M",
+      "path": ".github/workflows/feature-coherence-validation.yml"
+    },
+    {
+      "status": "M",
+      "path": ".github/workflows/local-identity-leaks.yml"
+    },
+    {
+      "status": "M",
+      "path": ".github/workflows/semgrep-community.yml"
+    },
+    {
+      "status": "M",
+      "path": ".github/workflows/trivy-filesystem.yml"
+    },
+    {
+      "status": "M",
+      "path": "AGENTS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/CHANGELOG.md"
+    },
+    {
+      "status": "D",
+      "path": "scripts/check-codeql-dotnet-version.sh"
+    },
+    {
+      "status": "M",
+      "path": "scripts/check-dotnet-runtime-matrix.sh"
+    },
+    {
+      "status": "M",
+      "path": "scripts/check-remediation-baseline.sh"
+    },
+    {
+      "status": "M",
+      "path": "scripts/check-workflow-trigger-policy.sh"
+    }
+  ],
+  "w80CatalogPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "w80PinnedProductionCallerPaths": [
+    "src/web/src/components/Contacts/Contacts.jsx",
+    "src/web/src/components/Lidarr/Lidarr.jsx",
+    "src/web/src/components/Messaging/MessagingV2.jsx",
+    "src/web/src/components/Player/Equalizer.jsx",
+    "src/web/src/components/Player/PlayerBar.jsx",
+    "src/web/src/components/Player/PodListenAlongPanel.jsx",
+    "src/web/src/components/Search/Detail/SearchDetail.jsx",
+    "src/web/src/components/Search/SongIDPanel.jsx",
+    "src/web/src/components/Search/SoulseekDiscoveryPanel.jsx",
+    "src/web/src/components/Shared/UserCard.jsx",
+    "src/web/src/components/System/Files/Explorer.jsx",
+    "src/web/src/components/System/Integrations/MediaServerPanel.jsx",
+    "src/web/src/components/System/Integrations/MetadataProcessingPanel.jsx",
+    "src/web/src/components/System/Integrations/MetadataSettingsPanel.jsx",
+    "src/web/src/components/System/Jobs/index.jsx",
+    "src/web/src/components/System/MediaCore/MediaCoreStats.jsx",
+    "src/web/src/components/System/MediaCore/index.jsx",
+    "src/web/src/components/System/Metrics/index.jsx",
+    "src/web/src/components/System/QuarantineJury/index.jsx",
+    "src/web/src/components/System/SwarmVisualization/index.jsx",
+    "src/web/src/components/Transfers/TransferTable.jsx",
+    "src/web/src/components/Wishlist/Wishlist.jsx",
+    "src/web/src/lib/discoveryGraphLocale.js",
+    "src/web/src/lib/mediaServerIntegrations.js",
+    "src/web/src/lib/servarrReadiness.js",
+    "src/web/src/lib/setupHealthCheck.js",
+    "src/web/src/lib/transferColumns.js",
+    "src/web/src/lib/watchlists.js"
+  ],
+  "overlapPaths": [],
+  "overlapCount": 0,
+  "result": "PASS",
+  "note": "The current main advance changes workflow policy, AGENTS.md, changelog, and validation scripts; it does not touch W80 locale catalogs or pinned production caller files."
+}

@@ -1,0 +1,25 @@
+{
+  "window": 29,
+  "candidatePlanSha256": "b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568",
+  "reviewedCandidates": 42,
+  "accepted": 38,
+  "refined": 4,
+  "held": 0,
+  "applyCount": 42,
+  "rootDecisionsSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+  "rootApplyPlanSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+  "correctionsByLocale": {
+    "ar": 4,
+    "de": 4,
+    "es": 4,
+    "fr": 5,
+    "hi": 3,
+    "id": 3,
+    "ja": 3,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 4,
+    "zh-Hans": 3,
+    "zh-Hant": 3
+  }
+}

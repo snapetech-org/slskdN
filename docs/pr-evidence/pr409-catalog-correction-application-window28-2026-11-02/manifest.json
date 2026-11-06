@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "exact-hash catalog correction application evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "reviewBaseHead": "17e8d8b829867065b882423ef81c69f1f31c7d07",
+  "reviewBaseTree": "7562b0dd09a92398a898d84e1c936119492015be",
+  "reviewSourceSubtree": "6d80c43cea32f0a5721f31235ec80e6eaa6d1896",
+  "applicationCommit": "c420ebc057d675586eaf931d6f5daeb152a16c78",
+  "applicationTree": "ff1c49d7bc72cae70e9d5c4b4c86442358a3474b",
+  "applicationParent": "17e8d8b829867065b882423ef81c69f1f31c7d07",
+  "applicationLedger": {
+    "path": "applied-corrections-window28.jsonl",
+    "sha256": "943fd894ad0d17b194d8ec426dce5457c1a2e3378292fd1cbe0bb1873f26b7b6",
+    "rows": 39,
+    "uniqueSourceKeys": 5,
+    "byLocale": {
+      "ar": 3,
+      "de": 3,
+      "es": 4,
+      "fr": 4,
+      "hi": 3,
+      "id": 3,
+      "ja": 2,
+      "ko": 3,
+      "pt-BR": 3,
+      "vi": 5,
+      "zh-Hans": 3,
+      "zh-Hant": 3
+    }
+  },
+  "rootCrossReview": {
+    "ledgerPath": "root-crossreview-decisions-window28.jsonl",
+    "ledgerSha256": "2e913a85844b83658c057667a65831f50bb3897bc61255a6196d29cbe865259b",
+    "applyPlanPath": "root-apply-plan-window28.jsonl",
+    "applyPlanSha256": "ade3ade63ee11a972eb95c175b48ad38161ab4883e0f14c97e417425be8ea161",
+    "summaryPath": "root-crossreview-summary-window28.json",
+    "summarySha256": "2601d94cf69ac8e08d5c19ec66b845c7c5179fa2c68b30e26ab9f470b144ec5b",
+    "acceptedAsProposed": 39,
+    "refined": 0,
+    "held": 0
+  },
+  "unchangedUncertainRows": {
+    "path": "uncertain-review-rows.jsonl",
+    "sha256": "5c6be71c1b22f93d3ce7a206088b3365d3e950fdeca1691cf3f6fa3d1a34182b",
+    "rows": 24,
+    "reason": "two source keys have no caller/context"
+  },
+  "cumulativeAfterApplication": {
+    "manualWindows": 28,
+    "manualKeys": 700,
+    "manualCells": 8400,
+    "verdicts": {
+      "keep": 6997,
+      "correct": 1147,
+      "uncertain": 256
+    },
+    "appliedValues": 1153,
+    "appliedSourceKeys": 270,
+    "held": 6,
+    "remainingUncertain": 244,
+    "unreviewedCells": 58680,
+    "formalCells": 4800,
+    "formalOverlap": 0,
+    "manualOverlap": 0
+  },
+  "confidence": {
+    "semantic": "moderate to high for flagged targets",
+    "localeQuality": "moderate",
+    "nativeSpeakerReview": "outstanding",
+    "headedBrowserReview": "outstanding"
+  },
+  "noTestsBuildCiReleaseOrTag": true,
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0,
+  "verificationReport": {
+    "path": "verification.json",
+    "sha256": "787e48a72e79b47606286802f2b4d14d6a75c1597b1df6cd79d0ea62818e484a",
+    "generatedAtHead": "c420ebc057d675586eaf931d6f5daeb152a16c78",
+    "result": "PASS"
+  },
+  "evidenceFiles": {
+    "README.md": "854d4552674ae250c47a463c89636bde7b3fae338c8ee6c30e9d23962c04c809",
+    "application-ledger-summary.json": "90610ece09ece7cbea1126f25638884f75954718b70b63fed4e8ccb682e69de4",
+    "applied-corrections-window28.jsonl": "943fd894ad0d17b194d8ec426dce5457c1a2e3378292fd1cbe0bb1873f26b7b6",
+    "apply-result.json": "b745259542278ae37371af0614220a118e46043afc928d9edfc7571d9a46e3c4",
+    "post-apply-verification.json": "944ab02a8fd1f757f98dbff4c66d4168bdfcbd3d25ca65908cc2d1e06204a90f",
+    "preflight.json": "ae4c2c8e7b98971335ff9025635a4e17c1ce0d782a646639035c5663c399e2d8",
+    "root-apply-plan-window28.jsonl": "ade3ade63ee11a972eb95c175b48ad38161ab4883e0f14c97e417425be8ea161",
+    "root-crossreview-decisions-window28.jsonl": "2e913a85844b83658c057667a65831f50bb3897bc61255a6196d29cbe865259b",
+    "root-crossreview-summary-window28.json": "2601d94cf69ac8e08d5c19ec66b845c7c5179fa2c68b30e26ab9f470b144ec5b",
+    "uncertain-review-rows.jsonl": "5c6be71c1b22f93d3ce7a206088b3365d3e950fdeca1691cf3f6fa3d1a34182b",
+    "verification.json": "787e48a72e79b47606286802f2b4d14d6a75c1597b1df6cd79d0ea62818e484a",
+    "verify_application.py": "1aa6a95c4760272509a0cce3589c0ec63ea00c9a3fc4cfaa4e308338d119760a"
+  }
+}

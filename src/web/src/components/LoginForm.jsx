@@ -1,6 +1,6 @@
-import LocalizedText from "./Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
-import { getApiErrorMessage } from '../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "./Shared/LocalizedText";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../lib/apiErrorMessages';
 import Footer from './Shared/Footer';
 import TooltipButton from './Shared/TooltipButton';
 import * as session from '../lib/session';
@@ -180,7 +180,7 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
             )}
             {oidcEnabled && (
               <a href={oidcPresentation.setupUrl} target="_blank" rel="noopener noreferrer"
-                aria-label={interfaceText(
+                aria-label={interfaceAttributeText(
                   "{provider} identity provider setup guide (opens in a new tab)",
                   { provider: oidcPresentation.label },
                 )}
@@ -203,7 +203,7 @@ const LoginForm = ({ error, loading, onLoginAttempt }) => {
                 aria-live="assertive"
               >
                 <Icon name="x" />
-                {getApiErrorMessage(error, { t: interfaceText })}
+                <LocalizedOutputText output={getApiErrorMessageOutput(error, { t: interfaceText })} />
               </Message>
             )}
             {httpsUrl && (

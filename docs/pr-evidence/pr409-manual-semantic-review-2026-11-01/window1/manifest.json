@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-cell semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+  "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+  "generatedUtc": "2026-11-01T22:46:29.249054+00:00",
+  "headRevalidatedUtc": "2026-11-01T22:46:29.249054+00:00",
+  "sourceSnapshot": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-head-review-20261101",
+  "frozenBundle": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-populated-review-4c2b-20261101/bundle",
+  "frozenManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+  "frozenBatchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111",
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_daec6ecec51e98a5",
+      "src_daee7606b339f3c3",
+      "src_daeee98f77070b40",
+      "src_db21ca961da0193a",
+      "src_db4cee2b6eee6372",
+      "src_db59e0d157eeb776",
+      "src_db79aaef7be625bc",
+      "src_db9d7f5a6ed28278",
+      "src_dbb8255950313817",
+      "src_dbcd5e7bb7a0f538",
+      "src_dbd3306ada131909",
+      "src_dbe120d692f63b6f",
+      "src_dbf813eb0a0fcc09",
+      "src_dc17351d51c0fe57",
+      "src_dc20b3d5d2cddf82",
+      "src_dc273117482b4429",
+      "src_dc380888c4e2c776",
+      "src_dc5277599f2c6bf7",
+      "src_dc53f4237cf562d9",
+      "src_dc84d82ebea46598",
+      "src_dc887156e0175758",
+      "src_dca67c5c12d871a6",
+      "src_dc937b59892604f5",
+      "src_dbee8fc434cf3e45",
+      "src_db40e9a8ef94cdbb"
+    ],
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "allSelectedCellsWerePending": true,
+    "existingResultOverlap": 0
+  },
+  "decisionCounts": {
+    "keep": 267,
+    "correct": 33
+  },
+  "reviewerMethod": "independent manual semantic review by a model using pinned source context and code callsites; no local translation-model or API call",
+  "overallConfidence": "moderate",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "inputCellSetSha256": "b6794be43655ce268d8263a93c3d60985c5bf20c124f974d102b39e30daf16f7",
+  "selectedSourceIdSetSha256": "dbb0ad001fc0aac1b61d422fa5c9d9d8a99eafae5c0eb1e8273bb42a1023dcf3",
+  "correctionFindings": [
+    {
+      "sourceId": "src_daec6ecec51e98a5",
+      "source": "Sends pod messages",
+      "affectedLocales": [
+        "ar",
+        "vi"
+      ],
+      "finding": "Pod is a network entity; the existing targets mean pouch/container (Arabic) or group messages (Vietnamese)."
+    },
+    {
+      "sourceId": "src_dbcd5e7bb7a0f538",
+      "source": "Light",
+      "affectedLocales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "The source context is the Light UI theme option; existing targets refer to illumination or a lamp rather than the light-color theme."
+    },
+    {
+      "sourceId": "src_dc937b59892604f5",
+      "source": "None",
+      "affectedLocales": [
+        "ar"
+      ],
+      "finding": "The target means nobody, but source contexts show an absent value/state."
+    },
+    {
+      "sourceId": "src_dbee8fc434cf3e45",
+      "source": "Share List",
+      "affectedLocales": [
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "This key labels a collection type noun; the existing translations are imperatives in affected locales."
+    },
+    {
+      "sourceId": "src_db40e9a8ef94cdbb",
+      "source": "Transports Up",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The source UI shows AvailableTransports/TotalTransports; Up means available, not upward motion."
+    }
+  ],
+  "files": {
+    "review-input.jsonl": {
+      "bytes": 556884,
+      "rows": 300,
+      "sha256": "11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2"
+    },
+    "review-decisions.jsonl": {
+      "bytes": 20532,
+      "rows": 300,
+      "sha256": "2914f53ec1e807edaeb033deefa81661a5133c1da9b269704971e87c79c1dcb6"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "artifact": "slskdN PR #409 W82 primary review",
+  "window": "W82",
+  "head": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "tree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5",
+  "inputManifestSha256": "761a6274c2234f2db6edfb869848482c9e445cb3b8228918ef894f5ad27f616b",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "localeCount": 12,
+  "dispositionCounts": {
+    "accept-current": 251,
+    "correction": 37,
+    "hold": 12
+  },
+  "correctionCount": 37,
+  "holdCellCount": 12,
+  "heldSourceRanks": [
+    944
+  ],
+  "sourceRewriteRecommendations": 0,
+  "candidateFreeInputOnly": true,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false,
+  "rootAdjudicationDone": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false
+}

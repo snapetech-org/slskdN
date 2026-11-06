@@ -1,0 +1,110 @@
+{
+  "artifact": "slskdN PR #409 W978-W1002 independent cross-review ledger",
+  "exactHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "exactTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "window": "W84",
+  "continuationRankRange": [
+    978,
+    1002
+  ],
+  "remainingQueueRankRange": [
+    878,
+    902
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "inputPaths": {
+    "candidateFree": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w978-1002-20261105/candidate-free/input",
+    "primaryReview": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w978-1002-20261105/primary-review",
+    "blindReview": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w978-1002-20261105-blind-review-independent"
+  },
+  "inputManifestSha256": {
+    "candidateFree": "81270ec9cda1c0965c620c52eb08568fcd77346d6e303bb8c92d6eb609097147",
+    "primaryReview": "468ae90cf44e23c304746105e4d8e6e65c713f87a8b11ef7cbbcf3428df6ffb7",
+    "blindReview": "bdd138cccd53aae5e67366525b7e313666d81186086ba916799c0b95e2e22ace"
+  },
+  "primaryCounts": {
+    "correction": 89,
+    "acceptCurrent": 211
+  },
+  "blindCounts": {
+    "propose": 60,
+    "retain": 240
+  },
+  "proposalComparison": {
+    "both-keep": 211,
+    "primary-only": 29,
+    "exact-agreement": 28,
+    "conflicting-targets": 32
+  },
+  "independentCounts": {
+    "accept-current": 211,
+    "correction": 89
+  },
+  "rootAdjudicationFlagCount": 64,
+  "baselineProtectedLiteralMismatchCount": 5,
+  "baselineProtectedLiteralCases": [
+    {
+      "continuationRank": 991,
+      "locale": "ar",
+      "source": "Spotify client ID",
+      "baselineMissing": [
+        "ID"
+      ],
+      "recommendedTarget": "معرّف عميل Spotify (ID)",
+      "recommendedTargetSha256": "0ed4c9cab90738327f7ffd462cce1dd9c019c29419f2b8392be60845b01a2ca6",
+      "rationale": "In this caller, the form label identifies the Spotify OAuth client ID field. This labels the Spotify client application ID. The recommendation keeps the protected acronym “ID” and avoids a reading as a customer ID. The two reviews chose different exact strings; I recommend “معرّف عميل Spotify (ID)”. I prefer the blind wording because “معرّف عميل Spotify” is the more direct client-ID construct; “(ID)” preserves the protected acronym. This also repairs a candidate-free protected-literal omission."
+    },
+    {
+      "continuationRank": 991,
+      "locale": "hi",
+      "source": "Spotify client ID",
+      "baselineMissing": [
+        "ID"
+      ],
+      "recommendedTarget": "Spotify क्लाइंट ID",
+      "recommendedTargetSha256": "4f5dae95ea99fe986d5f60c09f81e6d0dc1782ce7ead78a0be3f3fc5882f71d6",
+      "rationale": "In this caller, the form label identifies the Spotify OAuth client ID field. This labels the Spotify client application ID. The recommendation keeps the protected acronym “ID” and avoids a reading as a customer ID. Both reviews independently proposed this same target; I agree. This also repairs a candidate-free protected-literal omission."
+    },
+    {
+      "continuationRank": 999,
+      "locale": "ar",
+      "source": "Decode this server library file to MP3 for this playback only. This uses server CPU until playback stops.",
+      "baselineMissing": [
+        "CPU"
+      ],
+      "recommendedTarget": "فك ترميز ملف مكتبة الخادم هذا إلى MP3 لهذا التشغيل فقط. سيستخدم ذلك CPU الخادم حتى يتوقف التشغيل.",
+      "recommendedTargetSha256": "a1dc8d2325246b7dd9f02f1c375ba9a1ea5cc371c4af9dd55daae0ba4615c3ae",
+      "rationale": "In this caller, the playback tooltip describes decoding a server library file to MP3 for this playback only and using server CPU. The Arabic source text currently reads as decryption rather than audio decoding and omits the protected CPU literal. The recommendation uses the decoding verb and preserves CPU/MP3;  The two reviews chose different exact strings; I recommend “فك ترميز ملف مكتبة الخادم هذا إلى MP3 لهذا التشغيل فقط. سيستخدم ذلك CPU الخادم حتى يتوقف التشغيل.”. I prefer the primary wording because “فك ترميز” means decoding; the blind variant “فكّ تشفير” can mean decryption. This also repairs a candidate-free protected-literal omission."
+    },
+    {
+      "continuationRank": 999,
+      "locale": "fr",
+      "source": "Decode this server library file to MP3 for this playback only. This uses server CPU until playback stops.",
+      "baselineMissing": [
+        "CPU"
+      ],
+      "recommendedTarget": "Décodez ce fichier de la bibliothèque du serveur en MP3 pour cette lecture uniquement. Cela utilise le CPU du serveur jusqu’à l’arrêt de la lecture.",
+      "recommendedTargetSha256": "53b164b57a92371ea613fda2a669f5a44851b10ead111b0b5f0b4e9451f58d32",
+      "rationale": "In this caller, the playback tooltip describes decoding a server library file to MP3 for this playback only and using server CPU. The French current target translates “CPU” as “processeur,” but the protected acronym must remain unchanged. The recommendation preserves CPU/MP3 and keeps the playback-only scope. Both reviews independently proposed this same target; I agree. This also repairs a candidate-free protected-literal omission."
+    },
+    {
+      "continuationRank": 1001,
+      "locale": "zh-Hans",
+      "source": "QR invite code",
+      "baselineMissing": [
+        "QR"
+      ],
+      "recommendedTarget": "QR 邀请码",
+      "recommendedTargetSha256": "ca4db50a37366b1b8c9be240efed58eaf6690cd585186c12bac99216828d2ec0",
+      "rationale": "In this caller, the Contacts image alt text describes a QR invitation code. This is alt text for a QR invitation image. The recommendation keeps the protected literal “QR” and avoids translating or redundantly repeating it. Both reviews independently proposed this same target; I agree. This also repairs a candidate-free protected-literal omission."
+    }
+  ],
+  "unresolvedByThisPass": 0,
+  "rootAdjudicationPerformed": false,
+  "catalogsEdited": false,
+  "repositoryEdited": false,
+  "testsBuildsScansCiRun": false,
+  "confidence": "moderate overall; no native-speaker signoff claimed"
+}

@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "applicationCommit": "dff0b0281483d777c01c5e7dd68e24b51fdc67f8",
+  "applicationTree": "37f299d9e8f2f476bbc3eaefe872f3c727a4b17d",
+  "applicationParent": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "reviewedRows": 42,
+  "acceptedAsProposed": 38,
+  "refinedAndAccepted": 4,
+  "held": 0,
+  "changedCatalogCells": 42,
+  "catalogPaths": 12,
+  "changelogUpdated": true,
+  "sourceOrWorkflowChanges": 0
+}

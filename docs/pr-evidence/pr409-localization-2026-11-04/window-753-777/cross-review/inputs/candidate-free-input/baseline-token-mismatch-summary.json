@@ -1,0 +1,150 @@
+{
+  "cellCount": 300,
+  "mismatchCellCount": 23,
+  "mismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 23
+  },
+  "mismatchExamples": [
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "ar",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "de",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "es",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "fr",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "id",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "ja",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "ko",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "pt-BR",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "vi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "zh-Hans",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 757,
+      "sourceId": "src_2dae92c7fa3fcb2f",
+      "locale": "zh-Hant",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "ar",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "de",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "es",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "fr",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "ja",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "ko",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "pt-BR",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "vi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "zh-Hans",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 759,
+      "sourceId": "src_2dc5b14ecfb28446",
+      "locale": "zh-Hant",
+      "kind": "protectedLiteral"
+    }
+  ]
+}

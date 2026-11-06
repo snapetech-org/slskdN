@@ -1,0 +1,99 @@
+{
+  "result": "PASS",
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "head": "7c3283a340324e19577a486bfc427eb40b6eb5f2",
+  "tree": "cf5e11244515bcd78b3bdea08226a52192b5aae3",
+  "sourceSubtreeTree": "4d8da43318bdd313ce7c05dcb751c0b5beb9015f",
+  "window": 26,
+  "keys": 25,
+  "cells": 300,
+  "verdicts": {
+    "keep": 240,
+    "correct": 48,
+    "uncertain": 12
+  },
+  "perLocale": {
+    "es": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "zh-Hans": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "hi": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 1
+    },
+    "de": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 1
+    },
+    "ja": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "fr": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "ar": {
+      "keep": 18,
+      "correct": 6,
+      "uncertain": 1
+    },
+    "ko": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 1
+    },
+    "zh-Hant": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "vi": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "id": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    }
+  },
+  "priorWindows": 25,
+  "priorCells": 7500,
+  "priorAppliedCorrections": 1022,
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "formalOverlap": 0,
+  "manualOverlap": 0,
+  "appliedOverlap": 0,
+  "candidatePlanRows": 48,
+  "candidatePlanJoin": "PASS",
+  "callerLinesRechecked": 360,
+  "inputSha256": "14c65ba66c5ffd4d6074bc8b689d582b522cafe44906f1d3d6c468709604dfbb",
+  "decisionSha256": "44a724fff8734b42557997dfa2e8476c1159c625a23db4c35821d5e3b1ddd44c",
+  "candidatePlanSha256": "c03732e03badefc2c8952d985c2dc89b5453b7dd3028b85d6ae75d71b08aaea5",
+  "semanticConfidence": "high for flagged corrections",
+  "localeQualityConfidence": "moderate",
+  "nativeSpeakerReview": "outstanding"
+}

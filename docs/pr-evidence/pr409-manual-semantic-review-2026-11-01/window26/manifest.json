@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "7c3283a340324e19577a486bfc427eb40b6eb5f2",
+  "tree": "cf5e11244515bcd78b3bdea08226a52192b5aae3",
+  "sourceSubtreeTree": "4d8da43318bdd313ce7c05dcb751c0b5beb9015f",
+  "generatedUtc": "2026-11-02T02:33:16Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 25,
+    "cells": 7500,
+    "keys": 625,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 1022,
+    "ids": 1022,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "windows20_21": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02",
+      "windows22_23": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "realmWindow20": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+      "window24": "e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df",
+      "window25": "030269709bebedf67f60d6c367bcd8e43ea92f7d9c9824ae6b9217b3afefdeb3"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_fa7fe67124e94375",
+      "src_fa8f08b9e1f675cc",
+      "src_fab4539d26e078ca",
+      "src_fac3c810d5fe2521",
+      "src_fad654c2db4308fd",
+      "src_fadcdc7815d10e1f",
+      "src_fae75018276afa77",
+      "src_fb0d399db307fb40",
+      "src_fb1411144fac713c",
+      "src_fb18ae7b217b9637",
+      "src_fb1a90e5df5678dc",
+      "src_fb470ce44b0b85c4",
+      "src_fb49df160209257b",
+      "src_fb609c505c921789",
+      "src_fb60eebf58d7a236",
+      "src_fb635a4459883a44",
+      "src_fb8da46694bfa931",
+      "src_fb8e7a1a3cb7b25d",
+      "src_fb9470409e07618c",
+      "src_fb9cf75606b4070d",
+      "src_fba99a71f97da5a2",
+      "src_fbb1d998c6588f90",
+      "src_fbb26b4abe24adf4",
+      "src_fbe5477b3348b530",
+      "src_fbedb4720f8d5d62"
+    ],
+    "sourceIdListSha256": "7f2e61dfad25658e1bc878980e484c5be6ee409a1f3f53b4fe9348038891507c",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 122,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "5d9d6ec6413f942326051e707ad01caf3c27c77b47d58d8d6f5436e73ecfb137",
+    "zh-Hans": "9faa33e22dd8bd470b98e6f14c8dd8f6e00edc852d5a36817c80509cee7eabf5",
+    "hi": "f82ed237e42fc5798aa55b7a9bc1a3b392fba597fc68bbc3de8d968d09a76b0a",
+    "de": "273f0ee340369583c3a7373a9d35883a0bc7c940c9177aa1af60b0796ab586f2",
+    "ja": "b248504e1c4dd8914de91e5d109aca5712c6de630b9b164ca14ac4826c9bfb94",
+    "fr": "3e16c2bc1987a4018f591780ae97fc149a46b21516dfc822550db8ff8f83bf41",
+    "pt-BR": "659ad7444e6f88cf7b945e1b52276593725bec00111f2fcecccc897572e9f715",
+    "ar": "70aca3e8e6a669478ed69354c4a4cc74ec84db3ea1aeab2939195f93608ab838",
+    "ko": "dd72198f0e05e50c5e8110ce474c6fd099e48e4ee0c6e9160632fedc5fc547f4",
+    "zh-Hant": "27b2aaecea321ce782c1ed4bf26b49590b493250d22082cd7ad388618ef00b09",
+    "vi": "f2ddbe7c9811ba9f53397db49709e6fa81c292cee0d1869b89c4a1adae4a7379",
+    "id": "143c8d9524a1044b373df01eb989140d4dc1d6c53855b07781c2fa5dc7f127bf"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "14c65ba66c5ffd4d6074bc8b689d582b522cafe44906f1d3d6c468709604dfbb"
+  },
+  "callsiteLinesPreflighted": 360,
+  "reviewerMethod": "manual semantic review against exact source callsites and UI context; no translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "decisionCounts": {
+    "keep": 240,
+    "correct": 48,
+    "uncertain": 12
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "zh-Hans": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "hi": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 1
+    },
+    "de": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 1
+    },
+    "ja": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 1
+    },
+    "fr": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    },
+    "ar": {
+      "keep": 18,
+      "correct": 6,
+      "uncertain": 1
+    },
+    "ko": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 1
+    },
+    "zh-Hant": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "vi": {
+      "keep": 20,
+      "correct": 4,
+      "uncertain": 1
+    },
+    "id": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 1
+    }
+  },
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "44a724fff8734b42557997dfa2e8476c1159c625a23db4c35821d5e3b1ddd44c"
+  },
+  "crossReviewPlan": {
+    "path": "proposal-plan.jsonl",
+    "rows": 48,
+    "sha256": "c03732e03badefc2c8952d985c2dc89b5453b7dd3028b85d6ae75d71b08aaea5",
+    "status": "completed; all 48 targets accepted as proposed by independent root review"
+  },
+  "proposalAudit": {
+    "result": "PASS",
+    "rows": 48,
+    "sourceAndCatalogJoin": "PASS",
+    "sourceCurrentAndProposedHashes": "PASS",
+    "placeholdersAndProtectedLiterals": "PASS",
+    "candidatePlanPinsToCurrentHead": true
+  },
+  "semanticDecisionConfidence": "high for flagged corrections; 12 no-caller seed-count cells remain uncertain",
+  "independentCrossReview": {
+    "ledgerPath": "../pr409-catalog-correction-application-window26-2026-11-02/root-independent-cross-review-window26.jsonl",
+    "ledgerSha256": "bbe17de3a97b1417bba86683ac795b1b3708fc288d3ea87527acf6149ede9da3",
+    "exactApplyPlanPath": "../pr409-catalog-correction-application-window26-2026-11-02/root-exact-hash-apply-plan-window26.jsonl",
+    "exactApplyPlanSha256": "abc2142cec0e7d54f45690108f4678bc78929a20365cb816a11337546745050a",
+    "acceptedAsProposed": 48,
+    "refined": 0,
+    "held": 0
+  },
+  "subsequentApplication": {
+    "commit": "792f19f3ecf0370ff0cc65307cab376dd5512498",
+    "tree": "bb05bd2fb2d71937d12e2123237051ef02563013",
+    "rows": 48,
+    "uncertainRowsLeftUnchanged": 12,
+    "bundlePath": "../pr409-catalog-correction-application-window26-2026-11-02/"
+  }
+}

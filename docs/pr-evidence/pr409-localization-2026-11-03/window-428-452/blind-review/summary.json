@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W62 ranks 428-452",
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "reviewedCells": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "decisionCounts": {
+    "propose": 68,
+    "retain": 208,
+    "hold": 24
+  },
+  "proposalKinds": {
+    "refinement": 23,
+    "correction": 45
+  },
+  "holdsByRank": {
+    "438": 12,
+    "452": 12
+  },
+  "countsByRank": {
+    "428": {
+      "sourceId": "src_1f67d3ae92012561",
+      "source": "Please enter membership record JSON data",
+      "propose": 12,
+      "retain": 0,
+      "hold": 0
+    },
+    "429": {
+      "sourceId": "src_1f6b353db598335d",
+      "source": "Fuzzy Matching",
+      "propose": 1,
+      "retain": 11,
+      "hold": 0
+    },
+    "430": {
+      "sourceId": "src_1f722bfe602f1a1c",
+      "source": "(+{lastHiddenLockedHitCount} locked)",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "431": {
+      "sourceId": "src_1f7a57e5acb4bc3d",
+      "source": "Find similar content using perceptual hashes and text analysis",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "432": {
+      "sourceId": "src_1f7bcf973efa092f",
+      "source": "Sync Wanted",
+      "propose": 12,
+      "retain": 0,
+      "hold": 0
+    },
+    "433": {
+      "sourceId": "src_1f9437981103fcc1",
+      "source": "Total Events",
+      "propose": 3,
+      "retain": 9,
+      "hold": 0
+    },
+    "434": {
+      "sourceId": "src_1fa6915fbd099610",
+      "source": "Library Health",
+      "propose": 8,
+      "retain": 4,
+      "hold": 0
+    },
+    "435": {
+      "sourceId": "src_1fb0fade5ccbf818",
+      "source": "Connect to the Soulseek network (if not already connected)",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "436": {
+      "sourceId": "src_1fd48ec8be38dfa2",
+      "source": "Follow the selected link type from this ContentID to inspect connected content records.",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "437": {
+      "sourceId": "src_1fd516a548812c4b",
+      "source": "Reduced motion",
+      "propose": 3,
+      "retain": 9,
+      "hold": 0
+    },
+    "438": {
+      "sourceId": "src_1fde45c1ae57aa58",
+      "source": "Similar users loaded: {count}.",
+      "propose": 0,
+      "retain": 0,
+      "hold": 12
+    },
+    "439": {
+      "sourceId": "src_1fe8d438e269c038",
+      "source": "Save queue",
+      "propose": 3,
+      "retain": 9,
+      "hold": 0
+    },
+    "440": {
+      "sourceId": "src_1feabe6324c6e2c9",
+      "source": "Failed to start replacement searches",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "441": {
+      "sourceId": "src_1ff57a29d7c9d11b",
+      "source": "Next",
+      "propose": 3,
+      "retain": 9,
+      "hold": 0
+    },
+    "442": {
+      "sourceId": "src_20088e22e6b21135",
+      "source": "Application state (advanced)",
+      "propose": 1,
+      "retain": 11,
+      "hold": 0
+    },
+    "443": {
+      "sourceId": "src_200cc03289d30f78",
+      "source": "Hash Entries",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "444": {
+      "sourceId": "src_20107e597c85c955",
+      "source": "No smart-radio queries are ready for Wishlist.",
+      "propose": 12,
+      "retain": 0,
+      "hold": 0
+    },
+    "445": {
+      "sourceId": "src_20158224750041d6",
+      "source": "configured",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "446": {
+      "sourceId": "src_20195541dc5dea56",
+      "source": "releases",
+      "propose": 1,
+      "retain": 11,
+      "hold": 0
+    },
+    "447": {
+      "sourceId": "src_20196fa3fbb1ca84",
+      "source": "Soulseek rendezvous",
+      "propose": 1,
+      "retain": 11,
+      "hold": 0
+    },
+    "448": {
+      "sourceId": "src_201db683a702bfae",
+      "source": "{count} remain selected for another batch.",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "449": {
+      "sourceId": "src_202c8cee26b848c7",
+      "source": "Request to Join Pod",
+      "propose": 6,
+      "retain": 6,
+      "hold": 0
+    },
+    "450": {
+      "sourceId": "src_2047c33856237c12",
+      "source": "Read only until fixed",
+      "propose": 2,
+      "retain": 10,
+      "hold": 0
+    },
+    "451": {
+      "sourceId": "src_205e338eb691da6b",
+      "source": "Discogs #",
+      "propose": 0,
+      "retain": 12,
+      "hold": 0
+    },
+    "452": {
+      "sourceId": "src_2063789a98916996",
+      "source": "Download complete",
+      "propose": 0,
+      "retain": 0,
+      "hold": 12
+    }
+  },
+  "countsByLocale": {
+    "ar": {
+      "propose": 7,
+      "retain": 16,
+      "hold": 2
+    },
+    "de": {
+      "propose": 5,
+      "retain": 18,
+      "hold": 2
+    },
+    "es": {
+      "propose": 6,
+      "retain": 17,
+      "hold": 2
+    },
+    "fr": {
+      "propose": 4,
+      "retain": 19,
+      "hold": 2
+    },
+    "hi": {
+      "propose": 9,
+      "retain": 14,
+      "hold": 2
+    },
+    "id": {
+      "propose": 5,
+      "retain": 18,
+      "hold": 2
+    },
+    "ja": {
+      "propose": 6,
+      "retain": 17,
+      "hold": 2
+    },
+    "ko": {
+      "propose": 5,
+      "retain": 18,
+      "hold": 2
+    },
+    "pt-BR": {
+      "propose": 5,
+      "retain": 18,
+      "hold": 2
+    },
+    "vi": {
+      "propose": 4,
+      "retain": 19,
+      "hold": 2
+    },
+    "zh-Hans": {
+      "propose": 6,
+      "retain": 17,
+      "hold": 2
+    },
+    "zh-Hant": {
+      "propose": 6,
+      "retain": 17,
+      "hold": 2
+    }
+  },
+  "candidateFreeInputChecksumListSha256": "005097b25bd89a302b4caebd4478013fbc5b239c210f841613b5edb6d706660b",
+  "candidateFreeInputManifestSha256": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+  "notes": [
+    "The 24 held cells are the callerless rows at continuation ranks 438 and 452.",
+    "No primary review, current PR body, or prior candidate proposals were used.",
+    "Review was machine-assisted; native-speaker signoff was not performed."
+  ]
+}

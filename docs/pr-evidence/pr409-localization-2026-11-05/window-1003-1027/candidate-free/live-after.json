@@ -1,0 +1,27 @@
+{
+  "baseIsAncestorOfMain": true,
+  "baseRef": "main",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baseTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f",
+  "branchApiSha": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "capturedAtUtc": "2026-11-05T14:27:26+00:00",
+  "draft": true,
+  "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "headSha": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "headTree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "mainApiSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "mainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "merged": false,
+  "prBodyIncluded": false,
+  "pullRefSha": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "pullRequest": 409,
+  "remoteBranchSha": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "remoteMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "remoteRefs": {
+    "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030": "8c752c49281418fdd96341ed46f5c321627b625f",
+    "refs/heads/main": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "refs/pull/409/head": "8c752c49281418fdd96341ed46f5c321627b625f"
+  },
+  "repository": "snapetech-org/slskdN",
+  "state": "open"
+}

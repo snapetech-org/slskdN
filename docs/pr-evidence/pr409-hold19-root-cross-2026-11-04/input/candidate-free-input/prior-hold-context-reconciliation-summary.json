@@ -1,0 +1,28 @@
+{
+  "artifact": "W72 prior-hold caller false-zero reconciliation",
+  "reviewHead": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "reviewTree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "currentHead": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "currentTree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "sourceSubtreeOidAtBothHeads": "031a559dee5e6d4153d44dd26beb6d9c1243b9fd",
+  "priorHashOnlyHoldRowsAudited": 152,
+  "callerMetadataMismatches": 19,
+  "affectedSourceIds": 3,
+  "affectedCellsByRank": {
+    "409": 12,
+    "475": 1,
+    "504": 6
+  },
+  "currentCallerCountsBySourceId": {
+    "src_227ab7b919019ee9": 2,
+    "src_21351b02a51c3a85": 1,
+    "src_1ebad52e6ebb059b": 1
+  },
+  "targetHashesUnchangedAtBothHeads": true,
+  "oldHoldRecordsRemainHashOnly": true,
+  "cause": "The W72 candidate-free verifier validates only that each hash-only prior-hold caller count equals the length of its stored ref list and that the context hash is nonempty; it does not scan the pinned production tree for prior-hold sources. These 19 rows therefore passed with empty refs/count zero even though exact quoted callers are present in the pinned 311127 production tree. The 311127 and 03c73e7 src/web/src subtree object IDs match, and the affected source file blobs match at both heads. No production caller was added between these heads.",
+  "w72VerifierSha256": "418945296b82ada9331adde9bb1874e10d754d8c69de4d93c56147cd66a14e3a",
+  "reconciliationRows": 19,
+  "method": "The complete src/web/src subtree OID is identical at both exact heads. Every production source blob in the scanned tree matches both head trees. Exact caller refs were found in those shared blobs and are therefore pinned at both heads.",
+  "reconciliationRowsSha256": "3b74ec239fd8793156a1d22b7fd746482b801fc7de1d59c0a3baeeb227ada9d2"
+}

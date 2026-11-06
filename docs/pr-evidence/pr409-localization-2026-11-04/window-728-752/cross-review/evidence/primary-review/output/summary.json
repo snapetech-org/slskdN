@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "reviewPass": "independent-primary",
+  "head": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "tree": "14620c63bee971428fa1cd6cf1f4e944b86056a7",
+  "continuationRankRange": [
+    728,
+    752
+  ],
+  "remainingQueueRankRange": [
+    628,
+    652
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositions": {
+    "accept-current": 226,
+    "correct": 74
+  },
+  "proposedTargetCount": 74,
+  "sourceRewriteRecommendations": 2,
+  "sourceRewriteTranslationCells": 24,
+  "callerlessCells": 0,
+  "tokenMismatches": 0,
+  "holds": 0,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "blindOrCrossReviewUsed": false,
+  "inputManifestSha256": "b9ad370953c7afb4f6406b8f49d95a1d4f4c6deb90e6f03e4141cd957387fb1b",
+  "inputChecksumListSha256": "e4ecbabc1d37d08f5df2ae86cf6ee785e97c1dcc5c2a63598297d7e9537e73ee",
+  "selectionBoundarySha256": "636f158d40c69e6bdd0322deaaff419b9433bdf8f46e0ce1f2a3eb6531a47332"
+}

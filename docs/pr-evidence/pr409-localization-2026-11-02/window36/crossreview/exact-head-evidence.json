@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "pullRequestState": "OPEN",
+  "pullRequestDraft": true,
+  "pullRequestMergeState": "CLEAN",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "baseBranch": "main",
+  "exactHead": "370c172e91935d7753c398eaf1b1fbc2e82f65ba",
+  "exactTree": "61bd0c6af797b0e810fdf9fad82c7d3a95c88b9c",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "remoteBranchHead": "370c172e91935d7753c398eaf1b1fbc2e82f65ba",
+  "inspectionWorktreeClean": true,
+  "sourcePacketPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window36-20261102",
+  "sourcePacketChecksumVerification": "PASS",
+  "sourcePacketChecksumFiles": {
+    "README.md": "389b1f47c9013bdae28bc268dc9c1b9139a0d62135d8937f2a63d859eb15aec0",
+    "build_review_packet.py": "28d930c08ff4595726d21f02c727451555309c67017bb19c5560e59570831fe9",
+    "caller-attestation.jsonl": "2fcdf83cb34bd78ed775935c46343453be30f8b4349cef2d50494593b580c862",
+    "formal-cell-ids.jsonl": "7bd9c90a1176403feb36daadfecb7822616a818d15e9980c99c0bf5dc9d6f856",
+    "freeze-summary.json": "dfe310d11e5b2bb99df6a013794afbcc9a03d6168c1710534877fdb3717683b3",
+    "freeze_window35.template.py": "387f4a2dae6ebae6da6e64ee35b9d576d528dc1408dfa5d6517c409fe9bab8c1",
+    "freeze_window36.py": "f66b3b7f90b4cc81d89bee569fa54ac91696c5850d13eeee0598efaee5c87bd2",
+    "manifest.json": "6d61480315767b393b683abc2d3aa9ff32ea3b5e1c6efd560fe4a9d8d7e1ecdf",
+    "preflight.json": "f16d33136dd1220d27537f72564c83bc14b0bea4c6f7a7129609f7bf43c0c8ff",
+    "preserved-prior-routed.jsonl": "e19bc40f4d0326c803b4d65d90803f893cb6efadceb4ba9ca41e1302e5205f27",
+    "review-decisions.jsonl": "8b69438df55f61710c456803e6b3141c9dd9b5fd8b71ce26f8f6ddd5192728d5",
+    "review-evidence.jsonl": "0b27a0f106d17307b7e91b1b2c0c037bd1b3c3a4d1fa1438077aaa2ab90a89b2",
+    "review-input.jsonl": "afaff6fa0ec0f8ee26dae91669097dc1ecba614af5e85c364d1675da116c1bb4",
+    "review-summary.json": "624b0126d55bdfd384a02938ca942244dc806e632f54c5f044ae51051c24341d",
+    "source-attestation.jsonl": "7d7c9b92edacb6c4d4ef1a6bc09ea0c13d17ceb996a1f56478ea67c5e1bf5da9"
+  },
+  "sourcePacketManifestSha256": "6d61480315767b393b683abc2d3aa9ff32ea3b5e1c6efd560fe4a9d8d7e1ecdf",
+  "sourcePacketReviewInputSha256": "afaff6fa0ec0f8ee26dae91669097dc1ecba614af5e85c364d1675da116c1bb4",
+  "sourcePacketReviewDecisionsSha256": "8b69438df55f61710c456803e6b3141c9dd9b5fd8b71ce26f8f6ddd5192728d5",
+  "sourcePacketReviewEvidenceSha256": "0b27a0f106d17307b7e91b1b2c0c037bd1b3c3a4d1fa1438077aaa2ab90a89b2",
+  "catalogFileSha256FromPinnedGitBlobs": {
+    "ar": "61483b82cce9469ea0641033cbced542a3f4d9e99cbaf42252b893392a3350b1",
+    "de": "6e1e0071465b3af49d5c14c5ea842d749c730d8b3a3b4c99af84258c49510f7c",
+    "fr": "0ccdf68ec5af0055bbf361c54094972ffba6e51a8256cb983de5697d2c5ffa4d",
+    "hi": "5d70a77c2695fc871c215b2c4bd20bc38faf2a4506b0cb04fd0c8dc589eaf4aa",
+    "id": "df73eb49d5e9cc37080c84f4ada0c7bfe32a80326e6bfb6f20cffbf699fab4b1",
+    "ja": "f992dd1c0b43ab75e5d5788b7814ac0b76c47121819700b0f58f9fa1e19b8737",
+    "ko": "450779d8655d6938d3f960428365813887f76ca6d615a0b4df40b81d667f21a1",
+    "pt-BR": "2100679f24fa8a7d72fc2ffcd92218f844028764be98e7a302fa780677eea170",
+    "vi": "8f5e1d0ce67711c8cc8e8043306e0eef14f5c9c28774c2fe9decba6f53c818ad",
+    "zh-Hans": "d87b69b510c806244e9693c09c986d01b8747e63b44afbe3b9bc89bfeb0651fc",
+    "zh-Hant": "0d7a6b4fbd2a199db864ac41d34f2734ea4d5d43576320a3c65ee561aa38e997",
+    "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff"
+  },
+  "sourceIdsAttested": 25,
+  "sourceCellRowsReattested": 275,
+  "sourceLocaleCellRowsReattested": {
+    "ar": 25,
+    "de": 25,
+    "fr": 25,
+    "hi": 25,
+    "id": 25,
+    "ja": 25,
+    "ko": 25,
+    "pt-BR": 25,
+    "vi": 25,
+    "zh-Hans": 25,
+    "zh-Hant": 25
+  },
+  "sourceAndCurrentTargetHashes": "PASS",
+  "callerLineReferencesReattested": 429,
+  "uniqueCallerLinesReattested": 39,
+  "callerFileAndLineHashes": "PASS",
+  "placeholderAndProtectedLiteralChecks": "PASS",
+  "candidateTargetHashes": "PASS",
+  "priorManualReview": {
+    "windowsReconstructed": 35,
+    "cells": 10326,
+    "sourceKeys": 872,
+    "windowCounts": [
+      {
+        "window": 1,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 2,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 3,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 4,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 5,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 6,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 7,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 8,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 9,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 10,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 11,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 12,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 13,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 14,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 15,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 16,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 17,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 18,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 19,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 20,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 21,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 22,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 23,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 24,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 25,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 26,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 27,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 28,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 29,
+        "cells": 300,
+        "sourceKeys": 25
+      },
+      {
+        "window": 30,
+        "cells": 264,
+        "sourceKeys": 22
+      },
+      {
+        "window": 31,
+        "cells": 274,
+        "sourceKeys": 25
+      },
+      {
+        "window": 32,
+        "cells": 266,
+        "sourceKeys": 25
+      },
+      {
+        "window": 33,
+        "cells": 274,
+        "sourceKeys": 25
+      },
+      {
+        "window": 34,
+        "cells": 274,
+        "sourceKeys": 25
+      },
+      {
+        "window": 35,
+        "cells": 274,
+        "sourceKeys": 25
+      }
+    ],
+    "overlapWithWindow36": 0
+  },
+  "formalLane": {
+    "cellIds": 4800,
+    "overlapWithWindow36": 0,
+    "preservedSpanishCells": 25
+  },
+  "appliedCorrectionLedgers": {
+    "rows": 1411,
+    "uniqueCellIds": 1411,
+    "files": {
+      "docs/pr-evidence/pr409-catalog-correction-application-2026-11-01/applied-corrections.jsonl": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows18-19-2026-11-02/applied-corrections.jsonl": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows20-21-2026-11-02/applied-corrections.jsonl": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/applied-corrections-windows22-23.jsonl": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "docs/pr-evidence/pr409-catalog-correction-application-windows22-23-2026-11-02/applied-corrections-realm-window20.jsonl": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+      "docs/pr-evidence/pr409-catalog-correction-application-window24-2026-11-02/applied-corrections-window24.jsonl": "e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df",
+      "docs/pr-evidence/pr409-catalog-correction-application-window25-2026-11-02/applied-corrections-window25.jsonl": "030269709bebedf67f60d6c367bcd8e43ea92f7d9c9824ae6b9217b3afefdeb3",
+      "docs/pr-evidence/pr409-catalog-correction-application-window26-2026-11-02/applied-corrections-window26.jsonl": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd",
+      "docs/pr-evidence/pr409-catalog-correction-application-window27-2026-11-02/applied-corrections-window27.jsonl": "5af4b16894f7aed5b571c8dcb8b7572ae2e14eb6f3f507ce324bbc184450b8d1",
+      "docs/pr-evidence/pr409-catalog-correction-application-window28-2026-11-02/applied-corrections-window28.jsonl": "943fd894ad0d17b194d8ec426dce5457c1a2e3378292fd1cbe0bb1873f26b7b6",
+      "docs/pr-evidence/pr409-catalog-correction-application-window29-2026-11-02/applied-corrections-window29.jsonl": "a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9",
+      "docs/pr-evidence/pr409-catalog-correction-application-window30-2026-11-02/applied-corrections-window30.jsonl": "175dfca5f3348b6deb8e512c5f6fd79fe35b649f2f5872e6dff3c22ea1fde456",
+      "docs/pr-evidence/pr409-catalog-correction-application-window31-2026-11-02/applied-corrections-window31.jsonl": "2704474b3d89611ab953246fa99e3230a82e3214bf09ff707dda6bf5939011f7",
+      "docs/pr-evidence/pr409-catalog-correction-application-window32-2026-11-02/applied-corrections-window32.jsonl": "9210eb8998d661e19cc73a033d15c2adcd16ff502d7f66f6fc1bee5b030d0602",
+      "docs/pr-evidence/pr409-catalog-correction-application-window33-2026-11-02/applied-corrections-window33.jsonl": "b0e54802166f2a98e42ecfa6d79e364af14c30b8e69e0dfb079f4b3da18c7c78",
+      "docs/pr-evidence/pr409-catalog-correction-application-window34-2026-11-02/applied-corrections-window34.jsonl": "b75f7de69ae63f8ce95f37b1f24072fe999bfca9c7291dc0d2df4b5fecc80810",
+      "docs/pr-evidence/pr409-catalog-correction-application-window35-2026-11-02/applied-corrections-window35.jsonl": "86697c9ce74c9c333c6c3b38ab874a6a98ee93c6a582303816bfea994684fa15"
+    },
+    "overlapWithWindow36": 0
+  },
+  "noOpCandidateCount": 0,
+  "packetMetadataDiscrepancy": {
+    "declaredPriorManualWindows": 34,
+    "observedListedAndReconstructedWindows": 35,
+    "details": "The manifest declares 34 prior manual windows, while windowCounts lists windows 1 through 35 and the exact pinned Git ledgers reconstruct 35 disjoint windows."
+  },
+  "crossReviewVerdictCounts": {
+    "accept-proposed": 36,
+    "agree-keep": 228,
+    "hold": 3,
+    "missed-correction": 5,
+    "refine-proposed": 3
+  },
+  "primaryCandidateOutcomeCounts": {
+    "accept-proposed": 36,
+    "refine-proposed": 3
+  },
+  "perLocaleCrossReviewCounts": {
+    "ar": {
+      "accept-proposed": 6,
+      "agree-keep": 19
+    },
+    "de": {
+      "agree-keep": 22,
+      "missed-correction": 1,
+      "accept-proposed": 1,
+      "hold": 1
+    },
+    "fr": {
+      "agree-keep": 21,
+      "accept-proposed": 4
+    },
+    "hi": {
+      "agree-keep": 23,
+      "accept-proposed": 2
+    },
+    "id": {
+      "accept-proposed": 3,
+      "agree-keep": 21,
+      "refine-proposed": 1
+    },
+    "ja": {
+      "accept-proposed": 3,
+      "agree-keep": 21,
+      "missed-correction": 1
+    },
+    "ko": {
+      "agree-keep": 22,
+      "accept-proposed": 2,
+      "hold": 1
+    },
+    "pt-BR": {
+      "accept-proposed": 3,
+      "refine-proposed": 1,
+      "agree-keep": 21
+    },
+    "vi": {
+      "accept-proposed": 7,
+      "agree-keep": 16,
+      "refine-proposed": 1,
+      "hold": 1
+    },
+    "zh-Hans": {
+      "accept-proposed": 2,
+      "agree-keep": 21,
+      "missed-correction": 2
+    },
+    "zh-Hant": {
+      "accept-proposed": 3,
+      "agree-keep": 21,
+      "missed-correction": 1
+    }
+  },
+  "newMissedCorrectionCount": 5,
+  "holdCount": 3,
+  "nativeSpeakerReview": "not performed; remains outstanding",
+  "catalogsEdited": false,
+  "repositoryEdited": false,
+  "pullRequestChanged": false,
+  "testsBuildScansCiOrReleasesRun": false
+}

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "inputHead": "370c172e91935d7753c398eaf1b1fbc2e82f65ba",
+  "inputTree": "61bd0c6af797b0e810fdf9fad82c7d3a95c88b9c",
+  "changedCells": 44,
+  "changedCatalogs": 11,
+  "allLocaleCatalogsRetained6169Keys": true,
+  "heldCellsUnchanged": 3,
+  "readback": "PASS",
+  "files": [
+    {
+      "path": "src/web/public/locales/ar.json",
+      "locale": "ar",
+      "cellsChanged": 6,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "61483b82cce9469ea0641033cbced542a3f4d9e99cbaf42252b893392a3350b1",
+      "afterFileSha256": "d1395add89aad04473dd77e74119a4f13e553cb7ae7ef086a4640ae724a955c8"
+    },
+    {
+      "path": "src/web/public/locales/de.json",
+      "locale": "de",
+      "cellsChanged": 2,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "6e1e0071465b3af49d5c14c5ea842d749c730d8b3a3b4c99af84258c49510f7c",
+      "afterFileSha256": "fc5e743f4b9a196fda1a91a45f3955d0d9ddb4170ed7b095dc375ab674b694b5"
+    },
+    {
+      "path": "src/web/public/locales/fr.json",
+      "locale": "fr",
+      "cellsChanged": 4,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "0ccdf68ec5af0055bbf361c54094972ffba6e51a8256cb983de5697d2c5ffa4d",
+      "afterFileSha256": "232afa6ba63213a93ce069d31356d405f4a7fce2da3688edf250c983200618c1"
+    },
+    {
+      "path": "src/web/public/locales/hi.json",
+      "locale": "hi",
+      "cellsChanged": 2,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "5d70a77c2695fc871c215b2c4bd20bc38faf2a4506b0cb04fd0c8dc589eaf4aa",
+      "afterFileSha256": "800b0a0d4f701f5afec49b8ea2b8db1bbf6267a7df4a352c09e8db77e5442fad"
+    },
+    {
+      "path": "src/web/public/locales/id.json",
+      "locale": "id",
+      "cellsChanged": 4,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "df73eb49d5e9cc37080c84f4ada0c7bfe32a80326e6bfb6f20cffbf699fab4b1",
+      "afterFileSha256": "e2153985803b5dee08133ec344d57cc3dd984fbaf0d046d7ea5dec555128f0f7"
+    },
+    {
+      "path": "src/web/public/locales/ja.json",
+      "locale": "ja",
+      "cellsChanged": 4,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "f992dd1c0b43ab75e5d5788b7814ac0b76c47121819700b0f58f9fa1e19b8737",
+      "afterFileSha256": "843826bb8692be4e9f6082dde41b011a7c54c8017f62124d77fad72280fc63f0"
+    },
+    {
+      "path": "src/web/public/locales/ko.json",
+      "locale": "ko",
+      "cellsChanged": 2,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "450779d8655d6938d3f960428365813887f76ca6d615a0b4df40b81d667f21a1",
+      "afterFileSha256": "20604684b4796fde1bd0ea42813a7a9c9ba5d4aeb0f3b9d7ba1c49d68773979f"
+    },
+    {
+      "path": "src/web/public/locales/pt-BR.json",
+      "locale": "pt-BR",
+      "cellsChanged": 4,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "2100679f24fa8a7d72fc2ffcd92218f844028764be98e7a302fa780677eea170",
+      "afterFileSha256": "3d38db814ad5828cbe5193a58c64d9babf41650192d3365a20caaf1ba57e5c49"
+    },
+    {
+      "path": "src/web/public/locales/vi.json",
+      "locale": "vi",
+      "cellsChanged": 8,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "8f5e1d0ce67711c8cc8e8043306e0eef14f5c9c28774c2fe9decba6f53c818ad",
+      "afterFileSha256": "8bfb9b431a214d62bc6eb435cc8c154c9d01139639179de8ec5c30aa957bf1b8"
+    },
+    {
+      "path": "src/web/public/locales/zh-Hans.json",
+      "locale": "zh-Hans",
+      "cellsChanged": 4,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "d87b69b510c806244e9693c09c986d01b8747e63b44afbe3b9bc89bfeb0651fc",
+      "afterFileSha256": "ee1d5332cfb88b2d03124281d98004466ff62d77000125cdfc406a96c5aa58ca"
+    },
+    {
+      "path": "src/web/public/locales/zh-Hant.json",
+      "locale": "zh-Hant",
+      "cellsChanged": 4,
+      "keysBefore": 6169,
+      "keysAfter": 6169,
+      "beforeFileSha256": "0d7a6b4fbd2a199db864ac41d34f2734ea4d5d43576320a3c65ee561aa38e997",
+      "afterFileSha256": "a5701099e2151a5724b3fbaf665ea4d59d34ab138c2f37fc7ad5b3f7be50805b"
+    }
+  ]
+}

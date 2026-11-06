@@ -1,0 +1,171 @@
+{
+  "blindInputEqualsPrimaryInput": true,
+  "blindPrimaryComparison": {
+    "blindsProposedChanges": 41,
+    "candidateTextDisagreementCount": 48,
+    "coarseDispositionConflictCount": 49,
+    "disputedCellCount": 71,
+    "primaryCandidateChanges": 51
+  },
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "callerReferences": {
+    "callerRefsCellRelevant": true,
+    "callerlessSourceIds": [
+      {
+        "productionCallerCount": 0,
+        "rank": 270,
+        "source": "waves ·",
+        "sourceId": "src_199ba895c707daaf"
+      },
+      {
+        "directLocalizedCaller": false,
+        "productionCallerCount": 1,
+        "rank": 272,
+        "source": "Certificate password",
+        "sourceId": "src_19b3efdadf4c6e0b"
+      }
+    ],
+    "primaryReported": 68,
+    "recountedFromPinnedInput": 68,
+    "validation": "For all 300 cells, source ID, source hash, exact caller reference set, and caller-context hash agree across the pinned input, blind ledger, and primary review. Primary count 68 is the input reference count; it does not imply every reference is a direct localized caller."
+  },
+  "cellCount": 300,
+  "changedWinnerCount": 50,
+  "disagreementExtract": "disagreements.jsonl",
+  "head": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+  "historicalSourceOrdinals": "unavailable and not claimed",
+  "holdCount": 43,
+  "importantHolds": [
+    {
+      "cells": 12,
+      "rank": 270,
+      "reason": "No production caller references.",
+      "source": "waves ·"
+    },
+    {
+      "cells": 12,
+      "rank": 272,
+      "reason": "One raw JSX fallback occurrence at AdminPolicies/index.jsx:1227; no direct localized caller. The primary packet counts it as a reference, but reference existence is not direct localized consumption.",
+      "source": "Certificate password"
+    },
+    {
+      "cells": 12,
+      "rank": 262,
+      "reason": "Direct LocalizedText caller at MediaCorePods.jsx:1650; DHT Pod noun has no approved localized glossary target.",
+      "source": "Publish Pod"
+    },
+    {
+      "cells": 7,
+      "reason": "Terminology held: rank 254 ko; rank 255 id and vi; rank 256 vi; rank 258 id, ko, and vi. The packets do not establish approved UI terms for these semantic choices."
+    }
+  ],
+  "independentBlindInputContainsCandidates": false,
+  "inputManifestSha256": "8d9fe2f15b2761cd23f22f00cc734dd1eb6791b06f8e12341cc91ac14cb59f0d",
+  "ledger": "reconciliation-ledger.jsonl",
+  "livePrVerification": "live-pr-verification.json",
+  "nativeSpeakerApproval": "pending; this machine review is not qualified native-speaker approval",
+  "outcomeCounts": {
+    "HOLD_GLOSSARY": 12,
+    "HOLD_NO_DIRECT_LOCALIZED_CALLER": 24,
+    "HOLD_TERMINOLOGY": 7,
+    "KEEP_CURRENT": 207,
+    "WIN_BLIND": 3,
+    "WIN_PRIMARY": 47
+  },
+  "outcomeCountsByLocale": {
+    "ar": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 16,
+      "WIN_PRIMARY": 6
+    },
+    "de": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 20,
+      "WIN_PRIMARY": 2
+    },
+    "es": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 18,
+      "WIN_PRIMARY": 4
+    },
+    "fr": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 20,
+      "WIN_PRIMARY": 2
+    },
+    "hi": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 20,
+      "WIN_PRIMARY": 2
+    },
+    "id": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "HOLD_TERMINOLOGY": 2,
+      "KEEP_CURRENT": 16,
+      "WIN_PRIMARY": 4
+    },
+    "ja": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 18,
+      "WIN_PRIMARY": 4
+    },
+    "ko": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "HOLD_TERMINOLOGY": 2,
+      "KEEP_CURRENT": 15,
+      "WIN_PRIMARY": 5
+    },
+    "pt-BR": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 20,
+      "WIN_PRIMARY": 2
+    },
+    "vi": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "HOLD_TERMINOLOGY": 3,
+      "KEEP_CURRENT": 12,
+      "WIN_BLIND": 1,
+      "WIN_PRIMARY": 6
+    },
+    "zh-Hans": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 16,
+      "WIN_BLIND": 1,
+      "WIN_PRIMARY": 5
+    },
+    "zh-Hant": {
+      "HOLD_GLOSSARY": 1,
+      "HOLD_NO_DIRECT_LOCALIZED_CALLER": 2,
+      "KEEP_CURRENT": 16,
+      "WIN_BLIND": 1,
+      "WIN_PRIMARY": 5
+    }
+  },
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPrEdits": false,
+  "structuralValidation": {
+    "allSelectedTargetsValidated": true,
+    "callerReferenceSetsAndContextHashesMatchedAcrossThreeRecords": true,
+    "markupMismatches": 0,
+    "numericTokenLosses": 0,
+    "placeholdersMismatches": 0,
+    "protectedLiteralLosses": 0,
+    "sourceCurrentCatalogHashesMatchedAcrossPackets": true
+  },
+  "testsBuildScansCiWorkflowChanges": false,
+  "title": "Independent cross-audit reconciliation: slskdN PR #409 W54",
+  "tree": "632924177388e15b594976774d2d879a098e8a72",
+  "window": "Ranks 251–275 × 12 locales = 300 cells"
+}

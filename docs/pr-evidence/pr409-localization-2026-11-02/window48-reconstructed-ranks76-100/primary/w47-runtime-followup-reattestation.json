@@ -1,0 +1,789 @@
+{
+  "runtimeCatalogCells": [
+    {
+      "locale": "ar",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "182fa45411aab1a3fb4e4494612a16a9b66b2b836bfded42546d9ceb59fc0d14",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ar",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "b52c347c52fac02d31091d1102689618e0f784fd4ef987d89647298d918f510c",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ar",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "e3d6d0071e051c7f5658474b4cf1d3dfe8b7d75f60a950178c01a823ad51ac82",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ar",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "5dbd631c1661de3a2e258931077a767404593c7821901ea696a3c4f34fbce492",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ar",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "c2c1192ef64ed5a103916e728e92a592c2f2f68d47bc152d080fb84697d075ca",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ar",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "cb576914de78cd363e35a16de5d344144bb62a62d2f682dcbeec7c0f4930b187",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ar",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "6ca45317e2517be39294c252178af7f45a1461568811ca436942e90d9c162c11",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "2a29510c283724119f8b9cb2f60f4cb9d593ff9f3b60fd7e06fb77a4bad6ea07",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "5270358bdb2202fa2f6d07d8cc5ab92dfb0e4d56f73e491efba07119374c1339",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "f830c3c582cece8d29a8a0c855a31bb6b251ddad3aac66d11cabdf4876be43fd",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "11857a1b294cb1fbb3280c09ca8b8df07d87db3c3943e9c366533e49bdcf3c29",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "24eecf5aeb71992bbfb1ee255c32f5d082d21405436b46222e923cde710c6611",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "3ca8b45b821e79aad278e47dbaddfce6cae173153e2998ebd2e91603ab577411",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "218b9b6423a6fb752fff819ebe7f74f456417758242f6a49449fe49223e8daf0",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "889a484b3f6d2eb0af972e8bdf3594693e08aaeb9ea6db02d384292e74ca9fbc",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "df896394f07cd453d0ff03d01d8ee7c9c36a552fb62bd61714380832e474301d",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "bac9b09cfe55eca1ff34d13f5e50e129082ef7c4ab3024624b8ffd9b4df638c4",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "5b0bedf8ecfc73fc84be5a84958149fbc9bcea20420dc205b5a0591a07e9691a",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "3feab4985a3ac5cde7a0dbd3342968678c60bfd8487f6e15c37e48c3c11ea2b5",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "246132adadfbf45f7a60a0bf102c0e35da95aa7e181e16cbe5ca79483b773c2d",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "24d3fc76e82fa5ec47fc6027c6585777a44d079dc360cca14e68d43346579445",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "cd9ac3dda4220340c91644a8ebb51db0611a83c94823f33fc07617be5b7c0f91",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "1e7474cc84509c307a858bd8560a40f23ff42263315931148881225da48f3df7",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "d68022746e80990f10f5550944e25ccab7d337687d6919409845f3af0fd7a74b",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "7f1b6b9b421106c2ed6b760486eea73bb217ab911c4c5a095ed1c32a71a74fee",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "ff2e92674a4cd5784ecdac898042a0e2528d76c83b684d4b78bc7bd107f2761a",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "04dcc773502093a6e6f4515c5afef9321f954d3d0e5e5d169ec5a0e0629af335",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "cabe8a2d5d6faca9298547b6e8e5baa13f2e5f2df87be07e42709030407ca8c6",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "2bda9cd002ecec397bb5d767202358e701a47055d413452f4707b22e3d8644a0",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "a87fc6a15362fc22bee296d0d59cf7d4148620ac4a5336f1cbb85349c7018ddf",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "f703f477d4805df5992aa3c082bbc9b9c04c42344a92254143f536cbdc23df28",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "97cf28661bcd4eff9c4a56c419c8d502ac5132673565deb2ff3a5decc6e26234",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "a5459791cc2223049a373e9a77fb2b29f1d4bbac4abfbf66a5db8582c5671841",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "a271933e0e7fb5c021443833ac27a00278fc6004ded65ffd77269bb33ec8e68c",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "2436bec443b2bdbdce288afc1eaa61acc8a1540ea05b002a9263bc4ae6e79ad3",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "d021ba22a62b8a5c61087b61b842b05b50ea14157db8f3b14b104ba6e366abdd",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "7695e792660d8146b4e32e4648e02b5ae49d2af28e417e18d848355d87c6405e",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "c686e581d8abe23ce797c080f431bd20dff9050f677d91949202bc9764135c98",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "f04594bcf53fca0ddd0c0aeeebfa30a75523736d8f2cd348b7e33946c5717456",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "6caa32ec79dec91640109f8ee53216729e4e66543a4906b08fdba3a7b17f0b31",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "7b97d7b098b97b2812f11aee59c16f0409d4a1e0e3d9db09ea7ae4aea9c7b84c",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "4d7116d50fe280423c2b1091f908ea05c4fdae8740cdb16b4ff23cdc6099158a",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "05f5fabc065da526223d37bd58ac9cd318011bf8019e25501409ca63954a1c88",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "36d0b66fdd2370b94a74ec4c7d9eb7915a53168321effd5c62748532211a2d86",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "56222099df9a74bcbe2dd23d82185004f729617898c856cc61eacb5484c82a79",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "e46cdf7063bb415eaa77c37c277d035a2ed5444377c498044b760e88af77f7ef",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "3195bbfe6d80d926e07ffee7415e219766caf69bdfb81d602a8c910ff4d21f0f",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "09cf6d194ff876cedda4632cbc6fd09824c494c3e5c8ba406b4add1f011d76e2",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "4b344ef8f62c79e10034e1fab6b2833bc079640d2312f17c3f18fa46757d5112",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "2a2a03785c2f4664d389ec68da89e895d3e8bd4d8767a657bf6679f1497188f1",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "b53cd7cb47b0cdfe7f81fb2b5c299d1ac0a84c78e13567c238440aff94b2076e",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "6392671f0599281b52bd3bfc3b3ce367764600821305bfa0a1501b4b72180a8f",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "23010ba0c93a90e89f18230c8783480576474f9e1d7bf5ae5faa5cfce3de740f",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "014e11127bbe3220922383e9ce1008cc3f4dc846dc9ba97722a26673d1a73bbd",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "d9c3e550c8a70f1688e4f4fd9d5a5db853dae9c922435cb709a415fc0748bfc2",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "fe4a8821429988adfd0339b7d59aa9e23bdef5566672a23087d3ddedec883c90",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "92182745d7a90ea23fa75dbd03eaac3d6ae115aba773cb18a4a64f5180bb7f06",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "c78593f22be1a9f6192fcf2b9c993bae42fe534062156bb47708cc49848b4aec",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "96e3714d152d3ee5fe575ae4afe4d30470596efb3952d4d64b6f660d5cd7e26a",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "2ab9a89f500c323713924710c7bad59d3dc4613cdd32ca54707ed0fb3785f228",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "0c96a911145e75fc4cb6be24242324393497c7839f16de2baf4ab8ffe37ba8f5",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "9bc33e0087b72ee7f9603917986d6c07aab8e39e5e30c23ead0bd39c0ff3fb18",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "99df9d1a7751375d26842a71707a7482cebf7b4c5738788ba6474326b442c173",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "7bdbe50def5b3611d374be1dac569d9d77da8309d3b39212288b441f8f6c98e6",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "5645fa7faa8b1b25a3f164b38674aad29d781d2654b07add9ea324787ec0cf7a",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "1943a52f1c1215db8dc4820c8f3aecb51ee17e99da2b6fb1ea8972621e5a0107",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "a083d12eb3824ee34ef0188e466e561ebf13b79061d66d816d6f3dc67d4f8454",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "a5531dabd58ef7a54f44383d547434e1f68812eeb721a84f747d21d3e6635c7b",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "29085eb6e539a049f62ef484afc4495a0b237aa23d44b2dae492a320eb82bb04",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "181bbf6a3833c47d2a0dc48ccbc664d2225afb36ba7524a16a7f8caa27d7449c",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "7fbea13dbe8d5e94bfb06aa83004115d7b84d938c4c0a3b0a1490357ea4f403f",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "273337f9f040107c28584046fe7db7bf1b9c7fd090c61da0e027fdf7fbd277a4",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "3e5e1a7d0fabe7a3ef034698a536ed3b8d9faabb1194558efec66cb14dbb7c11",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "97ef1ab4fd2437be23107e975f38fd605ebb22aa93c74bf56d5866c6bddec810",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "032ce0aba5aba445652bf89fa8e8d03539431cee26a406d4b3eee2de73b0d828",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "71fe93ce53e47a6dd159e296fe3e247024d01861a36d577556df91f09892b9dc",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "d93853799f0b4e6e4385637ddbf6e2bc065a4f673b9bec57877a0553a71e3d87",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_e5e3f49f554968a4",
+      "source": "Room state could not refresh. Retry the connection to catch up.",
+      "targetSha256": "bb373af7d7e947b363093da388933f1d0cb4548a98738ca5751508bea7685d3e",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_116e8824be65bb9a",
+      "source": "Could not rejoin this room. Retry the connection.",
+      "targetSha256": "a5f6ebab4cb54091018a2c8607ec2697eae92f3a6977f775ae14f0a5fb747fe2",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "targetSha256": "04c9d32e1eefd7ea77ea96ba895b363fda8177a154129fd960ce40287dd228b9",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "targetSha256": "aadce07504b3b87d228793d8c7e09a9e96c2f0eca0c2e729217af7a60ba73c38",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_fddfd63ca70630b0",
+      "source": "Listen-along connection closed. Retry to rejoin this room.",
+      "targetSha256": "b6568d91e2635e2f7b1bc139ff78d00956df110a6ee5b4e77ceb306aa18597f1",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_12223e738586ea68",
+      "source": "Close another room before opening listen-along here.",
+      "targetSha256": "ea4bda8d36aa4d8fd0cb8aee0668a636c72ab1a964273a5fb7599dbc74594a1f",
+      "matchesW47RuntimeReadback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_1187c9b849db36a1",
+      "source": "Failed to load contacts.",
+      "targetSha256": "2920e3fe35c1295cd92ecf311485a96c1b89159f4bc7c321f26f5105580188e2",
+      "matchesW47RuntimeReadback": true
+    }
+  ],
+  "richTextSourceCells": [
+    {
+      "locale": "ar",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "8393b9daf9bf796c5212a9ad15a614f638d9ced231965acaf436f6b52e3f787f",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "de",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "d4d49cb5f17af068afdb950cc0f9147383ffc86eb94134652dbe491ce47d850e",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "es",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "8f2b11d79de70430b91625ff486669ba0bb8e96808f646ee1f3d5ba35db89006",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "fr",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "3c9b83826e050b0d39b94487d05e71e0085246673ec9b0ff0808a09bb47433e1",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "hi",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "ef6b3b7a84d7cfab74a6d86b4c25f1b545cbffe060f898ff5c0b62c822e3c76d",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "id",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "6b52b80aaf18860465030dd15d7cd24d55ca06f7f50a7f7c0d4317e47fedf0d1",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "ja",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "2485a89164209078ef9d28583b64f725a85cbd3805ce8e3f8fd8c6b48e7530bf",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "ko",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "e088e7a8f229ce77f5545872b56b317f42372e2d92b460adf283699ac36fc37d",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "pt-BR",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "e60a5bc705ac02ed4c6ca42a183c01cbce6b00df6968692be7ef81f1d38427d1",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "vi",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "d3485030d6842cebb6520c46918a0a96f46903df5b6f785f1ccc855129172569",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "zh-Hans",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "ceb97b116a37931b9ad1f50e301cb3522a4b8297fd10700d03458b9678f33253",
+      "matchesW47Readback": true
+    },
+    {
+      "locale": "zh-Hant",
+      "sourceId": "src_9f923ae09ae2aeb7",
+      "targetSha256": "7f1ead7a260f01d791178ea9780415889b486b880d2c358c82a90f2924a966f9",
+      "matchesW47Readback": true
+    }
+  ],
+  "w47PrimaryChecksumEntries": [
+    {
+      "path": "README.md",
+      "expectedSha256": "3ba80711e96d588746723588272a0b7d22d3cc9612d318c3788c4ff828724608",
+      "actualSha256": "3ba80711e96d588746723588272a0b7d22d3cc9612d318c3788c4ff828724608",
+      "matches": true
+    },
+    {
+      "path": "caller-context.jsonl",
+      "expectedSha256": "82e6719da74419fd2a6ab59c4d0f8628bf5353643c8f4c1ce20354f7ceacba8d",
+      "actualSha256": "82e6719da74419fd2a6ab59c4d0f8628bf5353643c8f4c1ce20354f7ceacba8d",
+      "matches": true
+    },
+    {
+      "path": "caller-source-hits.jsonl",
+      "expectedSha256": "5a40cea2674087f4a34af8a4dbe829f3596a43608c7f31bbe9b6c34aa19c1f8d",
+      "actualSha256": "5a40cea2674087f4a34af8a4dbe829f3596a43608c7f31bbe9b6c34aa19c1f8d",
+      "matches": true
+    },
+    {
+      "path": "catalog-structure.json",
+      "expectedSha256": "f56ba1ab8e535bc13234c92e6b5e9eb7d6c8f292dfe1df46c70f59651fbd2161",
+      "actualSha256": "f56ba1ab8e535bc13234c92e6b5e9eb7d6c8f292dfe1df46c70f59651fbd2161",
+      "matches": true
+    },
+    {
+      "path": "context-boundary-review.jsonl",
+      "expectedSha256": "1773265847ed7590c5cf1573773445620e19ec4b15c3029d25cf65547d0f0cd6",
+      "actualSha256": "1773265847ed7590c5cf1573773445620e19ec4b15c3029d25cf65547d0f0cd6",
+      "matches": true
+    },
+    {
+      "path": "head-seal.json",
+      "expectedSha256": "e76c88b7b19b66f0a8a7704f0b7a952b38d1a729ddcf812483cbde0e97e2a54a",
+      "actualSha256": "e76c88b7b19b66f0a8a7704f0b7a952b38d1a729ddcf812483cbde0e97e2a54a",
+      "matches": true
+    },
+    {
+      "path": "input-cells.jsonl",
+      "expectedSha256": "5e451b12a1944689be23e7832574ac8b0791996a8267bd6a8fdc6a523d7575a7",
+      "actualSha256": "5e451b12a1944689be23e7832574ac8b0791996a8267bd6a8fdc6a523d7575a7",
+      "matches": true
+    },
+    {
+      "path": "input-integrity.json",
+      "expectedSha256": "e48544bf760d2a5f125abed897eb5c64aec3ae101c90c38e88db1b4e91dc9449",
+      "actualSha256": "e48544bf760d2a5f125abed897eb5c64aec3ae101c90c38e88db1b4e91dc9449",
+      "matches": true
+    },
+    {
+      "path": "live-seven-pr-heads-after.json",
+      "expectedSha256": "9628f9e05e1c477b837434e0ca91220b6a2d2d4f4b84a611b91e74f7f73eb185",
+      "actualSha256": "9628f9e05e1c477b837434e0ca91220b6a2d2d4f4b84a611b91e74f7f73eb185",
+      "matches": true
+    },
+    {
+      "path": "live-seven-pr-heads-at-selection.json",
+      "expectedSha256": "be74c611beaf55dafbae8a2bde646ff219254534b71e55d622cd38be83d25ccd",
+      "actualSha256": "be74c611beaf55dafbae8a2bde646ff219254534b71e55d622cd38be83d25ccd",
+      "matches": true
+    },
+    {
+      "path": "live-seven-pr-heads-start.json",
+      "expectedSha256": "e5f025092931b7c06cc59240b012758f6b1e9b903d94c88a5a2c81746c2010ea",
+      "actualSha256": "e5f025092931b7c06cc59240b012758f6b1e9b903d94c88a5a2c81746c2010ea",
+      "matches": true
+    },
+    {
+      "path": "prior-source-ids.jsonl",
+      "expectedSha256": "a8c45f1e9d6e3af169cd84a47a77951f05d7c28e38a1377c46a1dd886748cfa5",
+      "actualSha256": "a8c45f1e9d6e3af169cd84a47a77951f05d7c28e38a1377c46a1dd886748cfa5",
+      "matches": true
+    },
+    {
+      "path": "review-decisions.jsonl",
+      "expectedSha256": "f04087cd8fe097a4b5244c7909b8b825f505b1dbba2f5b97ba4f5d2ddc918e83",
+      "actualSha256": "f04087cd8fe097a4b5244c7909b8b825f505b1dbba2f5b97ba4f5d2ddc918e83",
+      "matches": true
+    },
+    {
+      "path": "review-summary.json",
+      "expectedSha256": "db79a026c31b64862ada9411d50d8a665f120cdbf33a29b54565b47ddafd4733",
+      "actualSha256": "db79a026c31b64862ada9411d50d8a665f120cdbf33a29b54565b47ddafd4733",
+      "matches": true
+    },
+    {
+      "path": "source-inventory.jsonl",
+      "expectedSha256": "b303eca33138285b6cfe58ece54fb50854995155478f930b91125b0b84e592c7",
+      "actualSha256": "b303eca33138285b6cfe58ece54fb50854995155478f930b91125b0b84e592c7",
+      "matches": true
+    },
+    {
+      "path": "source-runtime-gaps.jsonl",
+      "expectedSha256": "17a1109b67acef4994b80a5ffe2f44b86899350ebe85de58655d484fe7c1607b",
+      "actualSha256": "17a1109b67acef4994b80a5ffe2f44b86899350ebe85de58655d484fe7c1607b",
+      "matches": true
+    },
+    {
+      "path": "source-selection.jsonl",
+      "expectedSha256": "9fcb7b0ff13304c7a4a45db1a0c151b347398958cd5fff1480a4237433f161df",
+      "actualSha256": "9fcb7b0ff13304c7a4a45db1a0c151b347398958cd5fff1480a4237433f161df",
+      "matches": true
+    },
+    {
+      "path": "w46-followup-source-ids.jsonl",
+      "expectedSha256": "cdcc438976f7b13d45dc91eb40644533937a8206ff931399b2d8ff9dbe9e9344",
+      "actualSha256": "cdcc438976f7b13d45dc91eb40644533937a8206ff931399b2d8ff9dbe9e9344",
+      "matches": true
+    },
+    {
+      "path": "w46-selected-ids.jsonl",
+      "expectedSha256": "4b0621b7cf11d0f73186be6ab8a98ababc48d747deddb4503a8666bc6d50c5f6",
+      "actualSha256": "4b0621b7cf11d0f73186be6ab8a98ababc48d747deddb4503a8666bc6d50c5f6",
+      "matches": true
+    },
+    {
+      "path": "worktree-pin.json",
+      "expectedSha256": "2403b400d2db08605d31caaeba174dcf798c36f3d7553f872184e729ae03b7ef",
+      "actualSha256": "2403b400d2db08605d31caaeba174dcf798c36f3d7553f872184e729ae03b7ef",
+      "matches": true
+    }
+  ],
+  "failures": 0
+}

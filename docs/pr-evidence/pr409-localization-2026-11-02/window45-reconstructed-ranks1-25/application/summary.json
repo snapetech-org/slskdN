@@ -1,0 +1,161 @@
+{
+  "W44ReadbackCellsReattested": 300,
+  "browserReview": "not performed; exact-head deployment state must be checked after push",
+  "callerContextReferencePinsReattested": 72,
+  "callerLinePinsReattested": 72,
+  "catalogs": [
+    {
+      "afterCatalogSha256": "b9031eba19eacee5efae372f023e6fadbeadaf1c65752e5d4bb0a6b2d1f2b720",
+      "beforeCatalogSha256": "b6348a4ff664242f4de2cde062d5795ecf56fcb8f925224f2b84f7a5b1a5bb5d",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "keyCount": 6170,
+      "locale": "ar",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "2f29b30715a90507471a7787efb30e2cd700e5f162a4f1ddc9d1ae6bb04194ba",
+      "beforeCatalogSha256": "b0d039dd566ef9e1ffa022ac87bdabfe6015472972e9ff0c293102b611152993",
+      "catalogPath": "src/web/public/locales/de.json",
+      "keyCount": 6170,
+      "locale": "de",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "875fcc680fbd50d7ecc691e4840e3b1101f2da51b7c53efa8a6d1cf531087507",
+      "beforeCatalogSha256": "4ee15013602617d3ce844f7bb32a419686f889669874736696d8a4d7e0c28f54",
+      "catalogPath": "src/web/public/locales/es.json",
+      "keyCount": 6170,
+      "locale": "es",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "244488abbf3de2a515fc41c74561bbb8da956fe36c3b183c8bc75663ef5412af",
+      "beforeCatalogSha256": "dbd863ee0f59448c8c7c20bc8c5cb88e08cf07be7044b265374db36b1b41a83e",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "keyCount": 6170,
+      "locale": "fr",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "ebfb75ab65ed509757e5336c5ebb79670662231fe386f4d11941b8bb4841b9c0",
+      "beforeCatalogSha256": "94dfc1d7704fef94441c01bcb01a99e54cafc1b9df7d0775299597183dfd3738",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "keyCount": 6170,
+      "locale": "hi",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "24865939223172513356272317bab0b7f0721d044459f9baf9d8a9a9600724ac",
+      "beforeCatalogSha256": "c9fa255c5b31a383c19867b55f4651d02eb46295f125189e28e3fc7df1283a80",
+      "catalogPath": "src/web/public/locales/id.json",
+      "keyCount": 6170,
+      "locale": "id",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "021f39c3d70faccbe48d01dea9146a87672e6a81c6285dd894002578f162ba91",
+      "beforeCatalogSha256": "021f39c3d70faccbe48d01dea9146a87672e6a81c6285dd894002578f162ba91",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "keyCount": 6170,
+      "locale": "ja",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "c23b9ffc37fc29c92a14ad364e8bc078dfda9cd851c637b38779903e09c2abf4",
+      "beforeCatalogSha256": "5900bfe17e4a93aec4cbe7588f2cf4ff3ff60b188259c933335b2e482f66f0ba",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "keyCount": 6170,
+      "locale": "ko",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "9374306fd0f179de341bbc9b6fbcaa05dcdf4154d7014b2fba4cf094582d890e",
+      "beforeCatalogSha256": "8a770c855e178fe9dc46a58e8e73d3a1ef446c18ec6f8aee4d4618f39cc9375d",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "keyCount": 6170,
+      "locale": "pt-BR",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "fbf84be2bf4535310bfcc72573e24d75c3af86366015518ff5eb6709cf474899",
+      "beforeCatalogSha256": "621bb9fad68de4ba8895a2080eb55475865bf14cbf88a9495f5931ac2eb0da50",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "keyCount": 6170,
+      "locale": "vi",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "64c66ca14ef78f412fd1f2e0308212a543ceb42ea9df1a60acec5c639657fdc2",
+      "beforeCatalogSha256": "c5ca5beb8103b988efe82d4145ae43ca91c414c1adc7d3f0ce53ce371f8cd4e6",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "keyCount": 6170,
+      "locale": "zh-Hans",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    },
+    {
+      "afterCatalogSha256": "23b83822d8f7cb336cdcd76c0a6e966bb311551d7f297c27cd731bec1189b0e8",
+      "beforeCatalogSha256": "39d0f79ab976a46f09bd1fea13f5e02ed7c6e0150631b83143a1cd5c8092fce4",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "keyCount": 6170,
+      "locale": "zh-Hant",
+      "orderedKeySetPreserved": true,
+      "orderedKeySetSha256": "babb455f8d13d96e0cc25158f33daaadcbf01f346d88691fcc1cc714e6806567"
+    }
+  ],
+  "cellsReviewed": 300,
+  "changedCatalogCells": 35,
+  "crossReviewCounts": {
+    "accept-current": 265,
+    "accept-proposal": 34,
+    "revise-proposal": 1
+  },
+  "crossReviewManifestSha256": "a95551ec11334061136dae83f81a9d2433c77ae4618c252d7fb5dd4edf0f2b34",
+  "crossReviewPacketFileCount": 7,
+  "draft": true,
+  "exactInputHead": "6a082138c09fa8af40aee3258beb98523ee821d9",
+  "exactInputTree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+  "historicalSourceOrdinalRange": null,
+  "locales": 12,
+  "mergeReleaseTag": false,
+  "nativeSpeakerApproval": false,
+  "nativeSpeakerReview": "outstanding",
+  "orderedKeySetsPreserved": true,
+  "placeholderMarkupProtectedLiteralFailures": 0,
+  "primaryPacketFileCount": 30,
+  "primaryPacketManifestSha256": "29b23467516b41a1b4a13758aa69345689907d819ad48587c92047565275f677",
+  "productionCallerGaps": 0,
+  "pullRequest": 409,
+  "releaseNoteParagraph": "Transfer diagnostics and retry guidance now use clearer localized connection states, timeout units, and security-setting instructions.",
+  "repository": "snapetech-org/slskdn",
+  "revisedCells": [
+    {
+      "finalTarget": "Intente cargar de nuevo la configuración para entornos adversarios después de habilitarla en el servidor o restablecer la conexión.",
+      "locale": "es",
+      "primaryTarget": "Intente cargar de nuevo las configuraciones adversarias después de activarlas en el servidor o restablecer la conexión.",
+      "reason": "The revised text keeps formal Intente and describes a configuration for adversarial environments, matching the adjacent security explanation; it preserves enabling the server setting or restoring the connection as the retry condition.",
+      "selectionRank": 15,
+      "sourceId": "src_0fbdb1f5674cf535"
+    }
+  ],
+  "schemaVersion": 1,
+  "selectionBasis": "lexicographically sorted current pending stable IDs after W1-W44 exclusion; historical ordinal unavailable",
+  "selectionRanks": [
+    1,
+    25
+  ],
+  "sourceIds": 25,
+  "state": "OPEN",
+  "testsBuildsScansCiBrowserRun": false,
+  "workflowFilesTouched": false
+}

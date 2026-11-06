@@ -1,0 +1,31 @@
+{
+  "exactHead": "7a415b975bf0c783e3a91a9e3bab63bb7fd9e443",
+  "exactTree": "12b1a85af7c036dc3716d2730dfef0fa18a220a8",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "correction": 43,
+    "refinement": 25,
+    "accept-current": 232,
+    "hold": 0
+  },
+  "changedCells": 68,
+  "placeholderMismatches": 0,
+  "markupMismatches": 0,
+  "callerlessSourceIds": [
+    "src_15ab574345cf98ee"
+  ],
+  "callerlessSourceCount": 1,
+  "callerlessCaveat": "Download in progress has zero static production callers in the supplied context. Its standalone meaning is unambiguous, so all 12 current translations were accepted; dynamic/runtime usage remains unverified.",
+  "nativeSpeakerApproval": false,
+  "semanticConfidence": "moderate machine-assisted independent review; native-speaker review remains outstanding",
+  "browserReview": false,
+  "testsBuildScansCiRun": false,
+  "repositoryModified": false,
+  "remoteMutation": false,
+  "finalPrHeadStillPinned": true,
+  "sourceIdSetSha256": "dd310917443af3640b41911220218cac4ac8632b4f3b132ed0ef68c34f520e72",
+  "sourceIdLocaleKeySha256": "03adaf343024c87986384e0d287294ebd22eec7ec6f6752cc943004729260afd",
+  "scratchPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window50-independent-blind-corrected-20261103"
+}

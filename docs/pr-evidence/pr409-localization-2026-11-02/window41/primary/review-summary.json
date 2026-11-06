@@ -1,0 +1,96 @@
+{
+  "result": "PRIMARY_REVIEW_COMPLETE_PENDING_CROSS_REVIEW_AND_NATIVE_SPEAKER_REVIEW",
+  "window": 41,
+  "pullRequest": 409,
+  "headCommit": "ab6f8fd9fe94d222834f7e4720fd153af4e0649b",
+  "tree": "bebc34f8806f57158140d8b831c7a17c1fc6f8f1",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceOrdinals": [
+    26,
+    50
+  ],
+  "sourceKeys": 25,
+  "allLocaleCellsIncludingSpanish": 300,
+  "nonSpanishReviewCells": 275,
+  "pendingCells": 272,
+  "priorExactRowsIndependentlyReattested": 3,
+  "preservedFormalSpanishRows": 25,
+  "preservedPriorHoldRows": 50,
+  "candidateRows": 81,
+  "dispositions": {
+    "accept-current": 194,
+    "propose-correction": 41,
+    "propose-refinement": 40
+  },
+  "perLocaleVerdicts": {
+    "zh-Hans": {
+      "accept-current": 18,
+      "propose-correction": 3,
+      "propose-refinement": 4
+    },
+    "hi": {
+      "accept-current": 18,
+      "propose-correction": 4,
+      "propose-refinement": 3
+    },
+    "de": {
+      "accept-current": 18,
+      "propose-correction": 4,
+      "propose-refinement": 3
+    },
+    "ja": {
+      "accept-current": 21,
+      "propose-correction": 2,
+      "propose-refinement": 2
+    },
+    "fr": {
+      "accept-current": 19,
+      "propose-correction": 3,
+      "propose-refinement": 3
+    },
+    "pt-BR": {
+      "accept-current": 19,
+      "propose-correction": 3,
+      "propose-refinement": 3
+    },
+    "ar": {
+      "accept-current": 17,
+      "propose-correction": 5,
+      "propose-refinement": 3
+    },
+    "ko": {
+      "accept-current": 17,
+      "propose-correction": 4,
+      "propose-refinement": 4
+    },
+    "zh-Hant": {
+      "accept-current": 18,
+      "propose-correction": 3,
+      "propose-refinement": 4
+    },
+    "vi": {
+      "accept-current": 13,
+      "propose-correction": 6,
+      "propose-refinement": 6
+    },
+    "id": {
+      "accept-current": 16,
+      "propose-correction": 4,
+      "propose-refinement": 5
+    }
+  },
+  "directCallerReferences": 30,
+  "noDirectCallerSources": [
+    "src_0c41bd79387d4568",
+    "src_0d2e2283d5148d40"
+  ],
+  "placeholderIntegrityFailures": 0,
+  "protectedLiteralIntegrityFailures": 0,
+  "markupIntegrityFailures": 0,
+  "priorHoldChangedCells": 0,
+  "notes": [
+    "Read-only packet; no repository or PR files modified.",
+    "Two source strings had no direct caller in the frozen inventory; those judgments use standalone text only.",
+    "Native-speaker review remains outstanding, especially for coined-seed and technical-memory terminology."
+  ]
+}

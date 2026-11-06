@@ -1,0 +1,38 @@
+{
+  "result": "APPLIED_IN_WORKTREE",
+  "baseHead": "17e8d8b829867065b882423ef81c69f1f31c7d07",
+  "rows": 39,
+  "byLocale": {
+    "ar": 3,
+    "de": 3,
+    "es": 4,
+    "fr": 4,
+    "hi": 3,
+    "id": 3,
+    "ja": 2,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 5,
+    "zh-Hans": 3,
+    "zh-Hant": 3
+  },
+  "rootDisposition": {
+    "accepted": 39
+  },
+  "ledgerSha256": "943fd894ad0d17b194d8ec426dce5457c1a2e3378292fd1cbe0bb1873f26b7b6",
+  "changedPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ]
+}

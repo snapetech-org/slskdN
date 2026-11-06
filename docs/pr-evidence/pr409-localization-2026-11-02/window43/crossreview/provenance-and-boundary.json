@@ -1,0 +1,12 @@
+{
+  "w40BundlePath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-w40-frozen-bundle",
+  "w40BundlePathPresent": false,
+  "fullFrozenPendingQueueReproduced": false,
+  "selectionSource": "W42 exact future-boundary snapshot, independently matched to current head and all 275 current targets",
+  "limitation": "The task-named W40 bundle is absent, so the full frozen pending queue cannot be reconstructed. The older W40 primary packet is not used as current evidence.",
+  "primaryPacketPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window43-primary-20261102",
+  "primarySumsSha256": "3572142f705cd95f0bd89f1030e2ea3e5843536bcb666f1956edbb0746ec6681",
+  "w42CrossreviewSumsSha256": "3b1024f3edb0d560aa6e7edd2ffc20ac45818ef693698e59c52ebda68ae8ce40",
+  "w38FormalAccumulatorPath": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn/docs/pr-evidence/pr409-localization-2026-11-02/window38/primary/formal-cell-ids.jsonl",
+  "w38PrimarySumsSha256": "db1b97b371dad4977e790168730d85666b7a0a647610cb6b19e603ef41a8d10d"
+}

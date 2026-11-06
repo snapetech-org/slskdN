@@ -131,7 +131,7 @@ describe('setupHealthCheck', () => {
     expect(report).toContain('slskdN setup health check');
     expect(report).toContain('Score:');
     expect(report).toContain('Next steps:');
-    expect(report).toContain('[FAIL] Network / Soulseek session: Not connected');
+    expect(report).toContain('[Fail] Network / Soulseek session: Not connected');
     expect(report).toContain('Action: Verify credentials');
   });
 

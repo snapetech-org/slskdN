@@ -1,0 +1,27 @@
+{
+  "livePr": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "open",
+    "draft": true,
+    "base": "main",
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
+    "tree": "95604b428133b5e52247c1f3f00900c2c7d5192f",
+    "branchRefHead": "3fbcea3185c02efca7c45d03a195acf488e70587",
+    "checkRuns": 0,
+    "deployments": 0,
+    "bodySha256": "54b7b25b5ac348ac5d7a7e830c7ac8a3e62871a51e41cf50b0dfdbdbcbb89ce3"
+  },
+  "candidateFreeInputManifestSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "primarySummarySha256": "5bfb04e7ab8f5d41699de38791c02f7b4d788e228be02ae92884b32a918b54f9",
+  "blindSealSha256": "9c30472fd4af611834b937f9033604c32f1575d2c1e891b2dfdc026514c054c4",
+  "crossAuditLedgerSha256": "5f5fc3e05c9bb73032e9a93f23f093eb7f2c0ba6fb54591af71c5bf00e81c6c0",
+  "sourceCellCount": 300,
+  "allCrossAuditCellsPinnedToExactHead": true,
+  "noRepositoryFilesEdited": true,
+  "noTestsBuildsScansCiOrWorkflowsRun": true,
+  "nativeSpeakerApproval": false,
+  "exactHeadBrowserReview": false,
+  "releaseApproved": false
+}

@@ -1,0 +1,19 @@
+{
+  "artifact": "slskdN PR #409 W80 localization application readback",
+  "window": "W80",
+  "baseHead": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+  "baseTree": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+  "proposalCount": 81,
+  "keepCount": 219,
+  "newHoldCount": 0,
+  "priorW79HoldsRetained": 39,
+  "readbackCellCount": 300,
+  "catalogCount": 12,
+  "catalogKeyCountPerLocale": 6176,
+  "catalogKeyOrderUnchanged": true,
+  "workflowPathsChanged": 0,
+  "testsBuildsScansCiRun": false,
+  "applicationPlanSha256": "b6a55ca7c871b87977879dc7dbea043d9fb7751ba37619e4f2fef09cb27bb0fa",
+  "sourceTextIncluded": false,
+  "targetTextIncluded": false
+}

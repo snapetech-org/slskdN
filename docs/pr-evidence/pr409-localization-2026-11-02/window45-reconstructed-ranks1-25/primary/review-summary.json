@@ -1,0 +1,28 @@
+{
+  "browserReview": "not performed",
+  "callerGapSourceCount": 0,
+  "callerRowsWithProductionLocalizedDisplay": 25,
+  "cellCount": 300,
+  "currentMarkupMismatches": 0,
+  "currentPlaceholderMismatches": 0,
+  "currentProtectedLiteralMismatchCellCount": 1,
+  "dispositionCounts": {
+    "accept-current": 265,
+    "propose-correction": 29,
+    "propose-refinement": 6
+  },
+  "exactHead": "6a082138c09fa8af40aee3258beb98523ee821d9",
+  "exactTree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+  "holdCount": 0,
+  "localeCount": 12,
+  "nativeSpeakerApproval": "outstanding",
+  "proposalCount": 35,
+  "repositoryMutation": "none",
+  "reviewedMarkupMismatches": 0,
+  "reviewedPlaceholderMismatches": 0,
+  "reviewedProtectedLiteralMismatchCellCount": 0,
+  "sourceCount": 25,
+  "testsBuildScansCi": "not run",
+  "w44ApplyReadbacksReattested": 300,
+  "windowLabel": "W45 reconstructed source-ID ranks 1-25; no historical ordinal established"
+}

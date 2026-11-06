@@ -1,5 +1,11 @@
 import React from 'react';
+import {
+  localizeDiscoveryGraphEdgeType,
+  localizeDiscoveryGraphNodeType,
+  localizeDiscoveryGraphReason,
+} from '../../lib/discoveryGraphLocale';
 import { interfaceText } from '../../lib/interfaceLocale';
+import { formatRegionalNumber } from '../../lib/regionalFormat';
 
 const accentColor = (accent) => {
   switch (accent) {
@@ -99,8 +105,8 @@ const DiscoveryGraphCanvas = ({
               {interfaceText('{source} → {target} · {type}{reason}', {
                 source: source.label,
                 target: target.label,
-                type: edge.edgeType,
-                reason: edge.reason ? interfaceText(' · {reason}', { reason: edge.reason }) : '',
+                type: localizeDiscoveryGraphEdgeType(edge.edgeType),
+                reason: edge.reason ? interfaceText(' · {reason}', { reason: localizeDiscoveryGraphReason(edge.reason) }) : '',
               })}
             </title>
           </line>
@@ -122,8 +128,8 @@ const DiscoveryGraphCanvas = ({
           <title>
             {interfaceText('{label} · {type} · weight {weight}', {
               label: node.label,
-              type: node.nodeType,
-              weight: Math.round((node.weight || 0) * 100),
+              type: localizeDiscoveryGraphNodeType(node.nodeType),
+              weight: formatRegionalNumber(Math.round((node.weight || 0) * 100)),
             })}
           </title>
           <text

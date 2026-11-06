@@ -1,0 +1,300 @@
+{"id":"ar:src_fd27140eac71557c","verdict":"keep"}
+{"id":"ar:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"ar:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"ar:src_fd411c5744638632","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fd48a7251ff6d2a6","reason":"This table heading labels the Pod entity name in the port-forwarding view. The current Arabic, Spanish, French, and Vietnamese translations use a generic capsule/group/module noun, while nearby UI and previously cross-reviewed catalog values use Pod as the product entity. The targets preserve that entity name.","target":"اسم Pod","verdict":"correct"}
+{"id":"ar:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"ar:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"ar:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"ar:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"ar:src_fda17eea3bd297fb","verdict":"keep"}
+{"id":"ar:src_fdab05cca7f0c474","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"ترشيحات محتملة","verdict":"correct"}
+{"id":"ar:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"ar:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"ar:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"ar:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"ar:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"ar:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"ar:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"ar:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"الحد الأقصى للتوصيات حسب الذوق الموسيقي","verdict":"correct"}
+{"id":"ar:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"ar:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"ar:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"ar:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"de:src_fd27140eac71557c","verdict":"keep"}
+{"id":"de:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"de:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"de:src_fd411c5744638632","verdict":"keep"}
+{"id":"de:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"de:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"de:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"de:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"de:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"de:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"de:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"Die Suche nach Name, Tag und Inhalt sowie eingeschränkte Suchen im Register sind der übliche Weg zur Entdeckung. Die Funktionen zur Änderung des Registers sind unten gruppiert, weil sie öffentliche Entdeckungseinträge veröffentlichen oder entfernen.","verdict":"correct"}
+{"confidence":"high","id":"de:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"Mögliche Empfehlungen","verdict":"correct"}
+{"id":"de:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"de:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"de:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"de:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"de:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"de:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"de:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"de:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"de:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"Obergrenze für Empfehlungen nach Musikgeschmack","verdict":"correct"}
+{"id":"de:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"de:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"de:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"de:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"es:src_fd27140eac71557c","verdict":"keep"}
+{"id":"es:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"es:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"es:src_fd411c5744638632","verdict":"keep"}
+{"confidence":"high","id":"es:src_fd48a7251ff6d2a6","reason":"This table heading labels the Pod entity name in the port-forwarding view. The current Arabic, Spanish, French, and Vietnamese translations use a generic capsule/group/module noun, while nearby UI and previously cross-reviewed catalog values use Pod as the product entity. The targets preserve that entity name.","target":"Nombre del Pod","verdict":"correct"}
+{"id":"es:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"es:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"es:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"es:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"es:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"es:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"Las búsquedas por nombre, etiqueta y contenido, junto con las búsquedas limitadas en el registro, son la vía habitual para descubrir. Los controles para modificar el registro se agrupan abajo porque publican o eliminan registros públicos de descubrimiento.","verdict":"correct"}
+{"confidence":"high","id":"es:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"Recomendaciones posibles","verdict":"correct"}
+{"id":"es:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"es:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"es:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"es:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"es:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"es:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"es:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"es:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"es:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"Límite de recomendaciones según los gustos musicales","verdict":"correct"}
+{"id":"es:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"es:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"es:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"es:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"fr:src_fd27140eac71557c","verdict":"keep"}
+{"id":"fr:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"fr:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"fr:src_fd411c5744638632","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fd48a7251ff6d2a6","reason":"This table heading labels the Pod entity name in the port-forwarding view. The current Arabic, Spanish, French, and Vietnamese translations use a generic capsule/group/module noun, while nearby UI and previously cross-reviewed catalog values use Pod as the product entity. The targets preserve that entity name.","target":"Nom du Pod","verdict":"correct"}
+{"id":"fr:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"fr:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"fr:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"fr:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"fr:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"Les recherches par nom, étiquette et contenu, ainsi que les recherches limitées dans le registre, constituent la voie habituelle de découverte. Les commandes de modification du registre sont regroupées ci-dessous, car elles publient ou suppriment des fiches publiques de découverte.","verdict":"correct"}
+{"confidence":"high","id":"fr:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"Recommandations potentielles","verdict":"correct"}
+{"id":"fr:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"fr:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"fr:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"fr:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"fr:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"fr:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"fr:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"fr:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"Limite des recommandations selon les goûts musicaux","verdict":"correct"}
+{"id":"fr:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"fr:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"fr:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"fr:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"hi:src_fd27140eac71557c","verdict":"keep"}
+{"id":"hi:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"hi:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"hi:src_fd411c5744638632","verdict":"keep"}
+{"id":"hi:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"hi:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"hi:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"hi:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"hi:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"hi:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"नाम, टैग, सामग्री और रजिस्ट्री में सीमित खोज सामान्य खोज-पथ हैं। रजिस्ट्री में बदलाव करने वाले नियंत्रण नीचे दिए गए हैं, क्योंकि वे सार्वजनिक खोज रिकॉर्ड प्रकाशित या हटाते हैं।","verdict":"correct"}
+{"confidence":"high","id":"hi:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"संभावित सुझाव","verdict":"correct"}
+{"id":"hi:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"hi:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"hi:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"hi:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"hi:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"hi:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"hi:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"hi:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"संगीत रुचि पर आधारित सुझावों की सीमा","verdict":"correct"}
+{"id":"hi:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"hi:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"hi:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"hi:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"id:src_fd27140eac71557c","verdict":"keep"}
+{"id":"id:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"id:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"id:src_fd411c5744638632","verdict":"keep"}
+{"id":"id:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"id:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"id:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"id:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"id:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"id:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"id:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"Pencarian berdasarkan nama, tag, dan konten, serta pencarian terbatas di registri, merupakan jalur penemuan yang umum. Kontrol untuk mengubah registri dikelompokkan di bawah karena menerbitkan atau menghapus catatan penemuan publik.","verdict":"correct"}
+{"confidence":"high","id":"id:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"Rekomendasi potensial","verdict":"correct"}
+{"id":"id:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"id:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"id:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"id:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"id:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"id:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"id:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"id:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"id:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"Batas rekomendasi berdasarkan selera musik","verdict":"correct"}
+{"id":"id:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"id:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"id:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"id:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"ja:src_fd27140eac71557c","verdict":"keep"}
+{"id":"ja:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"ja:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"ja:src_fd411c5744638632","verdict":"keep"}
+{"id":"ja:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"ja:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"ja:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"ja:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"ja:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"ja:src_fda17eea3bd297fb","verdict":"keep"}
+{"id":"ja:src_fdab05cca7f0c474","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"おすすめ候補","verdict":"correct"}
+{"id":"ja:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"ja:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"ja:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"ja:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"ja:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"ja:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"ja:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"ja:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"音楽の好みに基づくおすすめの上限","verdict":"correct"}
+{"id":"ja:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"ja:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"ja:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"ja:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"ko:src_fd27140eac71557c","verdict":"keep"}
+{"id":"ko:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"ko:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"ko:src_fd411c5744638632","verdict":"keep"}
+{"id":"ko:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"ko:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"ko:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"ko:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"ko:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"ko:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"이름·태그·콘텐츠 검색과 제한된 레지스트리 검색이 일반적인 발견 경로입니다. 레지스트리 변경 기능은 공개 발견 기록을 게시하거나 제거하므로 아래에 모았습니다.","verdict":"correct"}
+{"confidence":"high","id":"ko:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"추천 후보","verdict":"correct"}
+{"id":"ko:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"ko:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"ko:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"ko:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"ko:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"ko:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"ko:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"ko:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"음악 취향 기반 추천 한도","verdict":"correct"}
+{"id":"ko:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"ko:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"ko:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"ko:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"pt-BR:src_fd27140eac71557c","verdict":"keep"}
+{"id":"pt-BR:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"pt-BR:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"pt-BR:src_fd411c5744638632","verdict":"keep"}
+{"id":"pt-BR:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"pt-BR:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"pt-BR:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"pt-BR:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"pt-BR:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"pt-BR:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"Pesquisas por nome, tag e conteúdo, além de consultas limitadas ao registro, são o caminho normal para descoberta. Os controles para alterar o registro ficam agrupados abaixo porque publicam ou removem registros públicos de descoberta.","verdict":"correct"}
+{"confidence":"high","id":"pt-BR:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"Recomendações potenciais","verdict":"correct"}
+{"id":"pt-BR:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"pt-BR:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"pt-BR:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"pt-BR:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"pt-BR:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"pt-BR:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"pt-BR:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"pt-BR:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"Limite de recomendações com base no gosto musical","verdict":"correct"}
+{"id":"pt-BR:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"pt-BR:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"pt-BR:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"pt-BR:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"vi:src_fd27140eac71557c","verdict":"keep"}
+{"id":"vi:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"vi:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"vi:src_fd411c5744638632","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fd48a7251ff6d2a6","reason":"This table heading labels the Pod entity name in the port-forwarding view. The current Arabic, Spanish, French, and Vietnamese translations use a generic capsule/group/module noun, while nearby UI and previously cross-reviewed catalog values use Pod as the product entity. The targets preserve that entity name.","target":"Tên Pod","verdict":"correct"}
+{"id":"vi:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"vi:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"vi:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"vi:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"vi:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"Tìm kiếm theo tên, thẻ và nội dung, cùng với các lượt tìm kiếm giới hạn trong sổ đăng ký, là cách khám phá thông thường. Các công cụ thay đổi sổ đăng ký được nhóm bên dưới vì chúng xuất bản hoặc xóa các bản ghi khám phá công khai.","verdict":"correct"}
+{"confidence":"high","id":"vi:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"Đề xuất tiềm năng","verdict":"correct"}
+{"id":"vi:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"vi:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"vi:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"vi:src_fe02c729273d2ee8","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fe165fb2a7031724","reason":"The caller renders this message inside Pod channel discovery and appends the specific channelPodId; in this feature Pod is the named service entity. The current Vietnamese “nhóm” means a generic group and conflicts with the established product term Pod used by the adjacent UI. The target preserves Pod.","target":"Không tìm thấy kênh nào trong Pod","verdict":"correct"}
+{"id":"vi:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"vi:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"vi:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"Giới hạn đề xuất theo sở thích âm nhạc","verdict":"correct"}
+{"id":"vi:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"vi:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"vi:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"vi:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"zh-Hans:src_fd27140eac71557c","verdict":"keep"}
+{"id":"zh-Hans:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"zh-Hans:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"zh-Hans:src_fd411c5744638632","verdict":"keep"}
+{"id":"zh-Hans:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"zh-Hans:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"zh-Hans:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"zh-Hans:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"zh-Hans:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"zh-Hans:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"名称、标签和内容搜索，以及有限的注册表搜索，是常规发现途径。注册表变更操作归在下方，因为它们会发布或删除公开发现记录。","verdict":"correct"}
+{"confidence":"high","id":"zh-Hans:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"潜在推荐","verdict":"correct"}
+{"id":"zh-Hans:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"zh-Hans:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"zh-Hans:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"zh-Hans:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"zh-Hans:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"zh-Hans:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"zh-Hans:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"zh-Hans:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"基于音乐偏好的推荐上限","verdict":"correct"}
+{"id":"zh-Hans:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"zh-Hans:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"zh-Hans:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"zh-Hans:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"zh-Hant:src_fd27140eac71557c","verdict":"keep"}
+{"id":"zh-Hant:src_fd30fe681b4b2d9e","verdict":"keep"}
+{"id":"zh-Hant:src_fd3f6ffdc8af8720","verdict":"keep"}
+{"id":"zh-Hant:src_fd411c5744638632","verdict":"keep"}
+{"id":"zh-Hant:src_fd48a7251ff6d2a6","verdict":"keep"}
+{"id":"zh-Hant:src_fd6243c39b3e1c04","verdict":"keep"}
+{"id":"zh-Hant:src_fd6fbcddd67b0bb8","verdict":"keep"}
+{"id":"zh-Hant:src_fd943bc929c386b9","verdict":"keep"}
+{"id":"zh-Hant:src_fd96813fb2cc612b","reason":"The source is the fragment “created,” and has no exact caller or surrounding grammar. Its part of speech, agreement, and punctuation depend on the preceding text, so all locale cells remain unchanged pending context.","verdict":"uncertain"}
+{"id":"zh-Hant:src_fda17eea3bd297fb","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fdab05cca7f0c474","reason":"This paragraph distinguishes ordinary read/search discovery from registry writes that publish or remove public records. The source calls the lower controls “mutation controls”; literal mutation/biological-mutation wording in these locales is unnatural or misleading for user-facing controls. The replacements say these controls change or modify the registry and preserve the publish/remove explanation.","target":"名稱、標籤和內容搜尋，以及有限的註冊表搜尋，是一般的探索方式。註冊表變更操作集中於下方，因為它們會發布或移除公開探索記錄。","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_fdc9c0f69d6aa8ea","reason":"The caller shows this count in the Federated Taste Recommendations panel beside trusted actors and minimum trusted sources. The API sets CandidateCount to the number of grouped work candidates before filtering them into recommendations. The current translations can read as human job/applicant candidates; these targets make clear that the count is potential music recommendations.","target":"潛在推薦","verdict":"correct"}
+{"id":"zh-Hant:src_fddfd63ca70630b0","verdict":"keep"}
+{"id":"zh-Hant:src_fdf25120698ed5e6","verdict":"keep"}
+{"id":"zh-Hant:src_fe003aa9453925f3","verdict":"keep"}
+{"id":"zh-Hant:src_fe02c729273d2ee8","verdict":"keep"}
+{"id":"zh-Hant:src_fe165fb2a7031724","verdict":"keep"}
+{"id":"zh-Hant:src_fe199862fb64efbe","verdict":"keep"}
+{"id":"zh-Hant:src_fe1feafb0bf24cae","verdict":"keep"}
+{"id":"zh-Hant:src_fe2245e7c153b29a","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fe22d9d028792660","reason":"This is the accessible name for the numeric limit input inside the Federated Taste Recommendations panel; the adjacent field and minimum-trusted-taste-sources setting concern music recommendations. “Taste” means musical preference here, not food flavor. The replacements attach the limit to recommendations based on music taste.","target":"依音樂喜好提供的推薦上限","verdict":"correct"}
+{"id":"zh-Hant:src_fe2c44675cf6d105","verdict":"keep"}
+{"id":"zh-Hant:src_fe3776fb55f66a95","verdict":"keep"}
+{"id":"zh-Hant:src_fe4fdc8eb0249cef","verdict":"keep"}
+{"id":"zh-Hant:src_fe60c7ad5a5617f7","reason":"The source is a remediation status sentence with placeholders but no exact caller or rendering context. Without knowing whether it is a toast, row status, or composed fragment, grammar and agreement cannot be fixed safely; all locale cells remain unchanged pending context.","verdict":"uncertain"}

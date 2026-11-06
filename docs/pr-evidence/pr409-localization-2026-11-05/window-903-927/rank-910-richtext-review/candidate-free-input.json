@@ -1,0 +1,55 @@
+{
+  "artifact": "slskdN PR #409 rank 910 rich-text source rewrite candidate-free input",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "purpose": "Assess a markup-safe way to translate one complete security sentence whose inline code currently divides localized fragments. No target-locale values or review proposals are included.",
+  "pinnedCaller": {
+    "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+    "line": 2863,
+    "contextLines": "2860-2864",
+    "context": "2860:                 <p>\n2861:                   <LocalizedText source={\"Loading pending join and leave requests only reads local pod state. The signed request and approval actions below publish membership events.\"} /></p>\n2862:                 <p>\n2863:                   <LocalizedText source={\"In Enforce mode, signatures must use the\"} /><code>ed25519:&lt;base64 signature&gt;</code> <LocalizedText source={\"format over the canonical join/leave payload and the supplied public key.\"} /></p>\n2864:               </Message>\n2865:               <Form>",
+    "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+    "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+    "reverificationRule": "A locale-catalog-only commit keeps this content-addressed file blob and SHA-256 unchanged; the new head/tree still must be reattested before application.",
+    "lineSha256": "c8638b63d38ca3d57eef1e7018df207722796d43687942777401a9744b349d70"
+  },
+  "pinnedRuntime": {
+    "path": "src/web/src/components/Shared/LocalizedText.jsx",
+    "excerptText": "export const LocalizedRichText = ({ source, values = {} }) => {\n  const { directionFor, languageFor, t } = useInterfaceLanguage();\n  const parts = t(source).split(/(\\{[a-zA-Z][a-zA-Z0-9_]*\\})/g);\n  return (\n    <span dir={directionFor(source)} lang={languageFor(source)}>\n      {parts.map((part, index) => {\n        const token = /^\\{([a-zA-Z][a-zA-Z0-9_]*)\\}$/.exec(part);\n        if (!token || !Object.hasOwn(values, token[1])) return <Fragment key={index}>{part}</Fragment>;\n        const value = values[token[1]];\n        if (isInterfaceTextOutput(value) || isInterfaceOpaqueOutput(value)) {\n          return <LocalizedOutputText key={index} output={value} />;\n        }\n        return typeof value === 'string' || typeof value === 'number'\n          ? <bdi dir=\"auto\" lang=\"und\" key={index}>{String(value)}</bdi>\n          : <Fragment key={index}>{value}</Fragment>;\n      })}\n    </span>\n  );\n};\n",
+    "fileSha256": "dceb5b8d9f3dd803cef823a6756248f17d4f4b2600498be64e142c3c630a6c81",
+    "gitBlob": "bd886e3838b3ebf69a4ccf52d4cf5e0663e52abe",
+    "reverificationRule": "A locale-catalog-only commit keeps this content-addressed file blob and SHA-256 unchanged; the new head/tree still must be reattested before application."
+  },
+  "proposedEnglishSource": "In {mode} mode, each signature must follow the {signature} format and be verifiable against the canonical join/leave payload using the supplied public key.",
+  "proposedSourceSha256": "c04ff600b79f3317398c9834ded6c626b42c382a13ff9fea086f0ebd72c53353",
+  "proposedSourceId": "src_c04ff600b79f3317",
+  "proposedCallerShape": "import LocalizedText, { LocalizedOutputText, LocalizedRichText } from \"../../Shared/LocalizedText\";\n\n<LocalizedRichText source={\"In {mode} mode, each signature must follow the {signature} format and be verifiable against the canonical join/leave payload using the supplied public key.\"} values={{\n  mode: (\n    <bdi dir=\"ltr\" lang=\"en\">Enforce</bdi>\n  ),\n  signature: (\n    <bdi dir=\"ltr\" lang=\"en\"><code>ed25519:&lt;base64 signature&gt;</code></bdi>\n  ),\n}} />",
+  "protectedNodes": {
+    "mode": {
+      "parameter": "mode",
+      "renderedText": "Enforce",
+      "rendering": "<bdi dir=\"ltr\" lang=\"en\">Enforce</bdi>",
+      "catalogContainsLiteral": false
+    },
+    "signature": {
+      "parameter": "signature",
+      "renderedText": "ed25519:<base64 signature>",
+      "rendering": "<bdi dir=\"ltr\" lang=\"en\"><code>ed25519:&lt;base64 signature&gt;</code></bdi>",
+      "catalogContainsLiteral": false
+    }
+  },
+  "modeTreatment": {
+    "term": "Enforce",
+    "treatment": "preserve exact product spelling and capitalization as a runtime mode label passed in a React node",
+    "evidence": "Pinned caller says “In Enforce mode” with a capitalized mode name. The pinned excerpt does not include an enum declaration, so “Enforce is a product mode literal” is a conservative inference, not enum-verified."
+  },
+  "reviewConstraints": [
+    "Do not use current locale target values.",
+    "Translate the complete sentence and preserve exactly one {mode} and one {signature} placeholder.",
+    "Keep Enforce and ed25519:<base64 signature> in caller-owned React nodes, outside translated catalog text.",
+    "Check sentence meaning, payload/key roles, translation ordering, and RTL isolation.",
+    "No browser or native-speaker review is included."
+  ]
+}

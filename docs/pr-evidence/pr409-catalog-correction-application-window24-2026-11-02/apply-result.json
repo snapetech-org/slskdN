@@ -1,0 +1,107 @@
+{
+  "result": "APPLIED",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "headBefore": "805246b87e208cedcbdd0e2f33a83f912f4ad84b",
+  "treeBefore": "4377ade660fa379731a41b54ba387c4eff2bcf32",
+  "sourceSubtreeTree": "c3d06e298da7f7e04e69bee3c2596805a03d1e4b",
+  "rootApplyPlanSha256": "e4181de90b344aea2ea13c199852886969a2a65088689fce4363f87c5ea87d2d",
+  "rootCrossReviewLedgerSha256": "2afa2c49dcfbf885afc70c40e8341ec8cdd4b91429825a743b460159da8c53e6",
+  "rows": 45,
+  "byLocale": {
+    "ar": 4,
+    "de": 3,
+    "es": 6,
+    "fr": 3,
+    "hi": 2,
+    "id": 2,
+    "ja": 4,
+    "ko": 4,
+    "pt-BR": 4,
+    "vi": 5,
+    "zh-Hans": 4,
+    "zh-Hant": 4
+  },
+  "files": {
+    "src/web/public/locales/ar.json": {
+      "changedCells": 4,
+      "beforeFileSha256": "f3c0505a9667745581cde46a01b2a7cfe65462e296f4bea21309b77833ad40fd",
+      "afterFileSha256": "68d87f558c6028e6cbe2975315baa375195812c3d004f380eb1c3a0fc6dc781d"
+    },
+    "src/web/public/locales/de.json": {
+      "changedCells": 3,
+      "beforeFileSha256": "b7ff5aac6d149defdf60082663500eaa21e1f6d6b763d9e0c9d3e56f07f99b9a",
+      "afterFileSha256": "80cba80fc7b0286c12a74a93b1842be007613328e20eacaba8e1110e3e0cb3b3"
+    },
+    "src/web/public/locales/es.json": {
+      "changedCells": 6,
+      "beforeFileSha256": "37fd5bbf3f51168c08ee2617345eba76224c09d27361124d8b53c3abacf25702",
+      "afterFileSha256": "850c99b6793c935b83346be815e69b998a40cf7d3b96e7680480f93d9c0d224c"
+    },
+    "src/web/public/locales/fr.json": {
+      "changedCells": 3,
+      "beforeFileSha256": "c3413d63027d8010c408ff1586e954e51770effa764331370f35a30a6c30188c",
+      "afterFileSha256": "97c722cf644b70affeb68285679dc453047115bf92ac9ced7fe67e0dbf9cd868"
+    },
+    "src/web/public/locales/hi.json": {
+      "changedCells": 2,
+      "beforeFileSha256": "1780feb9937c3c8ddb60d967444c3c5af41d7e9ff713886ab82b12dd36199898",
+      "afterFileSha256": "81940562fc433a3d9ca1f979c426dfeeb8eb5474f7054fdc0ba455c3c93b1a20"
+    },
+    "src/web/public/locales/id.json": {
+      "changedCells": 2,
+      "beforeFileSha256": "580714fd7db7c4e05cab49ba9643bcc8a8c4e608915bdf523d1c57d18ce5a7bd",
+      "afterFileSha256": "62f2c167ded8adfc3d3b0b98e4a6b73e3997b094935c39833b388defb81e9831"
+    },
+    "src/web/public/locales/ja.json": {
+      "changedCells": 4,
+      "beforeFileSha256": "aee7222906f04af717078e50a6e04fc28f7971d312fcb11957a2249f77158db4",
+      "afterFileSha256": "0eb888d31801531accbaab515c568313069e5df74bbed7cbcdab83a7bbd00c21"
+    },
+    "src/web/public/locales/ko.json": {
+      "changedCells": 4,
+      "beforeFileSha256": "65513e3c8a0f47abc544c11539896c3bc96709f2d41409e8d1923934f33eb133",
+      "afterFileSha256": "819a8e240242a2b256d8106f3e6f38e65984d83569852d871948911240253f3b"
+    },
+    "src/web/public/locales/pt-BR.json": {
+      "changedCells": 4,
+      "beforeFileSha256": "3b281db441f557f97c22e567fb5ecf89a9213a573ad827c657b7a0c3eaaecb84",
+      "afterFileSha256": "6e2d4b7f06e35ec0ab08e63c9f6040e45494baeab3faaa0b944485f85e9882d1"
+    },
+    "src/web/public/locales/vi.json": {
+      "changedCells": 5,
+      "beforeFileSha256": "55f4542a5db2f8243b3fb9fa5a6b85684e2a29666d2dde335c04dd705692a646",
+      "afterFileSha256": "271f8a7ac14203fd516afbe253ef9150d8e646981e2b39f3183835b4356a4bac"
+    },
+    "src/web/public/locales/zh-Hans.json": {
+      "changedCells": 4,
+      "beforeFileSha256": "29a977b5975cb6de8f5c4984df078caf57c68bcfb4ba48902cf00b0ec1905c18",
+      "afterFileSha256": "1afc253aec8e252678f5e5229cf224c9dd86e8ef7221271677abcb8f0c7b76b3"
+    },
+    "src/web/public/locales/zh-Hant.json": {
+      "changedCells": 4,
+      "beforeFileSha256": "ed6d8044523f3bb3ee39efab5bbe146becc14197a94b1839dc74f56b19fac041",
+      "afterFileSha256": "97eda6005bdf4afda96599702632cea682afa760c5cd7ed91a734663fb378136"
+    }
+  },
+  "applicationCommit": "00ee3b76686a3b4cdafd4d9a24a02342d5f36bb2",
+  "applicationTree": "d0a640b4716f3363264cf96ee5fa9aea0e417a20",
+  "applicationParent": "805246b87e208cedcbdd0e2f33a83f912f4ad84b",
+  "applicationParentTree": "4377ade660fa379731a41b54ba387c4eff2bcf32",
+  "postApplySourceTree": "a518acd202aebcfe7f17372017cba519e432ab9a",
+  "changedCommitPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ]
+}

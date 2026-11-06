@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "liveHead": "805246b87e208cedcbdd0e2f33a83f912f4ad84b",
+  "liveTree": "4377ade660fa379731a41b54ba387c4eff2bcf32",
+  "window": 24,
+  "inputRows": 45,
+  "correctionRows": 45,
+  "dispositions": {
+    "accepted-proposal": 43,
+    "refined": 2,
+    "held": 0
+  },
+  "sourceTargetProposalHashMismatches": 0,
+  "placeholderMismatches": 0,
+  "callerFileAndLinePins": "revalidated from exact PR tree",
+  "browserReview": "not part of this cell batch",
+  "nativeSpeakerReview": "not performed; required separately",
+  "rootLedgerPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window24-805246b8-20261102/root-independent-cross-review-window24-2026-11-02.jsonl",
+  "rootLedgerSha256": "2afa2c49dcfbf885afc70c40e8341ec8cdd4b91429825a743b460159da8c53e6",
+  "exactApplyPlanPath": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-window24-805246b8-20261102/root-exact-hash-apply-plan-window24-2026-11-02.jsonl",
+  "exactApplyPlanSha256": "e4181de90b344aea2ea13c199852886969a2a65088689fce4363f87c5ea87d2d"
+}

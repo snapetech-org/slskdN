@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "window": "W62 ranks 428-452",
+  "sealedAtUtc": "2026-11-03T11:53:07.276260+00:00",
+  "candidateFreeInputChecksumListSha256": "005097b25bd89a302b4caebd4478013fbc5b239c210f841613b5edb6d706660b",
+  "candidateFreeInputManifestSha256": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+  "reviewedCells": 300,
+  "proposals": 68,
+  "retains": 208,
+  "holds": 24,
+  "sealedArtifacts": {
+    "blind-ledger.jsonl": "bf3a395b6cc15030c38d44cc4d73c9129043dbaacdbb1ef094f2258d01f32569",
+    "summary.json": "8a3ccde19b872935a95e8646aefbb97baca1ee94a919dd07c14ac1fc999a6ad5",
+    "provenance.json": "4e7dc7f197167014886ee15684cea2ec893925187f4f6820932ecb4f4247b5ce",
+    "verify_blind_review.py": "de2dccbd32715f0a4969e29268c1835372c221da229189d51d2339c293fc7ab2",
+    "candidate-free-input/README.md": "6f9e37bbf87b8372c8d132644395980a9e636819a150ec187ac688a05a86ac8b",
+    "candidate-free-input/manifest.json": "bb5c8dd36775fa59fe17335ed8260498484d40adf89b6e565386d92dd5d75bd4",
+    "candidate-free-input/head-tree-attestation.json": "a744a59bb8ee24b8310a7c7cd6801144b1800fdf061d0e9f4b54b35e70ac0e29",
+    "candidate-free-input/selection-and-boundary.json": "6132c62bc371a54aa57d54fd72a43dc94e6b9ce5890342973710639ff0a19eff",
+    "candidate-free-input/selection-boundary.jsonl": "2877a938403fdf661d979b5a8c2683cb5154f143a738ff90d2c724bfdc49407f",
+    "candidate-free-input/catalog-structure.jsonl": "61547cf736704caf7e117e1d43d0c334f7a99f2f299a030f12bace2e835425db",
+    "candidate-free-input/source-current-cells.jsonl": "f3719d255fed65c670fe4e8d183a79121b00a63306b3a5f8aec27f33c3258fbb",
+    "candidate-free-input/caller-contexts.jsonl": "83e38df56590e848b242d3b84802bc23efbae5fba19cb9a6859e1817dd64cc58"
+  }
+}

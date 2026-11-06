@@ -1,6 +1,6 @@
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { getRegionalLocale } from '../../../lib/regionalFormat';
 // <copyright file="index.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
@@ -12,7 +12,7 @@ import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates'
 import { formatBytes } from '../../../lib/util';
 import SwarmVisualization from '../SwarmVisualization';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Card,
@@ -108,7 +108,7 @@ const Jobs = () => {
       }));
     } catch (error) {
       if (!mountedRef.current) return;
-      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to fetch jobs'));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to fetch jobs'));
       console.error('Failed to fetch jobs:', error);
     } finally {
       if (mountedRef.current) {
@@ -401,8 +401,8 @@ const Jobs = () => {
                         position="top center"
                         trigger={(
                           <Button
-                            aria-label={interfaceText('View swarm download details for {file}', {
-                              file: fileName ?? interfaceText('Unknown file'),
+                            aria-label={interfaceAttributeText('View swarm download details for {file}', {
+                              file: fileName ?? interfaceAttributeText('Unknown file'),
                             })}
                             compact
                             onClick={() => {

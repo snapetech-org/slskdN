@@ -1,0 +1,42 @@
+{
+  "status": "ROOT-ADJUDICATED",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W953–W977; remaining queue ranks 853–877",
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "base": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "candidateCells": 300,
+  "crossRecommendationCounts": {
+    "accept-primary": 83,
+    "accept-blind": 22,
+    "accept-current": 174,
+    "accept-agreement": 8,
+    "hold-hash-only": 12,
+    "adjust": 1
+  },
+  "rootDispositionCounts": {
+    "accept-correction": 110,
+    "accept-current": 174,
+    "hold-hash-only": 12,
+    "accept-refinement": 3,
+    "root-manual-adjustment": 1
+  },
+  "crossRecommendedChanges": 114,
+  "appliedPlanChanges": 114,
+  "rootManualOverrides": [
+    {
+      "rank": 977,
+      "locale": "vi",
+      "crossTargetSha256": "9113569c135bc12a76c02fbc40d8760795516c66edc59521218e3551f685ee69",
+      "selectedTargetSha256": "b54087aa56fa69b98403fcdd8f353c1b709f197bcd71d05756246b0d22bb0132"
+    }
+  ],
+  "heldRank966Cells": 12,
+  "heldReason": "Pinned production uses are layout/alignment attributes, not user-facing localization calls; hold rows remain text-free.",
+  "confidence": "moderate",
+  "nativeSpeakerApprovalClaimed": false,
+  "browserReviewClaimed": false,
+  "testsBuildsScansCiRun": false,
+  "workflowChanges": 0
+}

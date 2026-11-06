@@ -1,0 +1,182 @@
+{
+  "artifact": "slskdN PR #409 W79 independent primary semantic review",
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W79",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFree": true,
+  "head": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "tree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "candidateFreeInputManifestSha256": "d1b346ed7a666de91033c4fa83e225e5f4768a60ecda378e86aa464fdcabaf01",
+  "candidateFreeInputChecksumListSha256": "0427c3aaf306abac1638780c329288f7236e8ab21ee8e2591f7ad16e461af476",
+  "sourceInventorySelectionSha256": "8a669f25a9bc2bc65e64be63c22dd7dd391f3d28fc1d485f7e7b4d66ebc0010f",
+  "callerContextSha256": "3d2e1b164b5bf23f4361b318e0a4d58b00fdc209f9bb37c4c82eb73a4d77a898",
+  "selectionBoundarySha256": "4171d444bb57f4024d5dfa5e1864cfb98112003c5441366526f1031201b9b98d",
+  "baseApiSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "dispositions": {
+    "accept-current": 244,
+    "correct": 32,
+    "hold": 24
+  },
+  "proposalCount": 32,
+  "textFreeHoldCount": 24,
+  "priorHeldCellsReattested": 343,
+  "preW78HeldCellsCarried": 331,
+  "W78HeldCellsCarried": 12,
+  "priorHoldResolutionHistoryRows": 13,
+  "W78AppliedTargetsReattested": 63,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "sourceRewriteRecommendations": 0,
+  "worktreeHead": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "worktreeTree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "worktreeClean": true,
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+    "branchRefOid": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+    "pullRefOid": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+    "pullMergeRefOid": "99472607487f10b9e3e3609b602fbb2a564689bd",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "liveMainRefName": "main",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "commitTree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+    "bodySha256": "f0277845e4d709d4de0e013813bdcb171945c59b7336b2e54827b582ff47ddec",
+    "apiCheckedAtUtc": "2026-11-04T20:54:56.442207+00:00"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+    "branchRefOid": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+    "pullRefOid": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+    "pullMergeRefOid": "99472607487f10b9e3e3609b602fbb2a564689bd",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "liveMainRefName": "main",
+    "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "commitTree": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+    "bodySha256": "f0277845e4d709d4de0e013813bdcb171945c59b7336b2e54827b582ff47ddec",
+    "apiCheckedAtUtc": "2026-11-04T20:59:20.283495+00:00"
+  },
+  "mainDriftSha256": "69636a455e028fa891c5a921c2ad4a087854383ea09ee5347133c8530815b4c6",
+  "primaryMainDriftSha256": "59e186d40e49ef9b329edd8dfd85900fd33bb2337ca45ef2bf620fca82a9dc21",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1154,
+      "sha256": "81eb32c93b4ab50c3bfcdce672dce5623b510191d584acb4f69dadcd951ef136"
+    },
+    {
+      "path": "build_primary.py",
+      "bytes": 21450,
+      "sha256": "be58470afea96a04ce33f5cff20ebe57cfe63fd13c61fa21d10d927dd6e2fa7c"
+    },
+    {
+      "path": "capture_live.py",
+      "bytes": 6971,
+      "sha256": "afb8b959dcf388e7066f5b4979897775d9ef9eaac3909801e4c4a1f4efa59fd6"
+    },
+    {
+      "path": "corrections.jsonl",
+      "bytes": 92071,
+      "sha256": "5fc97288009244832f2fe4907213261188b8da31a8aba663928876b0dadf1ed3"
+    },
+    {
+      "path": "holds-hash-only.jsonl",
+      "bytes": 26548,
+      "sha256": "3ecaa0449e808df53c9001ae8e32335b19a765866a7f39717b62dafa58de9d4d"
+    },
+    {
+      "path": "live-after.json",
+      "bytes": 811,
+      "sha256": "f8a86956ec9ffd085f4d9f5257b353080f6f930576a09dad51a63d989f73a67b"
+    },
+    {
+      "path": "live-before.json",
+      "bytes": 811,
+      "sha256": "b05a41b2dee5776095cec13c923a2a3fb6aa57c36961a300ffab53988b5002f0"
+    },
+    {
+      "path": "main-drift-before.json",
+      "bytes": 1006,
+      "sha256": "c72af930864c6c4219db6d8e3d8b3503310f06c25b872f9ebf17957ca4c990d0"
+    },
+    {
+      "path": "main-drift-primary.json",
+      "bytes": 1139,
+      "sha256": "59e186d40e49ef9b329edd8dfd85900fd33bb2337ca45ef2bf620fca82a9dc21"
+    },
+    {
+      "path": "main-drift.json",
+      "bytes": 1139,
+      "sha256": "69636a455e028fa891c5a921c2ad4a087854383ea09ee5347133c8530815b4c6"
+    },
+    {
+      "path": "primary-review.jsonl",
+      "bytes": 695738,
+      "sha256": "0811a3bd73eee07062ad78b749389b96d3acd53a71e6d54d1539e7c33f570b05"
+    },
+    {
+      "path": "proposal-map.json",
+      "bytes": 2634,
+      "sha256": "5e2aac558a6afaae0eaeaf40665416092888c33c7b76609753a3373b1109d6a7"
+    },
+    {
+      "path": "rationale-map.json",
+      "bytes": 6917,
+      "sha256": "afa060843bb8ea77d592a4ba25e9fd2d1cfcc7dade2c811f364678a3a84e6e62"
+    },
+    {
+      "path": "seal_primary.py",
+      "bytes": 6524,
+      "sha256": "ab9cf0fe690307c371ae1f7a42bbf3c92dfc2b6835ea0217ba5236412720fb0b"
+    },
+    {
+      "path": "source-rewrite-recommendations.json",
+      "bytes": 50,
+      "sha256": "aac38e52cd548a104214321dea8ab42f026f8f52f21b1f8ac924654d194563d8"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 14894,
+      "sha256": "7624dca46c3144477742859855bdfc10956d14593f893422120ce94a60070373"
+    },
+    {
+      "path": "verify_primary.py",
+      "bytes": 17646,
+      "sha256": "50d9e5df44d75ef370c09cad30439d9fd7b3119fa6ff2759fd561b138d94e131"
+    }
+  ]
+}

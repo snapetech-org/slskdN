@@ -1,0 +1,16 @@
+{
+  "exactHead": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "exactTree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "crossReviewPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window44-crossreview-20261102",
+  "crossReviewManifestSha256": "2d33af9fdbf5252d7fcdb35a68d8e5671feb961a52f6cb4cf4f6bc9df42c7a78",
+  "crossReviewManifestRowsVerified": 12,
+  "crossReviewFindingsSha256": "db4f0d687db212ef93956e23052243d0573e64783cc62c2d23453ef104ef68fc",
+  "crossReviewSummarySha256": "e697c61eecc87e7ee5d901880a81bf7c887f0db0cf98abf613c7842fec2b4cd6",
+  "primaryReconstructedPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window44-primary-reconstructed-20261102",
+  "primaryManifestSha256": "4bc75c5111f8e4e6e650225e6e4b3e9cc62eb2f738adb0d8fe66e3dcfeeb2068",
+  "primaryManifestRowsVerified": 18,
+  "sourceInventorySha256": "8afe0f1575383b2e05cc412d6c1322fb9630debf847886262663c00adf4971cf",
+  "selectedInputRows": 4,
+  "callerGapHoldsInCrossReview": 24,
+  "inputIntegrity": "Both upstream SHA256SUMS.txt manifests verified; source IDs/text/hashes in selected rows matched primary source inventory."
+}

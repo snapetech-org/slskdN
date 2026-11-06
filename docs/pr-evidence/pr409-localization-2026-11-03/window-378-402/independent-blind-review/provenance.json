@@ -1,0 +1,11 @@
+{
+  "reviewMethod": "independent target-only review from checksummed candidate-free input; no primary review consulted",
+  "inputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w60-ranks378-402-primary-20261103/input",
+  "candidateFreePacketChecksumListSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "candidateFreeManifestJsonSha256": "d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797",
+  "inputHead": "3fbcea3185c02efca7c45d03a195acf488e70587",
+  "inputTree": "95604b428133b5e52247c1f3f00900c2c7d5192f",
+  "sealedBeforePrimaryReviewCompletion": true,
+  "allSourceIdsHavePinnedCallers": true,
+  "sourceLocaleRows": 300
+}

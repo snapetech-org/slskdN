@@ -1,0 +1,10 @@
+{
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "productionSourceRoot": "src/web/src",
+  "productionFileCount": 279,
+  "treeEntryCount": 7674,
+  "treeTruncated": false,
+  "callerScan": "exact quoted source literals",
+  "testAndSpecFilesExcluded": true
+}

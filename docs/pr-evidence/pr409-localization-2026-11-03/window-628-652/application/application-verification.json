@@ -1,0 +1,18 @@
+{
+  "schema": "slskdn-w70-application-result/v1",
+  "result": "PASS",
+  "parentHead": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "parentTree": "7168de556608115be3b7e16b9ceb30b977df904b",
+  "cellsReadBack": 300,
+  "selectedChanges": 97,
+  "corrections": 47,
+  "refinements": 50,
+  "acceptCurrent": 203,
+  "carriedHoldsPreserved": 140,
+  "priorIdsExcluded": 1732,
+  "catalogFilesChanged": 12,
+  "catalogKeyCountsAndOrderPreserved": true,
+  "nonTargetValuesPreserved": true,
+  "selectedTokenFailures": 0,
+  "workflowsChanged": false
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W69",
+  "head": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "tree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 257,
+    "correction": 26,
+    "hold": 12,
+    "refinement": 5
+  },
+  "proposalCount": 31,
+  "holdCount": 12,
+  "callerlessSelectedRanks": [
+    615
+  ],
+  "callerCountByRank": {
+    "603": 1,
+    "604": 1,
+    "605": 2,
+    "606": 1,
+    "607": 1,
+    "608": 1,
+    "609": 3,
+    "610": 1,
+    "611": 1,
+    "612": 1,
+    "613": 2,
+    "614": 2,
+    "615": 0,
+    "616": 1,
+    "617": 1,
+    "618": 1,
+    "619": 2,
+    "620": 1,
+    "621": 1,
+    "622": 1,
+    "623": 2,
+    "624": 1,
+    "625": 1,
+    "626": 2,
+    "627": 1
+  },
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 3
+  },
+  "reviewedTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "priorHeldCellsReattested": 128,
+  "priorHeldCellsUnchanged": true,
+  "candidateFreeInputVerified": true,
+  "blindPacketAccessed": false,
+  "repositoryOrPRFilesEdited": false,
+  "nativeSpeakerReview": "not performed",
+  "browserReview": "not performed"
+}

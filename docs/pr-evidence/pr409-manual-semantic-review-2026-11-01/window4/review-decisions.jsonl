@@ -1,0 +1,300 @@
+{"id":"es:src_de89ba192ecdbdda","verdict":"correct","target":"Límite de FPS de MilkDrop nativo","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"zh-Hans:src_de89ba192ecdbdda","verdict":"correct","target":"原生 MilkDrop FPS 上限","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"hi:src_de89ba192ecdbdda","verdict":"correct","target":"नेटिव MilkDrop FPS सीमा","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"de:src_de89ba192ecdbdda","verdict":"correct","target":"FPS-Begrenzung für natives MilkDrop","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"ja:src_de89ba192ecdbdda","verdict":"correct","target":"ネイティブ MilkDrop の FPS 上限","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"fr:src_de89ba192ecdbdda","verdict":"correct","target":"Limite de FPS de MilkDrop natif","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"pt-BR:src_de89ba192ecdbdda","verdict":"correct","target":"Limite de FPS do MilkDrop nativo","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"ar:src_de89ba192ecdbdda","verdict":"correct","target":"الحد الأقصى لمعدل إطارات MilkDrop الأصلي","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"ko:src_de89ba192ecdbdda","verdict":"correct","target":"네이티브 MilkDrop FPS 제한","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"zh-Hant:src_de89ba192ecdbdda","verdict":"correct","target":"原生 MilkDrop FPS 上限","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"vi:src_de89ba192ecdbdda","verdict":"correct","target":"Giới hạn FPS của MilkDrop gốc","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"id:src_de89ba192ecdbdda","verdict":"correct","target":"Batas FPS MilkDrop asli","confidence":"high","reason":"The source is an FPS setting in a dropdown; nearby help says it caps native MilkDrop rendering. Current translations use a physical cap/hat/lid instead of a frame-rate limit."}
+{"id":"es:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"zh-Hans:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"hi:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"de:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"ja:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"fr:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"pt-BR:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"ar:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"ko:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"zh-Hant:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"vi:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"id:src_dea8c3f262cab0a2","verdict":"keep"}
+{"id":"es:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"zh-Hans:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"hi:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"de:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"ja:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"fr:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"pt-BR:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"ar:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"ko:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"zh-Hant:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"vi:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"id:src_deadb2a43cde3a66","verdict":"keep"}
+{"id":"es:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"zh-Hans:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"hi:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"de:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"ja:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"fr:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"pt-BR:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"ar:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"ko:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"zh-Hant:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"vi:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"id:src_deaf6f9d23bc24d4","verdict":"uncertain","reason":"The frozen row has no source callsites or surrounding source context. “Playing” may describe music playback, game activity, or another status; several current targets assume game play, so the intended sense cannot be confirmed from this snapshot."}
+{"id":"es:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"zh-Hans:src_deb2db12f76a1286","verdict":"correct","target":"本地警示","confidence":"high","reason":"This is an orange exclamation-triangle quality signal. The Simplified and Traditional Chinese targets read as prudence/attention rather than a caution warning."}
+{"id":"hi:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"de:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"ja:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"fr:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"pt-BR:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"ar:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"ko:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"zh-Hant:src_deb2db12f76a1286","verdict":"correct","target":"本機警示","confidence":"high","reason":"This is an orange exclamation-triangle quality signal. The Simplified and Traditional Chinese targets read as prudence/attention rather than a caution warning."}
+{"id":"vi:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"id:src_deb2db12f76a1286","verdict":"keep"}
+{"id":"es:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"zh-Hans:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"hi:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"de:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"ja:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"fr:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"pt-BR:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"ar:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"ko:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"zh-Hant:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"vi:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"id:src_deb37f5d6b844ab0","verdict":"keep"}
+{"id":"es:src_deb94e3584c624d0","verdict":"correct","target":"Revisa las comprobaciones de preparación y las automatizaciones seleccionadas. Este informe no ejecuta acciones en el servidor multimedia.","confidence":"high","reason":"This tooltip concerns readiness checks before actions; the Spanish target says availability requirements, which changes readiness into availability."}
+{"id":"zh-Hans:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"hi:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"de:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"ja:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"fr:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"pt-BR:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"ar:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"ko:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"zh-Hant:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"vi:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"id:src_deb94e3584c624d0","verdict":"keep"}
+{"id":"es:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"zh-Hans:src_dec8cd94c38919e8","verdict":"correct","target":"按排名排列的下载选项 (","confidence":"high","reason":"The SongID panel lists scored acquisition choices in rank order; these targets say ranking/classified options awkwardly rather than options ordered by rank."}
+{"id":"hi:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"de:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"ja:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"fr:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"pt-BR:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"ar:src_dec8cd94c38919e8","verdict":"correct","target":"خيارات التنزيل المرتبة (","confidence":"high","reason":"The SongID panel lists scored acquisition choices in rank order; these targets say ranking/classified options awkwardly rather than options ordered by rank."}
+{"id":"ko:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"zh-Hant:src_dec8cd94c38919e8","verdict":"correct","target":"按排名排列的下載選項 (","confidence":"high","reason":"The SongID panel lists scored acquisition choices in rank order; these targets say ranking/classified options awkwardly rather than options ordered by rank."}
+{"id":"vi:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"id:src_dec8cd94c38919e8","verdict":"keep"}
+{"id":"es:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"zh-Hans:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"hi:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"de:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"ja:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"fr:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"pt-BR:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"ar:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"ko:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"zh-Hant:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"vi:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"id:src_decb80eb66e82ad3","verdict":"keep"}
+{"id":"es:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"zh-Hans:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"hi:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"de:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"ja:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"fr:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"pt-BR:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"ar:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"ko:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"zh-Hant:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"vi:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"id:src_dee9303e3bb5bd5e","verdict":"keep"}
+{"id":"es:src_deece24297a249f3","verdict":"keep"}
+{"id":"zh-Hans:src_deece24297a249f3","verdict":"keep"}
+{"id":"hi:src_deece24297a249f3","verdict":"keep"}
+{"id":"de:src_deece24297a249f3","verdict":"keep"}
+{"id":"ja:src_deece24297a249f3","verdict":"keep"}
+{"id":"fr:src_deece24297a249f3","verdict":"keep"}
+{"id":"pt-BR:src_deece24297a249f3","verdict":"keep"}
+{"id":"ar:src_deece24297a249f3","verdict":"keep"}
+{"id":"ko:src_deece24297a249f3","verdict":"keep"}
+{"id":"zh-Hant:src_deece24297a249f3","verdict":"keep"}
+{"id":"vi:src_deece24297a249f3","verdict":"keep"}
+{"id":"id:src_deece24297a249f3","verdict":"keep"}
+{"id":"es:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"zh-Hans:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"hi:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"de:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"ja:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"fr:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"pt-BR:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"ar:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"ko:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"zh-Hant:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"vi:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"id:src_def2eec5846e5ce1","verdict":"keep"}
+{"id":"es:src_def45df0b452a579","verdict":"keep"}
+{"id":"zh-Hans:src_def45df0b452a579","verdict":"keep"}
+{"id":"hi:src_def45df0b452a579","verdict":"keep"}
+{"id":"de:src_def45df0b452a579","verdict":"keep"}
+{"id":"ja:src_def45df0b452a579","verdict":"keep"}
+{"id":"fr:src_def45df0b452a579","verdict":"keep"}
+{"id":"pt-BR:src_def45df0b452a579","verdict":"keep"}
+{"id":"ar:src_def45df0b452a579","verdict":"keep"}
+{"id":"ko:src_def45df0b452a579","verdict":"keep"}
+{"id":"zh-Hant:src_def45df0b452a579","verdict":"keep"}
+{"id":"vi:src_def45df0b452a579","verdict":"keep"}
+{"id":"id:src_def45df0b452a579","verdict":"keep"}
+{"id":"es:src_def66324b7e6a926","verdict":"keep"}
+{"id":"zh-Hans:src_def66324b7e6a926","verdict":"keep"}
+{"id":"hi:src_def66324b7e6a926","verdict":"keep"}
+{"id":"de:src_def66324b7e6a926","verdict":"keep"}
+{"id":"ja:src_def66324b7e6a926","verdict":"keep"}
+{"id":"fr:src_def66324b7e6a926","verdict":"keep"}
+{"id":"pt-BR:src_def66324b7e6a926","verdict":"keep"}
+{"id":"ar:src_def66324b7e6a926","verdict":"correct","target":"أغلق الراديو الذكي دون بدء بحث.","confidence":"high","reason":"This popup tooltip instructs the user to close Smart Radio; the Arabic verbal noun does not express the action."}
+{"id":"ko:src_def66324b7e6a926","verdict":"keep"}
+{"id":"zh-Hant:src_def66324b7e6a926","verdict":"keep"}
+{"id":"vi:src_def66324b7e6a926","verdict":"keep"}
+{"id":"id:src_def66324b7e6a926","verdict":"keep"}
+{"id":"es:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"zh-Hans:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"hi:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"de:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"ja:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"fr:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"pt-BR:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"ar:src_defcaa5fa7f49c17","verdict":"correct","target":"المجلدات: {directories}، الملفات: {files}","confidence":"high","reason":"The Browse card shows filesystem folder and file counts; Arabic أدلة means guides/proofs, not directories."}
+{"id":"ko:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"zh-Hant:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"vi:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"id:src_defcaa5fa7f49c17","verdict":"keep"}
+{"id":"es:src_df0453d185c482b1","verdict":"keep"}
+{"id":"zh-Hans:src_df0453d185c482b1","verdict":"keep"}
+{"id":"hi:src_df0453d185c482b1","verdict":"keep"}
+{"id":"de:src_df0453d185c482b1","verdict":"keep"}
+{"id":"ja:src_df0453d185c482b1","verdict":"keep"}
+{"id":"fr:src_df0453d185c482b1","verdict":"keep"}
+{"id":"pt-BR:src_df0453d185c482b1","verdict":"keep"}
+{"id":"ar:src_df0453d185c482b1","verdict":"keep"}
+{"id":"ko:src_df0453d185c482b1","verdict":"keep"}
+{"id":"zh-Hant:src_df0453d185c482b1","verdict":"keep"}
+{"id":"vi:src_df0453d185c482b1","verdict":"keep"}
+{"id":"id:src_df0453d185c482b1","verdict":"keep"}
+{"id":"es:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"zh-Hans:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"hi:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"de:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"ja:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"fr:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"pt-BR:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"ar:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"ko:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"zh-Hant:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"vi:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"id:src_df0fe9e00d354b01","verdict":"keep"}
+{"id":"es:src_df2020572607f467","verdict":"keep"}
+{"id":"zh-Hans:src_df2020572607f467","verdict":"keep"}
+{"id":"hi:src_df2020572607f467","verdict":"keep"}
+{"id":"de:src_df2020572607f467","verdict":"keep"}
+{"id":"ja:src_df2020572607f467","verdict":"keep"}
+{"id":"fr:src_df2020572607f467","verdict":"keep"}
+{"id":"pt-BR:src_df2020572607f467","verdict":"keep"}
+{"id":"ar:src_df2020572607f467","verdict":"keep"}
+{"id":"ko:src_df2020572607f467","verdict":"keep"}
+{"id":"zh-Hant:src_df2020572607f467","verdict":"keep"}
+{"id":"vi:src_df2020572607f467","verdict":"keep"}
+{"id":"id:src_df2020572607f467","verdict":"keep"}
+{"id":"es:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"zh-Hans:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"hi:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"de:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"ja:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"fr:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"pt-BR:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"ar:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"ko:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"zh-Hant:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"vi:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"id:src_df2cf21585f35fe8","verdict":"keep"}
+{"id":"es:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"zh-Hans:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"hi:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"de:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"ja:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"fr:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"pt-BR:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"ar:src_df384f4517b62d1e","verdict":"correct","target":"اسم سياسة Webhook","confidence":"high","reason":"This is an admin field for a webhook policy; the Arabic target describes an automatic web reply instead of preserving the Webhook integration term."}
+{"id":"ko:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"zh-Hant:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"vi:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"id:src_df384f4517b62d1e","verdict":"keep"}
+{"id":"es:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"zh-Hans:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"hi:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"de:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"ja:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"fr:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"pt-BR:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"ar:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"ko:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"zh-Hant:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"vi:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"id:src_df42ec38b2fd5489","verdict":"keep"}
+{"id":"es:src_df540d353e545f88","verdict":"correct","target":"Cierre este cuadro de diálogo y mantenga activa la sesión actual.","confidence":"high","reason":"The source is a button tooltip inside the logout confirmation modal. These targets mean message, command/input prompt, invitation, claim, or command instead of the modal dialog."}
+{"id":"zh-Hans:src_df540d353e545f88","verdict":"keep"}
+{"id":"hi:src_df540d353e545f88","verdict":"keep"}
+{"id":"de:src_df540d353e545f88","verdict":"correct","target":"Schließen Sie diesen Dialog und halten Sie die aktuelle Sitzung aktiv.","confidence":"high","reason":"The source is a button tooltip inside the logout confirmation modal. These targets mean message, command/input prompt, invitation, claim, or command instead of the modal dialog."}
+{"id":"ja:src_df540d353e545f88","verdict":"keep"}
+{"id":"fr:src_df540d353e545f88","verdict":"correct","target":"Fermez cette boîte de dialogue et gardez la session en cours active.","confidence":"high","reason":"The source is a button tooltip inside the logout confirmation modal. These targets mean message, command/input prompt, invitation, claim, or command instead of the modal dialog."}
+{"id":"pt-BR:src_df540d353e545f88","verdict":"keep"}
+{"id":"ar:src_df540d353e545f88","verdict":"correct","target":"أغلق مربع الحوار هذا وأبقِ الجلسة الحالية نشطة.","confidence":"high","reason":"The source is a button tooltip inside the logout confirmation modal. These targets mean message, command/input prompt, invitation, claim, or command instead of the modal dialog."}
+{"id":"ko:src_df540d353e545f88","verdict":"keep"}
+{"id":"zh-Hant:src_df540d353e545f88","verdict":"keep"}
+{"id":"vi:src_df540d353e545f88","verdict":"keep"}
+{"id":"id:src_df540d353e545f88","verdict":"correct","target":"Tutup dialog ini dan biarkan sesi saat ini tetap aktif.","confidence":"high","reason":"The source is a button tooltip inside the logout confirmation modal. These targets mean message, command/input prompt, invitation, claim, or command instead of the modal dialog."}
+{"id":"es:src_df71a3682a233b72","verdict":"keep"}
+{"id":"zh-Hans:src_df71a3682a233b72","verdict":"keep"}
+{"id":"hi:src_df71a3682a233b72","verdict":"keep"}
+{"id":"de:src_df71a3682a233b72","verdict":"keep"}
+{"id":"ja:src_df71a3682a233b72","verdict":"keep"}
+{"id":"fr:src_df71a3682a233b72","verdict":"keep"}
+{"id":"pt-BR:src_df71a3682a233b72","verdict":"keep"}
+{"id":"ar:src_df71a3682a233b72","verdict":"keep"}
+{"id":"ko:src_df71a3682a233b72","verdict":"keep"}
+{"id":"zh-Hant:src_df71a3682a233b72","verdict":"keep"}
+{"id":"vi:src_df71a3682a233b72","verdict":"keep"}
+{"id":"id:src_df71a3682a233b72","verdict":"keep"}
+{"id":"es:src_df7eccab33e99159","verdict":"keep"}
+{"id":"zh-Hans:src_df7eccab33e99159","verdict":"keep"}
+{"id":"hi:src_df7eccab33e99159","verdict":"keep"}
+{"id":"de:src_df7eccab33e99159","verdict":"keep"}
+{"id":"ja:src_df7eccab33e99159","verdict":"keep"}
+{"id":"fr:src_df7eccab33e99159","verdict":"keep"}
+{"id":"pt-BR:src_df7eccab33e99159","verdict":"keep"}
+{"id":"ar:src_df7eccab33e99159","verdict":"keep"}
+{"id":"ko:src_df7eccab33e99159","verdict":"keep"}
+{"id":"zh-Hant:src_df7eccab33e99159","verdict":"keep"}
+{"id":"vi:src_df7eccab33e99159","verdict":"keep"}
+{"id":"id:src_df7eccab33e99159","verdict":"keep"}
+{"id":"es:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"zh-Hans:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"hi:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"de:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"ja:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"fr:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"pt-BR:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"ar:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"ko:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"zh-Hant:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"vi:src_df883659ef2a6f54","verdict":"keep"}
+{"id":"id:src_df883659ef2a6f54","verdict":"keep"}

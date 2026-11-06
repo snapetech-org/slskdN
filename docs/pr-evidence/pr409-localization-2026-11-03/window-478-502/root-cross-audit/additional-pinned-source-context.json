@@ -1,0 +1,173 @@
+{
+  "contextBlocks": [
+    {
+      "label": "metadata-processing",
+      "repository": "snapetech-org/slskdN",
+      "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+      "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+      "path": "src/web/src/components/System/Integrations/MetadataProcessingPanel.jsx",
+      "gitBlob": "97a54b7a74d2287e7c016411342dcc10f9b7a3d1",
+      "fileSha256": "9e826ba55e390be1da3026ffe996a1133fb4cc85cb342042298e4a0bbe778d75",
+      "lineStart": 57,
+      "lineEnd": 64,
+      "lines": [
+        {
+          "line": 57,
+          "text": "  const known = new Set([",
+          "lineSha256": "55d43112d5437c53437ca53bd19596669e7246c9d76394f4d4474c45789e7e34"
+        },
+        {
+          "line": 58,
+          "text": "    'Not a supported audio file', 'File is too small for hashing',",
+          "lineSha256": "7f573e4deb164788c10ea6049e4243847bc1606f30250f9be8be9c7ba669ed44"
+        },
+        {
+          "line": 59,
+          "text": "    'Existing hash reused', 'Hash computation failed', 'Hash stored',",
+          "lineSha256": "e21e1b920b1b9b1c26d48d5e352154ff315d5b6344ddc9775de200a8ffb7dab5"
+        },
+        {
+          "line": 60,
+          "text": "    'Fingerprint stored', 'No fingerprint produced', 'Chromaprint is not configured',",
+          "lineSha256": "f5104702f8775d13613e7c04f43475f7955644d3ad2d67ffbfb9a65a50d449bf"
+        },
+        {
+          "line": 61,
+          "text": "    'AcoustID or MusicBrainz is not configured', 'Fingerprint data is unavailable',",
+          "lineSha256": "69a8ad21f91d5d9456e3cc4d439db60512ef21707f66d6c13714961f76bf6913"
+        },
+        {
+          "line": 62,
+          "text": "    'No recording match', 'Recording metadata not found', 'Recording metadata found',",
+          "lineSha256": "336ce2791bbc20e14863e2031b19de9548b7256b45f3e99f26d1ee7b7def645b"
+        },
+        {
+          "line": 63,
+          "text": "    'Tags updated', 'No tag changes needed', 'Recording resolved',",
+          "lineSha256": "44843b771fe02d962774c7de92c2b65b09262759cdd5ba11720eec4f25f5cb7f"
+        },
+        {
+          "line": 64,
+          "text": "  ]);",
+          "lineSha256": "431d2a14472787d97a97f7cb7d839af3f6ef929c14f6817a0f5921dcd86db4dc"
+        }
+      ]
+    },
+    {
+      "label": "media-core-batch-retrieve",
+      "repository": "snapetech-org/slskdN",
+      "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+      "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+      "path": "src/web/src/components/System/MediaCore/index.jsx",
+      "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3",
+      "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "lineStart": 724,
+      "lineEnd": 731,
+      "lines": [
+        {
+          "line": 724,
+          "text": "  const handleRetrieveBatch = async () => {",
+          "lineSha256": "c26d2d7bf3959408ff028837155a91bcede60e2f7bbf63a273a839ac298ac579"
+        },
+        {
+          "line": 725,
+          "text": "    const contentIds = batchRetrieveContentIds",
+          "lineSha256": "4b193cc497736e0071e2686d065860d6e586c5789130b2105f482ba424d4821c"
+        },
+        {
+          "line": 726,
+          "text": "      .split('\\n')",
+          "lineSha256": "0779ed90d52c765751bb045f50c793d1759cd4441107863d0c3b3f85d3854094"
+        },
+        {
+          "line": 727,
+          "text": "      .map((id) => id.trim())",
+          "lineSha256": "bfd067b3d72ee9a8688389e67ab151deafc8f6127251d407ac0a1acdc726f03a"
+        },
+        {
+          "line": 728,
+          "text": "      .filter(Boolean);",
+          "lineSha256": "40a87df8714fc5989fe8cc85888f92340cf2f87471269c4bf904ae83dbd22060"
+        },
+        {
+          "line": 729,
+          "text": "    if (!contentIds.length) return;",
+          "lineSha256": "2fd80634423e42dbfa72ad37a6cb3e1ded5719b1a1c39d74c78aa822ccf90257"
+        },
+        {
+          "line": 730,
+          "text": "",
+          "lineSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 731,
+          "text": "    try {",
+          "lineSha256": "5d642f28a5cdc0e7ff346c14538f7665b17969dd19cc7e33169cf5666669d740"
+        }
+      ]
+    },
+    {
+      "label": "media-core-batch-retrieve",
+      "repository": "snapetech-org/slskdN",
+      "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+      "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+      "path": "src/web/src/components/System/MediaCore/index.jsx",
+      "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3",
+      "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+      "lineStart": 2731,
+      "lineEnd": 2740,
+      "lines": [
+        {
+          "line": 2731,
+          "text": "                  <Button",
+          "lineSha256": "33c2e35f18b5a30c5e21844064a72a70671b6555a52e84cfba539490e8618e64"
+        },
+        {
+          "line": 2732,
+          "text": "                    tooltip={interfaceText(\"Run a DHT lookup for each listed ContentID to inspect their descriptors. Keep the batch bounded because every ID adds network traffic.\")}",
+          "lineSha256": "2b55943abc683866b26a9c8bd111ddbca302f14db94646f2962b2c28488c7e95"
+        },
+        {
+          "line": 2733,
+          "text": "                    disabled={!batchRetrieveContentIds.trim() || retrievingBatch}",
+          "lineSha256": "f679f4e6326664f1ec238f575f20425eba74f0d5207daefed566cb6dfe67eb8b"
+        },
+        {
+          "line": 2734,
+          "text": "                    loading={retrievingBatch}",
+          "lineSha256": "b5f3b3d64e03374dc27b7d7007b1b2dc294d8773950a00c14ad3665fab61a38c"
+        },
+        {
+          "line": 2735,
+          "text": "                    onClick={handleRetrieveBatch}",
+          "lineSha256": "8c4770de0797d575455326761f5fa451bd03cc8c453281283406fc6bc6227298"
+        },
+        {
+          "line": 2736,
+          "text": "                    primary",
+          "lineSha256": "42cd200ad1cdbc61bcf398812d66e7e61316f7d70fceb71003ebed25f23f705f"
+        },
+        {
+          "line": 2737,
+          "text": "                  >",
+          "lineSha256": "cc6cda9c373b134885d424cbf4703245c1f26f610ddcd70d0b299314cfd5c530"
+        },
+        {
+          "line": 2738,
+          "text": "                    <LocalizedText source={\"Retrieve Batch\"} /></Button>",
+          "lineSha256": "f9af910d6386d4819422f472f6a23343c72b5652ef79068825a435fab5fbbf0c"
+        },
+        {
+          "line": 2739,
+          "text": "                </Form>",
+          "lineSha256": "5f42b288fd445e559c0fdbb602224547566d8c5af35187c47acd2b0e23550a10"
+        },
+        {
+          "line": 2740,
+          "text": "              </details>",
+          "lineSha256": "f3dd442b0b61eb5d052cccf400cef8ff9f8fedb55c2e515df2aeddb3082b951f"
+        }
+      ]
+    }
+  ]
+}

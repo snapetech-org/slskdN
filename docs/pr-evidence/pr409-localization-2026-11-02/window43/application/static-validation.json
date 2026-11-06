@@ -1,0 +1,95 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pull_request": 409,
+  "input_head": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+  "input_tree": "25282a0cd8197815b3ffcbec9dbea8a03a5c8725",
+  "applied_proposals": 45,
+  "primary_dispositions": {
+    "corrections": 21,
+    "refinements": 24
+  },
+  "accept_current_preserved": 219,
+  "held_source_caller_refactor": 11,
+  "catalogs": {
+    "ar": {
+      "keys": 6169,
+      "file_sha256_before": "8de49b7e3bf63645636a2433b8da2526e800603cd063fe8358690911c10449c4",
+      "file_sha256_after": "a81e129c024f3150150e9930fd9dfaef4f0938667a9fe82ee5cd83b356e851a1",
+      "ordered_keys_preserved": true
+    },
+    "de": {
+      "keys": 6169,
+      "file_sha256_before": "77031732ba276cbd8aab27f637f9fb01ee0cbfeec055656a0047d4759ff0a4c5",
+      "file_sha256_after": "80efc1182b070257b204739c5e7455f395d4d0b43f406c0af5e73e472e9ee0a9",
+      "ordered_keys_preserved": true
+    },
+    "fr": {
+      "keys": 6169,
+      "file_sha256_before": "5bfefb1fd0f2f33bcda533afa6eadfaedd4d5e95fd4b7e14557ea025cd3dc89d",
+      "file_sha256_after": "ca150d1a332a5d067fbbe2e342687cf15088d04a6177fd01a2195da8253fc8a3",
+      "ordered_keys_preserved": true
+    },
+    "hi": {
+      "keys": 6169,
+      "file_sha256_before": "f1e7bdd700cf79e2665ffc1dac03a3475e312698463a6a50dd278df29e95ae8f",
+      "file_sha256_after": "f6657400b9e0da78185f4eb273a26c089bf7aeaac3af96b9a8d4f2adff8207d2",
+      "ordered_keys_preserved": true
+    },
+    "id": {
+      "keys": 6169,
+      "file_sha256_before": "02a68f57148ebb3425b16bf51eedbca86fa2cc9f110a183e4e7b04a30b24b99e",
+      "file_sha256_after": "a5b4a256cf3aa58913659d4bf41111c611f9603be358b00437b55f1a002d10d9",
+      "ordered_keys_preserved": true
+    },
+    "ja": {
+      "keys": 6169,
+      "file_sha256_before": "d2a3164045859fe2af3a7412dc9f2c17588168e94730e2ab759a495a4c375e15",
+      "file_sha256_after": "012206d90844459d383298f6f93489e54f99a7f67800d2f75f609ea0416b8016",
+      "ordered_keys_preserved": true
+    },
+    "ko": {
+      "keys": 6169,
+      "file_sha256_before": "e20e2d79d9563f30c9239696dff937d95b2a3fcdf2eb4b535ee0f6907ac06f27",
+      "file_sha256_after": "a073752a550d21fd48c475165d81e0e069340504ccc48952e936ea44971146cb",
+      "ordered_keys_preserved": true
+    },
+    "pt-BR": {
+      "keys": 6169,
+      "file_sha256_before": "a47eb975caa29edfc2e46b1785811ef92e8d4f174d63f694341daa7c0a9f1736",
+      "file_sha256_after": "762c7cd9da9b0e94cac485fd897b537ae59a6c399d99c045eb05e1021efd183f",
+      "ordered_keys_preserved": true
+    },
+    "vi": {
+      "keys": 6169,
+      "file_sha256_before": "3a76f39ca16f721fc61716cfa1f318514b45b71062b38540e0d08aab66c2b0eb",
+      "file_sha256_after": "785a237f9a8061b968bb70ac2a1a30660971ea802b18ffd92426482df8e4ec10",
+      "ordered_keys_preserved": true
+    },
+    "zh-Hans": {
+      "keys": 6169,
+      "file_sha256_before": "385f07312d8928ca00774d5ecd668fea498cc799f3e35b39f07500f18ca146d9",
+      "file_sha256_after": "7a466590111cbcd082dcee8550564542e5bb2594f9162a0400dd805b9658ac4a",
+      "ordered_keys_preserved": true
+    },
+    "zh-Hant": {
+      "keys": 6169,
+      "file_sha256_before": "d6cba7252bb5ae28923626fddc42d94d6229e4f59e01096e5416e60c4ba78a85",
+      "file_sha256_after": "aa463219478861e435d5e49df0bba9bfab447da0434df8b4cf9e7614a66ee666",
+      "ordered_keys_preserved": true
+    },
+    "es": {
+      "keys": 6169,
+      "file_sha256_before": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+      "file_sha256_after": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+      "ordered_keys_preserved": true
+    }
+  },
+  "target_hashes_exact": true,
+  "all_275_independent_final_cells_reconciled": true,
+  "Spanish_W43_values_preserved_without_verdict": 25,
+  "protected_FTP_literals_restored": 2,
+  "source_caller_pins_independently_attested": 43,
+  "W40_frozen_bundle_provenance_limitation": "The specified W40 bundle is absent; the cross-review records this and verifies the W43 range against W42 future-boundary evidence.",
+  "native_speaker_approval": false,
+  "tests_builds_ci_browser_workflows_releases_tags_merges_touched": false
+}

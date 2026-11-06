@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "head": "9674df03ab94a39da1eafe265c95d85a28be96c9",
+  "tree": "7be8469c96c8c703b1dc8ef0486baa9ff0777115",
+  "W57": {
+    "head": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+    "rank": 319,
+    "heldCells": 12,
+    "preservedHolds": 12,
+    "source": "Play more tracks locally to build recommendation seeds."
+  },
+  "W59": {
+    "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "heldCells": 24,
+    "ranks": [
+      356,
+      366
+    ],
+    "preservedHolds": 24
+  },
+  "W60": {
+    "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
+    "cells": 300,
+    "dispositions": {
+      "accept-current": 216,
+      "correction": 57,
+      "refinement": 27
+    },
+    "valuesReattested": 300
+  },
+  "W61": {
+    "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+    "rank": 409,
+    "heldCells": 12,
+    "preservedHolds": 12,
+    "source": "Wanted pull is not ready; no Servarr action was run.",
+    "holdEvidenceSha256": "62315beb8600b9b4054094ee9bb173dba50cde9121b74307e06a3919d0ad3827"
+  },
+  "W61CandidateFree": {
+    "checksumListSha256": "418735698e3e789a8c14005d531980631980bdccb993fe9ae669b65735e4ace7",
+    "manifestJsonSha256": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+    "packetFilesVerified": 11
+  },
+  "W61CrossAuditFilesVerified": 31,
+  "currentValuesReattested": 348,
+  "callerContextsReattested": 29,
+  "candidateTargetsCopied": false
+}

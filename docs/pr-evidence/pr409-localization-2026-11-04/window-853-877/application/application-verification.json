@@ -1,0 +1,16 @@
+{
+  "baseHead": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "callerlessHashOnlyHolds": 24,
+  "catalogEntriesPerLocale": 6176,
+  "catalogKeyOrder": "unchanged",
+  "catalogs": 12,
+  "holds": 39,
+  "keeps": 215,
+  "mode": "prepared",
+  "productCommit": "7317d8fa46a54746f09853da18c16a8ef1845291",
+  "proposals": 46,
+  "readbackCells": 300,
+  "result": "PASS",
+  "tokenSafeSelectedProposals": 46,
+  "workflowPathsChanged": 0
+}

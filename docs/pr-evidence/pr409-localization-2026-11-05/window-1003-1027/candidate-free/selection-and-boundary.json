@@ -1,0 +1,171 @@
+{
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "nextUnselected": {
+    "continuationRank": 1028,
+    "remainingQueueRank": 928,
+    "sourceId": "src_38f4269b462b2d4f",
+    "sourceSha256": "38f4269b462b2d4f848c512381948c61520cddf88ab5b77e3b11c3e8cf44531f"
+  },
+  "previousWindow": "W84 / W978-W1002",
+  "previousWindowFinalRank": {
+    "continuationRank": 1002,
+    "remainingQueueRank": 902,
+    "sourceId": "src_37e281adf7d0daaf",
+    "sourceSha256": "37e281adf7d0daaf15026d0bd449224031d972ffc09cdda2329744bd777839f7"
+  },
+  "selectedWindow": [
+    {
+      "continuationRank": 1003,
+      "remainingQueueRank": 903,
+      "sourceId": "src_37e70d757333e802",
+      "sourceSha256": "37e70d757333e8024d079adc6789e378ec79e0ddb3ec292fa6c75b41ca77492b"
+    },
+    {
+      "continuationRank": 1004,
+      "remainingQueueRank": 904,
+      "sourceId": "src_37edb444c0288717",
+      "sourceSha256": "37edb444c0288717c526e76793738640e64e0db5f9fc382f281ca820bac156cf"
+    },
+    {
+      "continuationRank": 1005,
+      "remainingQueueRank": 905,
+      "sourceId": "src_37f8f7878445b720",
+      "sourceSha256": "37f8f7878445b720f538055288deb97a8b012d9a0f220e6edad5622f3bb8e5b9"
+    },
+    {
+      "continuationRank": 1006,
+      "remainingQueueRank": 906,
+      "sourceId": "src_37fbff1e5398369c",
+      "sourceSha256": "37fbff1e5398369c1f5364ed9de16fa64a5bdf63f60cf4e8d930a30964e0618c"
+    },
+    {
+      "continuationRank": 1007,
+      "remainingQueueRank": 907,
+      "sourceId": "src_38015e09cbc228e9",
+      "sourceSha256": "38015e09cbc228e927becc077292e4a157c7404d67625dbfa91c860d755bb7c9"
+    },
+    {
+      "continuationRank": 1008,
+      "remainingQueueRank": 908,
+      "sourceId": "src_381531deeb3ce150",
+      "sourceSha256": "381531deeb3ce15089eb25d14e0eb053cc09ffafa37e42fccb69eb2a32362d92"
+    },
+    {
+      "continuationRank": 1009,
+      "remainingQueueRank": 909,
+      "sourceId": "src_383e0a976ad7cfe8",
+      "sourceSha256": "383e0a976ad7cfe82dae1f667c427951cd1118b8a4d3862a25df82dccd415de0"
+    },
+    {
+      "continuationRank": 1010,
+      "remainingQueueRank": 910,
+      "sourceId": "src_3843971dcfdee508",
+      "sourceSha256": "3843971dcfdee5083e6289e1bbdbb003e538b5a8a668fc43ae4f19d415ac18a2"
+    },
+    {
+      "continuationRank": 1011,
+      "remainingQueueRank": 911,
+      "sourceId": "src_3848ef4195a961f3",
+      "sourceSha256": "3848ef4195a961f3773930e792f5dc5f7a59e1891adb92bd9f40210819ab59c7"
+    },
+    {
+      "continuationRank": 1012,
+      "remainingQueueRank": 912,
+      "sourceId": "src_38592119e3874a3e",
+      "sourceSha256": "38592119e3874a3e739bffb190a83db7ba4900b863bfd6c31e58d616cdb98551"
+    },
+    {
+      "continuationRank": 1013,
+      "remainingQueueRank": 913,
+      "sourceId": "src_3870ca4320d48993",
+      "sourceSha256": "3870ca4320d48993f55608df50cd0a85218a6b1f026d258612ec7c84da7b0b33"
+    },
+    {
+      "continuationRank": 1014,
+      "remainingQueueRank": 914,
+      "sourceId": "src_387668e22f8946c1",
+      "sourceSha256": "387668e22f8946c1a1dfa26267805821b7ff8d66efee9347c9a2a872f2863748"
+    },
+    {
+      "continuationRank": 1015,
+      "remainingQueueRank": 915,
+      "sourceId": "src_38819bdbc00f2181",
+      "sourceSha256": "38819bdbc00f2181feda43aedb754b5ab736746589a4a394f522b9f8d3032c25"
+    },
+    {
+      "continuationRank": 1016,
+      "remainingQueueRank": 916,
+      "sourceId": "src_38858ddd4f366279",
+      "sourceSha256": "38858ddd4f3662794d6f399457948c79b27ac26de7144e452484686dfc5d7be3"
+    },
+    {
+      "continuationRank": 1017,
+      "remainingQueueRank": 917,
+      "sourceId": "src_389144603f8a9fab",
+      "sourceSha256": "389144603f8a9fab624dec972b525898bb18d005d840c70fcaa597d7e6cd02e0"
+    },
+    {
+      "continuationRank": 1018,
+      "remainingQueueRank": 918,
+      "sourceId": "src_3892e10346fd2012",
+      "sourceSha256": "3892e10346fd2012e7e1374e7177966b76bfca41f56539b4a5b69cd0f1cf6201"
+    },
+    {
+      "continuationRank": 1019,
+      "remainingQueueRank": 919,
+      "sourceId": "src_3896a6c91e45b91d",
+      "sourceSha256": "3896a6c91e45b91dbc5ec8c11486c3c696849c7ec9ceb6106a0476f36a3bf479"
+    },
+    {
+      "continuationRank": 1020,
+      "remainingQueueRank": 920,
+      "sourceId": "src_38a916ab1bce64f6",
+      "sourceSha256": "38a916ab1bce64f6469b07b907667785bc857edf044e5d7d1036398be86390a8"
+    },
+    {
+      "continuationRank": 1021,
+      "remainingQueueRank": 921,
+      "sourceId": "src_38abbab33ebfe0a0",
+      "sourceSha256": "38abbab33ebfe0a08c9cf4bcbac3e26ebd01e1a70d1ea4fcfec065a25ed6a14b"
+    },
+    {
+      "continuationRank": 1022,
+      "remainingQueueRank": 922,
+      "sourceId": "src_38bf347456d9809b",
+      "sourceSha256": "38bf347456d9809b505bc55d38d17778478e73f09a19ca44cd92cd73920af3cc"
+    },
+    {
+      "continuationRank": 1023,
+      "remainingQueueRank": 923,
+      "sourceId": "src_38cbb040dc684c22",
+      "sourceSha256": "38cbb040dc684c22b2511a9e743d4c95862cba3fab950553dfc61405851b5960"
+    },
+    {
+      "continuationRank": 1024,
+      "remainingQueueRank": 924,
+      "sourceId": "src_38da1505ca837328",
+      "sourceSha256": "38da1505ca8373288489495101b14f24ac95078f520ad64df18272aa6054f750"
+    },
+    {
+      "continuationRank": 1025,
+      "remainingQueueRank": 925,
+      "sourceId": "src_38e5a46cbc5ad328",
+      "sourceSha256": "38e5a46cbc5ad32842ac60a4f1425ac9b31c06bac685f446a06ab72b87de31ed"
+    },
+    {
+      "continuationRank": 1026,
+      "remainingQueueRank": 926,
+      "sourceId": "src_38ea78c5c7198c91",
+      "sourceSha256": "38ea78c5c7198c91472ff52409436dcf48572440cb37604ca60865c84ba81d0d"
+    },
+    {
+      "continuationRank": 1027,
+      "remainingQueueRank": 927,
+      "sourceId": "src_38f33bce306e3383",
+      "sourceSha256": "38f33bce306e338384316a989108b656cdaaea6503d35abe283c57f475af2741"
+    }
+  ],
+  "selectionRule": "next 25 eligible stable source IDs from pinned W84 inventory; continuationRank = remainingQueueRank + 100",
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "window": "W85"
+}

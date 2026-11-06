@@ -87,16 +87,16 @@ const ContentsModal = ({ onClose, share, theme }) => {
       </Modal.Content>
       <Modal.Actions>
         <Popup
-          content={interfaceText("Close the share contents window.")}
+          content={interfaceText("Close the window showing the contents of the selected share.")}
           trigger={(
             <Button
               aria-label={interfaceText("Close share contents")}
               onClick={onClose}
-              title={interfaceText("Close the share contents window.")}
+              title={interfaceText("Close the window showing the contents of the selected share.")}
              {...interfaceTextProps("Close share contents")}>
               <LocalizedText source={"Close"} /></Button>
           )}
-         {...interfaceTextProps("Close the share contents window.")}/>
+         {...interfaceTextProps("Close the window showing the contents of the selected share.")}/>
       </Modal.Actions>
     </Modal>
   );

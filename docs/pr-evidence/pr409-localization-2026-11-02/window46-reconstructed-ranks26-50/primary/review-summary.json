@@ -1,0 +1,90 @@
+{
+  "callerReferences": 41,
+  "cellCount": 300,
+  "directCallerRows": 20,
+  "dispositionCounts": {
+    "accept-current": 237,
+    "hold": 24,
+    "propose-correction": 39
+  },
+  "exactHead": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "exactTree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "headedBrowserReview": false,
+  "heldCells": 24,
+  "holdSourceIds": [
+    "src_112cb5f2343632c5",
+    "src_11507a0e2f5e69d5"
+  ],
+  "localeCount": 12,
+  "markupMismatchesCurrent": 0,
+  "markupMismatchesReviewed": 0,
+  "nativeSpeakerApproval": false,
+  "placeholderMismatchesCurrent": 0,
+  "placeholderMismatchesReviewed": 0,
+  "productionCallerGaps": [
+    {
+      "selectionRank": 29,
+      "source": "Folder ignores are available only for wishlist searches because each rule belongs to one wishlist item. Open a result from Wishlist history to use them.",
+      "sourceId": "src_10ac7829f9560ecb"
+    },
+    {
+      "selectionRank": 33,
+      "source": "Missing:",
+      "sourceId": "src_10c4b48e0b09a118"
+    },
+    {
+      "selectionRank": 37,
+      "source": "Download {count} files from {directory}?",
+      "sourceId": "src_10dec009bb7ddc89"
+    },
+    {
+      "selectionRank": 44,
+      "source": "Quality Presets",
+      "sourceId": "src_113273dd475a9bbb"
+    },
+    {
+      "selectionRank": 46,
+      "source": "Unblocked {username}.",
+      "sourceId": "src_11425efe5687602b"
+    }
+  ],
+  "proposalCount": 39,
+  "protectedLiteralMismatchesReviewed": 0,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryModified": false,
+  "selectionRanks": [
+    26,
+    50
+  ],
+  "sourceCount": 25,
+  "sourceIds": [
+    "Max Chain Length:",
+    "Total Members",
+    "Similarity Analysis Results",
+    "Folder ignores are available only for wishlist searches because each rule belongs to one wishlist item. Open a result from Wishlist history to use them.",
+    "Enforce web security hardening",
+    "Select all files in {directory}",
+    "ContentID to find matches for",
+    "Missing:",
+    "Conflict Resolution Strategy",
+    "Please enter leave request JSON data",
+    "- {status}: {title}",
+    "Download {count} files from {directory}?",
+    "Copy Safe-Fix Manifest",
+    "Choose system log view",
+    "Group {audienceId}",
+    "rating",
+    "tracks,",
+    "Recording ID",
+    "Quality Presets",
+    "DHT Key:",
+    "Unblocked {username}.",
+    "Expire unrated after",
+    "Failed Publications:",
+    "new",
+    "Note:"
+  ],
+  "testsBuildScansCiRun": false,
+  "windowLabel": "W46 deterministic reconstruction, pending source-ID ranks 26-50; historical ordinal unavailable"
+}

@@ -1,0 +1,70 @@
+{
+  "reviewType": "machine-draft translation",
+  "source": "Security monitoring will begin automatically once peer activity is detected. Check connectivity in the {tab} tab.",
+  "sourceSha256": "9f923ae09ae2aeb7586ac6ee6efbc92a6dd406d4b9b36af076a0a9268ed3b26c",
+  "sourceId": "src_9f923ae09ae2aeb7",
+  "context": "Security settings activation instructions; {tab} receives the bold localized Mesh tab label.",
+  "nativeSpeakerApproval": false,
+  "targets": {
+    "es": {
+      "target": "La supervisión de seguridad se iniciará automáticamente en cuanto se detecte actividad de pares. Compruebe la conectividad en la pestaña {tab}.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "zh-Hans": {
+      "target": "一旦检测到对等活动，安全监控将自动开始。请在{tab}选项卡中检查连接状态。",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "hi": {
+      "target": "सहकर्मी गतिविधि का पता चलते ही सुरक्षा निगरानी अपने-आप शुरू हो जाएगी। कनेक्टिविटी की जाँच {tab} टैब में करें。",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "de": {
+      "target": "Die Sicherheitsüberwachung beginnt automatisch, sobald Peer-Aktivität erkannt wird. Überprüfen Sie die Verbindung in der Registerkarte {tab}.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "ja": {
+      "target": "ピアのアクティビティが検出されると、セキュリティ監視が自動的に開始されます。接続状況は{tab}タブで確認してください。",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "fr": {
+      "target": "La surveillance de la sécurité commencera automatiquement une fois l’activité des pairs détectée. Vérifiez la connectivité dans l’onglet {tab}.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "pt-BR": {
+      "target": "O monitoramento de segurança começará automaticamente assim que a atividade dos pares for detectada. Verifique a conectividade na guia {tab}.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "ar": {
+      "target": "ستبدأ مراقبة الأمان تلقائيًا بمجرد اكتشاف نشاط الأقران. تحقّق من الاتصال في علامة التبويب {tab}.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "ko": {
+      "target": "피어 활동이 감지되면 보안 모니터링이 자동으로 시작됩니다. 연결 상태는 {tab} 탭에서 확인하세요.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "zh-Hant": {
+      "target": "一旦偵測到對等活動，安全監控就會自動開始。請在{tab}分頁中檢查連線狀態。",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "vi": {
+      "target": "Khi phát hiện hoạt động ngang hàng, giám sát bảo mật sẽ tự động bắt đầu. Kiểm tra kết nối trong tab {tab}.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    },
+    "id": {
+      "target": "Pemantauan keamanan akan dimulai secara otomatis setelah aktivitas rekan terdeteksi. Periksa konektivitas di tab {tab}.",
+      "placeholderCount": 1,
+      "confidence": "moderate"
+    }
+  }
+}

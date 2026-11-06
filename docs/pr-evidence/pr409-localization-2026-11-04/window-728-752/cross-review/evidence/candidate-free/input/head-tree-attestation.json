@@ -1,0 +1,14 @@
+{
+  "attestedAfterExtractionUtc": "2026-11-04T07:09:23+00:00",
+  "attestedBeforeExtractionUtc": "2026-11-04T07:09:20+00:00",
+  "baseRefName": "main",
+  "branchRefOid": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "draft": true,
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "headRefOid": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "pullRefOid": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "state": "OPEN",
+  "treeOid": "14620c63bee971428fa1cd6cf1f4e944b86056a7"
+}

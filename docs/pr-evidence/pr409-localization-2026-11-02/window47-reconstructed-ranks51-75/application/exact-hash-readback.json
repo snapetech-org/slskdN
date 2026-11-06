@@ -1,0 +1,110 @@
+{
+  "allCurrentValuesMatched": true,
+  "allFinalValuesMatched": true,
+  "applyPlanRows": 36,
+  "catalogCount": 12,
+  "catalogKeySetsAndOrderPreserved": true,
+  "catalogs": [
+    {
+      "changedValues": 4,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/ar.json",
+      "postFileSha256": "55a068e568bc769f1a809b5115f4c85849b7a57b37ebb0ff0c4a5c4416b67445",
+      "preFileSha256": "844c4bb93be3f8bbcc69a969370c51be78ce0e4826336161439390b8bd2b6913"
+    },
+    {
+      "changedValues": 2,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/de.json",
+      "postFileSha256": "1e79bc5ad5430a6517e70d46ac0b0305bb3b089d7f7445f633168570ef76a5fa",
+      "preFileSha256": "7a021d3bd638dc0b3a827d114f07d9e1cb467d1966f6c65354ec4ddf71800d94"
+    },
+    {
+      "changedValues": 3,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/es.json",
+      "postFileSha256": "318701970b8320ceead4ba88684fc0593e1903ba375a35048a18f87dd9741003",
+      "preFileSha256": "a01392c3f8d41b2994cd426a8b7b32c9b0dc5800035fb579e899ea5ef4658a06"
+    },
+    {
+      "changedValues": 1,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/fr.json",
+      "postFileSha256": "ae1f9838016d1776773502cb7ac22892b3728aedef884e62ae2f1c5ff0f7b55b",
+      "preFileSha256": "aab281fc3ceedc1620802dcbba6598481c662e9337b792bb048d51b97b4224ba"
+    },
+    {
+      "changedValues": 3,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/hi.json",
+      "postFileSha256": "53df14971e8295fe1428fef9af242f2ed9fe8003d58ae8d8960d146991dcbec8",
+      "preFileSha256": "fe444d09ae7dcdb612c07a071582ed8e54291d5564246554769e2438e7bf5d06"
+    },
+    {
+      "changedValues": 2,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/id.json",
+      "postFileSha256": "d61f26ed12bad912bf3587c135330d859b028f0b64089dd9fc75a6a96da46cf8",
+      "preFileSha256": "4f885e41fd7810e91234d90c6a18157565e80afa933680d94d2ff21711f5bda2"
+    },
+    {
+      "changedValues": 4,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/ja.json",
+      "postFileSha256": "9da910f50b152a0f8ef0862b313978cff5472437b24c0dc867da5bab9b41392d",
+      "preFileSha256": "5bf11a815b5e9375ae57b4ce5b59ea2ea502524438e99471d96da68d3bf27613"
+    },
+    {
+      "changedValues": 5,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/ko.json",
+      "postFileSha256": "39d190b2fc1e13f8564f8663baa335316590a492766d7638c50c82841f4a938c",
+      "preFileSha256": "ea78917b96113e6a91a99e344f36474f769584fdbfbf13e7e8b1e5d9a5218b1b"
+    },
+    {
+      "changedValues": 2,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/pt-BR.json",
+      "postFileSha256": "7d4bb2e7e687d92329651f0a243d54df7841f40ab34aa8800a301e689069133f",
+      "preFileSha256": "f44dd21457bf3c771d9cd3d9cff8a5d9aecf2e93e5bc496c625dac7e1c47db18"
+    },
+    {
+      "changedValues": 4,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/vi.json",
+      "postFileSha256": "bc395ddcc4ccd42c83412a7afbcfc430e651731b284566edb6785ce7b5899ebc",
+      "preFileSha256": "0a61426d7bab58b6875986120f08e96d532f4992b815eac8027875307c525d2e"
+    },
+    {
+      "changedValues": 3,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/zh-Hans.json",
+      "postFileSha256": "8fdc3efd733ea85c65c38eda8e6c0cf3f0e763ccfa9ac05d526a00cca443c7d2",
+      "preFileSha256": "9cc4aa5ac2da73ab857d0c780ebbf66fc4ea88d52111a1cba93f1b37a86a6a48"
+    },
+    {
+      "changedValues": 3,
+      "keyOrderPreserved": true,
+      "keys": 6175,
+      "path": "src/web/public/locales/zh-Hant.json",
+      "postFileSha256": "03fe91d74c547f770f5630dac1c6ba3dd58bdbb200161389da4889bbb3a485cd",
+      "preFileSha256": "710ea2e8a8a9e110dadc6a2d352978b264d48dc2057939b0cf51883b2da5d5a3"
+    }
+  ],
+  "exactHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "exactTree": "a0946207555e494a558707008ba051013964b447",
+  "ledgerRows": 300,
+  "previewChangedValues": 36,
+  "repositoryModified": false
+}

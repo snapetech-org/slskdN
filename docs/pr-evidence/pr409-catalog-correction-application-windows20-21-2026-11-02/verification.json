@@ -1,0 +1,161 @@
+{
+  "result": "PASS",
+  "applicationBaseHead": "9b8e87ccc6fbcb77e82681aced4597ecc94d980f",
+  "applicationBaseTree": "dab884c9337715644efd6cbd8ce7efc3b2467ce9",
+  "applicationCommit": "f12c058c74e69b68483e3f46f064f4165f1f387c",
+  "applicationTree": "1e4c6679f5e0f8d4b5fbf49e2e1916b53ddd28b1",
+  "currentHead": "f12c058c74e69b68483e3f46f064f4165f1f387c",
+  "currentTree": "1e4c6679f5e0f8d4b5fbf49e2e1916b53ddd28b1",
+  "catalogCensus": {
+    "locales": 12,
+    "keysPerLocale": 6169,
+    "totalValues": 74028,
+    "changedCellsSinceFrozenBaseline": 869,
+    "changedCellsByLocale": {
+      "ar": 96,
+      "de": 44,
+      "es": 70,
+      "fr": 67,
+      "hi": 76,
+      "id": 79,
+      "ja": 46,
+      "ko": 62,
+      "pt-BR": 62,
+      "vi": 89,
+      "zh-Hans": 90,
+      "zh-Hant": 88
+    },
+    "catalogFileSha256": {
+      "src/web/public/locales/ar.json": "918bf828523723dd4a58524f1233c45a8fa6e282207c01f1f9a0c32d5e40ae90",
+      "src/web/public/locales/de.json": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75",
+      "src/web/public/locales/es.json": "b9a6eaa9d736695249e838ba3ad1cf44dda8f663a359c43b89240195ce7025c5",
+      "src/web/public/locales/fr.json": "4f3341b3416813d7e72f71e7a5fc129d8aa4965950ec22579772d073fc6de6d5",
+      "src/web/public/locales/hi.json": "fbdb117753bd351d8ce31955cc5001c2455b2cb800ad5d61f0e1be576ab7a9dd",
+      "src/web/public/locales/id.json": "3d63e2bbe413569eb957d23c5ed9506c3368fc22f635392ad81857b83ed37c0c",
+      "src/web/public/locales/ja.json": "589b61d7b3ad694913eb10d66a94ff10cc17c11f3a5725d52e9f63440d3b37b9",
+      "src/web/public/locales/ko.json": "0f26115f8c4406ada424dc3ac55116762e0390226f4983a46c55086133a09448",
+      "src/web/public/locales/pt-BR.json": "d8e7628a9eac2471d123ed289a98f03038a54015dd18fcb1efe18dab5b70831a",
+      "src/web/public/locales/vi.json": "f5a2f103f3523c9e5afcd332ea9ac8f8bdf13eeb3460b55d87d42adaeb03f10f",
+      "src/web/public/locales/zh-Hans.json": "01a346827a48b1cf46115e334f099505cdb108a60f788ed1ccc1eb766866b269",
+      "src/web/public/locales/zh-Hant.json": "9fd1d5a9415ba6d627e121328dd40b86d28896844eabe60537b3ed043f7b3b81"
+    }
+  },
+  "application": {
+    "initialAppliedCells": 736,
+    "windows18_19AppliedCells": 82,
+    "newAppliedCells": 51,
+    "totalAppliedCells": 869,
+    "appliedSourceKeys": 211,
+    "heldNoContext": 6,
+    "newPerLocaleCellCounts": {
+      "ar": 3,
+      "es": 4,
+      "fr": 1,
+      "hi": 4,
+      "id": 1,
+      "ja": 3,
+      "ko": 5,
+      "pt-BR": 5,
+      "vi": 3,
+      "zh-Hans": 11,
+      "zh-Hant": 11
+    }
+  },
+  "manualReconciliation": {
+    "windows": 21,
+    "keys": 525,
+    "cells": 6300,
+    "verdicts": {
+      "keep": 5217,
+      "correct": 875,
+      "uncertain": 208
+    },
+    "formalOverlap": 0,
+    "manualOverlap": 0,
+    "unreconciledCorrections": 0,
+    "perLocale": {
+      "ar": {
+        "keep": 411,
+        "correct": 97,
+        "uncertain": 17
+      },
+      "de": {
+        "keep": 465,
+        "correct": 44,
+        "uncertain": 16
+      },
+      "es": {
+        "keep": 437,
+        "correct": 71,
+        "uncertain": 17
+      },
+      "fr": {
+        "keep": 441,
+        "correct": 68,
+        "uncertain": 16
+      },
+      "hi": {
+        "keep": 430,
+        "correct": 77,
+        "uncertain": 18
+      },
+      "id": {
+        "keep": 428,
+        "correct": 80,
+        "uncertain": 17
+      },
+      "ja": {
+        "keep": 461,
+        "correct": 46,
+        "uncertain": 18
+      },
+      "ko": {
+        "keep": 446,
+        "correct": 62,
+        "uncertain": 17
+      },
+      "pt-BR": {
+        "keep": 447,
+        "correct": 62,
+        "uncertain": 16
+      },
+      "vi": {
+        "keep": 415,
+        "correct": 90,
+        "uncertain": 20
+      },
+      "zh-Hans": {
+        "keep": 417,
+        "correct": 90,
+        "uncertain": 18
+      },
+      "zh-Hant": {
+        "keep": 419,
+        "correct": 88,
+        "uncertain": 18
+      }
+    }
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0,
+  "changedPathsInApplicationCommit": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ]
+}

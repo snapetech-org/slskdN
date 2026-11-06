@@ -1,0 +1,21 @@
+{
+  "head": "ab6f8fd9fe94d222834f7e4720fd153af4e0649b",
+  "tree": "bebc34f8806f57158140d8b831c7a17c1fc6f8f1",
+  "all275CurrentTargetsMatchFrozenBundle": true,
+  "all25SourceKeysPresentInAll12Catalogs": true,
+  "all30DirectCallerReferencesReattested": true,
+  "unmatchedCurrentCallerRefs": 0,
+  "baselineCallerFileHashMismatches": 0,
+  "formalSpanishRowsVerified": 25,
+  "formalSpanishIdsFileSha256": "7bd9c90a1176403feb36daadfecb7822616a818d15e9980c99c0bf5dc9d6f856",
+  "priorHoldsReattested": 50,
+  "priorHoldTargetChanges": 0,
+  "currentPlaceholderFailures": 0,
+  "candidatePlaceholderFailures": 0,
+  "currentProtectedLiteralFailures": 0,
+  "candidateProtectedLiteralFailures": 0,
+  "currentMarkupFailures": 0,
+  "candidateMarkupFailures": 0,
+  "candidateRows": 81,
+  "allCandidateTargetHashesPresent": true
+}

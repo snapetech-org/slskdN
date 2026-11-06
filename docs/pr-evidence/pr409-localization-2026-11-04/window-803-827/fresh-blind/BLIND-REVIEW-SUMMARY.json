@@ -1,0 +1,210 @@
+{
+  "artifact": "Blind semantic review output summary",
+  "sealedUtc": "2026-11-04 17:44:04 UTC",
+  "task": "slskdN PR #409 W77 ranks 803-827",
+  "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "verdictCounts": {
+    "PASS": 280,
+    "HOLD": 20
+  },
+  "holdCountByLocale": {
+    "ar": 2,
+    "de": 1,
+    "es": 3,
+    "fr": 3,
+    "hi": 2,
+    "id": 1,
+    "pt-BR": 3,
+    "vi": 3,
+    "zh-Hans": 1,
+    "zh-Hant": 1
+  },
+  "heldSourceRanks": {
+    "805": 6,
+    "806": 7,
+    "808": 1,
+    "812": 1,
+    "816": 4,
+    "821": 1
+  },
+  "callerCoverage": {
+    "selectedSourcesWithCallers": 24,
+    "selectedCallerlessSources": 1,
+    "callerlessRank": 814,
+    "heldSourceCount": 6,
+    "heldSourcesWithCallers": 6,
+    "heldCellsWithCallerContext": 20,
+    "heldCellsWithoutCallerContext": 0
+  },
+  "holds": [
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "ar",
+      "confidence": "moderate",
+      "issueCode": "TECHNICAL_TERM_DRIFT",
+      "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. This target renders Pod/backfill as a generic container refill, obscuring the technical sync operation."
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "es",
+      "confidence": "moderate",
+      "issueCode": "TECHNICAL_TERM_DRIFT",
+      "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Reabastecimiento” suggests physical replenishment/restocking, so the technical backfill operation is obscured."
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "fr",
+      "confidence": "moderate",
+      "issueCode": "TECHNICAL_TERM_DRIFT",
+      "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Remplissage” reads as filling the pod and does not clearly preserve the technical backfill operation."
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "id",
+      "confidence": "moderate",
+      "issueCode": "TECHNICAL_TERM_DRIFT",
+      "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Pengisian ulang” suggests refilling/replenishing the pod, obscuring the technical backfill operation."
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "pt-BR",
+      "confidence": "moderate",
+      "issueCode": "TECHNICAL_TERM_DRIFT",
+      "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Preenchimento do pod” reads as filling the pod and does not clearly preserve the technical backfill operation."
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "vi",
+      "confidence": "high",
+      "issueCode": "TECHNICAL_TERM_DRIFT",
+      "reason": "The target renders Pod as “nhóm” (group) and backfill as filling/inserting, losing the MediaCore Pod backfill sync meaning shown by the packaged caller."
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "ar",
+      "confidence": "moderate",
+      "issueCode": "COLOR_NAME_AMBIGUITY",
+      "reason": "The packaged caller sets the value to the olive color. The target names olives as a fruit and is not an unambiguous color label."
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "es",
+      "confidence": "moderate",
+      "issueCode": "COLOR_NAME_AMBIGUITY",
+      "reason": "The packaged caller sets the value to the olive color. “Aceituna” names the fruit and is not an unambiguous color label."
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "hi",
+      "confidence": "high",
+      "issueCode": "COLOR_NAME_AMBIGUITY",
+      "reason": "The packaged caller sets the value to the olive color. “जैतून” names the olive; the target does not clearly express the color (olive-colored)."
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "pt-BR",
+      "confidence": "moderate",
+      "issueCode": "COLOR_NAME_AMBIGUITY",
+      "reason": "The packaged caller sets the value to the olive color. “Azeitona” names the fruit and is not an unambiguous color label."
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "vi",
+      "confidence": "moderate",
+      "issueCode": "COLOR_NAME_AMBIGUITY",
+      "reason": "The packaged caller sets the value to the olive color. “Ôliu” names the olive and does not clearly express the color."
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "zh-Hans",
+      "confidence": "high",
+      "issueCode": "COLOR_NAME_AMBIGUITY",
+      "reason": "The packaged caller sets the value to the olive color. “橄榄” names the olive; the target does not include an explicit color term."
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "zh-Hant",
+      "confidence": "high",
+      "issueCode": "COLOR_NAME_AMBIGUITY",
+      "reason": "The packaged caller sets the value to the olive color. “橄欖” names the olive; the target does not include an explicit color term."
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "fr",
+      "confidence": "high",
+      "issueCode": "STATE_MEANING_REVERSAL",
+      "reason": "In the packaged caller this label appears while completed transfers are loading. “Chargement … terminé” says the loading has finished, reversing the loading state."
+    },
+    {
+      "continuationRank": 812,
+      "sourceId": "src_30774beffae75f66",
+      "locale": "de",
+      "confidence": "moderate",
+      "issueCode": "OBJECT_MEANING_DRIFT",
+      "reason": "The packaged caller describes publishing membership records containing peer IDs, roles, keys, ban state, and history. “Mitgliedschaftsnachweis” means proof/certificate of membership rather than the record being published."
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "es",
+      "confidence": "high",
+      "issueCode": "STATUS_VS_INSTRUCTION",
+      "reason": "The source reports that a search job has been queued. “Buscar …” reads as an instruction to search queued work, shifting the message from a queued status to an action."
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "hi",
+      "confidence": "high",
+      "issueCode": "STATUS_VS_INSTRUCTION",
+      "reason": "The source reports that a search job has been queued. “नौकरी खोजें” reads as an instruction to search for queued jobs, shifting the message from a queued status to an action."
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "pt-BR",
+      "confidence": "high",
+      "issueCode": "STATUS_VS_INSTRUCTION",
+      "reason": "The source reports that a search job has been queued. “Pesquise …” is an imperative to search queued jobs, shifting the message from a queued status to an action."
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "vi",
+      "confidence": "high",
+      "issueCode": "TERM_MISTRANSLATION",
+      "reason": "The selected acquisition profile is rendered as “hồ sơ chuyển đổi” (conversion profile), changing acquisition into conversion."
+    },
+    {
+      "continuationRank": 821,
+      "sourceId": "src_30ccd77bed2b66d8",
+      "locale": "fr",
+      "confidence": "high",
+      "issueCode": "NAVIGATION_MEANING_DRIFT",
+      "reason": "The packaged caller uses this as the aria-label for the next page in a collections list. “Page des prochaines collections” means a page of upcoming collections, not the next collections page."
+    }
+  ],
+  "reviewScope": "Candidate-free current targets and packaged caller contexts only.",
+  "primaryReviewMaterialAccessed": false,
+  "perCellPrimaryRecommendationsAccessed": false,
+  "nativeSpeakerApproval": false,
+  "limitation": "AI semantic screen; locale-specific nuance may require a native speaker."
+}

@@ -57,7 +57,7 @@ const CommandHelp = ({ commands, onClose, open }) => {
               <code className="msgv2-help-syntax">
                 {command.syntax || `/${command.name}`}
               </code>
-              <span className="msgv2-help-desc">{command.description}</span>
+              <span className="msgv2-help-desc">{command.descriptionSource ? <LocalizedText source={command.descriptionSource} /> : command.description}</span>
               {command.aliases && command.aliases.length > 0 && (
                 <span className="msgv2-help-aliases">
                   <LocalizedText source={"aliases:"} />{" "}{command.aliases.map((alias) => `/${alias}`).join(', ')}

@@ -1,0 +1,111 @@
+{
+  "result": "PRIMARY_REVIEW_COMPLETE_PENDING_CROSS_REVIEW_AND_NATIVE_SPEAKER_REVIEW",
+  "window": 40,
+  "pullRequest": 409,
+  "headCommit": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "tree": "7a8d85f9b967893d386bf5679ef0b46322307983",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "allLocaleCells": 300,
+  "manualReviewCells": 275,
+  "pendingCells": 272,
+  "priorExactRowsIndependentlyReviewed": 3,
+  "preservedFormalSpanishRows": 25,
+  "perLocaleVerdicts": {
+    "ar": {
+      "accept-current": 19,
+      "propose-correction": 5,
+      "propose-refinement": 1
+    },
+    "de": {
+      "accept-current": 20,
+      "propose-correction": 5
+    },
+    "fr": {
+      "accept-current": 21,
+      "propose-correction": 4
+    },
+    "hi": {
+      "accept-current": 18,
+      "propose-correction": 4,
+      "propose-refinement": 3
+    },
+    "id": {
+      "propose-correction": 8,
+      "accept-current": 16,
+      "propose-refinement": 1
+    },
+    "ja": {
+      "accept-current": 20,
+      "propose-refinement": 3,
+      "propose-correction": 2
+    },
+    "ko": {
+      "propose-refinement": 3,
+      "accept-current": 19,
+      "propose-correction": 3
+    },
+    "pt-BR": {
+      "accept-current": 20,
+      "propose-refinement": 3,
+      "propose-correction": 2
+    },
+    "vi": {
+      "accept-current": 20,
+      "propose-refinement": 2,
+      "propose-correction": 3
+    },
+    "zh-Hans": {
+      "accept-current": 20,
+      "propose-correction": 4,
+      "propose-refinement": 1
+    },
+    "zh-Hant": {
+      "accept-current": 19,
+      "propose-correction": 4,
+      "propose-refinement": 2
+    }
+  },
+  "verdictCounts": {
+    "accept-current": 212,
+    "propose-refinement": 19,
+    "propose-correction": 44
+  },
+  "correctionRows": 63,
+  "correctionCellsByLocale": {
+    "ar": 6,
+    "de": 5,
+    "fr": 4,
+    "hi": 7,
+    "id": 9,
+    "ja": 5,
+    "ko": 6,
+    "pt-BR": 5,
+    "vi": 5,
+    "zh-Hans": 5,
+    "zh-Hant": 6
+  },
+  "preservedPriorHoldRowsReattested": 50,
+  "uniqueCallerLinesPinned": 38,
+  "catalogFilesPinned": 12,
+  "sourceCurrentTargetsCallersPinnedAtExactHead": true,
+  "currentPlaceholderMismatchCount": 0,
+  "currentProtectedLiteralMismatches": [],
+  "allCandidatePlaceholdersPreserved": true,
+  "allCandidateProtectedLiteralsPreserved": true,
+  "candidateNoOpRows": 0,
+  "callerContextGaps": [
+    {
+      "sourceId": "src_0bacefcef4102da4",
+      "source": "API key missing",
+      "reason": "No direct source callsite was captured; the phrase is self-contained and proposals address standalone wording."
+    }
+  ],
+  "blockers": [],
+  "nativeSpeakerReview": "not performed; remains required",
+  "testsBuildsScansCiOrReleasesRun": false,
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "repositoryOrPullRequestMutated": false
+}

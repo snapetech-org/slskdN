@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "candidateFreeManifestSha256": "d6f2e97bcf39260e48d54db7b77a3d9cc1392c20ad3a92affbf4136251ff3518",
+  "candidateFreeChecksumListSha256": "28ba772aa53c756702a0bdb94fb3cb130847607804346fc598091897414a7236",
+  "sourceCurrentCellsSha256": "0cc8028ca0884611c9ea2f483fc2bbd71b06c85f39c48c146807d5c5cadf6d1a",
+  "callerContextsSha256": "f3bab73d009afb619cabc0912cff3e0cdfd495ecae95e1ed08a56baff1c53515",
+  "catalogStructureSha256": "c764362fb0ba34aecf4a58327e5ac25d390f7fd6a3b354fca0de62855b50a602",
+  "primaryManifestSha256": "82d96ba2bfecb462d123db55a76a27da573d4cd0888fdd124408e7c004d047cb",
+  "primaryChecksumListSha256": "4c6a397d870fafd6adf1e9738c9ceababf410b0663526fb24deb2600e65690ca",
+  "primaryReviewLedgerSha256": "5f3c537b693be2935ea090144d14b05c3131dc23a80110918a27e75846be153a",
+  "blindManifestSha256": "a68393bad47faab59ad8dca945c0027fe262e539a7f8b3de1d127a29d7fd737a",
+  "blindChecksumListSha256": "812e79890ed0114ba021a30579059316a351ebe6abcfa39677aae66077cb603c",
+  "blindReviewLedgerSha256": "5bec5c4565cbcc87c525e5eec81c44ff372cd61247f5173ddf9b1add6265ba60"
+}

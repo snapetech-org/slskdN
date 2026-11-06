@@ -1,0 +1,35 @@
+{
+  "artifact": "slskdN PR #409 W81 root manual review attestation",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W81",
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "cellCount": 300,
+  "candidateFreeInputTreeSha256": "cef90cf08a4e68e80416b9295835a4dca0a36b62fe35727dd8a03f67bc41de27",
+  "crossReviewManifestSha256": "d4e9c7c711b8f4d29b9c755b4e884d4d5d26de2476a4194561ecf391986ffd91",
+  "crossReviewLedgerSha256": "87fb5819c31afcdf04958bd31f908c1263d528ea82c3ffcd4f2d2af23cee9c38",
+  "selectedChangeCount": 64,
+  "keepCount": 224,
+  "holdCount": 12,
+  "manualAdjudication": "I manually reviewed all 64 selected correction/refinement targets against their source strings and pinned caller contexts and accept them for application. The 224 retain-current cells remain unchanged after the primary, blind, independent, and cross reviews. All 12 rank-910 fragments remain held until the sentence is unified through a markup-safe rich-text interpolation and the new source and translations receive fresh review.",
+  "conceptChecks": [
+    "Upload slots and remediation counts are labeled as capacity/action counts, not generic spaces or queues.",
+    "Fingerprint and SongRec labels describe audio fingerprints and distinct match counts.",
+    "Release radar wording describes music releases.",
+    "Hash B preserves the Latin field identifier; Content ID preserves ASCII ID and the exact canonical sample.",
+    "Transport Status remains within the pinned security-settings context; the cross reviewer caveat about unseen panel values is retained.",
+    "Pod remains a product entity in opinion-state copy; read-only opinion actions stay distinct from advanced publish/recalculation actions.",
+    "Runtime itemType placeholder phrasing remains robust to values passed by the caller.",
+    "Visualizer labels describe switching the current visualizer to fullscreen.",
+    "SongID remains an opaque technical identifier in its run tooltip."
+  ],
+  "validation": [
+    "Portable cross-review verifier passed for all 300 source/current/caller bindings and target hashes.",
+    "Root selected-target ledger matches all 64 sealed cross corrections/refinements and binds exact source/current/target hashes."
+  ],
+  "nativeSpeakerApproval": false,
+  "browserReviewPerformed": false,
+  "catalogOrPullRequestEdited": false,
+  "rank922EvidenceScope": "Only the pinned Security/AdversarialSettings path and signal-icon header support the network-transport reading; extra primary rationale about panel values was not used."
+}

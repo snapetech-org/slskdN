@@ -1,0 +1,297 @@
+{
+  "artifactType": "exact-head caller reconciliation",
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "sealedEvidencePacket": "docs/pr-evidence/pr409-localization-2026-11-02/window46-reconstructed-ranks26-50",
+  "sealedEvidencePacketWasModified": false,
+  "rank37Source": {
+    "selectionRank": 37,
+    "sourceId": "src_10dec009bb7ddc89",
+    "sourceText": "Download {count} files from {directory}?",
+    "sourceSha256": "10dec009bb7ddc897b0da60f525f4e465afdb53114bafda7300886bdab8ade7f",
+    "callerContextRow": {
+      "callerReferenceCount": 1,
+      "callerUseStatus": "no-production-localization-caller-found",
+      "productionLocalizationReferenceCount": 0,
+      "recordedReferenceRole": "exact-literal-reference",
+      "exactSourceLiteralMatch": true,
+      "sourceFileBlobOid": "57bf4b9b3c1e9dac776512d8f0c547f9efa2f1cd",
+      "sourceFileSha256": "57a45bf75d9ac26c0200b1db9621465c70b04bb71500a90d171296a4235fb0fe",
+      "line": 558,
+      "lineText": "        'Download {count} files from {directory}?',",
+      "lineSha256": "180ce3f2bd6c9ed192781028f86ef5db1fe9457c662b89e0aa7776c54bfb6369",
+      "contextBefore": [
+        "    if (",
+        "      // eslint-disable-next-line no-alert",
+        "      window.confirm(interfaceText("
+      ],
+      "contextAfter": [
+        "        { count: filesToDownload.length, directory: directory.name },",
+        "      ))",
+        "    ) {"
+      ]
+    },
+    "exactProductionContextAtBase": {
+      "path": "src/web/src/components/Browse/BrowseSession.jsx",
+      "baseGitBlobOid": "57bf4b9b3c1e9dac776512d8f0c547f9efa2f1cd",
+      "baseFileSha256": "57a45bf75d9ac26c0200b1db9621465c70b04bb71500a90d171296a4235fb0fe",
+      "line": 558,
+      "lineText": "        'Download {count} files from {directory}?',",
+      "lineSha256": "180ce3f2bd6c9ed192781028f86ef5db1fe9457c662b89e0aa7776c54bfb6369",
+      "excerpt": [
+        "    if (",
+        "      // eslint-disable-next-line no-alert",
+        "      window.confirm(interfaceText(",
+        "        'Download {count} files from {directory}?',",
+        "        { count: filesToDownload.length, directory: directory.name },",
+        "      ))",
+        "    ) {"
+      ],
+      "classification": "production localization caller: interfaceText is passed to window.confirm; values are filesToDownload.length and directory.name",
+      "defect": "The sealed caller row recorded the exact production source line but classified it only as exact-literal-reference and counted zero production localization references. The crossreview/adjudication treated this metadata as evidence of no caller."
+    },
+    "priorDispositions": {
+      "primary": [
+        {
+          "locale": "ar",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "de",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "es",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "fr",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "hi",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "id",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "ja",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "ko",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "pt-BR",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "vi",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "zh-Hans",
+          "disposition": "accept-current"
+        },
+        {
+          "locale": "zh-Hant",
+          "disposition": "accept-current"
+        }
+      ],
+      "crossreview": [
+        {
+          "locale": "ar",
+          "disposition": null
+        },
+        {
+          "locale": "de",
+          "disposition": null
+        },
+        {
+          "locale": "es",
+          "disposition": null
+        },
+        {
+          "locale": "fr",
+          "disposition": null
+        },
+        {
+          "locale": "hi",
+          "disposition": null
+        },
+        {
+          "locale": "id",
+          "disposition": null
+        },
+        {
+          "locale": "ja",
+          "disposition": null
+        },
+        {
+          "locale": "ko",
+          "disposition": null
+        },
+        {
+          "locale": "pt-BR",
+          "disposition": null
+        },
+        {
+          "locale": "vi",
+          "disposition": null
+        },
+        {
+          "locale": "zh-Hans",
+          "disposition": null
+        },
+        {
+          "locale": "zh-Hant",
+          "disposition": null
+        }
+      ],
+      "finalAdjudication": [
+        {
+          "locale": "ar",
+          "disposition": "hold"
+        },
+        {
+          "locale": "de",
+          "disposition": "hold"
+        },
+        {
+          "locale": "es",
+          "disposition": "hold"
+        },
+        {
+          "locale": "fr",
+          "disposition": "hold"
+        },
+        {
+          "locale": "hi",
+          "disposition": "hold"
+        },
+        {
+          "locale": "id",
+          "disposition": "hold"
+        },
+        {
+          "locale": "ja",
+          "disposition": "hold"
+        },
+        {
+          "locale": "ko",
+          "disposition": "hold"
+        },
+        {
+          "locale": "pt-BR",
+          "disposition": "hold"
+        },
+        {
+          "locale": "vi",
+          "disposition": "hold"
+        },
+        {
+          "locale": "zh-Hans",
+          "disposition": "hold"
+        },
+        {
+          "locale": "zh-Hant",
+          "disposition": "hold"
+        }
+      ],
+      "supersededExactly": [
+        "The 12 rank37 crossreview hold rows in crossreview/crossreview-decisions.jsonl.",
+        "The 12 rank37 final adjudication hold rows in adjudication/final-adjudication-ledger.jsonl."
+      ],
+      "retained": [
+        "The 12 rank37 primary accept-current rows in primary/review-decisions.jsonl remain the primary translations."
+      ]
+    },
+    "correctedSource": {
+      "windowRank": 37,
+      "priorSourceId": "src_10dec009bb7ddc89",
+      "priorSourceText": "Download {count} files from {directory}?",
+      "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+      "context": "Existing native confirmation for the collected files; caller passes filesToDownload.length and directory.name.",
+      "pluralVariables": [
+        "count"
+      ],
+      "ordinaryPlaceholders": [
+        "directory"
+      ],
+      "callers": [
+        {
+          "path": "src/web/src/components/Browse/BrowseSession.jsx",
+          "lines": [
+            557,
+            558,
+            559,
+            560
+          ]
+        }
+      ],
+      "sourceId": "src_6845751a223bdec1",
+      "sourceSha256": "6845751a223bdec1f1c63b7645f03eb63ecf64c711f7bc1ba0838e100a97bcc5",
+      "sourceLengthUtf8Bytes": 81,
+      "directLocales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "coverage": "translation present in all twelve direct locale catalogs"
+    },
+    "currentCaller": {
+      "path": "src/web/src/components/Browse/BrowseSession.jsx",
+      "line": 558,
+      "lineText": "        '{count, plural, one {Download # file} other {Download # files}} from {directory}?',",
+      "fileSha256": "3771d9329100688121f1a5d65a5b651622077fe2149a5f788e10680e689df5ab",
+      "lineSha256": "490f1248f8cd64902e9bb5df7600091e3f232c04f523388c56327f1d4e5d427c",
+      "pluralVariable": "count",
+      "ordinaryPlaceholder": "directory"
+    }
+  },
+  "rank42And49CallerFixes": {
+    "rank42PriorSourceId": "src_112cb5f2343632c5",
+    "rank49PriorSourceId": "src_11507a0e2f5e69d5",
+    "newSourceIds": [
+      "src_a496c430224a74df",
+      "src_86c7c500a8a29d14",
+      "src_548b82b14a90f35c",
+      "src_ef5df7e6051540ca"
+    ],
+    "note": "Rank42 now displays both matched-track and changed-field counts as complete plural-aware phrases. Rank49 has a complete count badge and tooltip plus a separate New messages separator source."
+  },
+  "windowAttribution": {
+    "W45": {
+      "packet": "docs/pr-evidence/pr409-localization-2026-11-02/window45-reconstructed-ranks1-25/primary/review-summary.json",
+      "holdCount": 0,
+      "productionCallerGapSourceCount": null
+    },
+    "W44CallerlessSources": [
+      {
+        "source": "pods",
+        "callerUseStatus": "feature-gate-only-no-production-display-caller",
+        "reason": null,
+        "recommendedSourceOrCallerRemediation": null
+      },
+      {
+        "source": "Private Message from {username}",
+        "callerUseStatus": "test-only-reference-no-production-caller",
+        "reason": null,
+        "recommendedSourceOrCallerRemediation": null
+      }
+    ],
+    "decision": "W45 has no holds. The `pods` and `Private Message from {username}` callerless rows are W44, not W45; no production callers were invented for them."
+  }
+}

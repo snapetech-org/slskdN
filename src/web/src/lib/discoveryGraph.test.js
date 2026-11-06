@@ -173,7 +173,7 @@ describe('discoveryGraph helpers', () => {
     expect(report).toContain('slskdN Discovery Graph branch review');
     expect(report).toContain('Graph: Fixture Graph');
     expect(report).toContain('Pinned comparison: Pinned Artist');
-    expect(report).toContain('- artist: 1');
+    expect(report).toContain('- Artist: 1');
     expect(report).toContain('- metadata_similarity: 1');
     expect(report).toContain('Evidence lanes:');
     expect(report).toContain('- Identity: 85 (2) Identity appears on 2 graph edges.');

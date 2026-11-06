@@ -530,6 +530,9 @@
 #  max_relay_duration_seconds: 300
 #  trusted_certificate_pins: {} # { "203.0.113.10:50300": ["base64-spki-sha256"] }; required for outbound data-plane QUIC.
 #integrations:
+#  # Locale for app-authored background notification titles; separate from browser language.
+#  # Unsupported values use English. Supported: en, es, zh-Hans, hi, de, ja, fr, pt-BR, ar, ko, zh-Hant, vi, id.
+#  notification_language: en
 #  chromaprint:
 #    enabled: false
 #    ffmpeg_path: ffmpeg          # executable used to decode audio for fingerprints

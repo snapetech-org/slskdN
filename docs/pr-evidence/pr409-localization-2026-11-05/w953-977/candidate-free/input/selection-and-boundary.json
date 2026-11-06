@@ -1,0 +1,60 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W83",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "candidateFree": true,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "sourceCount": 25,
+  "cellCount": 300,
+  "continuationRankRange": [
+    953,
+    977
+  ],
+  "remainingQueueRankRange": [
+    853,
+    877
+  ],
+  "previousWindow": "W82",
+  "previousWindowFinalRank": {
+    "continuationRank": 952,
+    "remainingQueueRank": 852,
+    "sourceId": "src_358cc201f87d9dc9",
+    "sourceSha256": "358cc201f87d9dc9defd3eac467a62fae720aa99a76be8b98e0fc9b3893a427d"
+  },
+  "nextUnselected": {
+    "continuationRank": 978,
+    "remainingQueueRank": 878,
+    "sourceId": "src_3673f9c181ba494a",
+    "sourceSha256": "3673f9c181ba494ad134bffa93039cab6f59e95655a213e848ba8c10cfd2bc28"
+  },
+  "sourceInventoryRows": 6175,
+  "stableRankedRows": 4967,
+  "retiredStableRankRows": [
+    185,
+    732,
+    750,
+    910
+  ],
+  "sourceRewriteReplacementIdsExcluded": [],
+  "orderedCatalogKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+  "catalogEntryCountPerLocale": 6175,
+  "priorSelectedAndRewriteIdsExcluded": 2035,
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false
+}

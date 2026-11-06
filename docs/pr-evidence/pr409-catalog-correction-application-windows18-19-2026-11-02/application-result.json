@@ -1,0 +1,66 @@
+{
+  "headBefore": "35e1c6289cab52a585f14b01d5e4684c068855b6",
+  "treeBefore": "196e0432f190f0ceede5cdf8e81e7fa66fb3030a",
+  "files": {
+    "src/web/public/locales/ar.json": {
+      "changedCells": 8,
+      "beforeFileSha256": "4cd66e38c09aa6b68d6dad005e484e9f9c0dc3d317df3675b19c55d60ee972bb",
+      "afterFileSha256": "a0bd7e5c8345a630813f327a046b5fd96b0cda5aec81ea11fc8ab5a0d94c2004"
+    },
+    "src/web/public/locales/de.json": {
+      "changedCells": 4,
+      "beforeFileSha256": "fa01f543c9bb7671a5f4e9a17f082967117df939386da7babb843c5de3227f11",
+      "afterFileSha256": "56c01bf20c04b5076e15843d04656a7280974482cb58f052bb0e6856dc484d75"
+    },
+    "src/web/public/locales/es.json": {
+      "changedCells": 5,
+      "beforeFileSha256": "d76594af79808b38ed8bed729b6bba9ac7c812a6a11263f37422d0ecd2d1f2c4",
+      "afterFileSha256": "f8af7ac6bb5f6175da30cb4eee8ea5c01e17fd39c207c08bcf8b1ef7f33a1f9e"
+    },
+    "src/web/public/locales/fr.json": {
+      "changedCells": 6,
+      "beforeFileSha256": "491e0c43500f4c8a25a2bb5fccc1c029bdd0f62d3e3d2d59b15023827ca9a4cf",
+      "afterFileSha256": "ee7c668874726114f7fd95933afa2b4ddc5fd69120d2f3baf6a2b1627ebb1776"
+    },
+    "src/web/public/locales/hi.json": {
+      "changedCells": 10,
+      "beforeFileSha256": "44bd6126a00076a87c2bf5cb3c6a0604b1b956d3dc0ce88ce64c94307c8d40a0",
+      "afterFileSha256": "2c284b5922e8c0a76b9eabdf48c61705010754427f78652eed49a3b5c6293684"
+    },
+    "src/web/public/locales/id.json": {
+      "changedCells": 10,
+      "beforeFileSha256": "feb123cfa7ceead1ba8d740f3c3e683c9db312a6434d895778c0e5ee02a7e6af",
+      "afterFileSha256": "251daff9b3bebb2610d23362be51c56b117ec656382fe452441594eb31854575"
+    },
+    "src/web/public/locales/ja.json": {
+      "changedCells": 3,
+      "beforeFileSha256": "901d539dda35730f63f0ddd530153aedbb4939b66de8fa93e39308cccf258102",
+      "afterFileSha256": "005eec08f85635384634ab01a55b69572672d640f639c67e052b84a32f40c673"
+    },
+    "src/web/public/locales/ko.json": {
+      "changedCells": 5,
+      "beforeFileSha256": "ec2fdeeea662fc9f9bccdcae35f189392f1e561210663afc94ac7d2adb177b4b",
+      "afterFileSha256": "612a7677736cce13ce2a28b90e7360aaab43931f9dbecf0b7bddb52a415b127f"
+    },
+    "src/web/public/locales/pt-BR.json": {
+      "changedCells": 5,
+      "beforeFileSha256": "e85cc3a83efaf0dd2a6e6c2cf3c698146877faac85a8d4f4ee2309639261d348",
+      "afterFileSha256": "8d8d80ff0cb7956a5b1ab898b4afa483f25d5fd6493ccaafbcc7bec4384c2a89"
+    },
+    "src/web/public/locales/vi.json": {
+      "changedCells": 10,
+      "beforeFileSha256": "13f011cbf7f074bedb7ca62fa10f54c1e0f4d398b2385900abe4aa729339b16c",
+      "afterFileSha256": "6bdddf7ba57a975ab1efa6c3ef187263fc5ea4ad7e5653c8a330f4da6ba0cc61"
+    },
+    "src/web/public/locales/zh-Hans.json": {
+      "changedCells": 8,
+      "beforeFileSha256": "3f814961af9d1828a11979d469a47c27f92effe0b712de644b756525e7214413",
+      "afterFileSha256": "26ee514e596a1f6ad5624065d4973c00435bcdfae7322a49aa66e335676cc42f"
+    },
+    "src/web/public/locales/zh-Hant.json": {
+      "changedCells": 8,
+      "beforeFileSha256": "8c4850478ed0f33f7027f2f6bd7954a77b060c3794f387281f05a278e07e58f4",
+      "afterFileSha256": "dd2ad7209d9a9bc419075b256d867fe994c833a62a7872a02fb818fd33a13763"
+    }
+  }
+}

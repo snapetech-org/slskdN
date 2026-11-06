@@ -1,0 +1,67 @@
+{
+  "artifact": "PR #409 W72 localization evidence bundle",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "baseRef": "main",
+  "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "reviewHead": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "reviewTree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "applicationCommit": "3aebbc99f2de17da71971edf9602503dca747658",
+  "applicationParent": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "applicationTree": "42cd101d3ec0d43fa6da35e92da3e33662f4b215",
+  "evidenceOnlyCommitParent": "3aebbc99f2de17da71971edf9602503dca747658",
+  "pushPerformed": true,
+  "scope": {
+    "window": "W72",
+    "continuationRankStart": 678,
+    "continuationRankEnd": 702,
+    "sourceIds": 25,
+    "locales": 12,
+    "cells": 300
+  },
+  "reviewDispositionCounts": {
+    "accept-current": 161,
+    "correct": 24,
+    "hold": 108,
+    "refine": 7
+  },
+  "comparison": {
+    "primaryProposals": 22,
+    "blindProposals": 31,
+    "selectedTargets": 31,
+    "blindOnlySelected": 9,
+    "primaryOnlySelected": 0,
+    "parentRootCorrections": 1
+  },
+  "application": {
+    "selectedCells": 31,
+    "catalogFiles": 10,
+    "keysPerCatalog": 6176,
+    "readbackMatches": 31,
+    "readbackMismatches": 0,
+    "currentWindowCallerlessHoldsHashOnly": 108,
+    "priorHeldCellsHashOnly": 152,
+    "priorSelectedIdsHashOnly": 1782,
+    "workflowFilesChanged": 0,
+    "nativeSpeakerSignoff": "not claimed"
+  },
+  "sourcePackets": {
+    "candidateFreePacketChecksumListSha256": "3463231263b050a1590a9852e2c01e055370fd8f8717d4b45bf3c56c052243f6",
+    "primaryPacketChecksumListSha256": "82639b628c31c745e5265dacc8402324431f5a3072f8bbc537ae50bcf2c968fc",
+    "canonicalFullBlindPacketChecksumListSha256": "4b2b7b868f2eb2ac7278847bc55ba6edc5ed2c4ee875c945b76db0264f67d0ef",
+    "sealedCrossReviewChecksumListSha256": "735cc33927a87639c94d8de83fae1d2369e6630e639ff59f7c2aeb5a5d54894a",
+    "applicationChecksumListSha256": "fff9441adc1eaee63e3f8afe0c0071d440f695311fa1fe20b68ac9e3a2694990"
+  },
+  "blindPacket": "canonical full packet only; no partial-language subset included",
+  "workflowFilesIncluded": 0,
+  "testsBuildsScansCIReleaseTagsRun": false,
+  "status": "catalog commit pushed and live-verified; evidence-only commit pending",
+  "createdUtc": "2026-11-04T03:05:21+00:00",
+  "livePRBeforeEvidenceCommit": {
+    "head": "3aebbc99f2de17da71971edf9602503dca747658",
+    "tree": "42cd101d3ec0d43fa6da35e92da3e33662f4b215",
+    "attestedUtc": "2026-11-04T03:05:21+00:00"
+  },
+  "inventoryRowCount": 184,
+  "rootChecksumEntryCount": 185
+}

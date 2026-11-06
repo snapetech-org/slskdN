@@ -1,0 +1,91 @@
+{
+  "additionalCorrections": 2,
+  "additionalIssues": [
+    {
+      "locale": "ar",
+      "rank": 2,
+      "targetSha256": "7f816fdf8d1b8f245192493b9d7168509a76de9d3ddc29d8e6ef3ebe11b72c9f",
+      "type": "propose-additional-correction"
+    },
+    {
+      "locale": "ar",
+      "rank": 17,
+      "targetSha256": "7027d787192c626bf92fb0b193b430774ef879e8f035fb1a61e4796a338c723c",
+      "type": "propose-additional-correction"
+    },
+    {
+      "locale": "id",
+      "rank": 23,
+      "targetSha256": "5b5d9db6f42d8ae3555c22b15f4558dc3dc4d7b93fd1b28577ca49cb675b8a2f",
+      "type": "propose-additional-refinement"
+    },
+    {
+      "locale": "pt-BR",
+      "rank": 23,
+      "targetSha256": "37b38739b5fe27a7b33100bd9741596964f4578e9c12bc76de3eae3109837aa7",
+      "type": "propose-additional-refinement"
+    }
+  ],
+  "additionalRefinements": 2,
+  "browserReview": false,
+  "callerRefFailures": 0,
+  "callerRefsVerified": 41,
+  "catalogKeysetParity": 12,
+  "confidence": "moderate",
+  "crossReviewDispositionCounts": {
+    "accept-current": 241,
+    "accept-primary-correction": 15,
+    "accept-primary-refinement": 16,
+    "propose-additional-correction": 2,
+    "propose-additional-refinement": 2,
+    "retain-hold": 24
+  },
+  "draft": true,
+  "exactHead": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "exactTree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "nativeSpeakerApproval": false,
+  "primaryCandidates": 31,
+  "primaryCorrectionsAccepted": 15,
+  "primaryPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window44-primary-reconstructed-20261102",
+  "primaryPacketChecksumRowsVerified": 18,
+  "primaryPacketManifestSha256": "4bc75c5111f8e4e6e650225e6e4b3e9cc62eb2f738adb0d8fe66e3dcfeeb2068",
+  "primaryRefinementsAccepted": 16,
+  "primaryRevisions": 0,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryModified": false,
+  "schemaVersion": 1,
+  "scope": {
+    "cells": 300,
+    "historicalSourceOrdinalRange": null,
+    "locales": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "selectionRanks": [
+      1,
+      25
+    ],
+    "sourceIds": 25
+  },
+  "scopeLimitation": "Primary packet selection is reconstructed from current pending IDs because historical W44 boundary and W40 frozen queue are absent; ranks are used, no source ordinals are fabricated.",
+  "sourceCallerGapsHeld": 24,
+  "sourceTargetStructuralFailures": 0,
+  "spanishDirectAddressRows": 0,
+  "spanishFormalApplicability": "not applicable for this slice",
+  "state": "OPEN",
+  "testsBuildCiRun": false,
+  "title": "slskdN PR #409 W44 reconstructed primary packet independent cross-review",
+  "w98PriorHoldCellsOutstanding": 11,
+  "w98PriorHoldCellsReattested": 11
+}

@@ -1,0 +1,49 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequest": {
+    "catalogKey": "Start or open a private conversation and send this message.",
+    "catalogPath": "src/web/public/locales/id.json",
+    "id": "id:src_0c1212cb64396a8d",
+    "locale": "id",
+    "pendingReason": "no exact reusable prior semantic decision",
+    "placeholders": [],
+    "previousCatalogTargetSha256": "ae684bf09a63ec087e33cb9092d8284f12257888e9060326140ecf484e27b5c4",
+    "protectedLiterals": [],
+    "reviewDisposition": "pending",
+    "source": "Start or open a private conversation and send this message.",
+    "sourceCallsites": [
+      {
+        "path": "src/web/src/components/Chat/SendMessageModal.jsx",
+        "line": 76,
+        "lineText": "? interfaceText('Start or open a private conversation and send this message.')",
+        "fileSha256": "e75678589bdf85ac1e7d0f46693f9ffb8aa7b6750b5719c0a991ffeaf8e1633b",
+        "lineTextSha256": "4a0e55909b73ddc7e315b6b6d8a4ad1a4c53dbe98f546b28912a0c565d0704ee"
+      }
+    ],
+    "sourceContexts": [
+      "validInput() | ? interfaceText('Start or open a private conversation and send this message.') | : interfaceText('Enter a username and message before sending.')"
+    ],
+    "sourceFingerprint": "a2a0d20448f94c770dc9b36733b5ccd51569346f877e4d786cafa73833204e11",
+    "sourceId": "src_0c1212cb64396a8d",
+    "sourceInventoryId": null,
+    "sourceKind": "fixed slskdN application UI copy",
+    "sourceSha256": "0c1212cb64396a8d4a99b1571792406308094a94430abb073b3ed189963554f4",
+    "target": "Mulai atau buka percakapan pribadi lalu kirim pesan ini.",
+    "targetDiagnostics": {
+      "exactEnglish": false,
+      "placeholderMismatch": false,
+      "protectedLiteralMismatches": []
+    },
+    "targetSha256": "ae684bf09a63ec087e33cb9092d8284f12257888e9060326140ecf484e27b5c4",
+    "unverifiedPriorCallers": [],
+    "rowSha256": "0b8bf0888e0d96ad3ca1e9b70f182b5a994a19d135a626dc1826853f875277c2"
+  },
+  "headCommit": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "tree": "7a8d85f9b967893d386bf5679ef0b46322307983",
+  "remoteBranchHead": "67e40aaa5b89db51397953dc89730316b1ab8bbc",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "worktreeStatus": "clean",
+  "verifiedAtUtc": "2026-11-02T11:40:50Z"
+}

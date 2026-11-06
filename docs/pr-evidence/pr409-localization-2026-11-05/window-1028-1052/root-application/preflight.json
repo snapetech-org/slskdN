@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "window": "W1028-W1052",
+  "inputHead": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "inputTree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1",
+  "reviewedCells": 300,
+  "selectedChanges": 44,
+  "rootOverrides": 1,
+  "acceptedCurrent": 244,
+  "hashOnlyHolds": 12,
+  "catalogs": 12,
+  "entriesPerCatalog": 6175,
+  "allCallerBackedCurrentHashesMatch": true,
+  "allHashOnlyHoldHashesMatch": true,
+  "allSelectedTargetHashesMatch": true,
+  "baselineCatalogSha256": {
+    "src/web/public/locales/ar.json": "29d59a82455aaa93438f73b1d7c595dce75219a7f1b2c6f9a2822ec555d97345",
+    "src/web/public/locales/de.json": "14696590ba4a8423fbd622778349a73ad123858ae2f3ad540776beb763ad1558",
+    "src/web/public/locales/es.json": "eec2f79d8c1f0bcfdb129a4431d105a5f52a0e9568655f595b0bf8c4db9d795d",
+    "src/web/public/locales/fr.json": "33f875afa8630ef58a5c459d9997e319921983caea0770edf27899413e5d0ee0",
+    "src/web/public/locales/hi.json": "b20ce0287b6fb0d70471525692c25d244fd31a873071288e01c80e5fe7b5eda6",
+    "src/web/public/locales/id.json": "1f418d92a1904c6538a84e4df6efd360bc4cc2c98cccc1009e5e7fe23112c93c",
+    "src/web/public/locales/ja.json": "533ea7e18f7e84d0b271c626596d48275ae814b9c83e6846e13070c1751c22e8",
+    "src/web/public/locales/ko.json": "b112c83b662de74157ea250e3f8a73d6d05d2cd02705a7a9706cecca92c0ac8d",
+    "src/web/public/locales/pt-BR.json": "8c619405e844bb7d746f29c010a7ad15b0af1b83f7357ac4230cf6d4c8187e4c",
+    "src/web/public/locales/vi.json": "88abd1e6dfb655d78d74ffebcd4c5daecd8a30b0d58c1c0c86d2a4b0a8443327",
+    "src/web/public/locales/zh-Hans.json": "564f9641453f1f91850bd2b79bfe01c95d698ee3ea2ffd5a9f4419950dd706e0",
+    "src/web/public/locales/zh-Hant.json": "65d920cde0bb364b8929ffaa18db30ea798dfdd1215eb842c0ed61d6e21bd9b6"
+  },
+  "catalogWritesCompleted": 12,
+  "productCommitCreated": false
+}

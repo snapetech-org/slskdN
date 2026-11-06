@@ -1,0 +1,15 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "draft": true,
+  "baseRefName": "main",
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "headRefOid": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "treeOid": "f13462300926ac897235cd92ae68c87695c38c31",
+  "branchRefOid": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "pullRefOid": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "attestedAtUtc": "2026-11-03T17:57:47Z",
+  "checkoutClean": true,
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+}

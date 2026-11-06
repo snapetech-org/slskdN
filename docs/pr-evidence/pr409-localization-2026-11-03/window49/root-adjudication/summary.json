@@ -1,0 +1,58 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "draft": true,
+  "head": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "tree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "window": {
+    "label": "W49 reconstructed pending stable-ID continuation ranks 101-125",
+    "cellCount": 300,
+    "sourceCount": 25,
+    "localeCount": 12,
+    "historicalSourceOrdinalsClaimed": false
+  },
+  "rootDispositionCounts": {
+    "correction": 83,
+    "accept-current": 189,
+    "refinement": 16,
+    "hold": 12
+  },
+  "exactHashApplyPlanRows": 99,
+  "heldCells": 12,
+  "heldRank": 105,
+  "heldSourceId": "src_131da8f86d4d7a45",
+  "crossComparison": {
+    "targetDifferencesResolved": 79,
+    "dispositionDifferencesResolved": 33,
+    "primaryCrossTargetMatches": 221,
+    "rootGeneratedLocaleTermRefinements": 13
+  },
+  "rank105ParserHold": {
+    "all12RemainHeld": true,
+    "currentTargetsRetained": true,
+    "protectedLiteralMismatchCountInHeldCurrentValues": 21,
+    "applyPlanRows": 0,
+    "reason": "The placeholder contains parser tokens/separators consumed by src/web/src/lib/searches.js; localizing those tokens can make filters fail."
+  },
+  "structuralChecks": {
+    "placeholderMismatches": 0,
+    "markupMismatches": 0,
+    "icuSelectorMismatches": 0,
+    "protectedLiteralMismatchesInNonheldFinalTargets": 0,
+    "protectedLiteralMismatchesRemainingInHeldCurrentTargets": 21
+  },
+  "keyAdjudications": {
+    "rank120": "Use deselection wording because exact callback empties selectedIssues and tooltip says issue status is unchanged; final phrasing reuses each locale catalog’s Library Health term.",
+    "rank122": "Select explicit DHT peer-discovery wording based on tooltip; preserve exact DHT token.",
+    "rank104": "Keep seed terminology consistent with exact nearby Seed Scope and seed-label UI.",
+    "rank105": "Preserve all 12 holds; do not infer that parser-like input is translatable UI."
+  },
+  "blindReviewCaveat": "None known. The cross-review packet records a strict-blind seal before primary comparison; root reattestation confirmed its exact-head pins.",
+  "nativeSpeakerApproval": false,
+  "repositoryOrPrModified": false,
+  "testsBuildScansCiBrowserOrWorkflowChanges": false,
+  "releasesCut": false,
+  "w50Prepared": false,
+  "scratchPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window49-root-adjudication-20261103"
+}

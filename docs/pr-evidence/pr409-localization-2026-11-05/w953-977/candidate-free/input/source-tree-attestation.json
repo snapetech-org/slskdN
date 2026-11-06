@@ -1,0 +1,11 @@
+{
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "treeEntryCount": 8025,
+  "productionFileCount": 279,
+  "sourceInventoryBaseline": "W82 stable inventory plus exact current-catalog reconciliation",
+  "sourceInventoryRows": 6175,
+  "sourceInventoryHash": "4ff65bf32ca6651dc9e4c1d7c8cb3d995f0199e53c710953c3809b59f272297c",
+  "runtimeCallerScan": "Exact single- or double-quoted source literals across pinned production JS/TS files",
+  "runtimeFilePinsSha256": "7fd4f980607d8822ecb5963010d9cfa04add32dc6243aa10c2e17ed78ce46d04"
+}

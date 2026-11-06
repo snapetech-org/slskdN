@@ -1,0 +1,103 @@
+{
+  "artifact": "slskdN PR #409 W72 cross-review",
+  "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "window": "W72",
+  "scope": {
+    "continuationRankStart": 678,
+    "continuationRankEnd": 702,
+    "sourceIds": 25,
+    "locales": 12,
+    "cells": 300
+  },
+  "candidateFreeInput": {
+    "path": "candidate-free/input",
+    "checksumListSha256": "3463231263b050a1590a9852e2c01e055370fd8f8717d4b45bf3c56c052243f6",
+    "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+  },
+  "primaryInput": {
+    "path": "primary-review",
+    "checksumListSha256": "82639b628c31c745e5265dacc8402324431f5a3072f8bbc537ae50bcf2c968fc"
+  },
+  "blindInput": {
+    "path": "blind-review",
+    "checksumListSha256": "4b2b7b868f2eb2ac7278847bc55ba6edc5ed2c4ee875c945b76db0264f67d0ef",
+    "canonicalFullPacketOnly": true
+  },
+  "primaryDispositionCounts": {
+    "accept-current": 170,
+    "correct": 21,
+    "hold": 108,
+    "refine": 1
+  },
+  "blindDispositionCounts": {
+    "accept-current": 161,
+    "correct": 24,
+    "hold": 108,
+    "refine": 7
+  },
+  "finalDispositionCounts": {
+    "accept-current": 161,
+    "correct": 24,
+    "hold": 108,
+    "refine": 7
+  },
+  "primaryBlindComparison": {
+    "cellsWithExactDispositionDifference": 9,
+    "cellsWithNormalizedDispositionDifference": 9,
+    "cellsWithAcceptVersusChangeDifference": 9,
+    "proposalsBoth": 22,
+    "primaryOnlyProposals": 0,
+    "blindOnlyProposals": 9,
+    "selectedPrimaryFlaggedChanges": 22,
+    "selectedBlindFlaggedChanges": 31,
+    "selectedBlindOnlyChanges": 9,
+    "rootReviewCorrections": 1
+  },
+  "targetTextIncludedForSelectedChanges": 31,
+  "callerlessHoldCountHashOnly": 108,
+  "hashOnlyLineage": {
+    "priorHeldCells": 152,
+    "priorSelectedSourceIds": 1782,
+    "containsPriorSourceText": false,
+    "containsPriorTargetText": false
+  },
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 8
+  },
+  "selectedTargetTokenFailures": 0,
+  "rootReviewCorrectionCount": 1,
+  "workflowPathsIncluded": 0,
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:50:51+00:00"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:50:55+00:00"
+  },
+  "nativeSpeakerSignoff": "not claimed"
+}

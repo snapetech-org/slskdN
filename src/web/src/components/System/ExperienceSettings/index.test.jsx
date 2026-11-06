@@ -96,10 +96,10 @@ describe('ExperienceSettings', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Copy Report' }));
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      expect.stringContaining('Search: album_candidates=true'),
+      expect.stringContaining('Search: album candidates shown'),
     );
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      expect.stringContaining('Player: visible=true'),
+      expect.stringContaining('Player: visible'),
     );
   });
 
@@ -112,7 +112,7 @@ describe('ExperienceSettings', () => {
       expect.stringContaining('slskdN browser experience preferences'),
     );
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      expect.stringContaining('Search: album_candidates=true'),
+      expect.stringContaining('Search: album candidates shown'),
     );
   });
 

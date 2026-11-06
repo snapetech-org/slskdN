@@ -1,0 +1,12 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "OPEN",
+  "isDraft": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+  "tree": "dc5f6ab2aab3668f674dd583451d3464a3a1c081",
+  "remoteBranchHead": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+  "localWorktreeClean": true
+}

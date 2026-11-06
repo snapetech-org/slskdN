@@ -1,0 +1,21 @@
+{
+  "result": "ROOT_CROSS_REVIEW_COMPLETE",
+  "window": 35,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "reviewBaseHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "reviewBaseTree": "1cdd8c831d224a5706ac6f3e465add4fd249d2be",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "reviewedCorrectionRows": 38,
+  "rootDispositions": {
+    "accept-proposed": 38,
+    "refine-proposed": 0,
+    "keep-current": 0,
+    "hold": 0
+  },
+  "finalCatalogChanges": 38,
+  "sourceKeys": 9,
+  "nativeSpeakerReview": "outstanding",
+  "ledgerSha256": "9370973a90aaef1e6a597a4aa31d6bd21fedd4b7f8ded71f4d93ee0533d0f749",
+  "rationale": "All 38 proposals address direct meaning or visible text defects in their pinned caller contexts. Exact current/source/proposed hashes and placeholders/protected literals are supplied by the pinned packet; no target was applied."
+}

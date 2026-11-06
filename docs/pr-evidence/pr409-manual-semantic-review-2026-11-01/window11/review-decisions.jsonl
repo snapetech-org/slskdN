@@ -1,0 +1,300 @@
+{"id": "es:src_e73a4aa7e5e3aadf", "verdict": "correct", "target": "Letra", "confidence": "high", "reason": "The SongID forensic matrix lane measures lyric and speech evidence; “Lírica” names a literary mode rather than the song lyrics. Use the ordinary song-lyrics label."}
+{"id": "zh-Hans:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "hi:src_e73a4aa7e5e3aadf", "verdict": "correct", "target": "गीत के बोल", "confidence": "high", "reason": "This SongID lane represents lyric and speech evidence. “गीत” means song, while “गीत के बोल” specifically names the lyrics."}
+{"id": "de:src_e73a4aa7e5e3aadf", "verdict": "correct", "target": "Liedtext", "confidence": "high", "reason": "The SongID lane measures lyrics and speech. “Text” is too broad here; use the established German term for song lyrics."}
+{"id": "ja:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "fr:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "pt-BR:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "ar:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "ko:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "zh-Hant:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "vi:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "id:src_e73a4aa7e5e3aadf", "verdict": "keep"}
+{"id": "es:src_e73bfc3315808baf", "verdict": "correct", "target": "Muestra de prueba sencilla para el análisis sintáctico de un preajuste doble de estilo MilkDrop3.", "confidence": "high", "reason": "The callsite describes a parser fixture. “Accesorio” means accessory, so it misidentifies the test fixture as a physical add-on."}
+{"id": "zh-Hans:src_e73bfc3315808baf", "verdict": "keep"}
+{"id": "hi:src_e73bfc3315808baf", "verdict": "keep"}
+{"id": "de:src_e73bfc3315808baf", "verdict": "correct", "target": "Einfaches Test-Fixture zum Parsen eines doppelten Presets im MilkDrop3-Stil.", "confidence": "high", "reason": "The callsite describes parser test data. “Parse-Gerät” means a device, not a software test fixture."}
+{"id": "ja:src_e73bfc3315808baf", "verdict": "keep"}
+{"id": "fr:src_e73bfc3315808baf", "verdict": "correct", "target": "Fixture de test simple pour l'analyse syntaxique d'un double préréglage de style MilkDrop3.", "confidence": "high", "reason": "The callsite describes a parser fixture. “Appareil” means a device, not test data used by a parser."}
+{"id": "pt-BR:src_e73bfc3315808baf", "verdict": "correct", "target": "Fixture de teste simples para analisar um preset duplo no estilo MilkDrop3.", "confidence": "high", "reason": "The callsite describes a parser fixture. “Dispositivo” means a device, not software test data."}
+{"id": "ar:src_e73bfc3315808baf", "verdict": "correct", "target": "عينة اختبار بسيطة لتحليل إعداد مسبق مزدوج بأسلوب MilkDrop3.", "confidence": "high", "reason": "The callsite describes a parser test fixture. The current wording describes analytical assemblies or equipment instead of a test sample."}
+{"id": "ko:src_e73bfc3315808baf", "verdict": "correct", "target": "MilkDrop3 스타일의 이중 프리셋을 파싱하기 위한 간단한 테스트 픽스처.", "confidence": "high", "reason": "The callsite describes a parser test fixture. “장치” means a device, while the source is a software test sample."}
+{"id": "zh-Hant:src_e73bfc3315808baf", "verdict": "keep"}
+{"id": "vi:src_e73bfc3315808baf", "verdict": "correct", "target": "Mẫu kiểm thử đơn giản để phân tích cú pháp preset kép kiểu MilkDrop3.", "confidence": "high", "reason": "The callsite describes a parser test fixture. “Lịch cố định” means a fixed schedule and does not describe test data."}
+{"id": "id:src_e73bfc3315808baf", "verdict": "correct", "target": "Fixture pengujian sederhana untuk mengurai preset ganda bergaya MilkDrop3.", "confidence": "high", "reason": "The callsite describes software parser test data. “Perlengkapan” means equipment rather than a test fixture."}
+{"id": "es:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "zh-Hans:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "hi:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "de:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "ja:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "fr:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "pt-BR:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "ar:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "ko:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "zh-Hant:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "vi:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "id:src_e73d6365430a266b", "verdict": "keep"}
+{"id": "es:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "zh-Hans:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "hi:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "de:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "ja:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "fr:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "pt-BR:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "ar:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "ko:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "zh-Hant:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "vi:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "id:src_e74e68cd456fde83", "verdict": "keep"}
+{"id": "es:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "zh-Hans:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "hi:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "de:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "ja:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "fr:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "pt-BR:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "ar:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "ko:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "zh-Hant:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "vi:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "id:src_e75bdf5b6b5f0ecf", "verdict": "keep"}
+{"id": "es:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "zh-Hans:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "hi:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "de:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "ja:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "fr:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "pt-BR:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "ar:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "ko:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "zh-Hant:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "vi:src_e75ea5aa6f976223", "verdict": "keep"}
+{"id": "id:src_e75ea5aa6f976223", "verdict": "correct", "target": "Entri indeks subjek yang dikurasi oleh Realm, bukan dump pustaka mentah.", "confidence": "high", "reason": "The source capitalizes Realm as a named curation domain. “Real-time” is an unrelated time-processing concept."}
+{"id": "es:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "zh-Hans:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "hi:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "de:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "ja:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "fr:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "pt-BR:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "ar:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "ko:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "zh-Hant:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "vi:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "id:src_e7662e3bf970bf60", "verdict": "keep"}
+{"id": "es:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "zh-Hans:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "hi:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "de:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "ja:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "fr:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "pt-BR:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "ar:src_e77cb9085ca98871", "verdict": "correct", "target": "ينشر بيانات Pod الوصفية", "confidence": "high", "reason": "The source uses Pod as the name of the published entity in MediaCorePods. “الكبسولة” means capsule and changes that technical entity."}
+{"id": "ko:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "zh-Hant:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "vi:src_e77cb9085ca98871", "verdict": "correct", "target": "Xuất bản siêu dữ liệu của Pod", "confidence": "high", "reason": "The source uses Pod as the named entity managed by MediaCorePods. “nhóm” means group and changes the object being published."}
+{"id": "id:src_e77cb9085ca98871", "verdict": "keep"}
+{"id": "es:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "zh-Hans:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "hi:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "de:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "ja:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "fr:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "pt-BR:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "ar:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "ko:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "zh-Hant:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "vi:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "id:src_e78741b21e8f3250", "verdict": "keep"}
+{"id": "es:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "zh-Hans:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "hi:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "de:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "ja:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "fr:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "pt-BR:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "ar:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "ko:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "zh-Hant:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "vi:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "id:src_e79ec9cef99e03de", "verdict": "keep"}
+{"id": "es:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "zh-Hans:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "hi:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "de:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "ja:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "fr:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "pt-BR:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "ar:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "ko:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "zh-Hant:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "vi:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "id:src_e7cf3ef4f17c3999", "verdict": "keep"}
+{"id": "es:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "zh-Hans:src_e7d80d8f7fda36dc", "verdict": "correct", "target": "添加成员", "confidence": "high", "reason": "Both callsites add a contact or Soulseek username to a share group. “会员” means a membership/subscriber; “成员” names a group member."}
+{"id": "hi:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "de:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "ja:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "fr:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "pt-BR:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "ar:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "ko:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "zh-Hant:src_e7d80d8f7fda36dc", "verdict": "correct", "target": "新增成員", "confidence": "high", "reason": "Both callsites add a contact or Soulseek username to a share group. “會員” means a membership/subscriber; “成員” names a group member."}
+{"id": "vi:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "id:src_e7d80d8f7fda36dc", "verdict": "keep"}
+{"id": "es:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "zh-Hans:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "hi:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "de:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "ja:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "fr:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "pt-BR:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "ar:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "ko:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "zh-Hant:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "vi:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "id:src_e7dfd174b534fb1e", "verdict": "keep"}
+{"id": "es:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "zh-Hans:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "hi:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "de:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "ja:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "fr:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "pt-BR:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "ar:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "ko:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "zh-Hant:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "vi:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "id:src_e7e96bdd8cbc43f8", "verdict": "keep"}
+{"id": "es:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "zh-Hans:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "hi:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "de:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "ja:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "fr:src_e8055ae6eaf25ac6", "verdict": "correct", "target": "Adhésions expirées :", "confidence": "high", "reason": "The MediaCore panel counts total, active, banned, and expired memberships. “Abonnements” means subscriptions; “adhésions” describes membership status."}
+{"id": "pt-BR:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "ar:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "ko:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "zh-Hant:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "vi:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "id:src_e8055ae6eaf25ac6", "verdict": "keep"}
+{"id": "es:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "zh-Hans:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "hi:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "de:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "ja:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "fr:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "pt-BR:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "ar:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "ko:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "zh-Hant:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "vi:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "id:src_e80c5da0d89e114d", "verdict": "keep"}
+{"id": "es:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "zh-Hans:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "hi:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "de:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "ja:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "fr:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "pt-BR:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "ar:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "ko:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "zh-Hant:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "vi:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "id:src_e81dc5c233c1b783", "verdict": "keep"}
+{"id": "es:src_e842b5ef1135cd09", "verdict": "keep"}
+{"id": "zh-Hans:src_e842b5ef1135cd09", "verdict": "correct", "target": "取证矩阵", "confidence": "high", "reason": "The SongID panel uses forensic evidence lanes for identity analysis. “法医” specifically means a forensic medical examiner; “取证” names the evidence-analysis sense."}
+{"id": "hi:src_e842b5ef1135cd09", "verdict": "keep"}
+{"id": "de:src_e842b5ef1135cd09", "verdict": "keep"}
+{"id": "ja:src_e842b5ef1135cd09", "verdict": "correct", "target": "フォレンジック・マトリックス", "confidence": "high", "reason": "The SongID panel uses forensic evidence lanes for identity analysis. “法医学” refers to forensic medicine; use the general digital-forensics term."}
+{"id": "fr:src_e842b5ef1135cd09", "verdict": "correct", "target": "Matrice d’analyse forensique", "confidence": "high", "reason": "The SongID panel uses forensic evidence lanes for identity analysis. “Médico-légale” refers to forensic medicine; “forensique” names the evidence-analysis sense."}
+{"id": "pt-BR:src_e842b5ef1135cd09", "verdict": "keep"}
+{"id": "ar:src_e842b5ef1135cd09", "verdict": "correct", "target": "مصفوفة التحليل الجنائي الرقمي", "confidence": "high", "reason": "The SongID panel uses forensic evidence lanes for identity analysis. “الطب الشرعي” specifically means forensic medicine; this label needs the digital evidence-analysis sense."}
+{"id": "ko:src_e842b5ef1135cd09", "verdict": "correct", "target": "포렌식 매트릭스", "confidence": "high", "reason": "The SongID panel uses forensic evidence lanes for identity analysis. “법의학” means forensic medicine; use the general digital-forensics term."}
+{"id": "zh-Hant:src_e842b5ef1135cd09", "verdict": "correct", "target": "數位鑑識矩陣", "confidence": "high", "reason": "The SongID panel uses forensic evidence lanes for identity analysis. “法醫” specifically means a forensic medical examiner; “鑑識” names the evidence-analysis sense."}
+{"id": "vi:src_e842b5ef1135cd09", "verdict": "correct", "target": "Ma trận pháp chứng số", "confidence": "high", "reason": "The SongID panel uses forensic evidence lanes for identity analysis. “pháp y” refers to forensic medicine; this label needs the digital evidence-analysis sense."}
+{"id": "id:src_e842b5ef1135cd09", "verdict": "keep"}
+{"id": "es:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "zh-Hans:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "hi:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "de:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "ja:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "fr:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "pt-BR:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "ar:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "ko:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "zh-Hant:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "vi:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "id:src_e845a588cbccdd2d", "verdict": "keep"}
+{"id": "es:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "zh-Hans:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "hi:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "de:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "ja:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "fr:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "pt-BR:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "ar:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "ko:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "zh-Hant:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "vi:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "id:src_e84ab55a0b29780f", "verdict": "keep"}
+{"id": "es:src_e85e3bf148c4710c", "verdict": "uncertain", "reason": "The source sentence is awkward English (“visible in state”), and this Spanish target is also compressed and unnatural. Confirm a concise locale-native status phrase with a Spanish reviewer."}
+{"id": "zh-Hans:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "hi:src_e85e3bf148c4710c", "verdict": "correct", "target": "{count} सक्रिय कतारबद्ध स्थानांतरण आइटम स्थिति में दिखाई दे रहा है.", "confidence": "high", "reason": "The setup-health-check callsite reports whether the item is visible in the current status. “राज्य” means a territorial state; use “स्थिति” for status."}
+{"id": "de:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "ja:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "fr:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "pt-BR:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "ar:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "ko:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "zh-Hant:src_e85e3bf148c4710c", "verdict": "keep"}
+{"id": "vi:src_e85e3bf148c4710c", "verdict": "uncertain", "reason": "The source sentence is awkward English (“visible in state”), and this target places the count and modifier in an unnatural order. Confirm a concise locale-native status phrase with a Vietnamese reviewer."}
+{"id": "id:src_e85e3bf148c4710c", "verdict": "correct", "target": "{count} item transfer aktif dalam antrean terlihat pada status.", "confidence": "high", "reason": "The setup-health-check callsite means current status. “Negara bagian” is a territorial state, not an application status."}
+{"id": "es:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "zh-Hans:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "hi:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "de:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "ja:src_e85f8ba6071ca24d", "verdict": "correct", "target": "実行契約がブロックされました", "confidence": "high", "reason": "The source is the media-server execution state. “約定契約” repeats the sense of contract/agreement; “実行契約” preserves the execution-contract term."}
+{"id": "fr:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "pt-BR:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "ar:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "ko:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "zh-Hant:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "vi:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "id:src_e85f8ba6071ca24d", "verdict": "keep"}
+{"id": "es:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "zh-Hans:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "hi:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "de:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "ja:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "fr:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "pt-BR:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "ar:src_e861e6c37a3d4bd9", "verdict": "correct", "target": "نُسخ تقرير تفضيلات التجربة.", "confidence": "high", "reason": "The feedback confirms that a report was copied. “قائمة” means list and changes the copied object."}
+{"id": "ko:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "zh-Hant:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "vi:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "id:src_e861e6c37a3d4bd9", "verdict": "keep"}
+{"id": "es:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "zh-Hans:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "hi:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "de:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "ja:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "fr:src_e865aa279cb38cc7", "verdict": "correct", "target": "Les enregistrements des téléchargements terminés ont été effacés.", "confidence": "high", "reason": "The source clears completed-download records, not downloaded files. The current target omits “records” and can imply that the downloads themselves were erased."}
+{"id": "pt-BR:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "ar:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "ko:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "zh-Hant:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "vi:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "id:src_e865aa279cb38cc7", "verdict": "keep"}
+{"id": "es:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "zh-Hans:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "hi:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "de:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "ja:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "fr:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "pt-BR:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "ar:src_e888155d8c7d2e3c", "verdict": "correct", "target": "مقارنة", "confidence": "high", "reason": "This is a button in the discovery-graph comparison flow. “يقارن” is a third-person statement (“he compares”); use an action label."}
+{"id": "ko:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "zh-Hant:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "vi:src_e888155d8c7d2e3c", "verdict": "keep"}
+{"id": "id:src_e888155d8c7d2e3c", "verdict": "correct", "target": "Bandingkan", "confidence": "high", "reason": "This is an action button in the discovery-graph comparison flow. “Membandingkan” is a gerund/nominal form; use the direct imperative."}

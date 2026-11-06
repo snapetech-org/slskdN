@@ -1,0 +1,434 @@
+{
+  "schemaVersion": 1,
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "state": "append-only count-aware plural source/caller follow-up; 60 targets populated and machine-reviewed; native-speaker review pending",
+  "targetLocales": [
+    "es",
+    "zh-Hans",
+    "hi",
+    "de",
+    "ja",
+    "fr",
+    "pt-BR",
+    "ar",
+    "ko",
+    "zh-Hant",
+    "vi",
+    "id"
+  ],
+  "sourceReferenceCount": 7,
+  "uniqueSourceCount": 5,
+  "pendingSourceCount": 0,
+  "pendingTargetCells": 0,
+  "nativeSpeakerPendingTargetCells": 60,
+  "totalFollowupTranslationCells": 60,
+  "catalogKeyDeltaPerLocale": 5,
+  "catalogKeyCountPerLocale": 6175,
+  "records": [
+    {
+      "sourceId": "src_a496c430224a74df",
+      "source": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+      "sourceSha256": "a496c430224a74dfec84fe9612e2da05972348989213a8f994d486220665ff59",
+      "windowRank": 42,
+      "priorSourceId": "src_112cb5f2343632c5",
+      "priorSourceText": "tracks,",
+      "context": "Playlist Intake approval summary: matched track count plus changed-field count.",
+      "pluralVariables": [
+        "matched",
+        "changed"
+      ],
+      "ordinaryPlaceholders": [],
+      "targetLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "targetCellCount": 12,
+      "finalTargetSha256ByLocale": {
+        "es": "71dc67a1799b77264a878e25d196b9912bd859bc9d3cf5c6ff0f555924952b61",
+        "zh-Hans": "60e0b9e0febd974d47772c1886f4e4fe20c8f17c33ea9a330a3b78da12cb1da2",
+        "hi": "532981a788ca19c0c39513aacf320c467838815b745295e7b04f62dfcf257f5f",
+        "de": "14e4c8f23dd8409af1e4dc24e5fde0933a310d4e758c4be023213b8b94f080dd",
+        "ja": "499a4519f02b7ff9ca5aa30ddb3212e8c33aba2f67045a9bd5a1319efe58f57d",
+        "fr": "c3576b0e58aab0f89ebeed8c407897402a432ff7eadfc233d857d63acdf8d33d",
+        "pt-BR": "552b7a1f6c4e975fcdb59d9e1642bb6680614a1bd1375f07d8eaa336e27b1e81",
+        "ar": "a00fe52c8f5d775788c6f45dd38d6a749a3e9f5c1bf23eec25e24753fa786e8b",
+        "ko": "7cac4397cc70fd8f2aad2333aaca273cdd16fc5b9551362830ac2a7722e969a9",
+        "zh-Hant": "226d5da0a3665ed61f219c46a11e5f0e2fa173bf08eb646bf48704e4427ac657",
+        "vi": "eae4a5b1d6af2832504daa79f2291ba3a33bf23c745e1f605f19d991b89d9fc6",
+        "id": "5d99490047cccf39c54e1b5fb431ca3f83a8cd9816d0a96656657a7df2afdeae"
+      },
+      "status": "all twelve targets populated and independently machine-reviewed; native-speaker approval pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "line": 548,
+          "lineText": "                              <LocalizedText",
+          "lineTextSha256": "5bdd8e8cc47e47076a780e87d5deca1e6270c9ff29660637f01a76182acd218a",
+          "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40"
+        },
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "line": 549,
+          "lineText": "                                source={\"{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}\"}",
+          "lineTextSha256": "4a5d58cde1436e90f8f78b025b468b562695897c7ad43b5e1033b519875f26fc",
+          "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40"
+        },
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "line": 550,
+          "lineText": "                                values={{",
+          "lineTextSha256": "01ec50400e58bcd2acea69c0ebaac0a0567dd03dad5f641ba16840324543fbc8",
+          "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40"
+        },
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "line": 551,
+          "lineText": "                                  matched: playlist.organizationApproval.summary.matched,",
+          "lineTextSha256": "671d4f2c5f175c1cac7067a5468188868002fe0bc4968cfefeca44c2c61fdc0b",
+          "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40"
+        },
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "line": 552,
+          "lineText": "                                  changed: playlist.organizationApproval.summary.changedFieldCount,",
+          "lineTextSha256": "b003ad5f11e3e930186be5cbdd0249cebf5c752276e5a205a4d3c38bc1a06319",
+          "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40"
+        },
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "line": 553,
+          "lineText": "                                }}",
+          "lineTextSha256": "9b758b652642a987dada814fdbda40ea451d93322c6f0c410236cfbac8a0ed80",
+          "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40"
+        },
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "line": 554,
+          "lineText": "                              />",
+          "lineTextSha256": "eb7b84cfab0a6e682cc170c9b4eb88f7bb127e727fee7d5b7e609e67da321c3b",
+          "fileSha256": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40"
+        }
+      ]
+    },
+    {
+      "sourceId": "src_86c7c500a8a29d14",
+      "source": "{count, plural, one {# new result} other {# new results}}",
+      "sourceSha256": "86c7c500a8a29d1403473b1307ad54add1775e05bb9b25e7b8c5a56797629f71",
+      "windowRank": 49,
+      "priorSourceId": "src_11507a0e2f5e69d5",
+      "priorSourceText": "new",
+      "context": "Wishlist unseen-result count badge, separate from the MessageStream separator.",
+      "pluralVariables": [
+        "count"
+      ],
+      "ordinaryPlaceholders": [],
+      "targetLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "targetCellCount": 12,
+      "finalTargetSha256ByLocale": {
+        "es": "936daff9dcff6da97f98c51a2e27f8d203756b7d08d6a90782d5b60670362e9b",
+        "zh-Hans": "de09281c6845ea7c19f2119586451677dea0f8b5ea82b848e40fe4a1b435fef1",
+        "hi": "5f71dbb3c86a6067221b514180652363ca1ea107fa73dde358165d8c99206c87",
+        "de": "4a6f5fb3f58e0da58239b3a0015f08689e39929b4c0f4ca7bbc8ff95655bc907",
+        "ja": "b6351237f7b81c841a7d58c4bf824afdb7d08ebeb497f50c0b2d7c7f8a953a70",
+        "fr": "171360320c256b86f95016054195fd34fa9c69269d346cd2cee31a571d6b0019",
+        "pt-BR": "384f38edc06560b25e7a975b7e17a67ef25f71ecc733ae557214034943ea45f5",
+        "ar": "e8bdf56a946e87732b49fc827b504811d8abb15bf1456ce724f291a8e5409929",
+        "ko": "e4fbe6ff6b78f9cc138e77f7447a28840c8e436dda2fbe9a5de3fe55cba77b81",
+        "zh-Hant": "92187725263bd145e037b3bf1616fd7fb88f3b711cc86daaaf963cc342247e10",
+        "vi": "59a824bf0fa2fabab7f470a1547a946fc08527eb1002989df5d334552b5ebe01",
+        "id": "e7450d56bd81d59416ee6495ac375517f9ba4fa2ba8cf7add73e32b1846ba9cc"
+      },
+      "status": "all twelve targets populated and independently machine-reviewed; native-speaker approval pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 40,
+          "lineText": "const WISHLIST_UNSEEN_COUNT_SOURCE = '{count, plural, one {# new result} other {# new results}}';",
+          "lineTextSha256": "cfb464a7e89b457d7f5c88470665017e5f992bb961e3141ff9938da73293f4c3",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 237,
+          "lineText": "                    source={WISHLIST_UNSEEN_COUNT_SOURCE}",
+          "lineTextSha256": "7ad6e446e85bded805c67963893e1f40b4df9f3b2de345eb299a5e5e36b84ac9",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 619,
+          "lineText": "                        source={WISHLIST_UNSEEN_COUNT_SOURCE}",
+          "lineTextSha256": "36475f0904e9bf8154094ce064f841f8a5de60f58384e3fca8bc820483310135",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        }
+      ]
+    },
+    {
+      "sourceId": "src_548b82b14a90f35c",
+      "source": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+      "sourceSha256": "548b82b14a90f35c8db3fc3298fca39bc078cca01293037561997d54c87052ae",
+      "windowRank": 49,
+      "priorSourceId": "src_11507a0e2f5e69d5",
+      "priorSourceText": "new",
+      "context": "Wishlist unseen-result count tooltip and accessible title/label.",
+      "pluralVariables": [
+        "count"
+      ],
+      "ordinaryPlaceholders": [],
+      "targetLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "targetCellCount": 12,
+      "finalTargetSha256ByLocale": {
+        "es": "c244a9fbedb57ea0ead0e34636ca64997546988b0bee13e56c1ab2aabed62e09",
+        "zh-Hans": "a73e5e60690cb798ec01dfb4b4a8ee330187595d2a3a3f03b00d2e0fd8898084",
+        "hi": "14a9f60d83f98e9c2b6b5f0442b46bddc32cd172b96e70dc8622ed9333ca9ef2",
+        "de": "de2266527bad9e9589d81534016962a5d4885617597a370597cca3fbe890a7d0",
+        "ja": "a4dce59182ff78c37c28c2c8f4e860ae766f3b59dd184ada6471f2917e488eec",
+        "fr": "0d9bf8850fb1d26702aa4e27de4de12245632f8a9e3802f78e1702e649ce451e",
+        "pt-BR": "f7b750d750f3a9971dceae2fe8627efdf3e73b3e77b4870a9812dbdcd9f40db9",
+        "ar": "6cd2ae3ceb53606b8de8fa62b4a34627bd83a0c93e8e7687a21a27318d819f4f",
+        "ko": "1a9b218b09eb1826c4986761cae7a34d4d92177f9bc2ea0317425bd85a2fb0de",
+        "zh-Hant": "9c38ae08884ef2e2ca7e3f5fe692fb41794607bda2785e6a8b8fa82f3cfd6b8f",
+        "vi": "965aa626f112dda10653512c73e197f63567d6b42bc56e69cc18a4b64af5aed2",
+        "id": "2474fe2e584ddb6f070632c21fa603921758c673e7d2921e2f63e05161b8a241"
+      },
+      "status": "all twelve targets populated and independently machine-reviewed; native-speaker approval pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 41,
+          "lineText": "const WISHLIST_UNSEEN_TOOLTIP_SOURCE = '{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}';",
+          "lineTextSha256": "6281b4e0832e72480899a07b4f53614e9fb31f29140984eab10e61688dd0b737",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 229,
+          "lineText": "              content={interfaceText(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}",
+          "lineTextSha256": "44076ba574e389fb7027279d66f81ad3454bde33df71cfe3bc04a3690277b534",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 242,
+          "lineText": "             {...interfaceTextProps(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}/>",
+          "lineTextSha256": "ccf0d76c5272d4c00c7f492f94db6db519857cc945815bee6f749c83de448d14",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 615,
+          "lineText": "                  content={interfaceText(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}",
+          "lineTextSha256": "7751afceb73b9a0dd489273b06197fa3cced073eaa0f7e9243d20f0c1db7995a",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "line": 624,
+          "lineText": "                 {...interfaceTextProps(WISHLIST_UNSEEN_TOOLTIP_SOURCE, { count: unseenCount })}/>",
+          "lineTextSha256": "dae88efa7b294323a5738525be93eba48fe2f320bad8f6e1e42080b604e5f354",
+          "fileSha256": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d"
+        }
+      ]
+    },
+    {
+      "sourceId": "src_ef5df7e6051540ca",
+      "source": "New messages",
+      "sourceSha256": "ef5df7e6051540cadc2942c9c85501a74772f87f4d30d28913478a84331b8062",
+      "windowRank": 49,
+      "priorSourceId": "src_11507a0e2f5e69d5",
+      "priorSourceText": "new",
+      "context": "Standalone MessageStream new-message separator label.",
+      "pluralVariables": [],
+      "ordinaryPlaceholders": [],
+      "targetLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "targetCellCount": 12,
+      "finalTargetSha256ByLocale": {
+        "es": "84fc288fc5ec03ff470d91027279c1f35aee2402652aaf1308da53bd3995e1d6",
+        "zh-Hans": "3fc957bf0f70c3caf3a7cfa08ba8baa895f01c4ed3741dcffbe6d1ae70e41581",
+        "hi": "6c1a0fd865b12b387f680cf7bb75b75c91b79dbe3b213c225f1bb714b1bf468f",
+        "de": "4aadfb7b596d7bb3f34501255721f330b1227fce96221d7dd576d00fa8b0477f",
+        "ja": "e478d7284ed8d585dd33456b7812f93b8744b082d4a38929fbf826d48f49515a",
+        "fr": "010d8f7bf8fa7e4434f818a27116a9f80c3f41e12eacf2b848a1aaee4c16c5fe",
+        "pt-BR": "2948b82ba0cbb11753cde7663489b0bdec970abd06f851f7ba6a8e3c2eadc7bb",
+        "ar": "ee690fdf17c297627528b413c40051d78950d7ca9e3faf91fffa6a32dfe82548",
+        "ko": "4f85edbeb9f357832e14d804aeaff78744c37528b65879cfcc96a12c5a095194",
+        "zh-Hant": "3d1acbde26ea7a9bbcbe63130f783ec3840811922f5c6b44f72aab48db494cb8",
+        "vi": "f37e40144796edee6319e71d3790705b6ee360e04885fa96e7ab55c8ecc72028",
+        "id": "87a7f23c55020a381577db4179618801b88b9adb00b8a5796added7efdf12baf"
+      },
+      "status": "all twelve targets populated and independently machine-reviewed; native-speaker approval pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Messaging/MessageStream.jsx",
+          "line": 712,
+          "lineText": "    <span className=\"msg-stream-newmarker-label\"><LocalizedText source={\"New messages\"} /></span>",
+          "lineTextSha256": "dcfcd8a83b3fd823b7d777c038e6f2d5761b5d13014c2cee911e12b369877f36",
+          "fileSha256": "c97ef0a4a608d8c1062fdd1777f4a8db317321775b4caa01fbdb3fb08b3332bc"
+        }
+      ]
+    },
+    {
+      "sourceId": "src_6845751a223bdec1",
+      "source": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+      "sourceSha256": "6845751a223bdec1f1c63b7645f03eb63ecf64c711f7bc1ba0838e100a97bcc5",
+      "windowRank": 37,
+      "priorSourceId": "src_10dec009bb7ddc89",
+      "priorSourceText": "Download {count} files from {directory}?",
+      "context": "Existing native confirmation for the collected files; caller passes filesToDownload.length and directory.name.",
+      "pluralVariables": [
+        "count"
+      ],
+      "ordinaryPlaceholders": [
+        "directory"
+      ],
+      "targetLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "targetCellCount": 12,
+      "finalTargetSha256ByLocale": {
+        "es": "f4306405fff3523fa455e1419d37700a1c2be9f344848597d6120047c47321bf",
+        "zh-Hans": "8c3f06c207a2ec0064eca90e1590541a2f611f457229c345f43f7bd09856014d",
+        "hi": "5d289407e154eae100c1bf7b6c85f3a9581684ca0c2c9afafc5d5a6b38f016d0",
+        "de": "c9e7f60a4c01d47cb1a3c33ae7f67dd54662915ca0c704edff749d5d049d40eb",
+        "ja": "eb6a0a238b613b3e726eed4722b3ee01458639ed060df1957f253eea0a3b2fd8",
+        "fr": "3bb62db1c22cf6d95867373f3e6c1b6398ddb21202b1b5e18d1079321dc16b12",
+        "pt-BR": "68527f0eeb2d5427c1dfeefd8ad707aaf94c977739d1b9f3050f745f2ccdeede",
+        "ar": "606c647d857f910aead38c7cf9cd32141192b91f4cb68a5bd794a97310e41bd8",
+        "ko": "9867c91b242f92bd830169aac7553ebfd68e9415c661fbe2e7be1ac1ed2bb948",
+        "zh-Hant": "c6168a1aac7b4b42f1850747629fee6a6ae8d872b6a5b8738e3a9659d13c79d4",
+        "vi": "61d416bf34602a1ee25593125e405c86295328d28e42414dfef29ff79ca9f67f",
+        "id": "e1f8cbfe2b17dad8b1fcf69c1e7a84921b5f37718fabadde02cfdac9bef0451d"
+      },
+      "status": "all twelve targets populated and independently machine-reviewed; native-speaker approval pending",
+      "callers": [
+        {
+          "path": "src/web/src/components/Browse/BrowseSession.jsx",
+          "line": 564,
+          "lineText": "      window.confirm(interfaceDialogText(",
+          "lineTextSha256": "0bb125ea20460180a1d9531528cc4d5a5f266dcc7d411310cf2d4c06d97afae6",
+          "fileSha256": "60e6444a84fee70a1b8f1a5a1483e4b86eda8f4d7c6042c8c0b8d32d33fe3cb5"
+        },
+        {
+          "path": "src/web/src/components/Browse/BrowseSession.jsx",
+          "line": 565,
+          "lineText": "        '{count, plural, one {Download # file} other {Download # files}} from {directory}?',",
+          "lineTextSha256": "490f1248f8cd64902e9bb5df7600091e3f232c04f523388c56327f1d4e5d427c",
+          "fileSha256": "60e6444a84fee70a1b8f1a5a1483e4b86eda8f4d7c6042c8c0b8d32d33fe3cb5"
+        },
+        {
+          "path": "src/web/src/components/Browse/BrowseSession.jsx",
+          "line": 566,
+          "lineText": "        { count: filesToDownload.length, directory: directory.name },",
+          "lineTextSha256": "6e6104673d297178f36bf59a6d2942a5285fa22d89dbcd6b24e2c576951196f6",
+          "fileSha256": "60e6444a84fee70a1b8f1a5a1483e4b86eda8f4d7c6042c8c0b8d32d33fe3cb5"
+        },
+        {
+          "path": "src/web/src/components/Browse/BrowseSession.jsx",
+          "line": 567,
+          "lineText": "      ))",
+          "lineTextSha256": "0e60b1465bb160a0c7192f1edddd40dbc3e8b5f85e8f5aa4871655cb19287ea8",
+          "fileSha256": "60e6444a84fee70a1b8f1a5a1483e4b86eda8f4d7c6042c8c0b8d32d33fe3cb5"
+        }
+      ]
+    }
+  ],
+  "runtimeBoundary": {
+    "path": "src/web/src/lib/interfaceLocale.js",
+    "fileSha256": "89c60e399dc16015f82dc92bf8c8a9e090dbdc59f21e2d3e2f1716dcb3443285",
+    "nativeDialogHelper": "interfaceDialogText",
+    "behavior": "Numeric parameters named in top-level cardinal plural selectors remain numeric through Intl.PluralRules and NumberFormat; ordinary opaque values such as directory names receive FSI/PDI isolation before native confirm text is emitted.",
+    "pluralSubset": "Named numeric cardinal selectors, CLDR category branches and integer exact matches; plain-text branches; # count substitution; no nested selectors, ordinals, offsets or general MessageFormat support.",
+    "protectedData": "Directory names, usernames, provider values, paths, and other user-supplied data remain unchanged; only rendered dialog placeholders are isolated."
+  },
+  "sourceFileSha256": {
+    "src/web/src/components/Browse/BrowseSession.jsx": "60e6444a84fee70a1b8f1a5a1483e4b86eda8f4d7c6042c8c0b8d32d33fe3cb5",
+    "src/web/src/components/Messaging/MessageStream.jsx": "c97ef0a4a608d8c1062fdd1777f4a8db317321775b4caa01fbdb3fb08b3332bc",
+    "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40",
+    "src/web/src/components/Shared/LocalizedText.jsx": "dceb5b8d9f3dd803cef823a6756248f17d4f4b2600498be64e142c3c630a6c81",
+    "src/web/src/components/Wishlist/Wishlist.jsx": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d",
+    "src/web/src/lib/interfaceLocale.js": "89c60e399dc16015f82dc92bf8c8a9e090dbdc59f21e2d3e2f1716dcb3443285"
+  },
+  "reviewEvidence": {
+    "primary": "docs/pr-evidence/pr409-localization-2026-11-02/window46-caller-aware-runtime-followup/primary/",
+    "independentCrossreview": "docs/pr-evidence/pr409-localization-2026-11-02/window46-caller-aware-runtime-followup/crossreview/",
+    "rootAdjudication": "docs/pr-evidence/pr409-localization-2026-11-02/window46-caller-aware-runtime-followup/root-adjudication.jsonl",
+    "finalTargets": "56 independently accepted primary proposals; 4 independently recommended revisions adopted after root readback.",
+    "nativeSpeakerApproval": false,
+    "headedBrowserReview": false
+  },
+  "historicalCorrection": {
+    "corrects": "W46 rank37 was previously classified as callerless although its production BrowseSession caller passed a file count and directory name to window.confirm.",
+    "supersedes": "Exactly the 12 rank37 crossreview holds and 12 rank37 final-adjudication holds; sealed W46 packets remain unchanged.",
+    "retains": "The 12 old-key primary accept-current decisions remain valid for the old message. The new caller now uses the independently reviewed count-aware source."
+  },
+  "validation": {
+    "catalogJsonParse": "passed during exact readback",
+    "sourceAndTargetHashes": "recomputed",
+    "keyOrderAndOldValues": "all preserved",
+    "gitDiffCheck": "passed",
+    "testsBuildScansCi": "not run",
+    "workflowsChanged": false,
+    "releaseOrTagCreated": false
+  }
+}

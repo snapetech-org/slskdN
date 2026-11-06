@@ -1,0 +1,160 @@
+{
+  "artifact": "Independent blind semantic review — slskdN PR #409 W57 ranks 303–327",
+  "reviewMode": "blind; candidate-free input only; no primary output or proposal artifact inspected",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "liveHead": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "liveTree": "a5f9b792875d341a49208d0785bfff28aa9092d7",
+  "remoteHead": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "baseRef": "main",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "inputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w57-ranks303-327-candidate-free-20261103/input",
+  "inputChecksumListSha256": "84b6fcf416116a557decda2efca0f6c680055aab6726eecf75cf9742e3d4d90f",
+  "inputManifestSha256": "6f1594ec6eb071b29be0081753b86ab7a3e50c8fe98a6209e55f123e353d1f5f",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "callerContextCount": 25,
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "rankRange": [
+    303,
+    327
+  ],
+  "dispositionCounts": {
+    "accept-current": 287,
+    "correction/refinement proposal": 10,
+    "hold": 3
+  },
+  "structuralChecks": {
+    "allPlaceholderChecksPass": true,
+    "allMarkupChecksPass": true,
+    "allNumericChecksPass": true,
+    "allProtectedLiteralsPass": true,
+    "rowsWithSourcePlaceholders": [
+      308,
+      317,
+      323
+    ],
+    "rowsWithNumericTokens": [],
+    "rowsWithMarkupTokens": [],
+    "rowsWithProtectedBrands": [
+      315,
+      316,
+      318
+    ],
+    "leadingWhitespaceMismatchCount": 0
+  },
+  "correctionSummary": [
+    {
+      "reviewId": "W57-rank-315-pt-BR",
+      "source": "Allow legacy Soulseek clients to connect via bridge",
+      "locale": "pt-BR",
+      "candidateTarget": "Permita que clientes legados do Soulseek se conectem por meio de uma ponte.",
+      "rationale": "“Herdados” reads as inherited clients in this context; “legados” is the established software sense of legacy and preserves the Soulseek bridge permission."
+    },
+    {
+      "reviewId": "W57-rank-315-vi",
+      "source": "Allow legacy Soulseek clients to connect via bridge",
+      "locale": "vi",
+      "candidateTarget": "Cho phép các máy khách Soulseek đời cũ kết nối thông qua cầu nối.",
+      "rationale": "“Kế thừa” means inherited and is a false friend for legacy here; “đời cũ” identifies older legacy clients while preserving Soulseek and bridge access."
+    },
+    {
+      "reviewId": "W57-rank-317-zh-Hant",
+      "source": "Provenance: {tier} {peerId}",
+      "locale": "zh-Hant",
+      "candidateTarget": "來源：{tier} {peerId}",
+      "rationale": "“出生” means birth and misstates provenance. “來源” conveys the source/provenance label and keeps both runtime placeholders unchanged."
+    },
+    {
+      "reviewId": "W57-rank-318-de",
+      "source": "Enable Lidarr replace existing files setting",
+      "locale": "de",
+      "candidateTarget": "Aktivieren Sie die Lidarr-Einstellung zum Ersetzen vorhandener Dateien.",
+      "rationale": "The current word order makes “Einstellung Lidarr” ungrammatical. The proposal clearly labels the Lidarr setting that enables replacement of existing files."
+    },
+    {
+      "reviewId": "W57-rank-318-es",
+      "source": "Enable Lidarr replace existing files setting",
+      "locale": "es",
+      "candidateTarget": "Active la opción de Lidarr para reemplazar los archivos existentes.",
+      "rationale": "The current wording says Lidarr would replace the configuration of existing files. The proposal makes the checkbox option the thing being enabled and preserves the file-replacement meaning."
+    },
+    {
+      "reviewId": "W57-rank-318-hi",
+      "source": "Enable Lidarr replace existing files setting",
+      "locale": "hi",
+      "candidateTarget": "मौजूदा फ़ाइलों को बदलने के लिए Lidarr की सेटिंग चालू करें।",
+      "rationale": "The current word order is difficult to parse as an enable-setting label. The proposal explicitly says to turn on Lidarr’s setting for replacing existing files."
+    },
+    {
+      "reviewId": "W57-rank-318-id",
+      "source": "Enable Lidarr replace existing files setting",
+      "locale": "id",
+      "candidateTarget": "Aktifkan pengaturan Lidarr untuk mengganti file yang sudah ada.",
+      "rationale": "The current wording runs “enable Lidarr” and “replace setting” together. The proposal explicitly enables the Lidarr setting for replacing existing files."
+    },
+    {
+      "reviewId": "W57-rank-318-pt-BR",
+      "source": "Enable Lidarr replace existing files setting",
+      "locale": "pt-BR",
+      "candidateTarget": "Ative a opção do Lidarr para substituir arquivos existentes.",
+      "rationale": "The current noun chain is awkward and leaves the setting relationship unclear. The proposal directly labels the Lidarr option to replace existing files."
+    },
+    {
+      "reviewId": "W57-rank-318-vi",
+      "source": "Enable Lidarr replace existing files setting",
+      "locale": "vi",
+      "candidateTarget": "Bật tùy chọn Lidarr cho phép thay thế các tệp hiện có.",
+      "rationale": "The current wording can read as “turn on Lidarr, replace existing-file settings.” The proposal clearly enables the Lidarr option that permits replacement."
+    },
+    {
+      "reviewId": "W57-rank-322-id",
+      "source": "Configured shares",
+      "locale": "id",
+      "candidateTarget": "Sumber daya bersama yang dikonfigurasi",
+      "rationale": "“Saham” commonly means equity/stocks in Indonesian. The pinned context is a System/Shares table, so “sumber daya bersama” keeps the generic shared-resource meaning without assuming a specific folder type."
+    }
+  ],
+  "holds": [
+    {
+      "reviewId": "W57-rank-319-hi",
+      "source": "Play more tracks locally to build recommendation seeds.",
+      "locale": "hi",
+      "currentTarget": "सिफ़ारिश बीज तैयार करने के लिए स्थानीय स्तर पर अधिक ट्रैक चलाएँ।",
+      "rationale": "“Recommendation seeds” is rendered as a literal seed metaphor. The pinned caller is an empty-state prompt and does not define whether “seed” is a product term or generic recommendation input; hold for Hindi terminology review rather than inventing a different concept."
+    },
+    {
+      "reviewId": "W57-rank-319-id",
+      "source": "Play more tracks locally to build recommendation seeds.",
+      "locale": "id",
+      "currentTarget": "Putar lebih banyak lagu secara lokal untuk membangun benih rekomendasi.",
+      "rationale": "“Benih rekomendasi” is a literal seed metaphor. The pinned caller is an empty-state prompt and does not define whether “seed” is a product term or generic recommendation input; hold for Indonesian terminology review rather than inventing a different concept."
+    },
+    {
+      "reviewId": "W57-rank-319-vi",
+      "source": "Play more tracks locally to build recommendation seeds.",
+      "locale": "vi",
+      "currentTarget": "Phát nhiều bản nhạc cục bộ hơn để xây dựng hạt giống đề xuất.",
+      "rationale": "“Hạt giống đề xuất” is a literal seed metaphor. The pinned caller is an empty-state prompt and does not define whether “seed” is a product term or generic recommendation input; hold for Vietnamese terminology review rather than inventing a different concept."
+    }
+  ],
+  "limitations": [
+    "Machine review only; no native-speaker approval.",
+    "Selection is the candidate-free stable-ID continuation rank range; historical source ordinals are unavailable.",
+    "Review covers the pinned caller context captured in the packet, not unpinned runtime behavior."
+  ]
+}

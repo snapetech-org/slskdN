@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+  "window": "W77",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "acceptCurrent": 238,
+  "correct": 50,
+  "callerlessHashOnlyHolds": 12,
+  "callerlessSources": 1,
+  "callerlessCells": 12,
+  "candidateFreeVerifier": "PASS",
+  "PRRefs": "OPEN/DRAFT at exact branch and pull head",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "checksums": 13
+}

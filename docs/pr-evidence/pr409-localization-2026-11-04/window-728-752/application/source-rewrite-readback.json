@@ -1,0 +1,18 @@
+[
+  {
+    "path": "src/web/src/components/System/Security/AdversarialSettings.jsx",
+    "oldSource": "Save the current adversarial settings to this server.",
+    "newSource": "Save the current privacy and anonymity settings to this server.",
+    "replacedOccurrences": 2,
+    "preimageSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+    "postimageSha256": "01f240e1030d206698b907a88e0a34e16315c063cd69e5caabe20e1e7bff50e0"
+  },
+  {
+    "path": "src/web/src/components/System/Shares/ContentsModal.jsx",
+    "oldSource": "Close the share contents window.",
+    "newSource": "Close the window showing the contents of the selected share.",
+    "replacedOccurrences": 3,
+    "preimageSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+    "postimageSha256": "5d1c95792e0363f5d16b92946eb739876878c17925f9827a5ad8db3a9b9f1e3c"
+  }
+]

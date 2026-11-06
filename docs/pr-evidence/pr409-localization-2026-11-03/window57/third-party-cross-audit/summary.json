@@ -1,0 +1,74 @@
+{
+  "artifact": "slskdN PR #409 W57 ranks 303–327 third-party cross-audit",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "tree": "a5f9b792875d341a49208d0785bfff28aa9092d7",
+  "state": "OPEN",
+  "isDraft": true,
+  "window": "W57 ranks 303–327",
+  "nextBoundaryRank": 328,
+  "reviewedCells": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "productionCallerOccurrences": 42,
+  "dispositionCounts": {
+    "accept-current": 276,
+    "correction": 11,
+    "refinement": 1,
+    "hold": 12
+  },
+  "primaryDecisionCounts": {
+    "accept-current": 278,
+    "correction": 10,
+    "hold": 12
+  },
+  "blindDispositionCounts": {
+    "accept-current": 287,
+    "correction/refinement proposal": 10,
+    "hold": 3
+  },
+  "disagreementRows": 20,
+  "selectedCorrectionRanks": [
+    310,
+    315,
+    317,
+    318,
+    322
+  ],
+  "selectedRefinementCells": [
+    "W57-rank-318-pt-BR"
+  ],
+  "heldCells": [
+    "W57-rank-319-ar",
+    "W57-rank-319-de",
+    "W57-rank-319-es",
+    "W57-rank-319-fr",
+    "W57-rank-319-hi",
+    "W57-rank-319-id",
+    "W57-rank-319-ja",
+    "W57-rank-319-ko",
+    "W57-rank-319-pt-BR",
+    "W57-rank-319-vi",
+    "W57-rank-319-zh-Hans",
+    "W57-rank-319-zh-Hant"
+  ],
+  "unresolvedSemanticQuestion": "Rank 319 “recommendation seeds”: caller says to play more local tracks, but the packets provide no product definition or approved locale terminology. Hold all 12 locales pending product guidance.",
+  "packetDefect": "The lastSelected and nextBoundary fields in selection-and-boundary.json are invalid (ranks 304 and 305). The 27-row full boundary list plus 25 selected inventory rows and 300 cell rows establish ranks 303–327 and next boundary 328.",
+  "structuralChecks": {
+    "crossAuditTargetsChecked": 300,
+    "crossAuditPlaceholderMismatches": 0,
+    "crossAuditMarkupMismatches": 0,
+    "crossAuditNumericMismatches": 0,
+    "crossAuditEdgeWhitespaceMismatches": 0,
+    "reviewerSelectedAndCandidateTargetsChecked": 600,
+    "reviewerTargetStructuralMismatches": 0,
+    "protectedLiteralChecks": 108,
+    "protectedLiteralMismatches": 0
+  },
+  "nativeSpeakerApproval": false,
+  "reviewLimit": "This cross-audit provides machine-assisted semantic adjudication using the pinned English, current translations, caller excerpts, and two sealed reviews. It does not constitute native-speaker approval.",
+  "repositoryOrPREdited": false,
+  "testsBuildsScansCIWorkflowBrowserMergeReleaseOrTagActions": false
+}

@@ -4,12 +4,35 @@ import {
   buildLibraryHealthReport,
   buildLibraryHealthSafeFixManifest,
   buildLibraryHealthSearchSeeds,
+  formatLibraryHealthReason,
+  formatLibraryHealthStatus,
   getLibraryHealthQuarantineReviewItems,
   getLibraryHealthReplacementSearchQueries,
   getLibraryHealthSafeFixIssueIds,
 } from './libraryHealthReport';
 
 describe('libraryHealthReport', () => {
+  it('localizes known diagnostic reasons and leaves unknown details untouched', () => {
+    expect(formatLibraryHealthReason('File cannot be read')).toBe('File cannot be read');
+    expect(formatLibraryHealthReason('Album incomplete: 2/11 tracks missing'))
+      .toBe('Album incomplete: 2/11 tracks missing');
+    expect(formatLibraryHealthReason('Lossless file with DR=4.2 suggests lossy source'))
+      .toBe('Lossless file with DR=4.2 suggests lossy source');
+    expect(formatLibraryHealthReason('provider detail: opaque-42'))
+      .toBe('provider detail: opaque-42');
+    expect(formatLibraryHealthStatus('Resolved')).toBe('Resolved');
+    expect(formatLibraryHealthStatus('provider-state')).toBe('provider-state');
+  });
+
+  it('localizes decimal values emitted with comma-decimal host cultures', () => {
+    expect(formatLibraryHealthReason(
+      'Canonical variant available with quality score 0,85 vs current 0,60',
+    )).toBe('Canonical variant available with quality score 0.85 vs current 0.6');
+    expect(formatLibraryHealthReason(
+      'Lossless file with DR=5,4 suggests lossy source',
+    )).toBe('Lossless file with DR=5.4 suggests lossy source');
+  });
+
   it('builds a review-only text report from loaded health data', () => {
     const report = buildLibraryHealthReport({
       generatedAt: '2026-04-30T21:25:00.000Z',
@@ -38,7 +61,7 @@ describe('libraryHealthReport', () => {
     expect(report).toContain('Total issues: 3');
     expect(report).toContain('- Suspected Transcode: 1');
     expect(report).toContain('- Fixture Artist: 1');
-    expect(report).toContain('High Suspected Transcode | Fixture Artist - Fixture Track | Fixture reason | safe fix available');
+    expect(report).toContain('- High Suspected Transcode | Artist: Fixture Artist | Title: Fixture Track | Reason: Fixture reason | safe fix available');
   });
 
   it('builds a selected issue action plan without applying fixes', () => {
@@ -100,7 +123,7 @@ describe('libraryHealthReport', () => {
     expect(seeds).toContain('Library Health Replacement Search Seeds');
     expect(seeds).toContain('Selected issues: 3');
     expect(seeds).toContain('Replacement candidates: 1');
-    expect(seeds).toContain('- Fixture Artist Fixture Album Fixture Track | issue issue-1 | High | Wrong Duration');
+    expect(seeds).toContain('- Fixture Artist Fixture Album Fixture Track | Issue issue-1 | High | Wrong Duration');
     expect(seeds).not.toContain('Metadata Artist Needs Tags');
     expect(seeds).toContain('No search, peer browse, download, quarantine, or file mutation was started');
   });
@@ -183,7 +206,7 @@ describe('libraryHealthReport', () => {
     expect(packet).toContain('Quarantine review candidates: 1');
     expect(packet).toContain('issue-1: Critical Corrupted File');
     expect(packet).toContain('Fixture risk evidence');
-    expect(packet).toContain('local evidence: /fixture/music/fixture.flac');
+    expect(packet).toContain('Local evidence: /fixture/music/fixture.flac');
     expect(packet).not.toContain('Low Artist');
     expect(packet).toContain('No quarantine state, file movement, peer message, remediation job, search, download, or file mutation was started');
   });
@@ -220,7 +243,7 @@ describe('libraryHealthReport', () => {
     expect(manifest).toContain('Safe fix candidates: 1');
     expect(manifest).toContain('issue-1: Medium Missing Metadata');
     expect(manifest).toContain('Fixture safe fix evidence');
-    expect(manifest).toContain('target: /fixture/music/fixable.flac');
+    expect(manifest).toContain('Target: /fixture/music/fixable.flac');
     expect(manifest).not.toContain('Manual Artist');
     expect(manifest).toContain('No remediation job, safe-fix execution, quarantine state change, search, download, or file mutation was started');
   });

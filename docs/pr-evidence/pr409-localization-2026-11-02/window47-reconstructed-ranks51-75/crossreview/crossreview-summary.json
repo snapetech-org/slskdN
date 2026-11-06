@@ -1,0 +1,59 @@
+{
+  "allSevenEndQueryUtc": [
+    "2026-11-02T22:18:12.662157+00:00",
+    "2026-11-02T22:18:14.253802+00:00"
+  ],
+  "allSevenPrHeadsUnchanged": true,
+  "allSevenStartQueryUtc": [
+    "2026-11-02T22:13:13.256367+00:00",
+    "2026-11-02T22:13:14.144176+00:00"
+  ],
+  "callerReferencesReattested": 92,
+  "catalogFilesReattested": 12,
+  "cellCount": 300,
+  "confirmedHolds": 12,
+  "confirmedPrimaryCorrections": 28,
+  "crossReviewAcceptCurrentCount": 252,
+  "crossReviewCounts": {
+    "accept-current": 252,
+    "confirm-hold": 12,
+    "confirm-primary-correction": 28,
+    "missed-correction": 6,
+    "missed-refinement": 2
+  },
+  "decisionRowsReattested": 300,
+  "endSnapshotPath": "snapshots/end-all-seven-pr-heads.json",
+  "endSnapshotSha256": "fe1d8741116a2516444bbdbde4e681708bd35aeac2456546fb8b4aa63b4b981f",
+  "exactHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "exactTree": "a0946207555e494a558707008ba051013964b447",
+  "externalOfficialReferencesConsulted": [],
+  "independentReviewConfidence": "moderate overall; individual rows carry high/moderate confidence",
+  "inputRowsReattested": 300,
+  "localeCount": 12,
+  "missedCorrectionCount": 6,
+  "missedRefinementCount": 2,
+  "nativeSpeakerApproval": false,
+  "placeholderMarkupProtectedLiteralFailures": 0,
+  "pr409DraftAtSeal": true,
+  "pr409StateAtSeal": "OPEN",
+  "primaryAcceptCurrentCount": 260,
+  "primaryCorrectionCount": 28,
+  "primaryHoldCount": 12,
+  "primaryPacketChecksumEntriesVerified": 20,
+  "primaryPacketSha256SumsFileSha256": "ec371ba11c72bf55a74613099efb87eb8133d7034d95edd7425ceed2efff9488",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPRModified": false,
+  "runtimeFindings": {
+    "W54": "confirmed gap: fixed plain string bypasses translation through bidi-only branch",
+    "W55": "cleared: localized helper calls active t(source, parameters)",
+    "W57": "confirmed gap: branded output object rendered directly at both paragraphs",
+    "W71": "confirmed hold until rich-text source/caller replacement"
+  },
+  "sourceCount": 25,
+  "sourceRowsReattested": 25,
+  "startSnapshotPath": "snapshots/start-all-seven-pr-heads.json",
+  "startSnapshotSha256": "a48ad885be8b25624fcacee783add00d507a6e394bf8687aec8d3de186b1c8d7",
+  "testsBuildScansCiBrowserRun": false,
+  "windowLabel": "W47 reconstructed pending stable-ID ranks 51–75; historical source ordinal unavailable"
+}

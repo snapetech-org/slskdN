@@ -1,0 +1,1328 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W74",
+  "continuationRanks": [
+    728,
+    752
+  ],
+  "reviewHead": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "reviewTree": "14620c63bee971428fa1cd6cf1f4e944b86056a7",
+  "catalogSelectedUpdateCount": 94,
+  "acceptCurrentCount": 206,
+  "holdCount": 0,
+  "sourceRewriteCount": 2,
+  "sourceRewriteTranslationCellCount": 24,
+  "updates": [
+    {
+      "rank": 730,
+      "source": "Review {label} integration readiness and path mapping.",
+      "selectedSource": "Review {label} integration readiness and path mapping.",
+      "locale": "fr",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "previousTarget": "Examinez la préparation à l’intégration et le mappage des chemins du {label}.",
+      "selectedTarget": "Vérifiez l’état de préparation à l’intégration et le mappage des chemins pour {label}.",
+      "previousSha256": "6fce332346219100dcd10b84b4aecabe93a4241c01387b3fcc2150debe6db59d",
+      "selectedSha256": "eac1f6170b5cf9d9cd8b0c36771191f37bb92a6807b64525ea9e60fa7ebed159"
+    },
+    {
+      "rank": 731,
+      "source": "Rejected in Discovery Inbox and suppressed for the same evidence.",
+      "selectedSource": "Rejected in Discovery Inbox and suppressed for the same evidence.",
+      "locale": "fr",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "previousTarget": "Rejeté dans la boîte de découverte et masqué pour les mêmes éléments.",
+      "selectedTarget": "Rejeté dans la boîte de découverte et masqué pour les mêmes éléments de preuve.",
+      "previousSha256": "bc79ed430e2c31492edcc7d914db15e00214d303ef447261993c26ca854ef82b",
+      "selectedSha256": "d4b4e534603fb3ec6c08bb7acfa339a4b006b63fef45f89ea53acb175bceda4b"
+    },
+    {
+      "rank": 731,
+      "source": "Rejected in Discovery Inbox and suppressed for the same evidence.",
+      "selectedSource": "Rejected in Discovery Inbox and suppressed for the same evidence.",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "검색함에서 거부되었으며 같은 근거로는 다시 표시되지 않습니다.",
+      "selectedTarget": "발견함에서 거부되었으며 동일한 근거로는 다시 표시되지 않습니다.",
+      "previousSha256": "cda8ba44328dc3e916094c84c730adae23b98bd4e8b9f4f134be3eeed0884e80",
+      "selectedSha256": "c7bbd11c88a7633d5f10fa01b9d5f51da9f4843081de2690b8fe4a92306011d8"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "ar",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "previousTarget": "احفظ إعدادات الخصومة الحالية على هذا الخادم.",
+      "selectedTarget": "احفظ إعدادات الخصوصية وإخفاء الهوية الحالية على هذا الخادم.",
+      "previousSha256": "cec8580524c859c09f6e3ff73a7d03d536eb1d9b9d3ffaf5e47da51f4a652fab",
+      "selectedSha256": "1a79eddaf0a26906c917f4f386378f94aa26c1b34a4d658aba75b9f19fdd250e"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": "Speichern Sie die aktuellen Gegnereinstellungen auf diesem Server.",
+      "selectedTarget": "Speichern Sie die aktuellen Datenschutz- und Anonymitätseinstellungen auf diesem Server.",
+      "previousSha256": "cef0b25a0a07cfb4edbeb4ad758ec7c1f39016e319606f61c844db7e4d2d6df9",
+      "selectedSha256": "0fec7b85479c6a7aceac5373face71acff86f4536f84d609d222ff96ad7ca44a"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": "Guarde la configuración adversaria actual en este servidor.",
+      "selectedTarget": "Guarde la configuración actual de privacidad y anonimato en este servidor.",
+      "previousSha256": "d6dd56c3e08c2c9343a99f16a632a8bf39c1e5617f9c57726f449bd68dbb2925",
+      "selectedSha256": "4f7f1024fde7546e3f687bbb62d6f8f5b1efc5fb9f6881773737910ebcc4852b"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "fr",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "previousTarget": "Enregistrez les paramètres contradictoires actuels sur ce serveur.",
+      "selectedTarget": "Enregistrez les paramètres actuels de confidentialité et d’anonymat sur ce serveur.",
+      "previousSha256": "35bdbfcfcfd38423a70e10e41e0b2630f90884f43fa2569b6d11c8616456a2f7",
+      "selectedSha256": "cdbbfdbbd9a8baaa80db9b2a6d9e8f4590b03b2de4e4643ef948a7c8dd25aa68"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "hi",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "previousTarget": "वर्तमान प्रतिकूल सेटिंग्स को इस सर्वर पर सहेजें।",
+      "selectedTarget": "वर्तमान गोपनीयता और गुमनामी सेटिंग्स इस सर्वर पर सहेजें।",
+      "previousSha256": "d447b214222e8225d795818cdcb8b11923bdfb23c60f0c91912fb1af94108fa1",
+      "selectedSha256": "8e3a1fe38138d3546d6a3a91b25d586c7c801fec6e7139756d93f69b787d1803"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": "Simpan pengaturan permusuhan saat ini ke server ini.",
+      "selectedTarget": "Simpan pengaturan privasi dan anonimitas saat ini ke server ini.",
+      "previousSha256": "21c9889a0cdffa4a37bc6b6770b6c493e3edcbfba63b3f9b9bd1723ec2b410bb",
+      "selectedSha256": "268cab6a73e77d1b63d02986cc255c8ce504d1a13c125c2b00267b027ebcf363"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "ja",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "previousTarget": "現在の敵対的設定をこのサーバーに保存します。",
+      "selectedTarget": "現在のプライバシー設定と匿名性の設定をこのサーバーに保存します。",
+      "previousSha256": "ccf0793dbf3085bcad0fe96713c124450910f14e267060f4684351ee2c0ad6b5",
+      "selectedSha256": "88e1320d26669b4be9b816cc681c94b11d8edace47a4291d798060103fce1491"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "현재의 적대적 설정을 이 서버에 저장합니다.",
+      "selectedTarget": "현재 개인정보 보호 및 익명성 설정을 이 서버에 저장합니다.",
+      "previousSha256": "8c1dea23bdde934641c7451733ba308f26b9f958a51594ea9e866418d666b1a0",
+      "selectedSha256": "7414cf50a47530b353d61eda2b3a1c912685872efb31001bc078b7c5a374bfd1"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "pt-BR",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "previousTarget": "Salve as configurações atuais do adversário neste servidor.",
+      "selectedTarget": "Salve as configurações atuais de privacidade e anonimato neste servidor.",
+      "previousSha256": "ce60105614c681434574dfbd1f02b04609f984f7c1474e2e9a587c1b45d82873",
+      "selectedSha256": "9ee30ff439a72031fd7cd2360610712b7332fdaa46a38d7441286059dd0a8657"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Lưu cài đặt đối nghịch hiện tại vào máy chủ này.",
+      "selectedTarget": "Lưu các cài đặt quyền riêng tư và ẩn danh hiện tại lên máy chủ này.",
+      "previousSha256": "ee88c097e7833e27df274a4289337b02733d774026332b4f27855f9542e3dadd",
+      "selectedSha256": "dd16d7612c452c95b7c066a33a89099a457d201ed36e16c788545fca6044d460"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "将当前的对抗设置保存到该服务器。",
+      "selectedTarget": "将当前隐私和匿名设置保存到此服务器。",
+      "previousSha256": "500569c788137b3646d5732f4da21ab3db9e1d87179c707fadf6ed3cd044bbd7",
+      "selectedSha256": "fe1a964a25a13953e1541b4d813ee4e12f05495aee5a5cbe09c1721848775487"
+    },
+    {
+      "rank": 732,
+      "source": "Save the current adversarial settings to this server.",
+      "selectedSource": "Save the current privacy and anonymity settings to this server.",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "將目前的對抗設定儲存到該伺服器。",
+      "selectedTarget": "將目前的隱私與匿名設定儲存到此伺服器。",
+      "previousSha256": "e3c122b53ceea2895c7c5ab1af2b58e454dcbdde47c5e4a8e9e946c926337a12",
+      "selectedSha256": "19e1cd26bc06031408ab9cc9bdcfa4c8b3259642dd14d4f15e4efc82f67e9ac5"
+    },
+    {
+      "rank": 734,
+      "source": "Finished: {title}.",
+      "selectedSource": "Finished: {title}.",
+      "locale": "ar",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "previousTarget": "الانتهاء: {title}.",
+      "selectedTarget": "انتهى تشغيل {title}.",
+      "previousSha256": "e1e03ada28484fffad0286259bc414965ad92ed1655137d5e336a851d938026e",
+      "selectedSha256": "86a0287f20e31de4e13dfe6cf1434f645f6a093715d8ce5bf5089b2359e1d1ae"
+    },
+    {
+      "rank": 735,
+      "source": "This item has local verification evidence.",
+      "selectedSource": "This item has local verification evidence.",
+      "locale": "ja",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "previousTarget": "このアイテムには現地検証の証拠があります。",
+      "selectedTarget": "この項目にはローカル検証の証拠があります。",
+      "previousSha256": "a4d350cdbf10a05b34019e25cb7fbdea0b69611d11f02a53e51dd8c055e8223b",
+      "selectedSha256": "67290423c4aa1d8ee8e00dd8c6e0882ad9cfdb1f2f8eab9848109f069b217905"
+    },
+    {
+      "rank": 735,
+      "source": "This item has local verification evidence.",
+      "selectedSource": "This item has local verification evidence.",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "이 항목에는 현지 확인 증거가 있습니다.",
+      "selectedTarget": "이 항목에는 로컬 검증 근거가 있습니다.",
+      "previousSha256": "a3c5820343d090f5e20bbd9e874666f528a3440230a8f11bbc78bc8ba64d1f58",
+      "selectedSha256": "86d03e477310fc85ab2776f42b830cddac8f0dd97fabd1e336857dd3db279867"
+    },
+    {
+      "rank": 735,
+      "source": "This item has local verification evidence.",
+      "selectedSource": "This item has local verification evidence.",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Mục này có bằng chứng xác minh địa phương.",
+      "selectedTarget": "Mục này có bằng chứng xác minh cục bộ.",
+      "previousSha256": "9b4f3ecc530a5374f6bf35b207081e9280d455392ce2e8fda3198db8f64dfd43",
+      "selectedSha256": "891f6b6ff0905fb40ccf73b77a8111f59b87ba792d76f2f2699688eae6c4177d"
+    },
+    {
+      "rank": 735,
+      "source": "This item has local verification evidence.",
+      "selectedSource": "This item has local verification evidence.",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "该商品有当地验证证据。",
+      "selectedTarget": "该项目有本地验证证据。",
+      "previousSha256": "c59b1729b0095d28afb543468fa8b6868771473a3471549735609c28df876dbd",
+      "selectedSha256": "27c896ab17cf8daf501211a5e501580a49e8ae5d0f8effe5517bea361432817c"
+    },
+    {
+      "rank": 735,
+      "source": "This item has local verification evidence.",
+      "selectedSource": "This item has local verification evidence.",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "該商品有當地驗證證據。",
+      "selectedTarget": "此項目有本機驗證證據。",
+      "previousSha256": "09afe3c988cc48abaab84c4e06a6f1c15f60b32c3f92520fc34d97122f4bc6b3",
+      "selectedSha256": "9572ffd44e3abd27159978bc4829176ae08815fc318ec5db619cb093403f065b"
+    },
+    {
+      "rank": 737,
+      "source": "Sort jobs in ascending order",
+      "selectedSource": "Sort jobs in ascending order",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": "Urutkan pekerjaan dari kecil ke besar",
+      "selectedTarget": "Urutkan pekerjaan secara menaik",
+      "previousSha256": "dd37abfe6fe373c709725a30f8164a8cad4313b96d9389a5f7b2934e2c85b023",
+      "selectedSha256": "625b77b07b97249c8ff7b6c06436186497ef04ae093382cfda3b80656ee60b34"
+    },
+    {
+      "rank": 739,
+      "source": "Tracked Peers",
+      "selectedSource": "Tracked Peers",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": "Verfolgte Kollegen",
+      "selectedTarget": "Erfasste Peers",
+      "previousSha256": "b662533084a661819090e81b1b3a1b633966d61b34e1a7185f064ef42487d160",
+      "selectedSha256": "efe3e499bd58a45a1a397f072c54e690526d474af5810d77d483f60b4e6b473e"
+    },
+    {
+      "rank": 739,
+      "source": "Tracked Peers",
+      "selectedSource": "Tracked Peers",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": "Compañeros rastreados",
+      "selectedTarget": "Pares de red rastreados",
+      "previousSha256": "a73423ac9c4e9c8eba37cdebc6136c9c97d05c6a3ebc1d0c465c3a7b1e5bd6b4",
+      "selectedSha256": "0b28c45501060a978160d6ffab77dd26a7bd7be1efbfabfe542dbd517a6c9cd8"
+    },
+    {
+      "rank": 739,
+      "source": "Tracked Peers",
+      "selectedSource": "Tracked Peers",
+      "locale": "hi",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "previousTarget": "ट्रैक किए गए सहकर्मी",
+      "selectedTarget": "ट्रैक किए गए पीयर्स",
+      "previousSha256": "bf8898fc8bed3f91c40e8eb84ae05a6f4c20baf67ae8906724b188664eb3771c",
+      "selectedSha256": "e1ad1c62074a7a3caceb4598e0d86b3eb0ddedab46749f0a40cd6eed730501c4"
+    },
+    {
+      "rank": 739,
+      "source": "Tracked Peers",
+      "selectedSource": "Tracked Peers",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": "Rekan yang Dilacak",
+      "selectedTarget": "Peer yang Dilacak",
+      "previousSha256": "40ceee65345d52d5da5f36cd8804fcdbb4053470b26bf73d3c1178e9bbf68a04",
+      "selectedSha256": "f4a1b97da45faed050b7c66ac68ad305bbe8e7ddfd6442f1eb6b6e2364ed9d87"
+    },
+    {
+      "rank": 739,
+      "source": "Tracked Peers",
+      "selectedSource": "Tracked Peers",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Đồng nghiệp được theo dõi",
+      "selectedTarget": "Peer được theo dõi",
+      "previousSha256": "a07baae631eff2b4bd8aa64d40c0f7b2f77e7058935d44f45487efbb262b3eff",
+      "selectedSha256": "019fced299a519e9cb7ccc0e178500bdbf0abf2bed4f66fcfbdf6ab34ea6bd88"
+    },
+    {
+      "rank": 739,
+      "source": "Tracked Peers",
+      "selectedSource": "Tracked Peers",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "追踪同行",
+      "selectedTarget": "已跟踪的对等节点",
+      "previousSha256": "c6f257070017b6708d245bb057663a9c78e493c3e27765062ace2585177bbc34",
+      "selectedSha256": "2d1598f0afabe254b04062ad8adf211ae9537f64de06dc1858ad0f9584a918e0"
+    },
+    {
+      "rank": 739,
+      "source": "Tracked Peers",
+      "selectedSource": "Tracked Peers",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "追蹤同行",
+      "selectedTarget": "已追蹤的對等節點",
+      "previousSha256": "001b921d38441b207629cf1937f56944be954ef15083275b2ee940692def356f",
+      "selectedSha256": "0350f337cc878d5cf7b784030de27e84043486ecbc2dab53cc60e120e07179e4"
+    },
+    {
+      "rank": 740,
+      "source": "Batch Window (ms)",
+      "selectedSource": "Batch Window (ms)",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": "Jendela Batch (md)",
+      "selectedTarget": "Jendela Batch (ms)",
+      "previousSha256": "d1189a1916995c4bb13ea683255cc75201008f2f4d13e99aeda4c32134592a59",
+      "selectedSha256": "93afde1f7602f35e12b8d527ef22f78d13448659ee613bf58bd64a9e1358f853"
+    },
+    {
+      "rank": 741,
+      "source": "Retry room broadcast update",
+      "selectedSource": "Retry room broadcast update",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": "Wiederholen Sie die Aktualisierung der Raumübertragung",
+      "selectedTarget": "Raum-Update erneut senden",
+      "previousSha256": "facf5b46683d84d6e23f230f56c62b5d3eff382ed2a87c4f5c649444429994a1",
+      "selectedSha256": "bc04794cf3cdb5a21e5aca250dd81640a86e1485507e91cfebb2a2373db2e0fa"
+    },
+    {
+      "rank": 741,
+      "source": "Retry room broadcast update",
+      "selectedSource": "Retry room broadcast update",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": "Reintentar actualización de transmisión de sala",
+      "selectedTarget": "Reintentar la actualización de la transmisión a la sala",
+      "previousSha256": "1461e56b5c1f6f133973bee7a30ce6be408b8b802db353aa276803ec24358d8a",
+      "selectedSha256": "4ad7b8b88613c0384cba5e2edfcec4633c77d6667d57f1e1f7acbd7d1440e5ac"
+    },
+    {
+      "rank": 741,
+      "source": "Retry room broadcast update",
+      "selectedSource": "Retry room broadcast update",
+      "locale": "hi",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "previousTarget": "पुन: प्रयास कक्ष प्रसारण अद्यतन",
+      "selectedTarget": "कक्ष प्रसारण अपडेट का फिर से प्रयास करें।",
+      "previousSha256": "6440863e58bbddbf2bebe6c48beb002dd1a4952e169f9ff00cb4a6c307e9bbcd",
+      "selectedSha256": "1b53d834147ac5bebbd5c010bdac659a32da5b6f89737667088594ded50f9190"
+    },
+    {
+      "rank": 741,
+      "source": "Retry room broadcast update",
+      "selectedSource": "Retry room broadcast update",
+      "locale": "ja",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "previousTarget": "リトライルーム放送更新情報",
+      "selectedTarget": "ルームへの再生状態の更新を再試行する",
+      "previousSha256": "7f4e9901f7da38a6e3ab243c482bad1ea7c96dc2499be6a227d76816ed0fa92c",
+      "selectedSha256": "0604c299df136a8e783b8e6a61da2de9cfe221dc3887bd0eb7177ba2513667b4"
+    },
+    {
+      "rank": 741,
+      "source": "Retry room broadcast update",
+      "selectedSource": "Retry room broadcast update",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Thử lại bản cập nhật phát sóng trong phòng",
+      "selectedTarget": "Thử gửi lại bản cập nhật phát tới phòng",
+      "previousSha256": "ff945393643f065a82211cebcbb64a46f5a080e5709096a817b99ca110c79535",
+      "selectedSha256": "41da7ad4d68d5293d84814d42163916061583dd3d23b71fa269713494a4fdb6c"
+    },
+    {
+      "rank": 742,
+      "source": "Clipboard unavailable; copy the visible conflict report manually.",
+      "selectedSource": "Clipboard unavailable; copy the visible conflict report manually.",
+      "locale": "ja",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "previousTarget": "クリップボードは使用できません。表示されている競合レポートを手動でコピーします。",
+      "selectedTarget": "クリップボードは使用できません。表示されている競合レポートを手動でコピーしてください。",
+      "previousSha256": "755c88181a17fa7e264c03fef96fc4be4f16e9926634b5d4f9ab19880174a629",
+      "selectedSha256": "7c21d155543a27906d4c2a9f62e835a86c701da65951b93fbec6955a43cbbc04"
+    },
+    {
+      "rank": 742,
+      "source": "Clipboard unavailable; copy the visible conflict report manually.",
+      "selectedSource": "Clipboard unavailable; copy the visible conflict report manually.",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "클립보드를 사용할 수 없습니다. 보이는 충돌 보고서를 수동으로 복사합니다.",
+      "selectedTarget": "클립보드를 사용할 수 없습니다. 보이는 충돌 보고서를 수동으로 복사하세요.",
+      "previousSha256": "b463ea81d29b2a3bc6cbff2b3ec2a14a9914b64590756ebd6401b68c9460320d",
+      "selectedSha256": "9e83391a8ccbf368ed1839de757ce85a5bdbf3bbf15832311ae34933e8d1cd50"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "ar",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "previousTarget": "، انهارت التكرارات {duplicatesRemoved}",
+      "selectedTarget": "، تمت إزالة {duplicatesRemoved} من العناصر المكررة",
+      "previousSha256": "2ecb8cf3cdc87c7e22cfa4388ab361389f7877ca9be08fe1ec6ad3358232cb0b",
+      "selectedSha256": "f42d5d45684aedc5dcab2ea0c46c40503ed70ef897d717c103d5c8feb60d478d"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": ", {duplicatesRemoved} Duplikate ausgeblendet",
+      "selectedTarget": ", {duplicatesRemoved} Duplikate entfernt",
+      "previousSha256": "6ebf5a4d2766a9a028a589ea1d5f98379fb9ea8570456554f7092d07bda95037",
+      "selectedSha256": "ff4c76858933e8dae135782ed03c4695abca1bfd048699411bcbd7845e6106b1"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": ", Los duplicados {duplicatesRemoved} colapsaron",
+      "selectedTarget": ", se eliminaron {duplicatesRemoved} duplicados",
+      "previousSha256": "4b7ceb2083ad891f087cb45b5f17f49effb02400673c3cc14371a8f839398a0d",
+      "selectedSha256": "26c5d49386541a10dfa53169d79fbdf173b4c712e5f8d2c8345376913d161ee6"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "fr",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "previousTarget": ", les doublons {duplicatesRemoved} ont été réduits",
+      "selectedTarget": ", {duplicatesRemoved} doublons supprimés",
+      "previousSha256": "d69e9c509bd70538598717b19cfcc75bd61ecf9e3c42177907a0fd4a51c946d2",
+      "selectedSha256": "1a55aad28c0e134440c2f21fdac115dbfdde688daedec9ea85b4bea6920a4934"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "hi",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "previousTarget": ", {duplicatesRemoved} डुप्लिकेट ढह गए",
+      "selectedTarget": ", {duplicatesRemoved} डुप्लिकेट हटाए गए",
+      "previousSha256": "e1fd00209342582f5f4d05eaae38f365a538838b6dce2deb57ab1629e2e120a1",
+      "selectedSha256": "cc57be087693b5a0a43c187fcef67e8bff069e7f95388925434d7e89612e8cb9"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": ", duplikat {duplicatesRemoved} diciutkan",
+      "selectedTarget": ", {duplicatesRemoved} duplikat dihapus",
+      "previousSha256": "a73fd6e1b7e72703953d9bbfb83c8e083b48617906c20950f4701c414c951604",
+      "selectedSha256": "adafe53034d61111ef35ba6f0f55ee71393a2f6359273dc0103e04006a69cdea"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "ja",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "previousTarget": "、{duplicatesRemoved} 重複が折りたたまれました",
+      "selectedTarget": "、重複項目を{duplicatesRemoved}件削除",
+      "previousSha256": "6bbddc45b2b938d25554e43e4b7657a0998745b48b78da0a295721ae84c94ac2",
+      "selectedSha256": "a2bd296c499a53797f963dc5075a13a69d4afee84dd86d2ebe790d26464af77b"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": ", {duplicatesRemoved} 중복이 접혔습니다.",
+      "selectedTarget": ", 중복 항목 {duplicatesRemoved}개 제거됨",
+      "previousSha256": "405904be08e1dd51c4265f3c5ea8bbb9279911bbdee0264d8cd9bc0b4ba1d534",
+      "selectedSha256": "5920077e55428e120c0d15716d7bd7cdc1ae8034541714ac0bc96c63826dae9d"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "pt-BR",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "previousTarget": ", duplicatas {duplicatesRemoved} recolhidas",
+      "selectedTarget": ", {duplicatesRemoved} duplicatas removidas",
+      "previousSha256": "4e6cdbef2c142f16612368ceeaffcaf7873878d49f3cecec4670cd24b3693784",
+      "selectedSha256": "d8b81c9db4af6c73ee4c7dd9a6b8449715981461affb046f3f1df3e2b8fe0037"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": ", các bản sao {duplicatesRemoved} đã bị sập",
+      "selectedTarget": ", đã loại bỏ {duplicatesRemoved} bản trùng lặp",
+      "previousSha256": "3e8dd8e0a3c64e4bde38d6b13005ac951f7ed9c03f92ee5aea2998d57858ec51",
+      "selectedSha256": "f1bd975953bf3ef8ed51405b3d1692dbc517d7060f2a7e1cf243b5cc3f211166"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": ", {duplicatesRemoved} 重复项已折叠",
+      "selectedTarget": "，已移除 {duplicatesRemoved} 个重复项",
+      "previousSha256": "a12dcfb65bdb580293aa8a48a37b2a9f2c1cca2ada424a7d57f7efaffe315c8f",
+      "selectedSha256": "1fdb5445ef1aeb7003c73632015a7795576ff773a53166696cf41e0e16203dbc"
+    },
+    {
+      "rank": 743,
+      "source": ", {duplicatesRemoved} duplicates collapsed",
+      "selectedSource": ", {duplicatesRemoved} duplicates collapsed",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": ", {duplicatesRemoved} 重複項已折疊",
+      "selectedTarget": "，已移除 {duplicatesRemoved} 個重複項",
+      "previousSha256": "ef70099339ee48e69a09cfa2660a7c7701a51be02bfd6eba5990e700fb10763a",
+      "selectedSha256": "a7a4e289ba2dfac5bf106d1e7e06bd49c006f2a8e3321c77ff67298ff34fc276"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "ar",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "previousTarget": "حدد جميع مشكلات صحة المكتبة المحملة على {length}",
+      "selectedTarget": "حدّد جميع مشكلات حالة المكتبة المحمّلة وعددها {length}",
+      "previousSha256": "5686102bd4d7e019f5a7ae19647741be9538f7d7ab2152387d1eee9e4b012cac",
+      "selectedSha256": "1e64327dc1e0afe41298674326c3dac9f7003abffd9764531cc9c263728f19b9"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": "Wählen Sie alle mit {length} geladenen Bibliothekszustandsprobleme aus",
+      "selectedTarget": "Alle {length} geladenen Probleme zum Zustand der Bibliothek auswählen",
+      "previousSha256": "2f38574220e67459fc2246ed3b9e68307ac2748477c94ed9a8ce6e484ba667ef",
+      "selectedSha256": "8c9009b2f11fb964062c4a504eddd45b59157bc589b25284691ca612b264d951"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": "Seleccione todos los problemas de estado de la biblioteca cargados con {length}",
+      "selectedTarget": "Seleccionar todos los {length} problemas del estado de la biblioteca cargados",
+      "previousSha256": "c29e35bf3cf00b6351f5ba7006c9ae1ce4f12d79b2cdb9177dcbe99ba85645ca",
+      "selectedSha256": "768461a7675320ed7a3aeca0fff5cba144586bb223113ea18ba51a23adf9e43a"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "fr",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "previousTarget": "Sélectionnez tous les problèmes d’intégrité de la bibliothèque chargés par {length}",
+      "selectedTarget": "Sélectionnez tous les {length} problèmes chargés relatifs à l’état de la bibliothèque.",
+      "previousSha256": "1ef6a24e1bbc0f0b6dae1bffba5d722b6e3fa1ae819ef434d60f2bb382cec499",
+      "selectedSha256": "5453d38658d2b120a5b4f373b17e22588030accd6bba13a181ade889b7309006"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "hi",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "previousTarget": "सभी {length} लोडेड लाइब्रेरी स्वास्थ्य समस्याओं का चयन करें",
+      "selectedTarget": "लाइब्रेरी की सभी {length} लोड की गई स्वास्थ्य समस्याएँ चुनें।",
+      "previousSha256": "deee05e87119a515781b5027f357569788f7727983a4cc809e186288764d25dc",
+      "selectedSha256": "93f8d17ca9671b313ba3dcc0eb623e12de8826e7ed18e3b9cc462f89e93df87e"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": "Pilih semua masalah Kesehatan Perpustakaan yang dimuat {length}",
+      "selectedTarget": "Pilih semua {length} masalah kesehatan pustaka yang dimuat",
+      "previousSha256": "3ac18e23bf169b0e22cddb3bcc75f7c9b46976fa614c8aad73686d5aa588530e",
+      "selectedSha256": "8f8949410fa780e2351193c780d6dddf1740ed63e2a9dd6bcc1adbdacc29a0ea"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "ja",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "previousTarget": "{length} がロードされたライブラリの健全性の問題をすべて選択します",
+      "selectedTarget": "読み込み済みのライブラリ健全性の問題を{length}件すべて選択します",
+      "previousSha256": "956806d12d1d73ad369eb7bd9a38df75e0ab7ce87bb0f86de933e240294f6ad8",
+      "selectedSha256": "2b3a17f19f2789368a39c9eb249405bed0a83ca500296030e85ae964f34c8f7d"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "{length} 로드된 라이브러리 상태 문제를 모두 선택하세요.",
+      "selectedTarget": "로드된 라이브러리 상태 문제 {length}개를 모두 선택하세요.",
+      "previousSha256": "01c76c96bc1f0447265f19eb174c50f2fb952f75aa2700b60378495e7e69170e",
+      "selectedSha256": "48c3357522e0cc3f08614155520050692806069f94a5e9f085c6f055ae0d8ad5"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "pt-BR",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "previousTarget": "Selecione todos os problemas de integridade da biblioteca carregados com {length}",
+      "selectedTarget": "Selecione todos os {length} problemas de integridade da biblioteca carregados",
+      "previousSha256": "1a8c22da8c7417f27305164d81f60340d7f4aa66493565b6739fea23f53975a6",
+      "selectedSha256": "5d5a50930d99b75b76fd5ce4a4bce116771062c16b46bdaaa768e7eca9eb340f"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Chọn tất cả các vấn đề về Sức khỏe Thư viện đã tải {length}",
+      "selectedTarget": "Chọn tất cả {length} vấn đề đã tải trong mục Sức khỏe thư viện.",
+      "previousSha256": "8af5b3480b0431e5818e8a7a9acd7ab0ca5ee36f235823da4e60eea6d9daa2dc",
+      "selectedSha256": "24d7e4ab1aa982b60f734d5b7411764377ae6909bea2e34cebc0a8824da7624a"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "选择所有 {length} 加载的库运行状况问题",
+      "selectedTarget": "选择全部 {length} 个已加载的库健康问题",
+      "previousSha256": "df801741697a91aea5e3964d0b383c3dac10304cbaea0013f2799e2939fc3b58",
+      "selectedSha256": "7b2c7fb9abe1530d9e3d374c7a22574889ae4381a63b5359dda2d9b55f496bf6"
+    },
+    {
+      "rank": 746,
+      "source": "Select all {length} loaded Library Health issues",
+      "selectedSource": "Select all {length} loaded Library Health issues",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "選擇所有 {length} 載入的庫運作狀況問題",
+      "selectedTarget": "選取所有 {length} 個已載入的媒體庫健康問題",
+      "previousSha256": "70ac8ad7238503cb8e37b23b2c00acf4a89132f88c73790b445341e23e7f3aed",
+      "selectedSha256": "ae6ad6167dcf770e9fc2595a78f8383f22da1c477d1b14f2d443d9ed22edea71"
+    },
+    {
+      "rank": 748,
+      "source": "Metric",
+      "selectedSource": "Metric",
+      "locale": "ar",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "previousTarget": "متري",
+      "selectedTarget": "المقياس",
+      "previousSha256": "dcb10db9f0736c62e41be96fabfad1726a2e72cf918be195e944a51daf566dfa",
+      "selectedSha256": "ab94e3d1691f703a6b20e160ece3e2dda3ac969cf11a82dd5207816d2fdbb700"
+    },
+    {
+      "rank": 748,
+      "source": "Metric",
+      "selectedSource": "Metric",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": "Metrisch",
+      "selectedTarget": "Metrik",
+      "previousSha256": "2dab366350cf3efbfa41e03bde1ac22e3e53dd97d6b8a09d54b302acf2b83454",
+      "selectedSha256": "e6b81cb9ab090c5689ad330c0e81459f34a6dc96d47a36d8af1d00ea4aaf3470"
+    },
+    {
+      "rank": 748,
+      "source": "Metric",
+      "selectedSource": "Metric",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": "Métrico",
+      "selectedTarget": "Métrica",
+      "previousSha256": "c9696095351d591e88f3848991286a3d241867ae4ecd67b2299132c00251f802",
+      "selectedSha256": "54489aaa7b408eb2de5141dd384543a9919a639e67ac406d5c65f0220c52f338"
+    },
+    {
+      "rank": 748,
+      "source": "Metric",
+      "selectedSource": "Metric",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "미터법",
+      "selectedTarget": "메트릭",
+      "previousSha256": "dc54a8caf062d090b7dae6d5a103c37e6d710c82b4342c2db6eb7cee9337b8e5",
+      "selectedSha256": "76cec0254b60b0a94fccaad0326550f36c2be24751c818977a73da2098fb4b09"
+    },
+    {
+      "rank": 748,
+      "source": "Metric",
+      "selectedSource": "Metric",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Số liệu",
+      "selectedTarget": "Chỉ số",
+      "previousSha256": "85aa5261d80e1eeaac99e274beb35737254678c5678f34689ffe3a30b06acd5e",
+      "selectedSha256": "9d209b8724179008c71cf3ec8aa5c618db16b09df4163d845d12496766aa2664"
+    },
+    {
+      "rank": 748,
+      "source": "Metric",
+      "selectedSource": "Metric",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "公制",
+      "selectedTarget": "指标",
+      "previousSha256": "f14fb684b4a94fde7c6ec5365af36291292659f40070e8a53b7dd30a99c4e9bc",
+      "selectedSha256": "b87e67c7dae039910f79b50feeae0daee49f29066618cf35637550c34f5a625e"
+    },
+    {
+      "rank": 748,
+      "source": "Metric",
+      "selectedSource": "Metric",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "公制",
+      "selectedTarget": "指標",
+      "previousSha256": "f14fb684b4a94fde7c6ec5365af36291292659f40070e8a53b7dd30a99c4e9bc",
+      "selectedSha256": "27a74cb7bf44525bdadec87df4927622cbfb7504fcbe0c998d210a7fd9c75e32"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "ar",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "previousTarget": "(متصل بالغرفة)",
+      "selectedTarget": "(جارٍ الاتصال بالغرفة)",
+      "previousSha256": "b8fc37954ffb9afac8c76bc1d190d3d82e05a88bb31f6e9c651f5041111401eb",
+      "selectedSha256": "fa3dc33e8d55138007091aabfcd5a628ebca4ef6f9ed3f8501b65369ddc4fc03"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": "(Verbindung zum Zimmer)",
+      "selectedTarget": "(Verbindung zum Raum wird hergestellt)",
+      "previousSha256": "230d4c845a680542e3c7e19f4f06e3b339cd2b26b2c0252defe945e68fdb3953",
+      "selectedSha256": "37c67147fa5f9256ebb7e3fdf0ce0b02b7ecac0e5449c198e597b1879cc2f4de"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": "(conectando a la habitación)",
+      "selectedTarget": "(conectando a la sala)",
+      "previousSha256": "ded50d8bba70f0b0345ac7406b7b41dc133b6d127c0b4e2781c7be9b6ee97091",
+      "selectedSha256": "599e45c5c45933086457fde8c05cbf05a37145f478b49e80467a1b0f9185e4bc"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "fr",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "previousTarget": "(connexion à la chambre)",
+      "selectedTarget": "(connexion à la salle en cours)",
+      "previousSha256": "c536ee1718bc4f69124fb2f15a6a2a9d0ec98fe3f8ade73d3cbbfe8f3b50afe7",
+      "selectedSha256": "9626de2e8b361f9aa54c7815ec77a6617b6a6aa96ff7df138ec94cf0c285b367"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": "(menghubungkan ke kamar)",
+      "selectedTarget": "(menghubungkan ke ruang)",
+      "previousSha256": "eb2dd8168dd3b12c02483fb7b6574183bb64028da920af92b9e6f66e53d306aa",
+      "selectedSha256": "0b4a2b9c1ce01bf4cde8a977515b7547e474dc5785468f694bf664199981eca4"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "(방에 연결)",
+      "selectedTarget": "(방에 연결 중)",
+      "previousSha256": "a42b8dc51d3fef1331b743e1ebefea987ef99da278714cf27d02d10f1be7e539",
+      "selectedSha256": "2dfcf0d2589400edd9782cf93d7b377f78db896b0c9ce889878cfeb6c4df1559"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "pt-BR",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "previousTarget": "(conectando ao quarto)",
+      "selectedTarget": "(conectando à sala)",
+      "previousSha256": "23c183a51b8295b0246e45cfc7fb2bb42b1538e2ca07de661d675dd57c67705f",
+      "selectedSha256": "59a849dfe18a6a1b6f76b5d96c2ef61c75e4351ef1a850d0dde9db2a351e3353"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "(kết nối với phòng)",
+      "selectedTarget": "(đang kết nối với phòng)",
+      "previousSha256": "7664fa21c710e7fef3d7e313a79e003d70a0a043496eb4b5c1d7cf70e4a62040",
+      "selectedSha256": "4dd1442b05a9ca23eae0256593f0e59d20f08e4de2df45cf962d6b0087cb934a"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "（连接至房间）",
+      "selectedTarget": "（正在连接到房间）",
+      "previousSha256": "7dde6ce078d63797ae7a3e6e37fdfe474519000736f7b7cefa3a38ee50e457f0",
+      "selectedSha256": "15f4b2927dba199199bc7138147ab9964bd33b715cf8f3a936c47ea84079009d"
+    },
+    {
+      "rank": 749,
+      "source": "(connecting to room)",
+      "selectedSource": "(connecting to room)",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "（連接至房間）",
+      "selectedTarget": "（正在連線至房間）",
+      "previousSha256": "61eccec87cdda66371ff52ca1a0a2ea84799f8fb39d3f6dc093d9cf8c1a6644b",
+      "selectedSha256": "16ae68be7ace886b6ff888781178b5b706a5c87798d1e85e6c89b652a4b8cd7e"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "ar",
+      "catalogPath": "src/web/public/locales/ar.json",
+      "previousTarget": "أغلق نافذة محتويات المشاركة.",
+      "selectedTarget": "أغلق النافذة التي تعرض محتويات المجلد المشترك المحدد.",
+      "previousSha256": "71a6d98729a4ef43c8710118704834568ec202ff6a32baef81894348097e2d00",
+      "selectedSha256": "bd1a8386d183d37fea29184a946f7472395ce767d0638d992b696c8610c8db10"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "de",
+      "catalogPath": "src/web/public/locales/de.json",
+      "previousTarget": "Schließen Sie das Fenster „Inhalte teilen“.",
+      "selectedTarget": "Schließen Sie das Fenster, das den Inhalt der ausgewählten Freigabe anzeigt.",
+      "previousSha256": "431a0a8bfedbb074956dba3788cff9134aec0f4959bcd5894d92a69c55ee2146",
+      "selectedSha256": "a300b699da02f017c9eed731d6d38960ed8fcea69539f368ef7d96f37b647a42"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "es",
+      "catalogPath": "src/web/public/locales/es.json",
+      "previousTarget": "Cierra la ventana para compartir contenidos.",
+      "selectedTarget": "Cierra la ventana que muestra el contenido del recurso compartido seleccionado.",
+      "previousSha256": "2d8bcc4fc45aae099ffbbed277d86cb56a65e7338d204cb9eaf6a9c3d5ab7281",
+      "selectedSha256": "cf09231fc0b33cbb906bfc8bb047b8dff24bc7bf4198c19f2486d43a7b5e0ec1"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "fr",
+      "catalogPath": "src/web/public/locales/fr.json",
+      "previousTarget": "Fermez la fenêtre du contenu du partage.",
+      "selectedTarget": "Fermez la fenêtre qui affiche le contenu du partage sélectionné.",
+      "previousSha256": "336048b951c6ac562f515786aa6862d0bde4ce02262c825e2c1422169621da47",
+      "selectedSha256": "2f67fb64c9b77272a682fa3370eeaa7f744a60e772d13db6c1a08618beaddb9f"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "hi",
+      "catalogPath": "src/web/public/locales/hi.json",
+      "previousTarget": "सामग्री साझा करें विंडो बंद करें.",
+      "selectedTarget": "चुने गए साझा फ़ोल्डर की सामग्री दिखाने वाली विंडो बंद करें।",
+      "previousSha256": "529381e3b5e78a79f1d1fcdbb8dee12683db414a6dee4db00bf0998226090f5c",
+      "selectedSha256": "73402694453fc5c96e602d2e1c4cddef75a5cb89a78d4339641780a0570c2c35"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "id",
+      "catalogPath": "src/web/public/locales/id.json",
+      "previousTarget": "Tutup jendela berbagi konten.",
+      "selectedTarget": "Tutup jendela yang menampilkan isi folder bersama yang dipilih.",
+      "previousSha256": "c161ea88b14b078e2850ce3d254e903b7fc5329e73c83dafbc943bef9e498901",
+      "selectedSha256": "146b5383659497603220cbc2ba806c1a577b227abfd1d9e24d6e3ae14cd13a01"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "ja",
+      "catalogPath": "src/web/public/locales/ja.json",
+      "previousTarget": "コンテンツの共有ウィンドウを閉じます。",
+      "selectedTarget": "選択した共有フォルダーの内容を表示するウィンドウを閉じます。",
+      "previousSha256": "82eec24528e4822cf117a364ad5bb92f2746ee74a368fb368d04286e775581b7",
+      "selectedSha256": "3d43054f3f1c29afd9924fd5c30e1ce66607946b8050ab7195d6c7e557c60644"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "ko",
+      "catalogPath": "src/web/public/locales/ko.json",
+      "previousTarget": "콘텐츠 공유 창을 닫습니다.",
+      "selectedTarget": "선택한 공유 폴더의 내용을 표시하는 창을 닫습니다.",
+      "previousSha256": "f7a065d2f03425e5a507a233f81cfe8b2d1c328205226e9882396faf0f9785f8",
+      "selectedSha256": "e91542a211aacbdab281c3b2be8370d7d9c652e81808dcbec1e1e4459f6b3b04"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "pt-BR",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "previousTarget": "Feche a janela de compartilhamento de conteúdo.",
+      "selectedTarget": "Feche a janela que mostra o conteúdo da pasta compartilhada selecionada.",
+      "previousSha256": "0bdaed30890a9de1cdff4cb6aebceecdf90b2373bdbceeeef339f2b38a1f456b",
+      "selectedSha256": "cf588ed773cfc0733b30423ba6b399767b95fe28eed36b471706ec6c1383495d"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Đóng cửa sổ chia sẻ nội dung.",
+      "selectedTarget": "Đóng cửa sổ hiển thị nội dung của thư mục được chia sẻ đã chọn.",
+      "previousSha256": "f2e9d143bbdbfe66f95883274f91b8a49b614817c2e4d8b8c80afcabc5f238f2",
+      "selectedSha256": "c3a3fd0c528017720893a970fc4a525bef801bc9ea95b6e8153466ff3f72c0a7"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "关闭共享内容窗口。",
+      "selectedTarget": "关闭显示所选共享文件夹内容的窗口。",
+      "previousSha256": "1be058824cee6f78cc02b0fe183a0cc27a58d9a4bc40c1838e409f24b73b5574",
+      "selectedSha256": "85e3c4cd3d7e32025fb5132f2da27a31d954a310d5b901d189dbd50bf1767745"
+    },
+    {
+      "rank": 750,
+      "source": "Close the share contents window.",
+      "selectedSource": "Close the window showing the contents of the selected share.",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "關閉共享內容視窗。",
+      "selectedTarget": "關閉顯示所選共享資料夾內容的視窗。",
+      "previousSha256": "58463ca74ce48aced4f07cc686eb931aa470b54673a318244db1542e39f01013",
+      "selectedSha256": "a96cb92a72047b20d74f887cd80fa5fb761d4871f9833b4191f3ca759e75937e"
+    },
+    {
+      "rank": 751,
+      "source": "Added {interest} as an interest.",
+      "selectedSource": "Added {interest} as an interest.",
+      "locale": "pt-BR",
+      "catalogPath": "src/web/public/locales/pt-BR.json",
+      "previousTarget": "Adicionado {interest} como interesse.",
+      "selectedTarget": "O interesse {interest} foi adicionado.",
+      "previousSha256": "89eae7270b4c92e821a8828d90e7bad15c61c607fe48111c27f3d2ce7a95abf4",
+      "selectedSha256": "ec79065d9466a488e447b9377c5930adfb93525f485ea0af82dd246f2b58d2a1"
+    },
+    {
+      "rank": 751,
+      "source": "Added {interest} as an interest.",
+      "selectedSource": "Added {interest} as an interest.",
+      "locale": "vi",
+      "catalogPath": "src/web/public/locales/vi.json",
+      "previousTarget": "Đã thêm {interest} làm sở thích.",
+      "selectedTarget": "Đã thêm {interest} vào danh sách quan tâm.",
+      "previousSha256": "fdf99bbc2d94ca79e15df89a453b14ed02298f3229e88ec867541bc2f28da88e",
+      "selectedSha256": "e8b837e6a9606d2e22005f7f1829cc6125057c32702a552016f6809b82fb0526"
+    },
+    {
+      "rank": 751,
+      "source": "Added {interest} as an interest.",
+      "selectedSource": "Added {interest} as an interest.",
+      "locale": "zh-Hans",
+      "catalogPath": "src/web/public/locales/zh-Hans.json",
+      "previousTarget": "添加 {interest} 作为兴趣。",
+      "selectedTarget": "已将 {interest} 添加为兴趣。",
+      "previousSha256": "20e833cbc48d1e3662ad81f8834dc4ff0d705a8f8ad75439a8c588392d8ad565",
+      "selectedSha256": "1a149858494904addf2f31a716859a0798fbd752dbd6153075130a8696edea31"
+    },
+    {
+      "rank": 751,
+      "source": "Added {interest} as an interest.",
+      "selectedSource": "Added {interest} as an interest.",
+      "locale": "zh-Hant",
+      "catalogPath": "src/web/public/locales/zh-Hant.json",
+      "previousTarget": "新增 {interest} 作為興趣。",
+      "selectedTarget": "已將 {interest} 新增為興趣。",
+      "previousSha256": "35a04564f8cf021832ff784bfb8ad4be8e08ac9554d7ad1f610ff80438acb3c8",
+      "selectedSha256": "6bb042cb53b309d665d1bebbfaf9e6953ed9f7f07ccb250a6bd733b4a75bb65a"
+    }
+  ],
+  "sourceRewrites": [
+    {
+      "callerRefs": [
+        {
+          "context": [
+            {
+              "line": 1258,
+              "text": "            )}"
+            },
+            {
+              "line": 1259,
+              "text": "           {...interfaceTextProps(\"Check whether the configured Tor service is reachable.\")}/>"
+            },
+            {
+              "line": 1260,
+              "text": "          <Popup"
+            },
+            {
+              "line": 1261,
+              "text": "            content={interfaceText(\"Save the current adversarial settings to this server.\")}"
+            },
+            {
+              "line": 1262,
+              "text": "            position=\"top center\""
+            },
+            {
+              "line": 1263,
+              "text": "            trigger={("
+            },
+            {
+              "line": 1264,
+              "text": "              <Button"
+            }
+          ],
+          "contextSha256": "5c53ed9ff9cb8e0d17581d4be6fc8a3df6a0980626b32bad70eaf2c7c325f1c7",
+          "fileBytes": 52734,
+          "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+          "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec",
+          "line": 1261,
+          "lineSha256": "d4f5c00e1c1605721a049635236f874b4e405b2b9c1f2c4e3c7becc434408db3",
+          "lineText": "            content={interfaceText(\"Save the current adversarial settings to this server.\")}",
+          "path": "src/web/src/components/System/Security/AdversarialSettings.jsx"
+        },
+        {
+          "context": [
+            {
+              "line": 1271,
+              "text": "               {...interfaceTextProps(\"Save adversarial settings\")}>"
+            },
+            {
+              "line": 1272,
+              "text": "                <LocalizedText source={\"Save Changes\"} /></Button>"
+            },
+            {
+              "line": 1273,
+              "text": "            )}"
+            },
+            {
+              "line": 1274,
+              "text": "           {...interfaceTextProps(\"Save the current adversarial settings to this server.\")}/>"
+            },
+            {
+              "line": 1275,
+              "text": "        </div>"
+            },
+            {
+              "line": 1276,
+              "text": "      </div>"
+            },
+            {
+              "line": 1277,
+              "text": ""
+            }
+          ],
+          "contextSha256": "82c915c82850c3d009e8b9a9b61bf7bd6ffa19d65df69454bf91c6227956e860",
+          "fileBytes": 52734,
+          "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+          "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec",
+          "line": 1274,
+          "lineSha256": "53f915b7c80488bd8ad2bd1f49d2e274c760417e12a70c3c55f23d9c3e1f7f73",
+          "lineText": "           {...interfaceTextProps(\"Save the current adversarial settings to this server.\")}/>",
+          "path": "src/web/src/components/System/Security/AdversarialSettings.jsx"
+        }
+      ],
+      "continuationRank": 732,
+      "currentSource": "Save the current adversarial settings to this server.",
+      "currentSourceSha256": "2c367aa22044c2c6a856d93fe57ff1578cc38c0d4a040fbe604bf49b6851458b",
+      "proposedSource": "Save the current privacy and anonymity settings to this server.",
+      "proposedSourceSha256": "84420341dbb4e4a42642976ac125166337d6a56527b3dd2b33da712753bed14d",
+      "rationale": "The pinned caller is in AdversarialSettings and the exact component organizes saved settings under Privacy and Anonymity, including Tor/anonymity controls. The old English adjective invites false-friend translations.",
+      "remainingQueueRank": 632,
+      "requiresSourceKeyAndCallerUpdateBeforeCatalogApplication": true,
+      "selectedTranslations": {
+        "ar": "احفظ إعدادات الخصوصية وإخفاء الهوية الحالية على هذا الخادم.",
+        "de": "Speichern Sie die aktuellen Datenschutz- und Anonymitätseinstellungen auf diesem Server.",
+        "es": "Guarde la configuración actual de privacidad y anonimato en este servidor.",
+        "fr": "Enregistrez les paramètres actuels de confidentialité et d’anonymat sur ce serveur.",
+        "hi": "वर्तमान गोपनीयता और गुमनामी सेटिंग्स इस सर्वर पर सहेजें।",
+        "id": "Simpan pengaturan privasi dan anonimitas saat ini ke server ini.",
+        "ja": "現在のプライバシー設定と匿名性の設定をこのサーバーに保存します。",
+        "ko": "현재 개인정보 보호 및 익명성 설정을 이 서버에 저장합니다.",
+        "pt-BR": "Salve as configurações atuais de privacidade e anonimato neste servidor.",
+        "vi": "Lưu các cài đặt quyền riêng tư và ẩn danh hiện tại lên máy chủ này.",
+        "zh-Hans": "将当前隐私和匿名设置保存到此服务器。",
+        "zh-Hant": "將目前的隱私與匿名設定儲存到此伺服器。"
+      },
+      "sourceId": "src_2c367aa22044c2c6",
+      "window": "W74"
+    },
+    {
+      "callerRefs": [
+        {
+          "context": [
+            {
+              "line": 87,
+              "text": "      </Modal.Content>"
+            },
+            {
+              "line": 88,
+              "text": "      <Modal.Actions>"
+            },
+            {
+              "line": 89,
+              "text": "        <Popup"
+            },
+            {
+              "line": 90,
+              "text": "          content={interfaceText(\"Close the share contents window.\")}"
+            },
+            {
+              "line": 91,
+              "text": "          trigger={("
+            },
+            {
+              "line": 92,
+              "text": "            <Button"
+            },
+            {
+              "line": 93,
+              "text": "              aria-label={interfaceText(\"Close share contents\")}"
+            }
+          ],
+          "contextSha256": "e3a45c279b91c737e72315b8167369070fdc6206aa25a67970c19e4b321f69b3",
+          "fileBytes": 3055,
+          "fileSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+          "gitBlob": "737d36838b7e08e16dc6f3ec652467afeed0deea",
+          "line": 90,
+          "lineSha256": "6c942a89b733a7d4c248ea94a30edfa6e409fad71dd3ed6e47de45ef2dd1d91c",
+          "lineText": "          content={interfaceText(\"Close the share contents window.\")}",
+          "path": "src/web/src/components/System/Shares/ContentsModal.jsx"
+        },
+        {
+          "context": [
+            {
+              "line": 92,
+              "text": "            <Button"
+            },
+            {
+              "line": 93,
+              "text": "              aria-label={interfaceText(\"Close share contents\")}"
+            },
+            {
+              "line": 94,
+              "text": "              onClick={onClose}"
+            },
+            {
+              "line": 95,
+              "text": "              title={interfaceText(\"Close the share contents window.\")}"
+            },
+            {
+              "line": 96,
+              "text": "             {...interfaceTextProps(\"Close share contents\")}>"
+            },
+            {
+              "line": 97,
+              "text": "              <LocalizedText source={\"Close\"} /></Button>"
+            },
+            {
+              "line": 98,
+              "text": "          )}"
+            }
+          ],
+          "contextSha256": "251dafc0933772800c247cc398365564ee2d0cbf0d4b140657a8d7c7060a9ce5",
+          "fileBytes": 3055,
+          "fileSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+          "gitBlob": "737d36838b7e08e16dc6f3ec652467afeed0deea",
+          "line": 95,
+          "lineSha256": "b953346eba53ed8c88c9e3ea652eb96acebb1ae465e3e1b3520b9d5d1ebb7434",
+          "lineText": "              title={interfaceText(\"Close the share contents window.\")}",
+          "path": "src/web/src/components/System/Shares/ContentsModal.jsx"
+        },
+        {
+          "context": [
+            {
+              "line": 96,
+              "text": "             {...interfaceTextProps(\"Close share contents\")}>"
+            },
+            {
+              "line": 97,
+              "text": "              <LocalizedText source={\"Close\"} /></Button>"
+            },
+            {
+              "line": 98,
+              "text": "          )}"
+            },
+            {
+              "line": 99,
+              "text": "         {...interfaceTextProps(\"Close the share contents window.\")}/>"
+            },
+            {
+              "line": 100,
+              "text": "      </Modal.Actions>"
+            },
+            {
+              "line": 101,
+              "text": "    </Modal>"
+            },
+            {
+              "line": 102,
+              "text": "  );"
+            }
+          ],
+          "contextSha256": "a60e6b6cb1b57cf753139232c7df6adcfffb569727d9e82675d2f9694fd86d7a",
+          "fileBytes": 3055,
+          "fileSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+          "gitBlob": "737d36838b7e08e16dc6f3ec652467afeed0deea",
+          "line": 99,
+          "lineSha256": "409a8318a8564bedda7ad8030a3bc98f9c7c2e3fa5fdad1e9841da29cacebd38",
+          "lineText": "         {...interfaceTextProps(\"Close the share contents window.\")}/>",
+          "path": "src/web/src/components/System/Shares/ContentsModal.jsx"
+        }
+      ],
+      "continuationRank": 750,
+      "currentSource": "Close the share contents window.",
+      "currentSourceSha256": "2d4bc8b68054a858e8c24e1a1423db5bc284f0630410bf60d8fc65ec140f5629",
+      "proposedSource": "Close the window showing the contents of the selected share.",
+      "proposedSourceSha256": "41daa09c736a103b32b5e05c576aa0ec93d3768d3132ee3e42238a461807f56c",
+      "rationale": "The pinned ContentsModal browses the selected share id and displays its local/remote path contents; this removes the ambiguity between a share resource and the act of sharing content.",
+      "remainingQueueRank": 650,
+      "requiresSourceKeyAndCallerUpdateBeforeCatalogApplication": true,
+      "selectedTranslations": {
+        "ar": "أغلق النافذة التي تعرض محتويات المجلد المشترك المحدد.",
+        "de": "Schließen Sie das Fenster, das den Inhalt der ausgewählten Freigabe anzeigt.",
+        "es": "Cierra la ventana que muestra el contenido del recurso compartido seleccionado.",
+        "fr": "Fermez la fenêtre qui affiche le contenu du partage sélectionné.",
+        "hi": "चुने गए साझा फ़ोल्डर की सामग्री दिखाने वाली विंडो बंद करें।",
+        "id": "Tutup jendela yang menampilkan isi folder bersama yang dipilih.",
+        "ja": "選択した共有フォルダーの内容を表示するウィンドウを閉じます。",
+        "ko": "선택한 공유 폴더의 내용을 표시하는 창을 닫습니다.",
+        "pt-BR": "Feche a janela que mostra o conteúdo da pasta compartilhada selecionada.",
+        "vi": "Đóng cửa sổ hiển thị nội dung của thư mục được chia sẻ đã chọn.",
+        "zh-Hans": "关闭显示所选共享文件夹内容的窗口。",
+        "zh-Hant": "關閉顯示所選共享資料夾內容的視窗。"
+      },
+      "sourceId": "src_2d4bc8b68054a858",
+      "window": "W74"
+    }
+  ],
+  "sourceCallsiteReadback": [
+    {
+      "path": "src/web/src/components/System/Security/AdversarialSettings.jsx",
+      "oldSource": "Save the current adversarial settings to this server.",
+      "newSource": "Save the current privacy and anonymity settings to this server.",
+      "replacedOccurrences": 2,
+      "preimageSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+      "postimageSha256": "01f240e1030d206698b907a88e0a34e16315c063cd69e5caabe20e1e7bff50e0"
+    },
+    {
+      "path": "src/web/src/components/System/Shares/ContentsModal.jsx",
+      "oldSource": "Close the share contents window.",
+      "newSource": "Close the window showing the contents of the selected share.",
+      "replacedOccurrences": 3,
+      "preimageSha256": "cfd7f2e29d9a1298889f75a8debeb96c2b0ed389bf80b7274b71a6492b1f06be",
+      "postimageSha256": "5d1c95792e0363f5d16b92946eb739876878c17925f9827a5ad8db3a9b9f1e3c"
+    }
+  ]
+}

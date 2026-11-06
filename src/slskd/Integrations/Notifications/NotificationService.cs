@@ -68,7 +68,7 @@ namespace slskd.Integrations.Notifications
             }
 
             var options = OptionsMonitor.CurrentValue.Integration;
-            var title = $"Private Message from {username}";
+            var title = NotificationTitleFormatter.PrivateMessage(options.NotificationLanguage, username);
 
             if (options.Pushbullet.Enabled && options.Pushbullet.NotifyOnPrivateMessage)
             {
@@ -96,7 +96,7 @@ namespace slskd.Integrations.Notifications
             }
 
             var options = OptionsMonitor.CurrentValue.Integration;
-            var title = $"Room Mention by {username} in {room}";
+            var title = NotificationTitleFormatter.RoomMention(options.NotificationLanguage, username, room);
 
             if (options.Pushbullet.Enabled && options.Pushbullet.NotifyOnRoomMention)
             {
@@ -126,7 +126,7 @@ namespace slskd.Integrations.Notifications
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", options.AccessToken);
                 }
 
-                request.Headers.Add("Title", $"{options.NotificationPrefix}: {title}");
+                request.Headers.Add("Title", NotificationTitleFormatter.EncodeNtfyTitle($"{options.NotificationPrefix}: {title}"));
                 request.Content = new StringContent(body, Encoding.UTF8, "text/plain");
 
                 using var response = await client.SendAsync(request);

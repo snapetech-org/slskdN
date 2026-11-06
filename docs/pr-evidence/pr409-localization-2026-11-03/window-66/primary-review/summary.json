@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W66",
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 227,
+    "correction": 36,
+    "hold": 24,
+    "refinement": 13
+  },
+  "proposalCount": 49,
+  "holdCells": [
+    {
+      "continuationRank": 533,
+      "locale": "ar",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "de",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "es",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "fr",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "hi",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "id",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "ja",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "ko",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "pt-BR",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "vi",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "zh-Hans",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 533,
+      "locale": "zh-Hant",
+      "source": "Validation failed",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "ar",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "de",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "es",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "fr",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "hi",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "id",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "ja",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "ko",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "pt-BR",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "vi",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "zh-Hans",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    },
+    {
+      "continuationRank": 541,
+      "locale": "zh-Hant",
+      "source": "Release Calendar",
+      "rationale": "No exact production caller is pinned for this source at the live PR head; preserve the current value until a production use is established."
+    }
+  ],
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 1,
+    "protectedLiteral": 5
+  },
+  "reviewedTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "priorHeldCellsReattested": 104,
+  "callerlessSelectedRanks": [
+    533,
+    541
+  ],
+  "candidateFreeInputVerified": true,
+  "blindPacketAccessed": false,
+  "repositoryOrPRFilesEdited": false,
+  "nativeSpeakerReview": "not performed",
+  "browserReview": "not performed"
+}

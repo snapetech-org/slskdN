@@ -1,0 +1,262 @@
+{
+  "blindAttestation": {
+    "primaryMaterialAccessed": false,
+    "reviewerPacketSealedIndependently": true,
+    "semanticReviewStartedBeforeSeal": false,
+    "summaryCounts": {
+      "artifact": "Blind semantic review output summary",
+      "callerCoverage": {
+        "callerlessRank": 814,
+        "heldCellsWithCallerContext": 20,
+        "heldCellsWithoutCallerContext": 0,
+        "heldSourceCount": 6,
+        "heldSourcesWithCallers": 6,
+        "selectedCallerlessSources": 1,
+        "selectedSourcesWithCallers": 24
+      },
+      "cellCount": 300,
+      "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+      "heldSourceRanks": {
+        "805": 6,
+        "806": 7,
+        "808": 1,
+        "812": 1,
+        "816": 4,
+        "821": 1
+      },
+      "holdCountByLocale": {
+        "ar": 2,
+        "de": 1,
+        "es": 3,
+        "fr": 3,
+        "hi": 2,
+        "id": 1,
+        "pt-BR": 3,
+        "vi": 3,
+        "zh-Hans": 1,
+        "zh-Hant": 1
+      },
+      "holds": [
+        {
+          "confidence": "moderate",
+          "continuationRank": 805,
+          "issueCode": "TECHNICAL_TERM_DRIFT",
+          "locale": "ar",
+          "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. This target renders Pod/backfill as a generic container refill, obscuring the technical sync operation.",
+          "sourceId": "src_3034c12681609f00"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 805,
+          "issueCode": "TECHNICAL_TERM_DRIFT",
+          "locale": "es",
+          "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Reabastecimiento” suggests physical replenishment/restocking, so the technical backfill operation is obscured.",
+          "sourceId": "src_3034c12681609f00"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 805,
+          "issueCode": "TECHNICAL_TERM_DRIFT",
+          "locale": "fr",
+          "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Remplissage” reads as filling the pod and does not clearly preserve the technical backfill operation.",
+          "sourceId": "src_3034c12681609f00"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 805,
+          "issueCode": "TECHNICAL_TERM_DRIFT",
+          "locale": "id",
+          "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Pengisian ulang” suggests refilling/replenishing the pod, obscuring the technical backfill operation.",
+          "sourceId": "src_3034c12681609f00"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 805,
+          "issueCode": "TECHNICAL_TERM_DRIFT",
+          "locale": "pt-BR",
+          "reason": "The packaged caller identifies a MediaCore Pod backfill sync operation. “Preenchimento do pod” reads as filling the pod and does not clearly preserve the technical backfill operation.",
+          "sourceId": "src_3034c12681609f00"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 805,
+          "issueCode": "TECHNICAL_TERM_DRIFT",
+          "locale": "vi",
+          "reason": "The target renders Pod as “nhóm” (group) and backfill as filling/inserting, losing the MediaCore Pod backfill sync meaning shown by the packaged caller.",
+          "sourceId": "src_3034c12681609f00"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 806,
+          "issueCode": "COLOR_NAME_AMBIGUITY",
+          "locale": "ar",
+          "reason": "The packaged caller sets the value to the olive color. The target names olives as a fruit and is not an unambiguous color label.",
+          "sourceId": "src_3038ab334a538ddc"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 806,
+          "issueCode": "COLOR_NAME_AMBIGUITY",
+          "locale": "es",
+          "reason": "The packaged caller sets the value to the olive color. “Aceituna” names the fruit and is not an unambiguous color label.",
+          "sourceId": "src_3038ab334a538ddc"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 806,
+          "issueCode": "COLOR_NAME_AMBIGUITY",
+          "locale": "hi",
+          "reason": "The packaged caller sets the value to the olive color. “जैतून” names the olive; the target does not clearly express the color (olive-colored).",
+          "sourceId": "src_3038ab334a538ddc"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 806,
+          "issueCode": "COLOR_NAME_AMBIGUITY",
+          "locale": "pt-BR",
+          "reason": "The packaged caller sets the value to the olive color. “Azeitona” names the fruit and is not an unambiguous color label.",
+          "sourceId": "src_3038ab334a538ddc"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 806,
+          "issueCode": "COLOR_NAME_AMBIGUITY",
+          "locale": "vi",
+          "reason": "The packaged caller sets the value to the olive color. “Ôliu” names the olive and does not clearly express the color.",
+          "sourceId": "src_3038ab334a538ddc"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 806,
+          "issueCode": "COLOR_NAME_AMBIGUITY",
+          "locale": "zh-Hans",
+          "reason": "The packaged caller sets the value to the olive color. “橄榄” names the olive; the target does not include an explicit color term.",
+          "sourceId": "src_3038ab334a538ddc"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 806,
+          "issueCode": "COLOR_NAME_AMBIGUITY",
+          "locale": "zh-Hant",
+          "reason": "The packaged caller sets the value to the olive color. “橄欖” names the olive; the target does not include an explicit color term.",
+          "sourceId": "src_3038ab334a538ddc"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 808,
+          "issueCode": "STATE_MEANING_REVERSAL",
+          "locale": "fr",
+          "reason": "In the packaged caller this label appears while completed transfers are loading. “Chargement … terminé” says the loading has finished, reversing the loading state.",
+          "sourceId": "src_3043b37e6d88a388"
+        },
+        {
+          "confidence": "moderate",
+          "continuationRank": 812,
+          "issueCode": "OBJECT_MEANING_DRIFT",
+          "locale": "de",
+          "reason": "The packaged caller describes publishing membership records containing peer IDs, roles, keys, ban state, and history. “Mitgliedschaftsnachweis” means proof/certificate of membership rather than the record being published.",
+          "sourceId": "src_30774beffae75f66"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 816,
+          "issueCode": "STATUS_VS_INSTRUCTION",
+          "locale": "es",
+          "reason": "The source reports that a search job has been queued. “Buscar …” reads as an instruction to search queued work, shifting the message from a queued status to an action.",
+          "sourceId": "src_30a7771ae5f4512a"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 816,
+          "issueCode": "STATUS_VS_INSTRUCTION",
+          "locale": "hi",
+          "reason": "The source reports that a search job has been queued. “नौकरी खोजें” reads as an instruction to search for queued jobs, shifting the message from a queued status to an action.",
+          "sourceId": "src_30a7771ae5f4512a"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 816,
+          "issueCode": "STATUS_VS_INSTRUCTION",
+          "locale": "pt-BR",
+          "reason": "The source reports that a search job has been queued. “Pesquise …” is an imperative to search queued jobs, shifting the message from a queued status to an action.",
+          "sourceId": "src_30a7771ae5f4512a"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 816,
+          "issueCode": "TERM_MISTRANSLATION",
+          "locale": "vi",
+          "reason": "The selected acquisition profile is rendered as “hồ sơ chuyển đổi” (conversion profile), changing acquisition into conversion.",
+          "sourceId": "src_30a7771ae5f4512a"
+        },
+        {
+          "confidence": "high",
+          "continuationRank": 821,
+          "issueCode": "NAVIGATION_MEANING_DRIFT",
+          "locale": "fr",
+          "reason": "The packaged caller uses this as the aria-label for the next page in a collections list. “Page des prochaines collections” means a page of upcoming collections, not the next collections page.",
+          "sourceId": "src_30ccd77bed2b66d8"
+        }
+      ],
+      "limitation": "AI semantic screen; locale-specific nuance may require a native speaker.",
+      "localeCount": 12,
+      "nativeSpeakerApproval": false,
+      "perCellPrimaryRecommendationsAccessed": false,
+      "primaryReviewMaterialAccessed": false,
+      "reviewScope": "Candidate-free current targets and packaged caller contexts only.",
+      "sealedUtc": "2026-11-04 17:44:04 UTC",
+      "sourceCount": 25,
+      "task": "slskdN PR #409 W77 ranks 803-827",
+      "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+      "verdictCounts": {
+        "HOLD": 20,
+        "PASS": 280
+      }
+    }
+  },
+  "candidateFreeLinkage": {
+    "blindManifestDeclaresSame": true,
+    "checksumListSha256": "6c4e088c1f54a4a03261575b008eb3185aa21750455c75740d47144bf5074474",
+    "manifestSha256": "0a04484d9130c465ebe18960492b6cc5ecdce8bb6e6613baf98273bf4debd9f5",
+    "primaryManifestDeclaresSame": true
+  },
+  "inputs": {
+    "blindChecksumList": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-blind-fresh-20261104/BLIND-REVIEW-OUTPUT-SHA256SUMS.txt",
+      "sha256": "2c3559888ff24d7ca6e106e80fc15465252ea145f258bbab988b2ccd9c616d2e"
+    },
+    "blindDecisions": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-blind-fresh-20261104/BLIND-REVIEW-DECISIONS.jsonl",
+      "sha256": "1f5790904075f874895af978b1302079356aa740bb4437b0065d407e313ae3b7"
+    },
+    "blindManifest": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-blind-fresh-20261104/BLIND-REVIEW-MANIFEST.json",
+      "sha256": "2214881c839b48aca9054ded29e2dcfc0178f48809c1ed01d90a6ca25af2cda6"
+    },
+    "blindSummary": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-blind-fresh-20261104/BLIND-REVIEW-SUMMARY.json",
+      "sha256": "89310d9d0a41c08b9ee506aceeb2412af53c49fc70840588d0e17ca6b6aabefc"
+    },
+    "candidateFreeChecksumList": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-primary-20261104/candidate-free/input/PACKET-SHA256SUMS.txt",
+      "sha256": "6c4e088c1f54a4a03261575b008eb3185aa21750455c75740d47144bf5074474"
+    },
+    "candidateFreeManifest": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-primary-20261104/candidate-free/input/manifest.json",
+      "sha256": "0a04484d9130c465ebe18960492b6cc5ecdce8bb6e6613baf98273bf4debd9f5"
+    },
+    "primaryChecksumList": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-primary-20261104/primary-review/output/SHA256SUMS.txt",
+      "sha256": "607d9c6b88cbce4344dfba208a3a1391b513ddb9e4d84d9e499dd0c90988a0ea"
+    },
+    "primaryManifest": {
+      "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-primary-20261104/primary-review/output/manifest.json",
+      "sha256": "04c290ebdcf015a4b2e279eb5d95fc9b642d7a6ac75f98438f11d11013de03c4"
+    }
+  },
+  "schemaVersion": 1,
+  "sourcePin": {
+    "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+    "tree": "b8692bb066cede93b6668806d0b97816135ce647"
+  }
+}

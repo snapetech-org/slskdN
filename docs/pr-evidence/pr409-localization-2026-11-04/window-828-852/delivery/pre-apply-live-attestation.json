@@ -1,0 +1,12 @@
+{
+  "checkedUtc": "2026-11-04T20:00:14Z",
+  "prHeadSha": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "branchRefSha": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "pullRefSha": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "bodyBeforeSha256": "ed5c3387c83d14378e06864535cd0eeb51a217be595b4366f3587b776e81db9d",
+  "bodyBeforeBytes": 106305,
+  "bodyTargetSha256": "f0277845e4d709d4de0e013813bdcb171945c59b7336b2e54827b582ff47ddec",
+  "bodyTargetBytes": 106722,
+  "bodyTargetPreservesExactPrefix": true,
+  "appendedSectionHeading": "W78 localization application (ranks 828\u2013852)"
+}

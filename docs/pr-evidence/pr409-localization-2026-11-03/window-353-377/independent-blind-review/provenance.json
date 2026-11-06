@@ -1,0 +1,18 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "remoteBranchHead": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "livePullRefHead": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "livePRState": "OPEN",
+  "isDraft": true,
+  "inputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w59-ranks353-377-primary-20261103/input",
+  "inputChecksumManifest": "PACKET-SHA256SUMS.txt",
+  "inputChecksumManifestSha256": "7283335c280db03cb764b911aa0542abbb6af5a27bd8574acd117f44850a1cf8",
+  "verifiedInputFiles": 8,
+  "reviewedAtUTC": "2026-11-03T10:25:21.002285+00:00",
+  "reviewerType": "independent blind semantic review; current targets only",
+  "candidateExposure": "none"
+}

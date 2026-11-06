@@ -1,0 +1,12 @@
+{
+  "ratifiedBy": "/root",
+  "ratificationMessage": "Ratified the complete W51 root adjudication; apply exactly 99 target changes, preserve 201 accept-current cells, no holds.",
+  "head": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+  "tree": "dc5f6ab2aab3668f674dd583451d3464a3a1c081",
+  "rootLedgerSha256": "99e3e7bfa2e66024e22ce6c88b38eda03e75e036b0699d545ebb9806282eca21",
+  "rootChecksumListSha256": "9456f3d03ea418981857f8e86dc32a6da7474554251d388b96f7742e9e1edb99",
+  "ratifiedChanges": 99,
+  "preservedCurrent": 201,
+  "holds": 0,
+  "nativeSpeakerApproved": false
+}

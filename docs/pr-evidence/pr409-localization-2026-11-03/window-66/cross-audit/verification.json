@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "cells": 300,
+  "targetConflictsResolved": 41,
+  "selectedFromPrimary": 25,
+  "selectedFromBlind": 16,
+  "protectedLiteralGapsAdjudicated": 5,
+  "japaneseNumericSurfaceAdjudicated": 1,
+  "callerlessHoldsPreserved": 24,
+  "priorHeldCellsReattestedUnchanged": 104,
+  "allSelectedTokenChecksPass": true,
+  "upstreamInputPrimaryBlindVerifiers": "PASS",
+  "livePrHeadTree": "PASS",
+  "application": "NOT APPLIED"
+}

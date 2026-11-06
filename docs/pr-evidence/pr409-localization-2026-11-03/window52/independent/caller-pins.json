@@ -1,0 +1,556 @@
+[
+  {
+    "callerContextSha256": "d084c1a9f0efb1faca52386625d112605e568a271e1f8149dbff66300dc7437d",
+    "callerRefCount": 7,
+    "callerRefs": [
+      {
+        "fileSha256": "e478a515189d87eac239a869c7d17fc9edae427a301685086d3f27e13a043a43",
+        "gitBlob": "c0b38dab6622a499b087a46054dc95a92058ef5a",
+        "line": 22,
+        "lineSha256": "41b8589e1b88a9dc400383335576fa8b842d4375e6b0f7be9c16ea284aa0b234",
+        "path": "src/web/src/components/PrimaryNavigation.jsx"
+      },
+      {
+        "fileSha256": "8bfb33e1f1873cd0ef43e0cd89eee5a64b647846292b46ab86350bf2f8460d60",
+        "gitBlob": "1dfef0adf11621db26d382fd99c294e52b52cfa1",
+        "line": 481,
+        "lineSha256": "107ea5a7af2aafeb3cf6d72dfa4f4a55bdad56db8550ad3748f298324f97e520",
+        "path": "src/web/src/components/Shared/Footer.jsx"
+      },
+      {
+        "fileSha256": "1d3cc120ebb902f4c72b0a1c43a571c203588dcd5017017c5444f44c4f664414",
+        "gitBlob": "4456d98b27c24725acb4187dc8274ef70b40dab0",
+        "line": 80,
+        "lineSha256": "47924673572a7bec23a1e2c6d93a6355272fd7e3bbe1fc8429de2cc6822cb5f5",
+        "path": "src/web/src/components/System/Metrics/index.jsx"
+      },
+      {
+        "fileSha256": "4dc26e05ce52d7c04e4f7535ce6f0b85c18a8ac1cbd38d11c467dc57208ce531",
+        "gitBlob": "d3dd57da152dc65a1ae23eea499a217e349f9965",
+        "line": 112,
+        "lineSha256": "980dfe0b8ac6324ca490b51927d068e1ee6dc1966e5abb576fdc24bf9c76122a",
+        "path": "src/web/src/components/System/System.jsx"
+      },
+      {
+        "fileSha256": "52233ac41dd3d00b9b85b423a6c9330b598c116189b064ba89952b50d38e836b",
+        "gitBlob": "1171751d7f5c90f0769f6b68418cf572ddaf8115",
+        "line": 12,
+        "lineSha256": "d549b48c87b2568929bad19be728dae7de2d024061d46d9e61ee371e01913fa1",
+        "path": "src/web/src/lib/setupHealthCheck.js"
+      },
+      {
+        "fileSha256": "52233ac41dd3d00b9b85b423a6c9330b598c116189b064ba89952b50d38e836b",
+        "gitBlob": "1171751d7f5c90f0769f6b68418cf572ddaf8115",
+        "line": 13,
+        "lineSha256": "dc128c1b0feb045fe6b9d216cdaa221273cf1dcf1f84cdee5d3580aa49033b6a",
+        "path": "src/web/src/lib/setupHealthCheck.js"
+      },
+      {
+        "fileSha256": "52233ac41dd3d00b9b85b423a6c9330b598c116189b064ba89952b50d38e836b",
+        "gitBlob": "1171751d7f5c90f0769f6b68418cf572ddaf8115",
+        "line": 352,
+        "lineSha256": "8b42f806d41339e46b0a43a6ebd79a56325fff60fb13d7054c7b442d1b0ab52f",
+        "path": "src/web/src/lib/setupHealthCheck.js"
+      }
+    ],
+    "continuationRank": 201,
+    "sourceId": "src_1744b96470b51bf3",
+    "sourceSha256": "1744b96470b51bf30935e2748b237a708d226a0430063f92accf90961cd28d86"
+  },
+  {
+    "callerContextSha256": "23236b8fad2337c08360c0c3ece4ee358f0255a407afd85c8ca9b556dee4ed50",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "1db4a401dbf192e2e5196d1ff90b45376b0d5ee505536e44febc606fc4828c94",
+        "gitBlob": "a47f8c2fcbb57343eddd1e11bbea866302f9d991",
+        "line": 130,
+        "lineSha256": "2661845913a15173d543fc26291b163198d1dd9404f333c38db202fd04aefd7f",
+        "path": "src/web/src/components/System/AutomationCenter/index.jsx"
+      }
+    ],
+    "continuationRank": 202,
+    "sourceId": "src_17504d2865b8014e",
+    "sourceSha256": "17504d2865b8014eab5cf4c1ca7e93d4b62a8645c4ae938405778aca5b2277cf"
+  },
+  {
+    "callerContextSha256": "85cee087d4495816d22ef4787761d1cf509f8260db8bb8dae53761334602b07b",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "b3bd8c39033c4c47412c72f7a65d3a52dabab56a57b80a5e2568f79bde8418cb",
+        "gitBlob": "d7f2c7e2dee577f9534c0b2f277606f51936b827",
+        "line": 79,
+        "lineSha256": "81c496d4bc1f3a403b41fc9c568d4691afc3658be995e69151a055b3d8a28125",
+        "path": "src/web/src/components/Transfers/DownloadExclusionsModal.jsx"
+      }
+    ],
+    "continuationRank": 203,
+    "sourceId": "src_175b89c20904bb87",
+    "sourceSha256": "175b89c20904bb87f36a82b4a5d97a6fd83d6255ea64bfac2a70b4456e95c49b"
+  },
+  {
+    "callerContextSha256": "875c5441ffdbe27ed0f437731589e743f604ab6a5fa004b7f51a3e65b685fc85",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+        "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+        "line": 3540,
+        "lineSha256": "f28bcc37879d49481c4c425ba70e5ee7bcd2c37fba603c139f92e9b2215f1998",
+        "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx"
+      }
+    ],
+    "continuationRank": 204,
+    "sourceId": "src_176032e2bc83a536",
+    "sourceSha256": "176032e2bc83a536e07dd0e015b777f9453ab84244f23f7ad1f0082edb207d99"
+  },
+  {
+    "callerContextSha256": "ed5b467ba0b0b7cc0ca4daffe9da19c982d54e5ab159773a7f694987c812e5d5",
+    "callerRefCount": 2,
+    "callerRefs": [
+      {
+        "fileSha256": "5255cac1cb19bce95fa4a3ef31a221feee0a4802c0e3c7389dc7b9cd85a37ce0",
+        "gitBlob": "cf14b95c5971a08ec9df42b445d5d1afe62c3e2b",
+        "line": 93,
+        "lineSha256": "a0fac6d190184ec047b2c557ac8f442a193e753ff8ea9177dc9cf4fba149dbc6",
+        "path": "src/web/src/components/System/Data/index.jsx"
+      },
+      {
+        "fileSha256": "5255cac1cb19bce95fa4a3ef31a221feee0a4802c0e3c7389dc7b9cd85a37ce0",
+        "gitBlob": "cf14b95c5971a08ec9df42b445d5d1afe62c3e2b",
+        "line": 96,
+        "lineSha256": "b3a263317d92c8e95248a0d3ed5a01f61f5b5f6d7892099c773a48e0fffebea6",
+        "path": "src/web/src/components/System/Data/index.jsx"
+      }
+    ],
+    "continuationRank": 205,
+    "sourceId": "src_17643f922e8ca8d3",
+    "sourceSha256": "17643f922e8ca8d3c712945d67d8cf74aedfbe5ee6521a95bc6cdeeaa0845a0a"
+  },
+  {
+    "callerContextSha256": "42aa4cfa2273420a79f323cf1513cc9ec455ff7a0599a76e32541a63fb9b9895",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "0353a4bf6b0e7a2a8578b38a641854a988004305f636b538e9098fc73fd8bea8",
+        "gitBlob": "c26212440f57a04f648e75a4863847129f0c85f3",
+        "line": 2298,
+        "lineSha256": "b1c75d869e6124dd2bc0ca53f6794e51e569f22c001a249d98778c6d5a11dbe8",
+        "path": "src/web/src/components/System/MediaCore/index.jsx"
+      }
+    ],
+    "continuationRank": 206,
+    "sourceId": "src_176ed98fb50d653c",
+    "sourceSha256": "176ed98fb50d653ca325f8803db4db556de26a87b6fa0abdb7715f58139ed29d"
+  },
+  {
+    "callerContextSha256": "641787f13f5e8c607d019391712ca063ab0a86f2dfaa3a93c2cad3ec3df6804a",
+    "callerRefCount": 2,
+    "callerRefs": [
+      {
+        "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+        "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec",
+        "line": 575,
+        "lineSha256": "2eb16409db98bd56bbc3dcd4680b112066eda113fa29735d4781b15152d5b4e7",
+        "path": "src/web/src/components/System/Security/AdversarialSettings.jsx"
+      },
+      {
+        "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+        "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec",
+        "line": 859,
+        "lineSha256": "83558d7a5b1cdbbbf001f85dd6a8a997eb9bf3a81a7566abe1448146e3f44c7f",
+        "path": "src/web/src/components/System/Security/AdversarialSettings.jsx"
+      }
+    ],
+    "continuationRank": 207,
+    "sourceId": "src_17732c9394bef423",
+    "sourceSha256": "17732c9394bef42303ceb33d71d4b3d249461e1ed020931534bd1ff128b6d545"
+  },
+  {
+    "callerContextSha256": "5fcba15d746ab2a3bed37e671c9017afeb5e954cba1978897193a738588bae68",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+        "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+        "line": 1343,
+        "lineSha256": "bed41c8b4cf73c51e9f24d748123a3ca51a94045dd79113cc318391008f4cac6",
+        "path": "src/web/src/components/Player/PlayerBar.jsx"
+      }
+    ],
+    "continuationRank": 208,
+    "sourceId": "src_177742afd8facf9a",
+    "sourceSha256": "177742afd8facf9a5242804edf795082b3981f8335e4361281bc4824a19d75eb"
+  },
+  {
+    "callerContextSha256": "8a37d5f9e7702f52eb07e15cae91a30d679e7f59347ab27d1d36b775e6587be9",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "88d7522e7e430daf796c8a30c1cf0ce033104cebedc44f0fbc7cef9f0d6ac1c5",
+        "gitBlob": "4652a041e84082e3656eddb2ea64e2871cafe135",
+        "line": 1392,
+        "lineSha256": "8d11f82fe14e9d09cedf278a841400ef60f2001e9468f5c97830472eab26173d",
+        "path": "src/web/src/components/Player/Visualizer.jsx"
+      }
+    ],
+    "continuationRank": 209,
+    "sourceId": "src_178a6b95aac60414",
+    "sourceSha256": "178a6b95aac604147e98fd8cb765b8f5b945eb8d03775086db7e10558de0bd2d"
+  },
+  {
+    "callerContextSha256": "29ef0108abd71b1bb00fa124d8f2d9029272cd2ac144ec0f77472a4d9dd4895e",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "4f92976445411740669ef13be76f03d4188e015a240e1a065cdc7e517a4f4d37",
+        "gitBlob": "1684be838f723ef1bef1a0b96086c9ed9cf724a5",
+        "line": 492,
+        "lineSha256": "2e22a909052ec68eb69b0fe5d558180278f01427b954bb1530ed9675abd23a12",
+        "path": "src/web/src/components/Shares/SharedWithMe.jsx"
+      }
+    ],
+    "continuationRank": 210,
+    "sourceId": "src_1795a5c7cc3fb82c",
+    "sourceSha256": "1795a5c7cc3fb82c114494454f57420481feaa14fe085743c1fbb0b8fb6ef17c"
+  },
+  {
+    "callerContextSha256": "9c8fdcd31221d81d7793d8794403e1fb065344162199fb7dd31ef2b3a0fbf396",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+        "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71",
+        "line": 3422,
+        "lineSha256": "ee728d374ab7516fd4834e59d69235ad008aae56e801e0d7f47f55c75bba5dd7",
+        "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx"
+      }
+    ],
+    "continuationRank": 211,
+    "sourceId": "src_17a8eb4b9f71c1e2",
+    "sourceSha256": "17a8eb4b9f71c1e25d2682308e28770a001d3f61afc81c0fba886320be62d9e2"
+  },
+  {
+    "callerContextSha256": "5b6bfe8ab499439220083d86b6dcbc71cc88333816f79dec3206844485082ab1",
+    "callerRefCount": 2,
+    "callerRefs": [
+      {
+        "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+        "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+        "line": 769,
+        "lineSha256": "1be88af1b695b3751b1b1daa72250c9b85f9a65df8a4db536f45fe20e6ec65e9",
+        "path": "src/web/src/components/Player/PlayerBar.jsx"
+      },
+      {
+        "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+        "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+        "line": 782,
+        "lineSha256": "21a5dffb9d9cb44a763b18ad50c8ed34e3e66f6b4fb6a49d4d8f8b10407baff9",
+        "path": "src/web/src/components/Player/PlayerBar.jsx"
+      }
+    ],
+    "continuationRank": 212,
+    "sourceId": "src_17a9c02c8cb8179f",
+    "sourceSha256": "17a9c02c8cb8179f49db89f9bc277c58cdf0523afe9903c06abb3c82b0dfc8c3"
+  },
+  {
+    "callerContextSha256": "a88bad3ca987fcb5472ad643511617f70fe8ec41bbd775b799f4a5ed49c02aec",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "b88e5efde59c0bacf64dff0c2b23f1fd860de6ba61aabad303a1c2e91c15a7e3",
+        "gitBlob": "5dcff96536efd97779ea8e363090aa8988f3f27e",
+        "line": 144,
+        "lineSha256": "b8edd7ae52fec5008d49f42a32a046071eb2b2e79b25d2a41f5f7152b28c2915",
+        "path": "src/web/src/components/Search/Detail/SearchFilterModal.jsx"
+      }
+    ],
+    "continuationRank": 213,
+    "sourceId": "src_17b6ae8b8c1c9ada",
+    "sourceSha256": "17b6ae8b8c1c9ada84b9a84f5d4ebc04f03b22b55ef7d769c5d31bcf4b0aae0c"
+  },
+  {
+    "callerContextSha256": "c36a64a5c8a89ba9a20b6ac10316ebdab00e725ed7f1ffbeb4ddcf1fc7f83a56",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "ccdc5a6a2f62d4b8a97369efb956159e12c18e8e6fc1c3a707fa7fef930eec09",
+        "gitBlob": "64fad4e99d5537c17365be0ac62d1ee14c56fc4a",
+        "line": 181,
+        "lineSha256": "854ec519fa59fa9661da717b23241eda7ceba33fb921f23c342dc1fc8ff53a25",
+        "path": "src/web/src/components/System/Integrations/ServarrReadinessPanel.jsx"
+      }
+    ],
+    "continuationRank": 214,
+    "sourceId": "src_17c679a8798d336d",
+    "sourceSha256": "17c679a8798d336d55818495692f803e81ed9d84920235065db753a326c299e7"
+  },
+  {
+    "callerContextSha256": "768685585b522caf676bde64c95bed6411ba1378fe7fab0a2b6708c6133193b0",
+    "callerRefCount": 2,
+    "callerRefs": [
+      {
+        "fileSha256": "1f20ae14d37483d4b092c49680f46967d84b8798e32736de4258c401a3977e1a",
+        "gitBlob": "0d21613128bf88cc1524c3a0232b2ef2b94ce99b",
+        "line": 649,
+        "lineSha256": "61e0678d3a06c89a589dd9532fde805c2bc646f4e5003594f8cab98783653ed4",
+        "path": "src/web/src/components/Pods/Pods.jsx"
+      },
+      {
+        "fileSha256": "1f20ae14d37483d4b092c49680f46967d84b8798e32736de4258c401a3977e1a",
+        "gitBlob": "0d21613128bf88cc1524c3a0232b2ef2b94ce99b",
+        "line": 653,
+        "lineSha256": "a7ecb1df4404d301649f04d92b4426ad7e6956b7cbe8dc741c6b666af1bfcddb",
+        "path": "src/web/src/components/Pods/Pods.jsx"
+      }
+    ],
+    "continuationRank": 215,
+    "sourceId": "src_17c77098764de0b5",
+    "sourceSha256": "17c77098764de0b59e9c944b7eb25ed68975bd6738f8847d5f9336fa6b791756"
+  },
+  {
+    "callerContextSha256": "4080b7374c3eebf7f37c4668109690885f1d139e516e3536f0011641de4b2fe1",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "1d3cc120ebb902f4c72b0a1c43a571c203588dcd5017017c5444f44c4f664414",
+        "gitBlob": "4456d98b27c24725acb4187dc8274ef70b40dab0",
+        "line": 75,
+        "lineSha256": "bcfbb0807db7768c5fc523238d3fef96d2f7e47b024a58564f8659be6ac9679f",
+        "path": "src/web/src/components/System/Metrics/index.jsx"
+      }
+    ],
+    "continuationRank": 216,
+    "sourceId": "src_17d2b3a918ca33fa",
+    "sourceSha256": "17d2b3a918ca33fa93fa02bb5d232bc1ca45ac1b3693635176d416971b8ca70e"
+  },
+  {
+    "callerContextSha256": "3a1efa5aa81b9c259977379bd66b29a1ca862d6a2aeb3b51c9c245306fe0c753",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+        "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+        "line": 728,
+        "lineSha256": "c0974deebcc14dc3d70a53cb77de04ad007de81453772fc1dc84a1cecd4ac4d9",
+        "path": "src/web/src/components/Player/PlayerBar.jsx"
+      }
+    ],
+    "continuationRank": 217,
+    "sourceId": "src_17d642d672c6d6ea",
+    "sourceSha256": "17d642d672c6d6eae53e0a57ff31651fe01990e2a6b44027d7453bc1012d8d58"
+  },
+  {
+    "callerContextSha256": "95c89e8bd9e175083ff2113a4461d18de632645fa4d5d667f9b319fb14591208",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "b4292e311412ecce34211e27f97d53e4368217e4f30b95d89baed5873345cd8e",
+        "gitBlob": "f9ee86003cae148c3fdd7bb9834abdd545845f36",
+        "line": 212,
+        "lineSha256": "e61272c22ef6bb55bc5ef3cf6f374d6118ac6340a4ea3ab7f2e0073b6a3bf341",
+        "path": "src/web/src/components/Search/FederatedTasteRecommendationsPanel.jsx"
+      }
+    ],
+    "continuationRank": 218,
+    "sourceId": "src_17db0725a7844322",
+    "sourceSha256": "17db0725a7844322a3914dd841971acfe5ee7f2cad5cdd905491389c40ac718a"
+  },
+  {
+    "callerContextSha256": "8b0aa1134cd2e0c749931eef3796b2cf984305f2bd6e25b7f4508aa74b3719df",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+        "gitBlob": "67b0be656e5d5aaeb389a7d69f9401dbab3eac2d",
+        "line": 1216,
+        "lineSha256": "9db38b2ae9a79aa4468ccfbbc3e562eacd70beb7e4a86059490642b0549baa52",
+        "path": "src/web/src/components/Player/PlayerBar.jsx"
+      }
+    ],
+    "continuationRank": 219,
+    "sourceId": "src_17dfe37e4170dae9",
+    "sourceSha256": "17dfe37e4170dae90e50b3195c00d940db06bbff16996e1dee8722c636653673"
+  },
+  {
+    "callerContextSha256": "829fa5357b88d7c3a1f41ac91240a6e2504475254a24d2106bd674e474da602f",
+    "callerRefCount": 2,
+    "callerRefs": [
+      {
+        "fileSha256": "dacaf70e93d5df4ce088e2ac9b039e3ea615989c3b1fa62c8128dde89890a02f",
+        "gitBlob": "0ec18db2860be78db0a74be382aba34f052c1316",
+        "line": 287,
+        "lineSha256": "2e2a70c553582b960fc9b2b346a4475cd8cbc03975203035a9919567df1f3e25",
+        "path": "src/web/src/components/System/Mesh/MeshEvidencePolicy.jsx"
+      },
+      {
+        "fileSha256": "dacaf70e93d5df4ce088e2ac9b039e3ea615989c3b1fa62c8128dde89890a02f",
+        "gitBlob": "0ec18db2860be78db0a74be382aba34f052c1316",
+        "line": 298,
+        "lineSha256": "a66d587c9ac04e02e2e0b4a1b959a9b445be93a8d14bafd61ee81eb70de1c7b9",
+        "path": "src/web/src/components/System/Mesh/MeshEvidencePolicy.jsx"
+      }
+    ],
+    "continuationRank": 220,
+    "sourceId": "src_17e27b68aaeb07f1",
+    "sourceSha256": "17e27b68aaeb07f16df936e92653b8928df1201092279bf7b5376c38e2bad48d"
+  },
+  {
+    "callerContextSha256": "63b29a08c80fa8412ce2605c62bc12e36a9c4a334d9e578efd6951a21c2a1438",
+    "callerRefCount": 12,
+    "callerRefs": [
+      {
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "line": 249,
+        "lineSha256": "aa8ed24602ec4a11bc7aec26f4bb845558220634c09c4c088167c5bc446436c6",
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx"
+      },
+      {
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "line": 255,
+        "lineSha256": "f5c550fe3ba1d58efbfd9b129b662ca300286528c1c6943c5a233d0c10f7fe40",
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx"
+      },
+      {
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "line": 476,
+        "lineSha256": "200ccec11c67d1417f2817359eabdc3e083372d3abb451f09f56a98828c1c25d",
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx"
+      },
+      {
+        "fileSha256": "dfa8c1d73465a167ea4185f8a9dca1450d5a313d06fbdeaf7c1e05680c01f294",
+        "gitBlob": "04a724537e1353d5fc262c30df150dc0534c6c89",
+        "line": 497,
+        "lineSha256": "6b482e8898bfa696a8c6f4ce5d8e067bec95053c2fe8340657444ab7b5966342",
+        "path": "src/web/src/components/System/AdminPolicies/index.jsx"
+      },
+      {
+        "fileSha256": "c0dd5f0fe19c1e03598b914fa7d7012978cd5ae97dd8e33b4ee10d4145ce460e",
+        "gitBlob": "f74c2eae184b2463c313ba01ce83f6fb6b055f4d",
+        "line": 621,
+        "lineSha256": "e17b12692932390363e22e05c322635ba183d166bed31c4b9f5bf2fdf9203b72",
+        "path": "src/web/src/components/System/Network/index.jsx"
+      },
+      {
+        "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+        "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec",
+        "line": 303,
+        "lineSha256": "f2a3bf9cd9eadd95000a7b3a28f0c4bbd13b3f3481d0c20a63e4a4eb2e84798e",
+        "path": "src/web/src/components/System/Security/AdversarialSettings.jsx"
+      },
+      {
+        "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+        "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319",
+        "line": 35,
+        "lineSha256": "ddf2f8720948e7d0d92a9896dad68b5ed7428c2a9b017fd44aae02e0b103d41f",
+        "path": "src/web/src/lib/meshEvidencePolicy.js"
+      },
+      {
+        "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+        "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319",
+        "line": 83,
+        "lineSha256": "0d6dcd2c6856406f39f270a17513b0059db6a975f1fd2166dd167e8b0d61b897",
+        "path": "src/web/src/lib/meshEvidencePolicy.js"
+      },
+      {
+        "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+        "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319",
+        "line": 176,
+        "lineSha256": "a7823fe6c027d9ff5da664e6feef4bb9dbd93ffdb23ff18a54d4a0edb11da762",
+        "path": "src/web/src/lib/meshEvidencePolicy.js"
+      },
+      {
+        "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+        "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319",
+        "line": 180,
+        "lineSha256": "f8041f2f86ca0277dbe94245227e08b234495746a33ad1f49d608d02afc59051",
+        "path": "src/web/src/lib/meshEvidencePolicy.js"
+      },
+      {
+        "fileSha256": "d109bbdc5d3349ff618f5c986f78feaece07ae1f4dfa12d54cd4f17e8cc4a4f4",
+        "gitBlob": "87b655560d0e2898cabaefa1ae090afbb8d0f319",
+        "line": 225,
+        "lineSha256": "91c5bbb9742b7cf439617f286dc332e17e77826e0063d2af6cabb34a67e59a50",
+        "path": "src/web/src/lib/meshEvidencePolicy.js"
+      },
+      {
+        "fileSha256": "52233ac41dd3d00b9b85b423a6c9330b598c116189b064ba89952b50d38e836b",
+        "gitBlob": "1171751d7f5c90f0769f6b68418cf572ddaf8115",
+        "line": 324,
+        "lineSha256": "6ffc241d6bed6b5d0b4097176451d1900a8979354dfdf5e792c9fc842dddbb80",
+        "path": "src/web/src/lib/setupHealthCheck.js"
+      }
+    ],
+    "continuationRank": 221,
+    "sourceId": "src_17eb3c0168d0d7b2",
+    "sourceSha256": "17eb3c0168d0d7b21ede5481150f17233427d89833ec121b4dbc4fb96cfab71e"
+  },
+  {
+    "callerContextSha256": "dd9a5b3b374a17db045af2af633674a69e3e31258107df906926b2d51fef6eba",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "fbf52d69e0b9c1ac70fc19f550cc9f85e4fc0f7b39d61ccc0e69267d9fcec9eb",
+        "gitBlob": "05b08489a8204d4356922278aee0bf68c85eb24e",
+        "line": 8,
+        "lineSha256": "540a4df4569f6c656512d9bcc78b2239e8f88f04b2a0bace4e82fa11119ea5f1",
+        "path": "src/web/src/lib/apiErrorMessages.js"
+      }
+    ],
+    "continuationRank": 222,
+    "sourceId": "src_17f88e9346c23878",
+    "sourceSha256": "17f88e9346c23878082849921a3b0c4fcff7fbf171e14129d1480077c22a8b6b"
+  },
+  {
+    "callerContextSha256": "28befc8e6c7e42d0c071fedfd5c702b6f3383a474fffc725df61086b42beac6c",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "f34ec8d91bc42c1f3bc9522bfb0a696a7ec901b5969c99829f46d272be81ac9f",
+        "gitBlob": "422982406109c6ee05d57bd3e486cbe847c5e7ec",
+        "line": 976,
+        "lineSha256": "2145403ab32c58abefc2f2088128ae30411285646dc34ba50b99786fbff71086",
+        "path": "src/web/src/components/System/Security/AdversarialSettings.jsx"
+      }
+    ],
+    "continuationRank": 223,
+    "sourceId": "src_17fc7771738fbe2c",
+    "sourceSha256": "17fc7771738fbe2c34482da6d0445e25889d5a1dc0db2ed8f7afdc9ae2d6d1c7"
+  },
+  {
+    "callerContextSha256": "21302d434a1c8ddf20101a8b41aa75a94b11bb4df2c4cee7a97c183b7bf2df61",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+        "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+        "line": 307,
+        "lineSha256": "11b4a7638d381d8dc2f47ea8c756095b8b18415224f767d5bc4be8429178cbef",
+        "path": "src/web/src/components/System/LibraryHealth/index.jsx"
+      }
+    ],
+    "continuationRank": 224,
+    "sourceId": "src_1802ec2fff1a30e6",
+    "sourceSha256": "1802ec2fff1a30e60df3a4d8701a53cf3e3f7673ba713ab5479daca83a4e3aaa"
+  },
+  {
+    "callerContextSha256": "3e5bd69a569709d00421cfbedaf79729a1157e682eff917591884aebb699b60a",
+    "callerRefCount": 1,
+    "callerRefs": [
+      {
+        "fileSha256": "5adc13539a4e7a157daecf4784ed8c3d136f8e7aa2b6978c539fb961efeded62",
+        "gitBlob": "5b8ab01e7340aac8917458320ccf561ce686d984",
+        "line": 344,
+        "lineSha256": "4ea718a08f54d2e78af95ab4ad513ed424659424eae6547fb46cf24f9db7ec7d",
+        "path": "src/web/src/components/System/SwarmAnalytics/index.jsx"
+      }
+    ],
+    "continuationRank": 225,
+    "sourceId": "src_180964508f4f412a",
+    "sourceSha256": "180964508f4f412aa00bad54ae9e4a113093d3e1ec36a5521f98b5664ecd65ae"
+  }
+]

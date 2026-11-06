@@ -1,0 +1,40 @@
+{
+  "artifact": "slskdN PR #409 W56 primary semantic review",
+  "sealed": true,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909",
+  "rowCount": 24,
+  "decisionCounts": {
+    "accept-current": 18,
+    "correction": 6
+  },
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 1314,
+      "sha256": "be4efc6cde94bb6263cc9cab40e4ac20340255fdd20d496fb74e3eeb73210c28"
+    },
+    {
+      "name": "build_primary_review.py",
+      "bytes": 14790,
+      "sha256": "9f30b8b3e5561b0ae79fa70499beea881133b94c8ace0f398ed7aa5f6e50173d"
+    },
+    {
+      "name": "input-attestation.json",
+      "bytes": 3309,
+      "sha256": "469519bf4bc8c71fa319873606093e543cdf207210bde90eaaf291e9303b4780"
+    },
+    {
+      "name": "review-ledger.jsonl",
+      "bytes": 47067,
+      "sha256": "d72c96d0efd282341f910645806d847fcd080976270e9702bdfab3f2824767a8"
+    },
+    {
+      "name": "summary.json",
+      "bytes": 2403,
+      "sha256": "d6ebdae904b4196c718901bcec8a38f5f6927afaa2e0b3d4dd2a9e3c47b94642"
+    }
+  ]
+}

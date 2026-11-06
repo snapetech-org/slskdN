@@ -1,0 +1,12 @@
+{
+  "baseRefName": "main",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "isDraft": true,
+  "pullRequest": 409,
+  "remoteBranchHead": "6b09b3c7bf7de69c316ba3e2503dc450004c9b59",
+  "repository": "snapetech-org/slskdN",
+  "state": "OPEN",
+  "tree": "a5f9b792875d341a49208d0785bfff28aa9092d7",
+  "verification": "gh PR + remote branch + refs/pull/409/head + GitHub commit tree API"
+}

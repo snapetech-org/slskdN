@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "head": "3cc9db334cfb1693dd6bd93bb83cfeba65930adb",
+  "tree": "9d40e239e7e717a81bd176d143d1ce067fe026a1",
+  "cells": 300,
+  "rootDispositions": {
+    "correction": 79,
+    "accept-current": 202,
+    "hold": 12,
+    "refinement": 7
+  },
+  "primaryBlindTargetDisagreements": 79,
+  "updates": 86,
+  "updateCatalogs": 12,
+  "nonTargetChanges": 0,
+  "priorHoldsReattestedAndPreserved": 86,
+  "callerlessHolds": 12,
+  "tokenMismatches": 0,
+  "workflowFilesTouched": false,
+  "gitDiffCheck": "PASS"
+}

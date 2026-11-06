@@ -1,0 +1,90 @@
+{
+  "window": 32,
+  "sourceKeys": 25,
+  "cells": 266,
+  "verdicts": {
+    "correct": 29,
+    "keep": 237
+  },
+  "correctionRows": 29,
+  "correctionSourceKeys": 10,
+  "perLocale": {
+    "zh-Hans": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 19,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 22,
+      "correct": 2,
+      "uncertain": 0
+    }
+  },
+  "inputSha256": "09d534acad981c383c42c2da15b0c26a667af529cf108430ae7c388294c1f988",
+  "decisionsSha256": "cfee536d726295c1560d7e691a9bbe36a6948b50a5a0d6eafbfa5a27cf04d711",
+  "candidatePlanSha256": "ac67de5559bea50e815a729f95ff8a3c6e54bdd4751fc3d1278fd4add7808109",
+  "reviewedCorrectionSourceIds": [
+    "src_0134493aa130b5ee",
+    "src_0143a3db005e1e7f",
+    "src_014659ab9d98c8fe",
+    "src_015aa2cc0b508343",
+    "src_01736849b86961f6",
+    "src_018a1dce4e1fb967",
+    "src_018fa086df9f8bf1",
+    "src_01c4d3c21642b217",
+    "src_01cd1662ba5c61e7",
+    "src_01d460734d22d23c"
+  ],
+  "semanticDecisionConfidence": "high for the identified meaning, identifier, and grammar errors; locale-quality confidence moderate; native-speaker review outstanding",
+  "reviewerMethod": "manual semantic review of all 266 pending cells against exact source callers and UI context; exact-hash and placeholder checks; no translation-model/API call",
+  "independentCrossReview": "pending",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "uncertainCells": 0,
+  "nativeSpeakerReview": "not performed; remains required"
+}

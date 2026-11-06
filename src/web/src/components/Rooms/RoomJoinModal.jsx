@@ -1,10 +1,11 @@
 import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import { useInterfaceLanguage } from '../../lib/interfaceLocale';
+import LocalizedText from '../Shared/LocalizedText';
 import './Rooms.css';
 import * as rooms from '../../lib/rooms';
 import TooltipButton from '../Shared/TooltipButton';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import React, { useEffect, useMemo, useState } from 'react';
+import { toast } from '../../lib/localizedToast';
 import {
   Button,
   Dimmer,
@@ -47,8 +48,6 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
       {t(source, parameters)}
     </span>
   );
-  const tRef = useRef(t);
-  tRef.current = t;
   const [open, setOpen] = useState(false);
   const [available, setAvailable] = useState([]);
   const [selected, setSelected] = useState(undefined);
@@ -66,7 +65,7 @@ const RoomJoinModal = ({ joinRoom: parentJoinRoom, ...modalOptions }) => {
           asArray(availableResult).map(normalizeRoom).filter(Boolean),
         );
       } catch {
-        toast.error(tRef.current('Failed to load room list'));
+        toast.error(<LocalizedText source="Failed to load room list" />);
         setAvailable([]);
       } finally {
         setLoading(false);

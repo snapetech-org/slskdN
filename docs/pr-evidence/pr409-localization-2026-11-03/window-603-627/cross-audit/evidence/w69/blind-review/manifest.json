@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "artifact": "slskdN PR #409 W69 blind review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W69-ranks603-627",
+  "head": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "tree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "candidateFreeInputManifestSha256": "d27b8b6801b4bf7361685c8ec7366caf4a91e8a464de45b213b0b744025e9fa1",
+  "candidateFreeInputPacketChecksumsSha256": "9ce22e3db93f85de3a2cbdf6bb712daf1424d3faddd698c0f7c4c4809a8f8199",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "priorHeldCellsReattested": 128,
+  "decisionCounts": {
+    "accept-current": 222,
+    "correction": 32,
+    "refinement": 34,
+    "hold": 12
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "d7e89e163a8780d0282df63f685d4389c6f10849351f3d0b61d754587d473904",
+      "bytes": 1886
+    },
+    {
+      "path": "blind-ledger.jsonl",
+      "sha256": "38b78547dbcc8043b97594b2d4a39ab1259ac3f6da4156c2f70c0de8100c7d78",
+      "bytes": 1330622
+    },
+    {
+      "path": "build_blind_review.py",
+      "sha256": "8d6eee9c8b1a52ab24e0689590a207194edf6089db3748ee472baed5427b6989",
+      "bytes": 33878
+    },
+    {
+      "path": "prior-holds-reattestation.jsonl",
+      "sha256": "7c662ef05a24997f632581b07371465e5f321c1cf0f1429722ffa120ada848ac",
+      "bytes": 157122
+    },
+    {
+      "path": "summary.json",
+      "sha256": "5e6104ad3e35771c9bb140e75f3b27573e5e557e7b1a52983b284f559eab42da",
+      "bytes": 2881
+    },
+    {
+      "path": "verify_blind_review.py",
+      "sha256": "9ac9ac111e0527f04ddb9a7755fbd507651cd2feb92c4dff81924a6f985d18b5",
+      "bytes": 11049
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "artifact": "Blind semantic review packet attestation",
+  "sealedUtc": "2026-11-04 17:38:18 UTC",
+  "task": "slskdN PR #409 W77 ranks 803-827",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W77",
+  "sourceRankRange": [
+    803,
+    827
+  ],
+  "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+  "prHeadAttestedByCandidateFreeVerifier": true,
+  "sourceWorktree": "/mnt/disks/scratch/task-worktrees/localization-20261104/slskdn-pr409-w76-778-802-source",
+  "sourceWorktreeClean": true,
+  "candidateFreeInputOriginal": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-primary-20261104/candidate-free/input",
+  "candidateFreeInputCopy": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-blind-fresh-20261104/candidate-free/input",
+  "candidateFreeChecksumVerification": "PASS",
+  "candidateFreeVerifier": "PASS",
+  "checksumListSha256": "6c4e088c1f54a4a03261575b008eb3185aa21750455c75740d47144bf5074474",
+  "candidateFreeManifestSha256": "0a04484d9130c465ebe18960492b6cc5ecdce8bb6e6613baf98273bf4debd9f5",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "callerCoverage": {
+    "sourcesWithCallers": 24,
+    "callerlessSources": 1,
+    "runtimeFilesPinned": 279
+  },
+  "primaryReviewMaterial": "none possessed or accessed",
+  "primaryReviewMaterialAccessed": false,
+  "perCellPrimaryRecommendationsAccessed": false,
+  "semanticReviewStartedBeforeSeal": false,
+  "scope": "candidate-free input only; no repository or PR changes; no tests/builds/CI"
+}

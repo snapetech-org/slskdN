@@ -1,0 +1,113 @@
+{
+  "recordedAtUTC": "2026-11-03T22:31:30.025398+00:00",
+  "candidateFree": {
+    "pass": true,
+    "result": {
+      "pass": true,
+      "head": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+      "tree": "7168de556608115be3b7e16b9ceb30b977df904b",
+      "pr": "OPEN/DRAFT",
+      "sources": 25,
+      "cells": 300,
+      "ranks": [
+        628,
+        652
+      ],
+      "remainingQueueRanks": [
+        528,
+        552
+      ],
+      "nextBoundary": {
+        "rank": 653,
+        "sourceId": "src_2919fe8558c441c9"
+      },
+      "priorIds": 1732,
+      "carriedHolds": 140,
+      "callerContexts": 43,
+      "baselineTokenMismatches": {
+        "placeholder": 0,
+        "markup": 0,
+        "numeric": 1,
+        "protectedLiteral": 2
+      }
+    }
+  },
+  "primary": {
+    "pass": true,
+    "result": {
+      "schemaVersion": 1,
+      "repository": "snapetech-org/slskdN",
+      "pullRequest": 409,
+      "window": "W70",
+      "head": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+      "tree": "7168de556608115be3b7e16b9ceb30b977df904b",
+      "sourceCount": 25,
+      "localeCount": 12,
+      "cellCount": 300,
+      "dispositionCounts": {
+        "accept-current": 252,
+        "correction": 32,
+        "refinement": 16
+      },
+      "proposalCount": 48,
+      "correctionCount": 32,
+      "refinementCount": 16,
+      "holdCount": 0,
+      "callerlessRanks": [],
+      "callerCountByRank": {
+        "628": 1,
+        "629": 1,
+        "630": 1,
+        "631": 2,
+        "632": 1,
+        "633": 10,
+        "634": 1,
+        "635": 1,
+        "636": 1,
+        "637": 1,
+        "638": 1,
+        "639": 1,
+        "640": 3,
+        "641": 1,
+        "642": 1,
+        "643": 2,
+        "644": 2,
+        "645": 1,
+        "646": 1,
+        "647": 1,
+        "648": 2,
+        "649": 2,
+        "650": 1,
+        "651": 2,
+        "652": 2
+      },
+      "baselineTokenMismatches": {
+        "placeholder": 0,
+        "markup": 0,
+        "numeric": 1,
+        "protectedLiteral": 2
+      },
+      "reviewedTokenMismatches": {
+        "placeholder": 0,
+        "markup": 0,
+        "numeric": 0,
+        "protectedLiteral": 0
+      },
+      "carriedHoldsReattested": 140,
+      "carriedHoldsUnchanged": true,
+      "priorSelectedIdsExcluded": 1732,
+      "candidateFreeInputVerified": true,
+      "blindPacketAccessed": false,
+      "crossAuditPacketAccessed": false,
+      "repositoryOrPRFilesEdited": false,
+      "nativeSpeakerReview": "not performed",
+      "browserReview": "not performed"
+    },
+    "inputVerificationText": "Candidate-free W70 verifier passed before primary review.\n\n{\n  \"pass\": true,\n  \"head\": \"335a96a9ec125b30c20c31be219da4e27db1ab03\",\n  \"tree\": \"7168de556608115be3b7e16b9ceb30b977df904b\",\n  \"pr\": \"OPEN/DRAFT\",\n  \"sources\": 25,\n  \"cells\": 300,\n  \"ranks\": [\n    628,\n    652\n  ],\n  \"remainingQueueRanks\": [\n    528,\n    552\n  ],\n  \"nextBoundary\": {\n    \"rank\": 653,\n    \"sourceId\": \"src_2919fe8558c441c9\"\n  },\n  \"priorIds\": 1732,\n  \"carriedHolds\": 140,\n  \"callerContexts\": 43,\n  \"baselineTokenMismatches\": {\n    \"placeholder\": 0,\n    \"markup\": 0,\n    \"numeric\": 1,\n    \"protectedLiteral\": 2\n  }\n}\n"
+  },
+  "blind": {
+    "pass": true,
+    "resultText": "PASS: 300 blind-reviewed cells; accept-current=212, correction=45, refinement=43, hold=0; 140 prior holds hash-reattested; token/context/hash/checksum pins valid.\n",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "artifact": "slskdN PR #409 W68 ranks 578-602 blind independent translation review",
+  "blindBasis": {
+    "inputCandidateFree": true,
+    "inputPath": "../slskdn-pr409-w68-ranks578-602-candidate-free-20261103/input",
+    "inputManifestSha256": "a9f4ebf9dd435faf2330fce08d0f90ef131bc0c8d694f54475a4450e11ce568f",
+    "primaryPacketOpened": false,
+    "priorProposalsUsed": false,
+    "priorHoldInputUsedOnlyForHashReattestation": true
+  },
+  "scope": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "head": "973a65312a475de4d8aa39aee837249553fd884e",
+    "tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+    "previousWindow": "W67",
+    "continuationRankRange": [
+      578,
+      602
+    ],
+    "remainingQueueRankRange": [
+      478,
+      502
+    ],
+    "sourceCount": 25,
+    "localeCount": 12,
+    "cellCount": 300,
+    "locales": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "verdictCounts": {
+    "accept": 273,
+    "revise": 27,
+    "hold": 0
+  },
+  "revisionCountsByLocale": {
+    "ar": 2,
+    "de": 1,
+    "es": 3,
+    "fr": 2,
+    "hi": 3,
+    "id": 2,
+    "ja": 1,
+    "ko": 3,
+    "pt-BR": 2,
+    "vi": 2,
+    "zh-Hans": 3,
+    "zh-Hant": 3
+  },
+  "revisionCountsByCategory": {
+    "field-label-meaning": 10,
+    "negation-clarity": 2,
+    "negation-scope": 1,
+    "part-of-speech": 2,
+    "protected-product-term": 9,
+    "scope-narrowing": 1,
+    "terminology": 2
+  },
+  "baselineProtectedLiteralFlags": {
+    "inputFlagCount": 9,
+    "reviewedCount": 9,
+    "correctedWithCallerEvidence": 9,
+    "automaticHolds": 0,
+    "findings": [
+      {
+        "continuationRank": 589,
+        "sourceId": "src_2656ecd3276654fc",
+        "locale": "hi",
+        "protectedLiterals": [
+          "JSON",
+          "SongID"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/Search/SongIDPanel.jsx",
+            "line": 1540,
+            "lineSha256": "25e5667db0c1e2c251199a387615163843c8149fad25952a7f0782a5ecb1bfb4",
+            "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+            "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483"
+          },
+          {
+            "path": "src/web/src/components/Search/SongIDPanel.jsx",
+            "line": 1550,
+            "lineSha256": "4ee8daec28bff196fcc704d9103d69e0ea182ecd87a508382b8c24ef34a3cb2d",
+            "fileSha256": "3d17afcd24e5a1bb81ac8004f145131267cc1b5db77cccb7824c2435dc734037",
+            "gitBlob": "8c087c1b1800ba9d5501b1c9af4df27fcb483483"
+          }
+        ],
+        "assessment": "The exact production caller is SongIDPanel.jsx and labels the button as copying the SongID forensic matrix. “SongID” is the feature name here; transliterating it as “सॉन्गआईडी” loses the exact product identifier. Keep the Latin feature name.",
+        "disposition": "revise",
+        "suggestedTarget": "रैंकिंग, डाउनलोड या स्थानीय फ़ाइलों को बदले बिना इस SongID रन के लिए संपूर्ण फोरेंसिक मैट्रिक्स JSON की प्रतिलिपि बनाएँ।"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "ar",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity in this context; transliterating it as “البود” loses the exact identifier.",
+        "disposition": "revise",
+        "suggestedTarget": "إدارة عضوية Pod"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "es",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity; lowercase plural “pods” makes it a generic noun.",
+        "disposition": "revise",
+        "suggestedTarget": "Gestión de membresía de Pod"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "fr",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity; lowercase plural “pods” makes it a generic noun.",
+        "disposition": "revise",
+        "suggestedTarget": "Gestion des membres du Pod"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "hi",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity; transliteration as “पॉड” loses the exact identifier.",
+        "disposition": "revise",
+        "suggestedTarget": "Pod सदस्यता प्रबंधन"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "ja",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity; katakana “ポッド” loses the exact identifier.",
+        "disposition": "revise",
+        "suggestedTarget": "Podメンバーシップ管理"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "ko",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity; transliteration as “포드” loses the exact identifier.",
+        "disposition": "revise",
+        "suggestedTarget": "Pod 멤버십 관리"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "pt-BR",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity; lowercase “pod” makes it a generic noun.",
+        "disposition": "revise",
+        "suggestedTarget": "Gerenciamento da associação do Pod"
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "vi",
+        "protectedLiterals": [
+          "Pod"
+        ],
+        "callerRefs": [
+          {
+            "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+            "line": 1815,
+            "lineSha256": "2bfa17ab80fdd2705e278448fd51701bbcd53a451f772cec97b271496acd96d8",
+            "fileSha256": "a3ac8c9838e00ce54744edb4d266d69cec0b6e95ee3cbf562e770198b042278b",
+            "gitBlob": "e433a6d868af67555203e11fa8e8c0ce27999c71"
+          }
+        ],
+        "assessment": "The MediaCorePods card manages signed membership records in DHT with role-based access control. “Pod” names the product entity; translating it as “nhóm” changes the named product concept into a generic group.",
+        "disposition": "revise",
+        "suggestedTarget": "Quản lý thành viên Pod"
+      }
+    ]
+  },
+  "tokenIntegrity": {
+    "placeholderMismatches": 0,
+    "markupMismatches": 0,
+    "numericMismatches": 0,
+    "protectedLiteralMismatchesBeforeReview": 9,
+    "placeholdersPreservedInSuggestions": true
+  },
+  "priorHoldReattestation": {
+    "expected": 128,
+    "reattested": 128,
+    "targetHashMatches": 128,
+    "allUnchanged": true
+  },
+  "confidenceAndLimitations": {
+    "callerBackedTermAndSemanticsFindings": "high where stated; language/style judgments are moderate where stated per cell",
+    "nativeSpeakerReview": "not performed; no native-speaker claim is made",
+    "evidenceGaps": []
+  },
+  "reviewOutcome": "27 cells need revision; 273 are acceptable as currently translated; no unresolved holds."
+}

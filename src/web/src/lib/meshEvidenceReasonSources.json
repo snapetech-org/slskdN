@@ -1,0 +1,10 @@
+{
+  "inbound-disabled": "inbound mesh evidence disabled",
+  "missing-provenance": "missing signed provenance",
+  "untrusted-tier": "untrusted provenance tier: {tier}",
+  "low-confidence": "confidence below {minimum}",
+  "few-witnesses": "witness count below {minimum}",
+  "contains-path": "contains raw path data",
+  "exact-holdings": "contains exact local holdings",
+  "raw-history": "contains raw listening history"
+}

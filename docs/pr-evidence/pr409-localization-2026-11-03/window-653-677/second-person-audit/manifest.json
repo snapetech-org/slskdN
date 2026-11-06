@@ -1,0 +1,25 @@
+{
+  "artifact": "second-person W71 cross-review audit",
+  "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+  "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+  "selectedTargetsAudited": 57,
+  "targetsDifferFromCurrent": 57,
+  "tokenChecksPass": {
+    "placeholders": 57,
+    "markup": 57,
+    "numbers": 57,
+    "protectedLiterals": 57
+  },
+  "semanticPasses": 54,
+  "nonBlockingConcerns": 3,
+  "rank654CallerlessHolds": 12,
+  "rank654CellTextIncluded": false,
+  "crossReviewChecksumsSha256": "f7f2b03a079a6871396ce678d7fd8e4ce1b34ff785edf2a6c8c12e5a37a710e4",
+  "candidateFreeChecksumsSha256": "be3d9a9f300d15caabaffafb03fdbbb32217e01be6b808cdd71a0e691e99e3ea",
+  "primaryChecksumsSha256": "1d46062baf7dc427fae8ac432d909894114d4f10604c2794fe322dfefe5b25e3",
+  "blindChecksumsSha256": "ee10d28b3346459817966df379cfa4542d064976bc407752379605b01f83a484",
+  "liveBeforeUtc": "2026-11-04T01:36:29+00:00",
+  "auditUtc": "2026-11-04T01:40:22+00:00",
+  "liveAfterUtc": "2026-11-04T01:40:55+00:00",
+  "refsUnchanged": true
+}

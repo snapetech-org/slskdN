@@ -1,0 +1,300 @@
+{"id":"es:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"zh-Hans:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"hi:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"de:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"ja:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"fr:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"pt-BR:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"ar:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"ko:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"zh-Hant:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"vi:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"id:src_e64da5fc6f67d4cb","verdict":"keep"}
+{"id":"es:src_e672171250b23192","verdict":"keep"}
+{"id":"zh-Hans:src_e672171250b23192","verdict":"correct","target":"对等节点排名上限","confidence":"high","reason":"The Swarm Analytics dropdown limits the number of ranked network peers. These targets read as rankings of colleagues or same-industry peers; name the P2P nodes."}
+{"id":"hi:src_e672171250b23192","verdict":"correct","target":"पीयर रैंकिंग की सीमा","confidence":"high","reason":"The Swarm Analytics dropdown limits the number of ranked network peers. These targets read as rankings of colleagues or same-industry peers; name the P2P nodes."}
+{"id":"de:src_e672171250b23192","verdict":"keep"}
+{"id":"ja:src_e672171250b23192","verdict":"keep"}
+{"id":"fr:src_e672171250b23192","verdict":"keep"}
+{"id":"pt-BR:src_e672171250b23192","verdict":"keep"}
+{"id":"ar:src_e672171250b23192","verdict":"keep"}
+{"id":"ko:src_e672171250b23192","verdict":"keep"}
+{"id":"zh-Hant:src_e672171250b23192","verdict":"correct","target":"對等節點排名上限","confidence":"high","reason":"The Swarm Analytics dropdown limits the number of ranked network peers. These targets read as rankings of colleagues or same-industry peers; name the P2P nodes."}
+{"id":"vi:src_e672171250b23192","verdict":"keep"}
+{"id":"id:src_e672171250b23192","verdict":"correct","target":"Batas peringkat peer","confidence":"high","reason":"The Swarm Analytics dropdown limits the number of ranked network peers. These targets read as rankings of colleagues or same-industry peers; name the P2P nodes."}
+{"id":"es:src_e674447337e83c13","verdict":"keep"}
+{"id":"zh-Hans:src_e674447337e83c13","verdict":"keep"}
+{"id":"hi:src_e674447337e83c13","verdict":"keep"}
+{"id":"de:src_e674447337e83c13","verdict":"keep"}
+{"id":"ja:src_e674447337e83c13","verdict":"keep"}
+{"id":"fr:src_e674447337e83c13","verdict":"keep"}
+{"id":"pt-BR:src_e674447337e83c13","verdict":"keep"}
+{"id":"ar:src_e674447337e83c13","verdict":"keep"}
+{"id":"ko:src_e674447337e83c13","verdict":"keep"}
+{"id":"zh-Hant:src_e674447337e83c13","verdict":"keep"}
+{"id":"vi:src_e674447337e83c13","verdict":"keep"}
+{"id":"id:src_e674447337e83c13","verdict":"keep"}
+{"id":"es:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"zh-Hans:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"hi:src_e674f6bb0c6124be","verdict":"correct","target":"रूटिंग के आँकड़े लोड करें","confidence":"high","reason":"The MediaCore button loads routing statistics when clicked. These targets have awkward word order or make the button label read as routing-load statistics rather than the action to load them."}
+{"id":"de:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"ja:src_e674f6bb0c6124be","verdict":"correct","target":"ルーティング統計を読み込む","confidence":"high","reason":"The MediaCore button loads routing statistics when clicked. These targets have awkward word order or make the button label read as routing-load statistics rather than the action to load them."}
+{"id":"fr:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"pt-BR:src_e674f6bb0c6124be","verdict":"correct","target":"Carregar estatísticas de roteamento","confidence":"high","reason":"The MediaCore button loads routing statistics when clicked. These targets have awkward word order or make the button label read as routing-load statistics rather than the action to load them."}
+{"id":"ar:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"ko:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"zh-Hant:src_e674f6bb0c6124be","verdict":"correct","target":"載入路由統計資料","confidence":"high","reason":"The MediaCore button loads routing statistics when clicked. These targets have awkward word order or make the button label read as routing-load statistics rather than the action to load them."}
+{"id":"vi:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"id:src_e674f6bb0c6124be","verdict":"keep"}
+{"id":"es:src_e6789a492c050177","verdict":"correct","target":"Revise las pruebas confiables del jurado antes de decidir localmente si se libera un elemento de la cuarentena.","confidence":"high","reason":"The Quarantine Jury callsite is about releasing items from quarantine. These targets say putting an item into quarantine or release under quarantine, reversing or obscuring the decision direction."}
+{"id":"zh-Hans:src_e6789a492c050177","verdict":"keep"}
+{"id":"hi:src_e6789a492c050177","verdict":"keep"}
+{"id":"de:src_e6789a492c050177","verdict":"keep"}
+{"id":"ja:src_e6789a492c050177","verdict":"keep"}
+{"id":"fr:src_e6789a492c050177","verdict":"correct","target":"Examinez les preuves fiables des jurés avant de décider localement de lever la quarantaine.","confidence":"high","reason":"The Quarantine Jury callsite is about releasing items from quarantine. These targets say putting an item into quarantine or release under quarantine, reversing or obscuring the decision direction."}
+{"id":"pt-BR:src_e6789a492c050177","verdict":"keep"}
+{"id":"ar:src_e6789a492c050177","verdict":"keep"}
+{"id":"ko:src_e6789a492c050177","verdict":"keep"}
+{"id":"zh-Hant:src_e6789a492c050177","verdict":"keep"}
+{"id":"vi:src_e6789a492c050177","verdict":"correct","target":"Xem xét bằng chứng đáng tin cậy của bồi thẩm trước khi đưa ra quyết định tại chỗ về việc gỡ cách ly.","confidence":"high","reason":"The Quarantine Jury callsite is about releasing items from quarantine. These targets say putting an item into quarantine or release under quarantine, reversing or obscuring the decision direction."}
+{"id":"id:src_e6789a492c050177","verdict":"keep"}
+{"id":"es:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"zh-Hans:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"hi:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"de:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"ja:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"fr:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"pt-BR:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"ar:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"ko:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"zh-Hant:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"vi:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"id:src_e67e4e5c56281a1f","verdict":"keep"}
+{"id":"es:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"zh-Hans:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"hi:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"de:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"ja:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"fr:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"pt-BR:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"ar:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"ko:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"zh-Hant:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"vi:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"id:src_e67e9629f54f2ccb","verdict":"uncertain","reason":"The Visualizer.jsx callsite is inside the native MilkDrop engine and selects a browser-local playlist of visualizer presets as the active preset bank. “Native playlist” can be mistaken for a music playlist or native operating-system playlist; choose a concise locale-native preset-list term with a native reviewer."}
+{"id":"es:src_e68ad6978849a302","verdict":"keep"}
+{"id":"zh-Hans:src_e68ad6978849a302","verdict":"keep"}
+{"id":"hi:src_e68ad6978849a302","verdict":"keep"}
+{"id":"de:src_e68ad6978849a302","verdict":"keep"}
+{"id":"ja:src_e68ad6978849a302","verdict":"keep"}
+{"id":"fr:src_e68ad6978849a302","verdict":"keep"}
+{"id":"pt-BR:src_e68ad6978849a302","verdict":"keep"}
+{"id":"ar:src_e68ad6978849a302","verdict":"keep"}
+{"id":"ko:src_e68ad6978849a302","verdict":"keep"}
+{"id":"zh-Hant:src_e68ad6978849a302","verdict":"keep"}
+{"id":"vi:src_e68ad6978849a302","verdict":"keep"}
+{"id":"id:src_e68ad6978849a302","verdict":"keep"}
+{"id":"es:src_e6911704ee984f6b","verdict":"keep"}
+{"id":"zh-Hans:src_e6911704ee984f6b","verdict":"correct","target":"对等节点贡献","confidence":"high","reason":"The Swarm Visualization table lists peer IDs, chunks served, and success rates. These current targets use colleagues/companions or industry peers instead of network peers."}
+{"id":"hi:src_e6911704ee984f6b","verdict":"correct","target":"पीयरों का योगदान","confidence":"high","reason":"The Swarm Visualization table lists peer IDs, chunks served, and success rates. These current targets use colleagues/companions or industry peers instead of network peers."}
+{"id":"de:src_e6911704ee984f6b","verdict":"keep"}
+{"id":"ja:src_e6911704ee984f6b","verdict":"correct","target":"ピアの貢献","confidence":"high","reason":"The Swarm Visualization table lists peer IDs, chunks served, and success rates. These current targets use colleagues/companions or industry peers instead of network peers."}
+{"id":"fr:src_e6911704ee984f6b","verdict":"keep"}
+{"id":"pt-BR:src_e6911704ee984f6b","verdict":"keep"}
+{"id":"ar:src_e6911704ee984f6b","verdict":"keep"}
+{"id":"ko:src_e6911704ee984f6b","verdict":"correct","target":"피어 기여","confidence":"high","reason":"The Swarm Visualization table lists peer IDs, chunks served, and success rates. These current targets use colleagues/companions or industry peers instead of network peers."}
+{"id":"zh-Hant:src_e6911704ee984f6b","verdict":"correct","target":"對等節點貢獻","confidence":"high","reason":"The Swarm Visualization table lists peer IDs, chunks served, and success rates. These current targets use colleagues/companions or industry peers instead of network peers."}
+{"id":"vi:src_e6911704ee984f6b","verdict":"keep"}
+{"id":"id:src_e6911704ee984f6b","verdict":"correct","target":"Kontribusi peer","confidence":"high","reason":"The Swarm Visualization table lists peer IDs, chunks served, and success rates. These current targets use colleagues/companions or industry peers instead of network peers."}
+{"id":"es:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"zh-Hans:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"hi:src_e6a41b9e6720b2a8","verdict":"correct","target":"कृपया संदेश JSON और लक्षित पीयर ID दर्ज करें","confidence":"high","reason":"The MediaCore routing action addresses P2P target peer IDs. These targets say coworker/colleague IDs rather than peer endpoints; preserve the JSON literal."}
+{"id":"de:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"ja:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"fr:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"pt-BR:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"ar:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"ko:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"zh-Hant:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"vi:src_e6a41b9e6720b2a8","verdict":"keep"}
+{"id":"id:src_e6a41b9e6720b2a8","verdict":"correct","target":"Silakan masukkan pesan JSON dan ID peer tujuan","confidence":"high","reason":"The MediaCore routing action addresses P2P target peer IDs. These targets say coworker/colleague IDs rather than peer endpoints; preserve the JSON literal."}
+{"id":"es:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"zh-Hans:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"hi:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"de:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"ja:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"fr:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"pt-BR:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"ar:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"ko:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"zh-Hant:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"vi:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"id:src_e6b1c9dc784bf306","verdict":"keep"}
+{"id":"es:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"zh-Hans:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"hi:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"de:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"ja:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"fr:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"pt-BR:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"ar:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"ko:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"zh-Hant:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"vi:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"id:src_e6b924cfb85f8d56","verdict":"keep"}
+{"id":"es:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"zh-Hans:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"hi:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"de:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"ja:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"fr:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"pt-BR:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"ar:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"ko:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"zh-Hant:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"vi:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"id:src_e6c235532a5748cf","verdict":"keep"}
+{"id":"es:src_e6c6eb66d5093660","verdict":"correct","target":"Pausar las búsquedas seleccionadas de la lista de deseos","confidence":"high","reason":"The Wishlist toolbar pauses multiple selected search entries. The current Spanish phrase makes the wishlist itself the selected singular object rather than the searches."}
+{"id":"zh-Hans:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"hi:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"de:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"ja:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"fr:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"pt-BR:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"ar:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"ko:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"zh-Hant:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"vi:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"id:src_e6c6eb66d5093660","verdict":"keep"}
+{"id":"es:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"zh-Hans:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"hi:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"de:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"ja:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"fr:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"pt-BR:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"ar:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"ko:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"zh-Hant:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"vi:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"id:src_e6cc0230d3eb74a7","verdict":"keep"}
+{"id":"es:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"zh-Hans:src_e6e2df88a6f99fed","verdict":"correct","target":"Lidarr API 密钥设置","confidence":"high","reason":"The Metadata Settings field stores Lidarr’s API credential. These targets translate “key” as a physical keyboard key/button rather than a cryptographic API key; preserve API."}
+{"id":"hi:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"de:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"ja:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"fr:src_e6e2df88a6f99fed","verdict":"correct","target":"Paramètre de clé API Lidarr","confidence":"high","reason":"The Metadata Settings field stores Lidarr’s API credential. These targets translate “key” as a physical keyboard key/button rather than a cryptographic API key; preserve API."}
+{"id":"pt-BR:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"ar:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"ko:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"zh-Hant:src_e6e2df88a6f99fed","verdict":"correct","target":"Lidarr API 金鑰設定","confidence":"high","reason":"The Metadata Settings field stores Lidarr’s API credential. These targets translate “key” as a physical keyboard key/button rather than a cryptographic API key; preserve API."}
+{"id":"vi:src_e6e2df88a6f99fed","verdict":"correct","target":"Cài đặt khóa API Lidarr","confidence":"high","reason":"The Metadata Settings field stores Lidarr’s API credential. These targets translate “key” as a physical keyboard key/button rather than a cryptographic API key; preserve API."}
+{"id":"id:src_e6e2df88a6f99fed","verdict":"keep"}
+{"id":"es:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"zh-Hans:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"hi:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"de:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"ja:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"fr:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"pt-BR:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"ar:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"ko:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"zh-Hant:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"vi:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"id:src_e6e9a8971a9e4022","verdict":"keep"}
+{"id":"es:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"zh-Hans:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"hi:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"de:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"ja:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"fr:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"pt-BR:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"ar:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"ko:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"zh-Hant:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"vi:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"id:src_e6eb341dd59add5d","verdict":"keep"}
+{"id":"es:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"zh-Hans:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"hi:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"de:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"ja:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"fr:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"pt-BR:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"ar:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"ko:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"zh-Hant:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"vi:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"id:src_e6ecdcd4bfd4b554","verdict":"keep"}
+{"id":"es:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"zh-Hans:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"hi:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"de:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"ja:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"fr:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"pt-BR:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"ar:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"ko:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"zh-Hant:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"vi:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"id:src_e6fc733082d3888b","verdict":"keep"}
+{"id":"es:src_e719d4387441d553","verdict":"keep"}
+{"id":"zh-Hans:src_e719d4387441d553","verdict":"keep"}
+{"id":"hi:src_e719d4387441d553","verdict":"keep"}
+{"id":"de:src_e719d4387441d553","verdict":"keep"}
+{"id":"ja:src_e719d4387441d553","verdict":"keep"}
+{"id":"fr:src_e719d4387441d553","verdict":"keep"}
+{"id":"pt-BR:src_e719d4387441d553","verdict":"keep"}
+{"id":"ar:src_e719d4387441d553","verdict":"keep"}
+{"id":"ko:src_e719d4387441d553","verdict":"keep"}
+{"id":"zh-Hant:src_e719d4387441d553","verdict":"keep"}
+{"id":"vi:src_e719d4387441d553","verdict":"keep"}
+{"id":"id:src_e719d4387441d553","verdict":"keep"}
+{"id":"es:src_e71a188211e0a100","verdict":"keep"}
+{"id":"zh-Hans:src_e71a188211e0a100","verdict":"keep"}
+{"id":"hi:src_e71a188211e0a100","verdict":"keep"}
+{"id":"de:src_e71a188211e0a100","verdict":"keep"}
+{"id":"ja:src_e71a188211e0a100","verdict":"keep"}
+{"id":"fr:src_e71a188211e0a100","verdict":"keep"}
+{"id":"pt-BR:src_e71a188211e0a100","verdict":"keep"}
+{"id":"ar:src_e71a188211e0a100","verdict":"keep"}
+{"id":"ko:src_e71a188211e0a100","verdict":"keep"}
+{"id":"zh-Hant:src_e71a188211e0a100","verdict":"keep"}
+{"id":"vi:src_e71a188211e0a100","verdict":"keep"}
+{"id":"id:src_e71a188211e0a100","verdict":"keep"}
+{"id":"es:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"zh-Hans:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"hi:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"de:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"ja:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"fr:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"pt-BR:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"ar:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"ko:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"zh-Hant:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"vi:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"id:src_e71a1a19361c7e57","verdict":"keep"}
+{"id":"es:src_e72c4b2fd99489a8","verdict":"correct","target":"Grupo para compartir","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"zh-Hans:src_e72c4b2fd99489a8","verdict":"keep"}
+{"id":"hi:src_e72c4b2fd99489a8","verdict":"correct","target":"शेयर समूह","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"de:src_e72c4b2fd99489a8","verdict":"correct","target":"Freigabegruppe","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"ja:src_e72c4b2fd99489a8","verdict":"keep"}
+{"id":"fr:src_e72c4b2fd99489a8","verdict":"correct","target":"Groupe de partage","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"pt-BR:src_e72c4b2fd99489a8","verdict":"correct","target":"Grupo de compartilhamento","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"ar:src_e72c4b2fd99489a8","verdict":"correct","target":"مجموعة مشاركة","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"ko:src_e72c4b2fd99489a8","verdict":"correct","target":"공유 그룹","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"zh-Hant:src_e72c4b2fd99489a8","verdict":"keep"}
+{"id":"vi:src_e72c4b2fd99489a8","verdict":"correct","target":"Nhóm chia sẻ","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"id:src_e72c4b2fd99489a8","verdict":"correct","target":"Grup berbagi","confidence":"high","reason":"The Collections field selects a Share Group entity and the other callsite names that entity in a member list. These targets read as the action “share a group”; use the noun for a group used to share."}
+{"id":"es:src_e7313c0cbff0ecf1","verdict":"correct","target":"Guarde esta suscripción al radar del artista. Observa evidencia de radar confiable ya incorporada y no consulta MusicBrainz, busca en Soulseek, explora pares de la red ni descarga contenido.","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}
+{"id":"zh-Hans:src_e7313c0cbff0ecf1","verdict":"correct","target":"保存此艺术家雷达订阅。它观察已收集的可信雷达证据，不会轮询 MusicBrainz、搜索 Soulseek、浏览对等节点或下载内容。","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}
+{"id":"hi:src_e7313c0cbff0ecf1","verdict":"correct","target":"इस कलाकार की रडार सदस्यता सहेजें। यह पहले से एकत्र किए गए विश्वसनीय रडार साक्ष्य देखती है; यह MusicBrainz से पूछताछ नहीं करती, Soulseek पर खोज नहीं करती, पीयरों को ब्राउज़ नहीं करती और डाउनलोड नहीं करती।","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}
+{"id":"de:src_e7313c0cbff0ecf1","verdict":"keep"}
+{"id":"ja:src_e7313c0cbff0ecf1","verdict":"keep"}
+{"id":"fr:src_e7313c0cbff0ecf1","verdict":"keep"}
+{"id":"pt-BR:src_e7313c0cbff0ecf1","verdict":"correct","target":"Salve esta assinatura do radar do artista. Ela observa evidências de radar confiáveis já coletadas e não consulta o MusicBrainz, não pesquisa no Soulseek, não navega por peers nem faz downloads.","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}
+{"id":"ar:src_e7313c0cbff0ecf1","verdict":"correct","target":"احفظ اشتراك رادار الفنان هذا. فهو يراقب أدلة الرادار الموثوقة التي جُمعت مسبقًا، ولا يستعلم من MusicBrainz أو يبحث في Soulseek أو يتصفح النظراء أو ينزّل.","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}
+{"id":"ko:src_e7313c0cbff0ecf1","verdict":"keep"}
+{"id":"zh-Hant:src_e7313c0cbff0ecf1","verdict":"correct","target":"保存此藝術家雷達訂閱。它會查看已收集的可信雷達證據，不會輪詢 MusicBrainz、搜尋 Soulseek、瀏覽對等節點或下載內容。","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}
+{"id":"vi:src_e7313c0cbff0ecf1","verdict":"correct","target":"Lưu đăng ký radar nghệ sĩ này. Tính năng này theo dõi bằng chứng radar đáng tin cậy đã được thu thập từ trước; không truy vấn MusicBrainz, tìm kiếm Soulseek, duyệt peer hay tải xuống.","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}
+{"id":"id:src_e7313c0cbff0ecf1","verdict":"correct","target":"Simpan langganan radar artis ini. Fitur ini mengamati bukti radar tepercaya yang sudah dikumpulkan dan tidak mengkueri MusicBrainz, mencari di Soulseek, menelusuri peer, atau mengunduh.","confidence":"high","reason":"The Artist Release Radar popup explains a local subscription that observes already-collected evidence and makes no network search. Several current targets mistranslate “ingested” as eaten/used/absorbed; some also translate P2P peers as colleagues, and Brazilian Portuguese uses the same verb for polling MusicBrainz and searching Soulseek. Preserve both protected service names."}

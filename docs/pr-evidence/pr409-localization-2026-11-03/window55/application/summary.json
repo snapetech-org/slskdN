@@ -1,0 +1,146 @@
+{
+  "appliedRankRange": [
+    276,
+    300
+  ],
+  "baseHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "baseTree": "a22e9a896aae12aa89a1502d9748b12816d491ed",
+  "catalogs": {
+    "ar": {
+      "afterSha256": "64305c42ad392113e7c8390029eb940c6334e2c9863b002faf7c5aa5eb27b931",
+      "beforeSha256": "7f305aa179448031a079c0e00c799a9f0bcf0d0828a8ea6b3e0c30d407f05402",
+      "changedCells": 7,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/ar.json"
+    },
+    "de": {
+      "afterSha256": "75f38aeba203eda95e8f17d8eb1c40e3e7b7fdb74492a10d90e6584edbfb014d",
+      "beforeSha256": "ce5a3e23d1168a6e23e3d78e02b9d12c609278249e32c44dd7aa130c777e4fe9",
+      "changedCells": 7,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/de.json"
+    },
+    "es": {
+      "afterSha256": "a79bee3aac01afb2db7ec76724243760fe0a2a97238e7e510344c93ccdc6d77f",
+      "beforeSha256": "0e62fb1e9940c944ce3234eba9c3c343726ebfd5f077db6f462dde0d860553fb",
+      "changedCells": 7,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/es.json"
+    },
+    "fr": {
+      "afterSha256": "36e98d268353f9ac223268c003f7f01f440c0a3b600fcae5b62612d667c73316",
+      "beforeSha256": "b580dbb51ad722f074820e95a4f1e21335409a0651474b44188ec76649980537",
+      "changedCells": 5,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/fr.json"
+    },
+    "hi": {
+      "afterSha256": "700aaf6577136abe1b200b2d55e5cda5744cab887540cccfac887ad63bbc80ac",
+      "beforeSha256": "4d77e357bda1738784bd88d88e5094e2930d03acf0de7532e8b074f1392ba27a",
+      "changedCells": 3,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/hi.json"
+    },
+    "id": {
+      "afterSha256": "93f6b0ffeaeb75ae2c45a7fdf578b583411205b2566046f598ad50392a2599cc",
+      "beforeSha256": "cccc1caf4e0432e675da32eac088b3af6043a86dc8e48c773d30bdda1939eeae",
+      "changedCells": 6,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/id.json"
+    },
+    "ja": {
+      "afterSha256": "ede4596f201a0899194156f7297c5a93badcb251900ef29d41d75905b323e599",
+      "beforeSha256": "54fbd2974bf1f982b3ac2535f5a74d3561ad4cf0edbe2a4ac7705c1c25beff1a",
+      "changedCells": 7,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/ja.json"
+    },
+    "ko": {
+      "afterSha256": "477044a064ba3f6d14245c465ae8a5016ddc6a17c24952c0e8c94b2ef2d5f48c",
+      "beforeSha256": "610a95746cbb307a9e6e85fc4f3f32cb80ab291a433894f2400d0551f1da7a6b",
+      "changedCells": 6,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/ko.json"
+    },
+    "pt-BR": {
+      "afterSha256": "42f0ea08da6198f921dcc63d6a2770e04e1b0fc4fa374d4fe582aad60ea8491d",
+      "beforeSha256": "ddb88477cb60082bf4c8141fbcba23642287c9bb34f450bdf737b1c72e9eea0c",
+      "changedCells": 7,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/pt-BR.json"
+    },
+    "vi": {
+      "afterSha256": "80d4bdc037f65ba755dbbd03838b6ce715b174a1be177e03528236d3c5a5c950",
+      "beforeSha256": "579329dbcf31eee791e94ddb742f98b1bef1801b0364f6caa74a02907c9f3416",
+      "changedCells": 6,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/vi.json"
+    },
+    "zh-Hans": {
+      "afterSha256": "555f6de0399506b8c8e49ce44d0c5355f9d78040fdd5634a73c07e180e8ec086",
+      "beforeSha256": "8c5e3526836bcee4b3b55267e00d8fa6e0fda9504f0a36794de29e47d868df18",
+      "changedCells": 5,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/zh-Hans.json"
+    },
+    "zh-Hant": {
+      "afterSha256": "be5405cfcffcb55d5492da64e610a2095fef23944d746fa5e20632408090b96a",
+      "beforeSha256": "01c34c123e897e0bf1357084ee241071ce2e2c217e91a900b83abe20cd5d3a7b",
+      "changedCells": 5,
+      "entryCount": 6176,
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/zh-Hant.json"
+    }
+  },
+  "changedByLocale": {
+    "ar": 7,
+    "de": 7,
+    "es": 7,
+    "fr": 5,
+    "hi": 3,
+    "id": 6,
+    "ja": 7,
+    "ko": 6,
+    "pt-BR": 7,
+    "vi": 6,
+    "zh-Hans": 5,
+    "zh-Hant": 5
+  },
+  "changedCells": 71,
+  "finalDispositions": {
+    "accept-current": 193,
+    "correction": 59,
+    "hold-terminology": 36,
+    "refinement": 12
+  },
+  "gitDiffCheck": "passed",
+  "headedProductBrowserAcceptance": false,
+  "holdRanks": [
+    278,
+    282,
+    289
+  ],
+  "nativeSpeakerApproval": false,
+  "pullRequest": 409,
+  "ranks301And302Touched": false,
+  "readbackMismatches": 0,
+  "readbackRows": 300,
+  "repository": "snapetech-org/slskdN",
+  "retainedCurrentCells": 193,
+  "reviewedCells": 300,
+  "terminologyHolds": 36,
+  "testsBuildsScansCiRun": false,
+  "window": "W55",
+  "workflowsChanged": false
+}

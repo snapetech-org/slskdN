@@ -1,0 +1,15 @@
+{
+  "callerGitBlob": "ab5a672ca6e1242e45da3f93247593780221eadc",
+  "callerPath": "src/web/src/components/Messaging/MessagingV2.jsx",
+  "callerSha256": "19060fc2a401f489313c8e7c5e4d67a4c7a7b2db591bde3cec3056aad46b72bd",
+  "catalogsReattested": 12,
+  "cleanWorktree": true,
+  "head": "490983c336d4958f11518c73268de2788c8858cb",
+  "pr": "OPEN/DRAFT",
+  "renderedBrowserEvidence": false,
+  "richTextGitBlob": "14a72e54457bebb3eb9f0f8aba0750ed8ead8c39",
+  "richTextPath": "src/web/src/components/Shared/LocalizedText.jsx",
+  "richTextSha256": "63580997056b598d0752519d059776abd607c1f105e2b299cd270d0a4a227319",
+  "targetHashesReattested": 12,
+  "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da"
+}

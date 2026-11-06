@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { fetchAlbumCompletion } from '../../lib/musicBrainz';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -55,7 +55,7 @@ const AlbumCompletionPanel = ({ disabled }) => {
       setAlbums(normalizeAlbumCompletionAlbums(response.data));
     } catch (loadError) {
       console.error(loadError);
-      setError(getApiErrorMessage(loadError, { t: interfaceText }, 'Unable to load album completion data'));
+      setError(getApiErrorMessageOutput(loadError, { t: interfaceText }, 'Unable to load album completion data'));
     } finally {
       setLoading(false);
     }
@@ -99,7 +99,7 @@ const AlbumCompletionPanel = ({ disabled }) => {
       </Header>
       {error && (
         <Message
-          content={error}
+          content={<LocalizedOutputText output={error} />}
           negative
         />
       )}

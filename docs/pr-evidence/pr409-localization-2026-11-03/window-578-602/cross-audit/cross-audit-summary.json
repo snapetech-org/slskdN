@@ -1,0 +1,345 @@
+{
+  "artifact": "slskdN PR #409 W68 cross-audit ledger",
+  "scope": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "head": "973a65312a475de4d8aa39aee837249553fd884e",
+    "tree": "2a7b200dd1fe96f894bfdb663f656d6ffd48f487",
+    "continuationRankRange": [
+      578,
+      602
+    ],
+    "remainingQueueRankRange": [
+      478,
+      502
+    ],
+    "sourceCount": 25,
+    "localeCount": 12,
+    "cellCount": 300,
+    "locales": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "inputPins": {
+    "candidateFreeInputPath": "../slskdn-pr409-w68-ranks578-602-candidate-free-20261103/input",
+    "candidateFreeManifestSha256": "a9f4ebf9dd435faf2330fce08d0f90ef131bc0c8d694f54475a4450e11ce568f",
+    "candidateFreePacketSumsSha256": "0ddb2a00cefbe6dbc16c883bb43b316ee316638d014e57c4d24441af774ed2ca",
+    "candidateFreeCellsSha256": "e0f3ed9ab0364af4603720578e3d8eb3cfdbf8def9a1117e65bc948b1e5de14f",
+    "candidateFreeCallerContextsSha256": "6ac31f3b1c2942cf1334b5d5aa724eef02dc8e3d1e817a01eec354a4edf707e7",
+    "candidateFreePriorHoldsSha256": "727dcec1b2cf2e3b4520bdb4b826105587a4609b5958b77f81e29e22b14bfb76",
+    "blindLedgerPath": "../slskdn-pr409-w68-ranks578-602-blind-review-20261103/review-ledger.jsonl",
+    "blindManifestSha256": "042c0cb34f87a64e7f1c5592d3e3ff0aabb785937c55d30d51249519defc7ac4",
+    "blindLedgerSha256": "dc961a5b981ce0fd8559704e84fad007dc2cba8c950ea4c62c8a8be4d42f6f15",
+    "blindHoldLedgerSha256": "de223a7bfc905b17d8ab55edcafab0ee37b690eaf3974aa486b7790d87f66f42",
+    "primaryPacketPath": "../slskdn-pr409-w68-ranks578-602-primary-20261103/primary-review",
+    "primaryManifestSha256": "0986395655f3aae1d95c24f787d717de14e143ad71ca4f6f47a1b117c85d8569",
+    "primaryLedgerSha256": "2ef76aae570e974fcd0d6b27bb7ba2c9b573db2243fda339e62052a7bbc0bb04",
+    "primarySummarySha256": "82df162af725cbd701a62fc8093843ae0330aeb27fb6de00d0fdb6e90296989e"
+  },
+  "sourcePacketVerification": {
+    "candidateFreeInput": "PASS",
+    "blindReport": "PASS",
+    "sealedPrimaryPacket": "PASS",
+    "headTreeMatch": true,
+    "catalogAndCallerPinsMatchAll300": true
+  },
+  "reconciliation": {
+    "primaryDispositionCounts": {
+      "accept-current": 271,
+      "correction": 29
+    },
+    "blindVerdictCounts": {
+      "accept": 273,
+      "revise": 27,
+      "hold": 0
+    },
+    "finalDecisionCounts": {
+      "accept-current": 271,
+      "correction": 29,
+      "hold": 0
+    },
+    "comparisonCounts": {
+      "both-accept-current": 271,
+      "primary-only-correction": 2,
+      "both-correct-target-differs": 16,
+      "both-correct-same-target": 11
+    },
+    "dispositionDisagreements": 2,
+    "proposalTextDifferencesAmongSharedCorrections": 16,
+    "totalCellLevelDifferencesResolved": 18,
+    "blindOnlyCorrections": 0,
+    "allDifferencesResolved": true,
+    "differences": [
+      {
+        "continuationRank": 580,
+        "sourceId": "src_25c43b9b9d94de37",
+        "locale": "id",
+        "differenceType": "primary-only-correction",
+        "currentTarget": "Tag dan organisasi hanya menjalankan uji coba; tidak ada penulisan tag, penulisan sampul, menjalankan ReplayGain, pemindahan file, pencarian penyedia, pencarian Soulseek, penelusuran rekan, atau pengunduhan telah dimulai.",
+        "primaryDisposition": "correction",
+        "blindVerdict": "accept",
+        "primaryProposal": "Hanya simulasi pemberian tag dan pengorganisasian; belum ada penulisan tag, penulisan sampul, proses ReplayGain, pemindahan file, pencarian penyedia, pencarian Soulseek, penelusuran peer, atau pengunduhan yang dimulai.",
+        "blindSuggestion": null,
+        "selectedTarget": "Hanya simulasi pemberian tag dan pengorganisasian; belum ada penulisan tag, penulisan sampul, proses ReplayGain, pemindahan file, pencarian penyedia, pencarian Soulseek, penelusuran peer, atau pengunduhan yang dimulai.",
+        "resolution": "Primary-only correction upheld. In the playlist-intake safety notice, the current Indonesian list followed by “telah dimulai” leaves the scope of “tidak ada” unclear; “rekan” is also imprecise for network peer browse. Primary wording clearly says none of the listed actions has started and retains peer terminology."
+      },
+      {
+        "continuationRank": 580,
+        "sourceId": "src_25c43b9b9d94de37",
+        "locale": "ko",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "태그 및 구성 테스트 실행만 가능합니다. 태그 쓰기 없음, 표지 쓰기, ReplayGain 실행, 파일 이동, 공급자 조회, Soulseek 검색, 피어 찾아보기 또는 다운로드가 시작되었습니다.",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "태그 지정과 정리의 시험 실행만 수행합니다. 태그 쓰기, 표지 아트 쓰기, ReplayGain 실행, 파일 이동, 제공자 조회, Soulseek 검색, 피어 탐색 또는 다운로드는 아직 시작되지 않았습니다.",
+        "blindSuggestion": "태그 지정과 정리의 드라이런만 진행되었습니다. 태그나 커버 아트를 기록하거나, ReplayGain을 실행하거나, 파일을 이동하거나, 제공자를 조회하거나, Soulseek을 검색하거나, 피어를 탐색하거나, 다운로드하는 작업은 시작되지 않았습니다.",
+        "selectedTarget": "태그 지정과 정리의 시험 실행만 수행합니다. 태그 쓰기, 표지 아트 쓰기, ReplayGain 실행, 파일 이동, 제공자 조회, Soulseek 검색, 피어 탐색 또는 다운로드는 아직 시작되지 않았습니다.",
+        "resolution": "Primary wording selected: “아직 시작되지 않았습니다” clearly scopes the no-start claim across the action list, while “시험 실행” names the dry run. This matches the no-side-effects caller."
+      },
+      {
+        "continuationRank": 580,
+        "sourceId": "src_25c43b9b9d94de37",
+        "locale": "zh-Hans",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "仅限标签和组织试运行；没有标记写入、封面艺术写入、ReplayGain 运行、文件移动、提供商查找、Soulseek 搜索、对等浏览或下载已开始。",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "仅进行标签与整理的试运行；尚未开始写入标签、写入封面、运行 ReplayGain、移动文件、查询服务提供方、搜索 Soulseek、浏览对等节点或下载。",
+        "blindSuggestion": "仅进行标签与整理的试运行；尚未开始写入标签或封面、运行 ReplayGain、移动文件、查询提供商、搜索 Soulseek、浏览对等节点或下载。",
+        "selectedTarget": "仅进行标签与整理的试运行；尚未开始写入标签、写入封面、运行 ReplayGain、移动文件、查询服务提供方、搜索 Soulseek、浏览对等节点或下载。",
+        "resolution": "Primary wording selected: “尚未开始” clearly scopes the no-start claim across the list and separates tag and cover writes. ReplayGain and Soulseek remain exact."
+      },
+      {
+        "continuationRank": 580,
+        "sourceId": "src_25c43b9b9d94de37",
+        "locale": "zh-Hant",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "僅限標籤和組織試運行；沒有標記寫入、封面藝術寫入、ReplayGain 運行、文件移動、提供者查找、Soulseek 搜尋、對等瀏覽或下載已開始。",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "僅進行標記與整理的試運行；尚未開始寫入標記、寫入封面、執行 ReplayGain、移動檔案、查詢服務提供者、搜尋 Soulseek、瀏覽對等節點或下載。",
+        "blindSuggestion": "僅進行標籤與整理的試運行；尚未開始寫入標籤或封面、執行 ReplayGain、移動檔案、查詢提供者、搜尋 Soulseek、瀏覽對等節點或下載。",
+        "selectedTarget": "僅進行標記與整理的試運行；尚未開始寫入標記、寫入封面、執行 ReplayGain、移動檔案、查詢服務提供者、搜尋 Soulseek、瀏覽對等節點或下載。",
+        "resolution": "Primary wording selected: “尚未開始” clearly scopes the no-start claim across the list and separates tag and cover writes. ReplayGain and Soulseek remain exact."
+      },
+      {
+        "continuationRank": 589,
+        "sourceId": "src_2656ecd3276654fc",
+        "locale": "hi",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "रैंकिंग, डाउनलोड या स्थानीय फ़ाइलों को बदले बिना इस सॉन्गआईडी रन के लिए संपूर्ण फोरेंसिक मैट्रिक्स JSON की प्रतिलिपि बनाएँ।",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "रैंकिंग, डाउनलोड या स्थानीय फ़ाइलों में बदलाव किए बिना इस SongID प्रक्रिया की पूरी फोरेंसिक मैट्रिक्स JSON कॉपी करें।",
+        "blindSuggestion": "रैंकिंग, डाउनलोड या स्थानीय फ़ाइलों को बदले बिना इस SongID रन के लिए संपूर्ण फोरेंसिक मैट्रिक्स JSON की प्रतिलिपि बनाएँ।",
+        "selectedTarget": "रैंकिंग, डाउनलोड या स्थानीय फ़ाइलों में बदलाव किए बिना इस SongID प्रक्रिया की पूरी फोरेंसिक मैट्रिक्स JSON कॉपी करें।",
+        "resolution": "Primary wording selected: SongID and JSON remain exact, and the read-only promise is preserved. “प्रक्रिया” renders the run as a process in this button label."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "de",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "Laden Sie fehlerhafte Aufbewahrungsminuten herunter",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Aufbewahrungsdauer fehlgeschlagener Downloads (Minuten)",
+        "blindSuggestion": "Aufbewahrungsdauer für fehlgeschlagene Downloads (Minuten)",
+        "selectedTarget": "Aufbewahrungsdauer fehlgeschlagener Downloads (Minuten)",
+        "resolution": "Primary noun-phrase label selected: it identifies retention duration for failed downloads in minutes and avoids an imperative to download minutes."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "es",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "Descargar actas de retención con errores",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Tiempo de retención de las descargas fallidas (minutos)",
+        "blindSuggestion": "Minutos de retención para descargas con errores",
+        "selectedTarget": "Tiempo de retención de las descargas fallidas (minutos)",
+        "resolution": "Primary label selected: it names retention duration for failed downloads, states the unit, and avoids the current imperative “Descargar” and false “actas” reading."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "fr",
+        "differenceType": "primary-only-correction",
+        "currentTarget": "Minutes de conservation des téléchargements en erreur",
+        "primaryDisposition": "correction",
+        "blindVerdict": "accept",
+        "primaryProposal": "Durée de conservation des téléchargements en erreur (minutes)",
+        "blindSuggestion": null,
+        "selectedTarget": "Durée de conservation des téléchargements en erreur (minutes)",
+        "resolution": "Primary-only clarity correction upheld. The Admin Policies caller binds this input to retentionDownloadErrored; “Durée de conservation … (minutes)” explicitly labels a duration for failed downloads. The existing wording is understandable but reads as a bare minutes quantity."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "hi",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "त्रुटिपूर्ण अवधारण मिनट डाउनलोड करें",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "विफल डाउनलोड रखने की अवधि (मिनट)",
+        "blindSuggestion": "त्रुटि वाले डाउनलोड के लिए अवधारण अवधि (मिनट)",
+        "selectedTarget": "विफल डाउनलोड रखने की अवधि (मिनट)",
+        "resolution": "Primary noun phrase selected: it labels the period for keeping failed downloads in minutes and avoids the current imperative."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "id",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "Unduh menit retensi yang error",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Lama penyimpanan unduhan yang gagal (menit)",
+        "blindSuggestion": "Lama retensi unduhan yang gagal (menit)",
+        "selectedTarget": "Lama penyimpanan unduhan yang gagal (menit)",
+        "resolution": "Primary label selected: “Lama penyimpanan … (menit)” reads as storage/retention duration for failed downloads and avoids the current imperative “Unduh.”"
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "ko",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "오류가 발생한 보존 시간(분) 다운로드",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "실패한 다운로드 보존 기간(분)",
+        "blindSuggestion": "오류가 발생한 다운로드의 보존 기간(분)",
+        "selectedTarget": "실패한 다운로드 보존 기간(분)",
+        "resolution": "Primary noun phrase selected: it clearly labels a retention period for failed downloads in minutes, without the current trailing action-like “다운로드.”"
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "pt-BR",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "Baixar minutos de retenção com erros",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Tempo de retenção de downloads com falha (minutos)",
+        "blindSuggestion": "Minutos de retenção de downloads com erro",
+        "selectedTarget": "Tempo de retenção de downloads com falha (minutos)",
+        "resolution": "Primary label selected: it expresses a retention duration for failed downloads with the unit, rather than an instruction to download retention minutes."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "vi",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "Tải xuống số phút lưu giữ bị lỗi",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Thời gian lưu giữ các lượt tải xuống bị lỗi (phút)",
+        "blindSuggestion": "Số phút lưu giữ các lượt tải xuống bị lỗi",
+        "selectedTarget": "Thời gian lưu giữ các lượt tải xuống bị lỗi (phút)",
+        "resolution": "Primary label selected: “Thời gian lưu giữ … (phút)” clearly identifies the retention duration for failed downloads and keeps the unit."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "zh-Hans",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "下载错误的保留分钟数",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "失败下载的保留时长（分钟）",
+        "blindSuggestion": "错误下载的保留时长（分钟）",
+        "selectedTarget": "失败下载的保留时长（分钟）",
+        "resolution": "Primary wording selected: “失败下载” identifies failed downloads and “保留时长（分钟）” labels their retention setting, rather than an action."
+      },
+      {
+        "continuationRank": 600,
+        "sourceId": "src_26a7b4457c742aa0",
+        "locale": "zh-Hant",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "下載錯誤的保留分鐘數",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "失敗下載的保留時間（分鐘）",
+        "blindSuggestion": "錯誤下載的保留時間（分鐘）",
+        "selectedTarget": "失敗下載的保留時間（分鐘）",
+        "resolution": "Primary wording selected: “失敗下載” identifies failed downloads and “保留時間（分鐘）” labels their retention setting, rather than an action."
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "fr",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "Gestion des membres des pods",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Gestion des membres de Pod",
+        "blindSuggestion": "Gestion des membres du Pod",
+        "selectedTarget": "Gestion des membres de Pod",
+        "resolution": "Primary wording selected: it preserves exact product literal Pod while naming the members managed by the MediaCorePods card."
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "ja",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "ポッドメンバーシップ管理",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Pod メンバーシップ管理",
+        "blindSuggestion": "Podメンバーシップ管理",
+        "selectedTarget": "Pod メンバーシップ管理",
+        "resolution": "Primary wording selected: it preserves exact Pod and visually separates the Latin product name from the Japanese membership label."
+      },
+      {
+        "continuationRank": 601,
+        "sourceId": "src_26b743e0d19c1be3",
+        "locale": "pt-BR",
+        "differenceType": "both-correct-target-differs",
+        "currentTarget": "Gerenciamento de associação de pod",
+        "primaryDisposition": "correction",
+        "blindVerdict": "revise",
+        "primaryProposal": "Gerenciamento da associação ao Pod",
+        "blindSuggestion": "Gerenciamento da associação do Pod",
+        "selectedTarget": "Gerenciamento da associação ao Pod",
+        "resolution": "Primary wording selected: “associação ao Pod” expresses membership in the named Pod entity more clearly than “associação do Pod.”"
+      }
+    ],
+    "selectedTargets": "All 29 corrections use the primary proposal after cross-audit; 271 accepted cells retain the current catalog value."
+  },
+  "selectedTargetTokenChecks": {
+    "placeholderMismatches": 0,
+    "markupMismatches": 0,
+    "numericMismatches": 0,
+    "protectedLiteralMismatches": 0
+  },
+  "priorHoldReconciliation": {
+    "candidateFreeRows": 128,
+    "blindRows": 128,
+    "crossAuditRows": 128,
+    "candidateFreeVsBlindHashesMatchAll": true,
+    "primaryAggregateCount": 128,
+    "primaryAggregateUnchanged": true,
+    "rowLevelPrimaryHoldLedgerPresent": false,
+    "evidenceGap": "The sealed primary packet reports 128 unchanged holds in its summary but contains no per-cell carried-hold ledger. Cross-audit verifies all 128 target hashes from the candidate-free packet against the sealed blind hold ledger; the primary aggregate agrees."
+  },
+  "confidenceAndLimitations": {
+    "nativeSpeakerReview": "not performed",
+    "browserReview": "not performed",
+    "evidenceGaps": [
+      "No row-level carried-hold artifact exists in the primary packet; aggregate count/status was cross-checked against 128 independently verified candidate-free/blind rows."
+    ]
+  },
+  "reviewOutcome": "All 300 cells and 128 carried holds reconciled. Final counts: 271 accept-current, 29 corrections, 0 holds."
+}

@@ -1,0 +1,14 @@
+{
+  "pr": "snapetech-org/slskdN#409",
+  "head": "f11dc7199b662a49c5e84794730043af29d6830b",
+  "tree": "14fc14f856f6335c17d87e78e33963ad1c219735",
+  "sourceTree": "f55419446a34ba4c6cd666aedd1b192d004e88c3",
+  "crossreviewPlanSha256": "a4754dbb630a91f612013e11feba2d2d27f38587eb17411ebeafde9a32eaee66",
+  "inputSha256": "cdddce2d0a1eb4b24ac1dced73273ecedb23ef7ff7cc1feb6c426df35a8e8311",
+  "rows": 39,
+  "accepted": 37,
+  "refined": 2,
+  "held": 0,
+  "disposition": "apply all after exact-head revalidation",
+  "nativeSpeakerReview": "outstanding"
+}

@@ -1,0 +1,37 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W52 / continuation ranks 201–225",
+  "status": "root-ratified translation adjudication; no repository or PR changes applied",
+  "inputHead": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+  "inputTree": "ca9f1bf1d9f4373556476a51b863601668878eb3",
+  "inputManifestSha256": "ad0ac60a4d2782cbb7ef759ef0cb68458d71f4431136e098c7b8010470183cb9",
+  "rootStrictBlindLedgerSha256": "887247a6dfd6edaf63e6b201724cfb17dfd801a09ef1cefabd71154a1312311d",
+  "primaryLedgerSha256": "b72ccf5f7dd9656e0aea247874e1053cbea30885e60d27593cc01fad87201b27",
+  "independentLedgerSha256": "9ad6d680beb4871459ae19c304005be896de957745ae20dd7c193db3526b947d",
+  "proposalLedgerSha256": "642dd99cca384bb4f5654af400b7fb30eff5cd76d3d06a929f44c439661d2822",
+  "ratifiedLedgerSha256": "79ad76059db3fa97b1dccf6e93dddc52eede7de8136647de43115d55883abfc4",
+  "callerResolution": {
+    "path": "src/web/src/components/Player/PlayerBar.jsx",
+    "sha256": "6ca606f6b297479116588e8f06e044f2755f835c9bd94d2b897b22fbf90dd446",
+    "rangeDays": [
+      7,
+      30,
+      90
+    ],
+    "allTimeSeparateSource": true
+  },
+  "cellCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "targetChanges": 100,
+  "finalDispositions": {
+    "accept-current": 200,
+    "correction": 66,
+    "refinement": 34
+  },
+  "placeholderParity": true,
+  "holds": 0,
+  "nativeSpeakerReview": false,
+  "repoOrPrMutated": false
+}

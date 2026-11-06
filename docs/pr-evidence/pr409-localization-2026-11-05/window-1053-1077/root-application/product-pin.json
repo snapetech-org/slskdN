@@ -1,0 +1,33 @@
+{
+  "productCommit": "9d6255ebb4300c47f811894711e36f3a4f6597dc",
+  "productTree": "dfcd0f34508eee20652bf95c41b13d62d43b9298",
+  "catalogFiles": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "catalogSha256": {
+    "src/web/public/locales/ar.json": "2f1b23369b9d210e2bdea0999db51236d5637adc4c09195b8a32ea6bbc273482",
+    "src/web/public/locales/de.json": "32ed7f22ccc65534568cf92f52025257f36b15524d2f0b6eaab8eae589527009",
+    "src/web/public/locales/es.json": "366f409432336bdeedc786939e3b44c55be379c87cea83f9067e56f0c45b256d",
+    "src/web/public/locales/fr.json": "fc14ea43fd76ed3ab0a104d2ce916184d3e73fa3845de3c58a45914087d2f168",
+    "src/web/public/locales/hi.json": "adfb9559924c6b2ad7084268907ccb3e368e58a0fc10304e96a9828b04f10fe6",
+    "src/web/public/locales/id.json": "f6cd915c2163cc71b2bdadd8b2def1a914005a25af41fdade186aa68b7ea8faa",
+    "src/web/public/locales/ja.json": "7e79c2fcdb7f9bc95227efa00948e1864dc1280e727a01777da96200f11332a3",
+    "src/web/public/locales/ko.json": "88614702652774c0d854454e0c2694f0b91d84b10341d2d49107afcadd7caa1d",
+    "src/web/public/locales/pt-BR.json": "0168f987d681cc6b12a4dba0569e8e44189f4e8ff818b250b6f7d2181265b7b9",
+    "src/web/public/locales/vi.json": "45920e3a427690a62a7800211fa6f373deed032b8c38ceaadfd4efb94e57ea38",
+    "src/web/public/locales/zh-Hans.json": "9fa66a5488a55727db7e4bc477b4fb05ea59325671da9b19377ebbd67e0b113e",
+    "src/web/public/locales/zh-Hant.json": "64aa0e816fe9e69cc9d5f7885913aadc184f3b5ef1c8fbed1443e931039f6321"
+  },
+  "changedCells": 54
+}

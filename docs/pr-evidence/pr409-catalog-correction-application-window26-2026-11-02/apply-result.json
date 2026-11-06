@@ -1,0 +1,27 @@
+{
+  "result": "APPLIED_AND_VERIFIED",
+  "applicationCommit": "792f19f3ecf0370ff0cc65307cab376dd5512498",
+  "applicationTree": "bb05bd2fb2d71937d12e2123237051ef02563013",
+  "baseHead": "7c3283a340324e19577a486bfc427eb40b6eb5f2",
+  "baseTree": "cf5e11244515bcd78b3bdea08226a52192b5aae3",
+  "rows": 48,
+  "uncertainRows": 12,
+  "catalogFiles": 12,
+  "changedCells": 48,
+  "byLocale": {
+    "ar": 6,
+    "de": 5,
+    "es": 4,
+    "fr": 4,
+    "hi": 5,
+    "id": 2,
+    "ja": 3,
+    "ko": 5,
+    "pt-BR": 2,
+    "vi": 4,
+    "zh-Hans": 4,
+    "zh-Hant": 4
+  },
+  "workflowChanges": 0,
+  "nonCatalogSourceChanges": 0
+}

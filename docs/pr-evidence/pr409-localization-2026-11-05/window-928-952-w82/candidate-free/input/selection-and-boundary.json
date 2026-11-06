@@ -1,0 +1,64 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W82",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "tree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5",
+  "candidateFree": true,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "sourceCount": 25,
+  "cellCount": 300,
+  "continuationRankRange": [
+    928,
+    952
+  ],
+  "remainingQueueRankRange": [
+    828,
+    852
+  ],
+  "previousWindow": "W81 plus W910 source rewrite follow-up",
+  "previousWindowFinalRank": {
+    "continuationRank": 927,
+    "remainingQueueRank": 827,
+    "sourceId": "src_34cd555b3f77f911",
+    "sourceSha256": "34cd555b3f77f91171073b476f1c8694b6f4e7e31a43e83c08394a09bcfa0906"
+  },
+  "nextUnselected": {
+    "continuationRank": 953,
+    "remainingQueueRank": 853,
+    "sourceId": "src_358f9860b3f4e247",
+    "sourceSha256": "358f9860b3f4e2476f67bc2385ddacbc10fc13858989bd9390ff6416824b6fd9"
+  },
+  "sourceInventoryRows": 6175,
+  "stableRankedRows": 4967,
+  "retiredStableRankRows": [
+    185,
+    732,
+    750,
+    910
+  ],
+  "sourceRewriteReplacementIdsExcluded": [
+    "src_41daa09c736a103b",
+    "src_84420341dbb4e4a4",
+    "src_c04ff600b79f3317"
+  ],
+  "orderedCatalogKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+  "catalogEntryCountPerLocale": 6175,
+  "priorSelectedAndRewriteIdsExcluded": 2010,
+  "proposedTargetsIncluded": false,
+  "reviewDecisionsIncluded": false
+}

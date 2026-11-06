@@ -1,0 +1,96 @@
+{
+  "result": "PASS",
+  "reviewBaseHead": "dfb9707f946bf2686210bcf1072b9d70c8442a62",
+  "reviewBaseTree": "9458e836ae12c02573535b5c9dc052f055b7820d",
+  "rootApprovedTargets": 29,
+  "acceptedAsProposed": 22,
+  "refined": 7,
+  "held": 0,
+  "catalogFilesChanged": 11,
+  "changedKeysByLocale": {
+    "ar": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "Conflict",
+      "Manage published descriptors and monitor publishing status",
+      "Max Retries",
+      "SSH",
+      "e.g., mb:recording:12345-6789-..."
+    ],
+    "de": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "Sync Preview"
+    ],
+    "es": [],
+    "fr": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "e.g., mb:recording:12345-6789-..."
+    ],
+    "hi": [
+      "e.g., mb:recording:12345-6789-..."
+    ],
+    "id": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "Max Retries"
+    ],
+    "ja": [
+      "Conflict",
+      "Seq ID"
+    ],
+    "ko": [
+      "Automation visible",
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "Conflict",
+      "Seq ID",
+      "e.g., mb:recording:12345-6789-..."
+    ],
+    "pt-BR": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "e.g., mb:recording:12345-6789-..."
+    ],
+    "vi": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "Manage published descriptors and monitor publishing status",
+      "Query content descriptors by domain and optional type"
+    ],
+    "zh-Hans": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "e.g., mb:recording:12345-6789-..."
+    ],
+    "zh-Hant": [
+      "Backfill sync completed: {totalMessagesReceived} messages received",
+      "e.g., mb:recording:12345-6789-..."
+    ]
+  },
+  "newCatalogFileSha256": {
+    "ar": "8922f03545a9edebd323f4f2692c549fa1f007a2fba923b29e795510d338b22a",
+    "de": "14b8436a948506fd51bd9f385ade5c738a7cc5c0d2dddb5a333516980e66c5df",
+    "fr": "5a24596ace3952bfa6518bea5df85b3efa91af1fef13abf07edf85cb68f9767d",
+    "hi": "8a16c53d79a861fb0c5fadd15ffbe50a1a8d5f0c500eaa2f1543677eb1634f74",
+    "id": "ef7e4528f0fd368d1bc10e78ac991f7f0578032391ddf4c0d3c3de376019f424",
+    "ja": "c1347a69945e2aae94c6cc25d3e7955e1f622f7d4697257d47a79e9baffc354d",
+    "ko": "46e2c58e51bbdcce06e82aeb604a9103a3a814e1232887869545c50e4146847a",
+    "pt-BR": "ebcdddf28e64f57e12fe631feb68af0a9caa112a6c193839f4554a82c538e7ac",
+    "vi": "a26ea14df241076087d3c8a7665f557320b200fb46af3bf70d063209b04b5fea",
+    "zh-Hans": "1e7cc620d7ae3f930b9d5cc0f14b181f0dcb1ae49199709cc5161d62a6a1864a",
+    "zh-Hant": "ea7e3c187358537322df7e9392c3a3b2a3c29dc61223964ade57e32a9b602914"
+  },
+  "all29FinalValuesExact": true,
+  "callerPinsRecheckedAtReviewBase": 38,
+  "placeholderAndProtectedLiteralChecks": "passed at root review; final target hashes rechecked during application",
+  "repositoryTrackedChangesBeforeEvidenceStaging": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "workflowFilesChanged": false,
+  "testsBuildScansCiRun": false
+}

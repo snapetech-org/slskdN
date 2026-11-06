@@ -1,0 +1,12 @@
+{
+  "crossReviewManifestSha256": "1d478c9dbaec0a501815efac259db62e4c11652399c6b971d2dc316319e70fae",
+  "crossReviewPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window46-reconstructed-ranks26-50-crossreview-20261102",
+  "crossReviewSHA256SUMSSha256": "c146c0feb2295302ec8a92c4ef887b3e93c53bb126904889525d760b1584f443",
+  "crossReviewVerifiedFileCount": 10,
+  "livePRSnapshot": "live-pr-snapshot.json",
+  "primaryManifestSha256": "52c0d2f6e314eb047c9fd23aadbf4f32e496999988d33c8ff41ae3603f321215",
+  "primaryPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window46-reconstructed-ranks26-50-primary-20261102",
+  "primarySHA256SUMSSha256": "2040e66635e5c5d239533ba40b41a858ee73dccc2e2377be0d2fed40ba8f0362",
+  "primaryVerifiedFileCount": 18,
+  "worktreeSnapshot": "worktree-snapshot.json"
+}

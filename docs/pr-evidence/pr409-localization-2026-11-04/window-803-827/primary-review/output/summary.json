@@ -1,0 +1,470 @@
+{
+  "artifact": "slskdN PR #409 W77 independent primary semantic review",
+  "head": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "tree": "b8692bb066cede93b6668806d0b97816135ce647",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositions": {
+    "accept-current": 238,
+    "correct": 50,
+    "hold": 12
+  },
+  "proposedTargetCount": 50,
+  "holds": 12,
+  "callerlessSources": 1,
+  "callerlessCells": 12,
+  "candidateFreeInputManifestSha256": "0a04484d9130c465ebe18960492b6cc5ecdce8bb6e6613baf98273bf4debd9f5",
+  "candidateFreeInputChecksumListSha256": "6c4e088c1f54a4a03261575b008eb3185aa21750455c75740d47144bf5074474",
+  "selectionBoundarySha256": "73cd345fc3ade772ef9b309dc1aca67a9f76f042e42c7b3cea6fac521ba312ed",
+  "sourceInventorySelectionSha256": "6ce5fab4dafe2e1bcf6fab540c1844b0e2f9df8b77093ebf19cb8e455dc0f96b",
+  "callerContextSha256": "cc58649d6fb0214d084313520708ddf440a87536d4d1d65b4063a01d712cc117",
+  "mainDriftSha256": "5605141330933327c4deed6b7c70a3203e7ec7568aead14b87e602d6ccdfebd7",
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "baseApiSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "priorHeldCellsCarried": 319,
+  "priorHoldResolutionHistoryRows": 13,
+  "blindReviewUsed": false,
+  "crossReviewUsed": false,
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "sourceRewritesRecommended": 0,
+  "proposals": [
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "ar",
+      "target": "فشلت مزامنة الملء الرجعي للبود: {message}",
+      "targetSha256": "a860cbe601751f7a6254975513f349d4599666766f9d10c016a9e56acfc78408"
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "es",
+      "target": "No se pudo sincronizar la carga retroactiva del pod: {message}",
+      "targetSha256": "8a0909ab0deb8380d37668e672c1e2a4ce30163150b60b61bc250cafc75b0e91"
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "fr",
+      "target": "Échec de la synchronisation du backfill du pod : {message}",
+      "targetSha256": "be456300273f9a0c6a306be21cee7823b5c745feaab03cae27d23c7cd68cf542"
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "pt-BR",
+      "target": "Falha ao sincronizar o backfill do pod: {message}",
+      "targetSha256": "90545a97ba03bc9d262c574fb68dc2d6c8bac596ce9fb3ad576d13c1c8d33943"
+    },
+    {
+      "continuationRank": 805,
+      "sourceId": "src_3034c12681609f00",
+      "locale": "vi",
+      "target": "Không thể đồng bộ hóa tác vụ backfill của pod: {message}",
+      "targetSha256": "2bc642d5eca2b06ec07700eb507a133afd4b003f286941d33084d8e40e5fa801"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "ar",
+      "target": "أخضر زيتوني",
+      "targetSha256": "bdeda7c879161244dbf8039c4ab121049249c7924c0ce6104c2a45c228c4f150"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "es",
+      "target": "Verde oliva",
+      "targetSha256": "eb749c39e798a2493bbe917ef564befc2534a8ac517a02fd2ace4c31ccb22e34"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "hi",
+      "target": "जैतूनी",
+      "targetSha256": "894bfaf3e05154e3f3c9cbb6bfef379196cb0bb181dcfceef1651f80af4f9a2c"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "id",
+      "target": "Hijau zaitun",
+      "targetSha256": "5c43470d275ae3e31ab32eddb497c0c7940a50fcc7351b3306f6a9d2079c2a41"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "pt-BR",
+      "target": "Verde-oliva",
+      "targetSha256": "85f3388b7a8d85d4f3049e41d6acbec2070704b10c59359639bdd68de61d0e2a"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "vi",
+      "target": "Xanh ô liu",
+      "targetSha256": "35086044cc096315a016146f1d04d6780cb6370f89d8f6bb3996d0ad7a8d9070"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "zh-Hans",
+      "target": "橄榄绿",
+      "targetSha256": "c07a9301acb696feca1708a7a3b521281911db19a5a1f43cd5920f0b70ff2fc8"
+    },
+    {
+      "continuationRank": 806,
+      "sourceId": "src_3038ab334a538ddc",
+      "locale": "zh-Hant",
+      "target": "橄欖綠",
+      "targetSha256": "45ac52e9a0b14ace6b8ead8d54eaf0fb9f0d753432a6ca0047f6d5ec36412f1c"
+    },
+    {
+      "continuationRank": 807,
+      "sourceId": "src_303ce171c4e690a3",
+      "locale": "ko",
+      "target": "라이브러리 상태 검사가 시작되었습니다. 검사 ID: {scanId}, 라이브러리 경로: {libraryPath}.",
+      "targetSha256": "7d50bbc4cfd1263bbfab7908cba14d85b8dcaab2cea2c98261ee03ae26ca479a"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "ar",
+      "target": "جارٍ تحميل سجل عمليات النقل المكتملة",
+      "targetSha256": "85afe29281694a302357b033be08116fbf3a9c2bbbf584d9183a3c5a6e0cdb77"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "de",
+      "target": "Verlauf abgeschlossener Übertragungen wird geladen",
+      "targetSha256": "41b1165fc997f1ca41b6246d9368b60a391ed817ccfadedda5c79f7825a29e21"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "es",
+      "target": "Cargando el historial de transferencias completadas",
+      "targetSha256": "738d65015845e0395d4b4b348b206ec58dcb0511c8b4732faf6c2069374135a6"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "fr",
+      "target": "Chargement de l’historique des transferts terminés",
+      "targetSha256": "cc9b238f3522244ae89c35297095b3a4a3174520be823e28c9d0a5a70c16f19d"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "hi",
+      "target": "पूरे हुए ट्रांसफ़र का इतिहास लोड हो रहा है",
+      "targetSha256": "5dfdeaa09179b4a2e21f19ae04f12e31418227bbf28d2a39566a97d414bfc789"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "id",
+      "target": "Memuat riwayat transfer yang selesai",
+      "targetSha256": "31757df04caee828679dd14014b02036ee11fe44e5dd31b7c50ad41ff4ba8cae"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "ja",
+      "target": "完了した転送の履歴を読み込み中",
+      "targetSha256": "6d56363aa60dea8e60c0dc023e3f087df95af324ab45321cd1a05296f150bec3"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "ko",
+      "target": "완료된 전송 기록을 불러오는 중",
+      "targetSha256": "2b2f455bcf7671f3ccf7504dd8ed578142fcdf3ff1ec0ab221ae02b1116be06c"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "pt-BR",
+      "target": "Carregando o histórico de transferências concluídas",
+      "targetSha256": "a5db3eed04d8688594101dd8ce8de4bccb4f4e3cb4050b6f40aaf6347c5a6b1a"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "vi",
+      "target": "Đang tải lịch sử các lượt truyền đã hoàn tất",
+      "targetSha256": "93a7e7dcfea3f3e0c58c3aba82b5262681cc99b419f22e3d3b87f82466679cdf"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "zh-Hans",
+      "target": "正在加载已完成传输的历史记录",
+      "targetSha256": "09b06465188ee75bd912871449d28eef1a54d0c1900bf8835f60cadddd0cffea"
+    },
+    {
+      "continuationRank": 808,
+      "sourceId": "src_3043b37e6d88a388",
+      "locale": "zh-Hant",
+      "target": "正在載入已完成傳輸的歷史記錄",
+      "targetSha256": "b2677b0054dc445c4f9a7de98436200cb1fb4502efff53113d2496c82189c282"
+    },
+    {
+      "continuationRank": 809,
+      "sourceId": "src_3056774c011fe23a",
+      "locale": "ja",
+      "target": "プレイリスト「{playlistName}」に追加できる一致行はありません",
+      "targetSha256": "254c9e6147fb2b54895c58ea917ef045d9b583b6901f48b9b26917e937cda0fb"
+    },
+    {
+      "continuationRank": 811,
+      "sourceId": "src_307711349b6e19c9",
+      "locale": "ar",
+      "target": "نشر أدلة الشبكة",
+      "targetSha256": "fe65a4ae1d2991bb2a453c83147e2f91e9dfbeeaf8746e193b18084fabee4de8"
+    },
+    {
+      "continuationRank": 811,
+      "sourceId": "src_307711349b6e19c9",
+      "locale": "hi",
+      "target": "मेश साक्ष्य प्रकाशन",
+      "targetSha256": "51f63bd573872e862b30caaaa11a03ab7318a0a31870949603793dd362cae7b0"
+    },
+    {
+      "continuationRank": 815,
+      "sourceId": "src_30a04fdcb6bb10b0",
+      "locale": "zh-Hans",
+      "target": "强",
+      "targetSha256": "f038053bedb1b9ed364a061ac25643ac519c33eab325c35a9233f7af91855d59"
+    },
+    {
+      "continuationRank": 815,
+      "sourceId": "src_30a04fdcb6bb10b0",
+      "locale": "zh-Hant",
+      "target": "強",
+      "targetSha256": "935d53cddb95b7cd4aae451b9b08b342bc7b410a78825631315219acd1d84620"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "ar",
+      "target": "تم وضع مهمة البحث في قائمة الانتظار عبر ملف الاقتناء المحدد. لن يبدأ أي تنزيل حتى يتم تحديد نتيجة صراحةً.",
+      "targetSha256": "46ca37151ac7382a11d3f782ba9988d4c0cddbdf96cdf2870c75d932efb0767f"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "es",
+      "target": "La tarea de búsqueda se puso en cola mediante el perfil de adquisición seleccionado. No se iniciará ninguna descarga hasta que se seleccione un resultado de forma explícita.",
+      "targetSha256": "7b882697a3f16716f6b9df4d00c8ff23b52a004fc3ec3c8a24ec7f71edc367ad"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "hi",
+      "target": "चयनित अधिग्रहण प्रोफ़ाइल के माध्यम से खोज कार्य कतार में लगाया गया है। किसी परिणाम को स्पष्ट रूप से चुनने तक कोई डाउनलोड शुरू नहीं होगा।",
+      "targetSha256": "23169170201dc6d19158286f4b422a445007b1eb5ba26316c3da438ffaf160e9"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "id",
+      "target": "Tugas pencarian telah diantrekan melalui profil akuisisi yang dipilih. Tidak ada unduhan yang dimulai sampai suatu hasil dipilih secara eksplisit.",
+      "targetSha256": "7ed2714374995ee673922a1d8def72507879f7d96eba9653103d29e9f8390a69"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "ja",
+      "target": "選択した取得プロファイルを通じて検索ジョブがキューに追加されました。結果が明示的に選択されるまで、ダウンロードは開始されません。",
+      "targetSha256": "5e59f7a502bb6240e09a741901045d28170da0eb86c9e74f0bdb805b898abe65"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "ko",
+      "target": "선택한 획득 프로필을 통해 검색 작업이 대기열에 추가되었습니다. 결과를 명시적으로 선택하기 전까지 다운로드가 시작되지 않습니다.",
+      "targetSha256": "17dede322df8b55113ee82d8cae4d8fc3d7a63714e7597b51dc5e355858d3107"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "pt-BR",
+      "target": "A tarefa de busca foi colocada na fila pelo perfil de aquisição selecionado. Nenhum download será iniciado até que um resultado seja selecionado explicitamente.",
+      "targetSha256": "e6edccab198afabdf9f17b3469cc06305d746961e16150507030764d99e610a5"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "vi",
+      "target": "Tác vụ tìm kiếm đã được đưa vào hàng đợi thông qua hồ sơ tải xuống đã chọn. Không có nội dung nào được tải xuống cho đến khi một kết quả được chọn rõ ràng.",
+      "targetSha256": "465ae314f7a4f4bc392ed8e88a83e399fe32dc3fc189a4e3dc437cf506aefd19"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "zh-Hans",
+      "target": "搜索任务已通过选定的获取配置排入队列。在明确选择某个结果之前，不会开始下载。",
+      "targetSha256": "45cf89b3987c36fe772ce225043ae35e7567109b19effde5f97e9c01a3340073"
+    },
+    {
+      "continuationRank": 816,
+      "sourceId": "src_30a7771ae5f4512a",
+      "locale": "zh-Hant",
+      "target": "搜尋工作已透過選定的取得設定檔排入佇列。在明確選取某項結果之前，不會開始下載。",
+      "targetSha256": "9f5420ae017ea64d21bd0d2f09c5a715a0ab8ebc017e757210f1768271a45441"
+    },
+    {
+      "continuationRank": 817,
+      "sourceId": "src_30aa8bbb608c019c",
+      "locale": "de",
+      "target": "Die Raumübertragung konnte nicht gestartet werden. Versuchen Sie es erneut.",
+      "targetSha256": "b5975a99c6b85c8123bc51ae266bb9886e2bb1d2da99387d27eb6d1ca427b644"
+    },
+    {
+      "continuationRank": 821,
+      "sourceId": "src_30ccd77bed2b66d8",
+      "locale": "fr",
+      "target": "Page suivante des collections",
+      "targetSha256": "cdbb9101463f4370309ebd69d0a788b117e6eced8f38bf67e61eb52e523c631c"
+    },
+    {
+      "continuationRank": 825,
+      "sourceId": "src_30d587580db91903",
+      "locale": "ar",
+      "target": "تم تعطيل نقطة التقاء DHT بواسطة بوابة الميزات الخاصة بها",
+      "targetSha256": "2546eb158ca91295ff059ff874686d9a62dbde7cd9bca2afb07be874a0a5c980"
+    },
+    {
+      "continuationRank": 825,
+      "sourceId": "src_30d587580db91903",
+      "locale": "es",
+      "target": "El punto de encuentro DHT está deshabilitado por su indicador de funcionalidad",
+      "targetSha256": "3f61fdc6bb69fe26fb397208cde48f97a7838516047bb04c5b21accd9ed68314"
+    },
+    {
+      "continuationRank": 825,
+      "sourceId": "src_30d587580db91903",
+      "locale": "fr",
+      "target": "Le point de rendez-vous DHT est désactivé par son indicateur de fonctionnalité",
+      "targetSha256": "541c4f808f3f9bfb61290aa9aaaa59fe4a43d2b941e1bb4031c7be92e9c0a398"
+    },
+    {
+      "continuationRank": 825,
+      "sourceId": "src_30d587580db91903",
+      "locale": "ko",
+      "target": "DHT 랑데부 기능은 해당 기능 게이트로 인해 비활성화됩니다.",
+      "targetSha256": "187e49c74decedc9c1949a4a2004c6101f8352c4b138e84c15846010349b4434"
+    },
+    {
+      "continuationRank": 825,
+      "sourceId": "src_30d587580db91903",
+      "locale": "pt-BR",
+      "target": "O ponto de encontro DHT está desativado pelo controle de ativação do recurso",
+      "targetSha256": "a00f49e1edf14b7ba0eb63bd7fffaa5ffd46c246eb54902dc916f3ca855ab0dc"
+    },
+    {
+      "continuationRank": 825,
+      "sourceId": "src_30d587580db91903",
+      "locale": "zh-Hans",
+      "target": "DHT 会合功能已由对应的功能开关禁用",
+      "targetSha256": "9e8a87b56db6b0ec1978e8bec9a64eaa04a8141c41991467c7d1dff3c8d7b825"
+    },
+    {
+      "continuationRank": 825,
+      "sourceId": "src_30d587580db91903",
+      "locale": "zh-Hant",
+      "target": "DHT 會合功能已由對應的功能開關停用",
+      "targetSha256": "1ecbec481b90213aaeec72c13ea957891f6c2f40e0d574ac501679a15ed1f9f7"
+    }
+  ],
+  "heldCells": [
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "ar",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "54bb37e4cdb114b05ca568f753e548a0c5fc64e57596607ba217c0251361ad18"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "de",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "225d29f6201e1a635684a6dc0e7a65d164c7ffe48588a421fc27b067a55bb02e"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "es",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "f4cf0cb709e90dadc6b9fe8c054cc3016b942b9f812a9fe9eba8409e2e4abffd"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "fr",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "56ad398c5c56d7f5d81e164d77635bdbac46a75e8827951a70de147b9b5a13e4"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "hi",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "1dde5a9419f1b5e1dd0d6e52c4050222c79eb5f8898763c34f417c3db4d8b8d0"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "id",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "d87ccfa4913fa98e81fceee4ccef07d7e84cbc5a738cd46d07fe4f3e83a628dd"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "ja",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "6ab7e53c7595d5d91c5e821311210c89a87b23c9af099c750d35094f1a3aca55"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "ko",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "f07b32009d77b4f68612d3b307e41ccc226c036c3e74302c35bb699810b8a238"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "pt-BR",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "f4cf0cb709e90dadc6b9fe8c054cc3016b942b9f812a9fe9eba8409e2e4abffd"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "vi",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "92c7ee4d76ff49217953509f32352d6f6ad42ba6774d4570dd0779306478d5a0"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "zh-Hans",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "aedd6814ff8c516cb88154109e0ed6f00d3501228eed82427b8f52dd98d6cb80"
+    },
+    {
+      "continuationRank": 814,
+      "sourceId": "src_308d5a0903f2c571",
+      "locale": "zh-Hant",
+      "sourceSha256": "308d5a0903f2c5714ec7774808fc9a67b92c602a01a69b2084b05bdb2f6ae699",
+      "currentTargetSha256": "bf83cce20ba162f990e543349b4d8b504dc5212074997433a996f031393ea80d"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": 38,
+  "previousReviewHead": "2be3fa4dd46a0f0f49adad342f289721e4777035",
+  "updatedExactHead": "36084c57b5a0e26804bc497c32d51c321258176d",
+  "updatedTree": "a79ceb485188d131d93315718278d52d79e5ff8a",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "worktreePath": "/mnt/disks/scratch/task-worktrees/localization-20261102/slskdn-pr409-w36-review",
+  "worktreeClean": true,
+  "inputPacketChecksumFilesVerified": 25,
+  "inputPacketChecksumFailures": 0,
+  "cells": 269,
+  "sourceKeys": 25,
+  "currentSourceTextHashMismatches": 0,
+  "catalogRawHashesAtUpdatedHead": [
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "rawSha256AtUpdatedHead": "c7e63fdb2fccd56efc883aee9b5a3058d23d6f682255188d934fe14cb8a2d9c2",
+      "keys": 6169
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "rawSha256AtUpdatedHead": "4d5016c2f760c89bee1f2d29c26db83d61f18f7e1790999b053eb73317a3f5b1",
+      "keys": 6169
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "rawSha256AtUpdatedHead": "83fb065addbb4f1e173f55051ef1ed5d5e93074558523bbfe7612be81f2b0299",
+      "keys": 6169
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "rawSha256AtUpdatedHead": "e2f7b25898219611fba525bca00ed9dc790a03e42415737d4b3f3707893e247e",
+      "keys": 6169
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "rawSha256AtUpdatedHead": "b80c19eb0260122e4e28b0b8c99a9b17a45091b164c221491800ee55301e249a",
+      "keys": 6169
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "rawSha256AtUpdatedHead": "616144c9dc9c157364789aef9b2633dcc83fd7d334c5042f7fcc9a12ec84fde4",
+      "keys": 6169
+    },
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "rawSha256AtUpdatedHead": "45c8922bd714222c0f5959b14a8a08112b6c4693769b72921f9a6618c204bdec",
+      "keys": 6169
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "rawSha256AtUpdatedHead": "2b89cbe30adec6128659cdae14df494efc4a8d08041b2168cfc7a808d6ae6a45",
+      "keys": 6169
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "rawSha256AtUpdatedHead": "0901131c963e72b19815bb4145c6389296e3907525845d0cd4a7df6168f9affa",
+      "keys": 6169
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "rawSha256AtUpdatedHead": "06611aa1c1580cf2c7cd987bdc10b4db0dd0df770fe01c0630cc9473e572218b",
+      "keys": 6169
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "rawSha256AtUpdatedHead": "2488f5c2b5bb9014e473b75a4f139a8c691dd0af30f79889a1274e92cab6ccd9",
+      "keys": 6169
+    }
+  ],
+  "catalogRawHashesChangedAfterW37": true,
+  "all269CurrentValuesAndHashesStillMatch": true,
+  "sourceAttestationRecords": 25,
+  "callerPinsAtUpdatedHead": 48,
+  "callerFileBlobLineMismatches": 0,
+  "callerRowReferencesAtUpdatedHead": 498,
+  "callerRowReferenceMismatches": 0,
+  "all54PrimaryCandidateSourceCurrentCandidateHashes": "pass",
+  "candidatePlaceholderAndProtectedLiteralChecks": "pass",
+  "candidateNoOpRows": 0,
+  "w1W37ManualCellAndSourceKeyOverlap": 0,
+  "preservedSpanishFormalRows": 25,
+  "preservedSpanishExactReuseRows": 0,
+  "sourcePinRecords": 25,
+  "callerPinRecords": 48,
+  "readmeProposalExposureBeforeIndependentFreeze": true,
+  "nativeSpeakerApprovals": 0,
+  "repositoryOrPRMutated": false
+}

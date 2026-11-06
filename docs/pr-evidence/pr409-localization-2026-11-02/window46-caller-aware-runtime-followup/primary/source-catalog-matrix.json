@@ -1,0 +1,416 @@
+{
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "localeIds": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "icuSubset": {
+    "selectors": "Top-level cardinal plural selectors with a named numeric value. Each message uses CLDR categories selected with Intl.PluralRules(activeLanguage); selected branch `#` uses Intl.NumberFormat(activeLanguage).",
+    "supportedCategories": [
+      "zero",
+      "one",
+      "two",
+      "few",
+      "many",
+      "other",
+      "exact integer =n"
+    ],
+    "branchValues": "Plain translated text with optional # count marker. Normal {name} interpolation runs in the existing second pass.",
+    "unsupported": [
+      "nested plural selectors",
+      "ordinal plurals",
+      "offset clauses",
+      "select/selectordinal/date/number MessageFormat syntax"
+    ]
+  },
+  "sources": [
+    {
+      "windowRank": 42,
+      "priorSourceId": "src_112cb5f2343632c5",
+      "priorSourceText": "tracks,",
+      "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+      "context": "Playlist Intake approval summary: matched track count plus changed-field count.",
+      "pluralVariables": [
+        "matched",
+        "changed"
+      ],
+      "ordinaryPlaceholders": [],
+      "callers": [
+        {
+          "path": "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+          "lines": [
+            548,
+            549,
+            550,
+            551,
+            552,
+            553,
+            554
+          ]
+        }
+      ],
+      "sourceId": "src_a496c430224a74df",
+      "sourceSha256": "a496c430224a74dfec84fe9612e2da05972348989213a8f994d486220665ff59",
+      "sourceLengthUtf8Bytes": 116,
+      "directLocales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "coverage": "translation present in all twelve direct locale catalogs"
+    },
+    {
+      "windowRank": 49,
+      "priorSourceId": "src_11507a0e2f5e69d5",
+      "priorSourceText": "new",
+      "sourceText": "{count, plural, one {# new result} other {# new results}}",
+      "context": "Wishlist unseen-result count badge, separate from the MessageStream separator.",
+      "pluralVariables": [
+        "count"
+      ],
+      "ordinaryPlaceholders": [],
+      "callers": [
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "lines": [
+            40,
+            237,
+            238
+          ]
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "lines": [
+            40,
+            619,
+            620
+          ]
+        }
+      ],
+      "sourceId": "src_86c7c500a8a29d14",
+      "sourceSha256": "86c7c500a8a29d1403473b1307ad54add1775e05bb9b25e7b8c5a56797629f71",
+      "sourceLengthUtf8Bytes": 57,
+      "directLocales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "coverage": "translation present in all twelve direct locale catalogs"
+    },
+    {
+      "windowRank": 49,
+      "priorSourceId": "src_11507a0e2f5e69d5",
+      "priorSourceText": "new",
+      "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+      "context": "Wishlist unseen-result count tooltip and accessible title/label.",
+      "pluralVariables": [
+        "count"
+      ],
+      "ordinaryPlaceholders": [],
+      "callers": [
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "lines": [
+            41,
+            229,
+            242
+          ]
+        },
+        {
+          "path": "src/web/src/components/Wishlist/Wishlist.jsx",
+          "lines": [
+            41,
+            615,
+            624
+          ]
+        }
+      ],
+      "sourceId": "src_548b82b14a90f35c",
+      "sourceSha256": "548b82b14a90f35c8db3fc3298fca39bc078cca01293037561997d54c87052ae",
+      "sourceLengthUtf8Bytes": 121,
+      "directLocales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "coverage": "translation present in all twelve direct locale catalogs"
+    },
+    {
+      "windowRank": 49,
+      "priorSourceId": "src_11507a0e2f5e69d5",
+      "priorSourceText": "new",
+      "sourceText": "New messages",
+      "context": "Standalone MessageStream new-message separator label.",
+      "pluralVariables": [],
+      "ordinaryPlaceholders": [],
+      "callers": [
+        {
+          "path": "src/web/src/components/Messaging/MessageStream.jsx",
+          "lines": [
+            712
+          ]
+        }
+      ],
+      "sourceId": "src_ef5df7e6051540ca",
+      "sourceSha256": "ef5df7e6051540cadc2942c9c85501a74772f87f4d30d28913478a84331b8062",
+      "sourceLengthUtf8Bytes": 12,
+      "directLocales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "coverage": "translation present in all twelve direct locale catalogs"
+    },
+    {
+      "windowRank": 37,
+      "priorSourceId": "src_10dec009bb7ddc89",
+      "priorSourceText": "Download {count} files from {directory}?",
+      "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+      "context": "Existing native confirmation for the collected files; caller passes filesToDownload.length and directory.name.",
+      "pluralVariables": [
+        "count"
+      ],
+      "ordinaryPlaceholders": [
+        "directory"
+      ],
+      "callers": [
+        {
+          "path": "src/web/src/components/Browse/BrowseSession.jsx",
+          "lines": [
+            557,
+            558,
+            559,
+            560
+          ]
+        }
+      ],
+      "sourceId": "src_6845751a223bdec1",
+      "sourceSha256": "6845751a223bdec1f1c63b7645f03eb63ecf64c711f7bc1ba0838e100a97bcc5",
+      "sourceLengthUtf8Bytes": 81,
+      "directLocales": [
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "pt-BR",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "coverage": "translation present in all twelve direct locale catalogs"
+    }
+  ],
+  "translations": [
+    {
+      "sourceId": "src_a496c430224a74df",
+      "sourceText": "{matched, plural, one {# track} other {# tracks}}, {changed, plural, one {# changed field} other {# changed fields}}",
+      "targets": {
+        "ar": "{matched, plural, zero {# مقاطع} one {# مقطع} two {# مقطعان} few {# مقاطع} many {# مقطعًا} other {# مقطع}}، {changed, plural, zero {# حقول متغيرة} one {# حقل متغير} two {# حقلان متغيران} few {# حقول متغيرة} many {# حقلًا متغيرًا} other {# حقل متغير}}",
+        "de": "{matched, plural, one {# Titel} other {# Titel}}, {changed, plural, one {# geändertes Feld} other {# geänderte Felder}}",
+        "es": "{matched, plural, one {# pista} other {# pistas}}, {changed, plural, one {# campo modificado} other {# campos modificados}}",
+        "fr": "{matched, plural, one {# piste} other {# pistes}}, {changed, plural, one {# champ modifié} other {# champs modifiés}}",
+        "hi": "{matched, plural, one {# ट्रैक} other {# ट्रैक}}, {changed, plural, one {# बदला हुआ फ़ील्ड} other {# बदले हुए फ़ील्ड}}",
+        "id": "{matched, plural, one {# trek} other {# trek}}, {changed, plural, one {# bidang yang berubah} other {# bidang yang berubah}}",
+        "ja": "{matched, plural, one {# 曲} other {# 曲}}, {changed, plural, one {# 個の変更済みフィールド} other {# 個の変更済みフィールド}}",
+        "ko": "{matched, plural, one {#곡} other {#곡}}, {changed, plural, one {#개의 변경된 필드} other {#개의 변경된 필드}}",
+        "pt-BR": "{matched, plural, one {# faixa} other {# faixas}}, {changed, plural, one {# campo alterado} other {# campos alterados}}",
+        "vi": "{matched, plural, one {# bản nhạc} other {# bản nhạc}}, {changed, plural, one {# trường đã thay đổi} other {# trường đã thay đổi}}",
+        "zh-Hans": "{matched, plural, one {# 首曲目} other {# 首曲目}}, {changed, plural, one {# 个已更改字段} other {# 个已更改字段}}",
+        "zh-Hant": "{matched, plural, one {# 首曲目} other {# 首曲目}}, {changed, plural, one {# 個已變更欄位} other {# 個已變更欄位}}"
+      },
+      "targetSha256": {
+        "ar": "a00fe52c8f5d775788c6f45dd38d6a749a3e9f5c1bf23eec25e24753fa786e8b",
+        "de": "14e4c8f23dd8409af1e4dc24e5fde0933a310d4e758c4be023213b8b94f080dd",
+        "es": "71dc67a1799b77264a878e25d196b9912bd859bc9d3cf5c6ff0f555924952b61",
+        "fr": "d8b57882b3905814c190467b21106a93317a406640660be5e5d1f1ddb5aaed26",
+        "hi": "f2b5c77dbc51f3e0aad8145b85379369d948b785218781c5a8390d3eee67d2d1",
+        "id": "5d99490047cccf39c54e1b5fb431ca3f83a8cd9816d0a96656657a7df2afdeae",
+        "ja": "499a4519f02b7ff9ca5aa30ddb3212e8c33aba2f67045a9bd5a1319efe58f57d",
+        "ko": "7cac4397cc70fd8f2aad2333aaca273cdd16fc5b9551362830ac2a7722e969a9",
+        "pt-BR": "97e65b18c051e42219d7d110de13b947e9738d31820fdc6392b42b6e5d8574c2",
+        "vi": "eae4a5b1d6af2832504daa79f2291ba3a33bf23c745e1f605f19d991b89d9fc6",
+        "zh-Hans": "60e0b9e0febd974d47772c1886f4e4fe20c8f17c33ea9a330a3b78da12cb1da2",
+        "zh-Hant": "226d5da0a3665ed61f219c46a11e5f0e2fa173bf08eb646bf48704e4427ac657"
+      }
+    },
+    {
+      "sourceId": "src_86c7c500a8a29d14",
+      "sourceText": "{count, plural, one {# new result} other {# new results}}",
+      "targets": {
+        "ar": "{count, plural, zero {# نتائج جديدة} one {# نتيجة جديدة} two {# نتيجتان جديدتان} few {# نتائج جديدة} many {# نتيجة جديدة} other {# نتيجة جديدة}}",
+        "de": "{count, plural, one {# neues Ergebnis} other {# neue Ergebnisse}}",
+        "es": "{count, plural, one {# resultado nuevo} other {# resultados nuevos}}",
+        "fr": "{count, plural, one {# nouveau résultat} other {# nouveaux résultats}}",
+        "hi": "{count, plural, one {# नया परिणाम} other {# नए परिणाम}}",
+        "id": "{count, plural, one {# hasil baru} other {# hasil baru}}",
+        "ja": "{count, plural, one {新しい結果 # 件} other {新しい結果 # 件}}",
+        "ko": "{count, plural, one {새 결과 #개} other {새 결과 #개}}",
+        "pt-BR": "{count, plural, one {# novo resultado} other {# novos resultados}}",
+        "vi": "{count, plural, one {# kết quả mới} other {# kết quả mới}}",
+        "zh-Hans": "{count, plural, one {# 条新结果} other {# 条新结果}}",
+        "zh-Hant": "{count, plural, one {# 項新結果} other {# 項新結果}}"
+      },
+      "targetSha256": {
+        "ar": "e8bdf56a946e87732b49fc827b504811d8abb15bf1456ce724f291a8e5409929",
+        "de": "4a6f5fb3f58e0da58239b3a0015f08689e39929b4c0f4ca7bbc8ff95655bc907",
+        "es": "936daff9dcff6da97f98c51a2e27f8d203756b7d08d6a90782d5b60670362e9b",
+        "fr": "171360320c256b86f95016054195fd34fa9c69269d346cd2cee31a571d6b0019",
+        "hi": "5f71dbb3c86a6067221b514180652363ca1ea107fa73dde358165d8c99206c87",
+        "id": "e7450d56bd81d59416ee6495ac375517f9ba4fa2ba8cf7add73e32b1846ba9cc",
+        "ja": "b6351237f7b81c841a7d58c4bf824afdb7d08ebeb497f50c0b2d7c7f8a953a70",
+        "ko": "e4fbe6ff6b78f9cc138e77f7447a28840c8e436dda2fbe9a5de3fe55cba77b81",
+        "pt-BR": "384f38edc06560b25e7a975b7e17a67ef25f71ecc733ae557214034943ea45f5",
+        "vi": "59a824bf0fa2fabab7f470a1547a946fc08527eb1002989df5d334552b5ebe01",
+        "zh-Hans": "de09281c6845ea7c19f2119586451677dea0f8b5ea82b848e40fe4a1b435fef1",
+        "zh-Hant": "92187725263bd145e037b3bf1616fd7fb88f3b711cc86daaaf963cc342247e10"
+      }
+    },
+    {
+      "sourceId": "src_548b82b14a90f35c",
+      "sourceText": "{count, plural, one {# new result since you last viewed this item} other {# new results since you last viewed this item}}",
+      "targets": {
+        "ar": "{count, plural, zero {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر} one {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر} two {# نتيجتان جديدتان منذ آخر مرة عرضت فيها هذا العنصر} few {# نتائج جديدة منذ آخر مرة عرضت فيها هذا العنصر} many {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر} other {# نتيجة جديدة منذ آخر مرة عرضت فيها هذا العنصر}}",
+        "de": "{count, plural, one {# neues Ergebnis seit deinem letzten Besuch dieses Eintrags} other {# neue Ergebnisse seit deinem letzten Besuch dieses Eintrags}}",
+        "es": "{count, plural, one {# resultado nuevo desde la última vez que viste este elemento} other {# resultados nuevos desde la última vez que viste este elemento}}",
+        "fr": "{count, plural, one {# nouveau résultat depuis votre dernière consultation de cet élément} other {# nouveaux résultats depuis votre dernière consultation de cet élément}}",
+        "hi": "{count, plural, one {इस आइटम को पिछली बार देखने के बाद # नया परिणाम} other {इस आइटम को पिछली बार देखने के बाद # नए परिणाम}}",
+        "id": "{count, plural, one {# hasil baru sejak terakhir kali Anda melihat item ini} other {# hasil baru sejak terakhir kali Anda melihat item ini}}",
+        "ja": "{count, plural, one {この項目を前回表示してから新しい結果が # 件あります} other {この項目を前回表示してから新しい結果が # 件あります}}",
+        "ko": "{count, plural, one {이 항목을 마지막으로 본 뒤 새 결과 #개} other {이 항목을 마지막으로 본 뒤 새 결과 #개}}",
+        "pt-BR": "{count, plural, one {# novo resultado desde a última vez que você visualizou este item} other {# novos resultados desde a última vez que você visualizou este item}}",
+        "vi": "{count, plural, one {# kết quả mới kể từ lần bạn xem mục này gần nhất} other {# kết quả mới kể từ lần bạn xem mục này gần nhất}}",
+        "zh-Hans": "{count, plural, one {你上次查看此项后有 # 条新结果} other {你上次查看此项后有 # 条新结果}}",
+        "zh-Hant": "{count, plural, one {您上次查看此項目後有 # 項新結果} other {您上次查看此項目後有 # 項新結果}}"
+      },
+      "targetSha256": {
+        "ar": "6cd2ae3ceb53606b8de8fa62b4a34627bd83a0c93e8e7687a21a27318d819f4f",
+        "de": "de2266527bad9e9589d81534016962a5d4885617597a370597cca3fbe890a7d0",
+        "es": "c244a9fbedb57ea0ead0e34636ca64997546988b0bee13e56c1ab2aabed62e09",
+        "fr": "0d9bf8850fb1d26702aa4e27de4de12245632f8a9e3802f78e1702e649ce451e",
+        "hi": "14a9f60d83f98e9c2b6b5f0442b46bddc32cd172b96e70dc8622ed9333ca9ef2",
+        "id": "2474fe2e584ddb6f070632c21fa603921758c673e7d2921e2f63e05161b8a241",
+        "ja": "a4dce59182ff78c37c28c2c8f4e860ae766f3b59dd184ada6471f2917e488eec",
+        "ko": "1a9b218b09eb1826c4986761cae7a34d4d92177f9bc2ea0317425bd85a2fb0de",
+        "pt-BR": "f7b750d750f3a9971dceae2fe8627efdf3e73b3e77b4870a9812dbdcd9f40db9",
+        "vi": "965aa626f112dda10653512c73e197f63567d6b42bc56e69cc18a4b64af5aed2",
+        "zh-Hans": "a73e5e60690cb798ec01dfb4b4a8ee330187595d2a3a3f03b00d2e0fd8898084",
+        "zh-Hant": "9c38ae08884ef2e2ca7e3f5fe692fb41794607bda2785e6a8b8fa82f3cfd6b8f"
+      }
+    },
+    {
+      "sourceId": "src_ef5df7e6051540ca",
+      "sourceText": "New messages",
+      "targets": {
+        "ar": "رسائل جديدة",
+        "de": "Neue Nachrichten",
+        "es": "Mensajes nuevos",
+        "fr": "Nouveaux messages",
+        "hi": "नए संदेश",
+        "id": "Pesan baru",
+        "ja": "新しいメッセージ",
+        "ko": "새 메시지",
+        "pt-BR": "Novas mensagens",
+        "vi": "Tin nhắn mới",
+        "zh-Hans": "新消息",
+        "zh-Hant": "新訊息"
+      },
+      "targetSha256": {
+        "ar": "ee690fdf17c297627528b413c40051d78950d7ca9e3faf91fffa6a32dfe82548",
+        "de": "4aadfb7b596d7bb3f34501255721f330b1227fce96221d7dd576d00fa8b0477f",
+        "es": "84fc288fc5ec03ff470d91027279c1f35aee2402652aaf1308da53bd3995e1d6",
+        "fr": "010d8f7bf8fa7e4434f818a27116a9f80c3f41e12eacf2b848a1aaee4c16c5fe",
+        "hi": "6c1a0fd865b12b387f680cf7bb75b75c91b79dbe3b213c225f1bb714b1bf468f",
+        "id": "87a7f23c55020a381577db4179618801b88b9adb00b8a5796added7efdf12baf",
+        "ja": "e478d7284ed8d585dd33456b7812f93b8744b082d4a38929fbf826d48f49515a",
+        "ko": "4f85edbeb9f357832e14d804aeaff78744c37528b65879cfcc96a12c5a095194",
+        "pt-BR": "2948b82ba0cbb11753cde7663489b0bdec970abd06f851f7ba6a8e3c2eadc7bb",
+        "vi": "f37e40144796edee6319e71d3790705b6ee360e04885fa96e7ab55c8ecc72028",
+        "zh-Hans": "3fc957bf0f70c3caf3a7cfa08ba8baa895f01c4ed3741dcffbe6d1ae70e41581",
+        "zh-Hant": "3d1acbde26ea7a9bbcbe63130f783ec3840811922f5c6b44f72aab48db494cb8"
+      }
+    },
+    {
+      "sourceId": "src_6845751a223bdec1",
+      "sourceText": "{count, plural, one {Download # file} other {Download # files}} from {directory}?",
+      "targets": {
+        "ar": "هل تريد {count, plural, zero {تنزيل # ملفات} one {تنزيل # ملف} two {تنزيل # ملفين} few {تنزيل # ملفات} many {تنزيل # ملفًا} other {تنزيل # ملف}} من {directory}؟",
+        "de": "{count, plural, one {# Datei} other {# Dateien}} aus {directory} herunterladen?",
+        "es": "¿{count, plural, one {Descargar # archivo} other {Descargar # archivos}} de {directory}?",
+        "fr": "Télécharger {count, plural, one {# fichier} other {# fichiers}} depuis {directory} ?",
+        "hi": "क्या {directory} से {count, plural, one {# फ़ाइल} other {# फ़ाइलें}} डाउनलोड करें?",
+        "id": "Unduh {count, plural, one {# file} other {# file}} dari {directory}?",
+        "ja": "{directory} から {count, plural, one {# 個のファイル} other {# 個のファイル}}をダウンロードしますか？",
+        "ko": "{directory}에서 {count, plural, one {파일 #개} other {파일 #개}}를 다운로드할까요?",
+        "pt-BR": "Baixar {count, plural, one {# arquivo} other {# arquivos}} de {directory}?",
+        "vi": "Tải {count, plural, one {# tệp} other {# tệp}} từ {directory}?",
+        "zh-Hans": "从 {directory} 下载 {count, plural, one {# 个文件} other {# 个文件}}吗？",
+        "zh-Hant": "要從 {directory} 下載 {count, plural, one {# 個檔案} other {# 個檔案}}嗎？"
+      },
+      "targetSha256": {
+        "ar": "606c647d857f910aead38c7cf9cd32141192b91f4cb68a5bd794a97310e41bd8",
+        "de": "c9e7f60a4c01d47cb1a3c33ae7f67dd54662915ca0c704edff749d5d049d40eb",
+        "es": "f4306405fff3523fa455e1419d37700a1c2be9f344848597d6120047c47321bf",
+        "fr": "3bb62db1c22cf6d95867373f3e6c1b6398ddb21202b1b5e18d1079321dc16b12",
+        "hi": "5d289407e154eae100c1bf7b6c85f3a9581684ca0c2c9afafc5d5a6b38f016d0",
+        "id": "b98ef32005e187182f8275da8a57af82e535dd76800d64a96ab277d5c7869305",
+        "ja": "eb6a0a238b613b3e726eed4722b3ee01458639ed060df1957f253eea0a3b2fd8",
+        "ko": "9867c91b242f92bd830169aac7553ebfd68e9415c661fbe2e7be1ac1ed2bb948",
+        "pt-BR": "68527f0eeb2d5427c1dfeefd8ad707aaf94c977739d1b9f3050f745f2ccdeede",
+        "vi": "61d416bf34602a1ee25593125e405c86295328d28e42414dfef29ff79ca9f67f",
+        "zh-Hans": "8c3f06c207a2ec0064eca90e1590541a2f611f457229c345f43f7bd09856014d",
+        "zh-Hant": "c6168a1aac7b4b42f1850747629fee6a6ae8d872b6a5b8738e3a9659d13c79d4"
+      }
+    }
+  ]
+}

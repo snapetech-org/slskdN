@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "reviewWindow": 24,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "805246b87e208cedcbdd0e2f33a83f912f4ad84b",
+  "tree": "4377ade660fa379731a41b54ba387c4eff2bcf32",
+  "sourceSubtreeTree": "c3d06e298da7f7e04e69bee3c2596805a03d1e4b",
+  "generatedUtc": "2026-11-02T02:00:23Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 23,
+    "cells": 6900,
+    "keys": 575,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 934,
+    "ids": 934,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "windows20_21": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02",
+      "windows22_23": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "realmWindow20CrossReview": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_f854c1a24ec09075",
+      "src_f85f7ff72d6b5e87",
+      "src_f87425f74b283f5b",
+      "src_f87e2c5614e2df5b",
+      "src_f8934f486f691270",
+      "src_f8ad0148b8ecce4b",
+      "src_f8b6fc272545733c",
+      "src_f8b7633a1c681001",
+      "src_f8b8883f0c9d8d82",
+      "src_f8beeb1de72567ca",
+      "src_f8c6168b8c8d73b3",
+      "src_f8cd89f86f3d26cf",
+      "src_f8cea452d1a7ce44",
+      "src_f8e405de6abbbf5f",
+      "src_f8f7937bb8943a27",
+      "src_f908d426b1b88663",
+      "src_f9091358d2161f62",
+      "src_f917fbdfc928a17f",
+      "src_f947505a819e1138",
+      "src_f94d73c6ef50c0e6",
+      "src_f94e4039b7e6a5c5",
+      "src_f9580240644ec9ea",
+      "src_f95cf1a0d4241b61",
+      "src_f96e044aff224a43",
+      "src_f979c57727a12999"
+    ],
+    "sourceIdListSha256": "ddf8073dde013a4993e09b3ad16944243077cd47b926a53a134bc46b606af54a",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 172,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "37fd5bbf3f51168c08ee2617345eba76224c09d27361124d8b53c3abacf25702",
+    "zh-Hans": "29a977b5975cb6de8f5c4984df078caf57c68bcfb4ba48902cf00b0ec1905c18",
+    "hi": "1780feb9937c3c8ddb60d967444c3c5af41d7e9ff713886ab82b12dd36199898",
+    "de": "b7ff5aac6d149defdf60082663500eaa21e1f6d6b763d9e0c9d3e56f07f99b9a",
+    "ja": "aee7222906f04af717078e50a6e04fc28f7971d312fcb11957a2249f77158db4",
+    "fr": "c3413d63027d8010c408ff1586e954e51770effa764331370f35a30a6c30188c",
+    "pt-BR": "3b281db441f557f97c22e567fb5ecf89a9213a573ad827c657b7a0c3eaaecb84",
+    "ar": "f3c0505a9667745581cde46a01b2a7cfe65462e296f4bea21309b77833ad40fd",
+    "ko": "65513e3c8a0f47abc544c11539896c3bc96709f2d41409e8d1923934f33eb133",
+    "zh-Hant": "ed6d8044523f3bb3ee39efab5bbe146becc14197a94b1839dc74f56b19fac041",
+    "vi": "55f4542a5db2f8243b3fb9fa5a6b85684e2a29666d2dde335c04dd705692a646",
+    "id": "580714fd7db7c4e05cab49ba9643bcc8a8c4e608915bdf523d1c57d18ce5a7bd"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "c8b6b51bb57d476b9272d05f27386f7f7829bacaa14f077db91003eac7898270"
+  },
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "b0a2e8e9a082db42423fbc08dccaed95a72f0aee5c24f48d92b56b31f2c94d69"
+  },
+  "decisionCounts": {
+    "keep": 255,
+    "correct": 45,
+    "uncertain": 0
+  },
+  "perLocaleDecisionCounts": {
+    "es": {
+      "keep": 19,
+      "correct": 6,
+      "uncertain": 0
+    },
+    "zh-Hans": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    }
+  },
+  "crossReviewPlan": {
+    "path": "crossreview-plan.jsonl",
+    "rows": 45,
+    "sha256": "a32015312fd7bb99e8428bbc0d42e0d5e5794c9f06d29203d4c03dadf531cfce",
+    "status": "pending independent review"
+  },
+  "reviewerMethod": "manual semantic review against exact source callsites and UI context; no translation-model/API call",
+  "semanticDecisionConfidence": "high for flagged correction rows; unchanged rows retained when current meaning is accurate",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "proposalAudit": {
+    "result": "PASS",
+    "rows": 45,
+    "proposalSourceAndCatalogJoin": "PASS",
+    "sourceCurrentAndProposedTargetHashes": "PASS",
+    "placeholdersAndProtectedLiterals": "PASS",
+    "sourceCallsitesRechecked": 528,
+    "composerKeyHeldAsKeep": true,
+    "repeatModeRowsBoundTo": "src_f917fbdfc928a17f"
+  },
+  "verification": {
+    "path": "verification.json",
+    "sha256": "9570fddf357dcd776b31414796f83f6024a056da3cc92505d6ec80fbef0d61a7",
+    "result": "verified"
+  },
+  "verifier": {
+    "path": "verify_evidence.py",
+    "sha256": "e19187f024443c549727dfd74789925ad5fca893fec8db191ad9f2c04d9667a7"
+  }
+}

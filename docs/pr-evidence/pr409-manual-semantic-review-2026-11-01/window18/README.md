@@ -1,0 +1,9 @@
+# slskdN PR #409 manual semantic review: window 18
+
+This independent evidence window is pinned to live OPEN/DRAFT PR head `5e2c0cb7a8fa3711a5e3ac231a22699fcc86f44f`, tree `a47479dc9625f7dd13c99e6c4febb121e6c56769`, and `src` tree `b5a776a81982ebde32163f06d47c57fc79e40ad9`. It reviews the next 25 eligible source keys (`src_f101087c95dc08fd` through `src_f231cfdd92359de2`): 300 cells across all twelve locales.
+
+Verdicts: **274 keep, 25 high-confidence correction candidates, 1 uncertain**. Corrections address Hindi active-search wording, network-peer terminology in Hindi/Vietnamese/Indonesian, Chinese clear-history actions, Chinese acceptance-state headings, Arabic dashboard controls, missed-message backfill terminology, Vietnamese/Indonesian reminder titles, Hindi pinned-state agreement, Hindi/Vietnamese automation-workflow wording, and draft allowlist phrasing. The Japanese fragment “DHT nodes and” remains uncertain because its best wording depends on the adjacent count fragment.
+
+The exact-head preflight rebuilt eligibility from the frozen pending bundle, 150 valid formal jobs / 4,800 formal cells, and all 17 prior manual windows / 5,100 cells. It found zero formal overlap, zero prior-window overlap, and zero overlap with the previously applied correction ledger. All selected cells and source callsite hashes matched the pinned head. Input SHA-256: `124a993a8f50ae4adaa57858c6426c8a36a57b2f789d96e7fefa960ed661c5cf`. Decisions SHA-256: `d83201fdb2a63fee0ab8fdfed5bae479707a3cc75d30626788c07621bc7e1157`.
+
+The review verifier remains in task scratch because it requires the exact live PR head and was run before this docs-only evidence package advanced that head. Its path and checksum are recorded in `manifest.json`; `verification.json` retains the successful result. This window is evidence only: catalog targets were not changed by the review. No model/API calls, tests, builds, or CI jobs were run; native-speaker review remains outstanding.

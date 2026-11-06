@@ -1,0 +1,181 @@
+{
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "callerRowReferencesReattested": 498,
+  "candidateNoOpRows": 0,
+  "catalogFileHashesReattested": {
+    "ar": "d1395add89aad04473dd77e74119a4f13e553cb7ae7ef086a4640ae724a955c8",
+    "de": "fc5e743f4b9a196fda1a91a45f3955d0d9ddb4170ed7b095dc375ab674b694b5",
+    "es": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+    "fr": "232afa6ba63213a93ce069d31356d405f4a7fce2da3688edf250c983200618c1",
+    "hi": "800b0a0d4f701f5afec49b8ea2b8db1bbf6267a7df4a352c09e8db77e5442fad",
+    "id": "e2153985803b5dee08133ec344d57cc3dd984fbaf0d046d7ea5dec555128f0f7",
+    "ja": "843826bb8692be4e9f6082dde41b011a7c54c8017f62124d77fad72280fc63f0",
+    "ko": "20604684b4796fde1bd0ea42813a7a9c9ba5d4aeb0f3b9d7ba1c49d68773979f",
+    "pt-BR": "3d38db814ad5828cbe5193a58c64d9babf41650192d3365a20caaf1ba57e5c49",
+    "vi": "8bfb9b431a214d62bc6eb435cc8c154c9d01139639179de8ec5c30aa957bf1b8",
+    "zh-Hans": "ee1d5332cfb88b2d03124281d98004466ff62d77000125cdfc406a96c5aa58ca",
+    "zh-Hant": "a5701099e2151a5724b3fbaf665ea4d59d34ab138c2f37fc7ad5b3f7be50805b"
+  },
+  "catalogFilesEdited": false,
+  "composedSentenceReviewNote": "The Pod help fragment is concatenated after a separately localized Enable label and feature.Pods code literal; review the composed sentence before applying any row-level proposal.",
+  "correctedSourceIds": [
+    "src_084ee5f9dc342f13",
+    "src_0894b7f847440bec",
+    "src_08b30b1aba98a1d4",
+    "src_08cddda722527ffd",
+    "src_08f271887ce94707",
+    "src_090269ba94d47580",
+    "src_090512d93fcc3c0d",
+    "src_090940bae1e24f54",
+    "src_09155891b81b403c",
+    "src_091a998e1a186d71",
+    "src_09230b3dbc35635f",
+    "src_0924a671165fef5a",
+    "src_093fc8439d0ade12",
+    "src_094e2630f1d48460"
+  ],
+  "correctionCandidatesSha256": "fb449422e7e7d23c2d65ad26978d77684614d2262341b2d6aa341920cd83045f",
+  "correctionCellsByLocale": {
+    "ar": 11,
+    "de": 2,
+    "fr": 5,
+    "hi": 7,
+    "id": 4,
+    "ko": 4,
+    "pt-BR": 3,
+    "vi": 4,
+    "zh-Hans": 7,
+    "zh-Hant": 7
+  },
+  "correctionsBySource": {
+    "src_084ee5f9dc342f13": 4,
+    "src_0894b7f847440bec": 8,
+    "src_08b30b1aba98a1d4": 3,
+    "src_08cddda722527ffd": 3,
+    "src_08f271887ce94707": 5,
+    "src_090269ba94d47580": 1,
+    "src_090512d93fcc3c0d": 1,
+    "src_090940bae1e24f54": 6,
+    "src_09155891b81b403c": 7,
+    "src_091a998e1a186d71": 1,
+    "src_09230b3dbc35635f": 5,
+    "src_0924a671165fef5a": 6,
+    "src_093fc8439d0ade12": 3,
+    "src_094e2630f1d48460": 1
+  },
+  "formalCellIdsSha256": "7bd9c90a1176403feb36daadfecb7822616a818d15e9980c99c0bf5dc9d6f856",
+  "formalLaneRowsPreserved": 25,
+  "headedBrowserReview": "not part of this source/catalog audit; remains outstanding for parent workflow",
+  "keepCellsByLocale": {
+    "ar": 14,
+    "de": 22,
+    "fr": 19,
+    "hi": 18,
+    "id": 20,
+    "ja": 24,
+    "ko": 21,
+    "pt-BR": 21,
+    "vi": 20,
+    "zh-Hans": 18,
+    "zh-Hant": 18
+  },
+  "livePrDraft": true,
+  "livePrMergeState": "CLEAN",
+  "livePrState": "OPEN",
+  "nativeSpeakerReview": "outstanding",
+  "newPrimaryHoldRows": 0,
+  "newPrimaryHoldSourceIds": 0,
+  "pendingCellCounts": {
+    "ar": 25,
+    "de": 24,
+    "fr": 24,
+    "hi": 25,
+    "id": 24,
+    "ja": 24,
+    "ko": 25,
+    "pt-BR": 24,
+    "vi": 24,
+    "zh-Hans": 25,
+    "zh-Hant": 25
+  },
+  "pendingCells": 269,
+  "perLocaleVerdicts": {
+    "ar": {
+      "correct": 11,
+      "keep": 14
+    },
+    "de": {
+      "correct": 2,
+      "keep": 22
+    },
+    "fr": {
+      "correct": 5,
+      "keep": 19
+    },
+    "hi": {
+      "correct": 7,
+      "keep": 18
+    },
+    "id": {
+      "correct": 4,
+      "keep": 20
+    },
+    "ja": {
+      "keep": 24
+    },
+    "ko": {
+      "correct": 4,
+      "keep": 21
+    },
+    "pt-BR": {
+      "correct": 3,
+      "keep": 21
+    },
+    "vi": {
+      "correct": 4,
+      "keep": 20
+    },
+    "zh-Hans": {
+      "correct": 7,
+      "keep": 18
+    },
+    "zh-Hant": {
+      "correct": 7,
+      "keep": 18
+    }
+  },
+  "placeholdersAndProtectedLiterals": "PASS: 269 current rows and all 54 proposed targets; zero proposal mismatch",
+  "priorAppliedCorrectionRows": 1455,
+  "priorHoldRowsPreservedAndReattested": 50,
+  "priorHoldSourceIds": 7,
+  "priorManualCells": 10874,
+  "priorManualSourceKeys": 922,
+  "priorManualWindows": 37,
+  "priorW37CandidateNoOpRows": 0,
+  "priorW37CandidateRowsReattested": 42,
+  "privateJitFunctionalValidation": "not run for this read-only review",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "repositoryOrPullRequestMutated": false,
+  "result": "PRIMARY_REVIEW_COMPLETE_PENDING_CROSS_REVIEW_NATIVE_SPEAKER_REVIEW_OUTSTANDING",
+  "reviewBaseHead": "2be3fa4dd46a0f0f49adad342f289721e4777035",
+  "reviewBaseTree": "f838ae565086dec8639f8a54aa4c7d4572342b5f",
+  "reviewDecisionSha256": "06ae7ba6188f570172b58f0232cc7359387712e77a88c4f07cb14b98fb855dbb",
+  "reviewEvidenceSha256": "d82144191d0f796307f5130a53e530010ba539f92434875829c805791c2fb974",
+  "reviewHoldsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "reviewInputSha256": "019c8e3165489531bee00ec98881d9311a30a5a368532164092d621d479e413a",
+  "semanticConfidence": "High for clear false-friend, wrong data-type, path, and exact configuration-key errors; moderate overall; native-speaker review remains outstanding.",
+  "sourceCurrentTargetCallerPins": "PASS at exact pushed head",
+  "sourceKeys": 25,
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "spanishExactReuseRowsPreserved": 0,
+  "testsBuildsScansCiOrReleasesRun": false,
+  "uniqueCallerLinesReattested": 48,
+  "verdictCounts": {
+    "correct": 54,
+    "keep": 215
+  },
+  "window": 38,
+  "workflowFilesEdited": false
+}

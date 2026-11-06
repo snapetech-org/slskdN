@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W60 ranks 378-402",
+  "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
+  "tree": "95604b428133b5e52247c1f3f00900c2c7d5192f",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositions": {
+    "accept-current": 216,
+    "correction": 57,
+    "refinement": 27
+  },
+  "primaryDispositions": {
+    "accept-current": 224,
+    "correction": 50,
+    "refinement": 26
+  },
+  "blindDispositions": {
+    "accept-current": 229,
+    "correction": 50,
+    "refinement": 21
+  },
+  "selectedChanges": 84,
+  "readbackRequired": true,
+  "allSourcesCallerBacked": true,
+  "callerlessHolds": 0,
+  "reconciliationClasses": {
+    "agreement": 217,
+    "different-disposition-and-target": 45,
+    "different-disposition-same-target": 3,
+    "same-disposition-different-target": 35
+  },
+  "disagreementCount": 83,
+  "placeholderChecksPassed": 300,
+  "markupChecksPassed": 300,
+  "numericTokenChecksPassed": 300,
+  "qualifiedNativeSpeakerApproval": false,
+  "exactHeadBrowserReview": false,
+  "releaseApproved": false,
+  "candidateFreeInputManifestSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "primaryLedgerSha256": "93725fc9ac6fce4489d548d22bf404680ac9627bec06bad3e9e553e4ec9b7f68",
+  "blindLedgerSha256": "95d497524b8c176206db1720b30064efe384871a7c2c5ecef83e50bf125c067c",
+  "livePrAttestationSha256": "e1130f1cbfdcfe364cc487b0f983e446781e91e205dd49be389d328af6576f77"
+}

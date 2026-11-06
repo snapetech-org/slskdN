@@ -1,0 +1,43 @@
+{
+  "artifact": "slskdN PR #409 W953-W977 independent blind semantic review",
+  "blindReview": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "browserReview": false,
+  "callerContextsSha256": "70a6f95fe3405676c53b7000ff99364d0959b1310bc0fc98c82ff5dba9a26d3c",
+  "candidateFreeCallerlessSourceCount": 0,
+  "candidateFreeChecksumListSha256": "a1731c5e6616f1c223875f25c976131b013361d299b5cb133174b2015f79f3ce",
+  "candidateFreeManifestSha256": "42e328ff08e489134f4207b74da7e2844ed51b2dbb88c6934ceb5ba8d6c96f07",
+  "cellCount": 300,
+  "contextAmbiguityHoldSourceCount": 1,
+  "continuationRankRange": [
+    953,
+    977
+  ],
+  "crossReviewAccessed": false,
+  "currentCellsSha256": "cb74dc9fa6314ae75d003f3d8de0f4bc84964a87f9ffabd089e8fe50351da277",
+  "decisions": {
+    "accept-current": 222,
+    "correction": 56,
+    "hold": 12,
+    "refinement": 10
+  },
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "holdCellCount": 12,
+  "holdSourceCount": 1,
+  "localeCount": 12,
+  "nativeSpeakerSignoff": false,
+  "placeholderMarkupNumericProtectedLiteralChecks": "PASS",
+  "primaryReviewAccessed": false,
+  "proposalCount": 66,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    853,
+    877
+  ],
+  "repository": "snapetech-org/slskdN",
+  "repositoryChangesApplied": false,
+  "reviewedAtUtc": "2026-11-05T06:24:33+00:00",
+  "sourceCount": 25,
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+  "window": "W953-W977"
+}

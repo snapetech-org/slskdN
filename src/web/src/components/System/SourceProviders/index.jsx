@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import * as sourceProvidersApi from '../../../lib/sourceProviders';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
@@ -96,7 +96,7 @@ const SourceProviders = () => {
     try {
       setCatalog(await sourceProvidersApi.getSourceProviders());
     } catch (loadError) {
-      setError(getApiErrorMessage(loadError, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -120,7 +120,7 @@ const SourceProviders = () => {
         <Message
           error
           header={interfaceText("Source providers unavailable")}
-          content={error}
+          content={<LocalizedOutputText output={error} />}
          {...interfaceTextProps("Source providers unavailable")}/>
       )}
       <Segment>

@@ -1,0 +1,37 @@
+{
+  "result": "PASS",
+  "reviewHead": "70e5beffd5cd8d68b8aedffa5c85d16e2cc19b3f",
+  "reviewTree": "14620c63bee971428fa1cd6cf1f4e944b86056a7",
+  "applicationCommit": "b5311aea54dedefbc0b9b9fbc6adf091cc55b5c6",
+  "applicationTree": "878f26568f76ad866ce68d5825830cd4f14da68c",
+  "catalogCells": 300,
+  "counts": {
+    "accept-current": 206,
+    "select-update": 94,
+    "hold-text-free": 0
+  },
+  "application": {
+    "exactTargetReadbacks": 300,
+    "selectedUpdates": 94,
+    "sourceRewrites": 2,
+    "sourceRewriteLocaleTargets": 24,
+    "catalogLocales": 12,
+    "preimagePostimageKeySequence": "PASS",
+    "unselectedCatalogValues": "UNCHANGED",
+    "sourceCallsiteReadback": "PASS"
+  },
+  "nestedVerifiers": {
+    "candidateFree": "PASS",
+    "primary": "PASS",
+    "blind": "PASS",
+    "cross": "PASS",
+    "application": "PASS"
+  },
+  "applicationChecksumEntries": 35,
+  "bundleChecksumEntries": 167,
+  "gitDiffCheck": "PASS",
+  "workflowPathsChanged": 0,
+  "productTestsBuildsScansOrCiRun": false,
+  "browserReviewClaimed": false,
+  "nativeSpeakerApprovalClaimed": false
+}

@@ -1,0 +1,307 @@
+{
+  "artifact": "slskdN PR #409 W59 primary semantic review, ranks 353-377",
+  "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+    "remoteBranchHead": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+    "bodySha256": "960cc9d13a2ac9da556ebbf73c1ce5eda3bcad51517df3714a25cc59db7711f6",
+    "localWorktreeClean": true
+  },
+  "candidateFreeInputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w59-ranks353-377-primary-20261103/input",
+  "candidateFreePacketChecksumManifestSha256": "7283335c280db03cb764b911aa0542abbb6af5a27bd8574acd117f44850a1cf8",
+  "candidateFreeInputManifestSha256": "463ca62f877c64d98a160a979ece48319b153736fd4d174f123b6d8cfc391d86",
+  "w58BoundaryPacketChecksumManifestSha256": "b9ee90713942e94f801c019690b279c4ce01dc2a34c096dc826b684d4e53a839",
+  "sourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "verdictCounts": {
+    "accept-current": 214,
+    "correction": 46,
+    "refinement": 16,
+    "hold": 24
+  },
+  "countsByLocale": {
+    "ar": {
+      "accept-current": 20,
+      "hold": 2,
+      "correction": 3
+    },
+    "de": {
+      "accept-current": 19,
+      "hold": 2,
+      "refinement": 2,
+      "correction": 2
+    },
+    "es": {
+      "accept-current": 20,
+      "hold": 2,
+      "correction": 3
+    },
+    "fr": {
+      "accept-current": 20,
+      "hold": 2,
+      "correction": 3
+    },
+    "hi": {
+      "correction": 3,
+      "accept-current": 17,
+      "hold": 2,
+      "refinement": 3
+    },
+    "id": {
+      "accept-current": 18,
+      "hold": 2,
+      "refinement": 1,
+      "correction": 4
+    },
+    "ja": {
+      "accept-current": 19,
+      "refinement": 1,
+      "hold": 2,
+      "correction": 3
+    },
+    "ko": {
+      "accept-current": 17,
+      "hold": 2,
+      "correction": 5,
+      "refinement": 1
+    },
+    "pt-BR": {
+      "accept-current": 16,
+      "correction": 4,
+      "hold": 2,
+      "refinement": 3
+    },
+    "vi": {
+      "correction": 8,
+      "accept-current": 12,
+      "refinement": 3,
+      "hold": 2
+    },
+    "zh-Hans": {
+      "accept-current": 18,
+      "hold": 2,
+      "correction": 4,
+      "refinement": 1
+    },
+    "zh-Hant": {
+      "accept-current": 18,
+      "hold": 2,
+      "correction": 4,
+      "refinement": 1
+    }
+  },
+  "proposedValueCount": 62,
+  "holds": [
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "ar",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "de",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "es",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "fr",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "hi",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "id",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "ja",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "ko",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "pt-BR",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "vi",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "zh-Hans",
+      "callerCount": 0
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "source": "Add Torrent",
+      "locale": "zh-Hant",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "ar",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "de",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "es",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "fr",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "hi",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "id",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "ja",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "ko",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "pt-BR",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "vi",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "zh-Hans",
+      "callerCount": 0
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "source": "Searches",
+      "locale": "zh-Hant",
+      "callerCount": 0
+    }
+  ],
+  "structuralChecksAllPass": true,
+  "exactHeadCellsCatalogsAndCallerRefsReattested": true,
+  "reservedRankGap126-150Preserved": true,
+  "candidateFreeInputModified": false,
+  "repositoryOrPRModified": false,
+  "nativeSpeakerApproval": "not claimed",
+  "primaryLedger": "primary-ledger.jsonl",
+  "primaryLedgerSha256": "4c56bd8dc87723f49ace84edf00d2e3847c702da046d856b0cbd3621d311e2cb",
+  "primaryLedgerBytes": 1321175,
+  "subsetLedgers": {
+    "ar,de,es,fr,hi,id": {
+      "rows": 150,
+      "sha256": "2efddd7a360465be3dd51406b9919695872ee11831f53cd539a8f2d5a2bb7ed9"
+    },
+    "ja,ko,pt-BR,vi,zh-Hans,zh-Hant": {
+      "rows": 150,
+      "sha256": "a8550c7dc466a4c4353a19291c9b45e2ea57ec639abef02f0b3c3d9c31db6ab2"
+    }
+  }
+}

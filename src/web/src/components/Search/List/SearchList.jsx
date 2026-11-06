@@ -1,4 +1,5 @@
 import ErrorSegment from '../../Shared/ErrorSegment';
+import LocalizedText from '../../Shared/LocalizedText';
 import PlaceholderSegment from '../../Shared/PlaceholderSegment';
 import { useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import { formatRegionalNumber, useRegionalLocale } from '../../../lib/regionalFormat';
@@ -33,9 +34,7 @@ const SearchList = ({
   const regionalLocale = useRegionalLocale();
   const { t, languageFor, directionFor } = useInterfaceLanguage();
   const localized = (source, parameters) => (
-    <span dir={directionFor(source)} lang={languageFor(source)}>
-      {t(source, parameters)}
-    </span>
+    <LocalizedText source={source} values={parameters} />
   );
   const [page, setPage] = useState(1);
   const [selectedIds, setSelectedIds] = useState(() => new Set());
@@ -264,7 +263,7 @@ const SearchList = ({
           />
         )}
         {error ? (
-          <ErrorSegment caption={localized(error)} />
+          <ErrorSegment caption={error} />
         ) : filteredCount === 0 && !connecting ? (
           <PlaceholderSegment
             caption={localized(

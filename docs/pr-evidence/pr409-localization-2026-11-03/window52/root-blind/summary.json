@@ -1,0 +1,34 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W52 reconstructed continuation ranks 201–225",
+  "inputRoot": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window52-blind-input-20261103",
+  "inputPacketManifestSha256": "ad0ac60a4d2782cbb7ef759ef0cb68458d71f4431136e098c7b8010470183cb9",
+  "inputFilesSha256": {
+    "input/caller-contexts.jsonl": "ed945f399d309dc3a3f1c5cc17d1874e458d03834d2d04c7980aa37a77c7c572",
+    "input/catalog-structure.jsonl": "ad38be9f4a8a41fcb75df8e30b74cb0c830e892a1104c7908f228dbdb88afb0c",
+    "input/head-tree-attestation.json": "d1e986cc7ce8016b3f8a8c6207db30295f54da43023c8df3b34f8b5cd6a19bbd",
+    "input/selection-boundary.jsonl": "5a15f9eafdf03b9ae1be34eb545440d880828a25ddaa86c8ce42e7ddd4e52226",
+    "input/source-current-cells.jsonl": "5db36a1b7f0878509289c172122a8cb61bee7ecd82799feefcd3917be38cb72e"
+  },
+  "inputHead": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+  "inputTree": "ca9f1bf1d9f4373556476a51b863601668878eb3",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "callerReferenceCount": 47,
+  "counts": {
+    "accept-current": 209,
+    "correction": 70,
+    "refinement": 21,
+    "hold-context": 0
+  },
+  "ledgerSha256": "887247a6dfd6edaf63e6b201724cfb17dfd801a09ef1cefabd71154a1312311d",
+  "primaryPacketAccessed": false,
+  "testsBuildsScansCIWorkflowsRun": false,
+  "notedContextualSourceFilesRead": [
+    "src/web/src/components/System/MediaCore/index.jsx at pinned PR head",
+    "src/web/src/components/Player/PlayerBar.jsx at pinned PR head",
+    "src/web/src/lib/listeningHistory.js at pinned PR head"
+  ]
+}

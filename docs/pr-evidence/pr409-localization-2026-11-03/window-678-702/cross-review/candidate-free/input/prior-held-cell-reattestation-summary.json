@@ -1,0 +1,14 @@
+{
+  "priorHeldCellsReattested": 152,
+  "byPriorWindow": {
+    "pre-W69": 128,
+    "W69": 12,
+    "W71": 12
+  },
+  "allTargetHashesMatchPrior": true,
+  "allCurrentCallerAndCatalogEvidenceRepinned": true,
+  "statusCounts": {
+    "reattested-unchanged": 152
+  },
+  "lineageTextPolicy": "source and target text omitted; hashes and caller/catalog references only"
+}

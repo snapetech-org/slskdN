@@ -1,0 +1,34 @@
+{
+  "inputPacket": {
+    "manifestSha256": "399e499d21463b531cf77aa7f5a537f60cb6d8ab9be8c2f434ded1ce3a01af11",
+    "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-pod-help-composition-crossreview-20261102/cell-crossreview.jsonl",
+    "sha256": "9372dc8dca916803448afd8039933d8ee67bb682b5e45a0414c032a667d0a4dd",
+    "sha256sumsFileSha256": "3879e194aae58e1a0cb721542aeb60a29c31c86e58cfadf751dc766a0dc2fe05"
+  },
+  "livePullRequest": {
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "490983c336d4958f11518c73268de2788c8858cb",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "remoteBranchHead": "490983c336d4958f11518c73268de2788c8858cb",
+  "source": {
+    "callerFileBlob": "ab5a672ca6e1242e45da3f93247593780221eadc",
+    "callerFileSha256": "19060fc2a401f489313c8e7c5e4d67a4c7a7b2db591bde3cec3056aad46b72bd",
+    "callerLine": 1716,
+    "callerLineSha256": "066c417c3b0e3aab6bf992a05e4b1e3f81b1bf1d75edd19fa8556278eef270b6",
+    "callerLineText": "<LocalizedText source={\"Enable\"} />{\" \"}<code>feature.Pods</code> <LocalizedText source={\"in the server configuration to use pod rooms and discovery.\"} /></div>",
+    "callerPath": "src/web/src/components/Messaging/MessagingV2.jsx",
+    "head": "490983c336d4958f11518c73268de2788c8858cb",
+    "sentence": "Enable {feature} in the server configuration to use Pod rooms and discover other Pods.",
+    "sha256": "dd06eb6cc61e4586860d36bb3c9a4cf3ad155ebef5f81b649330086db5a5ecc3",
+    "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da"
+  },
+  "worktree": {
+    "head": "490983c336d4958f11518c73268de2788c8858cb",
+    "status": "",
+    "tree": "01ca1bcdd5f74fd1adf6151dda441e8a77a811da"
+  }
+}

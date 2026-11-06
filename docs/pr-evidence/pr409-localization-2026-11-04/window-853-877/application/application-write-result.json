@@ -1,0 +1,25 @@
+{
+  "artifact": "W79 exact catalog write result",
+  "headBeforeApply": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "treeBeforeApply": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "productCommit": "7317d8fa46a54746f09853da18c16a8ef1845291",
+  "selectedProposalCount": 46,
+  "catalogPathsChanged": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "readbackCellCount": 300,
+  "readbackResult": "PASS",
+  "unselectedValuesChanged": 0,
+  "testsBuildsScansCiRun": false
+}

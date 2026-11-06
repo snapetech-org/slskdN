@@ -1,0 +1,39 @@
+{
+  "status": "SEALED",
+  "head": "6e48a342d4b1c43918c23da3afcbaad19c87a005",
+  "tree": "b82ea7937cf9aa141a1c952283d5549dbe116ba5",
+  "candidateCells": 300,
+  "rootDispositionCounts": {
+    "accept-current": 251,
+    "accept-correction": 30,
+    "accept-refinement": 4,
+    "hold-callerless": 12,
+    "hold-qualified-language-review": 3
+  },
+  "selectedChanges": 34,
+  "changedCatalogCount": 12,
+  "changedLocales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "heldRank944Cells": 12,
+  "heldRank950LanguageCells": 3,
+  "protectedLiteralCorrections": {
+    "JWT": 3,
+    "soulfind": 12,
+    "PodCore": 3
+  },
+  "nativeSpeakerApprovalClaimed": false,
+  "browserReviewClaimed": false,
+  "productCodeChanges": false
+}

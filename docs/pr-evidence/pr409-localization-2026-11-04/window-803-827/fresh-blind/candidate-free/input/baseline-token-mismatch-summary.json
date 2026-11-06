@@ -1,0 +1,11 @@
+{
+  "cellCount": 300,
+  "mismatchCellCount": 0,
+  "mismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "mismatchExamples": []
+}

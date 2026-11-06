@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "exact-head catalog correction application and independent cross-review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "applicationCommit": "740ae56ebe31893319648edadfc7da087ba5dfe3",
+  "applicationTree": "b3b70ef49cc4ba2556c9960868231505fb57d1df",
+  "applicationBaseHead": "64556f04f436af2e53860cdf14f0bf7d44118cfe",
+  "applicationBaseTree": "c101f1032ed25dcb6cd0d693704aac44bea0db2f",
+  "sourceSubtreeTreeAtBase": "444662a240631d9b1ba4e8358e70d1a27b14469d",
+  "sourceSubtreeTreeAfterCatalogApply": "c3d06e298da7f7e04e69bee3c2596805a03d1e4b",
+  "catalogBaselineHead": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+  "catalogBaselineTree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+  "reviewPins": {
+    "window22": {
+      "head": "d3227259db9a485c75d39f5017ac9966a1a17bd1",
+      "tree": "dffdaf8b5cad7387a9de17fee1aac92eabe98b37"
+    },
+    "window23": {
+      "head": "ff8e73dca9575177c88645a27b8e7221f8828d5c",
+      "tree": "c325d60a5c44dac45e07c965747b91e2f608ecd3"
+    }
+  },
+  "manualApplication": {
+    "windows": [
+      22,
+      23
+    ],
+    "rows": 53,
+    "sourceKeys": 16,
+    "inputHashes": {
+      "window22": "626b0b83a25d9494714ec23f308fd34b5b415eebcbbdcb4857b0d1b96b9c0ca4",
+      "window23": "23ab5a2d823b2b1ee680adb175722e517f409e7d1bf3197e8b016705c2a783c9"
+    },
+    "decisionHashes": {
+      "window22": "95be1e51294ab721e819701aa0a21a4d6059e45ca62c6593a30490fce2e80031",
+      "window23": "fb20be25ce6cb5922550931096d9bd572fccfebb1eedf545f4d5fca2f158938c"
+    },
+    "applicationRowsSha256": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499"
+  },
+  "independentCrossReview": {
+    "sourceId": "src_f41792666b3f8d5b",
+    "window": 20,
+    "rows": 12,
+    "evidencePath": "independent-cross-review-ledger.jsonl",
+    "evidenceSha256": "4767ca0981a52863f848185554857afbeb7479602b9a339c3da730e31c3911f5",
+    "evidenceSummaryPath": "independent-cross-review-summary.json",
+    "evidenceSummarySha256": "21d05ad77f12751e9eff7307c35d979d7dad97fb14a7a403c2ad0d308c67e9b9",
+    "applicationRowsPath": "cross-review-applied-corrections.jsonl",
+    "applicationRowsSha256": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+    "acceptedAsProposed": 10,
+    "refinedAndAccepted": 2,
+    "holds": 0,
+    "semanticConfidence": "high",
+    "localeQualityConfidence": "moderate",
+    "nativeSpeakerReview": "outstanding"
+  },
+  "previousApplications": {
+    "initial736": 736,
+    "windows18_19": 82,
+    "windows20_21": 51,
+    "appliedBeforeThisBatch": 869,
+    "heldNoContext": 6
+  },
+  "newApplicationCounts": {
+    "manualWindowTargets": 53,
+    "independentCrossReviewTargets": 12,
+    "totalNewApplied": 65,
+    "byLocale": {
+      "ar": 8,
+      "de": 3,
+      "es": 7,
+      "fr": 8,
+      "hi": 4,
+      "id": 6,
+      "ja": 5,
+      "ko": 4,
+      "pt-BR": 6,
+      "vi": 6,
+      "zh-Hans": 4,
+      "zh-Hant": 4
+    }
+  },
+  "cumulativeApplication": {
+    "cells": 934,
+    "sourceKeys": 228,
+    "heldNoContext": 6
+  },
+  "manualReviewCoverage": {
+    "windows": 23,
+    "sourceKeys": 575,
+    "cells": 6900,
+    "keep": 5752,
+    "correctionDecisions": 928,
+    "uncertainBeforeCrossReview": 220,
+    "independentlyResolvedUncertain": 12,
+    "uncertainRemaining": 208
+  },
+  "catalogCensus": {
+    "keysPerLocale": 6169,
+    "locales": 12,
+    "totalValues": 74028,
+    "changedFromFrozenBaseline": 934
+  },
+  "nativeSpeakerReview": "outstanding",
+  "testsBuildCiRun": false,
+  "releaseOrTagCut": false,
+  "workflowChanges": 0,
+  "createdUtc": "2026-11-02T01:47:17Z",
+  "independentCrossReviews": {
+    "windows22_23": {
+      "sourceRows": 53,
+      "acceptedAsProposed": 53,
+      "refined": 0,
+      "holds": 0,
+      "evidencePath": "independent-cross-reviews/windows22-23/review.jsonl",
+      "evidenceSha256": "cc976e55113ede92e8d36370babcf37150ccc09929ceb5b6e38edad0cbe1087e",
+      "summaryPath": "independent-cross-reviews/windows22-23/review-summary.json",
+      "summarySha256": "74c145b9a33d3d2e5e74f48972030a5f848120bca99b100a9d87ececf71d7abb",
+      "applicationRowsPath": "applied-corrections-windows22-23.jsonl",
+      "applicationRowsSha256": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "applicationCommit": "740ae56ebe31893319648edadfc7da087ba5dfe3",
+      "applicationTree": "b3b70ef49cc4ba2556c9960868231505fb57d1df",
+      "semanticConfidence": "high",
+      "localeQualityConfidence": "moderate",
+      "nativeSpeakerReview": "outstanding"
+    },
+    "realmWindow20": {
+      "sourceRows": 12,
+      "acceptedAsProposed": 10,
+      "refinedAndAccepted": 2,
+      "holds": 0,
+      "evidencePath": "independent-cross-reviews/realm-window20/root-review.jsonl",
+      "evidenceSha256": "4767ca0981a52863f848185554857afbeb7479602b9a339c3da730e31c3911f5",
+      "summaryPath": "independent-cross-reviews/realm-window20/root-review-summary.json",
+      "summarySha256": "21d05ad77f12751e9eff7307c35d979d7dad97fb14a7a403c2ad0d308c67e9b9",
+      "applicationRowsPath": "applied-corrections-realm-window20.jsonl",
+      "applicationRowsSha256": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+      "applicationCommit": "740ae56ebe31893319648edadfc7da087ba5dfe3",
+      "applicationTree": "b3b70ef49cc4ba2556c9960868231505fb57d1df",
+      "semanticConfidence": "high",
+      "localeQualityConfidence": "moderate",
+      "nativeSpeakerReview": "outstanding"
+    }
+  }
+}

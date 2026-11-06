@@ -1,0 +1,1 @@
+Candidate-free input checksum manifest in fresh blind packet is byte-for-byte identical to the primary packet's candidate-free checksum manifest. Both copies pass all listed SHA-256 checks.

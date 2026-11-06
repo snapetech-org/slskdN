@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "result": "CROSS_REVIEW_COMPLETE_NATIVE_SPEAKER_REVIEW_OUTSTANDING",
+  "window": 36,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "exactHead": "370c172e91935d7753c398eaf1b1fbc2e82f65ba",
+  "exactTree": "61bd0c6af797b0e810fdf9fad82c7d3a95c88b9c",
+  "sourceCellRows": 275,
+  "sourceIds": 25,
+  "localesReviewed": 11,
+  "crossReviewedRows": 275,
+  "crossReviewVerdictCounts": {
+    "accept-proposed": 36,
+    "agree-keep": 228,
+    "hold": 3,
+    "missed-correction": 5,
+    "refine-proposed": 3
+  },
+  "primaryCandidateRows": 39,
+  "primaryCandidateOutcomeCounts": {
+    "accept-proposed": 36,
+    "refine-proposed": 3
+  },
+  "refinedProposals": 3,
+  "newCorrectionCandidates": 5,
+  "holds": 3,
+  "priorManualOverlap": 0,
+  "priorAppliedCorrectionOverlap": 0,
+  "formalOverlap": 0,
+  "preservedPriorSpanishRows": 25,
+  "noOpCandidates": 0,
+  "sourceTargetCallerAndLiteralReattestation": "PASS",
+  "primaryPacketMetadataIssue": "declared prior windows=34; independently reconstructed windows=35",
+  "semanticConfidence": "moderate; native-speaker review remains outstanding",
+  "testsBuildScansCiOrReleasesRun": false,
+  "repositoryEdited": false,
+  "pullRequestChanged": false
+}

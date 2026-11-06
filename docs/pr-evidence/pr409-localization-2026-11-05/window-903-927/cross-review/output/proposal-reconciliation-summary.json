@@ -1,0 +1,124 @@
+{
+  "artifact": "slskdN PR #409 W903-W927 sealed cross-review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W81",
+  "head": "91da6fff5d5b628ade7ee556386e3db1db6878fa",
+  "tree": "56930b73d10a4c419edf68f0d951ceedaa63c990",
+  "continuationRankRange": [
+    903,
+    927
+  ],
+  "remainingQueueRankRange": [
+    803,
+    827
+  ],
+  "candidateFreeManifestSha256": "0a405f656e91557ca46a5fef38cda826f5d34e9426186c12eba042b02f97167f",
+  "candidateFreeChecksumListSha256": "3069af0068d13ce6addaf3f64ca6d3f4384f3f47bf94e41f46ccd3104d3a1002",
+  "candidateFreeInputTreeSha256": "cef90cf08a4e68e80416b9295835a4dca0a36b62fe35727dd8a03f67bc41de27",
+  "sourceCurrentCellsSha256": "79ee2e491e4d57584e875c8fc5a74199eb03c9bb97d8c9d9c4cb2d60ebb35572",
+  "callerContextsSha256": "d9c1750f6c33c4907ddf1144519c8ede142298b9efed69e63b6bce6aad960555",
+  "selectedSourcesSha256": "0bb84212cfaf0680b2e94bd8bc530c21594e6eae5febc67ef9a2a1966d982195",
+  "primaryManifestSha256": "4bbb80538e05704a8353746ce5b218c54cf161fd3759070a360e6ccbf5cd7f5b",
+  "primaryChecksumListSha256": "01601032114e1eb50e78e0d32e0708cc3bc527777cd3aa07ef76862371933d72",
+  "primaryReviewLedgerSha256": "95982a9680af5b2fddc374a4ffcfb7df1da95ce2c4cb077c0460eab5aaebf4f3",
+  "primaryProposalMapSha256": "6ce32d2f28b44f766eb449cc356546f032c63eb300a9374882d0873a9b65e377",
+  "primarySummarySha256": "f1eee8a23f26b7f203b09fbfa152433dcaac934f84308eff56716a53f3ed34d8",
+  "blindManifestSha256": "1fec02e24bff6a5e57e33908308a6152100755c9c3cc03560055c1a6584b619d",
+  "blindChecksumListSha256": "d1f325f548943f1488705103898806917025e18ae5ae8f02f7919e3674c63e8d",
+  "blindReviewLedgerSha256": "a47f863e5ff506e9bc76573721e9cbe4954328782f778ce80029697bad662812",
+  "blindInputTreeSha256": "cef90cf08a4e68e80416b9295835a4dca0a36b62fe35727dd8a03f67bc41de27",
+  "independentLedgerSha256": "0394fbcc273b250e67f242a54d038ca4bf6db543aefbc14643fb74079d5042ca",
+  "independentPassSummarySha256": "80f84dc5566e402391c8486f2ea7e693dc2459283cd9ed7d90095f3d090c335c",
+  "independentPreProposalSealSha256": "a0be9c46e87657d73fd7ebf00db7c4f4818f756a68285807c71902c3c095bf6d",
+  "independentPreProposalChecksumListSha256": "2344501b2b94130da21c88c040002512a226ca8e5c32cd4f52435f7ba5cd6cd3",
+  "cellCount": 300,
+  "primaryCounts": {
+    "accept-current": 245,
+    "correct": 43,
+    "hold": 12
+  },
+  "blindCounts": {
+    "accept": 239,
+    "correction": 26,
+    "refinement": 35,
+    "hold": 0
+  },
+  "independentCounts": {
+    "retain-current": 276,
+    "revise-current": 24,
+    "hold": 0
+  },
+  "finalCounts": {
+    "retain-current": 224,
+    "refinement": 14,
+    "correct": 50,
+    "hold": 12
+  },
+  "proposalAuditCounts": {
+    "primary": {
+      "no-target-proposal": 245,
+      "accepted-exact": 25,
+      "accepted-alternative": 18,
+      "accepted-hold": 12
+    },
+    "blind": {
+      "no-target-proposal": 239,
+      "accepted-exact": 43,
+      "accepted-alternative": 15,
+      "held-pending-source-rewrite": 3
+    }
+  },
+  "baselineTokenMismatchSummary": {
+    "cellCount": 300,
+    "mismatchCellCount": 2,
+    "mismatchCounts": {
+      "placeholder": 0,
+      "markup": 0,
+      "numeric": 0,
+      "protectedLiteral": 2
+    },
+    "mismatchExamples": [
+      {
+        "continuationRank": 921,
+        "sourceId": "src_349102fe2a438f4c",
+        "locale": "ar",
+        "kind": "protectedLiteral"
+      },
+      {
+        "continuationRank": 921,
+        "sourceId": "src_349102fe2a438f4c",
+        "locale": "hi",
+        "kind": "protectedLiteral"
+      }
+    ]
+  },
+  "additionalProtectedLiteralFindings": [
+    "rank 918: Latin B field identifier translated in ar and hi",
+    "rank 921: literal sample content:audio:album:mb-release-id localized or reformatted in es, hi, id, zh-Hans, zh-Hant",
+    "rank 927: SongID transliterated in hi"
+  ],
+  "rank921ProtectedIdCells": [
+    "ar",
+    "hi"
+  ],
+  "rank910Disposition": "hold all 12 pending source rewrite; preserve inline ed25519 code in caller",
+  "sourceRewriteRecommendation": {
+    "id": "SR-910-01",
+    "implemented": false,
+    "acceptedAsDesignRecommendation": true,
+    "summary": "Combine the sentence into one translatable rich-text message with the signature format as a markup-safe code interpolation so locales can reorder it."
+  },
+  "rank922EvidenceScope": {
+    "pinnedCallerPath": "src/web/src/components/System/Security/AdversarialSettings.jsx",
+    "acceptedInterpretation": "network transport, based on the pinned System/Security/AdversarialSettings.jsx path and signal-icon header",
+    "note": "The primary rationale also names Tor/I2P/direct/failover panel values; those details are not present in the candidate-free six-line caller excerpt or primary supplemental context pins, so this cross-review does not claim to have independently verified them."
+  },
+  "nativeSpeakerSignoff": false,
+  "browserReview": false,
+  "repositoryOrWorktreeInspected": false,
+  "prBodyInspected": false,
+  "externalSourcesUsed": false,
+  "rationaleNote": "Every cell carries independent, primary, blind, and final rationales; proposals are logged with exact target hashes and audit outcomes.",
+  "crossReviewLedgerSha256": "87fb5819c31afcdf04958bd31f908c1263d528ea82c3ffcd4f2d2af23cee9c38"
+}

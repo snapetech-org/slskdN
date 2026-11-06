@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "verifier": "root-adjudication-opinion",
+  "head": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "tree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "flaggedRows": 64,
+  "recommendations": {
+    "correction": 64
+  },
+  "selectionBasis": {
+    "primary proposal": 50,
+    "blind proposal": 9,
+    "independent refinement": 4,
+    "primary/blind agreement": 1
+  },
+  "protectedLiteralCases": 5,
+  "upstreamCrossReviewLedgerSha256": "8745ec733616176c562d11291ed9123ac16efb1c176bd0d2726c28ee07b75a00"
+}

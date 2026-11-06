@@ -1,0 +1,45 @@
+{
+  "blind": {
+    "accept": 256,
+    "cells": 300,
+    "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "holds": 0,
+    "localizedWishlistBaselineExceptions": 23,
+    "result": "PASS",
+    "revise": 44,
+    "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471"
+  },
+  "candidateFree": {
+    "catalogPinsVerifiedAgainstExactHeadWorktree": true,
+    "catalogs": 12,
+    "cells": 300,
+    "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "localeCount": 12,
+    "priorHeldCellsHashOnly": 259,
+    "priorHeldTargetHashesMatch": true,
+    "priorHoldResolutionsHashOnly": 13,
+    "priorSelectedIdsHashOnly": 1832,
+    "result": "PASS",
+    "runtimeFilesPinned": 279,
+    "sourceCount": 25,
+    "sourceWorktreeRemovedAfterVerification": false,
+    "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471",
+    "window": "W75"
+  },
+  "checksums": {
+    "blind": "PASS",
+    "candidateFree": "PASS",
+    "primary": "PASS"
+  },
+  "livePRBeforeReview": "PASS",
+  "primary": {
+    "acceptCurrent": 268,
+    "cells": 300,
+    "corrections": 20,
+    "hashOnlyHolds": 12,
+    "head": "99d6afbfb8cca4dccc018e72c01950bc304240db",
+    "result": "PASS",
+    "tokenMismatchesAmongProposals": 0,
+    "tree": "f21cb5cde009ac35f5531ddc40612821aee6f471"
+  }
+}

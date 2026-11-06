@@ -1,0 +1,110 @@
+{
+  "head": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "tree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "sourceSubtreeTree": "6552126d387a94e95dbe4134c1e5ac2d42b0ae11",
+  "localeCatalogSubtreeTree": "e5b964e50ee44873b4e28546b811fdbe2a45f7bb",
+  "sourceKeyCountPerLocale": 6170,
+  "orderedKeyInventoryCount": 6170,
+  "orderedKeyInventorySha256": "a84ad362b5acd80e4944ea1c5d7316f2593b9eb82b2b272801cee806850d55a8",
+  "sourceIdInventorySha256": "e7dbd7640d1e6d8285ad1551ca733c9004fa03902ea5032240a71d41fffd1141",
+  "sourceIsLocaleJsonObjectKey": true,
+  "englishLocaleFilePresent": false,
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "blobOid": "978e0c76f622cd47fce6888505bd1cc5b1ecea33",
+      "fileSha256": "27d4698d661468c9ee50cf1c7358a05bf52c65451f4386d3e0df0332296de545",
+      "bytes": 616114,
+      "entryCount": 6170
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "blobOid": "c73e4ad110462f25c39975644b8ee3d2e30629f5",
+      "fileSha256": "1124d8ba0d10e1e6b610a20bea92f1d5b28502adf6cbbb947767eb316383adc2",
+      "bytes": 532481,
+      "entryCount": 6170
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "blobOid": "58248ad4e614a2569a42673cb05f14610bfac38a",
+      "fileSha256": "f1514481256f477d21e1592ed3355a4576f40f445bd9d95b95c631920a60e900",
+      "bytes": 531127,
+      "entryCount": 6170
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "blobOid": "afbe0a144fb8784e25ece6328a407627c155cbc2",
+      "fileSha256": "21f762e62476f960d17cb4cad9e8ebf8ac2742972a5c02e4161e167b9a747ccb",
+      "bytes": 545347,
+      "entryCount": 6170
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "blobOid": "bfcec3cf016aa8dffe8c19493cad80ceb65d3023",
+      "fileSha256": "fa5fcc0f3b77acf554b1358cc206d55bb3cea10e90f1ca8326b460344af69a17",
+      "bytes": 830483,
+      "entryCount": 6170
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "blobOid": "30511aa92f02fdd519ae755d72db962ecedb7197",
+      "fileSha256": "ff53adc53974ac3a4996fa48052b93cc3b097239abc79089b18f88fb75e51556",
+      "bytes": 491798,
+      "entryCount": 6170
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "blobOid": "edfc71fb40e3cc22a410c2e88a79c417328ee15a",
+      "fileSha256": "3c808534c5da8d83dbc81b77039358f493da46efe76e9de74132017ba643eb95",
+      "bytes": 590908,
+      "entryCount": 6170
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "blobOid": "c41b36e28d33327aa99d6e07e8c7b2d59a77ed79",
+      "fileSha256": "a5244f4bffac70c061f3377c978cdd9453d7c7ab4f907d085932c3bd72959681",
+      "bytes": 527881,
+      "entryCount": 6170
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "blobOid": "1f12657edd66dd307291777d5e596c95aa9c8fe4",
+      "fileSha256": "6689f207ca54bf5bb5347ec1038dcbc0b4decf35e6648286781f3dbb8b3569a1",
+      "bytes": 522980,
+      "entryCount": 6170
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "blobOid": "a95125225ce9f2b213d67654748b4c45eec77a4c",
+      "fileSha256": "085bfe72083768ff189e11dcbc272d8df224fab763e1f8d9f3cf55848b30bae3",
+      "bytes": 571942,
+      "entryCount": 6170
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "blobOid": "ee32272949d640171e6d7202facbbf3a979d7e53",
+      "fileSha256": "254e72c5ee9354baf4cee8f2eb6b96528403fe42c730ae8983888e2be5fad0ae",
+      "bytes": 455506,
+      "entryCount": 6170
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "blobOid": "263fb2edf32c0eea5acf4ea012ae881fa799c8ac",
+      "fileSha256": "6e6903fd83f0a71d471d01abac610b712447e98a8c4ec076b7349aa7d1be205d",
+      "bytes": 456851,
+      "entryCount": 6170
+    }
+  ]
+}

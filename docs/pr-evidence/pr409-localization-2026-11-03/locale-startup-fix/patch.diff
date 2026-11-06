@@ -1,0 +1,37 @@
+diff --git a/src/web/src/index.jsx b/src/web/src/index.jsx
+index 5757d02ec..e1028bdf9 100644
+--- a/src/web/src/index.jsx
++++ b/src/web/src/index.jsx
+@@ -20,7 +20,9 @@ const basename = urlBase && urlBase !== '/' ? urlBase : undefined;
+-applyInitialInterfaceLanguage();
+-
+-createRoot(document.querySelector('#root')).render(
+-  <Router basename={basename}>
+-    <App />
+-  </Router>,
+-);
++void applyInitialInterfaceLanguage()
++  .catch(() => undefined)
++  .then(() => {
++    createRoot(document.querySelector('#root')).render(
++      <Router basename={basename}>
++        <App />
++      </Router>,
++    );
++  });
+diff --git a/src/web/src/lib/interfaceLocale.js b/src/web/src/lib/interfaceLocale.js
+index c2d6ee233..df8e7c6d6 100644
+--- a/src/web/src/lib/interfaceLocale.js
++++ b/src/web/src/lib/interfaceLocale.js
+@@ -45,2 +45,9 @@ const browserLanguage = () => {
+-    const base = normalized.split(/[-_]/)[0];
+-    if (base === 'zh') return /(?:hant|tw|hk|mo)/.test(normalized) ? 'zh-Hant' : 'zh-Hans';
++    const subtags = normalized.split(/[-_]/);
++    const base = subtags[0];
++    if (base === 'zh') {
++      const script = subtags.find((subtag) => subtag === 'hans' || subtag === 'hant');
++      if (script) return script === 'hant' ? 'zh-Hant' : 'zh-Hans';
++      return /(?:^|[-_])(?:tw|hk|mo)(?:[-_]|$)/.test(normalized)
++        ? 'zh-Hant'
++        : 'zh-Hans';
++    }

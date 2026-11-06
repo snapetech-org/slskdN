@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "kind": "exact-hash correction proposal bundle",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "validatedLiveHead": "bc2dff64942bcaddd87ab7b6bdffa61fee8c90e5",
+  "validatedLiveTree": "1efc6794ecbbfb1ac28a50bae702be61a7aa0284",
+  "srcTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15"
+  },
+  "windows": 17,
+  "manualCells": 5100,
+  "manualRowsCompared": 5100,
+  "formalRowsCovered": 4800,
+  "formalOverlap": 0,
+  "manualCellOverlap": 0,
+  "correctionDecisionRows": 742,
+  "uniqueCatalogCellProposals": 736,
+  "heldCandidatesMissingExactContext": 6,
+  "heldRows": [
+    {
+      "window": 5,
+      "id": "es:src_e09a556368de3b51",
+      "sourceId": "src_e09a556368de3b51",
+      "locale": "es",
+      "source": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "catalogKey": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "reason": "no exact source callsite/context in the frozen review input"
+    },
+    {
+      "window": 5,
+      "id": "hi:src_e09a556368de3b51",
+      "sourceId": "src_e09a556368de3b51",
+      "locale": "hi",
+      "source": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "catalogKey": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "reason": "no exact source callsite/context in the frozen review input"
+    },
+    {
+      "window": 5,
+      "id": "fr:src_e09a556368de3b51",
+      "sourceId": "src_e09a556368de3b51",
+      "locale": "fr",
+      "source": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "catalogKey": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "reason": "no exact source callsite/context in the frozen review input"
+    },
+    {
+      "window": 5,
+      "id": "ar:src_e09a556368de3b51",
+      "sourceId": "src_e09a556368de3b51",
+      "locale": "ar",
+      "source": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "catalogKey": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "reason": "no exact source callsite/context in the frozen review input"
+    },
+    {
+      "window": 5,
+      "id": "vi:src_e09a556368de3b51",
+      "sourceId": "src_e09a556368de3b51",
+      "locale": "vi",
+      "source": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "catalogKey": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "reason": "no exact source callsite/context in the frozen review input"
+    },
+    {
+      "window": 5,
+      "id": "id:src_e09a556368de3b51",
+      "sourceId": "src_e09a556368de3b51",
+      "locale": "id",
+      "source": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "catalogKey": "Ran enabled Wishlist searches: {ran}; failed: {failed}. Downloads still require normal result selection and policy.",
+      "reason": "no exact source callsite/context in the frozen review input"
+    }
+  ],
+  "perLocaleProposals": {
+    "ar": 85,
+    "vi": 76,
+    "es": 61,
+    "zh-Hans": 71,
+    "hi": 62,
+    "de": 40,
+    "fr": 60,
+    "pt-BR": 52,
+    "ko": 52,
+    "zh-Hant": 69,
+    "id": 68,
+    "ja": 40
+  },
+  "proposedTargetsPassPlaceholderAndProtectedLiteralRules": true,
+  "catalogCurrentTargetsMatchExactReviewHashes": true,
+  "sourceCallsitesMatchFrozenFileAndLineHashes": true,
+  "noCatalogsChangedYet": true,
+  "noTestsBuildOrCI": true,
+  "windowSummaries": [
+    {
+      "window": 1,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 33,
+      "heldNoExactContext": 0,
+      "uncertainRows": 0
+    },
+    {
+      "window": 2,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 51,
+      "heldNoExactContext": 0,
+      "uncertainRows": 28
+    },
+    {
+      "window": 3,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 66,
+      "heldNoExactContext": 0,
+      "uncertainRows": 1
+    },
+    {
+      "window": 4,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 26,
+      "heldNoExactContext": 0,
+      "uncertainRows": 12
+    },
+    {
+      "window": 5,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 62,
+      "heldNoExactContext": 6,
+      "uncertainRows": 12
+    },
+    {
+      "window": 6,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 46,
+      "heldNoExactContext": 0,
+      "uncertainRows": 0
+    },
+    {
+      "window": 7,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 60,
+      "heldNoExactContext": 0,
+      "uncertainRows": 12
+    },
+    {
+      "window": 8,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 55,
+      "heldNoExactContext": 0,
+      "uncertainRows": 12
+    },
+    {
+      "window": 9,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 49,
+      "heldNoExactContext": 0,
+      "uncertainRows": 12
+    },
+    {
+      "window": 10,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 41,
+      "heldNoExactContext": 0,
+      "uncertainRows": 12
+    },
+    {
+      "window": 11,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 31,
+      "heldNoExactContext": 0,
+      "uncertainRows": 2
+    },
+    {
+      "window": 12,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 44,
+      "heldNoExactContext": 0,
+      "uncertainRows": 1
+    },
+    {
+      "window": 13,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 36,
+      "heldNoExactContext": 0,
+      "uncertainRows": 24
+    },
+    {
+      "window": 14,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 44,
+      "heldNoExactContext": 0,
+      "uncertainRows": 18
+    },
+    {
+      "window": 15,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 46,
+      "heldNoExactContext": 0,
+      "uncertainRows": 1
+    },
+    {
+      "window": 16,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 17,
+      "heldNoExactContext": 0,
+      "uncertainRows": 0
+    },
+    {
+      "window": 17,
+      "reviewedRows": 300,
+      "correctionDecisionRows": 35,
+      "heldNoExactContext": 0,
+      "uncertainRows": 24
+    }
+  ],
+  "nextAction": "Apply only correction-proposals.jsonl targets in exact-hash-checked batches; do not apply held-no-context.jsonl or uncertain evidence rows."
+}

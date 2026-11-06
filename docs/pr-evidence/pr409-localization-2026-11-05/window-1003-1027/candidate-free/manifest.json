@@ -1,0 +1,178 @@
+{
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baselineTokenMismatchCounts": {
+    "protectedLiteral": 1
+  },
+  "blindReviewUsed": false,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFree": true,
+  "catalogCount": 12,
+  "catalogEntryCountPerLocale": 6175,
+  "cellCount": 300,
+  "continuationRankRange": [
+    1003,
+    1027
+  ],
+  "crossReviewUsed": false,
+  "files": [
+    {
+      "bytes": 815,
+      "path": "README.md",
+      "sha256": "9a67bc5517ac75fd4dd81f1b377de286b43815519f4355bbe71ffa40a72b80b9"
+    },
+    {
+      "bytes": 304,
+      "path": "baseline-token-mismatch-summary.json",
+      "sha256": "40cad8f9f9a8b251177444a8a97238e12b765c153ee7d5234af33e1beb324fac"
+    },
+    {
+      "bytes": 27493,
+      "path": "build_candidate_free.py",
+      "sha256": "1c6a601ce6b49ace2f2de81f1fc5c52ee479967b5fa483381dd679604872eebb"
+    },
+    {
+      "bytes": 50050,
+      "path": "caller-contexts.jsonl",
+      "sha256": "447a9d3f36e0a2f2658170e52ef8545fec175b5b21fa42baebf58b06c9d28bec"
+    },
+    {
+      "bytes": 469,
+      "path": "catalog-key-order-attestation.json",
+      "sha256": "520dc96a5cdfac3ec357217fbc78f4549936f90df6ff063f53df7ad40164030b"
+    },
+    {
+      "bytes": 3674,
+      "path": "catalog-structure.jsonl",
+      "sha256": "cc7f4ac5530c54616e5c93af77f3175e91279c299d89afb3394618d639307e55"
+    },
+    {
+      "bytes": 736,
+      "path": "continuity-provenance.json",
+      "sha256": "d648c971cd1a35ce1905beaac9c639e9bdff77439f05f7d80de269ef84d9d34a"
+    },
+    {
+      "bytes": 1179,
+      "path": "live-after.json",
+      "sha256": "8df24cfa3b2798c5ed41240a7f0cf6cd5bddeaa942086995e001623dba448170"
+    },
+    {
+      "bytes": 1179,
+      "path": "live-before.json",
+      "sha256": "23d4eccd766709b86cfa579fa6a6d3adafeb85b0c0f96b20f3de0916b41c46ba"
+    },
+    {
+      "bytes": 397146,
+      "path": "prior-applied-targets-reattestation-hash-only.jsonl",
+      "sha256": "465581ef5c31671ad1fe6f4f0865b15a121e2c88d50d286a09fab0fd22a32b49"
+    },
+    {
+      "bytes": 416914,
+      "path": "prior-held-cell-reattestation-hash-only.jsonl",
+      "sha256": "289d066a06f1ed788b095668bbe5964a90ae07a2888faa10104d706f2140c1d6"
+    },
+    {
+      "bytes": 19512,
+      "path": "prior-hold-resolution-history-hash-only.jsonl",
+      "sha256": "b567fb0d259a030d3df345d2b52ee09bb6c7d3193411ce1ec99d6dd45b40825a"
+    },
+    {
+      "bytes": 904013,
+      "path": "prior-selected-id-exclusions-hash-only.jsonl",
+      "sha256": "d819cc266fa57bcbe28e37062fbd28e6efa9b3160c2c5aa0883ca3c1d9f94ff4"
+    },
+    {
+      "bytes": 59546,
+      "path": "runtime-file-pins.jsonl",
+      "sha256": "8d3017922f219203337a32859d01f4bb36e322600ed456ab4740aa38c6f87ed7"
+    },
+    {
+      "bytes": 7929,
+      "path": "selected-sources.jsonl",
+      "sha256": "f1d435d1fbd4ba7c69770af1e1135f93d5838b7526bebf616f811f73d982fb10"
+    },
+    {
+      "bytes": 5988,
+      "path": "selection-and-boundary.json",
+      "sha256": "0e8797e4e70992e7d83a2488c77bf0703994bbf12a69bb85753921db3b590ae6"
+    },
+    {
+      "bytes": 367819,
+      "path": "source-current-cells.jsonl",
+      "sha256": "2c5ba3a2179802fd853d4fd61f0b7cd4d81235e1de51a1c6006f7026f1cc4e19"
+    },
+    {
+      "bytes": 2275370,
+      "path": "source-inventory-pinned.jsonl",
+      "sha256": "5001044ab7c154267c0c6734c1c8dd675b16993723143e73e80d58b291f95157"
+    },
+    {
+      "bytes": 6275,
+      "path": "source-inventory-selection.jsonl",
+      "sha256": "bdc4ba9263616f9a2e4103d45c430f4c0e96059d39ae97467cdcf8cea59e29e2"
+    },
+    {
+      "bytes": 1510,
+      "path": "summary.json",
+      "sha256": "9a14b50f28f065943e72f77bad0a66c8124497317cd009e46100252c284f3182"
+    },
+    {
+      "bytes": 19731,
+      "path": "verify_candidate_free.py",
+      "sha256": "e96bf5876cf2b1d4a0c2c23c469585246933c293df78820ffa466161a59d11f3"
+    },
+    {
+      "bytes": 426447,
+      "path": "window-application-readback-hash-only.jsonl",
+      "sha256": "44e760e3dac36b46adb5a6b7d1680a616c91fdd3953947e05ba37e7a04797e2d"
+    },
+    {
+      "bytes": 274835,
+      "path": "window-applied-targets-reattestation-hash-only.jsonl",
+      "sha256": "b8c2c88183bea7bf5d3dc11c1e1e2bf6520e44eb9b2ffa44d2cef650568c5c8a"
+    },
+    {
+      "bytes": 15458,
+      "path": "window-holds-hash-only.jsonl",
+      "sha256": "05df79b77505fad29bf81ac887f48b8ba9f894884feee1c60003ee7b07975f7e"
+    }
+  ],
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "newWindowHashOnlyHoldCells": 12,
+  "priorActiveHoldsReattested": 409,
+  "priorAppliedTargetsReattested": 677,
+  "priorSelectedIdsAndNewWindowExclusions": 2110,
+  "productionRuntimeFileCount": 279,
+  "proposedTargetsIncluded": false,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    903,
+    927
+  ],
+  "repository": "snapetech-org/slskdN",
+  "resultingActiveHashOnlyHoldCells": 421,
+  "reviewDecisionsIncluded": false,
+  "rootAdjudicationPerformed": false,
+  "schemaVersion": 1,
+  "sourceCallerReferenceCount": 34,
+  "sourceCount": 25,
+  "sourcesWithCallers": 24,
+  "sourcesWithoutCallers": 1,
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c",
+  "window": "W85"
+}

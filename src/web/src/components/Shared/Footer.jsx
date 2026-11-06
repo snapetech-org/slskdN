@@ -1,5 +1,5 @@
 import LocalizedText from "./LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 
 
 import './Footer.css';
@@ -390,11 +390,11 @@ class Footer extends Component {
                 rel="noopener noreferrer"
                 target="_blank"
                 title={isUpdateAvailable
-                  ? interfaceText('Running {currentBuild}; GitHub has {latestBuild}', {
+                  ? interfaceAttributeText('Running {currentBuild}; GitHub has {latestBuild}', {
                     currentBuild: fullBuild,
                     latestBuild: latestTag || latestBuild,
                   })
-                  : interfaceText('Running {currentBuild}', { currentBuild: fullBuild })}
+                  : interfaceAttributeText('Running {currentBuild}', { currentBuild: fullBuild })}
               >
                 <Icon name={isUpdateAvailable ? 'bullhorn' : 'code branch'} />
                 <span className="slskdn-footer-build-label"><LocalizedText source={"Build"} /></span>
@@ -416,7 +416,7 @@ class Footer extends Component {
               <span className="slskdn-footer-group-label"><LocalizedText source={"Speed"} /></span>
               <span
                 className="slskdn-footer-speed-item"
-                title={interfaceText(isLoggedIn
+                title={interfaceAttributeText(isLoggedIn
                   ? 'Total transfer speed (upload + download)'
                   : 'Login to see real-time speeds')}
               >
@@ -428,7 +428,7 @@ class Footer extends Component {
               </span>
               <span
                 className="slskdn-footer-speed-item"
-                title={interfaceText(isLoggedIn
+                title={interfaceAttributeText(isLoggedIn
                   ? 'Soulseek network speed'
                   : 'Login to see real-time speeds')}
               >
@@ -442,7 +442,7 @@ class Footer extends Component {
               </span>
               <span
                 className="slskdn-footer-speed-item"
-                title={interfaceText(isLoggedIn
+                title={interfaceAttributeText(isLoggedIn
                   ? 'Mesh network speed'
                   : 'Login to see real-time speeds')}
               >
@@ -455,7 +455,7 @@ class Footer extends Component {
               {sessionTotal && (
                 <span
                   className="slskdn-footer-speed-item slskdn-footer-session-total"
-                  title={interfaceText('Session total: {downloaded} / {uploaded}', {
+                  title={interfaceAttributeText('Session total: {downloaded} / {uploaded}', {
                     downloaded: speeds.sessionBytesDownloaded
                       ? `${formatBytes(speeds.sessionBytesDownloaded).value}${formatBytes(speeds.sessionBytesDownloaded).unit} ↓`
                       : '0',
@@ -540,8 +540,8 @@ class Footer extends Component {
                 }
                 name="sitemap"
                 title={isLoggedIn && stats
-                  ? interfaceText('DHT Nodes: {count}', { count: stats.dht })
-                  : interfaceText('DHT: Login to see stats')}
+                  ? interfaceAttributeText('DHT Nodes: {count}', { count: stats.dht })
+                  : interfaceAttributeText('DHT: Login to see stats')}
               />
               <Icon
                 className={
@@ -560,8 +560,8 @@ class Footer extends Component {
                 }
                 name="globe"
                 title={isLoggedIn && stats
-                  ? interfaceText('Overlay Peers: {count}', { count: stats.overlay })
-                  : interfaceText('Overlay: Login to see stats')}
+                  ? interfaceAttributeText('Overlay Peers: {count}', { count: stats.overlay })
+                  : interfaceAttributeText('Overlay: Login to see stats')}
               />
             </div>
           </div>

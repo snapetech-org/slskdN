@@ -1,0 +1,128 @@
+{
+  "decisions": {
+    "acceptCurrent": 10,
+    "confidence": {
+      "high": 6,
+      "low": 1,
+      "moderate": 12,
+      "unknown": 0
+    },
+    "proposeCorrection": 9
+  },
+  "generatedArtifacts": [
+    "review-ledger.jsonl",
+    "summary.json",
+    "verify_review.py",
+    "SHA256SUMS.txt"
+  ],
+  "inputIntegrity": {
+    "baselineTokenMismatches": {
+      "markup": 0,
+      "numeric": 0,
+      "placeholder": 0,
+      "protectedLiteral": 0
+    },
+    "candidateFree": true,
+    "historicalDispositionsIncluded": false,
+    "packetChecksums": "PASS",
+    "sanitizedInputVerifier": "PASS"
+  },
+  "noCatalogEditsOrPRStateChanges": true,
+  "pinnedSource": {
+    "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "productionSourceRoot": "src/web/src",
+    "pullRequest": 409,
+    "repository": "snapetech-org/slskdN",
+    "sourceEvidence": "sanitized current-cell and bounded caller-context records only",
+    "sourceFileCount": 279,
+    "sourceSubtreeOid": "031a559dee5e6d4153d44dd26beb6d9c1243b9fd",
+    "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5"
+  },
+  "publicStateAfter": {
+    "baseRefName": "main",
+    "branchRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "deploymentCountForHead": 0,
+    "draft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "pullRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "pullRequestState": "open"
+  },
+  "publicStateBefore": {
+    "baseRefName": "main",
+    "branchRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "deploymentCountForHead": 0,
+    "draft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "pullRefOid": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+    "pullRequestState": "open"
+  },
+  "publicStateBeforeAfterMatch": true,
+  "reviewSummary": [
+    {
+      "accepted": 3,
+      "corrections": 9,
+      "finding": "Several targets rendered pull as a physical force or an unexplained calque; corrections use generic retrieval wording and retain Servarr.",
+      "rank": 409
+    },
+    {
+      "accepted": 1,
+      "corrections": 0,
+      "finding": "Arabic format/codec heading is suitable for the filter context.",
+      "rank": 475
+    },
+    {
+      "accepted": 6,
+      "corrections": 0,
+      "finding": "Current labels communicate a recording identity conflict; the bounded reason-dispatch context does not resolve a narrower meaning of subject.",
+      "rank": 504
+    }
+  ],
+  "reviewType": "independent blind semantic review of sanitized 19-cell scope",
+  "schemaVersion": 1,
+  "scope": {
+    "cellCount": 19,
+    "localeCount": 12,
+    "ranks": [
+      409,
+      475,
+      504
+    ],
+    "sourceCount": 3
+  },
+  "tokenAndLiteralReview": {
+    "ServarrPreservedExactlyInAllRank409FinalTargets": true,
+    "inputMismatchCounts": {
+      "markup": 0,
+      "numeric": 0,
+      "placeholder": 0,
+      "protectedLiteral": 0
+    },
+    "markupMismatches": 0,
+    "numericMismatches": 0,
+    "outputCandidatesChecked": 9,
+    "placeholderMismatches": 0,
+    "protectedLiteralMismatches": 0,
+    "sourceProtectedLiteralCount": 0
+  },
+  "treeVerification": {
+    "after": {
+      "source": "public GitHub commit tree ref for the verified PR head",
+      "treeOid": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5"
+    },
+    "before": {
+      "source": "sanitized head-tree attestation in the verified input packet",
+      "treeOid": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5"
+    },
+    "expected": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+    "matches": true
+  },
+  "workspaceCheckout": {
+    "head": "605b70947d21b46d2de99f5111641ddddac5edaf",
+    "note": "The checkout is not the reviewed head. No source files outside the sanitized input were read.",
+    "path": "/home/keith/Documents/code/slskdn",
+    "targetCommitAvailableLocally": false,
+    "tree": "f1f46d3adc14e6bd64d8d63dc6d10cd5e1d7c0e4"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "reviewPass": "independent-primary",
+  "head": "03c73e7b6706d8a034d7a24d6984763134f61bac",
+  "tree": "fa3f2041bbc2d4bb4eb512c03e874db3dbf631a5",
+  "inputRoot": "../input/",
+  "files": [
+    "README.md",
+    "primary-review.jsonl",
+    "summary.json",
+    "live-before.json",
+    "live-after.json",
+    "verify_primary.py"
+  ]
+}

@@ -475,7 +475,7 @@ describe('playlistIntake', () => {
 
     expect(report).toContain('slskdN tag and organization dry run');
     expect(report).toContain('Playlist: Snapshot queue');
-    expect(report).toContain('Proposed: Stereolab | French Disko | Snapshot Album | 01');
+    expect(report).toContain('Proposed tags: Artist: Stereolab | Title: French Disko | Album: Snapshot Album | Track number: 01');
     expect(report).toContain('No tag write');
 
     approvePlaylistTagOrganizationPlan(playlist.id);

@@ -1,0 +1,1408 @@
+{
+  "additionalCorrections": [
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": ", Nombre total d’emplacements d’envoi :",
+      "old": ", Nombre total d'emplacements de téléchargement :",
+      "priorLedgerOverlap": false,
+      "reason": "The source is an upload-slot label; the previous French value said download slots. Corrected the direction.",
+      "source": ", Total Upload Slots:"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Effacer tous les envois terminés",
+      "old": "Effacer tous les téléchargements terminés",
+      "priorLedgerOverlap": false,
+      "reason": "The source refers to completed uploads; the previous French value instructed clearing downloads. Corrected the direction.",
+      "source": "Clear All Completed Uploads"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Cible d’envoi FTP des téléchargements terminés et politique de connexion.",
+      "old": "Cible de téléchargement et stratégie de connexion terminées.",
+      "priorLedgerOverlap": false,
+      "reason": "The FTP settings concern sending completed downloads to an upload target; the previous French label described a completed download target and dropped the upload action.",
+      "source": "Completed-download upload target and connection policy."
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Activer l’envoi FTP des téléchargements terminés",
+      "old": "Activer les téléchargements FTP terminés",
+      "priorLedgerOverlap": false,
+      "reason": "The source enables FTP sending of completed downloads; the previous French value read as completed FTP downloads.",
+      "source": "Enable FTP completed-download uploads"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Activer les envois FTP",
+      "old": "Activer les téléchargements FTP",
+      "priorLedgerOverlap": false,
+      "reason": "The source enables FTP uploads; the previous French value said FTP downloads.",
+      "source": "Enable FTP uploads"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Activez les limites de débit d’envoi planifiées selon la politique globale d’envoi.",
+      "old": "Activez les limites de vitesse de téléchargement planifiées dans le cadre de la politique de téléchargement globale.",
+      "priorLedgerOverlap": false,
+      "reason": "The source describes scheduled upload-rate limits under the global upload policy; the previous French text described download-rate limits.",
+      "source": "Enable scheduled upload speed limits under global upload policy."
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Activer les limites programmées de débit d’envoi",
+      "old": "Activer les limites de vitesse programmées pour le téléchargement",
+      "priorLedgerOverlap": false,
+      "reason": "The source is the upload-rate schedule control; the previous French text described download limits.",
+      "source": "Enable upload scheduled speed limits"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Activer les planifications d’envoi",
+      "old": "Activer les planifications de téléchargement",
+      "priorLedgerOverlap": false,
+      "reason": "The source enables upload schedules; the previous French value said download schedules.",
+      "source": "Enable upload schedules"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Envois FTP",
+      "old": "Téléchargements FTP",
+      "priorLedgerOverlap": false,
+      "reason": "The FTP integration is for outgoing uploads; the previous French heading called them downloads.",
+      "source": "FTP Uploads"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Chemin distant d’envoi FTP",
+      "old": "Chemin de téléchargement à distance FTP",
+      "priorLedgerOverlap": false,
+      "reason": "The source is the remote destination path for FTP uploads; the previous French label said download path.",
+      "source": "FTP remote upload path"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Les fichiers correspondent, mais la personne qui les partage les a verrouillés (ils ne peuvent pas être téléchargés sans accès au partage).",
+      "old": "Les fichiers correspondent mais le téléchargeur les a verrouillés (non téléchargeables sans partage d'accès).",
+      "priorLedgerOverlap": false,
+      "reason": "The source identifies the uploader as the peer who shared the files; the previous French text called that person the downloader.",
+      "source": "Files matched but the uploader has them locked (not downloadable without sharing access)."
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Emplacement d’envoi libre :",
+      "old": "Emplacement de téléchargement gratuit :",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels an available upload slot; the previous French value said download slot.",
+      "source": "Free Upload Slot:"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Emplacements d’envoi globaux",
+      "old": "Emplacements de téléchargement mondiaux",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels global upload slots; the previous French value said download slots.",
+      "source": "Global upload slots"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Limite globale de débit d’envoi",
+      "old": "Limite de vitesse de téléchargement globale",
+      "priorLedgerOverlap": false,
+      "reason": "The source is the global upload-rate limit; the previous French value said download-rate limit.",
+      "source": "Global upload speed limit"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Résultats correspondant à la recherche. Les résultats verrouillés sont affichés séparément, car la personne qui partage le fichier a un accès restreint ; ils ne sont pas directement téléchargeables.",
+      "old": "Résultats correspondant à la recherche. Les hits verrouillés sont affichés séparément car l'utilisateur ayant téléchargé le fichier a un accès restreint : ils ne sont pas directement téléchargeables.",
+      "priorLedgerOverlap": false,
+      "reason": "The source refers to the uploader as the person sharing the file; the previous French text called that person the downloader.",
+      "source": "Hits matched by the search. Locked hits are shown separately because the uploader has restricted access — they aren't directly downloadable."
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Supprimez les enregistrements des envois terminés de l’historique des transferts pour que la page Envois reste réactive.",
+      "old": "Supprimez les enregistrements de téléchargement terminés de l'historique des transferts pour que la page Téléchargements reste réactive.",
+      "priorLedgerOverlap": false,
+      "reason": "The source concerns completed upload records and the Uploads page; the previous French text said download records and Téléchargements page.",
+      "source": "Remove completed upload records from transfer history to keep the Uploads page responsive."
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Activez les envois FTP après la fin des téléchargements. Cela affecte le traitement futur des transferts terminés.",
+      "old": "Activez les téléchargements FTP une fois les téléchargements terminés. Cela affecte la gestion future des transferts terminés.",
+      "priorLedgerOverlap": false,
+      "reason": "The source enables sending completed downloads over FTP; the previous French text instead described FTP downloads.",
+      "source": "Turn on FTP uploads after completed downloads. This affects future completed-transfer handling."
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Débit d’envoi (KiB/s)",
+      "old": "Télécharger des KiB/s",
+      "priorLedgerOverlap": false,
+      "reason": "The source is an upload-rate label; the previous French value was an imperative to download an amount.",
+      "source": "Upload KiB/s"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Minutes de conservation des envois annulés",
+      "old": "Télécharger les minutes de rétention annulées",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels the retention duration for cancelled uploads; the previous French value was a malformed download verb phrase.",
+      "source": "Upload cancelled retention minutes"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Minutes de conservation des envois en erreur",
+      "old": "Télécharger des minutes de rétention erronées",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels retention for failed uploads; the previous French value was a malformed download verb phrase.",
+      "source": "Upload errored retention minutes"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Minutes de conservation des envois réussis",
+      "old": "Téléchargement réussi des minutes de rétention",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels retention for successful uploads; the previous French value was a malformed download phrase.",
+      "source": "Upload succeeded retention minutes"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Emplacements d’envoi",
+      "old": "Emplacements de téléchargement",
+      "priorLedgerOverlap": false,
+      "reason": "The source means upload slots; the previous French value translated slots as slot machines and said downloads.",
+      "source": "Upload Slots"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Envois ({upload})",
+      "old": "Téléchargements ({upload})",
+      "priorLedgerOverlap": false,
+      "reason": "The source is the upload count label; the previous French label said downloads.",
+      "source": "Uploads ({upload})"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Envois actifs",
+      "old": "Téléchargements actifs",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels active uploads; the previous French value said active downloads.",
+      "source": "Uploads Active"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Envois en file d’attente",
+      "old": "Téléchargements en file d'attente",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels queued uploads; the previous French value said queued downloads.",
+      "source": "Uploads Queued"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Total des envois",
+      "old": "Téléchargements totaux",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels total uploads; the previous French value said total downloads.",
+      "source": "Uploads Total"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Envois : {uploadError}",
+      "old": "Téléchargements : {uploadError}",
+      "priorLedgerOverlap": false,
+      "reason": "The source prefixes an upload error; the previous French label said downloads.",
+      "source": "Uploads: {uploadError}"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Ajoutez au moins un dossier partagé avant d’attendre des envois ou des résultats de navigation publique.",
+      "old": "Ajoutez au moins un dossier partagé avant d'attendre des téléchargements ou des résultats de navigation publique.",
+      "priorLedgerOverlap": false,
+      "reason": "The source says uploads from shared folders; the previous French text said downloads.",
+      "source": "Add at least one shared folder before expecting uploads or public browse results."
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Lire les fichiers de cet appareil dans cette session de navigateur. Ils ne sont pas téléversés sur le serveur.",
+      "old": "Lire les fichiers de cet appareil dans cette session de navigateur. Ils ne sont pas téléchargés sur le serveur.",
+      "priorLedgerOverlap": false,
+      "reason": "The source explicitly says local files are not uploaded; the previous French translation said they are not downloaded to the server.",
+      "source": "Play files from this device in this browser session. They are not uploaded to the server."
+    },
+    {
+      "confidence": "moderate",
+      "locale": "fr",
+      "new": "Les pages Envois et Téléchargements peuvent ne plus répondre si trop de transferts sont affichés. Supprimez les enregistrements de transfert terminés pour que ces pages restent réactives ; les fichiers téléchargés sur le disque ne sont pas supprimés.",
+      "old": "Les pages Chargements et Téléchargements peuvent ne plus répondre si trop de transferts sont affichés. Supprimez les enregistrements de transfert terminés pour que ces pages restent réactives ; les fichiers téléchargés sur le disque ne sont pas supprimés.",
+      "priorLedgerOverlap": false,
+      "reason": "Use the catalog’s established Envois label for the Uploads page, keeping it distinct from Téléchargements.",
+      "source": "The Uploads and Downloads pages can become unresponsive if too many transfers are displayed. Remove completed transfer records to keep those pages responsive; downloaded files on disk are not removed."
+    },
+    {
+      "confidence": "moderate",
+      "locale": "fr",
+      "new": "slskdN ne voit pas encore les pairs accessibles. Si vous pouvez vous connecter au serveur Soulseek mais que les envois, les téléchargements et le nombre d'homologues restent à zéro, vérifiez que le port d'écoute Soulseek configuré est accessible depuis les autres pairs. La valeur par défaut est",
+      "old": "slskdN ne voit pas encore les pairs accessibles. Si vous pouvez vous connecter au serveur Soulseek mais que les chargements, les téléchargements et le nombre d'homologues restent à zéro, vérifiez que votre port d'écoute Soulseek configuré est accessible depuis d'autres homologues. La valeur par défaut est",
+      "priorLedgerOverlap": false,
+      "reason": "Use Envois for outgoing transfers, consistent with the app’s Uploads label, instead of the ambiguous Chargements.",
+      "source": "slskdN is not seeing reachable peers yet. If you can log into the Soulseek server but uploads, downloads, and peer counts stay at zero, verify that your configured Soulseek listen port is reachable from other peers. The default is"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Débit de téléchargement (KiB/s)",
+      "old": "Télécharger des KiB/s",
+      "priorLedgerOverlap": false,
+      "reason": "The source is a download-rate label; the previous French value was an imperative.",
+      "source": "Download KiB/s"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Minutes de conservation des téléchargements réussis",
+      "old": "Téléchargement réussi des minutes de rétention",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels retention for successful downloads; the previous French value was malformed.",
+      "source": "Download succeeded retention minutes"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Minutes de conservation des téléchargements en erreur",
+      "old": "Télécharger les minutes de rétention erronées",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels retention for failed downloads; the previous French value was malformed.",
+      "source": "Download errored retention minutes"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Minutes de conservation des téléchargements annulés",
+      "old": "Télécharger les minutes de rétention annulées",
+      "priorLedgerOverlap": false,
+      "reason": "The source labels retention for cancelled downloads; the previous French value was malformed.",
+      "source": "Download cancelled retention minutes"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "Emplacements de téléchargement",
+      "old": "Machines à sous de téléchargement",
+      "priorLedgerOverlap": false,
+      "reason": "The source means transfer slots; the previous French value translated it as slot machines.",
+      "source": "Download Slots"
+    },
+    {
+      "confidence": "moderate",
+      "locale": "fr",
+      "new": "Emplacements globaux de téléchargement",
+      "old": "Emplacements de téléchargement mondiaux",
+      "priorLedgerOverlap": false,
+      "reason": "This is a system-wide setting; global should be globaux rather than mondial (worldwide).",
+      "source": "Global download slots"
+    },
+    {
+      "confidence": "moderate",
+      "locale": "fr",
+      "new": "Activez les limites de débit de téléchargement planifiées selon la politique globale de téléchargement.",
+      "old": "Activez les limites de vitesse de téléchargement planifiées dans le cadre de la politique de téléchargement globale.",
+      "priorLedgerOverlap": false,
+      "reason": "Reworded the download policy tooltip for natural French and parallel wording; meaning is unchanged.",
+      "source": "Enable scheduled download speed limits under global download policy."
+    }
+  ],
+  "candidateDispositions": [
+    {
+      "disposition": "corrected",
+      "locale": "es",
+      "new": "({timestampSeconds} s)",
+      "old": "({timestampSeconds})",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "es",
+      "new": "-> {endSeconds} s",
+      "old": "-> {endSeconds}",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "es",
+      "new": null,
+      "old": "¡{direction} completados borrados!",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "fr",
+      "new": "({timestampSeconds} s)",
+      "old": "({timestampSeconds})",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "fr",
+      "new": "-> {endSeconds} s",
+      "old": "-> {endSeconds}",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "fr",
+      "new": null,
+      "old": "Les {direction} terminés ont été effacés !",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "id",
+      "new": null,
+      "old": "{direction} yang telah selesai diselesaikan!",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "ja",
+      "new": "({timestampSeconds}秒)",
+      "old": "({timestampSeconds})",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "ja",
+      "new": "-> {endSeconds}秒",
+      "old": "-> {endSeconds}",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "ja",
+      "new": null,
+      "old": "{direction}をクリアしました！",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "ja",
+      "new": "{seconds}秒前",
+      "old": "{seconds} 数前",
+      "priorLedgerOverlap": false,
+      "reason": "The source means seconds ago; the previous target said number ago or years ago. Correct the time unit.",
+      "set": "suffix-after-placeholder",
+      "source": "{seconds}s ago"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "ko",
+      "new": "({timestampSeconds}초)",
+      "old": "({timestampSeconds})",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "ko",
+      "new": "-> {endSeconds}초",
+      "old": "-> {endSeconds}",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "ko",
+      "new": null,
+      "old": "완성된 {direction}가 클리어되었습니다!",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "retained-localized-equivalent",
+      "locale": "ko",
+      "new": "{seconds}초 전",
+      "old": "{seconds}초 전",
+      "priorLedgerOverlap": false,
+      "reason": "초 전 explicitly means seconds ago in Korean; the source s suffix is localized as 초.",
+      "set": "suffix-after-placeholder",
+      "source": "{seconds}s ago"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "vi",
+      "new": "({timestampSeconds} giây)",
+      "old": "({timestampSeconds})",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "vi",
+      "new": "-> {endSeconds} giây",
+      "old": "-> {endSeconds}",
+      "priorLedgerOverlap": false,
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "set": "suffix-after-placeholder",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "vi",
+      "new": null,
+      "old": "Đã xóa {direction} đã hoàn thành!",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "zh-Hans",
+      "new": null,
+      "old": "已完成 {direction} 通关！",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "zh-Hans",
+      "new": "{seconds}秒前",
+      "old": "{seconds} 年前",
+      "priorLedgerOverlap": false,
+      "reason": "The source means seconds ago; the previous target said number ago or years ago. Correct the time unit.",
+      "set": "suffix-after-placeholder",
+      "source": "{seconds}s ago"
+    },
+    {
+      "disposition": "retired-source-template",
+      "locale": "zh-Hant",
+      "new": null,
+      "old": "已完成 {direction} 通關！",
+      "priorLedgerOverlap": false,
+      "reason": "The runtime placeholder was a raw upload/download enum. This source key is replaced by two fixed, localized messages so app-owned direction labels never leak English.",
+      "set": "suffix-after-placeholder",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "disposition": "corrected",
+      "locale": "zh-Hant",
+      "new": "{seconds}秒前",
+      "old": "{seconds} 年前",
+      "priorLedgerOverlap": false,
+      "reason": "The source means seconds ago; the previous target said number ago or years ago. Correct the time unit.",
+      "set": "suffix-after-placeholder",
+      "source": "{seconds}s ago"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ar",
+      "new": "Pod/Mesh",
+      "old": "Pod/Mesh",
+      "priorLedgerOverlap": true,
+      "reason": "Product/network label; retained as the established technical name.",
+      "set": "latin-only-phrase",
+      "source": "Pod/Mesh"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ar",
+      "new": "FLAC + ALAC",
+      "old": "FLAC + ALAC",
+      "priorLedgerOverlap": true,
+      "reason": "Lossless audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + ALAC"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ar",
+      "new": "FLAC + MP3",
+      "old": "FLAC + MP3",
+      "priorLedgerOverlap": true,
+      "reason": "Audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + MP3"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ar",
+      "new": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "old": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "priorLedgerOverlap": true,
+      "reason": "Protocol and example endpoint/fingerprint; retained verbatim as technical/example data.",
+      "set": "latin-only-phrase",
+      "source": "obfs4 192.0.2.1:443 1234567890ABCDEF..."
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ar",
+      "new": "Jellyfin / Emby",
+      "old": "Jellyfin / Emby",
+      "priorLedgerOverlap": true,
+      "reason": "Media-server product names; retained verbatim.",
+      "set": "latin-only-phrase",
+      "source": "Jellyfin / Emby"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "hi",
+      "new": "Pod/Mesh",
+      "old": "Pod/Mesh",
+      "priorLedgerOverlap": true,
+      "reason": "Product/network label; retained as the established technical name.",
+      "set": "latin-only-phrase",
+      "source": "Pod/Mesh"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "hi",
+      "new": "FLAC + ALAC",
+      "old": "FLAC + ALAC",
+      "priorLedgerOverlap": true,
+      "reason": "Lossless audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + ALAC"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "hi",
+      "new": "FLAC + MP3",
+      "old": "FLAC + MP3",
+      "priorLedgerOverlap": true,
+      "reason": "Audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + MP3"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "hi",
+      "new": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "old": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "priorLedgerOverlap": true,
+      "reason": "Protocol and example endpoint/fingerprint; retained verbatim as technical/example data.",
+      "set": "latin-only-phrase",
+      "source": "obfs4 192.0.2.1:443 1234567890ABCDEF..."
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "hi",
+      "new": "Jellyfin / Emby",
+      "old": "Jellyfin / Emby",
+      "priorLedgerOverlap": true,
+      "reason": "Media-server product names; retained verbatim.",
+      "set": "latin-only-phrase",
+      "source": "Jellyfin / Emby"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ja",
+      "new": "Pod/Mesh",
+      "old": "Pod/Mesh",
+      "priorLedgerOverlap": true,
+      "reason": "Product/network label; retained as the established technical name.",
+      "set": "latin-only-phrase",
+      "source": "Pod/Mesh"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ja",
+      "new": "API CIDR",
+      "old": "API CIDR",
+      "priorLedgerOverlap": false,
+      "reason": "CIDR is a technical acronym; non-Latin target labels use the singular acronym convention without changing the network range meaning.",
+      "set": "latin-only-phrase",
+      "source": "API CIDRs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ja",
+      "new": "FLAC + ALAC",
+      "old": "FLAC + ALAC",
+      "priorLedgerOverlap": true,
+      "reason": "Lossless audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + ALAC"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ja",
+      "new": "FLAC + MP3",
+      "old": "FLAC + MP3",
+      "priorLedgerOverlap": true,
+      "reason": "Audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + MP3"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ja",
+      "new": "Soulseek · DM",
+      "old": "Soulseek · DM",
+      "priorLedgerOverlap": false,
+      "reason": "Soulseek is a product/network name and DM is a standard acronym; the target languages use the acronym as a category label without English plural inflection.",
+      "set": "latin-only-phrase",
+      "source": "Soulseek · DMs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ja",
+      "new": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "old": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "priorLedgerOverlap": true,
+      "reason": "Protocol and example endpoint/fingerprint; retained verbatim as technical/example data.",
+      "set": "latin-only-phrase",
+      "source": "obfs4 192.0.2.1:443 1234567890ABCDEF..."
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ja",
+      "new": "Jellyfin / Emby",
+      "old": "Jellyfin / Emby",
+      "priorLedgerOverlap": true,
+      "reason": "Media-server product names; retained verbatim.",
+      "set": "latin-only-phrase",
+      "source": "Jellyfin / Emby"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "Pod/Mesh",
+      "old": "Pod/Mesh",
+      "priorLedgerOverlap": true,
+      "reason": "Product/network label; retained as the established technical name.",
+      "set": "latin-only-phrase",
+      "source": "Pod/Mesh"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "API CIDR",
+      "old": "API CIDR",
+      "priorLedgerOverlap": false,
+      "reason": "CIDR is a technical acronym; non-Latin target labels use the singular acronym convention without changing the network range meaning.",
+      "set": "latin-only-phrase",
+      "source": "API CIDRs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "FLAC + ALAC",
+      "old": "FLAC + ALAC",
+      "priorLedgerOverlap": true,
+      "reason": "Lossless audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + ALAC"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "FLAC + MP3",
+      "old": "FLAC + MP3",
+      "priorLedgerOverlap": true,
+      "reason": "Audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + MP3"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "Ntfy URL",
+      "old": "Ntfy URL",
+      "priorLedgerOverlap": true,
+      "reason": "ntfy is the product’s lowercase stylization; URL is a technical acronym.",
+      "set": "latin-only-phrase",
+      "source": "Ntfy URL"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "Soulseek · DM",
+      "old": "Soulseek · DM",
+      "priorLedgerOverlap": false,
+      "reason": "Soulseek is a product/network name and DM is a standard acronym; the target languages use the acronym as a category label without English plural inflection.",
+      "set": "latin-only-phrase",
+      "source": "Soulseek · DMs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "old": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "priorLedgerOverlap": true,
+      "reason": "Protocol and example endpoint/fingerprint; retained verbatim as technical/example data.",
+      "set": "latin-only-phrase",
+      "source": "obfs4 192.0.2.1:443 1234567890ABCDEF..."
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "ko",
+      "new": "Jellyfin / Emby",
+      "old": "Jellyfin / Emby",
+      "priorLedgerOverlap": true,
+      "reason": "Media-server product names; retained verbatim.",
+      "set": "latin-only-phrase",
+      "source": "Jellyfin / Emby"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "Pod/Mesh",
+      "old": "Pod/Mesh",
+      "priorLedgerOverlap": true,
+      "reason": "Product/network label; retained as the established technical name.",
+      "set": "latin-only-phrase",
+      "source": "Pod/Mesh"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "API CIDR",
+      "old": "API CIDR",
+      "priorLedgerOverlap": false,
+      "reason": "CIDR is a technical acronym; non-Latin target labels use the singular acronym convention without changing the network range meaning.",
+      "set": "latin-only-phrase",
+      "source": "API CIDRs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "FLAC + ALAC",
+      "old": "FLAC + ALAC",
+      "priorLedgerOverlap": true,
+      "reason": "Lossless audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + ALAC"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "FLAC+MP3",
+      "old": "FLAC+MP3",
+      "priorLedgerOverlap": false,
+      "reason": "Audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + MP3"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "ntfy URL",
+      "old": "ntfy URL",
+      "priorLedgerOverlap": false,
+      "reason": "ntfy is the product’s lowercase stylization; URL is a technical acronym.",
+      "set": "latin-only-phrase",
+      "source": "Ntfy URL"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "Pod ID",
+      "old": "Pod ID",
+      "priorLedgerOverlap": true,
+      "reason": "Technical identifier label; retained as established terminology.",
+      "set": "latin-only-phrase",
+      "source": "Pod ID"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "Soulseek · DM",
+      "old": "Soulseek · DM",
+      "priorLedgerOverlap": false,
+      "reason": "Soulseek is a product/network name and DM is a standard acronym; the target languages use the acronym as a category label without English plural inflection.",
+      "set": "latin-only-phrase",
+      "source": "Soulseek · DMs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "old": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "priorLedgerOverlap": true,
+      "reason": "Protocol and example endpoint/fingerprint; retained verbatim as technical/example data.",
+      "set": "latin-only-phrase",
+      "source": "obfs4 192.0.2.1:443 1234567890ABCDEF..."
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hans",
+      "new": "Jellyfin / Emby",
+      "old": "Jellyfin / Emby",
+      "priorLedgerOverlap": true,
+      "reason": "Media-server product names; retained verbatim.",
+      "set": "latin-only-phrase",
+      "source": "Jellyfin / Emby"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "Pod/Mesh",
+      "old": "Pod/Mesh",
+      "priorLedgerOverlap": true,
+      "reason": "Product/network label; retained as the established technical name.",
+      "set": "latin-only-phrase",
+      "source": "Pod/Mesh"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "API CIDR",
+      "old": "API CIDR",
+      "priorLedgerOverlap": false,
+      "reason": "CIDR is a technical acronym; non-Latin target labels use the singular acronym convention without changing the network range meaning.",
+      "set": "latin-only-phrase",
+      "source": "API CIDRs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "FLAC + ALAC",
+      "old": "FLAC + ALAC",
+      "priorLedgerOverlap": true,
+      "reason": "Lossless audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + ALAC"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "FLAC+MP3",
+      "old": "FLAC+MP3",
+      "priorLedgerOverlap": false,
+      "reason": "Audio codec names; retained as standard technical tokens.",
+      "set": "latin-only-phrase",
+      "source": "FLAC + MP3"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "ntfy URL",
+      "old": "ntfy URL",
+      "priorLedgerOverlap": false,
+      "reason": "ntfy is the product’s lowercase stylization; URL is a technical acronym.",
+      "set": "latin-only-phrase",
+      "source": "Ntfy URL"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "Pod ID",
+      "old": "Pod ID",
+      "priorLedgerOverlap": true,
+      "reason": "Technical identifier label; retained as established terminology.",
+      "set": "latin-only-phrase",
+      "source": "Pod ID"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "Soulseek · DM",
+      "old": "Soulseek · DM",
+      "priorLedgerOverlap": false,
+      "reason": "Soulseek is a product/network name and DM is a standard acronym; the target languages use the acronym as a category label without English plural inflection.",
+      "set": "latin-only-phrase",
+      "source": "Soulseek · DMs"
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "old": "obfs4 192.0.2.1:443 1234567890ABCDEF...",
+      "priorLedgerOverlap": true,
+      "reason": "Protocol and example endpoint/fingerprint; retained verbatim as technical/example data.",
+      "set": "latin-only-phrase",
+      "source": "obfs4 192.0.2.1:443 1234567890ABCDEF..."
+    },
+    {
+      "disposition": "retained-protected-or-technical-label",
+      "locale": "zh-Hant",
+      "new": "Jellyfin / Emby",
+      "old": "Jellyfin / Emby",
+      "priorLedgerOverlap": true,
+      "reason": "Media-server product names; retained verbatim.",
+      "set": "latin-only-phrase",
+      "source": "Jellyfin / Emby"
+    }
+  ],
+  "corrections": [
+    {
+      "confidence": "high",
+      "locale": "es",
+      "new": "({timestampSeconds} s)",
+      "old": "({timestampSeconds})",
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "confidence": "high",
+      "locale": "es",
+      "new": "-> {endSeconds} s",
+      "old": "-> {endSeconds}",
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "({timestampSeconds} s)",
+      "old": "({timestampSeconds})",
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "confidence": "high",
+      "locale": "fr",
+      "new": "-> {endSeconds} s",
+      "old": "-> {endSeconds}",
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "confidence": "high",
+      "locale": "ja",
+      "new": "({timestampSeconds}秒)",
+      "old": "({timestampSeconds})",
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "confidence": "high",
+      "locale": "ja",
+      "new": "-> {endSeconds}秒",
+      "old": "-> {endSeconds}",
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "confidence": "high",
+      "locale": "ja",
+      "new": "{seconds}秒前",
+      "old": "{seconds} 数前",
+      "reason": "The source means seconds ago; the previous target said number ago or years ago. Correct the time unit.",
+      "source": "{seconds}s ago"
+    },
+    {
+      "confidence": "high",
+      "locale": "ko",
+      "new": "({timestampSeconds}초)",
+      "old": "({timestampSeconds})",
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "confidence": "high",
+      "locale": "ko",
+      "new": "-> {endSeconds}초",
+      "old": "-> {endSeconds}",
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "confidence": "high",
+      "locale": "vi",
+      "new": "({timestampSeconds} giây)",
+      "old": "({timestampSeconds})",
+      "reason": "The source renders a timestamp explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "({timestampSeconds}s)"
+    },
+    {
+      "confidence": "high",
+      "locale": "vi",
+      "new": "-> {endSeconds} giây",
+      "old": "-> {endSeconds}",
+      "reason": "The source renders a chapter end offset explicitly in seconds, but the target omitted the unit. Restore a locale-appropriate seconds unit.",
+      "source": "-> {endSeconds}s"
+    },
+    {
+      "confidence": "high",
+      "locale": "zh-Hans",
+      "new": "{seconds}秒前",
+      "old": "{seconds} 年前",
+      "reason": "The source means seconds ago; the previous target said number ago or years ago. Correct the time unit.",
+      "source": "{seconds}s ago"
+    },
+    {
+      "confidence": "high",
+      "locale": "zh-Hant",
+      "new": "{seconds}秒前",
+      "old": "{seconds} 年前",
+      "reason": "The source means seconds ago; the previous target said number ago or years ago. Correct the time unit.",
+      "source": "{seconds}s ago"
+    }
+  ],
+  "newSourceMessages": [
+    {
+      "locale": "es",
+      "new": "Se borraron los registros de las subidas completadas.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "zh-Hans",
+      "new": "已清除已完成的上传记录。",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "hi",
+      "new": "पूर्ण अपलोड रिकॉर्ड हटा दिए गए हैं।",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "de",
+      "new": "Abgeschlossene Upload-Einträge wurden gelöscht.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "ja",
+      "new": "完了したアップロードの記録を消去しました。",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "fr",
+      "new": "Les envois terminés ont été effacés.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "pt-BR",
+      "new": "Os registros de uploads concluídos foram apagados.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "ar",
+      "new": "تم مسح سجلات الرفع المكتملة.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "ko",
+      "new": "완료된 업로드 기록을 삭제했습니다.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "zh-Hant",
+      "new": "已清除已完成的上傳記錄。",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "vi",
+      "new": "Đã xóa bản ghi các lượt tải lên đã hoàn tất.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "id",
+      "new": "Catatan unggahan yang telah selesai dihapus.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed upload records cleared."
+    },
+    {
+      "locale": "es",
+      "new": "Se borraron los registros de las descargas completadas.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "zh-Hans",
+      "new": "已清除已完成的下载记录。",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "hi",
+      "new": "पूर्ण डाउनलोड रिकॉर्ड हटा दिए गए हैं।",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "de",
+      "new": "Abgeschlossene Download-Einträge wurden gelöscht.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "ja",
+      "new": "完了したダウンロードの記録を消去しました。",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "fr",
+      "new": "Les téléchargements terminés ont été effacés.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "pt-BR",
+      "new": "Os registros de downloads concluídos foram apagados.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "ar",
+      "new": "تم مسح سجلات التنزيل المكتملة.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "ko",
+      "new": "완료된 다운로드 기록을 삭제했습니다.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "zh-Hant",
+      "new": "已清除已完成的下載記錄。",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "vi",
+      "new": "Đã xóa bản ghi các lượt tải xuống đã hoàn tất.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    },
+    {
+      "locale": "id",
+      "new": "Catatan unduhan yang telah selesai dihapus.",
+      "old": null,
+      "reason": "Fixed success copy uses the app-owned direction in its source key, avoiding dynamic English placeholders and allowing a natural locale-specific sentence.",
+      "source": "Completed download records cleared."
+    }
+  ],
+  "retiredSourceCells": [
+    {
+      "locale": "es",
+      "new": null,
+      "old": "¡{direction} completados borrados!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "zh-Hans",
+      "new": null,
+      "old": "已完成 {direction} 通关！",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "hi",
+      "new": null,
+      "old": "पूर्ण {direction}s साफ़!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "de",
+      "new": null,
+      "old": "Abgeschlossene {direction}s gelöscht!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "ja",
+      "new": null,
+      "old": "{direction}をクリアしました！",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "fr",
+      "new": null,
+      "old": "Les {direction} terminés ont été effacés !",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "pt-BR",
+      "new": null,
+      "old": "{direction}s concluídos apagados!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "ar",
+      "new": null,
+      "old": "تم مسح {direction}s المكتملة!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "ko",
+      "new": null,
+      "old": "완성된 {direction}가 클리어되었습니다!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "zh-Hant",
+      "new": null,
+      "old": "已完成 {direction} 通關！",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "vi",
+      "new": null,
+      "old": "Đã xóa {direction} đã hoàn thành!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    },
+    {
+      "locale": "id",
+      "new": null,
+      "old": "{direction} yang telah selesai diselesaikan!",
+      "reason": "Replaced by two fixed source messages; direction is an app-owned upload/download enum, so interpolating the raw value exposed English inside translated prose.",
+      "source": "Completed {direction}s cleared!"
+    }
+  ],
+  "reviewKind": "model-free candidate review and focused correction; no native-speaker certification",
+  "reviewLimits": [
+    "All 22 suffix-after-placeholder candidates and all 43 Latin-only phrase candidates were reviewed. The prior verbal summary incorrectly said 49 suffix candidates; the frozen audit bundle contains 22.",
+    "The 13 target corrections restore seconds units or correct seconds-versus-years/number meaning. The 8 old Completed {direction}s cells are retired with the unsafe raw-enum template.",
+    "Phrase candidates are product names, acronyms, protocols, or example values; no sentence-level English app copy was found by this heuristic screen.",
+    "The 38 additional French direction/transfer corrections were checked against source context. The overall pass was model-free and not native-speaker certified.",
+    "Existing full semantic review remains incomplete for 67,048 populated target cells; the 5,352 missing-target cells remain pending."
+  ],
+  "reviewedHead": "419ff1d11813efa40f89f9bd008c6f8d99b1a233",
+  "schemaVersion": 1,
+  "sourceDelta": {
+    "addedSourceReferences": 2,
+    "addedSources": [
+      "Completed upload records cleared.",
+      "Completed download records cleared."
+    ],
+    "implementation": "System/Data/index.jsx now selects one fixed source message from the upload/download enum and passes no enum as interpolation data.",
+    "netReferenceDelta": 1,
+    "netUniqueSourceDelta": 1,
+    "pendingDelta": {
+      "sourceStrings": 0,
+      "targetCells": 0
+    },
+    "retiredSource": "Completed {direction}s cleared!",
+    "retiredSourceReferences": 1
+  },
+  "summary": {
+    "additionalExistingCellsScreened": 72,
+    "additionalFrenchCorrections": 38,
+    "candidateCells": 65,
+    "candidateCellsOverlappingHistoricalReviewLedger": 31,
+    "candidateTargetCorrections": 51,
+    "catalogKeysPerLocaleAfter": 5717,
+    "currentExactEnglishCells": 1350,
+    "latinOnlyPhraseCandidateCells": 43,
+    "newFixedSuccessSources": 2,
+    "newFixedSuccessTargetCellsTranslated": 24,
+    "oldDynamicToastTargetsRetired": 12,
+    "pendingSourceStrings": 446,
+    "pendingTargetCells": 5352,
+    "phraseCandidateChanges": 0,
+    "populatedCatalogCellsAfter": 68604,
+    "remainingCellsForFullSemanticReview": 67048,
+    "reviewedCellsAfter": 1556,
+    "sourceReferenceCountAfterDelta": 10257,
+    "suffixCandidateCells": 22,
+    "uniqueSourceCountAfterDelta": 5639
+  }
+}

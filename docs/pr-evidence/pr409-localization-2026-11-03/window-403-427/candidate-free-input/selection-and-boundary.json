@@ -1,0 +1,219 @@
+{
+  "artifact": "slskdN PR #409 candidate-free exact-head review input W61 ranks 403-427",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+    "tree": "fad129065c1ccbdaaabe99c1054649dc426ea94b",
+    "remoteBranchHead": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+    "bodySha256": "f83a53dfce6cbd5e2071fc00d7dfa333534b10513f95715fc7763cc7183948c7",
+    "localWorktreeClean": true
+  },
+  "window": "W61 continuation of the pinned W49 stable-ID inventory: ranks 403-427; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W60 candidate-free packet checksum-verifies its complete selection-boundary.jsonl, all 300 selected cells, and all 25 selected source-inventory rows. That boundary ledger ends at rank 402 and identifies rank 403 as next. Selected IDs and source hashes are re-attested against the W49 pinned source inventory and current catalogs, callers, and exact head. Prior W49 ranks 101-125 and W50-W60 ranks 151-402 are covered; the reserved W49 gap 126-150 remains excluded and unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W60",
+    "continuationRank": 402,
+    "sourceId": "src_1e563e877196fa0e",
+    "source": "Enable upload scheduled speed limits",
+    "sourceSha256": "1e563e877196fa0e1aea79e6f16ad7b61c9c16043036b13d57fda7b0658f2963",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W61",
+    "continuationRank": 403,
+    "sourceId": "src_1e5964d1c95953d1",
+    "source": "Stop this room broadcast while keeping your own playback available.",
+    "sourceSha256": "1e5964d1c95953d134cdcbf8a4b4c7559a27b3ce1cebd2dd6008231492eab8f2",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W61",
+    "continuationRank": 427,
+    "sourceId": "src_1f5503d99f5886af",
+    "source": "Title Prefix",
+    "sourceSha256": "1f5503d99f5886af1957d0dff3d5f928b95c4a52e5fa5ef4f830322d5140d37c",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W62",
+    "continuationRank": 428,
+    "sourceId": "src_1f67d3ae92012561",
+    "source": "Please enter membership record JSON data",
+    "sourceSha256": "1f67d3ae92012561746b76c9f1c7e8967d738342a0d3063f8a3436105d5164e8",
+    "historicalSourceOrdinal": null
+  },
+  "w60Input": {
+    "inputDirectory": "/home/keith/Documents/code/task-worktrees/localization-20261103/slskdn-pr409-w61-review-20261103/docs/pr-evidence/pr409-localization-2026-11-03/window-378-402/candidate-free-input",
+    "checksumListSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+    "verifiedFiles": [
+      {
+        "path": "README.md",
+        "expected": "917acbeb7b52aad9d338a55e02659f1d7abf4a77200b1ac65cd70d48bb88afd5",
+        "actual": "917acbeb7b52aad9d338a55e02659f1d7abf4a77200b1ac65cd70d48bb88afd5",
+        "matches": true
+      },
+      {
+        "path": "caller-contexts.jsonl",
+        "expected": "86efe19caf67b679acf9bb4365b8182d07f33b86dfb542ed21b5093e67f7c457",
+        "actual": "86efe19caf67b679acf9bb4365b8182d07f33b86dfb542ed21b5093e67f7c457",
+        "matches": true
+      },
+      {
+        "path": "catalog-structure.jsonl",
+        "expected": "78af9575ff0f45747d1645d7af8cb54585aa06f8df8c27b74704e10183636d6e",
+        "actual": "78af9575ff0f45747d1645d7af8cb54585aa06f8df8c27b74704e10183636d6e",
+        "matches": true
+      },
+      {
+        "path": "head-tree-attestation.json",
+        "expected": "3088b1fbf1f99365751ecdb5a1bdaa15fa2f9a9ef336700603eaab0e5534fe19",
+        "actual": "3088b1fbf1f99365751ecdb5a1bdaa15fa2f9a9ef336700603eaab0e5534fe19",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "expected": "d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797",
+        "actual": "d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797",
+        "matches": true
+      },
+      {
+        "path": "selection-and-boundary.json",
+        "expected": "a5861e520535f206ddc777a411690c31a69aefaa13d38745215aa763f5641249",
+        "actual": "a5861e520535f206ddc777a411690c31a69aefaa13d38745215aa763f5641249",
+        "matches": true
+      },
+      {
+        "path": "selection-boundary.jsonl",
+        "expected": "4b3b6dec119de2a6ce3970f36097364b6bc2dbba284740a4052a693f90e9d8ce",
+        "actual": "4b3b6dec119de2a6ce3970f36097364b6bc2dbba284740a4052a693f90e9d8ce",
+        "matches": true
+      },
+      {
+        "path": "source-current-cells.jsonl",
+        "expected": "3e2eba34d6aade24389d8f088c9d66a75e34a2e39030c5ffa9981a25a1bc3689",
+        "actual": "3e2eba34d6aade24389d8f088c9d66a75e34a2e39030c5ffa9981a25a1bc3689",
+        "matches": true
+      },
+      {
+        "path": "source-inventory-selection.jsonl",
+        "expected": "73017be1a817b3238b6e0c5b428a506bbf6383262e74cce0ffa8d6fe6626f017",
+        "actual": "73017be1a817b3238b6e0c5b428a506bbf6383262e74cce0ffa8d6fe6626f017",
+        "matches": true
+      }
+    ],
+    "previousWindowLastSelected": {
+      "role": "selected-W60",
+      "continuationRank": 402,
+      "sourceId": "src_1e563e877196fa0e",
+      "source": "Enable upload scheduled speed limits",
+      "sourceSha256": "1e563e877196fa0e1aea79e6f16ad7b61c9c16043036b13d57fda7b0658f2963",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W61",
+      "continuationRank": 403,
+      "sourceId": "src_1e5964d1c95953d1",
+      "source": "Stop this room broadcast while keeping your own playback available.",
+      "sourceSha256": "1e5964d1c95953d134cdcbf8a4b4c7559a27b3ce1cebd2dd6008231492eab8f2",
+      "historicalSourceOrdinal": null
+    }
+  },
+  "sourceInventory": {
+    "pathAtHead": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+    "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "selectedRanksExcluded": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "selectedRanksInW49": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "candidateFree": true,
+  "containsTranslationsBeyondCurrentValues": false,
+  "callerScan": "Exact quoted source-literal search across pinned src/web/src JavaScript/TypeScript production files; tests excluded; bounded six-line context spans retained for hits.",
+  "priorRankDispositionReattestation": {
+    "path": "prior-rank-disposition-reattestation.jsonl",
+    "sha256": "e1b687095385a383185a8f32c34e216ee7a165abb6ad4e39f0a3ec1622dcdabd",
+    "summaryPath": "prior-rank-disposition-reattestation-summary.json",
+    "summarySha256": "71d46194523deebe8e40bb30b1a96348304142dc8b9edcb0a031222f9f6973c2",
+    "W59PreservedHolds": 24,
+    "W60DispositionCellsReattested": 300,
+    "W60AppliedChangesReattested": 84,
+    "nonCurrentCandidateTargetsCopied": false
+  }
+}

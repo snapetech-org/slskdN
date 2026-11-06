@@ -1,0 +1,111 @@
+{
+  "cellCount": 300,
+  "mismatchCounts": {
+    "protectedLiteral": 17
+  },
+  "mismatchExamples": [
+    {
+      "continuationRank": 936,
+      "sourceId": "src_350484e0cf3ed052",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 936,
+      "sourceId": "src_350484e0cf3ed052",
+      "locale": "zh-Hans",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 936,
+      "sourceId": "src_350484e0cf3ed052",
+      "locale": "zh-Hant",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "de",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "es",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "fr",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "id",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "ja",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "ko",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "pt-BR",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "vi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "zh-Hans",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 939,
+      "sourceId": "src_35147a363ec9fd5d",
+      "locale": "zh-Hant",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 941,
+      "sourceId": "src_3527b8ae3ac604da",
+      "locale": "ar",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 941,
+      "sourceId": "src_3527b8ae3ac604da",
+      "locale": "hi",
+      "kind": "protectedLiteral"
+    },
+    {
+      "continuationRank": 941,
+      "sourceId": "src_3527b8ae3ac604da",
+      "locale": "ko",
+      "kind": "protectedLiteral"
+    }
+  ],
+  "reviewCandidateTextIncluded": false
+}

@@ -1,0 +1,33 @@
+{
+  "allReadbackMatches": true,
+  "catalogKeySetParity": true,
+  "cells": 300,
+  "changedCells": 44,
+  "dispositions": {
+    "accept-current": 220,
+    "accept-reviewed-correction": 38,
+    "adopt-crossreview-revision": 6,
+    "hold": 36
+  },
+  "headedBrowserReview": false,
+  "heldCells": 36,
+  "holdRanks": [
+    37,
+    42,
+    49
+  ],
+  "locales": 12,
+  "mergeReleaseOrTag": false,
+  "nativeSpeakerApproval": false,
+  "perLocaleKeyOrderPreserved": true,
+  "pullRequest": 409,
+  "readbackCells": 300,
+  "repository": "snapetech-org/slskdN",
+  "retainedCurrentCells": 220,
+  "sourceHead": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "sourceIds": 25,
+  "sourceTree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "testsBuildScansCiRun": false,
+  "window": "W46 reconstructed ranks 26–50; historical source ordinal unavailable",
+  "workflowFilesTouched": false
+}

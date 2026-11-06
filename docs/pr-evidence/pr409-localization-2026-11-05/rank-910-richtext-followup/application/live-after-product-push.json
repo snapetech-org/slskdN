@@ -1,0 +1,17 @@
+{
+  "artifact": "slskdN PR #409 rank-910 product-push live snapshot",
+  "head": "1e33696072e322d98827c022c4432a57a76be2db",
+  "tree": "0c47bca06d66935576d3b8b784c809242fb4584e",
+  "branchRefOid": "1e33696072e322d98827c022c4432a57a76be2db",
+  "pullRefOid": "1e33696072e322d98827c022c4432a57a76be2db",
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "state": "open",
+  "draft": true,
+  "merged": false,
+  "bodyUtf8Bytes": 110822,
+  "bodySha256": "4d8e8397619c941ef1060ccd3e49c3f7b07e113c7c35014020835f57956f9869",
+  "workflowPathsInCommit": [],
+  "checkRunCount": 0,
+  "statusContextCount": 0,
+  "deploymentCount": 0
+}

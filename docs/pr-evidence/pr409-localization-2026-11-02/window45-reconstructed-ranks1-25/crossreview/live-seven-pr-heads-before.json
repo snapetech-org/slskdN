@@ -1,0 +1,75 @@
+{
+  "snapshot": "before independent cross-review",
+  "pullRequests": [
+    {
+      "repository": "seerrng",
+      "pullRequest": 418,
+      "state": "OPEN",
+      "draft": true,
+      "head": "0905d4be32d8b7ec3b1af701473a3fdf6e0f30a2",
+      "tree": "a09117211080bbd89d32959f17d93b02a82b966f",
+      "base": "main",
+      "branch": "codex/seerrng-localization-overhaul-20261028"
+    },
+    {
+      "repository": "chaptarrng",
+      "pullRequest": 190,
+      "state": "OPEN",
+      "draft": true,
+      "head": "a9a74f6ba733e8c1f06a2d260bd802d4fde2da0e",
+      "tree": "d9d25f309f3a7256056b4ed8deb1dabee58b64fe",
+      "base": "main",
+      "branch": "codex/chaptarrng-localization-complete-20261031"
+    },
+    {
+      "repository": "questarrng",
+      "pullRequest": 155,
+      "state": "OPEN",
+      "draft": false,
+      "head": "be131f2d42988bb8f4a271e4df428985da15b53b",
+      "tree": "afd827714b9ada51ef269e41184ac219e064059b",
+      "base": "main",
+      "branch": "codex/localization-foundations-20261028"
+    },
+    {
+      "repository": "romarrng",
+      "pullRequest": 70,
+      "state": "OPEN",
+      "draft": true,
+      "head": "8e3820252b0c362e18e421b3a73e7ff1478d32a0",
+      "tree": "0d29024efd7e5e886926a83d95f57c472f327db9",
+      "base": "main",
+      "branch": "task/localization-translation-review-20261030"
+    },
+    {
+      "repository": "slskr",
+      "pullRequest": 204,
+      "state": "OPEN",
+      "draft": true,
+      "head": "72597bcf3c71f586040cd882506dff8dcbf6c804",
+      "tree": "98f7304db2e39ad722121c24047f5f06aa515663",
+      "base": "main",
+      "branch": "codex/slskr-l10n-audit-20261030"
+    },
+    {
+      "repository": "slskdn",
+      "pullRequest": 409,
+      "state": "OPEN",
+      "draft": true,
+      "head": "6a082138c09fa8af40aee3258beb98523ee821d9",
+      "tree": "90142bfd8904d2a4428ea5f144848ba1c743bdd7",
+      "base": "main",
+      "branch": "codex/slskdn-oidc-tooltip-localization-20261030"
+    },
+    {
+      "repository": "torrentng",
+      "pullRequest": 243,
+      "state": "OPEN",
+      "draft": true,
+      "head": "11ff6fa2618e842e92716b7e92867769200e32e5",
+      "tree": "770415a3fcd9353884ac245b53798af9610c0aa3",
+      "base": "main",
+      "branch": "codex/torrentng-localization-audit-20261030"
+    }
+  ]
+}

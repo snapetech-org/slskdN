@@ -1,0 +1,105 @@
+{
+  "allSelectedTokenChecksPass": true,
+  "blindDispositionCounts": {
+    "accept-current": 234,
+    "correction": 26,
+    "hold": 24,
+    "refinement": 16
+  },
+  "blindReviewSeparation": "blind packet was sealed with primaryPacketOpened=false and its sealed ledger/checksums are pinned; independent blind review remains separate from this cross-audit",
+  "blindSelectedConflictCount": 16,
+  "browserNativeReview": "not performed",
+  "callerlessHoldCells": 24,
+  "callerlessHoldRanks": [
+    533,
+    541
+  ],
+  "catalogChangesApplied": false,
+  "cellCount": 300,
+  "crossAuditDispositionCounts": {
+    "accept-current": 217,
+    "correction": 41,
+    "hold": 24,
+    "refinement": 18
+  },
+  "crossAuditTargetSourceCounts": {
+    "agreement": 20,
+    "blind": 16,
+    "current": 215,
+    "hold-consensus": 24,
+    "primary": 25
+  },
+  "dispositionAdjudications": 5,
+  "effectiveTargetAgreementCells": 235,
+  "head": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "liveHead": "c258a11d25a5cffc82b6b7cb2964d8f57b8eeac1",
+  "livePrDraft": true,
+  "livePrState": "OPEN",
+  "liveTree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "localeCount": 12,
+  "nativeSpeakerReview": "not performed",
+  "numericSurfaceAdjudicationKey": {
+    "locale": "ja",
+    "rank": 549
+  },
+  "numericSurfaceMismatchCount": 1,
+  "placeholderOrMarkupGaps": 0,
+  "primaryDispositionCounts": {
+    "accept-current": 227,
+    "correction": 36,
+    "hold": 24,
+    "refinement": 13
+  },
+  "primarySelectedConflictCount": 25,
+  "priorHeldCellsReattestedUnchanged": 104,
+  "proposalConflicts": 41,
+  "protectedLiteralGapCount": 5,
+  "protectedLiteralGapKeys": [
+    {
+      "literals": [
+        "ID"
+      ],
+      "locale": "ar",
+      "rank": 535
+    },
+    {
+      "literals": [
+        "ID"
+      ],
+      "locale": "es",
+      "rank": 535
+    },
+    {
+      "literals": [
+        "ID"
+      ],
+      "locale": "hi",
+      "rank": 535
+    },
+    {
+      "literals": [
+        "ContentID"
+      ],
+      "locale": "hi",
+      "rank": 542
+    },
+    {
+      "literals": [
+        "MilkDrop"
+      ],
+      "locale": "hi",
+      "rank": 548
+    }
+  ],
+  "protectedLiteralGapsCorrected": 5,
+  "pullRequest": 409,
+  "rankRange": [
+    528,
+    552
+  ],
+  "releaseCreated": false,
+  "repository": "snapetech-org/slskdN",
+  "schema": "slskdn-w66-third-party-crossaudit-summary/v1",
+  "tree": "53e65bd1f3d87362916f1e51e2d1fd1d0cef73a5",
+  "window": "W66"
+}

@@ -1,0 +1,8 @@
+# slskdN PR #409 W51 primary review packet
+
+- Exact live PR head/tree: `45664e79a6d9bd41519b674d33464e5f7cb9ce2c` / `dc5f6ab2aab3668f674dd583451d3464a3a1c081`. The PR is open and draft; the remote branch, local detached worktree, and commit tree match.
+- W51 covers 25 exact source IDs × 12 locales = 300 cells. It follows the pinned W49 stable-ID inventory at continuation ranks 176–200; historical extraction ordinals are unavailable and are not claimed. The source list, current targets, ordered catalog structure, and 67 caller references are hash-pinned.
+- The W49 and W50 evidence manifests were verified. W50's primary packet labels its selected set ranks 126–150, but its 25 selected IDs map to W49 inventory ranks 151–175. W50's next-boundary ID, `src_1659ba85e3daecfb`, maps to W49 rank 176 and starts W51. W50 evidence remains unchanged. W49 ranks 126–150 remain outside this window and must stay on the pending queue.
+- Primary dispositions: 263 accept-current, 9 corrections, and 28 refinements. The 37 exact-hash candidate changes cover 9 source IDs. All 300 placeholder and markup checks pass; protected `Pod`, `slskdN`, `BitTorrent`, `DHT`, `SQLite`, and `Meek` literals have zero candidate mismatches. No source ID in W51 overlaps the W50 selected set or W50's prior exclusion set; all IDs match current catalog keys.
+- Caller evidence was re-scanned with exact JavaScript string-literal escaping, including escaped quotes. All 25 IDs have at least one exact production literal caller. Proposals are machine-assisted with moderate confidence; native-speaker approval is not claimed.
+- No repository files or PR metadata were changed by primary review. No tests, builds, scans, CI dispatches, workflow edits, releases, or tags were run or changed.

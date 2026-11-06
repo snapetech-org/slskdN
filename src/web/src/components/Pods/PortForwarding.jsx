@@ -1,6 +1,6 @@
-import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedRichText, LocalizedOutputText } from "../Shared/LocalizedText";
+import { interfaceAttributeText, interfaceTextOutput, isInterfaceTextOutput, interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 
 
 import { urlBase } from '../../config';
@@ -58,9 +58,11 @@ const STATUS_POLL_INTERVAL_MS = 10_000;
 const asArray = (value) => (Array.isArray(value) ? value : []);
 const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
 const PortForwardingError = ({ error }) => {
-  if (typeof error === 'string') return <LocalizedText source={error} />;
-  if (error?.source) return <LocalizedText source={error.source} values={error.values} />;
-  return error?.message || String(error);
+  if (isInterfaceTextOutput(error)) return <LocalizedOutputText output={error} />;
+  if (typeof error === 'string') return <LocalizedOutputText text={error} />;
+  if (error?.source) return <LocalizedOutputText output={interfaceTextOutput(error.source, error.values)} />;
+  if (error?.message) return <LocalizedOutputText output={error.message} />;
+  return <LocalizedOutputText text={String(error)} />;
 };
 const forwardingStatusSignature = (statuses) =>
   statuses
@@ -148,7 +150,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to initialize port forwarding:', error);
-      if (this.mounted) this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
+      if (this.mounted) this.setState({ error: { message: getApiErrorMessageOutput(error, { t: interfaceText }) } });
     } finally {
       if (this.mounted) this.setState({ loading: false });
     }
@@ -282,7 +284,7 @@ class PortForwarding extends Component {
       this.setState({
         error: {
           source: 'Failed to load pod details: {message}',
-          values: { message: getApiErrorMessage(error, { t: interfaceText }) },
+          values: { message: getApiErrorMessageOutput(error, { t: interfaceText }) },
         },
       });
     } finally {
@@ -294,7 +296,7 @@ class PortForwarding extends Component {
     const { createForm, selectedPodId } = this.state;
 
     if (!selectedPodId) {
-      this.setState({ error: 'Please select a pod first' });
+      this.setState({ error: interfaceTextOutput('Please select a pod first') });
       return;
     }
 
@@ -304,7 +306,7 @@ class PortForwarding extends Component {
       !createForm.destinationHost ||
       !createForm.destinationPort
     ) {
-      this.setState({ error: 'Please fill in all required fields' });
+      this.setState({ error: interfaceTextOutput('Please fill in all required fields') });
       return;
     }
 
@@ -312,7 +314,7 @@ class PortForwarding extends Component {
     const destinationPort = Number.parseInt(createForm.destinationPort);
 
     if (isNaN(localPort) || localPort < 1_024 || localPort > 65_535) {
-      this.setState({ error: 'Local port must be between 1024 and 65535' });
+      this.setState({ error: interfaceTextOutput('Local port must be between 1024 and 65535') });
       return;
     }
 
@@ -321,7 +323,7 @@ class PortForwarding extends Component {
       destinationPort < 1 ||
       destinationPort > 65_535
     ) {
-      this.setState({ error: 'Destination port must be between 1 and 65535' });
+      this.setState({ error: interfaceTextOutput('Destination port must be between 1 and 65535') });
       return;
     }
 
@@ -348,7 +350,7 @@ class PortForwarding extends Component {
       ]);
     } catch (error) {
       console.error('Failed to create port forwarding:', error);
-      this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
+      this.setState({ error: { message: getApiErrorMessageOutput(error, { t: interfaceText }) } });
     } finally {
       this.setState({ creatingForwarding: false });
     }
@@ -371,7 +373,7 @@ class PortForwarding extends Component {
       });
     } catch (error) {
       console.error('Failed to stop port forwarding:', error);
-      this.setState({ error: { message: getApiErrorMessage(error, { t: interfaceText }) } });
+      this.setState({ error: { message: getApiErrorMessageOutput(error, { t: interfaceText }) } });
     } finally {
       this.setState({ stoppingForwarding: false });
     }
@@ -510,7 +512,7 @@ class PortForwarding extends Component {
                             content={interfaceText("Stop forwarding on localhost:{localPort} and close this tunnel when you no longer need the local route.", { "localPort": (forwarding.localPort) })}
                             trigger={
                               <Button
-                                aria-label={interfaceText("Stop forwarding on local port {localPort}", { "localPort": (forwarding.localPort) })}
+                                aria-label={interfaceAttributeText("Stop forwarding on local port {localPort}", { "localPort": (forwarding.localPort) })}
                                 color="red"
                                 icon="stop"
                                 loading={stoppingForwarding}
@@ -731,7 +733,9 @@ class PortForwarding extends Component {
                     </Table.Cell>
                     <Table.Cell>
                       <Label color={pod.status === 'Active' ? 'green' : 'grey'}>
-                        <LocalizedText source={pod.status} />
+                        {pod.status === 'Active'
+                          ? <LocalizedText source="Active" />
+                          : <bdi dir="auto" lang="und">{pod.status}</bdi>}
                       </Label>
                     </Table.Cell>
                   </Table.Row>
@@ -766,7 +770,7 @@ class PortForwarding extends Component {
 
         {error && (
           <Message error>
-            <Message.Header><LocalizedText source={"Error"} /></Message.Header>
+            <Message.Header><LocalizedText source="Error" /></Message.Header>
             <p><PortForwardingError error={error} /></p>
             <TooltipButton
               onClick={() => this.setState({ error: null })}
@@ -926,7 +930,7 @@ class PortForwarding extends Component {
               loading={creatingForwarding}
               onClick={this.handleCreateForwarding}
               primary
-              tooltip={`Open a loopback-only listener on localhost:${createForm.localPort || 'the selected port'} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service.`}
+              tooltip={<LocalizedRichText source="Open a loopback-only listener on localhost:{port} and route local app connections through this VPN pod to the remote service. Use this when you need local access to that service." values={{ port: createForm.localPort || <LocalizedText source="the selected port" /> }} />}
             >
               <LocalizedText source={"Start Forwarding"} /></TooltipButton>
           </Modal.Actions>

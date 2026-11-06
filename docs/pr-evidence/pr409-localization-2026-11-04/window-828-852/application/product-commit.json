@@ -1,0 +1,24 @@
+{
+  "artifact": "W78 product catalog commit",
+  "commit": "5dcab29f7f29d129c5650a8902fec103ddd7b386",
+  "parent": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "expectedParent": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "subject": "localization: apply W78 PR 409 corrections",
+  "changedPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "changedValueCount": 63,
+  "localeCatalogCount": 12,
+  "testsBuildsScansOrCiRun": false
+}

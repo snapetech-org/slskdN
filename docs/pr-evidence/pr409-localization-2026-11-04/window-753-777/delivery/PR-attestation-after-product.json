@@ -1,0 +1,21 @@
+{
+  "base": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baseRef": "main",
+  "bodyBytes": 103897,
+  "bodyMatchesCapturedPrefix": true,
+  "bodySha256": "37ac6de05f8640936508aefb6c4d8534bb482b0a34bdb47d1f361687ecdce7bb",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "branchRef": "dd49c37bc70a09b552fb66a435a04e500d0ca012",
+  "checkRunCount": 0,
+  "deploymentCount": 0,
+  "draft": true,
+  "head": "dd49c37bc70a09b552fb66a435a04e500d0ca012",
+  "number": 409,
+  "pullRef": "dd49c37bc70a09b552fb66a435a04e500d0ca012",
+  "refsMatch": true,
+  "schemaVersion": 1,
+  "state": "OPEN",
+  "tree": "fe2a8369fcd57b0e46d2ce69c7445ec8afbabf02",
+  "uniqueApplicationMarkerPresent": false,
+  "url": "https://github.com/snapetech-org/slskdN/pull/409"
+}

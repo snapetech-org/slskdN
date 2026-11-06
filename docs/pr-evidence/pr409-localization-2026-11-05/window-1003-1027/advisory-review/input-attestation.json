@@ -1,0 +1,56 @@
+{
+  "blindReviewPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/blind-review",
+  "candidateFreePacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/candidate-free",
+  "exactRepoWorktree": "/home/keith/Documents/code/.task-worktrees/localization-20261105/slskdn-w978",
+  "head": "8c752c49281418fdd96341ed46f5c321627b625f",
+  "primaryReviewPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/primary-review",
+  "sealedCrossPacket": "/mnt/disks/scratch/task-scratch/slskdn-pr409-crossreview-w1003-1027-20261105",
+  "sha256Files": [
+    {
+      "bytes": 598,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-crossreview-w1003-1027-20261105/SHA256SUMS.txt",
+      "sha256": "891ccc5c447d2ca86d49dd18418d9b10a7ff2f311adba2a3f7ae985dad7f7255"
+    },
+    {
+      "bytes": 2966,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-crossreview-w1003-1027-20261105/manifest.json",
+      "sha256": "a8528b98c3ae76bfa799e3539b8f274dd13d12fcb481c2bf9cefbae4c36a3fbc"
+    },
+    {
+      "bytes": 941053,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-crossreview-w1003-1027-20261105/cross-review.jsonl",
+      "sha256": "70c3cbc0535a464600dc8463bf70a87c92c801ab378ff87e3efc484598598388"
+    },
+    {
+      "bytes": 5345,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/candidate-free/manifest.json",
+      "sha256": "8ae2e35ecb232bf12700bc507826d2566c8fe06e42a727d0efad19df4a95f100"
+    },
+    {
+      "bytes": 50050,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/candidate-free/caller-contexts.jsonl",
+      "sha256": "447a9d3f36e0a2f2658170e52ef8545fec175b5b21fa42baebf58b06c9d28bec"
+    },
+    {
+      "bytes": 367819,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/candidate-free/source-current-cells.jsonl",
+      "sha256": "2c5ba3a2179802fd853d4fd61f0b7cd4d81235e1de51a1c6006f7026f1cc4e19"
+    },
+    {
+      "bytes": 40575,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/primary-review/corrections.jsonl",
+      "sha256": "9562c6681a299e49f264e9ba99507606d49a65f8eece768deb7d2d6851150b1c"
+    },
+    {
+      "bytes": 859904,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/primary-review/primary-review.jsonl",
+      "sha256": "ed3a599fe69958db61dcc63d3418a2359faec7c173ab3847cc0232103e8e1c99"
+    },
+    {
+      "bytes": 413560,
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1003-1027-20261105/blind-review/review-cells.jsonl",
+      "sha256": "2b010aa43018f9b9e12ba070a4bed9ff351732d1cda8e59f9bf0ff6b8af20ecd"
+    }
+  ],
+  "tree": "b930b0d82679e843849e54456f3250e422c4682c"
+}

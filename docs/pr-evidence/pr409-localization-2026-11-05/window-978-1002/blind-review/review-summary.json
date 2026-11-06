@@ -1,0 +1,16 @@
+{
+  "exactHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "exactTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "retain": 240,
+    "propose": 60
+  },
+  "proposedStringCount": 60,
+  "callerlessSourceCount": 0,
+  "callerlessCellCount": 0,
+  "finalTokenCheckFailures": 0,
+  "baselineProtectedLiteralMismatchCells": 5
+}

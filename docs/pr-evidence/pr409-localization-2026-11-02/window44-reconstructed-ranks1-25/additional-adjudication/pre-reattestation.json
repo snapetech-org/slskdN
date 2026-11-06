@@ -1,0 +1,21 @@
+{
+  "phase": "before-adjudication",
+  "capturedAtUtc": "2026-11-02T20:15:28.612951+00:00",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "isDraft": true,
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "headOid": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "treeOid": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "branchRefOid": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "remoteRefOid": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "worktree": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn",
+  "worktreeHead": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "worktreeTree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "worktreeStatusPorcelain": "",
+  "expectedHead": "f3fbd3f8db10f78768b9951a67b4b9de8581a408",
+  "expectedTree": "9495c35a540ef2d2e845c833acb709365e0e26ac",
+  "allExpectedRefsMatch": true
+}

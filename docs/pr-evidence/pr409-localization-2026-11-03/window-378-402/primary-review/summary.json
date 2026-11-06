@@ -1,0 +1,36 @@
+{
+  "artifact": "slskdN PR #409 W60 primary semantic review",
+  "window": "W60 ranks 378-402",
+  "head": "3fbcea3185c02efca7c45d03a195acf488e70587",
+  "tree": "95604b428133b5e52247c1f3f00900c2c7d5192f",
+  "inputManifestSha256": "d6654ed692cf9e00e085c7fcb2199f860496efc331ddab99350aa739891b8797",
+  "inputChecksumManifestSha256": "b461142bdc63da76257a71cd225484d57a7974c8ca38aadda9fcf5315d73ee91",
+  "inputChecksumVerification": [
+    "README.md: OK",
+    "caller-contexts.jsonl: OK",
+    "catalog-structure.jsonl: OK",
+    "head-tree-attestation.json: OK",
+    "manifest.json: OK",
+    "selection-and-boundary.json: OK",
+    "selection-boundary.jsonl: OK",
+    "source-current-cells.jsonl: OK",
+    "source-inventory-selection.jsonl: OK"
+  ],
+  "rowCount": 300,
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "verdictCounts": {
+    "accept-current": 224,
+    "correction": 50,
+    "refinement": 26
+  },
+  "proposedTargetCount": 76,
+  "selectedTargetCount": 76,
+  "holds": [],
+  "allCellsCallerBacked": true,
+  "structuralChecksAllPass": true,
+  "candidateFreeInputModified": false,
+  "repositoryOrPRModified": false,
+  "nativeSpeakerApproval": false
+}

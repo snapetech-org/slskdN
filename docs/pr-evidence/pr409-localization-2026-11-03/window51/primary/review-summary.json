@@ -1,0 +1,427 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "exactHead": "45664e79a6d9bd41519b674d33464e5f7cb9ce2c",
+  "exactTree": "dc5f6ab2aab3668f674dd583451d3464a3a1c081",
+  "window": "W51 exact W49 stable-ID inventory ranks 176-200; historical source ordinals unavailable",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 263,
+    "refinement": 28,
+    "correction": 9
+  },
+  "candidateChangeCount": 37,
+  "changedCellsByLocale": {
+    "ar": 4,
+    "de": 4,
+    "es": 2,
+    "fr": 3,
+    "hi": 3,
+    "id": 4,
+    "ja": 4,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 3,
+    "zh-Hans": 2,
+    "zh-Hant": 2
+  },
+  "changedCellsBySource": {
+    "src_1664768200c8ee05": 10,
+    "src_1689785005b7e22e": 1,
+    "src_169408133fcb83a3": 1,
+    "src_16d9b529ed6a96b4": 1,
+    "src_16f78a7d6317f102": 1,
+    "src_16fa11b45fcff0d0": 1,
+    "src_1709305c9fa966d1": 1,
+    "src_170d7271521ab27b": 9,
+    "src_170d96ccb5e4a41f": 12
+  },
+  "holdCount": 0,
+  "callerReferenceCount": 67,
+  "callerlessSourceIds": [],
+  "placeholderMismatchCount": 0,
+  "markupMismatchCount": 0,
+  "currentProtectedLiteralMismatchCount": 0,
+  "candidateProtectedLiteralMismatchCount": 0,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReview": false,
+  "testsBuildScansCiRun": false,
+  "repositoryModified": false,
+  "remoteMutation": false,
+  "reviewConfidence": "moderate machine-assisted primary review only",
+  "rankBasis": "W49 pinned stable-ID inventory; W50 declared 126-150 labels map to W49 ranks 151-175; W51 continues W49 ranks 176-200",
+  "changes": [
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "ar",
+      "from": "قم بتنفيذ {title} الآن من خلال الإجراء الخلفي الحقيقي. تقوم \"إعادة محاولة قائمة الرغبات\" بتشغيل ما يصل إلى ثلاث عمليات بحث ممكّنة؛ تبدأ Library Health عملية الفحص للقراءة فقط التي تم تكوينها.",
+      "to": "قم بتنفيذ {title} الآن من خلال الإجراء الخلفي الحقيقي. تقوم \"إعادة محاولة قائمة الرغبات\" بتشغيل ما يصل إلى ثلاث عمليات بحث ممكّنة؛ تبدأ صحة المكتبة عملية الفحص للقراءة فقط التي تم تكوينها.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. The action and feature names are app-owned UI labels; use the localized Library Health label instead of leaving the English name in Arabic copy."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "de",
+      "from": "Führen Sie {title} jetzt über die eigentliche Backend-Aktion aus. Die Wunschliste-Wiederholung führt bis zu drei aktivierte Suchvorgänge aus; Library Health startet den konfigurierten schreibgeschützten Scan.",
+      "to": "Führen Sie {title} jetzt über die eigentliche Backend-Aktion aus. Die Aktion \"Wunschliste erneut versuchen\" führt bis zu drei aktivierte Suchen aus; Bibliotheksgesundheit startet den konfigurierten schreibgeschützten Scan.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Use the established localized feature label Bibliotheksgesundheit instead of leaving Library Health in English."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "es",
+      "from": "Ejecute {title} ahora a través de su acción real de backend. Wishlist Retry ejecuta hasta tres búsquedas habilitadas; Library Health inicia el análisis de solo lectura configurado.",
+      "to": "Ejecute {title} ahora mediante su acción real de backend. La acción «Reintentar la lista de deseos» ejecuta hasta tres búsquedas habilitadas; «Salud de la biblioteca» inicia el análisis configurado de solo lectura.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Wishlist Retry and Library Health are app-owned UI labels already translated elsewhere in this locale; use those labels in the explanatory sentence."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "fr",
+      "from": "Exécutez {title} maintenant via sa véritable action backend. La nouvelle tentative de liste de souhaits exécute jusqu'à trois recherches activées ; Library Health démarre l’analyse configurée en lecture seule.",
+      "to": "Exécutez {title} maintenant via sa véritable action backend. La nouvelle tentative de liste de souhaits exécute jusqu’à trois recherches activées ; Santé des bibliothèques démarre l’analyse configurée en lecture seule.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Use the established localized feature label Santé des bibliothèques instead of leaving Library Health in English."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "hi",
+      "from": "अब इसकी वास्तविक बैकएंड कार्रवाई के माध्यम से {title} निष्पादित करें। विशलिस्ट रिट्री तीन सक्षम खोजों तक चलती है; लाइब्रेरी हेल्थ कॉन्फ़िगर किए गए रीड-ओनली स्कैन को प्रारंभ करता है।",
+      "to": "अब इसकी वास्तविक बैकएंड कार्रवाई के माध्यम से {title} निष्पादित करें। “इच्छा सूची पुनः प्रयास करें” की कार्रवाई तीन सक्षम खोजें चलाती है; “पुस्तकालय स्वास्थ्य” कॉन्फ़िगर किया गया केवल-पठन स्कैन शुरू करता है।",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Use the localized Wishlist Retry and Library Health feature labels rather than English transliteration for the feature names."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "id",
+      "from": "Jalankan {title} sekarang melalui aksi backend sebenarnya. Wishlist Retry menjalankan hingga tiga pencarian yang diaktifkan; Library Health memulai pemindaian hanya-baca yang dikonfigurasi.",
+      "to": "Jalankan {title} sekarang melalui aksi backend sebenarnya. Aksi “Daftar Keinginan Coba Lagi” menjalankan hingga tiga pencarian yang diaktifkan; “Kesehatan Perpustakaan” memulai pemindaian hanya-baca yang dikonfigurasi.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Wishlist Retry and Library Health are app-owned UI labels already translated elsewhere in this locale; use those labels in the explanatory sentence."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "ja",
+      "from": "実際のバックエンド アクションを通じて {title} を実行します。ウィッシュリストの再試行では、最大 3 つの有効な検索が実行されます。 Library Health は、構成された読み取り専用スキャンを開始します。",
+      "to": "実際のバックエンド アクションを通じて {title} を実行します。ウィッシュリストの再試行では、最大 3 つの有効な検索が実行されます。図書館の健全性は、構成された読み取り専用スキャンを開始します。",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Use the established localized Library Health feature label 図書館の健全性 instead of leaving the English name in Japanese copy."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "ko",
+      "from": "이제 실제 백엔드 작업을 통해 {title}를 실행하세요. 위시리스트 재시도는 최대 3개의 활성화된 검색을 실행합니다. Library Health는 구성된 읽기 전용 검색을 시작합니다.",
+      "to": "이제 실제 백엔드 작업을 통해 {title}를 실행하세요. 위시리스트 재시도는 최대 3개의 활성화된 검색을 실행합니다. 도서관 건강은 구성된 읽기 전용 검색을 시작합니다.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Use the established localized Library Health feature label 도서관 건강 instead of leaving the English name in Korean copy."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "pt-BR",
+      "from": "Execute {title} agora através de sua ação de backend real. A repetição da lista de desejos executa até três pesquisas habilitadas; O Library Health inicia a verificação somente leitura configurada.",
+      "to": "Execute {title} agora através de sua ação de backend real. A repetição da lista de desejos executa até três pesquisas habilitadas; a Saúde da Biblioteca inicia a verificação somente leitura configurada.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Use the established localized Library Health feature label Saúde da Biblioteca instead of leaving the English name in Portuguese copy."
+    },
+    {
+      "rank": 177,
+      "sourceId": "src_1664768200c8ee05",
+      "source": "Execute {title} now through its real backend action. Wishlist Retry runs up to three enabled searches; Library Health starts the configured read-only scan.",
+      "locale": "vi",
+      "from": "Thực thi {title} ngay bây giờ thông qua hành động phụ trợ thực sự của nó. Danh sách mong muốn Thử lại chạy tối đa ba tìm kiếm được kích hoạt; Library Health bắt đầu quá trình quét chỉ đọc đã định cấu hình.",
+      "to": "Thực thi {title} ngay bây giờ thông qua hành động phụ trợ thực sự của nó. Danh sách mong muốn Thử lại chạy tối đa ba tìm kiếm được kích hoạt; Thư viện sức khỏe bắt đầu quá trình quét chỉ đọc đã định cấu hình.",
+      "disposition": "refinement",
+      "rationale": "This is Automation Center help text. Use the established localized Library Health feature label Thư viện sức khỏe instead of leaving the English name in Vietnamese copy."
+    },
+    {
+      "rank": 181,
+      "sourceId": "src_1689785005b7e22e",
+      "source": "Signals ignored",
+      "locale": "ja",
+      "from": "シグナルを無視",
+      "to": "シグナルは無視されています",
+      "disposition": "refinement",
+      "rationale": "This is a persisted ignore-state badge with an eye-slash icon; the existing シグナルを無視 reads like an instruction to ignore signals, while this states that they are ignored."
+    },
+    {
+      "rank": 182,
+      "sourceId": "src_169408133fcb83a3",
+      "source": ", IP Address:",
+      "locale": "ar",
+      "from": "عنوان IP:",
+      "to": "، عنوان IP:",
+      "disposition": "refinement",
+      "rationale": "This is the final comma-separated field in a user details line. Preserve the source separator with Arabic punctuation before the IP-address label."
+    },
+    {
+      "rank": 185,
+      "sourceId": "src_16d9b529ed6a96b4",
+      "source": "format over the canonical join/leave payload and the supplied public key.",
+      "locale": "pt-BR",
+      "from": "formato sobre a carga canônica de junção/licença e a chave pública fornecida.",
+      "to": "formato sobre a carga útil canônica de entrada/saída e a chave pública fornecida.",
+      "disposition": "correction",
+      "rationale": "The caller is a technical explanation of signed Pod membership operations. licença means “license”; entrada/saída correctly expresses the join/leave events."
+    },
+    {
+      "rank": 187,
+      "sourceId": "src_16f78a7d6317f102",
+      "source": "username",
+      "locale": "id",
+      "from": "nama belakang",
+      "to": "nama pengguna",
+      "disposition": "correction",
+      "rationale": "The callers use this as the Username placeholder in a message field and as a username value in interpolated labels. nama belakang means “surname/last name”."
+    },
+    {
+      "rank": 188,
+      "sourceId": "src_16fa11b45fcff0d0",
+      "source": "Run SQLite vacuum to compact the local message database and reclaim unused file space. This may take time.",
+      "locale": "fr",
+      "from": "Lancez SQLite vacuum pour compacter la base de données locale et récupérer de l’espace. Cela peut prendre du temps.",
+      "to": "Lancez SQLite vacuum pour compacter la base de données locale des messages et récupérer l’espace disque inutilisé. Cela peut prendre du temps.",
+      "disposition": "correction",
+      "rationale": "The exact caller is maintenance for the local Pod message database. The current wording drops “messages” and the unused-disk-space detail; include both while retaining the SQLite vacuum operation."
+    },
+    {
+      "rank": 191,
+      "sourceId": "src_1709305c9fa966d1",
+      "source": "Level",
+      "locale": "de",
+      "from": "Ebene",
+      "to": "Protokollstufe",
+      "disposition": "refinement",
+      "rationale": "The caller is the severity column in the system logs table; Protokollstufe is clearer than Ebene, which can mean a layer."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "ar",
+      "from": "ثقة:",
+      "to": "مستوى الثقة:",
+      "disposition": "refinement",
+      "rationale": "The caller renders a numeric confidence score. This names its degree explicitly and matches the catalog’s “Avg Confidence:” term متوسط الثقة."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "de",
+      "from": "Vertrauen:",
+      "to": "Konfidenz:",
+      "disposition": "correction",
+      "rationale": "The caller renders a numeric match-confidence score. Vertrauen means trust; the catalog uses Konfidenz in “Avg Confidence:”."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "hi",
+      "from": "आत्मविश्वास:",
+      "to": "विश्वास स्तर:",
+      "disposition": "correction",
+      "rationale": "The caller renders a numeric match-confidence score. आत्मविश्वास suggests personal self-confidence; this names the score level and follows the catalog’s “Avg Confidence:” term विश्वास."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "id",
+      "from": "Kepercayaan diri:",
+      "to": "Tingkat keyakinan:",
+      "disposition": "correction",
+      "rationale": "The caller renders a numeric match-confidence score. Kepercayaan diri means self-confidence; this names the score level and follows the catalog’s “Avg Confidence:” term Keyakinan."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "ja",
+      "from": "自信：",
+      "to": "信頼度：",
+      "disposition": "correction",
+      "rationale": "The caller renders a numeric match-confidence score. 自信 means self-confidence; the catalog already uses 信頼度 in “Avg Confidence:”."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "ko",
+      "from": "신뢰:",
+      "to": "신뢰도:",
+      "disposition": "correction",
+      "rationale": "The caller renders a numeric match-confidence score. 신뢰 is only “trust”; the catalog already uses 신뢰도 in “Avg Confidence:”."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "vi",
+      "from": "Sự tự tin:",
+      "to": "Độ tin cậy:",
+      "disposition": "correction",
+      "rationale": "The caller renders a numeric match-confidence score. Sự tự tin suggests personal self-confidence; the catalog already uses Độ tin cậy in “Avg Confidence:”."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "zh-Hans",
+      "from": "信心：",
+      "to": "置信度：",
+      "disposition": "refinement",
+      "rationale": "The caller renders a numeric match-confidence score. 信心 is broad personal confidence; 置信度 is the established catalog term in “Avg Confidence:”."
+    },
+    {
+      "rank": 193,
+      "sourceId": "src_170d7271521ab27b",
+      "source": "Confidence:",
+      "locale": "zh-Hant",
+      "from": "信心：",
+      "to": "信賴度：",
+      "disposition": "refinement",
+      "rationale": "The caller renders a numeric match-confidence score. 信心 is broad personal confidence; 信賴度 is the established Traditional Chinese catalog term in “Avg Confidence:”."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "ar",
+      "from": "خطافات الأحداث، والأهداف البعيدة، وخطافات الأوامر، وإعادة محاولة الشكل.",
+      "to": "خطافات الأحداث، والأهداف البعيدة، وخطافات الأوامر، وإعدادات إعادة المحاولة.",
+      "disposition": "refinement",
+      "rationale": "This is the description of the Actions: Webhooks and Scripts card, whose fields expose webhook retry attempts and download retry behavior. إعدادات إعادة المحاولة expresses retry settings rather than a physical shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "de",
+      "from": "Ereignis-Hooks, Remote-Ziele, Befehls-Hooks und Wiederholungsform.",
+      "to": "Ereignis-Hooks, Remote-Ziele, Befehls-Hooks und Einstellungen für Wiederholungsversuche.",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. Translate the awkward source phrase retry shape as retry settings."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "es",
+      "from": "Enlaces de eventos, objetivos remotos, enlaces de comandos y forma de reintento.",
+      "to": "Ganchos de eventos, destinos remotos, ganchos de comandos y configuración de reintentos.",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. configuración de reintentos expresses that configuration rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "fr",
+      "from": "Hooks d’événements, cibles distantes, hooks de commande et forme de nouvelle tentative.",
+      "to": "Hooks d’événements, cibles distantes, hooks de commande et paramètres de nouvelle tentative.",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. paramètres de nouvelle tentative expresses the configuration rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "hi",
+      "from": "इवेंट हुक, दूरस्थ लक्ष्य, कमांड हुक और पुनः प्रयास आकार।",
+      "to": "इवेंट हुक, दूरस्थ लक्ष्य, कमांड हुक और पुनः प्रयास सेटिंग्स।",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. पुनः प्रयास सेटिंग्स expresses retry settings rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "id",
+      "from": "Kait peristiwa, target jarak jauh, kait perintah, dan bentuk percobaan ulang.",
+      "to": "Kait peristiwa, target jarak jauh, kait perintah, dan pengaturan percobaan ulang.",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. pengaturan percobaan ulang expresses retry settings rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "ja",
+      "from": "イベント フック、リモート ターゲット、コマンド フック、および再試行形状。",
+      "to": "イベントフック、リモートターゲット、コマンドフック、再試行設定。",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. 再試行設定 expresses retry settings rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "ko",
+      "from": "이벤트 후크, 원격 대상, 명령 후크 및 재시도 형태.",
+      "to": "이벤트 후크, 원격 대상, 명령 후크 및 재시도 설정.",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. 재시도 설정 expresses retry settings rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "pt-BR",
+      "from": "Ganchos de eventos, alvos remotos, ganchos de comando e formato de nova tentativa.",
+      "to": "Ganchos de eventos, destinos remotos, ganchos de comando e configurações de novas tentativas.",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. configurações de novas tentativas expresses retry settings rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "vi",
+      "from": "Móc sự kiện, mục tiêu từ xa, móc lệnh và hình dạng thử lại.",
+      "to": "Móc sự kiện, mục tiêu từ xa, móc lệnh và cài đặt thử lại.",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. cài đặt thử lại expresses retry settings rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "zh-Hans",
+      "from": "事件挂钩、远程目标、命令挂钩和重试形状。",
+      "to": "事件挂钩、远程目标、命令挂钩和重试设置。",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. 重试设置 expresses retry settings rather than a literal shape."
+    },
+    {
+      "rank": 194,
+      "sourceId": "src_170d96ccb5e4a41f",
+      "source": "Event hooks, remote targets, command hooks, and retry shape.",
+      "locale": "zh-Hant",
+      "from": "事件掛鉤、遠端目標、命令掛鉤和重試形狀。",
+      "to": "事件掛鉤、遠端目標、命令掛鉤和重試設定。",
+      "disposition": "refinement",
+      "rationale": "The caller is the Actions: Webhooks and Scripts card with retry-attempt and retry-delay settings. 重試設定 expresses retry settings rather than a literal shape."
+    }
+  ]
+}

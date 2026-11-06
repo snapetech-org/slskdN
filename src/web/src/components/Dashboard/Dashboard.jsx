@@ -2,7 +2,7 @@ import './Dashboard.css';
 import { getTransferSummary } from '../../lib/reports';
 import LocalizedText from '../Shared/LocalizedText';
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import { formatBytes } from '../../lib/util';
 import { formatRegionalNumber, useRegionalLocale } from '../../lib/regionalFormat';
 import ErrorSegment from '../Shared/ErrorSegment';
@@ -73,7 +73,7 @@ const Dashboard = () => {
     try {
       setSummary(await getTransferSummary());
     } catch (requestError) {
-      setError(getApiErrorMessage(requestError, { t: interfaceText }, 'Transfer totals could not be loaded.'));
+      setError(getApiErrorMessageOutput(requestError, { t: interfaceText }, 'Transfer totals could not be loaded.'));
     } finally {
       setLoading(false);
     }

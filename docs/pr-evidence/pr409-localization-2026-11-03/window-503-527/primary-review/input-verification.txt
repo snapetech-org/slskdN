@@ -1,0 +1,18 @@
+Candidate-free input verifier ran before ledger construction.
+
+{
+  "pass": true,
+  "window": "W65 ranks 503-527",
+  "head": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "tree": "51ebf25124fc6ba30c8d5d99298e78353a951f17",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "priorHeldCellsReattested": 98,
+  "callerlessSelectedRanks": [],
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 22
+  }
+}

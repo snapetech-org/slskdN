@@ -1,0 +1,73 @@
+{
+  "applicationPerformed": true,
+  "applicationResultSha256": "b94aedd4205fb5fdc26dd594556866b9a18c1a9db2ad8fd7f4a01a477e111596",
+  "baseHead": "2dc64b9d00f6611aeb72713af81db53ccc5a4084",
+  "baseTree": "f13462300926ac897235cd92ae68c87695c38c31",
+  "catalogFilesExpectedToChange": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "catalogKeyCountPerLocale": {
+    "src/web/public/locales/ar.json": 6176,
+    "src/web/public/locales/de.json": 6176,
+    "src/web/public/locales/es.json": 6176,
+    "src/web/public/locales/fr.json": 6176,
+    "src/web/public/locales/hi.json": 6176,
+    "src/web/public/locales/id.json": 6176,
+    "src/web/public/locales/ja.json": 6176,
+    "src/web/public/locales/ko.json": 6176,
+    "src/web/public/locales/pt-BR.json": 6176,
+    "src/web/public/locales/vi.json": 6176,
+    "src/web/public/locales/zh-Hans.json": 6176,
+    "src/web/public/locales/zh-Hant.json": 6176
+  },
+  "dispositionCounts": {
+    "correction": 72,
+    "refinement": 39
+  },
+  "newHolds": 0,
+  "noOpCount": 189,
+  "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "priorHoldsRetainedUnchanged": 128,
+  "reviewPacketPins": {
+    "blindChecksumListSha256": "340d90cd029195587358419219cffcc413ee0e42c3c9fc134945606268f5f7b7",
+    "blindManifestSha256": "5865e1634096d05ada38a824ee8bab834f2cea395823233e79a91a1015ac4e5e",
+    "candidateFreeChecksumListSha256": "f486f9010a4c026988e6dc1c2b952da7d3d53b9f43fcf6e9bd3ab9761ec7284f",
+    "candidateFreeInputManifestSha256": "4ebd8174467382461e3190b76b791406b197e45e3576004940a89b11fdf98dca",
+    "crossAuditChecksumListDigest": "4aed635502a6a3545b42473d2fec179b8087b5ffa9dcc84324d14bf690896810",
+    "crossAuditChecksumListSha256": "4aed635502a6a3545b42473d2fec179b8087b5ffa9dcc84324d14bf690896810",
+    "crossAuditLedgerSha256": "9f806e7374a5d9a3e1f1d80ac4778939311ba68b9567cdab819e7d1de427c7ab",
+    "crossAuditManifestSha256": "b970ad3b4177bcf325fc23c94dd3e8aab35932ce7ec85ea36773d073edf2001c",
+    "crossAuditPacketPathAtCreation": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w67-cross-audit-20261103",
+    "finalProposalHashesSha256": "851470c17b726d88bce4e7aac8d00f41496ce05bb67f706a7b7da96921d4fa1c",
+    "primaryChecksumListSha256": "09a3505374521f55f12ad6efc8c7fbd3b46eea47015347e900aba38e65af79e9",
+    "primaryManifestSha256": "f2bc711dca1149c6d9fb5589026a07ee6367adf672a60b2cb25f69a6998f34b5"
+  },
+  "reviewedCells": 300,
+  "schema": "slskdn-w67-application-plan-summary/v1",
+  "updateCount": 111,
+  "updatesByLocale": {
+    "ar": 8,
+    "de": 8,
+    "es": 10,
+    "fr": 11,
+    "hi": 10,
+    "id": 7,
+    "ja": 9,
+    "ko": 10,
+    "pt-BR": 10,
+    "vi": 10,
+    "zh-Hans": 9,
+    "zh-Hant": 9
+  }
+}

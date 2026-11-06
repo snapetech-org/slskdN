@@ -1,0 +1,454 @@
+[
+  {
+    "blindCandidateTarget": "Rejeté dans la boîte de découverte et masqué pour les mêmes preuves.",
+    "blindDisposition": "revise-current",
+    "callerContextSha256": "3c6f70b0a9c6c3716f2df1029681ac27872252da74f2ab1fa78ba2e356840dea",
+    "callerRefs": [
+      {
+        "contextSha256": "f661cafbff3d065f2418aa961e64f80d4f00def0e6211cbbdd2084fcba680668",
+        "fileSha256": "93d93a1fa98f2ed746f77e83047bb2605ee9353171829d30d1f4f22dd9aa137c",
+        "gitBlob": "e75612bd8faba98e7688ba44286838b3cb39121b",
+        "line": 37,
+        "lineSha256": "950db1d67075f02659953c80f9f16206cc163afcec0f457eed8e857abea45acb",
+        "path": "src/web/src/lib/acquisitionRequests.js"
+      },
+      {
+        "contextSha256": "b269bb36800a0196e64da235c01a03ce5ff2f8f21e4b9a7e622752c51146c421",
+        "fileSha256": "93d93a1fa98f2ed746f77e83047bb2605ee9353171829d30d1f4f22dd9aa137c",
+        "gitBlob": "e75612bd8faba98e7688ba44286838b3cb39121b",
+        "line": 93,
+        "lineSha256": "b880f4fe99df5b65d9ca2a25ad3b4f1a6e8762beaabdc5b2505e0c560ae65fc4",
+        "path": "src/web/src/lib/acquisitionRequests.js"
+      },
+      {
+        "contextSha256": "a074aa4a008733915df8be668af7c0324ff01c23b6155511e19e82f4d8c4fc03",
+        "fileSha256": "93d93a1fa98f2ed746f77e83047bb2605ee9353171829d30d1f4f22dd9aa137c",
+        "gitBlob": "e75612bd8faba98e7688ba44286838b3cb39121b",
+        "line": 94,
+        "lineSha256": "57979e42d6330ba9271f41cfc8e0d18a3da87ead510642db6eb04328db90a268",
+        "path": "src/web/src/lib/acquisitionRequests.js"
+      }
+    ],
+    "catalogFileSha256": "598b2bd766f36631037043731eaf35e91c1c93909374d945aa6eb85e6b1ff311",
+    "catalogGitBlob": "762ce146223d2714c5a89e6eb031fd074c1fddb3",
+    "catalogKey": "Rejected in Discovery Inbox and suppressed for the same evidence.",
+    "catalogPath": "src/web/public/locales/fr.json",
+    "continuationRank": 731,
+    "currentTarget": "Rejeté dans la boîte de découverte et masqué pour les mêmes éléments.",
+    "currentTargetSha256": "bc79ed430e2c31492edcc7d914db15e00214d303ef447261993c26ca854ef82b",
+    "disposition": "select-update",
+    "locale": "fr",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [],
+      "matches": true,
+      "sourceTokens": []
+    },
+    "primaryCandidateTarget": null,
+    "primaryDisposition": "accept-current",
+    "rationale": "The current target changes evidence to unrelated items; this keeps the same-evidence suppression relationship.",
+    "remainingQueueRank": 631,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Rejected in Discovery Inbox and suppressed for the same evidence.",
+    "selectedSourceSha256": "2c318477f5e52efc48275c294cbc7fa21206d2cbc3dc237a96de549d2c402f0b",
+    "selectedTarget": "Rejeté dans la boîte de découverte et masqué pour les mêmes éléments de preuve.",
+    "selectedTargetSha256": "d4b4e534603fb3ec6c08bb7acfa339a4b006b63fef45f89ea53acb175bceda4b",
+    "source": "Rejected in Discovery Inbox and suppressed for the same evidence.",
+    "sourceId": "src_2c318477f5e52efc",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2c318477f5e52efc48275c294cbc7fa21206d2cbc3dc237a96de549d2c402f0b",
+    "window": "W74"
+  },
+  {
+    "blindCandidateTarget": "ルームへの配信更新を再試行する",
+    "blindDisposition": "revise-current",
+    "callerContextSha256": "71c04975442c64c85aa584205487c82714a4d3b4ded6152b7ab0200719d951d4",
+    "callerRefs": [
+      {
+        "contextSha256": "eff8589167a038c0a406d493107bd0e4ac185669ab39472d5906d62c33d59354",
+        "fileSha256": "f085c5a37a9656fcb6b04b37fb3574414af6f7f61763cec35f61b602d93d81b2",
+        "gitBlob": "9d43986bf13c48637cf39ad6b99c7249326f03e9",
+        "line": 202,
+        "lineSha256": "e1b2e825a24c39e34233dd7dcb604acb5690c62e58dbb92d686e259dec8d065c",
+        "path": "src/web/src/components/Player/PodListenAlongPanel.jsx"
+      },
+      {
+        "contextSha256": "fbb301dec659a6216d404f91d59e37b826a75c47ea184fda7aa97ee35d7f2650",
+        "fileSha256": "f085c5a37a9656fcb6b04b37fb3574414af6f7f61763cec35f61b602d93d81b2",
+        "gitBlob": "9d43986bf13c48637cf39ad6b99c7249326f03e9",
+        "line": 203,
+        "lineSha256": "0d5869ad63446c2f9acaf807b4fe9d08689802fb75eb19367251c8bdd4933e70",
+        "path": "src/web/src/components/Player/PodListenAlongPanel.jsx"
+      }
+    ],
+    "catalogFileSha256": "57505049b02a75533268a7b98d65ada6c66ead61d62c4d7e36a9a934d4c88af9",
+    "catalogGitBlob": "ecd84d1505a0758b77a8a3742b58796e5f65e4cb",
+    "catalogKey": "Retry room broadcast update",
+    "catalogPath": "src/web/public/locales/ja.json",
+    "continuationRank": 741,
+    "currentTarget": "リトライルーム放送更新情報",
+    "currentTargetSha256": "7f4e9901f7da38a6e3ab243c482bad1ea7c96dc2499be6a227d76816ed0fa92c",
+    "disposition": "select-update",
+    "locale": "ja",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [],
+      "matches": true,
+      "sourceTokens": []
+    },
+    "primaryCandidateTarget": "ルームへのブロードキャスト更新を再試行",
+    "primaryDisposition": "correct",
+    "rationale": "The listen-along caller retries the current playback-state update to a room; the current phrase reads as an awkward noun stack.",
+    "remainingQueueRank": 641,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Retry room broadcast update",
+    "selectedSourceSha256": "2cc71113f8e6356b97dfbd22ea49bc9134cbf162975ffeca7c34a361a4e02024",
+    "selectedTarget": "ルームへの再生状態の更新を再試行する",
+    "selectedTargetSha256": "0604c299df136a8e783b8e6a61da2de9cfe221dc3887bd0eb7177ba2513667b4",
+    "source": "Retry room broadcast update",
+    "sourceId": "src_2cc71113f8e6356b",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2cc71113f8e6356b97dfbd22ea49bc9134cbf162975ffeca7c34a361a4e02024",
+    "window": "W74"
+  },
+  {
+    "blindCandidateTarget": null,
+    "blindDisposition": "accept-current",
+    "callerContextSha256": "c45da9af9bf893c492836706d4491f881326c61135f4c49aeb130c0bc042894e",
+    "callerRefs": [
+      {
+        "contextSha256": "8542155c88e8d9a968427fb844a236117d5e39aedb04a4863b09f929f77cdf81",
+        "fileSha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+        "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8",
+        "line": 81,
+        "lineSha256": "b049c9f124dddb3c7b7f6c42bcf5be22327243f910bffa98f000de4b686a4a30",
+        "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx"
+      }
+    ],
+    "catalogFileSha256": "57505049b02a75533268a7b98d65ada6c66ead61d62c4d7e36a9a934d4c88af9",
+    "catalogGitBlob": "ecd84d1505a0758b77a8a3742b58796e5f65e4cb",
+    "catalogKey": "Clipboard unavailable; copy the visible conflict report manually.",
+    "catalogPath": "src/web/public/locales/ja.json",
+    "continuationRank": 742,
+    "currentTarget": "クリップボードは使用できません。表示されている競合レポートを手動でコピーします。",
+    "currentTargetSha256": "755c88181a17fa7e264c03fef96fc4be4f16e9926634b5d4f9ab19880174a629",
+    "disposition": "select-update",
+    "locale": "ja",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [],
+      "matches": true,
+      "sourceTokens": []
+    },
+    "primaryCandidateTarget": null,
+    "primaryDisposition": "accept-current",
+    "rationale": "The caller displays an instruction after clipboard access fails; the current Japanese is declarative rather than asking the user to copy manually.",
+    "remainingQueueRank": 642,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Clipboard unavailable; copy the visible conflict report manually.",
+    "selectedSourceSha256": "2ccfbbb3e086d4c3eb64ab9a042cf29602edd590c11cecd54abd60952c9a0783",
+    "selectedTarget": "クリップボードは使用できません。表示されている競合レポートを手動でコピーしてください。",
+    "selectedTargetSha256": "7c21d155543a27906d4c2a9f62e835a86c701da65951b93fbec6955a43cbbc04",
+    "source": "Clipboard unavailable; copy the visible conflict report manually.",
+    "sourceId": "src_2ccfbbb3e086d4c3",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2ccfbbb3e086d4c3eb64ab9a042cf29602edd590c11cecd54abd60952c9a0783",
+    "window": "W74"
+  },
+  {
+    "blindCandidateTarget": null,
+    "blindDisposition": "accept-current",
+    "callerContextSha256": "c45da9af9bf893c492836706d4491f881326c61135f4c49aeb130c0bc042894e",
+    "callerRefs": [
+      {
+        "contextSha256": "8542155c88e8d9a968427fb844a236117d5e39aedb04a4863b09f929f77cdf81",
+        "fileSha256": "3d2cc78738e3d0d944ec0d4f2995fc40f1f558dbbfcfdb0cf778bb23be817257",
+        "gitBlob": "a48cc382a560bc95a94e14d11688704a57b6ceb8",
+        "line": 81,
+        "lineSha256": "b049c9f124dddb3c7b7f6c42bcf5be22327243f910bffa98f000de4b686a4a30",
+        "path": "src/web/src/components/System/Mesh/RealmSubjectIndexConflicts.jsx"
+      }
+    ],
+    "catalogFileSha256": "a86e3271f391a9c4427f6fa612fd9c698ff0e3b6441e64cd8d70168b7b77906f",
+    "catalogGitBlob": "1cb49c3ec127b8253e2a66f06471ba9413dad5b9",
+    "catalogKey": "Clipboard unavailable; copy the visible conflict report manually.",
+    "catalogPath": "src/web/public/locales/ko.json",
+    "continuationRank": 742,
+    "currentTarget": "클립보드를 사용할 수 없습니다. 보이는 충돌 보고서를 수동으로 복사합니다.",
+    "currentTargetSha256": "b463ea81d29b2a3bc6cbff2b3ec2a14a9914b64590756ebd6401b68c9460320d",
+    "disposition": "select-update",
+    "locale": "ko",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [],
+      "matches": true,
+      "sourceTokens": []
+    },
+    "primaryCandidateTarget": null,
+    "primaryDisposition": "accept-current",
+    "rationale": "The caller displays an instruction after clipboard access fails; the current Korean is declarative rather than asking the user to copy manually.",
+    "remainingQueueRank": 642,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Clipboard unavailable; copy the visible conflict report manually.",
+    "selectedSourceSha256": "2ccfbbb3e086d4c3eb64ab9a042cf29602edd590c11cecd54abd60952c9a0783",
+    "selectedTarget": "클립보드를 사용할 수 없습니다. 보이는 충돌 보고서를 수동으로 복사하세요.",
+    "selectedTargetSha256": "9e83391a8ccbf368ed1839de757ce85a5bdbf3bbf15832311ae34933e8d1cd50",
+    "source": "Clipboard unavailable; copy the visible conflict report manually.",
+    "sourceId": "src_2ccfbbb3e086d4c3",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2ccfbbb3e086d4c3eb64ab9a042cf29602edd590c11cecd54abd60952c9a0783",
+    "window": "W74"
+  },
+  {
+    "blindCandidateTarget": "Sélectionner tous les {length} problèmes d’intégrité de la bibliothèque chargés",
+    "blindDisposition": "revise-current",
+    "callerContextSha256": "9ee7220480136a3b417580e47666be1b1efd62e1cf09e157272441c2a7037ccb",
+    "callerRefs": [
+      {
+        "contextSha256": "1d07bfa7308f53f05eff75d2e1c7d2064c8db06cd87bfe37964f9f437dc196ba",
+        "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+        "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+        "line": 1077,
+        "lineSha256": "6110eda125e82c7d80dbdec7b648a200f88420ce81a9af1da56503056b164af1",
+        "path": "src/web/src/components/System/LibraryHealth/index.jsx"
+      },
+      {
+        "contextSha256": "045690f4ef4d52e266b776a741aa8b0b8d6a34a58e82222b52390dddef0d3ff6",
+        "fileSha256": "c033aedd16d7bf7b18f00d6768bab49d265f57721faade8752dbc50bb863f399",
+        "gitBlob": "6e91278dac37d2c0fdf6501f1fa245d14daa9a6b",
+        "line": 1084,
+        "lineSha256": "7082c2916da6ab1c8b7dbfcfae82bc14205d099c835bb980396ec0515a61b113",
+        "path": "src/web/src/components/System/LibraryHealth/index.jsx"
+      }
+    ],
+    "catalogFileSha256": "598b2bd766f36631037043731eaf35e91c1c93909374d945aa6eb85e6b1ff311",
+    "catalogGitBlob": "762ce146223d2714c5a89e6eb031fd074c1fddb3",
+    "catalogKey": "Select all {length} loaded Library Health issues",
+    "catalogPath": "src/web/public/locales/fr.json",
+    "continuationRank": 746,
+    "currentTarget": "Sélectionnez tous les problèmes d’intégrité de la bibliothèque chargés par {length}",
+    "currentTargetSha256": "1ef6a24e1bbc0f0b6dae1bffba5d722b6e3fa1ae819ef434d60f2bb382cec499",
+    "disposition": "select-update",
+    "locale": "fr",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [
+        "{length}"
+      ],
+      "matches": true,
+      "sourceTokens": [
+        "{length}"
+      ]
+    },
+    "primaryCandidateTarget": "Sélectionnez tous les {length} problèmes d’intégrité de la bibliothèque chargés.",
+    "primaryDisposition": "correct",
+    "rationale": "This is a count-bearing checkbox label; the wording attaches {length} to loaded issues and renders Library Health as the library state.",
+    "remainingQueueRank": 646,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Select all {length} loaded Library Health issues",
+    "selectedSourceSha256": "2d07fb50b9d34053aae3e54e30aa377732930c166d1b61caf555e62282080772",
+    "selectedTarget": "Sélectionnez tous les {length} problèmes chargés relatifs à l’état de la bibliothèque.",
+    "selectedTargetSha256": "5453d38658d2b120a5b4f373b17e22588030accd6bba13a181ade889b7309006",
+    "source": "Select all {length} loaded Library Health issues",
+    "sourceId": "src_2d07fb50b9d34053",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2d07fb50b9d34053aae3e54e30aa377732930c166d1b61caf555e62282080772",
+    "window": "W74"
+  },
+  {
+    "blindCandidateTarget": null,
+    "blindDisposition": "accept-current",
+    "callerContextSha256": "55185e8a178d86cc3184f008da1f973539fca696e1672165222788716c9e6663",
+    "callerRefs": [
+      {
+        "contextSha256": "a7d6ba5328f7961b38b2d1c6d94cba315538a9f3217038371e06c534951037db",
+        "fileSha256": "1d3cc120ebb902f4c72b0a1c43a571c203588dcd5017017c5444f44c4f664414",
+        "gitBlob": "4456d98b27c24725acb4187dc8274ef70b40dab0",
+        "line": 150,
+        "lineSha256": "9f3be093e081587ee9e0d305224638243c1c409d77be2fba719da2f1b5bd2284",
+        "path": "src/web/src/components/System/Metrics/index.jsx"
+      }
+    ],
+    "catalogFileSha256": "9be50e542bd768420466b8f909706e6a53d0165de05b2895088c67fc10ba5e45",
+    "catalogGitBlob": "657a8416d47381384e523eae22b2d585056b1a43",
+    "catalogKey": "Metric",
+    "catalogPath": "src/web/public/locales/vi.json",
+    "continuationRank": 748,
+    "currentTarget": "Số liệu",
+    "currentTargetSha256": "85aa5261d80e1eeaac99e274beb35737254678c5678f34689ffe3a30b06acd5e",
+    "disposition": "select-update",
+    "locale": "vi",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [],
+      "matches": true,
+      "sourceTokens": []
+    },
+    "primaryCandidateTarget": null,
+    "primaryDisposition": "accept-current",
+    "rationale": "The metrics-table column is a metric/indicator, not merely a collection of figures.",
+    "remainingQueueRank": 648,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Metric",
+    "selectedSourceSha256": "2d275a74912cca2e02e6d41f9cae3a75ceef3ed0ef734eff3710e10eb7112228",
+    "selectedTarget": "Chỉ số",
+    "selectedTargetSha256": "9d209b8724179008c71cf3ec8aa5c618db16b09df4163d845d12496766aa2664",
+    "source": "Metric",
+    "sourceId": "src_2d275a74912cca2e",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2d275a74912cca2e02e6d41f9cae3a75ceef3ed0ef734eff3710e10eb7112228",
+    "window": "W74"
+  },
+  {
+    "blindCandidateTarget": null,
+    "blindDisposition": "accept-current",
+    "callerContextSha256": "3917c66f56699701f408dd431c758f436562a7ddb7010373b7a38c516a79a355",
+    "callerRefs": [
+      {
+        "contextSha256": "3c219a596ca74b35663b504b6ec3be24f25912070c6da1c518c5ba6fb82fa3ed",
+        "fileSha256": "b5da9e8771f550dea41bb0b52a38862b5c664c3a9ed16a417eeaefc88b116ebc",
+        "gitBlob": "1759001507490c671f257b1f93217fcc5e8b8e3a",
+        "line": 211,
+        "lineSha256": "84efc0691a6a69f6a0dfd8a8472305c0b2e6203504ee37a582da931e40e50927",
+        "path": "src/web/src/components/Search/SoulseekDiscoveryPanel.jsx"
+      }
+    ],
+    "catalogFileSha256": "b1ce7e1f69cf0c503397811999c977e16639f585a5c78784eac0ddc3e72c8d62",
+    "catalogGitBlob": "e89a19c7b5a8f5131eaef181b674f7d874cbb4df",
+    "catalogKey": "Added {interest} as an interest.",
+    "catalogPath": "src/web/public/locales/zh-Hans.json",
+    "continuationRank": 751,
+    "currentTarget": "添加 {interest} 作为兴趣。",
+    "currentTargetSha256": "20e833cbc48d1e3662ad81f8834dc4ff0d705a8f8ad75439a8c588392d8ad565",
+    "disposition": "select-update",
+    "locale": "zh-Hans",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [
+        "{interest}"
+      ],
+      "matches": true,
+      "sourceTokens": [
+        "{interest}"
+      ]
+    },
+    "primaryCandidateTarget": null,
+    "primaryDisposition": "accept-current",
+    "rationale": "The caller reports a completed add action; the current imperative-like target should express completion.",
+    "remainingQueueRank": 651,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Added {interest} as an interest.",
+    "selectedSourceSha256": "2d5d62371cec0cdc91d8fed64d8be48afd8e7c9554cb4b00bf8782ecf0f5edec",
+    "selectedTarget": "已将 {interest} 添加为兴趣。",
+    "selectedTargetSha256": "1a149858494904addf2f31a716859a0798fbd752dbd6153075130a8696edea31",
+    "source": "Added {interest} as an interest.",
+    "sourceId": "src_2d5d62371cec0cdc",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2d5d62371cec0cdc91d8fed64d8be48afd8e7c9554cb4b00bf8782ecf0f5edec",
+    "window": "W74"
+  },
+  {
+    "blindCandidateTarget": null,
+    "blindDisposition": "accept-current",
+    "callerContextSha256": "3917c66f56699701f408dd431c758f436562a7ddb7010373b7a38c516a79a355",
+    "callerRefs": [
+      {
+        "contextSha256": "3c219a596ca74b35663b504b6ec3be24f25912070c6da1c518c5ba6fb82fa3ed",
+        "fileSha256": "b5da9e8771f550dea41bb0b52a38862b5c664c3a9ed16a417eeaefc88b116ebc",
+        "gitBlob": "1759001507490c671f257b1f93217fcc5e8b8e3a",
+        "line": 211,
+        "lineSha256": "84efc0691a6a69f6a0dfd8a8472305c0b2e6203504ee37a582da931e40e50927",
+        "path": "src/web/src/components/Search/SoulseekDiscoveryPanel.jsx"
+      }
+    ],
+    "catalogFileSha256": "a78321ea5bb680dff046c78fa8b08bf2a0db6122efce3217d673ae353f719a83",
+    "catalogGitBlob": "d09ba4f120a6b50f35b77633c049650a0cb4fd7b",
+    "catalogKey": "Added {interest} as an interest.",
+    "catalogPath": "src/web/public/locales/zh-Hant.json",
+    "continuationRank": 751,
+    "currentTarget": "新增 {interest} 作為興趣。",
+    "currentTargetSha256": "35a04564f8cf021832ff784bfb8ad4be8e08ac9554d7ad1f610ff80438acb3c8",
+    "disposition": "select-update",
+    "locale": "zh-Hant",
+    "markupEvidence": {
+      "currentTags": [],
+      "matches": true,
+      "sourceTags": []
+    },
+    "placeholderEvidence": {
+      "currentTokens": [
+        "{interest}"
+      ],
+      "matches": true,
+      "sourceTokens": [
+        "{interest}"
+      ]
+    },
+    "primaryCandidateTarget": null,
+    "primaryDisposition": "accept-current",
+    "rationale": "The caller reports a completed add action; the current imperative-like target should express completion.",
+    "remainingQueueRank": 651,
+    "reviewConfidence": "moderate",
+    "selectedFrom": "cross",
+    "selectedSource": "Added {interest} as an interest.",
+    "selectedSourceSha256": "2d5d62371cec0cdc91d8fed64d8be48afd8e7c9554cb4b00bf8782ecf0f5edec",
+    "selectedTarget": "已將 {interest} 新增為興趣。",
+    "selectedTargetSha256": "6bb042cb53b309d665d1bebbfaf9e6953ed9f7f07ccb250a6bd733b4a75bb65a",
+    "source": "Added {interest} as an interest.",
+    "sourceId": "src_2d5d62371cec0cdc",
+    "sourceNumericTokens": [],
+    "sourceProtectedLiterals": [],
+    "sourceRewriteId": null,
+    "sourceSha256": "2d5d62371cec0cdc91d8fed64d8be48afd8e7c9554cb4b00bf8782ecf0f5edec",
+    "window": "W74"
+  }
+]

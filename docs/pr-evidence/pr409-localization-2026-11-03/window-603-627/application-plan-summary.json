@@ -1,0 +1,52 @@
+{
+  "applicationPerformed": true,
+  "applicationPlanCount": 300,
+  "applicationResultSha256": "ea6ce678e86c873416cb05f0f7685dfeeceab8b0ded961270c48a48dec756d6d",
+  "baseHead": "9ef252a53d2c14201c736de41efd0531bc00965a",
+  "baseTree": "becf17f8be3f3251691002dbce487c1e94693e63",
+  "catalogFilesExpectedToChange": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "catalogKeyCountPerFile": {
+    "src/web/public/locales/ar.json": 6176,
+    "src/web/public/locales/de.json": 6176,
+    "src/web/public/locales/es.json": 6176,
+    "src/web/public/locales/fr.json": 6176,
+    "src/web/public/locales/hi.json": 6176,
+    "src/web/public/locales/id.json": 6176,
+    "src/web/public/locales/ja.json": 6176,
+    "src/web/public/locales/ko.json": 6176,
+    "src/web/public/locales/pt-BR.json": 6176,
+    "src/web/public/locales/vi.json": 6176,
+    "src/web/public/locales/zh-Hans.json": 6176,
+    "src/web/public/locales/zh-Hant.json": 6176
+  },
+  "dispositionCounts": {
+    "correction": 34,
+    "refinement": 34
+  },
+  "newHolds": 0,
+  "noOpCount": 232,
+  "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "priorHoldsRetainedUnchanged": 128,
+  "reviewPacketPins": {
+    "blindManifestSha256": "91f8a5bb7978fec0167c3c4998fdd03c5e01137a8e3aeafeccdc65aa093ca7c2",
+    "candidateFreeChecksumSha256": "9ce22e3db93f85de3a2cbdf6bb712daf1424d3faddd698c0f7c4c4809a8f8199",
+    "candidateFreeManifestSha256": "d27b8b6801b4bf7361685c8ec7366caf4a91e8a464de45b213b0b744025e9fa1",
+    "crossAuditChecksumSha256": "e73a71ed8dc72c2169484dc6c122f9c664a710ac7d3ffc7bee13a51091fb5704",
+    "crossAuditLedgerSha256": "bcf525173aa44564edeb6e50aac7e5fd3efd9ae1c132bf6efef5715fa8907008",
+    "crossAuditManifestSha256": "4bcd8f042b4447701e6c2022657a6471f59e2daad11a642252ccdda5d8660c53",
+    "primaryManifestSha256": "a1623a37ca699e3fb8a472d72ae0cc1c382ac66d0813b03acdd3cfab20fda5a6"
+  }
+}

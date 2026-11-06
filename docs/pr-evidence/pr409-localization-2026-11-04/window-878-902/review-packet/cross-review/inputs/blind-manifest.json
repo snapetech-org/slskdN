@@ -1,0 +1,71 @@
+{
+  "artifact": "slskdN PR #409 W80 independent candidate-free blind semantic review",
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W80",
+  "continuationRankRange": [
+    878,
+    902
+  ],
+  "remainingQueueRankRange": [
+    778,
+    802
+  ],
+  "head": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+  "tree": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "decisions": {
+    "accept": 221,
+    "correction": 56,
+    "refinement": 23
+  },
+  "inputValidation": {
+    "candidateFreeInputManifestSha256": "d6f2e97bcf39260e48d54db7b77a3d9cc1392c20ad3a92affbf4136251ff3518",
+    "inputChecksumListSha256": "28ba772aa53c756702a0bdb94fb3cb130847607804346fc598091897414a7236",
+    "inputSha256ChecksPassed": true,
+    "verifyInputResult": "PASS",
+    "candidateFreeInputHead": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+    "candidateFreeInputTree": "b3525218d0f9676c88c4991e78775d113f18b7d9"
+  },
+  "exposure": {
+    "prBodyQueried": false,
+    "primaryReviewOutputOpened": false,
+    "previousBlindOrCrossOutputOpened": false,
+    "proposedTargetsViewed": false
+  },
+  "sourceWorktreeAttestation": {
+    "head": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+    "tree": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+    "worktreeStatusShort": "clean"
+  },
+  "allCurrentTargetHashesMatchInput": true,
+  "outputFiles": [
+    {
+      "path": "README.md",
+      "bytes": 1107,
+      "sha256": "aaccff5577ee74303d01acd5c20a7fcbf3b99d50eb43439507609ba8250a9314"
+    },
+    {
+      "path": "decisions.jsonl",
+      "bytes": 518314,
+      "sha256": "5bec5c4565cbcc87c525e5eec81c44ff372cd61247f5173ddf9b1add6265ba60"
+    }
+  ]
+}

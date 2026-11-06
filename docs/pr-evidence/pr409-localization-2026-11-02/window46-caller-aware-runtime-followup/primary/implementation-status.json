@@ -1,0 +1,41 @@
+{
+  "host": "kspld0",
+  "worktree": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn",
+  "branch": "codex/slskdn-localization-apply-20261102",
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "statusAtPacketCreation": "## codex/slskdn-localization-apply-20261102\n M src/web/public/locales/ar.json\n M src/web/public/locales/de.json\n M src/web/public/locales/es.json\n M src/web/public/locales/fr.json\n M src/web/public/locales/hi.json\n M src/web/public/locales/id.json\n M src/web/public/locales/ja.json\n M src/web/public/locales/ko.json\n M src/web/public/locales/pt-BR.json\n M src/web/public/locales/vi.json\n M src/web/public/locales/zh-Hans.json\n M src/web/public/locales/zh-Hant.json\n M src/web/src/components/Browse/BrowseSession.jsx\n M src/web/src/components/Messaging/MessageStream.jsx\n M src/web/src/components/PlaylistIntake/PlaylistIntake.jsx\n M src/web/src/components/Shared/LocalizedText.jsx\n M src/web/src/components/Wishlist/Wishlist.jsx\n M src/web/src/lib/interfaceLocale.js\n",
+  "changedFiles": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json",
+    "src/web/src/components/Browse/BrowseSession.jsx",
+    "src/web/src/components/Messaging/MessageStream.jsx",
+    "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx",
+    "src/web/src/components/Shared/LocalizedText.jsx",
+    "src/web/src/components/Wishlist/Wishlist.jsx",
+    "src/web/src/lib/interfaceLocale.js"
+  ],
+  "diffStat": " src/web/public/locales/ar.json                     |  2 +-\n src/web/public/locales/de.json                     |  2 +-\n src/web/public/locales/es.json                     |  2 +-\n src/web/public/locales/fr.json                     |  2 +-\n src/web/public/locales/hi.json                     |  2 +-\n src/web/public/locales/id.json                     |  2 +-\n src/web/public/locales/ja.json                     |  2 +-\n src/web/public/locales/ko.json                     |  2 +-\n src/web/public/locales/pt-BR.json                  |  2 +-\n src/web/public/locales/vi.json                     |  2 +-\n src/web/public/locales/zh-Hans.json                |  2 +-\n src/web/public/locales/zh-Hant.json                |  2 +-\n src/web/src/components/Browse/BrowseSession.jsx    |  2 +-\n src/web/src/components/Messaging/MessageStream.jsx |  2 +-\n .../components/PlaylistIntake/PlaylistIntake.jsx   | 14 ++--\n src/web/src/components/Shared/LocalizedText.jsx    |  6 +-\n src/web/src/components/Wishlist/Wishlist.jsx       | 23 ++++--\n src/web/src/lib/interfaceLocale.js                 | 90 +++++++++++++++++++++-\n 18 files changed, 131 insertions(+), 30 deletions(-)\n",
+  "changedCodeFileSha256": {
+    "src/web/src/components/Browse/BrowseSession.jsx": "3771d9329100688121f1a5d65a5b651622077fe2149a5f788e10680e689df5ab",
+    "src/web/src/components/Messaging/MessageStream.jsx": "c97ef0a4a608d8c1062fdd1777f4a8db317321775b4caa01fbdb3fb08b3332bc",
+    "src/web/src/components/PlaylistIntake/PlaylistIntake.jsx": "42e7584955ae6a362242635574c0ea1943dad2cfd22c6d3ad6bb771b58e95a40",
+    "src/web/src/components/Shared/LocalizedText.jsx": "dceb5b8d9f3dd803cef823a6756248f17d4f4b2600498be64e142c3c630a6c81",
+    "src/web/src/components/Wishlist/Wishlist.jsx": "5bac22ffb1ed6eb05c93d8c0b85749973c7359358a28892ff8348af7849c542d",
+    "src/web/src/lib/interfaceLocale.js": "bafb27f4d37644415a6b4cca9d08b21a8176e4a74861877118727cc6365b0a3f"
+  },
+  "whitespaceCheck": "git diff --check passed with no output.",
+  "testsBuildScansCiBrowser": "none run, per task instruction.",
+  "commitPushPrRelease": "none; this handoff remains an uncommitted implementation diff.",
+  "workflowsTouched": false
+}

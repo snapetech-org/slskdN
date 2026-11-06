@@ -1,0 +1,51 @@
+{
+  "result": "READY_TO_APPLY",
+  "window": 35,
+  "pullRequest": 409,
+  "reviewBaseHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "reviewBaseTree": "1cdd8c831d224a5706ac6f3e465add4fd249d2be",
+  "reviewBaseSourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "remotePrBranch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "livePrState": "OPEN",
+  "livePrDraft": true,
+  "livePrMergeState": "CLEAN",
+  "remoteHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "manualCandidatePlanSha256": "938f53404562111e77d388336c8756a21f90fb65323650164cb47c3ecbbc7b0f",
+  "manualDecisionLedgerSha256": "f8cab36f2d4bb8b059f01920a8b64cd12e4569e720f55f539b7bacb6ecfac069",
+  "rootCrossReviewLedgerSha256": "9370973a90aaef1e6a597a4aa31d6bd21fedd4b7f8ded71f4d93ee0533d0f749",
+  "independentFullReviewLedgerSha256": "6053ad16c8c19ecccfcfb330987810b6f3fd30c19538b67e48488195e190a36f",
+  "rootRows": 38,
+  "rootDispositions": {
+    "accept-proposed": 38
+  },
+  "independentRows": 274,
+  "independentDispositions": {
+    "retain-current": 236,
+    "accept-proposed": 38
+  },
+  "allCandidateRootIndependentTargetsMatch": true,
+  "cellsToApply": 38,
+  "catalogFilesToChange": 11,
+  "cellsByLocale": {
+    "ar": 3,
+    "de": 3,
+    "fr": 3,
+    "hi": 4,
+    "id": 4,
+    "ja": 3,
+    "ko": 5,
+    "pt-BR": 4,
+    "vi": 5,
+    "zh-Hans": 2,
+    "zh-Hant": 2
+  },
+  "callerFilesPinned": 8,
+  "callerLineReferences": 49,
+  "catalogFilesPinned": 12,
+  "allCurrentValuesAndHashesMatch": true,
+  "allFinalHashesPlaceholdersProtectedLiteralsPass": true,
+  "trackedChangesBeforeApplication": 0,
+  "nativeSpeakerApproved": false,
+  "testsBuildScansCiRun": false,
+  "workflowFilesChanged": false
+}

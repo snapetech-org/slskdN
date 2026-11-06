@@ -3890,6 +3890,13 @@ namespace slskd
         public class IntegrationOptions
         {
             /// <summary>
+            ///     Gets the locale for app-authored notification titles. Browser locale is independent.
+            ///     Unsupported values fall back to English.
+            /// </summary>
+            [YamlMember(Alias = "notification_language")]
+            public string NotificationLanguage { get; init; } = "en";
+
+            /// <summary>
             ///     Gets VPN options.
             /// </summary>
             [Validate]

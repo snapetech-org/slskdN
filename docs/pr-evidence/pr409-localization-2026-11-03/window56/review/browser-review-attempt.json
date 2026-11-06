@@ -1,0 +1,9 @@
+{
+  "browserSessionOpened": false,
+  "desktopAcquired": false,
+  "desktopOrProfileChanged": false,
+  "exactHeadProductPreviewAvailable": false,
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "requestedTool": "agent_desktop_pool_v2.desktop_queue",
+  "result": "Agent Pool coordinator is unavailable"
+}

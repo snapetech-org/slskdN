@@ -1,0 +1,153 @@
+{
+  "verification": "passed",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "OPEN",
+  "isDraft": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "tree": "a22e9a896aae12aa89a1502d9748b12816d491ed",
+  "remoteBranchHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "prBodySha256": "9ce6507c68b3ccfbb2b7ec78282951a449d04abecf8b35c8f15b4d2412985faa",
+  "worktreeClean": true,
+  "inputDir": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w55-primary-20261103/input",
+  "inputManifestEntriesVerified": 8,
+  "inputManifestSha256": "4dcbdb679ced3a9211560682a5b8775af06aab9a06b1970179156d94e3cabfb0",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "catalogCount": 12,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "callerSourceCount": 25,
+  "callerReferenceCount": 40,
+  "callerlessSourceCount": 0,
+  "inputContainsCandidates": false,
+  "callerReferencesChecked": [
+    {
+      "sourceId": "src_19dd83f117525b93",
+      "continuationRank": 276,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_19def36091b1f0b7",
+      "continuationRank": 277,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_19ebfa54031ecebb",
+      "continuationRank": 278,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_19f9dd8511864b10",
+      "continuationRank": 279,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_19fbc50d7ba13aae",
+      "continuationRank": 280,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1a03bd2fd107c453",
+      "continuationRank": 281,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1a074fe1795c3280",
+      "continuationRank": 282,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a11202854710127",
+      "continuationRank": 283,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1a2b56c8420dc637",
+      "continuationRank": 284,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1a30e8b2ecc38400",
+      "continuationRank": 285,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a3892c0301b88cf",
+      "continuationRank": 286,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a3ac2763f00fd8a",
+      "continuationRank": 287,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a3d7c1f8945693a",
+      "continuationRank": 288,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1a46033a7f5d8151",
+      "continuationRank": 289,
+      "callerCount": 6
+    },
+    {
+      "sourceId": "src_1a4f630ac1b69fd0",
+      "continuationRank": 290,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a568bfdaaa3bf92",
+      "continuationRank": 291,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "continuationRank": 292,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a75e7029cb45d18",
+      "continuationRank": 293,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1a7896144cbd8803",
+      "continuationRank": 294,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a87779358c845c4",
+      "continuationRank": 295,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1a92a7ec723e6645",
+      "continuationRank": 296,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1a9744f0ca80c48e",
+      "continuationRank": 297,
+      "callerCount": 2
+    },
+    {
+      "sourceId": "src_1aa4cb0bcca76e92",
+      "continuationRank": 298,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1aabcb15175d231d",
+      "continuationRank": 299,
+      "callerCount": 1
+    },
+    {
+      "sourceId": "src_1ab4cba1fe971008",
+      "continuationRank": 300,
+      "callerCount": 2
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "apiBase": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "cells": 300,
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "liveMain": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "schemaVersion": 1,
+  "sourceCallerCurrentAndReviewerInputs": {
+    "blindChecksumListSha256": "298830e1ec8f52af89da80940f31d2ec3a6c4faf0ee6b4a102bb09bd23c749ac",
+    "blindHoldsSha256": "f7aa1071ea94fd242ba731bc7bf20c8de3368a970fe8547670cd605336dcd3ff",
+    "blindLedgerSha256": "c67d163cb773109ef5ed327387a3e7b0d57482a77140683dda0ec335a7926e1c",
+    "blindManifestSha256": "373d1d5d4f8c01515680ddbf588aa3b8fcc69b94314aff194fb47c82034a9a9c",
+    "blindProposalsSha256": "7aafa65d4f2aaabd3d11be0e8cba8bc9c4621d0fbeba6cecda5802f5ab4b4a16",
+    "candidateFreeCallerContextsSha256": "70a6f95fe3405676c53b7000ff99364d0959b1310bc0fc98c82ff5dba9a26d3c",
+    "candidateFreeCellsSha256": "cb74dc9fa6314ae75d003f3d8de0f4bc84964a87f9ffabd089e8fe50351da277",
+    "candidateFreeChecksumListSha256": "a1731c5e6616f1c223875f25c976131b013361d299b5cb133174b2015f79f3ce",
+    "candidateFreeManifestSha256": "42e328ff08e489134f4207b74da7e2844ed51b2dbb88c6934ceb5ba8d6c96f07",
+    "candidateFreeSelectedSourcesSha256": "a2bbb0d3a96b3300d17ed25a4550b8adf6cc79f67610c51548f37899132dc64f",
+    "primaryChecksumListSha256": "41212316997901740e8ce06afd56eb86cfb19adefde2d011da127a3c095de427",
+    "primaryCorrectionsSha256": "de1f13b7694c7cba8c4fbacc3be0c862463e29443f19abdcf293e31233783f61",
+    "primaryManifestSha256": "be142973398dfe4162291733222ee9494ffab498a3395a9c522516462668261f",
+    "primaryReviewSha256": "632eb9843fa61209a1ec25e732621ac6b4d14e3dae4c9705cf9ca265b3f4d043"
+  },
+  "sourceIds": 25,
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd"
+}

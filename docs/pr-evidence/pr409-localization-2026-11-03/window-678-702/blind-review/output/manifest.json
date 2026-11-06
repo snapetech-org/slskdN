@@ -1,0 +1,48 @@
+{
+  "artifact": "slskdN PR #409 W72 independent blind review",
+  "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "window": "W72",
+  "cells": 300,
+  "inputChecksumListSha256": "3463231263b050a1590a9852e2c01e055370fd8f8717d4b45bf3c56c052243f6",
+  "dispositions": {
+    "accept-current": 161,
+    "correct": 24,
+    "hold": 108,
+    "refine": 7
+  },
+  "proposals": 31,
+  "callerlessHolds": 108,
+  "targetTextsIncluded": false,
+  "priorHoldsHashOnly": 152,
+  "priorSelectedIdsHashOnly": 1782,
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:42:24+00:00"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:42:27+00:00"
+  },
+  "portableVerifier": "output/verify_review.py"
+}

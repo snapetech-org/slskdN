@@ -1,0 +1,21 @@
+{
+  "exactWorktreeVerifier": {
+    "command": "python3 cross-review/verify_cross_review.py /mnt/disks/scratch/task-worktrees/localization-20261105/slskdn-pr409-w928-952-pinned",
+    "exactHead": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+    "exactTree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+    "result": "PASS",
+    "upstreamExactVerifiers": [
+      "candidate-free",
+      "primary",
+      "blind"
+    ]
+  },
+  "portableVerifier": {
+    "cells": 300,
+    "command": "python3 cross-review/verify_cross_review.py",
+    "hashOnlyHolds": 12,
+    "proposalsReconciled": 177,
+    "result": "PASS"
+  },
+  "recordedAfterSuccessfulVerifierRuns": true
+}

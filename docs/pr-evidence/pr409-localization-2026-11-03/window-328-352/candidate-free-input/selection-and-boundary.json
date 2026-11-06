@@ -1,0 +1,210 @@
+{
+  "artifact": "slskdN PR #409 candidate-free exact-head review input W58 ranks 328-352",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "livePin": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+    "tree": "b29397903a036d40af1c6551dedbe070e735cfed",
+    "remoteBranchHead": "47735fbdb8df3de8dc5fd297c2717dc332764431",
+    "bodySha256": "e5f804e57bc7898833f666e54ca68b931f83f9e07db06884e9a1aff6406d78d2",
+    "localWorktreeClean": true
+  },
+  "window": "W58 continuation of the pinned W49 stable-ID inventory: ranks 328-352; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W57 candidate-free packet boundary ledger pins rank 327 and identifies rank 328 as next. Its selection-and-boundary.json had an indexing defect, so this packet relies on the complete selection-boundary.jsonl plus the 300-cell and 25-row selection inventories. Selected IDs and source hashes are re-attested against the W49 pinned source inventory at the current exact head. W49 ranks 101-125 and W50-W57 ranks 151-327 are prior coverage; the reserved W49 gap 126-150 remains excluded and unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W57",
+    "continuationRank": 327,
+    "sourceId": "src_1b58c8027d4a6fee",
+    "source": "Optional password",
+    "sourceSha256": "1b58c8027d4a6fee028015ce69c35962f534540b8f3945646b162f43057287c0",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W58",
+    "continuationRank": 328,
+    "sourceId": "src_1b598b72cfd3f224",
+    "source": "HTTPS port",
+    "sourceSha256": "1b598b72cfd3f224c035d470f1a567659645cfa5dfd12a37469e771ed849fa90",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W58",
+    "continuationRank": 352,
+    "sourceId": "src_1c34f88707b55e61",
+    "source": "verified",
+    "sourceSha256": "1c34f88707b55e6104c4eb20e71ffa3d33e414b71ef689a15fad0640d0ac58cb",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W59",
+    "continuationRank": 353,
+    "sourceId": "src_1c398e7298c2c9b8",
+    "source": "Content Opinions",
+    "sourceSha256": "1c398e7298c2c9b8e176417a93142b6f7071ede3400045a3d137ef066b534034",
+    "historicalSourceOrdinal": null
+  },
+  "w57Input": {
+    "inputDirectory": "/mnt/disks/scratch/task-worktrees/localization-20261103/slskdn-pr409-w56-apply-20261103/docs/pr-evidence/pr409-localization-2026-11-03/window57/input",
+    "checksumListSha256": "84b6fcf416116a557decda2efca0f6c680055aab6726eecf75cf9742e3d4d90f",
+    "verifiedFiles": [
+      {
+        "path": "README.md",
+        "expected": "0e7dede6ac721d8e1b9ade641af30ab07d555bc28f4796d50b9ce9747b15cf42",
+        "actual": "0e7dede6ac721d8e1b9ade641af30ab07d555bc28f4796d50b9ce9747b15cf42",
+        "matches": true
+      },
+      {
+        "path": "caller-contexts.jsonl",
+        "expected": "9bf1f0bd1262c2543fecaf36802e2f8021dadf7aea51527a458c1d250bcba2d7",
+        "actual": "9bf1f0bd1262c2543fecaf36802e2f8021dadf7aea51527a458c1d250bcba2d7",
+        "matches": true
+      },
+      {
+        "path": "catalog-structure.jsonl",
+        "expected": "bfbc7917eaad2626e474d8e87849bcc0e1a88ff9833fe12131509dcefa6f5dd8",
+        "actual": "bfbc7917eaad2626e474d8e87849bcc0e1a88ff9833fe12131509dcefa6f5dd8",
+        "matches": true
+      },
+      {
+        "path": "head-tree-attestation.json",
+        "expected": "bae29dfcd8607804cfadb57f1480c5bf209e64b7f9dac603feff3eee04c0df3b",
+        "actual": "bae29dfcd8607804cfadb57f1480c5bf209e64b7f9dac603feff3eee04c0df3b",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "expected": "6f1594ec6eb071b29be0081753b86ab7a3e50c8fe98a6209e55f123e353d1f5f",
+        "actual": "6f1594ec6eb071b29be0081753b86ab7a3e50c8fe98a6209e55f123e353d1f5f",
+        "matches": true
+      },
+      {
+        "path": "selection-and-boundary.json",
+        "expected": "f3cfb3fdade53d2559929a1e26717cdc0e8fef78bd08248e41ec35d69a2d5344",
+        "actual": "f3cfb3fdade53d2559929a1e26717cdc0e8fef78bd08248e41ec35d69a2d5344",
+        "matches": true
+      },
+      {
+        "path": "selection-boundary.jsonl",
+        "expected": "fe85548940813f8507fb32f54ba234815b8b5aec45bb3b904a07c9bdeca4b9a8",
+        "actual": "fe85548940813f8507fb32f54ba234815b8b5aec45bb3b904a07c9bdeca4b9a8",
+        "matches": true
+      },
+      {
+        "path": "source-current-cells.jsonl",
+        "expected": "ecfb0e6970d7f8fb5e0eee36c3bb285140e11d1853fb6e39fcf99eddaa3b3f15",
+        "actual": "ecfb0e6970d7f8fb5e0eee36c3bb285140e11d1853fb6e39fcf99eddaa3b3f15",
+        "matches": true
+      },
+      {
+        "path": "source-inventory-selection.jsonl",
+        "expected": "256f6a94acaa97d116e13a93beafd9074ff61e7a33ed55381046006e2fbec250",
+        "actual": "256f6a94acaa97d116e13a93beafd9074ff61e7a33ed55381046006e2fbec250",
+        "matches": true
+      }
+    ],
+    "previousWindowLastSelected": {
+      "role": "selected-W57",
+      "continuationRank": 327,
+      "sourceId": "src_1b58c8027d4a6fee",
+      "source": "Optional password",
+      "sourceSha256": "1b58c8027d4a6fee028015ce69c35962f534540b8f3945646b162f43057287c0",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W58",
+      "continuationRank": 328,
+      "sourceId": "src_1b598b72cfd3f224",
+      "source": "HTTPS port",
+      "sourceSha256": "1b598b72cfd3f224c035d470f1a567659645cfa5dfd12a37469e771ed849fa90",
+      "historicalSourceOrdinal": null
+    },
+    "summaryBoundaryDefect": "selection-and-boundary.json has wrong lastSelected/nextBoundary indexing; complete selection-boundary.jsonl was used as authority"
+  },
+  "sourceInventory": {
+    "pathAtHead": "docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl",
+    "sha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225",
+    "selectedRanksExcluded": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "selectedRanksInW49": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "candidateFree": true,
+  "containsTranslationsBeyondCurrentValues": false,
+  "callerScan": "Exact quoted source-literal search across pinned src/web/src JavaScript/TypeScript production files; tests excluded; bounded six-line context spans retained for hits."
+}

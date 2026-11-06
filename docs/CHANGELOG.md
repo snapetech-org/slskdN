@@ -22,6 +22,65 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Localization: refine existing interface translations across all twelve supported locales for clearer, more consistent wording; apply 71 exact-hash W50 corrections and refinements, with native-speaker and headed-browser review still outstanding.
+- Localization: apply 99 exact-hash W51 corrections and refinements across all twelve supported locales; 300 cells were reviewed and read back with the same ordered 6,176-key catalogs. W51 covers W49 stable-ID ranks 176–200; W50’s selected IDs map to W49 ranks 151–175 despite its historical 126–150 label, while W49 ranks 126–150 remain unreviewed. Native-speaker and headed-browser review remain outstanding.
+
+- Localization: apply 60 reviewed cells for five count-aware sources across all twelve locales; localize playlist and wishlist plurals, the download confirmation, and the new-message separator while preserving RTL direction handling. Native-speaker and headed-browser review remain outstanding.
+
+- Localization: close the W43 Spanish formal-lane check for the PlayerBar 30D filter. Independent exact-head review confirms the register-neutral value “30 d” matches the adjacent 7D and 90D options and the international day symbol; native-speaker approval remains outstanding.
+
+- Localization: replace fragmented Pod help with one full sentence in all 12 locales and render the `feature.Pods` configuration token as left-to-right code.
+
+- Localization: apply 45 independently accepted W43 corrections and refinements (21 corrections, 24 refinements) across 11 non-Spanish locale catalogs; restore the FTP protocol labels, retain 11 W98 caller holds, and preserve 25 Spanish formal-lane values without a W43 verdict. Native-speaker review remains outstanding.
+
+- Localization: apply 63 exact-hash reviewed W40 corrections and refinements across 11 locale catalogs; preserve 25 Spanish formal-lane values and 50 prior holds. Native-speaker review remains outstanding.
+
+- Localization: apply 38 root- and independently reviewed W35 corrections across 11 locale catalogs, bringing populated-catalog manual coverage to 35 windows / 10,326 cells / 872 source keys and cumulative applied corrections to 1,411 across 333 source keys. The 267 prior uncertain cells and six earlier exact-context holds remain unchanged; native-speaker review remains outstanding.
+
+- Localization: apply 33 root-final W34 exact-hash corrections (32 accepted and one refined) across 11 locale catalogs. Manual review reaches 10,052 cells across 847 source keys; cumulative applied corrections reach 1,373 across 324 source keys. The French Transfer Policy summary remains unchanged after its neighboring transfer-slot labels confirmed `Emplacements` terminology. Native-speaker and headed-browser review remain outstanding.
+
+- Localization: apply 41 root-final W33 corrections across 11 locale catalogs (40 accepted and one refined), bringing manual review coverage to 33 windows / 9,778 cells / 822 source keys. W33’s 11 source-context-mismatched cells remain held unchanged; 267 uncertain cells remain overall and the six earlier exact-context correction holds remain. Cumulative applied corrections are 1,340 across 311 source keys, with 52,502 frozen pending cells outside the formal and manual review lanes.
+
+- Localization: apply 29 W32 exact-hash corrections, bringing the cumulative populated-catalog total to 1,299 across 300 source keys and all twelve locales; six values with missing exact source context remain held, and 256 uncertain values remain unresolved.
+
+- Localization: isolate dynamic string and number placeholders inside localized
+  text for every text direction and English fallback; keep the values unchanged.
+
+- Localization: preserve source identity for external-visualizer messages and
+  isolate configured names/paths while retaining the existing translated
+  fallback label.
+- Localization: isolate dynamic aria-label, title, and confirmation values in
+  every UI language, keep unknown file-delete error codes on the fixed fallback,
+  and include the new helpers in source-coverage extraction.
+
+- Localization: extend source-bound rendering across playback, messaging, pods, rooms, network, and library-health interfaces while keeping unknown API values opaque.
+
+- Localization: route additional discovery, health, acquisition, media-server,
+  playlist, and playback copy through catalog keys; preserve unknown provider
+  and API values, and record the remaining twelve-locale translation inventory.
+
+- Localization: route additional chat, playback, mesh, confirmation, count,
+  report, and background notification copy through the twelve-locale source
+  path; target translations and review remain pending.
+
+- Unknown API error codes that match JavaScript object property names now use
+  the localized fallback instead of breaking error display.
+
+- Localization: correct 110 mixed service labels, day-window controls, French punctuation, and Portuguese transfer labels after a bounded 1,460-cell contextual review across all twelve locales.
+
+- Localization: translate the Automation Center execute action in Brazilian Portuguese.
+- Localization: translate the MusicBrainz base URL field in Brazilian Portuguese.
+- Localization: fixed Content ID and mesh-sync errors plus collection backfill
+  notices now display in the selected interface language with structured
+  success/failure counts; unmatched diagnostics remain unchanged.
+- Localization: translate exact Quarantine Jury status/error messages and the
+  fixed Library Health scan failure; preserve unknown router/server details
+  and isolate dynamic Arabic presentation values.
+- Localization: mark opaque placeholders in Arabic localized messages with
+  undetermined language metadata while retaining automatic bidi isolation.
+- Localization: translate Soulseek connect/disconnect tooltips and the download-exclusion label in all twelve catalogs; check fixed display and accessibility attributes and retain language metadata.
+- Localization coverage verifies that connection and download-exclusion labels update immediately when the selected language changes.
+- Localization: translate the identity-provider sign-in and selected-wishlist filter tooltips in all twelve catalogs; clarify Smart Radio search labels and webhook timeout units, and check tooltip copy in the coverage test.
 - Security: release tag validation is bounded and shell-safe, and manual publisher recovery is limited to the main-branch workflow.
 - CI: Add exact job-scoped JIT labels to shared runner builds and security scans.
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.

@@ -1,0 +1,11 @@
+{
+  "priorHeldCellsReattested": 259,
+  "allTargetHashesMatchPrior": true,
+  "callerEvidenceUnchanged": 120,
+  "callerEvidenceChanged": 139,
+  "statusCounts": {
+    "reattested-context-or-target-changed": 139,
+    "reattested-unchanged": 120
+  },
+  "holdRowsTextFree": true
+}

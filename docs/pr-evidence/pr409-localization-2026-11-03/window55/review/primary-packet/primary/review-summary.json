@@ -1,0 +1,1258 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "exactHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "exactTree": "a22e9a896aae12aa89a1502d9748b12816d491ed",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "remoteBranchHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "pinnedPrBodySha256": "9ce6507c68b3ccfbb2b7ec78282951a449d04abecf8b35c8f15b4d2412985faa",
+  "window": "W55 continuation ranks 276-300 from pinned W49 stable-ID inventory; historical source ordinals unavailable and not claimed",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 194,
+    "refinement": 10,
+    "hold-terminology": 36,
+    "correction": 60
+  },
+  "candidateChangeCount": 70,
+  "changedCellsByLocale": {
+    "zh-Hans": 5,
+    "zh-Hant": 5,
+    "ar": 7,
+    "de": 7,
+    "id": 6,
+    "pt-BR": 7,
+    "vi": 6,
+    "es": 6,
+    "fr": 5,
+    "hi": 3,
+    "ja": 7,
+    "ko": 6
+  },
+  "changedCellsByRank": {
+    "276": 2,
+    "279": 5,
+    "281": 6,
+    "283": 12,
+    "285": 2,
+    "287": 2,
+    "288": 9,
+    "290": 2,
+    "292": 12,
+    "294": 1,
+    "295": 12,
+    "298": 1,
+    "300": 4
+  },
+  "changedCellsBySource": {
+    "src_19dd83f117525b93": 2,
+    "src_19f9dd8511864b10": 5,
+    "src_1a03bd2fd107c453": 6,
+    "src_1a11202854710127": 12,
+    "src_1a30e8b2ecc38400": 2,
+    "src_1a3ac2763f00fd8a": 2,
+    "src_1a3d7c1f8945693a": 9,
+    "src_1a4f630ac1b69fd0": 2,
+    "src_1a6b01c45fdbf25b": 12,
+    "src_1a7896144cbd8803": 1,
+    "src_1a87779358c845c4": 12,
+    "src_1aa4cb0bcca76e92": 1,
+    "src_1ab4cba1fe971008": 4
+  },
+  "holdCount": 36,
+  "heldSourceIds": [
+    "src_19ebfa54031ecebb",
+    "src_1a074fe1795c3280",
+    "src_1a46033a7f5d8151"
+  ],
+  "heldRanks": {
+    "278": "Publish or retrieve pod metadata through DHT workflows.",
+    "282": "You need at least one pod with VPN gateway capability to use port forwarding.",
+    "289": "Please enter both Pod ID and Peer ID"
+  },
+  "holdLocalesByRank": {
+    "278": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "282": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "289": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "callerReferenceCount": 40,
+  "callerlessSourceIds": [],
+  "currentProtectedLiteralMismatchCellCount": 19,
+  "currentProtectedLiteralMismatchCells": [
+    {
+      "cell": "288:ar",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:de",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:es",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:fr",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:ja",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:pt-BR",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:vi",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:zh-Hans",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "288:zh-Hant",
+      "missing": [
+        "0.1, -0.2, 0.3, ..."
+      ]
+    },
+    {
+      "cell": "295:ar",
+      "missing": [
+        "Demucs"
+      ]
+    },
+    {
+      "cell": "295:hi",
+      "missing": [
+        "Demucs"
+      ]
+    },
+    {
+      "cell": "295:id",
+      "missing": [
+        "Demucs"
+      ]
+    },
+    {
+      "cell": "295:ja",
+      "missing": [
+        "Demucs"
+      ]
+    },
+    {
+      "cell": "295:zh-Hans",
+      "missing": [
+        "Demucs"
+      ]
+    },
+    {
+      "cell": "295:zh-Hant",
+      "missing": [
+        "Demucs"
+      ]
+    },
+    {
+      "cell": "300:ar",
+      "missing": [
+        "|"
+      ]
+    },
+    {
+      "cell": "300:de",
+      "missing": [
+        "|"
+      ]
+    },
+    {
+      "cell": "300:ja",
+      "missing": [
+        "|"
+      ]
+    },
+    {
+      "cell": "300:ko",
+      "missing": [
+        "|"
+      ]
+    }
+  ],
+  "candidateProtectedLiteralMismatchCount": 0,
+  "currentNumericMismatchCellCount": 5,
+  "currentNumericMismatchCells": [
+    "288:de",
+    "288:es",
+    "288:fr",
+    "288:pt-BR",
+    "288:vi"
+  ],
+  "candidateNumericMismatchCount": 0,
+  "placeholderMismatchCount": 0,
+  "markupMismatchCount": 0,
+  "inputContainsCandidates": false,
+  "inputManifestSha256": "4dcbdb679ced3a9211560682a5b8775af06aab9a06b1970179156d94e3cabfb0",
+  "inputManifestEntriesVerified": 8,
+  "nativeSpeakerApproval": false,
+  "headedProductBrowserReview": false,
+  "projectTestsBuildScansCiRun": false,
+  "repositoryModified": false,
+  "remoteMutation": false,
+  "reviewType": "machine-assisted primary semantic review; moderate confidence for proposed translations; terminology holds await approved product wording and native-speaker review",
+  "notes": [
+    "Ranks 276-300 are disjoint from W49 reviewed IDs and W50-W54; W49 gap 126-150 remains excluded.",
+    "Rank 288 comma-separated audio sample syntax is pinned to the production caller, which splits on commas and parses floats. Decimal-comma current values are held for correction to dot-decimal examples.",
+    "Rank 278, 282, and 289 remain terminology holds across all 12 locales because the product noun Pod has no approved localized glossary term.",
+    "Proposals are machine-assisted and do not constitute native-speaker approval."
+  ],
+  "exactChanges": [
+    {
+      "rank": 276,
+      "sourceId": "src_19dd83f117525b93",
+      "source": "Yellow",
+      "locale": "zh-Hans",
+      "from": "黄色的",
+      "to": "黄色",
+      "verdict": "refinement",
+      "rationale": "The pinned caller uses this as a color option. Remove 的, which turns the color noun into an adjectival form."
+    },
+    {
+      "rank": 276,
+      "sourceId": "src_19dd83f117525b93",
+      "source": "Yellow",
+      "locale": "zh-Hant",
+      "from": "黃色的",
+      "to": "黃色",
+      "verdict": "refinement",
+      "rationale": "The pinned caller uses this as a color option. Remove 的, which turns the color noun into an adjectival form."
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "source": "Checks:",
+      "locale": "ar",
+      "from": "التحقق :",
+      "to": "عمليات التحقق:",
+      "verdict": "correction",
+      "rationale": "This is a section heading above readiness checks. The current wording is singular and has a stray space before the colon."
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "source": "Checks:",
+      "locale": "de",
+      "from": "Überprüfen Sie :",
+      "to": "Prüfungen:",
+      "verdict": "correction",
+      "rationale": "The caller uses this as a noun heading above readiness checks; the current target is an imperative sentence."
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "source": "Checks:",
+      "locale": "id",
+      "from": "Pemeriksaan :",
+      "to": "Pemeriksaan:",
+      "verdict": "refinement",
+      "rationale": "Keep the readiness-check heading and remove the extra space before the colon."
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "source": "Checks:",
+      "locale": "pt-BR",
+      "from": "Verificações :",
+      "to": "Verificações:",
+      "verdict": "refinement",
+      "rationale": "Keep the readiness-check heading and use standard punctuation spacing."
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "source": "Checks:",
+      "locale": "vi",
+      "from": "Kiểm tra :",
+      "to": "Kiểm tra:",
+      "verdict": "refinement",
+      "rationale": "Keep the readiness-check heading and remove the extra space before the colon."
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "source": "Debug",
+      "locale": "ar",
+      "from": "تصحيح",
+      "to": "تصحيح الأخطاء",
+      "verdict": "correction",
+      "rationale": "The caller labels a debug log level. The current word means correction; this names debugging."
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "source": "Debug",
+      "locale": "de",
+      "from": "Debuggen",
+      "to": "Debug",
+      "verdict": "correction",
+      "rationale": "The caller labels a debug log level. The current infinitive means the act of debugging rather than the level name."
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "source": "Debug",
+      "locale": "es",
+      "from": "Depurar",
+      "to": "Depuración",
+      "verdict": "refinement",
+      "rationale": "Use the noun for the debug log level instead of the infinitive verb."
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "source": "Debug",
+      "locale": "fr",
+      "from": "Déboguer",
+      "to": "Débogage",
+      "verdict": "refinement",
+      "rationale": "Use the noun for the debug log level instead of the infinitive verb."
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "source": "Debug",
+      "locale": "id",
+      "from": "Men-debug",
+      "to": "Debug",
+      "verdict": "correction",
+      "rationale": "The caller labels a debug log level. Replace the awkward verb form with the established level name."
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "source": "Debug",
+      "locale": "pt-BR",
+      "from": "Depurar",
+      "to": "Depuração",
+      "verdict": "refinement",
+      "rationale": "Use the noun for the debug log level instead of the infinitive verb."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "ar",
+      "from": "تمكين إعداد المزامنة المطلوبة Lidarr",
+      "to": "فعّل مزامنة الألبومات المطلوبة من Lidarr مع قائمة الرغبات",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target reads wanted as a generic desired setting and obscures the action."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "de",
+      "from": "Aktivieren Sie die gewünschte Synchronisierungseinstellung Lidarr",
+      "to": "Synchronisierung der von Lidarr gewünschten Alben mit der Wunschliste aktivieren",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target has an awkward word order and treats wanted as a generic adjective."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "es",
+      "from": "Habilite la configuración de sincronización deseada Lidarr",
+      "to": "Activar la sincronización de los álbumes deseados de Lidarr con la lista de deseos",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target has an awkward word order and treats wanted as a generic adjective."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "fr",
+      "from": "Activer le paramètre de synchronisation recherché Lidarr",
+      "to": "Activer la synchronisation des albums souhaités par Lidarr avec la liste de souhaits",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target says recherchés (searched-for) rather than souhaités (wanted)."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "hi",
+      "from": "Lidarr वांछित सिंक सेटिंग सक्षम करें",
+      "to": "Lidarr के वांछित एल्बमों को Wishlist में सिंक करना सक्षम करें",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. This makes the wanted-album state and destination clear."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "id",
+      "from": "Aktifkan pengaturan sinkronisasi yang diinginkan Lidarr",
+      "to": "Aktifkan sinkronisasi album yang diinginkan di Lidarr ke Wishlist",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. This clarifies what is synchronized and the destination."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "ja",
+      "from": "Lidarr 必要な同期設定を有効にする",
+      "to": "Lidarrで必要とされているアルバムをウィッシュリストに同期する設定を有効にする",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target leaves the relationship between Lidarr, wanted albums, and synchronization unclear."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "ko",
+      "from": "Lidarr 원하는 동기화 설정 활성화",
+      "to": "Lidarr에서 원하는 앨범을 위시리스트에 동기화하도록 설정",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target lacks a clear setting/action relationship."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "pt-BR",
+      "from": "Habilite a configuração de sincronização desejada Lidarr",
+      "to": "Ativar a sincronização dos álbuns desejados pelo Lidarr com a lista de desejos",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target has an awkward word order and treats wanted as a generic adjective."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "vi",
+      "from": "Bật cài đặt đồng bộ hóa mong muốn Lidarr",
+      "to": "Bật đồng bộ các album Lidarr mong muốn với danh sách mong muốn",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target has an awkward word order and makes the destination unclear."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "zh-Hans",
+      "from": "启用 Lidarr 想要的同步设置",
+      "to": "启用将 Lidarr 中想要的专辑同步到愿望清单",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target uses 想要的 as a literal adjective and does not express the setting clearly."
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "zh-Hant",
+      "from": "啟用 Lidarr 想要的同步設定",
+      "to": "啟用將 Lidarr 中想要的專輯同步至願望清單",
+      "verdict": "correction",
+      "rationale": "The pinned checkbox and tooltip describe syncing Lidarr wanted albums into the Wishlist. The current target uses 想要的 as a literal adjective and does not express the setting clearly."
+    },
+    {
+      "rank": 285,
+      "sourceId": "src_1a30e8b2ecc38400",
+      "source": "Browse Shares",
+      "locale": "es",
+      "from": "Explorar acciones",
+      "to": "Explorar recursos compartidos",
+      "verdict": "correction",
+      "rationale": "The caller labels browsing another user’s shared files. Acciones means actions and is not file sharing."
+    },
+    {
+      "rank": 285,
+      "sourceId": "src_1a30e8b2ecc38400",
+      "source": "Browse Shares",
+      "locale": "id",
+      "from": "Telusuri Saham",
+      "to": "Jelajahi berkas yang dibagikan",
+      "verdict": "correction",
+      "rationale": "The caller labels browsing another user’s shared files. Saham means stocks, not shared files."
+    },
+    {
+      "rank": 287,
+      "sourceId": "src_1a3ac2763f00fd8a",
+      "source": "Lossless file with DR={range} suggests lossy source",
+      "locale": "ja",
+      "from": "DR={range}の損失のないファイルは、損失源を示す",
+      "to": "DR={range}のロスレスファイルは、音源が非可逆圧縮である可能性を示唆します",
+      "verdict": "correction",
+      "rationale": "The caller displays an audio-quality diagnostic. The current 損失源 means a loss source; state that the audio source may be lossy."
+    },
+    {
+      "rank": 287,
+      "sourceId": "src_1a3ac2763f00fd8a",
+      "source": "Lossless file with DR={range} suggests lossy source",
+      "locale": "ko",
+      "from": "DR={range}를 가진 손실없는 파일은 손실된 출처를 제안합니다.",
+      "to": "DR={range}인 무손실 파일은 손실 음원일 가능성을 시사합니다",
+      "verdict": "correction",
+      "rationale": "The caller displays an audio-quality diagnostic. The current wording uses 제안합니다 (proposes), which changes the meaning of suggests."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "ar",
+      "from": "0.1، -0.2، 0.3، ... (تمت تسويته من -1.0 إلى 1.0)",
+      "to": "0.1, -0.2, 0.3, ... (تمت تسويته من -1.0 إلى 1.0)",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on ASCII commas and parses floats. The Arabic comma in the current example breaks that syntax; preserve the exact sample sequence and decimal points."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "de",
+      "from": "0,1, -0,2, 0,3, ... (normalisiert -1,0 bis 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalisiert von -1.0 bis 1.0)",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on commas and parses floats. Decimal commas make the example ambiguous and break the documented comma-separated syntax; retain the decimal points and exact sample sequence."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "es",
+      "from": "0,1, -0,2, 0,3, ... (normalizado -1,0 a 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalizado de -1.0 a 1.0)",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on commas and parses floats. Decimal commas make the example ambiguous and break the documented comma-separated syntax; retain the decimal points and exact sample sequence."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "fr",
+      "from": "0,1, -0,2, 0,3, ... (normalisé -1,0 à 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalisé de -1.0 à 1.0)",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on commas and parses floats. Decimal commas make the example ambiguous and break the documented comma-separated syntax; retain the decimal points and exact sample sequence."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "ja",
+      "from": "0.1、-0.2、0.3、... (-1.0 から 1.0 に正規化)",
+      "to": "0.1, -0.2, 0.3, ... (-1.0 から 1.0 に正規化)",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on ASCII commas and parses floats. Japanese list commas break that syntax; preserve the exact sample sequence and decimal points."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "pt-BR",
+      "from": "0,1, -0,2, 0,3, ... (normalizado -1,0 a 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalizado de -1.0 a 1.0)",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on commas and parses floats. Decimal commas make the example ambiguous and break the documented comma-separated syntax; retain the decimal points and exact sample sequence."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "vi",
+      "from": "0,1, -0,2, 0,3, ... (chuẩn hóa -1,0 đến 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (chuẩn hóa từ -1.0 đến 1.0)",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on commas and parses floats. Decimal commas make the example ambiguous and break the documented comma-separated syntax; retain the decimal points and exact sample sequence."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "zh-Hans",
+      "from": "0.1、-0.2、0.3、...（标准化 -1.0 至 1.0）",
+      "to": "0.1, -0.2, 0.3, ...（标准化 -1.0 至 1.0）",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on ASCII commas and parses floats. Ideographic commas break that syntax; preserve the exact sample sequence and decimal points."
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "zh-Hant",
+      "from": "0.1、-0.2、0.3、...（標準化 -1.0 至 1.0）",
+      "to": "0.1, -0.2, 0.3, ...（標準化 -1.0 至 1.0）",
+      "verdict": "correction",
+      "rationale": "The pinned caller splits the sample input on ASCII commas and parses floats. Ideographic commas break that syntax; preserve the exact sample sequence and decimal points."
+    },
+    {
+      "rank": 290,
+      "sourceId": "src_1a4f630ac1b69fd0",
+      "source": "Stopped",
+      "locale": "ja",
+      "from": "停止しました",
+      "to": "停止中",
+      "verdict": "refinement",
+      "rationale": "The caller displays a current bridge health state. Use a compact state label rather than the current past-tense sentence."
+    },
+    {
+      "rank": 290,
+      "sourceId": "src_1a4f630ac1b69fd0",
+      "source": "Stopped",
+      "locale": "pt-BR",
+      "from": "Parou",
+      "to": "Parado",
+      "verdict": "refinement",
+      "rationale": "The caller displays a current bridge health state. Use a compact state label rather than the current verb form."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "ar",
+      "from": "EST. إيجابية كاذبة:",
+      "to": "معدل الإيجابيات الكاذبة المقدّر:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. The current abbreviation is left as EST and omits that this is a rate."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "de",
+      "from": "Schätzung: Falsch positiv:",
+      "to": "Geschätzte Falsch-Positiv-Rate:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Name the estimated rate; the current text is awkward and incomplete."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "es",
+      "from": "Est. Falso positivo:",
+      "to": "Tasa estimada de falsos positivos:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Expand Est. and name the rate."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "fr",
+      "from": "HNE. Faux positif :",
+      "to": "Taux estimé de faux positifs :",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. The current HNE is a time-zone abbreviation, not an estimate."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "hi",
+      "from": "ईएसटी। गलत सकारात्मक:",
+      "to": "अनुमानित गलत-सकारात्मक दर:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Name the estimated rate instead of transliterating Est."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "id",
+      "from": "Perkiraan. Positif Palsu:",
+      "to": "Perkiraan tingkat positif palsu:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Name the estimated rate explicitly."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "ja",
+      "from": "EST（東部基準時。誤検知:",
+      "to": "推定偽陽性率:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. The current EST suggests a time-zone abbreviation and omits rate."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "ko",
+      "from": "예상 거짓 긍정:",
+      "to": "추정 위양성률:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Name the estimated false-positive rate."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "pt-BR",
+      "from": "Husa. Falso Positivo:",
+      "to": "Taxa estimada de falsos positivos:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. The current Husa is not a meaningful estimate abbreviation."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "vi",
+      "from": "Ước tính. Dương tính giả:",
+      "to": "Tỷ lệ dương tính giả ước tính:",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Name the estimated rate explicitly."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "zh-Hans",
+      "from": "预计。误报：",
+      "to": "预计误报率：",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Replace the literal Est. abbreviation with the estimated false-positive rate."
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "source": "Est. False Positive:",
+      "locale": "zh-Hant",
+      "from": "預計。誤報：",
+      "to": "預估偽陽性率：",
+      "verdict": "correction",
+      "rationale": "The caller displays estimatedFalsePositiveRate as a percentage. Replace the literal Est. abbreviation with the estimated false-positive rate."
+    },
+    {
+      "rank": 294,
+      "sourceId": "src_1a7896144cbd8803",
+      "source": "Show only failed transfers so you can focus on that part of the queue.",
+      "locale": "vi",
+      "from": "Chỉ hiển thị giao dịch thất bại để tập trung vào phần đó của hàng đợi.",
+      "to": "Chỉ hiển thị các lượt truyền tệp thất bại để bạn tập trung vào phần đó của hàng đợi.",
+      "verdict": "correction",
+      "rationale": "The caller is a file-transfer status filter. Giao dịch means a transaction; use file-transfer wording."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "ar",
+      "from": "ينبع ديموكس",
+      "to": "مسارات Demucs الصوتية",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. The current target translates stems as botanical stems and transliterates the product name."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "de",
+      "from": "Demucs-Vorbauten",
+      "to": "Demucs-Stems",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. Vorbauten means structural projections, not audio stems; keep the model name exact."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "es",
+      "from": "Tallos Demucs",
+      "to": "Pistas separadas de Demucs",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. Tallos means botanical stems; keep Demucs as the exact model name."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "fr",
+      "from": "Tiges Demucs",
+      "to": "Pistes séparées de Demucs",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. Tiges means botanical stems; keep Demucs as the exact model name."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "hi",
+      "from": "डिमुकस तने",
+      "to": "Demucs के अलग-अलग ऑडियो ट्रैक",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. The current botanical noun is wrong for audio; preserve the model name."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "id",
+      "from": "Batang Demuc",
+      "to": "Stem audio Demucs",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. Batang means a plant stem; preserve the model name exactly."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "ja",
+      "from": "デムクスステム",
+      "to": "Demucsのステム",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. Preserve the established audio loanword and exact model name; the current transliterations are unclear."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "ko",
+      "from": "Demucs 줄기",
+      "to": "Demucs 스템",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. Preserve the established audio loanword and exact model name; the current target means a plant stem."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "pt-BR",
+      "from": "Hastes Demucs",
+      "to": "Stems do Demucs",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. Hastes means botanical stems; keep the model name exact."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "vi",
+      "from": "Cây Demucs",
+      "to": "Các stem âm thanh của Demucs",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. The current target means Demucs trees; keep the audio term and model name."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "zh-Hans",
+      "from": "德穆克斯茎",
+      "to": "Demucs 分轨",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. The current target uses a botanical term; preserve the model name and use audio-track terminology."
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "source": "Demucs Stems",
+      "locale": "zh-Hant",
+      "from": "德穆克斯莖",
+      "to": "Demucs 分軌",
+      "verdict": "correction",
+      "rationale": "The caller lists separated audio stems. The current target uses a botanical term; preserve the model name and use audio-track terminology."
+    },
+    {
+      "rank": 298,
+      "sourceId": "src_1aa4cb0bcca76e92",
+      "source": "Image",
+      "locale": "ko",
+      "from": "영상",
+      "to": "이미지",
+      "verdict": "correction",
+      "rationale": "The caller uses this as the image media type, paired with Audio, Video, and Text. 영상 means video."
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "source": " | Album: {album}",
+      "locale": "ar",
+      "from": " الألبوم: {album}",
+      "to": " | الألبوم: {album}",
+      "verdict": "correction",
+      "rationale": "The caller concatenates Artist, Album, and Title metadata with a literal pipe separator. Preserve that separator so adjacent fields remain distinct."
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "source": " | Album: {album}",
+      "locale": "de",
+      "from": " Album: {album}",
+      "to": " | Album: {album}",
+      "verdict": "correction",
+      "rationale": "The caller concatenates Artist, Album, and Title metadata with a literal pipe separator. Preserve that separator so adjacent fields remain distinct."
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "source": " | Album: {album}",
+      "locale": "ja",
+      "from": " アルバム:{album}",
+      "to": " | アルバム: {album}",
+      "verdict": "correction",
+      "rationale": "The caller concatenates Artist, Album, and Title metadata with a literal pipe separator. Preserve that separator so adjacent fields remain distinct."
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "source": " | Album: {album}",
+      "locale": "ko",
+      "from": " 앨범: {album}",
+      "to": " | 앨범: {album}",
+      "verdict": "correction",
+      "rationale": "The caller concatenates Artist, Album, and Title metadata with a literal pipe separator. Preserve that separator so adjacent fields remain distinct."
+    }
+  ],
+  "exactHolds": [
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "ar",
+      "current": "قم بنشر أو استرداد البيانات التعريفية للقرص من خلال سير عمل DHT.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "de",
+      "current": "Veröffentlichen oder rufen Sie Pod-Metadaten über DHT-Workflows ab.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "es",
+      "current": "Publique o recupere metadatos del pod a través de flujos de trabajo DHT.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "fr",
+      "current": "Publiez ou récupérez les métadonnées du pod via les workflows DHT.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "hi",
+      "current": "DHT वर्कफ़्लो के माध्यम से पॉड मेटाडेटा प्रकाशित या पुनर्प्राप्त करें।",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "id",
+      "current": "Publikasikan atau ambil metadata pod melalui alur kerja DHT.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "ja",
+      "current": "DHT ワークフローを通じてポッド メタデータを公開または取得します。",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "ko",
+      "current": "DHT 워크플로를 통해 포드 메타데이터를 게시하거나 검색합니다.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "pt-BR",
+      "current": "Publique ou recupere metadados de pod por meio de fluxos de trabalho DHT.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "vi",
+      "current": "Xuất bản hoặc truy xuất siêu dữ liệu nhóm thông qua quy trình công việc DHT.",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "zh-Hans",
+      "current": "通过 DHT 工作流程发布或检索 Pod 元数据。",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "zh-Hant",
+      "current": "透過 DHT 工作流程發佈或檢索 Pod 元資料。",
+      "reason": "The pinned caller identifies DHT metadata workflows for the MediaCore Pod object. Prior W54 review held the localized noun for Pod because no approved product glossary term exists; keep all locale values unchanged until that term is approved."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "ar",
+      "current": "أنت بحاجة إلى حجرة واحدة على الأقل مزودة بإمكانية بوابة VPN لاستخدام إعادة توجيه المنفذ.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "de",
+      "current": "Sie benötigen mindestens einen Pod mit VPN-Gateway-Funktion, um die Portweiterleitung nutzen zu können.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "es",
+      "current": "Necesita al menos un pod con capacidad de puerta de enlace VPN para utilizar el reenvío de puertos.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "fr",
+      "current": "Vous avez besoin d'au moins un pod doté d'une fonctionnalité de passerelle VPN pour utiliser la redirection de port.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "hi",
+      "current": "पोर्ट फ़ॉरवर्डिंग का उपयोग करने के लिए आपको वीपीएन गेटवे क्षमता वाला कम से कम एक पॉड की आवश्यकता है।",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "id",
+      "current": "Anda memerlukan setidaknya satu pod dengan kemampuan gateway VPN untuk menggunakan penerusan porta.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "ja",
+      "current": "ポート転送を使用するには、VPN ゲートウェイ機能を備えたポッドが少なくとも 1 つ必要です。",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "ko",
+      "current": "포트 전달을 사용하려면 VPN 게이트웨이 기능이 있는 포드가 하나 이상 필요합니다.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "pt-BR",
+      "current": "Você precisa de pelo menos um pod com capacidade de gateway VPN para usar o encaminhamento de porta.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "vi",
+      "current": "Bạn cần ít nhất một nhóm có khả năng cổng VPN để sử dụng tính năng chuyển tiếp cổng.",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "zh-Hans",
+      "current": "您需要至少一个具有 VPN 网关功能的 Pod 才能使用端口转发。",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "zh-Hant",
+      "current": "您需要至少一個具有 VPN 閘道功能的 Pod 才能使用連接埠轉送。",
+      "reason": "The pinned caller describes the Pod requirement for a VPN gateway and port forwarding. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "ar",
+      "current": "الرجاء إدخال معرف Pod ومعرف النظير",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "de",
+      "current": "Bitte geben Sie sowohl die Pod-ID als auch die Peer-ID ein",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "es",
+      "current": "Ingrese tanto el ID del pod como el ID del par",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "fr",
+      "current": "Veuillez saisir l'ID du pod et l'ID du homologue.",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "hi",
+      "current": "कृपया पॉड आईडी और पीयर आईडी दोनों दर्ज करें",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "id",
+      "current": "Silakan masukkan ID Pod dan ID Rekan",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "ja",
+      "current": "ポッド ID とピア ID の両方を入力してください",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "ko",
+      "current": "포드 ID와 피어 ID를 모두 입력하세요.",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "pt-BR",
+      "current": "Insira o ID do pod e o ID do peer",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "vi",
+      "current": "Vui lòng nhập cả ID nhóm và ID ngang hàng",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "zh-Hans",
+      "current": "请同时输入 Pod ID 和 Peer ID",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "zh-Hant",
+      "current": "請同時輸入 Pod ID 和 Peer ID",
+      "reason": "The pinned caller requires separate Pod ID and Peer ID values in membership and role actions. The product term Pod has no approved localized noun in the reviewed glossary; keep all locale values unchanged pending that decision."
+    }
+  ]
+}

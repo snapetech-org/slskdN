@@ -1,0 +1,274 @@
+{"id":"zh-Hans:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"hi:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"de:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"ja:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"fr:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"pt-BR:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"ar:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"ko:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"zh-Hant:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"vi:src_0003fc4e06ec7b05","verdict":"keep"}
+{"id":"id:src_0003fc4e06ec7b05","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_000ca605239a867d","reason":"The exact caller labels each authorityKey as locally disabled or active. Its adjacent tooltip explicitly says this only changes browser review state and does not update realm governance. These targets express a local browser-state disablement, not disability or a geographic region.","target":"本地已禁用","verdict":"correct"}
+{"id":"hi:src_000ca605239a867d","verdict":"keep"}
+{"confidence":"high","id":"de:src_000ca605239a867d","reason":"The exact caller labels each authorityKey as locally disabled or active. Its adjacent tooltip explicitly says this only changes browser review state and does not update realm governance. These targets express a local browser-state disablement, not disability or a geographic region.","target":"Lokal deaktiviert","verdict":"correct"}
+{"id":"ja:src_000ca605239a867d","verdict":"keep"}
+{"confidence":"high","id":"fr:src_000ca605239a867d","reason":"The exact caller labels each authorityKey as locally disabled or active. Its adjacent tooltip explicitly says this only changes browser review state and does not update realm governance. These targets express a local browser-state disablement, not disability or a geographic region.","target":"Désactivé localement","verdict":"correct"}
+{"id":"pt-BR:src_000ca605239a867d","verdict":"keep"}
+{"confidence":"high","id":"ar:src_000ca605239a867d","reason":"The exact caller labels each authorityKey as locally disabled or active. Its adjacent tooltip explicitly says this only changes browser review state and does not update realm governance. These targets express a local browser-state disablement, not disability or a geographic region.","target":"معطّل محليًا","verdict":"correct"}
+{"confidence":"high","id":"ko:src_000ca605239a867d","reason":"The exact caller labels each authorityKey as locally disabled or active. Its adjacent tooltip explicitly says this only changes browser review state and does not update realm governance. These targets express a local browser-state disablement, not disability or a geographic region.","target":"로컬에서 비활성화됨","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_000ca605239a867d","reason":"The exact caller labels each authorityKey as locally disabled or active. Its adjacent tooltip explicitly says this only changes browser review state and does not update realm governance. These targets express a local browser-state disablement, not disability or a geographic region.","target":"已在本機停用","verdict":"correct"}
+{"id":"vi:src_000ca605239a867d","verdict":"keep"}
+{"id":"id:src_000ca605239a867d","verdict":"keep"}
+{"id":"zh-Hans:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"hi:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"de:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"ja:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"fr:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"pt-BR:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"ar:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"ko:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"zh-Hant:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"vi:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"id:src_001340bb2bcfaec4","verdict":"keep"}
+{"id":"zh-Hans:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"hi:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"de:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"ja:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"fr:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"pt-BR:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"ar:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"ko:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"zh-Hant:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"vi:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"id:src_0029bc25af318a4f","verdict":"keep"}
+{"id":"zh-Hans:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"hi:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"de:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"ja:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"pt-BR:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"ar:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"ko:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"zh-Hant:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"vi:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"id:src_002c7c68468b4f55","verdict":"keep"}
+{"id":"zh-Hans:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"hi:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"de:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"ja:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"fr:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"pt-BR:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"ar:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"ko:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"zh-Hant:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"vi:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"id:src_0035b4c5dd650bcd","verdict":"keep"}
+{"id":"zh-Hans:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"hi:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"de:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"ja:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"fr:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"pt-BR:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"ar:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"ko:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"zh-Hant:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"vi:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"id:src_004d8df6c3306b23","verdict":"keep"}
+{"id":"zh-Hans:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"hi:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"de:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"ja:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"fr:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"pt-BR:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"ar:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"ko:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"zh-Hant:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"vi:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"id:src_0050ba5c849c8e22","verdict":"keep"}
+{"id":"zh-Hans:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"hi:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"de:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"ja:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"fr:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"pt-BR:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"ar:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"ko:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"zh-Hant:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"vi:src_005e1214a50d90e5","verdict":"keep"}
+{"id":"id:src_005e1214a50d90e5","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"支持：","verdict":"correct"}
+{"confidence":"high","id":"hi:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"समर्थन में:","verdict":"correct"}
+{"id":"de:src_005fa0c315c0197b","verdict":"keep"}
+{"confidence":"high","id":"ja:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"支持：","verdict":"correct"}
+{"id":"fr:src_005fa0c315c0197b","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"A favor:","verdict":"correct"}
+{"confidence":"high","id":"ar:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"أدلة مؤيدة:","verdict":"correct"}
+{"confidence":"high","id":"ko:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"찬성 근거:","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"支持：","verdict":"correct"}
+{"confidence":"high","id":"vi:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"Bằng chứng ủng hộ:","verdict":"correct"}
+{"confidence":"high","id":"id:src_005fa0c315c0197b","reason":"The caller renders this immediately before topEvidenceFor and pairs it with an Against heading for topEvidenceAgainst. In this UI, For means evidence supporting the candidate, not purpose or destination.","target":"Bukti yang mendukung:","verdict":"correct"}
+{"id":"zh-Hans:src_00647228759ab44f","verdict":"keep"}
+{"id":"hi:src_00647228759ab44f","verdict":"keep"}
+{"id":"de:src_00647228759ab44f","verdict":"keep"}
+{"id":"ja:src_00647228759ab44f","verdict":"keep"}
+{"id":"fr:src_00647228759ab44f","verdict":"keep"}
+{"id":"pt-BR:src_00647228759ab44f","verdict":"keep"}
+{"id":"ar:src_00647228759ab44f","verdict":"keep"}
+{"id":"ko:src_00647228759ab44f","verdict":"keep"}
+{"id":"zh-Hant:src_00647228759ab44f","verdict":"keep"}
+{"id":"vi:src_00647228759ab44f","verdict":"keep"}
+{"id":"id:src_00647228759ab44f","verdict":"keep"}
+{"id":"zh-Hans:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"hi:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"de:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"ja:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"fr:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"pt-BR:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"ar:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"ko:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"zh-Hant:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"vi:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"id:src_00661da3e85ced9d","verdict":"keep"}
+{"id":"zh-Hans:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"hi:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"de:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"ja:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"fr:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"pt-BR:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"ar:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"ko:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"zh-Hant:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"vi:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"id:src_00694e31b84d4b9a","verdict":"keep"}
+{"id":"zh-Hans:src_008b8a09798d9974","verdict":"keep"}
+{"id":"hi:src_008b8a09798d9974","verdict":"keep"}
+{"id":"de:src_008b8a09798d9974","verdict":"keep"}
+{"id":"ja:src_008b8a09798d9974","verdict":"keep"}
+{"id":"fr:src_008b8a09798d9974","verdict":"keep"}
+{"id":"pt-BR:src_008b8a09798d9974","verdict":"keep"}
+{"id":"ar:src_008b8a09798d9974","verdict":"keep"}
+{"id":"ko:src_008b8a09798d9974","verdict":"keep"}
+{"id":"zh-Hant:src_008b8a09798d9974","verdict":"keep"}
+{"id":"vi:src_008b8a09798d9974","verdict":"keep"}
+{"id":"id:src_008b8a09798d9974","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"不受限制","verdict":"correct"}
+{"confidence":"high","id":"hi:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"असीमित","verdict":"correct"}
+{"confidence":"high","id":"de:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"Unbegrenzt","verdict":"correct"}
+{"confidence":"high","id":"ja:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"無制限","verdict":"correct"}
+{"confidence":"high","id":"fr:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"Sans limite","verdict":"correct"}
+{"confidence":"high","id":"pt-BR:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"Sem limite","verdict":"correct"}
+{"confidence":"high","id":"ar:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"بلا حدود","verdict":"correct"}
+{"confidence":"high","id":"ko:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"무제한","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"不受限制","verdict":"correct"}
+{"confidence":"high","id":"vi:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"Không giới hạn","verdict":"correct"}
+{"confidence":"high","id":"id:src_008dacb6d1e85bd8","reason":"The caller is the native MilkDrop quality preset select. The exact adjacent tooltip says Full leaves rendering uncapped; the current translations read as filled/full in the ordinary capacity sense rather than uncapped.","target":"Tanpa batas","verdict":"correct"}
+{"id":"zh-Hans:src_00950953c2a1960a","verdict":"keep"}
+{"id":"hi:src_00950953c2a1960a","verdict":"keep"}
+{"id":"de:src_00950953c2a1960a","verdict":"keep"}
+{"id":"ja:src_00950953c2a1960a","verdict":"keep"}
+{"id":"fr:src_00950953c2a1960a","verdict":"keep"}
+{"id":"pt-BR:src_00950953c2a1960a","verdict":"keep"}
+{"id":"ar:src_00950953c2a1960a","verdict":"keep"}
+{"id":"ko:src_00950953c2a1960a","verdict":"keep"}
+{"id":"zh-Hant:src_00950953c2a1960a","verdict":"keep"}
+{"id":"vi:src_00950953c2a1960a","verdict":"keep"}
+{"id":"id:src_00950953c2a1960a","verdict":"keep"}
+{"id":"zh-Hans:src_0097c51ff978e188","verdict":"keep"}
+{"id":"hi:src_0097c51ff978e188","verdict":"keep"}
+{"id":"de:src_0097c51ff978e188","verdict":"keep"}
+{"id":"ja:src_0097c51ff978e188","verdict":"keep"}
+{"id":"fr:src_0097c51ff978e188","verdict":"keep"}
+{"id":"pt-BR:src_0097c51ff978e188","verdict":"keep"}
+{"id":"ar:src_0097c51ff978e188","verdict":"keep"}
+{"id":"ko:src_0097c51ff978e188","verdict":"keep"}
+{"id":"zh-Hant:src_0097c51ff978e188","verdict":"keep"}
+{"id":"vi:src_0097c51ff978e188","verdict":"keep"}
+{"id":"id:src_0097c51ff978e188","verdict":"keep"}
+{"id":"zh-Hans:src_00ae215c188213ca","verdict":"keep"}
+{"id":"hi:src_00ae215c188213ca","verdict":"keep"}
+{"id":"de:src_00ae215c188213ca","verdict":"keep"}
+{"id":"ja:src_00ae215c188213ca","verdict":"keep"}
+{"id":"fr:src_00ae215c188213ca","verdict":"keep"}
+{"id":"pt-BR:src_00ae215c188213ca","verdict":"keep"}
+{"confidence":"high","id":"ar:src_00ae215c188213ca","reason":"The caller is a MediaCore header for the Pod Workflow Index. Pod is the named product subsystem here; the Arabic target omits it and the Vietnamese target changes it to a generic group.","target":"فهرس سير عمل Pod","verdict":"correct"}
+{"id":"ko:src_00ae215c188213ca","verdict":"keep"}
+{"id":"zh-Hant:src_00ae215c188213ca","verdict":"keep"}
+{"confidence":"high","id":"vi:src_00ae215c188213ca","reason":"The caller is a MediaCore header for the Pod Workflow Index. Pod is the named product subsystem here; the Arabic target omits it and the Vietnamese target changes it to a generic group.","target":"Chỉ mục quy trình làm việc của Pod","verdict":"correct"}
+{"id":"id:src_00ae215c188213ca","verdict":"keep"}
+{"id":"zh-Hans:src_00bf068459c99097","verdict":"keep"}
+{"id":"hi:src_00bf068459c99097","verdict":"keep"}
+{"id":"de:src_00bf068459c99097","verdict":"keep"}
+{"id":"ja:src_00bf068459c99097","verdict":"keep"}
+{"id":"fr:src_00bf068459c99097","verdict":"keep"}
+{"id":"pt-BR:src_00bf068459c99097","verdict":"keep"}
+{"id":"ar:src_00bf068459c99097","verdict":"keep"}
+{"id":"ko:src_00bf068459c99097","verdict":"keep"}
+{"id":"zh-Hant:src_00bf068459c99097","verdict":"keep"}
+{"id":"vi:src_00bf068459c99097","verdict":"keep"}
+{"id":"id:src_00bf068459c99097","verdict":"keep"}
+{"id":"zh-Hans:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"hi:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"de:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"ja:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"fr:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"pt-BR:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"ar:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"ko:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"zh-Hant:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"vi:src_00c163adfd45d5db","verdict":"keep"}
+{"id":"id:src_00c163adfd45d5db","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_00c90c6eedf67611","reason":"The caller is a numeric setting under Retention and Storage beside search/log retention; the card text describes event/log cleanup. These targets express the number of days to retain event records, not scheduled occasions or a literal ungrammatical word order.","target":"事件保留天数","verdict":"correct"}
+{"confidence":"high","id":"hi:src_00c90c6eedf67611","reason":"The caller is a numeric setting under Retention and Storage beside search/log retention; the card text describes event/log cleanup. These targets express the number of days to retain event records, not scheduled occasions or a literal ungrammatical word order.","target":"घटनाओं को रखने की अवधि (दिन)","verdict":"correct"}
+{"confidence":"high","id":"de:src_00c90c6eedf67611","reason":"The caller is a numeric setting under Retention and Storage beside search/log retention; the card text describes event/log cleanup. These targets express the number of days to retain event records, not scheduled occasions or a literal ungrammatical word order.","target":"Aufbewahrungsdauer für Ereignisse (Tage)","verdict":"correct"}
+{"confidence":"high","id":"ja:src_00c90c6eedf67611","reason":"The caller is a numeric setting under Retention and Storage beside search/log retention; the card text describes event/log cleanup. These targets express the number of days to retain event records, not scheduled occasions or a literal ungrammatical word order.","target":"イベントの保持期間（日数）","verdict":"correct"}
+{"id":"fr:src_00c90c6eedf67611","verdict":"keep"}
+{"id":"pt-BR:src_00c90c6eedf67611","verdict":"keep"}
+{"id":"ar:src_00c90c6eedf67611","verdict":"keep"}
+{"confidence":"high","id":"ko:src_00c90c6eedf67611","reason":"The caller is a numeric setting under Retention and Storage beside search/log retention; the card text describes event/log cleanup. These targets express the number of days to retain event records, not scheduled occasions or a literal ungrammatical word order.","target":"이벤트 보관 기간(일)","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_00c90c6eedf67611","reason":"The caller is a numeric setting under Retention and Storage beside search/log retention; the card text describes event/log cleanup. These targets express the number of days to retain event records, not scheduled occasions or a literal ungrammatical word order.","target":"事件保留天數","verdict":"correct"}
+{"id":"vi:src_00c90c6eedf67611","verdict":"keep"}
+{"confidence":"high","id":"id:src_00c90c6eedf67611","reason":"The caller is a numeric setting under Retention and Storage beside search/log retention; the card text describes event/log cleanup. These targets express the number of days to retain event records, not scheduled occasions or a literal ungrammatical word order.","target":"Hari retensi peristiwa","verdict":"correct"}
+{"id":"zh-Hans:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"hi:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"de:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"ja:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"fr:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"pt-BR:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"ar:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"ko:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"zh-Hant:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"vi:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"id:src_00cc06886e33bd60","verdict":"keep"}
+{"id":"zh-Hans:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"hi:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"de:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"ja:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"fr:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"pt-BR:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"ar:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"ko:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"zh-Hant:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"vi:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"id:src_00d53ba90d1d8bc2","verdict":"keep"}
+{"id":"zh-Hans:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"hi:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"de:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"ja:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"fr:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"pt-BR:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"ar:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"ko:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"zh-Hant:src_00e0ff21ca6b3875","verdict":"keep"}
+{"id":"vi:src_00e0ff21ca6b3875","verdict":"keep"}
+{"confidence":"high","id":"id:src_00e0ff21ca6b3875","reason":"The caller is the public Soulseek room creation dialog; this replacement fixes the Indonesian clause ordering so it says that private room creation is unsupported by this server API.","target":"Buat atau bergabunglah dengan ruang Soulseek publik berdasarkan nama. Pembuatan ruang pribadi tidak didukung oleh API server ini.","verdict":"correct"}
+{"id":"zh-Hans:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"hi:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"de:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"ja:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"fr:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"pt-BR:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"ar:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"ko:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"zh-Hant:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"vi:src_00e6c8d0e7454006","verdict":"keep"}
+{"id":"id:src_00e6c8d0e7454006","verdict":"keep"}

@@ -1,0 +1,13 @@
+{
+  "expectedHeldCells": 86,
+  "priorHeldCellsReattested": 86,
+  "cellsFromPriorWindows": 72,
+  "W63HeldCells": 14,
+  "W63Breakdown": {
+    "rank459/ar": 1,
+    "rank475/ar": 1,
+    "rank476/allLocales": 12
+  },
+  "allTargetHashesMatchPrior": true,
+  "allCurrentCallerAndCatalogEvidenceRepinned": true
+}

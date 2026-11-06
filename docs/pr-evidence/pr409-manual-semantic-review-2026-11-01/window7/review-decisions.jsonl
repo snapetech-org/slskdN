@@ -1,0 +1,300 @@
+{"id": "es:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "zh-Hans:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"confidence": "high", "id": "hi:src_e2122c0cdd8618fd", "reason": "The source is a caution, not a technical impossibility. The current targets say the server cannot enable security features; these targets preserve “may not be enabled.”", "target": "हो सकता है कि इस सर्वर पर सुरक्षा सुविधाएँ सक्षम न हों।", "verdict": "correct"}
+{"id": "de:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "ja:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "fr:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "pt-BR:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "ar:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"confidence": "high", "id": "ko:src_e2122c0cdd8618fd", "reason": "The source is a caution, not a technical impossibility. The current targets say the server cannot enable security features; these targets preserve “may not be enabled.”", "target": "이 서버에서는 보안 기능이 활성화되어 있지 않을 수 있습니다.", "verdict": "correct"}
+{"id": "zh-Hant:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "vi:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "id:src_e2122c0cdd8618fd", "verdict": "keep"}
+{"id": "es:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "zh-Hans:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "hi:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "de:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "ja:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "fr:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "pt-BR:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "ar:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "ko:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "zh-Hant:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "vi:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "id:src_e21237d77803aa26", "verdict": "keep"}
+{"id": "es:src_e2160b1d56afe41c", "verdict": "keep"}
+{"id": "zh-Hans:src_e2160b1d56afe41c", "verdict": "keep"}
+{"confidence": "high", "id": "hi:src_e2160b1d56afe41c", "reason": "This is a form label for the juror IDs to route a request to. The current Hindi reads as an imperative, Korean calls jurors reviewers/judges rather than jury members, and Vietnamese is an unnatural noun phrase.", "target": "लक्षित जूरी सदस्य", "verdict": "correct"}
+{"id": "de:src_e2160b1d56afe41c", "verdict": "keep"}
+{"id": "ja:src_e2160b1d56afe41c", "verdict": "keep"}
+{"id": "fr:src_e2160b1d56afe41c", "verdict": "keep"}
+{"id": "pt-BR:src_e2160b1d56afe41c", "verdict": "keep"}
+{"id": "ar:src_e2160b1d56afe41c", "verdict": "keep"}
+{"confidence": "high", "id": "ko:src_e2160b1d56afe41c", "reason": "This is a form label for the juror IDs to route a request to. The current Hindi reads as an imperative, Korean calls jurors reviewers/judges rather than jury members, and Vietnamese is an unnatural noun phrase.", "target": "대상 배심원", "verdict": "correct"}
+{"id": "zh-Hant:src_e2160b1d56afe41c", "verdict": "keep"}
+{"confidence": "high", "id": "vi:src_e2160b1d56afe41c", "reason": "This is a form label for the juror IDs to route a request to. The current Hindi reads as an imperative, Korean calls jurors reviewers/judges rather than jury members, and Vietnamese is an unnatural noun phrase.", "target": "Các bồi thẩm viên mục tiêu", "verdict": "correct"}
+{"id": "id:src_e2160b1d56afe41c", "verdict": "keep"}
+{"id": "es:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "zh-Hans:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "hi:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "de:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "ja:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "fr:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "pt-BR:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "ar:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "ko:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "zh-Hant:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "vi:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "id:src_e219439281f24ad1", "verdict": "keep"}
+{"id": "es:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "zh-Hans:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "hi:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "de:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "ja:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "fr:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "pt-BR:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "ar:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "ko:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "zh-Hant:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "vi:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "id:src_e21f935f11d7e966", "verdict": "keep"}
+{"id": "es:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "zh-Hans:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "hi:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "de:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "ja:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "fr:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "pt-BR:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "ar:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "ko:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "zh-Hant:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "vi:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "id:src_e224ec6544d026e1", "verdict": "keep"}
+{"id": "es:src_e22c373f25927038", "verdict": "keep"}
+{"id": "zh-Hans:src_e22c373f25927038", "verdict": "keep"}
+{"id": "hi:src_e22c373f25927038", "verdict": "keep"}
+{"id": "de:src_e22c373f25927038", "verdict": "keep"}
+{"id": "ja:src_e22c373f25927038", "verdict": "keep"}
+{"id": "fr:src_e22c373f25927038", "verdict": "keep"}
+{"id": "pt-BR:src_e22c373f25927038", "verdict": "keep"}
+{"id": "ar:src_e22c373f25927038", "verdict": "keep"}
+{"id": "ko:src_e22c373f25927038", "verdict": "keep"}
+{"id": "zh-Hant:src_e22c373f25927038", "verdict": "keep"}
+{"id": "vi:src_e22c373f25927038", "verdict": "keep"}
+{"id": "id:src_e22c373f25927038", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "Actualice los datos del grupo de lanzamientos de MusicBrainz antes de reconstruir el mapa de cobertura. Esto puede contactar con MusicBrainz, pero no explora los pares de Soulseek.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "在重建覆盖图之前刷新 MusicBrainz 的发行组数据。这可能会联系 MusicBrainz，但不会浏览 Soulseek 对等节点。", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "कवरेज मानचित्र को फिर से बनाने से पहले MusicBrainz रिलीज़-समूह डेटा ताज़ा करें। इससे MusicBrainz से संपर्क हो सकता है, लेकिन Soulseek पीयर ब्राउज़ नहीं होंगे।", "verdict": "correct"}
+{"id": "de:src_e23d6da00a86d63c", "verdict": "keep"}
+{"id": "ja:src_e23d6da00a86d63c", "verdict": "keep"}
+{"confidence": "high", "id": "fr:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "Actualisez les données du groupe de sorties de MusicBrainz avant de reconstruire la carte de couverture. Cela peut contacter MusicBrainz, mais ne parcourt pas les pairs Soulseek.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "Atualize os dados do grupo de lançamentos do MusicBrainz antes de reconstruir o mapa de cobertura. Isso pode entrar em contato com o MusicBrainz, mas não busca pares do Soulseek.", "verdict": "correct"}
+{"id": "ar:src_e23d6da00a86d63c", "verdict": "keep"}
+{"id": "ko:src_e23d6da00a86d63c", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hant:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "在重建覆蓋圖之前刷新 MusicBrainz 的發行組資料。這可能會聯絡 MusicBrainz，但不會瀏覽 Soulseek 對等節點。", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "Làm mới dữ liệu nhóm phát hành của MusicBrainz trước khi xây dựng lại bản đồ vùng phủ sóng. Thao tác này có thể liên hệ với MusicBrainz nhưng không duyệt các peer của Soulseek.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e23d6da00a86d63c", "reason": "MusicBrainz defines a release group as the logical album-level entity that groups releases, not a publishing group or software version group (https://musicbrainz.org/doc/Release_Group). The Mesh callsite also means network peers; current Hindi, Vietnamese, and Indonesian use generic companions/colleagues instead. Keep the MusicBrainz and Soulseek names unchanged.", "target": "Perbarui data grup rilis MusicBrainz sebelum membangun ulang peta cakupan. Ini dapat menghubungi MusicBrainz, tetapi tidak menelusuri peer Soulseek.", "verdict": "correct"}
+{"id": "es:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "zh-Hans:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "hi:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "de:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "ja:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "fr:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "pt-BR:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "ar:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "ko:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "zh-Hant:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "vi:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "id:src_e240e5bf9dcb6c11", "verdict": "keep"}
+{"id": "es:src_e24531b4697cd016", "verdict": "keep"}
+{"id": "zh-Hans:src_e24531b4697cd016", "verdict": "keep"}
+{"confidence": "high", "id": "hi:src_e24531b4697cd016", "reason": "This button exits fullscreen and returns the visualizer to the player bar. The current labels in these locales mean hide/shrink or are not idiomatic; these targets express collapsing/minimizing the visualizer.", "target": "विज़ुअलाइज़र को समेटें", "verdict": "correct"}
+{"confidence": "high", "id": "de:src_e24531b4697cd016", "reason": "This button exits fullscreen and returns the visualizer to the player bar. The current labels in these locales mean hide/shrink or are not idiomatic; these targets express collapsing/minimizing the visualizer.", "target": "Visualisierer einklappen", "verdict": "correct"}
+{"id": "ja:src_e24531b4697cd016", "verdict": "keep"}
+{"confidence": "high", "id": "fr:src_e24531b4697cd016", "reason": "This button exits fullscreen and returns the visualizer to the player bar. The current labels in these locales mean hide/shrink or are not idiomatic; these targets express collapsing/minimizing the visualizer.", "target": "Replier le visualiseur", "verdict": "correct"}
+{"id": "pt-BR:src_e24531b4697cd016", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e24531b4697cd016", "reason": "This button exits fullscreen and returns the visualizer to the player bar. The current labels in these locales mean hide/shrink or are not idiomatic; these targets express collapsing/minimizing the visualizer.", "target": "طيّ عارض المرئيات", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e24531b4697cd016", "reason": "This button exits fullscreen and returns the visualizer to the player bar. The current labels in these locales mean hide/shrink or are not idiomatic; these targets express collapsing/minimizing the visualizer.", "target": "비주얼라이저 접기", "verdict": "correct"}
+{"id": "zh-Hant:src_e24531b4697cd016", "verdict": "keep"}
+{"id": "vi:src_e24531b4697cd016", "verdict": "keep"}
+{"confidence": "high", "id": "id:src_e24531b4697cd016", "reason": "This button exits fullscreen and returns the visualizer to the player bar. The current labels in these locales mean hide/shrink or are not idiomatic; these targets express collapsing/minimizing the visualizer.", "target": "Minimalkan visualizer", "verdict": "correct"}
+{"id": "es:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "zh-Hans:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "hi:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "de:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "ja:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "fr:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "pt-BR:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "ar:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "ko:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "zh-Hant:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "vi:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "id:src_e246e2063d73f567", "verdict": "keep"}
+{"id": "es:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "zh-Hans:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "hi:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "de:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "ja:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "fr:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "pt-BR:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "ar:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "ko:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "zh-Hant:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "vi:src_e256f85433258f6f", "verdict": "keep"}
+{"id": "id:src_e256f85433258f6f", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "Sincronización de elementos deseados", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "同步所需项目", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "वांछित आइटम का समन्वयन", "verdict": "correct"}
+{"confidence": "high", "id": "de:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "Synchronisierung gewünschter Einträge", "verdict": "correct"}
+{"confidence": "high", "id": "ja:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "希望項目の同期", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "Synchronisation des éléments souhaités", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "Sincronização de itens desejados", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "مزامنة العناصر المطلوبة", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "원하는 항목 동기화", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hant:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "同步所需項目", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "Đồng bộ các mục mong muốn", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e2632921eacdad49", "reason": "This status is controlled by syncWantedToWishlist and means synchronizing items marked wanted into the Wishlist. Literal pull/translations of want as desire or criminal wanted do not express the integration capability.", "target": "Sinkronisasi item yang diinginkan", "verdict": "correct"}
+{"id": "es:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "zh-Hans:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "hi:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "de:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "ja:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "fr:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "pt-BR:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "ar:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "ko:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "zh-Hant:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "vi:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "id:src_e27fdb53413c64a6", "verdict": "keep"}
+{"id": "es:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "zh-Hans:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "hi:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "de:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "ja:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "fr:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "pt-BR:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "ar:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "ko:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "zh-Hant:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "vi:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "id:src_e2a5b0a420060eb3", "verdict": "keep"}
+{"id": "es:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "zh-Hans:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "hi:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "de:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "ja:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "fr:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "pt-BR:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "ar:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "ko:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "zh-Hant:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "vi:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "id:src_e2b54a9c8a366f79", "verdict": "keep"}
+{"id": "es:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "zh-Hans:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "hi:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "de:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "ja:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "fr:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "pt-BR:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "ar:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "ko:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "zh-Hant:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "vi:src_e2c1573409c7ac68", "verdict": "keep"}
+{"id": "id:src_e2c1573409c7ac68", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "Se aceptó la recomendación de liberar el elemento para esta revisión.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "本次审查已接受放行建议。", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "इस समीक्षा के लिए वस्तु को रिहा करने की अनुशंसा स्वीकार की गई।", "verdict": "correct"}
+{"confidence": "high", "id": "de:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "Die Empfehlung zur Freigabe des Elements wurde für diese Prüfung angenommen.", "verdict": "correct"}
+{"confidence": "high", "id": "ja:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "この審査で対象を隔離解除する推奨が承認されました。", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "La recommandation de libérer l’élément a été acceptée pour cet examen.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "A recomendação de liberar o item foi aceita nesta revisão.", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "تم قبول التوصية برفع العزل لهذه المراجعة.", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "이 검토에서 항목의 격리 해제 권고가 승인되었습니다.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hant:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "本次審查已接受解除隔離的建議。", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "Đề xuất gỡ cách ly cho mục này đã được chấp nhận trong lần đánh giá này.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e2cd149d10d55541", "reason": "This is a Quarantine Jury verdict recommendation to release an item from quarantine, not a software release candidate. The current translations in these locales read as a software/version candidate; name the quarantine-release recommendation.", "target": "Rekomendasi untuk melepas item dari karantina diterima dalam tinjauan ini.", "verdict": "correct"}
+{"id": "es:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "zh-Hans:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "hi:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "de:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "ja:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "fr:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "pt-BR:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "ar:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "ko:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "zh-Hant:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "vi:src_e2d0a54968ead24e", "verdict": "keep"}
+{"id": "id:src_e2d0a54968ead24e", "verdict": "keep"}
+{"confidence": "high", "id": "es:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "La configuración remota está deshabilitada. Estos controles muestran la estructura de la configuración, pero guardar YAML no estará habilitado hasta que se active la configuración remota.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hans:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "远程配置已禁用。这些控件显示设置结构；启用远程配置前，保存 YAML 的功能也会被禁用。", "verdict": "correct"}
+{"confidence": "high", "id": "hi:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "दूरस्थ कॉन्फ़िगरेशन अक्षम है। ये नियंत्रण सेटिंग्स की संरचना दिखाते हैं, लेकिन दूरस्थ कॉन्फ़िगरेशन सक्षम होने तक YAML सहेजना अक्षम रहेगा।", "verdict": "correct"}
+{"confidence": "high", "id": "de:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "Die Remote-Konfiguration ist deaktiviert. Diese Steuerelemente zeigen die Struktur der Einstellungen; YAML kann erst gespeichert werden, wenn die Remote-Konfiguration aktiviert ist.", "verdict": "correct"}
+{"confidence": "high", "id": "ja:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "リモート設定は無効です。これらのコントロールには設定の構造が表示されますが、リモート設定が有効になるまで YAML は保存できません。", "verdict": "correct"}
+{"confidence": "high", "id": "fr:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "La configuration distante est désactivée. Ces commandes affichent la structure des paramètres, mais l’enregistrement YAML reste désactivé jusqu’à l’activation de la configuration distante.", "verdict": "correct"}
+{"confidence": "high", "id": "pt-BR:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "A configuração remota está desabilitada. Esses controles mostram a estrutura das configurações, mas salvar YAML permanece desabilitado até que a configuração remota seja habilitada.", "verdict": "correct"}
+{"confidence": "high", "id": "ar:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "التكوين عن بُعد معطّل. تعرض عناصر التحكم هذه بنية الإعدادات، لكن يظل حفظ YAML معطّلًا إلى أن يتم تمكين التكوين عن بُعد.", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "원격 구성이 비활성화되었습니다. 이 컨트롤은 설정 구조를 표시하지만 원격 구성이 활성화될 때까지 YAML을 저장할 수 없습니다.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hant:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "遠端設定已停用。這些控制項顯示設定結構，但在啟用遠端設定之前，仍無法儲存 YAML。", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "Cấu hình từ xa đang bị tắt. Các điều khiển này hiển thị cấu trúc cài đặt, nhưng chưa thể lưu YAML cho đến khi bật cấu hình từ xa.", "verdict": "correct"}
+{"confidence": "high", "id": "id:src_e2daab0fd7d18d80", "reason": "Here settings shape means the structure/schema of configuration controls, not a physical shape. These targets use the software-configuration meaning and preserve the YAML token.", "target": "Konfigurasi jarak jauh dinonaktifkan. Kontrol ini menampilkan struktur pengaturan, tetapi penyimpanan YAML tetap dinonaktifkan sampai konfigurasi jarak jauh diaktifkan.", "verdict": "correct"}
+{"id": "es:src_e2ec56747a4130cd", "verdict": "keep"}
+{"confidence": "high", "id": "zh-Hans:src_e2ec56747a4130cd", "reason": "In this acquisition-planning feature, acquisition means obtaining media/content, not procurement/purchasing. Korean also needs distinct terms for search and discovery.", "target": "可用于内容获取规划的搜索、发现、下载和验证来源。", "verdict": "correct"}
+{"id": "hi:src_e2ec56747a4130cd", "verdict": "keep"}
+{"id": "de:src_e2ec56747a4130cd", "verdict": "keep"}
+{"id": "ja:src_e2ec56747a4130cd", "verdict": "keep"}
+{"id": "fr:src_e2ec56747a4130cd", "verdict": "keep"}
+{"id": "pt-BR:src_e2ec56747a4130cd", "verdict": "keep"}
+{"confidence": "high", "id": "ar:src_e2ec56747a4130cd", "reason": "In this acquisition-planning feature, acquisition means obtaining media/content, not procurement/purchasing. Korean also needs distinct terms for search and discovery.", "target": "مصادر البحث والاكتشاف والتنزيل والتحقق المتاحة لتخطيط الحصول على المحتوى.", "verdict": "correct"}
+{"confidence": "high", "id": "ko:src_e2ec56747a4130cd", "reason": "In this acquisition-planning feature, acquisition means obtaining media/content, not procurement/purchasing. Korean also needs distinct terms for search and discovery.", "target": "콘텐츠 확보 계획에 사용할 수 있는 검색, 탐색, 다운로드 및 검증 소스.", "verdict": "correct"}
+{"confidence": "high", "id": "zh-Hant:src_e2ec56747a4130cd", "reason": "In this acquisition-planning feature, acquisition means obtaining media/content, not procurement/purchasing. Korean also needs distinct terms for search and discovery.", "target": "可用於內容取得規劃的搜尋、探索、下載和驗證來源。", "verdict": "correct"}
+{"confidence": "high", "id": "vi:src_e2ec56747a4130cd", "reason": "In this acquisition-planning feature, acquisition means obtaining media/content, not procurement/purchasing. Korean also needs distinct terms for search and discovery.", "target": "Các nguồn tìm kiếm, khám phá, tải xuống và xác minh có sẵn cho việc lập kế hoạch thu thập nội dung.", "verdict": "correct"}
+{"id": "id:src_e2ec56747a4130cd", "verdict": "keep"}
+{"id": "es:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "zh-Hans:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "hi:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "de:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "ja:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "fr:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "pt-BR:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "ar:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "ko:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "zh-Hant:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "vi:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "id:src_e2f79e5b60330bba", "verdict": "keep"}
+{"id": "es:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "zh-Hans:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "hi:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "de:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "ja:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "fr:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "pt-BR:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "ar:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "ko:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "zh-Hant:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "vi:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "id:src_e31aee3a0f06b338", "reason": "Realm is a Mesh evidence trust tier (source id “realm”), but the best localized term may be a technical borrowing or a local word for trust domain. The current targets vary among “field/domain,” “kingdom,” and retained realm; choose a locale-standard term with a native reviewer before changing.", "verdict": "uncertain"}
+{"id": "es:src_e3220963906314e3", "verdict": "keep"}
+{"id": "zh-Hans:src_e3220963906314e3", "verdict": "keep"}
+{"id": "hi:src_e3220963906314e3", "verdict": "keep"}
+{"id": "de:src_e3220963906314e3", "verdict": "keep"}
+{"id": "ja:src_e3220963906314e3", "verdict": "keep"}
+{"id": "fr:src_e3220963906314e3", "verdict": "keep"}
+{"id": "pt-BR:src_e3220963906314e3", "verdict": "keep"}
+{"id": "ar:src_e3220963906314e3", "verdict": "keep"}
+{"id": "ko:src_e3220963906314e3", "verdict": "keep"}
+{"id": "zh-Hant:src_e3220963906314e3", "verdict": "keep"}
+{"id": "vi:src_e3220963906314e3", "verdict": "keep"}
+{"id": "id:src_e3220963906314e3", "verdict": "keep"}
+{"id": "es:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "zh-Hans:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "hi:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "de:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "ja:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "fr:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "pt-BR:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "ar:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "ko:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "zh-Hant:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "vi:src_e33354baf044a67f", "verdict": "keep"}
+{"id": "id:src_e33354baf044a67f", "verdict": "keep"}

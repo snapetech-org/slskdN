@@ -1,5 +1,5 @@
 import LocalizedText from "./Shared/LocalizedText";
-import { interfaceText, interfaceTextProps } from "../lib/interfaceLocale";
+import { interfaceTextProps, useInterfaceLanguage } from "../lib/interfaceLocale";
 import * as relayAPI from '../lib/relay';
 import { connect, disconnect } from '../lib/server';
 import React from 'react';
@@ -13,28 +13,30 @@ const ConnectionStatusMenuItem = ({
   server,
   user,
 }) => {
+  const { t } = useInterfaceLanguage();
+
   if (mode === 'Agent') {
     const controllerState = ['Connected', 'Connecting', 'Reconnecting', 'Disconnected'].includes(controller?.state)
-      ? interfaceText(controller.state)
+      ? t(controller.state)
       : controller?.state;
     const isConnected = controller?.state === 'Connected';
     const isTransitioning = ['Connecting', 'Reconnecting'].includes(
       controller?.state,
     );
-    const description = isConnected
+    const descriptionSource = isConnected
       ? 'Disconnect from the relay controller.'
       : 'Connect to the relay controller.';
+    const descriptionProps = interfaceTextProps(descriptionSource);
 
     return (
       <Popup
-        content={description}
+        content={<LocalizedText source={descriptionSource} />}
         trigger={(
           <Menu.Item
-            aria-label={description}
+            {...descriptionProps}
             onClick={() =>
               isConnected ? relayAPI.disconnect() : relayAPI.connect()
             }
-            title={description}
           >
             <Icon.Group className="menu-icon-group">
               <Icon
@@ -64,16 +66,16 @@ const ConnectionStatusMenuItem = ({
   }
 
   if (server?.isConnected) {
-    const description = 'Disconnect from the Soulseek server.';
+    const descriptionSource = 'Disconnect from the Soulseek server.';
+    const descriptionProps = interfaceTextProps(descriptionSource);
 
     return (
       <Popup
-        content={description}
+        content={<LocalizedText source={descriptionSource} />}
         trigger={(
           <Menu.Item
-            aria-label={description}
+            {...descriptionProps}
             onClick={() => disconnect()}
-            title={description}
           >
             <Icon.Group className="menu-icon-group">
               <Icon
@@ -110,16 +112,16 @@ const ConnectionStatusMenuItem = ({
     color = 'green';
   }
 
-  const description = 'Connect to the Soulseek server.';
+  const descriptionSource = 'Connect to the Soulseek server.';
+  const descriptionProps = interfaceTextProps(descriptionSource);
 
   return (
     <Popup
-      content={description}
+      content={<LocalizedText source={descriptionSource} />}
       trigger={(
         <Menu.Item
-          aria-label={description}
+          {...descriptionProps}
           onClick={() => connect()}
-          title={description}
         >
           <Icon.Group className="menu-icon-group">
             <Icon

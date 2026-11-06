@@ -1,0 +1,14 @@
+
+
+<!-- slskdn-pr409-w910-richtext-delivery -->
+## Rank-910 rich-text localization follow-up — 2026-11-05
+
+Applied in source/catalog commit [1e33696072e322d98827c022c4432a57a76be2db](https://github.com/snapetech-org/slskdN/commit/1e33696072e322d98827c022c4432a57a76be2db), with application evidence in [298702ab3464a5803c4bc36e8291ea60a4b490d7](https://github.com/snapetech-org/slskdN/commit/298702ab3464a5803c4bc36e8291ea60a4b490d7).
+
+- The held sentence now uses LocalizedRichText with named {mode} and {signature} React nodes. Enforce and the ed25519:<base64 signature> sample are caller-owned LTR English nodes; the sample remains in code outside translated text.
+- The root-accepted sentence is translated in all 12 locales and reads back with the sealed hashes. Hindi remains low confidence. The two split source keys had no other source callers and were removed; each catalog keeps the prior key order apart from replacing the first key and removing the second.
+- The formal Enforce enum, join options, and signature-verification behavior were reattested. The two UI caller/runtime pins differ on current main; the reviewed PR branch was used without merging main.
+- No tests, builds, scans, or manual CI dispatches were run. No workflow files changed. PR #409 remains open and draft; no merge, release, or tag was made.
+
+Evidence: [rank-910 rich-text follow-up](docs/pr-evidence/pr409-localization-2026-11-05/rank-910-richtext-followup/README.md)
+

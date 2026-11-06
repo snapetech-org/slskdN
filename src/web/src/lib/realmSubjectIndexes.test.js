@@ -62,8 +62,8 @@ describe('realmSubjectIndexes', () => {
 
     expect(formatted).toContain('slskdN realm subject-index conflict review');
     expect(formatted).toContain('Realm: realm-a');
-    expect(formatted).toContain('ACTIVE realm-a:index-a:r1: mbid-a');
-    expect(formatted).toContain('DISABLED realm-a:index-b:r2: mbid-b');
+    expect(formatted).toContain('Active realm-a:index-a:r1: mbid-a');
+    expect(formatted).toContain('Disabled realm-a:index-b:r2: mbid-b');
     expect(formatted).toContain(
       'Provenance: realm:realm-a:subject-index:index-b:r2',
     );

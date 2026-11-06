@@ -1,0 +1,25 @@
+{
+  "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "window": "W72",
+  "reviewedCells": 300,
+  "dispositions": {
+    "accept-current": 161,
+    "correct": 24,
+    "hold": 108,
+    "refine": 7
+  },
+  "proposals": 31,
+  "callerlessHolds": 108,
+  "targetTextsIncluded": false,
+  "priorHoldsHashOnly": 152,
+  "priorSelectedIdsHashOnly": 1782,
+  "baselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 8
+  },
+  "proposedTargetTokenFailures": 0,
+  "reviewBasis": "Independent pass using only the candidate-free input; no primary review or candidate target was available."
+}

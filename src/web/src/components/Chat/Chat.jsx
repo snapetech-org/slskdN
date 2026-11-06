@@ -1,4 +1,5 @@
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import LocalizedText from "../Shared/LocalizedText";
+import { interfaceAttributeText, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import './Chat.css';
 import { activeChatKey } from '../../config';
 import * as chat from '../../lib/chat';
@@ -255,7 +256,7 @@ const Chat = ({ state }) => {
         {tab.label}
         {tabs.length > 1 && (
           <TooltipButton
-            aria-label={interfaceText("Close {label} chat tab", { "label": (tab.label) })}
+            {...interfaceTextProps("Close {label} chat tab")} aria-label={interfaceAttributeText("Close {label} chat tab", { "label": (tab.label) })}
             basic
             className="chat-tab-close"
             compact
@@ -266,7 +267,7 @@ const Chat = ({ state }) => {
             }}
             size="mini"
             style={{ marginLeft: '8px', opacity: 0.7 }}
-            tooltip={`Close the ${tab.label} tab. Its saved conversation remains available in the chat list.`}
+            tooltip={<LocalizedText source="Close the {label} tab. Its saved conversation remains available in the chat list." values={{ label: tab.label }} />}
            {...interfaceTextProps("Close {label} chat tab")}>
             <Icon name="close" />
           </TooltipButton>

@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Icon, Popup } from 'semantic-ui-react';
 import {
@@ -1777,7 +1777,7 @@ const Visualizer = ({
             })}
             trigger={
               <Button
-                aria-label={interfaceText('Cycle visualizer engine to {engine}', {
+                aria-label={interfaceAttributeText('Cycle visualizer engine to {engine}', {
                   engine: getEngineLabel(getNextEngine(activeEngineType)),
                 })}
                 data-testid="visualizer-switch-engine"
@@ -1949,7 +1949,7 @@ const Visualizer = ({
                   : 'Mark the active native preset as a favorite.')}
                   trigger={
                     <Button
-                      aria-label={interfaceText(activeNativePresetIsFavorite
+                      aria-label={interfaceAttributeText(activeNativePresetIsFavorite
                         ? 'Unfavorite active native preset'
                         : 'Favorite active native preset')}
                       active={activeNativePresetIsFavorite}
@@ -2109,7 +2109,7 @@ const Visualizer = ({
                 })}
                 trigger={
                   <input
-                    aria-label={interfaceText("Adjust native MilkDrop {label}", { "label": (nativeParameter.label) })}
+                    aria-label={interfaceAttributeText("Adjust native MilkDrop {label}", { "label": (nativeParameter.label) })}
                     className="player-visualizer-native-range"
                     data-testid="visualizer-native-parameter-value"
                     max={nativeParameter.max}
@@ -2153,7 +2153,7 @@ const Visualizer = ({
                 content={interfaceText("Show or hide native MilkDrop debug details for the active preset.")}
                 trigger={
                   <Button
-                    aria-label={interfaceText(showNativeDebug
+                    aria-label={interfaceAttributeText(showNativeDebug
                       ? 'Hide native MilkDrop debug details'
                       : 'Show native MilkDrop debug details')}
                     active={showNativeDebug}
@@ -2322,7 +2322,7 @@ const Visualizer = ({
                 })}
                 trigger={
                   <Button
-                    aria-label={interfaceText('Native automatic preset changes: {mode}', {
+                    aria-label={interfaceAttributeText('Native automatic preset changes: {mode}', {
                       mode: getNativeAutomationLabel(nativeAutomationMode),
                     })}
                     active={nativeAutomationMode !== 'off'}

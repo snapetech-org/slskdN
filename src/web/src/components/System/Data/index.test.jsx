@@ -4,6 +4,7 @@ import React from 'react';
 import { clearCompleted } from '../../../lib/transfers';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { toast } from 'react-toastify';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('../../../lib/transfers', () => ({
@@ -39,6 +40,22 @@ describe('System Transfer Data', () => {
 
     await waitFor(() => {
       expect(clearCompleted).toHaveBeenCalledWith({ direction: 'upload' });
+    });
+  });
+
+  it('uses fixed localized success messages for upload and download cleanup', async () => {
+    clearCompleted.mockResolvedValue(undefined);
+    const user = userEvent.setup();
+    render(<Data />);
+
+    await user.click(screen.getByRole('button', { name: 'Clear All Completed Uploads' }));
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith('Completed upload records cleared.');
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Clear All Completed Downloads' }));
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith('Completed download records cleared.');
     });
   });
 

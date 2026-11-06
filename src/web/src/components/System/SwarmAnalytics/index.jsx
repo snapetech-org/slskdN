@@ -1,3 +1,4 @@
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 import LocalizedText from "../../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
@@ -11,9 +12,8 @@ import * as swarmAnalyticsLibrary from '../../../lib/swarmAnalytics';
 import FeatureGateNotice from '../../Shared/FeatureGateNotice';
 import useFeatureGates, { isFeatureEnabled } from '../../Shared/useFeatureGates';
 import { formatBytes } from '../../../lib/util';
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Card,
   Dropdown,
@@ -111,7 +111,7 @@ const SwarmAnalytics = () => {
         document.hidden ||
         fetchRequestRef.current !== request
       ) return;
-      toast.error(getApiErrorMessage(error, { t: interfaceText }, 'Failed to load analytics'));
+      toast.error(getApiErrorMessageOutput(error, { t: interfaceText }, 'Failed to load analytics'));
       console.error('Failed to fetch analytics:', error);
     } finally {
       if (fetchRequestRef.current === request) {

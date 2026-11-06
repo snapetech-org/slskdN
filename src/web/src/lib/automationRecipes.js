@@ -1,3 +1,5 @@
+import { interfaceText } from './interfaceLocale';
+import { formatRegionalNumber } from './regionalFormat';
 import {
   getLocalStorageItem,
   removeLocalStorageItem,
@@ -102,6 +104,103 @@ export const automationRecipes = [
   },
 ];
 
+const localizeAutomationRecipeCopy = (value) => {
+  switch (value) {
+    case 'Local Diagnostics':
+      return interfaceText('Local Diagnostics');
+    case 'Share and Library Reminders':
+      return interfaceText('Share and Library Reminders');
+    case 'Dashboard Refresh':
+      return interfaceText('Dashboard Refresh');
+    case 'Wishlist Retry':
+      return interfaceText('Wishlist Retry');
+    case 'Library Health Scan':
+      return interfaceText('Library Health Scan');
+    case 'Media Server Rescan':
+      return interfaceText('Media Server Rescan');
+    case 'Mesh Evidence Publish':
+      return interfaceText('Mesh Evidence Publish');
+    case 'Checks connection, shares, paths, and credentials for setup drift.':
+      return interfaceText('Checks connection, shares, paths, and credentials for setup drift.');
+    case 'Surfaces stale share-cache and library-scan reminders before users hit missing results.':
+      return interfaceText('Surfaces stale share-cache and library-scan reminders before users hit missing results.');
+    case 'Keeps local dashboard summaries fresh without contacting public peers.':
+      return interfaceText('Keeps local dashboard summaries fresh without contacting public peers.');
+    case 'Retries failed Wishlist items using the selected acquisition profile.':
+      return interfaceText('Retries failed Wishlist items using the selected acquisition profile.');
+    case 'Finds duplicates, dead files, metadata gaps, fake lossless files, and missing art.':
+      return interfaceText('Finds duplicates, dead files, metadata gaps, fake lossless files, and missing art.');
+    case 'Asks configured media servers to rescan after successful library imports.':
+      return interfaceText('Asks configured media servers to rescan after successful library imports.');
+    case 'Publishes explicit opt-in signed quality and verification evidence to trusted mesh peers.':
+      return interfaceText('Publishes explicit opt-in signed quality and verification evidence to trusted mesh peers.');
+    case 'None required':
+      return interfaceText('None required');
+    case 'Download approval':
+      return interfaceText('Download approval');
+    case 'Fix confirmation':
+      return interfaceText('Fix confirmation');
+    case 'Configured import success':
+      return interfaceText('Configured import success');
+    case 'Explicit evidence publication opt-in':
+      return interfaceText('Explicit evidence publication opt-in');
+    case 'Continuous':
+      return interfaceText('Continuous');
+    case 'Daily':
+      return interfaceText('Daily');
+    case 'Every 15 minutes':
+      return interfaceText('Every 15 minutes');
+    case 'Manual or scheduled':
+      return interfaceText('Manual or scheduled');
+    case 'After import':
+      return interfaceText('After import');
+    case '5 minutes':
+      return interfaceText('5 minutes');
+    case '24 hours':
+      return interfaceText('24 hours');
+    case '15 minutes':
+      return interfaceText('15 minutes');
+    case '2 hours':
+      return interfaceText('2 hours');
+    case '10 minutes':
+      return interfaceText('10 minutes');
+    case '12 hours':
+      return interfaceText('12 hours');
+    case '30 seconds':
+      return interfaceText('30 seconds');
+    case '1 minute':
+      return interfaceText('1 minute');
+    case '20 seconds':
+      return interfaceText('20 seconds');
+    case '20 minutes':
+      return interfaceText('20 minutes');
+    case '30 minutes':
+      return interfaceText('30 minutes');
+    case '2 minutes':
+      return interfaceText('2 minutes');
+    case 'Local':
+      return interfaceText('Local');
+    case 'Public peers possible':
+      return interfaceText('Public peers possible');
+    case 'Local network':
+      return interfaceText('Local network');
+    case 'Trusted mesh':
+      return interfaceText('Trusted mesh');
+    case 'Read only':
+      return interfaceText('Read only');
+    case 'Downloads after approval':
+      return interfaceText('Downloads after approval');
+    case 'Read only until fixed':
+      return interfaceText('Read only until fixed');
+    case 'Media-server scan':
+      return interfaceText('Media-server scan');
+    case 'No file writes':
+      return interfaceText('No file writes');
+    default:
+      return value;
+  }
+};
+
 const defaultState = automationRecipes.reduce((state, recipe) => {
   state[recipe.id] = {
     enabled: recipe.enabledByDefault,
@@ -178,6 +277,7 @@ export const buildAutomationExecutionReport = (
   recipeId: recipe.id,
   runLimit: result.runLimit || 0,
   ...(result.scanId ? { scanId: result.scanId } : {}),
+  ...(typeof result.libraryPath === 'string' ? { libraryPath: result.libraryPath } : {}),
   skipped: result.skipped || 0,
   started: result.started || 0,
   summary:
@@ -202,31 +302,86 @@ export const buildAutomationRunHistory = (state = getAutomationRecipeState()) =>
 export const formatAutomationRunHistoryReport = (
   history = buildAutomationRunHistory(),
 ) => {
+  const formatRunSummary = (report) => {
+    if (!report || typeof report !== 'object') return '';
+    if (report.recipeId === 'wishlist-retry' && Number.isFinite(report.started)) {
+      return interfaceText('Ran {started} Wishlist searches; {failed} failed; {skipped} skipped.', {
+        failed: formatRegionalNumber(report.failed || 0),
+        skipped: formatRegionalNumber(report.skipped || 0),
+        started: formatRegionalNumber(report.started || 0),
+      });
+    }
+    if (report.recipeId === 'library-health-scan' && report.scanId && typeof report.libraryPath === 'string') {
+      return interfaceText('Started Library Health scan {scanId} for {libraryPath}.', {
+        libraryPath: report.libraryPath,
+        scanId: report.scanId,
+      });
+    }
+
+    // Older saved reports contain the same app-authored English templates.
+    // Keep unknown backend or user-provided summaries verbatim.
+    const summary = typeof report.summary === 'string' ? report.summary : '';
+    const wishlistMatch = summary.match(/^Ran (\d+) Wishlist searches; (\d+) failed; (\d+) skipped\.$/u);
+    if (report.recipeId === 'wishlist-retry' && wishlistMatch) {
+      return interfaceText('Ran {started} Wishlist searches; {failed} failed; {skipped} skipped.', {
+        failed: formatRegionalNumber(Number(wishlistMatch[2])),
+        skipped: formatRegionalNumber(Number(wishlistMatch[3])),
+        started: formatRegionalNumber(Number(wishlistMatch[1])),
+      });
+    }
+    const healthMatch = summary.match(/^Started Library Health scan (.+) for (.*)\.$/u);
+    if (report.recipeId === 'library-health-scan' && healthMatch) {
+      return interfaceText('Started Library Health scan {scanId} for {libraryPath}.', {
+        libraryPath: healthMatch[2],
+        scanId: healthMatch[1],
+      });
+    }
+    return summary;
+  };
+
   const lines = [
-    'slskdN automation review history',
-    `Entries: ${history.length}`,
+    interfaceText("slskdN automation review history"),
+    interfaceText('Entries: {count}', { count: formatRegionalNumber(history.length) }),
     '',
   ];
 
   if (history.length === 0) {
-    lines.push('No enabled recipes or dry-run checkpoints.');
+    lines.push(interfaceText('No enabled recipes or dry-run checkpoints.'));
     return lines.join('\n');
   }
 
   history.forEach((entry) => {
-    lines.push(`- ${entry.title}`);
-    lines.push(`  Enabled: ${entry.enabled ? 'yes' : 'no'}`);
-    lines.push(`  Last run: ${entry.lastRunAt || 'not recorded'}`);
+    lines.push(interfaceText('- {title}', { title: localizeAutomationRecipeCopy(entry.title) }));
+    lines.push(interfaceText('  Enabled: {enabled}', {
+      enabled: interfaceText(entry.enabled ? 'yes' : 'no'),
+    }));
+    lines.push(interfaceText('  Last run: {time}', {
+      time: entry.lastRunAt || interfaceText('not recorded'),
+    }));
     if (entry.lastRunReport) {
-      lines.push(`  Run summary: ${entry.lastRunReport.summary}`);
-      lines.push(`  Network impact: ${entry.lastRunReport.networkImpact}`);
-      lines.push(`  File impact: ${entry.lastRunReport.fileImpact}`);
+      lines.push(interfaceText('  Run summary: {summary}', {
+        summary: formatRunSummary(entry.lastRunReport),
+      }));
+      lines.push(interfaceText('  Network impact: {impact}', {
+        impact: localizeAutomationRecipeCopy(entry.lastRunReport.networkImpact),
+      }));
+      lines.push(interfaceText('  File impact: {impact}', {
+        impact: localizeAutomationRecipeCopy(entry.lastRunReport.fileImpact),
+      }));
     }
-    lines.push(`  Last dry run: ${entry.lastDryRunAt || 'not recorded'}`);
+    lines.push(interfaceText('  Last dry run: {time}', {
+      time: entry.lastDryRunAt || interfaceText('not recorded'),
+    }));
     if (entry.lastDryRunReport) {
-      lines.push(`  Executed: ${entry.lastDryRunReport.executed ? 'yes' : 'no'}`);
-      lines.push(`  Network impact: ${entry.lastDryRunReport.networkImpact}`);
-      lines.push(`  File impact: ${entry.lastDryRunReport.fileImpact}`);
+      lines.push(interfaceText('  Executed: {executed}', {
+        executed: interfaceText(entry.lastDryRunReport.executed ? 'yes' : 'no'),
+      }));
+      lines.push(interfaceText('  Network impact: {impact}', {
+        impact: localizeAutomationRecipeCopy(entry.lastDryRunReport.networkImpact),
+      }));
+      lines.push(interfaceText('  File impact: {impact}', {
+        impact: localizeAutomationRecipeCopy(entry.lastDryRunReport.fileImpact),
+      }));
     }
   });
 

@@ -1,0 +1,131 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "pins": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "url": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+    "tree": "632924177388e15b594976774d2d879a098e8a72",
+    "remoteBranchHead": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+    "bodySha256": "9234d213b20ffdbb469fcf0067a34df7ccd23d155cd1349cebb2481499738ae4",
+    "localWorktreeClean": true
+  },
+  "window": "W54 continuation of the W49 stable-ID inventory: ranks 251-275; historical source ordinals unavailable and not claimed",
+  "rankBasis": "W49 primary source-inventory.jsonl, re-attested against W54 current catalog keys. W50 selected IDs map to W49 ranks 151-175; W51 to 176-200; W52 to 201-225; W53 to 226-250; W54 selects the next 25 IDs at 251-275. W49 ranks 126-150 remain excluded/unreviewed.",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "previousBoundary": {
+    "role": "previous-boundary-W53",
+    "continuationRank": 250,
+    "sourceId": "src_18e805b373a547da",
+    "source": "Review this item’s linked search history and past results.",
+    "sourceSha256": "18e805b373a547da95f44651248f9ecda579f3d7afae0b6bb36851a245d4ed83",
+    "historicalSourceOrdinal": null
+  },
+  "firstSelected": {
+    "role": "selected-W54",
+    "continuationRank": 251,
+    "sourceId": "src_18f285592896ec8e",
+    "source": "Brown",
+    "sourceSha256": "18f285592896ec8ead1b69d90ee4080300ba8dc31665a6ad97550c8f81b15502",
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "role": "selected-W54",
+    "continuationRank": 275,
+    "sourceId": "src_19d9e58cec9cd8fd",
+    "source": "A sidecar cover file would be written after explicit import approval.",
+    "sourceSha256": "19d9e58cec9cd8fdc7ad2db7cf6077fe63346b59914a60a41384a24f92bf09e8",
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "role": "next-boundary-W55",
+    "continuationRank": 276,
+    "sourceId": "src_19dd83f117525b93",
+    "source": "Yellow",
+    "sourceSha256": "19dd83f117525b931fccdafe808aaa6939af792ee549f359eff13fac0d622f5d",
+    "historicalSourceOrdinal": null
+  },
+  "disjointness": {
+    "w49HistoricalGap126To150": 25,
+    "w50Selected": 25,
+    "w51Selected": 25,
+    "w52Selected": 25,
+    "w53Selected": 25,
+    "w54Selected": 25,
+    "w54DisjointFromW49Gap": true,
+    "w54DisjointFromW50W51W52W53": true
+  },
+  "priorEvidenceChecks": {
+    "w49": {
+      "entriesVerified": 36,
+      "manifestSha256": "cb6140b7ab323d8faf039808ce20a37b20d20e4a21772d8ef67d11aac4f8d3da"
+    },
+    "w50": {
+      "entriesVerified": 28,
+      "manifestSha256": "b8b2415b3d6840d57ab227b8639a38dfbd66c0c24936fe15773c15b4ab1dc43c"
+    },
+    "w51": {
+      "entriesVerified": 36,
+      "manifestSha256": "9bbdfcb9a4522cf6a081da938da1f6feb6975e64ac0aed2e871050478f5b7123"
+    },
+    "w52": {
+      "SHA256SUMS.txt": {
+        "entriesVerified": 43,
+        "manifestSha256": "5c84cd342744e7e4825d8a71655c8dbe0ec7509fbf0e37a45c521faaced475c7"
+      },
+      "cross-review/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 5,
+        "manifestSha256": "c5c561951b538965776c6c18780a10a91faf21486a0f215263199884e9e5b57b"
+      },
+      "independent/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 5,
+        "manifestSha256": "89f1d645f6aaee67d323aaacad402dc05868fe4b764e075bc489757a6c7610b7"
+      },
+      "input/PACKET-SHA256SUMS.txt": {
+        "entriesVerified": 6,
+        "manifestSha256": "ad0ac60a4d2782cbb7ef759ef0cb68458d71f4431136e098c7b8010470183cb9"
+      },
+      "primary/SHA256SUMS.txt": {
+        "entriesVerified": 12,
+        "manifestSha256": "8f0b9b1d9fddef4b98d0989f1c3ef3a4c4c8d0dd473fc10bd73e50e6eccbf334"
+      },
+      "root-blind/SHA256SUMS.txt": {
+        "entriesVerified": 3,
+        "manifestSha256": "62fdcd04324036e454d7e57a0f8b27c2ca8a69d368818f6a1e962f04733a16bd"
+      },
+      "root-ratified/SHA256SUMS.txt": {
+        "entriesVerified": 3,
+        "manifestSha256": "5bd547f68036b5b1dde8aa55fab54c96dbacef840bba129577db757566c63160"
+      }
+    },
+    "w53": {
+      "entriesVerified": 31,
+      "manifestSha256": "6de71810cbdbb758e0a8fbdc7a18cd5f84136c1d4f5b506b91d7bdf9d0c964aa"
+    },
+    "w49SourceInventorySha256": "17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225"
+  },
+  "inputContainsCandidates": false
+}

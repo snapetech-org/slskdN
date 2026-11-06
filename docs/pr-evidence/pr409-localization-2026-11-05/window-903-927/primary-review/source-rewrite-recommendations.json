@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "recommendations": [
+    {
+      "recommendationId": "SR-910-01",
+      "continuationRank": 910,
+      "sourceId": "src_34419b72f6ec2d1e",
+      "sourceSha256": "34419b72f6ec2d1e09ce068a803ad0bac785f963bd4464efdbf948fe936af4a8",
+      "source": "In Enforce mode, signatures must use the",
+      "issue": "The sentence is split into three translation fragments around an inline code value. The second localized fragment begins with the word 'format'; locales that need the noun before the code cannot translate the fragments naturally.",
+      "recommendation": "Keep the instruction in one translatable rich-text sentence with the signature format supplied as a markup-safe interpolation. Render the interpolation in <code> while allowing each locale to position it grammatically.",
+      "relatedFragment": "format over the canonical join/leave payload and the supplied public key.",
+      "relatedFragmentSourceId": "src_16d9b529ed6a96b4",
+      "relatedFragmentSourceSha256": "16d9b529ed6a96b46e8c6ba91abc9a8013b7856793eb8fafbb700e6f2882a052",
+      "implemented": false
+    }
+  ]
+}

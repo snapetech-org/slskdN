@@ -1,0 +1,248 @@
+{
+  "assessments": [
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "b9d31343f25ad8dd6943a49a67ae5c6bcb7648cd3b85c2357fc5f986761cfe04",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "ar",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "قائمة الرغبات",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "0163479452f9e61cc01600bef40e092b228ad478ede7159ccdc882a85c1d96a0",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "de",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Wunschliste",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "be8817badfb9354168c76e54a1c289999c633c26e4fcb5db2405f795c55b8012",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "es",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Lista de deseos",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "01c2a54ec23a5b9241da2b0ca20838fc8b685eed73d343d6e48ecfa8bd0751cb",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "fr",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Liste de souhaits",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "408bae03a98841be213bb0bbeb9729acbcf5776f964760b7912d0beed6e82ebf",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "hi",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "इच्छा सूची",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "e3e699dbd5210911a85eaebde8c91cf717950074d2347e006ef06d67e627ce0b",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "id",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Daftar keinginan",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "0593b36df4ae4b0c5b3f1affd28b88e9279bb79c051520fc149420003b3952f3",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "ja",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "ウィッシュリスト",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "726f41320e97d0dd803f44240d5a0aea4969f41863c3fcff5809c5d92253a9a5",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "ko",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "위시리스트",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "cb756ddbe0fe356fdd0af40558abf5fca28136ec7190d458e1b68418aaea10de",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "pt-BR",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Lista de desejos",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "50a5835289d2d9ff012432126eb1808e95d2ac72fb4930c46044082345f0ff83",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "vi",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Danh sách yêu thích",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "1e07d9f7b988d14a1790a2ea7eef0f43edb13a69de4ed42a004ce9e79aad43c4",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "zh-Hans",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "愿望单",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 757,
+      "currentTargetSha256": "bf39b981964550a9a8252d1ba6802ad2c3ffa5f1602ff8b5674e0b5ce187f4d7",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "zh-Hant",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "願望清單",
+      "sourceId": "src_2dae92c7fa3fcb2f"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "f60bd447c792614e59572609f8afc1abb4dd491744f7cd2d0a68f3fd694b7af6",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "ar",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "قائمة الرغبات",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "df71e7b9522631d5e44cb5f8fa3cfad86c945e27539f6f3800d0cccdff233504",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "de",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Wunschliste",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "847fa83d02d0496d09948ac04ac0d33fd451985f3cf1c05c40fe719f85a26765",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "es",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Lista de deseos",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "8ee9287767df9330275847818f6f42d523b0f9ba1fd6835169a35aaf9a25c7aa",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "fr",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Liste de souhaits",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "5c31ece2ca526c8bb930e19159bdb7ec0364adc1f246d19d36b2d0e0f6d3e2da",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "hi",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "इच्छा सूची",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "714a24c5e0d7a39eab60264c4ee0f8d15b1b341144ef08eb210bec1864581c79",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "ja",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "ウィッシュリスト",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "eeeb3a6950eeee8addcc6f9a9ce3a39905c8bca169979dad651275252a06ee65",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "ko",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "위시리스트",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "e171af2dbec7478f13fe1c63c174abaa6652b433d6a0aec94fac00de95cce858",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "pt-BR",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Lista de desejos",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "f532777936703c768fd4944424464969fac21839572376917f2bb5de9f2143dd",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "vi",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "Danh sách yêu thích",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "b039e58b1894bac87c4c5e2d114b9b8efdd7488f34c3ae6b6d4d08874ac76b11",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "zh-Hans",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "愿望单",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "7742bbf413142b824d8d589049b851a72afb8d72844329109eaf8fbc7aef50a7",
+      "decision": "accept-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "zh-Hant",
+      "rationale": "“Wishlist” is the localized Wishlist feature label, not an immutable brand/technical token: the same locale catalog has a translated exact key “Wishlist,” and both callers are Wishlist UI actions. The target’s localized equivalent preserves the meaning; do not force English Wishlist into translated prose.",
+      "sourceCatalogLabel": "願望清單",
+      "sourceId": "src_2dc5b14ecfb28446"
+    },
+    {
+      "continuationRank": 759,
+      "currentTargetSha256": "bde37b6fd20ff30b4a8576362005b862fb19f93d137827c79980de63c169b3f0",
+      "decision": "revise-to-localized-feature-name",
+      "literal": "Wishlist",
+      "locale": "id",
+      "proposedTarget": "Salin paket peninjauan permintaan Daftar keinginan saat ini. Ini tidak memulai pencarian, penelusuran peer, pengunduhan, atau otomatisasi.",
+      "rationale": "This cell preserved the English token, unlike the parallel locales; the locale’s exact catalog entry “Wishlist” is “Daftar keinginan.” The feature label is localized in this UI, so use that value consistently.",
+      "sourceCatalogLabel": "Daftar keinginan",
+      "sourceId": "src_2dc5b14ecfb28446"
+    }
+  ],
+  "baselineMismatchCount": 23,
+  "summary": "All 23 baseline “Wishlist” missing-literal findings are intentional localized feature-name translations, not lost immutable identifiers. One Indonesian W759 cell preserves English Wishlist despite the localized catalog label and is proposed for localization; this is a consistency correction outside the 23 baseline mismatches.",
+  "window": "W75"
+}

@@ -1,0 +1,38 @@
+{
+  "callerContextSupplementRows": 8,
+  "cellCount": 300,
+  "confidence": "moderate, machine-assisted primary review",
+  "dispositionCounts": {
+    "accept-current": 260,
+    "hold": 12,
+    "propose-correction": 28
+  },
+  "exactHead": "cb6739864b3651d72412b6aeb4590537cbf23d4e",
+  "exactTree": "a0946207555e494a558707008ba051013964b447",
+  "heldSourceIds": [
+    "src_120e577830a8b602"
+  ],
+  "holdCount": 12,
+  "localeCount": 12,
+  "markupMismatches": 0,
+  "nativeSpeakerApproval": false,
+  "placeholderMismatches": 0,
+  "proposalCount": 28,
+  "proposalSourceIds": [
+    "src_11a6767d5674c7e4",
+    "src_11c3c4d02e12c6c8",
+    "src_11cdb24658a55372",
+    "src_11f7d87af597f80f",
+    "src_120ebbf1a599ec64",
+    "src_121090d08942086e"
+  ],
+  "protectedLiteralMismatches": 0,
+  "pullRequest": 409,
+  "remoteMutation": false,
+  "repository": "snapetech-org/slskdN",
+  "repositoryModified": false,
+  "runtimeCallerFindings": 3,
+  "sourceCount": 25,
+  "testsBuildScansCiBrowserRun": false,
+  "windowLabel": "W47 reconstructed pending stable-ID ranks 51–75; historical source ordinal unavailable"
+}

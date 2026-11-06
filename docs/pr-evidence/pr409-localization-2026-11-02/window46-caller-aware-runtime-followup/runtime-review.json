@@ -1,0 +1,36 @@
+{
+  "reviewType": "root static code review of the plural formatter and native-dialog bidi boundary; no runtime tests executed",
+  "path": "src/web/src/lib/interfaceLocale.js",
+  "fileSha256": "89c60e399dc16015f82dc92bf8c8a9e090dbdc59f21e2d3e2f1716dcb3443285",
+  "formatter": "Supports only named numeric top-level cardinal selectors, CLDR categories, integer exact-match branches, plain text and # replacement. Intl.PluralRules and Intl.NumberFormat receive the active language.",
+  "nativeDialogBoundary": {
+    "helper": "interfaceDialogText",
+    "behavior": "Parameter names appearing as cardinal plural selectors remain numeric until cardinal selection/formatting. Other string/number interpolations receive FSI/PDI at the native-dialog presentation boundary.",
+    "callsite": "BrowseSession passes filesToDownload.length as count and directory.name as directory. The count stays numeric; the opaque directory string is isolated.",
+    "currentCallerFileSha256": "60e6444a84fee70a1b8f1a5a1483e4b86eda8f4d7c6042c8c0b8d32d33fe3cb5"
+  },
+  "languageEdgeCases": [
+    "French, Hindi, and Brazilian Portuguese can select one for zero; exact =0 branches were adopted for both rank42 count phrases.",
+    "Wishlist unseenCount is guarded by unseenCount > 0; rank37 exits when no files are selected."
+  ],
+  "catalogContract": {
+    "newSources": 5,
+    "directLocales": 12,
+    "targetCells": 60,
+    "reviewedCells": 60,
+    "machineReview": "56 accepted proposals and 4 adopted cross-review revisions",
+    "nativeSpeakerApproval": false,
+    "previousValuesAndKeyOrderPreserved": true
+  },
+  "limitations": [
+    "No nested selector",
+    "No ordinal plural",
+    "No offset",
+    "No general MessageFormat parser"
+  ],
+  "checks": {
+    "gitDiffCheckPassed": true,
+    "testsBuildsScansCiBrowserRun": false,
+    "workflowsChanged": false
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "artifact": "slskdN PR #409 W73 independent cross-adjudication",
+  "blindDispositionCounts": {
+    "accept": 217,
+    "correct": 71,
+    "hold": 12
+  },
+  "cellCount": 300,
+  "continuationRankRange": [
+    703,
+    727
+  ],
+  "correctionCount": 72,
+  "crossDispositionCounts": {
+    "accept-current": 216,
+    "correct": 72,
+    "hold-text-free": 12
+  },
+  "evidence": {
+    "blindInputManifestSha256": "aba62611a48eaac2d4c135402ea24ac2a5fa145fcb13809be2af09965f6f9543",
+    "blindInputManifestVerified": true,
+    "blindInputPath": "/home/keith/Documents/code/task-scratch/slskdn-w73-blind-input-20261104/input",
+    "blindOutputManifestVerified": true,
+    "blindOutputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w73-blind-20261104/output",
+    "blindOutputSummarySha256": "c75c9c4f4dba3d6575e00129d5a0c6695b57077842694dac961b2001d0a0e1b1",
+    "blindOutputVerificationSha256": "b9d9a82fbde42c7804f91739063be0ba596082e03b181e5fe545f8d3dd66b8e8",
+    "blindVerifier": "PASS per sealed verification.json; 300 cells; 217 accept/71 correct/12 holds; holds text-free.",
+    "callerContextsSha256": "bdbcd5350144d4a9c05a38f26dc8e84f3082eb499f65dda5e55c2a55c3fca136",
+    "candidateFreeAndBlindSourceCellsByteIdentical": true,
+    "candidateFreeBlindPacketChecksumListSha256": "f961bd1dbf881d684ff352c80f37045f74091875c3b363355043537424e6b6ed",
+    "candidateFreeInputManifestSha256": "aba62611a48eaac2d4c135402ea24ac2a5fa145fcb13809be2af09965f6f9543",
+    "candidateFreeInputManifestVerified": true,
+    "candidateFreeOuterManifestVerified": true,
+    "candidateFreePacketPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w73-703-727-20261104-rebuild/candidate-free/input",
+    "catalogStructureSha256": "3ab98e6bc22aaa4044267d04af4bfc04c0eb665ef472f50e6d12a6c2751aa175",
+    "liveHeadTreePinVerified": true,
+    "primaryOutputManifestSha256": "4e76a66b7a7cd3da65e77d1d065a9478159a8e952de48d15c0d605cd12de82b4",
+    "primaryOutputManifestVerified": true,
+    "primaryReviewPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w73-703-727-20261104-rebuild/primary-review/output",
+    "primaryVerifier": "PASS; candidate-free=300, primary=300; 275 accept-current/25 correct; 247 prior held cells reattested, 13 prior holds resolved; 0 resolved rows lacked callers.",
+    "sourceCurrentCellsSha256": "da06acf533a88c885a520518814f62c2faf6063dd37937cca3053039d702cb14",
+    "sourceInventorySelectionSha256": "9ad5264dda300cdadb6d17cfbfe043ca75fd96ee49fb62636202dead5a39eb7e",
+    "sourceTreeAttestationSha256": "6634e60d8cadade71cf7531d57b57d1998160c63c40b1ce514c06a1f9d4eb2cd"
+  },
+  "holdCount": 12,
+  "holdSummary": {
+    "count": 12,
+    "nativeSpeakerApproval": false,
+    "reasonCode": "ambiguous-realm-semantics",
+    "textFree": true
+  },
+  "limitations": [
+    "No native-speaker signoff was performed.",
+    "No browser review was performed.",
+    "Cross-adjudication is a recommendation packet; no repository or PR files were changed."
+  ],
+  "livePullRequest": {
+    "draft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "871330ca37a40c15172d3be040271e3944f6f628",
+    "mergeStateStatus": "CLEAN",
+    "state": "OPEN",
+    "treeOid": "965be29857c8476224307e5dd70c8117d31c2536",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "localeCount": 12,
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "primaryBlindDecisionMismatches": 60,
+  "primaryBlindDispositionPairCounts": {
+    "accept-current|accept": 216,
+    "accept-current|correct": 47,
+    "accept-current|hold": 12,
+    "correct|accept": 1,
+    "correct|correct": 24
+  },
+  "primaryDispositionCounts": {
+    "accept-current": 275,
+    "correct": 25
+  },
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    603,
+    627
+  ],
+  "repository": "snapetech-org/slskdN",
+  "sameDispositionButDifferentReviewerProposals": 21,
+  "schemaVersion": 1,
+  "sharedCorrectCells": 24,
+  "sourceCount": 25,
+  "structuralChecks": {
+    "callerEvidence": "All cells linked to pinned caller-context SHA and exact path/line/file/tree refs.",
+    "markup": "All 288 non-held final values exactly preserve source markup tags.",
+    "numericTokens": "All 288 non-held final values preserve source numeric tokens and comparator operators.",
+    "opaqueDynamicOrExampleValues": "Dynamic placeholders remain unchanged; example peer ID is identical lowercase ASCII in all 12 locales.",
+    "placeholders": "All 288 non-held final values exactly preserve source placeholders.",
+    "protectedLiterals": "All 288 non-held final values preserve explicit protected literals; eight baseline UI omissions are restored.",
+    "textFreeHolds": "12 held cells expose only opaque IDs, locale/rank, hashes, pins, and reason code; no source/current/proposal text.",
+    "uniqueCellCoverage": "300/300; 25 source IDs × 12 locales; exact key set matches candidate-free and sealed blind inputs."
+  },
+  "uniqueCorrectionCellsAcrossReviewers": 72,
+  "window": "W73"
+}

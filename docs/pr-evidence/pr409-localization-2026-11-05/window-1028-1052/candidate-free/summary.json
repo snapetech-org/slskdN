@@ -1,0 +1,53 @@
+{
+  "artifact": "slskdN PR #409 W1028-W1052 candidate-free exact-head input",
+  "baseRef": "main",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baseTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f",
+  "baselineTokenMismatchCounts": {
+    "numeric": 1
+  },
+  "blindReviewUsed": false,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "catalogCount": 12,
+  "catalogEntryCountPerLocale": 6175,
+  "catalogsEdited": false,
+  "cellCount": 300,
+  "continuationRankRange": [
+    1028,
+    1052
+  ],
+  "crossReviewUsed": false,
+  "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "localeCount": 12,
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "mainTree": "4232b318aeaab4c327443638e5467ca089bbed53",
+  "newWindowHashOnlyHoldCells": 12,
+  "priorActiveHoldsReattested": 421,
+  "priorApplicationReadbackHistoryRows": 900,
+  "priorAppliedTargetsReattested": 677,
+  "priorProductReadbackAllMatchCurrentHead": true,
+  "priorSelectedIdsAndNewWindowExclusions": 2135,
+  "priorWindowProductReadbackRows": 300,
+  "productionRuntimeFileCount": 279,
+  "proposedTargetsIncluded": false,
+  "remainingQueueRankRange": [
+    928,
+    952
+  ],
+  "repoEdited": false,
+  "result": "PASS",
+  "resultingActiveHashOnlyHoldCells": 433,
+  "reviewDecisionsIncluded": false,
+  "rootAdjudicationPerformed": false,
+  "sourceCallerOccurrenceCount": 40,
+  "sourceCallerReferenceCount": 39,
+  "sourceCount": 25,
+  "sourceInventoryRows": 6175,
+  "sourcesWithCallers": 24,
+  "sourcesWithoutCallers": 1,
+  "testsBuildsSecurityScansCiRun": false,
+  "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1",
+  "window": "W86",
+  "windowAppliedTargetsReattested": 71,
+  "workflowChanges": 0
+}

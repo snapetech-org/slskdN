@@ -1,0 +1,81 @@
+{
+  "result": "INDEPENDENT_CROSS_REVIEW_COMPLETE_PENDING_NATIVE_SPEAKER_REVIEW",
+  "window": 42,
+  "pullRequest": 409,
+  "headCommit": "1b518a69d099032c497149102751271eddb0fa57",
+  "tree": "c7f351a3507a3758a10369632feeb7a001e83aeb",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "localeCatalogSubtreeTree": "dd773ad577db8f4bb9274140d297ebad2da7dd92",
+  "prOpenDraftExactHead": true,
+  "sourceOrdinals": {
+    "previous": [
+      26,
+      50
+    ],
+    "reviewed": [
+      51,
+      75
+    ],
+    "future": [
+      76,
+      100
+    ]
+  },
+  "reviewedKeys": 25,
+  "reviewedNonSpanishCells": 275,
+  "priorDispositionCounts": {
+    "accept-current": 228,
+    "propose-correction": 14,
+    "propose-refinement": 33
+  },
+  "independentCellDispositionCounts": {
+    "accept-current": 227,
+    "accept-primary-candidate": 47,
+    "propose-additional-correction": 1
+  },
+  "primaryCandidates": 47,
+  "primaryCandidateOutcomes": {
+    "accepted": 47,
+    "rejected": 0,
+    "held": 0
+  },
+  "additionalMissedFixes": 1,
+  "independentChangedTargets": 48,
+  "changedTargetLocales": {
+    "ko": 6,
+    "vi": 4,
+    "ja": 4,
+    "fr": 5,
+    "zh-Hans": 4,
+    "hi": 7,
+    "de": 4,
+    "pt-BR": 4,
+    "zh-Hant": 4,
+    "ar": 4,
+    "id": 2
+  },
+  "currentCellsReattested": 275,
+  "candidateTargetsReattested": 47,
+  "callerPinsReattested": 41,
+  "uniqueCallerReferences": 41,
+  "priorWindowsRehashed": 41,
+  "priorUniqueSourceIds": 1022,
+  "previousW41CellsReattested": 275,
+  "w41AppliedReadbacksReattested": 70,
+  "priorHoldsPreserved": 50,
+  "w41SpanishFormalRowsPreserved": 25,
+  "w42SpanishFormalRowsPreserved": 25,
+  "futureW43CellsReattested": 275,
+  "frozenBundleManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+  "frozenBundleBatchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111",
+  "w42SelectionReproduced": true,
+  "w43BoundaryDerived": true,
+  "priorExactReuseRowsReattested": 1,
+  "structuralFailures": 0,
+  "nativeSpeakerReview": "outstanding",
+  "readOnly": true,
+  "extraFinding": "Hindi W57 current wording should be revised to distinguish matching completed rows from the files left on disk.",
+  "retainedRepoChanges": 0,
+  "checks": 1387,
+  "allChecksPassed": true
+}

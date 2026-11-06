@@ -1,0 +1,32 @@
+{
+  "head": "624e27d8bb108a764df6daab5cfb1c517ebac96d",
+  "tree": "d139a16988e23046ccb09f519db2d3b7ae0b86d1",
+  "input_pins_match": true,
+  "all_input_checksums_pass": true,
+  "standalone_verifiers": {
+    "candidate_free": "PASS",
+    "primary": "PASS",
+    "independent_blind": "PASS"
+  },
+  "input_artifacts": {
+    "candidate_free": {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1028-1052-20261105/candidate-free",
+      "manifest_sha256": "65577309489a4a31e3e59e3df4e085bdec2738cb50d0a220ad3425ee5645aab3",
+      "checksum_list_sha256": "0b2df168c6512fd218541567c0f882760a34ef93185aac1772c06d0ee9829f89",
+      "checksummed_files": 27
+    },
+    "primary": {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1028-1052-20261105/primary-review",
+      "manifest_sha256": "231ca00287abe76b29f0d418221da3d850ffc83311804f863345ebdddbce9cd6",
+      "checksum_list_sha256": "1cbbd1db224942f600c3a4c08d3a8364dd61c51d9e056ec501f1d5148c0b4e12",
+      "checksummed_files": 11,
+      "provenance_note": "The W1028-W1052 semantic decisions use only the sealed candidate-free input and exact pinned source/caller evidence. A separate inspection command earlier in this task inadvertently emitted two prior-window root-review records (ranks 1003-1004); those records are outside this window and were not used in these decisions. No contents from that prior review are reproduced here."
+    },
+    "independent_blind": {
+      "path": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w1028-1052-independent-blind-20261105",
+      "manifest_sha256": "df9af3272378b19461b0aff3ca5ed9a8ae4860ffa8867e9bf242d86833ae7f0a",
+      "checksum_list_sha256": "739c1080fa7d2074036c7c9bf601ce2cdbc10b2ab4be326a4676ee75e8fa5801",
+      "checksummed_files": 9
+    }
+  }
+}

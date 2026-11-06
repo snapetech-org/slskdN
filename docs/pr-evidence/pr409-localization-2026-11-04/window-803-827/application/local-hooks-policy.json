@@ -1,0 +1,20 @@
+{
+  "authorization": "The task explicitly forbids tests, builds, scans, CI and package jobs and directs disabling local hooks to prevent those actions.",
+  "configuredVia": "/home/keith/Documents/code/slskdn/.git/config",
+  "hooksExecuted": false,
+  "method": "Each commit/push command uses one-shot git -c core.hooksPath=/dev/null. No persistent Git configuration or hook files were modified.",
+  "observedHookActions": {
+    "pre-commit": [
+      "scripts/security-scan-local.sh --staged --semgrep-only",
+      "shared pre-commit secret scan",
+      "AUR package hash checks"
+    ],
+    "pre-push": [
+      "shared pre-push secret scan",
+      "conditional YunoHost package sync"
+    ]
+  },
+  "repositoryConfiguredHooksPath": ".githooks",
+  "result": "documented",
+  "testsBuildsScansCiPackagesExecuted": false
+}

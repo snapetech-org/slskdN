@@ -1,0 +1,41 @@
+{
+  "attestedAtUtc": "2026-11-04T16:17:23.189212+00:00",
+  "repo": "snapetech-org/slskdN",
+  "pullRequest": {
+    "number": 409,
+    "state": "open",
+    "draft": true,
+    "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headSha": "674156749ee86021ef91d896b1824be62cff9a93",
+    "headTree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450",
+    "baseRef": "main",
+    "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "baseTree": "b2ce36e07aee6ade05e6d8795d04b9a7455a081f"
+  },
+  "branchRef": {
+    "name": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "sha": "674156749ee86021ef91d896b1824be62cff9a93",
+    "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450"
+  },
+  "pullRef": {
+    "ref": "refs/pull/409/head",
+    "sha": "674156749ee86021ef91d896b1824be62cff9a93"
+  },
+  "liveMain": {
+    "name": "main",
+    "sha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+    "tree": "4232b318aeaab4c327443638e5467ca089bbed53"
+  },
+  "sourceWorktree": {
+    "path": "/mnt/disks/scratch/task-worktrees/localization-20261104/slskdn-pr409-w76-778-802-source",
+    "head": "674156749ee86021ef91d896b1824be62cff9a93",
+    "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450",
+    "clean": true
+  },
+  "candidateFree": {
+    "copiedPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w76-778-802-blind-20261104/candidate-free",
+    "manifestSha256": "36aa3e5f8ea59a45aaefbd7e41ab0094c2fdacb58e855cb695b5f9f0136ba0d4",
+    "checksumsSha256": "6f1ff444313b6bdcc266b6a30309031f45f507ed6924cd6cc5b293f1003a2ec3"
+  },
+  "baseDriftNote": "PR base f25d263a2a7cdb2c8f76c40c346cb10f749a9356 differs from live main bc6251ff4ea5a7e59f2d86e2400c90520601f46e. Root cross-review reported four intervening commits affecting workflows, AGENTS.md, docs, and policy scripts, with no localization source/catalog changes."
+}

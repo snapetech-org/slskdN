@@ -1,0 +1,42 @@
+{
+  "allCallerBackedTokenChecksPass": true,
+  "artifact": "slskdN PR #409 W1053-W1077 primary semantic review",
+  "callerBackedCells": 276,
+  "callerBackedSources": 23,
+  "callerlessSources": 2,
+  "cellCount": 300,
+  "confidenceCounts": {
+    "high": 24,
+    "low": 48,
+    "moderate": 228
+  },
+  "continuationRankRange": [
+    1053,
+    1077
+  ],
+  "hashOnlyHolds": 24,
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "localeCount": 12,
+  "nativeSpeakerApproval": false,
+  "nextBoundary": {
+    "continuationRank": 1078,
+    "remainingQueueRank": 978,
+    "sourceId": "src_3a7f882e0dcaf59b",
+    "sourceSha256": "3a7f882e0dcaf59b069a4830c2d6ce7c891f93d6a47018db872c1481a20082b3"
+  },
+  "priorActiveHashOnlyHoldsReattested": 433,
+  "productEdited": false,
+  "proposalCells": 276,
+  "remainingQueueRankRange": [
+    953,
+    977
+  ],
+  "result": "PASS",
+  "resultingActiveHashOnlyHolds": 457,
+  "retainedCurrentCells": 214,
+  "revisedCells": 62,
+  "sourceCount": 25,
+  "testsBuildsScansCiRun": false,
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W87"
+}

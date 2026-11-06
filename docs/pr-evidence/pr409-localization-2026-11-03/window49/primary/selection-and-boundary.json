@@ -1,0 +1,84 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "pins": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+    "state": "OPEN",
+    "isDraft": true,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "livePrHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+    "remoteBranchHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+    "liveCommitTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+    "localHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+    "localTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+    "worktreeClean": true,
+    "allPinsMatch": true
+  },
+  "window": "W49 reconstructed pending stable-ID continuation ranks 101-125; historical source ordinals are unavailable and not claimed",
+  "localeCount": 12,
+  "sourceCount": 25,
+  "cellCount": 300,
+  "catalogSourceCount": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "priorSemanticExclusionCount": 1178,
+  "w48SourceCount": 25,
+  "specialRuntimeFollowupReservedCount": 2,
+  "excludedUniqueCount": 1205,
+  "pendingCount": 4971,
+  "rankRule": "Sort unexcluded exact catalog source IDs lexicographically; current remainingQueueRank 1-25 maps to continuationRank 101-125. Do not infer or report historical extraction ordinals.",
+  "w48BoundaryChecksums": {
+    "SHA256SUMS": "41ffbae35557eab506b5d13c10f68ac049c1846ff6d485636e764f54f5f2e0fb",
+    "sourceInventory": "eef85e32e312c6f1edff48cc166940970e8ff3cdb741a6f42ad1df60f206be57",
+    "priorExcludedSourceIds": "5df81adab31719b886fc9745ce8d817d8c40f7607a52a1a31b38fdf6443f29ea",
+    "selectionBoundary": "fc9bbfeda9b707bea64872f13f89d4301788f541fe2ba9c70a4b8950c77e2023",
+    "reviewSummary": "dfcf2eb9d078af496e36e85daad9a9b05f16c2fb77ea9cacc949a8570e4224ce",
+    "all15ListedEntriesVerified": true
+  },
+  "previousBoundary": {
+    "continuationRank": 100,
+    "sourceId": "src_12f39195f426d605",
+    "source": "Signed release-completeness observations without file paths."
+  },
+  "firstSelected": {
+    "continuationRank": 101,
+    "remainingQueueRank": 1,
+    "sourceId": "src_130011756125313c",
+    "source": "On",
+    "sourceSha256": "130011756125313c72f2cab730db4347e2841526d236a89cb25f38789fa49229",
+    "priorW48InventoryContinuationRank": 101,
+    "historicalSourceOrdinal": null
+  },
+  "lastSelected": {
+    "continuationRank": 125,
+    "remainingQueueRank": 25,
+    "sourceId": "src_141835a90fdf5c54",
+    "source": "{label}: {count}",
+    "sourceSha256": "141835a90fdf5c547509524b274b18de5f2e3491e14fb28673b2b858a372b083",
+    "priorW48InventoryContinuationRank": 125,
+    "historicalSourceOrdinal": null
+  },
+  "nextBoundary": {
+    "continuationRank": 126,
+    "remainingQueueRank": 26,
+    "sourceId": "src_1430ab50a61757f1",
+    "source": "Optional note about this variant"
+  },
+  "specialRuntimeFollowups": [
+    {
+      "sourceId": "src_a9047a85f2fe6ce8",
+      "source": "Listen-along could not connect. Retry when the connection is available.",
+      "origin": "W54/W57 runtime-only catalog readback; reserved from primary sequence without semantic disposition",
+      "sourceSha256": "a9047a85f2fe6ce8748de115e4b1e59089c70a1ee8a87d221d94ac7506d5975f"
+    },
+    {
+      "sourceId": "src_3aed87bbbe53efdb",
+      "source": "Room access was revoked. Rejoin after your membership is restored.",
+      "origin": "W54/W57 runtime-only catalog readback; reserved from primary sequence without semantic disposition",
+      "sourceSha256": "3aed87bbbe53efdb7bbf7620ee949d9f50aea1dad8982e0069fc5c6f9a3152eb"
+    }
+  ],
+  "runtimeFollowupPolicy": "The two W54/W57 readback strings are excluded from the general queue because they were special runtime-only reads; this packet does not assign them new semantic translation dispositions. W71 rich-text follow-up is already in prior semantic exclusion evidence."
+}

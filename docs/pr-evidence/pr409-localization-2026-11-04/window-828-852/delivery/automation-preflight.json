@@ -1,0 +1,200 @@
+{
+  "checkedUtc": "2026-11-04T19:53:20Z",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pr": {
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "4120c9637e71466dc98d51a5a342dee199a1e004",
+    "baseRefName": "main",
+    "baseRefOid": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+    "mergeableState": "clean",
+    "bodySha256": "ed5c3387c83d14378e06864535cd0eeb51a217be595b4366f3587b776e81db9d",
+    "bodyBytes": 106305
+  },
+  "branchRef": {
+    "ref": "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030",
+    "sha": "4120c9637e71466dc98d51a5a342dee199a1e004"
+  },
+  "pullRef": {
+    "ref": "refs/pull/409/head",
+    "sha": "4120c9637e71466dc98d51a5a342dee199a1e004"
+  },
+  "headTree": null,
+  "activeWorkflowRuns": {
+    "all": {
+      "queued": {
+        "total_count": 13,
+        "runs": [
+          {
+            "id": 38477300587,
+            "name": "dynamic",
+            "event": "dynamic",
+            "status": "queued",
+            "head_sha": "6ae6fada91090b7d05d2e62ec9bf39f73df0befc",
+            "head_branch": "codex/localization-audit-20261013",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38477300587"
+          },
+          {
+            "id": 38476593457,
+            "name": "E2E Tests",
+            "event": "workflow_dispatch",
+            "status": "queued",
+            "head_sha": "b46ceb3a7997ae83ff14b756772e24f7ee172e4f",
+            "head_branch": "main",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476593457"
+          },
+          {
+            "id": 38476572087,
+            "name": "CI",
+            "event": "workflow_dispatch",
+            "status": "queued",
+            "head_sha": "b46ceb3a7997ae83ff14b756772e24f7ee172e4f",
+            "head_branch": "main",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476572087"
+          },
+          {
+            "id": 38476562297,
+            "name": "Local Identity Leak Check",
+            "event": "workflow_dispatch",
+            "status": "queued",
+            "head_sha": "f4b53641d1cbf5833a8d5169f0793858bbfba611",
+            "head_branch": "codex/runner-temp-dotnet-20261012",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476562297"
+          },
+          {
+            "id": 38476555519,
+            "name": "E2E Tests",
+            "event": "workflow_dispatch",
+            "status": "queued",
+            "head_sha": "f4b53641d1cbf5833a8d5169f0793858bbfba611",
+            "head_branch": "codex/runner-temp-dotnet-20261012",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476555519"
+          },
+          {
+            "id": 38476548437,
+            "name": "Windows Smoke",
+            "event": "workflow_dispatch",
+            "status": "queued",
+            "head_sha": "f4b53641d1cbf5833a8d5169f0793858bbfba611",
+            "head_branch": "codex/runner-temp-dotnet-20261012",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476548437"
+          },
+          {
+            "id": 38476541604,
+            "name": "CI Enhancements",
+            "event": "workflow_dispatch",
+            "status": "queued",
+            "head_sha": "f4b53641d1cbf5833a8d5169f0793858bbfba611",
+            "head_branch": "codex/runner-temp-dotnet-20261012",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476541604"
+          },
+          {
+            "id": 38476510026,
+            "name": "CI",
+            "event": "workflow_dispatch",
+            "status": "queued",
+            "head_sha": "f4b53641d1cbf5833a8d5169f0793858bbfba611",
+            "head_branch": "codex/runner-temp-dotnet-20261012",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476510026"
+          },
+          {
+            "id": 38476491672,
+            "name": "dynamic",
+            "event": "dynamic",
+            "status": "queued",
+            "head_sha": "b46ceb3a7997ae83ff14b756772e24f7ee172e4f",
+            "head_branch": "main",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476491672"
+          },
+          {
+            "id": 38476067648,
+            "name": "dynamic",
+            "event": "dynamic",
+            "status": "queued",
+            "head_sha": "f4b53641d1cbf5833a8d5169f0793858bbfba611",
+            "head_branch": "codex/runner-temp-dotnet-20261012",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476067648"
+          },
+          {
+            "id": 38476007876,
+            "name": "dynamic",
+            "event": "dynamic",
+            "status": "queued",
+            "head_sha": "260774790c96d0bfe682c4c3b0212cd5098f3acb",
+            "head_branch": "dependabot/github_actions/github-actions-nonbreaking-c673fd7efc",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38476007876"
+          },
+          {
+            "id": 38475384264,
+            "name": "dynamic",
+            "event": "dynamic",
+            "status": "queued",
+            "head_sha": "47de1a4e95589ca9b1765b7a23f2f34163f42651",
+            "head_branch": "dependabot/npm_and_yarn/src/web/npm-nonbreaking-cc38d40fa7",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38475384264"
+          },
+          {
+            "id": 38474293837,
+            "name": "dynamic",
+            "event": "dynamic",
+            "status": "queued",
+            "head_sha": "ffc61570a48cededd4ec85cf60ec5f8801c28ac4",
+            "head_branch": "dependabot/nuget/src/slskd/nuget-nonbreaking-126895aa3e",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/38474293837"
+          }
+        ]
+      },
+      "in_progress": {
+        "total_count": 1,
+        "runs": [
+          {
+            "id": 39686650226,
+            "name": "Automatic Dependency Submission (NuGet)",
+            "event": "dynamic",
+            "status": "in_progress",
+            "head_sha": "6829afa8dec45f47a10bd9cf23aa853868d9be8c",
+            "head_branch": "main",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/39686650226"
+          }
+        ]
+      },
+      "waiting": {
+        "total_count": 0,
+        "runs": []
+      },
+      "requested": {
+        "total_count": 0,
+        "runs": []
+      },
+      "pending": {
+        "total_count": 0,
+        "runs": []
+      }
+    },
+    "pr_branch": {
+      "queued": {
+        "total_count": 0,
+        "runs": []
+      },
+      "in_progress": {
+        "total_count": 0,
+        "runs": []
+      },
+      "waiting": {
+        "total_count": 0,
+        "runs": []
+      },
+      "requested": {
+        "total_count": 0,
+        "runs": []
+      },
+      "pending": {
+        "total_count": 0,
+        "runs": []
+      }
+    }
+  }
+}

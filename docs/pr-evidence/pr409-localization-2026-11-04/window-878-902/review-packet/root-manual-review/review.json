@@ -1,0 +1,37 @@
+{
+  "artifact": "slskdN PR #409 W80 root manual review attestation",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W80",
+  "head": "7a1ca27fd0519674c3b42a3e3df3638b0f671567",
+  "tree": "b3525218d0f9676c88c4991e78775d113f18b7d9",
+  "crossProposalPlanSha256": "b6a55ca7c871b87977879dc7dbea043d9fb7751ba37619e4f2fef09cb27bb0fa",
+  "crossReviewManifestSha256": "88db186ae5f8cc83d8b12025316f2ff2345d56289d0df0b13f06817d536d0c2c",
+  "cellCount": 300,
+  "selectedChangeCount": 81,
+  "keepCount": 219,
+  "holdCount": 0,
+  "reviewDisposition": "I manually reviewed all 81 final selected targets against the source strings and the cross-review rationale; accept all 81 for application. The cross verifier independently confirmed exact source/current/caller hashes and all 81 target hashes.",
+  "conceptChecks": [
+    "DHT fresh retrieval explicitly bypasses cache",
+    "Pod remains an opaque technical term rather than container/physical capsule",
+    "Sockets Established refers to network socket connections",
+    "Pending and remote path source labels reflect UI context",
+    "Arabic protected literal ID is retained",
+    "Discovery Shelf policy preview and no-action statement remain a preview",
+    "Broadcast host/discovery action meaning is preserved",
+    "Soulseek interests are profile-registered interests",
+    "Last Searched is a date/time label",
+    "Listening-history gaps become content-acquisition candidates",
+    "Unverified status and Liked category labels are represented as such"
+  ],
+  "validation": [
+    "Cross-review portable verifier PASS at exact head/tree",
+    "All 26 cross-packet checksums PASS",
+    "All 300 catalog cells read back against pinned current values by cross packet",
+    "No placeholder, markup, numeric-token, or protected-literal mismatch in selected targets"
+  ],
+  "nativeSpeakerApproval": false,
+  "browserReviewPerformed": false,
+  "catalogOrPullRequestEdited": false
+}

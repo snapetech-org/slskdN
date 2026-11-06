@@ -1,0 +1,28 @@
+{
+  "blindReviewUsesOnlyCandidateFreeReviewContext": true,
+  "candidateFreeChecksumListSha256": "a1731c5e6616f1c223875f25c976131b013361d299b5cb133174b2015f79f3ce",
+  "candidateFreeInputPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w953-977-20261105/candidate-free/input",
+  "filesConsulted": {
+    "SHA256SUMS.txt": "a1731c5e6616f1c223875f25c976131b013361d299b5cb133174b2015f79f3ce",
+    "caller-contexts.jsonl": "70a6f95fe3405676c53b7000ff99364d0959b1310bc0fc98c82ff5dba9a26d3c",
+    "manifest.json": "42e328ff08e489134f4207b74da7e2844ed51b2dbb88c6934ceb5ba8d6c96f07",
+    "runtime-file-pins.jsonl": "7fd4f980607d8822ecb5963010d9cfa04add32dc6243aa10c2e17ed78ce46d04",
+    "selected-sources.jsonl": "a2bbb0d3a96b3300d17ed25a4550b8adf6cc79f67610c51548f37899132dc64f",
+    "selection-and-boundary.json": "21dff8c142bda3cf64953de3e1bd502d26b6a289edb179c3689bb455201c5ef7",
+    "selection-boundary.json": "f42a8e38dfd82a7f9d65ce924fa2e1f78a28115a4c8fa0f395c0c8c9c2c9272a",
+    "source-current-cells.jsonl": "cb74dc9fa6314ae75d003f3d8de0f4bc84964a87f9ffabd089e8fe50351da277"
+  },
+  "hashOnlyHoldNote": "Rank 966 has 52 literal matches, all captured lines are UI layout/alignment attributes rather than localization calls; its 12 locale values are withheld as text-free holds pending a genuine caller.",
+  "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+  "inputManifestSha256": "42e328ff08e489134f4207b74da7e2844ed51b2dbb88c6934ceb5ba8d6c96f07",
+  "primaryReviewOpened": false,
+  "selection": "Stable continuation ranks 953-977; exact candidate-free source/current cells and caller context were reviewed for all locales.",
+  "supplementalPinnedSourceFilesRead": [
+    "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+    "src/web/src/components/System/Mesh/MeshEvidencePolicy.jsx",
+    "src/web/src/components/Player/PlayerBar.jsx",
+    "src/web/src/lib/discoveryShelf.js",
+    "src/web/src/components/Lidarr/Lidarr.jsx"
+  ],
+  "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd"
+}

@@ -1,0 +1,47 @@
+{
+  "acceptedChanges": 44,
+  "adjudicatedCounts": {
+    "accept-current": 220,
+    "accept-reviewed-correction": 38,
+    "adopt-crossreview-revision": 6,
+    "hold": 36
+  },
+  "cells": 300,
+  "files": [
+    {
+      "bytes": 1593,
+      "path": "README.md",
+      "sha256": "deab9cc28e56c5181d77d20587cb803db20bcd6d5bdb6c5883a18e1f9ca69335"
+    },
+    {
+      "bytes": 2742,
+      "path": "adjudication-summary.json",
+      "sha256": "45382dfc3ad8c976a118be2da281271b7a8f71380bb22a17fcaf488ab03eec3c"
+    },
+    {
+      "bytes": 654283,
+      "path": "final-adjudication-ledger.jsonl",
+      "sha256": "40ca132903e3d4489714f151582f6f8fdd0d1b309f5b9a9f6df35b4d3786e328"
+    },
+    {
+      "bytes": 2177,
+      "path": "live-pr-snapshot.json",
+      "sha256": "53d7858fcab3554869e8da797b27fabbaf41f62e79857a55a7e9cb746d35d59e"
+    },
+    {
+      "bytes": 804,
+      "path": "source-packet-references.json",
+      "sha256": "d524bba6098e5042295ac1fad8c77086a3865ac427002b169a27e84d14c4c76e"
+    },
+    {
+      "bytes": 274,
+      "path": "worktree-snapshot.json",
+      "sha256": "87dd0ebc376e5ec836d14a90ce2517d40ca966a0e12f0b6bed75cbfc8763f239"
+    }
+  ],
+  "head": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "tree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "window": "W46 reconstructed ranks 26–50"
+}

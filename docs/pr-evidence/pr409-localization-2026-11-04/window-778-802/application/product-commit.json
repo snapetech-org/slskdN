@@ -1,0 +1,26 @@
+{
+  "changedFiles": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "changedTranslationCells": 69,
+  "hookReason": "The configured pre-commit runs a local Semgrep scan outside private JIT; task policy disallows non-JIT scans.",
+  "hooksDisabledForCommit": true,
+  "localeFiles": 12,
+  "parent": "674156749ee86021ef91d896b1824be62cff9a93",
+  "result": "PASS",
+  "sha": "7bfcab0e1eae810f8af1e1398f0e429c862b42ee",
+  "shortSha": "7bfcab0e1eae",
+  "subject": "fix(i18n): apply slskdN W76 translations",
+  "tree": "3db7b7e3c1a93103f9adffce454a49e6df03d162"
+}

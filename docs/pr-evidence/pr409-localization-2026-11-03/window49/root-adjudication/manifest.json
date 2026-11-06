@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "exactHead": "a0f97a65f75df32a196338bea7a176b23b126cc4",
+  "exactTree": "a5cb30af29a947edbf76721bbc29b59e4330f970",
+  "window": "W49 ranks 101-125 reconstructed continuation sequence",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 2254,
+      "sha256": "1c0d1849a940cb0ce1a22c67e6228bd71838ace7958fafcc4a0190b535d15d00"
+    },
+    {
+      "path": "adjudication-differences.jsonl",
+      "bytes": 108024,
+      "sha256": "00bf2e6adccf2d9967b418d7f5e94a54e0541b502b19c0890f32bb84c0b6df7f"
+    },
+    {
+      "path": "catalog-term-anchors.json",
+      "bytes": 25438,
+      "sha256": "7b016c02b1b4334d1eb0897a970988a803e2a2400d9e39043dc33bef3d45936a"
+    },
+    {
+      "path": "exact-hash-apply-plan.jsonl",
+      "bytes": 170292,
+      "sha256": "59389f9281fce57c9d8842fa0b7041f3506d305e37436d88aafb083ce3ebc9af"
+    },
+    {
+      "path": "exact-head-reattestation.json",
+      "bytes": 16711,
+      "sha256": "dea1b28721da7202a0f7a404f1645b20ce565561413f33975e4a620b78e3e03b"
+    },
+    {
+      "path": "root-decisions.jsonl",
+      "bytes": 874440,
+      "sha256": "ca03f6312fbbee28868195620a682e840f8ba6368ac0417285ebacc6d97e3531"
+    },
+    {
+      "path": "source-evidence.jsonl",
+      "bytes": 47872,
+      "sha256": "db8f6a50b8b18e8b69795a75faeb92151db9e96bc794c5afa025a899c602dc52"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 2386,
+      "sha256": "05ad16f32b9eeacbce054cf1d7f57ce24a5d2ff1134af3b2247757511858f7ed"
+    }
+  ]
+}

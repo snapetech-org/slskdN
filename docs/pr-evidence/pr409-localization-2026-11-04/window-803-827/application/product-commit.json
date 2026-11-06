@@ -1,0 +1,22 @@
+{
+  "changedValues": 52,
+  "fileCount": 12,
+  "files": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "parent": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "sha": "572150c0f7a9e506d3251ea14490ad5f7967507f",
+  "subject": "fix(i18n): apply slskdN W77 translations",
+  "tree": "4cb41dda2ad379504b0fd702d0d641a8aa4e9a99"
+}

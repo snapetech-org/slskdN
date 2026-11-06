@@ -1,0 +1,31 @@
+{
+  "result": "FROZEN_PENDING_MANUAL_REVIEW",
+  "window": 37,
+  "reviewBaseHead": "2be3fa4dd46a0f0f49adad342f289721e4777035",
+  "reviewBaseTree": "f838ae565086dec8639f8a54aa4c7d4572342b5f",
+  "sourceSubtreePath": "src/web/src",
+  "sourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "sourceKeys": 25,
+  "cells": 273,
+  "perLocalePendingCells": {
+    "ar": 25,
+    "de": 24,
+    "fr": 25,
+    "hi": 25,
+    "id": 24,
+    "ja": 25,
+    "ko": 25,
+    "pt-BR": 25,
+    "vi": 25,
+    "zh-Hans": 25,
+    "zh-Hant": 25
+  },
+  "manualDecisionsPending": 273,
+  "correctionRows": 0,
+  "keepRows": 0,
+  "uncertainRows": 0,
+  "preservedPriorHolds": 50,
+  "preservedPriorSpanishRows": 24,
+  "preservedSpanishExactReuseRows": 1,
+  "nativeSpeakerReview": "outstanding"
+}

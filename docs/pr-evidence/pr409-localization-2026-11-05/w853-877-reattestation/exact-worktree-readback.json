@@ -1,0 +1,36 @@
+{
+  "portableVerifier": {
+    "result": "PASS",
+    "verifier": "portable",
+    "checks": {
+      "sha256_inventory": "PASS",
+      "manifest_and_summary": "PASS",
+      "live_entry_exit_snapshots": "PASS",
+      "rank_selection_and_held_source_redaction": "PASS",
+      "cell_scope_and_redaction": "PASS",
+      "caller_context_redaction": "PASS",
+      "catalog_and_runtime_pin_inventory": "PASS",
+      "applied_hold_and_historical_state": "PASS",
+      "candidate_free_boundary": "PASS"
+    },
+    "sourceIds": 25,
+    "cells": 300,
+    "applied": 288,
+    "hashOnlyHolds": 12,
+    "historicalResolutionTargetsReattested": 13,
+    "historicalResolutionSourcesAbsent": 12
+  },
+  "exactWorktreeVerifier": {
+    "result": "PASS",
+    "verifier": "exact-worktree",
+    "head": "cc600880606f374cebe3082789fa50f246ff614f",
+    "tree": "440b9842d914a391f77cbb03737261b8798cc6e3",
+    "sourceIds": 25,
+    "cells": 300,
+    "catalogs": 12,
+    "runtimeFiles": 279,
+    "callerReferences": 85,
+    "applied": 288,
+    "hashOnlyHolds": 12
+  }
+}

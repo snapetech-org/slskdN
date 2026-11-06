@@ -1,0 +1,23 @@
+{
+  "all300CellsReadBack": true,
+  "appliedOperations": 52,
+  "changedCatalogFiles": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "format": "JSON round-trip was byte-identical before edits; serialization preserved two-space formatting, Unicode, trailing newline, key order, and 6,176 keys per locale.",
+  "guard": "All 52 expected current-target SHA-256 values matched before writing.",
+  "hashOnlyHoldsPreserved": 12,
+  "result": "PASS",
+  "testsBuildsScansCiRun": false
+}

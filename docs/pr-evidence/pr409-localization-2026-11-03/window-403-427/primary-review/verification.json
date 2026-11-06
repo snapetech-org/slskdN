@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "window": "W61 ranks 403-427",
+  "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+  "tree": "fad129065c1ccbdaaabe99c1054649dc426ea94b",
+  "livePrOpenDraftAtExpectedHead": true,
+  "worktreeCleanAtExpectedHead": true,
+  "candidateFreePacketChecksumListSha256": "418735698e3e789a8c14005d531980631980bdccb993fe9ae669b65735e4ace7",
+  "candidateFreeManifestJsonSha256": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+  "candidateFreePacketFilesVerified": 11,
+  "primaryRowsVerified": 300,
+  "verdictCounts": {
+    "accept-current": 212,
+    "correction": 64,
+    "refinement": 24
+  },
+  "proposedChanges": 88,
+  "callerlessHolds": 0,
+  "priorW59HoldsReattested": 24,
+  "priorW60CellsReattested": 300,
+  "priorW60AppliedValuesReattested": 84,
+  "structuralChecksAllPass": true,
+  "candidateFreeInputUnmodified": true,
+  "repositoryOrPrModified": false
+}

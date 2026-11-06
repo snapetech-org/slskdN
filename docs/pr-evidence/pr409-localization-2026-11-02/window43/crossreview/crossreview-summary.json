@@ -1,0 +1,77 @@
+{
+  "result": "INDEPENDENT_CROSS_REVIEW_COMPLETE_PENDING_NATIVE_SPEAKER_REVIEW_AND_QUEUED_FOLLOWUPS",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "9071dcb9b4a96b476ecbaec9d5643236846ac2f8",
+  "tree": "25282a0cd8197815b3ffcbec9dbea8a03a5c8725",
+  "sourceOrdinals": [
+    76,
+    100
+  ],
+  "sourceIds": 25,
+  "reviewedNonSpanishCells": 275,
+  "reviewLocales": 11,
+  "independentDispositions": {
+    "accept-proposal": 45,
+    "accept-current": 219,
+    "hold-source-caller-refactor": 11
+  },
+  "primaryProposals": 45,
+  "acceptedPrimaryProposals": 45,
+  "rejectedProposals": 0,
+  "revisedProposals": 0,
+  "currentCellsAccepted": 219,
+  "heldCells": 11,
+  "callerReferences": 43,
+  "callerFiles": 24,
+  "currentPlaceholderMismatches": 0,
+  "currentMarkupMismatches": 0,
+  "currentProtectedLiteralMisses": 2,
+  "candidateStructuralMismatches": 0,
+  "w42FinalCellsReattested": 275,
+  "w42AppliedReadbacksReattested": 48,
+  "priorHoldsPreserved": 50,
+  "priorInputFilesRehashed": 41,
+  "w41W42SpanishFormalRowsPreserved": 50,
+  "w43SpanishBoundaryValuesPreserved": 25,
+  "w43SpanishFormalIdsPresent": 24,
+  "w43SpanishFormalIdsMissing": [
+    "es:src_0ef5849949bcf7b6"
+  ],
+  "queuedFollowups": [
+    {
+      "id": "w98-complete-seen-receipt-messages",
+      "sourceOrdinal": 98,
+      "affectedCells": 11,
+      "callerPath": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "callerLines": [
+        3158,
+        3159,
+        3160,
+        3162
+      ],
+      "disposition": "hold all 11 current cells pending complete localized positive/negative messages with message and Pod ID placeholders"
+    },
+    {
+      "id": "w97-source-label-clarification",
+      "sourceOrdinal": 97,
+      "affectedCells": 11,
+      "callerPath": "src/web/src/components/Search/SongIDPanel.jsx",
+      "callerLines": [
+        1101
+      ],
+      "disposition": "queue source-key clarification to Raw AcoustID matches; accepted translations are grounded in rawAcoustIdHitCount"
+    },
+    {
+      "id": "w43-spanish-formal-accumulator-gap",
+      "sourceOrdinal": 87,
+      "cellId": "es:src_0ef5849949bcf7b6",
+      "disposition": "preserve current value and queue formal-lane accumulator clarification; no Spanish verdict"
+    }
+  ],
+  "provenanceLimitation": "The task-named W40 bundle is absent, so the full frozen pending queue cannot be reconstructed. The older W40 primary packet is not used as current evidence.",
+  "nativeSpeakerReview": "outstanding",
+  "testsBuildsCiBrowserRun": false,
+  "repositoryModified": false,
+  "packetPath": "/mnt/disks/scratch/task-scratch/slskdn-pr409-window43-crossreview-independent-20261102"
+}

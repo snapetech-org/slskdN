@@ -1,7 +1,7 @@
+import { formatRegionalNumber, useRegionalLocale, getRegionalLocale } from '../../lib/regionalFormat';
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps } from "../../lib/interfaceLocale";
 import { formatTransferState } from '../../lib/transfers';
-import { getRegionalLocale } from '../../lib/regionalFormat';
 import './TrafficTicker.css';
 import { createTransfersHubConnection } from '../../lib/hubFactory';
 import React, { useEffect, useState } from 'react';
@@ -89,6 +89,7 @@ const formatBytes = (bytes) => {
 };
 
 const TrafficTicker = () => {
+  const regionalLocale = useRegionalLocale();
   const [activities, setActivities] = useState([]);
   const [connected, setConnected] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -177,18 +178,15 @@ const TrafficTicker = () => {
           <div className="traffic-ticker-toggle">
             <Popup
               content={expanded
-                ? interfaceText('Collapse the activity list to its 10 most recent transfer events.')
-                : interfaceText(
-                  'Show {count} older transfer events so you can review recent network activity.',
-                  { count: activities.length - 10 },
-                )}
+                ? <LocalizedText source="Collapse the activity list to its 10 most recent transfer events." />
+                : <LocalizedText source="Show {count} older transfer events so you can review recent network activity." values={{ count: formatRegionalNumber(activities.length - 10, undefined, regionalLocale) }} />}
               trigger={(
                 <button
                   className="traffic-ticker-toggle-button"
                   onClick={() => setExpanded(!expanded)}
                   type="button"
                 >
-                  {expanded ? <LocalizedText source={"Show Less"} /> : `Show ${activities.length - 10} More`}
+                  {expanded ? <LocalizedText source={"Show Less"} /> : <LocalizedText source="Show {count} More" values={{ count: formatRegionalNumber(activities.length - 10, undefined, regionalLocale) }} />}
                 </button>
               )}
             />

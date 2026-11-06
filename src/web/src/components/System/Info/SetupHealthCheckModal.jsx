@@ -1,12 +1,12 @@
+import { interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
 import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 import { urlBase } from "../../../config";
 import {
   buildSetupHealthChecks,
   formatSetupHealthReport,
 } from '../../../lib/setupHealthCheck';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Header,
@@ -99,7 +99,7 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
       }),
     [options, state],
   );
-  const report = useMemo(() => formatSetupHealthReport(summary), [summary]);
+  const report = formatSetupHealthReport(summary);
   const groupNames = useMemo(
     () => ['All', ...Object.keys(summary.groups).sort()],
     [summary.groups],
@@ -116,11 +116,11 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
     const copied = await copyToClipboard(report);
 
     if (copied) {
-      toast.success(interfaceText("Setup health report copied"));
+      toast.success(interfaceToastText("Setup health report copied"));
       return;
     }
 
-    toast.info(interfaceText("Select the setup health report text to copy it manually"));
+    toast.info(interfaceToastText("Select the setup health report text to copy it manually"));
   };
 
   return (
@@ -218,7 +218,7 @@ const SetupHealthCheckModal = ({ options = {}, state = {} }) => {
                   position="top center"
                   trigger={
                     <Button
-                      aria-label={interfaceText("Show {group} setup health checks", { group: interfaceText(group) })}
+                      aria-label={interfaceAttributeText("Show {group} setup health checks", { group: interfaceAttributeText(group) })}
                       basic={activeGroup !== group}
                       onClick={() => setActiveGroup(group)}
                       size="small"

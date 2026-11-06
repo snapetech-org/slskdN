@@ -1,0 +1,10 @@
+{
+  "priorAppliedTargetsReattested": 190,
+  "allTargetsRemainApplied": true,
+  "windows": {
+    "priorThroughW79": 109,
+    "W80": 81
+  },
+  "targetTextIncluded": false,
+  "sourceTextIncluded": false
+}

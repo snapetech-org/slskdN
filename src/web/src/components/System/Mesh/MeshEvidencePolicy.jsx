@@ -1,8 +1,12 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { interfaceAttributeTextProps, interfaceAttributeText, interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../../lib/interfaceLocale';
+import { useRegionalLocale } from '../../../lib/regionalFormat';
+import LocalizedText, { LocalizedRichText } from "../../Shared/LocalizedText";
 import {
   evaluateMeshEvidenceEntries,
   formatMeshEvidenceReviewReport,
+  formatMeshEvidenceReason,
+  getMeshEvidenceReasonSource,
+  getMeshEvidenceReasonValues,
   getMeshEvidencePolicy,
   getMeshEvidencePolicySummary,
   inboundTrustTiers,
@@ -13,7 +17,7 @@ import {
   setMeshEvidenceOutboundEnabled,
 } from '../../../lib/meshEvidencePolicy';
 import React, { useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from '../../../lib/localizedToast';
 import {
   Button,
   Checkbox,
@@ -68,6 +72,12 @@ const sampleEvidence = JSON.stringify(
   2,
 );
 
+const MeshEvidenceReason = ({ reason }) => {
+  const regionalLocale = useRegionalLocale();
+  const source = getMeshEvidenceReasonSource(reason);
+  return source ? <LocalizedText source={source} values={getMeshEvidenceReasonValues(reason, regionalLocale)} /> : formatMeshEvidenceReason(reason);
+};
+
 const MeshEvidencePolicy = () => {
   useInterfaceLanguage();
   const [policy, setPolicy] = useState(getMeshEvidencePolicy);
@@ -78,19 +88,19 @@ const MeshEvidencePolicy = () => {
 
   const setInboundTier = (_event, { value }) => {
     setPolicy(setMeshEvidenceInboundTrustTier(value));
-    toast.info(interfaceText("Mesh evidence inbound trust policy updated"));
+    toast.info(interfaceToastText("Mesh evidence inbound trust policy updated"));
   };
 
   const toggleOutbound = (evidenceType, enabled) => {
     setPolicy(setMeshEvidenceOutboundEnabled(evidenceType.id, enabled));
     toast.info(
-      `${evidenceType.label} publication ${enabled ? 'enabled' : 'disabled'}`,
+      <LocalizedRichText source={enabled ? "{label} publication enabled" : "{label} publication disabled"} values={{ label: <LocalizedText source={evidenceType.label} /> }} />,
     );
   };
 
   const resetPolicy = () => {
     setPolicy(resetMeshEvidencePolicy());
-    toast.info(interfaceText("Mesh evidence policy reset to private defaults"));
+    toast.info(interfaceToastText("Mesh evidence policy reset to private defaults"));
   };
 
   const reviewEvidence = () => {
@@ -109,11 +119,11 @@ const MeshEvidencePolicy = () => {
 
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(formatMeshEvidenceReviewReport(review));
-      toast.success(interfaceText("Mesh evidence review copied"));
+      toast.success(interfaceToastText("Mesh evidence review copied"));
       return;
     }
 
-    toast.info(interfaceText("Clipboard unavailable; select the review results manually"));
+    toast.info(interfaceToastText("Clipboard unavailable; select the review results manually"));
   };
 
   return (
@@ -200,8 +210,8 @@ const MeshEvidencePolicy = () => {
                       position="top center"
                       trigger={
                         <Checkbox
-                          aria-label={interfaceText(actionSource, { label })}
-                          {...interfaceTextProps(actionSource, { label })}
+                          aria-label={interfaceAttributeText(actionSource, { label })}
+                          {...interfaceAttributeTextProps(actionSource, { label })}
                           checked={enabled}
                           onChange={(_event, { checked }) =>
                             toggleOutbound(evidenceType, checked)
@@ -328,7 +338,7 @@ const MeshEvidencePolicy = () => {
                     <List.Description>
                       <LocalizedText source={"Confidence"} />{" "}{entry.confidence}<LocalizedText source={"; witnesses"} />{" "}{entry.witnessCount}<LocalizedText source={"; provenance"} />{" "}{entry.provenance.trustTier}
                       {entry.reasons.length > 0
-                        ? `; rejected because ${entry.reasons.join(', ')}`
+                        ? <LocalizedRichText source="; rejected because {reasons}" values={{ reasons: entry.reasons.map((reason, index) => <React.Fragment key={index}>{index > 0 ? ", " : null}<MeshEvidenceReason reason={reason} /></React.Fragment>) }} />
                         : <LocalizedText source={"; accepted for local use"} />}
                     </List.Description>
                   </List.Content>

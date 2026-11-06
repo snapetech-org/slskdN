@@ -1,10 +1,10 @@
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
+import { interfaceToastText, interfaceText, interfaceTextProps, useInterfaceLanguage } from '../../lib/interfaceLocale';
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
 import { getRegionalLocale } from '../../lib/regionalFormat';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Header, Icon, Input, Label, Modal, Table } from 'semantic-ui-react';
-import { toast } from 'react-toastify';
+import { toast } from '../../lib/localizedToast';
 import * as downloadRequests from '../../lib/downloadRequests';
 import TooltipButton from '../Shared/TooltipButton';
 
@@ -31,7 +31,7 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
       setDetail(data);
       setNameDraft(data?.request?.name ?? '');
     } catch (error) {
-      toast.error(interfaceText("Failed to load request: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Failed to load request: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
       setDetail(null);
     } finally {
       setLoading(false);
@@ -55,9 +55,9 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
     try {
       const updated = await downloadRequests.rename(requestId, nameDraft.trim());
       setDetail((prev) => (prev ? { ...prev, request: updated } : prev));
-      toast.success(interfaceText("Renamed"));
+      toast.success(interfaceToastText("Renamed"));
     } catch (error) {
-      toast.error(interfaceText("Rename failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Rename failed: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     } finally {
       setRenaming(false);
     }
@@ -67,10 +67,10 @@ const RequestDetailModal = ({ open, requestId, onClose }) => {
     if (!requestId) return;
     try {
       await downloadRequests.cancel(requestId);
-      toast.success(interfaceText("Request cancelled"));
+      toast.success(interfaceToastText("Request cancelled"));
       await load();
     } catch (error) {
-      toast.error(interfaceText("Cancel failed: {message}", { "message": getApiErrorMessage(error, { t: interfaceText }) }));
+      toast.error(interfaceToastText("Cancel failed: {message}", { "message": getApiErrorMessageOutput(error, { t: interfaceText }) }));
     }
   };
 

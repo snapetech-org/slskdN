@@ -1,0 +1,61 @@
+{
+  "window": "W978-W1002",
+  "continuationRankRange": [
+    978,
+    1002
+  ],
+  "remainingQueueRankRange": [
+    878,
+    902
+  ],
+  "inputHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "inputTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "catalogCount": 12,
+  "sourceCount": 25,
+  "reviewedCellCount": 300,
+  "rootAdjudicatedCellCount": 64,
+  "exactHashEditCount": 89,
+  "protectedLiteralRepairs": 5,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "reviewEvidence": {
+    "candidateFree": "candidate-free/input",
+    "primary": "primary-review",
+    "blind": "blind-review",
+    "crossReview": "cross-review",
+    "rootAdvisory": "root-adjudication/root-adjudication-opinion.jsonl"
+  },
+  "exactHeadBinding": "all inputs at the same original product head/tree; product commit follows catalog application",
+  "result": "PASS",
+  "preApplyHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "catalogsPreflighted": 12,
+  "reviewedCellsPreflighted": 300,
+  "editsPreflighted": 89,
+  "catalogFileSha256Before": {
+    "src/web/public/locales/ar.json": "f5c696e494bdabd0c0003459062713534ae0fcbd2bcae1b2155599731fd828b2",
+    "src/web/public/locales/de.json": "100c81d9431a06c3bf542f4cd469ae2d1fd0d3a1cbdc2bd86d35e1c705699394",
+    "src/web/public/locales/es.json": "4757d4d5fb2ceb6fe16b88060d5753af8102d94974f61a95bbaedb02ee3b2d71",
+    "src/web/public/locales/fr.json": "4c672e70436933d1d079556c96fe9e8d95c8ca2470cdf7c46b84d66815debaaa",
+    "src/web/public/locales/hi.json": "702a5d744a162764ce82c1a86629efbbc831778382c40dd1c815b5a442613340",
+    "src/web/public/locales/id.json": "39ecebef96b9289a179b51b970d141eacfbcf5f36c438d59f92af2cdb9ed1b39",
+    "src/web/public/locales/ja.json": "13b600e01c5a13dfda881ac027f9630fa0ff058d575c9a3167daf48b4ddcb0a0",
+    "src/web/public/locales/ko.json": "351c5dafd7bdeda170f3ee3938b8cb0e4ba3e7f075a561f80b96afe99eee657a",
+    "src/web/public/locales/pt-BR.json": "cf5cd6c263f2e4f2ea7934c8f3d67551998dad99a70e72babac0273c646839d9",
+    "src/web/public/locales/vi.json": "dc33a212b805dff655695369e67b305da795fe8bd2268380fb247ab159f2c5d2",
+    "src/web/public/locales/zh-Hans.json": "9a67b81b38a8acc2d655f95b471b2f8db6d722930c3ba6cf475f4a9a1e668456",
+    "src/web/public/locales/zh-Hant.json": "6fd2a2100ec9b7f09cbccaae6c4df90880df326cad83e24dba0537c6098eac47"
+  },
+  "writeStartedAfterFullPreflight": true
+}

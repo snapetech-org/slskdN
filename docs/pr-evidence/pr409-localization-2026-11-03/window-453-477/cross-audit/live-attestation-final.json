@@ -1,0 +1,19 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "state": "OPEN",
+  "isDraft": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "base": "main",
+  "head": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+  "tree": "8b5c0ef640f487741f0a08086cc6d60d5eef43a4",
+  "branchRefHead": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+  "pullRefHead": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+  "attestedAtUTC": "2026-11-03T13:16:37.786103+00:00",
+  "candidateFreeManifestSha256": "4acb80051e2c934b271d5ff5a8bf45907788e4fc0220d9d27f5cf740aa992c94",
+  "candidateFreeChecksumListSha256": "005422a8c4c92af3c44d672fe133ec1e551b58bbee947a563e2a9960b2b0d1c4",
+  "primaryChecksumListSha256": "906f0680e16b0751b1cf2d2d260a377402995030427d82b6aadb434e32da8041",
+  "blindRootChecksumListSha256": "913ea16aebbb8a3db2e4d7bdf39fe8b7cfcaca54f48bdefab27f0b52ebb2ee27",
+  "blindReviewPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w63-independent-blind-20261103/blind-review",
+  "note": "Live PR metadata, branch/pull refs, and commit tree were reattested before review and again before creating the cross-audit output. No PR body was read."
+}

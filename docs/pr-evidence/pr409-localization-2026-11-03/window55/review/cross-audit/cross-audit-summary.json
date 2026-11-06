@@ -1,0 +1,1413 @@
+{
+  "reviewType": "third-party cross-audit and reconciliation of W55 candidate-free input, primary ledger, and independent blind ledger",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "OPEN",
+  "isDraft": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "exactHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "exactTree": "a22e9a896aae12aa89a1502d9748b12816d491ed",
+  "remoteBranchHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "pinnedPrBodySha256": "9ce6507c68b3ccfbb2b7ec78282951a449d04abecf8b35c8f15b4d2412985faa",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "callerSourceCount": 25,
+  "callerReferenceCount": 40,
+  "callerlessSourceIds": [],
+  "inputManifestSha256": "4dcbdb679ced3a9211560682a5b8775af06aab9a06b1970179156d94e3cabfb0",
+  "inputManifestEntriesVerified": 8,
+  "primaryRootManifestSha256": "c30936fe3e595ef298e9c7d2a6bd84c148bd83a660321c26e27daff2a42d5fab",
+  "primaryRootManifestEntriesVerified": 17,
+  "primaryManifestSha256": "1e2d4fb9994e3062db945ea9698815770d34edf4ed064267673471f9756dc863",
+  "primaryManifestEntriesVerified": 4,
+  "blindManifestSha256": "6281e1efc35e78e082d9586ab1c47fdf9e80e4de48d384154e5f4996b4eec5aa",
+  "blindManifestEntriesVerified": 7,
+  "primaryCounts": {
+    "accept-current": 194,
+    "refinement": 10,
+    "hold-terminology": 36,
+    "correction": 60
+  },
+  "blindCounts": {
+    "accept-current": 193,
+    "refinement": 12,
+    "hold-terminology": 36,
+    "correction": 59
+  },
+  "crossAdjudicatedCounts": {
+    "accept-current": 193,
+    "refinement": 12,
+    "hold-terminology": 36,
+    "correction": 59
+  },
+  "primaryCandidateChanges": 70,
+  "blindCandidateChanges": 71,
+  "crossCandidateChanges": 71,
+  "candidateTextDisagreementCount": 15,
+  "verdictDisagreementCount": 2,
+  "disagreementCellCount": 15,
+  "unresolvedDisagreementCount": 0,
+  "holdCount": 36,
+  "heldRanks": {
+    "278": "Publish or retrieve pod metadata through DHT workflows.",
+    "282": "You need at least one pod with VPN gateway capability to use port forwarding.",
+    "289": "Please enter both Pod ID and Peer ID"
+  },
+  "holdLocalesByRank": {
+    "278": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "282": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "289": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ]
+  },
+  "currentProtectedLiteralMismatchCount": 19,
+  "primaryProtectedCandidateMismatchCount": 0,
+  "blindProtectedCandidateMismatchCount": 0,
+  "crossProtectedCandidateMismatchCount": 0,
+  "currentNumericMismatchCount": 5,
+  "currentNumericMismatchCells": [
+    {
+      "rank": 288,
+      "locale": "de"
+    },
+    {
+      "rank": 288,
+      "locale": "es"
+    },
+    {
+      "rank": 288,
+      "locale": "fr"
+    },
+    {
+      "rank": 288,
+      "locale": "pt-BR"
+    },
+    {
+      "rank": 288,
+      "locale": "vi"
+    }
+  ],
+  "primaryNumericCandidateMismatchCount": 0,
+  "blindNumericCandidateMismatchCount": 0,
+  "crossNumericCandidateMismatchCount": 0,
+  "placeholderMismatchCount": 0,
+  "markupMismatchCount": 0,
+  "localizedWishlistTerms": {
+    "ar": "قائمة الرغبات",
+    "de": "Wunschliste",
+    "es": "Lista de deseos",
+    "fr": "Liste de souhaits",
+    "hi": "इच्छा सूची",
+    "id": "Daftar keinginan",
+    "ja": "ウィッシュリスト",
+    "ko": "위시리스트",
+    "pt-BR": "Lista de desejos",
+    "vi": "Danh sách yêu thích",
+    "zh-Hans": "愿望单",
+    "zh-Hant": "願望清單"
+  },
+  "wishlistTermPins": {
+    "ar": {
+      "Wishlist": "3a4e47601b1cf2ff41a3541468aee22e826a772abbbbd6384b08395d1afa2a08",
+      "Sync wanted albums to Wishlist": "f2205db89b740ca5b9855be4da6ed54f07ecaebf1c8b1efc98d4621eb7b651fe",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "ac25724c32d0175701571c6e6604b57a156103c3ca6ff94373899266a48fea00"
+    },
+    "de": {
+      "Wishlist": "34d9d80abf35f0faedd76cc3fb11b583eb6dd97a6cd2d239e254e3a4c0a93d3b",
+      "Sync wanted albums to Wishlist": "3ba83fa895cc5e10d9d5ea0a8069888efd4c1f8f676212cfdeeae7a5b05f07f6",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "4381300c7c3de61f9e39fbcc6386e172c5ae3ab7a72b12d61bccb53053267593"
+    },
+    "es": {
+      "Wishlist": "8ad5efc0e6cf40a31d58f01d25f317a0f4cd4a36c0eecd5abd6b718f5a9afe97",
+      "Sync wanted albums to Wishlist": "451c187fbcc0a068bad60ad09c72825a3dc421060b3049b0b1291cf099865c64",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "e199a1d75d79af21ca8655c14880f7252b14b52433eaf18c5c626906a2f2797d"
+    },
+    "fr": {
+      "Wishlist": "859ef7b5660617eb642810567f237977e5ea5120fc2ab58f182aecd290b6ea33",
+      "Sync wanted albums to Wishlist": "e3ff028e8f144ce081a1e7ab024f61a6c753553bd13f822bf0074b88dd1a3c1d",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "4636f7563d8b19cc93c56961896acf72e44ddb9e4556d090ca4d930f67391498"
+    },
+    "hi": {
+      "Wishlist": "c4a5550f85c08b912cc3196856a42c5a4e063a3c756656eefeb0fa13c026c43a",
+      "Sync wanted albums to Wishlist": "49b4c5cccf13f20faa9ded44d827ed5b62f7412f6eb95e73d0de7a3ab131183f",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "775267ece6d60bad244599a264c0b7bf9e58add58475e0771b25c48bf7f84796"
+    },
+    "id": {
+      "Wishlist": "c6a36c4f36d21451d6fdd5c9629598774e846039359f4a6fe7d739f542e16fc8",
+      "Sync wanted albums to Wishlist": "55811c5dbf1065824e04a0f1513433b8011c271ee357dce4c4e20bbc031d3a24",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "c7c826e2671d8a9ddbf1e9e922c5def23e240e0073cc1cd59c5559146a3fa57a"
+    },
+    "ja": {
+      "Wishlist": "90ed37a9c55c783d3e2162c60309e9f2f62c5c84a7684884b2964e980187f4c8",
+      "Sync wanted albums to Wishlist": "4e7536a9f0c06fd0d0d2e201dc80116f43c768817454dd66bca7b5f4a8791c0f",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "464fd827ec4074538cbf732c0832d90a0480a47bbb342ec17bd8b5aab7914e7a"
+    },
+    "ko": {
+      "Wishlist": "0c9f27222f08c9d1620931d07ceef0b8d5fe7aed5abd3c33cc219ae0f816ec6d",
+      "Sync wanted albums to Wishlist": "97c48c349d8ccc1b4c0c82c438dfc7f2d5825e7a9534713aa2aec61d025b166e",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "006fa5095d6d116faa14406f5cd8c73001bb7d90f16d08ed60777fc2ba5b52e8"
+    },
+    "pt-BR": {
+      "Wishlist": "ae1d86ff8d7a734754909403ca9e7343bdd4a9c6886817fb21a9e7242616b3fb",
+      "Sync wanted albums to Wishlist": "1b0b567b69fbab3dda4fc0d4ea5bdfde32c05b11d7195bf73c9b6b9969d35955",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "37cbfc15273aeb60766a61cd037f8d256699c2515f11f0d1ec62a36f1b9f790d"
+    },
+    "vi": {
+      "Wishlist": "b885a8807c857d6ccb557ec633eed37a7c852c0e9092b8acab7616e3c6c88fdc",
+      "Sync wanted albums to Wishlist": "db3bcf141c1ade40ec8606503b5d495ebb91ddb1f9e19fb9d7ab79ea99e7f1f5",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "ad0ea933050f67ffc29cd4e43e56f45d5857699da171acbf8dd0758bc81a1e22"
+    },
+    "zh-Hans": {
+      "Wishlist": "4efd61c979cced743bb45d6474dd5d84ba988cbb22d02cf56eee3f7553d62ff5",
+      "Sync wanted albums to Wishlist": "c3840d4d51fa2760973d032ae8ca0d7d8107c969316598bab6910366416d8248",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "0999f9aeb9d370a147c93ad59e062966adb70f123739c0ea3b1a89e573141620"
+    },
+    "zh-Hant": {
+      "Wishlist": "940529726339c907ca244b3ee16d1efc7916f79a48d98caef8f90abe6a71eb03",
+      "Sync wanted albums to Wishlist": "b8a0fc7289383c2667b9864cdd178582d379cb06ca5ec8338bd543d229dae1f9",
+      "Sync Lidarr wanted albums into slskdN Wishlist review items.": "1dec615ab0eb6a4ccd668677631f51db2bdfc4e325a1d0ee39139befcf5f9606"
+    }
+  },
+  "nativeSpeakerApproval": false,
+  "headedProductBrowserReview": false,
+  "projectTestsBuildsScansCiRun": false,
+  "repositoryModified": false,
+  "remoteMutation": false,
+  "notes": [
+    "Primary and blind ledgers independently agree on all 36 Pod terminology holds.",
+    "The 15 candidate-text disagreements and two verdict disagreements are all resolved in cross-audit ledger.",
+    "The rank 283 differences are reconciled against exact-head localized translations for the standalone Wishlist key and its sibling setting/tooltip strings.",
+    "Rank 288 candidates retain the exact comma-separated audio sample syntax; five current decimal-comma values are incompatible with the pinned comma-splitting parser.",
+    "This cross-audit is machine-assisted and does not constitute native-speaker approval."
+  ],
+  "exactDisagreements": [
+    {
+      "continuationRank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "source": "Checks:",
+      "locale": "ar",
+      "disagreementTypes": [
+        "candidate-text-disagreement",
+        "verdict-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "عمليات التحقق:",
+      "blindVerdict": "refinement",
+      "blindCandidate": "الفحوصات:",
+      "crossVerdict": "refinement",
+      "crossCandidate": "الفحوصات:",
+      "crossResolution": "semantic-cross-adjudication",
+      "rationale": "Both reviews found the section-heading wording needs improvement. This concise heading matches the readiness-check list; the existing term conveys checking, so the cross disposition is refinement."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "ar",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "فعّل مزامنة الألبومات المطلوبة من Lidarr مع قائمة الرغبات",
+      "blindVerdict": "correction",
+      "blindCandidate": "فعّل مزامنة الألبومات المطلوبة من Lidarr مع Wishlist",
+      "crossVerdict": "correction",
+      "crossCandidate": "فعّل مزامنة الألبومات المطلوبة من Lidarr مع قائمة الرغبات",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'قائمة الرغبات'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "de",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Synchronisierung der von Lidarr gewünschten Alben mit der Wunschliste aktivieren",
+      "blindVerdict": "correction",
+      "blindCandidate": "Synchronisierung der von Lidarr gewünschten Alben mit Wishlist aktivieren",
+      "crossVerdict": "correction",
+      "crossCandidate": "Synchronisierung der von Lidarr gewünschten Alben mit der Wunschliste aktivieren",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'Wunschliste'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "es",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Activar la sincronización de los álbumes deseados de Lidarr con la lista de deseos",
+      "blindVerdict": "correction",
+      "blindCandidate": "Activar la sincronización de los álbumes deseados de Lidarr con Wishlist",
+      "crossVerdict": "correction",
+      "crossCandidate": "Activar la sincronización de los álbumes deseados de Lidarr con la lista de deseos",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'Lista de deseos'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "fr",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Activer la synchronisation des albums souhaités par Lidarr avec la liste de souhaits",
+      "blindVerdict": "correction",
+      "blindCandidate": "Activer la synchronisation des albums souhaités par Lidarr avec Wishlist",
+      "crossVerdict": "correction",
+      "crossCandidate": "Activer la synchronisation des albums souhaités par Lidarr avec la liste de souhaits",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'Liste de souhaits'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "hi",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Lidarr के वांछित एल्बमों को Wishlist में सिंक करना सक्षम करें",
+      "blindVerdict": "correction",
+      "blindCandidate": "Lidarr के वांछित एल्बमों को Wishlist में सिंक करने की सेटिंग सक्षम करें",
+      "crossVerdict": "correction",
+      "crossCandidate": "Lidarr के वांछित एल्बमों को इच्छा सूची में सिंक करना सक्षम करें",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'इच्छा सूची'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "ja",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Lidarrで必要とされているアルバムをウィッシュリストに同期する設定を有効にする",
+      "blindVerdict": "correction",
+      "blindCandidate": "Lidarrで取得を希望しているアルバムをWishlistに同期する設定を有効にする",
+      "crossVerdict": "correction",
+      "crossCandidate": "Lidarrで取得を希望しているアルバムをウィッシュリストに同期する設定を有効にする",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'ウィッシュリスト'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "ko",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Lidarr에서 원하는 앨범을 위시리스트에 동기화하도록 설정",
+      "blindVerdict": "correction",
+      "blindCandidate": "Lidarr에서 원하는 앨범을 Wishlist에 동기화하도록 설정",
+      "crossVerdict": "correction",
+      "crossCandidate": "Lidarr에서 원하는 앨범을 위시리스트에 동기화하도록 설정",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: '위시리스트'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "pt-BR",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Ativar a sincronização dos álbuns desejados pelo Lidarr com a lista de desejos",
+      "blindVerdict": "correction",
+      "blindCandidate": "Ativar a sincronização dos álbuns desejados pelo Lidarr com Wishlist",
+      "crossVerdict": "correction",
+      "crossCandidate": "Ativar a sincronização dos álbuns desejados pelo Lidarr com a lista de desejos",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'Lista de desejos'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "vi",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "Bật đồng bộ các album Lidarr mong muốn với danh sách mong muốn",
+      "blindVerdict": "correction",
+      "blindCandidate": "Bật đồng bộ các album được Lidarr mong muốn với Wishlist",
+      "crossVerdict": "correction",
+      "crossCandidate": "Bật đồng bộ các album Lidarr mong muốn vào Danh sách yêu thích",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: 'Danh sách yêu thích'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "zh-Hans",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "启用将 Lidarr 中想要的专辑同步到愿望清单",
+      "blindVerdict": "correction",
+      "blindCandidate": "启用将 Lidarr 中想要的专辑同步到 Wishlist",
+      "crossVerdict": "correction",
+      "crossCandidate": "启用将 Lidarr 中想要的专辑同步到愿望单",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: '愿望单'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 283,
+      "sourceId": "src_1a11202854710127",
+      "source": "Enable Lidarr wanted sync setting",
+      "locale": "zh-Hant",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "啟用將 Lidarr 中想要的專輯同步至願望清單",
+      "blindVerdict": "correction",
+      "blindCandidate": "啟用將 Lidarr 中想要的專輯同步至 Wishlist",
+      "crossVerdict": "correction",
+      "crossCandidate": "啟用將 Lidarr 中想要的專輯同步至願望清單",
+      "crossResolution": "localized-catalog-glossary",
+      "rationale": "Use the established localized feature name for Wishlist from this exact-head catalog: '願望清單'. The pinned caller describes syncing Lidarr wanted albums into those review items. This resolves the reviews' English-versus-local term differences without changing the product feature."
+    },
+    {
+      "continuationRank": 287,
+      "sourceId": "src_1a3ac2763f00fd8a",
+      "source": "Lossless file with DR={range} suggests lossy source",
+      "locale": "ja",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "DR={range}のロスレスファイルは、音源が非可逆圧縮である可能性を示唆します",
+      "blindVerdict": "correction",
+      "blindCandidate": "DR={range}のロスレスファイルは、音源が非可逆圧縮である可能性を示唆する",
+      "crossVerdict": "correction",
+      "crossCandidate": "DR={range}のロスレスファイルは、音源が非可逆圧縮である可能性を示唆します",
+      "crossResolution": "semantic-cross-adjudication",
+      "rationale": "Both candidates express the intended lossy-audio warning. Use the sentence-style ending in the primary proposal, which fits this diagnostic message; both preserve DR and {range}."
+    },
+    {
+      "continuationRank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "source": "0.1, -0.2, 0.3, ... (normalized -1.0 to 1.0)",
+      "locale": "ja",
+      "disagreementTypes": [
+        "candidate-text-disagreement"
+      ],
+      "primaryVerdict": "correction",
+      "primaryCandidate": "0.1, -0.2, 0.3, ... (-1.0 から 1.0 に正規化)",
+      "blindVerdict": "correction",
+      "blindCandidate": "0.1, -0.2, 0.3, ...（-1.0 から 1.0 に正規化）",
+      "crossVerdict": "correction",
+      "crossCandidate": "0.1, -0.2, 0.3, ...（-1.0 から 1.0 に正規化）",
+      "crossResolution": "semantic-cross-adjudication",
+      "rationale": "Both proposals preserve the exact parser sample. Use Japanese fullwidth parentheses without an English-style preceding space while retaining the ASCII comma-separated sample."
+    },
+    {
+      "continuationRank": 290,
+      "sourceId": "src_1a4f630ac1b69fd0",
+      "source": "Stopped",
+      "locale": "es",
+      "disagreementTypes": [
+        "candidate-text-disagreement",
+        "verdict-disagreement"
+      ],
+      "primaryVerdict": "accept-current",
+      "primaryCandidate": "Interrumpido",
+      "blindVerdict": "refinement",
+      "blindCandidate": "Detenido",
+      "crossVerdict": "refinement",
+      "crossCandidate": "Detenido",
+      "crossResolution": "semantic-cross-adjudication",
+      "rationale": "The caller displays a current stopped health state. Detenido names that state more directly than Interrumpido, which can mean an interruption."
+    }
+  ],
+  "exactCrossChanges": [
+    {
+      "rank": 276,
+      "sourceId": "src_19dd83f117525b93",
+      "locale": "zh-Hans",
+      "from": "黄色的",
+      "to": "黄色",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 276,
+      "sourceId": "src_19dd83f117525b93",
+      "locale": "zh-Hant",
+      "from": "黃色的",
+      "to": "黃色",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "locale": "ar",
+      "from": "التحقق :",
+      "to": "الفحوصات:",
+      "verdict": "refinement",
+      "resolution": "semantic-cross-adjudication"
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "locale": "de",
+      "from": "Überprüfen Sie :",
+      "to": "Prüfungen:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "locale": "id",
+      "from": "Pemeriksaan :",
+      "to": "Pemeriksaan:",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "locale": "pt-BR",
+      "from": "Verificações :",
+      "to": "Verificações:",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 279,
+      "sourceId": "src_19f9dd8511864b10",
+      "locale": "vi",
+      "from": "Kiểm tra :",
+      "to": "Kiểm tra:",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "locale": "ar",
+      "from": "تصحيح",
+      "to": "تصحيح الأخطاء",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "locale": "de",
+      "from": "Debuggen",
+      "to": "Debug",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "locale": "es",
+      "from": "Depurar",
+      "to": "Depuración",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "locale": "fr",
+      "from": "Déboguer",
+      "to": "Débogage",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "locale": "id",
+      "from": "Men-debug",
+      "to": "Debug",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 281,
+      "sourceId": "src_1a03bd2fd107c453",
+      "locale": "pt-BR",
+      "from": "Depurar",
+      "to": "Depuração",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "ar",
+      "from": "تمكين إعداد المزامنة المطلوبة Lidarr",
+      "to": "فعّل مزامنة الألبومات المطلوبة من Lidarr مع قائمة الرغبات",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "de",
+      "from": "Aktivieren Sie die gewünschte Synchronisierungseinstellung Lidarr",
+      "to": "Synchronisierung der von Lidarr gewünschten Alben mit der Wunschliste aktivieren",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "es",
+      "from": "Habilite la configuración de sincronización deseada Lidarr",
+      "to": "Activar la sincronización de los álbumes deseados de Lidarr con la lista de deseos",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "fr",
+      "from": "Activer le paramètre de synchronisation recherché Lidarr",
+      "to": "Activer la synchronisation des albums souhaités par Lidarr avec la liste de souhaits",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "hi",
+      "from": "Lidarr वांछित सिंक सेटिंग सक्षम करें",
+      "to": "Lidarr के वांछित एल्बमों को इच्छा सूची में सिंक करना सक्षम करें",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "id",
+      "from": "Aktifkan pengaturan sinkronisasi yang diinginkan Lidarr",
+      "to": "Aktifkan sinkronisasi album yang diinginkan di Lidarr ke Daftar keinginan",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "ja",
+      "from": "Lidarr 必要な同期設定を有効にする",
+      "to": "Lidarrで取得を希望しているアルバムをウィッシュリストに同期する設定を有効にする",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "ko",
+      "from": "Lidarr 원하는 동기화 설정 활성화",
+      "to": "Lidarr에서 원하는 앨범을 위시리스트에 동기화하도록 설정",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "pt-BR",
+      "from": "Habilite a configuração de sincronização desejada Lidarr",
+      "to": "Ativar a sincronização dos álbuns desejados pelo Lidarr com a lista de desejos",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "vi",
+      "from": "Bật cài đặt đồng bộ hóa mong muốn Lidarr",
+      "to": "Bật đồng bộ các album Lidarr mong muốn vào Danh sách yêu thích",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "zh-Hans",
+      "from": "启用 Lidarr 想要的同步设置",
+      "to": "启用将 Lidarr 中想要的专辑同步到愿望单",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 283,
+      "sourceId": "src_1a11202854710127",
+      "locale": "zh-Hant",
+      "from": "啟用 Lidarr 想要的同步設定",
+      "to": "啟用將 Lidarr 中想要的專輯同步至願望清單",
+      "verdict": "correction",
+      "resolution": "localized-catalog-glossary"
+    },
+    {
+      "rank": 285,
+      "sourceId": "src_1a30e8b2ecc38400",
+      "locale": "es",
+      "from": "Explorar acciones",
+      "to": "Explorar recursos compartidos",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 285,
+      "sourceId": "src_1a30e8b2ecc38400",
+      "locale": "id",
+      "from": "Telusuri Saham",
+      "to": "Jelajahi berkas yang dibagikan",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 287,
+      "sourceId": "src_1a3ac2763f00fd8a",
+      "locale": "ja",
+      "from": "DR={range}の損失のないファイルは、損失源を示す",
+      "to": "DR={range}のロスレスファイルは、音源が非可逆圧縮である可能性を示唆します",
+      "verdict": "correction",
+      "resolution": "semantic-cross-adjudication"
+    },
+    {
+      "rank": 287,
+      "sourceId": "src_1a3ac2763f00fd8a",
+      "locale": "ko",
+      "from": "DR={range}를 가진 손실없는 파일은 손실된 출처를 제안합니다.",
+      "to": "DR={range}인 무손실 파일은 손실 음원일 가능성을 시사합니다",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "ar",
+      "from": "0.1، -0.2، 0.3، ... (تمت تسويته من -1.0 إلى 1.0)",
+      "to": "0.1, -0.2, 0.3, ... (تمت تسويته من -1.0 إلى 1.0)",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "de",
+      "from": "0,1, -0,2, 0,3, ... (normalisiert -1,0 bis 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalisiert von -1.0 bis 1.0)",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "es",
+      "from": "0,1, -0,2, 0,3, ... (normalizado -1,0 a 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalizado de -1.0 a 1.0)",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "fr",
+      "from": "0,1, -0,2, 0,3, ... (normalisé -1,0 à 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalisé de -1.0 à 1.0)",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "ja",
+      "from": "0.1、-0.2、0.3、... (-1.0 から 1.0 に正規化)",
+      "to": "0.1, -0.2, 0.3, ...（-1.0 から 1.0 に正規化）",
+      "verdict": "correction",
+      "resolution": "semantic-cross-adjudication"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "pt-BR",
+      "from": "0,1, -0,2, 0,3, ... (normalizado -1,0 a 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (normalizado de -1.0 a 1.0)",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "vi",
+      "from": "0,1, -0,2, 0,3, ... (chuẩn hóa -1,0 đến 1,0)",
+      "to": "0.1, -0.2, 0.3, ... (chuẩn hóa từ -1.0 đến 1.0)",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "zh-Hans",
+      "from": "0.1、-0.2、0.3、...（标准化 -1.0 至 1.0）",
+      "to": "0.1, -0.2, 0.3, ...（标准化 -1.0 至 1.0）",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 288,
+      "sourceId": "src_1a3d7c1f8945693a",
+      "locale": "zh-Hant",
+      "from": "0.1、-0.2、0.3、...（標準化 -1.0 至 1.0）",
+      "to": "0.1, -0.2, 0.3, ...（標準化 -1.0 至 1.0）",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 290,
+      "sourceId": "src_1a4f630ac1b69fd0",
+      "locale": "es",
+      "from": "Interrumpido",
+      "to": "Detenido",
+      "verdict": "refinement",
+      "resolution": "semantic-cross-adjudication"
+    },
+    {
+      "rank": 290,
+      "sourceId": "src_1a4f630ac1b69fd0",
+      "locale": "ja",
+      "from": "停止しました",
+      "to": "停止中",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 290,
+      "sourceId": "src_1a4f630ac1b69fd0",
+      "locale": "pt-BR",
+      "from": "Parou",
+      "to": "Parado",
+      "verdict": "refinement",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "ar",
+      "from": "EST. إيجابية كاذبة:",
+      "to": "معدل الإيجابيات الكاذبة المقدّر:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "de",
+      "from": "Schätzung: Falsch positiv:",
+      "to": "Geschätzte Falsch-Positiv-Rate:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "es",
+      "from": "Est. Falso positivo:",
+      "to": "Tasa estimada de falsos positivos:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "fr",
+      "from": "HNE. Faux positif :",
+      "to": "Taux estimé de faux positifs :",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "hi",
+      "from": "ईएसटी। गलत सकारात्मक:",
+      "to": "अनुमानित गलत-सकारात्मक दर:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "id",
+      "from": "Perkiraan. Positif Palsu:",
+      "to": "Perkiraan tingkat positif palsu:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "ja",
+      "from": "EST（東部基準時。誤検知:",
+      "to": "推定偽陽性率:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "ko",
+      "from": "예상 거짓 긍정:",
+      "to": "추정 위양성률:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "pt-BR",
+      "from": "Husa. Falso Positivo:",
+      "to": "Taxa estimada de falsos positivos:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "vi",
+      "from": "Ước tính. Dương tính giả:",
+      "to": "Tỷ lệ dương tính giả ước tính:",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "zh-Hans",
+      "from": "预计。误报：",
+      "to": "预计误报率：",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 292,
+      "sourceId": "src_1a6b01c45fdbf25b",
+      "locale": "zh-Hant",
+      "from": "預計。誤報：",
+      "to": "預估偽陽性率：",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 294,
+      "sourceId": "src_1a7896144cbd8803",
+      "locale": "vi",
+      "from": "Chỉ hiển thị giao dịch thất bại để tập trung vào phần đó của hàng đợi.",
+      "to": "Chỉ hiển thị các lượt truyền tệp thất bại để bạn tập trung vào phần đó của hàng đợi.",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "ar",
+      "from": "ينبع ديموكس",
+      "to": "مسارات Demucs الصوتية",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "de",
+      "from": "Demucs-Vorbauten",
+      "to": "Demucs-Stems",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "es",
+      "from": "Tallos Demucs",
+      "to": "Pistas separadas de Demucs",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "fr",
+      "from": "Tiges Demucs",
+      "to": "Pistes séparées de Demucs",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "hi",
+      "from": "डिमुकस तने",
+      "to": "Demucs के अलग-अलग ऑडियो ट्रैक",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "id",
+      "from": "Batang Demuc",
+      "to": "Stem audio Demucs",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "ja",
+      "from": "デムクスステム",
+      "to": "Demucsのステム",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "ko",
+      "from": "Demucs 줄기",
+      "to": "Demucs 스템",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "pt-BR",
+      "from": "Hastes Demucs",
+      "to": "Stems do Demucs",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "vi",
+      "from": "Cây Demucs",
+      "to": "Các stem âm thanh của Demucs",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "zh-Hans",
+      "from": "德穆克斯茎",
+      "to": "Demucs 分轨",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 295,
+      "sourceId": "src_1a87779358c845c4",
+      "locale": "zh-Hant",
+      "from": "德穆克斯莖",
+      "to": "Demucs 分軌",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 298,
+      "sourceId": "src_1aa4cb0bcca76e92",
+      "locale": "ko",
+      "from": "영상",
+      "to": "이미지",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "locale": "ar",
+      "from": " الألبوم: {album}",
+      "to": " | الألبوم: {album}",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "locale": "de",
+      "from": " Album: {album}",
+      "to": " | Album: {album}",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "locale": "ja",
+      "from": " アルバム:{album}",
+      "to": " | アルバム: {album}",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    },
+    {
+      "rank": 300,
+      "sourceId": "src_1ab4cba1fe971008",
+      "locale": "ko",
+      "from": " 앨범: {album}",
+      "to": " | 앨범: {album}",
+      "verdict": "correction",
+      "resolution": "reviewer-consensus"
+    }
+  ],
+  "exactHolds": [
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "ar",
+      "current": "قم بنشر أو استرداد البيانات التعريفية للقرص من خلال سير عمل DHT.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "de",
+      "current": "Veröffentlichen oder rufen Sie Pod-Metadaten über DHT-Workflows ab.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "es",
+      "current": "Publique o recupere metadatos del pod a través de flujos de trabajo DHT.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "fr",
+      "current": "Publiez ou récupérez les métadonnées du pod via les workflows DHT.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "hi",
+      "current": "DHT वर्कफ़्लो के माध्यम से पॉड मेटाडेटा प्रकाशित या पुनर्प्राप्त करें।",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "id",
+      "current": "Publikasikan atau ambil metadata pod melalui alur kerja DHT.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "ja",
+      "current": "DHT ワークフローを通じてポッド メタデータを公開または取得します。",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "ko",
+      "current": "DHT 워크플로를 통해 포드 메타데이터를 게시하거나 검색합니다.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "pt-BR",
+      "current": "Publique ou recupere metadados de pod por meio de fluxos de trabalho DHT.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "vi",
+      "current": "Xuất bản hoặc truy xuất siêu dữ liệu nhóm thông qua quy trình công việc DHT.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "zh-Hans",
+      "current": "通过 DHT 工作流程发布或检索 Pod 元数据。",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 278,
+      "sourceId": "src_19ebfa54031ecebb",
+      "source": "Publish or retrieve pod metadata through DHT workflows.",
+      "locale": "zh-Hant",
+      "current": "透過 DHT 工作流程發佈或檢索 Pod 元資料。",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "ar",
+      "current": "أنت بحاجة إلى حجرة واحدة على الأقل مزودة بإمكانية بوابة VPN لاستخدام إعادة توجيه المنفذ.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "de",
+      "current": "Sie benötigen mindestens einen Pod mit VPN-Gateway-Funktion, um die Portweiterleitung nutzen zu können.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "es",
+      "current": "Necesita al menos un pod con capacidad de puerta de enlace VPN para utilizar el reenvío de puertos.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "fr",
+      "current": "Vous avez besoin d'au moins un pod doté d'une fonctionnalité de passerelle VPN pour utiliser la redirection de port.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "hi",
+      "current": "पोर्ट फ़ॉरवर्डिंग का उपयोग करने के लिए आपको वीपीएन गेटवे क्षमता वाला कम से कम एक पॉड की आवश्यकता है।",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "id",
+      "current": "Anda memerlukan setidaknya satu pod dengan kemampuan gateway VPN untuk menggunakan penerusan porta.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "ja",
+      "current": "ポート転送を使用するには、VPN ゲートウェイ機能を備えたポッドが少なくとも 1 つ必要です。",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "ko",
+      "current": "포트 전달을 사용하려면 VPN 게이트웨이 기능이 있는 포드가 하나 이상 필요합니다.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "pt-BR",
+      "current": "Você precisa de pelo menos um pod com capacidade de gateway VPN para usar o encaminhamento de porta.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "vi",
+      "current": "Bạn cần ít nhất một nhóm có khả năng cổng VPN để sử dụng tính năng chuyển tiếp cổng.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "zh-Hans",
+      "current": "您需要至少一个具有 VPN 网关功能的 Pod 才能使用端口转发。",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 282,
+      "sourceId": "src_1a074fe1795c3280",
+      "source": "You need at least one pod with VPN gateway capability to use port forwarding.",
+      "locale": "zh-Hant",
+      "current": "您需要至少一個具有 VPN 閘道功能的 Pod 才能使用連接埠轉送。",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "ar",
+      "current": "الرجاء إدخال معرف Pod ومعرف النظير",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "de",
+      "current": "Bitte geben Sie sowohl die Pod-ID als auch die Peer-ID ein",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "es",
+      "current": "Ingrese tanto el ID del pod como el ID del par",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "fr",
+      "current": "Veuillez saisir l'ID du pod et l'ID du homologue.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "hi",
+      "current": "कृपया पॉड आईडी और पीयर आईडी दोनों दर्ज करें",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "id",
+      "current": "Silakan masukkan ID Pod dan ID Rekan",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "ja",
+      "current": "ポッド ID とピア ID の両方を入力してください",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "ko",
+      "current": "포드 ID와 피어 ID를 모두 입력하세요.",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "pt-BR",
+      "current": "Insira o ID do pod e o ID do peer",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "vi",
+      "current": "Vui lòng nhập cả ID nhóm và ID ngang hàng",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "zh-Hans",
+      "current": "请同时输入 Pod ID 和 Peer ID",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    },
+    {
+      "rank": 289,
+      "sourceId": "src_1a46033a7f5d8151",
+      "source": "Please enter both Pod ID and Peer ID",
+      "locale": "zh-Hant",
+      "current": "請同時輸入 Pod ID 和 Peer ID",
+      "reason": "Both independent ledgers agree on the exact candidate and disposition."
+    }
+  ]
+}

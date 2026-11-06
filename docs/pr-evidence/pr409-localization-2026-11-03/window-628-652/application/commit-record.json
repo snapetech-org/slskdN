@@ -1,0 +1,17 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "prApiBaseRef": "main",
+  "prApiBaseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "currentMainTipAtApplication": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "mergeBase": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "aheadOfCurrentMainAtParent": 142,
+  "behindCurrentMainAtParent": 4,
+  "rebasePerformed": false,
+  "parentHead": "335a96a9ec125b30c20c31be219da4e27db1ab03",
+  "parentTree": "7168de556608115be3b7e16b9ceb30b977df904b",
+  "catalogCommit": "76820443c2fa5c40c0e27f83414a821f7cfc2424",
+  "catalogTree": "af822569576d9b8ee5e0bb05ed630b2ad052e6e2",
+  "applicationCommitMessage": "fix(i18n): reconcile slskdN W70 localization"
+}

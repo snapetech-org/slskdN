@@ -1,0 +1,81 @@
+{
+  "result": "PASS",
+  "head": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "tree": "8070731f8ee7529b9f4353720ca6214941b1ae21",
+  "sourceSubtreeTree": "299b4318cd8fc2a03173ab510ee265a779964034",
+  "prState": "OPEN",
+  "prDraft": true,
+  "window": 29,
+  "keys": 25,
+  "cells": 300,
+  "verdicts": {
+    "correct": 42,
+    "keep": 258
+  },
+  "perLocale": {
+    "es": {
+      "correct": 4,
+      "keep": 21
+    },
+    "zh-Hans": {
+      "correct": 3,
+      "keep": 22
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 3
+    },
+    "de": {
+      "correct": 4,
+      "keep": 21
+    },
+    "ja": {
+      "correct": 3,
+      "keep": 22
+    },
+    "fr": {
+      "correct": 5,
+      "keep": 20
+    },
+    "pt-BR": {
+      "correct": 3,
+      "keep": 22
+    },
+    "ar": {
+      "correct": 4,
+      "keep": 21
+    },
+    "ko": {
+      "correct": 3,
+      "keep": 22
+    },
+    "zh-Hant": {
+      "correct": 3,
+      "keep": 22
+    },
+    "vi": {
+      "correct": 4,
+      "keep": 21
+    },
+    "id": {
+      "correct": 3,
+      "keep": 22
+    }
+  },
+  "priorManualWindows": 28,
+  "priorManualCells": 8400,
+  "priorAppliedCorrections": 1153,
+  "formalCells": 4800,
+  "formalOverlap": 0,
+  "manualOverlap": 0,
+  "appliedOverlap": 0,
+  "candidatePlanRows": 42,
+  "candidatePlanJoin": "PASS",
+  "callerLinesRechecked": 444,
+  "inputSha256": "fc41b5f62ac2feaad4c5184d1d09d481b114703596f734804718d5a651942307",
+  "decisionsSha256": "99c398c8439ed2d41870be80940ad5e0409e18d021e9e66d566bd863950375af",
+  "candidatePlanSha256": "b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568",
+  "semanticConfidence": "high for flagged corrections",
+  "localeQualityConfidence": "moderate",
+  "nativeSpeakerReview": "outstanding"
+}

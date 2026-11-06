@@ -114,8 +114,8 @@ describe('mediaServerIntegrations', () => {
 
     expect(report).toContain('slskdN media-server sync review');
     expect(report).toContain('Adapter: Navidrome');
-    expect(report).toContain('PENDING: Base URL configured');
-    expect(report).toContain('PENDING: Path mapping ready');
+    expect(report).toContain('Pending: Base URL configured');
+    expect(report).toContain('Pending: Path mapping ready');
   });
 
   it('builds a live execution contract from adapter readiness and automation gates', () => {
@@ -174,7 +174,7 @@ describe('mediaServerIntegrations', () => {
 
     const report = formatMediaServerExecutionContractReport(contract);
     expect(report).toContain('slskdN media-server execution contract');
-    expect(report).toContain('BLOCKED: User mapping configured');
-    expect(report).toContain('ENABLED / BLOCKED: Scrobble and rating export');
+    expect(report).toContain('Needs attention: User mapping configured');
+    expect(report).toContain('Enabled / Needs attention: Scrobble and rating export');
   });
 });

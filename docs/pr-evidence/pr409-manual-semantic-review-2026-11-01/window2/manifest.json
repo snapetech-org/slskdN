@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-cell semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+  "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+  "generatedUtc": "2026-11-01T22:52:09.438418+00:00",
+  "headRevalidatedUtc": "2026-11-01T22:52:09.438418+00:00",
+  "sourceSnapshot": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-pr409-head-review-20261101",
+  "frozenBundle": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-populated-review-4c2b-20261101/bundle",
+  "frozenManifestSha256": "912fadf3fce5d827fae0978323cfc7a3e96ded860be2d9c20fafe49b2720cbea",
+  "frozenBatchesSha256": "dde0829c435956ee80c7efe64d70f4c6a787dc71cbd4652d88b88303e845e111",
+  "currentAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "invalidSample": [],
+    "formalCellsCovered": 4800
+  },
+  "priorManualBundles": [
+    {
+      "path": "/mnt/disks/scratch/task-worktrees/localization-20261030/slskdn-manual-review-25keys-4c2b-20261101",
+      "cells": 300,
+      "keys": 25,
+      "manifestSha256": "30bc07c74d23d823c441811a559eb9a4677bc9304e6b5183d4b9cf71a229cb4e",
+      "inputSha256": "11b7d401023abe47fda7255d0b6158231e93ecc9feb4fdebea323b7480c44bf2"
+    }
+  ],
+  "priorManualCellCount": 300,
+  "priorManualKeyCount": 25,
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_db1d3769d76b7e91",
+      "src_db27199060c0fc46",
+      "src_db70268858c6e4bc",
+      "src_dbd8c72f1c275cd1",
+      "src_dc1accffeb4f4760",
+      "src_dc1dd32dc437cbe8",
+      "src_dc216f0beacaa3a9",
+      "src_dc2dc85ec37d9946",
+      "src_dc6f79efe9e557ea",
+      "src_dc8659db6d416dc3",
+      "src_dcaa03355b935310",
+      "src_dcade883c92ea508",
+      "src_dcaf05f7af975330",
+      "src_dcb611a91ebb0b73",
+      "src_dcc839a4015c4b7d",
+      "src_dcd0a4d2c65a4996",
+      "src_dcd93bb209fb1238",
+      "src_dcefb7a9f0370679",
+      "src_dcfc722a9c014902",
+      "src_dd041121ae19347a",
+      "src_dd13818677e0e10b",
+      "src_dd1a581c2853966e",
+      "src_dd1fe312599e5a19",
+      "src_dd2a5aaa423c8cae",
+      "src_dd45fdaf77a67582"
+    ],
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "allSelectedCellsWerePending": true,
+    "existingResultOverlap": 0,
+    "priorManualOverlap": 0,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 722
+  },
+  "decisionCounts": {
+    "keep": 221,
+    "correct": 51,
+    "uncertain": 28
+  },
+  "reviewerMethod": "independent manual semantic review by a model using pinned source context and code callsites; no local translation-model or API call",
+  "overallConfidence": "moderate",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": false,
+  "catalogsEdited": false,
+  "sourceEdited": false,
+  "sharedLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "inputCellSetSha256": "ed84a83861124c233b8da3f94716f122126410f604f1ccd74be506b7987420c2",
+  "selectedSourceIdSetSha256": "d6a47c14614ab657d0892d1208becd22a7ea5303ae6bdd96bd5afcb5826a106e",
+  "correctionFindings": [
+    {
+      "sourceId": "src_db1d3769d76b7e91",
+      "source": "Peers are discovered through searches and downloads",
+      "affectedLocales": [
+        "de",
+        "hi",
+        "id",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "Several targets use colleagues/like-minded people rather than the P2P network peer term."
+    },
+    {
+      "sourceId": "src_db27199060c0fc46",
+      "source": "Try center-channel vocal reduction for karaoke-style playback.",
+      "affectedLocales": [
+        "zh-Hans"
+      ],
+      "finding": "The Simplified Chinese target says eliminate vocals, which overstates the reduction effect."
+    },
+    {
+      "sourceId": "src_db70268858c6e4bc",
+      "source": "Review the DHT feature gate notice above before using public rendezvous controls.",
+      "affectedLocales": [
+        "es",
+        "fr",
+        "vi",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "Some targets translate software feature-gate as a physical gate."
+    },
+    {
+      "sourceId": "src_dc216f0beacaa3a9",
+      "source": "Load Channels",
+      "affectedLocales": [
+        "id",
+        "ja",
+        "ko",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "Several targets render the button action as a load-bearing channel or as a loading state."
+    },
+    {
+      "sourceId": "src_dc8659db6d416dc3",
+      "source": "Enter",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The source is an actual keyboard key name inside kbd markup and event.key checks; verb translations are incorrect."
+    },
+    {
+      "sourceId": "src_dcc839a4015c4b7d",
+      "source": "View",
+      "affectedLocales": [
+        "ar",
+        "de",
+        "es",
+        "hi",
+        "id",
+        "ja",
+        "ko",
+        "zh-Hans",
+        "zh-Hant"
+      ],
+      "finding": "This is a button that opens a SongID run; several targets use a noun/scene or a non-action form."
+    },
+    {
+      "sourceId": "src_dcaf05f7af975330",
+      "source": "Adversarial Resilience Overview",
+      "affectedLocales": [
+        "fr"
+      ],
+      "finding": "The French target means contradictory resilience; the source is a security heading about resistance to attacks."
+    },
+    {
+      "sourceId": "src_dd041121ae19347a",
+      "source": "Failed to get membership:",
+      "affectedLocales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "finding": "The surrounding error uses membershipResult.error; targets that imply joining/acquiring membership should say membership information could not be retrieved."
+    }
+  ],
+  "uncertaintyFindings": [
+    {
+      "sourceId": "src_dc1accffeb4f4760",
+      "source": "Configured import success",
+      "locales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "reason": "The compact source status is ambiguous; the callsite does not establish whether configuration modifies the import or successful import is the gate condition."
+    },
+    {
+      "sourceId": "src_dc6f79efe9e557ea",
+      "source": "Realm subject-index realm id",
+      "locales": [
+        "es",
+        "zh-Hans",
+        "hi",
+        "de",
+        "ja",
+        "fr",
+        "pt-BR",
+        "ar",
+        "ko",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "reason": "This is a compound product term without a glossary or nearby implementation that establishes locale-specific rendering."
+    },
+    {
+      "sourceId": "src_dd45fdaf77a67582",
+      "source": "Bridge Lines",
+      "locales": [
+        "zh-Hans",
+        "zh-Hant",
+        "vi",
+        "id"
+      ],
+      "reason": "This labels Obfs4 Tor BridgeLines configuration; locale-specific Tor terminology needs domain-aware review."
+    }
+  ],
+  "files": {
+    "review-input.jsonl": {
+      "bytes": 538759,
+      "rows": 300,
+      "sha256": "c8507f897140d5c9bbd38cd8b238228407541c971822ff55c55415242fc25af9"
+    },
+    "review-decisions.jsonl": {
+      "bytes": 29113,
+      "rows": 300,
+      "sha256": "965201e7bb42959fd262f22eb1132db8cdb6558c9f1f5e1cea0bb31697677d3d"
+    }
+  }
+}

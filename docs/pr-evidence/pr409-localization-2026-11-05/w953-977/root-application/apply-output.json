@@ -1,0 +1,142 @@
+{
+  "result": "PASS",
+  "sourcePin": {
+    "head": "fc8e42a06363ceee762ae084bbe716953d4a5d94",
+    "tree": "e04aa06b8cfb0ee41cae90aef601a0552b5e85bd",
+    "base": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356"
+  },
+  "candidateCells": 300,
+  "selectedChanges": 114,
+  "heldHashOnlyCells": 12,
+  "rootManualOverrides": 1,
+  "changedCatalogCount": 12,
+  "changedCatalogPaths": [
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/es.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "workflowChanges": 0,
+  "hooks": {
+    "preCommit": "not run; hooks disabled for commit",
+    "prePush": "not run; hooks disabled for push"
+  },
+  "catalogs": [
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "preimageSha256": "0a2fce139ba8b474c88fdda493adf322d753a50cb35ccf2fe996dc1808a09b20",
+      "postimageSha256": "f5c696e494bdabd0c0003459062713534ae0fcbd2bcae1b2155599731fd828b2",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 9
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "preimageSha256": "abbbf9bb42bbbc6a1ee2e77c0f4da2768a43ee06507b6520c850adf9f0e2ffd8",
+      "postimageSha256": "100c81d9431a06c3bf542f4cd469ae2d1fd0d3a1cbdc2bd86d35e1c705699394",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 11
+    },
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "preimageSha256": "9f29bafadcb222b1d810ad75d43dd72aee00dcf945efbdf95144faf3ea0b4ead",
+      "postimageSha256": "4757d4d5fb2ceb6fe16b88060d5753af8102d94974f61a95bbaedb02ee3b2d71",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 10
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "preimageSha256": "9ea46558a2300bc99f1e4a03c0a78acdd98dd625a3ece4932734cd118cfc97a2",
+      "postimageSha256": "4c672e70436933d1d079556c96fe9e8d95c8ca2470cdf7c46b84d66815debaaa",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 10
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "preimageSha256": "38f4372f7bcb54a6b0fe59029d2f63ec0ac3faa68f0d0caf5240a3d8b2a07ae7",
+      "postimageSha256": "702a5d744a162764ce82c1a86629efbbc831778382c40dd1c815b5a442613340",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 10
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "preimageSha256": "6624f9c649f28da9f6b4f4d8a61c6a678d6ca46cab346427a60fe518e1b7a124",
+      "postimageSha256": "39ecebef96b9289a179b51b970d141eacfbcf5f36c438d59f92af2cdb9ed1b39",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 10
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "preimageSha256": "e114c75028c6bca4fdaba4c99e2fd8c8856eb97219a25d0e8398c57875951f86",
+      "postimageSha256": "13b600e01c5a13dfda881ac027f9630fa0ff058d575c9a3167daf48b4ddcb0a0",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 11
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "preimageSha256": "19b703f2436ab51d20dec0789d8642bc008122aa5dcb5a0209625849489c852f",
+      "postimageSha256": "351c5dafd7bdeda170f3ee3938b8cb0e4ba3e7f075a561f80b96afe99eee657a",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 9
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "preimageSha256": "c155830cee95a3f842db5e1e480225bc6795569c47f2edf77840eb5f41c3c986",
+      "postimageSha256": "cf5cd6c263f2e4f2ea7934c8f3d67551998dad99a70e72babac0273c646839d9",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 9
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "preimageSha256": "5afa4ceca69044f4d7e698c8ef0225a21e154df6582d7788e1b5c139c2af4afd",
+      "postimageSha256": "dc33a212b805dff655695369e67b305da795fe8bd2268380fb247ab159f2c5d2",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 8
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "preimageSha256": "851380ac8da8408dfb04d1605ae68e6c714dabd7a0dcbd83a89229a599320012",
+      "postimageSha256": "9a67b81b38a8acc2d655f95b471b2f8db6d722930c3ba6cf475f4a9a1e668456",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 8
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "preimageSha256": "f8f374c202fb8ad5e285981a18f8372da98b9bd9fb3fae2b64fe9850ac2c847d",
+      "postimageSha256": "6fd2a2100ec9b7f09cbccaae6c4df90880df326cad83e24dba0537c6098eac47",
+      "entryCount": 6175,
+      "orderedKeySha256": "7fea6a535732dc3d528f9dd5194d029b6f415e2c5c57fe83455fd679d3c302ce",
+      "changedCellCount": 9
+    }
+  ]
+}

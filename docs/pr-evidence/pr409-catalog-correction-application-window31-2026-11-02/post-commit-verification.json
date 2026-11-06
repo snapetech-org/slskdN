@@ -1,0 +1,31 @@
+{
+  "result": "PASS",
+  "applicationCommit": "b38a95fb75ec4ac691ad02c4b2c7393f8a1389b7",
+  "applicationTree": "f2e7a734d60555964f0487377066a955308fd8c9",
+  "parentReviewHead": "fbafaae2e05af8ce51a263c7be2a92a8728ceb94",
+  "remoteHead": "b38a95fb75ec4ac691ad02c4b2c7393f8a1389b7",
+  "livePrState": "OPEN",
+  "livePrDraft": true,
+  "mergeStateStatus": "CLEAN",
+  "commitPaths": [
+    "docs/CHANGELOG.md",
+    "src/web/public/locales/ar.json",
+    "src/web/public/locales/de.json",
+    "src/web/public/locales/fr.json",
+    "src/web/public/locales/hi.json",
+    "src/web/public/locales/id.json",
+    "src/web/public/locales/ja.json",
+    "src/web/public/locales/ko.json",
+    "src/web/public/locales/pt-BR.json",
+    "src/web/public/locales/vi.json",
+    "src/web/public/locales/zh-Hans.json",
+    "src/web/public/locales/zh-Hant.json"
+  ],
+  "workflowSubtreeEqual": true,
+  "sourceCodeSubtreeEqual": true,
+  "catalogHashesMatchPostApply": true,
+  "diffCheck": "PASS",
+  "worktree": "clean",
+  "nativeSpeakerReview": "outstanding",
+  "testsBuildCiReleaseOrTag": "not run"
+}

@@ -1,0 +1,56 @@
+{
+  "application": {
+    "catalogFiles": 12,
+    "cellsReadBack": 300,
+    "gitDiffCheck": "PASS",
+    "hashOnlyHolds": 48,
+    "result": "PASS",
+    "selectedUpdates": 69,
+    "unchangedCells": 183
+  },
+  "blind": {
+    "callerlessTextFreeHolds": 48,
+    "contextualHolds": 12,
+    "holds": 60,
+    "keep": 188,
+    "proposals": 52,
+    "result": "PASS"
+  },
+  "candidateFree": {
+    "callerlessHashOnlyHolds": 48,
+    "cells": 300,
+    "head": "674156749ee86021ef91d896b1824be62cff9a93",
+    "result": "PASS",
+    "tree": "86483dbf9227130cade6a3f4c9dc9ef5cf232450"
+  },
+  "cross": {
+    "blindSelectedTargets": 3,
+    "differentTargetProposals": 21,
+    "hashOnlyHolds": 48,
+    "keepCurrent": 183,
+    "primaryOnlyAgainstBlindHold": 12,
+    "primaryOnlyAgainstBlindKeep": 5,
+    "result": "PASS",
+    "sameTargetProposals": 31,
+    "selectedCorrections": 69
+  },
+  "delivery": {
+    "checkRuns": 0,
+    "codeQLDefaultSetup": "not-configured",
+    "deployments": 0,
+    "headRefsMatch": true,
+    "productCommit": "7bfcab0e1eae810f8af1e1398f0e429c862b42ee",
+    "productPush": "PASS",
+    "reviewsBeforeEvidenceUpdate": 0,
+    "statuses": 0,
+    "workflowPathsChanged": false
+  },
+  "primary": {
+    "acceptCurrent": 183,
+    "corrections": 69,
+    "proposalTokenMismatches": 0,
+    "result": "PASS",
+    "textFreeHolds": 48
+  },
+  "testsBuildsScansCI": "not run"
+}

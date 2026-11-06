@@ -1,0 +1,168 @@
+{
+  "applyChangesByLocale": {
+    "ar": 7,
+    "de": 7,
+    "es": 7,
+    "fr": 5,
+    "hi": 3,
+    "id": 6,
+    "ja": 7,
+    "ko": 6,
+    "pt-BR": 7,
+    "vi": 6,
+    "zh-Hans": 5,
+    "zh-Hant": 5
+  },
+  "applyPlanRows": 71,
+  "baseHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "baseTree": "a22e9a896aae12aa89a1502d9748b12816d491ed",
+  "blindCandidateChanges": 71,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "callerReferenceCount": 40,
+  "candidateNumericMismatchCount": 0,
+  "candidateProtectedLiteralMismatchCount": 0,
+  "catalogCount": 12,
+  "catalogKeysPerLocale": 6176,
+  "catalogPins": {
+    "ar": {
+      "gitBlob": "a83674b0f2ade6d86147133818e0bd43c681774e",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/ar.json",
+      "rawSha256": "7f305aa179448031a079c0e00c799a9f0bcf0d0828a8ea6b3e0c30d407f05402"
+    },
+    "de": {
+      "gitBlob": "de3247f11712917cfd68893f43608bb98e6157ca",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/de.json",
+      "rawSha256": "ce5a3e23d1168a6e23e3d78e02b9d12c609278249e32c44dd7aa130c777e4fe9"
+    },
+    "es": {
+      "gitBlob": "25e76f5ebd8bbdfcc3227da3292be27ee1b158e6",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/es.json",
+      "rawSha256": "0e62fb1e9940c944ce3234eba9c3c343726ebfd5f077db6f462dde0d860553fb"
+    },
+    "fr": {
+      "gitBlob": "b606233939b1818b35729a170c46c1553f03cc73",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/fr.json",
+      "rawSha256": "b580dbb51ad722f074820e95a4f1e21335409a0651474b44188ec76649980537"
+    },
+    "hi": {
+      "gitBlob": "907c04dd044dce2b0196b4dff15d169b1a44d45a",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/hi.json",
+      "rawSha256": "4d77e357bda1738784bd88d88e5094e2930d03acf0de7532e8b074f1392ba27a"
+    },
+    "id": {
+      "gitBlob": "b7ed767db6e22aa88a1562e1c9a6b2893a595326",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/id.json",
+      "rawSha256": "cccc1caf4e0432e675da32eac088b3af6043a86dc8e48c773d30bdda1939eeae"
+    },
+    "ja": {
+      "gitBlob": "699efac25c6e94d91b5bbff5c1af1b8a35616953",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/ja.json",
+      "rawSha256": "54fbd2974bf1f982b3ac2535f5a74d3561ad4cf0edbe2a4ac7705c1c25beff1a"
+    },
+    "ko": {
+      "gitBlob": "9dd72ca8aeb170398e65570a5fb64da01e2ddcee",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/ko.json",
+      "rawSha256": "610a95746cbb307a9e6e85fc4f3f32cb80ab291a433894f2400d0551f1da7a6b"
+    },
+    "pt-BR": {
+      "gitBlob": "29b6cd3d20198c927b4781a4d98d2f5c9fe8f9ac",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/pt-BR.json",
+      "rawSha256": "ddb88477cb60082bf4c8141fbcba23642287c9bb34f450bdf737b1c72e9eea0c"
+    },
+    "vi": {
+      "gitBlob": "1009cdec62beae215281c6ecd2eff56e61db1682",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/vi.json",
+      "rawSha256": "579329dbcf31eee791e94ddb742f98b1bef1801b0364f6caa74a02907c9f3416"
+    },
+    "zh-Hans": {
+      "gitBlob": "24e2d1b91d0504afd5e565a759082ae9f646c4c7",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "rawSha256": "8c5e3526836bcee4b3b55267e00d8fa6e0fda9504f0a36794de29e47d868df18"
+    },
+    "zh-Hant": {
+      "gitBlob": "6a3c881bc634b8bd0db41bef6c2c0309b920574a",
+      "orderedKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "rawSha256": "01c34c123e897e0bf1357084ee241071ce2e2c217e91a900b83abe20cd5d3a7b"
+    }
+  },
+  "cellsWithAnyDisagreement": 15,
+  "crossAdjudicatedCandidateChanges": 71,
+  "currentNumericMismatchCount": 5,
+  "currentProtectedLiteralMismatchCount": 19,
+  "headedProductBrowserAcceptance": false,
+  "holdRanks": [
+    278,
+    282,
+    289
+  ],
+  "holdRows": 36,
+  "localeCount": 12,
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "markupMismatchCount": 0,
+  "nativeSpeakerApproval": false,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "pinnedPrBodySha256": "9ce6507c68b3ccfbb2b7ec78282951a449d04abecf8b35c8f15b4d2412985faa",
+  "placeholderMismatchCount": 0,
+  "primaryBlindCandidateTextDisagreements": 15,
+  "primaryBlindDispositionDisagreements": 2,
+  "primaryCandidateChanges": 70,
+  "pullRequest": 409,
+  "remoteBranchHeadAtAdjudication": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "repository": "snapetech-org/slskdN",
+  "reviewedCells": 300,
+  "rootDispositions": {
+    "accept-current": 193,
+    "correction": 59,
+    "hold-terminology": 36,
+    "refinement": 12
+  },
+  "rootLedgerSha256": "1ff5ea3fadfdf1c6f886e394f5bdffe7e37c6eaf75743fdf19038ed72743ab81",
+  "sourceCount": 25,
+  "sourcePacketChecksums": {
+    "blindManifestSha256": "6281e1efc35e78e082d9586ab1c47fdf9e80e4de48d384154e5f4996b4eec5aa",
+    "crossAuditManifestSha256": "6bb72207836c360485ca172090f5ac7cd7f4cfe74bea7ea265d38fb310abf3bd",
+    "inputManifestSha256": "4dcbdb679ced3a9211560682a5b8775af06aab9a06b1970179156d94e3cabfb0",
+    "primaryManifestSha256": "1e2d4fb9994e3062db945ea9698815770d34edf4ed064267673471f9756dc863",
+    "primaryRootManifestSha256": "c30936fe3e595ef298e9c7d2a6bd84c148bd83a660321c26e27daff2a42d5fab",
+    "verifiedManifestEntries": {
+      "blindEntries": 7,
+      "crossEntries": 8,
+      "inputEntries": 8,
+      "primaryEntries": 4,
+      "primaryRootEntries": 17
+    }
+  },
+  "sourceRanks": [
+    276,
+    300
+  ],
+  "testsBuildsScansCiRun": false,
+  "unresolvedDisagreements": 0,
+  "window": "W55",
+  "workflowsChanged": false
+}

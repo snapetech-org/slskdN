@@ -1,0 +1,103 @@
+{
+  "artifact": "slskdN PR #409 W61 ranks 403-427 independent blind semantic review",
+  "baseRef": "main",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFreeInput": {
+    "candidateFree": true,
+    "manifestJSONSha256": "3d05538d9b4df6944add79c4fbedcaa90c93af5da7f439ebcbd55b346b8c6903",
+    "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+    "packetFilesVerified": true,
+    "packetSHA256SUMSListSha256": "418735698e3e789a8c14005d531980631980bdccb993fe9ae669b65735e4ace7",
+    "path": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w61-ranks403-427-primary-20261103/input"
+  },
+  "createdAtUtc": "2026-11-03T11:12:52.538165+00:00",
+  "decisionCounts": {
+    "accept-current": 237,
+    "correction": 41,
+    "hold": 12,
+    "refinement": 10
+  },
+  "draft": true,
+  "head": "0e2fc80bea8abfb02ebf13817bcef4e3ddeb4169",
+  "liveRefAttestation": {
+    "attestedAtUtc": "2026-11-03T11:14:08.967086+00:00",
+    "bothRefsAtPinnedHead": true,
+    "branchRef": "refs/heads/codex/slskdn-oidc-tooltip-localization-20261030",
+    "commitTreeAtPinnedTree": true,
+    "finalReattestationBeforeSeal": true,
+    "githubPullRequestHeadAtPinnedHead": true,
+    "method": "git ls-remote plus GitHub PR and commit tree API",
+    "pullRef": "refs/pull/409/head"
+  },
+  "outputFiles": [
+    "blind-ledger.jsonl",
+    "summary.md",
+    "provenance.json",
+    "verify_blind_review.py",
+    "SHA256SUMS"
+  ],
+  "outputPath": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w61-ranks403-427-independent-blind-20261103",
+  "pullRequest": 409,
+  "pullRequestState": "open",
+  "repository": "snapetech-org/slskdN",
+  "reviewMethod": "Reviewed every source/current cell against its exact pinned caller context and locale catalog metadata; independently categorized as accept-current, correction, refinement, or hold. No primary-review output was inspected.",
+  "scopeRestrictions": [
+    "No repository or PR edits",
+    "No application",
+    "No builds, tests, scans, or CI",
+    "No workflow edits",
+    "No merge, release, or tag"
+  ],
+  "selection": {
+    "allSelectedSourcesHaveProductionCallers": true,
+    "callerlessHolds": 0,
+    "cellCount": 300,
+    "endRank": 427,
+    "localeCount": 12,
+    "locales": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "id",
+      "ja",
+      "ko",
+      "pt-BR",
+      "vi",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "selectedRanks": [
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427
+    ],
+    "sourceCount": 25,
+    "startRank": 403
+  },
+  "tree": "fad129065c1ccbdaaabe99c1054649dc426ea94b"
+}

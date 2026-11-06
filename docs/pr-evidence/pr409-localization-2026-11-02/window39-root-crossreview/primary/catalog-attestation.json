@@ -1,0 +1,90 @@
+{
+  "head": "54bbece421b44fae0cc9156c42a859848db8be5e",
+  "tree": "c9c5ea9d9cd444a677d5f3428a3e3d94c49c67f2",
+  "catalogFiles": [
+    {
+      "locale": "es",
+      "path": "src/web/public/locales/es.json",
+      "bytes": 530934,
+      "sha256": "f556bec46045fa14ea82753ba931936b6fd95ac31cb26137434b082d2bfe3cff",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "zh-Hans",
+      "path": "src/web/public/locales/zh-Hans.json",
+      "bytes": 455230,
+      "sha256": "e62b903439ddd6d35366619d036911fa5c335ff249c99ad2689ed9f36e276668",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "hi",
+      "path": "src/web/public/locales/hi.json",
+      "bytes": 829790,
+      "sha256": "427c0f2170ac4d4a0d63fdfbef90a208b6c1127c812cd337351cd5663e795fd0",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "de",
+      "path": "src/web/public/locales/de.json",
+      "bytes": 532143,
+      "sha256": "3e7f916082d6549315700e7cbfb2a04d22ea22d9dce1ab7c3ed7390c33b15127",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "ja",
+      "path": "src/web/public/locales/ja.json",
+      "bytes": 590606,
+      "sha256": "8fb051697c039d8a45589b7aeddc6e2a9ecbed78121abdd7bd6ff9a2389ce8b0",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "fr",
+      "path": "src/web/public/locales/fr.json",
+      "bytes": 544938,
+      "sha256": "c7397b0fd4d0490366ea1fd351fb616053c1aa9e55d884c985cf6ae3f88ffd68",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "pt-BR",
+      "path": "src/web/public/locales/pt-BR.json",
+      "bytes": 522681,
+      "sha256": "ba18da1053ad4f1cebf96b3699fe9a23ca6557961c6c158cab2d129aa99c8243",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "ar",
+      "path": "src/web/public/locales/ar.json",
+      "bytes": 615803,
+      "sha256": "769b6789c0ed4090bb38ca485637d6bb5cddf547575c23b6dd302859e62d953a",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "ko",
+      "path": "src/web/public/locales/ko.json",
+      "bytes": 527548,
+      "sha256": "2447c7b327f2aff4d86f5b2256e11914d7b5bf411a934c7dbfbef9af2c3af577",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "zh-Hant",
+      "path": "src/web/public/locales/zh-Hant.json",
+      "bytes": 456566,
+      "sha256": "49f954b44e53820f91155c8b1f8d1ae0c92ff44f2e4a6de64eef9fc51ecc2052",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "vi",
+      "path": "src/web/public/locales/vi.json",
+      "bytes": 571606,
+      "sha256": "b8607e0b472c85235a6194faec33f39ffbb4a407088f7b1cec3e3c9a43491d01",
+      "sourceKeys": 6169
+    },
+    {
+      "locale": "id",
+      "path": "src/web/public/locales/id.json",
+      "bytes": 491434,
+      "sha256": "32adce0b1a00c12fd51057409fe6755a198c9e985ae9e7f650bfba5bd6edd578",
+      "sourceKeys": 6169
+    }
+  ]
+}

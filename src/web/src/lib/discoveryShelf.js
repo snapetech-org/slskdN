@@ -4,6 +4,9 @@ import {
 } from './storage';
 import { getPlayerRatingKey } from './playerRatings';
 
+import { interfaceText } from './interfaceLocale';
+import { formatRegionalNumber } from './regionalFormat';
+
 export const discoveryShelfStorageKey = 'slskdn.discovery.shelf';
 
 const maxShelfItems = 200;
@@ -52,6 +55,21 @@ export const getDiscoveryShelfActionLabel = (action) => {
       return 'Keep reviewing';
     default:
       return 'Expiry watch';
+  }
+};
+
+export const localizeDiscoveryShelfActionLabel = (action) => {
+  switch (action) {
+    case 'promote-preview':
+      return interfaceText('Promote preview');
+    case 'archive-preview':
+      return interfaceText('Archive preview');
+    case 'keep-reviewing':
+      return interfaceText('Keep reviewing');
+    case 'expiry-watch':
+      return interfaceText('Expiry watch');
+    default:
+      return action;
   }
 };
 
@@ -207,23 +225,30 @@ export const exportDiscoveryShelfPolicyReport = ({
     requireConsensus,
   });
   const lines = [
-    'Discovery Shelf Policy Preview',
-    `Generated: ${now instanceof Date ? now.toISOString() : now}`,
-    `Expiry window: ${preview.expiryDays} days`,
-    `Consensus required for destructive actions: ${preview.requireConsensus ? 'yes' : 'no'}`,
-    `Promote candidates: ${preview.promote}`,
-    `Archive candidates: ${preview.archive}`,
-    `Expire candidates: ${preview.expire}`,
-    `Review candidates: ${preview.review}`,
-    `Consensus gated: ${preview.blockedByConsensus}`,
+    interfaceText('Discovery Shelf Policy Preview'),
+    interfaceText('Generated: {timestamp}', { timestamp: now instanceof Date ? now.toISOString() : now }),
+    interfaceText('Expiry window: {count} days', { count: formatRegionalNumber(preview.expiryDays) }),
+    interfaceText('Consensus required for destructive actions: {required}', {
+      required: interfaceText(preview.requireConsensus ? 'yes' : 'no'),
+    }),
+    interfaceText('Promote candidates: {count}', { count: formatRegionalNumber(preview.promote) }),
+    interfaceText('Archive candidates: {count}', { count: formatRegionalNumber(preview.archive) }),
+    interfaceText('Expire candidates: {count}', { count: formatRegionalNumber(preview.expire) }),
+    interfaceText('Review candidates: {count}', { count: formatRegionalNumber(preview.review) }),
+    interfaceText('Consensus gated: {count}', { count: formatRegionalNumber(preview.blockedByConsensus) }),
     '',
-    'Items:',
+    interfaceText('Items:'),
     ...items.map((item) => [
-      `- ${getDiscoveryShelfActionLabel(item.action)}: ${item.title}`,
-      item.artist ? ` by ${item.artist}` : '',
-      item.album ? ` (${item.album})` : '',
-      ` [rating ${item.rating || 'unrated'}]`,
-    ].join('')),
+      interfaceText('- {action}: {title}', {
+        action: localizeDiscoveryShelfActionLabel(item.action),
+        title: item.title,
+      }),
+      item.artist ? interfaceText('  Artist: {artist}', { artist: item.artist }) : '',
+      item.album ? interfaceText('  Album: {album}', { album: item.album }) : '',
+      interfaceText('  Rating: {rating}', {
+        rating: item.rating || interfaceText('unrated'),
+      }),
+    ].filter(Boolean).join('\n')),
   ];
 
   return lines.join('\n');

@@ -1,0 +1,65 @@
+{
+  "window": "W978-W1002",
+  "continuationRankRange": [
+    978,
+    1002
+  ],
+  "remainingQueueRankRange": [
+    878,
+    902
+  ],
+  "inputHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "inputTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "catalogCount": 12,
+  "sourceCount": 25,
+  "reviewedCellCount": 300,
+  "rootAdjudicatedCellCount": 64,
+  "exactHashEditCount": 89,
+  "protectedLiteralRepairs": 5,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "reviewEvidence": {
+    "candidateFree": "candidate-free/input",
+    "primary": "primary-review",
+    "blind": "blind-review",
+    "crossReview": "cross-review",
+    "rootAdvisory": "root-adjudication/root-adjudication-opinion.jsonl"
+  },
+  "exactHeadBinding": "all inputs at the same original product head/tree; product commit follows catalog application",
+  "result": "PASS",
+  "verifyMode": "full-catalog bytes regenerated from pinned parent plus 89 reviewed exact edits",
+  "postCommitHead": "e18feff151531142bd4d76b394711aaca57861c6",
+  "fullCatalogReadbackCount": 12,
+  "reviewedCellReadbackCount": 300,
+  "changedCells": 89,
+  "unchangedReviewedCells": 211,
+  "rootFinalDecisions": 64,
+  "nonTargetContent": "byte-identical to pinned parent serialization outside the 89 exact source keys",
+  "keyOrderPreserved": true,
+  "catalogEntryCounts": {
+    "src/web/public/locales/ar.json": 6175,
+    "src/web/public/locales/de.json": 6175,
+    "src/web/public/locales/es.json": 6175,
+    "src/web/public/locales/fr.json": 6175,
+    "src/web/public/locales/hi.json": 6175,
+    "src/web/public/locales/id.json": 6175,
+    "src/web/public/locales/ja.json": 6175,
+    "src/web/public/locales/ko.json": 6175,
+    "src/web/public/locales/pt-BR.json": 6175,
+    "src/web/public/locales/vi.json": 6175,
+    "src/web/public/locales/zh-Hans.json": 6175,
+    "src/web/public/locales/zh-Hant.json": 6175
+  }
+}

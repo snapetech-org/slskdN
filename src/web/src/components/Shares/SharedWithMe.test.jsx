@@ -2,6 +2,7 @@ import SharedWithMe from './SharedWithMe';
 import * as collectionsAPI from '../../lib/collections';
 import * as identityAPI from '../../lib/identity';
 import { createRemoteShareStreamUrl } from '../../lib/streaming';
+import { toast } from 'react-toastify';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
@@ -20,6 +21,14 @@ vi.mock('../../lib/identity', () => ({
 
 vi.mock('../../lib/streaming', () => ({
   createRemoteShareStreamUrl: vi.fn(),
+}));
+
+vi.mock('react-toastify', () => ({
+  toast: {
+    error: vi.fn(),
+    success: vi.fn(),
+    warning: vi.fn(),
+  },
 }));
 
 const shareToken = 'reusable-share-token';
@@ -102,6 +111,61 @@ describe('SharedWithMe', () => {
 
     await waitFor(() => expect(collectionsAPI.backfillShare).toHaveBeenCalledWith('share-1'));
     expect(await screen.findByText(/0 enqueued, 0 failed/)).toBeInTheDocument();
+  });
+
+  it('builds a localized success notice from structured backfill counts', async () => {
+    const user = userEvent.setup();
+    collectionsAPI.backfillShare.mockResolvedValue({
+      data: {
+        enqueued: 3,
+        failed: 0,
+        message: 'Successfully downloaded 3 files',
+        total: 3,
+      },
+    });
+    render(<SharedWithMe />);
+
+    expect(await screen.findByText('Shared Album')).toBeInTheDocument();
+    await user.click(screen.getByTestId('incoming-share-open'));
+    await user.click(screen.getByTestId('incoming-backfill'));
+
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith('Collection backfill finished — successful: 3');
+    });
+  });
+
+  it('uses localized copy for empty and partial backfill results', async () => {
+    const user = userEvent.setup();
+    collectionsAPI.backfillShare.mockResolvedValueOnce({
+      data: {
+        enqueued: 0,
+        failed: 0,
+        message: 'No items to backfill',
+        total: 0,
+      },
+    }).mockResolvedValueOnce({
+      data: {
+        enqueued: 2,
+        failed: 1,
+        message: 'Downloaded 2, failed 1',
+        total: 3,
+      },
+    });
+    render(<SharedWithMe />);
+
+    expect(await screen.findByText('Shared Album')).toBeInTheDocument();
+    await user.click(screen.getByTestId('incoming-share-open'));
+    await user.click(screen.getByTestId('incoming-backfill'));
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalledWith('No items to download.');
+    });
+
+    await user.click(screen.getByTestId('incoming-backfill'));
+    await waitFor(() => {
+      expect(toast.warning).toHaveBeenCalledWith(
+        'Collection backfill results — successful: 2; failed: 1',
+      );
+    });
   });
 
   it('renders structured backfill errors in the open collection dialog', async () => {

@@ -17,12 +17,14 @@ if (typeof window !== 'undefined') {
 // When urlBase is empty or '/', don't set basename (undefined)
 const basename = urlBase && urlBase !== '/' ? urlBase : undefined;
 
-applyInitialInterfaceLanguage();
-
-createRoot(document.querySelector('#root')).render(
-  <Router basename={basename}>
-    <App />
-  </Router>,
-);
+void applyInitialInterfaceLanguage()
+  .catch(() => undefined)
+  .then(() => {
+    createRoot(document.querySelector('#root')).render(
+      <Router basename={basename}>
+        <App />
+      </Router>,
+    );
+  });
 
 cleanUpServiceWorker();

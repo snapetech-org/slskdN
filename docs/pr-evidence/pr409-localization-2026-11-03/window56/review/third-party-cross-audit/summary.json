@@ -1,0 +1,65 @@
+{
+  "artifact": "slskdN PR #409 third-party cross-audit W56 ranks 301-302",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "32afa31caca42b17ac89c9ee91e54ed94cad0411",
+  "tree": "0111bd0c279534b972fcbc5f36dd7a32baf86909",
+  "sourceCount": 2,
+  "reviewedCells": 24,
+  "localeCount": 12,
+  "primaryDecisionCounts": {
+    "accept-current": 18,
+    "correction": 6
+  },
+  "blindDecisionCounts": {
+    "accept-current": 13,
+    "correction": 7,
+    "refinement": 4
+  },
+  "crossAuditDecisionCounts": {
+    "accept-current": 13,
+    "refinement": 5,
+    "correction": 6
+  },
+  "crossAuditProposalCounts": {
+    "correction": 6,
+    "refinement": 5
+  },
+  "primaryBlindDisagreements": 8,
+  "resolvedDisagreements": 8,
+  "unresolvedDisagreements": 0,
+  "rank301": {
+    "decision": "accept-current all locales",
+    "exactRuntimePlaceholder": "{warning}",
+    "placeholderFailures": 0,
+    "caller": "src/web/src/lib/searchActionPreview.js:112 interpolates formatWarning(warning) into the list-marker fragment"
+  },
+  "rank302": {
+    "decisionCounts": {
+      "refinement": 5,
+      "accept-current": 1,
+      "correction": 6
+    },
+    "caller": "src/web/src/components/System/Jobs/index.jsx:332-334 labels the count of analytics.byType keys",
+    "finalTargets": {
+      "ar": "أنواع المهام",
+      "de": "Jobtypen",
+      "es": "Tipos de tareas",
+      "fr": "Types de tâches",
+      "hi": "कार्य के प्रकार",
+      "id": "Jenis Tugas",
+      "ja": "ジョブの種類",
+      "ko": "작업 유형",
+      "pt-BR": "Tipos de tarefas",
+      "vi": "Loại tác vụ",
+      "zh-Hans": "任务类型",
+      "zh-Hant": "任務類型"
+    }
+  },
+  "allPacketChecksumsVerified": true,
+  "placeholderMarkupNumericFailures": 0,
+  "nativeSpeakerApproval": false,
+  "limitations": "Machine-assisted cross-audit. Language-specific target choices, especially Hindi and Chinese terminology, remain subject to qualified native-speaker review.",
+  "repositoryOrPREdited": false,
+  "testsBuildsScansCIWorkflowsBrowserMergeReleaseOrTagPerformed": false
+}

@@ -1,5 +1,5 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import LocalizedText, { LocalizedOutputText, LocalizedRichText } from "../../Shared/LocalizedText";
+import { interfaceText, interfaceTextOutput, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
 
 
 import './Security.css';
@@ -56,7 +56,7 @@ const Security = () => {
     } catch (fetchError) {
       if (!mountedRef.current || document.hidden) return;
       if (!dashboardLoadedRef.current) {
-        setError(fetchError.message || interfaceText('Failed to load security data'));
+        setError(fetchError.message || interfaceTextOutput('Failed to load security data'));
       }
     } finally {
       fetchInFlightRef.current = false;
@@ -123,7 +123,7 @@ const Security = () => {
     return (
       <Message negative>
         <Message.Header><LocalizedText source={"Security Module Unavailable"} /></Message.Header>
-        <p>{error}</p>
+        <p><LocalizedOutputText output={error} /></p>
         <p><LocalizedText source={"Security features may not be enabled on this server."} /></p>
         <Popup
           content={interfaceText("Try loading the security dashboard again after the service is enabled or the connection recovers.")}
@@ -185,7 +185,11 @@ const Security = () => {
           <li><LocalizedText source={"Wait for peer connections and transfer activity"} /></li>
         </ol>
         <p>
-          <LocalizedText source={"Security monitoring will begin automatically once peer activity is detected. Check the"} />{" "}<strong><LocalizedText source={"Mesh"} /></strong> <LocalizedText source={"tab to verify connectivity."} /></p>
+          <LocalizedRichText
+            source={"Security monitoring will begin automatically once peer activity is detected. Check connectivity in the {tab} tab."}
+            values={{ tab: <strong><LocalizedText source={"Mesh"} /></strong> }}
+          />
+        </p>
         <Popup
           content={interfaceText("Request the latest security snapshot now instead of waiting for the next automatic refresh.")}
           position="top center"

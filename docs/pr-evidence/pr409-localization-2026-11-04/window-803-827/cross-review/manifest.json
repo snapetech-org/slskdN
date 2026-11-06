@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "task": "slskdN PR #409 W77 cross-audit",
+  "window": "W77",
+  "reviewMode": "non-blind independent cross-audit/reconciliation",
+  "provenanceDisclosure": "Before this cross-audit, task context exposed the primary review aggregate counts and one callerless source ID through a sibling-agent summary. The primary review output and decisions were not read during the earlier blind-review attempt, but this cross-audit is explicitly not blind. The sealed fresh blind packet was created by a separate reviewer from candidate-free input.",
+  "scope": {"continuationRanks": [803,827], "sourceCount": 25, "localeCount": 12, "cellCount": 300},
+  "sourcePin": {"head": "582ae64e5c3af275490f11f4350b33da7373a3c3", "tree": "b8692bb066cede93b6668806d0b97816135ce647"},
+  "livePr": 409,
+  "inputs": {
+    "candidateFree": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-primary-20261104/candidate-free/input/",
+    "primary": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-primary-20261104/primary-review/output/",
+    "blind": "/home/keith/Documents/code/task-scratch/slskdn-pr409-w77-803-827-blind-fresh-20261104/",
+    "sourceWorktree": "/mnt/disks/scratch/task-worktrees/localization-20261104/slskdn-pr409-w76-778-802-source"
+  },
+  "limits": ["recommendation-only", "no repository or PR edits", "no tests/builds/CI", "no workflow edits", "no merge/release/tag"]
+}

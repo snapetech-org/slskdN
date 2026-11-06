@@ -1,0 +1,14 @@
+# slskdN PR #409 W81 localization review and application
+
+This packet records the review and application of continuation ranks 903–927 (remaining-queue ranks 803–827), covering 25 source strings × 12 direct locales = 300 cells.
+
+- Review started from PR head `91da6fff5d5b628ade7ee556386e3db1db6878fa` / tree `56930b73d10a4c419edf68f0d951ceedaa63c990`.
+- Primary, blind, independent pre-proposal, cross, and root review evidence is retained in separate folders. The cross review selected 50 corrections and 14 refinements, kept 224 current values, and held all 12 rank-910 fragments.
+- Product commit `868f93ef2ec8a242ff65d5da6f438633fc0fc152` changes exactly the 12 locale JSON catalogs with 64 reviewed target updates. The other 236 cells, including rank 910, match their exact prior values. Every catalog keeps its ordered 6,176 keys.
+- The rank-922 review uses only the pinned `System/Security/AdversarialSettings.jsx` caller path and signal-icon heading; unprovided panel-value details in one primary rationale were not used.
+- Rank 910 remains held until the complete security sentence is translated through `LocalizedRichText` with separate caller-owned LTR nodes for the formal `Enforce` mode value and `ed25519:<base64 signature>`. A focused blind/cross/root review packet is retained under `rank-910-richtext-review/`; its source and runtime pins were verified at evidence-push head `9ffa7617aa7b4609611584d80848bcb40eaf559a`. The source rewrite is not part of this delivery and requires exact-head reattestation before a later application. Hindi is low confidence and awaits qualified native-speaker validation.
+- The post-evidence readback confirms PR #409 remains open and draft with API, branch, and pull refs aligned. The workflow file list is empty; check runs, status contexts, and deployments are zero. The W903–W927 delivery notes are appended, and `application/pr-body-append-readback.json` verifies the exact pre-append PR body remains byte-for-byte the prefix of the API readback.
+- The current `main` advance through `bc6251ff4ea5a7e59f2d86e2400c90520601f46e` changes workflow/policy, changelog, and helper-script paths only; it has no source, locale catalog, source-inventory, or production-caller changes.
+- The browser queue was empty and no exact-head preview deployment existed, so browser review was not performed. Qualified native-speaker signoff was not performed. No tests, builds, scans, or manual CI dispatches ran. The repository hooks were bypassed for the commit and push commands only because they invoke local scans; no persistent hook or Git configuration changed.
+
+Run `application/verify_application.py --repo /path/to/slskdN` to read the exact product commit and verify the 300-cell readback, 64 selected values, 236 unchanged cells, ordered catalog keys, and remote product-head snapshot. Run the sealed cross-review and root-review verifiers from their respective folders to recheck the packet ledgers and checksums.

@@ -1,0 +1,7 @@
+{
+  "schema": "slskdn-w70-prior-id-exclusion-readback/v1",
+  "excludedIdCount": 1732,
+  "excludedIdRecordsSha256": "e00918e4173d6ea855379e6244eaa8d976488835a3806ec39aeed1af849dfbad",
+  "excludedIdsOverlappedCurrentWindow": false,
+  "currentWindowSelectedIds": 18
+}

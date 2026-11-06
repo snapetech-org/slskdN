@@ -1,0 +1,27 @@
+{
+  "baseHead": "582ae64e5c3af275490f11f4350b33da7373a3c3",
+  "baseTree": "b8692bb066cede93b6668806d0b97816135ce647",
+  "catalogFiles": 12,
+  "cellsReadBack": 300,
+  "changedKeysByCatalog": {
+    "src/web/public/locales/ar.json": 6,
+    "src/web/public/locales/de.json": 3,
+    "src/web/public/locales/es.json": 5,
+    "src/web/public/locales/fr.json": 4,
+    "src/web/public/locales/hi.json": 4,
+    "src/web/public/locales/id.json": 4,
+    "src/web/public/locales/ja.json": 3,
+    "src/web/public/locales/ko.json": 4,
+    "src/web/public/locales/pt-BR.json": 5,
+    "src/web/public/locales/vi.json": 4,
+    "src/web/public/locales/zh-Hans.json": 5,
+    "src/web/public/locales/zh-Hant.json": 5
+  },
+  "hashOnlyHolds": 12,
+  "productCommit": "572150c0f7a9e506d3251ea14490ad5f7967507f",
+  "productTree": "4cb41dda2ad379504b0fd702d0d641a8aa4e9a99",
+  "result": "PASS",
+  "selectedUpdates": 52,
+  "sourceWorktreeHeadUnchanged": true,
+  "unchangedCells": 236
+}

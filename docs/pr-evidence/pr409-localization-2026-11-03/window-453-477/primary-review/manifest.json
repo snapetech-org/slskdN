@@ -1,0 +1,40 @@
+{
+  "artifact": "slskdN PR #409 W63 primary semantic review evidence",
+  "candidateFreeInput": {
+    "directory": "../input",
+    "manifestJsonSha256": "4acb80051e2c934b271d5ff5a8bf45907788e4fc0220d9d27f5cf740aa992c94",
+    "checksumListSha256": "005422a8c4c92af3c44d672fe133ec1e551b58bbee947a563e2a9960b2b0d1c4"
+  },
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "1979c8dc4e59d5ca397251bcde73216a888aa9c9",
+  "tree": "8b5c0ef640f487741f0a08086cc6d60d5eef43a4",
+  "sourceCount": 25,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 260,
+    "correction": 25,
+    "refinement": 3,
+    "hold": 12
+  },
+  "selectedTargetChanges": 28,
+  "heldCells": 12,
+  "nativeSpeakerSignoff": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1324,
+      "sha256": "e936c989f8661156af4f706638042fc2a41d6d66c8eff6e6146a229f136553d0"
+    },
+    {
+      "path": "review-decisions.jsonl",
+      "bytes": 676056,
+      "sha256": "05023e703123d5224c40cc36cfddc201a1ebd246b4181ba59ad2725dcf387d45"
+    },
+    {
+      "path": "review-summary.json",
+      "bytes": 1249,
+      "sha256": "e9d496750269645800036619041bb7d459d475907b4d5000a586d9f48478f4b3"
+    }
+  ]
+}

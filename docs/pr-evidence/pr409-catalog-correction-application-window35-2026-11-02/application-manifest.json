@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "slskdN W35 exact localization correction application",
+  "pullRequest": 409,
+  "reviewBaseHead": "917273260c49cca1c14576a0720fc84998d2846d",
+  "reviewBaseTree": "1cdd8c831d224a5706ac6f3e465add4fd249d2be",
+  "reviewBaseSourceSubtreeTree": "594e56c3f439bad476b1bd57e0de1665c62fa1bb",
+  "remotePrBranch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "catalogCommit": "99a46e9cff5caad834243d7801245b3f94ad433a",
+  "catalogCommitTree": "bb95af857ac3c989b582fb674c6be1e82e7fede1",
+  "reviewInputSha256": "1a34ada42ec29d1e014dd845c69960bd0898a20658973111fa3f414b367f6f29",
+  "reviewDecisionSha256": "f8cab36f2d4bb8b059f01920a8b64cd12e4569e720f55f539b7bacb6ecfac069",
+  "candidatePlanSha256": "938f53404562111e77d388336c8756a21f90fb65323650164cb47c3ecbbc7b0f",
+  "manualReviewBundleChecksumsSha256": "46648b019dfafa58baa676cc58781125be7c6ffa22724185ee7edfd985ddc4ab",
+  "reviewPacketChecksumsSha256": "5008ddd69a574af0994386c158c0a63bdf27e0bbb0ad7781e7dc37d58eef67f7",
+  "independentReviewChecksumsSha256": "0fc90ba90cb8980b5c1baa6fe20226e217bf7aa20e5e6930f01d7dca5200671a",
+  "rootReviewChecksumsSha256": "cbcef8901388c572d210a1524e32385b7ff0bb8d98143af4287c6c659fc8bbf7",
+  "rootCrossReviewLedgerSha256": "9370973a90aaef1e6a597a4aa31d6bd21fedd4b7f8ded71f4d93ee0533d0f749",
+  "independentCrossReviewLedgerSha256": "6053ad16c8c19ecccfcfb330987810b6f3fd30c19538b67e48488195e190a36f",
+  "rootApplyPlanSha256": "fff13fd0e44f61ce78bf21d53136dd99bd8bcb2258662f4bf61ecfe454bc39fc",
+  "appliedLedgerSha256": "86697c9ce74c9c333c6c3b38ab874a6a98ee93c6a582303816bfea994684fa15",
+  "applicationPreflightSha256": "74c868ae7f18fd63bde58fb9862bfe12273f5f3e51aa80b7561c504e63fa409b",
+  "postApplyVerificationSha256": "50ef46418e744f218e180ef70e3b36e91174efceba65e49a0ec13ca93f28d289",
+  "rootDispositionCounts": {
+    "accept-proposed": 38
+  },
+  "independentDispositionCounts": {
+    "retain-current": 236,
+    "accept-proposed": 38
+  },
+  "reviewedCells": 274,
+  "reviewedSourceKeys": 25,
+  "packetCallerLineReferences": 445,
+  "appliedTargets": 38,
+  "uniqueAppliedSourceKeysThisWindow": 9,
+  "catalogFilesChanged": {
+    "ar": {
+      "baseSha256": "1ffa562a8599a5e601e52bfb4a8255ba8ce7763bf735b2b3bd7be172eb5cf681",
+      "resultSha256": "61483b82cce9469ea0641033cbced542a3f4d9e99cbaf42252b893392a3350b1",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "Configure ListenBrainz scrobbling for this browser.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion."
+      ],
+      "changedCellCount": 3
+    },
+    "de": {
+      "baseSha256": "b7e4bb7c4e140e2867b750b6f6560dde1e132f87f213e13654610fac020edcde",
+      "resultSha256": "6e1e0071465b3af49d5c14c5ea842d749c730d8b3a3b4c99af84258c49510f7c",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "Configure ListenBrainz scrobbling for this browser.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion."
+      ],
+      "changedCellCount": 3
+    },
+    "fr": {
+      "baseSha256": "279dacc92b19a336ddc4af3fd247a9f4fb1f355dfd8015fb6195ac47bcd4c6e5",
+      "resultSha256": "0ccdf68ec5af0055bbf361c54094972ffba6e51a8256cb983de5697d2c5ffa4d",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "Configure ListenBrainz scrobbling for this browser.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion."
+      ],
+      "changedCellCount": 3
+    },
+    "hi": {
+      "baseSha256": "a63687779c326c694d5f118b71f866d37fb68b7232d797b2e1eb4d581463d433",
+      "resultSha256": "5d70a77c2695fc871c215b2c4bd20bc38faf2a4506b0cb04fd0c8dc589eaf4aa",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion.",
+        "Renamed",
+        "This user no longer shares this file. Retry to find another peer."
+      ],
+      "changedCellCount": 4
+    },
+    "id": {
+      "baseSha256": "a351e538a86058cd38caa59d76eb91da7cc3e50b484a5408aad353b14394aa60",
+      "resultSha256": "df73eb49d5e9cc37080c84f4ada0c7bfe32a80326e6bfb6f20cffbf699fab4b1",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion.",
+        "Rewind local playback by 15 seconds.",
+        "This user no longer shares this file. Retry to find another peer."
+      ],
+      "changedCellCount": 4
+    },
+    "ja": {
+      "baseSha256": "96a12d791534fa723abf19cc998f3bca97dbd98df7194b6f1444cf9fa2626f3b",
+      "resultSha256": "f992dd1c0b43ab75e5d5788b7814ac0b76c47121819700b0f58f9fa1e19b8737",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "Configure ListenBrainz scrobbling for this browser.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion."
+      ],
+      "changedCellCount": 3
+    },
+    "ko": {
+      "baseSha256": "bb35acb29e336df279a70b5d60b932cd4bf72e31b7286e12f8d276b23b48d985",
+      "resultSha256": "450779d8655d6938d3f960428365813887f76ca6d615a0b4df40b81d667f21a1",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "Build an atlas from a seed above or restore a saved branch.",
+        "Configure ListenBrainz scrobbling for this browser.",
+        "Continuous",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion."
+      ],
+      "changedCellCount": 5
+    },
+    "pt-BR": {
+      "baseSha256": "57bb2a459e78b6d34ae26431ab1983088ea263de1da07eb2fc0df50534bba52e",
+      "resultSha256": "2100679f24fa8a7d72fc2ffcd92218f844028764be98e7a302fa780677eea170",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "Build an atlas from a seed above or restore a saved branch.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion.",
+        "This user no longer shares this file. Retry to find another peer."
+      ],
+      "changedCellCount": 4
+    },
+    "vi": {
+      "baseSha256": "d9c138e17bd7cc25d702eeb63ab72e5aa3e28fe6c2513bae153b11d29e27b654",
+      "resultSha256": "8f5e1d0ce67711c8cc8e8043306e0eef14f5c9c28774c2fe9decba6f53c818ad",
+      "changedKeys": [
+        "Adversarial Features Unavailable",
+        "Aggregated Opinion Results",
+        "Configure ListenBrainz scrobbling for this browser.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion.",
+        "This user no longer shares this file. Retry to find another peer."
+      ],
+      "changedCellCount": 5
+    },
+    "zh-Hans": {
+      "baseSha256": "c713f0cbc4d260eec93527ca8ff50f6c260d5be71bcc093a7a245e4fbcacdc15",
+      "resultSha256": "d87b69b510c806244e9693c09c986d01b8747e63b44afbe3b9bc89bfeb0651fc",
+      "changedKeys": [
+        "Configure ListenBrainz scrobbling for this browser.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion."
+      ],
+      "changedCellCount": 2
+    },
+    "zh-Hant": {
+      "baseSha256": "5d7150ccf7b077f80fb673369631c2f1c26bdc9b9c461e0e2cff46fb2a526619",
+      "resultSha256": "0d7a6b4fbd2a199db864ac41d34f2734ea4d5d43576320a3c65ee561aa38e997",
+      "changedKeys": [
+        "Configure ListenBrainz scrobbling for this browser.",
+        "No album targets yet. Resolve a MusicBrainz release or recording to start tracking completion."
+      ],
+      "changedCellCount": 2
+    }
+  },
+  "cumulativeManualReview": {
+    "windows": 35,
+    "cells": 10326,
+    "sourceKeys": 872
+  },
+  "cumulativeAppliedCorrections": {
+    "rows": 1411,
+    "sourceKeys": 333
+  },
+  "remainingPriorUncertainCells": 267,
+  "remainingPriorExactContextCorrectionHolds": 6,
+  "formalReviewCells": 4800,
+  "remainingNonformalCellsOutsideManualWindows": 51954,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReviewForW35": false,
+  "testsBuildScansCiRun": false,
+  "workflowChanges": false,
+  "releaseTagMerge": false
+}

@@ -1,0 +1,89 @@
+{
+  "status": "verified",
+  "head": "ff8e73dca9575177c88645a27b8e7221f8828d5c",
+  "tree": "c325d60a5c44dac45e07c965747b91e2f608ecd3",
+  "sourceSubtreeTree": "444662a240631d9b1ba4e8358e70d1a27b14469d",
+  "keys": 25,
+  "cells": 300,
+  "locales": 12,
+  "verdicts": {
+    "keep": 270,
+    "correct": 30,
+    "uncertain": 0
+  },
+  "perLocale": {
+    "es": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "zh-Hans": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 24,
+      "correct": 1,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ar": {
+      "keep": 23,
+      "correct": 2,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 25,
+      "correct": 0,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    }
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "cells": 4800
+  },
+  "formalOverlap": 0,
+  "priorManualOverlap": 0,
+  "priorCellsCompared": 6600,
+  "priorAppliedCorrectionOverlap": 0,
+  "callsitesReverified": 456,
+  "inputSha256": "23ab5a2d823b2b1ee680adb175722e517f409e7d1bf3197e8b016705c2a783c9",
+  "decisionSha256": "fb20be25ce6cb5922550931096d9bd572fccfebb1eedf545f4d5fca2f158938c"
+}

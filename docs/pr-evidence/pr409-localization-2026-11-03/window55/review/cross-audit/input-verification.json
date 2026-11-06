@@ -1,0 +1,32 @@
+{
+  "verification": "passed",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "state": "OPEN",
+  "isDraft": true,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "head": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "tree": "a22e9a896aae12aa89a1502d9748b12816d491ed",
+  "remoteBranchHead": "6a46b8f1dc87d899308fee141fa0db392e49e098",
+  "prBodySha256": "9ce6507c68b3ccfbb2b7ec78282951a449d04abecf8b35c8f15b4d2412985faa",
+  "worktreeClean": true,
+  "inputManifestSha256": "4dcbdb679ced3a9211560682a5b8775af06aab9a06b1970179156d94e3cabfb0",
+  "catalogs": 12,
+  "catalogKeysPerLocale": 6176,
+  "orderedCatalogKeySha256": "3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7",
+  "cells": 300,
+  "callerSources": 25,
+  "callerReferencesVerified": 40,
+  "primaryManifestEntriesVerified": 4,
+  "blindManifestEntriesVerified": 7,
+  "currentProtectedLiteralMismatchCount": 19,
+  "currentNumericMismatchCount": 5,
+  "candidateProtectedNumericPlaceholderMarkupMismatchCounts": {
+    "primary": 0,
+    "blind": 0,
+    "cross": 0
+  },
+  "disagreementExportMatchesLedger": true,
+  "localizedTermAdjudicationsMatchLedger": true
+}

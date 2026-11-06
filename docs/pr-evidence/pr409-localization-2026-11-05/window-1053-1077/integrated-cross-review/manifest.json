@@ -1,0 +1,93 @@
+{
+  "artifact": "slskdN PR #409 W1053-W1077 integrated cross-review",
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "callerBackedCellCount": 276,
+  "callerlessHashOnlyHoldCount": 24,
+  "candidateFreeInput": true,
+  "cellCount": 300,
+  "checksumCoverage": "SHA256SUMS.txt covers every regular output file except itself; INPUT_SHA256SUMS.txt covers every regular input file in all three sealed packets.",
+  "confidence": "moderate",
+  "continuationRankRange": [
+    1053,
+    1077
+  ],
+  "generator": "create_packet.py",
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "holdLineage": {
+    "currentHoldsByteForByteFromCandidateFreePrimaryBlind": true,
+    "currentWindowCallerlessHoldCount": 24,
+    "priorActiveHoldCount": 433,
+    "priorActiveHoldsByteForByteFromCandidateFreePrimaryBlind": true,
+    "priorHoldResolutionHistoryCopiedByteForByte": true
+  },
+  "independentBlindCrossReviewUsed": true,
+  "inputFileChecksumInventory": "INPUT_SHA256SUMS.txt",
+  "inputPackets": {
+    "blind": {
+      "fileCount": 10,
+      "manifestSha256": "ea136dbb7e221a85d5c0df64200b1e6ebea29586c06c565c6cb59e2ce160230c",
+      "path": "blind-review",
+      "sha256SumsFileSha256": "9a839909ad53807cb98275043882a8676adf77e4d1d176ee8ee991b87bfb866e"
+    },
+    "candidate-free": {
+      "fileCount": 28,
+      "manifestSha256": "63a1f8d51f61ca02a418528c6ec9e9177ae2d267926b14d8e5a602b6787718e8",
+      "path": "candidate-free",
+      "sha256SumsFileSha256": "2170ea00e2bcb8c5c79f23f86ce5acef8a31f4270813e222fea7e2f171cec1be"
+    },
+    "primary": {
+      "fileCount": 10,
+      "manifestSha256": "f31ae6ae194d0c6551a68c487b60a0c3704890b1f70b403e97ca0eaa1a602058",
+      "path": "primary-review",
+      "sha256SumsFileSha256": "cb2701a1e2347de9e797c27e8b742680c4cc8790d8cfdd686ba95926093ea929"
+    }
+  },
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "nativeSpeakerApproval": false,
+  "nextBoundary": {
+    "continuationRank": 1078,
+    "remainingQueueRank": 978,
+    "sourceId": "src_3a7f882e0dcaf59b",
+    "sourceSha256": "3a7f882e0dcaf59b069a4830c2d6ce7c891f93d6a47018db872c1481a20082b3"
+  },
+  "outputFiles": [
+    "source-current-cells.jsonl",
+    "caller-contexts.jsonl",
+    "prior-active-holds-hash-only.jsonl",
+    "current-window-holds-hash-only.jsonl",
+    "prior-hold-resolution-history-hash-only.jsonl",
+    "integrated-cross-review-ledger.jsonl",
+    "integrated-target-hashes.jsonl",
+    "unresolved-low-confidence-cells.jsonl",
+    "summary.json",
+    "README.md",
+    "INPUT_SHA256SUMS.txt",
+    "manifest.json",
+    "SHA256SUMS.txt",
+    "create_packet.py",
+    "verify_integrated_cross.py"
+  ],
+  "primaryCrossReviewUsed": true,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    953,
+    977
+  ],
+  "repository": "snapetech-org/slskdN",
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W1053-W1077"
+}

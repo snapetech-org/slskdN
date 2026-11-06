@@ -1,0 +1,70 @@
+{
+  "artifact": "rank-910 post-body exact-head live and pin readback",
+  "head": "298702ab3464a5803c4bc36e8291ea60a4b490d7",
+  "tree": "4d08264f84cbd5dfd70ee7e4c5feb13e48a1b44d",
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "branchRefOid": "298702ab3464a5803c4bc36e8291ea60a4b490d7",
+  "pullRefOid": "298702ab3464a5803c4bc36e8291ea60a4b490d7",
+  "state": "open",
+  "draft": true,
+  "merged": false,
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "bodyPrefixBytes": 110822,
+  "bodyPrefixSha256": "4d8e8397619c941ef1060ccd3e49c3f7b07e113c7c35014020835f57956f9869",
+  "bodyAppendBytes": 1457,
+  "bodyUtf8Bytes": 112279,
+  "bodySha256": "cd021dc25cacd125332046b4019607683bd056d8bf6d5dc7d8bf624af81fb54e",
+  "bodyPrefixPreserved": true,
+  "workflowPathsInBranchDiff": [],
+  "checkRunCount": 0,
+  "statusContextCount": 0,
+  "deploymentCount": 0,
+  "actionRuns": [],
+  "sourceAndRuntimePins": [
+    {
+      "name": "caller",
+      "path": "src/web/src/components/System/MediaCore/MediaCorePods.jsx",
+      "fileSha256": "849f152db2ed0ebbfa628d5f4ea4c2fc521b74a82ccff7b895832b2b72edf1a6",
+      "gitBlob": "c94043d478085e3e2df432c19d4dbd087d94cf29",
+      "matchesProductCommitPin": true,
+      "mainSha256": "c819cb67c1ec403a6e65f9578a32a085d18b418f6de72b96325b6f5d7ed0c8ff",
+      "sameAsMain": false
+    },
+    {
+      "name": "richTextRuntime",
+      "path": "src/web/src/components/Shared/LocalizedText.jsx",
+      "fileSha256": "dceb5b8d9f3dd803cef823a6756248f17d4f4b2600498be64e142c3c630a6c81",
+      "gitBlob": "bd886e3838b3ebf69a4ccf52d4cf5e0663e52abe",
+      "matchesProductCommitPin": true,
+      "mainSha256": "5dd498b96b172c7b163067fe0e1b8e3c1b4d9b110eb9ab42f3da80113e1a5a73",
+      "sameAsMain": false
+    },
+    {
+      "name": "signatureModeEnum",
+      "path": "src/slskd/PodCore/PodMessageSignerOptions.cs",
+      "fileSha256": "c0cff69ea19915e7d00404f99c4a8355b6995b08dc175b4315e085579f4333f0",
+      "gitBlob": "7e399386fc1a6471e504e1286816a18f3b40d5fb",
+      "matchesProductCommitPin": true,
+      "mainSha256": "c0cff69ea19915e7d00404f99c4a8355b6995b08dc175b4315e085579f4333f0",
+      "sameAsMain": true
+    },
+    {
+      "name": "joinOptions",
+      "path": "src/slskd/PodCore/PodJoinOptions.cs",
+      "fileSha256": "49b0fcaa71b0aa446a5e6df84359c2cb2619a1458db0a2338f31e0187b531b79",
+      "gitBlob": "66af753d60d2b8a4259887496bcacbab3b95b3f0",
+      "matchesProductCommitPin": true,
+      "mainSha256": "49b0fcaa71b0aa446a5e6df84359c2cb2619a1458db0a2338f31e0187b531b79",
+      "sameAsMain": true
+    },
+    {
+      "name": "signatureVerification",
+      "path": "src/slskd/PodCore/PodJoinLeaveService.cs",
+      "fileSha256": "c917846757571639e2cacef090746f595b6200ab0cc02691b088b45cfee84194",
+      "gitBlob": "e7b3065e627aeb7987200359418428936e48454f",
+      "matchesProductCommitPin": true,
+      "mainSha256": "c917846757571639e2cacef090746f595b6200ab0cc02691b088b45cfee84194",
+      "sameAsMain": true
+    }
+  ]
+}

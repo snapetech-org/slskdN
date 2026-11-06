@@ -1,0 +1,50 @@
+{
+  "packet": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w43-spanish-formal-gap-primary-20261102",
+  "primaryPacketSHA256SUMS": "5fcb0602ebc8419378a821df7731bd792cbb9bc6365446c2d301a819c2aa191d",
+  "primaryPacketChecksumValidation": "sha256sum -c SHA256SUMS: all 5 files OK",
+  "livePR": {
+    "state": "OPEN",
+    "isDraft": true,
+    "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "head": "7fa557e4b3c433708bd490bd1fc9279c0539bc8f",
+    "tree": "fd4f7b6f33398fec278173fcf68a04d9c15bc94b",
+    "remoteHead": "7fa557e4b3c433708bd490bd1fc9279c0539bc8f",
+    "url": "https://github.com/snapetech-org/slskdN/pull/409"
+  },
+  "worktree": {
+    "path": "/home/keith/Documents/code/task-worktrees/localization-20261102-slskdn",
+    "branch": "codex/slskdn-localization-apply-20261102",
+    "head": "7fa557e4b3c433708bd490bd1fc9279c0539bc8f",
+    "tree": "fd4f7b6f33398fec278173fcf68a04d9c15bc94b",
+    "status": "clean"
+  },
+  "sourceOrderEvidence": {
+    "path": "docs/pr-evidence/pr409-localization-2026-11-02/window43/primary/order-and-boundary.json",
+    "blob": "4fcce7859d96bba0b74b81f8d9df084026cdca4d",
+    "sha256": "46ecd540cff848be08fb3e62f122f41502b6dc4f9629a79a3a015191486558c3",
+    "window": [
+      76,
+      100
+    ],
+    "priorW42": [
+      51,
+      75
+    ],
+    "row": {
+      "sourceOrdinal": 87,
+      "sourceId": "src_0ef5849949bcf7b6",
+      "source": "30D",
+      "sourceSha256": "0ef5849949bcf7b63a4aafd392d689e6b689f7d94a5091a115fe1516bb753b9b"
+    }
+  },
+  "noRepoOrPRChanges": true,
+  "testsBuildsCIOrBrowserRun": false,
+  "reproducibleChecks": [
+    "gh pr view 409 --repo snapetech-org/slskdN --json state,isDraft,headRefName,headRefOid,baseRefName,url",
+    "gh api repos/snapetech-org/slskdN/commits/7fa557e4b3c433708bd490bd1fc9279c0539bc8f --jq .commit.tree.sha",
+    "git ls-remote origin refs/heads/codex/slskdn-oidc-tooltip-localization-20261030",
+    "git -C /home/keith/Documents/code/task-worktrees/localization-20261102-slskdn rev-parse HEAD HEAD^{tree}; git -C /home/keith/Documents/code/task-worktrees/localization-20261102-slskdn status --porcelain=v1",
+    "git show HEAD:src/web/public/locales/es.json | sha256sum",
+    "git show HEAD:src/web/src/components/Player/PlayerBar.jsx | sha256sum"
+  ]
+}

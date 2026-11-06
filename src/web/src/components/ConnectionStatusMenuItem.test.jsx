@@ -4,7 +4,9 @@ import * as serverAPI from '../lib/server';
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Menu } from 'semantic-ui-react';
-import { vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { resetInterfaceLanguage, setInterfaceLanguage } from '../lib/interfaceLocale';
+import { stubLocaleCatalogFetch } from '../test/localeCatalogFetchMock';
 import ConnectionStatusMenuItem from './ConnectionStatusMenuItem';
 
 vi.mock('../lib/relay', () => ({
@@ -23,8 +25,14 @@ vi.mock('semantic-ui-react', async (importOriginal) => {
 
   return {
     ...actual,
-    Popup: ({ content, trigger }) =>
-      ReactModule.cloneElement(trigger, { 'data-tooltip': content }),
+    Popup: ({ content, trigger }) => (
+      <>
+        {ReactModule.cloneElement(trigger, {
+          'data-tooltip': ReactModule.isValidElement(content) ? content.props.source : content,
+        })}
+        <div data-testid="popup-content">{content}</div>
+      </>
+    ),
   };
 });
 
@@ -35,7 +43,11 @@ const renderMenuItem = (props) => render(
 );
 
 describe('ConnectionStatusMenuItem', () => {
-  afterEach(() => {
+  beforeEach(() => stubLocaleCatalogFetch(vi));
+
+  afterEach(async () => {
+    await resetInterfaceLanguage();
+    vi.unstubAllGlobals();
     vi.clearAllMocks();
   });
 
@@ -118,5 +130,35 @@ describe('ConnectionStatusMenuItem', () => {
     expect(action).toHaveTextContent('Connected');
     fireEvent.click(action);
     expect(serverAPI.disconnect).toHaveBeenCalledOnce();
+  });
+
+  it('localizes the connect and disconnect labels and popup text in Arabic', async () => {
+    const { unmount } = renderMenuItem({
+      mode: 'Server',
+      server: { isConnected: false },
+    });
+
+    const connectAction = screen.getByTitle('Connect to the Soulseek server.');
+    await setInterfaceLanguage('ar');
+
+    expect(connectAction).toHaveAttribute('aria-label', 'الاتصال بخادم Soulseek.');
+    expect(connectAction).toHaveAttribute('lang', 'ar');
+    expect(connectAction).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByTestId('popup-content').firstElementChild).toHaveTextContent(
+      'الاتصال بخادم Soulseek.',
+    );
+    expect(screen.getByTestId('popup-content').firstElementChild).toHaveAttribute('lang', 'ar');
+    expect(screen.getByTestId('popup-content').firstElementChild).toHaveAttribute('dir', 'rtl');
+
+    unmount();
+    renderMenuItem({
+      mode: 'Server',
+      server: { isConnected: true },
+    });
+
+    const disconnectAction = screen.getByTitle('قطع الاتصال بخادم Soulseek.');
+    expect(disconnectAction).toHaveAttribute('aria-label', 'قطع الاتصال بخادم Soulseek.');
+    expect(disconnectAction).toHaveAttribute('lang', 'ar');
+    expect(disconnectAction).toHaveAttribute('dir', 'rtl');
   });
 });

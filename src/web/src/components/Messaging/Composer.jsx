@@ -1,13 +1,13 @@
 import LocalizedText from "../Shared/LocalizedText";
 import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../lib/apiErrorMessages';
+import { getApiErrorMessageOutput } from '../../lib/apiErrorMessages';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Popup } from 'semantic-ui-react';
 
 const ME_PREFIX = '/me ';
 
 const getSendErrorMessage = (error) =>
-  getApiErrorMessage(error, { t: interfaceText }, 'The message could not be sent.');
+  getApiErrorMessageOutput(error, { t: interfaceText }, 'The message could not be sent.');
 
 const matchSuggestions = (draft, commands) => {
   if (!draft.startsWith('/') || draft.startsWith('/ ')) return [];
@@ -141,7 +141,7 @@ const Composer = ({
          {...interfaceTextProps("Command suggestions")}>
           {suggestions.map((command, index) => (
             <Popup
-              content={`${command.description} Select to insert ${command.syntax || `/${command.name}`} in the composer.`}
+              content={<>{command.descriptionSource ? <LocalizedText source={command.descriptionSource} /> : command.description}{" "}<LocalizedText source="Select to insert {syntax} in the composer." values={{ syntax: command.syntax || `/${command.name}` }} /></>}
               key={command.name}
               trigger={(
                 <button
@@ -160,7 +160,7 @@ const Composer = ({
                     {command.syntax || `/${command.name}`}
                   </span>
                   <span className="msgv2-composer-suggestion-desc">
-                    {command.description}
+                    {command.descriptionSource ? <LocalizedText source={command.descriptionSource} /> : command.description}
                   </span>
                 </button>
               )}

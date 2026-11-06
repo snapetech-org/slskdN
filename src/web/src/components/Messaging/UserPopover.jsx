@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Popup } from 'semantic-ui-react';
 
@@ -56,7 +56,7 @@ const UserPopover = ({ anchor, onBrowse, onClose, onMessage, onProfile, open, us
 
   return (
     <div
-      aria-label={interfaceText("Actions for {username}", { "username": (username) })}
+      aria-label={interfaceAttributeText("Actions for {username}", { "username": (username) })}
       className="msgv2-userpop"
       ref={ref}
       role="menu"

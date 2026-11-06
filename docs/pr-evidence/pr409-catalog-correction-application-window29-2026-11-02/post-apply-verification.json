@@ -1,0 +1,48 @@
+{
+  "result": "PASS",
+  "baseHead": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "baseTree": "8070731f8ee7529b9f4353720ca6214941b1ae21",
+  "baseSourceSubtreeTree": "299b4318cd8fc2a03173ab510ee265a779964034",
+  "livePRState": "OPEN",
+  "livePRDraft": true,
+  "liveRemoteHead": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "applicationRows": 42,
+  "rootDispositions": {
+    "accepted": 38,
+    "refined": 4
+  },
+  "correctionsByLocale": {
+    "es": 4,
+    "zh-Hans": 3,
+    "hi": 3,
+    "de": 4,
+    "ja": 3,
+    "fr": 5,
+    "pt-BR": 3,
+    "ar": 4,
+    "ko": 3,
+    "zh-Hant": 3,
+    "vi": 4,
+    "id": 3
+  },
+  "callerLinesRechecked": 65,
+  "changedCatalogFiles": 12,
+  "exactChangedCellSets": "PASS",
+  "catalogKeyCounts": "PASS",
+  "placeholdersAndProtectedLiterals": "PASS",
+  "nonCatalogChanges": [
+    "docs/CHANGELOG.md"
+  ],
+  "sourceOrWorkflowChanges": [],
+  "appliedLedgerSha256": "a3a663b2a4c7a56b115954c7bf771c2d3407254ae4054e614068300594dab4b9",
+  "rootPlanSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+  "proposalPlanSha256": "b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568",
+  "repositoryWorktree": "expected localized catalog/changelog edits only",
+  "applicationCommit": "dff0b0281483d777c01c5e7dd68e24b51fdc67f8",
+  "applicationTree": "37f299d9e8f2f476bbc3eaefe872f3c727a4b17d",
+  "applicationParent": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "candidatePlanSha256": "b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568",
+  "rootLedgerSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+  "rootApplyPlanSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+  "changedCells": 42
+}

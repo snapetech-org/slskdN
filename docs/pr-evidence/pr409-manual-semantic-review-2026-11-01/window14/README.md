@@ -1,0 +1,9 @@
+# slskdN PR #409 manual semantic review: fourteenth 25-key slice
+
+The original scratch bundle passed its exact-head verifier at PR head `3b5060fa630836b7bdb467f61d73d5e52f907dbb` / tree `283aa0efedacd4df8528853ea31a4e38db5095a3`. The source/catalog `src` tree `fff1ef49df31a8d1095cd43148c186fbcd7f5089` matches baseline `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`.
+
+This disjoint slice covers 25 keys / 300 cells across all twelve locales: 238 keep, 44 high-confidence correction candidates, and 18 uncertain. The correction candidates cover Smart Radio, MilkDrop composite-shader terminology, port-field grammar, content registry, status labels, Pod terminology, selected-search labels, access categories, peer connectivity, standalone color values, and perceptual similarity. Four “Quarantine Jury” cells remain uncertain because the catalog marks the English phrase as a protected literal, while the contextual correction would replace it.
+
+The original scratch verifier checked checksums, exact source/catalog state, pending rows, placeholders/protected literals, formal overlap, and all thirteen previous windows. It found zero formal-result overlap and zero overlap with prior manual evidence. The sibling-sensitive verifier remains in scratch because its scan treats committed copies as duplicate reviews. This packaging README records the successful scratch verification; the input, decision, and manifest files are byte-identical copies. The manifest retains scratch hashes. No correction proposals have been applied; native-speaker review is still required.
+
+Scratch input SHA-256: `bbe86d596f788bca47ff31e60a8b2eb1b6b841de21dd48c20ea83e6f1f7028a8`. Scratch decision SHA-256: `2c75706a2e1e9e330ab7ae351e1d1f2bd5d912aaa844af716537978c95dcd905`. Scratch manifest SHA-256: `0f710896ab5fa8f5321de43a48462b58c3eb77ae41f876d32b39c26f63d3ddbb`.

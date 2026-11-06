@@ -1,0 +1,300 @@
+{"id":"ar:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"تم حذف العناصر المحددة، العدد: {size}","verdict":"correct"}
+{"id":"ar:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"ar:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"ar:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"ar:src_fc0662d38746b6eb","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fc08ebd61c6ac599","reason":"This fragment follows a list of discovered slskdN network peers and is rendered only when more peers exist than the ten shown. The current translations in these locales count generic items or use a mismatched Arabic form; the alternatives identify other peers/network nodes and preserve {count}.","target":"…و{count} من الأقران الآخرين","verdict":"correct"}
+{"id":"ar:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"ar:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"ar:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"ar:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"ar:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"ar:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"ar:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"المسارات المتاحة","verdict":"correct"}
+{"confidence":"high","id":"ar:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"أضف إلى قائمة الرغبات التوصية الموسيقية لـ {title} المستندة إلى ذوقك","verdict":"correct"}
+{"id":"ar:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"ar:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"ar:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"ar:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"ar:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"ar:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"ar:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"ar:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"ar:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"ar:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"de:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"de:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"Gelöscht: {size} Einträge","verdict":"correct"}
+{"id":"de:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"de:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"de:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"de:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"de:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"de:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"de:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"de:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"de:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"de:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"de:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"de:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"Verfügbare Titel","verdict":"correct"}
+{"confidence":"high","id":"de:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"Die geschmacksbasierte Musikempfehlung zu {title} in die Wunschliste aufnehmen","verdict":"correct"}
+{"id":"de:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"de:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"de:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"de:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"de:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"de:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"de:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"de:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"de:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"de:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"es:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"es:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"Elementos eliminados: {size}","verdict":"correct"}
+{"id":"es:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"es:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"es:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"es:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"es:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"es:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"es:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"es:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"es:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"es:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"es:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"es:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"pistas disponibles","verdict":"correct"}
+{"confidence":"high","id":"es:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"Añadir a la lista de deseos la recomendación musical para {title} basada en tus gustos","verdict":"correct"}
+{"id":"es:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"es:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"es:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"es:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"es:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"es:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"es:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"es:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"es:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"es:src_fd24a91d63f505e9","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fbf21603437b59b3","reason":"This heading labels the verdicts submitted by multiple jurors in the Quarantine Jury review table. The existing French uses singular “juré”; the table heading refers to the plural set of jurors.","target":"Verdicts des jurés","verdict":"correct"}
+{"confidence":"high","id":"fr:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"Éléments supprimés : {size}","verdict":"correct"}
+{"id":"fr:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"fr:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"fr:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"fr:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"fr:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"fr:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"fr:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"fr:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"fr:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"fr:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"fr:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"fr:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"pistes disponibles","verdict":"correct"}
+{"confidence":"high","id":"fr:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"Ajouter à la liste de souhaits la recommandation musicale de {title} basée sur vos goûts","verdict":"correct"}
+{"id":"fr:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"fr:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"fr:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"fr:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"fr:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"fr:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"fr:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"fr:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"fr:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"fr:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"hi:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"हटाए गए आइटम: {size}","verdict":"correct"}
+{"id":"hi:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"hi:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"hi:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"hi:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"hi:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"hi:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"hi:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"hi:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"hi:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"hi:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"hi:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"hi:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"उपलब्ध ट्रैक","verdict":"correct"}
+{"confidence":"high","id":"hi:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"इच्छा सूची में {title} के लिए रुचि-आधारित संगीत सुझाव जोड़ें","verdict":"correct"}
+{"id":"hi:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"hi:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"hi:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"hi:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"hi:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"hi:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"hi:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"hi:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"hi:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"hi:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"id:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"id:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"Berhasil menghapus {size} item","verdict":"correct"}
+{"id":"id:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"id:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"id:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"id:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"id:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"id:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"id:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"id:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"id:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"id:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"id:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"id:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"trek yang tersedia","verdict":"correct"}
+{"confidence":"high","id":"id:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"Tambahkan rekomendasi musik untuk {title} berdasarkan selera ke Daftar Keinginan","verdict":"correct"}
+{"id":"id:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"id:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"id:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"id:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"id:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"id:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"id:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"id:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"id:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"id:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"ja:src_fbf21603437b59b3","verdict":"keep"}
+{"id":"ja:src_fbf278edf4ab21d7","verdict":"keep"}
+{"id":"ja:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"ja:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"ja:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"ja:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"ja:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"ja:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"ja:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"ja:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"ja:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"ja:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"ja:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"ja:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"利用可能なトラック","verdict":"correct"}
+{"confidence":"high","id":"ja:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"音楽の好みに基づく「{title}」のおすすめをウィッシュリストに追加","verdict":"correct"}
+{"id":"ja:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"ja:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"ja:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"ja:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"ja:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"ja:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"ja:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"ja:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"ja:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"ja:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"ko:src_fbf21603437b59b3","verdict":"keep"}
+{"id":"ko:src_fbf278edf4ab21d7","verdict":"keep"}
+{"id":"ko:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"ko:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"ko:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"ko:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"ko:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"ko:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"ko:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"ko:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"ko:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"ko:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"ko:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"이용 가능한 트랙","verdict":"correct"}
+{"confidence":"high","id":"ko:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"음악 취향에 기반한 {title} 추천을 위시리스트에 추가","verdict":"correct"}
+{"id":"ko:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"ko:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"ko:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"ko:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"ko:src_fcd1aacad8761370","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fce32f3541ecf0fb","reason":"The Korean target attaches the subject particle 가 directly to the variable name, which is not grammatically valid for names ending in a final consonant. The revised wording attaches the particle to 채널 instead. The Traditional Chinese target uses Simplified Chinese 創建; 建立 is the natural Traditional Chinese verb for creating a channel.","target":"\"{newChannelName}\" 채널이 성공적으로 생성되었습니다.","verdict":"correct"}
+{"id":"ko:src_fcea2252477fefa3","verdict":"keep"}
+{"confidence":"high","id":"ko:src_fcf48f6ad2c33baa","reason":"This is a numeric lower-bound filter for audio track duration in seconds. The current Korean says minimum length rather than playback duration; the replacement names playback time and retains the seconds unit.","target":"최소 재생 시간(초)","verdict":"correct"}
+{"id":"ko:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"ko:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"pt-BR:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"Itens excluídos: {size}","verdict":"correct"}
+{"id":"pt-BR:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"pt-BR:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"pt-BR:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"pt-BR:src_fc0662d38746b6eb","verdict":"keep"}
+{"id":"pt-BR:src_fc08ebd61c6ac599","verdict":"keep"}
+{"id":"pt-BR:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"pt-BR:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"pt-BR:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"pt-BR:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"pt-BR:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"pt-BR:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"pt-BR:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"faixas disponíveis","verdict":"correct"}
+{"confidence":"high","id":"pt-BR:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"Adicionar à lista de desejos a recomendação musical para {title} baseada no seu gosto","verdict":"correct"}
+{"id":"pt-BR:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"pt-BR:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"pt-BR:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"pt-BR:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"pt-BR:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"pt-BR:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"pt-BR:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"pt-BR:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"pt-BR:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"pt-BR:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"vi:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"Đã xóa {size} mục","verdict":"correct"}
+{"id":"vi:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"vi:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"vi:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"vi:src_fc0662d38746b6eb","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fc08ebd61c6ac599","reason":"This fragment follows a list of discovered slskdN network peers and is rendered only when more peers exist than the ten shown. The current translations in these locales count generic items or use a mismatched Arabic form; the alternatives identify other peers/network nodes and preserve {count}.","target":"…và {count} nút mạng khác","verdict":"correct"}
+{"id":"vi:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"vi:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"vi:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"vi:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"vi:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"id":"vi:src_fc7b5068cce9715d","verdict":"keep"}
+{"confidence":"high","id":"vi:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"bài hát có sẵn","verdict":"correct"}
+{"confidence":"high","id":"vi:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"Thêm gợi ý âm nhạc cho {title} dựa trên sở thích vào Danh sách yêu thích","verdict":"correct"}
+{"id":"vi:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"vi:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"vi:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"vi:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"vi:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"vi:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"vi:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"vi:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"vi:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"vi:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"zh-Hans:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"已删除 {size} 个项目","verdict":"correct"}
+{"id":"zh-Hans:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"zh-Hans:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"zh-Hans:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"zh-Hans:src_fc0662d38746b6eb","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fc08ebd61c6ac599","reason":"This fragment follows a list of discovered slskdN network peers and is rendered only when more peers exist than the ten shown. The current translations in these locales count generic items or use a mismatched Arabic form; the alternatives identify other peers/network nodes and preserve {count}.","target":"…还有 {count} 个节点","verdict":"correct"}
+{"id":"zh-Hans:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"zh-Hans:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"zh-Hans:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"zh-Hans:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"zh-Hans:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"confidence":"high","id":"zh-Hans:src_fc7b5068cce9715d","reason":"This is the blue component label for the visualizer waveform RGB control (wave_b). The current Simplified and Traditional Chinese strings are compressed and unclear; the alternatives explicitly label the waveform blue channel.","target":"波形蓝色","verdict":"correct"}
+{"confidence":"high","id":"zh-Hans:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"可用曲目","verdict":"correct"}
+{"confidence":"high","id":"zh-Hans:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"将基于音乐品味为《{title}》生成的推荐加入心愿单","verdict":"correct"}
+{"id":"zh-Hans:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"zh-Hans:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"zh-Hans:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"zh-Hans:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"zh-Hans:src_fcd1aacad8761370","verdict":"keep"}
+{"id":"zh-Hans:src_fce32f3541ecf0fb","verdict":"keep"}
+{"id":"zh-Hans:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"zh-Hans:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"zh-Hans:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"zh-Hans:src_fd24a91d63f505e9","verdict":"keep"}
+{"id":"zh-Hant:src_fbf21603437b59b3","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fbf278edf4ab21d7","reason":"This toast follows bulk deletion of selected Wishlist IDs, and {size} is selectedIds.size. The current translations in these locales place the count unnaturally or use a broken count/item construction; the alternatives present a clear deletion count and preserve {size}.","target":"已刪除 {size} 個項目","verdict":"correct"}
+{"id":"zh-Hant:src_fbf525c326baebfc","verdict":"keep"}
+{"id":"zh-Hant:src_fbfd5dbcb2101b44","verdict":"keep"}
+{"id":"zh-Hant:src_fc02713419b8cb92","verdict":"keep"}
+{"id":"zh-Hant:src_fc0662d38746b6eb","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fc08ebd61c6ac599","reason":"This fragment follows a list of discovered slskdN network peers and is rendered only when more peers exist than the ten shown. The current translations in these locales count generic items or use a mismatched Arabic form; the alternatives identify other peers/network nodes and preserve {count}.","target":"…還有 {count} 個節點","verdict":"correct"}
+{"id":"zh-Hant:src_fc24fb3e1ff3cbc5","verdict":"keep"}
+{"id":"zh-Hant:src_fc42ffb282f01569","verdict":"keep"}
+{"id":"zh-Hant:src_fc4b59a0dbaa1701","verdict":"keep"}
+{"id":"zh-Hant:src_fc77215b91b8fdf2","verdict":"keep"}
+{"id":"zh-Hant:src_fc795bb8ec9ba4f9","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fc7b5068cce9715d","reason":"This is the blue component label for the visualizer waveform RGB control (wave_b). The current Simplified and Traditional Chinese strings are compressed and unclear; the alternatives explicitly label the waveform blue channel.","target":"波形藍色","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_fc9c6c38f9663859","reason":"The value is coverage.coveredTracks / coverage.totalTracks for discography tracks with verified Mesh content evidence. The existing translations in these locales can mean hidden, insured, or merely covered tracks; the alternatives describe tracks that are available, which is what the backend count measures.","target":"可用曲目","verdict":"correct"}
+{"confidence":"high","id":"zh-Hant:src_fca72f1b95b8111b","reason":"This is the accessible action label on a federated music recommendation card. Taste refers to the user’s musical preferences, not food flavor; the action hands the WorkRef to Wishlist review without starting a download. These alternatives describe a music recommendation based on preferences and preserve {title}.","target":"將根據音樂品味為《{title}》產生的推薦加入心願清單","verdict":"correct"}
+{"id":"zh-Hant:src_fca9013242ecbd46","verdict":"keep"}
+{"id":"zh-Hant:src_fcab226019dbdb2f","verdict":"keep"}
+{"id":"zh-Hant:src_fcb8175433c530e0","verdict":"keep"}
+{"id":"zh-Hant:src_fcd02407a02abde2","verdict":"keep"}
+{"id":"zh-Hant:src_fcd1aacad8761370","verdict":"keep"}
+{"confidence":"high","id":"zh-Hant:src_fce32f3541ecf0fb","reason":"The Korean target attaches the subject particle 가 directly to the variable name, which is not grammatically valid for names ending in a final consonant. The revised wording attaches the particle to 채널 instead. The Traditional Chinese target uses Simplified Chinese 創建; 建立 is the natural Traditional Chinese verb for creating a channel.","target":"已成功建立頻道「{newChannelName}」","verdict":"correct"}
+{"id":"zh-Hant:src_fcea2252477fefa3","verdict":"keep"}
+{"id":"zh-Hant:src_fcf48f6ad2c33baa","verdict":"keep"}
+{"id":"zh-Hant:src_fcfb9d08496fd8de","verdict":"keep"}
+{"id":"zh-Hant:src_fd24a91d63f505e9","verdict":"keep"}

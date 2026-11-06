@@ -1,0 +1,168 @@
+{
+  "bundle": "window-653-677",
+  "applicationCommit": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+  "nestedVerifiers": [
+    {
+      "name": "candidate-free",
+      "status": "PASS",
+      "result": {
+        "verifier": "PASS",
+        "filesHashed": 16,
+        "sourceInventoryRows": 6176,
+        "selectedSources": 25,
+        "currentCells": 300,
+        "priorExcludedIds": 1757,
+        "priorHolds": 140,
+        "priorHoldTargetMatches": 140,
+        "catalogs": 12,
+        "callerContexts": 25,
+        "tokenMismatches": {
+          "placeholder": 0,
+          "markup": 0,
+          "numeric": 2,
+          "protectedLiteral": 1
+        }
+      }
+    },
+    {
+      "name": "primary",
+      "status": "PASS",
+      "result": {
+        "verifier": "PASS",
+        "outputFilesHashed": 4,
+        "inputFilesHashed": 16,
+        "cells": 300,
+        "dispositions": {
+          "accept-current": 257,
+          "hold": 12,
+          "correct": 21,
+          "refine": 10
+        },
+        "proposedTargets": 31,
+        "proposedTokenMismatches": 0,
+        "baselineFlaggedCells": [
+          [
+            654,
+            "ja"
+          ],
+          [
+            654,
+            "ko"
+          ],
+          [
+            672,
+            "hi"
+          ]
+        ],
+        "excludedIds": 1757,
+        "priorHoldsReattested": 140
+      }
+    },
+    {
+      "name": "canonical-full-blind",
+      "status": "PASS",
+      "result": {
+        "result": "PASS",
+        "head": "d0317d8258a31d05b7f163921c2e39f93deabfca",
+        "tree": "01475aeffa17f6151c4bf161890662167c959bb0",
+        "cells": 300,
+        "dispositionCounts": {
+          "accept-current": 227,
+          "hold": 12,
+          "correction": 44,
+          "refinement": 17
+        },
+        "proposals": 61,
+        "newCallerlessHolds": 12,
+        "carriedHoldsHashOnly": 140,
+        "priorSelectedIdExclusionsHashOnly": 1757,
+        "baselineTokenMismatches": {
+          "placeholderMismatch": 0,
+          "markupMismatch": 0,
+          "numericMismatch": 2,
+          "protectedLiteralMismatch": 1
+        },
+        "proposalTokenOrLiteralFailures": 0,
+        "inputFilesVerified": 16,
+        "outputFilesVerified": 35,
+        "secondaryFilesVerified": 6,
+        "livePRState": "OPEN/DRAFT at same exact head/tree before and after",
+        "deploymentsForHead": 0
+      }
+    },
+    {
+      "name": "cross-review",
+      "status": "PASS",
+      "result": {
+        "verifier": "PASS",
+        "outputFilesVerified": 9,
+        "cells": 300,
+        "finalDispositionCounts": {
+          "accept-current": 231,
+          "hold": 12,
+          "correct": 40,
+          "refine": 17
+        },
+        "selectedTargets": 57,
+        "primaryBlindAcceptChangeDisagreements": 36,
+        "priorHeldHashes": 140,
+        "priorSelectedIdsHashOnly": 1757,
+        "baselineTokenMismatches": {
+          "placeholderMismatch": 0,
+          "markupMismatch": 0,
+          "numericMismatch": 2,
+          "protectedLiteralMismatch": 1
+        },
+        "recordedLiveHeadTree": "unchanged"
+      }
+    },
+    {
+      "name": "concern-resolution-addendum",
+      "status": "PASS",
+      "result": {
+        "verifier": "PASS",
+        "resolvedCells": 3,
+        "allTargetsDifferFromCurrent": true,
+        "allTargetsDifferFromOriginalRecommendation": true,
+        "tokenChecks": {
+          "placeholders": "3/3 pass",
+          "markup": "3/3 pass",
+          "numeric": "3/3 pass",
+          "protectedLiterals": "3/3 pass"
+        },
+        "pinnedHeadTree": "unchanged",
+        "originalPacket": "preserved",
+        "applicationRecommendation": "Update the application with these three revised targets after native-speaker signoff; this addendum does not apply catalog edits."
+      }
+    },
+    {
+      "name": "application-readback",
+      "status": "PASS",
+      "result": {
+        "verifier": "PASS",
+        "readbackRows": 57,
+        "readbackMismatches": 0,
+        "holdsHashOnly": 12,
+        "planCatalogHashDeltas": [
+          "src/web/public/locales/fr.json",
+          "src/web/public/locales/ja.json",
+          "src/web/public/locales/vi.json"
+        ],
+        "applicationCommit": "f120ea15892aa1bd8e17ab43965822ac459e4a71",
+        "workflowFilesChanged": 0
+      }
+    },
+    {
+      "name": "second-person-audit",
+      "status": "PASS",
+      "filesVerified": 6
+    },
+    {
+      "name": "concern-resolution-addendum-checksums",
+      "status": "PASS",
+      "filesVerified": 6
+    }
+  ],
+  "allPassed": true,
+  "runUtc": "2026-11-04T02:05:49+00:00"
+}

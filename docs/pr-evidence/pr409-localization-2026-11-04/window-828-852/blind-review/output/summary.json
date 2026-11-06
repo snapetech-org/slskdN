@@ -1,0 +1,91 @@
+{
+  "artifact": "slskdN PR #409 W78 ranks 828-852 independent blind review",
+  "baselineTokenMismatchCounts": {
+    "markup": 0,
+    "numeric": 0,
+    "placeholder": 0,
+    "protectedLiteral": 1
+  },
+  "callerlessHeldCells": 12,
+  "callerlessHoldPolicy": "hash-only; source and target strings withheld",
+  "candidateFreeInput": true,
+  "cellCount": 300,
+  "continuationRankRange": [
+    828,
+    852
+  ],
+  "decisionCounts": {
+    "hold": 12,
+    "keep": 254,
+    "propose": 34
+  },
+  "decisionTargetTokenMismatchCounts": {
+    "markup": 0,
+    "numbers": 0,
+    "placeholders": 0,
+    "protectedLiterals": 0
+  },
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "priorHoldLineage": {
+    "callerEvidenceChanged": 0,
+    "callerEvidenceUnchanged": 331,
+    "reattestedCells": 331,
+    "resolutionHistoryRows": 13,
+    "windows": {
+      "carriedHoldCells": 331,
+      "holdLineage": {
+        "W57": 12,
+        "W59": 24,
+        "W62": 24,
+        "W63": 13,
+        "W64": 12,
+        "W65": 6,
+        "W66": 24,
+        "W69": 12,
+        "W71": 12,
+        "W72": 108,
+        "W73": 12,
+        "W75": 12,
+        "W76": 48,
+        "W77": 12
+      },
+      "previouslyResolvedHistoricalRows": 13,
+      "resolutionRowsTextFree": true
+    }
+  },
+  "proposalCountsByLocale": {
+    "ar": 3,
+    "es": 3,
+    "fr": 3,
+    "hi": 6,
+    "id": 3,
+    "ja": 3,
+    "ko": 4,
+    "pt-BR": 1,
+    "vi": 4,
+    "zh-Hans": 2,
+    "zh-Hant": 2
+  },
+  "reviewHead": "4120c9637e71466dc98d51a5a342dee199a1e004",
+  "reviewMethod": "Cell-by-cell text review against the candidate-free packet and pinned caller contexts; no candidate-review output was used.",
+  "reviewTree": "063b62f268eb81253d2b9b4c77ad045c2f25a394",
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "sourceIdsWithPriorHoldLineageOverlap": 0,
+  "sourceLiteralCallerCount": 24,
+  "window": "W78"
+}

@@ -1,5 +1,5 @@
 import LocalizedText from "../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
+import { interfaceAttributeText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../lib/interfaceLocale";
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { List as WindowedList } from 'react-window';
 import { Button, Icon, List, Popup } from 'semantic-ui-react';
@@ -64,7 +64,7 @@ const DirectoryRow = memo(
                 trigger={(
                   <button
                     aria-expanded={isExpanded}
-                    aria-label={interfaceText(isExpanded ? 'Collapse {folder}' : 'Expand {folder}', { folder: folderName })}
+                    aria-label={interfaceAttributeText(isExpanded ? 'Collapse {folder}' : 'Expand {folder}', { folder: folderName })}
                     onClick={() => onToggleExpand(directory.name)}
                     style={{
                       alignItems: 'center',
@@ -125,7 +125,7 @@ const DirectoryRow = memo(
                 position="top center"
                 trigger={(
                   <Button
-                    aria-label={interfaceText("Download {folderName}", { "folderName": (folderName) })}
+                    aria-label={interfaceAttributeText("Download {folderName}", { "folderName": (folderName) })}
                     basic
                     compact
                     icon="download"

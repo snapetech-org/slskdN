@@ -1,0 +1,7 @@
+# slskdN PR #409 manual semantic review: ninth 25-key slice
+
+The original scratch bundle passed its exact-head verifier at PR head `b7462d8490f53b144945ceb2152851a8996f90b2` / tree `a19bcdc9a81b32ab5bf7aa2101da025220d296cc`. The source/catalog `src` tree `fff1ef49df31a8d1095cd43148c186fbcd7f5089` matches baseline `4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb` / `0eb84397dc2b4be4afd730f6818203bd5910cf15`.
+
+This disjoint slice covers 25 keys / 300 cells across all twelve locales: 239 keep, 49 high-confidence correction candidates, and 12 uncertain. Verification found zero formal-result overlap and zero overlap with the eight previous windows. Corrections address audio-fingerprint terminology, web/chat-room wording, timed message batching, the Release Radar feature, checksums and descriptor retrieval, server-path examples, the YouTube Data API name, catch-up synchronization, publication consent, and acquisition profiles. The generic “Management” heading remains uncertain in all locales because its callsite is absent from the frozen inventory.
+
+The original scratch verifier checked checksums, exact source/catalog state, pending rows, placeholders/protected literals, formal overlap, and all prior-window copies. Its sibling-sensitive verifier remains in scratch because its scan treats committed copies as duplicate reviews. The manifest retains scratch hashes and packaging provenance. Suggestions remain unapplied; native-speaker review is still required.

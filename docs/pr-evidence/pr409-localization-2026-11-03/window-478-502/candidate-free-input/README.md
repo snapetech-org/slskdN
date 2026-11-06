@@ -1,0 +1,11 @@
+# slskdN PR #409 W64 ranks 478–502 candidate-free input
+
+Pinned to PR #409 in OPEN/DRAFT state on branch codex/slskdn-oidc-tooltip-localization-20261030, exact head 3cc9db334cfb1693dd6bd93bb83cfeba65930adb and tree 9d40e239e7e717a81bd176d143d1ce067fe026a1. The live PR, branch ref, pull ref, and detached source checkout were reattested before collection and again before sealing.
+
+The W49 source inventory is docs/pr-evidence/pr409-localization-2026-11-03/window49/primary/source-inventory.jsonl (6,176 rows; SHA-256 17cb8a747939d4973733016b95f29284e191d5444910051e42fb153cf4f94225). The queue excludes inventory rows marked excluded or inW49, then takes continuation ranks 478–502, corresponding to remaining queue ranks 378–402. The 377 previously selected source IDs through W63 are recorded separately; the additional 1,205 rows already excluded by the W1–W45 evidence set are also pinned. These 1,582 unavailable IDs have no overlap with the 25 selected W64 IDs. W63’s exact-head candidate-free boundary identifies rank 478/source ID src_2162d10641be0324 as next; rank 477/source ID src_215e73b2ecd3f60e is the previous final.
+
+This packet covers 25 source rows × 12 locales = 300 current target cells. It pins the 12 catalog blobs and ordered keys (12 × 6,176 keys; order SHA-256 3ca04c40ebfed00b93fcd143109fc9d85da941cec30b6cb93f52e431498df6a7), source IDs/hashes, exact quoted-literal production callers and bounded contexts, current target hashes, placeholders, markup, numeric tokens, and protected literals. It contains no proposed translations or review decisions.
+
+The W64 selection has no exact production caller for rank 486, so its 12 locale values are held in the primary review. The 86 prior held cells were reattested unchanged: 72 held cells from earlier windows and 14 W63 holds (rank 459 Arabic, rank 475 Arabic, and all 12 locales at callerless rank 476). Current caller and catalog evidence is repinned for every held cell. Placeholder, markup, and numeric mismatches are zero; 23 baseline protected-literal mismatches are recorded per cell for independent semantic review.
+
+Verify the packet from this directory using sha256sum -c PACKET-SHA256SUMS.txt and python3 verify_input.py. The input manifest and checksum list are separate files and their SHA-256 values are reported separately in task-status.json.

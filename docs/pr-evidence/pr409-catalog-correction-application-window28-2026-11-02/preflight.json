@@ -1,0 +1,30 @@
+{
+  "result": "PREFLIGHT_PASS",
+  "head": "17e8d8b829867065b882423ef81c69f1f31c7d07",
+  "tree": "7562b0dd09a92398a898d84e1c936119492015be",
+  "sourceSubtreeTree": "6d80c43cea32f0a5721f31235ec80e6eaa6d1896",
+  "remote": "17e8d8b829867065b882423ef81c69f1f31c7d07",
+  "PR": "OPEN/DRAFT",
+  "rows": 39,
+  "approvedAsProposed": 39,
+  "refined": 0,
+  "held": 0,
+  "byLocale": {
+    "ar": 3,
+    "de": 3,
+    "es": 4,
+    "fr": 4,
+    "hi": 3,
+    "id": 3,
+    "ja": 2,
+    "ko": 3,
+    "pt-BR": 3,
+    "vi": 5,
+    "zh-Hans": 3,
+    "zh-Hant": 3
+  },
+  "rootLedgerSha256": "2e913a85844b83658c057667a65831f50bb3897bc61255a6196d29cbe865259b",
+  "rootApplyPlanSha256": "ade3ade63ee11a972eb95c175b48ad38161ab4883e0f14c97e417425be8ea161",
+  "candidatePlanSha256": "f5ac0b1afa7ac50c6138dfbb11297f09c51a61e99fa52344519ea06c8750d574",
+  "refinedRows": []
+}

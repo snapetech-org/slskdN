@@ -1,0 +1,101 @@
+{
+  "reviewType": "independent cross-review; machine/subagent evidence, not qualified native-speaker signoff",
+  "baseHead": "fa097f9aa044a63981d0c16f6daa53837f815333",
+  "baseTree": "4b1cb71342879581b5422de43450e4b0fc820a18",
+  "implementationDiffSha256": "7c0eba386c9d1eed198d49ed88506a0e238e8e1a47c174b53455524d1db70272",
+  "primaryPacket": "/mnt/disks/scratch/task-scratch/slskdn-localization-callers-20261102/primary",
+  "primaryPacketChecksumsVerified": true,
+  "rowCounts": {
+    "reviewed": 60,
+    "acceptProposal": 56,
+    "revise": 4,
+    "hold": 0,
+    "qualifiedNativeSpeakerApproved": 0
+  },
+  "revisions": [
+    {
+      "sourceId": "src_a496c430224a74df",
+      "locale": "fr",
+      "reason": "French/Hindi/Brazilian Portuguese select one for zero, and rank42 caller permits zero counts.",
+      "target": "{matched, plural, =0 {# pistes} one {# piste} other {# pistes}}, {changed, plural, =0 {# champs modifiés} one {# champ modifié} other {# champs modifiés}}"
+    },
+    {
+      "sourceId": "src_a496c430224a74df",
+      "locale": "hi",
+      "reason": "French/Hindi/Brazilian Portuguese select one for zero, and rank42 caller permits zero counts.",
+      "target": "{matched, plural, =0 {# ट्रैक} one {# ट्रैक} other {# ट्रैक}}, {changed, plural, =0 {# बदले हुए फ़ील्ड} one {# बदला हुआ फ़ील्ड} other {# बदले हुए फ़ील्ड}}"
+    },
+    {
+      "sourceId": "src_a496c430224a74df",
+      "locale": "pt-BR",
+      "reason": "French/Hindi/Brazilian Portuguese select one for zero, and rank42 caller permits zero counts.",
+      "target": "{matched, plural, =0 {# faixas} one {# faixa} other {# faixas}}, {changed, plural, =0 {# campos alterados} one {# campo alterado} other {# campos alterados}}"
+    },
+    {
+      "sourceId": "src_6845751a223bdec1",
+      "locale": "id",
+      "reason": "The established Indonesian catalog uses Berkas for File, not the English loanword file.",
+      "target": "Unduh {count, plural, one {# berkas} other {# berkas}} dari {directory}?"
+    }
+  ],
+  "codeFindings": [
+    {
+      "id": "C1",
+      "severity": "medium",
+      "location": "src/web/src/components/Browse/BrowseSession.jsx:558",
+      "finding": "The changed confirmation still uses interfaceText for directory.name, so opaque path text is inserted into the native confirm without direction isolation. interfaceDialogText is designed for native confirmation strings but isolates every parameter; passing it unchanged wraps count in FSI/PDI, causing Number(FSI + digits + PDI) to be NaN and leaving raw ICU selector syntax.",
+      "recommendation": "Use a plural-aware native-dialog formatter that preserves numeric selector arguments for Intl.PluralRules while isolating ordinary opaque placeholders such as directory. Do not replace interfaceText with interfaceDialogText unchanged."
+    },
+    {
+      "id": "C2",
+      "severity": "medium",
+      "location": "rank42 new key in src/web/public/locales/{fr,hi,pt-BR}.json",
+      "finding": "Reachable zero-count agreement is singular in three current target cells because those locales select one for zero.",
+      "recommendation": "Apply the exact =0 branches in cell-decisions.jsonl."
+    },
+    {
+      "id": "C3",
+      "severity": "low",
+      "location": "docs/localization-sources/README.md and docs/localization-sources/*.json",
+      "finding": "All five new source IDs and the 60 cells are absent from the frozen source inventory/follow-up metadata. The current source coverage test discovers constant/helper references and checks catalog presence, but its simple placeholder-parity extraction does not validate ICU selector names, branch completeness, or # markers.",
+      "recommendation": "Add an append-only v8 source/caller follow-up inventory with exact source pins and all five IDs, update the README index, preserve older immutable inventory files, and add explicit static ICU structure coverage when permitted."
+    }
+  ],
+  "sourceCoverageMetadata": {
+    "runtimeCoverageTestWouldDiscoverNewSources": true,
+    "frozenInventoryFilesContainNewSourceIds": false,
+    "sourceIdsFoundInFrozenMetadata": [],
+    "appendOnlyFollowupRequired": true,
+    "existingCoverageTestChecksIcuVariableBranchAndCountMarkerParity": false,
+    "repositoryEditsMade": false
+  },
+  "formatterReview": {
+    "scopeMatchesDeclaredSubset": true,
+    "allFiveMessagesUseSupportedSubset": true,
+    "allTargetsHaveBalancedPlainBranchesOtherFallbackAndExactlyOneCountMarkerPerBranch": true,
+    "activeLanguagePluralRulesAndNumberFormatUsed": true,
+    "rank42CanDisplayZeroMatchedTracks": true,
+    "rank42CanDisplayZeroChangedFields": true,
+    "rank37ZeroUnreachableAfterExistingEarlyReturn": true,
+    "wishlistZeroUnreachableBecauseCallerRequiresUnseenCountGreaterThanZero": true,
+    "declaredLimitations": "No nested selector, ordinal, offset, or general ICU syntax is needed by these five messages."
+  },
+  "catalogReview": {
+    "allTwelveJsonCatalogsParse": true,
+    "allFiveKeysPresentPerLocale": true,
+    "original6170KeysAndValuesPreservedInOrder": true,
+    "fiveNewKeysAppendedInIdenticalOrder": true,
+    "currentKeyCount": 6175,
+    "ordinaryDirectoryPlaceholderPreserved": true,
+    "markup": "No HTML markup in these plain text messages.",
+    "protectedLiterals": "No application-owned product/protocol literal occurs in these five messages; directory remains an opaque, unchanged value."
+  },
+  "workPolicy": {
+    "repoEdited": false,
+    "prEdited": false,
+    "commitPushReleaseOrTag": false,
+    "testsBuildsScansCiBrowser": false,
+    "workflowsChanged": false,
+    "qualifiedNativeSpeakerReview": "Outstanding for all 60 values."
+  }
+}

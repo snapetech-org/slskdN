@@ -1,0 +1,52 @@
+{
+  "artifact": "Independent blind semantic review packet for slskdN PR #409 W978-W1002",
+  "exactHead": "1c2fe3be2c720693cbcb12d377bf1177804f4e77",
+  "exactTree": "808501cbc3b6ed873a47d7188189d486f0673f5e",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "window": "W84",
+  "continuationRankRange": [
+    978,
+    1002
+  ],
+  "remainingQueueRankRange": [
+    878,
+    902
+  ],
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "callerlessSourceCount": 0,
+  "callerlessCellCount": 0,
+  "inputManifestSha256": "81270ec9cda1c0965c620c52eb08568fcd77346d6e303bb8c92d6eb609097147",
+  "inputFileSha256": {
+    "selected-sources.jsonl": "976f8269e9dd6ff33ff65814e46fdf679f55f683392d564ae9bc776e5076e537",
+    "source-current-cells.jsonl": "359a9389a3f58d394f1c4c08344f892949fbb38f825d459c07a2751707482735",
+    "caller-contexts.jsonl": "55367caa454086551aacd4e0b950f6c692dadd5e7d3538d76e669b86220408e2",
+    "catalog-structure.jsonl": "05daf0328c3aae768e6549e34453f5e9830e0078b6bf2546e5ae8eac50500674",
+    "catalog-key-order-attestation.json": "d7e1812f38e196d8b393a0f228abfc397a6e3be58e2133bdc81a3ec3ce19a829"
+  },
+  "candidateFreeInputHashManifestValid": true,
+  "catalogsEdited": false,
+  "repoEdited": false,
+  "blindReviewUsed": true,
+  "primaryReviewOutputsRead": false,
+  "crossReviewUsed": false,
+  "rootAdjudicationPerformed": false,
+  "testsBuildsScansCiRun": false
+}

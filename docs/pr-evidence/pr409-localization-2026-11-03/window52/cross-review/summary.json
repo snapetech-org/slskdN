@@ -1,0 +1,80 @@
+{
+  "applied": false,
+  "crossReview": {
+    "allThreeTargetsEqual": 214,
+    "proposedDispositionCounts": {
+      "accept-current": 194,
+      "correction": 66,
+      "hold-context": 6,
+      "refinement": 34
+    },
+    "targetDisagreements": 86
+  },
+  "inputBounds": {
+    "cells": 300,
+    "locales": 12,
+    "ranks": [
+      201,
+      225
+    ],
+    "sourceIds": 25
+  },
+  "inputManifestSha256": "ad0ac60a4d2782cbb7ef759ef0cb68458d71f4431136e098c7b8010470183cb9",
+  "inputPinMismatches": 0,
+  "liveAttestation": {
+    "applied": false,
+    "bodyContentStored": false,
+    "expected": {
+      "body": "9e44ad9c48f8cfb4efbd4855737940e57ed212aaaad3c5e5942d4efb02838bc9",
+      "head": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+      "tree": "ca9f1bf1d9f4373556476a51b863601668878eb3"
+    },
+    "live": {
+      "bodySha256": "9e44ad9c48f8cfb4efbd4855737940e57ed212aaaad3c5e5942d4efb02838bc9",
+      "bodyUtf8Bytes": 68317,
+      "headRef": "codex/slskdn-oidc-tooltip-localization-20261030",
+      "headSha": "f63c8c04f3b1c3fb5e1bc8971a0d83bbf8ca4e77",
+      "state": "open",
+      "treeSha": "ca9f1bf1d9f4373556476a51b863601668878eb3"
+    },
+    "match": {
+      "body": true,
+      "head": true,
+      "tree": true
+    },
+    "packetHashesVerified": true,
+    "pullRequest": 409,
+    "reattestedAt": "2026-11-03T04:17:33Z",
+    "repository": "snapetech-org/slskdN"
+  },
+  "packetHashes": {
+    "independentLedgerSha256": "9ad6d680beb4871459ae19c304005be896de957745ae20dd7c193db3526b947d",
+    "independentManifestSha256": "89f1d645f6aaee67d323aaacad402dc05868fe4b764e075bc489757a6c7610b7",
+    "primaryDecisionLedgerSha256": "b72ccf5f7dd9656e0aea247874e1053cbea30885e60d27593cc01fad87201b27",
+    "primaryManifestSha256": "8f0b9b1d9fddef4b98d0989f1c3ef3a4c4c8d0dd473fc10bd73e50e6eccbf334",
+    "rootStrictBlindLedgerSha256": "887247a6dfd6edaf63e6b201724cfb17dfd801a09ef1cefabd71154a1312311d",
+    "rootStrictBlindManifestSha256": "62fdcd04324036e454d7e57a0f8b27c2ca8a69d368818f6a1e962f04733a16bd"
+  },
+  "primaryHashNote": "The primary manifest SHA-256 is 8f0b9b1d9fddef4b98d0989f1c3ef3a4c4c8d0dd473fc10bd73e50e6eccbf334; the actual review-decisions.jsonl SHA-256 is b72ccf5f7dd9656e0aea247874e1053cbea30885e60d27593cc01fad87201b27.",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "reviewerCounts": {
+    "independent": {
+      "accept-current": 227,
+      "correction": 54,
+      "hold-context": 10,
+      "refinement": 9
+    },
+    "primary": {
+      "accept-current": 243,
+      "correction": 44,
+      "refinement": 13
+    },
+    "rootStrictBlind": {
+      "accept-current": 209,
+      "correction": 70,
+      "refinement": 21
+    }
+  },
+  "window": "W52 ranks 201–225"
+}

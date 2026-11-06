@@ -1,0 +1,22 @@
+{
+  "artifact": "slskdN PR #409 W79 localization application readback",
+  "window": "W79",
+  "headBeforeApply": "4d67527be0ca3b75e866f25bef5e58ae7f777f7f",
+  "treeBeforeApply": "99ba5d8f7d631de3337e6b02f74af6d14e46c2ff",
+  "productCommit": "7317d8fa46a54746f09853da18c16a8ef1845291",
+  "proposalCount": 46,
+  "keepCount": 215,
+  "holdCount": 39,
+  "callerlessHashOnlyHoldCount": 24,
+  "callerBackedHoldCount": 15,
+  "readbackCellCount": 300,
+  "catalogCount": 12,
+  "catalogKeyCountPerLocale": 6176,
+  "catalogKeyOrderUnchanged": true,
+  "workflowPathsChanged": 0,
+  "testsBuildsScansCiRun": false,
+  "applicationPlanSha256": "caf8f2156bc1e19064157777a69379769c42270aa650b6e0f84aa495985be59d",
+  "applicationHoldsSha256": "2228878f72d11b2c4b8861bd9c1ac283422b8ae5e83fc19acb79ba46a62ea5f5",
+  "sourceTextIncluded": false,
+  "targetTextIncluded": false
+}

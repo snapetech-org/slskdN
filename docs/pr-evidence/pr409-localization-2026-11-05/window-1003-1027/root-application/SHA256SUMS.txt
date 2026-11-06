@@ -1,0 +1,7 @@
+05624c1edc74dc438372c3cae4e223ff13501f424179e7ac6b2940d411fff3da  ./application-summary.json
+dfb05de0f2f4a3b8848cbab98267d799525b3c9bf5e3fc260a9821d5d55bf273  ./apply_localization.py
+f8a8a412661f9a8d3891a93183e232e61cf565ead87c0d000ea27ee6ddae90d6  ./exact-hash-apply-plan.jsonl
+f6f0e9bdf6906fefa16d68baf8f14312c7e67004fb63480c6a12ff1c528a93a2  ./final-head-readback.jsonl
+3ae875984a47a0dee876e9514b97f8c489cb9ca35e4883735c967b6c9002a2d6  ./final-root-review-ledger.jsonl
+b209a14d97fbac8f3263bd5861c084b3e5bb74287e73f8a3c66bfe588c286136  ./finalize_readback.py
+8cc526eb2b5c27881b23dd591f15803f280e0294c549b438327d906af712f277  ./verification-results.json

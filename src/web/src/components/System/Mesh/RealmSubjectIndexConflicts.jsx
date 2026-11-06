@@ -1,6 +1,6 @@
-import LocalizedText from "../../Shared/LocalizedText";
-import { interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
-import { getApiErrorMessage } from '../../../lib/apiErrorMessages';
+import LocalizedText, { LocalizedOutputText } from "../../Shared/LocalizedText";
+import { interfaceAttributeText, interfaceTextOutput, interfacePresentationText, interfaceText, interfaceTextProps, useInterfaceLanguage } from "../../../lib/interfaceLocale";
+import { getApiErrorMessageOutput } from '../../../lib/apiErrorMessages';
 // <copyright file="RealmSubjectIndexConflicts.jsx" company="slskdN Team">
 // Copyright (c) slskdN Team. All rights reserved.
 // </copyright>
@@ -12,6 +12,10 @@ import {
   formatRealmSubjectIndexConflictReport,
   summarizeRealmSubjectIndexConflicts,
 } from '../../../lib/realmSubjectIndexes';
+import {
+  getRealmSubjectIndexConflictDescriptionPresentation,
+  getRealmSubjectIndexConflictTypePresentation,
+} from '../../../lib/appGeneratedReasonText';
 import React, { useMemo, useState } from 'react';
 import {
   Button,
@@ -46,7 +50,7 @@ const RealmSubjectIndexConflicts = () => {
   const loadConflicts = async () => {
     const trimmedRealmId = realmId.trim();
     if (!trimmedRealmId) {
-      setError(interfaceText("Enter a realm id before loading subject-index conflicts."));
+      setError(interfaceTextOutput("Enter a realm id before loading subject-index conflicts."));
       return;
     }
 
@@ -59,7 +63,7 @@ const RealmSubjectIndexConflicts = () => {
       });
       setReport(response.data);
     } catch (loadError) {
-      setError(getApiErrorMessage(loadError, { t: interfaceText }));
+      setError(getApiErrorMessageOutput(loadError, { t: interfaceText }));
     } finally {
       setLoading(false);
     }
@@ -74,15 +78,15 @@ const RealmSubjectIndexConflicts = () => {
     });
 
     if (!navigator.clipboard?.writeText) {
-      setCopyStatus(interfaceText('Clipboard unavailable; copy the visible conflict report manually.'));
+      setCopyStatus(interfaceTextOutput('Clipboard unavailable; copy the visible conflict report manually.'));
       return;
     }
 
     try {
       await navigator.clipboard.writeText(text);
-      setCopyStatus(interfaceText('Realm subject-index conflict report copied.'));
+      setCopyStatus(interfaceTextOutput('Realm subject-index conflict report copied.'));
     } catch {
-      setCopyStatus(interfaceText('Unable to copy realm subject-index conflict report.'));
+      setCopyStatus(interfaceTextOutput('Unable to copy realm subject-index conflict report.'));
     }
   };
 
@@ -147,7 +151,7 @@ const RealmSubjectIndexConflicts = () => {
           error
           size="small"
         >
-          {String(error)}
+          <LocalizedOutputText output={error} />
         </Message>
       )}
       {copyStatus && (
@@ -155,7 +159,7 @@ const RealmSubjectIndexConflicts = () => {
           info
           size="small"
         >
-          {copyStatus}
+          <LocalizedOutputText output={copyStatus} />
         </Message>
       )}
       {report && (
@@ -206,17 +210,27 @@ const RealmSubjectIndexConflicts = () => {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {conflicts.map((conflict) => (
+                {conflicts.map((conflict) => {
+                  const typeCopy = getRealmSubjectIndexConflictTypePresentation(
+                    get(conflict, 'type', 'Type', 'unknown'),
+                  );
+                  const descriptionCopy = getRealmSubjectIndexConflictDescriptionPresentation(conflict);
+
+                  return (
                   <Table.Row key={get(conflict, 'id', 'Id', get(conflict, 'key', 'Key'))}>
                     <Table.Cell>
                       <Label color="orange">
-                        {get(conflict, 'type', 'Type', 'unknown')}
+                        {typeCopy.source
+                          ? <LocalizedText source={typeCopy.source} values={typeCopy.values} />
+                          : typeCopy.text}
                       </Label>
                       <div>
                         <strong>{get(conflict, 'key', 'Key', '-')}</strong>
                       </div>
                       <div className="integration-muted-copy">
-                        {get(conflict, 'description', 'Description', '-')}
+                        {descriptionCopy.source
+                          ? <LocalizedText source={descriptionCopy.source} values={descriptionCopy.values} />
+                          : descriptionCopy.text}
                       </div>
                     </Table.Cell>
                     <Table.Cell>
@@ -246,11 +260,12 @@ const RealmSubjectIndexConflicts = () => {
                               </Label>
                               <Label basic>{authorityKey}</Label>
                               <Popup
-                                content={`${disabled ? 'Re-enable' : 'Disable'} this authority locally for review. This only changes browser review state and does not update realm governance.`}
+                                content={<LocalizedText source={disabled ? "Re-enable this authority locally for review. This only changes browser review state and does not update realm governance." : "Disable this authority locally for review. This only changes browser review state and does not update realm governance."} />}
                                 position="top center"
                                 trigger={
                                   <Button
-                                    aria-label={`${disabled ? 'Enable' : 'Disable'} authority ${authorityKey}`}
+                                    {...interfaceTextProps(disabled ? "Enable authority {authorityKey}" : "Disable authority {authorityKey}")}
+                                    aria-label={interfaceAttributeText(disabled ? "Enable authority {authorityKey}" : "Disable authority {authorityKey}", { authorityKey })}
                                     onClick={() => toggleAuthority(authorityKey)}
                                     size="mini"
                                   >
@@ -269,7 +284,8 @@ const RealmSubjectIndexConflicts = () => {
                       })}
                     </Table.Cell>
                   </Table.Row>
-                ))}
+                  );
+                })}
               </Table.Body>
             </Table>
           )}

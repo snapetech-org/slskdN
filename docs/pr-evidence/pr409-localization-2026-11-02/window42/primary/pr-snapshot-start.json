@@ -1,0 +1,12 @@
+{
+  "state": "OPEN",
+  "isDraft": true,
+  "headRefOid": "1b518a69d099032c497149102751271eddb0fa57",
+  "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "url": "https://github.com/snapetech-org/slskdN/pull/409",
+  "title": "fix(i18n): close tooltip and catalog copy gaps",
+  "bodySha256": "d7c206d7d297fe7fa3a281dacaab065ce9f5d3740d60c449785e2f8ba5969dec",
+  "w41BodySectionPresent": true,
+  "w41BodySectionSha256": "721c73b9a285cf09b4c403510592c04ba7f8638955b5e3251287ebe70dc20384",
+  "w41BodySection": "### slskdN semantic review W41 (2026-11-02)\n\n- Primary and independent cross-review covered 275 non-Spanish cells across source ordinals 26–50 at input head `ab6f8fd9fe94d222834f7e4720fd153af4e0649b` / tree `bebc34f8806f57158140d8b831c7a17c1fc6f8f1`. The review also reattested 25 formal Spanish cells and 50 prior held rows.\n- Applied 70 exact-hash changes: 69 accepted primary targets and one refined German target. The 11 “listening seeds” proposals remain held because the source includes artists, genres, tracks, and forgotten favorites; track-specific wording would narrow the meaning. The other 194 cells remain as reviewed current values. All 12 locales retain the same 6,169-key set.\n- Review packets, apply plan, readback, and checksums: [W41 review evidence](docs/pr-evidence/pr409-localization-2026-11-02/window41/README.md). Commit: `1b518a69d099032c497149102751271eddb0fa57`.\n- PR #409 is open and draft at head `1b518a69d099032c497149102751271eddb0fa57` / tree `c7f351a3507a3758a10369632feeb7a001e83aeb`. Current-head browser review and qualified native-speaker review remain outstanding.\n\nNo tests, builds, scans, CI, workflow changes, releases, tags, or merges were performed for this window.\n\n"
+}

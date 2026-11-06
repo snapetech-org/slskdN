@@ -1,0 +1,54 @@
+{
+  "artifact": "slskdN PR #409 W72 primary translation review",
+  "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+  "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+  "reviewedCells": 300,
+  "dispositions": {
+    "accept-current": 170,
+    "correct": 21,
+    "hold": 108,
+    "refine": 1
+  },
+  "proposedCells": 22,
+  "callerlessHolds": 108,
+  "priorHoldsHashOnly": 152,
+  "priorSelectedIdsHashOnly": 1782,
+  "currentBaselineTokenMismatches": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 8
+  },
+  "proposedTargetTokenFailures": 0,
+  "nativeSpeakerSignoff": "not claimed; not performed",
+  "reviewBasis": "Candidate-free pinned source/current target and exact caller context only; no blind output used.",
+  "candidateFreeInputChecksumListSha256": "3463231263b050a1590a9852e2c01e055370fd8f8717d4b45bf3c56c052243f6",
+  "liveBefore": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:46:03+00:00"
+  },
+  "liveAfter": {
+    "repository": "snapetech-org/slskdN",
+    "pullRequest": 409,
+    "state": "OPEN",
+    "draft": true,
+    "baseRefName": "main",
+    "headRefName": "codex/slskdn-oidc-tooltip-localization-20261030",
+    "headRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "branchRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "pullRefOid": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+    "treeOid": "23210cd313efd929cca9ceda0fd78da19e5ed50d",
+    "deploymentsForHead": 0,
+    "attestedUtc": "2026-11-04T02:46:06+00:00"
+  }
+}

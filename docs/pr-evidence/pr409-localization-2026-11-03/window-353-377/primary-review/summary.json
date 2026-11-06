@@ -1,0 +1,148 @@
+{
+  "artifact": "slskdN PR #409 W59 independent subset semantic review",
+  "window": "W59 ranks 353-377",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "fd6bf5c72a668eecac8cc57e4587bced7e4d9aad",
+  "tree": "01c4bb4ea231e6ba72c3087d133b6e3e669853d9",
+  "candidateFreeInputDirectory": "/mnt/disks/scratch/task-scratch/slskdn-pr409-w59-ranks353-377-primary-20261103/input",
+  "candidateFreePacketChecksumManifestSha256": "7283335c280db03cb764b911aa0542abbb6af5a27bd8574acd117f44850a1cf8",
+  "candidateFreeInputCellManifestEntry": {
+    "path": "source-current-cells.jsonl",
+    "bytes": 441069,
+    "sha256": "40cce465f20a16e35ca1efa5075434eb9f747ecabc9c62e5cb64d5a39295503c"
+  },
+  "candidateFree": true,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id"
+  ],
+  "sourceCount": 25,
+  "cellCount": 150,
+  "verdictCounts": {
+    "accept-current": 114,
+    "correction": 18,
+    "hold": 12,
+    "refinement": 6
+  },
+  "countsByLocale": {
+    "ar": {
+      "accept-current": 20,
+      "hold": 2,
+      "correction": 3
+    },
+    "de": {
+      "accept-current": 19,
+      "hold": 2,
+      "refinement": 2,
+      "correction": 2
+    },
+    "es": {
+      "accept-current": 20,
+      "hold": 2,
+      "correction": 3
+    },
+    "fr": {
+      "accept-current": 20,
+      "hold": 2,
+      "correction": 3
+    },
+    "hi": {
+      "correction": 3,
+      "accept-current": 17,
+      "hold": 2,
+      "refinement": 3
+    },
+    "id": {
+      "accept-current": 18,
+      "hold": 2,
+      "refinement": 1,
+      "correction": 4
+    }
+  },
+  "proposedValueCount": 24,
+  "holdCells": [
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "ar",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "de",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "es",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "fr",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "hi",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 356,
+      "sourceId": "src_1c46a542e681fcd7",
+      "locale": "id",
+      "source": "Add Torrent"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "ar",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "de",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "es",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "fr",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "hi",
+      "source": "Searches"
+    },
+    {
+      "rank": 366,
+      "sourceId": "src_1cb99ce2306617b5",
+      "locale": "id",
+      "source": "Searches"
+    }
+  ],
+  "placeholderMarkupNumericMismatches": 0,
+  "proposedStructureMismatches": 0,
+  "productionCallersReattested": true,
+  "reviewFile": "agent-ar-de-es-fr-hi-id.jsonl",
+  "reviewFileSha256": "2efddd7a360465be3dd51406b9919695872ee11831f53cd539a8f2d5a2bb7ed9",
+  "repositoryOrPRChanged": false
+}

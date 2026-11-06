@@ -1,0 +1,2 @@
+Independent 300-cell decisions and targets were recorded and checksummed before opening either proposal packet.
+Input used: candidate-free packet only.

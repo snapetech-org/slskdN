@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "manual exact-head populated-catalog semantic review evidence",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "livePullRequestState": "OPEN",
+  "livePullRequestDraft": true,
+  "headCommit": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+  "tree": "8070731f8ee7529b9f4353720ca6214941b1ae21",
+  "sourceSubtreeTree": "299b4318cd8fc2a03173ab510ee265a779964034",
+  "generatedUtc": "2026-11-02T03:26:45Z",
+  "frozenCatalogBaseline": {
+    "head": "4c2b2e47d60c3e7d0917af5f7711f5d837f73ecb",
+    "tree": "0eb84397dc2b4be4afd730f6818203bd5910cf15",
+    "sourceSubtreeTree": "fff1ef49df31a8d1095cd43148c186fbcd7f5089"
+  },
+  "formalAccumulator": {
+    "validJobs": 150,
+    "missingJobs": 1951,
+    "invalidJobs": 0,
+    "formalCells": 4800
+  },
+  "priorManualCoverage": {
+    "windows": 28,
+    "cells": 8400,
+    "keys": 700,
+    "overlapPairs": 0
+  },
+  "priorCorrectionLedger": {
+    "rows": 1153,
+    "ids": 1153,
+    "files": {
+      "initial736": "9f168ef4c432d53d6f342535beb121449d0a6df6063f670c5a9dd25844530196",
+      "windows18_19": "8434821a0f97985013f81d47667d44023ff69acc1f57e7995e225387ba64b886",
+      "windows20_21": "6f9699b79b094b8193d2d7f3e5e2cb05098eb4cf1102df3e34a56be5a8d70d02",
+      "windows22_23": "b5529b574ca56551087fddf4873dc219eced2b344d6311d3ae995e7b5e024499",
+      "realmWindow20": "f70d23171337491df198e8ca3532009764e54839a2edf67e36082d7cd34c8781",
+      "window24": "e86a282a65ccdc1a8b21bd63790db0e528e78b8f98cc1b027d0346b0444cc8df",
+      "window25": "030269709bebedf67f60d6c367bcd8e43ea92f7d9c9824ae6b9217b3afefdeb3",
+      "window26": "80d1c6ea89d1c5a484a9b39ad27085c23be1cf0038e6547cf758b7fd2ecde0fd",
+      "window27": "5af4b16894f7aed5b571c8dcb8b7572ae2e14eb6f3f507ce324bbc184450b8d1",
+      "window28": "943fd894ad0d17b194d8ec426dce5457c1a2e3378292fd1cbe0bb1873f26b7b6"
+    }
+  },
+  "scope": {
+    "sourceIds": 25,
+    "selectedSourceIds": [
+      "src_fe65964a7f8e61f3",
+      "src_fe6bace339dfe7cd",
+      "src_fe6e67fb82d295be",
+      "src_fe7564971134ee98",
+      "src_fe84c0cc7949dcdb",
+      "src_fe85b015087cbb44",
+      "src_fe884a6de724146c",
+      "src_fe8fe164cc305128",
+      "src_fe9923b7b176d2bb",
+      "src_fe9ba5e4de3fcb00",
+      "src_fea4e3598c6a046b",
+      "src_fea8a8c04fa3cb59",
+      "src_fec9749eb891789b",
+      "src_fed324bc43ee16f6",
+      "src_fed4151a336a4abf",
+      "src_fed639a1440f8820",
+      "src_feee65fabe8baec3",
+      "src_ff07d1fc69a16ad6",
+      "src_ff08153efea69ac5",
+      "src_ff0b24dc9dca395a",
+      "src_ff0c60dfa6d4561d",
+      "src_ff2c57cb2ac25428",
+      "src_ff3383c939c5d250",
+      "src_ff33e4efc312b496",
+      "src_ff356ecd7ccf583f"
+    ],
+    "sourceIdListSha256": "9db4c1cc4cd40dce531947bf7d46c5023b608602af59a22020e0b488526bb73c",
+    "directLocales": [
+      "es",
+      "zh-Hans",
+      "hi",
+      "de",
+      "ja",
+      "fr",
+      "pt-BR",
+      "ar",
+      "ko",
+      "zh-Hant",
+      "vi",
+      "id"
+    ],
+    "cells": 300,
+    "pendingCellsFrozen": 67080,
+    "pendingCommonKeysBeforeSelection": 5359,
+    "eligibleAllLocaleKeysBeforeSelection": 47,
+    "allSelectedCellsWerePending": true,
+    "allSelectedCellsMatchCurrentCatalog": true,
+    "formalOverlap": 0,
+    "priorManualOverlap": 0,
+    "priorCorrectionOverlap": 0
+  },
+  "perLocaleRows": {
+    "es": 25,
+    "zh-Hans": 25,
+    "hi": 25,
+    "de": 25,
+    "ja": 25,
+    "fr": 25,
+    "pt-BR": 25,
+    "ar": 25,
+    "ko": 25,
+    "zh-Hant": 25,
+    "vi": 25,
+    "id": 25
+  },
+  "currentCatalogFileSha256": {
+    "es": "8d2b603bc31d6616c0b50fd1c96f05bf5dd438c8b3f7f98b16a8ef066da0e252",
+    "zh-Hans": "e3c048c554eda70851a677cb1fa0ce7e6fa9c52d5c58ee9256fe2617cf734e96",
+    "hi": "c184b7619094d3d6aa67a50e1fbc5ecf9fc7847685bfe27a1c0110635c38b61c",
+    "de": "12ae77548294f972bdc7d09d526c7544d9cb1bdc2ede97a67f75879895e43179",
+    "ja": "2dc4e7d87c1881dd6161a6f62d35f77e11d2b075e230b137ccfe415e4aebef83",
+    "fr": "e40376eea20570eef4944c8910e751fad90de40a5768cb4bf178cbe96ba09326",
+    "pt-BR": "9b4e194baea2b0d6fe4216d4cfb80bcd3c414b6e97aa4f052823fc5bb8c506e5",
+    "ar": "0dfedf64c38427e4479567ef83d8796a50c592a96ac7feb00a639f6a26832e6c",
+    "ko": "869ca889a7a6e96718312decb5dbc6cc5c4e59e82b76854b2fc75b9dca386bd9",
+    "zh-Hant": "b11891e00b5a446e7fdcbbcab99fb6e1c28bf824634cef12f984980654772713",
+    "vi": "3d58aae35d777dcad9ed7a6c5fd39647c2edce79163530801bc8a1a20ae0b554",
+    "id": "c8925886ccc6f1ad324aa379f127ba38d4193ebe6add845a464526340b41e9e4"
+  },
+  "reviewInput": {
+    "path": "review-input.jsonl",
+    "rows": 300,
+    "sha256": "fc41b5f62ac2feaad4c5184d1d09d481b114703596f734804718d5a651942307"
+  },
+  "callsiteLinesPreflighted": 444,
+  "reviewerMethod": "manual semantic review against exact source callsites and UI context; no translation-model/API call",
+  "nativeSpeakerReview": "not performed; remains required",
+  "targetsApplied": true,
+  "catalogsEdited": true,
+  "sourceEdited": false,
+  "formalLedgerEdited": false,
+  "prBodyEdited": false,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "decisionCounts": {
+    "keep": 258,
+    "correct": 42,
+    "uncertain": 0
+  },
+  "perLocaleDecisionCounts": {
+    "ar": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "de": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "es": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "fr": {
+      "keep": 20,
+      "correct": 5,
+      "uncertain": 0
+    },
+    "hi": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "id": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ja": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "ko": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "pt-BR": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "vi": {
+      "keep": 21,
+      "correct": 4,
+      "uncertain": 0
+    },
+    "zh-Hans": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    },
+    "zh-Hant": {
+      "keep": 22,
+      "correct": 3,
+      "uncertain": 0
+    }
+  },
+  "reviewDecisions": {
+    "path": "review-decisions.jsonl",
+    "rows": 300,
+    "sha256": "99c398c8439ed2d41870be80940ad5e0409e18d021e9e66d566bd863950375af"
+  },
+  "crossReviewPlan": {
+    "path": "crossreview-plan.jsonl",
+    "rows": 42,
+    "sha256": "b0d0cd3ebfc890d02edd0f89069d3e4bf452cb1785e969a5bc6e00a60a4c3568",
+    "status": "completed; 38 accepted as proposed, 4 refined and accepted, 0 held"
+  },
+  "proposalAudit": {
+    "result": "PASS",
+    "rows": 42,
+    "sourceAndCatalogJoin": "PASS",
+    "sourceCurrentAndProposedHashes": "PASS",
+    "placeholdersAndProtectedLiterals": "PASS",
+    "candidatePlanPinsToCurrentHead": true,
+    "independentCrossReviewRows": 42
+  },
+  "semanticDecisionConfidence": "high for flagged corrections; locale-quality confidence moderate; no machine translation/API calls",
+  "independentCrossReview": {
+    "ledgerPath": "../../pr409-catalog-correction-application-window29-2026-11-02/root-crossreview-decisions-window29.jsonl",
+    "ledgerSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "exactApplyPlanPath": "../../pr409-catalog-correction-application-window29-2026-11-02/root-apply-plan-window29.jsonl",
+    "exactApplyPlanSha256": "005cf0d557f5a919311f233763033102194a0bd7a0ce37f27f077df1b6c3f4ee",
+    "summarySha256": "f985587187abfd975968a65ecd3255b836ec6fd8b0c83b486cc02bc3dbd64d20",
+    "acceptedAsProposed": 38,
+    "refinedAndAccepted": 4,
+    "held": 0
+  },
+  "subsequentApplication": {
+    "commit": "dff0b0281483d777c01c5e7dd68e24b51fdc67f8",
+    "tree": "37f299d9e8f2f476bbc3eaefe872f3c727a4b17d",
+    "parent": "3aac5309e1dba8265ac8736aea74723ff0f6ef31",
+    "rows": 42,
+    "bundlePath": "../../pr409-catalog-correction-application-window29-2026-11-02/"
+  }
+}

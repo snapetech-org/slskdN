@@ -1,0 +1,69 @@
+{
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 220,
+    "accept-proposal": 38,
+    "hold": 36,
+    "revise-proposal": 6
+  },
+  "files": [
+    {
+      "bytes": 2065,
+      "path": "README.md",
+      "sha256": "f7e1988729e4ac2d517b677cb85b1351118c69d334216b874f772f85f153d6c8"
+    },
+    {
+      "bytes": 20490,
+      "path": "build_w46_crossreview.py",
+      "sha256": "8e6d1f7ec3cfb33efaeaf4c0843265e27c08f0787aa940a0d2bd7e3cb6ab1132"
+    },
+    {
+      "bytes": 579897,
+      "path": "crossreview-decisions.jsonl",
+      "sha256": "13efcc92ca5010a0a9c96ae9e47376ade39b7031301333d7e4255f39aaeb370c"
+    },
+    {
+      "bytes": 1354,
+      "path": "crossreview-summary.json",
+      "sha256": "0dcb86aae3caee1eefdaf8ac9e8c29afdd2e790358f6cc557f569411045efddd"
+    },
+    {
+      "bytes": 5036,
+      "path": "independent-findings.jsonl",
+      "sha256": "cfb95b6704a559a394dd0938f8f9089d2edbabf8b5c466a1cbc2f492dc7cae08"
+    },
+    {
+      "bytes": 22204,
+      "path": "independent-pin-verification.json",
+      "sha256": "9fd4c56c7d69ef90d7f925bc11ff12323c7cee6eb7cb57428ef3fd95f088b7dc"
+    },
+    {
+      "bytes": 2978,
+      "path": "live-pr-snapshot.json",
+      "sha256": "baeb6737b0810da10f5081dc65ad473509120a0474de6d09b09dc8a2a406412f"
+    },
+    {
+      "bytes": 3438,
+      "path": "primary-packet-verification.json",
+      "sha256": "05efdecdb91221d718b6f4381d038ba56e1ffac82d5cc8fb7928f9687ffdbecc"
+    },
+    {
+      "bytes": 10789,
+      "path": "source-runtime-gaps.jsonl",
+      "sha256": "1dab740bbfa4703172a3c007448f5b5c79109a8e49dc373395f6c84d4dffdf14"
+    },
+    {
+      "bytes": 13911,
+      "path": "spanish-formal-applicability.jsonl",
+      "sha256": "6815c101ca86723ecc3f39c1f2dbad283cd289216f468205bbd9755685cafd3a"
+    }
+  ],
+  "head": "31544a6ef15db2f8481dd76aa9c10844ec3164ba",
+  "primaryManifestSha256": "52c0d2f6e314eb047c9fd23aadbf4f32e496999988d33c8ff41ae3603f321215",
+  "primarySha256SumsSha256": "2040e66635e5c5d239533ba40b41a858ee73dccc2e2377be0d2fed40ba8f0362",
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "sha256SumsSha256": "c146c0feb2295302ec8a92c4ef887b3e93c53bb126904889525d760b1584f443",
+  "tree": "fe94582c3e13f0f567fbfa6c3abac6e8558ba17d",
+  "window": "W46 reconstructed ranks 26-50 cross-review"
+}

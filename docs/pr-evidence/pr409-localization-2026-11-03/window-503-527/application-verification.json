@@ -1,0 +1,41 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "reviewedBaseHead": "c64d57a0322897bbaac77fa88a1327dd2f687db7",
+  "applicationCommit": "ed63a36e37f12b1061bed90418d52044e5bff410",
+  "applicationTree": "7a103428315262a4735e4e80a6b6e35ebc913d93",
+  "livePullRequestHead": "ed63a36e37f12b1061bed90418d52044e5bff410",
+  "verificationMode": "--postpush",
+  "verifiedCells": 300,
+  "dispositions": {
+    "accept-current": 211,
+    "correction": 73,
+    "refinement": 10,
+    "hold": 6
+  },
+  "updates": 83,
+  "updatedCatalogs": 12,
+  "priorHoldsPreserved": 98,
+  "newHolds": 6,
+  "nonTargetChanges": 0,
+  "catalogKeyOrderPreserved": true,
+  "workflowFilesTouched": false,
+  "testsBuildsScansCi": "not run",
+  "nativeSpeakerAndBrowserReview": "pending",
+  "mergeReleaseTag": "not performed",
+  "catalogs": {
+    "src/web/public/locales/ar.json": "9fcec556bc0ebdfd35428513cfdbd431b83093f11bf4c7e2472bf68daafd8356",
+    "src/web/public/locales/de.json": "3fc9534e4ef86aa22702c2baba7728ce30ee0824c047d663a2a3df625623ebcb",
+    "src/web/public/locales/es.json": "4d30ea21b06a0f29ca94dfdf9170684bcb386b360a40c2c6a44a935b01b09358",
+    "src/web/public/locales/fr.json": "df5020f1073e501ffe863fba9e6164c5de2df995ad037404614fb0f03f7078ab",
+    "src/web/public/locales/hi.json": "060ef07e960cf97c287ddaaa775f5945f3a6b958ed5409ff45f40d6a5cc631bc",
+    "src/web/public/locales/id.json": "4367f582473e6e8fcebbd336c6736780b91f58e71ceb68af0097a51552ea2d16",
+    "src/web/public/locales/ja.json": "feac472de2f1fcb2debf604206bc6eef3fe6e035f5e729ba032685c8605eaa9c",
+    "src/web/public/locales/ko.json": "cb4a6c93d5bddeabdf5a0875a5c688b078032aab0f87aa08bab053c41b47e50a",
+    "src/web/public/locales/pt-BR.json": "9153763d44222e867e905a276a25d396ab60eafb769e932d85f97d9ae4da07dc",
+    "src/web/public/locales/vi.json": "bbb898a90294772dd836442bb3dfced459d01c519f2ea66d9ddd2de06029e660",
+    "src/web/public/locales/zh-Hans.json": "44a594d77c4bc063497ac10c0f9ddcb0573ef873486e39a012e1f0937ff34814",
+    "src/web/public/locales/zh-Hant.json": "2c775bac7a696a61a1f41d1b1ed40cc066b27222e9e2559dd5c7f0c2a6585898"
+  }
+}

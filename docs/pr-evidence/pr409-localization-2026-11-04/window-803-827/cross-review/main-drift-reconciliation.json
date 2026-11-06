@@ -1,0 +1,22 @@
+{
+  "aheadBy": 4,
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "behindBy": 0,
+  "changedFiles": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/feature-coherence-validation.yml",
+    ".github/workflows/local-identity-leaks.yml",
+    ".github/workflows/semgrep-community.yml",
+    ".github/workflows/trivy-filesystem.yml",
+    "AGENTS.md",
+    "docs/CHANGELOG.md",
+    "scripts/check-codeql-dotnet-version.sh",
+    "scripts/check-dotnet-runtime-matrix.sh",
+    "scripts/check-remediation-baseline.sh",
+    "scripts/check-workflow-trigger-policy.sh"
+  ],
+  "liveMainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "localizationOrCatalogSourceChanges": false,
+  "note": "Four commits on main after the PR base affect workflows, AGENTS.md, documentation, and runner-policy scripts; none touches localization catalogs or product source.",
+  "totalCommits": 4
+}

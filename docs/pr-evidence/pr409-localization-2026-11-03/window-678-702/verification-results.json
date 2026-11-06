@@ -1,0 +1,110 @@
+{
+  "artifact": "W72 nested evidence verification results",
+  "allPassed": true,
+  "nestedVerifiers": [
+    {
+      "name": "candidate-free",
+      "status": "PASS",
+      "details": {
+        "verifier": "PASS",
+        "filesHashed": 16,
+        "inventoryRows": 6176,
+        "selectedSources": 25,
+        "cells": 300,
+        "priorIdsHashOnly": 1782,
+        "priorHoldsHashOnly": 152,
+        "priorHoldHashesMatching": 152,
+        "catalogs": 12,
+        "callerContexts": 25,
+        "baselineTokenMismatches": {
+          "placeholder": 0,
+          "markup": 0,
+          "numeric": 0,
+          "protectedLiteral": 8
+        },
+        "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+        "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d"
+      }
+    },
+    {
+      "name": "primary",
+      "status": "PASS",
+      "details": {
+        "verifier": "PASS",
+        "filesHashed": 25,
+        "cells": 300,
+        "dispositions": {
+          "accept-current": 170,
+          "correct": 21,
+          "hold": 108,
+          "refine": 1
+        },
+        "proposals": 22,
+        "callerlessHolds": 108,
+        "candidateFreeInputVerified": true,
+        "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+        "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d"
+      }
+    },
+    {
+      "name": "canonical-full-blind",
+      "status": "PASS",
+      "details": {
+        "verifier": "PASS",
+        "filesHashed": 25,
+        "blindCells": 300,
+        "dispositions": {
+          "accept-current": 161,
+          "correct": 24,
+          "hold": 108,
+          "refine": 7
+        },
+        "proposals": 31,
+        "callerlessHolds": 108,
+        "candidateFreeInputVerified": true,
+        "head": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+        "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d"
+      }
+    },
+    {
+      "name": "cross-review",
+      "status": "PASS",
+      "details": {
+        "verifier": "PASS",
+        "rootFilesVerified": 78,
+        "candidateFreePrimaryBlindVerifiers": "PASS",
+        "cells": 300,
+        "finalDispositions": {
+          "accept-current": 161,
+          "correct": 24,
+          "hold": 108,
+          "refine": 7
+        },
+        "selectedTargets": 31,
+        "blindOnlySelected": 9,
+        "rootReviewCorrections": 1,
+        "callerlessHoldsHashOnly": 108,
+        "priorHoldsHashOnly": 152,
+        "priorIdsHashOnly": 1782,
+        "liveHead": "311127db7f4d5097dfd1dde5eaa2150f82f48f30",
+        "tree": "23210cd313efd929cca9ceda0fd78da19e5ed50d"
+      }
+    },
+    {
+      "name": "application-readback",
+      "status": "PASS",
+      "details": {
+        "verifier": "PASS",
+        "filesHashed": 28,
+        "selectedTargets": 31,
+        "catalogs": 10,
+        "readbackMatches": 31,
+        "readbackMismatches": 0,
+        "callerlessHoldsHashOnly": 108,
+        "priorHoldsHashOnly": 152,
+        "priorIdsHashOnly": 1782,
+        "wholeCatalogDiffs": "exactly the 31 selected keys"
+      }
+    }
+  ]
+}

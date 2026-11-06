@@ -1,0 +1,121 @@
+{
+  "acceptedTargetChanges": 54,
+  "blindDispositions": {
+    "hold": 24,
+    "retain": 238,
+    "review": 7,
+    "revise": 31
+  },
+  "callerBackedCells": 276,
+  "callerlessHashOnlyHolds": 24,
+  "cellCount": 300,
+  "confidence": "moderate",
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "integratedDispositions": {
+    "hold-hash-only": 24,
+    "retain-current": 214,
+    "review-low-confidence": 8,
+    "revise": 54
+  },
+  "localeCount": 12,
+  "nativeSpeakerApproval": false,
+  "nextBoundary": {
+    "continuationRank": 1078,
+    "remainingQueueRank": 978,
+    "sourceId": "src_3a7f882e0dcaf59b",
+    "sourceSha256": "3a7f882e0dcaf59b069a4830c2d6ce7c891f93d6a47018db872c1481a20082b3"
+  },
+  "noRepositoryOrPRChanges": true,
+  "overlapResolution": {
+    "additionalLowConfidenceHold": 1,
+    "blindRevisionsAccepted": 31,
+    "primaryOnlyAcceptedOrRefined": 23,
+    "primaryOnlyRejected": 4,
+    "primaryReviewCandidatesHeld": 4
+  },
+  "primaryProposalCells": 276,
+  "primaryProposalResolutionCounts": {
+    "blind-only-proposal-accepted": 1,
+    "both-retain-current": 210,
+    "overlap-resolved-to-blind-target": 22,
+    "overlapping-proposals-converged": 8,
+    "pending-low-confidence-review": 8,
+    "primary-only-proposal-accepted": 22,
+    "primary-only-proposal-rejected": 4,
+    "primary-proposal-refined": 1
+  },
+  "primaryRevisions": 62,
+  "priorActiveHashOnlyHoldsCopiedByteForByte": 433,
+  "pullRequest": 409,
+  "repository": "snapetech-org/slskdN",
+  "result": "PASS",
+  "resultingActiveHashOnlyHolds": 457,
+  "sourceCount": 25,
+  "testsBuildsScansCiRun": false,
+  "tokenIntegrity": {
+    "callerBackedTargetsChecked": 276,
+    "checks": [
+      "named placeholders",
+      "ICU plural/select syntax",
+      "markup tags",
+      "numeric tokens",
+      "protected literals",
+      "explicit product/domain literals"
+    ],
+    "failures": 0,
+    "passing": 276
+  },
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "unresolvedLowConfidenceCells": [
+    {
+      "continuationRank": 1054,
+      "locale": "ar",
+      "reason": "The source names a selected Pod and peer. Current Arabic localizes Pod as a generic group; this packet does not establish the product term used for Pod in Arabic.",
+      "sourceId": "src_39f14100b622e20b"
+    },
+    {
+      "continuationRank": 1054,
+      "locale": "es",
+      "reason": "The source names a selected Pod and peer. Current Spanish uses grupo; the primary proposal uses pod/peer. Confirm the established Spanish product terminology.",
+      "sourceId": "src_39f14100b622e20b"
+    },
+    {
+      "continuationRank": 1054,
+      "locale": "vi",
+      "reason": "The source names a selected Pod and peer. Current Vietnamese uses nhóm; the primary proposal retains Pod/peer. Confirm the established Vietnamese product terminology.",
+      "sourceId": "src_39f14100b622e20b"
+    },
+    {
+      "continuationRank": 1056,
+      "locale": "ar",
+      "reason": "The caller distinguishes a share group from a user collection, while current Arabic uses المجموعة for both. Confirm the established Arabic term for a user-created collection.",
+      "sourceId": "src_39f727730392cd39"
+    },
+    {
+      "continuationRank": 1063,
+      "locale": "zh-Hans",
+      "reason": "The caller is the empty state on the Collections page. 收藏 can read as favorites; confirm the established Simplified Chinese term for user-created collections.",
+      "sourceId": "src_3a164eb526ab6031"
+    },
+    {
+      "continuationRank": 1063,
+      "locale": "zh-Hant",
+      "reason": "The caller is the empty state on the Collections page. 收藏 can read as favorites; confirm the established Traditional Chinese term for user-created collections.",
+      "sourceId": "src_3a164eb526ab6031"
+    },
+    {
+      "continuationRank": 1071,
+      "locale": "fr",
+      "reason": "The caller counts stored hash values. hachages may name the hashing operation; confirm the established French term for hash values.",
+      "sourceId": "src_3a4278f83ecea381"
+    },
+    {
+      "continuationRank": 1076,
+      "locale": "ar",
+      "reason": "The caller exposes an implicit entry record but no Arabic antecedent. The primary proposal changes feminine agreement to masculine; confirm the intended referent before changing the current form.",
+      "sourceId": "src_3a781be38fb12006"
+    }
+  ],
+  "window": "W1053-W1077",
+  "windowCallerlessHashOnlyHoldsCopiedByteForByte": 24
+}

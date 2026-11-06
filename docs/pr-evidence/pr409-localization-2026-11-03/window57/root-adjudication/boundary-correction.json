@@ -1,0 +1,26 @@
+{
+  "artifact": "Root correction to W57 packet boundary metadata",
+  "packet": "selection-and-boundary.json",
+  "packetChecksumPreserved": true,
+  "invalidLastSelectedRank": 304,
+  "invalidNextBoundaryRank": 305,
+  "authoritativeSelectedRanks": [
+    303,
+    327
+  ],
+  "authoritativeNextBoundaryRank": 328,
+  "supportingEvidence": {
+    "selectedInventoryRows": 25,
+    "selectedCellRows": 300,
+    "fullBoundaryRows": 27,
+    "inventoryRanks": [
+      303,
+      327
+    ],
+    "boundaryRanks": [
+      302,
+      328
+    ]
+  },
+  "decision": "Use the full boundary list, source inventory, and cell rows. Do not use the invalid summary fields."
+}

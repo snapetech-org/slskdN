@@ -1,0 +1,633 @@
+{
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "pullRequestUrl": "https://github.com/snapetech-org/slskdN/pull/409",
+  "exactHead": "5812e90c3018f0a8b563bff2ba95b5fd19076908",
+  "exactTree": "632924177388e15b594976774d2d879a098e8a72",
+  "pinnedPrBodySha256": "9234d213b20ffdbb469fcf0067a34df7ccd23d155cd1349cebb2481499738ae4",
+  "window": "W54 continuation ranks 251-275 from the W49 stable-ID inventory; historical source ordinals unavailable and not claimed",
+  "sourceCount": 25,
+  "localeCount": 12,
+  "cellCount": 300,
+  "dispositionCounts": {
+    "accept-current": 225,
+    "refinement": 8,
+    "correction": 43,
+    "hold-terminology": 12,
+    "hold-context": 12
+  },
+  "candidateChangeCount": 51,
+  "changedCellsByLocale": {
+    "zh-Hans": 5,
+    "zh-Hant": 5,
+    "ar": 6,
+    "ko": 6,
+    "ja": 4,
+    "vi": 8,
+    "es": 4,
+    "id": 5,
+    "de": 2,
+    "fr": 2,
+    "pt-BR": 2,
+    "hi": 2
+  },
+  "changedCellsByRank": {
+    "251": 2,
+    "254": 1,
+    "255": 3,
+    "256": 3,
+    "258": 5,
+    "259": 1,
+    "260": 1,
+    "261": 9,
+    "267": 9,
+    "269": 7,
+    "271": 2,
+    "275": 8
+  },
+  "changedCellsBySource": {
+    "src_18f285592896ec8e": 2,
+    "src_190a99b38679076c": 1,
+    "src_19169c688e4cc039": 3,
+    "src_191c82f66339b133": 3,
+    "src_192ed04ec4fc531f": 5,
+    "src_1930f9516d817314": 1,
+    "src_1938a77370dea864": 1,
+    "src_193ce6ad94cec763": 9,
+    "src_1997718ed9deab64": 9,
+    "src_199a0de63826b2fd": 7,
+    "src_199c023a1ca9a27e": 2,
+    "src_19d9e58cec9cd8fd": 8
+  },
+  "holdCount": 24,
+  "contextHoldCount": 12,
+  "terminologyHoldCount": 12,
+  "heldSourceIds": [
+    "src_194cbbe37ec92a3d",
+    "src_199ba895c707daaf"
+  ],
+  "contextHeldSourceIds": [
+    "src_199ba895c707daaf"
+  ],
+  "terminologyHeldSourceIds": [
+    "src_194cbbe37ec92a3d"
+  ],
+  "callerReferenceCount": 68,
+  "callerlessSourceIds": [
+    "src_199ba895c707daaf"
+  ],
+  "currentProtectedLiteralMismatchCount": 0,
+  "candidateProtectedLiteralMismatchCount": 0,
+  "placeholderMismatchCount": 0,
+  "markupMismatchCount": 0,
+  "numericMismatchCount": 0,
+  "candidateChangedSourceIds": 12,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReview": false,
+  "projectTestsBuildScansCiRun": false,
+  "repositoryModified": false,
+  "remoteMutation": false,
+  "reviewType": "machine-assisted primary review; moderate confidence except the caller-context and terminology holds",
+  "inputManifestSha256": "8d9fe2f15b2761cd23f22f00cc734dd1eb6791b06f8e12341cc91ac14cb59f0d",
+  "inputManifestEntriesVerified": 8,
+  "sourceSequence": {
+    "first": {
+      "role": "selected-W54",
+      "continuationRank": 251,
+      "sourceId": "src_18f285592896ec8e",
+      "source": "Brown",
+      "sourceSha256": "18f285592896ec8ead1b69d90ee4080300ba8dc31665a6ad97550c8f81b15502",
+      "historicalSourceOrdinal": null
+    },
+    "last": {
+      "role": "selected-W54",
+      "continuationRank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "sourceSha256": "19d9e58cec9cd8fdc7ad2db7cf6077fe63346b59914a60a41384a24f92bf09e8",
+      "historicalSourceOrdinal": null
+    },
+    "nextBoundary": {
+      "role": "next-boundary-W55",
+      "continuationRank": 276,
+      "sourceId": "src_19dd83f117525b93",
+      "source": "Yellow",
+      "sourceSha256": "19dd83f117525b931fccdafe808aaa6939af792ee549f359eff13fac0d622f5d",
+      "historicalSourceOrdinal": null
+    },
+    "disjointFromW50W51W52W53": true,
+    "w49UnreviewedGapPreserved": true
+  },
+  "changes": [
+    {
+      "rank": 251,
+      "sourceId": "src_18f285592896ec8e",
+      "source": "Brown",
+      "locale": "zh-Hans",
+      "from": "棕色的",
+      "to": "棕色",
+      "disposition": "refinement",
+      "rationale": "The caller uses this as a color option (`color: brown`). The color noun is appropriate; remove 的, which makes the label adjectival."
+    },
+    {
+      "rank": 251,
+      "sourceId": "src_18f285592896ec8e",
+      "source": "Brown",
+      "locale": "zh-Hant",
+      "from": "棕色的",
+      "to": "棕色",
+      "disposition": "refinement",
+      "rationale": "The caller uses this as a color option (`color: brown`). The color noun is appropriate; remove 的, which makes the label adjectival."
+    },
+    {
+      "rank": 254,
+      "sourceId": "src_190a99b38679076c",
+      "source": "Advanced retrieval cache controls",
+      "locale": "ar",
+      "from": "ضوابط متقدمة لذاكرة التخزين المؤقت",
+      "to": "ضوابط متقدمة لذاكرة التخزين المؤقت لعمليات الاسترجاع",
+      "disposition": "correction",
+      "rationale": "The pinned caller is an expandable heading for advanced retrieval-cache controls. The current Arabic omits retrieval; this specifies the cache used for retrieval operations."
+    },
+    {
+      "rank": 255,
+      "sourceId": "src_19169c688e4cc039",
+      "source": "Peer:",
+      "locale": "ko",
+      "from": "또래:",
+      "to": "피어:",
+      "disposition": "correction",
+      "rationale": "The caller labels a Soulseek peer ID alongside affinity and trust scores. 또래 means an age-group peer; 피어 is the network term."
+    },
+    {
+      "rank": 255,
+      "sourceId": "src_19169c688e4cc039",
+      "source": "Peer:",
+      "locale": "zh-Hans",
+      "from": "同行：",
+      "to": "对等节点：",
+      "disposition": "correction",
+      "rationale": "The caller labels a P2P peer ID alongside affinity and trust scores. 同行 suggests a colleague or industry peer; 对等节点 identifies a network peer."
+    },
+    {
+      "rank": 255,
+      "sourceId": "src_19169c688e4cc039",
+      "source": "Peer:",
+      "locale": "zh-Hant",
+      "from": "同行：",
+      "to": "對等節點：",
+      "disposition": "correction",
+      "rationale": "The caller labels a P2P peer ID alongside affinity and trust scores. 同行 suggests a colleague or industry peer; 對等節點 identifies a network peer."
+    },
+    {
+      "rank": 256,
+      "sourceId": "src_191c82f66339b133",
+      "source": "Load Descriptor Stats",
+      "locale": "ja",
+      "from": "ロードディスクリプタの統計情報",
+      "to": "ディスクリプター統計を読み込む",
+      "disposition": "correction",
+      "rationale": "The pinned tooltip identifies descriptor retrieval and cache performance metrics. The current Japanese mixes transliterated “load” and “descriptor” without expressing the button action naturally."
+    },
+    {
+      "rank": 256,
+      "sourceId": "src_191c82f66339b133",
+      "source": "Load Descriptor Stats",
+      "locale": "ko",
+      "from": "설명자 통계 로드",
+      "to": "디스크립터 통계 불러오기",
+      "disposition": "refinement",
+      "rationale": "The caller is a button that loads descriptor retrieval and cache performance metrics. 디스크립터 is the established technical term here; 불러오기 makes the action clear."
+    },
+    {
+      "rank": 256,
+      "sourceId": "src_191c82f66339b133",
+      "source": "Load Descriptor Stats",
+      "locale": "vi",
+      "from": "Tải số liệu thống kê mô tả",
+      "to": "Tải thống kê descriptor",
+      "disposition": "correction",
+      "rationale": "The caller is a button for loading descriptor retrieval and cache metrics. Mô tả means descriptive/description and changes the technical term; retain descriptor as a technical loanword."
+    },
+    {
+      "rank": 258,
+      "sourceId": "src_192ed04ec4fc531f",
+      "source": "Show all native presets",
+      "locale": "ar",
+      "from": "إظهار كل الإعدادات الأصلية",
+      "to": "إظهار كل الإعدادات المسبقة الأصلية",
+      "disposition": "correction",
+      "rationale": "The caller toggles the native MilkDrop preset library between all presets and favorites. The current phrase says original settings and loses the preset concept."
+    },
+    {
+      "rank": 258,
+      "sourceId": "src_192ed04ec4fc531f",
+      "source": "Show all native presets",
+      "locale": "es",
+      "from": "Mostrar todos los ajustes nativos",
+      "to": "Mostrar todos los preajustes nativos",
+      "disposition": "correction",
+      "rationale": "The caller toggles the native MilkDrop preset library between all presets and favorites. Ajustes means settings; preajustes names the selectable presets."
+    },
+    {
+      "rank": 258,
+      "sourceId": "src_192ed04ec4fc531f",
+      "source": "Show all native presets",
+      "locale": "id",
+      "from": "Tampilkan semua preset bawaan",
+      "to": "Tampilkan semua preset native",
+      "disposition": "refinement",
+      "rationale": "The caller toggles the native MilkDrop preset library, not a default or built-in preset set. Native preserves that renderer/library distinction."
+    },
+    {
+      "rank": 258,
+      "sourceId": "src_192ed04ec4fc531f",
+      "source": "Show all native presets",
+      "locale": "ko",
+      "from": "모든 기본 프리셋 표시",
+      "to": "모든 네이티브 프리셋 표시",
+      "disposition": "correction",
+      "rationale": "The caller toggles the native MilkDrop preset library. 기본 means default, while native identifies the renderer/library distinction."
+    },
+    {
+      "rank": 258,
+      "sourceId": "src_192ed04ec4fc531f",
+      "source": "Show all native presets",
+      "locale": "vi",
+      "from": "Hiện tất cả thiết lập gốc",
+      "to": "Hiển thị tất cả preset native",
+      "disposition": "correction",
+      "rationale": "The caller toggles the native MilkDrop preset library. Thiết lập gốc reads as original settings and omits the preset concept; retain native as the renderer term."
+    },
+    {
+      "rank": 259,
+      "sourceId": "src_1930f9516d817314",
+      "source": "Chunk Progress Heatmap",
+      "locale": "vi",
+      "from": "Bản đồ nhiệt tiến độ Chunk",
+      "to": "Bản đồ nhiệt tiến độ từng khối dữ liệu",
+      "disposition": "refinement",
+      "rationale": "The subheader says this visualizes chunk completion status. Khối dữ liệu is a clear Vietnamese term for each data chunk and avoids leaving Chunk untranslated."
+    },
+    {
+      "rank": 260,
+      "sourceId": "src_1938a77370dea864",
+      "source": "outgoing links",
+      "locale": "ja",
+      "from": "発信リンク",
+      "to": "外向きリンク",
+      "disposition": "correction",
+      "rationale": "The caller displays the count from node.outgoingLinks. 発信 means broadcasting/transmitting; 外向き expresses links directed outward from the node."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "ar",
+      "from": "قم بتثبيت مركز الرسم البياني الحالي حتى تتمكن من مقارنة عقدة أخرى أو إعادة فتح هذا الفرع لاحقًا.",
+      "to": "ثبّت مركز الرسم الشبكي الحالي حتى تتمكن من مقارنة عقدة أخرى أو إعادة فتح هذا الفرع لاحقًا.",
+      "disposition": "refinement",
+      "rationale": "The caller is a tooltip for pinning a node-graph center. الرسم الشبكي makes the network-graph sense explicit while retaining the action and purpose."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "de",
+      "from": "Fixieren Sie die aktuelle Diagrammmitte, damit Sie einen anderen Knoten vergleichen oder diesen Zweig später erneut öffnen können.",
+      "to": "Fixieren Sie den Mittelpunkt des aktuellen Graphen, damit Sie einen anderen Knoten vergleichen oder diesen Zweig später erneut öffnen können.",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "es",
+      "from": "Fije el centro del gráfico actual para poder comparar otro nodo o volver a abrir esta rama más tarde.",
+      "to": "Fije el centro del grafo actual para poder comparar otro nodo o volver a abrir esta rama más tarde.",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "fr",
+      "from": "Épinglez le centre du graphique actuel afin de pouvoir comparer un autre nœud ou rouvrir cette branche plus tard.",
+      "to": "Épinglez le centre du graphe actuel afin de pouvoir comparer un autre nœud ou rouvrir cette branche plus tard.",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "id",
+      "from": "Sematkan pusat grafik saat ini sehingga Anda dapat membandingkan node lain atau membuka kembali cabang ini nanti.",
+      "to": "Sematkan pusat graf saat ini agar Anda dapat membandingkan simpul lain atau membuka kembali cabang ini nanti.",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "pt-BR",
+      "from": "Fixe o centro do gráfico atual para poder comparar outro nó ou reabrir esta ramificação mais tarde.",
+      "to": "Fixe o centro do grafo atual para comparar outro nó ou reabrir este ramo mais tarde.",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "vi",
+      "from": "Ghim trung tâm biểu đồ hiện tại để bạn có thể so sánh một nút khác hoặc mở lại nhánh này sau.",
+      "to": "Ghim tâm đồ thị hiện tại để bạn có thể so sánh nút khác hoặc mở lại nhánh này sau.",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "zh-Hans",
+      "from": "固定当前图形中心，以便您可以比较另一个节点或稍后重新打开此分支。",
+      "to": "固定当前图的中心，以便比较另一个节点或稍后重新打开此分支。",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 261,
+      "sourceId": "src_193ce6ad94cec763",
+      "source": "Pin the current graph center so you can compare another node or reopen this branch later.",
+      "locale": "zh-Hant",
+      "from": "固定目前圖形中心，以便您可以比較另一個節點或稍後重新開啟此分支。",
+      "to": "固定目前圖的中心，以便比較另一個節點或稍後重新開啟此分支。",
+      "disposition": "correction",
+      "rationale": "DiscoveryGraphModal uses nodes, branches, and outgoing edges. The current term describes a chart/graphic rather than the node graph whose center is pinned."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "ar",
+      "from": "مراقبة أحدث سجلات الطلبات فور وصولها.",
+      "to": "راقب أحدث سجلات التطبيق فور وصولها.",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "de",
+      "from": "Überwachen Sie die neuesten Bewerbungsdatensätze, sobald sie eintreffen.",
+      "to": "Überwachen Sie die neuesten Anwendungseinträge, sobald sie eintreffen.",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "es",
+      "from": "Supervise los registros de aplicaciones más recientes a medida que lleguen.",
+      "to": "Supervise los registros más recientes de la aplicación a medida que llegan.",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "fr",
+      "from": "Surveillez les dossiers de candidature les plus récents dès leur arrivée.",
+      "to": "Surveillez les entrées les plus récentes du journal de l’application à mesure qu’elles arrivent.",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "ja",
+      "from": "最新のアプリケーション レコードが到着したときに監視します。",
+      "to": "アプリケーションの最新記録を受信し次第、監視します。",
+      "disposition": "refinement",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "ko",
+      "from": "가장 최근의 신청 기록이 도착하면 모니터링하세요.",
+      "to": "최신 애플리케이션 기록이 도착하는 대로 모니터링하세요.",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "vi",
+      "from": "Theo dõi hồ sơ ứng dụng gần đây nhất khi chúng đến.",
+      "to": "Theo dõi các bản ghi ứng dụng mới nhất ngay khi chúng được ghi nhận.",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "zh-Hans",
+      "from": "监控最新的申请记录。",
+      "to": "实时监控最新到达的应用程序记录。",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 267,
+      "sourceId": "src_1997718ed9deab64",
+      "source": "Monitor the most recent application records as they arrive.",
+      "locale": "zh-Hant",
+      "from": "監控最新的申請記錄。",
+      "to": "即時監控最新到達的應用程式記錄。",
+      "disposition": "correction",
+      "rationale": "The caller is the live view under System/Logs, paired with retained daily application logs. Application means the software application, not a job application or request."
+    },
+    {
+      "rank": 269,
+      "sourceId": "src_199a0de63826b2fd",
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locale": "ar",
+      "from": "عدادات التوقيعات والسمعة وحدود الأسعار والحجر الصحي",
+      "to": "عدادات التوقيعات والسمعة وحدود معدل الطلبات والعزل",
+      "disposition": "correction",
+      "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios."
+    },
+    {
+      "rank": 269,
+      "sourceId": "src_199a0de63826b2fd",
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locale": "es",
+      "from": "Contadores de firmas, reputación, límites de tarifas y cuarentena",
+      "to": "Contadores de firmas, reputación, límites de frecuencia y cuarentena",
+      "disposition": "correction",
+      "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios."
+    },
+    {
+      "rank": 269,
+      "sourceId": "src_199a0de63826b2fd",
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locale": "hi",
+      "from": "हस्ताक्षर, प्रतिष्ठा, दर सीमा और संगरोध के लिए काउंटर",
+      "to": "हस्ताक्षर, प्रतिष्ठा, अनुरोध-दर सीमाओं और क्वारंटीन के काउंटर",
+      "disposition": "refinement",
+      "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios."
+    },
+    {
+      "rank": 269,
+      "sourceId": "src_199a0de63826b2fd",
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locale": "id",
+      "from": "Penghitung untuk tanda tangan, reputasi, batasan tarif, dan karantina",
+      "to": "Penghitung tanda tangan, reputasi, batas laju permintaan, dan karantina",
+      "disposition": "correction",
+      "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios."
+    },
+    {
+      "rank": 269,
+      "sourceId": "src_199a0de63826b2fd",
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locale": "ko",
+      "from": "서명, 평판, 비율 제한 및 격리를 위한 카운터",
+      "to": "서명, 평판, 요청 빈도 제한 및 격리 카운터",
+      "disposition": "correction",
+      "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios."
+    },
+    {
+      "rank": 269,
+      "sourceId": "src_199a0de63826b2fd",
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locale": "pt-BR",
+      "from": "Contadores para assinaturas, reputação, limites de taxas e quarentena",
+      "to": "Contadores de assinaturas, reputação, limites de frequência e quarentena",
+      "disposition": "correction",
+      "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios."
+    },
+    {
+      "rank": 269,
+      "sourceId": "src_199a0de63826b2fd",
+      "source": "Counters for signatures, reputation, rate limits, and quarantine",
+      "locale": "vi",
+      "from": "Bộ đếm chữ ký, danh tiếng, giới hạn tỷ lệ và cách ly",
+      "to": "Bộ đếm chữ ký, danh tiếng, giới hạn tần suất và cách ly",
+      "disposition": "correction",
+      "rationale": "The caller groups this counter label under Mesh Sync Security. Rate limits are request-frequency controls, not price tariffs or mathematical ratios."
+    },
+    {
+      "rank": 271,
+      "sourceId": "src_199c023a1ca9a27e",
+      "source": "Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run.",
+      "locale": "id",
+      "from": "Cari secara manual Soulseek untuk pertandingan saat ini. Ini menghubungi rekan-rekan sekarang daripada menunggu jadwal berjalan berikutnya.",
+      "to": "Cari secara manual di Soulseek untuk menemukan hasil yang cocok saat ini. Ini menghubungi peer sekarang alih-alih menunggu jadwal berikutnya.",
+      "disposition": "correction",
+      "rationale": "The caller is a wishlist action that searches Soulseek now and contacts peers. “Matches” means matching search results, not sports matches."
+    },
+    {
+      "rank": 271,
+      "sourceId": "src_199c023a1ca9a27e",
+      "source": "Manually search Soulseek for current matches. This contacts peers now rather than waiting for the next scheduled run.",
+      "locale": "vi",
+      "from": "Tìm kiếm thủ công Soulseek cho các trận đấu hiện tại. Điều này liên hệ ngang hàng ngay bây giờ thay vì chờ lần chạy theo lịch trình tiếp theo.",
+      "to": "Tìm kiếm thủ công trên Soulseek để tìm các kết quả phù hợp hiện tại. Thao tác này liên hệ với các peer ngay bây giờ thay vì chờ lần chạy theo lịch tiếp theo.",
+      "disposition": "correction",
+      "rationale": "The caller is a wishlist action that searches Soulseek now and contacts peers. “Matches” means matching search results, not sports matches."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "ar",
+      "from": "سيُكتب ملف غلاف جانبي بعد الموافقة الصريحة على الاستيراد.",
+      "to": "لن يُكتب ملف الغلاف الجانبي إلا إذا تمت الموافقة صراحةً على الاستيراد.",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "hi",
+      "from": "स्पष्ट रूप से आयात की स्वीकृति मिलने के बाद कवर की एक सहायक फ़ाइल लिखी जाएगी।",
+      "to": "केवल आयात की स्पष्ट मंज़ूरी मिलने पर कवर की साइडकार फ़ाइल लिखी जाएगी।",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "id",
+      "from": "Berkas sampingan untuk sampul akan ditulis setelah impor disetujui secara eksplisit.",
+      "to": "Berkas sampul pendamping hanya akan ditulis jika impor disetujui secara eksplisit.",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "ja",
+      "from": "インポートを明示的に承認した後、サイドカー形式のカバーファイルが書き込まれます。",
+      "to": "インポートが明示的に承認された場合にのみ、サイドカーのカバーファイルが書き込まれます。",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "ko",
+      "from": "가져오기를 명시적으로 승인한 뒤 보조 커버 파일이 작성됩니다.",
+      "to": "가져오기를 명시적으로 승인한 경우에만 보조 커버 파일이 작성됩니다.",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "vi",
+      "from": "Tệp bìa đi kèm sẽ được ghi sau khi nhập được phê duyệt rõ ràng.",
+      "to": "Chỉ ghi tệp bìa đi kèm nếu việc nhập được phê duyệt rõ ràng.",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "zh-Hans",
+      "from": "명시적导入批准后，系统会写入一个配套封面文件。",
+      "to": "只有在明确批准导入后，才会写入配套封面文件。",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    },
+    {
+      "rank": 275,
+      "sourceId": "src_19d9e58cec9cd8fd",
+      "source": "A sidecar cover file would be written after explicit import approval.",
+      "locale": "zh-Hant",
+      "from": "明確核准匯入後，系統會寫入一個附屬封面檔案。",
+      "to": "只有在明確核准匯入後，才會寫入附屬封面檔案。",
+      "disposition": "correction",
+      "rationale": "The pinned caller presents a dry-run preview and explicitly says no file write has started. The source is conditional (“would be written”) and requires explicit import approval; keep it conditional rather than promising a future write."
+    }
+  ]
+}

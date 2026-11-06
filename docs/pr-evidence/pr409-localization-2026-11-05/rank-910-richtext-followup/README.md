@@ -1,0 +1,12 @@
+# slskdN PR #409 rank-910 rich-text source and catalog follow-up
+
+This follow-up applies the separately reviewed rank-910 sentence after reattesting PR #409 at head `c9e1568d9ae55fb32df2d9f686971d17b67bba7f` / tree `64918d81cfa55e37554fe8d60277d7a30206dd48`. The original W903 review packet and the W910 candidate-free, blind, cross, and root reviews remain preserved in [`window-903-927`](../window-903-927/), including the exact accepted 12-locale targets in [`root-manual-review/accepted-translations.jsonl`](../window-903-927/rank-910-richtext-review/root-manual-review/accepted-translations.jsonl).
+
+- The exact source is `In {mode} mode, each signature must follow the {signature} format and be verifiable against the canonical join/leave payload using the supplied public key.` (`src_c04ff600b79f3317`). Root accepted all 12 translations; Hindi is marked low confidence.
+- Before editing, the complete source search found each old split key at one call site in `MediaCorePods.jsx`. The caller now uses `LocalizedRichText` with named React-node values. `Enforce` and the `ed25519:<base64 signature>` code sample each sit in `<bdi dir="ltr" lang="en">`; the code sample remains outside translated text. Both unused split keys were removed from the 12 catalogs.
+- Product commit `1e33696072e322d98827c022c4432a57a76be2db` changes only the caller and 12 locale catalogs. Every accepted target hash reads back exactly. Catalog order follows the prior order with the first split key replaced in place and the second removed; each catalog has 6,175 keys.
+- The formal `SignatureMode.Enforce` enum value, `PodJoinOptions`, and signature-verification implementation were reattested from the exact PR head. The two UI pins differ on current `main` (`bc6251ff4ea5a7e59f2d86e2400c90520601f46e`), so this branch remains the source of truth for the reviewed caller/runtime.
+- `application/pr-body-prefix-before-w910.txt` preserves the exact 110,822-byte PR body as it stood at product head. W910 delivery notes were appended after the evidence commit; `application/pr-body-append-readback.json` records the live API readback and verifies that all original bytes remain the exact prefix.
+- No tests, builds, scans, manual CI dispatches, workflow edits, merge, release, or tag were made. PR #409 remains open and draft.
+
+Run `application/verify_rank910_application.py --repo /path/to/slskdN` to verify the product tree, target hashes, full catalog order transformation, caller nodes, body prefix, and current live PR references.
