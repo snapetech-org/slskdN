@@ -1,0 +1,79 @@
+{
+  "artifact": "slskdN PR #409 W1053-W1077 independent blind review",
+  "repository": "snapetech-org/slskdN",
+  "pullRequest": 409,
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W1053-W1077",
+  "continuationRankRange": [
+    1053,
+    1077
+  ],
+  "remainingQueueRankRange": [
+    953,
+    977
+  ],
+  "localeOrder": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "cellCount": 300,
+  "callerBackedCellCount": 276,
+  "callerlessHashOnlyHoldCount": 24,
+  "sourceCount": 25,
+  "sourceCallerReferenceCount": 37,
+  "sourceCallerOccurrenceCount": 37,
+  "input": {
+    "path": "candidate-free",
+    "sha256SumsFileSha256": "2170ea00e2bcb8c5c79f23f86ce5acef8a31f4270813e222fea7e2f171cec1be",
+    "manifestSha256": "63a1f8d51f61ca02a418528c6ec9e9177ae2d267926b14d8e5a602b6787718e8",
+    "sourceCurrentCellsSha256": "369563dd43c8941eb472bd22a0ac9b6688b24fff36b871f8db88a6864c03887d",
+    "callerContextsSha256": "1704056523d9f525f758c1de59174165cb86358aaba2707fdd9d850d5972a4af",
+    "priorActiveHoldsSha256": "9a46500fcfe323ef227d9db286787ef1870d03bbf99b9ed2be4af7d3e9e10431",
+    "windowHoldsSha256": "2be7ad9f479444e29113dd60af40cb69c67fe134846a9eb0cafaeff8629b1c9f",
+    "priorHoldResolutionHistorySha256": "b567fb0d259a030d3df345d2b52ee09bb6c7d3193411ce1ec99d6dd45b40825a"
+  },
+  "dispositions": {
+    "hold": 24,
+    "retain": 238,
+    "review": 7,
+    "revise": 31
+  },
+  "baselineTokenMismatchCounts": {
+    "protectedLiteral": 1
+  },
+  "reviewedProposalTokenMismatchCounts": {
+    "placeholder": 0,
+    "markup": 0,
+    "numeric": 0,
+    "protectedLiteral": 0
+  },
+  "priorActiveHoldCount": 433,
+  "priorActiveHoldsCopiedByteForByte": true,
+  "priorHoldResolutionHistoryCopiedByteForByte": true,
+  "callerlessWindowHoldsCopiedByteForByte": true,
+  "nextBoundary": {
+    "continuationRank": 1078,
+    "remainingQueueRank": 978,
+    "sourceId": "src_3a7f882e0dcaf59b",
+    "sourceSha256": "3a7f882e0dcaf59b069a4830c2d6ce7c891f93d6a47018db872c1481a20082b3"
+  },
+  "reviewMethod": "Independent blind semantic review using only the candidate-free exact-head source/current/caller/runtime evidence; no primary or prior proposal packet opened.",
+  "blindReview": true,
+  "crossReviewUsed": false,
+  "nativeSpeakerApproval": false,
+  "productFilesEdited": false,
+  "testsBuildsScansCiRun": false,
+  "confidence": "moderate",
+  "checksumCoverage": "SHA256SUMS.txt covers every regular output file except itself."
+}

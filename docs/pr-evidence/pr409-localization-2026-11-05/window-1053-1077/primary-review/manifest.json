@@ -1,0 +1,71 @@
+{
+  "callerBackedCells": 276,
+  "candidateFreeInputChecksumListSha256": "2170ea00e2bcb8c5c79f23f86ce5acef8a31f4270813e222fea7e2f171cec1be",
+  "cellCount": 300,
+  "continuationRankRange": [
+    1053,
+    1077
+  ],
+  "files": [
+    {
+      "bytes": 721,
+      "path": "README.md",
+      "sha256": "244934999abd7e27e39cdb391e0896d1c0e8168a248593b6a97d6022dc37ae74"
+    },
+    {
+      "bytes": 22465,
+      "path": "build_primary_review.py",
+      "sha256": "488cf38e147ec0f7b22efa7c247fdb4d64c40ae77c67a37832e622d9824ba892"
+    },
+    {
+      "bytes": 15674,
+      "path": "current-window-holds-hash-only.jsonl",
+      "sha256": "2be7ad9f479444e29113dd60af40cb69c67fe134846a9eb0cafaeff8629b1c9f"
+    },
+    {
+      "bytes": 625,
+      "path": "input-attestation.json",
+      "sha256": "33337a670dcd14083d01d65ab5f7db9ee8ae9fb72399a5de16daa3517fe8d539"
+    },
+    {
+      "bytes": 453276,
+      "path": "primary-review-ledger.jsonl",
+      "sha256": "4fbb86b42f9883cd8f480fb88137b47742be9a6683549abf9d4793a9bb93f274"
+    },
+    {
+      "bytes": 508882,
+      "path": "prior-active-holds-hash-only.jsonl",
+      "sha256": "9a46500fcfe323ef227d9db286787ef1870d03bbf99b9ed2be4af7d3e9e10431"
+    },
+    {
+      "bytes": 1082,
+      "path": "summary.json",
+      "sha256": "012836a7cc2f6d1459946d9af1f1580a34c7326ee06fff009033541972cddf16"
+    },
+    {
+      "bytes": 9021,
+      "path": "verify_primary_review.py",
+      "sha256": "d95f4b3f1b9b924ad446581b2b13a79f01193a4970f748f40fdfd3220a71bd20"
+    }
+  ],
+  "hashOnlyHolds": 24,
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "localeCount": 12,
+  "nativeSpeakerApproval": false,
+  "priorActiveHashOnlyHoldsReattested": 433,
+  "proposalCells": 276,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    953,
+    977
+  ],
+  "repository": "snapetech-org/slskdN",
+  "resultingActiveHashOnlyHolds": 457,
+  "retainedCurrentCells": 214,
+  "revisedCells": 62,
+  "role": "primary-semantic-review",
+  "schemaVersion": 1,
+  "sourceCount": 25,
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W87"
+}

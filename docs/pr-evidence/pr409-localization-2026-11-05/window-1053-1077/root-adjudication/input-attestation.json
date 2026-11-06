@@ -1,0 +1,16 @@
+{
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "integratedCrossLedgerSha256": "2dd3fc1c671467bfb903c406908355d56319698d4a63c1f3857370ff2a5120ff",
+  "integratedCrossChecksumListSha256": "8f199b1870dec23be11250ba2a5b9f36d760593418d532bd53f3802df2065784",
+  "candidateFreeChecksumListSha256": "2170ea00e2bcb8c5c79f23f86ce5acef8a31f4270813e222fea7e2f171cec1be",
+  "candidateFreeCurrentCellsSha256": "369563dd43c8941eb472bd22a0ac9b6688b24fff36b871f8db88a6864c03887d",
+  "crossVerifierResult": "PASS",
+  "reviewedCallerBackedCells": 276,
+  "selectedChanges": 54,
+  "heldLowConfidenceCells": 8,
+  "callerlessHashOnlyHolds": 24,
+  "priorActiveHashOnlyHolds": 433,
+  "nativeSpeakerApproval": false,
+  "rootReview": "The 54 selected strings were individually reviewed against the English source and pinned callers. The eight low-confidence cells remain unchanged."
+}

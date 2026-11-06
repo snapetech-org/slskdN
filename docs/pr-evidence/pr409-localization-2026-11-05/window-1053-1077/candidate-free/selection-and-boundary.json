@@ -1,0 +1,171 @@
+{
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "nextUnselected": {
+    "continuationRank": 1078,
+    "remainingQueueRank": 978,
+    "sourceId": "src_3a7f882e0dcaf59b",
+    "sourceSha256": "3a7f882e0dcaf59b069a4830c2d6ce7c891f93d6a47018db872c1481a20082b3"
+  },
+  "previousWindow": "W86 / W1028-W1052",
+  "previousWindowFinalRank": {
+    "continuationRank": 1052,
+    "remainingQueueRank": 952,
+    "sourceId": "src_39cf4850417cd4cd",
+    "sourceSha256": "39cf4850417cd4cd640b2b8a5814428e4fc9837c62a0daff489b47c5bc1462b1"
+  },
+  "selectedWindow": [
+    {
+      "continuationRank": 1053,
+      "remainingQueueRank": 953,
+      "sourceId": "src_39e6bb62127db08a",
+      "sourceSha256": "39e6bb62127db08ad93ab2bde08c8f7a26f831cfed2bded4bef232c79ec60034"
+    },
+    {
+      "continuationRank": 1054,
+      "remainingQueueRank": 954,
+      "sourceId": "src_39f14100b622e20b",
+      "sourceSha256": "39f14100b622e20bcabe4a9308740901a866ce0f1fee8e52c79d374fc797a15b"
+    },
+    {
+      "continuationRank": 1055,
+      "remainingQueueRank": 955,
+      "sourceId": "src_39f2d492d262c979",
+      "sourceSha256": "39f2d492d262c97967ec9fe2bf1d24204efa87ae9982e911e06dcbada259adb1"
+    },
+    {
+      "continuationRank": 1056,
+      "remainingQueueRank": 956,
+      "sourceId": "src_39f727730392cd39",
+      "sourceSha256": "39f727730392cd39f555dfa5d9a01bd6ebf8bc2702ef43d6fed07e6103cc4361"
+    },
+    {
+      "continuationRank": 1057,
+      "remainingQueueRank": 957,
+      "sourceId": "src_39f81d21015af161",
+      "sourceSha256": "39f81d21015af161fd099ab4e88b934d3537c9f19079ba0c405e412d24fded27"
+    },
+    {
+      "continuationRank": 1058,
+      "remainingQueueRank": 958,
+      "sourceId": "src_39fc54c6db207a26",
+      "sourceSha256": "39fc54c6db207a26678b105dfe9aed32490b3a84d62c9748b1499e84df1200e4"
+    },
+    {
+      "continuationRank": 1059,
+      "remainingQueueRank": 959,
+      "sourceId": "src_3a0285151a17f449",
+      "sourceSha256": "3a0285151a17f44924e5f51ab7905a0bb54b67f23ae8e38ed44889caaaa23ff3"
+    },
+    {
+      "continuationRank": 1060,
+      "remainingQueueRank": 960,
+      "sourceId": "src_3a084b806344cd38",
+      "sourceSha256": "3a084b806344cd38f6fbfd90918ef07b52a5e21e683bfda3f23fdab4e3c95a93"
+    },
+    {
+      "continuationRank": 1061,
+      "remainingQueueRank": 961,
+      "sourceId": "src_3a0b723847abc90f",
+      "sourceSha256": "3a0b723847abc90f87d1ab299b24242502d91aba50f9062d3a439e82caa1f739"
+    },
+    {
+      "continuationRank": 1062,
+      "remainingQueueRank": 962,
+      "sourceId": "src_3a15461ac71c9fb1",
+      "sourceSha256": "3a15461ac71c9fb1fae42dea16f3c7e5114f04f8c96e2a2b403d78a557db38c0"
+    },
+    {
+      "continuationRank": 1063,
+      "remainingQueueRank": 963,
+      "sourceId": "src_3a164eb526ab6031",
+      "sourceSha256": "3a164eb526ab60314ddd2729dd52015be08984e2c0971b58cff5501da3780181"
+    },
+    {
+      "continuationRank": 1064,
+      "remainingQueueRank": 964,
+      "sourceId": "src_3a23414abf3de420",
+      "sourceSha256": "3a23414abf3de4204d1624881b8b9cc5056c3d39a07cd20639498eb73e7dfaca"
+    },
+    {
+      "continuationRank": 1065,
+      "remainingQueueRank": 965,
+      "sourceId": "src_3a25d4157ee48438",
+      "sourceSha256": "3a25d4157ee48438ce779034d0c314b5d9902ad3eea4e0fa31a35281ddfc02b1"
+    },
+    {
+      "continuationRank": 1066,
+      "remainingQueueRank": 966,
+      "sourceId": "src_3a26b0274b9645de",
+      "sourceSha256": "3a26b0274b9645debbae0237fa7ff3101c5bbe42706d01d9dda26b752bfbf137"
+    },
+    {
+      "continuationRank": 1067,
+      "remainingQueueRank": 967,
+      "sourceId": "src_3a2bbc34353a0442",
+      "sourceSha256": "3a2bbc34353a044274da664fbdd7f1382531d3632acc3287546b403c9e52bcc0"
+    },
+    {
+      "continuationRank": 1068,
+      "remainingQueueRank": 968,
+      "sourceId": "src_3a32c1abb064d0a7",
+      "sourceSha256": "3a32c1abb064d0a784252c7f85136f2958a77618132485cd6dd65bc4d3e3ff46"
+    },
+    {
+      "continuationRank": 1069,
+      "remainingQueueRank": 969,
+      "sourceId": "src_3a33ae3d233aef14",
+      "sourceSha256": "3a33ae3d233aef149bde81d164d0c2a9e3377fd1b2bf811607aa713a9f77a995"
+    },
+    {
+      "continuationRank": 1070,
+      "remainingQueueRank": 970,
+      "sourceId": "src_3a33f285748cb06f",
+      "sourceSha256": "3a33f285748cb06f9698218b50c1d69b349a32083f7ad4da2ccf34ab8dc14117"
+    },
+    {
+      "continuationRank": 1071,
+      "remainingQueueRank": 971,
+      "sourceId": "src_3a4278f83ecea381",
+      "sourceSha256": "3a4278f83ecea3815f068ff7e014dd671bc7d790661f139315b2952888356a72"
+    },
+    {
+      "continuationRank": 1072,
+      "remainingQueueRank": 972,
+      "sourceId": "src_3a4b25bc67335916",
+      "sourceSha256": "3a4b25bc673359162e288f20a00bbc00dc6861f6c83a9c8a86245e34f57a0b10"
+    },
+    {
+      "continuationRank": 1073,
+      "remainingQueueRank": 973,
+      "sourceId": "src_3a5ecca188c0579c",
+      "sourceSha256": "3a5ecca188c0579c00ee24cf3cab21bd02c15a06f7a70cc8e0a8ff2381dcbbfd"
+    },
+    {
+      "continuationRank": 1074,
+      "remainingQueueRank": 974,
+      "sourceId": "src_3a6d4817a9e0a97b",
+      "sourceSha256": "3a6d4817a9e0a97baec7dd5f27e70703e7fad1f053c8cb132bfcd9d3ab616b80"
+    },
+    {
+      "continuationRank": 1075,
+      "remainingQueueRank": 975,
+      "sourceId": "src_3a7470e00c076b67",
+      "sourceSha256": "3a7470e00c076b678c41c8ae4a4945198a9e243cdb42e044612535facb5f225d"
+    },
+    {
+      "continuationRank": 1076,
+      "remainingQueueRank": 976,
+      "sourceId": "src_3a781be38fb12006",
+      "sourceSha256": "3a781be38fb12006f39a11bcb9038940ec03c2219cf038df638cf7620ad8ad46"
+    },
+    {
+      "continuationRank": 1077,
+      "remainingQueueRank": 977,
+      "sourceId": "src_3a78695388b38b5c",
+      "sourceSha256": "3a78695388b38b5cceefaf6796b0137877514593543b91af2752d5a17e3d736c"
+    }
+  ],
+  "selectionRule": "next 25 eligible stable source IDs from pinned W86 inventory; continuationRank = remainingQueueRank + 100",
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W87"
+}

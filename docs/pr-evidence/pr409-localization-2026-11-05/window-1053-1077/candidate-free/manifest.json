@@ -1,0 +1,196 @@
+{
+  "activeHoldTextIncluded": false,
+  "baseSha": "f25d263a2a7cdb2c8f76c40c346cb10f749a9356",
+  "baselineTokenMismatchCounts": {
+    "protectedLiteral": 1
+  },
+  "blindReviewUsed": false,
+  "branch": "codex/slskdn-oidc-tooltip-localization-20261030",
+  "candidateFree": true,
+  "catalogCount": 12,
+  "catalogEntryCountPerLocale": 6175,
+  "cellCount": 300,
+  "continuationRankRange": [
+    1053,
+    1077
+  ],
+  "crossReviewUsed": false,
+  "files": [
+    {
+      "bytes": 893,
+      "path": "README.md",
+      "sha256": "a407fb66c5bb8fa263d2917896110518012d22dbf288ddec913cc62cc16f4ea9"
+    },
+    {
+      "bytes": 304,
+      "path": "baseline-token-mismatch-summary.json",
+      "sha256": "7a8195dcda7ba427d062d82fe77fd8d7d0eef0f5fdb1aa2f48034bdac9b19015"
+    },
+    {
+      "bytes": 45020,
+      "path": "build_candidate_free.py",
+      "sha256": "ea612ad0b4d7464faf308fce3530fbddda950696513b318c05afaf90f84c15b6"
+    },
+    {
+      "bytes": 54256,
+      "path": "caller-contexts.jsonl",
+      "sha256": "1704056523d9f525f758c1de59174165cb86358aaba2707fdd9d850d5972a4af"
+    },
+    {
+      "bytes": 469,
+      "path": "catalog-key-order-attestation.json",
+      "sha256": "2d8687847abf5fc93f7a2ade604acfaff33c488ee78c0c86648122e88f26eccc"
+    },
+    {
+      "bytes": 3674,
+      "path": "catalog-structure.jsonl",
+      "sha256": "12d3974930c58a425571f3930e4e2a275192a52aa9e8a295013bff32cfb7bfa7"
+    },
+    {
+      "bytes": 1546,
+      "path": "continuity-provenance.json",
+      "sha256": "9fddfbbfca6e69e0e77b3aff3778d9be4fb0513a13895081c6be2a84a5e47286"
+    },
+    {
+      "bytes": 1147,
+      "path": "live-after.json",
+      "sha256": "4f8c267c027c113c6cefe71e841526f3766cc43bb7ec9ba20c6b8a5dde8feaa9"
+    },
+    {
+      "bytes": 1147,
+      "path": "live-before.json",
+      "sha256": "834189f216fd317044a1271aec9ddc25356aa4d6cf7f076cef5d90a1a7d015c2"
+    },
+    {
+      "bytes": 788933,
+      "path": "prior-applied-targets-reattestation-hash-only.jsonl",
+      "sha256": "88708dec3ec175d4adf37d693fbc7a50c09cad87e7ac34bc0955ed07033871c4"
+    },
+    {
+      "bytes": 508882,
+      "path": "prior-held-cell-reattestation-hash-only.jsonl",
+      "sha256": "9a46500fcfe323ef227d9db286787ef1870d03bbf99b9ed2be4af7d3e9e10431"
+    },
+    {
+      "bytes": 19512,
+      "path": "prior-hold-resolution-history-hash-only.jsonl",
+      "sha256": "b567fb0d259a030d3df345d2b52ee09bb6c7d3193411ce1ec99d6dd45b40825a"
+    },
+    {
+      "bytes": 926963,
+      "path": "prior-selected-id-exclusions-hash-only.jsonl",
+      "sha256": "5c4e56e54ec31b35d8da4359796863b48f175556152e15337e8d3e049ff8228d"
+    },
+    {
+      "bytes": 690,
+      "path": "product-readback-provenance.json",
+      "sha256": "c1355d254b5dfa3d063fbb835d7ab6b6e0a71c6311ee20cea8b2594a8cee901e"
+    },
+    {
+      "bytes": 59546,
+      "path": "runtime-file-pins.jsonl",
+      "sha256": "8d3017922f219203337a32859d01f4bb36e322600ed456ab4740aa38c6f87ed7"
+    },
+    {
+      "bytes": 8072,
+      "path": "selected-sources.jsonl",
+      "sha256": "079fb98cd3a90e9873459e3ff29ce57ab501338760d9681ec6599be0a0bd5b80"
+    },
+    {
+      "bytes": 5989,
+      "path": "selection-and-boundary.json",
+      "sha256": "228cbe94d9ca7585345bc4d747c2bb886719b52ee10aca6a3bb0a73915f7bdb3"
+    },
+    {
+      "bytes": 367950,
+      "path": "source-current-cells.jsonl",
+      "sha256": "369563dd43c8941eb472bd22a0ac9b6688b24fff36b871f8db88a6864c03887d"
+    },
+    {
+      "bytes": 2275370,
+      "path": "source-inventory-pinned.jsonl",
+      "sha256": "b0c6b317bd872bb262bb6a0b04f6d70522ae72cd39745e2d307d4e8c98fae889"
+    },
+    {
+      "bytes": 6275,
+      "path": "source-inventory-selection.jsonl",
+      "sha256": "b7f6e93aac6ee15a529c34a2d2cb87fe4529c763d984a63385964d605bfd950a"
+    },
+    {
+      "bytes": 1738,
+      "path": "summary.json",
+      "sha256": "7f771e3d574f2ca0d4f2d7a8d4bbe53e6beabe8f47047c8f4c46c7067d80dc67"
+    },
+    {
+      "bytes": 25989,
+      "path": "verify_candidate_free.py",
+      "sha256": "99d677d14072009ac3b757f6f231329afba75689cef3faee0965d538a4414bfa"
+    },
+    {
+      "bytes": 1049914,
+      "path": "window-application-readback-hash-only.jsonl",
+      "sha256": "bc01bed015bceb1a5c4c1780ad9d22ad2d9e65340da67c6a493e5cbda2ccbc8d"
+    },
+    {
+      "bytes": 62324,
+      "path": "window-applied-targets-reattestation-hash-only.jsonl",
+      "sha256": "2002637bd68654f4a5bb3fbd9f8d1dacb8fe8c82bc7b3699a60f924179f8abba"
+    },
+    {
+      "bytes": 15674,
+      "path": "window-holds-hash-only.jsonl",
+      "sha256": "2be7ad9f479444e29113dd60af40cb69c67fe134846a9eb0cafaeff8629b1c9f"
+    },
+    {
+      "bytes": 351950,
+      "path": "window-product-readback-reattestation-hash-only.jsonl",
+      "sha256": "c60812a6e05fad5da95ee9a75dbef22fd507a735d36c547e7079e15884746a5f"
+    }
+  ],
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "localeCount": 12,
+  "locales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "hi",
+    "id",
+    "ja",
+    "ko",
+    "pt-BR",
+    "vi",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "mainSha": "bc6251ff4ea5a7e59f2d86e2400c90520601f46e",
+  "newWindowHashOnlyHoldCells": 24,
+  "previousProductReadbackRows": 300,
+  "priorActiveHoldsReattested": 433,
+  "priorApplicationReadbackHistoryRows": 1200,
+  "priorAppliedTargetsReattested": 748,
+  "priorProductReadbackAllMatchCurrentHead": true,
+  "priorSelectedIdsAndNewWindowExclusions": 2160,
+  "priorWindowProductReadbackRows": 300,
+  "productReadbackTextIncluded": false,
+  "productionRuntimeFileCount": 279,
+  "proposedTargetsIncluded": false,
+  "pullRequest": 409,
+  "remainingQueueRankRange": [
+    953,
+    977
+  ],
+  "repository": "snapetech-org/slskdN",
+  "resultingActiveHashOnlyHoldCells": 457,
+  "reviewDecisionsIncluded": false,
+  "rootAdjudicationPerformed": false,
+  "schemaVersion": 2,
+  "sourceCallerOccurrenceCount": 37,
+  "sourceCallerReferenceCount": 37,
+  "sourceCount": 25,
+  "sourcesWithCallers": 23,
+  "sourcesWithoutCallers": 2,
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W87",
+  "windowAppliedTargetsReattested": 44
+}

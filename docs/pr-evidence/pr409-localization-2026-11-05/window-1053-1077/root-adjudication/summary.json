@@ -1,0 +1,36 @@
+{
+  "result": "PASS_ROOT_ADJUDICATION",
+  "head": "ba692c15ca54942108cc9da37757f585969e6173",
+  "tree": "27c09a8fe24030f5bb0995d809794a9e4829dc64",
+  "window": "W1053-W1077",
+  "cells": 300,
+  "dispositions": {
+    "correction": 53,
+    "accept-current": 214,
+    "hold-low-confidence": 8,
+    "refinement": 1,
+    "hold-hash-only": 24
+  },
+  "selectedChanges": 54,
+  "rootOverrides": 0,
+  "catalogs": 12,
+  "entriesPerCatalog": 6175,
+  "priorActiveHashOnlyHolds": 433,
+  "newCallerlessHashOnlyHolds": 24,
+  "activeHashOnlyHoldsAfter": 457,
+  "newLowConfidenceReviewHolds": 8,
+  "nativeSpeakerApproval": false,
+  "headedBrowserReview": false,
+  "crossResolutionCounts": {
+    "primary-only-proposal-accepted": 22,
+    "both-retain-current": 210,
+    "pending-low-confidence-review": 8,
+    "primary-only-proposal-rejected": 4,
+    "overlap-resolved-to-blind-target": 22,
+    "overlapping-proposals-converged": 8,
+    "primary-proposal-refined": 1,
+    "blind-only-proposal-accepted": 1,
+    "no-caller-hash-only-hold": 24
+  },
+  "manualReview": "All 54 selected targets were read against their exact source/caller context and token audit. Eight terminology/referent cells remain held at current hashes."
+}

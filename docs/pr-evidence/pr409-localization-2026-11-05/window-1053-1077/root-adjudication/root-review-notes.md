@@ -1,0 +1,62 @@
+# Root review notes — slskdN PR #409 W1053–W1077
+
+Input head/tree: `ba692c15ca54942108cc9da37757f585969e6173` / `27c09a8fe24030f5bb0995d809794a9e4829dc64`.
+
+I reviewed all 54 selected targets with the exact source, caller context, primary and blind rationales, and token results. The resulting choices correct missing product meaning, technical terms, punctuation, room terminology, and action timing while preserving placeholders, ICU syntax, markup, numeric values, and protected literals. Eight low-confidence cells remain unchanged; 24 callerless cells and 433 previous holds remain hash-only. No native-speaker or browser acceptance is claimed.
+
+## Selected targets
+
+- `1053::ar` (correction): `أظهر جميع الإعدادات المسبقة الأصلية المستوردة.` — The source and Visualizer caller identify imported native presets; the current Arabic says general settings and omits the preset distinction.
+- `1054::zh-Hans` (correction): `封禁成员和更改角色会发布所选 Pod 与对等节点的成员状态。应用更改前，请先核实当前的成员记录。` — The warning refers to banning members and publishing membership state for selected Pod and peer. 封禁 is more specific than the current 禁止, and 对等节点 identifies the peer as a node.
+- `1054::zh-Hant` (correction): `封鎖成員和變更角色會發布所選 Pod 與對等節點的成員狀態。套用變更前，請先核實目前的成員記錄。` — The warning refers to banning members and publishing membership state for selected Pod and peer. 封鎖 is more specific than the current 禁止, and 對等節點 identifies the peer as a node.
+- `1055::ar` (correction): `الطلبات المسموح بها لكل دقيقة عبر بوابة Mesh` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::de` (correction): `Zulässige Mesh-Gateway-Anfragen pro Minute` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::es` (correction): `Solicitudes permitidas por minuto a través de la puerta de enlace Mesh` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::fr` (correction): `Requêtes autorisées par minute via la passerelle Mesh` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::hi` (correction): `Mesh गेटवे पर प्रति मिनट अनुमत अनुरोध` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::id` (correction): `Jumlah permintaan yang diizinkan per menit melalui gateway Mesh` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::ja` (correction): `Mesh ゲートウェイで毎分許可するリクエスト数` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::ko` (correction): `Mesh 게이트웨이에서 분당 허용되는 요청 수` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::pt-BR` (correction): `Solicitações permitidas por minuto pelo gateway Mesh` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::vi` (correction): `Số yêu cầu được phép mỗi phút qua cổng Mesh` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::zh-Hans` (correction): `Mesh 网关每分钟允许的请求数` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1055::zh-Hant` (correction): `Mesh 閘道每分鐘允許的請求數` — The pinned caller exposes a numeric Mesh Permits/min field. The current wording can read as permissions or permits rather than a per-minute request allowance; make the quantity clear.
+- `1058::ar` (correction): `التحقق من الواصف` — The caller describes verifying a descriptor signature and freshness. The current Arabic says description, which changes the technical object.
+- `1058::vi` (correction): `Xác minh bộ mô tả` — The caller verifies a descriptor signature and freshness. The current wording says description; bộ mô tả names the technical descriptor object.
+- `1059::ar` (correction): `المصدر: {provenance}.` — The caller passes provenance as {provenance}. Preserve the placeholder and source sentence punctuation.
+- `1059::de` (correction): `Quelle: {provenance}.` — The caller passes provenance as {provenance}. Preserve the placeholder and restore the source final period.
+- `1059::id` (correction): `Sumber: {provenance}.` — The caller passes provenance as {provenance}. Preserve the placeholder and correct colon spacing and final period.
+- `1059::ja` (refinement): `ソース:{provenance}。` — The caller passes provenance as {provenance}. Keep Japanese colon spacing compact, preserve the placeholder, and restore the Japanese sentence stop.
+- `1059::zh-Hans` (correction): `来源：{provenance}。` — The caller passes provenance as {provenance}. Preserve the placeholder and use standard full-width Chinese colon punctuation.
+- `1059::zh-Hant` (correction): `來源：{provenance}。` — The caller passes provenance as {provenance}. Preserve the placeholder and use standard full-width Chinese colon punctuation.
+- `1062::hi` (correction): `IP,` — The Security caller counts tracked IP addresses. Preserve the technical abbreviation IP instead of transliterating it.
+- `1062::zh-Hans` (correction): `IP 地址,` — The caller counts tracked IP addresses. The current Chinese means intellectual property, not Internet Protocol addresses.
+- `1062::zh-Hant` (correction): `IP 位址,` — The caller counts tracked IP addresses. The current Chinese means intellectual property, not Internet Protocol addresses.
+- `1064::pt-BR` (correction): `Entrar/Criar #` — The Messaging caller joins or creates a room named with #. Entrar/Criar describes the room action more precisely than Junte-se/crie and preserves #.
+- `1066::ar` (correction): `غرف دردشة Soulseek المطابقة` — The MessagingV2 caller is a matching room-search result list. Explicitly identify Soulseek rooms as chat rooms.
+- `1066::es` (correction): `Salas de Soulseek coincidentes` — The caller is a messaging room-search result list. Habitaciones suggests physical rooms; salas is the chat-room sense.
+- `1066::fr` (correction): `Salons Soulseek correspondants` — The caller is a messaging room-search result list. Pièces suggests rooms in a building; salons expresses chat rooms.
+- `1066::hi` (correction): `मेल खाते Soulseek चैट रूम` — The MessagingV2 caller is a matching room-search result list. Explicitly identify Soulseek rooms as chat rooms.
+- `1066::id` (correction): `Ruang obrolan Soulseek yang cocok` — The MessagingV2 caller is a matching room-search result list. Explicitly identify Soulseek rooms as chat rooms.
+- `1066::ja` (correction): `一致する Soulseek チャットルーム` — The MessagingV2 caller is a matching room-search result list. Explicitly identify Soulseek rooms as chat rooms.
+- `1066::ko` (correction): `일치하는 Soulseek 채팅방` — The caller is a messaging room-search result list. 객실 suggests guest rooms; 채팅방 makes the chat-room meaning explicit.
+- `1066::vi` (correction): `Các phòng chat Soulseek phù hợp` — The MessagingV2 caller is a matching room-search result list. Replace the awkward suitable-for-a-room wording with matching Soulseek chat rooms.
+- `1066::zh-Hans` (correction): `匹配的 Soulseek 聊天室` — The MessagingV2 caller is a matching room-search result list. Explicitly identify Soulseek rooms as chat rooms.
+- `1066::zh-Hant` (correction): `相符的 Soulseek 聊天室` — The MessagingV2 caller is a matching room-search result list. Explicitly identify Soulseek rooms as chat rooms.
+- `1067::ja` (correction): `実行契約の準備完了` — The caller uses this as an adapter execution-contract status. 約定契約 is redundant and does not clearly express execution.
+- `1067::vi` (correction): `Hợp đồng thực thi đã sẵn sàng` — The caller uses this as an adapter execution-contract status. The current thi công wording means a construction contract.
+- `1069::ar` (correction): `فعّل رفع الملفات عبر FTP بعد اكتمال التنزيلات` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::es` (correction): `Habilitar las cargas por FTP cuando se completen las descargas` — The tooltip states that FTP uploads occur after downloads complete. Current Spanish can read as uploads of completed downloads; make the timing explicit.
+- `1069::hi` (correction): `डाउनलोड पूरा होने के बाद FTP अपलोड सक्षम करें` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::id` (correction): `Aktifkan upload FTP setelah unduhan selesai` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::ja` (correction): `ダウンロード完了後のFTPアップロードを有効にする` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::ko` (correction): `다운로드 완료 후 FTP 업로드 사용` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::pt-BR` (correction): `Ativar uploads via FTP após a conclusão dos downloads` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::vi` (correction): `Bật tải lên qua FTP sau khi tải xuống hoàn tất` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::zh-Hans` (correction): `启用下载完成后的 FTP 上传` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1069::zh-Hant` (correction): `啟用下載完成後的 FTP 上傳` — The caller describes enabling FTP uploads after completed downloads. The current wording is unclear about whether completion applies to the download or the upload; make the timing explicit and preserve FTP.
+- `1070::de` (correction): `Validieren Sie das aktuelle YAML und speichern Sie es in der Remote-Konfigurationsdatei.` — The current German uses den aktuellen YAML; the technical noun is used with das. The proposal also preserves the remote configuration destination.
+- `1071::vi` (correction): `mã băm` — The caller shows a count of stored hash values. băm is the hashing action; mã băm names the values being counted.
+- `1075::ja` (correction): `受信` — The AdminPolicies caller uses incoming as the inbound direction, and the MediaCore caller counts incoming links. 受信 labels received/inbound data more precisely than 入ってくる.
+- `1075::vi` (correction): `Chiều vào` — The AdminPolicies and MediaCore callers use incoming as an inbound direction. Chiều vào states that direction more precisely than đến.
+- `1076::vi` (correction): `; được chấp nhận để dùng cục bộ` — The Mesh Evidence caller lists the entry provenance and then says it is accepted for local use. The concise cục bộ wording fits local use in this policy context.
