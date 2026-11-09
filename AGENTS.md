@@ -1,22 +1,21 @@
-## Runner policy — owner directive, 2026-11-03
+## Runner policy — current owner directive
 
-GitHub-hosted runner minutes are available again. Use compatible GitHub-hosted
-runners for build, test, scan, packaging and release jobs when their operating
-system and architecture requirements are met. Preserve native OS and
-architecture. Use private ephemeral JIT runners when a job needs private
-network access, special hardware or storage, or explicit JIT validation. Do not
-require private JIT solely because of the former organization-wide policy, and
-do not treat missing private capacity as a blocker when a compatible hosted
-runner is available.
+All build, test, scan, package, and release jobs require compatible private
+ephemeral JIT runners. Do not use GitHub-hosted runners or hosted fallbacks.
+Preserve native operating system and architecture requirements. Missing private
+capacity is a provisioning blocker; leave jobs queued rather than changing the
+trust boundary or silently selecting a hosted runner.
 
-Keep untrusted pull-request code isolated in a disposable environment without
-secrets, with minimal permissions and restricted egress. Do not widen trusted
-runner-group access to make untrusted code run. Preserve active builds and other
-agents' work. Do not restart the broker while it owns running guests. Select a
-runner route that fits the workload and trust requirements; rerunning an old
-run uses its original workflow revision.
+Keep untrusted pull-request code in disposable VM-backed JIT environments with
+no secrets, minimal read access, and restricted egress. Do not widen trusted
+runner access. Preserve active builds and other agents' work, and do not restart
+the broker while it owns guests. Before cleanup, retry, or dispatch, inspect the
+branch, pull request, workflow revision, and side effects. Reruns use the old
+workflow revision.
 
-The shared inventory continues to govern private JIT jobs. For a private route,
-verify source routing, broker policy, runner-group access and live capacity
-before relying on it.
+The shared pool inventory in the organization packer repository governs private
+JIT jobs. Verify source routing, deployed broker policy, runner-group access, and
+live capacity before relying on a new workflow revision.
 
+CodeQL is disabled by owner directive. Do not restore or invoke CodeQL unless
+the owner explicitly reverses that instruction.
