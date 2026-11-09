@@ -13,8 +13,9 @@
     <packageSourceUrl>https://github.com/snapetech-org/slskdN/tree/main/packaging/chocolatey</packageSourceUrl>
     <projectSourceUrl>https://github.com/snapetech-org/slskdN</projectSourceUrl>
     <docsUrl>https://github.com/snapetech-org/slskdN/blob/main/docs/README.md</docsUrl>
+    <mailingListUrl>https://github.com/snapetech-org/slskdN/discussions</mailingListUrl>
     <bugTrackerUrl>https://github.com/snapetech-org/slskdN/issues</bugTrackerUrl>
-    <releaseNotes>https://github.com/snapetech-org/slskdN/releases/tag/2026090318-slskdn.318</releaseNotes>
+    <releaseNotes>https://github.com/snapetech-org/slskdN/releases</releaseNotes>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>slskdn soulseek p2p community-service content-sharing</tags>
     <summary>slskdN, an unofficial batteries-included fork of slskd</summary>
