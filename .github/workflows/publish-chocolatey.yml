@@ -91,6 +91,10 @@ jobs:
             exit 1
           }
           $Url = "https://github.com/$env:REPOSITORY/releases/download/$env:RELEASE_TAG/slskdn-main-win-x64.zip"
+          $archiveBytes = (Get-Item -LiteralPath 'slskdn-main-win-x64.zip').Length
+          if ($archiveBytes -gt 190000000) {
+            throw "Chocolatey payload exceeds the 190000000-byte budget: slskdn-main-win-x64.zip ($archiveBytes bytes)."
+          }
           $Checksum = (Get-FileHash slskdn-main-win-x64.zip -Algorithm SHA256).Hash
           (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<version>.*</version>', "<version>$PackageVersion</version>" | Set-Content packaging/chocolatey/slskdn.nuspec
           (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>https://github.com/$env:REPOSITORY/releases/tag/$env:RELEASE_TAG</releaseNotes>" | Set-Content packaging/chocolatey/slskdn.nuspec
