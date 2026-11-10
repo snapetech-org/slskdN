@@ -441,59 +441,56 @@ jobs:
         needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.release-main.result == 'success')
       )
     runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-announce-main"]}}', github.run_id)) }}
+    permissions:
+      contents: read
     steps:
-      - name: Post Discord announcement
+      - name: Check out Discord release tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout: scripts/discord_release_route.py
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - name: Post Discord changelog and project link
         env:
-          DISCORD_RELEASE_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          DISCORD_PROJECT_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          DISCORD_CHANGELOG_WEBHOOK: ${{ secrets.DISCORD_CHANGELOG_WEBHOOK }}
           RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ needs.parse.outputs.release_tag }}
           VERSION: ${{ needs.parse.outputs.version }}
-          TRIGGER_TAG: ${{ inputs.release_tag }}
+          TRIGGER_TAG: ${{ inputs.release_tag || github.ref_name }}
           RELEASE_BODY: ${{ needs.release-main.outputs.release_body }}
         run: |
-          if [ -z "$DISCORD_RELEASE_WEBHOOK" ]; then
+          if [[ -z "$DISCORD_PROJECT_WEBHOOK" ]]; then
             echo "DISCORD_RELEASE_WEBHOOK is not configured; skipping Discord announcement."
             exit 0
           fi
 
-          if ! python3 - <<'PY' | curl --fail --silent --show-error \
-            --retry 3 \
-            --retry-all-errors \
-            --retry-delay 5 \
-            --connect-timeout 10 \
-            --max-time 60 \
-            -H "Content-Type: application/json" \
-            -d @- \
-            "$DISCORD_RELEASE_WEBHOOK"
+          if ! (
+            set -o pipefail
+            python3 - <<'PYTHON' | python3 scripts/discord_release_route.py slskdN "$VERSION" -
           import json
           import os
 
-          version = os.environ["VERSION"]
-          trigger_tag = os.environ["TRIGGER_TAG"]
-          release_url = os.environ["RELEASE_URL"]
-          body = os.environ["RELEASE_BODY"] + "\n\nRelease artifacts are available on GitHub."
-          if len(body) > 3800:
-              body = body[:3797] + "…"
-          payload = {
+          env = os.environ
+          print(json.dumps({
               "username": "slskdN Releases",
-              "embeds": [
-                  {
-                      "title": f"slskdN {version} is live",
-                      "url": release_url,
-                      "description": body,
-                      "fields": [
-                          {"name": "Build tag", "value": trigger_tag, "inline": True},
-                          {"name": "Workflow", "value": os.environ.get("GITHUB_SERVER_URL", "https://github.com") + "/" + os.environ["GITHUB_REPOSITORY"] + "/actions/runs/" + os.environ["GITHUB_RUN_ID"], "inline": True},
-                      ],
-                  }
-              ],
-          }
-          print(json.dumps(payload))
-          PY
-          then
-            echo "Discord announcement failed; release artifacts are already published, continuing."
+              "embeds": [{
+                  "title": f"slskdN {env['VERSION']} is live",
+                  "url": env["RELEASE_URL"],
+                  "description": env["RELEASE_BODY"] + "\n\nRelease artifacts are available on GitHub.",
+                  "fields": [
+                      {"name": "Build tag", "value": env["TRIGGER_TAG"], "inline": True},
+                      {"name": "Workflow", "value": f"{env['GITHUB_SERVER_URL']}/{env['GITHUB_REPOSITORY']}/actions/runs/{env['GITHUB_RUN_ID']}", "inline": True},
+                  ],
+              }],
+          }))
+          PYTHON
+          ); then
+            echo "::warning::Discord delivery failed. The release artifacts are already published."
           fi
 
       - name: Post Matrix announcement
+        if: always() && !cancelled()
         env:
           MATRIX_RELEASE_ACCESS_TOKEN: ${{ secrets.TIMEWAYS_MATRIX_RELEASE_TOKEN }}
           MATRIX_BASE_URL: https://matrix.timeways.net
