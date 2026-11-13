@@ -442,7 +442,8 @@ public class SourceFeedImportServiceTests
             options.Object,
             spotifyConnection.Object,
             NullLogger<SourceFeedImportService>.Instance,
-            storagePath ?? CreateStoragePath());
+            storagePath ?? CreateStoragePath(),
+            static (_, _) => Task.FromResult<(bool Safe, string Reason)>((true, string.Empty)));
     }
 
     private static string CreateStoragePath()

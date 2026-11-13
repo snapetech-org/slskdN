@@ -22,7 +22,10 @@ public class SolidFetchPolicyTests
 
     private SolidFetchPolicy CreatePolicy()
     {
-        return new SolidFetchPolicy(_options, _loggerMock.Object);
+        return new SolidFetchPolicy(
+            _options,
+            _loggerMock.Object,
+            static (_, _) => Task.FromResult(new[] { IPAddress.Parse("93.184.216.34") }));
     }
 
     [Fact]

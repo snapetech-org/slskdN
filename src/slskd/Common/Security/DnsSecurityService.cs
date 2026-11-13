@@ -18,6 +18,7 @@ namespace slskd.Common.Security;
 public sealed class DnsSecurityService : IDnsSecurityService, IDisposable
 {
     private readonly ILogger<DnsSecurityService> _logger;
+    private readonly Func<string, CancellationToken, Task<IPAddress[]>> _resolveHost;
     private readonly object _dnsCacheLock = new();
 
     // DNS cache: hostname -> (resolved IPs, expiry time, tunnel IDs using this entry)
@@ -30,8 +31,16 @@ public sealed class DnsSecurityService : IDnsSecurityService, IDisposable
     private readonly Timer _cleanupTimer;
 
     public DnsSecurityService(ILogger<DnsSecurityService> logger)
+        : this(logger, Dns.GetHostAddressesAsync)
     {
-        _logger = logger;
+    }
+
+    internal DnsSecurityService(
+        ILogger<DnsSecurityService> logger,
+        Func<string, CancellationToken, Task<IPAddress[]>> resolveHost)
+    {
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _resolveHost = resolveHost ?? throw new ArgumentNullException(nameof(resolveHost));
 
         // Start cleanup timer (runs every 5 minutes)
         _cleanupTimer = new Timer(CleanupExpiredEntries, null, TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(5));
@@ -245,7 +254,7 @@ public sealed class DnsSecurityService : IDnsSecurityService, IDisposable
     {
         try
         {
-            var addresses = await Dns.GetHostAddressesAsync(hostname, cancellationToken);
+            var addresses = await _resolveHost(hostname, cancellationToken).ConfigureAwait(false);
             return addresses.Select(addr => addr.ToString()).ToList();
         }
         catch (Exception ex)

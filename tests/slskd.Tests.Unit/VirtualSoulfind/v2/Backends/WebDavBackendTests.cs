@@ -23,14 +23,15 @@ public class WebDavBackendTests
     {
         var handler = new ThrowingHttpMessageHandler(new HttpRequestException("sensitive\r\ndetail"));
         var logger = new CapturingLogger<WebDavBackend>();
-        var (backend, httpClient) = CreateBackend(handler: handler, logger: logger);
+        var options = new WebDavBackendOptions { Enabled = true, DomainAllowlist = new List<string> { "93.184.216.34" } };
+        var (backend, httpClient) = CreateBackend(options: options, handler: handler, logger: logger);
         using var _ = httpClient;
         var candidate = new SourceCandidate
         {
             Id = "candidate\r\ninjected: true",
             ItemId = ContentItemId.NewId(),
             Backend = ContentBackendType.WebDav,
-            BackendRef = "https://allowed.com/file.flac",
+            BackendRef = "https://93.184.216.34/file.flac",
             TrustScore = 0.7f,
             ExpectedQuality = 0.8f,
         };

@@ -22,12 +22,22 @@ public sealed class SolidFetchPolicy : ISolidFetchPolicy
 
     private readonly IOptionsMonitor<slskd.Options> _options;
     private readonly ILogger<SolidFetchPolicy> _logger;
+    private readonly Func<string, CancellationToken, Task<IPAddress[]>> _resolveHost;
     private readonly ConcurrentDictionary<string, (DateTime ExpiresUtc, IPAddress[] Addresses)> _dnsCache = new(StringComparer.OrdinalIgnoreCase);
 
     public SolidFetchPolicy(IOptionsMonitor<slskd.Options> options, ILogger<SolidFetchPolicy> logger)
+        : this(options, logger, Dns.GetHostAddressesAsync)
+    {
+    }
+
+    internal SolidFetchPolicy(
+        IOptionsMonitor<slskd.Options> options,
+        ILogger<SolidFetchPolicy> logger,
+        Func<string, CancellationToken, Task<IPAddress[]>> resolveHost)
     {
         _options = options ?? throw new ArgumentNullException(nameof(options));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _resolveHost = resolveHost ?? throw new ArgumentNullException(nameof(resolveHost));
     }
 
     /// <inheritdoc/>
@@ -107,7 +117,7 @@ public sealed class SolidFetchPolicy : ISolidFetchPolicy
             return cached.Addresses;
         }
 
-        var resolved = await Dns.GetHostAddressesAsync(host, ct).ConfigureAwait(false);
+        var resolved = await _resolveHost(host, ct).ConfigureAwait(false);
         _dnsCache[host] = (DateTime.UtcNow.Add(DnsCacheTtl), resolved);
         return resolved;
     }

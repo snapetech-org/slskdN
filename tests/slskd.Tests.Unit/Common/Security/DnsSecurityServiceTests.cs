@@ -7,6 +7,7 @@ using slskd.Common.Security;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -17,16 +18,28 @@ public class DnsSecurityServiceTests : IDisposable
 {
     private readonly Mock<ILogger<DnsSecurityService>> _loggerMock;
     private readonly DnsSecurityService _dnsSecurity;
+    private int _dnsResolutionCount;
 
     public DnsSecurityServiceTests()
     {
         _loggerMock = new Mock<ILogger<DnsSecurityService>>();
-        _dnsSecurity = new DnsSecurityService(_loggerMock.Object);
+        _dnsSecurity = new DnsSecurityService(_loggerMock.Object, ResolveTestHostnameAsync);
     }
 
     public void Dispose()
     {
-        // DnsSecurityService does not implement IDisposable
+        _dnsSecurity.Dispose();
+    }
+
+    private Task<IPAddress[]> ResolveTestHostnameAsync(string hostname, CancellationToken cancellationToken)
+    {
+        if (hostname == "invalid.hostname.that.does.not.exist")
+        {
+            return Task.FromException<IPAddress[]>(new SocketException((int)SocketError.HostNotFound));
+        }
+
+        Interlocked.Increment(ref _dnsResolutionCount);
+        return Task.FromResult(new[] { IPAddress.Parse("8.8.8.8") });
     }
 
     [Fact]
@@ -269,6 +282,7 @@ public class DnsSecurityServiceTests : IDisposable
     {
         // Arrange
         var hostname = "google.com";
+        var resolutionsBefore = _dnsResolutionCount;
 
         // First resolution
         var result1 = await _dnsSecurity.ResolveAndValidateAsync(hostname, allowPrivateRanges: true, allowPublicDestinations: true);
@@ -280,6 +294,7 @@ public class DnsSecurityServiceTests : IDisposable
 
         // Results should be identical
         Assert.Equal(result1.AllowedIPs.Count, result2.AllowedIPs.Count);
+        Assert.Equal(resolutionsBefore + 1, _dnsResolutionCount);
     }
 
     [Fact]

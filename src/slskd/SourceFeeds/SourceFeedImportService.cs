@@ -50,6 +50,7 @@ public sealed class SourceFeedImportService : ISourceFeedImportService
     private readonly object _storageSync = new();
     private readonly string _storagePath;
     private readonly List<SourceFeedImportHistoryEntry> _history = [];
+    private readonly Func<Uri, CancellationToken, Task<(bool Safe, string Reason)>> _checkOutboundUri;
 
     public SourceFeedImportService(
         IHttpClientFactory httpClientFactory,
@@ -65,7 +66,8 @@ public sealed class SourceFeedImportService : ISourceFeedImportService
                 string.IsNullOrWhiteSpace(global::slskd.Program.AppDirectory)
                     ? global::slskd.Program.DefaultAppDirectory
                     : global::slskd.Program.AppDirectory,
-                "source-feed-import-history.json"))
+                "source-feed-import-history.json"),
+            OutboundUriGuard.CheckAsync)
     {
     }
 
@@ -75,12 +77,24 @@ public sealed class SourceFeedImportService : ISourceFeedImportService
         ISpotifyConnectionService spotifyConnectionService,
         ILogger<SourceFeedImportService> logger,
         string storagePath)
+        : this(httpClientFactory, optionsMonitor, spotifyConnectionService, logger, storagePath, OutboundUriGuard.CheckAsync)
+    {
+    }
+
+    internal SourceFeedImportService(
+        IHttpClientFactory httpClientFactory,
+        IOptionsMonitor<global::slskd.Options> optionsMonitor,
+        ISpotifyConnectionService spotifyConnectionService,
+        ILogger<SourceFeedImportService> logger,
+        string storagePath,
+        Func<Uri, CancellationToken, Task<(bool Safe, string Reason)>> checkOutboundUri)
     {
         HttpClientFactory = httpClientFactory;
         OptionsMonitor = optionsMonitor;
         SpotifyConnectionService = spotifyConnectionService;
         Logger = logger;
         _storagePath = storagePath;
+        _checkOutboundUri = checkOutboundUri ?? throw new ArgumentNullException(nameof(checkOutboundUri));
         LoadHistory();
     }
 
@@ -825,7 +839,7 @@ public sealed class SourceFeedImportService : ISourceFeedImportService
             throw new InvalidOperationException("Provider URL must be absolute.");
         }
 
-        var (safe, reason) = await OutboundUriGuard.CheckAsync(request.RequestUri, cancellationToken).ConfigureAwait(false);
+        var (safe, reason) = await _checkOutboundUri(request.RequestUri, cancellationToken).ConfigureAwait(false);
         if (!safe)
         {
             throw new InvalidOperationException($"Provider URL blocked by outbound guard: {reason}");

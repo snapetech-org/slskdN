@@ -58,6 +58,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Dependencies: update AngleSharp, AWS SDK for S3, and OpenTelemetry HTTP instrumentation; refresh pinned GitHub Actions for release, container login, and k6 setup.
 - CI: emit the NuGet vulnerability report as quiet, versioned JSON; expose restore diagnostics and retry an audit after a recovered restore failure.
 - CI: align the unit-test SwaggerGen reference with the app's 10.3.1 dependency to avoid a NuGet package downgrade during restore.
+- CI: use controlled DNS answers in DNS-sensitive unit tests so outbound URL guards remain tested without requiring runner egress.
 
 - Security: Node-based builds now use patched runtime versions, and the web lockfile resolves `follow-redirects` 1.16.2 for the current redirect-header advisories.
 
