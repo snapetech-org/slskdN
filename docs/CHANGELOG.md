@@ -22,6 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- CI: Build release Docker images from the checked-out source and downloaded assets instead of refetching the Git repository inside BuildKit.
 - CI: allow a fresh tagged release through the private-JIT workflow while requiring an existing release for publisher recovery.
 
 ## [2026111302-slskdn.353] — 2026-11-12
