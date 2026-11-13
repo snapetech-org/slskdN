@@ -18,18 +18,9 @@ for workflow in "${release_workflows[@]}"; do
   fi
 done
 
-if ! rg -q "build-main-\*" "$repo_root/.github/workflows/build-on-tag.yml"; then
-  printf '.github/workflows/build-on-tag.yml must trigger on build-main-* tags\n' >&2
-  failed=1
-fi
-
-if ! rg -q "build-dev-\*" "$repo_root/.github/workflows/build-on-tag.yml"; then
-  printf '.github/workflows/build-on-tag.yml must trigger on build-dev-* tags\n' >&2
-  failed=1
-fi
-
-if ! rg -q "'v\*'" "$repo_root/.github/workflows/build-on-tag.yml"; then
-  printf '.github/workflows/build-on-tag.yml must trigger on v* release tags\n' >&2
+if ! rg -q 'workflow_dispatch:' "$repo_root/.github/workflows/build-on-tag.yml" ||
+  ! rg -q 'release_tag:' "$repo_root/.github/workflows/build-on-tag.yml"; then
+  printf '.github/workflows/build-on-tag.yml must dispatch releases from an existing source tag\n' >&2
   failed=1
 fi
 
@@ -48,11 +39,6 @@ if rg -n 'branches:\s*\[.*(master|main).*\]' "$repo_root/.github/workflows/build
   failed=1
 fi
 
-if ! rg -q 'build-dev-\*|build-main-\*|[0-9]\{8,10\}-slskdn' "$repo_root/.github/workflows/ci.yml"; then
-  printf '.github/workflows/ci.yml must keep release builds tag-addressable\n' >&2
-  failed=1
-fi
-
 if rg -n '\[0-9\]\+\.\[0-9\]\+\.\[0-9\]\+' "$repo_root/.github/workflows/ci.yml" "$repo_root/.github/workflows/ci-enhancements.yml" >&2; then
   printf 'GitHub tag filters are globs; do not use regex + quantifiers in release tag patterns\n' >&2
   failed=1
@@ -67,9 +53,9 @@ done < <(find "$repo_root/.github/workflows" -maxdepth 1 -type f \( -name '*.yml
 
 ci_workflow="$repo_root/.github/workflows/ci.yml"
 ci_enhancements_workflow="$repo_root/.github/workflows/ci-enhancements.yml"
-# Every selector in every workflow is validated against the current private
-# JIT groups and run-scoped labels by check-dotnet-runtime-matrix.sh. Keep this
-# script focused on event and release-tag safety.
+# Keep this script focused on event, release-tag, and recovery-target safety.
+# The release gate and tag publisher workflows support public GitHub-hosted
+# runners; private JIT routes remain available in the CI workflow when selected.
 
 upstream_access_workflow="$repo_root/.github/workflows/check-upstream-access.yml"
 if rg -q '^\s*workflow_dispatch:' "$upstream_access_workflow" ||
@@ -84,16 +70,18 @@ import sys
 from pathlib import Path
 
 text = Path(sys.argv[1]).read_text()
-push = re.search(r"(?ms)^  push:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", text)
-if not push or not re.search(r"(?m)^    tags:\n", push.group(1)):
-    raise SystemExit("CI must preserve its release tag triggers")
-if re.search(r"(?m)^    branches:", push.group(1)):
-    raise SystemExit("CI push validation must not run on branches")
-if re.search(r"(?m)^  pull_request(?:_target)?:", text):
-    raise SystemExit("CI must not run automatically for pull requests")
+events = re.search(r"(?ms)^on:\n(.*?)(?=^concurrency:|\Z)", text)
+if not events or not re.search(r"(?m)^  workflow_dispatch:\s*$", events.group(1)):
+    raise SystemExit("CI must support guarded manual validation")
+if not re.search(r"(?m)^  pull_request_target:\s*$", events.group(1)):
+    raise SystemExit("CI must preserve the metadata-only owner-PR dispatcher")
+if re.search(r"(?m)^  (push|pull_request|release):\s*$", events.group(1)):
+    raise SystemExit("CI must not add automatic code or release-build triggers")
+if not re.search(r"(?m)^    branches: \[main\]$", events.group(1)):
+    raise SystemExit("the metadata-only PR dispatcher must remain restricted to main")
 PYTHON
 then
-  printf '.github/workflows/ci.yml must keep builds tag-triggered\n' >&2
+  printf '.github/workflows/ci.yml must keep guarded manual CI dispatch\n' >&2
   failed=1
 fi
 
@@ -175,7 +163,7 @@ if "Select at least one publisher to retry" in parse_job:
     raise SystemExit("fresh manual releases must not require a publisher-recovery selection")
 if not re.search(
     r'if \[\[ "\$GITHUB_EVENT_NAME" == "workflow_dispatch" \]\] && \\\s*'
-    r'\[\[ "\$RETRY_AUR" == true.*?! gh release view',
+    r'\[\[ "\$RETRY_CHOCOLATEY" == true.*?! gh release view',
     parse_job,
     re.S,
 ):
@@ -214,6 +202,7 @@ for version in (
         raise SystemExit("unsafe release version accepted by shell-safe tag policy")
 
 for job, retry_input in {
+    "chocolatey-main": "retry_chocolatey",
     "aur-main": "retry_aur",
     "copr-main": "retry_copr",
     "ppa-main": "retry_ppa",
@@ -223,13 +212,21 @@ for job, retry_input in {
     block = job_block(tag_workflow, job)
     if f"inputs.{retry_input}" not in block or "needs.release-main.result == 'success'" not in block:
         raise SystemExit(f"{job} must be selected explicitly for recovery and gated on the normal release")
-    if "ref: ${{ inputs.tag || github.ref }}" not in block:
+    if "ref: ${{ inputs.release_tag" not in block:
         raise SystemExit(f"{job} must read source from the selected release tag during recovery")
 
-for job in ("build", "publish", "release-main", "announce-main", "docker-omnibus", "chocolatey-main", "homebrew-main"):
+for job in ("build", "publish", "release-main", "announce-main", "homebrew-main"):
     block = job_block(tag_workflow, job)
     if "github.event_name != 'workflow_dispatch'" not in block:
         raise SystemExit(f"{job} must be skipped during selected publisher recovery")
+
+for job in ("announce-main", "homebrew-main"):
+    if re.search(r"inputs\.retry_[a-z_]+", job_block(tag_workflow, job)):
+        raise SystemExit(f"{job} must not rerun during publisher recovery")
+
+chocolatey_job = job_block(tag_workflow, "chocolatey-main")
+if "inputs.retry_chocolatey" not in chocolatey_job or "always()" not in chocolatey_job:
+    raise SystemExit("Chocolatey recovery must run when selected and release-main is skipped")
 
 for job in ("performance-regression", "dependency-scanning", "container-scanning"):
     match = re.search(rf"(?ms)^  {re.escape(job)}:\n(.*?)(?=^  [A-Za-z0-9_-]+:\n|\Z)", enhancements)
@@ -250,20 +247,8 @@ then
   failed=1
 fi
 
-for release_job in publish docker release; do
-  if ! awk -v job="$release_job" '
-    $0 == "  " job ":" { in_job = 1; next }
-    in_job && /^  [A-Za-z0-9_-]+:$/ { exit }
-    in_job && index($0, "if: startsWith(github.ref, '\''refs/tags/'\'')") > 0 { found = 1 }
-    END { exit !found }
-  ' "$ci_workflow"; then
-    printf '.github/workflows/ci.yml job %s must stay tag-gated\n' "$release_job" >&2
-    failed=1
-  fi
-done
-
 if [ "$failed" -ne 0 ]; then
   exit 1
 fi
 
-printf 'Workflow release triggers preserve the tag-only build policy.\n'
+printf 'Workflow release dispatch and recovery policies are consistent.\n'

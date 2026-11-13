@@ -1,4 +1,4 @@
-# ng-runner-policy: private-jit-only-v1
+# ng-runner-policy: public-and-private-v1
 name: CI
 
 run-name: >-
@@ -18,9 +18,10 @@ on:
         options: [ci]
         required: true
       runner_pool:
-        description: Required private JIT runner pool
+        description: Select GitHub-hosted public runners or private JIT runners
         type: choice
-        options: [private]
+        options: [public, private]
+        default: public
         required: true
       pr_number:
         description: Trusted owner PR number set by the metadata-only dispatcher
@@ -147,10 +148,11 @@ jobs:
       github.event_name == 'workflow_dispatch' &&
       github.ref == 'refs/heads/main' &&
       inputs.action == 'ci' &&
-      inputs.runner_pool == 'private' &&
-      ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
-       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository))
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
+      ((inputs.runner_pool == 'public' && github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+       (inputs.runner_pool == 'private' &&
+        ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+         (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository)))
+    runs-on: ${{ inputs.runner_pool == 'public' && 'ubuntu-latest' || fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
     timeout-minutes: 120
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -282,10 +284,11 @@ jobs:
       github.event_name == 'workflow_dispatch' &&
       github.ref == 'refs/heads/main' &&
       inputs.action == 'ci' &&
-      inputs.runner_pool == 'private' &&
-      ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
-       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository))
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-smoke"]}}', github.run_id)) }}
+      ((inputs.runner_pool == 'public' && github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+       (inputs.runner_pool == 'private' &&
+        ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
+         (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository)))
+    runs-on: ${{ inputs.runner_pool == 'public' && 'ubuntu-latest' || fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-smoke"]}}', github.run_id)) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

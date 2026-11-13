@@ -1,6 +1,6 @@
-# packer-windows-jit-v1
-# ng-runner-policy: private-jit-only-v1
 name: Build on Tag
+
+# ng-runner-policy: public-hosted-v1
 
 # Dispatch from main with an existing v*, build-main-*, or build-dev-* source tag.
 
@@ -16,14 +16,20 @@ on:
         options: [release]
         required: true
       runner_pool:
-        description: Required private JIT runner pool
+        description: GitHub-hosted public runner pool
         type: choice
-        options: [private]
+        options: [public]
+        default: public
         required: true
       release_tag:
         description: Existing v*, build-main-*, or build-dev-* source tag on the default branch
         required: true
         type: string
+      retry_chocolatey:
+        description: Retry the stable Chocolatey publisher
+        required: false
+        default: false
+        type: boolean
       retry_aur:
         description: Retry the AUR publisher
         required: false
@@ -69,13 +75,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         true
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-parse"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     outputs:
@@ -95,6 +101,7 @@ jobs:
         env:
           REQUESTED_TAG: ${{ inputs.release_tag }}
           RETRY_AUR: ${{ inputs.retry_aur }}
+          RETRY_CHOCOLATEY: ${{ inputs.retry_chocolatey }}
           RETRY_COPR: ${{ inputs.retry_copr }}
           RETRY_PPA: ${{ inputs.retry_ppa }}
           RETRY_DOCKER: ${{ inputs.retry_docker }}
@@ -149,7 +156,7 @@ jobs:
           # Fresh releases have no retry inputs. Recovery selections require an
           # existing release so they cannot accidentally bypass the normal build.
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && \
-             [[ "$RETRY_AUR" == true || "$RETRY_COPR" == true || "$RETRY_PPA" == true || "$RETRY_DOCKER" == true || "$RETRY_DOCKER_OMNIBUS" == true || "$RETRY_NIX" == true ]] && \
+             [[ "$RETRY_CHOCOLATEY" == true || "$RETRY_AUR" == true || "$RETRY_COPR" == true || "$RETRY_PPA" == true || "$RETRY_DOCKER" == true || "$RETRY_DOCKER_OMNIBUS" == true || "$RETRY_NIX" == true ]] && \
              ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null; then
             echo "::error::Publisher recovery requires an existing published release for $RELEASE_TAG"
             exit 1
@@ -168,13 +175,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
-        github.event_name != 'workflow_dispatch' || (inputs.retry_aur != true && inputs.retry_copr != true && inputs.retry_ppa != true && inputs.retry_docker != true && inputs.retry_docker_omnibus != true && inputs.retry_nix != true)
+        github.event_name != 'workflow_dispatch' || (inputs.retry_chocolatey != true && inputs.retry_aur != true && inputs.retry_copr != true && inputs.retry_ppa != true && inputs.retry_docker != true && inputs.retry_docker_omnibus != true && inputs.retry_nix != true)
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-build"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
       - name: Checkout
@@ -225,23 +232,29 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
-        github.event_name != 'workflow_dispatch' || (inputs.retry_aur != true && inputs.retry_copr != true && inputs.retry_ppa != true && inputs.retry_docker != true && inputs.retry_docker_omnibus != true && inputs.retry_nix != true)
+        github.event_name != 'workflow_dispatch' || (inputs.retry_chocolatey != true && inputs.retry_aur != true && inputs.retry_copr != true && inputs.retry_ppa != true && inputs.retry_docker != true && inputs.retry_docker_omnibus != true && inputs.retry_nix != true)
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-{1}-publish"]}}', github.run_id, strategy.job-index)) }}
+    runs-on: ${{ matrix.public_runner }}
     strategy:
       fail-fast: false
       matrix:
-        runtime:
-          - linux-x64
-          - linux-musl-x64
-          - linux-arm64
-          - osx-x64
-          - osx-arm64
-          - win-x64
+        include:
+          - runtime: linux-x64
+            public_runner: ubuntu-latest
+          - runtime: linux-musl-x64
+            public_runner: ubuntu-latest
+          - runtime: linux-arm64
+            public_runner: ubuntu-24.04-arm
+          - runtime: osx-x64
+            public_runner: macos-15-intel
+          - runtime: osx-arm64
+            public_runner: macos-15
+          - runtime: win-x64
+            public_runner: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -341,13 +354,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.publish.result == 'success')
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-release-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     outputs:
@@ -432,13 +445,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.release-main.result == 'success')
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-announce-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -595,13 +608,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_aur || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-aur-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     outputs:
       short_sha: ${{ steps.info.outputs.short_sha }}
     steps:
@@ -786,14 +799,14 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_copr || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
       )
     continue-on-error: true
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-copr-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -985,14 +998,14 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_ppa || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
       )
     continue-on-error: true
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-ppa-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     concurrency:
       group: slskdn-ppa-jammy
       cancel-in-progress: false
@@ -1249,13 +1262,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_docker || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     env:
       DOCKERHUB_IMAGE: snapetech/slskdn
       HAS_DOCKERHUB: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}
@@ -1364,13 +1377,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         always() && needs.parse.outputs.channel == 'main' && ((needs.release-main.result == 'success' && needs.docker-main.result == 'success') || (github.event_name == 'workflow_dispatch' && inputs.retry_docker_omnibus && ((inputs.retry_docker && needs.docker-main.result == 'success') || (!inputs.retry_docker && needs.docker-main.result == 'skipped'))))
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-docker-omnibus"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -1425,14 +1438,14 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
-        needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.release-main.result == 'success')
+        always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_chocolatey || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
       )
     continue-on-error: true
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-chocolatey-main"]}}', github.run_id)) }}
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -1561,13 +1574,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         always() && needs.parse.outputs.channel == 'main' && ((github.event_name == 'workflow_dispatch' && (inputs.retry_nix || needs.release-main.result == 'success')) || (github.event_name != 'workflow_dispatch' && needs.release-main.result == 'success'))
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-nix-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -1696,13 +1709,13 @@ jobs:
         (
           github.ref == 'refs/heads/main' &&
           inputs.action == 'release' &&
-          inputs.runner_pool == 'private'
+          inputs.runner_pool == 'public'
         )
       ) &&
       (
         needs.parse.outputs.channel == 'main' && (github.event_name != 'workflow_dispatch' || needs.release-main.result == 'success')
       )
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slskdn","ng-main-run-{0}","gha-{0}-homebrew-main"]}}', github.run_id)) }}
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:

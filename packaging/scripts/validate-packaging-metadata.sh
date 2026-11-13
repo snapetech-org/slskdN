@@ -90,7 +90,7 @@ reject_line flake.nix 'releases/download/dev/'
 reject_literal flake.nix 'slskdn-dev'
 
 test -x scripts/create-release-tag.sh || fail 'scripts/create-release-tag.sh must be executable'
-expect_literal scripts/create-release-tag.sh './scripts/verify-private-jit-release-gate.sh'
+expect_literal scripts/create-release-tag.sh './scripts/verify-release-gate-run.sh'
 reject_literal scripts/create-release-tag.sh 'bash packaging/scripts/run-release-gate.sh'
 expect_literal scripts/create-release-tag.sh './scripts/verify-github-target.sh'
 expect_literal scripts/create-release-tag.sh 'bash scripts/check-release-branch-sync.sh'

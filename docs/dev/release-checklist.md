@@ -4,21 +4,23 @@
 
 This is the minimum release-readiness checklist for `slskdn`.
 
-Green private JIT validation means the exact commit is a viable release candidate. It does not replace the tag-triggered CI build/publish path.
+Green CI validation on the exact commit means it is a viable release candidate. It does not replace the release workflow that builds and publishes that tag.
 
 ## Release validation bar
 
-Run the `CI` workflow from `main` with `action=ci` and `runner_pool=private`.
-The workflow runs the release gate and Nix package smoke on private per-run JIT
-workers. Hosted runners and hosted fallbacks are not permitted.
+Run the `CI` workflow from `main` with `action=ci` and select
+`runner_pool=public` or `runner_pool=private`. GitHub-hosted public runners are
+supported for trusted `main` validation; private JIT runners remain available
+for workflows that need them.
 
 After both jobs pass for the exact current `main` commit, provide the run ID to
 the guarded release helper:
 
-`scripts/create-release-tag.sh --private-jit-run <run-id> <tag>`
+`scripts/create-release-tag.sh --validation-run <run-id> <tag>`
 
-The helper verifies the repository, workflow, exact commit, successful gate
-jobs, private runner group, and per-run JIT labels before creating the tag.
+The helper verifies the repository, workflow, exact commit, and successful
+validation jobs before creating the tag. It accepts either the supported
+GitHub-hosted runner labels or the private JIT runner group and per-run labels.
 
 If the release claims to fix a reported bug, also run the reproduce-first workflow in [bugfix-verification-checklist.md](bugfix-verification-checklist.md). Green generic validation is not enough on its own.
 
@@ -27,7 +29,7 @@ The release gate now covers:
 - branch sync with the tracked upstream before tagging
 - vendored `slskNet.Runtime` revision and local-patch composition
 - packaging metadata validation
-- release-note, private JIT release-gate, and GitHub-target helper tests
+- release-note, release-gate runner receipt, and GitHub-target helper tests
 - frontend unit tests
 - frontend production build
 - built-web output verification
@@ -54,15 +56,16 @@ gate does not prove that publishing or platform installer workflows succeeded.
 
 ## What it does not prove
 
-- tag-triggered packaging/publish workflows succeeded
+- release packaging and publisher jobs succeeded
 - every platform package installed cleanly
 - every slow or environment-sensitive E2E path is green
 - a tester-reported bug is fixed unless the same reported path was re-run successfully
 
 ## Release flow
 
-1. Get the exact `main` commit green through the private JIT `CI` workflow. The
-   workflow runs the release gate and Nix package smoke.
+1. Get the exact `main` commit green through the `CI` workflow using the public
+   or private runner route. The workflow runs the release gate and Nix package
+   smoke.
 2. For any build that claims to fix a reported issue:
    - capture the repro contract
    - split multi-symptom reports into separate acceptance checks
@@ -76,14 +79,17 @@ gate does not prove that publishing or platform installer workflows succeeded.
 4. Preview and validate the exact notes when needed:
    - `scripts/generate-release-notes.sh <version> /tmp/release-notes.md <git-ref>`
    - `scripts/validate-release-notes.sh <version> /tmp/release-notes.md`
-5. Push the code branch normally if needed.
-6. Only trigger build/release by running the guarded tag helper when explicitly desired:
-   - Stable: `scripts/create-release-tag.sh --private-jit-run <run-id> vYYYYMMDDHH-slskdn.N`
-   - Legacy main: `scripts/create-release-tag.sh --private-jit-run <run-id> build-main-YYYYMMDDHH-slskdn.N`
-   - Dev: `scripts/create-release-tag.sh --private-jit-run <run-id> build-dev-MAJOR.MINOR.PATCH.dev.YYYYMMDD.HHMMSS`
-7. After GitHub publishes the release, verify the actual assets:
+5. Push code directly to `main` if needed.
+6. Create and push the source tag with the guarded helper after validation:
+   - Stable: `scripts/create-release-tag.sh --validation-run <run-id> vYYYYMMDDHH-slskdn.N`
+   - Legacy main: `scripts/create-release-tag.sh --validation-run <run-id> build-main-YYYYMMDDHH-slskdn.N`
+   - Dev: `scripts/create-release-tag.sh --validation-run <run-id> build-dev-MAJOR.MINOR.PATCH.dev.YYYYMMDD.HHMMSS`
+7. On `main`, dispatch the `Build on Tag` workflow with `action=release`,
+   `runner_pool=public`, and the selected `release_tag`. Use publisher retry
+   inputs only for targets that did not complete.
+8. After GitHub publishes the release, verify the actual assets:
    - `scripts/verify-release-artifacts.sh <tag>`
-8. After a stable container image is published, confirm its Docker Hub manifest
+9. After a stable container image is published, confirm its Docker Hub manifest
    includes Linux amd64 and arm64, then run
    `packaging/scripts/update-cloudron-stable-image.sh <tag>`. This adds an
    immutable `CloudronVersions.json` entry and updates the manifest, Dockerfile,
@@ -91,7 +97,8 @@ gate does not prove that publishing or platform installer workflows succeeded.
    validation. Do not advance Cloudron from the binary Formula when the Docker
    image job failed.
 
-Do not rely on a normal branch push to validate packaging or publish artifacts. This repo builds releases on tags.
+Pushing to `main` does not validate packaging or publish artifacts. A release
+requires its source tag and an explicit `Build on Tag` dispatch from `main`.
 Do not create or push plain `slskdn.N` tags for releases; those do not run the release packaging workflow.
 
 The guarded tag helper validates the versioned changelog section before
@@ -139,10 +146,10 @@ Run these when the change touches the relevant surface:
 
 Do not call a build "release-ready" unless:
 
-- private JIT release gate is green on the exact `main` commit
+- CI release gate is green on the exact `main` commit
 - any claimed bugfix has passed its issue-specific repro/acceptance checks, or is clearly labeled as an unverified mitigation
 - no known release-blocking packaging issue is open for the touched platform
-- the tag-triggered build is the next intended step
+- the release workflow is the next intended step
 
 ## Orphaned-change guard
 

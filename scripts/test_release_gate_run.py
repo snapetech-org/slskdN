@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contract tests for the private JIT release-gate receipt verifier."""
+"""Contract tests for exact-head CI release-gate receipts."""
 
 from __future__ import annotations
 
@@ -13,15 +13,15 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERIFIER = ROOT / "scripts/verify-private-jit-release-gate.sh"
+VERIFIER = ROOT / "scripts/verify-release-gate-run.sh"
 COMMIT = "a" * 40
 WORKFLOW_ID = 123456
 REPOSITORY_ID = 1108894784
 
 
-class PrivateJitReleaseGateTests(unittest.TestCase):
+class ReleaseGateRunTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory(prefix="private-jit-release-gate-")
+        self.temporary = tempfile.TemporaryDirectory(prefix="release-gate-run-")
         self.root = Path(self.temporary.name)
         self.bin = self.root / "bin"
         self.data = self.root / "responses"
@@ -72,8 +72,15 @@ class PrivateJitReleaseGateTests(unittest.TestCase):
     def write_run(self) -> None:
         (self.data / "run.json").write_text(json.dumps(self.run_data), encoding="utf-8")
 
-    def write_jobs(self, *, group: str = "ng-shared-main-jit") -> None:
-        labels = ["self-hosted", "ng-main-run-987654"]
+    def write_jobs(self, *, pool: str = "private") -> None:
+        if pool == "private":
+            group = "ng-shared-main-jit"
+            build_labels = ["self-hosted", "ng-main-run-987654", "gha-987654-build"]
+            nix_labels = ["self-hosted", "ng-main-run-987654", "gha-987654-nix-smoke"]
+        else:
+            group = "GitHub Actions"
+            build_labels = ["ubuntu-latest"]
+            nix_labels = ["ubuntu-latest"]
         (self.data / "jobs.json").write_text(
             json.dumps({"jobs": [
                 {
@@ -81,14 +88,14 @@ class PrivateJitReleaseGateTests(unittest.TestCase):
                     "status": "completed",
                     "conclusion": "success",
                     "runner_group_name": group,
-                    "labels": [*labels, "gha-987654-build"],
+                    "labels": build_labels,
                 },
                 {
                     "name": "Nix Package Smoke",
                     "status": "completed",
                     "conclusion": "success",
                     "runner_group_name": group,
-                    "labels": [*labels, "gha-987654-nix-smoke"],
+                    "labels": nix_labels,
                 },
             ]}),
             encoding="utf-8",
@@ -110,8 +117,14 @@ class PrivateJitReleaseGateTests(unittest.TestCase):
     def test_accepts_a_successful_private_jit_dispatch_for_the_exact_main_commit(self) -> None:
         result = self.invoke()
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("Private JIT CI release gate passed", result.stdout)
+        self.assertIn("CI release gate passed", result.stdout)
         self.assertIn("/actions/runs/987654", result.stdout)
+
+    def test_accepts_a_successful_github_hosted_dispatch_for_the_exact_main_commit(self) -> None:
+        self.write_jobs(pool="public")
+        result = self.invoke()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("CI release gate passed", result.stdout)
 
     def test_rejects_a_run_for_a_different_commit(self) -> None:
         self.run_data["head_sha"] = "b" * 40
@@ -150,11 +163,14 @@ class PrivateJitReleaseGateTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("workflow path", result.stderr)
 
-    def test_rejects_hosted_runner_jobs(self) -> None:
-        self.write_jobs(group="GitHub Actions")
+    def test_rejects_hosted_jobs_that_include_self_hosted_labels(self) -> None:
+        self.write_jobs(pool="public")
+        jobs = json.loads((self.data / "jobs.json").read_text(encoding="utf-8"))
+        jobs["jobs"][0]["labels"].append("self-hosted")
+        (self.data / "jobs.json").write_text(json.dumps(jobs), encoding="utf-8")
         result = self.invoke()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("required per-run runner group", result.stderr)
+        self.assertIn("supported public or private runners", result.stderr)
 
     def test_requires_main_and_a_full_commit_id(self) -> None:
         self.assertNotEqual(self.invoke(branch="feature").returncode, 0)

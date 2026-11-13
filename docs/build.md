@@ -71,58 +71,46 @@ If your platform is missing, review the automated build configuration in the `.g
 
 ## CI/CD Build Process
 
-**IMPORTANT:** Builds only happen on tags, not on code pushes.
+CI validation and release publication use separate guarded workflows. Code
+pushes do not automatically publish release artifacts.
 
 ### Build Triggers
 
-The CI workflow (`ci.yml`) is configured to:
-- ✅ **Run on tags**: `v*` stable release tags plus legacy `build-main-*` and `build-dev-*` tags
-- ✅ **Run on pull requests**: For testing (does not publish)
-- ✅ **Run on manual dispatch**: `workflow_dispatch`
-- ❌ **NOT run on pushes to main**: Prevents unwanted builds on documentation/code updates
+The `CI` workflow (`ci.yml`) runs on manual dispatch from `main`. Its
+`pull_request_target` handler is metadata-only and dispatches validation for a
+trusted owner PR head after the required labels are set; it does not run
+arbitrary PR code in the target workflow.
 
-### Triggering a Build
+### CI Validation
 
-First dispatch the `CI` workflow on `main` with `action=ci` and
-`runner_pool=private`. After `Build and Test` and `Nix Package Smoke` pass for
-that exact head, provide the run ID to the guarded tag helper:
+Dispatch the `CI` workflow on `main` with `action=ci`. Use
+`runner_pool=public` for GitHub-hosted runners or `runner_pool=private` for
+private JIT runners. After `Build and Test` and `Nix Package Smoke` pass for
+that exact head, give the run ID to the guarded tag helper to create and push
+the source tag:
 
 ```bash
 # Main/stable release
-scripts/create-release-tag.sh --private-jit-run <run-id> v2026051218-slskdn.240
+scripts/create-release-tag.sh --validation-run <run-id> v2026051218-slskdn.240
 
 # Dev release
-scripts/create-release-tag.sh --private-jit-run <run-id> build-dev-0.24.1.dev.20260512.180000
+scripts/create-release-tag.sh --validation-run <run-id> build-dev-0.24.1.dev.20260512.180000
 ```
 
-See `memory-bank/decisions/adr-0005-tagging-system.md` for complete tag format details.
+See `memory-bank/decisions/adr-0005-tagging-system.md` for tag format details.
 
----
+### Release Builds and Publishers
 
-## Automated Builds (CI/CD)
-
-### ⚠️ Important: Builds Only Happen on Tags
-
-**The CI workflow does NOT automatically build on code pushes. Builds ONLY happen when you create a tag.**
-
-### How to Trigger a Build
-
-First run the private JIT CI workflow on the exact `main` head as described
-above. Then create the tag with its successful run ID.
-
-**For stable releases:**
-```bash
-scripts/create-release-tag.sh --private-jit-run <run-id> v2026051218-slskdn.240
-```
-
-**For dev releases:**
-```bash
-scripts/create-release-tag.sh --private-jit-run <run-id> build-dev-0.24.1.dev.20260512.180000
-```
+Creating a tag does not start a release build. After the tag helper succeeds,
+dispatch `Build on Tag` from `main` with `action=release`,
+`runner_pool=public`, and the existing `release_tag`. Release jobs use
+GitHub-hosted runners with native OS and architecture labels. For recovery,
+select only publishers that did not complete; successful artifacts,
+announcements, and publishers are left alone.
 
 The helper verifies the GitHub target, refuses dirty or unsynced branches,
-checks the exact-head private JIT release gate and duplicate tags, then pushes
-the release tag. After GitHub publishes the release, verify the actual uploaded
+checks the exact-head CI release gate and duplicate tags, then pushes the
+release tag. After GitHub publishes the release, verify the actual uploaded
 assets with:
 
 ```bash
@@ -131,8 +119,8 @@ scripts/verify-release-artifacts.sh <tag>
 
 ### Build Workflows
 
-- **CI Workflow** (`ci.yml`): Runs on tags only (not on code pushes)
-- **Build on Tag** (`build-on-tag.yml`): Full release with packages for `v*`, plus legacy `build-main-*` and `build-dev-*` tags
+- **CI Workflow** (`ci.yml`): Manual validation from `main`; public is the default runner choice, with private JIT available.
+- **Build on Tag** (`build-on-tag.yml`): Manually dispatched from `main` for an existing `v*`, `build-main-*`, or `build-dev-*` tag.
 
 If a stable release already exists but one or more package publishers failed,
 maintainers can manually run **Build on Tag** on the current default branch,

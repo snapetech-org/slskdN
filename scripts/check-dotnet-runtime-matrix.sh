@@ -69,8 +69,8 @@ expect_private_workflows() {
     failed=1
   fi
 
-  if rg -n 'NG_HOSTED_FIRST|NG_FORCE_JIT|ubuntu-latest|windows-latest|macos-latest' "$workflow_directory"; then
-    printf 'workflows must not contain hosted fallback or legacy hosted-first routing\n' >&2
+  if rg -n 'NG_HOSTED_FIRST|NG_FORCE_JIT' "$workflow_directory"; then
+    printf 'workflows must not use implicit hosted fallback routing\n' >&2
     failed=1
   fi
 
@@ -80,6 +80,50 @@ import sys
 from pathlib import Path
 
 workflow_directory = Path(sys.argv[1])
+ci_workflow = workflow_directory / "ci.yml"
+tag_workflow = workflow_directory / "build-on-tag.yml"
+ci_text = ci_workflow.read_text()
+tag_text = tag_workflow.read_text()
+ci_public_enabled = all(token in ci_text for token in (
+    "options: [public, private]",
+    "default: public",
+    "github.ref == 'refs/heads/main'",
+    "github.actor == 'snapetech'",
+    "inputs.runner_pool == 'public'",
+    "inputs.runner_pool == 'private'",
+    "ubuntu-latest",
+    '"group":"ng-shared-main-jit"',
+    '"ng-main-run-{0}"',
+    '"gha-{0}-',
+))
+tag_runner_labels = set(re.findall(r"(?m)^\s+public_runner: ([^\s]+)$", tag_text))
+tag_events = re.search(r"(?ms)^on:\n(.*?)(?=^permissions:|\Z)", tag_text)
+tag_dispatch_only = (
+    tag_events is not None
+    and re.search(r"(?m)^  workflow_dispatch:\s*$", tag_events.group(1)) is not None
+    and re.search(r"(?m)^  (push|pull_request|pull_request_target|release|schedule):\s*$", tag_events.group(1)) is None
+)
+approved_tag_runner_labels = {
+    "ubuntu-latest",
+    "ubuntu-24.04-arm",
+    "macos-15-intel",
+    "macos-15",
+    "windows-latest",
+}
+tag_public_enabled = (
+    "options: [public]" in tag_text
+    and "inputs.runner_pool == 'public'" in tag_text
+    and "github.ref == 'refs/heads/main'" in tag_text
+    and tag_dispatch_only
+    and tag_runner_labels == approved_tag_runner_labels
+)
+if not ci_public_enabled:
+    print("ci.yml must expose the public runner choice only alongside its scoped private JIT route", file=sys.stderr)
+    sys.exit(1)
+if not tag_public_enabled:
+    print("build-on-tag.yml must restrict public runners to guarded main releases and the native runtime matrix", file=sys.stderr)
+    sys.exit(1)
+
 allowed_groups = {
     "ng-shared-main-jit",
     "packer-windows",
@@ -104,8 +148,22 @@ for workflow in sorted((*workflow_directory.glob("*.yml"), *workflow_directory.g
             block_lines.append(child)
         block = "\n".join(block_lines)
         value = match.group("value").strip()
+        if workflow.name == "build-on-tag.yml":
+            if "self-hosted" in block or '"group"' in block:
+                errors.append(f"{workflow.name}:{index + 1} must use GitHub-hosted public runners")
+            elif value == "${{ matrix.public_runner }}" or value in approved_tag_runner_labels:
+                continue
+            else:
+                errors.append(f"{workflow.name}:{index + 1} selects an unapproved public runner")
+            continue
+
         if hosted_runner.search(value) or hosted_runner.search(block):
-            errors.append(f"{workflow.name}:{index + 1} selects hosted runner capacity")
+            if (workflow.name == "ci.yml"
+                    and "ubuntu-latest" in value
+                    and "ng-shared-main-jit" in value
+                    and ci_public_enabled):
+                continue
+            errors.append(f"{workflow.name}:{index + 1} selects hosted capacity outside an explicit public route")
             continue
 
         group_match = re.search(r'"group"\s*:\s*"([^\"]+)"', block)
@@ -136,7 +194,7 @@ if errors:
     sys.exit(1)
 PYTHON
   then
-    printf 'workflow runner selectors must use compatible private JIT groups with run-scoped labels; hosted runners and fallbacks are prohibited\n' >&2
+    printf 'workflow runner selectors must use explicit GitHub-hosted routes or compatible private JIT groups with run-scoped labels\n' >&2
     failed=1
   fi
 

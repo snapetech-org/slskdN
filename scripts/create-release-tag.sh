@@ -8,10 +8,11 @@ cd "$ROOT"
 usage() {
     cat >&2 <<'USAGE'
 Usage:
-  scripts/create-release-tag.sh --private-jit-run <run-id> <v<stable-version>|build-main-*|build-dev-*>
+  scripts/create-release-tag.sh --validation-run <run-id> <v<stable-version>|build-main-*|build-dev-*>
 
-Verifies the private JIT release gate for the exact pushed main commit, then
-creates and pushes the release tag.
+Verifies the exact pushed main commit using a successful CI release-gate run on
+supported public GitHub-hosted or private JIT runners, then creates and pushes
+the release tag. --private-jit-run remains as a backward-compatible alias.
 USAGE
 }
 
@@ -20,13 +21,18 @@ fail() {
     exit 1
 }
 
-private_jit_run=""
+validation_run=""
 tag=""
 while (($#)); do
     case "$1" in
+        --validation-run)
+            [[ -z "$validation_run" && $# -ge 2 ]] || fail "--validation-run requires exactly one run ID."
+            validation_run="$2"
+            shift 2
+            ;;
         --private-jit-run)
-            [[ -z "$private_jit_run" && $# -ge 2 ]] || fail "--private-jit-run requires exactly one run ID."
-            private_jit_run="$2"
+            [[ -z "$validation_run" && $# -ge 2 ]] || fail "--private-jit-run requires exactly one run ID."
+            validation_run="$2"
             shift 2
             ;;
         -h|--help)
@@ -49,7 +55,7 @@ if [[ -z "$tag" ]]; then
     exit 1
 fi
 
-[[ -n "$private_jit_run" ]] || fail "A successful private JIT CI run ID is required."
+[[ -n "$validation_run" ]] || fail "A successful CI validation run ID is required."
 
 if [[ "$tag" =~ [[:space:]] ]]; then
     fail "Release tag must not contain whitespace."
@@ -115,8 +121,8 @@ trap 'rm -f "$notes_tmp"' EXIT
 ./scripts/validate-release-notes.sh "$version" "$notes_tmp"
 
 echo
-echo "==> Verify private JIT release gate"
-./scripts/verify-private-jit-release-gate.sh "$private_jit_run" "$branch" "$(git rev-parse HEAD)"
+echo "==> Verify CI release gate"
+./scripts/verify-release-gate-run.sh "$validation_run" "$branch" "$(git rev-parse HEAD)"
 
 echo
 echo "==> Create and push release tag"

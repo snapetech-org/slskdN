@@ -3,7 +3,7 @@
 set -euo pipefail
 
 usage() {
-    echo "Usage: scripts/verify-private-jit-release-gate.sh <run-id> <branch> <commit-sha>" >&2
+    echo "Usage: scripts/verify-release-gate-run.sh <run-id> <branch> <commit-sha>" >&2
 }
 
 if [[ $# -ne 3 ]]; then
@@ -18,11 +18,11 @@ repo="snapetech-org/slskdN"
 expected_repo_id="1108894784"
 
 if [[ ! "$run_id" =~ ^[1-9][0-9]*$ ]]; then
-    echo "Private JIT validation run ID must be a positive integer." >&2
+    echo "CI validation run ID must be a positive integer." >&2
     exit 2
 fi
 if [[ "$branch" != "main" ]]; then
-    echo "Private JIT release validation must run from main." >&2
+    echo "CI validation must run from main." >&2
     exit 2
 fi
 if [[ ! "$commit_sha" =~ ^[a-f0-9]{40}([a-f0-9]{24})?$ ]]; then
@@ -58,27 +58,36 @@ if ! jq -e \
      and .status == "completed"
      and .conclusion == "success"' \
     <<<"$run_json" >/dev/null; then
-    echo "Private JIT CI run ${run_id} did not pass the release gate for ${branch} at ${commit_sha}." >&2
+    echo "CI run ${run_id} did not pass the release gate for ${branch} at ${commit_sha}." >&2
     exit 1
 fi
 
 jobs_json="$(gh api "repos/${repo}/actions/runs/${run_id}/jobs?per_page=100")"
 if ! jq -e --arg run_id "$run_id" '
-    def private_gate_job($name; $job_label):
+    def valid_gate_job($name; $job_label):
       any(.jobs[]?;
         .name == $name
         and .status == "completed"
         and .conclusion == "success"
-        and .runner_group_name == "ng-shared-main-jit"
-        and ((.labels // []) | index("self-hosted") != null)
-        and ((.labels // []) | index("ng-main-run-" + $run_id) != null)
-        and ((.labels // []) | index($job_label) != null));
-    private_gate_job("Build and Test"; "gha-\($run_id)-build")
-    and private_gate_job("Nix Package Smoke"; "gha-\($run_id)-nix-smoke")
+        and (
+          (
+            .runner_group_name == "ng-shared-main-jit"
+            and ((.labels // []) | index("self-hosted") != null)
+            and ((.labels // []) | index("ng-main-run-" + $run_id) != null)
+            and ((.labels // []) | index($job_label) != null)
+          )
+          or
+          (
+            ((.labels // []) | index("self-hosted") == null)
+            and ((.labels // []) | index("ubuntu-latest") != null or index("ubuntu-24.04") != null)
+          )
+        ));
+    valid_gate_job("Build and Test"; "gha-\($run_id)-build")
+    and valid_gate_job("Nix Package Smoke"; "gha-\($run_id)-nix-smoke")
   ' <<<"$jobs_json" >/dev/null; then
-    echo "Private JIT CI run ${run_id} is not a successful release gate on the required per-run runner group." >&2
+    echo "CI run ${run_id} did not complete both release-gate jobs on supported public or private runners." >&2
     exit 1
 fi
 
 run_url="$(jq -er '.html_url' <<<"$run_json")"
-echo "Private JIT CI release gate passed for ${branch} at ${commit_sha}: ${run_url}"
+echo "CI release gate passed for ${branch} at ${commit_sha}: ${run_url}"

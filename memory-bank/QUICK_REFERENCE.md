@@ -185,31 +185,26 @@ export const getAll = async () => {
 
 ---
 
-## 🚨 CRITICAL: Build Process
+## Release Workflow
 
-**Builds ONLY happen on tags. NO automatic builds on code pushes.**
+Code pushes do not automatically publish release artifacts. Dispatch `CI` from
+`main` with `action=ci`; select `runner_pool=public` (the default) or
+`runner_pool=private`. After `Build and Test` and `Nix Package Smoke` pass for
+the exact head, create and push a source tag with the guarded helper:
 
-### Build Rules
-- ❌ **DO NOT** expect builds on code pushes to master
-- ❌ **DO NOT** modify workflows to trigger on branch pushes
-- ✅ **DO** use `scripts/create-release-tag.sh` when user requests a build
-- ✅ **DO** wait for explicit user instruction before creating tags
-
-### CI Workflow Triggers
-- ✅ Tags: `build-main-*`, `build-dev-*`, version tags
-- ✅ Pull requests: For testing (does not publish)
-- ✅ Manual dispatch: `workflow_dispatch`
-- ❌ **NOT on pushes to master**: Intentionally disabled
-
-### To Trigger a Build (Only if User Requests)
 ```bash
 # Main/stable release
-scripts/create-release-tag.sh --private-jit-run <run-id> build-main-2026051218-slskdn.240
+scripts/create-release-tag.sh --validation-run <run-id> build-main-2026051218-slskdn.240
 
 # Dev release
 VERSION="0.24.1.dev.$(date -u +%Y%m%d.%H%M%S)"
-scripts/create-release-tag.sh --private-jit-run <run-id> "build-dev-${VERSION}"
+scripts/create-release-tag.sh --validation-run <run-id> "build-dev-${VERSION}"
 ```
+
+Creating a tag does not start publication. From `main`, dispatch `Build on Tag`
+with `action=release`, `runner_pool=public`, and the existing `release_tag`.
+Use recovery inputs only for publishers that did not complete. The release
+workflow uses GitHub-hosted runners; CI retains the private JIT option.
 
 See `memory-bank/decisions/adr-0005-tagging-system.md` for complete details.
 
