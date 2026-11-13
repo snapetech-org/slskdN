@@ -56,7 +56,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - CI: install .NET SDK 10.0.404 in the validation workflow to match the repository's global.json pin.
 - CI: quote the private fork runner labels so policy validation recognizes the existing run-scoped JIT route.
 
-- Security: Node-based builds now use patched runtime versions, and the web lockfile resolves follow-redirects 1.16.1 to fix its request-header disclosure advisories.
+- Security: Node-based builds now use patched runtime versions, and the web lockfile resolves `follow-redirects` 1.16.2 for the current redirect-header advisories.
 
 - OIDC login provider guidance now uses the corrected Okta Authorization Code
   with PKCE documentation link, localized accessible help labels, and a clear
