@@ -127,15 +127,11 @@ jobs:
 
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
             if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
-              echo "::error::Manual publisher recovery must use the main-branch workflow"
+              echo "::error::Manual release workflow must use the main branch"
               exit 1
             fi
             if [[ "$CHANNEL" != "main" ]]; then
-              echo "::error::Manual publisher recovery requires an existing v* or build-main-* tag"
-              exit 1
-            fi
-            if [[ "$RETRY_AUR" != true && "$RETRY_COPR" != true && "$RETRY_PPA" != true && "$RETRY_DOCKER" != true && "$RETRY_DOCKER_OMNIBUS" != true && "$RETRY_NIX" != true ]]; then
-              echo "::error::Select at least one publisher to retry"
+              echo "::error::Manual release requires an existing v* or build-main-* tag"
               exit 1
             fi
             git fetch --no-tags origin main "refs/tags/$TAG:refs/tags/$TAG"
@@ -150,6 +146,8 @@ jobs:
           echo "Channel: $CHANNEL"
           echo "Version: $VERSION"
 
+          # Fresh releases have no retry inputs. Recovery selections require an
+          # existing release so they cannot accidentally bypass the normal build.
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]] && \
              [[ "$RETRY_AUR" == true || "$RETRY_COPR" == true || "$RETRY_PPA" == true || "$RETRY_DOCKER" == true || "$RETRY_DOCKER_OMNIBUS" == true || "$RETRY_NIX" == true ]] && \
              ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null; then

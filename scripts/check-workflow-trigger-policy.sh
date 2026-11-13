@@ -163,18 +163,25 @@ def job_block(workflow, job):
     return match.group(1)
 
 parse_job = job_block(tag_workflow, "parse")
-if "Manual publisher recovery requires an existing v* or build-main-* tag" not in parse_job:
-    raise SystemExit("manual publisher recovery must accept only stable build tags")
+if "Manual release requires an existing v* or build-main-* tag" not in parse_job:
+    raise SystemExit("manual releases must accept only stable build tags")
 if not re.search(r"(?m)^    permissions:\n      contents: read$", parse_job):
     raise SystemExit("manual publisher recovery must use a read-only token to verify the release")
 if "GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}" not in parse_job:
     raise SystemExit("manual publisher recovery must authenticate its release lookup")
 if 'gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY"' not in parse_job:
     raise SystemExit("manual publisher recovery must verify the existing release before publishing")
-if "Select at least one publisher to retry" not in parse_job:
-    raise SystemExit("manual publisher recovery must require an explicit target")
+if "Select at least one publisher to retry" in parse_job:
+    raise SystemExit("fresh manual releases must not require a publisher-recovery selection")
+if not re.search(
+    r'if \[\[ "\$GITHUB_EVENT_NAME" == "workflow_dispatch" \]\] && \\\s*'
+    r'\[\[ "\$RETRY_AUR" == true.*?! gh release view',
+    parse_job,
+    re.S,
+):
+    raise SystemExit("only selected publisher recovery must require an existing release")
 if 'if [[ "$GITHUB_REF" != "refs/heads/main" ]]' not in parse_job:
-    raise SystemExit("manual publisher recovery must use the protected main workflow")
+    raise SystemExit("manual releases and publisher recovery must use the main workflow")
 
 build_tag_pattern = r"^build-(main|dev)-([A-Za-z0-9][A-Za-z0-9._-]*)$"
 if build_tag_pattern not in parse_job:

@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- CI: allow a fresh tagged release through the private-JIT workflow while requiring an existing release for publisher recovery.
+
 ## [2026111302-slskdn.353] — 2026-11-12
 
 - Security: .NET and ASP.NET Core dependencies and bundled runtimes use 10.0.15, with SDK 10.0.404 and fixed VSTest servicing packages for the November 2026 advisories.
