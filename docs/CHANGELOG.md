@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+## [2026111302-slskdn.353] — 2026-11-12
+
 - Security: .NET and ASP.NET Core dependencies and bundled runtimes use 10.0.15, with SDK 10.0.404 and fixed VSTest servicing packages for the November 2026 advisories.
 - Security: release tag validation is bounded and shell-safe, and manual publisher recovery is limited to the main-branch workflow.
 - CI: Add exact job-scoped JIT labels to shared runner builds and security scans.
@@ -53,8 +55,6 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Audio quality: opt-in spectral analysis now detects clear lossy low-pass cutoffs in local FLAC files while keeping borderline mastering filters review-only.
 - CI: install .NET SDK 10.0.404 in the validation workflow to match the repository's global.json pin.
 - CI: quote the private fork runner labels so policy validation recognizes the existing run-scoped JIT route.
-
-## [2026102116-slskdn.353] — 2026-10-21
 
 - Security: Node-based builds now use patched runtime versions, and the web lockfile resolves follow-redirects 1.16.1 to fix its request-header disclosure advisories.
 
