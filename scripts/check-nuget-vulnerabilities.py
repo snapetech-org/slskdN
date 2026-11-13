@@ -35,13 +35,16 @@ def main() -> int:
         result = subprocess.run(
             [
                 "dotnet",
-                "list",
-                str(project),
                 "package",
+                "list",
+                "--project",
+                str(project),
                 "--vulnerable",
                 "--include-transitive",
                 "--format",
                 "json",
+                "--verbosity",
+                "normal",
             ],
             cwd=REPOSITORY_ROOT,
             env=environment,
