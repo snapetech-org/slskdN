@@ -79,7 +79,7 @@ jobs:
         run: dotnet build slskNet.Runtime.sln --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test slskNet.Runtime.sln --configuration Release --no-build
+        run: dotnet test tests/Soulseek.Tests.Unit/Soulseek.Tests.Unit.csproj --configuration Release --no-build
 
   dispatch-owner-pr:
     name: Dispatch trusted owner PR validation
