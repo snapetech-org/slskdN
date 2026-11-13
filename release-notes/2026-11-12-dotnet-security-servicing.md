@@ -5,4 +5,4 @@ area: dependencies
 action: none
 breaking: false
 ---
-Updated the .NET and ASP.NET Core runtime and dependency graphs to 10.0.15, the .NET SDK to 10.0.404, and test-runner packages to fixed servicing versions for the November 2026 security advisories, including CVE-2026-109475, CVE-2026-114146, and CVE-2026-105544. The vendored slskNet.Runtime mirror now tracks 10.0.4, whose Axios 1.21.1 dependency resolves `follow-redirects` 1.16.2 to address CVE-2026-116689.
+Reduces exposure to November .NET runtime and ASP.NET Core advisories by updating the dependency graph to 10.0.15, the SDK to 10.0.404, and VSTest packages to fixed releases (CVE-2026-109475, CVE-2026-114146, CVE-2026-105544). slskNet.Runtime 10.0.4 also updates Axios to 1.21.1 and `follow-redirects` to 1.16.2 for CVE-2026-116689.

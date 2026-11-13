@@ -1,3 +1,10 @@
+---
+category: added
+audience: users, operators
+area: audio-quality
+action: none
+breaking: false
+---
 # Opt-in FLAC spectral transcode detection
 
 slskdN can now measure sharp high-frequency cutoffs in local FLAC files and flag
