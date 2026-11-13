@@ -55,6 +55,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Audio quality: opt-in spectral analysis now detects clear lossy low-pass cutoffs in local FLAC files while keeping borderline mastering filters review-only.
 - CI: install .NET SDK 10.0.404 in the validation workflow to match the repository's global.json pin.
 - CI: quote the private fork runner labels so policy validation recognizes the existing run-scoped JIT route.
+- Dependencies: update AngleSharp, AWS SDK for S3, and OpenTelemetry HTTP instrumentation; refresh pinned GitHub Actions for release, container login, and k6 setup.
 
 - Security: Node-based builds now use patched runtime versions, and the web lockfile resolves `follow-redirects` 1.16.2 for the current redirect-header advisories.
 
