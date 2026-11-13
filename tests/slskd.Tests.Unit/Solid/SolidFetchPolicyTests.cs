@@ -25,7 +25,15 @@ public class SolidFetchPolicyTests
         return new SolidFetchPolicy(
             _options,
             _loggerMock.Object,
-            static (_, _) => Task.FromResult(new[] { IPAddress.Parse("93.184.216.34") }));
+            static (host, _) =>
+            {
+                if (IPAddress.TryParse(host, out var address) && address is not null)
+                {
+                    return Task.FromResult(new[] { address });
+                }
+
+                return Task.FromResult(new[] { IPAddress.Parse("93.184.216.34") });
+            });
     }
 
     [Fact]
