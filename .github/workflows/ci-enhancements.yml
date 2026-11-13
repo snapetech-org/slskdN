@@ -217,7 +217,7 @@ jobs:
           timeout 60 bash -c 'until curl -f http://127.0.0.1:5099/api/v0/session/enabled; do sleep 2; done' || { echo 'Application did not become healthy for load testing' >&2; exit 1; }
 
       - name: Install k6
-        uses: grafana/setup-k6-action@43b9fc21641a76002687994433dd586f56e791b1 # v1
+        uses: grafana/setup-k6-action@c47136d33d365efbeb9ae7266908b5dcf98cdece # v1
 
       - name: Create Load Test Script
         run: |
