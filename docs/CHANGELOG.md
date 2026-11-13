@@ -23,6 +23,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 ## [Unreleased]
 
 - CI: let trusted main-branch validation and release publishers use GitHub-hosted runners, while retaining private JIT for owner-PR validation.
+- CI: keep the public/private runner selection guards valid for GitHub Actions expressions.
 - Release: add a Chocolatey publisher recovery switch so failed or queued package targets can be retried without rebuilding or republishing completed targets.
 
 ## [2026111302-slskdn.353] — 2026-11-12
