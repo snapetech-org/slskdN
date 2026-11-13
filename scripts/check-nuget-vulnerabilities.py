@@ -57,8 +57,71 @@ def main() -> int:
         if result.returncode != 0:
             print(result.stdout, end="", file=sys.stderr)
             print(result.stderr, end="", file=sys.stderr)
-            print(f"NuGet vulnerability scan failed for {relative_project}.", file=sys.stderr)
-            return 1
+            try:
+                failed_report = json.loads(result.stdout)
+            except json.JSONDecodeError:
+                failed_report = {}
+
+            restore_failed = any(
+                "restore failed" in str(problem.get("text", "")).casefold()
+                for problem in failed_report.get("problems", [])
+                if isinstance(problem, dict)
+            )
+            if not restore_failed:
+                print(f"NuGet vulnerability scan failed for {relative_project}.", file=sys.stderr)
+                return 1
+
+            print(
+                f"NuGet reported a restore failure for {relative_project}; running explicit restore diagnostics.",
+                file=sys.stderr,
+            )
+            restore = subprocess.run(
+                ["dotnet", "restore", str(project), "--verbosity", "normal"],
+                cwd=REPOSITORY_ROOT,
+                env=environment,
+                capture_output=True,
+                check=False,
+                text=True,
+            )
+            print(restore.stdout, end="", file=sys.stderr)
+            print(restore.stderr, end="", file=sys.stderr)
+            if restore.returncode != 0:
+                print(f"NuGet restore failed for {relative_project}.", file=sys.stderr)
+                return 1
+
+            print(
+                f"Explicit restore succeeded for {relative_project}; retrying the audit without another restore.",
+                file=sys.stderr,
+            )
+            retry_command = [
+                "dotnet",
+                "package",
+                "list",
+                "--project",
+                str(project),
+                "--no-restore",
+                "--vulnerable",
+                "--include-transitive",
+                "--format",
+                "json",
+                "--output-version",
+                "1",
+                "--verbosity",
+                "quiet",
+            ]
+            result = subprocess.run(
+                retry_command,
+                cwd=REPOSITORY_ROOT,
+                env=environment,
+                capture_output=True,
+                check=False,
+                text=True,
+            )
+            if result.returncode != 0:
+                print(result.stdout, end="", file=sys.stderr)
+                print(result.stderr, end="", file=sys.stderr)
+                print(f"NuGet vulnerability scan retry failed for {relative_project}.", file=sys.stderr)
+                return 1
 
         try:
             report = json.loads(result.stdout)
