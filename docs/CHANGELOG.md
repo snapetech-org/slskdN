@@ -51,6 +51,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Runtime sync: rebase the slskdN patch against the audited slskNet.Runtime 10.0.3 source and keep strict validation for obfuscated peer ports.
 - Runtime vendor: sync the mirror to slskNet.Runtime 10.0.3, retaining slskdN-specific behavior in the declared patch set.
 - Audio quality: opt-in spectral analysis now detects clear lossy low-pass cutoffs in local FLAC files while keeping borderline mastering filters review-only.
+- CI: install .NET SDK 10.0.404 in the validation workflow to match the repository's global.json pin.
 
 ## [2026102116-slskdn.353] — 2026-10-21
 
