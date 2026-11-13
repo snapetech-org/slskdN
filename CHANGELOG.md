@@ -21,8 +21,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   inspect every first-party project.
 - CI validation artifacts now include only receipts and task logs, leaving
   temporary task environments and dependency caches on the runners.
-- The local identity denylist scan runs only on trusted `main` pushes, so
-  pull-request workflows never receive its secret.
+- The local identity denylist scan runs only through trusted `main`-branch
+  manual dispatches, so pull-request workflows never receive its secret.
 - Build, test, scan, package, and release jobs use compatible private
   per-run JIT runners without hosted fallbacks. Public-fork code uses disposable
   secretless JIT runners with restricted access. Release jobs receive only the
@@ -43,6 +43,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   startup.
 - MonoTorrent now uses 3.9.0-alpha.unstable.rev0000 with its .NET 8 package
   asset, which NuGet selects as compatible for this .NET 10 application.
+- The vendored slskNet.Runtime mirror now tracks 10.0.4. Its example API and
+  tests target .NET 11, and its Axios 1.21.1 dependency resolves
+  `follow-redirects` 1.16.2 to address CVE-2026-116689.
 
 ### Added
 

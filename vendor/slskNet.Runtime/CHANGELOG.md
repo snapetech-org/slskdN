@@ -1,5 +1,13 @@
 # Changelog
 
+## 10.0.4 - 2026-11-12
+
+- Updated the Web API, examples, and test projects to .NET 11 and replaced the deprecated ASP.NET API versioning package with `Asp.Versioning.Mvc.ApiExplorer`.
+- Updated maintained .NET analyzers, test tooling, SQLite, JWT, OpenAPI, and frontend build dependencies to current stable releases.
+- Updated Axios to 1.21.1, which requires patched `follow-redirects` 1.16.2 or later, addressing CVE-2026-116689.
+- Removed the unused SignalR browser package and redundant legacy HTTP and regular expression test packages.
+- Extended private-JIT CI to build the frontend and retain the runtime NuGet packages used for releases.
+
 ## 10.0.3 - 2026-10-22
 
 - Synced the runtime with Soulseek.NET upstream through `c07c187` and adapted the fork's client, protocol, and test integrations.

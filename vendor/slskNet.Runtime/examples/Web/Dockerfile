@@ -1,7 +1,7 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:11.0
 
 WORKDIR /app
-COPY --chown=app:app api/bin/Release/net8.0/publish/ ./
+COPY --chown=app:app api/bin/Release/net11.0/publish/ ./
 
 RUN mkdir -p /var/slsk/shared /var/slsk/download \
     && chown -R app:app /var/slsk

@@ -35,21 +35,21 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Consensus session eviction now uses a bounded insertion-order queue instead of allocating a dictionary snapshot when the session limit is reached.
 - Verification session eviction now uses the same bounded FIFO approach, preventing capacity-filling requests from scanning the full session table.
 - Workflow policy validation permits only the exact repository-scoped, main-only JIT route and the restricted gVisor smoke route; pull-request workflows remain isolated. Main build and scan jobs verify scanner tools from the runner image instead of racing Ubuntu package locks.
-- Hosted security workflows install ripgrep when the runner image does not include it, so identity-scanner validation can complete reliably.
-- CI validation now checks the conditional ripgrep installation used by hosted scanners while confirming jq and ripgrep are available before scanning.
+- Private-JIT security workflows install ripgrep when the runner image does not include it, so identity-scanner validation can complete reliably.
+- CI validation checks the conditional ripgrep installation used by private-JIT scanners and confirms jq and ripgrep are available before scanning.
 - Packaging validation now checks the release workflow's architecture-specific executable path.
 - Release package validation now follows the workflow's tag-based asset selection.
-- The local identity denylist scan runs only on trusted `main` pushes or manual dispatches on `main`, so pull requests never receive its secret.
+- The local identity denylist scan runs only through trusted manual dispatches on `main`, so pull requests never receive its secret.
 - Shared Linux runner jobs use project- and run-scoped labels so JIT dispatch cannot pull work from a different project's queue.
 - Trusted main-branch builds and security scans now use the capacity-guarded shared Linux runner pool; fork pull requests remain on isolated runners.
-- CI now validates pushes to `main` and lets each validation run finish without cancelling an earlier run.
+- CI validates the exact `main` commit through private-JIT manual dispatches and lets each run finish without cancelling an earlier run.
 - Fix the Apple Sign In temporary cookie setup so the server builds with the required cross-site callback policy.
 - AcoustID lookups use each track's measured duration, improving matches for longer recordings while keeping metadata processing responsive when ffprobe stalls.
 - Runtime integration: federated TCP listeners now cancel pending accept reads when the runtime listener stops, preventing a stranded read during reconfiguration, and implement the updated backlog-aware listener contract.
 - Peer preview streams now retain support for tickets without a known size by using the peer's announced size with the updated runtime API.
 - Runtime sync validation now distinguishes truly untracked vendor files from tracked changes when checking the generated mirror.
-- Runtime sync: rebase the slskdN patch against the audited slskNet.Runtime 10.0.3 source and keep strict validation for obfuscated peer ports.
-- Runtime vendor: sync the mirror to slskNet.Runtime 10.0.3, retaining slskdN-specific behavior in the declared patch set.
+- Runtime sync: rebase the slskdN patch against the audited slskNet.Runtime 10.0.4 source and keep strict validation for obfuscated peer ports.
+- Runtime vendor: sync the mirror to slskNet.Runtime 10.0.4, retaining slskdN-specific behavior in the declared patch set and updating its examples, test tooling, and frontend dependencies.
 - Audio quality: opt-in spectral analysis now detects clear lossy low-pass cutoffs in local FLAC files while keeping borderline mastering filters review-only.
 - CI: install .NET SDK 10.0.404 in the validation workflow to match the repository's global.json pin.
 - CI: quote the private fork runner labels so policy validation recognizes the existing run-scoped JIT route.

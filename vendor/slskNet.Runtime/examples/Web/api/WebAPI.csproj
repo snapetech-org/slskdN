@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
@@ -16,13 +16,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.2\WebAPI.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net11.0\WebAPI.xml</DocumentationFile>
     <OutputPath></OutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.2\WebAPI.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net11.0\WebAPI.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
 
@@ -34,13 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.32" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="11.0.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="10.2.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="11.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.3.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.19.2" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="11.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.23.0" />
   </ItemGroup>
 
   <ItemGroup>

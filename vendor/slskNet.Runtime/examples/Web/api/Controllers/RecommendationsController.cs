@@ -10,6 +10,8 @@ using WebAPI.DTO;
 
 namespace WebAPI.Controllers
 {
+    using Asp.Versioning;
+
     public class InterestsRequest
     {
         public List<string> Likes { get; set; }

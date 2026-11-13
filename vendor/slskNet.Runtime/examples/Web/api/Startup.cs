@@ -12,11 +12,12 @@ namespace WebAPI
     using System.Text.Json.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
+    using Asp.Versioning;
+    using Asp.Versioning.ApiExplorer;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.Caching.Memory;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -153,12 +154,13 @@ namespace WebAPI
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
-            services.AddApiVersioning(options => options.ReportApiVersions = true);
-            services.AddVersionedApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;
-            });
+            services.AddApiVersioning(options => options.ReportApiVersions = true)
+                .AddMvc()
+                .AddApiExplorer(options =>
+                {
+                    options.GroupNameFormat = "'v'VVV";
+                    options.SubstituteApiVersionInUrl = true;
+                });
 
             services.AddSwaggerGen(options =>
             {

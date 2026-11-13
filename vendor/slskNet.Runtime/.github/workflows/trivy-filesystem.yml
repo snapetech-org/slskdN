@@ -1,12 +1,23 @@
+# ng-runner-policy: private-jit-only-v1
 name: Trivy filesystem scan
 
+run-name: ${{ format('action:{0}:pool:{1}', inputs.action, inputs.runner_pool) }}
+
 on:
-  push:
-  pull_request:
-  schedule:
-    - cron: "13 9 * * 1"
   workflow_dispatch:
 
+    inputs:
+      action:
+        description: Run the private security scan
+        required: true
+        type: choice
+        options:
+          - scan
+      runner_pool:
+        description: Select the private ephemeral runner pool
+        required: true
+        type: choice
+        options: [private]
 permissions:
   contents: read
 
@@ -17,7 +28,9 @@ concurrency:
 jobs:
   trivy:
     name: Trivy source, dependency, and configuration scan
-    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' && inputs.action == 'scan' && inputs.runner_pool == 'private' && github.ref == 'refs/heads/main'
+    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slsknet.runtime","ng-main-run-{0}","gha-{0}-trivy"]}}', github.run_id)) }}
     timeout-minutes: 30
     steps:
       - name: Checkout

@@ -89,11 +89,11 @@ needs_build() {
 if [ "$no_build" == false ]; then
   build_needed=false
 
-  if [ "$run_unit" == true ] && needs_build tests/Soulseek.Tests.Unit/bin/Release/net8.0/Soulseek.Tests.Unit.dll src tests/Soulseek.Tests.Unit; then
+  if [ "$run_unit" == true ] && needs_build tests/Soulseek.Tests.Unit/bin/Release/net11.0/Soulseek.Tests.Unit.dll src tests/Soulseek.Tests.Unit; then
     build_needed=true
   fi
 
-  if [ "$run_integration" == true ] && needs_build tests/Soulseek.Tests.Integration/bin/Release/net8.0/Soulseek.Tests.Integration.dll src tests/Soulseek.Tests.Integration; then
+  if [ "$run_integration" == true ] && needs_build tests/Soulseek.Tests.Integration/bin/Release/net11.0/Soulseek.Tests.Integration.dll src tests/Soulseek.Tests.Integration; then
     build_needed=true
   fi
 

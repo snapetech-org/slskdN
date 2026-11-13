@@ -1,5 +1,6 @@
 ﻿namespace WebAPI.Controllers
 {
+    using Asp.Versioning;
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
