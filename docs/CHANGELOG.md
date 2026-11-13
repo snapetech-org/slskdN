@@ -22,6 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Packaging: Chocolatey now removes its generated VPN shim and extracted release payload on uninstall, and identifies the package title and source code clearly.
 - CI: Build release Docker images from the checked-out source and downloaded assets instead of refetching the repository inside BuildKit.
 - CI: let trusted main-branch validation and release publishers use GitHub-hosted runners, while retaining private JIT for owner-PR validation.
 - CI: keep the public/private runner selection guards valid for GitHub Actions expressions.

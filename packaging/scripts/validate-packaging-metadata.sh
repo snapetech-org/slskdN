@@ -686,6 +686,22 @@ CHOC_VERSION=$(sed -n 's#.*<version>\(.*\)</version>#\1#p' packaging/chocolatey/
 if [[ -z "${CHOC_VERSION}" ]]; then
   fail "Could not extract Chocolatey version from packaging/chocolatey/slskdn.nuspec"
 fi
+CHOC_PROJECT_URL=$(sed -n 's#.*<projectUrl>\(.*\)</projectUrl>#\1#p' packaging/chocolatey/slskdn.nuspec | head -n 1)
+CHOC_PROJECT_SOURCE_URL=$(sed -n 's#.*<projectSourceUrl>\(.*\)</projectSourceUrl>#\1#p' packaging/chocolatey/slskdn.nuspec | head -n 1)
+fail_if_empty "$CHOC_PROJECT_URL" "Chocolatey projectUrl"
+fail_if_empty "$CHOC_PROJECT_SOURCE_URL" "Chocolatey projectSourceUrl"
+if [[ "$CHOC_PROJECT_SOURCE_URL" == "$CHOC_PROJECT_URL" ]]; then
+  fail "Chocolatey projectSourceUrl must identify source code separately from projectUrl"
+fi
+expect_literal packaging/chocolatey/slskdn.nuspec '<title>slskdN — Batteries-Included Soulseek Server</title>'
+expect_literal packaging/chocolatey/slskdn.nuspec '<projectSourceUrl>https://github.com/snapetech-org/slskdN/tree/main</projectSourceUrl>'
+CHOCOLATEY_UNINSTALL_SCRIPT=packaging/chocolatey/tools/chocolateyUninstall.ps1
+if [[ ! -s "$CHOCOLATEY_UNINSTALL_SCRIPT" ]]; then
+  fail "Chocolatey package is missing $CHOCOLATEY_UNINSTALL_SCRIPT"
+fi
+expect_literal "$CHOCOLATEY_UNINSTALL_SCRIPT" 'Uninstall-BinFile -Name "slskdN-vpn-agent"'
+expect_literal "$CHOCOLATEY_UNINSTALL_SCRIPT" 'Uninstall-ChocolateyZipPackage -PackageName "slskdn" -ZipFileName "slskdn-main-win-x64.zip"'
+expect_literal packaging/chocolatey/slskdn.nuspec '<file src="tools\**" target="tools" />'
 expect_literal .github/workflows/build-on-tag.yml '$PackageVersion = "$($Matches[1]).0.0.$($Matches[2])"'
 expect_literal .github/workflows/publish-chocolatey.yml '$PackageVersion = "$($Matches[1]).0.0.$($Matches[2])"'
 reject_literal .github/workflows/build-on-tag.yml '$1.0.0-slskdn.$2'

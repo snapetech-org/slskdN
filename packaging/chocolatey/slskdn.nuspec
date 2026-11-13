@@ -3,7 +3,7 @@
   <metadata>
     <id>slskdn</id>
     <version>2026111302-slskdn.353</version>
-    <title>slskdn</title>
+    <title>slskdN — Batteries-Included Soulseek Server</title>
     <authors>snapetech</authors>
     <owners>slskdn</owners>
     <copyright>Copyright (c) slskdN Team and slskd Team</copyright>
@@ -11,7 +11,7 @@
     <iconUrl>https://cdn.jsdelivr.net/gh/snapetech-org/slskdN@7a35e0c875d2084a69a5cc051876c5a3133f4ffa/src/web/public/logo192.png</iconUrl>
     <licenseUrl>https://github.com/snapetech-org/slskdN/blob/main/LICENSE</licenseUrl>
     <packageSourceUrl>https://github.com/snapetech-org/slskdN/tree/main/packaging/chocolatey</packageSourceUrl>
-    <projectSourceUrl>https://github.com/snapetech-org/slskdN</projectSourceUrl>
+    <projectSourceUrl>https://github.com/snapetech-org/slskdN/tree/main</projectSourceUrl>
     <docsUrl>https://github.com/snapetech-org/slskdN/blob/main/docs/README.md</docsUrl>
     <mailingListUrl>https://github.com/snapetech-org/slskdN/discussions</mailingListUrl>
     <bugTrackerUrl>https://github.com/snapetech-org/slskdN/issues</bugTrackerUrl>
