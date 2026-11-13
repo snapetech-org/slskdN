@@ -139,7 +139,6 @@ namespace WebAPI
             {
                 options.EnableEndpointRouting = false;
             })
-                .SetCompatibilityVersion(CompatibilityVersion.Latest)
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new IPAddressConverter());

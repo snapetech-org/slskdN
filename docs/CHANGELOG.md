@@ -49,7 +49,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 - Peer preview streams now retain support for tickets without a known size by using the peer's announced size with the updated runtime API.
 - Runtime sync validation now distinguishes truly untracked vendor files from tracked changes when checking the generated mirror.
 - Runtime sync: rebase the slskdN patch against the audited slskNet.Runtime 10.0.4 source and keep strict validation for obfuscated peer ports.
-- Runtime vendor: sync the mirror to slskNet.Runtime 10.0.4, retaining slskdN-specific behavior in the declared patch set and updating its examples, test tooling, and frontend dependencies.
+- Runtime vendor: sync the mirror to slskNet.Runtime 10.0.4, retaining slskdN-specific behavior in the declared patch set, updating its examples, test tooling, and frontend dependencies, and removing obsolete MVC compatibility configuration from the example Web API.
 - Audio quality: opt-in spectral analysis now detects clear lossy low-pass cutoffs in local FLAC files while keeping borderline mastering filters review-only.
 - CI: install .NET SDK 10.0.404 in the validation workflow to match the repository's global.json pin.
 - CI: quote the private fork runner labels so policy validation recognizes the existing run-scoped JIT route.
