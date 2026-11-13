@@ -204,11 +204,11 @@ export const getAll = async () => {
 ### To Trigger a Build (Only if User Requests)
 ```bash
 # Main/stable release
-scripts/create-release-tag.sh build-main-2026051218-slskdn.240
+scripts/create-release-tag.sh --private-jit-run <run-id> build-main-2026051218-slskdn.240
 
 # Dev release
 VERSION="0.24.1.dev.$(date -u +%Y%m%d.%H%M%S)"
-scripts/create-release-tag.sh "build-dev-${VERSION}"
+scripts/create-release-tag.sh --private-jit-run <run-id> "build-dev-${VERSION}"
 ```
 
 See `memory-bank/decisions/adr-0005-tagging-system.md` for complete details.

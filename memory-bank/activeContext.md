@@ -6,7 +6,19 @@ candidate backlog/count gates are retired. Keep the focused remediation,
 boundary, and behavior-regression checks for confirmed findings. Older backlog
 and scanner notes below are historical records, not current work instructions.
 
-## Current state — Localization PR #360 — 2026-10-15
+## Current work — November 2026 .NET security servicing — 2026-11-12
+
+The current `main` head is `c5629f268`. Microsoft's November 10 advisories
+require .NET 10.0.15 runtime and package updates, SDK 10.0.404, and patched
+VSTest packages. The working branch is `codex/cve-remediation-20261112` and
+contains synchronized app, test, container, Flatpak, workflow, validator, and
+release-note updates. GitHub currently reports no open Dependabot,
+code-scanning, or secret-scanning alerts; the new Microsoft advisories appeared
+after the previous dependency scan. Release and exact-head validation remain
+pending on private ephemeral JIT runners. Do not create a stable tag before
+the pushed `main` head passes the current release gate.
+
+## Historical snapshot — Localization PR #360 — 2026-10-15
 
 PR #360 contains the 12-locale UI coverage and Arabic rendering fixes. The
 follow-up closes the remaining identified Network display gaps: per-label
@@ -21,13 +33,13 @@ placeholder parity, and the README maturity audit. Fresh exact-head hosted CI
 must be checked after the PR branch is updated. The broad Web UI suite and .NET
 suite were not rerun for this JavaScript-only follow-up.
 
-Broader raw API-error flows and fluent-speaker review remain open and are
+Broader raw API-error flows and fluent-speaker review remained open and were
 tracked in `docs/localization-roadmap.md`. The earlier Agent VM review covered
-Arabic metrics and downloads at mobile and desktop widths; this follow-up has
-not had a fresh browser pass and does not claim app-wide RTL support. Keep PR
-open; do not merge, release, or tag.
+Arabic metrics and downloads at mobile and desktop widths; that follow-up had
+not had a fresh browser pass and did not claim app-wide RTL support. This
+snapshot predates the current November 2026 security and release work.
 
-## Current state — Stable `.351` release validation — 2026-10-14 01:28 UTC
+## Historical snapshot — Stable `.351` release validation — 2026-10-14 01:28 UTC
 
 The `.351` feature and documentation work is on `main`, including the README
 and feature/API/configuration guides. Exact-head CI and Nix smoke run
@@ -40,12 +52,10 @@ Regression coverage passes 8/8, release-note preview passes, and `./bin/lint`
 completed. The remediation baseline stopped at the expected branch-sync guard
 because the two verifier-fix commits are not pushed yet.
 
-The feature tree remains untagged. Push the gotcha and verifier fix with a
-normal fast-forward, then run the remediation baseline and dispatch new
-exact-head CI and Playwright E2E. The earlier E2E run still targets the prior
-SHA and remains queued. Create the stable tag only after both fresh exact-head
-runs pass, then verify release assets and downstream publication. Live
-DHT/VPN validation still has no supplied credentials or VPN profile.
+At that snapshot, the feature tree was untagged, exact-head CI and Playwright
+E2E were still required, and no live DHT/VPN credentials or profile were
+available. Those release instructions were specific to October 14 and are
+superseded by the current November 2026 release work above.
 
 ## Prior state — Stable `.351` security release candidate — 2026-10-13 22:13 UTC
 

@@ -83,14 +83,16 @@ The CI workflow (`ci.yml`) is configured to:
 
 ### Triggering a Build
 
-To trigger a build, create and push a tag:
+First dispatch the `CI` workflow on `main` with `action=ci` and
+`runner_pool=private`. After `Build and Test` and `Nix Package Smoke` pass for
+that exact head, provide the run ID to the guarded tag helper:
 
 ```bash
 # Main/stable release
-scripts/create-release-tag.sh v2026051218-slskdn.240
+scripts/create-release-tag.sh --private-jit-run <run-id> v2026051218-slskdn.240
 
 # Dev release
-scripts/create-release-tag.sh build-dev-0.24.1.dev.20260512.180000
+scripts/create-release-tag.sh --private-jit-run <run-id> build-dev-0.24.1.dev.20260512.180000
 ```
 
 See `memory-bank/decisions/adr-0005-tagging-system.md` for complete tag format details.
@@ -105,19 +107,22 @@ See `memory-bank/decisions/adr-0005-tagging-system.md` for complete tag format d
 
 ### How to Trigger a Build
 
+First run the private JIT CI workflow on the exact `main` head as described
+above. Then create the tag with its successful run ID.
+
 **For stable releases:**
 ```bash
-scripts/create-release-tag.sh v2026051218-slskdn.240
+scripts/create-release-tag.sh --private-jit-run <run-id> v2026051218-slskdn.240
 ```
 
 **For dev releases:**
 ```bash
-scripts/create-release-tag.sh build-dev-0.24.1.dev.20260512.180000
+scripts/create-release-tag.sh --private-jit-run <run-id> build-dev-0.24.1.dev.20260512.180000
 ```
 
-The helper verifies the GitHub target, refuses dirty or unsynced branches, runs
-the full release gate, checks for duplicate tags, and only then pushes the
-release tag. After GitHub publishes the release, verify the actual uploaded
+The helper verifies the GitHub target, refuses dirty or unsynced branches,
+checks the exact-head private JIT release gate and duplicate tags, then pushes
+the release tag. After GitHub publishes the release, verify the actual uploaded
 assets with:
 
 ```bash

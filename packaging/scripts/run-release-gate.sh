@@ -8,7 +8,7 @@ cd "$ROOT"
 bash scripts/check-release-branch-sync.sh
 bash packaging/scripts/validate-packaging-metadata.sh
 python3 scripts/test_release_notes.py
-python3 scripts/test_hosted_release_gate.py
+python3 scripts/test_private_jit_release_gate.py
 python3 scripts/test_verify_github_target.py
 
 pnpm install --frozen-lockfile

@@ -8,11 +8,10 @@ cd "$ROOT"
 usage() {
     cat >&2 <<'USAGE'
 Usage:
-  scripts/create-release-tag.sh [--hosted-ci-run <run-id>] <v<stable-version>|build-main-*|build-dev-*>
+  scripts/create-release-tag.sh --private-jit-run <run-id> <v<stable-version>|build-main-*|build-dev-*>
 
-Runs the release gate against the exact pushed branch head, then creates and
-pushes the release tag. A successful manual CI run may be supplied when local
-test execution is unavailable.
+Verifies the private JIT release gate for the exact pushed main commit, then
+creates and pushes the release tag.
 USAGE
 }
 
@@ -21,13 +20,13 @@ fail() {
     exit 1
 }
 
-hosted_ci_run=""
+private_jit_run=""
 tag=""
 while (($#)); do
     case "$1" in
-        --hosted-ci-run)
-            [[ -z "$hosted_ci_run" && $# -ge 2 ]] || fail "--hosted-ci-run requires exactly one run ID."
-            hosted_ci_run="$2"
+        --private-jit-run)
+            [[ -z "$private_jit_run" && $# -ge 2 ]] || fail "--private-jit-run requires exactly one run ID."
+            private_jit_run="$2"
             shift 2
             ;;
         -h|--help)
@@ -49,6 +48,8 @@ if [[ -z "$tag" ]]; then
     usage
     exit 1
 fi
+
+[[ -n "$private_jit_run" ]] || fail "A successful private JIT CI run ID is required."
 
 if [[ "$tag" =~ [[:space:]] ]]; then
     fail "Release tag must not contain whitespace."
@@ -114,12 +115,8 @@ trap 'rm -f "$notes_tmp"' EXIT
 ./scripts/validate-release-notes.sh "$version" "$notes_tmp"
 
 echo
-echo "==> Run release gate"
-if [[ -n "$hosted_ci_run" ]]; then
-    ./scripts/verify-hosted-release-gate.sh "$hosted_ci_run" "$branch" "$(git rev-parse HEAD)"
-else
-    bash packaging/scripts/run-release-gate.sh
-fi
+echo "==> Verify private JIT release gate"
+./scripts/verify-private-jit-release-gate.sh "$private_jit_run" "$branch" "$(git rev-parse HEAD)"
 
 echo
 echo "==> Create and push release tag"

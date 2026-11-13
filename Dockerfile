@@ -19,7 +19,7 @@ RUN DISABLE_ESLINT_PLUGIN=true bash ./bin/build --web-only --skip-tests --versio
 # build, test, and publish application binaries
 # note: this needs to be pinned to an amd64 image in order to publish armv7 binaries
 # https://github.com/dotnet/dotnet-docker/issues/1537#issuecomment-615269150
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0-noble AS publish
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0.404-noble@sha256:fe0fd4e93bd2fbb47c883b7a6369e5c8d3db8bf01cdc5981f6ee35fbdf3ff4fb AS publish
 ARG TARGETPLATFORM
 ARG VERSION=0.0.1.65534-local
 
@@ -42,7 +42,7 @@ RUN bash ./bin/build --dotnet-only --skip-tests --version $VERSION
 RUN bash ./bin/publish --no-prebuild --platform $TARGETPLATFORM --version $VERSION --output ../../dist/${TARGETPLATFORM}
 
 # application
-FROM mcr.microsoft.com/dotnet/runtime-deps:10.0-noble AS slskd
+FROM mcr.microsoft.com/dotnet/runtime-deps:10.0.15-noble@sha256:9cab4d7d886226d47b5489ef9abf0544e2f109fde11a8acc190217610af26c00 AS slskd
 ARG LIBMSQUIC_VERSION=2.4.18
 
 RUN apt-get update && apt-get install --no-install-recommends -y \

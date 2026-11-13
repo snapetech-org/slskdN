@@ -57,63 +57,11 @@ dotnet test --filter "Category!=L1-Protocol&Category!=L2-MultiClient&Category!=L
 
 ## CI/CD Configuration
 
-### GitHub Actions
-
-```yaml
-name: Integration Tests
-
-on:
-  pull_request:
-  schedule:
-    - cron: '0 2 * * *'  # Nightly at 2 AM
-
-jobs:
-  unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-      - name: Run unit tests (L0)
-        run: dotnet test --filter "Category!=L1-Protocol&Category!=L2-MultiClient&Category!=L3-DisasterMode&Category!=L3-MeshOnly"
-
-  protocol-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-      - name: Install Soulfind
-        run: |
-          wget https://github.com/slskd/soulfind/releases/latest/download/soulfind-linux-x64
-          chmod +x soulfind-linux-x64
-          sudo mv soulfind-linux-x64 /usr/local/bin/soulfind
-      - name: Run protocol tests (L1)
-        run: dotnet test --filter "Category=L1-Protocol"
-        env:
-          SOULFIND_PATH: /usr/local/bin/soulfind
-
-  integration-tests:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'  # Nightly only
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-      - name: Install Soulfind
-        run: |
-          wget https://github.com/slskd/soulfind/releases/latest/download/soulfind-linux-x64
-          chmod +x soulfind-linux-x64
-          sudo mv soulfind-linux-x64 /usr/local/bin/soulfind
-      - name: Run multi-client tests (L2)
-        run: dotnet test --filter "Category=L2-MultiClient"
-        env:
-          SOULFIND_PATH: /usr/local/bin/soulfind
-      - name: Run disaster mode tests (L3)
-        run: dotnet test --filter "Category=L3-DisasterMode|Category=L3-MeshOnly"
-```
+Continuous integration is defined in `.github/workflows/ci.yml`. Build, test,
+scan, package, and release jobs run on private per-run JIT workers; the
+workflow has no hosted-runner fallback. PR validation is started through the
+repository's trusted owner-PR route, and the release gate runs on the exact
+`main` commit before a release tag is created.
 
 ## Environment Variables
 

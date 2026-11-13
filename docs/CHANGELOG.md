@@ -22,6 +22,7 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Security: .NET and ASP.NET Core dependencies and bundled runtimes use 10.0.15, with SDK 10.0.404 and fixed VSTest servicing packages for the November 2026 advisories.
 - Security: release tag validation is bounded and shell-safe, and manual publisher recovery is limited to the main-branch workflow.
 - CI: Add exact job-scoped JIT labels to shared runner builds and security scans.
 - Security: schema migrations now map added columns to fixed SQL statements, Less package aliases reject traversal and symlink escapes, and the VPN relay drops all capabilities except `NET_ADMIN`.

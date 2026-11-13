@@ -1,3 +1,12 @@
+# Update 2026-11-12 — Patch current .NET security advisories
+
+Updated first-party runtime dependencies and bundled runtime assets to .NET
+10.0.15, selected SDK 10.0.404 (which bundles the fixed VSTest runner), and
+updated standalone test-runner packages to fixed servicing versions. Container
+base images, Flatpak runtime metadata, CI SDK pins, current changelog guidance,
+and package consistency checks now use the same patched versions. Fresh
+private-JIT validation and release publication remain pending.
+
 # Update 2026-10-14 01:02 UTC — Refresh validation inventory after the normal push
 
 Pushed the scanner fix, sandbox gotcha, and current vendored-runtime source

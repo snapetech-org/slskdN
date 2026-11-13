@@ -49,8 +49,8 @@ modules:
         ln -sf /app/dotnet/dotnet /app/bin/dotnet
     sources:
       - type: archive
-        url: https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.13/dotnet-runtime-10.0.13-linux-x64.tar.gz
-        sha256: 958c952691d2c3f8ce21f717f4e911c02b5da0e21ead21bd576368c454b79c77
+        url: https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.15/dotnet-runtime-10.0.15-linux-x64.tar.gz
+        sha512: a90177d75bc891f71aa814dde3bcf76a356f5a506824669f1891754457954a3d13b72f3ca04c98fa0fe588514a5a781f8a87b17930ee802105c14f9edb28318a
 
   # slskdN application
   - name: slskdn

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contract tests for the hosted release-gate receipt verifier."""
+"""Contract tests for the private JIT release-gate receipt verifier."""
 
 from __future__ import annotations
 
@@ -13,15 +13,15 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERIFIER = ROOT / "scripts/verify-hosted-release-gate.sh"
+VERIFIER = ROOT / "scripts/verify-private-jit-release-gate.sh"
 COMMIT = "a" * 40
 WORKFLOW_ID = 123456
 REPOSITORY_ID = 1108894784
 
 
-class HostedReleaseGateTests(unittest.TestCase):
+class PrivateJitReleaseGateTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory(prefix="hosted-release-gate-")
+        self.temporary = tempfile.TemporaryDirectory(prefix="private-jit-release-gate-")
         self.root = Path(self.temporary.name)
         self.bin = self.root / "bin"
         self.data = self.root / "responses"
@@ -32,9 +32,10 @@ class HostedReleaseGateTests(unittest.TestCase):
             "#!/usr/bin/env bash\n"
             "set -euo pipefail\n"
             "case \"${2:-}\" in\n"
-            "  repos/snapetech/slskdN) cat \"$MOCK_GH_DIR/repository.json\" ;;\n"
-            "  repos/snapetech/slskdN/actions/workflows/ci.yml) cat \"$MOCK_GH_DIR/workflow.json\" ;;\n"
-            "  repos/snapetech/slskdN/actions/runs/*) cat \"$MOCK_GH_DIR/run.json\" ;;\n"
+            "  repos/snapetech-org/slskdN) cat \"$MOCK_GH_DIR/repository.json\" ;;\n"
+            "  repos/snapetech-org/slskdN/actions/workflows/ci.yml) cat \"$MOCK_GH_DIR/workflow.json\" ;;\n"
+            "  repos/snapetech-org/slskdN/actions/runs/*/jobs*) cat \"$MOCK_GH_DIR/jobs.json\" ;;\n"
+            "  repos/snapetech-org/slskdN/actions/runs/*) cat \"$MOCK_GH_DIR/run.json\" ;;\n"
             "  *) echo \"Unexpected API path: ${2:-}\" >&2; exit 3 ;;\n"
             "esac\n",
             encoding="utf-8",
@@ -50,9 +51,10 @@ class HostedReleaseGateTests(unittest.TestCase):
             "head_sha": COMMIT,
             "status": "completed",
             "conclusion": "success",
-            "html_url": "https://github.com/snapetech/slskdN/actions/runs/987654",
+            "html_url": "https://github.com/snapetech-org/slskdN/actions/runs/987654",
         }
         self.write_run()
+        self.write_jobs()
 
     def tearDown(self) -> None:
         self.temporary.cleanup()
@@ -64,12 +66,33 @@ class HostedReleaseGateTests(unittest.TestCase):
 
     def write_target_repository(self, *, repository_id: int = REPOSITORY_ID) -> None:
         (self.data / "repository.json").write_text(
-            json.dumps({"id": repository_id, "full_name": "snapetech-org/slskdN"}),
-            encoding="utf-8",
+            json.dumps({"id": repository_id, "full_name": "snapetech-org/slskdN"}), encoding="utf-8"
         )
 
     def write_run(self) -> None:
         (self.data / "run.json").write_text(json.dumps(self.run_data), encoding="utf-8")
+
+    def write_jobs(self, *, group: str = "ng-shared-main-jit") -> None:
+        labels = ["self-hosted", "ng-main-run-987654"]
+        (self.data / "jobs.json").write_text(
+            json.dumps({"jobs": [
+                {
+                    "name": "Build and Test",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "runner_group_name": group,
+                    "labels": [*labels, "gha-987654-build"],
+                },
+                {
+                    "name": "Nix Package Smoke",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "runner_group_name": group,
+                    "labels": [*labels, "gha-987654-nix-smoke"],
+                },
+            ]}),
+            encoding="utf-8",
+        )
 
     def invoke(self, *, branch: str = "main", commit: str = COMMIT) -> subprocess.CompletedProcess[str]:
         environment = os.environ.copy()
@@ -84,10 +107,10 @@ class HostedReleaseGateTests(unittest.TestCase):
             check=False,
         )
 
-    def test_accepts_a_successful_dispatch_for_the_exact_main_commit(self) -> None:
+    def test_accepts_a_successful_private_jit_dispatch_for_the_exact_main_commit(self) -> None:
         result = self.invoke()
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("Hosted CI release gate passed", result.stdout)
+        self.assertIn("Private JIT CI release gate passed", result.stdout)
         self.assertIn("/actions/runs/987654", result.stdout)
 
     def test_rejects_a_run_for_a_different_commit(self) -> None:
@@ -126,6 +149,12 @@ class HostedReleaseGateTests(unittest.TestCase):
         result = self.invoke()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("workflow path", result.stderr)
+
+    def test_rejects_hosted_runner_jobs(self) -> None:
+        self.write_jobs(group="GitHub Actions")
+        result = self.invoke()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("required per-run runner group", result.stderr)
 
     def test_requires_main_and_a_full_commit_id(self) -> None:
         self.assertNotEqual(self.invoke(branch="feature").returncode, 0)

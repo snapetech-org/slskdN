@@ -4,29 +4,21 @@
 
 This is the minimum release-readiness checklist for `slskdn`.
 
-Green local validation means the tree is a viable release candidate. It does not replace the tag-triggered CI build/publish path.
+Green private JIT validation means the exact commit is a viable release candidate. It does not replace the tag-triggered CI build/publish path.
 
-## Minimum local release bar
+## Release validation bar
 
-Run this from repo root:
+Run the `CI` workflow from `main` with `action=ci` and `runner_pool=private`.
+The workflow runs the release gate and Nix package smoke on private per-run JIT
+workers. Hosted runners and hosted fallbacks are not permitted.
 
-```bash
-bash packaging/scripts/run-release-gate.sh
-bash ./bin/lint
-```
+After both jobs pass for the exact current `main` commit, provide the run ID to
+the guarded release helper:
 
-When local test execution is unavailable, run the `CI` workflow manually on
-`main` using the GitHub-hosted runner option, then pass its run ID to the
-release helper:
+`scripts/create-release-tag.sh --private-jit-run <run-id> <tag>`
 
-`scripts/create-release-tag.sh --hosted-ci-run <run-id> <tag>`
-
-Dispatch the workflow with `runner=github-hosted` so the release check does not
-depend on the checkout's local SDK or caches.
-
-The helper accepts only a completed successful workflow dispatch for the exact
-current `main` commit and the repository's `ci.yml` workflow. The hosted
-workflow must include the full release gate.
+The helper verifies the repository, workflow, exact commit, successful gate
+jobs, private runner group, and per-run JIT labels before creating the tag.
 
 If the release claims to fix a reported bug, also run the reproduce-first workflow in [bugfix-verification-checklist.md](bugfix-verification-checklist.md). Green generic validation is not enough on its own.
 
@@ -35,7 +27,7 @@ The release gate now covers:
 - branch sync with the tracked upstream before tagging
 - vendored `slskNet.Runtime` revision and local-patch composition
 - packaging metadata validation
-- release-note, hosted release-gate, and GitHub-target helper tests
+- release-note, private JIT release-gate, and GitHub-target helper tests
 - frontend unit tests
 - frontend production build
 - built-web output verification
@@ -69,9 +61,8 @@ gate does not prove that publishing or platform installer workflows succeeded.
 
 ## Release flow
 
-1. Get the tree green locally:
-   - `bash packaging/scripts/run-release-gate.sh`
-   - `bash ./bin/lint`
+1. Get the exact `main` commit green through the private JIT `CI` workflow. The
+   workflow runs the release gate and Nix package smoke.
 2. For any build that claims to fix a reported issue:
    - capture the repro contract
    - split multi-symptom reports into separate acceptance checks
@@ -87,10 +78,9 @@ gate does not prove that publishing or platform installer workflows succeeded.
    - `scripts/validate-release-notes.sh <version> /tmp/release-notes.md`
 5. Push the code branch normally if needed.
 6. Only trigger build/release by running the guarded tag helper when explicitly desired:
-   - `scripts/create-release-tag.sh vYYYYMMDDHH-slskdn.N`
-   - For an older release, `scripts/create-release-tag.sh build-main-YYYYMMDDHH-slskdn.N`
-   - For an older release with accepted CI evidence, `scripts/create-release-tag.sh --hosted-ci-run <run-id> build-main-YYYYMMDDHH-slskdn.N`
-   - `scripts/create-release-tag.sh build-dev-MAJOR.MINOR.PATCH.dev.YYYYMMDD.HHMMSS`
+   - Stable: `scripts/create-release-tag.sh --private-jit-run <run-id> vYYYYMMDDHH-slskdn.N`
+   - Legacy main: `scripts/create-release-tag.sh --private-jit-run <run-id> build-main-YYYYMMDDHH-slskdn.N`
+   - Dev: `scripts/create-release-tag.sh --private-jit-run <run-id> build-dev-MAJOR.MINOR.PATCH.dev.YYYYMMDD.HHMMSS`
 7. After GitHub publishes the release, verify the actual assets:
    - `scripts/verify-release-artifacts.sh <tag>`
 8. After a stable container image is published, confirm its Docker Hub manifest
@@ -104,8 +94,8 @@ gate does not prove that publishing or platform installer workflows succeeded.
 Do not rely on a normal branch push to validate packaging or publish artifacts. This repo builds releases on tags.
 Do not create or push plain `slskdn.N` tags for releases; those do not run the release packaging workflow.
 
-The guarded tag helper validates the versioned changelog section before doing
-the expensive release gate or creating a tag. The hosted workflow generates
+The guarded tag helper validates the versioned changelog section before
+creating a tag. The tag workflow generates
 the notes again from the tagged source and validates them immediately before
 the GitHub release write. Both paths fail closed on missing titles/dates,
 missing or short highlights, and placeholder wording.
@@ -149,8 +139,7 @@ Run these when the change touches the relevant surface:
 
 Do not call a build "release-ready" unless:
 
-- local release gate is green
-- lint is green
+- private JIT release gate is green on the exact `main` commit
 - any claimed bugfix has passed its issue-specific repro/acceptance checks, or is clearly labeled as an unverified mitigation
 - no known release-blocking packaging issue is open for the touched platform
 - the tag-triggered build is the next intended step

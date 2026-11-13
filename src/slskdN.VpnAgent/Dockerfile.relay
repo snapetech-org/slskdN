@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine3.22@sha256:bb9890f2f2dbefa91b161feecfe6f85fd4c8c9e3933158c54287f37f611d5ed5 AS build
 WORKDIR /src
 COPY slskdN-vpn-agent.csproj Program.cs ./
 RUN dotnet publish slskdN-vpn-agent.csproj -c Release -r linux-musl-x64 --self-contained true -p:PublishSingleFile=true -o /out

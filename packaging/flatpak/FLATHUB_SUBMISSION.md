@@ -4,8 +4,8 @@ Before submitting to Flathub, update `io.github.slskd.slskdn.yml` as follows.
 
 ## 1. .NET 10.0 runtime — ✅ done
 
-- `dotnet` module uses the pinned .NET 10.0.13 x64 runtime archive with its verified sha256. No `curl | tar`; Flatpak extracts the archive and build-commands copy into `/app/dotnet/`.
-- To bump: get tarball URL from <https://dotnet.microsoft.com/download/dotnet/10.0>, then `curl -sL <url> | sha256sum`.
+- `dotnet` module uses the pinned .NET 10.0.15 x64 runtime archive with Microsoft's verified SHA-512 hash. No `curl | tar`; Flatpak extracts the archive and build-commands copy into `/app/dotnet/`.
+- To bump: use the URL and SHA-512 `hash` from Microsoft's <https://builds.dotnet.microsoft.com/dotnet/release-metadata/10.0/releases.json> entry for the runtime version; store the hash in the manifest's `sha512` field.
 
 ## 2. slskdn application — ✅ done
 

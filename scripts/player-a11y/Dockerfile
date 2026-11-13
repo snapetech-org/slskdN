@@ -1,6 +1,6 @@
 # Keep Playwright's browsers and Linux libraries matched to the repo's pinned
 # @playwright/test version. The E2E harness also launches ASP.NET net10.0 nodes.
-FROM mcr.microsoft.com/dotnet/aspnet@sha256:222759b391a1aaf241166672c8f99b2d4ada452e7b5319f3c6e8f265a37b5ad4 AS aspnet-runtime
+FROM mcr.microsoft.com/dotnet/aspnet:10.0.15-noble@sha256:bfd912c83295ce66d4b706ebb8541b9f14259b0e76fbb88b2751f58ce2399d2e AS aspnet-runtime
 FROM mcr.microsoft.com/playwright@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27
 
 COPY --from=aspnet-runtime /usr/share/dotnet /usr/share/dotnet

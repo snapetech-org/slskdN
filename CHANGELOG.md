@@ -14,18 +14,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   publisher-trust checks enabled. Two compatible transitive releases are
   pinned outside the quarantine window, and trust exceptions name only the
   exact legacy versions required by older consumers.
-- .NET dependency graphs and bundled runtimes now use the 10.0.13 servicing
-  release for the SignalR denial-of-service fix. Hosted .NET build workflows
-  use SDK 10.0.402, and vulnerability checks inspect every first-party project.
+- .NET and ASP.NET Core dependency graphs and bundled runtimes now use 10.0.15,
+  and builds use SDK 10.0.404 with patched VSTest packages. This addresses the
+  November 2026 .NET runtime, ASP.NET Core, and test-runner advisories, including
+  CVE-2026-109475, CVE-2026-114146, and CVE-2026-105544. Vulnerability checks
+  inspect every first-party project.
 - CI validation artifacts now include only receipts and task logs, leaving
   temporary task environments and dependency caches on the runners.
 - The local identity denylist scan runs only on trusted `main` pushes, so
   pull-request workflows never receive its secret.
-- Public pull-request workflows and manual runs outside `main` use
-  GitHub-hosted runners. Trusted main jobs use only the workflow-restricted
-  shared JIT runners, and release jobs receive only the token permissions they
-  need. CI verifies scanner tools from the runner image instead of racing
-  Ubuntu package locks.
+- Build, test, scan, package, and release jobs use compatible private
+  per-run JIT runners without hosted fallbacks. Public-fork code uses disposable
+  secretless JIT runners with restricted access. Release jobs receive only the
+  token permissions they need, and CI verifies scanner tools from the runner
+  image instead of racing package-manager locks.
 
 ### Changed
 

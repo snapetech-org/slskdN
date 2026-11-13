@@ -90,7 +90,8 @@ reject_line flake.nix 'releases/download/dev/'
 reject_literal flake.nix 'slskdn-dev'
 
 test -x scripts/create-release-tag.sh || fail 'scripts/create-release-tag.sh must be executable'
-expect_literal scripts/create-release-tag.sh 'bash packaging/scripts/run-release-gate.sh'
+expect_literal scripts/create-release-tag.sh './scripts/verify-private-jit-release-gate.sh'
+reject_literal scripts/create-release-tag.sh 'bash packaging/scripts/run-release-gate.sh'
 expect_literal scripts/create-release-tag.sh './scripts/verify-github-target.sh'
 expect_literal scripts/create-release-tag.sh 'bash scripts/check-release-branch-sync.sh'
 expect_literal scripts/create-release-tag.sh 'git status --porcelain'
@@ -475,7 +476,7 @@ fi
 expect_literal .github/workflows/build-on-tag.yml "DOTNET_VERSION: '${ci_sdk_version}'"
 expect_literal .github/workflows/ci-enhancements.yml "DOTNET_VERSION: '${ci_sdk_version}'"
 expect_literal .github/workflows/e2e-tests.yml "DOTNET_VERSION: '${ci_sdk_version}'"
-expect_literal .github/workflows/codeql.yml "DOTNET_VERSION: '${ci_sdk_version}'"
+expect_literal global.json "\"version\": \"${ci_sdk_version}\""
 expect_literal .github/workflows/release-linux.yml "dotnet-version: '${ci_sdk_version}'"
 expect_literal .github/workflows/release-copr.yml "dotnet-version: '${ci_sdk_version}'"
 expect_literal .github/workflows/release-ppa.yml "dotnet-version: '${ci_sdk_version}'"
