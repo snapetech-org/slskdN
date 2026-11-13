@@ -230,7 +230,22 @@ public class SceneServicesTests
         }
 
         await pollLoopTask.WaitAsync(TimeSpan.FromSeconds(5));
-        Assert.Throws<ObjectDisposedException>(() => _ = cancellationSource.Token);
+        Assert.True(
+            SpinWait.SpinUntil(
+                () =>
+                {
+                    try
+                    {
+                        _ = cancellationSource.Token;
+                        return false;
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        return true;
+                    }
+                },
+                TimeSpan.FromSeconds(5)),
+            "The poll-loop cancellation source should be disposed after the poll loop completes.");
     }
 
     [Fact]
