@@ -22,14 +22,16 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
-- Move slskdN and its VPN agent to .NET 11. Release archives remain self-contained, and source builds require SDK 11.0.100 or a newer patch in that feature band.
-
-- Packaging: Chocolatey now removes its generated VPN shim and extracted release payload on uninstall, and identifies the package title and source code clearly.
-- CI: Build release Docker images from the checked-out source and downloaded assets instead of refetching the repository inside BuildKit.
 - CI: let trusted main-branch validation and release publishers use GitHub-hosted runners, while retaining private JIT for owner-PR validation.
 - CI: keep the public/private runner selection guards valid for GitHub Actions expressions.
 - Tests: wait for the poll-loop cancellation source's actual disposal instead of assuming its completion continuation runs first.
 - Release: add a Chocolatey publisher recovery switch so failed or queued package targets can be retried without rebuilding or republishing completed targets.
+
+## [2026111723-slskdn.354] — 2026-11-17
+
+- Move slskdN and its VPN agent to .NET 11. Release archives remain self-contained, and source builds require SDK 11.0.100 or a newer patch in that feature band.
+- Packaging: Chocolatey now removes its generated VPN shim and extracted release payload on uninstall, and identifies the package title and source code clearly.
+- CI: Build release Docker images from the checked-out source and downloaded assets instead of refetching the repository inside BuildKit.
 
 ## [2026111302-slskdn.353] — 2026-11-12
 
