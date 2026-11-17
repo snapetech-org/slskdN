@@ -1,14 +1,14 @@
-# packer-windows-jit-v1
-# ng-runner-policy: private-jit-only-v1
 name: Windows Smoke
 
 
 run-name: >-
   ${{ github.event_name == 'workflow_dispatch' && inputs.pr_number != '' &&
       format('owner-pr:{0}:{1}:{2}:action:{3}:pool:{4}', inputs.pr_number, inputs.pr_sha, inputs.target_run_id, inputs.action_tag, inputs.runner_pool_tag) ||
-      format('action:{0}:pool:{1}', inputs.action_tag || 'ci', inputs.runner_pool_tag || 'private') }}
+      format('action:{0}:pool:{1}', inputs.action_tag || 'ci', inputs.runner_pool_tag || 'hosted') }}
 
 on:
+  push:
+    branches: [main]
   pull_request_target:
     types: [labeled]
     branches: [main]
@@ -25,9 +25,9 @@ on:
         options: [ci]
         required: true
       runner_pool_tag:
-        description: Required private JIT runner pool tag
+        description: Runner pool tag for manual or owner PR validation
         type: choice
-        options: [private]
+        options: [hosted, private]
         required: true
       pr_number:
         description: Trusted owner PR number set by the metadata-only dispatcher
@@ -54,14 +54,14 @@ permissions:
 
 jobs:
   dotnet:
-    # Keep external fork code off trusted JIT groups until its isolated route is authorized.
     if: >-
-      github.event_name == 'workflow_dispatch' &&
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' &&
       github.ref == 'refs/heads/main' &&
-      inputs.action_tag == 'ci' && inputs.runner_pool_tag == 'private' &&
+      inputs.action_tag == 'ci' &&
       ((github.actor == 'snapetech' && inputs.pr_number == '' && inputs.pr_sha == '' && inputs.target_run_id == '' && inputs.pr_author == '' && inputs.pr_repository == '') ||
-       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository))
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskNet.Runtime","gha-{0}-dotnet"]}}', github.run_id)) }}
+       (github.actor == 'github-actions[bot]' && inputs.pr_number != '' && inputs.pr_sha != '' && inputs.target_run_id != '' && inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository)))
+    runs-on: windows-2025
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -94,7 +94,7 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.event.pull_request.head.repo.id == github.repository_id &&
       github.event.pull_request.base.ref == 'main'
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-packer","ng-main-run-{0}","gha-{0}-owner-pr-dispatcher"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       actions: write
       contents: none
@@ -179,7 +179,7 @@ jobs:
       inputs.pr_author == 'snapetech' && inputs.pr_repository == github.repository &&
       inputs.action_tag == 'ci' && inputs.runner_pool_tag == 'private' &&
       github.actor == 'github-actions[bot]'
-    runs-on: ${{ fromJSON(format('{{"group":"ng-shared-main-jit","labels":["self-hosted","linux","x64","ng-shared-main-slsknet.runtime","ng-main-run-{0}","gha-{0}-owner-pr-reporter"]}}', github.run_id)) }}
+    runs-on: ubuntu-24.04
     permissions:
       checks: write
       contents: none

@@ -29,7 +29,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  DOTNET_VERSION: '10.0.404'
+  DOTNET_VERSION: '11.0.100'
   DOTNET_INSTALL_DIR: ${{ github.workspace }}/.dotnet
   NODE_VERSION: '22.23.4'
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
@@ -200,7 +200,7 @@ jobs:
             no_share_scan: true
           YAML
           # Start slskdn in background for load testing
-          application_assembly="src/slskd/bin/Release/net10.0/slskd.dll"
+          application_assembly="src/slskd/bin/Release/net11.0/slskd.dll"
           application_directory="$(dirname "$application_assembly")"
           # API-only startup still validates the static content directory.
           mkdir -p "$application_directory/wwwroot"

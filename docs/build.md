@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. [Node.js](https://nodejs.org/en/download/current) 22.22.2 or a later version supported by the frontend test dependencies, with pnpm 12.4.1
-1. [.NET SDK](https://dotnet.microsoft.com/en-us/download) 10.0
+1. [.NET SDK](https://dotnet.microsoft.com/en-us/download) 11.0
 
 ## Easy Way
 

@@ -39,7 +39,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>slskNet.Runtime</PackageId>
-    <Version>10.0.4</Version>
+    <Version>10.0.5</Version>
     <Authors>JP Dillingham; slskdN Team</Authors>
     <Product>slskNet.Runtime</Product>
     <PackageProjectUrl>https://github.com/snapetech/slskNet.Runtime</PackageProjectUrl>

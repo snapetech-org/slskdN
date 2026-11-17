@@ -340,8 +340,8 @@ public class SlskdnFullInstanceRunner : IAsyncDisposable
             var appHostName = OperatingSystem.IsWindows() ? "slskd.exe" : "slskd";
             var candidates = new[]
             {
-                Path.Combine(solutionRoot, "src", "slskd", "bin", "Debug", "net10.0", appHostName),
-                Path.Combine(solutionRoot, "src", "slskd", "bin", "Release", "net10.0", appHostName),
+                Path.Combine(solutionRoot, "src", "slskd", "bin", "Debug", "net11.0", appHostName),
+                Path.Combine(solutionRoot, "src", "slskd", "bin", "Release", "net11.0", appHostName),
                 Path.Combine(solutionRoot, "publish", appHostName)
             };
 

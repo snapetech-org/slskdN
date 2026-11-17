@@ -102,8 +102,8 @@ tests/e2e/
 # Node.js 22.22.2+ (for the frontend and Playwright)
 node --version  # Should be 22.22.2+
 
-# .NET 10.0 SDK (for building slskdn)
-dotnet --version  # Should be 10.0.x
+# .NET 11.0 SDK (for building slskdn)
+dotnet --version  # Should be 11.0.x
 ```
 
 ### Installation

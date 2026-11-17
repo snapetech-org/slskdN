@@ -16,9 +16,9 @@ assert_source() {
   fi
 }
 
-assert_source "ubuntu 24.04 noble native" linuxmint 22.3 zena noble
-assert_source "ubuntu 24.04 noble native" ubuntu 24.04 noble ""
-assert_source "ubuntu 22.04 jammy microsoft" linuxmint 21.3 vera jammy
+assert_source "ubuntu 24.04 noble backports" linuxmint 22.3 zena noble
+assert_source "ubuntu 24.04 noble backports" ubuntu 24.04 noble ""
+assert_source "ubuntu 22.04 jammy backports" linuxmint 21.3 vera jammy
 assert_source "debian 12 bookworm microsoft" debian 12 bookworm ""
 
 if resolve_dotnet_apt_source linuxmint 20.3 ulyssa focal >/dev/null 2>&1; then

@@ -747,7 +747,7 @@ When downloading Pod results that aren't available locally:
 ## Installation
 
 ### Requirements
-- .NET 10.0 or later
+- .NET 11.0 or later
 - Linux, macOS, or Windows
 - Network connectivity for Soulseek and mesh
 

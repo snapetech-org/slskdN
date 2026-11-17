@@ -47,7 +47,7 @@ jobs:
       )
     runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-dotnet"]}}', github.run_id)) }}
     env:
-      DOTNET_VERSION: "10.0.404"
+      DOTNET_VERSION: "11.0.100"
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

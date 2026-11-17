@@ -228,7 +228,7 @@ public class EnforceInvalidConfigIntegrationTests
 
         if (start < 0 || end <= start)
         {
-            return "net10.0";
+            return "net11.0";
         }
 
         start += OpenTag.Length;

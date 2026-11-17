@@ -39,8 +39,6 @@ expect_literal() {
 }
 
 expect_literal packaging/linux/install-from-release.sh "aspnetcore-runtime-${target_major}.0"
-expect_literal packaging/proxmox-lxc/setup-inside-ct.sh "aspnetcore-runtime-${target_major}.0"
-expect_literal packaging/proxmox-lxc/README.md ".NET ${target_major}"
 expect_literal packaging/flatpak/io.github.slskd.slskdn.yml "Runtime/${target_major}.0."
 expect_literal packaging/flatpak/io.github.slskd.slskdn.yml "dotnet-runtime-${target_major}.0."
 expect_literal packaging/flatpak/FLATHUB_SUBMISSION.md ".NET ${target_major}.0 runtime"

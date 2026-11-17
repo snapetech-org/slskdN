@@ -63,7 +63,7 @@ done
 chmod +x "$test_root/bin/"*
 
 dotnet build "$repo_root/src/slskdN.VpnAgent/slskdN-vpn-agent.csproj" --no-restore >/dev/null
-agent="$repo_root/src/slskdN.VpnAgent/bin/Debug/net10.0/slskdN-vpn-agent"
+agent="$repo_root/src/slskdN.VpnAgent/bin/Debug/net11.0/slskdN-vpn-agent"
 port=18010
 export PATH="$test_root/bin:$PATH"
 export TEST_RELAY_HANDSHAKE

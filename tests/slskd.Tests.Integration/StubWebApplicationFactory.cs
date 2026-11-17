@@ -68,7 +68,7 @@ public class StubWebApplicationFactory : WebApplicationFactory<ProgramStub>
     protected override IHostBuilder CreateHostBuilder()
     {
         // Content root: HostBuilder.CreateHostingEnvironment uses a path like solutionRoot/slskd.Tests.Integration.
-        // From bin/Release/net10.0 go up 5 levels to repo root (slskdn), then slskd.Tests.Integration.
+        // From bin/Release/net11.0 go up 5 levels to repo root (slskdn), then slskd.Tests.Integration.
         var baseDir = AppContext.BaseDirectory;
         var solutionRoot = Path.GetFullPath(Path.Combine(baseDir, "..", "..", "..", "..", ".."));
         var testContentRoot = Path.Combine(solutionRoot, "slskd.Tests.Integration");

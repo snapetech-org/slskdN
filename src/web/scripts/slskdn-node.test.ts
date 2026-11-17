@@ -63,7 +63,7 @@ describe('isolated node lifecycle', () => {
     directory = await fs.mkdtemp(path.join(os.tmpdir(), 'player-harness-'));
     const project = path.join(directory, 'src', 'slskd');
     await fs.mkdir(project, { recursive: true });
-    await fs.writeFile(path.join(project, 'slskd.csproj'), '<TargetFramework>net10.0</TargetFramework>');
+    await fs.writeFile(path.join(project, 'slskd.csproj'), '<TargetFramework>net11.0</TargetFramework>');
     await fs.writeFile(path.join(directory, 'slskd.dll'), 'fixture');
     node = new SlskdnNode({ apiPort: 12345, appDir: path.join(directory, 'app'), nodeName: 'A', shareDir: [] });
     vi.spyOn(node as any, 'getRepoRoot').mockReturnValue(directory);

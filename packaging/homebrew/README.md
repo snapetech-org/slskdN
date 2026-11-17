@@ -279,7 +279,7 @@ rm -rf $(brew --prefix)/var/slskdn
 
 ### Building from Source
 
-Install the [.NET 10 SDK](https://dotnet.microsoft.com/download) specified by
+Install the [.NET 11 SDK](https://dotnet.microsoft.com/download) specified by
 the repository's `global.json` before building.
 
 ```bash

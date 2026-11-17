@@ -36,7 +36,7 @@ ingress tunnel.
 Install prerequisites:
 
 ```bash
-sudo dnf install -y dotnet-sdk-10.0 wireguard-tools natpmpc jq curl iptables iproute nftables
+sudo dnf install -y dotnet-sdk-11.0 wireguard-tools natpmpc jq curl iptables iproute nftables
 ```
 
 Install VPN configs:

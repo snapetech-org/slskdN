@@ -102,18 +102,18 @@ resolve_dotnet_apt_source() {
   if [ "$distro_id" = "linuxmint" ]; then
     case "$ubuntu_codename" in
       noble)
-        printf 'ubuntu 24.04 noble native\n'
+        printf 'ubuntu 24.04 noble backports\n'
         ;;
       jammy)
-        printf 'ubuntu 22.04 jammy microsoft\n'
+        printf 'ubuntu 22.04 jammy backports\n'
         ;;
       *)
         echo "Unsupported Linux Mint Ubuntu base: ${ubuntu_codename:-unknown}" >&2
         return 1
         ;;
     esac
-  elif [ "$distro_id" = "ubuntu" ] && [ "$distro_version" = "24.04" ]; then
-    printf 'ubuntu 24.04 noble native\n'
+  elif [ "$distro_id" = "ubuntu" ]; then
+    printf '%s %s %s backports\n' "$distro_id" "$distro_version" "$distro_codename"
   else
     printf '%s %s %s microsoft\n' "$distro_id" "$distro_version" "$distro_codename"
   fi
@@ -142,9 +142,23 @@ install_dotnet_runtime() {
     local repo="https://packages.microsoft.com/${repo_id}/${repo_version}/prod"
     echo "deb [arch=$(dpkg --print-architecture)] ${repo} ${codename} main" > /etc/apt/sources.list.d/microsoft.list
     apt-get update -qq
+  elif ! apt-cache show aspnetcore-runtime-11.0 >/dev/null 2>&1; then
+    local ppa_key=45A3F127159BE9E5017811C62125B164E8E5D3FA
+    local keyring=/etc/apt/keyrings/slskdn-dotnet-backports.gpg
+    local signing_key
+    signing_key="$(wget -qO- "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${ppa_key}")"
+    if [ "$(printf '%s\n' "$signing_key" | gpg --batch --show-keys --with-colons | awk -F: '$1 == "pub" { primary = 1 } $1 == "fpr" && primary { print $10; primary = 0 }')" != "$ppa_key" ]; then
+      echo "Unable to verify the Ubuntu .NET backports signing key." >&2
+      return 1
+    fi
+    install -d -m 0755 /etc/apt/keyrings
+    printf '%s\n' "$signing_key" | gpg --batch --yes --dearmor -o "$keyring"
+    chmod 0644 "$keyring"
+    echo "deb [signed-by=$keyring] https://ppa.launchpadcontent.net/dotnet/backports/ubuntu $codename main" > /etc/apt/sources.list.d/slskdn-dotnet-backports.list
+    apt-get update -qq
   fi
 
-  apt-get install -y -qq aspnetcore-runtime-10.0 yt-dlp
+  apt-get install -y -qq aspnetcore-runtime-11.0 yt-dlp
 }
 
 write_default_config() {
@@ -268,7 +282,7 @@ main() {
     exit 1
   fi
 
-  echo "[1/7] Installing .NET runtime 10.0 and prerequisites..."
+  echo "[1/7] Installing .NET runtime 11.0 and prerequisites..."
   install_dotnet_runtime
 
   SLSKDN_VERSION="$(resolve_release_tag "$SLSKDN_VERSION")"

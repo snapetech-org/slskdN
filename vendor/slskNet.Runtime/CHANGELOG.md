@@ -1,5 +1,10 @@
 # Changelog
 
+## 10.0.5 - 2026-11-17
+
+- Validate the .NET 11 examples and tests on hosted Linux and Windows runners.
+- Keep .NET Standard 2.0 and 2.1 library targets for consumers.
+
 ## 10.0.4 - 2026-11-12
 
 - Updated the Web API, examples, and test projects to .NET 11 and replaced the deprecated ASP.NET API versioning package with `Asp.Versioning.Mvc.ApiExplorer`.

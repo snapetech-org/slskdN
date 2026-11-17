@@ -338,7 +338,7 @@ Redacted examples live in `examples/`.
 Install packages for WireGuard mode:
 
 ```bash
-sudo apt-get install -y dotnet-sdk-10.0 wireguard-tools natpmpc jq curl iptables iproute2
+sudo apt-get install -y dotnet-sdk-11.0 wireguard-tools natpmpc jq curl iptables iproute2
 ```
 
 For external OpenVPN/Tailscale mode, install the tunnel client instead of
@@ -347,10 +347,10 @@ host namespace:
 
 ```bash
 # OpenVPN example
-sudo apt-get install -y dotnet-sdk-10.0 openvpn jq curl iptables iproute2
+sudo apt-get install -y dotnet-sdk-11.0 openvpn jq curl iptables iproute2
 
 # Tailscale example
-sudo apt-get install -y dotnet-sdk-10.0 tailscale jq curl iptables iproute2
+sudo apt-get install -y dotnet-sdk-11.0 tailscale jq curl iptables iproute2
 ```
 
 Create the primary outbound WireGuard config:
@@ -643,21 +643,21 @@ Debian/Ubuntu:
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y dotnet-sdk-10.0 wireguard-tools natpmpc jq curl iptables iproute2
+sudo apt-get install -y dotnet-sdk-11.0 wireguard-tools natpmpc jq curl iptables iproute2
 ```
 
 Fedora/RHEL-style hosts:
 
 ```bash
-sudo dnf install -y dotnet-sdk-10.0 wireguard-tools natpmpc jq curl iptables iproute
+sudo dnf install -y dotnet-sdk-11.0 wireguard-tools natpmpc jq curl iptables iproute
 ```
 
 For OpenVPN or Tailscale external tunnel mode, replace `wireguard-tools` with
 the VPN client package and omit `natpmpc` unless the provider supports NAT-PMP:
 
 ```bash
-sudo apt-get install -y dotnet-sdk-10.0 openvpn jq curl iptables iproute2
-sudo apt-get install -y dotnet-sdk-10.0 tailscale jq curl iptables iproute2
+sudo apt-get install -y dotnet-sdk-11.0 openvpn jq curl iptables iproute2
+sudo apt-get install -y dotnet-sdk-11.0 tailscale jq curl iptables iproute2
 ```
 
 ### 2. Add VPN Configs

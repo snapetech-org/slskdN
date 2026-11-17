@@ -59,7 +59,7 @@ If the pull request needs an update, use `git fetch` and rebase or merge `origin
 
 ## Environment Setup
 
-You'll need [.NET 10.0](https://dotnet.microsoft.com/en-us/download) to build and run the back end (slskd), and you'll
+You'll need [.NET 11.0](https://dotnet.microsoft.com/en-us/download) to build and run the back end (slskd), and you'll
 need [Nodejs](https://nodejs.org/en/) to build and debug the front end (web).
 
 You're free to use whichever development tools you prefer.  If you don't yet have a preference, we recommend the following:
@@ -72,7 +72,7 @@ You're free to use whichever development tools you prefer.  If you don't yet hav
 
 ### Prerequisites
 
-- **.NET 10.0 SDK**: [Download](https://dotnet.microsoft.com/en-us/download)
+- **.NET 11.0 SDK**: [Download](https://dotnet.microsoft.com/en-us/download)
 - **Node.js 22.22.2+**: [Download](https://nodejs.org/en/)
 - **pnpm 12.4.1**: install with Corepack or the pnpm installation guide
 - **Git**: For version control

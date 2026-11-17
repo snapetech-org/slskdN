@@ -56,7 +56,7 @@ chmod +x setup-inside-ct.sh
 
 The script will:
 
-- Install .NET 10 (Microsoft package repository)
+- Install the native dependencies for the self-contained release
 - Download the slskdn Linux x64 release from GitHub
 - Extract to `/opt/slskdn`
 - Create `slskd` user and `/var/lib/slskd`, `/etc/slskd`
