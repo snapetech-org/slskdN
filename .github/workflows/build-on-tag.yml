@@ -274,6 +274,7 @@ jobs:
           path: src/slskd/wwwroot
 
       - name: Build ${{ matrix.runtime }}
+        shell: bash
         run: |
           PUBLIC_VERSION="${{ needs.parse.outputs.version }}"
           if [[ "$PUBLIC_VERSION" =~ ^([0-9]{8,10})-slskdn\.([0-9]+)$ ]]; then
@@ -289,20 +290,20 @@ jobs:
             -o publish-${{ matrix.runtime }} \
             --self-contained true \
             -r ${{ matrix.runtime }} \
-            /p:Version="$DOTNET_VERSION" \
-            /p:InformationalVersion="$PUBLIC_VERSION" \
-            /p:PackageVersion="$DOTNET_VERSION" \
-            /p:AllowMissingPrunePackageData=true
+            -p:Version="$DOTNET_VERSION" \
+            -p:InformationalVersion="$PUBLIC_VERSION" \
+            -p:PackageVersion="$DOTNET_VERSION" \
+            -p:AllowMissingPrunePackageData=true
 
           dotnet publish src/slskdN.VpnAgent/slskdN-vpn-agent.csproj \
             -c Release \
             -o publish-${{ matrix.runtime }}/vpn-agent \
             --self-contained true \
             -r ${{ matrix.runtime }} \
-            /p:PublishSingleFile=true \
-            /p:Version="$DOTNET_VERSION" \
-            /p:InformationalVersion="$PUBLIC_VERSION" \
-            /p:PackageVersion="$DOTNET_VERSION"
+            -p:PublishSingleFile=true \
+            -p:Version="$DOTNET_VERSION" \
+            -p:InformationalVersion="$PUBLIC_VERSION" \
+            -p:PackageVersion="$DOTNET_VERSION"
           cp src/slskdN.VpnAgent/README.md publish-${{ matrix.runtime }}/vpn-agent/README.md
           cp src/slskdN.VpnAgent/GETTING_STARTED.md publish-${{ matrix.runtime }}/vpn-agent/GETTING_STARTED.md
           cp src/slskdN.VpnAgent/manual-linux-wireguard.md publish-${{ matrix.runtime }}/vpn-agent/manual-linux-wireguard.md
@@ -321,7 +322,9 @@ jobs:
               ;;
           esac
 
-      - name: Create Archive
+      - name: Create Unix archive
+        if: runner.os != 'Windows'
+        shell: bash
         run: |
           cd publish-${{ matrix.runtime }}
 
@@ -337,6 +340,16 @@ jobs:
 
           CHANNEL_ARCHIVE="slskdn-${{ needs.parse.outputs.channel }}-${ASSET_RUNTIME}.zip"
           zip -r "../${CHANNEL_ARCHIVE}" .
+
+      - name: Create Windows archive
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          RELEASE_CHANNEL: ${{ needs.parse.outputs.channel }}
+        run: |
+          $source = (Resolve-Path "publish-win-x64").Path
+          $archive = Join-Path $PWD "slskdn-$env:RELEASE_CHANNEL-win-x64.zip"
+          [System.IO.Compression.ZipFile]::CreateFromDirectory($source, $archive)
 
       - name: Upload Artifact
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
