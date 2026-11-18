@@ -1,28 +1,13 @@
-# packer-windows-jit-v1
-# ng-runner-policy: private-jit-only-v1
 name: Publish Chocolatey
 
-
-run-name: >-
-  ${{ github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/tags/') &&
-      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'publish', inputs.runner_pool || 'private', github.ref_name) ||
-      github.event_name == 'workflow_dispatch' &&
-      (inputs.version) != '' &&
-      format('action:{0}:pool:{1}:tag:{2}', inputs.action || 'publish', inputs.runner_pool || 'private', inputs.version) ||
-      github.event_name == 'workflow_dispatch' &&
-      format('action:{0}:pool:{1}', inputs.action || 'publish', inputs.runner_pool || 'private') || format('action:publish:pool:private') }}
+run-name: ${{ format('action:{0}:pool:public:tag:{1}', inputs.action, inputs.version) }}
 on:
   workflow_dispatch:
     inputs:
       action:
-        description: Required manual workflow action
+        description: Publish a new package or replace a submitted package at the same version
         type: choice
-        options: [publish]
-        required: true
-      runner_pool:
-        description: Required private JIT runner pool
-        type: choice
-        options: [private]
+        options: [publish, resubmit]
         required: true
       version:
         description: 'Published release tag to publish, e.g. v2026090318-slskdn.318'
@@ -38,19 +23,8 @@ permissions:
 jobs:
   publish:
     name: Publish Chocolatey Stable
-    if: >-
-      (
-        github.event_name != 'workflow_dispatch' ||
-        (
-          github.ref == 'refs/heads/main' &&
-          inputs.action == 'publish' &&
-          inputs.runner_pool == 'private'
-        )
-      ) &&
-      (
-        true
-      )
-    runs-on: ${{ fromJSON(format('{{"group":"packer-windows","labels":["self-hosted","Windows","X64","on-demand","packer-windows","slskdn","gha-{0}-publish"]}}', github.run_id)) }}
+    if: github.ref == 'refs/heads/main'
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -69,7 +43,7 @@ jobs:
       - name: Pack and Push
         env:
           CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
-          RELEASE_VERSION: ${{ inputs.version }}
+          PUBLISH_ACTION: ${{ inputs.action }}
           RELEASE_TAG: ${{ inputs.version }}
           REPOSITORY: ${{ github.repository }}
         shell: pwsh
@@ -80,7 +54,7 @@ jobs:
             exit 1
           }
 
-          $Version = $env:RELEASE_VERSION -replace '^v', ''
+          $Version = $env:RELEASE_TAG -replace '^v', ''
           if ($Version -notmatch '^(\d{10})-slskdn\.(\d+)$') {
             Write-Error "Unsupported stable release version for Chocolatey: $Version"
             exit 1
@@ -103,6 +77,9 @@ jobs:
 
           cd packaging/chocolatey
           choco pack
+          if ($LASTEXITCODE -ne 0) {
+            throw "choco pack failed with exit code $LASTEXITCODE"
+          }
 
           $expectedNupkg = "slskdn.$PackageVersion.nupkg"
           $nupkg = Get-ChildItem -Filter $expectedNupkg -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -112,6 +89,33 @@ jobs:
           }
 
           Write-Host "Created and validated: $($nupkg.Name)"
+          if ($env:PUBLISH_ACTION -eq 'resubmit') {
+            choco install slskdn --version "$PackageVersion" --source "$PWD" --yes --no-progress
+            if ($LASTEXITCODE -ne 0) {
+              throw "Chocolatey install test failed with exit code $LASTEXITCODE"
+            }
+
+            $installedTools = Join-Path $env:ChocolateyInstall 'lib/slskdn/tools'
+            $daemon = Get-ChildItem -LiteralPath $installedTools -Filter slskd.exe -Recurse
+            if (-not $daemon) {
+              throw "Chocolatey did not extract slskd.exe"
+            }
+
+            choco uninstall slskdn --yes --no-progress
+            if ($LASTEXITCODE -ne 0 -or (Test-Path -LiteralPath $installedTools)) {
+              throw "Chocolatey uninstall test did not remove the package"
+            }
+
+            # The existing package endpoint can still serve the failed submission.
+            # Require a successful push response when replacing the same version.
+            choco push --source https://push.chocolatey.org/ --api-key "$env:CHOCO_API_KEY" --execution-timeout 300
+            if ($LASTEXITCODE -ne 0) {
+              throw "Chocolatey resubmission failed with exit code $LASTEXITCODE"
+            }
+            Write-Host "Resubmitted slskdn $PackageVersion to Chocolatey"
+            exit 0
+          }
+
           $packageEndpoint = "https://community.chocolatey.org/api/v2/package/slskdn/$PackageVersion"
           function Test-ChocolateyPackage {
             try {

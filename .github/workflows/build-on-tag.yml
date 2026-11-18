@@ -1468,7 +1468,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.release_tag }}
+          ref: ${{ inputs.retry_chocolatey && github.sha || inputs.release_tag || github.ref }}
           fetch-depth: 0
 
       - name: Download from Release
@@ -1482,6 +1482,7 @@ jobs:
       - name: Pack and Push
         env:
           CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
+          RELEASE_TAG: ${{ needs.parse.outputs.release_tag }}
         if: "${{ env.CHOCO_API_KEY != '' }}"
         run: |
           $ErrorActionPreference = "Stop"
@@ -1495,10 +1496,10 @@ jobs:
             Write-Error "Chocolatey package version is not numeric: $PackageVersion"
             exit 1
           }
-          $Url = "https://github.com/${{ github.repository }}/releases/download/${{ needs.parse.outputs.version }}/slskdn-main-win-x64.zip"
+          $Url = "https://github.com/${{ github.repository }}/releases/download/$env:RELEASE_TAG/slskdn-main-win-x64.zip"
           $Checksum = (Get-FileHash slskdn-main-win-x64.zip -Algorithm SHA256).Hash
           (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<version>.*</version>', "<version>$PackageVersion</version>" | Set-Content packaging/chocolatey/slskdn.nuspec
-          (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>https://github.com/${{ github.repository }}/releases/tag/$Version</releaseNotes>" | Set-Content packaging/chocolatey/slskdn.nuspec
+          (Get-Content packaging/chocolatey/slskdn.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>https://github.com/${{ github.repository }}/releases/tag/$env:RELEASE_TAG</releaseNotes>" | Set-Content packaging/chocolatey/slskdn.nuspec
           (Get-Content packaging/chocolatey/tools/chocolateyinstall.ps1) -replace '\$url\s*=\s*".*"', "`$url = `"$Url`"" | Set-Content packaging/chocolatey/tools/chocolateyinstall.ps1
           (Get-Content packaging/chocolatey/tools/chocolateyinstall.ps1) -replace '\$checksum\s*=\s*".*"', "`$checksum = `"$Checksum`"" | Set-Content packaging/chocolatey/tools/chocolateyinstall.ps1
           cd packaging/chocolatey

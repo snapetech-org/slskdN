@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Fix Chocolatey downloads for releases with a leading v in the tag and support resubmitting a corrected package at the same version.
+
 - Use the published GitHub tag verbatim in Nix and Arch package sources, including tags with a leading v.
 
 - Run native release builds in Bash and produce the Windows ZIP with the Windows runner's .NET compression API.
