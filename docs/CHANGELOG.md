@@ -22,6 +22,8 @@ For dev or build tags, use the same logical version string embedded in the tag.
 
 ## [Unreleased]
 
+- Use the published GitHub tag verbatim in Nix and Arch package sources, including tags with a leading v.
+
 - Run native release builds in Bash and produce the Windows ZIP with the Windows runner's .NET compression API.
 
 - CI: let trusted main-branch validation and release publishers use GitHub-hosted runners, while retaining private JIT for owner-PR validation.

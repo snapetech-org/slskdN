@@ -634,7 +634,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.release_tag || github.ref }}
+          ref: ${{ inputs.retry_aur && github.sha || inputs.release_tag || github.ref }}
 
       - name: Get commit info
         id: info
@@ -709,6 +709,7 @@ jobs:
           # Update version and static file hashes (tarball stays SKIP)
           # source=() order: tarball slskd.service slskd.yml slskd.sysusers slskd.tmpfiles
           sed -i "s/^pkgver=.*/pkgver=${ARCH_VERSION}/" PKGBUILD
+          sed -i "s/^_release_tag=.*/_release_tag=${{ needs.parse.outputs.release_tag }}/" PKGBUILD
           sed -i "s/^sha256sums=.*/sha256sums=('SKIP' '${SVC_SUM}' '${YML_SUM}' '${SYS_SUM}' '${TMP_SUM}')/" PKGBUILD
           bash ../packaging/scripts/validate-aur-pkgbuild-hashes.sh PKGBUILD
           
@@ -777,6 +778,7 @@ jobs:
           # Update version and static file hashes only.
           # source=() order: zip slskd.service slskd.yml slskd.sysusers slskd.tmpfiles
           sed -i "s/^pkgver=.*/pkgver=${ARCH_VERSION}/" PKGBUILD
+          sed -i "s/^_release_tag=.*/_release_tag=${{ needs.parse.outputs.release_tag }}/" PKGBUILD
           sed -i "s/^sha256sums=.*/sha256sums=('SKIP' '${SVC_SUM}' '${YML_SUM}' '${SYS_SUM}' '${TMP_SUM}')/" PKGBUILD
           bash ../packaging/scripts/validate-aur-pkgbuild-hashes.sh PKGBUILD
           
@@ -1603,7 +1605,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.release_tag || github.ref }}
+          ref: ${{ inputs.retry_nix && github.sha || inputs.release_tag || github.ref }}
           fetch-depth: 0
 
       - name: Install Nix
@@ -1649,7 +1651,7 @@ jobs:
             "${{ steps.hashes.outputs.macos_x64_hex }}" \
             "${{ steps.hashes.outputs.macos_arm64_hex }}" \
             "${{ steps.hashes.outputs.win_x64_hex }}" \
-            "${VERSION}"
+            "${{ needs.parse.outputs.release_tag }}"
 
       - name: Verify Flake
         run: |
@@ -1677,7 +1679,7 @@ jobs:
               "${{ steps.hashes.outputs.macos_x64_hex }}" \
               "${{ steps.hashes.outputs.macos_arm64_hex }}" \
               "${{ steps.hashes.outputs.win_x64_hex }}" \
-              "${VERSION}"
+              "${{ needs.parse.outputs.release_tag }}"
 
             git add \
               flake.nix \

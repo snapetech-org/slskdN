@@ -164,9 +164,10 @@ sed -i "s|SLSKDN_VERSION=${VERSION_REGEX}|SLSKDN_VERSION=${VERSION}|" packaging/
 
 sed -i "s|^pkgver=.*|pkgver=${PKGVER_DOTTED}|" packaging/aur/PKGBUILD
 sed -i "s|^pkgver=.*|pkgver=${PKGVER_DOTTED}|" packaging/aur/PKGBUILD-bin
+sed -i "s|^_release_tag=.*|_release_tag=${RELEASE_TAG}|" packaging/aur/PKGBUILD packaging/aur/PKGBUILD-bin
 sed -i 's|slskdn-main-linux-x64.zip::https://github.com/snapetech/slskdn/releases/download/${pkgver//.slskdn/-slskdn}/slskdn-main-linux-x64.zip|slskdn-${pkgver}-main-linux-glibc-x64.zip::https://github.com/snapetech/slskdn/releases/download/${pkgver//.slskdn/-slskdn}/slskdn-main-linux-glibc-x64.zip|' packaging/aur/PKGBUILD-bin
 
-sed -i "s|https://github.com/snapetech/slskdn/releases/download/${VERSION_REGEX}/slskdn-main-linux-glibc-x64.zip|https://github.com/snapetech/slskdn/releases/download/${RELEASE_TAG}/slskdn-main-linux-glibc-x64.zip|g" packaging/flatpak/FLATHUB_SUBMISSION.md
+sed -i "s|https://github.com/snapetech/slskdn/releases/download/v\?${VERSION_REGEX}/slskdn-main-linux-glibc-x64.zip|https://github.com/snapetech/slskdn/releases/download/${RELEASE_TAG}/slskdn-main-linux-glibc-x64.zip|g" packaging/flatpak/FLATHUB_SUBMISSION.md
 sed -i 's|slskdn-main-linux-x64.zip|slskdn-main-linux-glibc-x64.zip|g' packaging/flatpak/FLATHUB_SUBMISSION.md
 
 echo "Updated stable release metadata to ${VERSION} (tag ${RELEASE_TAG})."

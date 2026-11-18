@@ -487,7 +487,7 @@ reject_literal .github/workflows/release-copr.yml 'dotnet-version: 10.0.x'
 reject_literal .github/workflows/release-ppa.yml 'dotnet-version: 10.0.x'
 
 expect_line packaging/aur/PKGBUILD '^source=\($'
-expect_literal packaging/aur/PKGBUILD-bin '"slskdn-${pkgver}-main-linux-glibc-x64.zip::https://github.com/snapetech/slskdn/releases/download/${pkgver//.slskdn/-slskdn}/slskdn-main-linux-glibc-x64.zip"'
+expect_literal packaging/aur/PKGBUILD-bin '"slskdn-${pkgver}-main-linux-glibc-x64.zip::https://github.com/snapetech/slskdn/releases/download/${_release_tag}/slskdn-main-linux-glibc-x64.zip"'
 expect_literal packaging/aur/PKGBUILD-bin 'noextract=("slskdn-${pkgver}-main-linux-glibc-x64.zip")'
 expect_line packaging/aur/PKGBUILD-bin '^install=slskd\.install$'
 expect_line packaging/aur/PKGBUILD '^install=slskd\.install$'
