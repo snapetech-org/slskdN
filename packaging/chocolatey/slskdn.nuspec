@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>slskdn</id>
-    <version>2026111302-slskdn.353</version>
+    <version>2026111723-slskdn.354</version>
     <title>slskdN — Batteries-Included Soulseek Server</title>
     <authors>snapetech</authors>
     <owners>slskdn</owners>
