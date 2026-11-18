@@ -155,6 +155,17 @@ for workflow in sorted((*workflow_directory.glob("*.yml"), *workflow_directory.g
                 errors.append(f"{workflow.name}:{index + 1} selects an unapproved public runner")
             continue
 
+        if workflow.name == "publish-chocolatey.yml":
+            workflow_text = "\n".join(lines)
+            events = re.search(r"(?ms)^on:\n(.*?)(?=^[^ \n]|\Z)", workflow_text)
+            if (value == "windows-latest"
+                    and events is not None
+                    and re.findall(r"(?m)^  ([a-z_]+):", events.group(1)) == ["workflow_dispatch"]
+                    and "    if: github.ref == 'refs/heads/main'" in lines):
+                continue
+            errors.append(f"{workflow.name}:{index + 1} must use GitHub-hosted Windows for manual main-branch publication")
+            continue
+
         if hosted_runner.search(value) or hosted_runner.search(block):
             if (workflow.name == "ci.yml"
                     and "ubuntu-latest" in value
