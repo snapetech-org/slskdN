@@ -1467,9 +1467,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ inputs.retry_chocolatey && github.sha || inputs.release_tag || github.ref }}
-          fetch-depth: 0
 
       - name: Download from Release
         env:
@@ -1504,14 +1501,18 @@ jobs:
           (Get-Content packaging/chocolatey/tools/chocolateyinstall.ps1) -replace '\$checksum\s*=\s*".*"', "`$checksum = `"$Checksum`"" | Set-Content packaging/chocolatey/tools/chocolateyinstall.ps1
           cd packaging/chocolatey
           choco pack
-          
+          if ($LASTEXITCODE -ne 0) {
+            throw "choco pack failed with exit code $LASTEXITCODE"
+          }
+
           $expectedNupkg = "slskdn.$PackageVersion.nupkg"
           $nupkg = Get-ChildItem -Filter $expectedNupkg -ErrorAction SilentlyContinue | Select-Object -First 1
           if (-not $nupkg) {
             Write-Error "Chocolatey produced no package named $expectedNupkg"
             exit 1
           }
-          Write-Host "Created and validated: $($nupkg.Name)"
+          Write-Host "Created $($nupkg.Name)"
+          & ../scripts/test-chocolatey-package.ps1 -PackageVersion $PackageVersion
 
           $packageEndpoint = "https://community.chocolatey.org/api/v2/package/slskdn/$PackageVersion"
           function Test-ChocolateyPackage {

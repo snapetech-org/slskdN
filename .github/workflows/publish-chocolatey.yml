@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: Publish a new package or replace a submitted package at the same version
+        description: Publish, resubmit the same version, or validate without uploading
         type: choice
-        options: [publish, resubmit]
+        options: [publish, resubmit, validate]
         required: true
       version:
         description: 'Published release tag to publish, e.g. v2026090318-slskdn.318'
@@ -42,14 +42,14 @@ jobs:
 
       - name: Pack and Push
         env:
-          CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
+          CHOCO_API_KEY: ${{ inputs.action != 'validate' && secrets.CHOCO_API_KEY || '' }}
           PUBLISH_ACTION: ${{ inputs.action }}
           RELEASE_TAG: ${{ inputs.version }}
           REPOSITORY: ${{ github.repository }}
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          if ([string]::IsNullOrWhiteSpace($env:CHOCO_API_KEY)) {
+          if ($env:PUBLISH_ACTION -ne 'validate' -and [string]::IsNullOrWhiteSpace($env:CHOCO_API_KEY)) {
             Write-Error "CHOCO_API_KEY secret is not configured"
             exit 1
           }
@@ -88,24 +88,14 @@ jobs:
             exit 1
           }
 
-          Write-Host "Created and validated: $($nupkg.Name)"
+          Write-Host "Created $($nupkg.Name)"
+          & ../scripts/test-chocolatey-package.ps1 -PackageVersion $PackageVersion
+
+          if ($env:PUBLISH_ACTION -eq 'validate') {
+            exit 0
+          }
+
           if ($env:PUBLISH_ACTION -eq 'resubmit') {
-            choco install slskdn --version "$PackageVersion" --source "$PWD" --yes --no-progress
-            if ($LASTEXITCODE -ne 0) {
-              throw "Chocolatey install test failed with exit code $LASTEXITCODE"
-            }
-
-            $installedTools = Join-Path $env:ChocolateyInstall 'lib/slskdn/tools'
-            $daemon = Get-ChildItem -LiteralPath $installedTools -Filter slskd.exe -Recurse
-            if (-not $daemon) {
-              throw "Chocolatey did not extract slskd.exe"
-            }
-
-            choco uninstall slskdn --yes --no-progress
-            if ($LASTEXITCODE -ne 0 -or (Test-Path -LiteralPath $installedTools)) {
-              throw "Chocolatey uninstall test did not remove the package"
-            }
-
             # The existing package endpoint can still serve the failed submission.
             # Require a successful push response when replacing the same version.
             choco push --source https://push.chocolatey.org/ --api-key "$env:CHOCO_API_KEY" --execution-timeout 300
