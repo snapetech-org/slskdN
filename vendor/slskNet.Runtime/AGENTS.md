@@ -20,4 +20,3 @@ These interaction rules are standard for all model interfaces used with this rep
 
 - All build, test, scan, package, and release jobs must use compatible private ephemeral JIT runners. Do not use GitHub-hosted runners or hosted fallbacks. Missing private capacity is a provisioning blocker; keep the job queued or blocked.
 - Preserve native OS and architecture. Public-fork code may run only on disposable VM-backed JIT runners with no secrets, minimal read access, and restricted egress. Do not widen trusted runner access.
-- Disable CodeQL across snapetech-org repositories unless the user explicitly reverses this instruction. Remove CodeQL workflow invocations and uploads; do not reroute them.

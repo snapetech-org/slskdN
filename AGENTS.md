@@ -18,5 +18,3 @@ The shared pool inventory in the organization packer repository governs private
 JIT jobs only. Verify source routing, deployed broker policy, runner-group
 access, and live capacity before relying on a private JIT workflow revision.
 
-CodeQL is disabled by owner directive. Do not restore or invoke CodeQL unless
-the owner explicitly reverses that instruction.
