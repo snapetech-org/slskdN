@@ -207,7 +207,15 @@ for job, retry_input in {
     block = job_block(tag_workflow, job)
     if f"inputs.{retry_input}" not in block or "needs.release-main.result == 'success'" not in block:
         raise SystemExit(f"{job} must be selected explicitly for recovery and gated on the normal release")
-    if "ref: ${{ inputs.release_tag" not in block:
+    if job == "chocolatey-main":
+        # Chocolatey packs the published release binary (downloaded by tag)
+        # with the current revision's packaging and verifier scripts.
+        if "ref:" in block or 'gh release download "${{ needs.parse.outputs.release_tag }}"' not in block:
+            raise SystemExit(f"{job} must pack the selected release binary with current packaging")
+    elif (
+        "ref: ${{ inputs.release_tag" not in block
+        and f"ref: ${{{{ inputs.{retry_input} && github.sha || inputs.release_tag" not in block
+    ):
         raise SystemExit(f"{job} must read source from the selected release tag during recovery")
 
 for job in ("build", "publish", "release-main", "announce-main", "homebrew-main"):
